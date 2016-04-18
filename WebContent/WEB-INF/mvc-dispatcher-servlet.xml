@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		                   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<mvc:view-controller path="/" view-name="/index" />
+	
+	<mvc:view-controller path="/about-us.html" view-name="/about-us" />
+	
+	<mvc:view-controller path="/company-activity.html" view-name="/company-activity" />
+	
+	<mvc:view-controller path="/company-service.html" view-name="/company-service" />
+	
+	<mvc:view-controller path="/order-flow.html" view-name="/order-flow" />
+	
+	<mvc:view-controller path="/member.html" view-name="/member" />
+	
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+
+	<context:component-scan base-package="com.panfeng.film.resource.controller" />
+
+	<context:annotation-config />
+
+	<mvc:annotation-driven />
+	
+	<mvc:interceptors>
+		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/info"/>
+			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
+		</mvc:interceptor>
+		<!-- 当设置多个拦截器时,先按顺序调用 preHandle 方法,然后逆序调用每个拦截器的 postHandle 和 afterCompletion 方法 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/provider/**" />
+			<mvc:exclude-mapping path="/provider/login" />
+			<mvc:exclude-mapping path="/provider/register" />
+			<mvc:exclude-mapping path="/provider/recover" />
+			<mvc:exclude-mapping path="/provider/header" />
+			<mvc:exclude-mapping path="/provider/doLogin" />
+			<mvc:exclude-mapping path="/provider/checkExisting" />
+			<mvc:exclude-mapping path="/provider/info/register" />
+			<mvc:exclude-mapping path="/provider/info/recover" />
+			<bean class="com.panfeng.film.filter.ProviderInterceptor" />
+		</mvc:interceptor>
+		<!-- 视频管家登陆拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/mgr/**" />
+			<mvc:exclude-mapping path="/mgr/login" />
+			<mvc:exclude-mapping path="/mgr/doLogin" />
+			<mvc:exclude-mapping path="/mgr/loginout" />
+			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

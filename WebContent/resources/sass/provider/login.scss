@@ -1,0 +1,209 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+
+
+@CHARSET "UTF-8";
+
+body{
+	background: url(../../images/login/provider-login.jpg) no-repeat;
+	background-size: cover;
+	background-position: center 0;
+}
+
+h2 {
+	font-size: 16px;
+	font-weight: 500;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+form label.control-label{
+	font-weight: 500;
+	color: #5f6a6d;
+	margin-bottom: 10px;
+}
+
+fieldset {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.index-content-wrap{
+	margin: 0 auto;
+	padding: 0;
+	overflow: hidden;
+}
+
+.index-content{
+	margin-top: 40px;
+}
+
+.logo{
+	text-align: center;
+}
+
+.logoImg{
+	height: 50px;
+}
+
+.login-container {
+	margin: 0 auto;
+	width: 420px;
+	padding: 18px;
+}
+
+.register-container {
+	margin: 0 auto;
+	width: 420px;
+	padding: 18px;
+}
+
+.recover-container {
+	margin: 0 auto;
+	width: 420px;
+	padding: 18px;
+}
+
+.well {
+	margin-top: 100px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 2px 0px rgba(48,59,60,0.1),0px 1px 3px 0px rgba(48,59,60,0.12);
+	border: none;
+}
+
+.form-group {
+	margin-bottom: 18px;
+}
+
+.actions {
+	width: 100%;
+	border-top: none;
+	margin-top: 10px;
+	padding: 0;
+}
+
+.btn-login{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.links {
+	margin-top: 30px;
+}
+
+.pull-right {
+	float: right !important;
+}
+
+.verfication{
+	display: inline-block;
+	width: 240px;
+	margin-right:4px;
+}
+
+.btn-validation {
+	display: inline;
+	height: 34px;
+	width: 90px;
+}
+
+.tooltip-show {
+	height: 46px;
+	background-color: #F2DEDE;
+	color: #A94446;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 36px;
+}
+
+label.tooltip-message {
+	padding-top: 4px;
+}
+
+.tooltip-show-recover {
+	height: 46px;
+	background-color: #F2DEDE;
+	color: #A94446;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 36px;
+}
+
+label.tooltip-message-recover {
+	padding-top: 4px;
+}
+
+
+
+
+.footer-three{
+	position: relative;
+	background: #fff;
+}
+
+.footer-title-three{
+	font-size: 16px;
+	color: #999;
+	margin-bottom : 20px;
+}
+
+.footer-title-three > h3{
+	font-size:12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.footer-content-three{
+	height: 110px;
+}
+
+.footer-content-three ul{
+	width: 300px;
+	margin:0 auto;
+}
+
+.footer-content-three li{
+	width: 100px;
+}
+
+.footer-content-three img{
+	width: 60px;
+	height:60px;
+}
+
+.footer-content-three span {
+	margin-top: 5px;
+	display: block;
+	color: #999;
+}
+
+li {
+	float: left;
+	text-align: center;
+}
+
+/* 第三方登录  start */
+.WB_loginButton{
+	width: 60px;
+}
+
+/* 第三方登录  end */
+
+.btn-danger {
+  background-color: #fe5453;
+  border-color: #fe5453;
+}
+
+.btn-link {
+	color: #fb9b6a;
+}
+
+
+.input-lg {
+	font-size: $font-size;
+}

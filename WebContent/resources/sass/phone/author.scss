@@ -1,0 +1,264 @@
+/* 手机端-作者页 */
+@import "compass/css3";
+@import "constant";
+@import "mixin";
+@import "common_portal";
+@import "compass/typography/text/ellipsis";
+@import "compass/typography/text/nowrap";
+
+$split-desc-height: 70px; // 区域分割线高度
+$activity-video-section-width: 96%; // 活动、视频区域宽度
+$video-content-height: 380px; // 一行视频的高度
+$video-image-height: 240px; // 视频图片的高度
+$team-desc-section-height: 230px; // 作者信息介绍区域高度
+
+/* 分割线代码 */
+%split-section {
+	position: relative;
+	top: 20px;
+	width: 96%;
+	height: $split-desc-height;
+	@include margin-auto;
+	text-align: center;
+	color: $fe5453;
+
+	h3 {
+		width:118px;
+		height: 28px;
+		@include margin-auto;
+		letter-spacing: 1px;
+		font: {
+			size: $big-font-size;
+			weight: 600;
+		}
+		border-bottom: solid 2px $fe5453;
+	}
+
+	.spilt-line {
+		height: 2px;
+		border-top: solid 1px $fe5453;
+	}
+}
+
+.wrap {
+
+	/* 作者信息介绍区域 start */
+	.team-desc-section {
+		position: relative;
+		width: 100%;
+		height: $team-desc-section-height;
+		background-color: #ffffff;
+		border-bottom: solid 1px #ccc;
+		@include margin-auto;
+		
+		dl {
+			position: relative;
+			top: 20px;
+			width: 58%;
+			height: ($team-desc-section-height - 40);
+			//padding-top: 20px;
+			//padding-bottom: 20px;
+			margin: 0 auto;
+			text-align: center;
+
+			dt:nth-child(1) {
+				position: relative;
+				.team-img {
+					width: 78px;
+					height: 78px;
+					@include border-radius(15px);
+					@extend %phone-border;
+					@include margin-auto;
+					img {
+						width: 78px;
+						height: 78px;
+						@include border-radius(15px);
+					}
+				}
+			}
+
+			dd:nth-child(2) {
+				position: relative;
+				top: 15px;
+				@include nowrap;
+				font: {
+					size: $bigger-font-size;
+				}
+			}
+
+			dd:nth-child(3) {
+				position: relative;
+				top: 25px;
+				line-height: 24px;
+				color: $fe5453;
+				border-top: solid 1px $fe5453;
+				border-bottom: solid 1px $fe5453;
+				@include ellipsis;
+				font: {
+					size: $normal-font-size;
+				}
+			}
+		}
+
+		.team-detail-wrap {
+			width: 96%;
+			height: 40px;
+			@include margin-auto;
+			border-top: solid 1px #ccc;
+			color: #666;
+			text-align: center;
+			line-height: 40px;
+			font-size: $normal-font-size;
+
+			.detail-left {
+				display: inline-block;
+				width: 49%;
+				height: 96%;
+				@include margin-auto;
+				float: left;
+				border-right: solid 1px #ccc;
+			}
+
+			.detail-right {
+				display: inline-block;
+				float: right;
+				width: 49%;
+				height: 96%;
+				@include margin-auto;
+			}
+		}
+
+	}
+	/* 作者信息介绍区域 end */
+
+	/* 视频 start */
+	.video-section {
+		position: relative;
+		width: 100%;
+		@include margin-auto;
+		//height: $video-list-section-height;
+		.video-guide {
+			@extend %split-section;
+		}
+
+		.video-content {
+			width: $activity-video-section-width;
+			@include margin-auto;
+
+			.contain-row {
+				width: 100%;
+				height: $video-content-height;
+				@include clearfix();
+				@extend %phone-border;
+				border-bottom: solid 1px #ccc;
+				margin-bottom: 15px;
+
+				.video-col{
+					position: relative;
+					width: 100%;
+					height: 100%;
+					@include clearfix();
+					.video-post {
+						img {
+							width: 100%;
+							height: $video-image-height;
+						}
+					}
+
+					.video-desc {
+						position: relative;
+						width: 100%;
+						margin: 0;
+						padding: 0;
+						@include clearfix();
+						background-color: #ffffff;
+						height: ($video-content-height - $video-image-height - 3);
+						dl {
+							position: relative;
+							top: 15px;
+							width: 90%;
+							height: ($video-content-height - $video-image-height - 3) - 15;
+							@include margin-auto;
+							dt:nth-child(1) {
+								margin-bottom: 15px;
+								h2 {
+									color: #333;
+									font: {
+										size: $normal-font-size;
+										weight: 600;
+									}
+									letter-spacing: 1px;
+								}
+							}
+
+							dd:nth-child(2) {
+								color: #999;
+								font: {
+									size: $small-font-size;
+									weight: normal;
+								}
+								line-height: 20px;
+								letter-spacing: 1px;
+								height: 38px;
+
+								word-break: break-all;
+								word-wrap: break-word;
+								white-space: normal;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+
+							dt:nth-child(3) {
+								display: inline-block;
+								float: left;
+								margin-top: 15px;
+								color: $fe5453;
+								font: {
+									size: $bigger-font-size;
+									weight: 600;
+								}
+								label {
+									font: {
+										size: $normal-font-size;
+										weight: normal;
+									}
+								}
+
+								.doraction {
+									color: #333;
+									margin-left: 4px;
+									text-decoration: line-through;
+								}
+							}
+
+							dd:nth-child(4) {
+								display: inline-block;
+								float: right;
+								margin-top: 15px;
+								
+								a {
+									font-size: $small-font-size;
+								}
+
+								.detail-btn {
+									width: 102px;
+									height: 26px;
+									line-height: 26px;
+									border: solid 1px $fe5453;
+									@include border-radius(25px);
+									background-color:#ffffff;
+									color: $fe5453;
+									text-align: center;
+									font: {
+										size: $small-font-size;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/* 视频 end */
+}

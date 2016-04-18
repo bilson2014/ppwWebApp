@@ -1,0 +1,229 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+
+body {
+  width: 100%;
+  height: 100%;
+  background: url(../../images/login/manager-login.jpg) no-repeat;
+  background-size: cover;
+  background-position: center 0;
+}
+
+.page-width {
+	//@include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+	position: relative;
+	top: 120px; 
+	margin: 0 auto;
+ 	width: 400px;
+ 	background: $body-color;
+
+	.login-div {
+		position: relative;
+		margin: 0 auto;
+		width: 400px;
+		height: 490px;
+		border: solid 1px $login-border;
+		border-radius: 5px;
+	}
+	h1 {
+		margin: 40px 0px 0px 20px;
+		font-size: $font-size-lger;
+	}
+	h2 {
+		margin: 15px 0px 0px 20px;
+		font-size: $font-size-base;
+		color: #fb9b6a;
+
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	h3{
+	font-size: $font-size-base;
+	color:$gray-light;
+	text-align:center;
+	margin-bottom:20px;
+
+	}
+	input {
+		width: 358px;
+		height: 38px;
+		margin: 20px 0px 0px 20px;
+		color: $gray-light;
+		font-size: $font-size;
+		padding-left: 10px;
+		border: solid 1px $login-border;
+		border-radius: 5px;
+	}
+	.loginbtn {
+		margin: 15px 0px 0px 20px;
+		width: 358px;
+		height: 38px;
+		background-color: $red-base;
+		border-color: $white;
+		border-radius: 5px;
+		display: inline-block;
+		border: none;
+		color: $white;
+		font-size: $font-size-base;
+	}
+	.loginbtn:hover {
+		cursor: pointer;
+		background-color: darken($red-base, 10%);
+	}
+	.div-border {
+		width: 330px;
+		margin: 37px auto;
+		height:1px;
+		border:none;
+		background-color:$login-border;
+	}
+  
+
+	.span-border {
+		width: 50px;
+		background: $white;
+		text-align: center;
+		margin: 0px auto;
+		position: relative;
+		top: -45px;
+		color:$login-border;
+	}
+	.three-login {
+		width: 234px;
+		margin: 0 auto;
+	    position: relative;
+		top: -20px;
+	}
+	img {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.image-margin{
+	margin-left:30px;
+	}
+
+	.bottom{
+     position: relative;
+     left: -1px;
+     width:401px;
+	 height:60px;
+	 line-height:60px;
+	 background:#f1f1f1;
+     text-align:center;
+     color:$gray-light;
+     border: solid 1px $login-border;
+     border-bottom-right-radius:5px;
+     border-bottom-left-radius:5px;
+       strong{
+        color:#fb9b6a;
+       }
+	}
+	   strong:hover{
+       cursor: pointer;
+       color:darken(#fb9b6a,10%);
+       }
+
+
+	.loginbtn {
+
+		margin: 15px 0px 0px 20px;
+		width: 358px;
+		height: 38px;
+		background-color: $red-base;
+		border-color: $white;
+		border-radius: 5px;
+		display: inline-block;
+		border: none;
+		color: $white;
+		font-size: $font-size-base;
+	}
+	.loginbtn:hover {
+		cursor: pointer;
+		background-color: darken($red-base, 10%);
+	}
+}
+.footer-top {
+	margin-top: 150px;
+}
+
+.footer-three{
+	position: relative;
+	top: 35px;
+}
+
+.footer-title-three{
+	font-size: 16px;
+	color: #999;
+	margin-bottom : 20px;
+}
+
+.footer-title-three > h3{
+	font-size:12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.footer-content-three{
+	height: 110px;
+}
+
+.footer-content-three ul{
+	width: 300px;
+	margin:0 auto;
+}
+
+.footer-content-three li{
+	width: 100px;
+}
+
+.footer-content-three img{
+	width: 60px;
+	height:60px;
+}
+
+.footer-content-three span {
+	margin-top: 5px;
+	display: block;
+	color: #999;
+}
+
+li {
+	float: left;
+	text-align: center;
+}
+
+/* 第三方登录  start */
+.WB_loginButton{
+	width: 60px;
+}
+
+/* 第三方登录  end */
+
+.btn-danger {
+  background-color: #fe5453;
+  border-color: #fe5453;
+}
+
+.btn-link {
+	color: #fb9b6a;
+}
+
+.nav .logo {
+  position: relative;
+  float: left;
+  top: 14px;
+  background: url(../../images/common/logo.svg) no-repeat;
+  width: 92px;
+  height: 30px;
+  margin-right: 76px;
+}

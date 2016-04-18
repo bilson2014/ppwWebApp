@@ -1,0 +1,65 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+
+
+.area-top {
+	  @include media_screen_width($about-us-width-min,$about-us-width-min,$about-us-width-min);
+	margin: auto;
+
+
+	.image-top {
+		@include media_screen_width($about-us-width-min,$about-us-width-min,$about-us-width-min);
+		height: auto;
+		padding-top:10px;
+
+	}
+}
+
+.nav-shadow {
+  width: 100%;
+  height: 1px;
+  box-shadow: 1px 1px 1px #888888;
+}
+
+.title {
+  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+  height: 70px;
+  margin: 0 auto;
+
+  p {
+    display: inline;
+    font-size: $font-size;
+    color: $gray;
+    margin-left: -2px;
+  }
+  .ul-wrap {
+    height: 40px;
+  }
+
+  #first-title{
+    border-bottom:2px solid #fe5453;
+    font-color:$gray;
+    font-weight:bold
+  }
+
+  .nav-title {
+    margin:0 auto;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    line-height: 70px;
+    cursor: pointer;
+    margin-right: ($about-us-width-min - (80*5)) / 5 - 10px;
+    @media screen and (min-width:1276px) and (max-width:1500px) {
+      margin-right: ($about-us-width-middle - (80*5)) / 5 - 10px;
+    }
+    @media screen and (min-width:1500px) {
+      margin-right: ($about-us-width-lg - (80*5)) / 5 - 10px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

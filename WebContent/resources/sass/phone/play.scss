@@ -1,0 +1,293 @@
+/* 手机端-播放页 */
+@import "compass/css3";
+@import "constant";
+@import "mixin";
+@import "common_portal";
+@import "compass/typography/text/ellipsis";
+
+$video-play-section-height: 250px; // 视频播放区域高度
+$video-play-section-height320: 170px; // 视频播放区域高度(320px)
+$video-play-section-height360: 192px; // 视频播放区域高度(360px)
+$video-play-section-height390: 210px; // 视频播放区域高度(390px)
+$video-play-section-height640: 351px; // 视频播放区域高度(640px)
+$video-play-section-height720: 396px; // 视频播放区域高度(720px)
+$video-content-width: 96%; // 介绍区域宽度
+$order-height: 50px; // 我要拍片高度
+
+.wrap {
+
+	.video-play-section {
+		position: relative;
+		width: 100%;
+		height: $video-play-section-height;
+		
+		@media screen and (max-width: 360px) {
+			height: $video-play-section-height320;
+		}
+
+		@media screen and (min-width: 360px) and (max-width: 390px) {
+			height: $video-play-section-height360;
+		}
+
+		@media screen and (min-width: 390px) and (max-width: 460px) {
+			height: $video-play-section-height390;
+		}
+
+		@media screen and (min-width: 640px) and (max-width: 720px) {
+			height: $video-play-section-height640;
+		}
+
+		@media screen and (min-width: 720px) {
+			height: $video-play-section-height720;
+		}
+
+		.video-play {
+			width: 100%;
+			height: 100%;
+		}
+
+		video {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.video-content-section {
+		position: relative;
+		top: 10px;
+		width: 100%;
+		@expend %phone-border;
+		background-color: #ffffff;
+
+		.video-title-col {
+			position: relative;
+			top: 10px;
+			width: 100%;
+			height: 50px;
+			text-align: center;
+			color: #333;
+			font: {
+				size: $big-font-size;
+				weight: 600;
+			}
+
+			h1 {
+				width: $video-content-width;
+				@include ellipsis;
+				@include margin-auto;
+				line-height: 50px;
+				//border-bottom: solid 1px #ccc;
+			}
+		}
+
+		.video-price-col {
+			width: $video-content-width;
+			height: 60px;
+			text-align: center;
+			//border-bottom: solid 1px #ccc;
+			@include margin-auto;
+			dl {
+				height: 48px;
+				margin: 6px auto;
+				dt {
+					h3 {
+						color: $fe5453;
+						line-height: 32px;
+						font: {
+							size: $bigger-font-size;
+							weight: 600;
+						}
+
+						label {
+							font: {
+								size: $normal-font-size;
+								weight: normal;
+							}
+						}
+
+						.doraction {
+							color: #333;
+							margin-left: 4px;
+							text-decoration: line-through;
+						}
+					}
+				}
+
+				dd {
+					color: #ccc;
+					font: {
+						size: $normal-font-size;
+						weight: normal;
+					}
+
+					p {
+						color: #666;
+					}
+				}
+			}
+		}
+
+		.order-col {
+			width: $video-content-width;
+			height: $order-height;
+			text-align: center;
+			margin: 10px auto;
+			background-color: $fe5453;
+			color: #ffffff;
+			font-weight: 500;
+			line-height: $order-height;
+		}
+
+		.video-detail-content {
+			width: $video-content-width;
+			// --> modify by guoyang, 2015-10-27 15:02 start
+			// --> 去掉 拍片流程 显示区域，产品详情能够全部显示
+			// height: 90px;
+			height: 100%;
+			// --> modify by guoyang, 2015-10-27 15:03 end
+			border-top: solid 1px #ccc;
+			//border-bottom: solid 1px #ccc;
+			@include margin-auto;
+			padding: 13px 0;
+			dl {
+				width: 88%;
+				// --> modify by guoyang, 2015-10-27 15:03 start
+				// --> 去掉 拍片流程 显示区域，产品详情能够全部显示
+				//height: 68px;
+				height: 100%;
+				// --> modify by guoyang, 2015-10-27 15:03 end
+				margin: 11px auto;
+				dt {
+					color: #333;
+					margin-bottom: 15px;
+					font: {
+						size: $big-font-size;
+						weight: 600;
+					}
+				}
+
+				dd {
+					color: #999;
+					// --> modify by guoyang, 2015-10-27 15:03 start
+					// --> 去掉 拍片流程 显示区域，产品详情能够全部显示
+					// height: 58px;
+					height: 100%; 
+					// --> modify by guoyang, 2015-10-27 15:03 end
+					line-height: 20px;
+
+					word-break: break-all;
+					word-wrap: break-word;
+					white-space: normal;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					font: {
+						size: $normal-font-size;
+						weight: normal;
+					}
+				}
+			}
+		}
+		
+		.split-content {
+			width: 100%;
+			height: 8px;
+			background-color: $wrap-background-color;
+		}
+
+		.film-flow {
+			width: $video-content-width;
+			height: 110px;
+			margin: 0 auto;
+			/* dl {
+				width: 90%;
+				height: 158px;
+				@include margin-auto;
+				dt {
+					color: #333;
+					margin-bottom: 15px;
+					font: {
+						size: $big-font-size;
+						weight: 600;
+					}
+				}
+
+				dd {
+					@include ellipsis;
+					color: #999;
+					line-height: 20px;
+					font: {
+						size: $normal-font-size;
+					}
+				}
+			} */
+
+			dl {
+				display: inline-block;
+				width: 68%;
+				height: 80px;
+				margin: 10px auto;
+
+				dt {
+					display: inline-block;
+					float: left;
+					@include border-radius(6px);
+					img {
+						width: 80px;
+						height: 80px;
+					}
+				}
+
+				dd:nth-child(2) {
+					display: inline-block;
+					width: 64%;
+
+					@media screen and (max-width: 360px) {
+						width: 46%;
+					}
+
+					@media screen and (min-width: 360px) and (max-width: 390px) {
+						width: 54%;
+					}
+
+					@media screen and (min-width: 390px) and (max-width: 460px) {
+						width: 58%;
+					}
+
+					@media screen and (min-width: 640px) and (max-width: 720px) {
+						width: 74%;
+					}
+
+					@media screen and (min-width: 720px) {
+						width: 77%;
+					}
+
+					color: #333;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					margin-left: 20px;
+					line-height: 90px;
+					font: {
+						weight: normal;
+						size: $normal-font-size;
+					}
+				}
+			}
+
+			.team-Btn {
+					display: inline-block;
+					@include clearfix;
+					float: right;
+					margin: 50px auto;
+					width: 70px;
+					height: 20px;
+					line-height: 20px;
+					text-align: center;
+					border: solid 1px $fe5453;
+					font-size: $normal-font-size;
+					color: #999;
+				}
+		}
+	}
+}
