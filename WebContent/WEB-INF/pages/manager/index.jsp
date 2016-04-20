@@ -6,6 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
 <spring:url value="/resources/lib/h5bp/h5bp.css" var="h5bpCss" />
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/common.css" var="commonCss" />
 
 <spring:url value="/resources/lib/dist/css/drop-theme-basic.css"
@@ -27,7 +28,7 @@
 	var="WdatePicker" />
 
 <spring:url value="/resources/js/model.js" var="modelJs" />
-<spring:url value="/resources/css/manager/flow.css" var="index" />
+<spring:url value="/resources/css/flow/flow.css" var="index" />
 <spring:url value="/resources/css/flow/step-dc-style1.css"
 	var="stepdcstyle" />
 <spring:url value="/resources/js/flow/step-jquery-dc.js"
@@ -37,6 +38,7 @@
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
+<spring:url value="/resources/img" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -50,6 +52,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${h5bpCss }">
+<link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${commonCss }">
 
 <link rel="stylesheet" href="${index }">
@@ -70,123 +73,12 @@
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
-
-
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
-<style>
-.drop-content{
-	background-color: #fff;
-	width:160px;
-	position:absolute;
-	left: -170px;
-}
-.drop-content a{
-display: inline-block;
-width: 100%;
--webkit-animation-duration: 0.8s;
-animation-duration: 0.8s;
--webkit-animation-fill-mode: both;
-animation-fill-mode: both;
--webkit-animation-name: bounceIn;
-animation-name: bounceIn;
-}			
-@-webkit-keyframes bounceIn {
-0% {
-  opacity: 0;
-  -webkit-transform: scale3d(.3, .3, .3);
-  transform: scale3d(.3, .3, .3);
-}
-
-20% {
-  -webkit-transform: scale3d(1.1, 1.1, 1.1);
-  transform: scale3d(1.1, 1.1, 1.1);
-}
-
-40% {
-  -webkit-transform: scale3d(.9, .9, .9);
-  transform: scale3d(.9, .9, .9);
-}
-
-60% {
-  opacity: 1;
-  -webkit-transform: scale3d(1.03, 1.03, 1.03);
-  transform: scale3d(1.03, 1.03, 1.03);
-}
-
-80% {
-  -webkit-transform: scale3d(.97, .97, .97);
-  transform: scale3d(.97, .97, .97);
-}
-
-to {
-  opacity: 1;
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-}
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  20% {
-    -webkit-transform: scale3d(1.1, 1.1, 1.1);
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
-
-  40% {
-    -webkit-transform: scale3d(.9, .9, .9);
-    transform: scale3d(.9, .9, .9);
-  }
-
-  60% {
-    opacity: 1;
-    -webkit-transform: scale3d(1.03, 1.03, 1.03);
-    transform: scale3d(1.03, 1.03, 1.03);
-  }
-
-  80% {
-    -webkit-transform: scale3d(.97, .97, .97);
-    transform: scale3d(.97, .97, .97);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-#circle-img-id{
--moz--animation:circle 1s infinite linear;/*匀速 循环*/
--webkit-animation:circle 1s infinite linear;/*匀速 循环*/
--o--animation:circle 1s infinite linear;/*匀速 循环*/
-}
-
-@-moz-keyframes circle{
-0%{ transform:rotate(0deg); }
-100%{ transform:rotate(-360deg); }
-}
-@-o-keyframes circle{
-0%{ transform:rotate(0deg); }
-100%{ transform:rotate(-360deg); }
-}
-
-
-@-webkit-keyframes circle{
-0%{ transform:rotate(0deg); }
-100%{ transform:rotate(-360deg); }
-}
-</style>
-
 </head>
 <body>
-<div class="circle-div"></div>
-	
-	<div class="header">
+<!-- <div class="circle-div"></div> -->
+
+<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -211,7 +103,7 @@ to {
 				</r:noLogin>
 			</div>
 			
- 			<div class="right-part">
+			<div class="right-part">
 				<r:noLogin>
 					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
@@ -233,17 +125,38 @@ to {
 	</div>
 
 	<div class="page">
+	 <div class="noproject hide">
+       <div class="no-poject-div" id="no-poject-div">
+       	<ul>
+        	<li><img src="/resources/img/flow/warning.png"></li>
+        	<r:identity role="provider">
+        		<li><label>当前没有项目分配</label></li>
+        	</r:identity>
+        	<r:identity role="customer">
+        		<li><label>当前没有项目启动</label></li>
+        	</r:identity>
+        	<r:identity role="manager">
+        		<li><label>当前没有任何项目,立即创建一个</label></li>
+        		<li><button class="red-btn" id="new-project">确定</button></li>
+        	</r:identity>
+         </ul>
+       </div>	
+   </div>
 		<div class="left-page">
 			<div class="left-title">
 				<label class="left-title-text">所有项目</label>
+                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn">
+				<img src="${imgPath }/flow/report.png" class="left-title-images ">
 			</div>
 			<r:permission uri="/add-view">
-			<div class="newBtn">
+			<!-- <div class="newBtn">
 				<img src="/resources/img/flow/add.png" class="newBtn-img">
-			</div>
+			</div> -->
 			</r:permission>
 			<div class="indentdiv">
 				<table class="indentlist">
+				</table>
+				<table class="indentlisthistory">
 				</table>
 			</div>
 		</div>
@@ -260,8 +173,8 @@ to {
 			            <a href="#" class="description-c"></a>
 				</div>
 				<div class="descriptiondiv top-margin">
-					<div class="description-title-text ">阶段时间：</div>
-					<div class="time-div-title">预计</div>
+					<div class="description-title-text ">项目进度：</div>
+					<div class="time-div-title">预计完成日期</div>
 					<div >
 					    <div class="time-div div-margin-sm " id="et_gt"></div>
                        	<div class="time-div div-margin" id="et_fa"></div>
@@ -269,7 +182,7 @@ to {
                        	<div class="time-div div-margin-mid" id="et_zz"></div>
                        	<div class="time-div div-margin-mid"  id="et_jf"></div>
 					</div>
-                    <div class="time-div-title">实际</div>
+                    <div class="time-div-title">实际完成日期</div>
                   	<div class="mo-time">
 					    <div class="time-div div-margin-sm " id="cu_gt"></div>
                        	<div class="time-div div-margin" id="cu_fa"></div>
@@ -277,10 +190,10 @@ to {
                        	<div class="time-div div-margin-mid"  id="cu_zz"></div>
                        	<div class="time-div div-margin-mid" id="cu_jf"></div>
 					</div>
-					<div class="description-title-text">方案描述：</div>
+					<div class="description-title-text" style="display: none">阶段描述：</div>
 					<br>
 					<br> 
-					<label class="description-text"></label>
+					<label class="description-text" style="display: none"></label>
 				</div>
 				<div class="flowbtndiv" id="btndiv-id">
 					<r:permission uri="/completeTask">
@@ -343,7 +256,7 @@ to {
 							</li>
 							<li>
 								<div class="indent-title">项目描述</div> 
-								<textarea class="indent-area" ></textarea>
+								<div class="indent-content-area indent-area" ></div>
 							</li>
 						</ul>
 					</div>
@@ -382,15 +295,90 @@ to {
 			</div>
 		</div>
 	</div>
+	
+	<div class="footer">
+		<!-- 底栏 start -->
+		<div class="footer-wrap">
+			<div class="footer-content">
+			
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >登录</a>
+					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
+					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >联系我们</a>
+					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
+					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >服务</a>
+					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
+					
+					<a href="javascript:void(0);" class="top-margin">工作时间</a>
+					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >授权 / 条款</a>
+					<a href="<spring:url value='/company-service.html' />">使用协议</a>
+					<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >了解拍片网</a>
+					<a href="<spring:url value='/about-us.html' />">了解我们</a>
+					<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
+					<a href="<spring:url value='/company-activity.html' />">公司活动</a>
+					<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
+				</div>
+
+				<div class="footer-column">
+					<div class="mark-icon"></div>
+					<h4>关注送好礼</h4>
+				</div>
+
+				<div class="footer-notice">
+					<h2>版权信息</h2>
+					<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
+					<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
+				</div>
+			</div>
+			<div class="footer-box">
+				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
+			</div>
+		</div>
+		<!-- 底栏 end -->
+	</div>
+	
+	<!-- photo Modal start -->
+		<div class="modal" id="mymodal" data-backdrop="static" data-keyboard=true>
+			<div class="modal-dialog">
+				<div class="modal-content model-distance" id="mymodal-content">
+					<div class="modal-body" id="mymodal-body">
+						<div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-success" role="progressbar" 
+							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
+						</div>
+						<div class="alert alert-warning" role="alert">完成上传之前请勿关闭页面</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- photo Modal end -->
+	
 	<!-- toolbar modal begin -->
-	<div>
 		<div class="modal fade upload-window" id="toolbar-modal">
-			<div class="circle-img" id="circle-img-id"></div>
+		<!-- 	<img class="circle-img" src="/resources/img/flow/circle.png" id="circle-img-id"></img> -->
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
-						<div class="common-icons-know-us-close-icon modal-icon"
-							data-dismiss="modal" aria-label="Close"></div>
+						<!-- <div class="common-icons-know-us-close-icon modal-icon"
+							data-dismiss="modal" aria-label="Close"></div> -->
+							<img class="canclemodal" src="/resources/img/flow/canclemodal.png">
 						<dl>
 							<dt>
 								<h1 id="modal-h3-first">选择文件</h1>
@@ -408,8 +396,8 @@ to {
 								</ul>
 							</dt>
 							<dt>
-								<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
 								<button class="select-true-btn red-btn" id="upload-circle-btn">上传</button>
+								<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
 							</dt>
 							<dd id="modal-dd-second">
 								<input class="upload-input" type="file" id="uploadfile" />
@@ -420,21 +408,22 @@ to {
 			</div>
 		</div>
 		<!-- toolbar modal end -->
-				<!-- toolbar modal begin -->
-	<div>
-	<div class="modal fade upload-window" id="toolbar-check">
-		<div class="modal-dialog">
-			<div class="modal-content" >
-				<div class="modal-body checkstep">
-                   <button class="red-btn sure-margin">确定</button>
-                   <label class="check-step" style="background-color: red;">确定下一步吗</label>
-                   <button class="gray-btn cancle-margin">取消</button>   
-				</div>
+					<!-- toolbar modal begin -->
+		<div class="modal fade upload-window" id="toolbar-check">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+					
+					<div class="modal-body checkstep">
+					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
+		                   <button class="red-btn sure-margin">确定</button>
+		                   <label class="check-step" >确定下一步吗</label>
+		                   <button class="gray-btn cancle-margin">取消</button>   
+					</div>
+				</div>	
 			</div>
 		</div>
-	</div>
-	<!-- toolbar modal end -->
-	</div>
+		<!-- toolbar modal end -->
+
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>
 	<div class="-mob-share-ui" style="display: none">

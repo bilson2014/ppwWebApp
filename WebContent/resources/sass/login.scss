@@ -1,5 +1,5 @@
 @import "common";
-@import "buttons";
+
 @import "video";
 @import "bootstrap-grid";
 
@@ -38,10 +38,9 @@ li{
 .wrap{
   width: 380px;
   height: 480px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -240px 0 0 -190px;
+  position: relative;
+  top: 75px;
+  margin: auto;
   text-align: center;
   -webkit-perspective: 1000;
   border-radius: 6px;
@@ -134,6 +133,10 @@ li{
   margin-right:2px;
 }
 
+.kaptcha_pic_image {
+  vertical-align: middle;
+}
+
 .line_height{
   line-height: 1.42857143;
   height: 40px;
@@ -149,7 +152,7 @@ li{
 
 .footer{
   position: relative;
-  top:45px;
+  top: 35px;
 }
 
 .footer-title{
@@ -196,4 +199,11 @@ li{
 
 .btn-link {
   color: #fb9b6a;
+}
+
+.login-title {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: left;
 }

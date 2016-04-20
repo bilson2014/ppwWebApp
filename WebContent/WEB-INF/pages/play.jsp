@@ -128,7 +128,7 @@
 				<!-- video info start -->
 				<div class="info-wrap col-md-3">
 					<dl>
-						<dt id="vLength">${product.videoLength }</dt>
+						<dt id="vLength">${product.videoLength } 秒</dt>
 						<dd>影片时长</dd>
 					</dl>
 					<dl>

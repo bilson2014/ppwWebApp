@@ -3,7 +3,8 @@ $().ready(function(){
 	// -> 如果视频有优酷地址，那么使用UK播放器
 	var hret = $('#yk-play').val();
 	if(hret != '' && hret != null && hret != undefined){
-		var height = $('#player-wrap').find('video').height();
+		//var height = $('#player-wrap').find('video').height();
+		var height = $('.info-wrap').height();
 		$('#player-wrap').css('height',height);
 		makePlayer('player-wrap', hret); // 创建视频浏览器
 	}
@@ -21,7 +22,7 @@ $().ready(function(){
 	$('#order-btn').click(function(){
 		var indentPrice = $('#vPrice').val();
 		var serviceId = $('#service-unique').val();
-		var second = $('#vLength').text().trim() == '' ? 0 : $('#vLength').text().trim();
+		var second = $('#vLength').text().trim() == '' ? 0 : $('#vLength').text().trim().split(' 秒')[0];
 		var productName = $('#pName').text();
 		var tId = $('#company-unique').val();
 		var pId = $('#play-unique').val();

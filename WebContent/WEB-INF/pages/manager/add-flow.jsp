@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="r" uri="/mytaglib"%>
 
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
@@ -26,7 +26,7 @@
 <spring:url value="/resources/lib/jquery.cookie/jquery.cookie.js"
 var="cookiejs" />
 <spring:url value="/resources/js/model.js" var="modelJs" />
-<spring:url value="/resources/css/manager/addflow.css" var="addflowcss" />
+<spring:url value="/resources/css/flow/addflow.css" var="addflowcss" />
 <spring:url value="/resources/js/flow/addflow.js" var="addflowjs" />
 <spring:url value="/resources/lib/jquery/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
@@ -133,8 +133,8 @@ var="cookiejs" />
 			               <input class="user-info-input" placeholder="请输入" id="add_contactname"></input>
 			               <input class="user-info-input" placeholder="请输入" id="add_userphone"></input>
                      </div>
-                     <button class="user-info-btn-cancle" id="hide-btn">取消</button>
                      <button class="user-info-btn" id="user-info-btn-finish">完成</button>
+                     <button class="user-info-btn-cancle" id="hide-btn">取消</button>
 				</div>
 			</div>
 		</div>
@@ -149,39 +149,43 @@ var="cookiejs" />
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">项目编号</div>
-							<input type="text" class="tableinput-baseinfo projectId">
+							<input type="text" class="tableinput-baseinfo border-gray projectId">
+							<label class="error-label" id="error-projectId">该信息不能为空</label>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">项目名称</div>
-							<input type="text" class="tableinput-baseinfo projectName">
+							<input type="text" class="tableinput-baseinfo border-gray projectName">
+							<label class="error-label" id="error-projectName">该信息不能为空</label>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key" >项目来源</div>
-							<div class="tableinput-baseinfo projectId" id="projectSource-id" >
-								<input readonly="readonly" id="projectSource" class="info-input" placeholder="请选择"/>
-								<img class="select-img-point" src="/resources/img/flow/select.png">
-							</div>
+							<select class="tableinput-baseinfo" id="projectSource" ></select>
+							<label class="error-label" id="error-projectSource">该信息不能为空</label>
+								
+							
 						</div>
                    </div>
                    <div class="baseinfo-table">
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户信息</div>
-							<div class="baseinfo-table-key-add" id="add-user">添加用户</div>
+							<div class="baseinfo-table-key-add" id="add-user">添加用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</div>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户名称</div>
-							<div class="tableinput-baseinfo userName" id="userName-id">
-								<input id="userName" class="info-input"/>
-								<img class="select-img-point" src="/resources/img/flow/select.png">
+							<div class="tableinput-baseinfo-noborder userName" id="userName-id">
+								<input id="userName"  class="info-input border-gray"/>
+								<label class="username-error-label" id="error-userName">该信息不能为空</label>
 							</div>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户联系人</div>
-							<input type="text" class="tableinput-baseinfo userContact">
+							<input type="text" class="tableinput-baseinfo border-gray userContact">
+							<label class="error-label" id="error-userContact" >该信息不能为空</label>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户电话</div>
-							<input type="text" class="tableinput-baseinfo userPhone">
+							<input type="text" class="tableinput-baseinfo border-gray userPhone">
+							<label class="error-label" id="error-userPhone" >该信息不能为空</label>
 						</div>
                    </div>
 				<div class="baseinfo-table">
@@ -190,18 +194,17 @@ var="cookiejs" />
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商名称</div>
-							<div class="tableinput-baseinfo teamName" id="teamName-id" >
-								<input id="teamName" class="info-input"/>
-								<img class="select-img-point" src="/resources/img/flow/select.png">
+							<div class="tableinput-baseinfo-noborder teamName" id="teamName-id" >
+								<input id="teamName" class="info-input border-gray " id="error-teamName"/>
 							</div>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商联系人</div>
-							<input type="text"  class="tableinput-baseinfo teamContact">
+							<input type="text"  id="error-teamContact"  class="tableinput-baseinfo border-gray teamContact">
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商电话</div>
-							<input type="text" class="tableinput-baseinfo teamPhone">
+							<input type="text" class="tableinput-baseinfo border-gray teamPhone" id="error-teamPhone">
 						</div>
 				</div>
 				<div class="baseinfo-table">
@@ -213,9 +216,10 @@ var="cookiejs" />
 						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
 							<div class="final-price-div">
 								<div class="pirce-div mleft" ></div>
-								<div>
-							    	<input type="checkbox" class="radio-price"  id="radio-price">最终定价</input>
-							    	   <lable class="checkword">最终价格</label>
+								<div class="mright">
+							    	<input type="checkbox" class="radio-price border-gray"  id="radio-price"></input>
+							    	  <lable class="checkword">确定报价</label>
+										<label class="final-price-label" id="error-radio-price">该信息不能为空</label>
 								</div>
 						 </div>
 					</div>
@@ -259,16 +263,84 @@ var="cookiejs" />
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border">预计时间</div>
 				<div class="right-border right-border-margin"><input type="text" class="tableinput gtstarttime" id="gtstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput fastarttime" id="gtstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput swstarttime" id="gtstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput zzstarttime" id="gtstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput jfstarttime" id="gtstarttime"></div>
-			</div>	
+				<div class="right-border right-border-margin"><input type="text" class="tableinput fastarttime" id="fastarttime"></div>
+				<div class="right-border right-border-margin"><input type="text" class="tableinput swstarttime" id="swstarttime"></div>
+				<div class="right-border right-border-margin"><input type="text" class="tableinput zzstarttime" id="zzstarttime"></div>
+				<div class="right-border right-border-margin"><input type="text" class="tableinput jfstarttime" id="jfstarttime"></div>
+			</div>
+			  <div class="indent-time-table-border-tr-time-error">
+				<div class="right-border"></div>
+				<div class="right-border right-border-margin"><label id="error-gtstarttime"  class="tableinput-error ">日期有误</label></div>
+				<div class="right-border right-border-margin"><label id="error-fastarttime" class="tableinput-error ">日期有误</label></div>
+				<div class="right-border right-border-margin"><label id="error-swstarttime" class="tableinput-error ">日期有误</label></div>
+				<div class="right-border right-border-margin"><label id="error-zzstarttime" class="tableinput-error ">日期有误</label></div>
+				<div class="right-border right-border-margin"><label id="error-jfstarttime" class="tableinput-error ">日期有误</label></div>
+			</div>
+				
 		</div>
 	</div>
 	<div class="indent-btn-div">
 		<button class="indent-btn">确认</button>
+		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
 	</div>  	
 </div>
+
+<div class="footer">
+		<!-- 底栏 start -->
+		<div class="footer-wrap">
+			<div class="footer-content">
+			
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >登录</a>
+					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
+					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >联系我们</a>
+					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
+					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >服务</a>
+					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
+					
+					<a href="javascript:void(0);" class="top-margin">工作时间</a>
+					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >授权 / 条款</a>
+					<a href="<spring:url value='/company-service.html' />">使用协议</a>
+					<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >了解拍片网</a>
+					<a href="<spring:url value='/about-us.html' />">了解我们</a>
+					<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
+					<a href="<spring:url value='/company-activity.html' />">公司活动</a>
+					<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
+				</div>
+
+				<div class="footer-column">
+					<div class="mark-icon"></div>
+					<h4>关注送好礼</h4>
+				</div>
+
+				<div class="footer-notice">
+					<h2>版权信息</h2>
+					<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
+					<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
+				</div>
+			</div>
+			<div class="footer-box">
+				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
+			</div>
+		</div>
+		<!-- 底栏 end -->
+	</div>
 </body>
 </html>

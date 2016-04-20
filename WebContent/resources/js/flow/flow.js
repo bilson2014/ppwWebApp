@@ -3,13 +3,20 @@ var stepListJson;
 var isShow = false;
 var checkHidden = false;
 var currentIndex;
+
+// add by guoyang, 2016-04-19 03:17 begin
+// -> 添加时间变量
+var oTimer;
+//add by guoyang, 2016-04-19 03:17 end
+
 $().ready(
 		function() {
 			init();
 			loadprojecctlist(false,false);
 			$(".flowbtn").on("click", function() {
 				$("#toolbar-check").modal('show');
-				setModalEvent(nextFlow());
+				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+				setModalEvent(nextFlow);
 			});
 			$(".cancle-margin").on("click",function(){
 				$("#toolbar-check").modal('hide');
@@ -26,12 +33,10 @@ $().ready(
 				$(".more-comment").hide();
 			});
 
-			$(".newBtn").on(
-					"click",
-					function() {
+			$(".newBtn").on("click",function() {
 						window.location.href = getContextPath()
 								+ "/mgr/flow/add-view";
-					});
+			});
 
 			$(".pausebtn").on("click", function() {
 				pauseBtn();
@@ -46,10 +51,15 @@ $().ready(
 						window.location.href = getContextPath()
 								+ "/mgr/projects/upadte-view";
 			});
+			$("#canclestep").on('click',function(){
+				$("#toolbar-check").modal('hide');
+			});
+			$("#new-project").on('click',function(){
+				window.location.href = getContextPath()
+				+ "/mgr/flow/add-view";
+			});
 		});
 function init() {
-	$('.circle-div').hide();
-	$('.circle-img').hide();
 	
 	$("#input-value").click(function() {
 		var select_lis = document.getElementById("ul-select")
@@ -75,12 +85,17 @@ function init() {
 		});
 	});
 	$(".select-true-btn").on('click', function() {
-		$('.circle-div').show();
-		$('.circle-img').show();
 		var file = $("#addfile").val();
 		var tag = $("#input-value").val();
 		if (file != null && tag != '未选择') {
 			uploadfile();
+			// modify by guoyang, 2016-04-19 03:11 begin
+			$('#toolbar-modal').modal('hide');
+			oTimer = setInterval("getProgress()", 500);
+			$('.progress-bar-success').text('0')
+			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
+			$('#mymodal').modal('show');
+			// modify by guoyang, 2016-04-19 03:11 end
 		} else {
 			alert("请完善信息");
 		}
@@ -119,6 +134,7 @@ function nextFlow(){
 	var key = getCurrentProject();
 	loadData(function(msg) {
 		loadprojecctlist(false,false);
+		$("#toolbar-check").modal('hide');
 	}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 		id : key
 	}));
@@ -151,9 +167,14 @@ function loadFileTags() {
 }
 //取消按钮
 function cancelBtn() {
+	$("#toolbar-check").modal('show');
+	$(".check-step").text("您确定要取消项目吗？");
+	setModalEvent(cancel);
+}
+function cancel() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
-		alert(msg);
+		$("#toolbar-check").modal('hide');
 		loadprojecctlist(false,true);
 	}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
 		id : key
@@ -161,22 +182,36 @@ function cancelBtn() {
 }
 //暂停按钮
 function pauseBtn() {
+	$("#toolbar-check").modal('show');
+	$(".check-step").text("您确定要暂停项目吗？");
+	setModalEvent(pause);
+}
+//恢复按钮
+function resumeBtn() {
+	$("#toolbar-check").modal('show');
+	$(".check-step").text("您确定要恢复项目吗？");
+	setModalEvent(resume);
+}
+
+function pause() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$("#toolbar-check").modal('hide');
 		loadflowdata();
 	}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
 		id : key
 	}));
 }
-//恢复按钮
-function resumeBtn() {
+function resume() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$("#toolbar-check").modal('hide');
 		loadflowdata();
 	}, getContextPath() + '/mgr/flow/resumeProcess', $.toJSON({
 		id : key
 	}));
 }
+
 //提交评论
 function submitcomment() {
 	var key = getCurrentProject();
@@ -325,8 +360,8 @@ function loadflowdata() {
 									//设置弹出框内部信息
 									drop.on("open",function() {
 										var text = jQuery(this.target).attr("data-description");
-										$(".description-c").html("<p>"+ text+ "</p>");
-										$(".content-title").html("<p>"+ jQuery(this.target).text()+ "阶段</p>");
+										$(".description-c").html("<span class='word-size'>"+ text+ "</span>");
+										$(".content-title").html("<p class='word-title'>"+ jQuery(this.target).text()+ "阶段</p>");
 									});
 								}
 							});
@@ -364,10 +399,18 @@ function uploadfile() {
 			tag : tag
 		},
 		success : function(data) {
-			$('.circle-div').hide();
-			$('.circle-img').hide();
-			$('#toolbar-modal').modal('hide');
+			// delete by guoyang, 2016-04-19 04:19 begin
+			//$('.circle-div').hide();
+			//$('.circle-img').hide();
+			//$('#toolbar-modal').modal('hide');
+			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
+			
+			// add by guoyang, 2016-04-19 03:19 begin
+			// -> 停止计时器
+			window.clearInterval(oTimer); // 停止计时器
+			$('#mymodal').modal('hide');
+			// add by guoyang, 2016-04-19 03:19 end
 		},
 		error : function(data, status, e) {
 			alert(data);
@@ -382,6 +425,10 @@ loadData(
 	function(msg) {
 		var tab = $(".file-table");
 		tab.html("");
+		if(msg.length==0){
+			tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/img/flow/nofile.png\"/></div>");
+			$(".more-file-btn").hide();
+		}
 		for (var i = 0; i < msg.length; i++) {
 			var name=msg[i].irOriginalName;
 			var divRoot=$("<div class=\"file-div\"></div>");
@@ -445,7 +492,7 @@ loadData(
 			var fileimg=$("<img class=\"img-icon\" id=\"img-icon-id\"src='"+src+"'>");
 			var div1=$("<div class=\"file-icon div-table\"></div>");
 			div1.append(fileimg);
-			var div2=$("	<div class=\"div-table\"><div class=\"file-name\">"+ msg[i].irOriginalName +
+			var div2=$("	<div class=\"div-table-file-type\"><div class=\"file-name\">"+ msg[i].irOriginalName +
 					"</div><div class=\"file-type\">"+msg[i].irtype+"</div></div>");
 			var userNameView="";
 			if(msg[i].userViewModel!=null){
@@ -498,12 +545,12 @@ loadData(
 				jQuery(this).attr("src",'/resources/img/flow/download.png');
 			});
 			
-			var div3=$("<div class=\"div-table div-table-margin\"><p class=\"file-user-name\">"+userNameView+
+			var div3=$("<div class=\"div-table \"><p class=\"file-user-name\">"+userNameView+
 					"</p><p class=\"file-time\">上传于<strong>"+ msg[i].irCreateDate+"</strong></p></div>");
 			var div4=$("<div class=\"qrcode-td div-table\"></div>");
 			div4.append(chakan);
 			div4.append(fenxiang);
-			var div5=$("<div class=\"div-table\"></div>");
+			var div5=$("<div class=\"div-download\"></div>");
 			var downloada=$("<a href=\""
 					+ getContextPath()
 					+ '/mgr/getFile/'
@@ -529,6 +576,10 @@ function loadcommentdata(more) {
 		function(msg) {
 			var tab = $(".message-table");
 			tab.html("");
+			if(msg.length==0){
+				tab.html(" <img  class=\"nomessage\" src=\"/resources/img/flow/nomessage.png\"/>");
+				$(".more-comment").hide();
+			}
 			for (var i = 0; i < msg.length; i++) {
 				var tr = $("<tr></tr>");
 				var imgx=$("<img class=\"message-portrait-img\""
@@ -544,7 +595,7 @@ function loadcommentdata(more) {
 				td1.append(imgx);
 				var td2 = $("<td><label class=\"msg-comm-name\">"
 						+ text
-						+ "</label><label class=\"msg-comm-time\">1个小时前</label></td>");
+						+ "</label><label class=\"msg-comm-time\">"+msg[i].icCreateDate.split(' ')[0]+"</label></td>");
 				tr.append(td1);
 				tr.append(td2);
 				tab.append(tr);
@@ -566,8 +617,19 @@ function loadcommentdata(more) {
 function loadprojecctlist(more,state) {
 	loadData(function(msg) {
 		var tab = $(".indentlist");
-		tab.html("");
+		var tab2=$(".indentlisthistory");
+		tab.html("<tr><td class='indent-more'>正在进行</td></tr>");
+		tab2.html("");
 		var currentprojectkey = '';
+		if(msg.length<=0){
+			$(".left-page").hide();
+			$(".right-page").hide();
+			$(".noproject").removeClass('hide');
+		}else{
+			$(".left-page").show();
+			$(".right-page").show();
+			$(".noproject").addClass('hide');
+		}
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
@@ -599,11 +661,33 @@ function loadprojecctlist(more,state) {
 			a.append(msg[i].projectName);
 			td.append(a);
 			tr.append(td);
-			tab.append(tr);
-			if (!more && i == 10) {
-				break;
-			}
+			if(msg[i].state)
+				tab2.append(tr);
+			else
+				tab.append(tr);	
 		}
+		var tr = $("<tr></tr>");
+		var td = $("<td class='indent-more'>历史回顾</td>");
+		//change + to big by lt 
+		//var tdimg = $("<td class='indent-more-icon'>+</td>");
+		//
+        var tdimg = $("<td class='indent-more-add'>+</td>");
+
+        tr.on('click',function(){
+			var tlist=$(".indentlisthistory");
+			var display=$(tlist).css('display');
+			if(display=='none'){
+				tlist.show();
+				$(".indent-more-add").html('-');
+			}else{
+				tlist.hide();
+				$(".indent-more-add").html('+');
+			}
+		});
+		tr.append(td);
+		tr.append(tdimg);
+		tab.append(tr);
+		
 	// load more component
 	resetTime('');
 	loadflowdata();
@@ -618,6 +702,19 @@ function loadprojecctlist(more,state) {
 //加载项目列表视图
 function updateProjectTreeView() {
 	$(".indentlist tr td a").each(function(index) {
+		num = jQuery(this).attr("data-value");
+		var key = getCurrentProject();
+		if (num == key) {
+			jQuery(this).attr("class", "indent-selected");
+
+			// var editImg = $("<img class='indent-ednt-btn'
+			// src=\"/resources/img/flow/edit.png\"/>");
+		} else {
+			jQuery(this).attr("class", "indent-a");
+			jQuery(this).next().remove();
+		}
+	});
+	$(".indentlisthistory tr td a").each(function(index) {
 		num = jQuery(this).attr("data-value");
 		var key = getCurrentProject();
 		if (num == key) {
@@ -710,15 +807,15 @@ function putCurrentProject(key) {
 // 点击
 function mycall(restult) {
 	// alert("mycall"+result.value+":"+result.text);
-	StepTool.drawStep(result.value, stepListJson);
+	//StepTool.drawStep(result.value, stepListJson);
 }
 // 移入
 function mouseenter(restult) {
-	console.log("in" + restult.value);
+	//console.log("in" + restult.value);
 }
 // 移出
 function mouseleave(restult) {
-	console.log("out" + restult.value);
+	//console.log("out" + restult.value);
 }
 // 获取当前时间
 function getCurrentTime() {
@@ -739,3 +836,17 @@ function dateCompare(date1, date2) {
 	else
 		return false;
 }
+
+
+
+// add by guoyang, 2016-04-19 03:14 begin
+// -> 添加进度条显示
+function getProgress() {
+	var now = new Date();
+	loadData(function(data){
+		var progress = Number((data.pBytesRead / data.pContentLength) * 100).toFixed(0) + '%';
+		$('.progress-bar-success').text('已完成' + progress)
+		$('.progress-bar-success').attr('aria-valuenow',progress).css({"width":progress});
+	}, getContextPath() + '/upfile/progress', now.getTime());
+}
+// add by guoyang, 2016-04-19 03:14 end

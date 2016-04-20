@@ -84,13 +84,14 @@
 	<div class="page page-width">
 		<div class="login-div">
        
-          <h1>客户登录</h1>
+          <h1>视频管家登录</h1>
           <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
-	          <input class="use-name" placeholder="请输入用户名" id="loginName" />
-	          <input class="use-password" type="password" placeholder="请输入密码" id="pwd" />
+	          <input class="use-name" placeholder=" 请输入用户名" id="loginName" />
+	          <input class="use-password" type="password" placeholder=" 请输入密码" id="pwd" />
           </form>
-          <h2>忘记密码？</h2>
+          
           <button  class="loginbtn" id="loginbtn">登录</button>
+          <h2>忘记密码？</h2>
           <footer class="footer-three">
 			<div class="footer-title-three">
 				<h3>第三方账号登录</h3>

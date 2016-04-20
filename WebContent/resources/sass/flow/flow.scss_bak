@@ -1,0 +1,746 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "compass/typography/text/ellipsis";
+
+.page {
+	margin: auto;
+	width: 956px;
+
+	.left-page {
+		display: inline-block;
+		width: 212px;
+		float: left;
+		background-color: $white;
+		margin: 20px 0px 0px 0px;
+
+		.left-title {
+			width: 100%;
+			height: 20px;
+			margin-top: 30px;
+		}
+		.left-title-text {
+			margin-left: 5px;
+			font-weight: bold;
+			font-size: $font-size-lg;
+			color: $gray-dark;
+		}
+	}
+	.right-page {
+		display: inline-block;
+		width: 731px;
+		margin: 20px 0px 47px 0px;
+
+		.flowblock {
+			margin-left: 18px;
+			background: white;
+
+			.flow-title {
+				width: 100%;
+				height: 16px;
+				padding-top:30px;
+				margin-left:10px;
+			}
+			.flow-title-text {
+				font-size: $font-size;
+				font-weight: bold;
+				color: $gray-dark;
+			}
+		}
+	}
+	.step_margin {
+		margin-top: 50px;
+		padding-left: 20px;
+	}
+	.newBtn {
+		width: 194px;
+		height: 46px;
+		margin-top: 20px;
+		background-color: gray;
+		text-align: center;
+		margin-left: 6px;
+	}
+	.newBtn:hover {
+		background-color: $red-base;
+	}
+	.newBtn-img {
+		margin-top: 11px;
+		cursor: pointer;
+	}
+	.indentdiv {
+		width: 100%;
+		margin-top: 10px;
+
+		.indentlist {
+			border-spacing: 11px 26px;
+			border-collapse: separate;
+		}
+		.indent-ednt-btn {
+			width: 15px;
+			height: 15px;
+		}
+		.indent-a {
+			font-size: $font-size;
+			color: $gray;
+		}
+		.indent-a:hover {
+			color: $gray-dark;
+			font-size: 16px;
+		}
+		.indent-selected {
+			font-size: $font-size;
+			color: red;
+			border-left: solid 2px red;
+		}
+		.indent-more {
+			font-size: $font-size;
+			color: $gray-light;
+		}
+	}
+	.descriptiondiv {
+		margin: 30px 0px 0px 0px;
+		padding-left: 10px;
+
+		.description-title-text {
+			margin-top: 30px;
+			margin-bottom: 20px;
+			color: $gray-dark;
+			font-size: $font-size;
+		}
+		.description-text {
+			color: $gray;
+			font-size: $font-size-base;
+		}
+		.mo-time {
+			margin-top: 10px;
+		}
+		.time-div {
+			width: 83px;
+			color: $gray-light;
+			font-size: $font-size-base;
+			display: inline-block;
+			text-align: center;
+		}
+		.div-margin {
+			margin-left: 50px;
+		}
+		.div-margin-mid {
+			margin-left: 45px;
+		}
+		.div-margin-sm {
+			margin-left: 25px;
+		}
+		.time-div-title {
+			margin-top: 5px;
+			margin-bottom: 5px;
+			font-size: $font-size-base;
+			color: $gray;
+		}
+		.get-step {
+			color: $red-base;
+		}
+	}
+	.flowbtndiv {
+		margin: 40px auto;
+		width: auto;
+		height: 88px;
+
+		.btn-margin {
+			margin-left: 20px;
+		}
+	}
+	.indentinfo {
+		margin-left: 18px;
+		background: $white;
+		margin-top: -30px;
+
+		.indentinfo-title {
+			width: 100%;
+			height: 20px;
+			padding-top: 40px;
+			padding-left: 10px;
+		}
+		.indentinfo-title-text {
+			font-size: $font-size;
+			font-weight: bold;
+			color: $gray-dark;
+		}
+		.indentinfo-table-div {
+			padding-top: 32px;
+			padding-left: 10px;
+			padding-bottom: 40px;
+		}
+		.indentinfo-table {
+			border-spacing: 0px 38px;
+			border-collapse: separate;
+			margin: 0;
+			padding: 0;
+		}
+		.indent-title {
+			width: 160px;
+			display: inline-block;
+			font-size: $font-size;
+			font-weight: 500;
+		}
+		.indent-area {
+			height: 60px;
+			color: $gray;
+			display: inline-block;
+			font-size: $font-size-base;
+			line-height: 20px;
+			border: 0px solid;
+		}
+		.indent-content-area {
+			width: 450px;
+			color: $gray;
+			display: inline-block;
+			font-size: $font-size-base;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.indent-content {
+			width: 150px;
+			color: $gray;
+			display: inline-block;
+			font-size: $font-size-base;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.indent-margin {
+			width: 100px;
+			margin-left: 50px;
+		}
+		li {
+			margin-top: 40px;
+
+			.content-color {
+				color: $gray-dark;
+			}
+		}
+		.li-margin {
+			margin-top: 10px;
+		}
+		tr {
+			height: 25px;
+		}
+	}
+	.indentfile {
+		margin-left: 18px;
+		background: $white;
+
+		.indentfile-title {
+			width: 100%;
+			margin-top: 10px;
+			padding-top: 40px;
+			padding-bottom: 30px;
+		}
+		.indentfile-title-text {
+			display: inline-block;
+			font-size: $font-size;
+			font-weight: bold;
+			color: $gray-dark;
+			float: left;
+			padding-left: 10px;
+		}
+	}
+	.upload-file-btn {
+		display: inline-block;
+		position: relative;
+		float: right;
+		right: 15px;
+	}
+	.change-file-btn {
+		display: inline-block;
+		position: relative;
+		float: right;
+		right: 15px;
+	}
+	.file-table {
+		padding-left: 10px;
+		margin-top: 30px;
+		border-spacing: 0px 20px;
+		border-collapse: separate;
+	}
+	.file-div {
+		margin-top: 20px;
+	}
+	.div-table {
+		display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+	}
+	.div-table-file-type {
+		display: inline-block;
+		height: 30px;
+		width: 200px;
+		vertical-align: middle;
+	}
+	.div-table-margin {
+		margin-left: 50px;
+	}
+	.file-icon {
+		width: 50px;
+	}
+	.img-icon {
+		width: 25px;
+		height: 35px;
+	}
+	.file-name {
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		color: $gray;
+		font-size: $font-size-base;
+		@include ellipsis;
+		display: inline-block;
+	}
+	.file-type {
+		margin-left: 5px;
+		color: $gray-light;
+		font-size: $font-size-sm;
+		display: inline-block;
+		border: 1px solid $gray-light;
+		height: 20px;
+		border-radius: 5px;
+		line-height: 19px;
+		padding-left: 3px;
+		padding-right: 3px;
+		text-align: center;
+		@include ellipsis;
+		display: inline-block;
+		position: relative;
+		top: -3px;
+	}
+	.file-user-name {
+		width: 60px;
+		height: 30px;
+		line-height: 25px;
+		color: $gray;
+		font-size: $font-size-sm;
+		@include ellipsis;
+		text-align:right;
+		display: inline-block;
+		font-weight:bold;
+		vertical-align: middle;
+	}
+	.file-time {
+	    padding-left:5px;
+		width: 160px;
+		heiht: 30px;
+		color: $gray-light;
+		font-size: $font-size-sm;
+		display: inline-block;
+		line-height: 25px;
+		text-align:center;
+	  	vertical-align: middle;
+	
+	}
+
+	.file-name-vertical{
+	line-height:30px;
+	vertical-align:middle;
+	}
+	.qrcode-td {
+		width: 85px;
+		height: 30px;
+		margin-left: 80px;
+		line-height: 30px;
+		vertical-align:middle;
+	}
+	.qrcode-img {
+		margin-left: 15px;
+		width: 18px;
+		height: 20px;
+		display: inline-block;
+	}
+	.file-download {
+		width: 50px;
+		height: 50px;
+	}
+	.more-file {
+		width: 100%;
+		text-align: center;
+	}
+	.message-div {
+		margin-top: 10px;
+		margin-left: 18px;
+		background: $white;
+		padding-top: 50px;
+
+		.message-title {
+			width: 100%;
+			padding-left: 10px;
+
+			.message-title-text {
+				font-size: 16px;
+				font-weight: bold;
+				color: $gray-dark;
+			}
+		}
+		.message-table-div {
+			margin-top: 30px;
+
+			.message-table {
+				border-spacing: 20px 20px;
+				border-collapse: separate;
+			}
+			.table-name {
+				padding-top: 20px;
+			}
+			.comment {
+				width: 693px;
+				height: 78px;
+				margin-left: 10px;
+			}
+			.comment-btn {
+				margin-left: 628px;
+				margin-top: 10px;
+			}
+			.message-portrait {
+				width: 90px;
+			}
+			.message-portrait-img {
+				width: 50px;
+				height: 50px;
+				border-radius: 25px;
+				margin-bottom: 30px;
+			}
+			.msg-comm-name {
+				font-weight: bold;
+				font-size: $font-size-base;
+				color: $gray-dark;
+			}
+			.msg-comm-time {
+				font-size: $font-size-sm;
+				color: $gray;
+				margin-left: 10px;
+				padding-bottom: 50px;
+			}
+			.msg-comm-content {
+				font-size: $font-size;
+				color: $gray;
+				padding-bottom: 20px;
+			}
+			.more-comment {
+				margin: auto auto;
+				margin-left: 316px;
+				margin-bottom: 30px;
+			}
+		}
+	}
+	#addfile {
+		display: none;
+	}
+}
+.upload-window {
+	h1 {
+		margin-left: 25%;
+		font-size: $font-size;
+		margin-top: 50px;
+	}
+	h2 {
+		margin-left: 25%;
+		font-size: $font-size;
+		margin-top: 20px;
+	}
+	.upload-text {
+		margin-left: 141px;
+		margin-top: 10px;
+		height: 40px;
+		width: 160px;
+		color: $gray-light;
+		border: 1px solid $gray-light;
+		text-align: center;
+		line-height: 40px;
+		display: inline-block;
+		border-radius: 5px;
+		font-size:$font-size;
+	}
+	.upload-btn {
+		margin-left: 10px;
+		display: inline-block;
+		position: relative;
+		top: -1px;
+	}
+	.upload-btn:hover {
+		background-color: darken($red-base, 10%);
+	}
+	.input-select {
+		margin-top: 10px;
+		text-align: center;
+		height: 40px;
+		width: 266px;
+		margin-left: 25%;
+		color: $gray-light;
+		display: inline-block;
+		line-height: 40px;
+		border: 1px solid $gray-light;
+		border-radius: 5px;
+	}
+	.ul-option {
+		visibility: hidden;
+		text-align: center;
+		line-height: 20px;
+		width: 266px;
+		font-size: $font-size-base;
+		position: absolute;
+		top: 215px;
+		z-index: 999;
+		border: 1px solid $gray-light;
+		left: 26.5%;
+		background-color: #fff;
+
+		li {
+			&:hover {
+				background-color: $gray;
+				color: #fff;
+				cursor: pointer;
+			}
+		}
+	}
+	.select-cancle-btn {
+		margin-left: 60px;
+		display: inline-block;
+		margin-top: 30px;
+	}
+	.select-true-btn {
+		margin-top: 30px;
+		margin-left: 140px;
+		display: inline-block;
+	}
+	.upload-input {
+		opacity: 0;
+	}
+}
+.select-image {
+	position: relative;
+	height: 7px;
+	width: 12px;
+	left: -5%;
+	z-index: 999;
+}
+.red-btn {
+	width: 105px;
+	height: 48px;
+	background-color: $red-base;
+	border-color: $white;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	color: $white;
+	font-size: $font-size-base;
+}
+.red-small-btn {
+	height: 40px;
+	width: 96px;
+	background-color: $red-base;
+	border-color: $white;
+	border-radius: 5px;
+	border: none;
+	color: $white;
+	font-size: $font-size-base;
+}
+.red-btn:hover {
+	background-color: darken($red-base, 10%);
+}
+.red-small-btn:hover {
+	background-color: darken($red-base, 10%);
+}
+.gray-btn {
+	width: 105px;
+	height: 48px;
+	background-color: $gray-light;
+	border-color: $white;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	color: $white;
+	font-size: $font-size-base;
+}
+.gray-btn:hover {
+	background-color: $gold-yellow;
+}
+.border-btn {
+	width: 65px;
+	height: 28px;
+	border-radius: 5px;
+	font-size: $font-size-sm;
+	color: $gray-light;
+	background: none;
+	border: 1px solid $gray-light;
+}
+.border-btn:hover {
+	border-color: $gray;
+	color: $gray;
+	border-width: 1px;
+}
+.description-text {
+	line-height: 20px;
+	width: 690px;
+}
+.more-file-btn {
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+.circle-img {
+	position: absolute;
+	z-index: 999;
+	top: 200px;
+	width: 50px;
+	height: 50px;
+	left: 48%;
+	background: no-repeat url(../images/circle.png) left top;
+}
+.circle-div {
+	position: absolute;
+	z-index: 998;
+	width: 100%;
+	height: 100%;
+}
+.sure-margin {
+	margin-top: 100px;
+	margin-left: 140px;
+}
+.cancle-margin {
+	margin-top: 100px;
+	margin-left:42px;
+}
+.nav .logo {
+	position: relative;
+	float: left;
+	top: 14px;
+	background: url(../../images/common/logo.svg) no-repeat;
+	width: 92px;
+	height: 30px;
+	margin-right: 76px;
+}
+.check-step {
+
+    width:400px;
+	color: $gray;
+	font-size: $font-size-lg;
+	position: absolute;
+	top: 50px;
+	left: 100px;
+	text-align:center;
+	line-height:20px;
+	color:$gray-dark;
+}
+.checkstep {
+	height: 200px;
+}
+.nofile {
+	margin-left: 240px;
+}
+.nomessage {
+	margin-left: 240px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+
+.border-red{
+	border-color:$red-base;
+}
+
+.word-title{
+	background:$red-base;
+	color:$white;
+	font-size:$font-size;
+
+}
+
+.word-size{
+	
+  color:$gray;
+  font-size:$font-size;
+  line-height:20x;
+
+}
+
+.canclemodal{
+	position:relative;
+	left:540px;
+}
+
+.canclemodal:hover{
+	cursor:pointer;
+}
+
+.canclestep{
+	position:relative;
+	left:550px;
+	top:-100px;
+}
+
+.indentlisthistory {
+  border-spacing: 11px 26px;
+  border-collapse: separate;
+  display: none;
+}
+
+
+.div-download {
+	display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.indentfile {
+    margin-left: 18px;
+    background: #fff;
+    padding-bottom: 30px;
+}
+
+.div-download img {
+	height: 18px;
+}
+
+.more-file-btn {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
+.noproject{
+	width:950px;
+	height:370px;
+	background:$white;
+	margin:0 auto;
+	margin-top:40px;
+
+	.no-poject-div{
+	width:200px;
+	vertical-align:middle;
+	margin:0 auto;
+
+    ul{
+    padding-top:90px;
+   
+    }
+
+	li{
+	margin:20px auto;
+	list-style-type: none;
+	text-align:center;
+
+	}
+
+}
+
+}
+
+.mark-icon {
+		width: 100px;
+		height: 100px;
+		background: url(../../images/common/mark.jpg) no-repeat;
+		background-size: cover;
+	}
+
+
+

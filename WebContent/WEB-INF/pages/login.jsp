@@ -114,18 +114,16 @@
 		<div class="card">
 			<div class="front">
 				<div class="login-content">
-					<header >
-						<%-- <div class="header-help">
-							<a href="<spring:url value="/about"/>" target="_self" class="header-help__btn">帮助</a>
-						</div> --%>
+					<%-- <header >
 						<div class="header-logo">
 							<a href='<spring:url value="/" />' >
 								<h1>拍片网</h1>
 							</a>
 							<p>客户登录</p>
 						</div>
-					</header>
+					</header> --%>
 					<section>
+						<h2 class="login-title">客户登录</h2>
 						<div class="form-wrap">
 							<form id="form-login" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
 								<div class="form-group">
@@ -134,7 +132,7 @@
 								<div id="kaptcha_code_wrap" class="form-group form-item hide">
 									<input type="text" id="kaptcha_code" class="form-control verfication form-height" tabindex="2" placeholder="图片验证码" autocomplete="off" maxlength="4">
 									<label class="control-label">
-										<img alt="图片验证码" src='' id="kaptcha_pic">
+										<img alt="图片验证码" src='' id="kaptcha_pic" class="kaptcha_pic_image">
 									</label>
 								</div>
 								<div id="verification_code_wrap" class="form-group form-item hide">

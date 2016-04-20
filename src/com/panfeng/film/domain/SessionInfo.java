@@ -26,6 +26,8 @@ public class SessionInfo extends BaseObject {
 	
 	private String address = null; // 地址
 	
+	private String photo = null; // 头像
+	
 	public String getToken() {
 		return token;
 	}
@@ -111,6 +113,14 @@ public class SessionInfo extends BaseObject {
 		long code = right.getCode();
 		long ret = sum[pos] & code;
 		return !(ret == 0);
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 }

@@ -4,17 +4,15 @@
 @import "model";
 @import "compass/typography/text/ellipsis";
 
-
 .nav .logo {
-  position: relative;
-  float: left;
-  top: 14px;
-  background: url(../../images/common/logo.svg) no-repeat;
-  width: 92px;
-  height: 30px;
-  margin-right: 76px;
+	position: relative;
+	float: left;
+	top: 14px;
+	background: url(../../images/common/logo.svg) no-repeat;
+	width: 92px;
+	height: 30px;
+	margin-right: 76px;
 }
-
 .state {
 	display: none;
 }
@@ -68,9 +66,9 @@
 			margin-top: 10px;
 			height: 150px;
 			width: 100%;
-			background:$white;
-			border-radius:5px;
-			border:1px soild $white;
+			background: $white;
+			border-radius: 5px;
+			border: 1px soild $white;
 
 			.baseinfo-table-key {
 				margin-top: 20px;
@@ -80,64 +78,51 @@
 				padding-left: 50px;
 				margin-bottom: 20px;
 			}
-
-            .baseinfo-table-key-title {
+			.baseinfo-table-key-title {
 				margin-top: 20px;
 				width: 150px;
 				font-size: $font-size-base;
 				color: $gray-dark;
 				padding-left: 50px;
 				margin-bottom: 20px;
-				font-weight:bold;
+				font-weight: bold;
 			}
-            
-
 			.baseinfo-table-key-add {
 				margin-top: 28px;
 				font-size: $font-size-sm;
 				color: $gray-light;
-				padding-left: 50px;
+				margin-left: 45px;
 				margin-bottom: 20px;
+				width: 80px;
+				text-align: center;
+				text-decoration: underline;
+
+				&:hover {
+					cursor: pointer;
+				}
 			}
 			.baseinfo-table-value {
 				font-size: $font-size-base;
 				color: $gray;
 			}
-			.tableinput-baseinfo {
-				border: solid 1px $gray-border;
+			.tableinput-baseinfo-noborder {
 				padding-left: 10px;
-				border-radius: 5px;
 				width: 175px;
 				height: 30px;
 				margin-left: 50px;
-				color: $gray-dark;
-				font-size: $font-size-base;
 			}
-
-              .info-input{
-              @include ellipsis;
-               width: 140px;
-			   height: 25px;
-			   margin-left:-5px;
-			   color:$gray;
-			   font-size:$font-size-base;
-			   border: solid 0px $gray-border;
-              }
-
-			.select-img-point{
-			position: relative;
-			top:-25px;
-			margin-top:10px;
-			padding-left:135px;
-			z-index:999;
+			.select-img-point {
+				position: relative;
+				top: -25px;
+				margin-top: 10px;
+				padding-left: 135px;
+				z-index: 999;
 			}
-
-          .select-img-point-source{
-			margin-top:10px;
-			padding-left:135px;
-			background:none;
+			.select-img-point-source {
+				margin-top: 10px;
+				padding-left: 135px;
+				background: none;
 			}
-
 			.source-image {
 				position: relative;
 				height: 7px;
@@ -156,7 +141,7 @@
 	margin-left: 40px;
 }
 .indent-time {
-	margin-top:10px;
+	margin-top: 10px;
 	border-radius: 5px;
 	width: 100%;
 	height: 220px;
@@ -193,45 +178,36 @@
 	display: inline-block;
 	width: 100px;
 }
-
 .title-word {
-	color:$gray;
-	font-size:$font-size-base;
-	font-weight:bold;
+	color: $gray;
+	font-size: $font-size-base;
+	font-weight: bold;
 }
-
-.content-word{
-	color:$gray;
-	font-size:$font-size-base;
+.content-word {
+	color: $gray;
+	font-size: $font-size-base;
 }
-
 .right-border-time-left {
 	display: inline-block;
 	width: 105px;
 }
-
 .right-border-time {
 	display: inline-block;
 	width: 150px;
-	background-size:cover; 
+	background-size: cover;
 }
-.right-border-time-end{
+.right-border-time-end {
 	display: inline-block;
 	width: 50;
 }
-
-.img-size{
-	height:15px;
-	width:155px;
-
+.img-size {
+	height: 15px;
+	width: 155px;
 }
-
-.img-size-end{
-	height:15px;
-	width:15px;
-
+.img-size-end {
+	height: 15px;
+	width: 15px;
 }
-
 .right-border-margin {
 	margin-left: 50px;
 }
@@ -251,14 +227,24 @@
 	margin-top: 20px;
 	padding-left: 50px;
 }
+.indent-time-table-border-tr-time-error {
+	margin-top: 10px;
+	padding-left: 50px;
+}
 .tableinput {
-	width: 80px;
+	width: 100px;
 	border: 0px;
-	color:$gray;
-	font-weight:bold;
-	font-size:$font-size-base;
+	color: $gray;
+	font-weight: bold;
+	font-size: $font-size-base;
 	border: solid 1px $gray-border;
-		border-radius: 5px;
+	border-radius: 5px;
+}
+.tableinput-error {
+	width: 100px;
+	border: 0px;
+	color: $red-base;
+	font-size: $font-size-base;
 }
 .indent-btn-div {
 	margin-top: 50px;
@@ -276,15 +262,30 @@
 	font-size: $font-size-base;
 	background-color: $red-base;
 }
+
+.indent-btn-cancle {
+    margin-left:50px;
+	width: 125px;
+	height: 45px;
+	border-color: $white;
+	border-radius: 5px;
+	border: none;
+	color: $white;
+	font-size: $font-size-base;
+	background-color: $gray;
+}
+
 .indent-btn:hover {
 	background-color: darken($red-base, 10%);
 }
-
+.indent-btn-cancle:hover {
+	background-color: darken($gray, 10%);
+}
 .mleft {
 	padding-left: 50px;
+	display: inline-block;
 }
 .ul-option {
-
 	text-align: center;
 	line-height: 20px;
 	width: 175px;
@@ -297,8 +298,8 @@
 	background-color: #fff;
 
 	li {
+		@include ellipsis;
 
-	    @include ellipsis;
 		&:hover {
 			background-color: $gray;
 			color: #fff;
@@ -319,7 +320,8 @@
 	margin-top: -368px;
 
 	li {
-	 @include ellipsis;
+		@include ellipsis;
+
 		&:hover {
 			background-color: $gray;
 			color: #fff;
@@ -338,9 +340,10 @@
 	border: 1px solid $gray-border;
 	margin-left: 650px;
 	background-color: #fff;
- 
+
 	li {
-	@include ellipsis;
+		@include ellipsis;
+
 		&:hover {
 			background-color: $gray;
 			color: #fff;
@@ -399,25 +402,6 @@
 		font-size: $font-size-base;
 	}
 	.user-info-btn {
-
-		width: 105px;
-		height: 48px;
-		background-color: $gray;
-		border-color: $white;
-		border-radius: 5px;
-		display: inline-block;
-		border: none;
-		color: $white;
-		font-size: $font-size-base;
-		margin-top: 35px;
-		margin-left:20px;
-
-		&:hover {
-			background-color: $red-base;
-		}
-	}
-
-		.user-info-btn-cancle {
 		width: 105px;
 		height: 48px;
 		background-color: $gray;
@@ -434,66 +418,144 @@
 			background-color: $red-base;
 		}
 	}
-}
+	.user-info-btn-cancle {
+		width: 105px;
+		height: 48px;
+		background-color: $gray;
+		border-color: $white;
+		border-radius: 5px;
+		display: inline-block;
+		border: none;
+		color: $white;
+		font-size: $font-size-base;
+		margin-top: 35px;
+		margin-left: 20px;
 
-.price-inline{
-	display:inline-block;
+		&:hover {
+			background-color: $red-base;
+		}
+	}
 }
-
-.price-input{
-	            border: solid 1px $gray-border;
-				padding-left: 10px;
-				border-radius: 5px;
-				width: 80px;
-				height: 30px;
-				margin-left: 50px;
-				color: $gray-dark;
-				font-size: $font-size-base;
+.price-inline {
+	display: inline-block;
 }
-
-.price-input-margin{
-		margin-left: 0px;
+.price-input {
+	border: solid 1px $gray-border;
+	padding-left: 10px;
+	border-radius: 5px;
+	width: 80px;
+	height: 30px;
+	margin-left: 50px;
+	color: $gray-dark;
+	font-size: $font-size-base;
 }
-
-.price-hr{
-    position:relative;
-    top:8px;
+.price-input-margin {
+	margin-left: 0px;
+}
+.price-hr {
+	position: relative;
+	top: 8px;
 	width: 30px;
 	color: $gray-dark;
 }
-
-.priec-input-word{
-border: solid 0px $gray-border;
-width:30px;
-padding-left:5px;
-color:$gray;
+.priec-input-word {
+	border: solid 0px $gray-border;
+	width: 30px;
+	padding-left: 5px;
+	color: $gray;
 }
-
-.radio-price{
-    margin-left:30px;
-    height:30px;
-    padding-top:10px;
-	float:left;
+.radio-price {
+	margin-left: 30px;
+	height: 30px;
+	padding-top: 10px;
+	float: left;
 }
-
-.final-price-div{
-	width:500px;
-	float:left;
+.final-price-div {
+	width: 500px;
+	float: left;
 }
-
-.finishInput{
-width:80px;
-height:30px;
-border: solid 1px $gray-border;
-border-radius: 5px;
-padding-left:5px;
-float:left;
-
+.finishInput {
+	width: 80px;
+	height: 30px;
+	border: solid 1px $gray-border;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
 }
-
-.checkword{
-	height:30px;
-	line-height:26px;
+.checkword {
+	height: 30px;
+	line-height: 26px;
 }
-
-
+.border-red {
+	border: solid 1px $red-base;
+}
+.firstinput {
+	width: 80px;
+	height: 30px;
+	border: solid 1px $gray-border;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+}
+.lastinput {
+	width: 80px;
+	height: 30px;
+	border: solid 1px $gray-border;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+}
+.mright {
+	display: inline-block;
+}
+.tableinput-baseinfo {
+	padding-left: 10px;
+	border-radius: 5px;
+	width: 175px;
+	height: 30px;
+	margin-left: 50px;
+	color: $gray-dark;
+	font-size: $font-size-base;
+	outline: none;
+}
+.info-input {
+	@include ellipsis;
+	border: solid 1px $gray-border;
+	width: 175px;
+	height: 30px;
+	margin-left: -10px;
+	color: $gray;
+	font-size: $font-size-base;
+	border-radius: 5px;
+	border: solid 1px $gray-border;
+	outline: none;
+}
+.border-gray {
+	border: solid 1px $gray-border;
+}
+.error-label {
+	position: absolute;
+	color: $red-base;
+	font-size: $font-size-base;
+	padding-left: 60px;
+	padding-top: 10px;
+}
+.username-error-label {
+	position: absolute;
+	color: $red-base;
+	font-size: $font-size-base;
+	padding-top: 10px;
+}
+.final-price-label {
+	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: -270px;
+	top: 30px;
+}
+.mark-icon {
+	width: 100px;
+	height: 100px;
+	background: url(../../images/common/mark.jpg) no-repeat;
+	background-size: cover;
+}
