@@ -19,9 +19,6 @@ public class ProgressController extends BaseController {
 	
 	@RequestMapping(value = "/upfile/progress", method = RequestMethod.POST )
 	public String progress(final HttpServletRequest request,final HttpServletResponse response){
-		//Progress pro = (Progress) request.getSession().getAttribute("status");
-		//final Progress pro = getCurrentInfo(request, GlobalConstant.PROCESS_STATUS, Progress.class);
-		//response.addHeader("Access-Control-Allow-Origin", "*");
 		final Progress pro = service.getProgress(request);
 		if(pro == null){
 			Progress status = new Progress();

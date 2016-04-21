@@ -19,4 +19,5 @@ public interface SessionInfoDao {
 	public boolean exitSession(final HttpServletRequest request);
 
 	public void removeSession(final HttpServletRequest request);
+	
 }
