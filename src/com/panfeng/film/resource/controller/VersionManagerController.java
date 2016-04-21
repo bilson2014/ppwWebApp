@@ -258,16 +258,45 @@ public class VersionManagerController extends BaseController {
 	 * 添加简单客户
 	 */
 	@RequestMapping("/projects/user/save/simple")
-	public long addSimpleUser(@RequestBody final User user,final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "portal/user/save/simple";
+	public long addSimpleUser(@RequestBody final User user,
+			final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX
+				+ "portal/user/save/simple";
 		String str = HttpUtil.httpPost(url, user, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, Long.class);
-		}
-		else
+		} else
 			return -1;
 	}
 
+	
+	@RequestMapping("/projects/get/report")
+	public void getReport(final HttpServletResponse response, 
+			final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "project/get/report";
+		try {
+			IndentProject indentProject=new IndentProject();
+			fillUserInfo(request, indentProject);
+			Object[] objArrayObjects = HttpUtil.httpPostFile(url,indentProject,request);
+			
+			response.reset();
+			response.setCharacterEncoding("utf-8");
+			if (objArrayObjects[1] != null) {
+				File inputFile = (File) objArrayObjects[1];
+				response.setContentType("application/octet-stream");
+				response.setContentLength((int) inputFile.length());
+				response.setHeader("Content-Disposition", objArrayObjects[0]
+						+ "");
+				ServletOutputStream ouputStream = response.getOutputStream();
+				InputStream is = new FileInputStream(inputFile);
+				// send file
+				HttpUtil.saveTo(is, ouputStream);
+				inputFile.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// /////////////////////////flowcontroller///////////////////////////////
 	@RequestMapping("/flow/add-view")
 	public ModelAndView flowView(final ModelMap model) {
@@ -395,6 +424,13 @@ public class VersionManagerController extends BaseController {
 			return str;
 		}
 		return "";
+	}
+
+	@RequestMapping("/doc/video/{name}.{ext}")
+	public ModelAndView getVideoView(final HttpServletRequest request,
+			@PathVariable("name") String name,@PathVariable("ext") String ext) {
+		request.setAttribute("filename", "/portal/project/doc/"+name+"."+ext);
+		return new ModelAndView("/manager/show-video");
 	}
 
 	// ////////////////////////////comment/////////////////////////////////////////

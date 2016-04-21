@@ -58,6 +58,10 @@ $().ready(
 				window.location.href = getContextPath()
 				+ "/mgr/flow/add-view";
 			});
+			$("#project-report").on('click',function(){
+				window.location.href = getContextPath()
+				+ "/mgr//projects/get/report";
+			});
 		});
 function init() {
 	
@@ -87,10 +91,11 @@ function init() {
 	$(".select-true-btn").on('click', function() {
 		var file = $("#addfile").val();
 		var tag = $("#input-value").val();
-		if (file != null && tag != '未选择') {
-			uploadfile();
+		if (file != null&&file!='' && tag != '') {
+			var res=uploadfile();
 			// modify by guoyang, 2016-04-19 03:11 begin
 			$('#toolbar-modal').modal('hide');
+			$("#upload-file-name").val("");
 			oTimer = setInterval("getProgress()", 500);
 			$('.progress-bar-success').text('0')
 			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
@@ -111,10 +116,14 @@ function init() {
 
 	$('#cancle-btn').click(function() {
 		$('#toolbar-modal').modal('hide');
+		$("#upload-file-name").val("");
+		$("#input-value").val("");
 	});
 
 	$('#cancle-img').click(function() {
 		$('#toolbar-modal').modal('hide');
+		$("#upload-file-name").val("");
+		$("#input-value").val("");
 	});
 	$('.modal').on('click', function() {
 		if (checkHidden) {
@@ -405,17 +414,19 @@ function uploadfile() {
 			//$('#toolbar-modal').modal('hide');
 			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
-			
 			// add by guoyang, 2016-04-19 03:19 begin
 			// -> 停止计时器
 			window.clearInterval(oTimer); // 停止计时器
 			$('#mymodal').modal('hide');
+			$("#input-value").val("");
+			$("#upload-file-name").val("");
 			// add by guoyang, 2016-04-19 03:19 end
 		},
 		error : function(data, status, e) {
 			alert(data);
 		}
 	});
+	return true;
 
 }
 //加载文件模块
@@ -446,7 +457,7 @@ loadData(
 					break;
 				case 'ppt':
 				case 'pptx':
-					src+='';
+					src+='ppt.png';
 					break;
 				case 'pdf':
 					src+='pdf.png';
@@ -531,7 +542,14 @@ loadData(
 			fenxiang.on("click",function(){
 				var fileId=jQuery(this).attr("data-url");
 				loadData(function(msg) {
-					var link= getHostName() + getContextPath() + "/portal/project/doc/"+msg.url;
+					var fileName=msg.url;
+					var extName=fileName.substring(fileName.lastIndexOf(".")+1,fileName.length);
+					var link= getHostName() + getContextPath();
+					if(extName=='mp4'){
+						link+="/mgr/doc/video/"+msg.url;
+					}else{
+						link+="/portal/project/doc/"+msg.url;
+					}
 					$('#share-open').click();
 					share.init(link, 'hehe', getContextPath() + '/resources/banner/flex1.jsp');
 				}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
@@ -564,6 +582,10 @@ loadData(
 			divRoot.append(div4);
 			divRoot.append(div5);
 			tab.append(divRoot);
+			
+			if(!more && i>=4){
+				break;
+			}
 		}
 	}, getContextPath() + '/mgr/comment/getResourceList', $.toJSON({
 				id : key
@@ -728,6 +750,11 @@ function updateProjectTreeView() {
 		}
 	});
 }
+//获取文件信息
+function getFileState() {
+	
+}
+
 //加载项目基础信息
 function loadIndentInfo() {
 	var key = getCurrentProject();

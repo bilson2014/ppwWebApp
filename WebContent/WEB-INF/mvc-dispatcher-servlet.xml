@@ -55,6 +55,7 @@
 			<mvc:exclude-mapping path="/mgr/login" />
 			<mvc:exclude-mapping path="/mgr/doLogin" />
 			<mvc:exclude-mapping path="/mgr/loginout" />
+			<mvc:exclude-mapping path="/mgr/doc/video/**" />
 			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

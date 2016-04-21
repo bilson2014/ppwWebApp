@@ -146,17 +146,14 @@
 			<div class="left-title">
 				<label class="left-title-text">所有项目</label>
                 <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn">
-				<img src="${imgPath }/flow/report.png" class="left-title-images ">
+				<img src="${imgPath }/flow/report.png" id="project-report" class="left-title-images ">
 			</div>
 			<r:permission uri="/add-view">
-			<!-- <div class="newBtn">
-				<img src="/resources/img/flow/add.png" class="newBtn-img">
-			</div> -->
 			</r:permission>
 			<div class="indentdiv">
 				<table class="indentlist">
 				</table>
-				<table class="indentlisthistory">
+				<table class="indentlist">
 				</table>
 			</div>
 		</div>
