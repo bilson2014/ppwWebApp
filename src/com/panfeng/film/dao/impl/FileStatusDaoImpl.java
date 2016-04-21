@@ -3,6 +3,7 @@ package com.panfeng.film.dao.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -10,6 +11,7 @@ import redis.clients.jedis.Transaction;
 
 import com.panfeng.film.dao.FileStatusDao;
 
+@Repository
 public class FileStatusDaoImpl implements FileStatusDao {
 	
 	@Autowired
