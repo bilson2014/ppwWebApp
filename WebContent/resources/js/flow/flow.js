@@ -58,6 +58,16 @@ $().ready(
 				window.location.href = getContextPath()
 				+ "/mgr/flow/add-view";
 			});
+			$("#project-report").on('click',function(){
+				window.location.href = getContextPath()
+				+ "/mgr//projects/get/report";
+			});
+			$(".canclemodal").on('click',function(){
+				$('#toolbar-modal').modal('hide');
+			});
+			$("#toolbar-no-message-btn").on('click',function(){
+				$("#toolbar-no-message").modal('hide');
+			});
 		});
 function init() {
 	
@@ -87,10 +97,11 @@ function init() {
 	$(".select-true-btn").on('click', function() {
 		var file = $("#addfile").val();
 		var tag = $("#input-value").val();
-		if (file != null && tag != '未选择') {
-			uploadfile();
+		if (file != null&&file!='' && tag != '') {
+			var res=uploadfile();
 			// modify by guoyang, 2016-04-19 03:11 begin
 			$('#toolbar-modal').modal('hide');
+			$("#upload-file-name").val("");
 			oTimer = setInterval("getProgress()", 500);
 			$('.progress-bar-success').text('0')
 			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
@@ -111,10 +122,14 @@ function init() {
 
 	$('#cancle-btn').click(function() {
 		$('#toolbar-modal').modal('hide');
+		$("#upload-file-name").val("");
+		$("#input-value").val("");
 	});
 
 	$('#cancle-img').click(function() {
 		$('#toolbar-modal').modal('hide');
+		$("#upload-file-name").val("");
+		$("#input-value").val("");
 	});
 	$('.modal').on('click', function() {
 		if (checkHidden) {
@@ -192,7 +207,6 @@ function resumeBtn() {
 	$(".check-step").text("您确定要恢复项目吗？");
 	setModalEvent(resume);
 }
-
 function pause() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
@@ -405,17 +419,19 @@ function uploadfile() {
 			//$('#toolbar-modal').modal('hide');
 			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
-			
 			// add by guoyang, 2016-04-19 03:19 begin
 			// -> 停止计时器
 			window.clearInterval(oTimer); // 停止计时器
 			$('#mymodal').modal('hide');
+			$("#input-value").val("");
+			$("#upload-file-name").val("");
 			// add by guoyang, 2016-04-19 03:19 end
 		},
 		error : function(data, status, e) {
 			alert(data);
 		}
 	});
+	return true;
 
 }
 //加载文件模块
@@ -446,7 +462,7 @@ loadData(
 					break;
 				case 'ppt':
 				case 'pptx':
-					src+='';
+					src+='ppt.png';
 					break;
 				case 'pdf':
 					src+='pdf.png';
@@ -500,26 +516,54 @@ loadData(
 			}else{
 				userNameView="";
 			}
+			var lookA=$("<a href='www.baidu.com' target='_blank'></a>");
 			var chakan=$("<img class=\"qrcode-img div-table img-look\"" +
-					"src=\"/resources/img/flow/look.png\"  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
+					"src=\"/resources/img/flow/look.png\" data-state='"+msg[i].state+"'  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
+			lookA.append(chakan);
 			var fenxiang=$("<img class=\"qrcode-img div-table img-margin img-share \"" +
-					"src=\"/resources/img/flow/share.png\" data-url='"+msg[i].irId+"' />");
+					"src=\"/resources/img/flow/share.png\" data-state='"+msg[i].state+"' data-url='"+msg[i].irId+"' />");
 			var xiazai=$("<img src=\"/resources/img/flow/download.png\"/>");
 			
-			chakan.on("mouseenter",function(){
-				jQuery(this).attr("src",'/resources/img/flow/lookbg.png');
+			lookA.on("mouseenter",function(){
+				jQuery(this).find("img").attr("src",'/resources/img/flow/lookbg.png');
 			});
-			chakan.on("mouseleave",function(){
-				jQuery(this).attr("src",'/resources/img/flow/look.png');
+			lookA.on("mouseleave",function(){
+				jQuery(this).find("img").attr("src",'/resources/img/flow/look.png');
 			});
 			chakan.on('click',function(){
+				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
-				loadData(function(msg) {
-					var link="/portal/project/doc/"+msg.url;
-					window.location.href = link;
-				}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
-					irId : fileId
-				}));
+				var key=getCurrentProject();
+				var a=jQuery(this).parent();
+				switch (state) {
+				case 'transformation':
+					syncLoadData(function(msg){
+						switch (msg.state) {
+						case 'transformation':
+							a.attr('href','javascript:void(0);');
+							$("#toolbar-no-message").modal('show');
+							break;
+						case 'finish':
+							var state=jQuery(this).attr("data-state","finish");
+							jQuery(this).next().attr("data-state","finish");
+							jumpView(fileId,a);
+							break;
+						case 'fail':
+							alert("转换失败");
+							break;
+						}
+					}, getContextPath() + '/mgr/resource/get/state', $.toJSON({
+						irId : fileId,
+						irIndentId:key
+					}));
+					break;
+				case 'finish':
+					jumpView(fileId,a);
+					break;
+				case 'fail':
+					alert("转换失败");
+					break;
+				}
 			});
 			
 			fenxiang.on("mouseenter",function(){
@@ -529,14 +573,37 @@ loadData(
 				jQuery(this).attr("src",'/resources/img/flow/share.png');
 			});
 			fenxiang.on("click",function(){
+				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
-				loadData(function(msg) {
-					var link= getHostName() + getContextPath() + "/portal/project/doc/"+msg.url;
-					$('#share-open').click();
-					share.init(link, 'hehe', getContextPath() + '/resources/banner/flex1.jsp');
-				}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
-					irId : fileId
-				}));
+				var key=getCurrentProject();
+				switch (state) {
+				case 'transformation':
+					syncLoadData(function(msg){
+						switch (msg.state) {
+						case 'transformation':
+							alert('请稍后，文件转换中！');
+							break;
+						case 'finish':
+							var state=jQuery(this).attr("data-state","finish");
+							jQuery(this).prev().attr("data-state","finish");
+							jumpShare(fileId);
+							break;
+						case 'fail':
+							alert("转换失败");
+							break;
+						}
+					}, getContextPath() + '/mgr/resource/get/state', $.toJSON({
+						irId : fileId,
+						irIndentId:key
+					}));
+					break;
+				case 'finish':
+					jumpShare(fileId);
+					break;
+				case 'fail':
+					alert("转换失败");
+					break;
+				}
 			});
 			xiazai.on("mouseenter",function(){
 				jQuery(this).attr("src",'/resources/img/flow/downloadbg.png');
@@ -548,7 +615,7 @@ loadData(
 			var div3=$("<div class=\"div-table \"><p class=\"file-user-name\">"+userNameView+
 					"</p><p class=\"file-time\">上传于<strong>"+ msg[i].irCreateDate+"</strong></p></div>");
 			var div4=$("<div class=\"qrcode-td div-table\"></div>");
-			div4.append(chakan);
+			div4.append(lookA);
 			div4.append(fenxiang);
 			var div5=$("<div class=\"div-download\"></div>");
 			var downloada=$("<a href=\""
@@ -564,10 +631,39 @@ loadData(
 			divRoot.append(div4);
 			divRoot.append(div5);
 			tab.append(divRoot);
+			
+			if(!more && i>=4){
+				break;
+			}
 		}
 	}, getContextPath() + '/mgr/comment/getResourceList', $.toJSON({
 				id : key
 }));
+}
+function jumpView(fileId,a) {
+	var link= getHostName() + getContextPath();
+	syncLoadData(function(msg) {
+		link+="/portal/project/doc/"+msg.url;
+		a.attr("href",link);
+	}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
+		irId : fileId
+	}));
+}
+function jumpShare(fileId) {
+	syncLoadData(function(msg) {
+		var fileName=msg.url;
+		var extName=fileName.substring(fileName.lastIndexOf(".")+1,fileName.length);
+		var link= getHostName() + getContextPath();
+		if(extName=='mp4'){
+			link+="/mgr/doc/video/"+msg.url;
+		}else{
+			link+="/portal/project/doc/"+msg.url;
+		}
+		$('#share-open').click();
+		share.init(link, 'hehe', getContextPath() + '/resources/banner/flex1.jsp');
+	}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
+		irId : fileId
+	}));
 }
 //加载评论模块
 function loadcommentdata(more) {
@@ -774,19 +870,18 @@ function loadIndentInfo() {
 }
 //完成项目页面样式
 function finish() {
-	$(".flowbtn").hide();
-	$(".pausebtn").hide();
-	$(".cancelbtn").hide();
+	$("#btndiv-id").hide();
 	$("#upload-info-btn-id").hide();
 	$("#upload-file-btn-id").hide();
 	$(".comment").hide();
 	$(".comment-btn").hide();
+	
+	$(".more-file-btn").shwo();
+	$(".more-comment").shwo();
 }
 //未完成项目样式
 function show() {
-	$(".flowbtn").show();
-	$(".pausebtn").show();
-	$(".cancelbtn").show();
+	$("#btndiv-id").show();
 	$("#upload-info-btn-id").show();
 	$("#upload-file-btn-id").show();
 	$(".comment").show();

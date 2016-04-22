@@ -9,15 +9,19 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,10 +40,12 @@ import com.panfeng.film.resource.model.IndentComment;
 import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
 import com.panfeng.film.resource.model.IndentResource;
+import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.VersionManager;
 import com.panfeng.film.security.AESUtil;
+import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -50,7 +56,9 @@ import com.panfeng.film.util.ValidateUtil;
 public class VersionManagerController extends BaseController {
 
 	private static Logger logger = LoggerFactory.getLogger("error");
-
+	@Autowired
+	private ResourceService resourceService;
+	
 	@RequestMapping("/login")
 	public ModelAndView loginView() {
 
@@ -92,6 +100,77 @@ public class VersionManagerController extends BaseController {
 		result.setRet(false);
 		result.setMessage("用户名或密码错误!");
 		return result;
+	}
+	
+	@RequestMapping("/recover/check/{phoneNumber}")
+	public boolean checkPhoneNumber(@PathVariable("phoneNumber") final String phoneNumber,final HttpServletRequest request){
+		
+		if(ValidateUtil.isValid(phoneNumber)){
+			final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
+			final String json = HttpUtil.httpGet(url, request);
+			if(ValidateUtil.isValid(json)){
+				Long count = JsonUtil.toBean(json, Long.class);
+				if(count > 0){
+					return true;
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	@RequestMapping("/recover/pwd")
+	public Info recover(final HttpServletRequest request,@RequestBody final VersionManager manager) throws Exception{
+		
+		final HttpSession session = request.getSession();
+		// 密码重置
+		final String code = (String) session.getAttribute("code");
+		Info info = new Info(); // 信息载体
+		// 判断验证码
+		if (!"".equals(code) && code != null) {
+			if (code.equals(manager.getVerification_code())) {
+				if (manager.getManagerPassword() != null
+						&& !"".equals(manager.getManagerPassword())) {
+					// AES 密码解密
+					final String password = AESUtil.Decrypt(manager.getManagerPassword(),
+							GlobalConstant.UNIQUE_KEY);
+					// MD5 加密
+					manager.setManagerPassword(DataUtil.md5(password));
+					final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/editPwd";
+					String str = HttpUtil.httpPost(url, manager,request);
+					Boolean result = null;
+					if (str != null && !"".equals(str)) {
+						result = JsonUtil.toBean(str, Boolean.class);
+						// 添加 session
+						session.removeAttribute("code"); // 移除验证码
+						info.setKey(result);
+						return info;
+					} else {
+						// 注册失败
+						info.setKey(false);
+						info.setValue("服务器繁忙，请稍候再试...");
+						return info;
+					}
+
+				} else {
+					// 验证码不匹配
+					info.setKey(false);
+					info.setValue("密码为空!");
+					return info;
+				}
+			} else {
+				// 验证码不匹配
+				info.setKey(false);
+				info.setValue("短信验证码不正确!");
+				return info;
+			}
+		} else {
+			// 验证码为空
+			info.setKey(false);
+			info.setValue("点击获取验证码!");
+			return info;
+		}
 	}
 
 	/**
@@ -258,16 +337,45 @@ public class VersionManagerController extends BaseController {
 	 * 添加简单客户
 	 */
 	@RequestMapping("/projects/user/save/simple")
-	public long addSimpleUser(@RequestBody final User user,final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "portal/user/save/simple";
+	public long addSimpleUser(@RequestBody final User user,
+			final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX
+				+ "portal/user/save/simple";
 		String str = HttpUtil.httpPost(url, user, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, Long.class);
-		}
-		else
+		} else
 			return -1;
 	}
 
+	
+	@RequestMapping("/projects/get/report")
+	public void getReport(final HttpServletResponse response, 
+			final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "project/get/report";
+		try {
+			IndentProject indentProject=new IndentProject();
+			fillUserInfo(request, indentProject);
+			Object[] objArrayObjects = HttpUtil.httpPostFile(url,indentProject,request);
+			
+			response.reset();
+			response.setCharacterEncoding("utf-8");
+			if (objArrayObjects[1] != null) {
+				File inputFile = (File) objArrayObjects[1];
+				response.setContentType("application/octet-stream");
+				response.setContentLength((int) inputFile.length());
+				response.setHeader("Content-Disposition", objArrayObjects[0]
+						+ "");
+				ServletOutputStream ouputStream = response.getOutputStream();
+				InputStream is = new FileInputStream(inputFile);
+				// send file
+				HttpUtil.saveTo(is, ouputStream);
+				inputFile.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// /////////////////////////flowcontroller///////////////////////////////
 	@RequestMapping("/flow/add-view")
 	public ModelAndView flowView(final ModelMap model) {
@@ -397,6 +505,13 @@ public class VersionManagerController extends BaseController {
 		return "";
 	}
 
+	@RequestMapping("/doc/video/{name}.{ext}")
+	public ModelAndView getVideoView(final HttpServletRequest request,
+			@PathVariable("name") String name,@PathVariable("ext") String ext) {
+		request.setAttribute("filename", "/portal/project/doc/"+name+"."+ext);
+		return new ModelAndView("/manager/show-video");
+	}
+
 	// ////////////////////////////comment/////////////////////////////////////////
 
 	@RequestMapping(value = "/comment/addComment", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
@@ -471,7 +586,13 @@ public class VersionManagerController extends BaseController {
 		}
 		return "";
 	}
-
+	//获取文件状态
+	@RequestMapping(value = "/resource/get/state", produces = "application/text; charset=UTF-8")
+	public String getState(@RequestBody IndentResource indentResource){
+		String statr=resourceService.getState(indentResource);
+		return "{\"state\":\""+statr+"\"}";
+	}
+	
 	@RequestMapping(value = "/comment/getResourceList", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<IndentResource> getResourceList(
 			@RequestBody final IndentProject indentProject,

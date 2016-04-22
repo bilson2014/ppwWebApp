@@ -520,14 +520,14 @@ function priceModel(price) {
 	//选中为最终价格
 	if(state){
 		title.text('项目报价');
-		var input=$("<input type=\"text\" class=\"pirce-input finishInput\"> 万");
+		var input=$("<input type=\"text\" class=\"pirce-input border-gray finishInput\"> 万");
 		if(price!=null)
 		$(input).val(price);
 		rootDiv.append(input);
 	}else{
 		title.text('项目预算价格');
-		var first=$("<input type=\"text\" class=\"pirce-input firstinput\">");
-		var last=$("<input type=\"text\" class=\"pirce-input lastinput\"> 万");
+		var first=$("<input type=\"text\" class=\"pirce-input border-gray firstinput\">");
+		var last=$("<input type=\"text\" class=\"pirce-input border-gray lastinput\"> 万");
 		if(price!=null){
 			var strarray=price.split('~');
 			first.val(strarray[0]);
@@ -588,6 +588,36 @@ function priceVerifyInputNotNull() {
 		res=verifyInputNotNull(first);
 		if(!res)return false;
 		res=verifyInputNotNull(last);
+		
+		if(!checkNumber(first.val())){
+			first.focus();
+			first.addClass('border-red');
+			first.removeClass("border-gray");
+			return false;
+		}else{
+			first.removeClass('border-red');
+			first.addClass("border-gray");
+		}
+		
+		if(!checkNumber(last.val())){
+			last.focus();
+			last.addClass('border-red');
+			last.removeClass("border-gray");
+			return false;
+		}else{
+			last.removeClass('border-red');
+			last.addClass("border-gray");
+		}
+		if(parseInt(first.val())>parseInt(last.val())){
+			last.focus();
+			last.addClass('border-red');
+			last.removeClass("border-gray");
+			return false;
+		}else{
+			last.removeClass('border-red');
+			last.addClass("border-gray");
+		}
+		$("#error-radio-price").hide();
 	}
 	return res;
 }

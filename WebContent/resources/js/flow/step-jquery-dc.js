@@ -93,7 +93,7 @@ var Step = function(currStep, StepNum, StepText, StepDescription, totalCount) {
 Step.prototype = {
 	createStepHtml : function() {
 		// var stepHtml="\<span\>"+"\</span\>";
-		var stepHtml = "\<a href=\"#\"  \>" + this.StepText + "\</a\>";
+		var stepHtml = "\<a href=\"javascript:void(0);\"  \>" + this.StepText + "\</a\>";
 		if (this.currStep > this.totalCount) {
 			this.currStep = this.totalCount;
 		} else if (this.currStep <= 0) {

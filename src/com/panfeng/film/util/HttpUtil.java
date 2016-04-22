@@ -171,6 +171,48 @@ public class HttpUtil {
 		return objArray;
 	}
 
+	
+	/**
+	 * 下载文件进行临时中转（内部存取转发到外网）
+	 * 
+	 * @param url
+	 * @param request
+	 * @return
+	 */
+	public static Object[] httpPostFile(final String url,final Object obj,
+			final HttpServletRequest request) {
+		CloseableHttpClient client = getClient(request);
+		HttpPost httpPost = new HttpPost(url);
+		CloseableHttpResponse response = null;
+		Object[] objArray = new Object[2];
+		Gson gson = new Gson();
+		String param = gson.toJson(obj);
+		try {
+			StringEntity s = new StringEntity(param.toString(), "utf-8");
+			s.setContentEncoding("UTF-8");
+			s.setContentType("application/json");// 发送json数据需要设置contentType
+			httpPost.setEntity(s);
+			response = client.execute(httpPost, context);
+			String filename = null;
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				filename = response.getFirstHeader("Content-Disposition")
+						.getValue();
+				HttpEntity httpEntity = response.getEntity();
+				objArray[0] = filename;
+				InputStream is = httpEntity.getContent();
+				String tempNamt = PathFormatUtils.parse("{time}{rand:6}");
+				File tempFile = new File(Constants.FILE_PROFIX
+						+ Constants.TEMP_DIR, tempNamt);
+				OutputStream os = new FileOutputStream(tempFile);
+				saveTo(is, os);
+				objArray[1] = tempFile;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return objArray;
+	}
+	
 	public static void saveTo(InputStream in, OutputStream out)
 			throws Exception {
 		byte[] data = new byte[1024];

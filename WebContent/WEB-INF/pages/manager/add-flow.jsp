@@ -218,8 +218,8 @@ var="cookiejs" />
 								<div class="pirce-div mleft" ></div>
 								<div class="mright">
 							    	<input type="checkbox" class="radio-price border-gray"  id="radio-price"></input>
-							    	  <lable class="checkword">确定报价</label>
-										<label class="final-price-label" id="error-radio-price">该信息不能为空</label>
+							    	  	<label class="checkword">确定报价</label>
+										<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 								</div>
 						 </div>
 					</div>
