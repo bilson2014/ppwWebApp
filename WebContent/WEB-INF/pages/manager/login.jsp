@@ -3,6 +3,7 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
 <%-- import CSS --%>
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/manager/login.css" var="loginCss"/>
 
 <%-- import JS --%>
@@ -13,7 +14,6 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/manager/login.js" var="loginJs"/>
-
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -28,6 +28,7 @@
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 	<title>拍片网－广告－宣传片－微电影－视频营销</title>
+	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${loginCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<!--[if lt IE 9]>
@@ -82,7 +83,7 @@
 		</div>
 	
 	<div class="page page-width">
-		<div class="login-div">
+		<div class="login-div" >
        
           <h1>视频管家登录</h1>
           <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
@@ -91,7 +92,9 @@
           </form>
           
           <button  class="loginbtn" id="loginbtn">登录</button>
-          <h2>忘记密码？</h2>
+
+          <a href="/mgr/recover"><h2 id="forget">忘记密码？</h2></a>
+
           <footer class="footer-three">
 			<div class="footer-title-three">
 				<h3>第三方账号登录</h3>
@@ -125,6 +128,18 @@
 			</div>
 		</footer>
 		</div>
+
+
+
+      <div class="forget-div hide">
+		          <h1>忘记密码</h1>
+		          <input class="use-name" placeholder="请输入手机号"></input>
+		          <input class="use-code" placeholder="短信验证码"></input>
+		          <input class="use-get" value="点击获取"></input>
+		          <input class="use-password" type="password" placeholder="请输入密码"></input>
+		          <button  class="forgetbtn">确定</button>
+        </div>
+
     </div>
 	
 	<script src="${jqueryJs }"></script>

@@ -76,16 +76,16 @@
 	.newBtn-img {
 		margin-top: 11px;
 		cursor: pointer;
+		line-height:30px;
+		margin-left:10px;
+
 	}
 	*/
 	.indentdiv {
 		width: 100%;
 		margin-top: 10px;
 
-		.indentlist {
-			border-spacing: 11px 26px;
-			border-collapse: separate;
-		}
+
 		.indent-ednt-btn {
 			width: 15px;
 			height: 15px;
@@ -157,9 +157,9 @@
 		}
 	}
 	.flowbtndiv {
-		margin: 40px auto;
-		width: auto;
-		height: 88px;
+	  margin:0 auto;
+    width: auto;
+    height: 88px;
 
 		.btn-margin {
 			margin-left: 20px;
@@ -168,7 +168,7 @@
 	.indentinfo {
 		margin-left: 18px;
 		background: $white;
-		margin-top: -30px;
+		margin-top: 10px;
 
 		.indentinfo-title {
 			width: 100%;
@@ -693,11 +693,7 @@
 	top: -100px;
 	cursor: pointer;
 }
-.indentlisthistory {
-	border-spacing: 11px 26px;
-	border-collapse: separate;
-	display: none;
-}
+
 .div-download {
 	display: inline-block;
 	vertical-align: middle;
@@ -857,7 +853,11 @@ color: $gray-light;
 	text-align: left;
 }
 
-.indentlist tr {
+.projectliststyle{
+	line-height:30px;
+	margin-left:10x;
+}
+.projectliststyle tr {
 	cursor: pointer;
 }
 

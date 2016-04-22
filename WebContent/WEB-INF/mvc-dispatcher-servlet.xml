@@ -19,6 +19,8 @@
 	
 	<mvc:view-controller path="/member.html" view-name="/member" />
 	
+	<mvc:view-controller path="/mgr/recover" view-name="/manager/recover" />
+	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -56,6 +58,7 @@
 			<mvc:exclude-mapping path="/mgr/doLogin" />
 			<mvc:exclude-mapping path="/mgr/loginout" />
 			<mvc:exclude-mapping path="/mgr/doc/video/**" />
+			<mvc:exclude-mapping path="/mgr/recover/**" />
 			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

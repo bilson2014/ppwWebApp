@@ -6,6 +6,13 @@
 <%-- import CSS --%>
 <spring:url value="/resources/css/success.css" var="successCss"/>
 
+<%-- import JS --%>
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
+
 <!-- imgPath -->
 <spring:url value="/resources/img" var="imgPath" />
 <!DOCTYPE html>
@@ -162,5 +169,11 @@
 		</div>
 		<!-- 底栏 end -->
 	</div>
+	
+	<script src="${jqueryJs }"></script>
+	<script src="${pluginJs }"></script>
+	<script src="${jsonJs }"></script>
+	<script src="${commonJs }"></script>
+	<script src="${suggestJs }"></script>
 </body>
 </html>

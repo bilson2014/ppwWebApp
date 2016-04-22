@@ -16,6 +16,7 @@
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/play.js" var="playJs"/>
 
 <!-- import img path -->
@@ -118,15 +119,15 @@
 
 		<!-- 视频播放区域 start -->
 		<div class="video-play-section">
-			<div class=" video-play-wrap container-fluid">
+			<div class=" video-play-wrap">
 				<!-- media player start -->
-				<div class="player-wrap col-md-9" id="player-wrap">
+				<div class="player-wrap" id="player-wrap">
 					<video style="width: 100%;height: 100%;" controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video>
 				</div>
 				<!-- media player end -->
 
 				<!-- video info start -->
-				<div class="info-wrap col-md-3">
+				<div class="info-wrap">
 					<dl>
 						<dt id="vLength">${product.videoLength } 秒</dt>
 						<dd>影片时长</dd>
@@ -146,8 +147,8 @@
 		
 		<!-- 视频信息区域 start -->
 		<div class="video-info-section">
-			<div class="video-info-wrap container-fluid">
-				<div class="video-info col-md-9">
+			<div class="video-info-wrap ">
+				<div class="video-info ">
 					
 					<div class="video-tags-wrap">
 						<img src="${imgPath }/icons/tag.png" alt="标签_拍片网">
@@ -174,7 +175,8 @@
 						</dl>
 					</div>
 				</div>
-				<div class="team-info col-md-3">
+				
+				<div class="team-info ">
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
@@ -184,7 +186,7 @@
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 							</c:if>
 						</dt>
-						<dt title="${product.teamName }">${product.teamName }</dt>
+						<dd title="${product.teamName }">${product.teamName }</dd>
 						<dd title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>
 				</div>
@@ -371,14 +373,15 @@
 	</div>
 	<!-- toolbar modal end -->
 	
-	<script type="text/javascript" src="${jqueryJs }"></script>
-	<script type="text/javascript" src="${pluginJs }"></script>
-	<script type="text/javascript" src="${jquerybase64Js }"></script>
-	<script type="text/javascript" src="${jsonJs }"></script>
-	<script type="text/javascript" src="${ykJs }"></script>
-	<script type="text/javascript" src="${modelJs }"></script>
-	<script type="text/javascript" src="${commonJs }"></script>
-	<script type="text/javascript" src="${playJs }"></script>
+	<script src="${jqueryJs }"></script>
+	<script src="${pluginJs }"></script>
+	<script src="${jquerybase64Js }"></script>
+	<script src="${jsonJs }"></script>
+	<script src="${ykJs }"></script>
+	<script src="${modelJs }"></script>
+	<script src="${commonJs }"></script>
+	<script src="${suggestJs }"></script>
+	<script src="${playJs }"></script>
 	
 	<!-- 加载Mob share 控件 -->
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>

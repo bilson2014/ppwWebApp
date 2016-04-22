@@ -2,6 +2,7 @@ $().ready(function(){
 	
 	
 	login.doLogin();
+	showForget.doshowForget();
 });
 
 var login = {
@@ -23,4 +24,15 @@ var login = {
 			}));
 		});
 	}
+}
+
+var showForget = {
+
+     doshowForget : function(){
+     	$('#forget').on('click',function(){
+            $('.login-div'). addClass('hide');
+            $('.forget-div').removeClass('hide');
+     	});
+     }
+
 }
