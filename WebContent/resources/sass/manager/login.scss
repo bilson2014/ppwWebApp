@@ -11,22 +11,26 @@ body {
   background-position: center 0;
 }
 
+
+
 .page-width {
 	position: relative;
 	top: 125px;
 	margin: 0 auto;
 	width: 380px;
-	border: 1px solid $body-color;
-	border-radius: 5px;
- 	background: $body-color;
+ 	background:none;
+ 	}
 
 	.login-div {
 		position: relative;
 		margin: 0 auto;
 		width: 100%;
 		height: 420px;
+		border: 1px solid $body-color;
+		border-radius: 5px;
+		background:$white;
 		
-	}
+	
 	h1 {
 		margin: 40px 0px 0px 20px;
 		font-size: $font-size-lg;
@@ -210,3 +214,67 @@ li {
   height: 30px;
   margin-right: 76px;
 }
+
+
+.forget-div {
+		position: relative;
+		top: 60px;
+		margin: 0 auto;
+		width: 400px;
+		height: 350px;
+		border: solid 1px $login-border;
+		border-radius: 5px;
+		background:$white;
+	}
+	h1 {
+		margin: 40px 0px 0px 20px;
+		font-size: $font-size-lger;
+	}
+	input {
+		width: 358px;
+		height: 38px;
+		margin: 20px 0px 0px 20px;
+		color: $gray-light;
+		font-size: $font-size;
+		padding-left: 10px;
+		border: solid 1px $login-border;
+		border-radius: 5px;
+	}
+
+
+	.use-code {
+		display: inline-block;
+		width: 190px;
+		height: 38px;
+	}
+
+	.use-get{
+		display: inline-block;
+		width: 148px;
+		height: 38px;
+		margin-left:15px;
+		padding-right:5px;
+		text-align:center;
+		color:$gold-yellow;
+		&:hover{
+		cursor:pointer;
+		}
+	}
+	.forgetbtn {
+       
+		margin: 34px 0px 0px 20px;
+		width: 358px;
+		height: 38px;
+		background-color: $red-base;
+		border-color: $white;
+		border-radius: 5px;
+		display: inline-block;
+		border: none;
+		color: $white;
+		font-size: $font-size-base;
+	}
+	.forgetbtn:hover {
+		cursor: pointer;
+		background-color: darken($red-base, 10%);
+	}
+

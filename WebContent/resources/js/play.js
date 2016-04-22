@@ -4,8 +4,8 @@ $().ready(function(){
 	var hret = $('#yk-play').val();
 	if(hret != '' && hret != null && hret != undefined){
 		//var height = $('#player-wrap').find('video').height();
-		//var height = $('.info-wrap').height();
-		//$('#player-wrap').css('height',height);
+		var height = $('.info-wrap').height();
+		$('#player-wrap').css('height',height);
 		makePlayer('player-wrap', hret); // 创建视频浏览器
 	}
 	
