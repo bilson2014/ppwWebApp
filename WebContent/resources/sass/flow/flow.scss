@@ -81,6 +81,11 @@
 
 	}
 	*/
+
+.indentlisthistory{
+	margin-top:10px;
+}
+
 	.indentdiv {
 		width: 100%;
 		margin-top: 10px;
@@ -109,6 +114,7 @@
 			font-size: $font-size;
 			color: $gray-light;
 			cursor: pointer;
+			padding-left:5px;
 		}
 	}
 	.descriptiondiv {
@@ -650,6 +656,7 @@
 }
 .nofile {
 	margin-left: 240px;
+	margin-bottom:30px;
 }
 .nomessage {
 	margin-left: 240px;
@@ -864,3 +871,25 @@ color: $gray-light;
 img{
 	cursor:pointer;
 }
+
+.checkstep {
+	height: 200px;
+}
+.check-message{
+	margin:auto;
+	display:block;
+	text-align:center;
+	font-size:$font-size;
+	position:relative;
+	top:40px;
+	font-color:$gray;
+
+}
+
+.sure-message{
+	display:block;
+	margin:auto;
+	position:relative;
+	top:80px;
+}
+

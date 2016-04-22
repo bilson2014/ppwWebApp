@@ -144,8 +144,9 @@
 		<div class="left-page">
 			<div class="left-title">
 				<label class="left-title-text">所有项目</label>
-                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn">
-				<img src="${imgPath }/flow/report.png" id="project-report" class="left-title-images ">
+
+                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn" title="添加标签">
+				<img src="${imgPath }/flow/report.png" class="left-title-images " title="导出报表">
 			</div>
 			<r:permission uri="/add-view">
 			</r:permission>
@@ -252,8 +253,8 @@
 								<div class="indent-content content-color teamPhone"></div>
 							</li>
 							<li>
-								<div class="indent-title">项目描述</div> 
-								<div class="indent-content-area indent-area" ></div>
+								<div class="indent-title hide">项目描述</div> 
+								<div class="indent-content-area indent-area hide" ></div>
 							</li>
 						</ul>
 					</div>
@@ -419,6 +420,9 @@
 				</div>	
 			</div>
 		</div>
+<<<<<<< HEAD
+
+=======
 		
 		<div class="modal fade upload-window" id="toolbar-no-message">
 		<div class="modal-dialog">
@@ -431,6 +435,7 @@
 		</div>
 		</div>
 		<!-- toolbar modal end -->
+>>>>>>> cf4f2b82c6853951b0b9b0674062e8017223f792
 
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>

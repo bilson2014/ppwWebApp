@@ -11,11 +11,11 @@
 	background: $play-video-section;
 	padding: 48px 0;
 }
+
 .title-section > .title-wrap {
 	@include media_screen_width();
 	margin: auto;
 	text-align: center;
-
 	h1 {
 		font: {
 			size: $font-size-lgest;
@@ -24,106 +24,69 @@
 		line-height: $font-size-lgest;
 		color: $gray-dark;
 		margin-bottom: 18px;
-	}
-	p {
+	} 
+
+	p{
 		font: {
 			size: $font-size-lg;
 			weight: normal;
 		}
 		line-height: $font-size-lg;
-		color: $gray-dark;
+		color: $gray-dark; 
 	}
 }
-$price-wrap-min: 236px;
-$price-wrap: 340px;
-$price-wrap-max: 460px;
 
 .video-play-section {
 	position: relative;
 	width: 100%;
 	background: $play-video-section;
-	height: ($width-middle - $price-wrap) * (9 / 16);
-
-	@media screen and (min-width:1276px) and (max-width:1500px) {
-		height: ($width-middle - $price-wrap) * (9 / 16);
-	}
-	@media screen and (min-width:1500px) {
-		height: ($width-middle - $price-wrap) * (9 / 16);
-	}
 }
+
 .video-play-section > .video-play-wrap {
-	position: relative;
-	width: $width-middle;
-	height: 100%;
-
-	@media screen and (min-width:1276px) and (max-width:1500px) {
-		width: $width-middle;
-	}
-	@media screen and (min-width:1500px) {
-		width: $width-lg;
-	}
+	@include media_screen_width();
 	margin: auto;
-	//max-width: 1024px;
+	max-width: 1024px;
 }
+
 .video-play-wrap > .player-wrap {
 	float: left;
-
-	video {
-		width: $width-min - $price-wrap-min;
-		height: ($width-min - $price-wrap-min) * (9 / 16);
-
-		@media screen and (min-width:1276px) and (max-width:1500px) {
-			width: $width-middle - $price-wrap;
-			height: ($width-middle - $price-wrap) * (9 / 16);
-		}
-		@media screen and (min-width:1500px) {
-			width: $width-lg - $price-wrap-max;
-			height: ($width-middle - $price-wrap) * (9 / 16);
-		}
-	}
-	object {
-		width: $width-min - $price-wrap-min;
-		height: ($width-min - $price-wrap-min) * (9 / 16);
-
-		@media screen and (min-width:1276px) and (max-width:1500px) {
-			width: $width-middle - $price-wrap;
-			height: ($width-middle - $price-wrap) * (9 / 16);
-		}
-		@media screen and (min-width:1500px) {
-			width: $width-lg - $price-wrap-max;
-			height: ($width-middle - $price-wrap) * (9 / 16);
-		}
+	
+	video{
+		width: 100%;
+		height: 100%;
 	}
 }
-$left-width: 60px;
+
+$left-width: 10px;
 
 .video-play-wrap > .info-wrap {
 	position: relative;
 	left: $left-width;
 	right: 0;
-	float: left;
-	//padding-top: 70px;
-	top: 55px;
-
+	float: right;
+	padding-top: 70px;
+	height: 370px;
+	
 	dl {
 		margin-bottom: 64px;
 	}
-	@media screen and (min-width:1276px) and (max-width:1500px) {
-		//padding-top: 46px;
-		top: 114px;
 
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		height: 370px;
+		padding-top: 46px;
 		dl {
 			margin-bottom: 77px;
 		}
 	}
-	@media screen and (min-width:1500px) {
-		//padding-top: 34px;
-		top: 102px;
 
+	@media screen and (min-width: 1500px){
+		height: 420px;
+		padding-top: 34px;
 		dl {
 			margin-bottom: 82px;
 		}
 	}
+
 	dl {
 		dt {
 			font: {
@@ -133,6 +96,7 @@ $left-width: 60px;
 			line-height: $font-size-lgester;
 			color: $gray-dark;
 		}
+
 		dd {
 			font: {
 				size: $font-size-sm;
@@ -143,12 +107,15 @@ $left-width: 60px;
 			text-indent: 1rem;
 			color: $gray-light;
 		}
+
 	}
+
 	button {
 		width: 194px;
 		height: 52px;
 	}
 }
+
 .video-info-section {
 	$margin-top: 47px;
 	position: relative;
@@ -158,36 +125,30 @@ $left-width: 60px;
 	height: $video-info-height + $margin-top;
 	background: $play-video-section;
 }
+
 .video-info-section > .video-info-wrap {
 	@include media_screen_width();
 	margin: auto;
 	height: $video-info-height;
-	//max-width: 1024px;
+	max-width: 1024px;
 }
+
 .video-info-wrap > .video-info {
 	float: left;
 	height: $video-info-height;
-	width: $width-min - $price-wrap-min;
-
-	@media screen and (min-width:1276px) and (max-width:1500px) {
-		width: $width-middle - $price-wrap;
-	}
-	@media screen and (min-width:1500px) {
-		width: $width-lg - $price-wrap-max;
-	}
 }
+
 .video-info > .video-tags-wrap {
 	height: 16px;
-
 	img {
 		display: inline-block;
 		width: 14px;
 		vertical-align: middle;
 	}
+
 	ul {
 		display: inline-block;
 		margin-left: 40px;
-
 		li {
 			display: inline-block;
 			padding: 0 10px;
@@ -202,6 +163,7 @@ $left-width: 60px;
 		}
 	}
 }
+
 .video-desc-wrap {
 	margin: 32px auto;
 	color: $gray-dark;
@@ -211,6 +173,7 @@ $left-width: 60px;
 	padding-right: 20px;
 	overflow: hidden;
 }
+
 .video-share-wrap {
 	margin: auto;
 	color: $gray-dark;
@@ -219,11 +182,12 @@ $left-width: 60px;
 
 	dl {
 		display: inline-block;
-
+		
 		a {
 			color: $gray;
 			text-decoration: none;
 		}
+
 		dd {
 			display: inline-block;
 			border: $width-border solid $gray-border;
@@ -234,44 +198,24 @@ $left-width: 60px;
 			@include border-radius(4px);
 			text-align: center;
 		}
+
 		dt {
 			display: inline-block;
 			margin-right: 15px;
 		}
 	}
 }
+
 .team-info {
 	position: relative;
 	left: $left-width;
 	right: 0;
-	float: left;
+	float: right;
 	height: 100%;
-	width: $price-wrap-min;
 
-	@media screen and (min-width:1276px) and (max-width:1500px) {
-		width: $price-wrap;
-	}
-	@media screen and (min-width:1500px) {
-		width: $price-wrap-max;
-	}
-	.teamName {
-		color: $gray-dark;
-		font-weight: blod;
-		font-size: $font-size-base;
-	}
-	.teamTitle {
-		position: relative;
-		top: -15px;
-		height: 60px;
-		cursor: pointer;
-		overflow: hidden;
-		height: 60px;
-		line-height: 15px;
-	}
 	dl {
 		color: $gray-dark;
 		text-align: center;
-
 		dt:first-child {
 			float: right;
 			width: 80px;
@@ -281,17 +225,9 @@ $left-width: 60px;
 			img {
 				width: 100%;
 				height: 100%;
-				position: relative;
-				left: 20%;
-
-				@media screen and (min-width:1276px) and (max-width:1500px) {
-					left: -30%;
-				}
-				@media screen and (min-width:1500px) {
-					left: -80%;
-				}
 			}
 		}
+
 		dt:nth-child(2) {
 			float: left;
 			font-size: $font-size-sm;
@@ -302,6 +238,7 @@ $left-width: 60px;
 			text-align: left;
 			overflow: hidden;
 		}
+
 		dd {
 			float: left;
 			line-height: 14px;
@@ -309,34 +246,39 @@ $left-width: 60px;
 			height: 54px;
 			overflow: hidden;
 			text-align: left;
-			font-size: $font-size-base;
-			color: $gray;
+			font-size: $font-size-sm;
+			color: $gray-light;
 			width: 58%;
 		}
 	}
 }
+
 .video-intro-section {
 	position: relative;
 	width: 100%;
 	margin: 30px auto;
 }
+
 .video-intro-section > .video-intro-wrap {
 	@include media_screen_width();
 	margin: auto;
 	padding: 10px 30px;
 
-	@media screen and (min-width:1276px) and (max-width:1500px) {
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
 		padding: 10px 156px;
 	}
-	@media screen and (min-width:1500px) {
+
+	@media screen and (min-width: 1500px){
 		padding: 10px 282px;
 	}
 }
+
 .video-pic-section {
 	position: relative;
 	width: 100%;
 	margin: 30px auto;
 }
+
 .video-pic-section > .video-pic-wrap {
 	margin: auto;
 	padding: 10px 10px;
@@ -347,13 +289,15 @@ $left-width: 60px;
 		height: auto;
 	}
 }
+
 .video-content-section {
 	position: relative;
 	width: 100%;
 	background: $body-bg;
 	padding-bottom: 74px;
 }
-.text-desc-wrap {
+
+.text-desc-wrap{
 	@include media_screen_width();
 	margin: auto;
 	height: 68px;
@@ -363,6 +307,7 @@ $left-width: 60px;
 		color: $gray-dark;
 	}
 }
+
 .more-product {
 	width: 60px;
 	height: 28px;
@@ -377,6 +322,7 @@ $left-width: 60px;
 		color: $gray;
 		text-decoration: none;
 	}
+
 	&:hover {
 		border: 1px solid $gray;
 		color: $gray-dark;
