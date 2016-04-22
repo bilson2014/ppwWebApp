@@ -123,7 +123,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="page">
 	 <div class="noproject hide">
        <div class="no-poject-div" id="no-poject-div">
@@ -151,9 +150,9 @@
 			<r:permission uri="/add-view">
 			</r:permission>
 			<div class="indentdiv">
-				<table class="indentlist">
+				<table class="indentlist projectliststyle">
 				</table>
-				<table class="indentlist">
+				<table class="indentlisthistory projectliststyle">
 				</table>
 			</div>
 		</div>
@@ -192,18 +191,19 @@
 					<br> 
 					<label class="description-text" style="display: none"></label>
 				</div>
-				<div class="flowbtndiv" id="btndiv-id">
-					<r:permission uri="/completeTask">
-					<button class="flowbtn red-btn ">下一步</button>
-					</r:permission>
-					<r:permission uri="/suspendProcess">
-					<button class="pausebtn gray-btn btn-margin">暂停</button>
-					</r:permission>
-					<r:permission uri="/project/cancelProject">
-					<button class="cancelbtn gray-btn btn-margin">取消</button>
-					</r:permission>
-
-				</div>
+				<r:multPermission uri3="/completeTask" uri2="/suspendProcess" uri="/project/cancelProject">
+					<div class="flowbtndiv" id="btndiv-id">
+						<r:permission uri="/completeTask">
+						<button class="flowbtn red-btn ">下一步</button>
+						</r:permission>
+						<r:permission uri="/suspendProcess">
+						<button class="pausebtn gray-btn btn-margin">暂停</button>
+						</r:permission>
+						<r:permission uri="/project/cancelProject">
+						<button class="cancelbtn gray-btn btn-margin">取消</button>
+						</r:permission>
+					</div>
+				</r:multPermission>
 			</div>
 			<div class="indentinfo">
 				<div class="indentinfo-title">
@@ -419,6 +419,17 @@
 				</div>	
 			</div>
 		</div>
+		
+		<div class="modal fade upload-window" id="toolbar-no-message">
+		<div class="modal-dialog">
+			<div class="modal-content" >
+				<div class="modal-body checkstep">
+				   <label class="check-message" >文件转换中,请稍后</label>
+                   <button class="red-btn sure-message" id="toolbar-no-message-btn">确定</button>
+				</div>
+			</div>
+		</div>
+		</div>
 		<!-- toolbar modal end -->
 
 	
@@ -432,7 +443,7 @@
 	    </ul>
 	    <div class="-mob-share-close">取消</div>
 	</div>
-<div class="-mob-share-ui-bg"></div>
+	<div class="-mob-share-ui-bg"></div>
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

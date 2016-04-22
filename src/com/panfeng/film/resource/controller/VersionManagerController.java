@@ -9,6 +9,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +43,7 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.VersionManager;
 import com.panfeng.film.security.AESUtil;
+import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -50,7 +54,9 @@ import com.panfeng.film.util.ValidateUtil;
 public class VersionManagerController extends BaseController {
 
 	private static Logger logger = LoggerFactory.getLogger("error");
-
+	@Autowired
+	private ResourceService resourceService;
+	
 	@RequestMapping("/login")
 	public ModelAndView loginView() {
 
@@ -507,7 +513,13 @@ public class VersionManagerController extends BaseController {
 		}
 		return "";
 	}
-
+	//获取文件状态
+	@RequestMapping(value = "/resource/get/state", produces = "application/text; charset=UTF-8")
+	public String getState(@RequestBody IndentResource indentResource){
+		String statr=resourceService.getState(indentResource);
+		return "{\"state\":\""+statr+"\"}";
+	}
+	
 	@RequestMapping(value = "/comment/getResourceList", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<IndentResource> getResourceList(
 			@RequestBody final IndentProject indentProject,
