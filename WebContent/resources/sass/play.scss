@@ -36,52 +36,106 @@
 	}
 }
 
+$price-wrap-min: 236px;
+
+$price-wrap: 340px;
+
+$price-wrap-max: 460px;
+
 .video-play-section {
 	position: relative;
 	width: 100%;
 	background: $play-video-section;
+
+	height: ($width-middle - $price-wrap) * (9 / 16);
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		height: ($width-middle - $price-wrap) * (9 / 16);
+	}
+
+	@media screen and (min-width: 1500px){
+		height: ($width-middle - $price-wrap) * (9 / 16);
+	}
 }
 
 .video-play-section > .video-play-wrap {
-	@include media_screen_width();
+	position: relative;
+	width: $width-min;
+	height: 100%;
+	
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		width: $width-middle ;
+	}
+
+	@media screen and (min-width: 1500px){
+		width: $width-lg ;
+	}
 	margin: auto;
-	max-width: 1024px;
+	//max-width: 1024px;
 }
+
 
 .video-play-wrap > .player-wrap {
 	float: left;
 	
 	video{
-		width: 100%;
-		height: 100%;
+
+		width: $width-min - $price-wrap-min;
+		height: ($width-min - $price-wrap-min) * (9 / 16);
+		
+		@media screen and (min-width: 1276px) and (max-width: 1500px) {
+			width: $width-middle - $price-wrap;
+			height: ($width-middle - $price-wrap) * (9 / 16);
+		}
+
+		@media screen and (min-width: 1500px){
+			width: $width-lg - $price-wrap-max;
+			height: ($width-middle - $price-wrap) * (9 / 16);
+		}
+	}
+
+	object {
+		width: $width-min - $price-wrap-min;
+		height: ($width-min - $price-wrap-min) * (9 / 16);
+		
+		@media screen and (min-width: 1276px) and (max-width: 1500px) {
+			width: $width-middle - $price-wrap;
+			height: ($width-middle - $price-wrap) * (9 / 16);
+		}
+
+		@media screen and (min-width: 1500px){
+			width: $width-lg - $price-wrap-max;
+			height: ($width-middle - $price-wrap) * (9 / 16);
+		}
 	}
 }
 
-$left-width: 10px;
+$left-width: 60px;
 
 .video-play-wrap > .info-wrap {
 	position: relative;
 	left: $left-width;
 	right: 0;
-	float: right;
-	padding-top: 70px;
-	height: 370px;
-	
+	float: left;
+	//padding-top: 70px;
+	top: 55px;
+
 	dl {
 		margin-bottom: 64px;
 	}
 
 	@media screen and (min-width: 1276px) and (max-width: 1500px) {
-		height: 370px;
-		padding-top: 46px;
+		
+		//padding-top: 46px;
+		top: 114px;
 		dl {
 			margin-bottom: 77px;
 		}
 	}
 
 	@media screen and (min-width: 1500px){
-		height: 420px;
-		padding-top: 34px;
+		
+		//padding-top: 34px;
+		top: 102px;
 		dl {
 			margin-bottom: 82px;
 		}
@@ -130,12 +184,24 @@ $left-width: 10px;
 	@include media_screen_width();
 	margin: auto;
 	height: $video-info-height;
-	max-width: 1024px;
+	
+		
+	
+	//max-width: 1024px;
 }
 
 .video-info-wrap > .video-info {
 	float: left;
 	height: $video-info-height;
+	width: $width-min - $price-wrap-min;
+	
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		width: $width-middle - $price-wrap;
+	}
+
+	@media screen and (min-width: 1500px){
+		width: $width-lg - $price-wrap-max;
+	}
 }
 
 .video-info > .video-tags-wrap {
@@ -210,8 +276,18 @@ $left-width: 10px;
 	position: relative;
 	left: $left-width;
 	right: 0;
-	float: right;
+	float: left;
 	height: 100%;
+
+	width: $price-wrap-min;
+	
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		width: $price-wrap;
+	}
+
+	@media screen and (min-width: 1500px){
+		width: $price-wrap-max;
+	}
 
 	dl {
 		color: $gray-dark;

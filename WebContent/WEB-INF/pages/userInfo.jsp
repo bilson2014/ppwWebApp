@@ -18,6 +18,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
 
 <spring:url value="/resources/img" var="imgPath"/>
@@ -51,6 +52,7 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
+	<script src="${suggestJs }"></script>
 	<script src="${userInfoJs }"></script>
 </head>
 <body>
@@ -302,17 +304,6 @@
 	
 	
 	<div class="footer">
-		<!-- 拍片网介绍区域 start -->
-		<div class="footer-desc-wrap">
-			<div class="footer-desc">
-				<h2>中国领先的视频营销服务平台</h2>
-				<p>平台汇聚导演、工作室、创作机构100余家，影视行业人才20000余名</p>
-				<p>为客户提供创意、制作、传播一站式服务</p>
-				<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn">了解拍片网</div></a>
-			</div>
-		</div>
-		<!-- 拍片网介绍区域 end -->
-		
 		<!-- 底栏 start -->
 		<div class="footer-wrap">
 			<div class="footer-content">

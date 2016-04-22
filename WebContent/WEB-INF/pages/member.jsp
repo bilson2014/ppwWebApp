@@ -11,6 +11,7 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/member.js" var="memberJs"/>
 
 <!-- import img path -->
@@ -275,9 +276,10 @@
 		</div>
 	</div>
 	<!-- toolbar modal end -->
-	<script type="text/javascript" src="${jqueryJs }"></script>
-	<script type="text/javascript" src="${modelJs }"></script>
-	<script type="text/javascript" src="${commonJs }"></script>
-	<script type="text/javascript" src="${memberJs }"></script>
+	<script src="${jqueryJs }"></script>
+	<script src="${modelJs }"></script>
+	<script src="${commonJs }"></script>
+	<script src="${suggestJs }"></script>
+	<script src="${memberJs }"></script>
 </body>
 </html>
