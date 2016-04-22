@@ -1,0 +1,133 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+
+
+@CHARSET "UTF-8";
+
+body{
+	background: url(../../images/login/manager-login.jpg) no-repeat;
+	background-size: cover;
+	background-position: center 0;
+}
+
+h2 {
+	font-size: $font-size-lg;
+	font-weight: 500;
+	color: #333;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+form label.control-label{
+	font-weight: 500;
+	color: #5f6a6d;
+	margin-bottom: 10px;
+}
+
+.recover-container {
+	margin: 0 auto;
+	width: 420px;
+	padding: 18px;
+}
+
+.well {
+	margin-top: 70px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 2px 0px rgba(48,59,60,0.1),0px 1px 3px 0px rgba(48,59,60,0.12);
+	border: none;
+}
+
+.form-group {
+	margin-bottom: 18px;
+}
+
+.actions {
+	width: 100%;
+	border-top: none;
+	margin-top: 10px;
+	padding: 0;
+}
+
+.btn-login{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.links {
+	//margin-top: 30px;
+}
+
+.verfication{
+	display: inline-block;
+	width: 240px;
+	margin-right:4px;
+	vertical-align: top;
+}
+
+.btn-validation {
+	display: inline;
+	height: 34px;
+	width: 90px;
+}
+
+.btn-get-validation {
+	height: 14px;
+	line-height: 2px;
+	display: inline-block;
+}
+
+.tooltip-show {
+	height: 46px;
+	background-color: #F2DEDE;
+	color: #A94446;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 36px;
+}
+
+label.tooltip-message {
+	padding-top: 4px;
+}
+
+.tooltip-show-recover {
+	height: 46px;
+	background-color: #F2DEDE;
+	color: #A94446;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 36px;
+}
+
+label.tooltip-message-recover {
+	padding-top: 4px;
+}
+
+/* 第三方登录  end */
+
+.btn-danger {
+  background-color: #fe5453;
+  border-color: #fe5453;
+}
+
+.btn-link {
+	color: #fb9b6a;
+}
+
+
+.input-lg {
+	height: 38px;
+	font-size: $font-size;
+}
+
+.nav .logo {
+  position: relative;
+  float: left;
+  top: 14px;
+  background: url(../../images/common/logo.svg) no-repeat; 
+  width: 92px;
+  height: 30px;
+  margin-right: 76px;
+}

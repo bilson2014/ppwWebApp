@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -36,6 +37,7 @@ import com.panfeng.film.resource.model.IndentComment;
 import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
 import com.panfeng.film.resource.model.IndentResource;
+import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.VersionManager;
@@ -92,6 +94,77 @@ public class VersionManagerController extends BaseController {
 		result.setRet(false);
 		result.setMessage("用户名或密码错误!");
 		return result;
+	}
+	
+	@RequestMapping("/recover/check/{phoneNumber}")
+	public boolean checkPhoneNumber(@PathVariable("phoneNumber") final String phoneNumber,final HttpServletRequest request){
+		
+		if(ValidateUtil.isValid(phoneNumber)){
+			final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
+			final String json = HttpUtil.httpGet(url, request);
+			if(ValidateUtil.isValid(json)){
+				Long count = JsonUtil.toBean(json, Long.class);
+				if(count > 0){
+					return true;
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	@RequestMapping("/recover/pwd")
+	public Info recover(final HttpServletRequest request,@RequestBody final VersionManager manager) throws Exception{
+		
+		final HttpSession session = request.getSession();
+		// 密码重置
+		final String code = (String) session.getAttribute("code");
+		Info info = new Info(); // 信息载体
+		// 判断验证码
+		if (!"".equals(code) && code != null) {
+			if (code.equals(manager.getVerification_code())) {
+				if (manager.getManagerPassword() != null
+						&& !"".equals(manager.getManagerPassword())) {
+					// AES 密码解密
+					final String password = AESUtil.Decrypt(manager.getManagerPassword(),
+							GlobalConstant.UNIQUE_KEY);
+					// MD5 加密
+					manager.setManagerPassword(DataUtil.md5(password));
+					final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/editPwd";
+					String str = HttpUtil.httpPost(url, manager,request);
+					Boolean result = null;
+					if (str != null && !"".equals(str)) {
+						result = JsonUtil.toBean(str, Boolean.class);
+						// 添加 session
+						session.removeAttribute("code"); // 移除验证码
+						info.setKey(result);
+						return info;
+					} else {
+						// 注册失败
+						info.setKey(false);
+						info.setValue("服务器繁忙，请稍候再试...");
+						return info;
+					}
+
+				} else {
+					// 验证码不匹配
+					info.setKey(false);
+					info.setValue("密码为空!");
+					return info;
+				}
+			} else {
+				// 验证码不匹配
+				info.setKey(false);
+				info.setValue("短信验证码不正确!");
+				return info;
+			}
+		} else {
+			// 验证码为空
+			info.setKey(false);
+			info.setValue("点击获取验证码!");
+			return info;
+		}
 	}
 
 	/**
