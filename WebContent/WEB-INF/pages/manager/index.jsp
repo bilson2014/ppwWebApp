@@ -145,8 +145,8 @@
 		<div class="left-page">
 			<div class="left-title">
 				<label class="left-title-text">所有项目</label>
-                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn">
-				<img src="${imgPath }/flow/report.png" class="left-title-images ">
+                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn" title="添加标签">
+				<img src="${imgPath }/flow/report.png" class="left-title-images " title="导出报表">
 			</div>
 			<r:permission uri="/add-view">
 			<!-- <div class="newBtn">
@@ -154,9 +154,9 @@
 			</div> -->
 			</r:permission>
 			<div class="indentdiv">
-				<table class="indentlist">
+				<table class="indentlist projectliststyle">
 				</table>
-				<table class="indentlisthistory">
+				<table class="indentlisthistory projectliststyle">
 				</table>
 			</div>
 		</div>
@@ -255,8 +255,8 @@
 								<div class="indent-content content-color teamPhone"></div>
 							</li>
 							<li>
-								<div class="indent-title">项目描述</div> 
-								<div class="indent-content-area indent-area" ></div>
+								<div class="indent-title hide">项目描述</div> 
+								<div class="indent-content-area indent-area hide" ></div>
 							</li>
 						</ul>
 					</div>
@@ -422,7 +422,7 @@
 				</div>	
 			</div>
 		</div>
-		<!-- toolbar modal end -->
+
 
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>

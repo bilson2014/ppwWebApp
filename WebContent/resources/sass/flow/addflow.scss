@@ -477,10 +477,10 @@
 .finishInput {
 	width: 80px;
 	height: 30px;
-	border: solid 1px $gray-border;
 	border-radius: 5px;
 	padding-left: 5px;
 	display: inline-block;
+	underline:none;
 }
 .checkword {
 	height: 30px;
@@ -492,18 +492,18 @@
 .firstinput {
 	width: 80px;
 	height: 30px;
-	border: solid 1px $gray-border;
 	border-radius: 5px;
 	padding-left: 5px;
 	display: inline-block;
+	underline:none;
 }
 .lastinput {
 	width: 80px;
 	height: 30px;
-	border: solid 1px $gray-border;
 	border-radius: 5px;
 	padding-left: 5px;
 	display: inline-block;
+	underline:none;
 }
 .mright {
 	display: inline-block;
@@ -547,6 +547,8 @@
 	padding-top: 10px;
 }
 .final-price-label {
+
+
 	position: relative;
 	color: #fe5453;
 	font-size: 1.4rem;
