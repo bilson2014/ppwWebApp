@@ -13,7 +13,6 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/manager/login.js" var="loginJs"/>
-
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -82,7 +81,7 @@
 		</div>
 	
 	<div class="page page-width">
-		<div class="login-div">
+		<div class="login-div" >
        
           <h1>视频管家登录</h1>
           <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
@@ -91,7 +90,7 @@
           </form>
           
           <button  class="loginbtn" id="loginbtn">登录</button>
-          <h2>忘记密码？</h2>
+          <h2 id="forget">忘记密码？</h2>
           <footer class="footer-three">
 			<div class="footer-title-three">
 				<h3>第三方账号登录</h3>
@@ -125,6 +124,18 @@
 			</div>
 		</footer>
 		</div>
+
+
+
+      <div class="forget-div hide">
+		          <h1>忘记密码</h1>
+		          <input class="use-name" placeholder="请输入手机号"></input>
+		          <input class="use-code" placeholder="短信验证码"></input>
+		          <input class="use-get" value="点击获取"></input>
+		          <input class="use-password" type="password" placeholder="请输入密码"></input>
+		          <button  class="forgetbtn">确定</button>
+        </div>
+
     </div>
 	
 	<script src="${jqueryJs }"></script>
