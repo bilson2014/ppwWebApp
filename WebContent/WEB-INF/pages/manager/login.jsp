@@ -92,7 +92,9 @@
           </form>
           
           <button  class="loginbtn" id="loginbtn">登录</button>
+
           <a href="/mgr/recover"><h2 id="forget">忘记密码？</h2></a>
+
           <footer class="footer-three">
 			<div class="footer-title-three">
 				<h3>第三方账号登录</h3>
@@ -126,6 +128,18 @@
 			</div>
 		</footer>
 		</div>
+
+
+
+      <div class="forget-div hide">
+		          <h1>忘记密码</h1>
+		          <input class="use-name" placeholder="请输入手机号"></input>
+		          <input class="use-code" placeholder="短信验证码"></input>
+		          <input class="use-get" value="点击获取"></input>
+		          <input class="use-password" type="password" placeholder="请输入密码"></input>
+		          <button  class="forgetbtn">确定</button>
+        </div>
+
     </div>
 	
 	<script src="${jqueryJs }"></script>

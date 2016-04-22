@@ -18,7 +18,6 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
 
 <spring:url value="/resources/img" var="imgPath"/>
@@ -52,7 +51,6 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
-	<script src="${suggestJs }"></script>
 	<script src="${userInfoJs }"></script>
 </head>
 <body>
@@ -304,6 +302,8 @@
 	
 	
 	<div class="footer">
+	
+		
 		<!-- 底栏 start -->
 		<div class="footer-wrap">
 			<div class="footer-content">
