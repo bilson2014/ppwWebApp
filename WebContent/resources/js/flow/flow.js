@@ -60,14 +60,14 @@ $().ready(
 			});
 			$("#project-report").on('click',function(){
 				window.location.href = getContextPath()
-				+ "/mgr//projects/get/report";
+				+ "/mgr/projects/get/report";
 			});
 			$(".canclemodal").on('click',function(){
 				$('#toolbar-modal').modal('hide');
 			});
 			$("#toolbar-no-message-btn").on('click',function(){
 				$("#toolbar-no-message").modal('hide');
-				$(".check-message").val("错误！");
+				$(".check-message").text("错误！");
 			});
 		});
 function init() {
@@ -109,7 +109,7 @@ function init() {
 			$('#mymodal').modal('show');
 			// modify by guoyang, 2016-04-19 03:11 end
 		} else {
-			showAlert(errorTransformation);
+			showAlert(errorNotNull);
 		}
 	});
 	
@@ -232,7 +232,7 @@ function submitcomment() {
 	var key = getCurrentProject();
 	var comment = $(".comment").val();
 	if (comment == null || comment == '') {
-		showAlert(errorTransformation);
+		showAlert(errorNotNull);
 		return;
 	}
 	loadData(function(msg) {
@@ -931,7 +931,7 @@ var errorTransformation='文档转换中，请稍后！';
 var errorNotNull='输入内容不能为空';
 var errorNotNull='输入内容不能为空';
 function showAlert(message){
-	$(".check-message").val(message);
+	$(".check-message").text(message);
 	$("#toolbar-no-message").modal('show');
 }
 // add by guoyang, 2016-04-19 03:14 begin
