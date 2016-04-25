@@ -132,105 +132,11 @@
 
 
 
-<!-- 			<div class="footer">
-		底栏 start
-		<div class="footer-wrap">
-<div class="footer-content">
 
-	<div class="footer-column">
-		<a href="javascript:void(0);" class="title" >登录</a>
-		<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
-		<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
-	</div>
-	
-	<div class="footer-column">
-		<a href="javascript:void(0);" class="title" >联系我们</a>
-		<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
-		<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
-		<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
-	</div>
-	
-	<div class="footer-column">
-		<a href="javascript:void(0);" class="title" >服务</a>
-		<a href="<spring:url value='/order-flow.html' />">服务流程</a>
-		
-		<a href="javascript:void(0);" class="top-margin">工作时间</a>
-		<a href="javascript:void(0);">工作日9:00 - 18:00</a>
-	</div>
-	
-	<div class="footer-column">
-		<a href="javascript:void(0);" class="title" >授权 / 条款</a>
-		<a href="<spring:url value='/company-service.html' />">使用协议</a>
-		<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
-	</div>
-	
-	<div class="footer-column">
-		<a href="javascript:void(0);" class="title" >了解拍片网</a>
-		<a href="<spring:url value='/about-us.html' />">了解我们</a>
-		<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
-		<a href="<spring:url value='/company-activity.html' />">公司活动</a>
-		<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
-	</div>
 
-	<div class="footer-column">
-		<div class="mark-icon"></div>
-		<h4>关注送好礼</h4>
-	</div>
 
-	<div class="footer-notice">
-		<h2>版权信息</h2>
-		<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
-		<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
-	</div>
-</div>
-<div class="footer-box">
-	&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
-</div>
-		</div>
-		底栏 end
-	</div>
-	
-	代码部分begin
-	<div class="toolbar " id="toolbar-section" >
-		<a href="javascript:void(0);" class="toolbar-item toolbar-item-weixin common-icons-tele-client" id="toolbar-item-weixin"></a>
-		<a href="tencent://message/?uin=2640178216&Site=qq&Menu=yes" class="toolbar-item toolbar-item-qq common-icons-qq-client"></a>
-		<a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top common-icons-top-client"></a>
-	</div>
-	代码部分end
-	
-	toolbar modal begin
-	<div class="modal fade" id="toolbar-modal">
-		<div class="modal-dialog">
-<div class="modal-content">
-	<div class="modal-body">
-		<div class="common-icons-know-us-close-icon modal-icon" data-dismiss="modal" aria-label="Close"></div>
-		<dl>
-			<dt>
-				<h3 id="modal-h3-first">马上接通视频营销管家</h3>
-			</dt>
-			
-			<dd id="modal-dd-second">
-				<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
-				<a href="javascript:void(0);" id="modal-call">
-					<div class="call-btn">
-						<label class="call-icon common-icons-telephone"></label> 闪电接通
-					</div>
-				</a>
-				<label class="modal-message" style="display: none;"></label>
-			</dd>
-			
-			<dt >
-				<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
-			</dt>
-			
-			<dd>
-				<h4>和QQ客服聊会</h4>
-			</dd>
-		</dl>
-	</div>
-</div>
-		</div>
-	</div> -->
+
+
 
 	
 

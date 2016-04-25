@@ -54,6 +54,7 @@
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${providerInfoJs }"></script>
+	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
 <body>
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
@@ -339,6 +340,16 @@
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-6">
 									<button type="button" class="btn btn-default" id="infoBt">保存</button>
+									<div class="serviceId">
+										<ul class="service-ul-left">
+											<li><img src="${imgPath}/twocode.jpg"/></li>
+											<li>管家服务号</li>
+										</ul>
+										<ul class="service-ul-right">
+											<li class="service-phone">010-58612562</li>
+											<li>管家服务热线</li>
+										</ul>
+								    </div>
 								</div>
 							</div>
 						</fieldset>

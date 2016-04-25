@@ -54,3 +54,34 @@ label.tooltip-success-message {
 	width: 200px;
 	cursor: pointer;
 }
+
+.serviceId{
+   display: block;
+   position: relative;
+   top:10px;
+
+}
+
+.service-ul-left{
+	float:left;
+	text-align: center;
+}
+
+
+
+.service-ul-right{
+	float:left;
+	position: relative;
+	left: 10px;
+	
+}
+
+.service-phone{
+	height: 84px;
+	line-height: 94px;
+}
+
+li{
+	font-size:14px;
+	color:#666;
+}
