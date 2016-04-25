@@ -107,7 +107,7 @@
 							</div>
 							<div class="form-group">
 								<input type="text" id="verification_code_recover" class="form-control verfication" tabindex="4" placeholder="短信验证码" autocomplete="off" maxlength="6">
-								<button type="button" id="verification_code_recover_btn" class="btn btn-default btn-get-validation">点击获取</button>
+								<button type="button" id="verification_code_recover_btn" class=" btn-default btn-get-validation">点击获取</button>
 							</div>
 							
 						</fieldset>
