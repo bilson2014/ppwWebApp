@@ -72,7 +72,7 @@ var search = {
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[20000 TO 60000]' +'" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>';
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[60000 TO 100000]' +'" data-price="[60000 TO 100000]" class="priceAll">6~10万</a></li>';
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[100000 TO *]' +'" data-price="[100000 TO *]" class="priceAll">10万以上</a></li>';
-		$priceLi += '<li><div class="price-section"><input type="text" id="start-price" />万 ~ <input type="text" id="end-price" />万 <a id="price-alink" href="javascript:void(0);" ><button id="price-btn" class="btn btn-primary" type="button" >确定</button></a></div></li>';
+		$priceLi += '<li><div class="price-section"><input type="text" id="start-price" /> 万 ~ <input type="text" id="end-price" /> 万 <a id="price-alink" href="javascript:void(0);" ><button id="price-btn" class="btn btn-primary" type="button" >确定</button></a></div></li>';
 		$('#price-list').append($priceLi);
 		
 		// 绑定input 值变动事件
@@ -150,7 +150,7 @@ var search = {
 		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[60 TO 90]' +'" data-length="[60 TO 90]" class="lengthAll">60~90秒</a></li>';
 		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[90 TO 180]' +'" data-length="[90 TO 180]" class="lengthAll">90~180秒</a></li>';
 		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[180 TO *]' +'" data-length="[180 TO *]" class="lengthAll">180秒以上</a></li>';
-		$lengthLi += '<li><div class="length-section"><input type="text" id="start-length" />秒 ~ <input type="text" id="end-length" />秒 <a id="length-alink" href="javascript:void(0);" ><button id="length-btn" type="button" class="btn btn-primary">确定</button></a></div></li>';
+		$lengthLi += '<li><div class="length-section"><input type="text" id="start-length" /> 秒 ~ <input type="text" id="end-length" /> 秒 <a id="length-alink" href="javascript:void(0);" ><button id="length-btn" type="button" class="btn btn-primary">确定</button></a></div></li>';
 		
 		$('#length-list').append($lengthLi);
 		
@@ -243,28 +243,29 @@ function loadProduction(start){
 			$('#video-content').empty(); // 清空区域
 			if(list != null && list.length > 0){
 				var $body = '';
-				$.each(list,function(i,product){
-					var imgName = getFileName(product.picLDUrl);
+				$.each(list,function(i,solr){
+					var imgName = getFileName(solr.picLDUrl);
 					var imgPath = getHostName() + '/product/img/' + imgName;
 					if(i % 4 == 0){
 						$body += '<div class="video-row">';
 					}
 					$body += '<div class="video-card video-col-4">';
-					$body += '<a href="javascript:void(0);">';
+					var targetHref = getContextPath() + '/play/' + solr.teamId + '_' + solr.productId + '.html';
+					$body += '<a href="'+ targetHref +'">';
 					$body += '<img class="img-card-4" src="'+ imgPath +'" />';
 					$body += '</a>';
 					$body += '<div class="video-desc-section">';
-					$body += '<h3>'+ product.productName +'</h3>';
-					$body += '<h4>'+ product.teamName +'</h4>';
+					$body += '<h3>'+ solr.productName +'</h3>';
+					$body += '<h4>'+ solr.teamName +'</h4>';
 					$body += '<div class="video-desc">';
-					$body += product.pDescription;
+					$body += solr.pDescription;
 					$body += '</div>';
 					$body += '</div>';
 					$body += '<div class="video-price-section">';
 					$body += '<div class="video-price">';
-					$body += '<h2>￥'+ thousandCount(product.serviceRealPrice) +'</h2>&nbsp;&nbsp;';
-					if(product.serviceRealPrice < product.servicePrice){
-						$body += '<h3>'+ thousandCount(product.servicePrice) +'</h3>';
+					$body += '<h2>￥'+ thousandCount(solr.price) +'</h2>&nbsp;&nbsp;';
+					if(solr.price < solr.orignalPrice){
+						$body += '<h3>'+ thousandCount(solr.orignalPrice) +'</h3>';
 					}
 					$body += '<a href="javascript:void(0);">了解详情</a>';
 					$body += '</div>';

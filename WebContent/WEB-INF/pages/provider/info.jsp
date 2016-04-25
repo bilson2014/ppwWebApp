@@ -341,6 +341,7 @@
 									<button type="button" class="btn btn-default" id="infoBt">保存</button>
 								</div>
 							</div>
+							
 						</fieldset>
 					</form>
 				</div>
