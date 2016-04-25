@@ -86,6 +86,11 @@ function init() {
 	});
 
 	$("#upload-btn-id").click(function() {
+		//添加文件验证
+		// office doc docx xls xlsx ppt pptx pdf
+		// mp4 avi txt esp jpg mov mp3 png rar wav zip
+		
+		//添加文件验证
 		$("#addfile").click();
 		$("#addfile").change(function() {
 			var file = $("#addfile").val();
@@ -470,7 +475,6 @@ loadData(
 				case 'txt':
 					src+='txt.png';
 					break;
-					
 				case 'avi':
 					src+='avi.png';
 					break;
@@ -945,3 +949,11 @@ function getProgress() {
 	}, getContextPath() + '/upfile/progress', now.getTime());
 }
 // add by guoyang, 2016-04-19 03:14 end
+Array.prototype.contains = function(element) {  
+    for (var i = 0; i < this.length; i++) {  
+        if (this[i] == element) {  
+            return true;  
+        }  
+    }  
+    return false;  
+}
