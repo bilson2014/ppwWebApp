@@ -243,31 +243,32 @@ function loadProduction(start){
 			$('#video-content').empty(); // 清空区域
 			if(list != null && list.length > 0){
 				var $body = '';
-				$.each(list,function(i,product){
-					var imgName = getFileName(product.picLDUrl);
+				$.each(list,function(i,solr){
+					var imgName = getFileName(solr.picLDUrl);
 					var imgPath = getHostName() + '/product/img/' + imgName;
 					if(i % 4 == 0){
 						$body += '<div class="video-row">';
 					}
 					$body += '<div class="video-card video-col-4">';
-					$body += '<a href="javascript:void(0);">';
+					var targetHref = getContextPath() + '/play/' + solr.teamId + '_' + solr.productId + '.html';
+					$body += '<a href="'+ targetHref +'">';
 					$body += '<img class="img-card-4" src="'+ imgPath +'" />';
 					$body += '</a>';
 					$body += '<div class="video-desc-section">';
-					$body += '<h3>'+ product.productName +'</h3>';
-					$body += '<h4>'+ product.teamName +'</h4>';
+					$body += '<h3>'+ solr.productName +'</h3>';
+					$body += '<h4>'+ solr.teamName +'</h4>';
 					$body += '<div class="video-desc">';
-					$body += product.pDescription;
+					$body += solr.pDescription;
 					$body += '</div>';
 					$body += '</div>';
 					$body += '<div class="video-price-section">';
 					$body += '<div class="video-price">';
-					$body += '<h2>￥'+ thousandCount(product.serviceRealPrice) +'</h2>&nbsp;&nbsp;';
-					if(product.serviceRealPrice < product.servicePrice){
-						$body += '<h3>'+ thousandCount(product.servicePrice) +'</h3>';
+					$body += '<h2>￥'+ thousandCount(solr.price) +'</h2>&nbsp;&nbsp;';
+					if(solr.price < solr.orignalPrice){
+						$body += '<h3>'+ thousandCount(solr.orignalPrice) +'</h3>';
 					}
-					$body += '<a href="javascript:void(0);">了解详情</a>';
 					$body += '</div>';
+					$body += '<a href="javascript:void(0);">了解详情</a>';
 					$body += '</div>';
 					$body += '</div>';
 

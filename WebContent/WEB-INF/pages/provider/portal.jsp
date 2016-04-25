@@ -52,9 +52,6 @@
 </head>
 <body>
 
-
-
-
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
 		<div class="header">
@@ -126,26 +123,6 @@
 	<div class="content panel">
 		<iframe id="content-frame" class="iframe"></iframe>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-              
-
-
-
-   
-
 
 </body>
 </html>

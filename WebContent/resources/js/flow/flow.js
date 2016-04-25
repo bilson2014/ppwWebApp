@@ -60,13 +60,14 @@ $().ready(
 			});
 			$("#project-report").on('click',function(){
 				window.location.href = getContextPath()
-				+ "/mgr//projects/get/report";
+				+ "/mgr/projects/get/report";
 			});
 			$(".canclemodal").on('click',function(){
 				$('#toolbar-modal').modal('hide');
 			});
 			$("#toolbar-no-message-btn").on('click',function(){
 				$("#toolbar-no-message").modal('hide');
+				$(".check-message").text("错误！");
 			});
 		});
 function init() {
@@ -108,7 +109,7 @@ function init() {
 			$('#mymodal').modal('show');
 			// modify by guoyang, 2016-04-19 03:11 end
 		} else {
-			alert("请完善信息");
+			showAlert(errorNotNull);
 		}
 	});
 	
@@ -231,7 +232,7 @@ function submitcomment() {
 	var key = getCurrentProject();
 	var comment = $(".comment").val();
 	if (comment == null || comment == '') {
-		alert("不能为空")
+		showAlert(errorNotNull);
 		return;
 	}
 	loadData(function(msg) {
@@ -428,7 +429,6 @@ function uploadfile() {
 			// add by guoyang, 2016-04-19 03:19 end
 		},
 		error : function(data, status, e) {
-			alert(data);
 		}
 	});
 	return true;
@@ -516,7 +516,7 @@ loadData(
 			}else{
 				userNameView="";
 			}
-			var lookA=$("<a href='www.baidu.com' target='_blank'></a>");
+			var lookA=$("<a href='javascript:void(0);' target='_blank'></a>");
 			var chakan=$("<img class=\"qrcode-img div-table img-look\"" +
 					"src=\"/resources/img/flow/look.png\" data-state='"+msg[i].state+"'  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
 			lookA.append(chakan);
@@ -541,7 +541,7 @@ loadData(
 						switch (msg.state) {
 						case 'transformation':
 							a.attr('href','javascript:void(0);');
-							$("#toolbar-no-message").modal('show');
+							showAlert(errorTransformation);
 							break;
 						case 'finish':
 							var state=jQuery(this).attr("data-state","finish");
@@ -549,7 +549,6 @@ loadData(
 							jumpView(fileId,a);
 							break;
 						case 'fail':
-							alert("转换失败");
 							break;
 						}
 					}, getContextPath() + '/mgr/resource/get/state', $.toJSON({
@@ -561,7 +560,6 @@ loadData(
 					jumpView(fileId,a);
 					break;
 				case 'fail':
-					alert("转换失败");
 					break;
 				}
 			});
@@ -581,7 +579,7 @@ loadData(
 					syncLoadData(function(msg){
 						switch (msg.state) {
 						case 'transformation':
-							alert('请稍后，文件转换中！');
+							showAlert(errorTransformation);
 							break;
 						case 'finish':
 							var state=jQuery(this).attr("data-state","finish");
@@ -589,7 +587,6 @@ loadData(
 							jumpShare(fileId);
 							break;
 						case 'fail':
-							alert("转换失败");
 							break;
 						}
 					}, getContextPath() + '/mgr/resource/get/state', $.toJSON({
@@ -601,7 +598,6 @@ loadData(
 					jumpShare(fileId);
 					break;
 				case 'fail':
-					alert("转换失败");
 					break;
 				}
 			});
@@ -931,9 +927,13 @@ function dateCompare(date1, date2) {
 	else
 		return false;
 }
-
-
-
+var errorTransformation='文档转换中，请稍后！';
+var errorNotNull='输入内容不能为空';
+var errorNotNull='输入内容不能为空';
+function showAlert(message){
+	$(".check-message").text(message);
+	$("#toolbar-no-message").modal('show');
+}
 // add by guoyang, 2016-04-19 03:14 begin
 // -> 添加进度条显示
 function getProgress() {

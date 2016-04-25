@@ -159,7 +159,6 @@ function setInputErrorStyle(){
 		$("#jfstarttime").addClass("border-gray");
 		$("#error-jfstarttime").hide();
 	});
-	
 }
 function initUserBox(){
 	$('#userName').on('keydown', function() {
@@ -524,6 +523,9 @@ function priceModel(price) {
 		if(price!=null)
 		$(input).val(price);
 		rootDiv.append(input);
+		$(".finishInput").on('blur',function(){
+			priceVerifyInputNotNull();
+		});
 	}else{
 		title.text('项目预算价格');
 		var first=$("<input type=\"text\" class=\"pirce-input border-gray firstinput\">");
@@ -536,6 +538,12 @@ function priceModel(price) {
 		rootDiv.append(first);
 		rootDiv.append('~');
 		rootDiv.append(last);
+		$(".firstinput").on('blur',function(){
+			priceVerifyInputNotNull();
+		});
+		$(".lastinput").on('blur',function(){
+			priceVerifyInputNotNull();
+		});
 	}
 	rootDiv.append(' 万');
 	
@@ -579,47 +587,64 @@ function VerifyTime(){
 }
 function priceVerifyInputNotNull() {
 	var state=$("#radio-price").is(':checked');
-	var res=false;
 	if(state){
-		res=verifyInputNotNull($(".finishInput"));
+		var finish=$(".finishInput");
+		if(verifyInputNotNull(finish)){
+			if(!checkNumber(finish.val())){
+				finish.val("");
+				finish.focus();
+				finish.addClass('border-red');
+				finish.removeClass("border-gray");
+				return false;
+			}else{
+				finish.removeClass('border-red');
+				finish.addClass("border-gray");
+				return true;
+			}
+		}else{
+			return false;
+		}
 	}else{
 		var first=$(".firstinput");
 		var last=$(".lastinput");
-		res=verifyInputNotNull(first);
-		if(!res)return false;
-		res=verifyInputNotNull(last);
-		
+		if(!verifyInputNotNull(first))return false;
 		if(!checkNumber(first.val())){
+			first.val("");
 			first.focus();
 			first.addClass('border-red');
 			first.removeClass("border-gray");
+			$("#error-radio-price").show();
 			return false;
 		}else{
 			first.removeClass('border-red');
 			first.addClass("border-gray");
 		}
-		
+		if(!verifyInputNotNull(last))return false;
 		if(!checkNumber(last.val())){
+			last.val("");
 			last.focus();
 			last.addClass('border-red');
 			last.removeClass("border-gray");
+			$("#error-radio-price").show();
 			return false;
 		}else{
 			last.removeClass('border-red');
 			last.addClass("border-gray");
 		}
 		if(parseInt(first.val())>parseInt(last.val())){
+			last.val("");
 			last.focus();
 			last.addClass('border-red');
 			last.removeClass("border-gray");
+			$("#error-radio-price").show();
 			return false;
 		}else{
 			last.removeClass('border-red');
 			last.addClass("border-gray");
 		}
 		$("#error-radio-price").hide();
+		return true;
 	}
-	return res;
 }
 
 function verifyInputNotNull(input) {
@@ -631,9 +656,8 @@ function verifyInputNotNull(input) {
 	}else{
 		input.removeClass('border-red');
 		input.addClass("border-gray");
+		return true;
 	}
-	return true;
-	
 }
 function getCurrentProject() {
 	return $.cookie('currentproject');

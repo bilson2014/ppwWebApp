@@ -185,6 +185,7 @@ function thousandCount(number) {
 	if (number == 0) {
 		tableData = 0;
 	} else {
+		alert(number);
 		tableData = number.toLocaleString();
 		var indexOf = tableData.indexOf(".");
 		if (indexOf > -1) {
