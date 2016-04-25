@@ -121,9 +121,9 @@ fieldset {
 	height: 34px;
 	width: 90px;
 	position: relative;
-	background:$gray-light;
-	line-height:5px;
+	line-height:3px;
 	top:-2px;
+    border:1px solid #adadad;
 }
 
 .tooltip-show {
