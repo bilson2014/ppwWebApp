@@ -127,8 +127,8 @@
 					<li class="nav-member">
 						<div>
 							<img class="member-img" alt="${staff.staffName}_拍片网" src="<spring:url value="/staff/img${staff.staffImageUrl }"/>">
-							<p class="small-p" title="${staff.staffName }">${staff.staffName }</p>
-							<p>${staff.staffPosition}</p>
+							<p title="${staff.staffName }">${staff.staffName }</p>
+							<p class="small-p">${staff.staffPosition}</p>
 						</div>
 					</li>
 					<c:if test="${status.count % 5 == 0 }">

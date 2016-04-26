@@ -103,11 +103,8 @@
 
 		<div class="nav-shadow"></div>
 		
-			<div class="model">
-				<div class="wokao">
-					<img class="image-1"/>
-				</div>
-			
+			<div class="model margintop">
+			<img class="image-1"/>
 			<div class="info background-1">
 				<p>拍片网汇聚了中国顶尖的影视创作者，无论是导演、制片、策划、<br>还是摄影师、编剧、演员，都能过在這里找到创作机会和合作伙伴，每天<br>都有崭新的创意在产生，每天都有不同的影片在拍摄，每天都有新鲜的作品在诞生。</p>
 				<h1>——— 拍片网 ———</h1>

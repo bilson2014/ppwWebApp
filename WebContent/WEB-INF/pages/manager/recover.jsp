@@ -90,7 +90,7 @@
 					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
 						<fieldset>
 							<!-- 提示框 -->
-							<div class="tooltip-show-recover" style="display: none;">
+							<div class="tooltip-show-recover">
 								<label class="tooltip-message-recover"></label>
 							</div>
 							<div class="form-group">
