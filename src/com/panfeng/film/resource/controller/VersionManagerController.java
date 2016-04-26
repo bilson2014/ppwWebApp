@@ -56,10 +56,9 @@ public class VersionManagerController extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger("error");
 	@Autowired
 	private ResourceService resourceService;
-	
+
 	@RequestMapping("/login")
 	public ModelAndView loginView() {
-
 		return new ModelAndView("/manager/login");
 	}
 
@@ -99,28 +98,32 @@ public class VersionManagerController extends BaseController {
 		result.setMessage("用户名或密码错误!");
 		return result;
 	}
-	
+
 	@RequestMapping("/recover/check/{phoneNumber}")
-	public boolean checkPhoneNumber(@PathVariable("phoneNumber") final String phoneNumber,final HttpServletRequest request){
-		
-		if(ValidateUtil.isValid(phoneNumber)){
-			final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
+	public boolean checkPhoneNumber(
+			@PathVariable("phoneNumber") final String phoneNumber,
+			final HttpServletRequest request) {
+
+		if (ValidateUtil.isValid(phoneNumber)) {
+			final String url = GlobalConstant.URL_PREFIX
+					+ "portal/manager/static/checkNumber/" + phoneNumber;
 			final String json = HttpUtil.httpGet(url, request);
-			if(ValidateUtil.isValid(json)){
+			if (ValidateUtil.isValid(json)) {
 				Long count = JsonUtil.toBean(json, Long.class);
-				if(count > 0){
+				if (count > 0) {
 					return true;
 				}
-				
+
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	@RequestMapping("/recover/pwd")
-	public Info recover(final HttpServletRequest request,@RequestBody final VersionManager manager) throws Exception{
-		
+	public Info recover(final HttpServletRequest request,
+			@RequestBody final VersionManager manager) throws Exception {
+
 		final HttpSession session = request.getSession();
 		// 密码重置
 		final String code = (String) session.getAttribute("code");
@@ -131,12 +134,14 @@ public class VersionManagerController extends BaseController {
 				if (manager.getManagerPassword() != null
 						&& !"".equals(manager.getManagerPassword())) {
 					// AES 密码解密
-					final String password = AESUtil.Decrypt(manager.getManagerPassword(),
+					final String password = AESUtil.Decrypt(
+							manager.getManagerPassword(),
 							GlobalConstant.UNIQUE_KEY);
 					// MD5 加密
 					manager.setManagerPassword(DataUtil.md5(password));
-					final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/editPwd";
-					String str = HttpUtil.httpPost(url, manager,request);
+					final String url = GlobalConstant.URL_PREFIX
+							+ "portal/manager/static/editPwd";
+					String str = HttpUtil.httpPost(url, manager, request);
 					Boolean result = null;
 					if (str != null && !"".equals(str)) {
 						result = JsonUtil.toBean(str, Boolean.class);
@@ -200,13 +205,16 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/flow-index")
-	public ModelAndView projectsView(final ModelMap model) {
-		return new ModelAndView("/manager/index");
+	public ModelAndView projectsView(final ModelMap model,String key) {
+		model.put("key", key);
+		return new ModelAndView("/manager/index",model);
 	}
 
 	@RequestMapping("/projects/upadte-view")
-	public ModelAndView updateview(final ModelMap model) {
+	public ModelAndView updateview(final ModelMap model,
+			@RequestParam String key) {
 		model.put("state", "update");
+		model.put("key", key == null ? "" : key);
 		return new ModelAndView("/manager/add-flow", model);
 	}
 
@@ -346,16 +354,16 @@ public class VersionManagerController extends BaseController {
 			return -1;
 	}
 
-	
 	@RequestMapping("/projects/get/report")
-	public void getReport(final HttpServletResponse response, 
+	public void getReport(final HttpServletResponse response,
 			final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "project/get/report";
 		try {
-			IndentProject indentProject=new IndentProject();
+			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);
-			Object[] objArrayObjects = HttpUtil.httpPostFile(url,indentProject,request);
-			
+			Object[] objArrayObjects = HttpUtil.httpPostFile(url,
+					indentProject, request);
+
 			response.reset();
 			response.setCharacterEncoding("utf-8");
 			if (objArrayObjects[1] != null) {
@@ -374,6 +382,7 @@ public class VersionManagerController extends BaseController {
 			e.printStackTrace();
 		}
 	}
+
 	// /////////////////////////flowcontroller///////////////////////////////
 	@RequestMapping("/flow/add-view")
 	public ModelAndView flowView(final ModelMap model) {
@@ -505,8 +514,9 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/doc/video/{name}.{ext}")
 	public ModelAndView getVideoView(final HttpServletRequest request,
-			@PathVariable("name") String name,@PathVariable("ext") String ext) {
-		request.setAttribute("filename", "/portal/project/doc/"+name+"."+ext);
+			@PathVariable("name") String name, @PathVariable("ext") String ext) {
+		request.setAttribute("filename", "/portal/project/doc/" + name + "."
+				+ ext);
 		return new ModelAndView("/manager/show-video");
 	}
 
@@ -584,13 +594,14 @@ public class VersionManagerController extends BaseController {
 		}
 		return "";
 	}
-	//获取文件状态
+
+	// 获取文件状态
 	@RequestMapping(value = "/resource/get/state", produces = "application/text; charset=UTF-8")
-	public String getState(@RequestBody IndentResource indentResource){
-		String statr=resourceService.getState(indentResource);
-		return "{\"state\":\""+statr+"\"}";
+	public String getState(@RequestBody IndentResource indentResource) {
+		String statr = resourceService.getState(indentResource);
+		return "{\"state\":\"" + statr + "\"}";
 	}
-	
+
 	@RequestMapping(value = "/comment/getResourceList", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<IndentResource> getResourceList(
 			@RequestBody final IndentProject indentProject,

@@ -8,6 +8,7 @@
 <spring:url value="/resources/lib/h5bp/h5bp.css" var="h5bpCss" />
 <spring:url value="/resources/css/common.css" var="commonCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/html5shiv/html5shiv.js"
 	var="html5shivJs" />
@@ -44,6 +45,7 @@ var="cookiejs" />
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${h5bpCss }">
 <link rel="stylesheet" href="${commonCss }">
+<link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${addflowcss }">
 <link rel="stylesheet" href="${datepickerCss }">
 <!--[if lt IE 9]>
@@ -108,38 +110,10 @@ var="cookiejs" />
 			</div>
 		</div>
 	</div>
-
 <div class="page">
-	<label class="state" >${state }</label>
-		<div class="page-title">
+	<div class="page-title">
 		<label class="page-title-title">项目信息添加</label>
 	</div>
-	<!-- toolbar modal begin -->
-	<div class="modal fade upload-window" id="toolbar-modal">            
-		<div class="circle-div">
-		</div>	
-        <div class="circle-img" id="circle-img-id"></div>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">	 
-                   <div class="title-model">添加新用户</div>                   
-                   <div class="user-info-div">
-                     <div class="user-info-title">客户名称</div>
-                     <div class="user-info-title">客户联系人</div>
-                     <div class="user-info-title">客户电话</div>
-                   </div>
-                     <div class="user-info-input-div">
-			               <input class="user-info-input" placeholder="请输入" id="add_username"></input>
-			               <input class="user-info-input" placeholder="请输入" id="add_contactname"></input>
-			               <input class="user-info-input" placeholder="请输入" id="add_userphone"></input>
-                     </div>
-                     <button class="user-info-btn" id="user-info-btn-finish">完成</button>
-                     <button class="user-info-btn-cancle" id="hide-btn">取消</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- toolbar modal end -->
     <div class="infobody">
 		<div class="baseinfo">
 			<div class="baseinfo-right">
@@ -147,22 +121,20 @@ var="cookiejs" />
 						<div class="divtable">
 							<div class="baseinfo-table-key">项目信息</div>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-projectId">
 							<div class="baseinfo-table-key">项目编号</div>
-							<input type="text" class="tableinput-baseinfo border-gray projectId">
+							<input type="text" class="tableinput-baseinfo projectId form-control">
 							<label class="error-label" id="error-projectId">该信息不能为空</label>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-projectName">
 							<div class="baseinfo-table-key">项目名称</div>
-							<input type="text" class="tableinput-baseinfo border-gray projectName">
+							<input type="text" class="tableinput-baseinfo  projectName form-control">
 							<label class="error-label" id="error-projectName">该信息不能为空</label>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-projectSource">
 							<div class="baseinfo-table-key" >项目来源</div>
-							<select class="tableinput-baseinfo" id="projectSource" ></select>
+							<select class="tableinput-baseinfo form-control" id="projectSource" ></select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
-								
-							
 						</div>
                    </div>
                    <div class="baseinfo-table">
@@ -170,21 +142,21 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">客户信息</div>
 							<div class="baseinfo-table-key-add" id="add-user">添加用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</div>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-userName">
 							<div class="baseinfo-table-key">客户名称</div>
 							<div class="tableinput-baseinfo-noborder userName" id="userName-id">
-								<input id="userName"  class="info-input border-gray"/>
+								<input id="userName"  class="info-input border-gray form-control"/>
 								<label class="username-error-label" id="error-userName">该信息不能为空</label>
 							</div>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-userContact">
 							<div class="baseinfo-table-key">客户联系人</div>
-							<input type="text" class="tableinput-baseinfo border-gray userContact">
+							<input type="text" class="tableinput-baseinfo form-control userContact">
 							<label class="error-label" id="error-userContact" >该信息不能为空</label>
 						</div>
-						<div class="divtable">
+						<div class="divtable" id="div-userPhone">
 							<div class="baseinfo-table-key">客户电话</div>
-							<input type="text" class="tableinput-baseinfo border-gray userPhone">
+							<input type="text" class="tableinput-baseinfo form-control userPhone">
 							<label class="error-label" id="error-userPhone" >该信息不能为空</label>
 						</div>
                    </div>
@@ -195,16 +167,16 @@ var="cookiejs" />
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商名称</div>
 							<div class="tableinput-baseinfo-noborder teamName" id="teamName-id" >
-								<input id="teamName" class="info-input border-gray " id="error-teamName"/>
+								<input id="teamName" class="info-input form-control " id="error-teamName"/>
 							</div>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商联系人</div>
-							<input type="text"  id="error-teamContact"  class="tableinput-baseinfo border-gray teamContact">
+							<input type="text"  id="error-teamContact"  class="tableinput-baseinfo form-control teamContact">
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商电话</div>
-							<input type="text" class="tableinput-baseinfo border-gray teamPhone" id="error-teamPhone">
+							<input type="text" class="tableinput-baseinfo form-control teamPhone" id="error-teamPhone">
 						</div>
 				</div>
 				<div class="baseinfo-table">
@@ -217,7 +189,7 @@ var="cookiejs" />
 							<div class="final-price-div">
 								<div class="pirce-div mleft" ></div>
 								<div class="mright">
-							    	<input type="checkbox" class="radio-price border-gray"  id="radio-price"></input>
+							    	<input type="checkbox" class="radio-price form-control"  id="radio-price"></input>
 							    	  	<label class="checkword">确定报价</label>
 										<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 								</div>
@@ -226,10 +198,10 @@ var="cookiejs" />
 				</div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
-						<div class="baseinfo-table-key">项目描述</div>
-						<input style="visibility: hidden;">
+						<div class="baseinfo-table-key ">项目描述</div>
+	<!-- 					<input style="visibility: hidden;"> -->	
 					</div>
-					<textarea rows="3" cols="90" class="textarea-baseinfo description"></textarea>
+					<textarea rows="3" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
 				<ul class="ul-option" id="ul-select">
 				</ul>
@@ -262,11 +234,11 @@ var="cookiejs" />
 			</div>	
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border">预计时间</div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput gtstarttime" id="gtstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput fastarttime" id="fastarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput swstarttime" id="swstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput zzstarttime" id="zzstarttime"></div>
-				<div class="right-border right-border-margin"><input type="text" class="tableinput jfstarttime" id="jfstarttime"></div>
+				<div class="right-border right-border-margin" id="div-gtstarttime"><input type="text" class="tableinput gtstarttime form-control" id="gtstarttime"></div>
+				<div class="right-border right-border-margin" id="div-fastarttime"><input type="text" class="tableinput fastarttime form-control" id="fastarttime"></div>
+				<div class="right-border right-border-margin" id="div-swstarttime"><input type="text" class="tableinput swstarttime form-control" id="swstarttime"></div>
+				<div class="right-border right-border-margin" id="div-zzstarttime"><input type="text" class="tableinput zzstarttime form-control" id="zzstarttime"></div>
+				<div class="right-border right-border-margin" id="div-jfstarttime"><input type="text" class="tableinput jfstarttime form-control" id="jfstarttime"></div>
 			</div>
 			  <div class="indent-time-table-border-tr-time-error">
 				<div class="right-border"></div>
@@ -341,6 +313,34 @@ var="cookiejs" />
 			</div>
 		</div>
 		<!-- 底栏 end -->
+			<!-- toolbar modal begin -->
+	<div class="modal fade upload-window" id="toolbar-modal">            
+		<div class="circle-div">
+		</div>	
+        <div class="circle-img" id="circle-img-id"></div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">	 
+                   <div class="title-model">添加新用户</div>                   
+                   <div class="user-info-div">
+                     <div class="user-info-title">客户名称</div>
+                     <div class="user-info-title">客户联系人</div>
+                     <div class="user-info-title">客户电话</div>
+                   </div>
+                     <div class="user-info-input-div">
+			               <input class="user-info-input" placeholder="请输入" id="add_username"></input>
+			               <input class="user-info-input" placeholder="请输入" id="add_contactname"></input>
+			               <input class="user-info-input" placeholder="请输入" id="add_userphone"></input>
+                     </div>
+                     <button class="user-info-btn" id="user-info-btn-finish">完成</button>
+                     <button class="user-info-btn-cancle" id="hide-btn">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- toolbar modal end -->
+		<input type="hidden" id="key" style="display: none;" value="${key}">
+		<label class="state" >${state }</label>
 	</div>
 </body>
 </html>
