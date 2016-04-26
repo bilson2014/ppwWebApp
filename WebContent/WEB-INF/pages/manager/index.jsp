@@ -448,5 +448,7 @@
 	</div>
 	<div class="-mob-share-ui-bg"></div>
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<input type="hidden" id="service-key" value="${key}">
+	<input type="hidden" id="loca-key">
 </body>
 </html>

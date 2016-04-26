@@ -48,8 +48,9 @@ $().ready(
 			$("#upload-info-btn-id").on(
 					"click",
 					function() {
-						window.location.href = getContextPath()
-								+ "/mgr/projects/upadte-view";
+//						window.location.href = getContextPath()
+//								+ "/mgr/projects/upadte-view";
+						submitForm();
 			});
 			$("#canclestep").on('click',function(){
 				$("#toolbar-check").modal('hide');
@@ -70,8 +71,18 @@ $().ready(
 				$(".check-message").text("错误！");
 			});
 		});
+
+function submitForm(){
+	var key=getCurrentProject();
+	//var body=$("body");
+	var path=getContextPath()+ "/mgr/projects/upadte-view";
+	var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
+	var input=$("<input type=\"text\" name=\"key\" style=\"display: none\">");
+	input.val(key);
+	form.append(input);
+	form.submit().remove();
+}
 function init() {
-	
 	$("#input-value").click(function() {
 		var select_lis = document.getElementById("ul-select")
 				.getElementsByTagName("li");
@@ -86,6 +97,11 @@ function init() {
 	});
 
 	$("#upload-btn-id").click(function() {
+		//添加文件验证
+		// office doc docx xls xlsx ppt pptx pdf
+		// mp4 avi txt esp jpg mov mp3 png rar wav zip
+		
+		//添加文件验证
 		$("#addfile").click();
 		$("#addfile").change(function() {
 			var file = $("#addfile").val();
@@ -113,38 +129,38 @@ function init() {
 		}
 	});
 	
-	function getFileName(o) {
-		var pos = o.lastIndexOf("\\");
-		return o.substring(pos + 1);
+function getFileName(o) {
+	var pos = o.lastIndexOf("\\");
+	return o.substring(pos + 1);
+}
+$("#upload-file-btn-id").click(function() {
+	$('#toolbar-modal').modal('show');
+});
+
+$('#cancle-btn').click(function() {
+	$('#toolbar-modal').modal('hide');
+	$("#upload-file-name").val("");
+	$("#input-value").val("");
+});
+
+$('#cancle-img').click(function() {
+	$('#toolbar-modal').modal('hide');
+	$("#upload-file-name").val("");
+	$("#input-value").val("");
+});
+$('.modal').on('click', function() {
+	if (checkHidden) {
+		checkHidden = false;
+		$("#ul-select").css("visibility", "hidden");
 	}
-	$("#upload-file-btn-id").click(function() {
-		$('#toolbar-modal').modal('show');
-	});
+	if (isShow) {
+		isShow = false;
+		checkHidden = true;
+	}
+});
 
-	$('#cancle-btn').click(function() {
-		$('#toolbar-modal').modal('hide');
-		$("#upload-file-name").val("");
-		$("#input-value").val("");
-	});
-
-	$('#cancle-img').click(function() {
-		$('#toolbar-modal').modal('hide');
-		$("#upload-file-name").val("");
-		$("#input-value").val("");
-	});
-	$('.modal').on('click', function() {
-		if (checkHidden) {
-			checkHidden = false;
-			$("#ul-select").css("visibility", "hidden");
-		}
-		if (isShow) {
-			isShow = false;
-			checkHidden = true;
-		}
-	});
-	
-	loadFileTags();
-	getBtnWidth();
+loadFileTags();
+getBtnWidth();
 }
 function nextFlow(){
 	var key = getCurrentProject();
@@ -470,7 +486,6 @@ loadData(
 				case 'txt':
 					src+='txt.png';
 					break;
-					
 				case 'avi':
 					src+='avi.png';
 					break;
@@ -550,6 +565,7 @@ loadData(
 							break;
 						case 'finish':
 							var state=self.attr("data-state","finish");
+
 							self.next().attr("data-state","finish");
 							jumpView(fileId,a);
 							break;
@@ -576,6 +592,7 @@ loadData(
 				jQuery(this).attr("src",'/resources/img/flow/share.png');
 			});
 			fenxiang.on("click",function(){
+				var self=jQuery(this);
 				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
 				var key=getCurrentProject();
@@ -589,6 +606,7 @@ loadData(
 							break;
 						case 'finish':
 							var state=self.attr("data-state","finish");
+
 							self.prev().attr("data-state","finish");
 							jumpShare(fileId);
 							break;
@@ -731,14 +749,13 @@ function loadprojecctlist(more,state) {
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
-			if (i == 0 && !more && getCurrentProject() == null) {
+			var stateStr=msg[i].state;
+			if (i == 0 && !more && getCurrentProject() == null&&stateStr==0) {
 				putCurrentProject(msg[i].id);
 				currentprojectkey = msg[i].id + '';
-				var stateStr=msg[i].state;
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
 			}else if(msg[i].id==getCurrentProject()){
-				var stateStr=msg[i].state;
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
 			}
@@ -891,11 +908,25 @@ function show() {
 }
 //获取当前进行中的项目 cookie-->currentproject
 function getCurrentProject() {
-	return $.cookie('currentproject');
+	//return $.cookie('currentproject');
+	var service_val=$("#service-key").val();
+	var loca_val=$("#loca-key").val();
+	if(service_val==null||service_val==''){
+		if(loca_val!=null&&loca_val!=''){
+			putCurrentProject(loca_val);
+			return loca_val;
+		}else{
+			return null;
+		}
+	}else{
+		return service_val;
+	}
 }
 //设置当前项目
 function putCurrentProject(key) {
-	$.cookie("currentproject", key + '');
+	//$.cookie("currentproject", key + '');
+	$("#service-key").val(key+"");
+	$("#loca-key").val(key+"");
 }
 /**
  * 
@@ -951,3 +982,11 @@ function getProgress() {
 	}, getContextPath() + '/upfile/progress', now.getTime());
 }
 // add by guoyang, 2016-04-19 03:14 end
+Array.prototype.contains = function(element) {  
+    for (var i = 0; i < this.length; i++) {  
+        if (this[i] == element) {  
+            return true;  
+        }  
+    }  
+    return false;  
+}

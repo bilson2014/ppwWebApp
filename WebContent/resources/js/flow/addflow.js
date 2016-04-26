@@ -86,32 +86,23 @@ $().ready(function() {
 });
 function setInputErrorStyle(){
 	$(".projectId").on('change',function(){
-		$(".projectId").removeClass("border-red");
-		$(".projectId").addClass("border-gray");
+		$("#div-projectId").removeClass('has-error');
 		$("#error-projectId").hide();
 	});
 	$(".projectName").on('change',function(){
-		$(".projectName").removeClass("border-red");
-		$(".projectName").addClass("border-gray");
-		
+		$("#div-projectName").removeClass('has-error');
 		$("#error-projectName").hide();
 	});
 	$("#projectSource").on('change',function(){
-		$("#projectSource").removeClass("border-red");
-		$("#projectSource").addClass("border-gray");
-	
+		$("#div-projectSource").removeClass("has-error");
 		$("#error-projectSource").hide();
 	});
 	$("#userName").on('change',function(){
-		$("#userName").removeClass("border-red");
-		$("#userName").addClass("border-gray");
-		
+		$("#div-userName").removeClass('has-error');
 		$("#error-userName").hide();
 	});
 	$(".userContact").on('change',function(){
-		$(".userContact").removeClass("border-red");
-		$(".userContact").addClass("border-gray");
-		
+		$("#div-userContact").removeClass('has-error');
 		$("#error-userContact").hide();
 	});
 	//this class lost a .
@@ -121,8 +112,7 @@ function setInputErrorStyle(){
 		$("#error-userPhone").hide();
 	});*/
 	$(".userPhone").on('change',function(){
-		$(".userPhone").removeClass("border-red");
-		$(".userPhone").addClass("border-gray");
+		$("#div-userPhone").removeClass('has-error');
 		$("#error-userPhone").hide();
 	});
 	//add a new for finalprice by lt
@@ -135,28 +125,23 @@ function setInputErrorStyle(){
 	
 	
 	$("#gtstarttime").on('blur',function(){
-		$("#gtstarttime").removeClass("border-red");
-		$("#gtstarttime").addClass("border-gray");
+		$("#div-gtstarttime").removeClass('has-error');
 		$("#error-gtstarttime").hide();
 	});
 	$("#fastarttime").on('blur',function(){
-		$("#fastarttime").removeClass("border-red");
-		$("#fastarttime").addClass("border-gray");
+		$("#div-fastarttime").removeClass('has-error');
 		$("#error-fastarttime").hide();
 	});
 	$("#swstarttime").on('blur',function(){
-		$("#swstarttime").removeClass("border-red");
-		$("#swstarttime").addClass("border-gray");
+		$("#div-swstarttime").removeClass('has-error');
 		$("#error-swstarttime").hide();
 	});
 	$("#zzstarttime").on('blur',function(){
-		$("#zzstarttime").removeClass("border-red");
-		$("#zzstarttime").addClass("border-gray");
+		$("#div-zzstarttime").removeClass('has-error');
 		$("#error-zzstarttime").hide();
 	});
 	$("#jfstarttime").on('blur',function(){
-		$("#jfstarttime").removeClass("border-red");
-		$("#jfstarttime").addClass("border-gray");
+		$("#div-jfstarttime").removeClass('has-error');
 		$("#error-jfstarttime").hide();
 	});
 }
@@ -391,7 +376,8 @@ function updateProjectajax() {
 
 	loadData(function(msg) {
 		if (msg) {
-			window.location.href = getContextPath() + "/mgr/projects/flow-index";
+			//window.location.href = getContextPath() + "/mgr/projects/flow-index";
+			submitForm();
 		} else {
 			alert('error:' + msg);
 		}
@@ -417,7 +403,16 @@ function updateProjectajax() {
 		}
 	}));
 }
-
+function submitForm(){
+	var key=getCurrentProject();
+	//var body=$("body");
+	var path=getContextPath()+ "/mgr/projects/flow-index";
+	var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
+	var input=$("<input type=\"text\" name=\"key\" style=\"display: none\">");
+	input.val(key);
+	form.append(input);
+	form.submit();
+}
 function addProject() {
 	if(!verifyInputNotNull($(".projectId"))) {
 		$("#error-projectId").show();
@@ -440,6 +435,7 @@ function addProject() {
 	}
 	if(!verifyInputNotNull( $("#userName"))) {
 		$("#error-userName").show();
+		return;
 	}
 	if(!verifyInputNotNull($(".userContact"))){
 		$("#error-userContact").show();
@@ -447,6 +443,7 @@ function addProject() {
 	}
 	if(!verifyInputNotNull($(".userPhone"))) {
 		$("#error-userPhone").show();
+		return;
 	}
 	
 	if(!priceVerifyInputNotNull()){
@@ -519,7 +516,7 @@ function priceModel(price) {
 	//选中为最终价格
 	if(state){
 		title.text('项目报价');
-		var input=$("<input type=\"text\" class=\"pirce-input border-gray finishInput\"> 万");
+		var input=$("<input type=\"text\" class=\"pirce-input form-control finishInput\"> 万");
 		if(price!=null)
 		$(input).val(price);
 		rootDiv.append(input);
@@ -528,8 +525,8 @@ function priceModel(price) {
 		});
 	}else{
 		title.text('项目预算价格');
-		var first=$("<input type=\"text\" class=\"pirce-input border-gray firstinput\">");
-		var last=$("<input type=\"text\" class=\"pirce-input border-gray lastinput\"> 万");
+		var first=$("<input type=\"text\" class=\"pirce-input form-control firstinput\">");
+		var last=$("<input type=\"text\" class=\"pirce-input form-control lastinput\"> 万");
 		if(price!=null){
 			var strarray=price.split('~');
 			first.val(strarray[0]);
@@ -570,13 +567,13 @@ function VerifyTime(){
 				if(currafter!=''){
 					//第一个比第二个大返回true
 					if(!dateCompare(currTime,currafter)){
-						$(time[int]).addClass('border-red');
-						$(time[int]).removeClass("border-gray");
+						var div=$(time[int]).parent();
+						div.addClass('has-error');
 						$("#error-"+time[int].id).show();
 						return false;
 					}else{
-						$(time[int]).removeClass('border-red');
-						$(time[int]).addClass("border-gray");
+						var div=$(time[int]).parent();
+						div.removeClass('has-error');
 						$("#error-"+time[int].id).hide();
 					}
 				}
@@ -593,6 +590,15 @@ function priceVerifyInputNotNull() {
 			if(!checkNumber(finish.val())){
 				finish.val("");
 				finish.focus();
+<<<<<<< HEAD
+				var div=finish.parent();
+				div.addClass('has-error');
+				$("#error-radio-price").show();
+				return false;
+			}else{
+				var div=finish.parent();
+				div.removeClass('has-error');
+=======
 				finish.addClass('border-red');
 				finish.removeClass("border-gray");
 				$("#error-radio-price").show();
@@ -600,6 +606,7 @@ function priceVerifyInputNotNull() {
 			}else{
 				finish.removeClass('border-red');
 				finish.addClass("border-gray");
+>>>>>>> be4a0bd0f930126258fdeb7b862c9ff467ca9124
 				$("#error-radio-price").hide();
 				return true;
 			}
@@ -613,36 +620,36 @@ function priceVerifyInputNotNull() {
 		if(!checkNumber(first.val())){
 			first.val("");
 			first.focus();
-			first.addClass('border-red');
-			first.removeClass("border-gray");
+			var div=first.parent();
+			div.addClass('has-error');
 			$("#error-radio-price").show();
 			return false;
 		}else{
-			first.removeClass('border-red');
-			first.addClass("border-gray");
+			var div=first.parent();
+			div.removeClass('has-error');
 		}
 		if(!verifyInputNotNull(last))return false;
 		if(!checkNumber(last.val())){
 			last.val("");
 			last.focus();
-			last.addClass('border-red');
-			last.removeClass("border-gray");
+			var div=last.parent();
+			div.addClass('has-error');
 			$("#error-radio-price").show();
 			return false;
 		}else{
-			last.removeClass('border-red');
-			last.addClass("border-gray");
+			var div=last.parent();
+			div.removeClass('has-error');
 		}
 		if(parseInt(first.val())>parseInt(last.val())){
 			last.val("");
 			last.focus();
-			last.addClass('border-red');
-			last.removeClass("border-gray");
+			var div=last.parent();
+			div.addClass('has-error');
 			$("#error-radio-price").show();
 			return false;
 		}else{
-			last.removeClass('border-red');
-			last.addClass("border-gray");
+			var div=last.parent();
+			div.removeClass('has-error');
 		}
 		$("#error-radio-price").hide();
 		return true;
@@ -651,21 +658,22 @@ function priceVerifyInputNotNull() {
 
 function verifyInputNotNull(input) {
 	if(input.val()==null||input.val()==""){
-		input.addClass('border-red');
-		input.removeClass("border-gray");
+		var div=input.parent();
+		div.addClass('has-error');
 		input.focus();
 		return false;
 	}else{
-		input.removeClass('border-red');
-		input.addClass("border-gray");
+		var div=input.parent();
+		div.removeClass('has-error');
 		return true;
 	}
 }
 function getCurrentProject() {
-	return $.cookie('currentproject');
+	//return $.cookie('currentproject');
+	return $("#key").val();
 }
 function clearProject() {
-	$.cookie("currentproject",null);
+	$("#key").val("");
 }
 // 获取当前时间
 function getCurrentTime() {
