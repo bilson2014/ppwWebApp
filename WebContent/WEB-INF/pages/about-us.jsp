@@ -103,18 +103,15 @@
 
 		<div class="nav-shadow"></div>
 		
-			<div class="model">
-				<div class="wokao">
-					<img class="image-1"/>
-				</div>
-			
+			<div class="model margintop">
+			<img class="image-1"/>
 			<div class="info background-1">
 				<p>拍片网汇聚了中国顶尖的影视创作者，无论是导演、制片、策划、<br>还是摄影师、编剧、演员，都能过在這里找到创作机会和合作伙伴，每天<br>都有崭新的创意在产生，每天都有不同的影片在拍摄，每天都有新鲜的作品在诞生。</p>
 				<h1>——— 拍片网 ———</h1>
 			</div>
           	<div class="info-bot">
 	          	<div class="fr"><h2 class="h3-word">愿景</h2></div>
-	            <div class="fb"><p>拍片网致力于汇聚影视行业的从业者，为他们提供有价值的服务，帮助他们互相链接建立合作，创作出的 优质  影视作品。</p></div>              
+	            <div class="fb"><p>拍片网致力于汇聚影视行业的从业者，为他们提供有价值的服务，帮助他们互相链接建立合作，创作出优质的影视作品。</p></div>              
 	        </div>
 		</div>
 
@@ -208,7 +205,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

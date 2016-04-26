@@ -105,9 +105,11 @@
 		<!-- 拍片网介绍区域 start -->
 		<div class="footer-desc-wrap">
 			<div class="footer-desc">
-				<h2>中国领先的视频营销服务平台</h2>
-				<p>平台汇聚导演、工作室、创作机构100余家，影视行业人才20000余名</p>
-				<p>为客户提供创意、制作、传播一站式服务</p>
+				<h2>中国领先的视频内容制作平台</h2>
+				<!-- <p>平台汇聚导演、工作室、创作机构100余家，影视行业人才20000余名</p>
+				<p>为客户提供创意、制作、传播一站式服务</p> -->
+				<p>汇聚30000+编剧、摄影师、演员等行业人才</p>
+				<p>覆盖北京、上海、广州</p>
 				<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn">了解拍片网</div></a>
 			</div>
 		</div>
@@ -154,7 +156,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

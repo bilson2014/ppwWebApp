@@ -299,7 +299,7 @@ var="cookiejs" />
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

@@ -531,7 +531,7 @@ loadData(
 			}else{
 				userNameView="";
 			}
-			var lookA=$("<a href='javascript:void(0);' target='_blank'></a>");
+			var lookA=$("<a href='javascript:void(0);' target='_blank' ></a>");
 			var chakan=$("<img class=\"qrcode-img div-table img-look\"" +
 					"src=\"/resources/img/flow/look.png\" data-state='"+msg[i].state+"'  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
 			lookA.append(chakan);
@@ -545,22 +545,27 @@ loadData(
 			lookA.on("mouseleave",function(){
 				jQuery(this).find("img").attr("src",'/resources/img/flow/look.png');
 			});
-			chakan.on('click',function(){
-				var self=jQuery(this);
+			chakan.unbind('click');
+			chakan.bind('click',function(){
 				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
 				var key=getCurrentProject();
 				var a=jQuery(this).parent();
+				var self=jQuery(this);
 				switch (state) {
 				case 'transformation':
 					syncLoadData(function(msg){
 						switch (msg.state) {
 						case 'transformation':
+							a.bind('click',function(){
+								return false;
+							});
 							a.attr('href','javascript:void(0);');
 							showAlert(errorTransformation);
 							break;
 						case 'finish':
-							var state=jQuery(this).attr("data-state","finish");
+							var state=self.attr("data-state","finish");
+
 							self.next().attr("data-state","finish");
 							jumpView(fileId,a);
 							break;
@@ -591,7 +596,8 @@ loadData(
 				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
 				var key=getCurrentProject();
-				switch (state) { 
+				var self=jQuery(this);
+				switch (state) {
 				case 'transformation':
 					syncLoadData(function(msg){
 						switch (msg.state) {
@@ -599,7 +605,8 @@ loadData(
 							showAlert(errorTransformation);
 							break;
 						case 'finish':
-							var state=jQuery(this).attr("data-state","finish");
+							var state=self.attr("data-state","finish");
+
 							self.prev().attr("data-state","finish");
 							jumpShare(fileId);
 							break;

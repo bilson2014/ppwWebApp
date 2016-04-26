@@ -11,6 +11,8 @@
   width: 100%;
   height: 1px;
   box-shadow: 1px 1px 1px #888888;
+  position:relative;
+  top:1px;
 }
 
 .nav-title-wrap {
@@ -69,8 +71,10 @@
 }
 
 .video-div {
-  width: $about-us-width-min;
-  height: 320px;
+  position:relative;
+  top:2.5px;
+  width: $about-us-width-middle;
+  height: 455px;
   
   @media screen and (min-width: 1276px) and (max-width: 1500px) {
     width: $about-us-width-middle;
@@ -83,7 +87,6 @@
   }
 
   margin: 0 auto;
-  margin-top: 1px;
 
   video {
     width: 100%;
@@ -92,7 +95,7 @@
 }
 
 .introduce {
-   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+   @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
   height: 100px;
   margin: 0 auto;
 
@@ -110,7 +113,7 @@
 
 
 .member {
-   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+   @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
   margin: 0 auto;
 
   h2 {
@@ -124,7 +127,7 @@
   }
 
   .ul-member {
-   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+   @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
     margin-top: 30px;
   }
   .nav-member {
@@ -134,10 +137,10 @@
     text-align: center;
     cursor: pointer;
 
-    margin-right: ($about-us-width-min - ($image-width*5)) / 6 - 4px;
+    margin-right: ($about-us-width-middle - ($image-width*5)) / 6- 4px;
 
     @media screen and (min-width:1276px) and (max-width:1500px) {
-      margin-right: ($about-us-width-middle - ($image-width*5)) / 5 - 4px;
+      margin-right: ($about-us-width-middle - ($image-width*5)) / 6 - 4px;
     }
     @media screen and (min-width:1500px) {
       margin-right: ($about-us-width-lg - ($image-width*5)) / 5 - 4px;
@@ -148,11 +151,12 @@
     }
 
     p {
-      margin-top:20px;
+      position:relative;
+      top:5px;
       font-size: $font-size;
       position: relative;
       height: auto;
-     width: $member-img-small;
+      width: $member-img-mid;
   
   @media screen and (min-width: 1276px) and (max-width: 1500px) {
     width: $member-img-mid;
@@ -168,7 +172,8 @@
       @include ellipsis;
     }
     .small-p {
-      margin-top:5px;
+      position:relative;
+      top:5px;
       font-size: $font-size-base;
       color:$gray;
     }
@@ -184,7 +189,7 @@
 }
 
 .join-us {
-   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+   @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
   height: auto;
   margin: 0 auto;
   margin-bottom: 50px;
@@ -229,7 +234,7 @@
 
 
 .hold-work {
-   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+   @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
   margin: 0 auto;
   //margin-bottom: 80px;
 
@@ -244,6 +249,15 @@
     position: relative;
     float: left;
     width: 40%;
+
+   @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    width: 40%;
+  }
+
+  @media screen and (min-width: 1500px){
+    width: 30%;
+  }
+
     padding-bottom: 200px;
     
     ul {
@@ -251,8 +265,8 @@
     }
 
     .active {
-      color: $gray-dark;
-      font-weight: 600;
+      color: #fe5453;
+      text-decoration:underline;
     }
 
     li {

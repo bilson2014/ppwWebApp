@@ -2,12 +2,14 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
-@import "compass/typography/text/ellipsis";
 
 .nav-shadow {
   width: 100%;
   height: 1px;
   box-shadow: 1px 1px 1px #888888;
+  position:relative;
+  top:1px;
+
 }
 .nav-title-wrap {
   @include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
@@ -35,11 +37,12 @@
   }
   .ul-wrap {
     height: 40px;
+
   }
   #first-title {
     border-bottom: 2px solid #fe5453;
     font-color: $gray;
-    font-weight: bold
+    font-weight: bold;
   }
   .nav-title {
     margin: 0 auto;
@@ -49,7 +52,6 @@
     line-height: 70px;
     cursor: pointer;
     margin-right: ($about-us-width-min - (80*5)) / 5 - 10px;
-
     @media screen and (min-width:1276px) and (max-width:1500px) {
       margin-right: ($about-us-width-middle - (80*5)) / 5 - 10px;
     }
@@ -123,7 +125,7 @@
     background: $ice-green;
   }
   .info {
-    @include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
+    @include media_screen_width($about-us-width-middle, $about-us-width-middle, $about-us-width-lg);
     margin: 0 auto;
     position: relative;
     top:-1px;
@@ -163,7 +165,7 @@
 }
 
   .info-bot {
-  @include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
+  @include media_screen_width($about-us-width-middle, $about-us-width-middle, $about-us-width-lg);
   margin: 0 auto;
   position:relative; 
   top:60px;
@@ -185,14 +187,20 @@
   }
   .fb {
     height: 100%;
-    width: 40%;
+    width: 45%;
     float: right;
   }
    li {
     font-size: $font-size-base;
     line-height: 30px;
-    @include ellipsis;
+  
   }
 }
+
+.margintop{
+  position:relative;
+  top:2px;
+}
+
 
  

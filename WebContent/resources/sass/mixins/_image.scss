@@ -20,8 +20,8 @@
 }
 
 @mixin memeber_img_width() {
-	width: $member-img-small;
-	height: $member-img-small;
+	width: $member-img-mid;
+	height: $member-img-mid;
 	
 	@media screen and (min-width: 1276px) and (max-width: 1500px) {
 		width: $member-img-mid;

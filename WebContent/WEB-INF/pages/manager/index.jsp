@@ -144,12 +144,15 @@
 		<div class="left-page">
 			<div class="left-title">
 				<label class="left-title-text">所有项目</label>
-
-                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn" title="添加标签">
-				<img src="${imgPath }/flow/report.png" class="left-title-images" id="project-report" title="导出报表">
+				<r:permission uri="/add-view">
+	                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn" title="添加项目">
+				</r:permission>
+				
+				<r:permission uri="/project/get/report">
+					<img src="${imgPath }/flow/report.png" class="left-title-images" id="project-report" title="导出报表">
+				</r:permission>
 			</div>
-			<r:permission uri="/add-view">
-			</r:permission>
+			
 			<div class="indentdiv">
 				<table class="indentlist projectliststyle">
 				</table>
@@ -336,7 +339,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

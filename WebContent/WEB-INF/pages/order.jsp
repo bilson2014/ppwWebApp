@@ -146,7 +146,7 @@
 
 						<dl class="dl2">
 							<dd>您也可以拨打我们的拍片热线</dd>
-							<dd>+86 010 58612562</dd>
+							<dd>4006609728</dd>
 							<dd class="red-font">创意策划阶段是完全免费的</dd>
 						</dl>
 
@@ -205,7 +205,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

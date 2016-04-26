@@ -83,6 +83,9 @@ public class VersionManagerController extends BaseController {
 					if (ValidateUtil.isValid(json)) {
 						final boolean ret = JsonUtil
 								.toBean(json, Boolean.class);
+						if(!ret){
+							result.setMessage("用户名或密码错误!");
+						}
 						result.setRet(ret);
 						return result;
 					}
