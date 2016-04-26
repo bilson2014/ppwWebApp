@@ -257,11 +257,13 @@ $left-width: 60px;
 	.teamName {
 		color: $gray-dark;
 		font-weight: blod;
-		font-size: $font-size-base;
+		font-size: $font-size;
+		@include ellipsis;
 	}
 	.teamTitle {
 		position: relative;
 		top: -15px;
+		font-size: $font-size-sm;
 		height: 60px;
 		cursor: pointer;
 		overflow: hidden;
@@ -278,19 +280,7 @@ $left-width: 60px;
 			margin: auto;
 			
 
-			img {
-				width: 100%;
-				height: 100%;
-				position: relative;
-				left: 20px;
-
-				@media screen and (min-width:1276px) and (max-width:1500px) {
-					left: -20px;
-				}
-				@media screen and (min-width:1500px) {
-					left: -100px;
-				}
-			}
+			
 		}
 		dt:nth-child(2) {
 			float: left;
@@ -312,7 +302,30 @@ $left-width: 60px;
 			font-size: $font-size-base;
 			color: $gray;
 			width: 58%;
+			position:relative;
+			left:100px;
+
 		}
+
+		img {
+				width: 60px;
+				height:60px;
+				position:relative;
+				float:left;
+		      	left:-135px;
+		      	top:-60px;
+
+				@media screen and (min-width:1276px) and (max-width:1500px) {
+					left: -195px;
+					width: 80px;
+				    height:80px;
+				}
+				@media screen and (min-width:1500px) {
+					left: -270px;
+					width: 80px;
+				    height:80px;
+				}
+			}
 	}
 }
 .video-intro-section {
