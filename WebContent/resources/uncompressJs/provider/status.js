@@ -21,7 +21,7 @@ $().ready(function(){
 					if(key == 0){ // 没有作品
 						$('#alert-success').text('您还没有上传作品，请先上传作品');
 					}else{
-						$('#myPage').attr('href',getContextPath() + '/product/view/' + $('#company-key').val() + '/' + key);
+						$('#myPage').attr('href',getContextPath() + '/play/' + $('#company-key').val() + '_' + key + '.html');
 					}
 				}, getContextPath() + '/provider/loadVideo/' + $('#company-key').val(), null);
 				

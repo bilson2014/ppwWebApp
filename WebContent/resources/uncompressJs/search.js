@@ -68,8 +68,8 @@ var search = {
 		
 		$('#price-all').attr('href',getContextPath() + '/search/' + param + '&price=[0 TO *]');
 		
-		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[0 TO 20000]' +'" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>';
-		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[20000 TO 60000]' +'" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>';
+		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[0 TO 30000]' +'" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>';
+		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[30000 TO 60000]' +'" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>';
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[60000 TO 100000]' +'" data-price="[60000 TO 100000]" class="priceAll">6~10万</a></li>';
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[100000 TO *]' +'" data-price="[100000 TO *]" class="priceAll">10万以上</a></li>';
 		$priceLi += '<li><div class="price-section"><input type="text" id="start-price" /> 万 ~ <input type="text" id="end-price" /> 万 <a id="price-alink" href="javascript:void(0);" ><button id="price-btn" class="btn btn-primary" type="button" >确定</button></a></div></li>';
@@ -121,7 +121,7 @@ var search = {
 		if(price != null && price != undefined && price != '') {
 			$('.priceAll').removeClass('active');
 			
-			$.each($('.priceAll'),function(){
+			$('.priceAll').each(function(){
 				if($(this).data('price') == price){
 					$(this).addClass('active');
 				}
@@ -267,8 +267,8 @@ function loadProduction(start){
 					if(solr.price < solr.orignalPrice){
 						$body += '<h3>'+ thousandCount(solr.orignalPrice) +'</h3>';
 					}
-					$body += '<a href="javascript:void(0);">了解详情</a>';
 					$body += '</div>';
+					$body += '<a href="javascript:void(0);">了解详情</a>';
 					$body += '</div>';
 					$body += '</div>';
 
