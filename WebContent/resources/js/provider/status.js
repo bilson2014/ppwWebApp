@@ -1,1 +1,69 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('9 i(){l a=$("#7-h").6();""!=a&&e!=a&&o 0!=a&&(2==a||3==a)&&r(9(a){a?($("#5-2").s("4"),$("#5-3").s("4"),$("#5-0").8("4")):t("请重新登录")},g()+"/u/x/h",$.w({y:$("#7-k").6()}))}$().z(9(){l b,a=$("#7-h").6();A($("#p").4(),""!=a&&e!=a&&o 0!=a)B(a=v(a)){f 0:$("#5-0").8("4"),$(".c").n("d");j;f 1:$("#5-1").8("4"),$(".c").n("d"),r(9(a){$("#p").D(),0==a?$("#t-K").L("您还没有上传作品，请先上传作品"):$("#J").H("I",g()+"/C/E/"+$("#7-k").6()+"/"+a)},g()+"/u/F/"+$("#7-k").6(),e);j;f 2:$("#5-2").8("4"),b=$("#7-m").6().G(),(""==b||e==b)&&$("#7-m").6("请完善信息后提交审核!"),$(".c").q("d",i);j;f 3:$("#5-3").8("4"),$(".c").q("d",i)}});',48,48,'||||hide|process|val|company|removeClass|function|||btn|click|null|case|getContextPath|status|submitCheck|break|key|var|recomment|unbind|void|mainPage|on|loadData|addClass|alert|provider|Number|toJSON|change|teamId|ready|if|switch|product|show|view|loadVideo|trim|attr|href|myPage|success|text'.split('|'),0,{}))
+$().ready(function(){
+	var status = $('#company-status').val();
+	$('#mainPage').hide();
+	
+	if(status != '' && status != null && status != undefined){
+		status = Number(status);
+		switch(status){
+			case 0: // 审核中
+				$('#process-0').removeClass('hide');
+				$('.btn').unbind('click');
+				break;
+			case 1: // 审核通过
+				$('#process-1').removeClass('hide');
+				$('.btn').unbind('click');
+				
+				// 获取视频
+				loadData(function(key){
+					// 显示主页信息
+					$('#mainPage').show();
+					
+					if(key == 0){ // 没有作品
+						$('#alert-success').text('您还没有上传作品，请先上传作品');
+					}else{
+						$('#myPage').attr('href',getContextPath() + '/play/' + $('#company-key').val() + '_' + key + '.html');
+					}
+				}, getContextPath() + '/provider/loadVideo/' + $('#company-key').val(), null);
+				
+				break;
+			case 2: // 未审核通过
+				$('#process-2').removeClass('hide');
+				
+				var recomment = $('#company-recomment').val().trim();
+				if(recomment == '' || recomment == null){
+					$('#company-recomment').val('请完善信息后提交审核!');
+				}
+				
+				$('.btn').on('click',submitCheck);
+				break;
+			case 3: // 未提交
+				$('#process-3').removeClass('hide');
+				$('.btn').on('click',submitCheck);
+				break;
+			default:
+				break;
+		}
+		
+	}
+});
+
+// 提交按钮 点击事件
+function submitCheck(){
+	var type = $('#company-status').val();
+	if(type != '' && type != null && type != undefined){
+		if(type == 2 || type == 3){
+			// 更改状态
+			loadData(function(flag){
+				if(flag){
+					$('#process-2').addClass('hide');
+					$('#process-3').addClass('hide');
+					$('#process-0').removeClass('hide');
+				}else{
+					alert('请重新登录');
+				}
+			}, getContextPath() + '/provider/change/status', $.toJSON({
+				teamId : $('#company-key').val()
+			}));
+		}
+	}
+}

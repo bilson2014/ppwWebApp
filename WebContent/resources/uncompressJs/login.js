@@ -276,7 +276,7 @@ function lrfunction(phoneNo){
 						$('#loginBt').text('登录');
 						if(flag){
 							// 跳转
-							$('#form-login').attr('action',getContextPath() + '/manager/index');
+							$('#form-login').attr('action',getContextPath() + '/mgr/index');
 							$('#form-login').submit().remove();
 						}else {
 							// 提示 用户名或密码不正确

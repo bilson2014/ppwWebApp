@@ -87,6 +87,10 @@
        
           <h1>视频管家登录</h1>
           <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
+          	<!-- 提示框 -->
+			<div class="tooltip-show-recover" style="display: none;">
+				<label class="tooltip-message-recover"></label>
+			</div>
 	          <input class="use-name" placeholder=" 请输入用户名" id="loginName" />
 	          <input class="use-password" type="password" placeholder=" 请输入密码" id="pwd" />
           </form>
@@ -128,17 +132,6 @@
 			</div>
 		</footer>
 		</div>
-
-
-
-      <div class="forget-div hide">
-		          <h1>忘记密码</h1>
-		          <input class="use-name" placeholder="请输入手机号"></input>
-		          <input class="use-code" placeholder="短信验证码"></input>
-		          <input class="use-get" value="点击获取"></input>
-		          <input class="use-password" type="password" placeholder="请输入密码"></input>
-		          <button  class="forgetbtn">确定</button>
-        </div>
 
     </div>
 	

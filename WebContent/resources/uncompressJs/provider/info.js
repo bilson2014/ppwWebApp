@@ -35,6 +35,12 @@ $().ready(function(){
 	});
 	
 	infoEcho();
+	
+	$('#company-establishDate').datepicker({
+		language: 'zh',
+		dateFormat:'yyyy-MM-dd',
+		maxDate: new Date() 
+	});
 });
 
 // 信息回显

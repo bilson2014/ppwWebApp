@@ -218,11 +218,12 @@ public class ProviderController extends BaseController {
 				final String url = URL_PREFIX
 						+ "portal/team/static/data/doLogin";
 				String json = HttpUtil.httpPost(url, original,request);
-				//Team provider = null;
 				if (json != null && !"".equals(json)) {
 					boolean ret = JsonUtil.toBean(json, Boolean.class);
 					// 写入 session
-					//request.getSession().setAttribute(PROVIDER_SESSION,provider);
+					if(!ret){
+						info.setValue("用户名或密码错误!");
+					}
 					info.setKey(ret);
 					return info;
 				} else {

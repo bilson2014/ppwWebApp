@@ -64,7 +64,7 @@ a {
 		.classify {
 			width: 24px;
 			height: 24px;
-			background: url('/resources/img/icons/classify.png?1447058092') no-repeat;
+			background: image-url('phone/icons/classify.png?1447058092') no-repeat;
 			background-size: 20px;	
 			margin: 16px auto;
 		}
@@ -72,7 +72,7 @@ a {
 		.back {
 			height: 22px;
 			width: 22px;
-			background: image-url("icons/back.png") no-repeat;
+			background: image-url("phone/icons/back.png") no-repeat;
 			background-size: 12px;
 			margin: 16px auto;
 		}
@@ -80,7 +80,7 @@ a {
 		.logo {
 			width: 90px;
 			height: 30px;
-			background:image-url("icons/logo_black.png") no-repeat;
+			background:image-url("phone/icons/logo_black.png") no-repeat;
 			background-size: 76px;
 			margin: 14px auto;
 		}
@@ -88,7 +88,7 @@ a {
 		.share {
 			height: 24px;
 			width: 24px;
-			background: image-url("icons/share.png") no-repeat;
+			background: image-url("phone/icons/share.png") no-repeat;
 			background-size: 20px;
 			margin: 15px auto;
 		}
@@ -96,7 +96,7 @@ a {
 		.search { 
 			height: 24px;
 			width: 24px;
-			background: image-url("icons/search.png") no-repeat;
+			background: image-url("phone/icons/search.png") no-repeat;
 			background-size: 20px;
 			margin: 15px auto;
 		}
@@ -170,124 +170,4 @@ a {
 			}
 		}
 	}
-
-	/* 
-		带有二维码的低栏信息
-	.footer {
-		position: relative;
-		width: 100%;
-	
-		.order-content {
-			width: 100%;
-			height: $footer-content-height;
-			line-height: 40px;
-			color: #ffffff;
-			letter-spacing: 6px;
-			background-color: $fe5453;
-			font-size: $normal-font-size;
-			font-weight: 600;
-			text-align: center;
-		}
-
-		.footer-content {
-			position: relative;
-			top: 20px;
-			width: 100%;
-			height: $footer-order-height;
-			background-color: #333;
-			@include margin-auto;
-
-			.content-header {
-				width: 100%;
-				height: 50px;
-
-				ul {
-					width: 100%;
-					height: 24px;
-					line-height: 50px;
-					color: #cbcbcb;
-					text-align: center;
-					font: {
-						size: $normal-font-size;
-						weight: 500;
-					}
-
-					li {
-						display: inline-block;
-						width: 32%;
-						a {
-							display: inline-block;
-						}
-					}
-				}
-			}
-
-			.webcat-content {
-				width: 96%;
-				height: 190px;
-				@include margin-auto;
-				border-top: solid 1px #ccc;
-				border-bottom: solid 1px #ccc;
-				
-				.quickmark-position {
-					width: 140px;
-					height: 140px;
-					margin: 0 auto;
-					margin-top: 16px;
-					margin-bottom: 8px;
-					img {
-						width: 140px;
-						height: 140px;
-					}	
-				}
-
-				h3 {
-					width: 158px;
-					@include margin-auto;
-					height: 24px;
-					line-height: 20px;
-					color: #cbcbcb;
-					text-align: center;
-					border-bottom: solid 2px #ccc;
-					font: {
-						size: $small-font-size;
-						weight: 500;
-					}
-				}
-				
-			}
-
-			.copyright-content {
-				width: 100%;
-				text-align: center;
-				color: #666;
-				font: {
-					size: $small-font-size;
-					weight: normal;
-				}
-
-				dl {
-					width: 96%;
-					margin: 10px auto;
-					dt:nth-child(1) {
-						color: #ffffff;
-						font: {
-							size: $normal-font-size;
-							weight: 500;
-						}
-						margin-bottom: 8px;
-					}
-
-					dd{
-						margin-bottom: 4px;
-						line-height: 14px;
-					}
-
-					dt:nth-child(3) {
-						margin-top: 12px;
-					}
-				}
-			}
-		}
-	} */
 }

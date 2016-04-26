@@ -67,13 +67,6 @@
 				</ul>
 			</div>
 		</div>
-
-		<!-- <div class="tele-section">
-			<div class="tele-wrap">
-				<label >拍片热线：+86 010 58612562</label>
-			</div>
-		</div> -->
-		
 	</div>
 </body>
 </html>

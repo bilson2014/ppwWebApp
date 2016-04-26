@@ -65,7 +65,7 @@ function debug(obj) {
 function getContextPath() {
 	var path = document.location.pathname.substr(1);
 	path = "/" + path.substr(0, path.indexOf("/"));
-	return path;
+	return '';
 }
 
 //AJAX GET
@@ -103,14 +103,13 @@ function loadData(Func,url,param){
 		}
 	});
 }
-
 //AJAX POST
 function syncLoadData(Func,url,param){
 	$.ajax({
 		url : url,
 		type : 'POST',
 		data : param,
-	//	dataType : 'json',
+		dataType : 'json',
 		async:false,
 		contentType : 'application/json; charset=UTF-8',
 		success : function(data){
@@ -185,11 +184,12 @@ function thousandCount(number) {
 	if (number == 0) {
 		tableData = 0;
 	} else {
-		alert(number);
-		tableData = number.toLocaleString();
-		var indexOf = tableData.indexOf(".");
-		if (indexOf > -1) {
-			tableData = tableData.substring(0, indexOf);
+		if(number != undefined){
+			tableData = number.toLocaleString();
+			var indexOf = tableData.indexOf(".");
+			if (indexOf > -1) {
+				tableData = tableData.substring(0, indexOf);
+			}
 		}
 	}
 	return tableData;
@@ -285,7 +285,7 @@ function Encrypt(word){
 	var key = CryptoJS.enc.Utf8.parse(cryptKey);
 	var iv  = CryptoJS.enc.Utf8.parse(cryptKey);
 	var srcs = CryptoJS.enc.Utf8.parse(word);
-	var encrypted = CryptoJS.AES.encrypt(srcs, key, { iv: iv,mode:CryptoJS.mode.CBC});
+	var encrypted = CryptoJS.AES.encrypt(srcs, key, { iv: iv,mode:CryptoJS.mode.CBC});  
 	return encrypted.toString();
 }
 

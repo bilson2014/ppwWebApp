@@ -25,14 +25,15 @@ body {
 		position: relative;
 		margin: 0 auto;
 		width: 100%;
-		height: 420px;
+		padding: 20px;
+		//height: 420px;
 		border: 1px solid $body-color;
 		border-radius: 5px;
 		background:$white;
 		
 	
 	h1 {
-		margin: 40px 0px 0px 20px;
+		margin: 20px 0px 0px 20px;
 		font-size: $font-size-lg;
 	}
 	h2 {
@@ -145,7 +146,7 @@ body {
 
 .footer-three{
 	position: relative;
-	top: 35px;
+	top: 25px;
 }
 
 .footer-title-three{
@@ -279,3 +280,15 @@ li {
 		background-color: darken($red-base, 10%);
 	}
 
+.tooltip-show-recover {
+	height: 46px;
+	background-color: #F2DEDE;
+	color: #A94446;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 36px;
+}
+
+label.tooltip-message-recover {
+	padding-top: 4px;
+}
