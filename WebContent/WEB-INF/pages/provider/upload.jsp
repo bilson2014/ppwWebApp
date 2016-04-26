@@ -97,7 +97,7 @@
 						<div class="col-sm-3">
 							<input type="number" class="form-control" id="video-price" placeholder="请填写数组" value="${model.servicePrice }">
 						</div>
-						人民币<span style="color:red;">*</span>
+						元<span style="color:red;">*</span>
 					</div>
 					<div class="form-group">
 						<label for="video-switch" class="col-sm-2 control-label">是否可见</label>

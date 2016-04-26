@@ -155,7 +155,9 @@
 					  		<c:if test="${status.count == 1 }">
 						  		<li class="work active" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
 							</c:if>
-							<li class="work" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+							<c:if test="${status.count != 1 }">
+						  		<li class="work" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+							</c:if>
 					  </c:forEach>
 					</ul>
 				</div>
@@ -218,7 +220,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">

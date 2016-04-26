@@ -156,7 +156,6 @@ function recover(){
 			if(flag){
 				loadData(function(info){
 					if(info.key){
-						// TODO 跳转至登陆页面
 						$('#recover-form').attr('action',getContextPath() + '/mgr/login').submit().remove();
 					}else{
 						// 错误信息

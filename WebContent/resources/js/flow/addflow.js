@@ -595,10 +595,12 @@ function priceVerifyInputNotNull() {
 				finish.focus();
 				finish.addClass('border-red');
 				finish.removeClass("border-gray");
+				$("#error-radio-price").show();
 				return false;
 			}else{
 				finish.removeClass('border-red');
 				finish.addClass("border-gray");
+				$("#error-radio-price").hide();
 				return true;
 			}
 		}else{

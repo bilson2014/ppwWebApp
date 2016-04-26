@@ -114,7 +114,7 @@
 			</div>
           	<div class="info-bot">
 	          	<div class="fr"><h2 class="h3-word">愿景</h2></div>
-	            <div class="fb"><p>拍片网致力于汇聚影视行业的从业者，为他们提供有价值的服务，帮助他们互相链接建立合作，创作出的 优质  影视作品。</p></div>              
+	            <div class="fb"><p>拍片网致力于汇聚影视行业的从业者，为他们提供有价值的服务，帮助他们互相链接建立合作，创作出优质的影视作品。</p></div>              
 	        </div>
 		</div>
 
@@ -208,7 +208,7 @@
 
 				<div class="footer-column">
 					<div class="mark-icon"></div>
-					<h4>关注送好礼</h4>
+					<h4>关注官方微信</h4>
 				</div>
 
 				<div class="footer-notice">
