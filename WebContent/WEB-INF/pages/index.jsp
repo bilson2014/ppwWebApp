@@ -117,6 +117,14 @@
 			</div>
 		<!-- 轮播 end -->
 
+		<!-- 服务热线 start -->
+		<div class="tele-wrap">
+			<div class="tele-section">
+				<div class="tele-svg"></div>
+			</div>
+		</div>
+		<!-- 服务热线 end -->
+		
 		<!-- 首推区域 start -->
 		<div class="info-wrap">
 			<div class="info-section">
