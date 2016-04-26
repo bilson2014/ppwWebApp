@@ -101,7 +101,7 @@
 			
 			<div class="login-container ">
 				<div class="well">
-					<h2 >供应商登录</h2>
+					<h2 class="loginh2">供应商登录</h2>
 					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
 						<fieldset>
 							<!-- 提示框 -->

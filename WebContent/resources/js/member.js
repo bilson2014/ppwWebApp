@@ -12,7 +12,6 @@ $().ready(function() {
 				// 清空div
 				$('#job-duty').empty();
 				$('#job-desc').empty();
-				
 				$('#job-demand').text(job.demand);
 				$('#job-desc').text(job.jobDescription);
 			}, getContextPath() + '/job/info/' + jobId, null);
