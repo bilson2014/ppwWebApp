@@ -82,15 +82,16 @@
 	}
 
 	.video-desc {
-		height: 48px;
+		height: 52px;
 		color: $gray;
 		font: {
 			size: $font-size-sm;
 			weight: normal;
 		}
 
-		line-height: 1.4rem;
+		line-height: 1.5rem;
 		overflow: hidden;
+		letter-spacing: 1px;
 	}
 	
 }
