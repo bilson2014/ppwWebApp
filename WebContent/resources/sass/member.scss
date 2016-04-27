@@ -47,7 +47,7 @@
   #first-title{
     border-bottom:2px solid #fe5453;
     font-color:$gray;
-    font-weight:bold
+    font-weight:bold;
   }
 
   .nav-title {
@@ -137,13 +137,13 @@
     text-align: center;
     cursor: pointer;
 
-    margin-right: ($about-us-width-middle - ($image-width*5)) / 6- 4px;
+    margin-right: ($about-us-width-middle - ($image-width*4)) / 4- 35px;
 
     @media screen and (min-width:1276px) and (max-width:1500px) {
-      margin-right: ($about-us-width-middle - ($image-width*5)) / 6 - 4px;
+      margin-right: ($about-us-width-middle - ($image-width*4)) / 4 - 35px;
     }
     @media screen and (min-width:1500px) {
-      margin-right: ($about-us-width-lg - ($image-width*5)) / 5 - 4px;
+      margin-right: ($about-us-width-lg - ($image-width*4)) / 4 - 45px;
     }
     
     &:last-child {
@@ -265,7 +265,10 @@
     }
 
     .active {
-      color: #fe5453;
+      color: $red-base;
+      &:hover{
+      color: $red-base;
+      }
     }
 
     li {
@@ -273,6 +276,10 @@
       font-size: $font-size;
       color: $gray;
       cursor:pointer;
+
+      &:hover{
+           color:darken($gray,20%);
+      }
     }
   }
 

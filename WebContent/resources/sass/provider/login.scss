@@ -16,8 +16,10 @@ h2 {
 	font-size: $font-size-lg;
 	font-weight: 500;
 	color: #333;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	position:relative;
+	top:-20px;
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 .loginh2{
@@ -48,9 +50,9 @@ fieldset {
 	padding: 0;
 	overflow: hidden;
 	position:relative;
-	top:90px;
+	top:80px;
 	 @media screen and (min-width:1276px) and (max-width:1500px) {
-     	top:120px;
+     	top:100px;
     }
     @media screen and (min-width:1500px) {
      	top:180px;
@@ -177,12 +179,13 @@ label.tooltip-message-recover {
 .footer-three{
 	position: relative;
 	background: #fff;
+	height:120px;
 }
 
 .footer-title-three{
 	font-size: 16px;
 	color: #999;
-	margin-bottom : 20px;
+	margin-bottom:20px;
 }
 
 .footer-title-three > h3{
@@ -192,7 +195,7 @@ label.tooltip-message-recover {
 }
 
 .footer-content-three{
-	height: 110px;
+	height: 90px;
 }
 
 .footer-content-three ul{

@@ -30,6 +30,9 @@ body {
 		border: 1px solid $body-color;
 		border-radius: 5px;
 		background:$white;
+		 @media screen and (min-width:1500px) {
+		 top:140px;
+            }
 		
 	
 	h1 {

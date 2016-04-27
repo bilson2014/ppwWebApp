@@ -133,7 +133,7 @@ var="cookiejs" />
 						</div>
 						<div class="divtable" id="div-projectSource">
 							<div class="baseinfo-table-key" >项目来源</div>
-							<select class="tableinput-baseinfo form-control" id="projectSource" ></select>
+							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" ></select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
 						</div>
                    </div>
