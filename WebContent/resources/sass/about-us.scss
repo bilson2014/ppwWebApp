@@ -162,6 +162,10 @@
 .h3-word {
   font-size: $font-size-lg;
   font-weight: bold;
+    @media screen and (min-width:1500px) {
+      position:relative;
+      left:50px;
+    }
 }
 
   .info-bot {
