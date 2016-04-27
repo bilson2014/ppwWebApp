@@ -590,7 +590,6 @@ function priceVerifyInputNotNull() {
 			if(!checkNumber(finish.val())){
 				finish.val("");
 				finish.focus();
-<<<<<<< HEAD
 				var div=finish.parent();
 				div.addClass('has-error');
 				$("#error-radio-price").show();
@@ -598,15 +597,6 @@ function priceVerifyInputNotNull() {
 			}else{
 				var div=finish.parent();
 				div.removeClass('has-error');
-=======
-				finish.addClass('border-red');
-				finish.removeClass("border-gray");
-				$("#error-radio-price").show();
-				return false;
-			}else{
-				finish.removeClass('border-red');
-				finish.addClass("border-gray");
->>>>>>> be4a0bd0f930126258fdeb7b862c9ff467ca9124
 				$("#error-radio-price").hide();
 				return true;
 			}
