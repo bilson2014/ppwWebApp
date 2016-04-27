@@ -266,7 +266,6 @@
 
     .active {
       color: #fe5453;
-      text-decoration:underline;
     }
 
     li {
@@ -274,10 +273,6 @@
       font-size: $font-size;
       color: $gray;
       cursor:pointer;
-
-       &:hover{
-          color: $gray-dark;
-       }
     }
   }
 

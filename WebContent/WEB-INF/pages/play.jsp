@@ -186,6 +186,7 @@
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 							</c:if>
 						</dt>
+						
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
 						<dd  class="teamTitle" title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>
