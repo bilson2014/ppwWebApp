@@ -746,13 +746,16 @@ function loadprojecctlist(more,state) {
 			$(".right-page").show();
 			$(".noproject").addClass('hide');
 		}
+		var  selectFirst=false;
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
 			var stateStr=msg[i].state;
-			if (i == 0 && !more && getCurrentProject() == null&&stateStr==0) {
-				putCurrentProject(msg[i].id);
+			
+			if (!selectFirst && !more && getCurrentProject() == null && stateStr==0) {
 				currentprojectkey = msg[i].id + '';
+				putCurrentProject(currentprojectkey);
+				selectFirst=true;
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
 			}else if(msg[i].id==getCurrentProject()){
@@ -910,14 +913,8 @@ function show() {
 function getCurrentProject() {
 	//return $.cookie('currentproject');
 	var service_val=$("#service-key").val();
-	var loca_val=$("#loca-key").val();
 	if(service_val==null||service_val==''){
-		if(loca_val!=null&&loca_val!=''){
-			putCurrentProject(loca_val);
-			return loca_val;
-		}else{
-			return null;
-		}
+		return null;
 	}else{
 		return service_val;
 	}
@@ -926,7 +923,6 @@ function getCurrentProject() {
 function putCurrentProject(key) {
 	//$.cookie("currentproject", key + '');
 	$("#service-key").val(key+"");
-	$("#loca-key").val(key+"");
 }
 /**
  * 
