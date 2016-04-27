@@ -90,8 +90,8 @@
 					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
 						<fieldset>
 							<!-- 提示框 -->
-							<div class="tooltip-show-recover">
-								<label class="tooltip-message-recover"></label>
+							<div class="tooltip-show-recover" style="display: none;">
+								<label class="tooltip-message-recover" ></label>
 							</div>
 							<div class="form-group">
 								<input type="text" autofocus="autofocus" autocomplete="off" tabindex="1" maxlength="11" size="11" class="form-control" id="recover_phone" placeholder="请输入您的手机号码">
