@@ -257,11 +257,15 @@ $left-width: 60px;
 	.teamName {
 		color: $gray-dark;
 		font-weight: blod;
-		font-size: $font-size-base;
+		font-size: $font-size;
+		@include ellipsis;
+		position: relative;
+		top: -65px;
 	}
 	.teamTitle {
 		position: relative;
-		top: -15px;
+		top: -80px;
+		font-size: $font-size-sm;
 		height: 60px;
 		cursor: pointer;
 		overflow: hidden;
@@ -271,39 +275,24 @@ $left-width: 60px;
 	dl {
 		color: $gray-dark;
 		text-align: center;
-		dt:first-child {
-			float: right;
+
+		dt {
 			width: 80px;
 			height: 80px;
-			margin: auto;
-			
-
-			img {
-				width: 100%;
-				height: 100%;
-				position: relative;
-				left: 20px;
-
-				@media screen and (min-width:1276px) and (max-width:1500px) {
-					left: -20px;
-				}
-				@media screen and (min-width:1500px) {
-					left: -100px;
-				}
-			}
+		}
+		dt:first-child {
+			width: 80px;
+			height: 80px;
 		}
 		dt:nth-child(2) {
-			float: left;
 			font-size: $font-size-sm;
 			line-height: $font-size-sm;
-			margin: 0 auto 15px;
 			height: 28px;
 			width: 58%;
 			text-align: left;
 			overflow: hidden;
 		}
 		dd {
-			float: left;
 			line-height: 14px;
 			margin: auto;
 			height: 54px;
@@ -312,6 +301,20 @@ $left-width: 60px;
 			font-size: $font-size-base;
 			color: $gray;
 			width: 58%;
+			position: relative;
+			left: 50px;
+
+			@media screen and (min-width:1276px) and (max-width:1500px) {
+				left: 30px;
+			}
+			@media screen and (min-width:1500px) {
+				left: 30px;
+			}
+		}
+		img {
+			width: 80px;
+			height: 80px;
+			position: relative;
 		}
 	}
 }

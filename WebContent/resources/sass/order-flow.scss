@@ -12,7 +12,8 @@
 	.image-top {
 		@include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-middle);
 		height: auto;
-		padding-top:10px;
+    margin-top:60px;
+    margin-bottom:30px;
 
 	}
 }
