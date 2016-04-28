@@ -9,10 +9,14 @@ public class IndentProject extends BaseObject {
 
 	private static final long serialVersionUID = 4610963805615371485L;
 
+	public final static int PROJECT_NORMAL = 0;
+	public final static int PROJECT_CANCEL = 1;
+	public final static int PROJECT_FINISH = 2;
+
 	private long id = -1;
 	private String projectName = "";
-	private String userName = "";
-	private String userContact = "";
+	private String userName = ""; // 客户公司名称
+	private String userContact = ""; // 客户名称
 	private String userPhone = "";
 	private String teamName = "";
 	private String teamContact = "";
@@ -21,9 +25,16 @@ public class IndentProject extends BaseObject {
 	private String description = "";
 	private String serial = "";
 	private String source = "";
-
+	// 0 正常 1为取消 2为已完成
+	private int state = 0;
 	private String userType = "";
-	private long userId = -1;
+	private long userId = -1; // 视频管家ID
+	
+	private String managerRealName = null; // 管家名字
+	
+	private long customerId = 0l; // 客户ID
+	
+	private long teamId = 0l; // 供应商ID
 
 	public long getId() {
 		return id;
@@ -144,9 +155,26 @@ public class IndentProject extends BaseObject {
 	// -----------------------------
 	// 冗余taskdate--------------------------------------
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	private Map<String, String> time = new HashMap<>();
 	private ActivitiTask task = new ActivitiTask();
-	private String tag="";
+	private String tag = "";
+	private UserViewModel userViewModel=null; 
+
+	public UserViewModel getUserViewModel() {
+		return userViewModel;
+	}
+
+	public void setUserViewModel(UserViewModel userViewModel) {
+		this.userViewModel = userViewModel;
+	}
 
 	public ActivitiTask getTask() {
 		return task;
@@ -170,6 +198,30 @@ public class IndentProject extends BaseObject {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	public String getManagerRealName() {
+		return managerRealName;
+	}
+
+	public void setManagerRealName(String managerRealName) {
+		this.managerRealName = managerRealName;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+
+	public long getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(long teamId) {
+		this.teamId = teamId;
 	}
 
 }

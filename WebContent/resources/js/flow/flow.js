@@ -70,6 +70,16 @@ $().ready(
 				$("#toolbar-no-message").modal('hide');
 				$(".check-message").text("错误！");
 			});
+			
+			$(".prev-task").on("click",function(){
+				var key=getCurrentProject();
+				loadData(function(msg) {
+					loadprojecctlist(false,false);
+					//$("#toolbar-check").modal('hide');
+				}, getContextPath() + '/mgr/flow/jumpPrevTask', $.toJSON({
+					id : key
+				}));
+			});
 		});
 
 function submitForm(){
@@ -306,6 +316,24 @@ function loadflowdata() {
 						$("#cu_" + msg.taskDefinitionKey).addClass(
 								'get-step');
 					}
+					
+					var times=$("div[id^='cu_']");
+					var isEnd=false;
+					for (var int = 0; int < times.length; int++) {
+						var item=times[int];
+						var id=item.id;
+						var taskKey;
+						if(id!=null&&id!=''&&(id.indexOf('_')!=-1)){
+							var idarray=id.split('_');
+							taskKey=idarray[1];
+						}
+						if(isEnd){
+							$(item).text("");
+						}
+						if(taskKey==msg.taskDefinitionKey)
+							isEnd=true;
+					}
+					
 					//填充当前任务描述信息
 					$(".description-text").text(msg.description);
 					//迁移节点
@@ -431,9 +459,6 @@ function uploadfile() {
 		},
 		success : function(data) {
 			// delete by guoyang, 2016-04-19 04:19 begin
-			//$('.circle-div').hide();
-			//$('.circle-img').hide();
-			//$('#toolbar-modal').modal('hide');
 			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
 			// add by guoyang, 2016-04-19 03:19 begin

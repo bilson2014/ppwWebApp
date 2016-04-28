@@ -138,6 +138,7 @@ var="cookiejs" />
 						</div>
                    </div>
                    <div class="baseinfo-table">
+                   		<input type="hidden" class="userId">
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户信息</div>
 							<div class="baseinfo-table-key-add" id="add-user">添加用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</div>
@@ -161,6 +162,7 @@ var="cookiejs" />
 						</div>
                    </div>
 				<div class="baseinfo-table">
+						<input type="hidden" class="teamId">
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商信息</div>
 						</div>
