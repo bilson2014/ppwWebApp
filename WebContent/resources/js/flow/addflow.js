@@ -195,8 +195,10 @@ function searchTeam() {
 			li.on("click",function(){
 				var contact=jQuery(this).attr('data-contact');
 				var phone=jQuery(this).attr('data-phone');
+				var id=jQuery(this).attr('data-id');
 				$(".teamContact").val(contact);
 				$(".teamPhone").val(phone);
+				$(".teamId").val(id);
 				document.getElementById("teamName").value=this.innerHTML;
 				$("#ul-select").hide();
 				isShow = false; 
@@ -218,8 +220,10 @@ function searchUser() {
 			li.on("click",function(){
 				var contact=jQuery(this).attr('data-contact');
 				var phone=jQuery(this).attr('data-phone');
+				var id=jQuery(this).attr('data-id');
 				$(".userContact").val(contact);
 				$(".userPhone").val(phone);
+				$(".userId").val(id);
 				document.getElementById("userName").value=this.innerHTML;
 				$("#ul-select").hide();
 				isShow = false;
@@ -282,6 +286,8 @@ function updateProject() {
 		$(".swstarttime").val("");
 		$(".zzstarttime").val("");
 		$(".jfstarttime").val("");
+		$(".teamId").val("");
+		$(".userId").val("");
 		// put data
 		$(".projectId").val(msg.serial);
 		$(".projectName").val(msg.projectName);
@@ -292,6 +298,8 @@ function updateProject() {
 		$(".teamContact").val(msg.teamContact);
 		$(".teamPhone").val(msg.teamPhone);
 		$("#projectSource").val(msg.source);
+		$(".teamId").val(msg.teamId);
+		$(".userId").val(msg.customerId);
 		////////////
 		var price=msg.price;
 		var strarray;
@@ -367,6 +375,10 @@ function updateProjectajax() {
 	var teamPhone = $(".teamPhone").val().trim();
 	var source=$("#projectSource").val().trim();
 	var price=getPrice();
+	
+	var teamId= $(".teamId").val();
+	var customerId= $(".userId").val();
+	
 	var description = $(".description").val().trim();
 	var gtstarttime = $(".gtstarttime").val().trim();
 	var fastarttime = $(".fastarttime").val().trim();
@@ -394,6 +406,8 @@ function updateProjectajax() {
 		price : price,
 		description : description,
 		source:source,
+		teamId:teamId,
+		customerId:customerId,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,
@@ -462,6 +476,8 @@ function addProject() {
 	var teamContact = $(".teamContact").val().trim();
 	var teamPhone = $(".teamPhone").val().trim();
 	var source=$("#projectSource").val().trim();
+	var teamId= $(".teamId").val();
+	var customerId= $(".userId").val();
 	var price =getPrice();
 	var description = $(".description").val().trim();
 	var gtstarttime = $(".gtstarttime").val().trim();
@@ -490,6 +506,8 @@ function addProject() {
 		price : price,
 		description : description,
 		source:source,
+		teamId:teamId,
+		customerId:customerId,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,

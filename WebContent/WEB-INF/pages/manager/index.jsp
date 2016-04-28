@@ -21,8 +21,6 @@
 	var="blockUIJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
-<spring:url value="/resources/lib/jquery.cookie/jquery.cookie.js"
-	var="cookiejs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
@@ -68,7 +66,6 @@
 <script src="${commonJs }"></script>
 <script src="${WdatePicker }"></script>
 <script src="${stepjquery }"></script>
-<script src="${cookiejs }"></script>
 <script src="${indexjs }"></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
@@ -206,6 +203,8 @@
 						<r:permission uri="/project/cancelProject">
 						<button class="cancelbtn gray-btn btn-margin">取消</button>
 						</r:permission>
+						
+						<button class="prev-task gray-btn btn-margin">上一步</button>
 					</div>
 				</r:multPermission>
 			</div>
@@ -269,7 +268,7 @@
 					<r:permission uri="/addResource">
 					<button class="upload-file-btn border-btn" id="upload-file-btn-id">上传</button>
 					</r:permission>
-					<input type="file" name="addfile" id="addfile">
+					<input type="file" name="addfile"  id="addfile">
 				</div>
 				<div class="file-table">
 				</div>
@@ -400,9 +399,6 @@
 								<button class="select-true-btn red-btn" id="upload-circle-btn">上传</button>
 								<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
 							</dt>
-							<dd id="modal-dd-second">
-								<input class="upload-input" type="file" id="uploadfile" />
-							</dd>
 						</dl>
 					</div>
 				</div>

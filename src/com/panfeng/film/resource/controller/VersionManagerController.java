@@ -500,6 +500,20 @@ public class VersionManagerController extends BaseController {
 		}
 		return false;
 	}
+	
+	@RequestMapping("/flow/jumpPrevTask")
+	public boolean 	jumpPrevTask(
+			@RequestBody final IndentProject indentProject,
+			final HttpServletRequest request) {
+		fillUserInfo(request, indentProject);
+		final String url = GlobalConstant.URL_PREFIX + "jumpPrevTask";
+		String str = HttpUtil.httpPost(url, indentProject, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toBean(str, Boolean.class);
+		}
+		return false;
+	}
 
 	// /////////////////////////////doc/////////////////////////////////////
 

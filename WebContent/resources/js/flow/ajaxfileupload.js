@@ -37,11 +37,13 @@ jQuery.extend({
 			}			
 		}
 		
+
 		var oldElement = jQuery('#' + fileElementId);
 		var newElement = jQuery(oldElement).clone();
 		jQuery(oldElement).attr('id', fileId);
 		jQuery(oldElement).before(newElement);
 		jQuery(oldElement).appendTo(form);
+
 		
 		//set attributes
 		jQuery(form).css('position', 'absolute');
