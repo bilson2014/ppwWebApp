@@ -25,23 +25,23 @@
 			font-weight: bold;
 			font-size: $font-size-lg;
 			color: $gray-dark;
-			height: 20px;
+				height: 20px;
 		}
+
 		.left-title-images {
-			margin-left: 15px;
-			height: 20px;
-			vertical-align: middle;
-			line-height: 30px;
+			    margin-left: 15px;
+				height: 20px;
+				vertical-align:middle;
+				line-height:30px;
 		}
 	}
 	.right-page {
 		display: inline-block;
 		width: 731px;
 		margin: 20px 0px 47px 0px;
-		position: relative;
-		left: 18px;
 
 		.flowblock {
+			margin-left: 18px;
 			background: white;
 
 			.flow-title {
@@ -61,9 +61,15 @@
 		margin-top: 50px;
 		padding-left: 20px;
 	}
+	
+
+
+	
+
 	.indentdiv {
 		width: 100%;
 		margin-top: 10px;
+
 
 		.indent-ednt-btn {
 			width: 15px;
@@ -72,7 +78,7 @@
 		.indent-a {
 			font-size: $font-size;
 			color: $gray;
-			text-decoration: none;
+			text-decoration:none;
 		}
 		.indent-a:hover {
 			color: $gray-dark;
@@ -88,9 +94,10 @@
 			font-size: $font-size;
 			color: $gray-light;
 			cursor: pointer;
-			padding-left: 5px;
+			padding-left:5px;
 		}
 	}
+
 	.descriptiondiv {
 		margin: 30px 0px 0px 0px;
 		padding-left: 10px;
@@ -100,7 +107,7 @@
 			margin-bottom: 20px;
 			color: $gray-dark;
 			font-size: $font-size;
-			font-weight: bold;
+			font-weight:bold;
 		}
 		.description-text {
 			color: $gray;
@@ -130,25 +137,25 @@
 			margin-bottom: 5px;
 			font-size: $font-size;
 			color: $gray;
-			color: $gray-dark;
+			color:$gray-dark;
 		}
 		.get-step {
 			color: $red-base;
 		}
 	}
 	.flowbtndiv {
-		margin: 0 auto;
-		width: auto;
-		height: 88px;
+	  margin:0 auto;
+    width: auto;
+    height: 88px;
 
 		.btn-margin {
 			margin-left: 20px;
 		}
 	}
 	.indentinfo {
+		margin-left: 18px;
 		background: $white;
-		position: relative;
-		top: 10px;
+		margin-top: 10px;
 
 		.indentinfo-title {
 			width: 100%;
@@ -177,7 +184,7 @@
 			display: inline-block;
 			font-size: $font-size;
 			font-weight: 500;
-			color: $gray-dark;
+			color:$gray-dark;
 			vertical-align: top;
 		}
 		.indent-area {
@@ -197,7 +204,7 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			vertical-align: middle;
-			line-height: 15px;
+  			line-height: 15px;
 		}
 		.indent-content {
 			width: 150px;
@@ -227,6 +234,7 @@
 		}
 	}
 	.indentfile {
+		margin-left: 18px;
 		background: $white;
 
 		.indentfile-title {
@@ -362,15 +370,14 @@
 		text-align: center;
 	}
 	.message-div {
+		margin-top: 10px;
+		margin-left: 18px;
 		background: $white;
-		position: relative;
-		top: 10px;
-		margin-bottom: 30px;
+		padding-top: 50px;
 
 		.message-title {
 			width: 100%;
 			padding-left: 10px;
-			padding-top: 50px;
 
 			.message-title-text {
 				font-size: 16px;
@@ -379,9 +386,7 @@
 			}
 		}
 		.message-table-div {
-			position: relative;
-			top: 30px;
-			background: #fff;
+			margin-top: 30px;
 
 			.message-table {
 				border-spacing: 20px 20px;
@@ -393,13 +398,11 @@
 			.comment {
 				width: 693px;
 				height: 78px;
-				position: relative;
-				left: 10px;
+				margin-left: 10px;
 			}
 			.comment-btn {
-				position: relative;
-				left: 628px;
-				top: 10px;
+				margin-left: 628px;
+				margin-top: 10px;
 			}
 			.message-portrait {
 				width: 90px;
@@ -418,8 +421,7 @@
 			.msg-comm-time {
 				font-size: $font-size-sm;
 				color: $gray;
-				position: relative;
-				left: 10px;
+				margin-left: 10px;
 			}
 			.msg-comm-content {
 				font-size: $font-size;
@@ -428,8 +430,7 @@
 			}
 			.more-comment {
 				margin: auto auto;
-				position: relative;
-				left: 316px;
+				margin-left: 316px;
 				margin-bottom: 30px;
 			}
 		}
@@ -440,19 +441,18 @@
 }
 .upload-window {
 	h1 {
-		position: relative;
-		left: 25%;
+		margin-left: 25%;
 		font-size: $font-size;
+		margin-top: 50px;
 	}
 	h2 {
-		position: relative;
-		left: 25%;
+		margin-left: 25%;
 		font-size: $font-size;
+		margin-top: 20px;
 	}
 	.upload-text {
-		position: relative;
-		left: 141px;
-		top: 10px;
+		margin-left: 141px;
+		margin-top: 10px;
 		height: 40px;
 		width: 160px;
 		color: $gray-light;
@@ -464,21 +464,20 @@
 		font-size: $font-size;
 	}
 	.upload-btn {
+		margin-left: 10px;
 		display: inline-block;
 		position: relative;
-		top: 8px;
-		left: 140px;
+		top: -1px;
 	}
 	.upload-btn:hover {
 		background-color: darken($red-base, 10%);
 	}
 	.input-select {
-		position: relative;
-		top: 10px;
+		margin-top: 10px;
 		text-align: center;
 		height: 40px;
 		width: 266px;
-		left: 25%;
+		margin-left: 25%;
 		color: $gray-light;
 		display: inline-block;
 		line-height: 40px;
@@ -507,13 +506,13 @@
 		}
 	}
 	.select-cancle-btn {
-		position: relative;
-		left: 195px;
+		margin-left: 60px;
 		display: inline-block;
+		margin-top: 30px;
 	}
 	.select-true-btn {
-		position: relative;
-		left: 141px;
+		margin-top: 30px;
+		margin-left: 140px;
 		display: inline-block;
 	}
 	.upload-input {
@@ -524,8 +523,7 @@
 	position: relative;
 	height: 7px;
 	width: 12px;
-	left: 95px;
-	top: 8px;
+	left: -5%;
 	z-index: 999;
 }
 .red-btn {
@@ -639,7 +637,7 @@
 }
 .nofile {
 	margin-left: 240px;
-	margin-bottom: 30px;
+	margin-bottom:30px;
 }
 .nomessage {
 	margin-left: 240px;
@@ -661,11 +659,15 @@
 	margin-top: 15px;
 	color: $gray;
 	font-size: $font-size-base;
-	text-decoration: none;
+	text-decoration:none;
+	
 }
-.word-size:hover {
-	text-decoration: none;
+
+.word-size:hover{
+	text-decoration:none;
 }
+
+
 .canclemodal {
 	position: relative;
 	left: 540px;
@@ -679,6 +681,7 @@
 	top: -100px;
 	cursor: pointer;
 }
+
 .div-download {
 	display: inline-block;
 	vertical-align: middle;
@@ -687,6 +690,7 @@
 	vertical-align: middle;
 }
 .indentfile {
+	margin-left: 18px;
 	background: #fff;
 	padding-bottom: 30px;
 }
@@ -699,11 +703,11 @@
 }
 .noproject {
 	width: 950px;
-	@include media_screen_height(370px, 640px, 910px);
+	@include media_screen_height(370px,640px,910px);
 	background: $white;
 	margin: 0 auto;
 	margin-top: 40px;
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 
 	.no-poject-div {
 		width: 200px;
@@ -726,120 +730,149 @@
 	background: url(../../images/common/mark.jpg) no-repeat;
 	background-size: cover;
 }
-.indentdiv-title {
+
+
+
+.indentdiv-title{
 	font-size: $font-size;
 	color: $gray-light;
 	margin-left: 15px;
+
 }
-.drop-content {
+
+
+.drop-content{
 	background-color: #fff;
-	width: 160px;
-	position: absolute;
+	width:160px;
+	position:absolute;
 	left: -170px;
-	font-size: 14px;
-	line-height: 24px;
+	font-size:14px;
+	line-height:24px;
 }
-.drop-content a {
-	display: inline-block;
-	width: 100%;
-	text-decoration: none;
-	-webkit-animation-duration: 0.8s;
-	animation-duration: 0.8s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	-webkit-animation-name: bounceIn;
-	animation-name: bounceIn;
-}
+.drop-content a{
+display: inline-block;
+width: 100%;
+text-decoration:none;
+-webkit-animation-duration: 0.8s;
+animation-duration: 0.8s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+-webkit-animation-name: bounceIn;
+animation-name: bounceIn;
+}			
 @-webkit-keyframes bounceIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale3d(.3, .3, .3);
-		transform: scale3d(.3, .3, .3);
-	}
-	20% {
-		-webkit-transform: scale3d(1.1, 1.1, 1.1);
-		transform: scale3d(1.1, 1.1, 1.1);
-	}
-	40% {
-		-webkit-transform: scale3d(.9, .9, .9);
-		transform: scale3d(.9, .9, .9);
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: scale3d(1.03, 1.03, 1.03);
-		transform: scale3d(1.03, 1.03, 1.03);
-	}
-	80% {
-		-webkit-transform: scale3d(.97, .97, .97);
-		transform: scale3d(.97, .97, .97);
-	}
-	to {
-		opacity: 1;
-		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-	}
+0% {
+  opacity: 0;
+  -webkit-transform: scale3d(.3, .3, .3);
+  transform: scale3d(.3, .3, .3);
 }
+
+20% {
+  -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+40% {
+  -webkit-transform: scale3d(.9, .9, .9);
+  transform: scale3d(.9, .9, .9);
+}
+
+60% {
+  opacity: 1;
+  -webkit-transform: scale3d(1.03, 1.03, 1.03);
+  transform: scale3d(1.03, 1.03, 1.03);
+}
+
+80% {
+  -webkit-transform: scale3d(.97, .97, .97);
+  transform: scale3d(.97, .97, .97);
+}
+
+to {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+}
+
 @keyframes bounceIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale3d(.3, .3, .3);
-		transform: scale3d(.3, .3, .3);
-	}
-	20% {
-		-webkit-transform: scale3d(1.1, 1.1, 1.1);
-		transform: scale3d(1.1, 1.1, 1.1);
-	}
-	40% {
-		-webkit-transform: scale3d(.9, .9, .9);
-		transform: scale3d(.9, .9, .9);
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: scale3d(1.03, 1.03, 1.03);
-		transform: scale3d(1.03, 1.03, 1.03);
-	}
-	80% {
-		-webkit-transform: scale3d(.97, .97, .97);
-		transform: scale3d(.97, .97, .97);
-	}
-	to {
-		opacity: 1;
-		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-	}
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+    transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+    transform: scale3d(.97, .97, .97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
 }
-.indent-more-add {
-	font-size: $font-size-lger;
-	color: $gray-light;
+
+.indent-more-add{
+	
+font-size: $font-size-lger;
+color: $gray-light;
+
 }
+
 .modal-body dl {
 	text-align: left;
 }
-.projectliststyle {
-	line-height: 30px;
-	margin-left: 10x;
+
+.projectliststyle{
+	line-height:30px;
+	margin-left:10x;
 }
 .projectliststyle tr {
 	cursor: pointer;
 }
-img {
-	cursor: pointer;
+
+img{
+	cursor:pointer;
 }
+
 .checkstep {
 	height: 200px;
 }
-.check-message {
-	margin: auto;
-	display: block;
-	text-align: center;
-	font-size: $font-size;
-	position: relative;
-	top: 40px;
-	font-color: $gray;
+.check-message{
+	margin:auto;
+	display:block;
+	text-align:center;
+	font-size:$font-size;
+	position:relative;
+	top:40px;
+	font-color:$gray;
+
 }
-.sure-message {
-	display: block;
-	margin: auto;
-	position: relative;
-	top: 80px;
+
+.sure-message{
+	display:block;
+	margin:auto;
+	position:relative;
+	top:80px;
 }
+
+
+

@@ -180,10 +180,12 @@ var="cookiejs" />
 						</div>
 				</div>
 				<div class="baseinfo-table">
+					
 					<div class="divtable">
 						<div class="baseinfo-table-key">项目价格</div>
 						<input style="visibility: hidden;">
 					</div>
+
 					<div class="divtable">
 						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
 							<div class="final-price-div">
@@ -195,13 +197,14 @@ var="cookiejs" />
 								</div>
 						 </div>
 					</div>
+
 				</div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
-						<div class="baseinfo-table-key ">项目描述</div>
+						<div class="baseinfo-table-key" >项目描述</div>
 	<!-- 					<input style="visibility: hidden;"> -->	
 					</div>
-					<textarea rows="3" cols="90" class="textarea-baseinfo description form-control"></textarea>
+					<textarea rows="2" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
 				<ul class="ul-option" id="ul-select">
 				</ul>
@@ -216,6 +219,7 @@ var="cookiejs" />
 	</div>
 	<div class="indent-time">
 		<div class="indent-time-right">
+
 			<div class="indent-time-table-border-tr">
 				 <div class="right-border">项目时间表</div>
 				 <div class="right-border right-border-margin">沟通</div>
@@ -240,7 +244,7 @@ var="cookiejs" />
 				<div class="right-border right-border-margin" id="div-zzstarttime"><input type="text" class="tableinput zzstarttime form-control" id="zzstarttime"></div>
 				<div class="right-border right-border-margin" id="div-jfstarttime"><input type="text" class="tableinput jfstarttime form-control" id="jfstarttime"></div>
 			</div>
-			  <div class="indent-time-table-border-tr-time-error">
+			<div class="indent-time-table-border-tr-time-error">
 				<div class="right-border"></div>
 				<div class="right-border right-border-margin"><label id="error-gtstarttime"  class="tableinput-error ">日期有误</label></div>
 				<div class="right-border right-border-margin"><label id="error-fastarttime" class="tableinput-error ">日期有误</label></div>

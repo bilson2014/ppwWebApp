@@ -103,6 +103,8 @@
 
 		<div class="nav-shadow"></div>
 		
+
+		<!-- 内容区域 start -->
 			<div class="model margintop">
 			<img class="image-1"/>
 			<div class="info background-1">
@@ -158,9 +160,11 @@
 				    	<li >2015年12月获得老鹰基金preA轮投资，投资人刘小鹰</li>
 				    </ul>
 				</div>              
-         		 </div>    
-	        </div>
-		
+         	</div>    
+	    </div>
+
+	    <!-- 内容区域 end -->
+
 	</div>
 	
 	<div class="footer">
