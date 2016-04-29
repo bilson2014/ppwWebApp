@@ -70,6 +70,10 @@ $().ready(
 				$("#toolbar-no-message").modal('hide');
 				$(".check-message").text("错误！");
 			});
+			
+			$(".prev-task").on("click",function(){
+				PrevTaskBtn();
+			});
 		});
 
 function submitForm(){
@@ -212,6 +216,20 @@ function cancel() {
 		id : key
 	}));
 }
+function PrevTaskBtn() {
+	$("#toolbar-check").modal('show');
+	$(".check-step").text("您确定要回退到上一步吗？");
+	setModalEvent(PrevTask);
+}
+function PrevTask(){
+	var key=getCurrentProject();
+	loadData(function(msg) {
+		loadprojecctlist(false,false);
+		$("#toolbar-check").modal('hide');
+	}, getContextPath() + '/mgr/flow/jumpPrevTask', $.toJSON({
+		id : key
+	}));
+}
 //暂停按钮
 function pauseBtn() {
 	$("#toolbar-check").modal('show');
@@ -306,6 +324,24 @@ function loadflowdata() {
 						$("#cu_" + msg.taskDefinitionKey).addClass(
 								'get-step');
 					}
+					
+					var times=$("div[id^='cu_']");
+					var isEnd=false;
+					for (var int = 0; int < times.length; int++) {
+						var item=times[int];
+						var id=item.id;
+						var taskKey;
+						if(id!=null&&id!=''&&(id.indexOf('_')!=-1)){
+							var idarray=id.split('_');
+							taskKey=idarray[1];
+						}
+						if(isEnd){
+							$(item).text("");
+						}
+						if(taskKey==msg.taskDefinitionKey)
+							isEnd=true;
+					}
+					
 					//填充当前任务描述信息
 					$(".description-text").text(msg.description);
 					//迁移节点
@@ -431,9 +467,6 @@ function uploadfile() {
 		},
 		success : function(data) {
 			// delete by guoyang, 2016-04-19 04:19 begin
-			//$('.circle-div').hide();
-			//$('.circle-img').hide();
-			//$('#toolbar-modal').modal('hide');
 			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
 			// add by guoyang, 2016-04-19 03:19 begin
@@ -545,13 +578,14 @@ loadData(
 			lookA.on("mouseleave",function(){
 				jQuery(this).find("img").attr("src",'/resources/img/flow/look.png');
 			});
-			chakan.unbind('click');
+			//chakan.unbind('click');
 			chakan.bind('click',function(){
 				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
 				var key=getCurrentProject();
 				var a=jQuery(this).parent();
 				var self=jQuery(this);
+				a.unbind('click');
 				switch (state) {
 				case 'transformation':
 					syncLoadData(function(msg){
@@ -746,13 +780,16 @@ function loadprojecctlist(more,state) {
 			$(".right-page").show();
 			$(".noproject").addClass('hide');
 		}
+		var  selectFirst=false;
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
 			var stateStr=msg[i].state;
-			if (i == 0 && !more && getCurrentProject() == null&&stateStr==0) {
-				putCurrentProject(msg[i].id);
+			
+			if (!selectFirst && !more && getCurrentProject() == null && stateStr==0) {
 				currentprojectkey = msg[i].id + '';
+				putCurrentProject(currentprojectkey);
+				selectFirst=true;
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
 			}else if(msg[i].id==getCurrentProject()){
@@ -910,14 +947,8 @@ function show() {
 function getCurrentProject() {
 	//return $.cookie('currentproject');
 	var service_val=$("#service-key").val();
-	var loca_val=$("#loca-key").val();
 	if(service_val==null||service_val==''){
-		if(loca_val!=null&&loca_val!=''){
-			putCurrentProject(loca_val);
-			return loca_val;
-		}else{
-			return null;
-		}
+		return null;
 	}else{
 		return service_val;
 	}
@@ -926,7 +957,6 @@ function getCurrentProject() {
 function putCurrentProject(key) {
 	//$.cookie("currentproject", key + '');
 	$("#service-key").val(key+"");
-	$("#loca-key").val(key+"");
 }
 /**
  * 

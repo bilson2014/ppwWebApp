@@ -167,9 +167,16 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-sm-2 control-label">公司名称</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
+										<label id="label-company" class="label-message hide" >请输入正确的邮箱地址</label>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-sm-2 control-label">电子邮件</label>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" id="contact-email" value="${user.email }" tabindex="3" placeholder="请输入电子邮件" autocomplete="off" />
+										<input type="text" class="form-control" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
 										<label id="label-email" class="label-message hide" >请输入正确的邮箱地址</label>
@@ -178,7 +185,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">QQ</label>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="4" placeholder="请输入QQ号" autocomplete="off" />
+										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
 									</div>
 								</div>
 								<div class="form-group">

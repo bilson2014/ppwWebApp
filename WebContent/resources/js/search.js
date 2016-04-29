@@ -256,7 +256,8 @@ function loadProduction(start){
 					$body += '</a>';
 					$body += '<div class="video-desc-section">';
 					$body += '<h3>'+ solr.productName +'</h3>';
-					$body += '<h4>'+ solr.teamName +'</h4>';
+					/*$body += '<h4>'+ solr.teamName +'</h4>';*/
+					$body += '<h4></h4>';
 					$body += '<div class="video-desc">';
 					$body += solr.pDescription;
 					$body += '</div>';

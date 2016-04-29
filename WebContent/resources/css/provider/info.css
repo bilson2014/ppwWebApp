@@ -39,6 +39,10 @@ label.tooltip-message {
 	border-radius: 4px;
 	text-align: center;
 	line-height: 36px;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	top: 0;
 }
 
 label.tooltip-success-message {

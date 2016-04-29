@@ -44,6 +44,8 @@ public class User extends Customer{
 	private String wechatUnique = null; // 第三方登录用户唯一ID-微信
 	
 	private String imgFileName = null; // 头像文件名称
+	
+	private String userCompany = null; // 用户公司
 
 	public long getId() {
 		return id;
@@ -187,6 +189,14 @@ public class User extends Customer{
 
 	public void setImgFileName(String imgFileName) {
 		this.imgFileName = imgFileName;
+	}
+
+	public String getUserCompany() {
+		return userCompany;
+	}
+
+	public void setUserCompany(String userCompany) {
+		this.userCompany = userCompany;
 	}
 	
 }

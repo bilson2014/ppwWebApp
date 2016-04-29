@@ -262,25 +262,25 @@
 	}
 
 	li:nth-child(3) { 
-		background: url(../images/index/tt.png) no-repeat;
+		background: url(../images/index/weixin.png) no-repeat;
 		//@include index-sprite(tt);
 		background-size: cover;
 	}
 
 	li:nth-child(4) {
-		background: url(../images/index/lbtl.png) no-repeat;
+		background: url(../images/index/maotai.png) no-repeat;
 		//@include index-sprite(lbtl);
 		background-size: cover;
 	}
 
 	li:nth-child(5) {
-		background: url(../images/index/tm.png) no-repeat;
+		background: url(../images/index/tt.png) no-repeat;
 		//@include index-sprite(tm);
 		background-size: cover;
 	}
 
 	li:last-child {
-		background: url(../images/index/bf.png) no-repeat;
+		background: url(../images/index/tm.png) no-repeat;
 		//@include index-sprite(bf);
 		background-size: cover;
 		margin-right: 0;

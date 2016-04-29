@@ -414,16 +414,4 @@ public class UserController extends BaseController{
 		return null;
 	}
 	
-	/*public void updateUserInSession(final HttpServletRequest request){
-		final User user = getCurrentInfo(request, GlobalConstant.ROLE_CUSTOMER, User.class);
-		if(user != null){
-			final String url = URL_PREFIX + "portal/user/info/" + user.getId();
-			String json = HttpUtil.httpGet(url,request);
-			if(json != null && !"".equals(json)){
-				final User currentUser = JsonUtil.toBean(json, User.class);
-				//request.getSession().setAttribute("username", currentUser);
-				updateSession(request, GlobalConstant.ROLE_CUSTOMER, currentUser);
-			}
-		}
-	}*/
 }

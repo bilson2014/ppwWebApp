@@ -37,23 +37,12 @@ jQuery.extend({
 			}			
 		}
 		
-		// modified by guoyang, 2015/06/10 11:54 begin
-		// -> 修改 单文件 为  多文件上传 方法
-		/*
+
 		var oldElement = jQuery('#' + fileElementId);
 		var newElement = jQuery(oldElement).clone();
 		jQuery(oldElement).attr('id', fileId);
 		jQuery(oldElement).before(newElement);
 		jQuery(oldElement).appendTo(form);
-		*/
-		for(var i in fileElementId){    
-		      var oldElement = jQuery('#' + fileElementId[i]);    
-		      var newElement = jQuery(oldElement).clone();    
-		      jQuery(oldElement).attr('id', fileId);    
-		      jQuery(oldElement).before(newElement);    
-		      jQuery(oldElement).appendTo(form);    
-		}
-		// modified by guoyang, 2015/06/10 11:54 end
 
 		
 		//set attributes

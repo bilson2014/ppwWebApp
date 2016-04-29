@@ -85,7 +85,7 @@ label{
 	display: inline-block;
 	float: right;
 	width: 800px;
-	height: 390px;
+	height: 410px;
 	background: #ffffff;
 	border: solid 1px rgba(0,0,0,0.11);
 	overflow: hidden;
@@ -247,10 +247,11 @@ label.col-sm-2.control-label.label-height {
 
 .tooltip-show {
 	position: relative;
-	top: -60px;
+	top: -16px;
 	left: 300px;
 	width: 120px;
 	height: 30px;
+	line-height: 22px;
 	background-color: #dff0d8;
 	color: #3c763d;
 	border-radius: 4px;

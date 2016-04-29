@@ -69,7 +69,8 @@ $().ready(function(){
 				$body += '</a>';
 				$body += '<div class="video-desc-section">';
 				$body += '<h3>'+ product.productName +'</h3>';
-				$body += '<h4>'+ product.teamName +'</h4>';
+				/*$body += '<h4>'+ product.teamName +'</h4>';*/
+				$body += '<h4></h4>';
 				$body += '<div class="video-desc" title="'+ product.pDescription +'">';
 				$body += product.pDescription;
 				$body += '</div>';
