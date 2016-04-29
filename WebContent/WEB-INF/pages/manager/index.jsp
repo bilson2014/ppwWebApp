@@ -203,8 +203,9 @@
 						<r:permission uri="/project/cancelProject">
 						<button class="cancelbtn gray-btn btn-margin">取消</button>
 						</r:permission>
-						
+						<r:permission uri="/jumpPrevTask">
 						<button class="prev-task gray-btn btn-margin">上一步</button>
+						</r:permission>
 					</div>
 				</r:multPermission>
 			</div>
