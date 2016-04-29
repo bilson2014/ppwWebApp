@@ -72,13 +72,7 @@ $().ready(
 			});
 			
 			$(".prev-task").on("click",function(){
-				var key=getCurrentProject();
-				loadData(function(msg) {
-					loadprojecctlist(false,false);
-					//$("#toolbar-check").modal('hide');
-				}, getContextPath() + '/mgr/flow/jumpPrevTask', $.toJSON({
-					id : key
-				}));
+				PrevTaskBtn();
 			});
 		});
 
@@ -219,6 +213,20 @@ function cancel() {
 		$("#toolbar-check").modal('hide');
 		loadprojecctlist(false,true);
 	}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
+		id : key
+	}));
+}
+function PrevTaskBtn() {
+	$("#toolbar-check").modal('show');
+	$(".check-step").text("您确定要回退到上一步吗？");
+	setModalEvent(PrevTask);
+}
+function PrevTask(){
+	var key=getCurrentProject();
+	loadData(function(msg) {
+		loadprojecctlist(false,false);
+		$("#toolbar-check").modal('hide');
+	}, getContextPath() + '/mgr/flow/jumpPrevTask', $.toJSON({
 		id : key
 	}));
 }
@@ -570,13 +578,14 @@ loadData(
 			lookA.on("mouseleave",function(){
 				jQuery(this).find("img").attr("src",'/resources/img/flow/look.png');
 			});
-			chakan.unbind('click');
+			//chakan.unbind('click');
 			chakan.bind('click',function(){
 				var state=jQuery(this).attr("data-state");
 				var fileId=jQuery(this).attr("data-url");
 				var key=getCurrentProject();
 				var a=jQuery(this).parent();
 				var self=jQuery(this);
+				a.unbind('click');
 				switch (state) {
 				case 'transformation':
 					syncLoadData(function(msg){
