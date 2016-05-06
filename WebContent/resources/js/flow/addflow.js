@@ -534,7 +534,7 @@ function priceModel(price) {
 	//选中为最终价格
 	if(state){
 		title.text('项目报价');
-		var input=$("<input type=\"text\" class=\"pirce-input form-control finishInput\"> 万");
+		var input=$("<input type=\"text\" class=\"pirce-input form-control finishInput\"> 元");
 		if(price!=null)
 		$(input).val(price);
 		rootDiv.append(input);
@@ -544,7 +544,7 @@ function priceModel(price) {
 	}else{
 		title.text('项目预算价格');
 		var first=$("<input type=\"text\" class=\"pirce-input form-control firstinput\">");
-		var last=$("<input type=\"text\" class=\"pirce-input form-control lastinput\"> 万");
+		var last=$("<input type=\"text\" class=\"pirce-input form-control lastinput\"> 元");
 		if(price!=null){
 			var strarray=price.split('~');
 			first.val(strarray[0]);
@@ -560,7 +560,7 @@ function priceModel(price) {
 			priceVerifyInputNotNull();
 		});
 	}
-	rootDiv.append(' 万');
+	rootDiv.append(' 元');
 	
 }
 function getPrice() {
