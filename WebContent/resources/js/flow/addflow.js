@@ -6,6 +6,7 @@ var userName;
 var teamName;
 $().ready(function() {
 	setInputErrorStyle();
+	showRecommend();
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
@@ -469,7 +470,6 @@ function loadSource() {
 		}
 	}, getContextPath() + '/mgr/projects/getProjectTags', null);
 }
-
 function VerifyTime(){
 	var time=$("input[id$='time']");
 	for (var int = time.length-1; int >=0 ; int--) {
@@ -646,3 +646,17 @@ function dateCompare(date1, date2) {
 	else
 		return false;
 }
+//友情推荐
+//20160509 卢涛添加
+function showRecommend(){
+
+   $("#projectSource").on('change',function(){
+   	     if($("#projectSource").val()=='友情推荐'){
+//		 $("#div-friendship").removeClass('hide');
+	     }
+         else{
+         $("#div-friendship").addClass('hide');
+         }
+	});
+}
+
