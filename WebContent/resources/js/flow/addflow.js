@@ -11,6 +11,7 @@ $().ready(function() {
 	$(".username-error-label").hide();
 	//change final price label by lt
 	$('.final-price-label').hide();
+	$('.final-price-left-label').hide();
 	//end
 	$(".tableinput-error").hide();
 	

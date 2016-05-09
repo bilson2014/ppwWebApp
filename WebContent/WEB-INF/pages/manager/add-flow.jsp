@@ -208,6 +208,7 @@ var="cookiejs" />
 									<input type="text" id="firstinput" class="pirce-input form-control firstinput">
 									<input class="midinput"/>
 									<input type="text" id="lastinput" class="pirce-input form-control lastinput"> 元
+									<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 								</div>
 						 </div>
 					</div>
@@ -215,11 +216,12 @@ var="cookiejs" />
 					<div class="divtable finishdiv finish">
 							<div class="baseinfo-table-key">项目最终价格</div>
 							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput"/>元
-							<label class="final-price-label" id="error-finishInput">输入信息有误</label>
+
 					</div>
-					
+					<div>
+                    <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>
+                    </div>
 					<div class="mright">
-						<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 					</div> 	
 								
 				</div>
