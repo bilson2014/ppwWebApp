@@ -314,6 +314,17 @@ public class VersionManagerController extends BaseController {
 		}
 		return false;
 	}
+	
+	@RequestMapping("/projects/get/SerialID")
+	public String getProjectSerialID(final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "project/get/SerialID";
+		String str = HttpUtil.httpGet(url, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return str;
+		}
+		return "";
+	}
 
 	@RequestMapping("/projects/team/search/info")
 	public List<Team> getTeamByName(@RequestBody final Team team,

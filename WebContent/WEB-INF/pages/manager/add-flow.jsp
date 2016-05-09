@@ -63,7 +63,7 @@ var="cookiejs" />
 <script type="text/javascript" src="${datepickerJs }"></script>
 <script type="text/javascript" src="${datepickerZhJs }"></script>
 </head>
-<body style="background:#000">
+<body >
 
 <div class="header">
 		<div class="menu-bar nav">
@@ -110,7 +110,7 @@ var="cookiejs" />
 			</div>
 		</div>
 	</div>
-<div class="page" style="background:#000">
+<div class="page" >
 	<div class="page-title">
 		<label class="page-title-title">项目信息添加</label>
 	</div>
@@ -123,7 +123,7 @@ var="cookiejs" />
 						</div>
 						<div class="divtable" id="div-projectId">
 							<div class="baseinfo-table-key">项目编号</div>
-							<input type="text" class="tableinput-baseinfo projectId form-control">
+							<input type="text" readonly="readonly" class="tableinput-baseinfo projectId form-control">
 							<label class="error-label" id="error-projectId">该信息不能为空</label>
 						</div>
 						<div class="divtable" id="div-projectName">
@@ -204,7 +204,11 @@ var="cookiejs" />
 					<div class="divtable pospricediv">
 						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
 							<div class="final-price-div">
-								<div class="pirce-div mleft" ></div>
+								<div class="pirce-div mleft" >
+									<input type="text" id="firstinput" class="pirce-input form-control firstinput">
+									<input class="midinput"/>
+									<input type="text" id="lastinput" class="pirce-input form-control lastinput"> 元
+								</div>
 								<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 						 </div>
 					</div>
@@ -213,7 +217,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">项目最终价格</div>
 							<input type="text" class="tableinput-baseinfo form-control finishInput"/>
 						</div>
-
+								
 				</div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
