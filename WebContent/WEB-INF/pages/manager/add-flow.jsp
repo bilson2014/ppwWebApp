@@ -63,7 +63,7 @@ var="cookiejs" />
 <script type="text/javascript" src="${datepickerJs }"></script>
 <script type="text/javascript" src="${datepickerZhJs }"></script>
 </head>
-<body>
+<body style="background:#000">
 
 <div class="header">
 		<div class="menu-bar nav">
@@ -110,7 +110,7 @@ var="cookiejs" />
 			</div>
 		</div>
 	</div>
-<div class="page">
+<div class="page" style="background:#000">
 	<div class="page-title">
 		<label class="page-title-title">项目信息添加</label>
 	</div>
@@ -131,12 +131,25 @@ var="cookiejs" />
 							<input type="text" class="tableinput-baseinfo  projectName form-control">
 							<label class="error-label" id="error-projectName">该信息不能为空</label>
 						</div>
+						
+                   </div>
+
+                  <div class="baseinfo-table">
+						<div class="divtable">
+							<div class="baseinfo-table-key">来源信息</div>
+						</div>
 						<div class="divtable" id="div-projectSource">
 							<div class="baseinfo-table-key" >项目来源</div>
 							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" ></select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
 						</div>
+						<div class="divtable hide" id="div-friendship">
+							<div class="baseinfo-table-key">推荐人</div>
+							<input type="text" class="tableinput-baseinfo form-control">
+						</div>
+						
                    </div>
+
                    <div class="baseinfo-table">
                    		<input type="hidden" class="userId">
 						<div class="divtable">
@@ -180,7 +193,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">供应商电话</div>
 							<input type="text" class="tableinput-baseinfo form-control teamPhone" id="error-teamPhone">
 						</div>
-				</div>
+				</div> 
 				<div class="baseinfo-table">
 					
 					<div class="divtable">
@@ -188,21 +201,17 @@ var="cookiejs" />
 						<input style="visibility: hidden;">
 					</div>
 
-					<div class="divtable">
+					<div class="divtable pospricediv">
 						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
 							<div class="final-price-div">
 								<div class="pirce-div mleft" ></div>
-								<div class="mright">
-							    	<input type="checkbox" class="radio-price form-control"  id="radio-price"></input>
-							    	  	<label class="checkword">确定报价</label>
-										<label class="final-price-label" id="error-radio-price">输入信息有误</label>
-								</div>
+								<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 						 </div>
 					</div>
 
-					<div class="divtable hide">
+					<div class="divtable finishdiv">
 							<div class="baseinfo-table-key">项目最终价格</div>
-							<input type="text" class="tableinput-baseinfo form-control"/>
+							<input type="text" class="tableinput-baseinfo form-control finishInput"/>
 						</div>
 
 				</div>
@@ -237,11 +246,11 @@ var="cookiejs" />
 			</div>	
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border-time-left"></div>
-				<div class="right-border-time right-border-margin "><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time "><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time "><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time "><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time-end "><img class="img-size-end" src="/resources/img/flow/time-end.png"/></div>
+				<div class="right-border-time right-border-margin"  id="gtstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="fastarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="swstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="zzstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
+				<div class="right-border-time-end"  id="jfstarttimeid"><img class="img-size-end" src="/resources/img/flow/time-end.png"/></div>
 			</div>	
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border">预计时间</div>

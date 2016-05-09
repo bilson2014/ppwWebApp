@@ -6,6 +6,7 @@ var userName;
 var teamName;
 $().ready(function() {
 	setInputErrorStyle();
+	showRecommend();
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
@@ -544,15 +545,18 @@ function priceModel(price) {
 	}else{
 		title.text('项目预算价格');
 		var first=$("<input type=\"text\" class=\"pirce-input form-control firstinput\">");
+		var midline=$("<input readonly=\"readpnly\" class=\"midinput\">");
 		var last=$("<input type=\"text\" class=\"pirce-input form-control lastinput\"> 元");
+   
 		if(price!=null){
 			var strarray=price.split('~');
 			first.val(strarray[0]);
 			last.val(strarray[1]);
 		}
 		rootDiv.append(first);
-		rootDiv.append('~');
+		rootDiv.append(midline);
 		rootDiv.append(last);
+	
 		$(".firstinput").on('blur',function(){
 			priceVerifyInputNotNull();
 		});
@@ -702,3 +706,17 @@ function dateCompare(date1, date2) {
 	else
 		return false;
 }
+//友情推荐
+//20160509 卢涛添加
+function showRecommend(){
+
+   $("#projectSource").on('change',function(){
+   	     if($("#projectSource").val()=='友情推荐'){
+		 $("#div-friendship").removeClass('hide');
+	     }
+         else{
+         $("#div-friendship").addClass('hide');
+         }
+	});
+}
+
