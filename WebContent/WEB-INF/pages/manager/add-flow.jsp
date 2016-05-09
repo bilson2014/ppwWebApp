@@ -200,6 +200,11 @@ var="cookiejs" />
 						 </div>
 					</div>
 
+					<div class="divtable hide">
+							<div class="baseinfo-table-key">项目最终价格</div>
+							<input type="text" class="tableinput-baseinfo form-control"/>
+						</div>
+
 				</div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
