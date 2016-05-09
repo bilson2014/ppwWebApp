@@ -530,7 +530,7 @@ function loadSource() {
 	loadData(function(msg) {
 		var select=$("#projectSource");
 		for (var int = 0; int < msg.length; int++) {
-			var li=$("<option>"+msg[int]+"</option>");
+			var li=$("<option>"+msg[int].name+"</option>");
 			select.append(li);
 		}
 	}, getContextPath() + '/mgr/projects/getProjectTags', null);

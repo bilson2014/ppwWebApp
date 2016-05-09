@@ -917,7 +917,7 @@ function loadIndentInfo() {
 			$(userPhone).text(msg.userPhone);
 			$(teamPhone).text(msg.teamPhone);
 			//暂时显示预计价格
-			$(viedoPrice).text(msg.priceFinish+'~'+msg.priceLast+ '元');
+			$(viedoPrice).text(msg.priceFirst+'~'+msg.priceLast+ '元');
 			
 			$(description).text(msg.description);
 
