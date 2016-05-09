@@ -500,14 +500,14 @@
 	border: solid 1px $red-base;
 }
 .firstinput {
-	width: 80px;
+	width: 100px;
 	height: 30px;
 	border-radius: 5px;
 	padding-left: 5px;
 	display: inline-block;
 }
 .lastinput {
-	width: 80px;
+	width: 100px;
 	height: 30px;
 	border-radius: 5px;
 	padding-left: 5px;
@@ -559,12 +559,45 @@
 	position: relative;
 	color: #fe5453;
 	font-size: 1.4rem;
-	left: -270px;
+	left: -190px;
 	top: 30px;
 }
+
+.final-price-left-label{
+	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: 655px;
+	top: 10px;
+}
+
+
+
 .mark-icon {
 	width: 100px;
 	height: 100px;
 	background: url(../../images/common/mark.jpg) no-repeat;
 	background-size: cover;
 }
+
+.midinput{
+    border:none;
+	border-top:3px solid $gray-light;
+	width:35px;
+	position:relative;
+	top:10px;
+	margin-left:10px;
+	margin-right:10px;
+    
+}
+
+.finishdiv{
+	position:relative;
+	left:-55px;
+}
+
+.pospricediv{
+	position:relative;
+	left:-5px;
+}
+
