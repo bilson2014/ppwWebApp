@@ -587,7 +587,7 @@ function checkFinishPrice() {
 	var text=$("#finishInput").val();
 	if(text == null ||text=='' || text=='0')
 		return true;
-	if(!checkNumber("0")){
+	if(!checkNumber(text)){
 		$("#finishInput").val("");
 		$("#finishInput").focus();
 		var div=$("#finishInput").parent();
