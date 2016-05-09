@@ -916,7 +916,9 @@ function loadIndentInfo() {
 			$(userContact).text(msg.userContact);
 			$(userPhone).text(msg.userPhone);
 			$(teamPhone).text(msg.teamPhone);
-			$(viedoPrice).text(msg.price + '万元');
+			//暂时显示预计价格
+			$(viedoPrice).text(msg.priceFinish+'~'+msg.priceLast+ '元');
+			
 			$(description).text(msg.description);
 
 		}, getContextPath() + '/mgr/projects/get-projectInfo', $.toJSON({

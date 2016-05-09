@@ -123,7 +123,7 @@ var="cookiejs" />
 						</div>
 						<div class="divtable" id="div-projectId">
 							<div class="baseinfo-table-key">项目编号</div>
-							<input type="text" class="tableinput-baseinfo projectId form-control">
+							<input type="text" readonly="readonly" class="tableinput-baseinfo projectId form-control">
 							<label class="error-label" id="error-projectId">该信息不能为空</label>
 						</div>
 						<div class="divtable" id="div-projectName">
@@ -191,15 +191,20 @@ var="cookiejs" />
 					<div class="divtable">
 						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
 							<div class="final-price-div">
-								<div class="pirce-div mleft" ></div>
-								<div class="mright">
-							    	<input type="checkbox" class="radio-price form-control"  id="radio-price"></input>
-							    	  	<label class="checkword">确定报价</label>
-										<label class="final-price-label" id="error-radio-price">输入信息有误</label>
+								<div class="pirce-div mleft" id="mleft" style="display: inline-block;">
+									<input type="text" id="firstinput" class="pirce-input form-control firstinput">
+									~
+									<input type="text" id="lastinput" class="pirce-input form-control lastinput"> 元
 								</div>
+								<div class="pirce-div finish" style="display: inline-block;">
+									最终价格
+									<input type="text" id="finishInput" class="pirce-input form-control finishInput">
+								</div>
+								<div class="mright">
+										<label class="final-price-label" id="error-radio-price">输入信息有误</label>
+								</div> 
 						 </div>
 					</div>
-
 				</div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">

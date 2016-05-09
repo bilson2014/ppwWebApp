@@ -1,6 +1,5 @@
 package com.panfeng.film.resource.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.panfeng.film.domain.BaseObject;
@@ -13,15 +12,14 @@ public class IndentProject extends BaseObject {
 	public final static int PROJECT_CANCEL = 1;
 	public final static int PROJECT_FINISH = 2;
 
-	private long id = -1;
-	private String projectName = "";
+	private long id = 0l; // 项目流程ID
+	private String projectName = ""; //  
 	private String userName = ""; // 客户公司名称
 	private String userContact = ""; // 客户名称
 	private String userPhone = "";
 	private String teamName = "";
 	private String teamContact = "";
 	private String teamPhone = "";
-	private String price = "";
 	private String description = "";
 	private String serial = "";
 	private String source = "";
@@ -30,11 +28,17 @@ public class IndentProject extends BaseObject {
 	private String userType = "";
 	private long userId = -1; // 视频管家ID
 	
+	//价格字段
+	private double priceFirst =0.00;//预计起始价格
+	private double priceLast =0.00;//预计结束价格
+	private double priceFinish =0.00;//最终价格
+
+	
 	private String managerRealName = null; // 管家名字
 	
-	private long customerId = 0l; // 客户ID
+	private Long customerId = null; // 客户ID
 	
-	private long teamId = 0l; // 供应商ID
+	private Long teamId = null; // 供应商ID
 
 	public long getId() {
 		return id;
@@ -144,16 +148,35 @@ public class IndentProject extends BaseObject {
 		this.serial = serial;
 	}
 
-	public String getPrice() {
-		return price;
-	}
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
+	
+	
 	// -----------------------------
 	// 冗余taskdate--------------------------------------
+
+	public double getPriceFirst() {
+		return priceFirst;
+	}
+
+	public void setPriceFirst(double priceFirst) {
+		this.priceFirst = priceFirst;
+	}
+
+	public double getPriceLast() {
+		return priceLast;
+	}
+
+	public void setPriceLast(double priceLast) {
+		this.priceLast = priceLast;
+	}
+
+	public double getPriceFinish() {
+		return priceFinish;
+	}
+
+	public void setPriceFinish(double priceFinish) {
+		this.priceFinish = priceFinish;
+	}
 
 	public int getState() {
 		return state;
@@ -163,10 +186,10 @@ public class IndentProject extends BaseObject {
 		this.state = state;
 	}
 
-	private Map<String, String> time = new HashMap<>();
-	private ActivitiTask task = new ActivitiTask();
+	private Map<String, String> time = null;
+	private ActivitiTask task = null;
 	private String tag = "";
-	private UserViewModel userViewModel=null; 
+	private UserViewModel userViewModel = null; 
 
 	public UserViewModel getUserViewModel() {
 		return userViewModel;
@@ -208,19 +231,19 @@ public class IndentProject extends BaseObject {
 		this.managerRealName = managerRealName;
 	}
 
-	public long getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
-	public long getTeamId() {
+	public Long getTeamId() {
 		return teamId;
 	}
 
-	public void setTeamId(long teamId) {
+	public void setTeamId(Long teamId) {
 		this.teamId = teamId;
 	}
 

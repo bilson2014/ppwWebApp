@@ -14,7 +14,6 @@ $().ready(function() {
 	$(".tableinput-error").hide();
 	
 	loadSource();
-	priceModel(null);
 	$("#ul-select").hide();
 	$("#ul-select-team").hide();
 	$("#ul-select-source").hide();
@@ -57,14 +56,11 @@ $().ready(function() {
 	});
 	var state=$(".state").text().trim()
 		if(state=='update'){
-			updateProject();
+			updateProject_ViewInit();
+		}else{
+			//新增模式，生成序列号
+			fillSerialID();
 		}
-
-   $("#radio-price").on("click",function(){
-	   priceModel(null);
-   });
-	
-	setTimeEvent();
 	$("input[name$='time']").val("请选择日期");
 	$('#gtstarttime').val(getCurrentTime());
 
@@ -75,15 +71,12 @@ $().ready(function() {
 	$("#user-info-btn-finish").on('click',function(){
 		addUser();
 	});
-	var state = $(".state").text().trim()
-	if (state == 'update') {
-		updateProject();
-	}
 	
 	initUserBox();
 	initTeamBox();
 	
 });
+//设置验证错误提示
 function setInputErrorStyle(){
 	$(".projectId").on('change',function(){
 		$("#div-projectId").removeClass('has-error');
@@ -105,25 +98,33 @@ function setInputErrorStyle(){
 		$("#div-userContact").removeClass('has-error');
 		$("#error-userContact").hide();
 	});
-	//this class lost a .
-/*	$(".userPhone").on('change',function(){
-		$(".userPhone").removeClass("border-red");
-		$(".userPhone").addClass("border-gray");
-		$("#error-userPhone").hide();
-	});*/
 	$(".userPhone").on('change',function(){
 		$("#div-userPhone").removeClass('has-error');
 		$("#error-userPhone").hide();
 	});
-	//add a new for finalprice by lt
-	$("#radio-price").on('change',function(){
-		$(".radio-price").removeClass("border-red");
-		$(".radio-price").addClass("border-gray");
-		$("#error-radio-price").hide();
+	// 5.9 修改 wangliming 增加预计价格验证
+	$("#firstinput").on('change',function(){
+		var res=priceVerifyInputNotNull();
+		if(res){
+			$("#mleft").removeClass('has-error');
+			$("#error-radio-price").hide();
+		}else{
+			$("#mleft").addClass('has-error');
+			$("#error-radio-price").show();
+		}
 	});
-	//end
 	
-	
+	$("#lastinput").on('change',function(){
+		var res=priceVerifyInputNotNull();
+		if(res){
+			$("#mleft").removeClass('has-error');
+			$("#error-radio-price").hide();
+		}else{
+			$("#mleft").addClass('has-error');
+			$("#error-radio-price").show();
+		}
+	});
+	//5.9 修改 end
 	$("#gtstarttime").on('blur',function(){
 		$("#div-gtstarttime").removeClass('has-error');
 		$("#error-gtstarttime").hide();
@@ -145,6 +146,7 @@ function setInputErrorStyle(){
 		$("#error-jfstarttime").hide();
 	});
 }
+//初始化用户搜索框
 function initUserBox(){
 	$('#userName').on('keydown', function() {
 		userName = $('.userName').val().trim();
@@ -165,6 +167,7 @@ function initUserBox(){
 		
 	});
 }
+//初始化供应商搜索框
 function initTeamBox(){
 	$('#teamName').on('keydown', function() {
 		teamName = $('#teamName').val().trim();
@@ -185,6 +188,7 @@ function initTeamBox(){
 		
 	});
 }
+//团队搜索方法 
 function searchTeam() {
 	var teamName = $("#teamName").val();
 	loadData(function(msg) {
@@ -210,6 +214,7 @@ function searchTeam() {
 		teamName : teamName
 	}));
 }
+//用户搜索方法
 function searchUser() {
 	var userName = $("#userName").val();
 	loadData(function(msg) {
@@ -235,6 +240,7 @@ function searchUser() {
 		userName : userName
 	}));
 }
+//添加用户
 function addUser(){
 	//验证
 	var username=$("#add_username");
@@ -264,8 +270,8 @@ function addUser(){
 	}));
 	
 }
-function setTimeEvent() {}
-function updateProject() {
+//本页作为更新页面时，填充页面数据方法
+function updateProject_ViewInit() {
 	var currentProject = getCurrentProject();
 	loadData(function(msg) {
 		$(".projectId").val("");
@@ -276,8 +282,6 @@ function updateProject() {
 		$("#teamName").val("");
 		$(".teamContact").val("");
 		$(".teamPhone").val("");
-		var str = String(msg.price);
-		var strarray = str.split('~');
 		$(".firstinput").val("");
 		$(".lastinput").val("");
 		$(".description").val("");
@@ -288,6 +292,9 @@ function updateProject() {
 		$(".jfstarttime").val("");
 		$(".teamId").val("");
 		$(".userId").val("");
+		$("#firstinput").val("");
+		$("#lastinput").val("");
+		$("#finishInput").val("");
 		// put data
 		$(".projectId").val(msg.serial);
 		$(".projectName").val(msg.projectName);
@@ -300,16 +307,11 @@ function updateProject() {
 		$("#projectSource").val(msg.source);
 		$(".teamId").val(msg.teamId);
 		$(".userId").val(msg.customerId);
+		
+		$("#firstinput").val(msg.priceFirst);
+		$("#lastinput").val(msg.priceLast);
+		$("#finishInput").val(msg.priceFinish);
 		////////////
-		var price=msg.price;
-		var strarray;
-		if(price!=null&&price!=''){
-			strarray=price.split('~');
-			if(strarray.length==1){
-				$("#radio-price").attr("checked",'checked');
-			}
-		}
-		priceModel(price);
 		$(".description").val(msg.description);
 		$(".gtstarttime").val(msg.time.gt);
 		$(".fastarttime").val(msg.time.fa);
@@ -374,8 +376,9 @@ function updateProjectajax() {
 	var teamContact = $(".teamContact").val().trim();
 	var teamPhone = $(".teamPhone").val().trim();
 	var source=$("#projectSource").val().trim();
-	var price=getPrice();
-	
+	var priceFirst=$("#firstinput").val().trim();
+	var priceLast=$("#lastinput").val().trim();
+	var priceFinish=$("#finishInput").val().trim();
 	var teamId= $(".teamId").val();
 	var customerId= $(".userId").val();
 	
@@ -403,7 +406,9 @@ function updateProjectajax() {
 		teamName : teamName,
 		teamContact : teamContact,
 		teamPhone : teamPhone,
-		price : price,
+		priceFirst:priceFirst,
+		priceLast:priceLast,
+		priceFinish:priceFinish,
 		description : description,
 		source:source,
 		teamId:teamId,
@@ -478,7 +483,9 @@ function addProject() {
 	var source=$("#projectSource").val().trim();
 	var teamId= $(".teamId").val();
 	var customerId= $(".userId").val();
-	var price =getPrice();
+	var priceFirst=$("#firstinput").val().trim();
+	var priceLast=$("#lastinput").val().trim();
+	var priceFinish=$("#finishInput").val().trim();
 	var description = $(".description").val().trim();
 	var gtstarttime = $(".gtstarttime").val().trim();
 	var fastarttime = $(".fastarttime").val().trim();
@@ -503,7 +510,9 @@ function addProject() {
 		teamName : teamName,
 		teamContact : teamContact,
 		teamPhone : teamPhone,
-		price : price,
+		priceFirst:priceFirst,
+		priceLast:priceLast,
+		priceFinish:priceFinish,
 		description : description,
 		source:source,
 		teamId:teamId,
@@ -526,55 +535,7 @@ function loadSource() {
 		}
 	}, getContextPath() + '/mgr/projects/getProjectTags', null);
 }
-function priceModel(price) {
-	var title=$(".pirce-title");
-	var rootDiv=$(".pirce-div");
-	var state=$("#radio-price").is(':checked');
-	rootDiv.html("");
-	//选中为最终价格
-	if(state){
-		title.text('项目报价');
-		var input=$("<input type=\"text\" class=\"pirce-input form-control finishInput\"> 万");
-		if(price!=null)
-		$(input).val(price);
-		rootDiv.append(input);
-		$(".finishInput").on('blur',function(){
-			priceVerifyInputNotNull();
-		});
-	}else{
-		title.text('项目预算价格');
-		var first=$("<input type=\"text\" class=\"pirce-input form-control firstinput\">");
-		var last=$("<input type=\"text\" class=\"pirce-input form-control lastinput\"> 万");
-		if(price!=null){
-			var strarray=price.split('~');
-			first.val(strarray[0]);
-			last.val(strarray[1]);
-		}
-		rootDiv.append(first);
-		rootDiv.append('~');
-		rootDiv.append(last);
-		$(".firstinput").on('blur',function(){
-			priceVerifyInputNotNull();
-		});
-		$(".lastinput").on('blur',function(){
-			priceVerifyInputNotNull();
-		});
-	}
-	rootDiv.append(' 万');
-	
-}
-function getPrice() {
-	var state=$("#radio-price").is(':checked');
-	var price;
-	if(state){
-		price=$(".finishInput").val().trim();
-	}else{
-		var first=$(".firstinput").val().trim();
-		var last=$(".lastinput").val().trim();
-		price=first+'~'+last;
-	}
-	return price;
-}
+
 function VerifyTime(){
 	var time=$("input[id$='time']");
 	for (var int = time.length-1; int >=0 ; int--) {
@@ -601,27 +562,24 @@ function VerifyTime(){
 	return true;
 }
 function priceVerifyInputNotNull() {
-	var state=$("#radio-price").is(':checked');
-	if(state){
-		var finish=$(".finishInput");
-		if(verifyInputNotNull(finish)){
-			if(!checkNumber(finish.val())){
-				finish.val("");
-				finish.focus();
-				var div=finish.parent();
-				div.addClass('has-error');
-				$("#error-radio-price").show();
-				return false;
-			}else{
-				var div=finish.parent();
-				div.removeClass('has-error');
-				$("#error-radio-price").hide();
-				return true;
-			}
-		}else{
-			return false;
-		}
-	}else{
+//		var finish=$(".finishInput");
+//		if(verifyInputNotNull(finish)){
+//			if(!checkNumber(finish.val())){
+//				finish.val("");
+//				finish.focus();
+//				var div=finish.parent();
+//				div.addClass('has-error');
+//				$("#error-radio-price").show();
+//				return false;
+//			}else{
+//				var div=finish.parent();
+//				div.removeClass('has-error');
+//				$("#error-radio-price").hide();
+//				return true;
+//			}
+//		}else{
+//			return false;
+//		}
 		var first=$(".firstinput");
 		var last=$(".lastinput");
 		if(!verifyInputNotNull(first))return false;
@@ -637,6 +595,7 @@ function priceVerifyInputNotNull() {
 			div.removeClass('has-error');
 		}
 		if(!verifyInputNotNull(last))return false;
+		
 		if(!checkNumber(last.val())){
 			last.val("");
 			last.focus();
@@ -662,8 +621,14 @@ function priceVerifyInputNotNull() {
 		$("#error-radio-price").hide();
 		return true;
 	}
+function fillSerialID() {
+	loadData(function(msg) {
+		var id=msg.id;
+		$(".projectId").val(id);
+	}, getContextPath() + '/mgr/projects/get/SerialID', null);
+	 
+	 
 }
-
 function verifyInputNotNull(input) {
 	if(input.val()==null||input.val()==""){
 		var div=input.parent();
