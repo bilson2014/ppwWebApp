@@ -199,6 +199,7 @@ var="cookiejs" />
 								<div class="pirce-div finish" style="display: inline-block;">
 									最终价格
 									<input type="text" id="finishInput" class="pirce-input form-control finishInput">
+									<label class="final-price-label" id="error-finishInput">输入信息有误</label>
 								</div>
 								<div class="mright">
 										<label class="final-price-label" id="error-radio-price">输入信息有误</label>

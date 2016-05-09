@@ -45,9 +45,7 @@ $().ready(
 				cancelBtn();
 			});
 
-			$("#upload-info-btn-id").on(
-					"click",
-					function() {
+			$("#upload-info-btn-id").on("click",function() {
 //						window.location.href = getContextPath()
 //								+ "/mgr/projects/upadte-view";
 						submitForm();
@@ -78,13 +76,12 @@ $().ready(
 
 function submitForm(){
 	var key=getCurrentProject();
-	//var body=$("body");
 	var path=getContextPath()+ "/mgr/projects/upadte-view";
-	var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
-	var input=$("<input type=\"text\" name=\"key\" style=\"display: none\">");
-	input.val(key);
-	form.append(input);
-	form.submit().remove();
+	var formBody = '<form action="'+path+'" method="post" oncomplete="false" id="submitkey" style="display: none;">';
+	formBody += '<input type="text" name="key" value="'+ key +'" style="display: none">';
+	formBody += '</form>';
+	$('#upload-info-btn-id').append(formBody);
+	$('#submitkey').submit().remove();
 }
 function init() {
 	$("#input-value").click(function() {

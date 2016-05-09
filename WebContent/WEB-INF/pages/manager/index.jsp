@@ -213,7 +213,7 @@
 				<div class="indentinfo-title">
 					<label class="indentinfo-title-text">项目详细信息</label>
 					<r:permission uri="/project/update-indentProject">
-					<button class="change-file-btn border-btn" id="upload-info-btn-id">修改</button>
+						<button class="change-file-btn border-btn" type="button" id="upload-info-btn-id">修改</button>
 					</r:permission>
 				</div>
 				<div class="indentinfo-table-div">
