@@ -245,9 +245,9 @@
 							</li>
 							<li>
 								<div class="indent-title">供应商信息</div>
-								<div class="indent-content ">导演名称</div>
-								<div class="indent-content ">导演联系人</div>
-								<div class="indent-content ">导演电话</div>
+								<div class="indent-content ">供应商名称</div>
+								<div class="indent-content ">供应商联系人</div>
+								<div class="indent-content ">供应商电话</div>
 							</li>
 							<li class="li-margin">
 								<div class="indent-title"></div>
