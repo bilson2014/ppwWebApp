@@ -104,7 +104,8 @@ function setInputErrorStyle(){
 		$("#div-userPhone").removeClass('has-error');
 		$("#error-userPhone").hide();
 	});
-	// 5.9 修改 wangliming 增加预计价格验证
+	//modify wangliming 5.9 begin 
+	//--> 增加预计价格验证
 	$("#firstinput").on('change',function(){
 		var res=priceVerifyInputNotNull();
 		if(res){
@@ -115,6 +116,7 @@ function setInputErrorStyle(){
 			$("#error-radio-price").show();
 		}
 	});
+	//modify wangliming 5.9 end
 	
 	$("#lastinput").on('change',function(){
 		var res=priceVerifyInputNotNull();
@@ -131,6 +133,16 @@ function setInputErrorStyle(){
 		checkFinishPrice();
 	});
 	//5.9 修改 end
+	
+	//add by wangliming 2016-5-10 11:00 begin
+	//-->添加 验证推荐人
+	$("#input-referrer").on('change',function(){
+		if($(this).val()!=''){
+		$("#error-input-referrer").hide();
+			$("#div-friendship").removeClass('has-error');
+		}
+	});
+	//add by wangliming 2016-5-10 end
 	$("#gtstarttime").on('blur',function(){
 		$("#div-gtstarttime").removeClass('has-error');
 		$("#error-gtstarttime").hide();
@@ -311,6 +323,10 @@ function updateProject_ViewInit() {
 		$(".teamContact").val(msg.teamContact);
 		$(".teamPhone").val(msg.teamPhone);
 		$("#projectSource").val(msg.source);
+		//add wangliming 2016.5.10 11:28 begin
+		//-->添加推荐人
+		initReferrer(msg.source,msg.referrer);
+		//add wangliming 2016.5.10 11:29 end
 		$(".teamId").val(msg.teamId);
 		$(".userId").val(msg.customerId);
 		
@@ -360,7 +376,9 @@ function updateProjectajax() {
 	var swstarttime = $(".swstarttime").val().trim();
 	var zzstarttime = $(".zzstarttime").val().trim();
 	var jfstarttime = $(".jfstarttime").val().trim();
-
+	
+	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
+	var referrer=getReferrer();
 	loadData(function(msg) {
 		if (msg) {
 			//window.location.href = getContextPath() + "/mgr/projects/flow-index";
@@ -385,6 +403,7 @@ function updateProjectajax() {
 		source:source,
 		teamId:teamId,
 		customerId:customerId,
+		referrer : referrer,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,
@@ -428,7 +447,8 @@ function addProject() {
 	var swstarttime = $(".swstarttime").val().trim();
 	var zzstarttime = $(".zzstarttime").val().trim();
 	var jfstarttime = $(".jfstarttime").val().trim();
-	
+	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
+	var referrer=getReferrer();
 	
 	loadData(function(msg) {
 		if (msg) {
@@ -446,13 +466,14 @@ function addProject() {
 		teamName : teamName,
 		teamContact : teamContact,
 		teamPhone : teamPhone,
-		priceFirst:priceFirst,
-		priceLast:priceLast,
-		priceFinish:priceFinish,
+		priceFirst : priceFirst,
+		priceLast : priceLast,
+		priceFinish : priceFinish,
 		description : description,
-		source:source,
-		teamId:teamId,
-		customerId:customerId,
+		source : source,
+		teamId : teamId,
+		customerId : customerId,
+		referrer : referrer,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,
@@ -516,6 +537,16 @@ function verifyFrom(){
 		$("#projectSource").removeClass("border-red");
 		$("#projectSource").addClass("border-gray");
 	}
+	//add by wangliming 2016-5-10 11:00 begin
+	//-->添加 验证推荐人
+	if($("#projectSource").val().trim()=='个人信息下单'){
+		 var referrerInput=$("#input-referrer");
+		 if(!verifyInputNotNull(referrerInput)){
+			 $("#error-input-referrer").show();
+			 return false;
+		 }
+	 }
+	//add by wangliming 2016-5-10 end
 	if(!verifyInputNotNull( $("#userName"))) {
 		$("#error-userName").show();
 	}
@@ -650,14 +681,35 @@ function dateCompare(date1, date2) {
 //友情推荐
 //20160509 卢涛添加
 function showRecommend(){
-
-   $("#projectSource").on('change',function(){
-   	     if($("#projectSource").val()=='友情推荐'){
-//		 $("#div-friendship").removeClass('hide');
-	     }
-         else{
-         $("#div-friendship").addClass('hide');
-         }
-	});
+	$("#projectSource").on('change',function(){
+		 if($("#projectSource").val().trim()=='个人信息下单'){
+			 $("#div-friendship").removeClass('hide');
+		 }
+		 else{
+			 //选择其他选项需要清空
+			 // $("#input-referrer").val('');
+			 $("#div-friendship").addClass('hide');
+		 }
+   });
 }
-
+//add wangliming 2016.5.10 11:00 begin
+//-->添加联系人相关处理
+function initReferrer(sourece,referrer) {
+	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
+		 $("#div-friendship").removeClass('hide');
+		 $("#input-referrer").val(referrer);
+	 }
+	 else{
+		 $("#div-friendship").addClass('hide');
+		 $("#input-referrer").val("");
+	 }
+}
+function getReferrer() {
+	if($("#projectSource").val().trim()=='个人信息下单'){
+		 return  $("#input-referrer").val();
+	 }
+	 else{
+		 return '';
+	 }
+}
+//add wangliming 2016.5.10 11:00 end
