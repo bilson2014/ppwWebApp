@@ -799,7 +799,7 @@ function getReferrer() {
 		 return  $("#referrer-Id-hidden").val();
 	 }
 	 else{
-		 return '';
+		 return '0';
 	 }
 }
 //add wangliming 2016.5.10 11:00 end
