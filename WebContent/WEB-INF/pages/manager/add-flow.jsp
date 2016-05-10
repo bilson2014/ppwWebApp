@@ -146,7 +146,8 @@ var="cookiejs" />
 						<div class="divtable hide" id="div-friendship">
 							<input type="hidden" id="referrer-Id-hidden">
 							<div class="baseinfo-table-key">推荐人</div>
-							<input type="text" class="tableinput-baseinfo form-control">
+							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
+							<label class="error-label" id="error-input-referrer">该信息不能为空</label>
 						</div>
 						
                    </div>
