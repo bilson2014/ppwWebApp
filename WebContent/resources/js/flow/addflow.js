@@ -702,7 +702,7 @@ function checkFinishPrice() {
 //填充序列号
 function fillSerialID() {
 	loadData(function(msg) {
-		var id=msg.id;
+		var id=msg.serial;
 		$(".projectId").val(id);
 	}, getContextPath() + '/mgr/projects/get/SerialID', null);
 }
