@@ -4,6 +4,7 @@ var isShow = false;
 var checkHidden = false;
 var userName;
 var teamName;
+var referrerList;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
@@ -74,8 +75,9 @@ $().ready(function() {
 		addUser();
 	});
 	
-	initUserBox();
-	initTeamBox();
+	initUserInput();
+	initTeamInput();
+	initReferrerInput();
 	
 });
 //设置验证错误提示
@@ -101,8 +103,15 @@ function setInputErrorStyle(){
 		$("#error-userContact").hide();
 	});
 	$(".userPhone").on('change',function(){
-		$("#div-userPhone").removeClass('has-error');
-		$("#error-userPhone").hide();
+		var phone=$(".userPhone").val();
+		if(!checkMobile(phone)){
+			$("#error-userPhone").show();
+			setError($(".userPhone"));
+			return false;
+		}else{
+			clearError($(".userPhone"));
+			$("#error-userPhone").hide();
+		}
 	});
 	//modify wangliming 5.9 begin 
 	//--> 增加预计价格验证
@@ -137,7 +146,8 @@ function setInputErrorStyle(){
 	//add by wangliming 2016-5-10 11:00 begin
 	//-->添加 验证推荐人
 	$("#input-referrer").on('change',function(){
-		if($(this).val()!=''){
+		var id=$("#referrer-Id-hidden").val();
+		if($(this).val()!='' && id!=null && id!=''){
 		$("#error-input-referrer").hide();
 			$("#div-friendship").removeClass('has-error');
 		}
@@ -165,7 +175,7 @@ function setInputErrorStyle(){
 	});
 }
 //初始化用户搜索框
-function initUserBox(){
+function initUserInput(){
 	$('#userName').on('keydown', function() {
 		userName = $('.userName').val().trim();
 	});
@@ -186,7 +196,7 @@ function initUserBox(){
 	});
 }
 //初始化供应商搜索框
-function initTeamBox(){
+function initTeamInput(){
 	$('#teamName').on('keydown', function() {
 		teamName = $('#teamName').val().trim();
 	});
@@ -204,6 +214,25 @@ function initTeamBox(){
 			}
 		}
 		
+	});
+}
+function initReferrerInput(){
+	$("#input-referrer").on('keydown', function() {
+		userName = $('#input-referrer').val().trim();
+	});
+	$("#input-referrer").on('keyup', function() {
+		if (userName != $('#input-referrer').val().trim()) {
+			searchReferrer();
+			var select_lis = document.getElementById("ul-select-referrer").getElementsByTagName("li");
+			$("#ul-select-referrer").show();
+			isShow = true;
+			for(i=0;i<select_lis.length;i++) {
+				select_lis[i].onclick = function() {
+					//document.getElementById("teamName").value=this.innerHTML;
+					$("#ul-select-referrer").hide();
+				}
+			}
+		}
 	});
 }
 //团队搜索方法 
@@ -257,6 +286,39 @@ function searchUser() {
 	}, getContextPath() + '/mgr/projects/user/search/info', $.toJSON({
 		userName : userName
 	}));
+}
+
+//推荐人检索
+function searchReferrer() {
+	var inputString=$('#input-referrer').val().trim();
+	if(referrerList==null||referrerList==''){
+		syncLoadData(function(msg) {
+			referrerList=msg;
+		}, getContextPath() + '/mgr/projects/staff/static/list', null);
+	}
+	var index=0;
+	var table=$("#ul-select-referrer");
+	table.html("");
+	referrerList.forEach(function(referrer){
+		var name=referrer.staffName+''.trim();
+		if(name.indexOf(inputString)>-1){
+			index++;
+			
+			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
+			li.on("click",function(){
+				var name=jQuery(this).attr('data-name');
+				var id=jQuery(this).attr('data-id');
+				$("#referrer-Id-hidden").val(id);
+				$("#input-referrer").val(name);
+				$("#ul-select-referrer").hide();
+				isShow = false;
+				table.html("");
+				clearError($("#input-referrer"));
+				$("#error-input-referrer").hide();
+			});
+			table.append(li);
+		}
+	});
 }
 //添加用户
 function addUser(){
@@ -325,7 +387,7 @@ function updateProject_ViewInit() {
 		$("#projectSource").val(msg.source);
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
-		initReferrer(msg.source,msg.referrer);
+		initReferrer(msg.source,msg.referrerId);
 		//add wangliming 2016.5.10 11:29 end
 		$(".teamId").val(msg.teamId);
 		$(".userId").val(msg.customerId);
@@ -378,7 +440,7 @@ function updateProjectajax() {
 	var jfstarttime = $(".jfstarttime").val().trim();
 	
 	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
-	var referrer=getReferrer();
+	var referrerId=getReferrer();
 	loadData(function(msg) {
 		if (msg) {
 			//window.location.href = getContextPath() + "/mgr/projects/flow-index";
@@ -403,7 +465,7 @@ function updateProjectajax() {
 		source:source,
 		teamId:teamId,
 		customerId:customerId,
-		referrer : referrer,
+		referrerId : referrerId,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,
@@ -448,7 +510,7 @@ function addProject() {
 	var zzstarttime = $(".zzstarttime").val().trim();
 	var jfstarttime = $(".jfstarttime").val().trim();
 	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
-	var referrer=getReferrer();
+	var referrerId=getReferrer();
 	
 	loadData(function(msg) {
 		if (msg) {
@@ -473,7 +535,7 @@ function addProject() {
 		source : source,
 		teamId : teamId,
 		customerId : customerId,
-		referrer : referrer,
+		referrerId : referrerId,
 		time : {
 			gt : gtstarttime,
 			fa : fastarttime,
@@ -541,7 +603,9 @@ function verifyFrom(){
 	//-->添加 验证推荐人
 	if($("#projectSource").val().trim()=='个人信息下单'){
 		 var referrerInput=$("#input-referrer");
-		 if(!verifyInputNotNull(referrerInput)){
+		 var id=$("#referrer-Id-hidden").val();
+		 if(!verifyInputNotNull(referrerInput) || id==null || id== ''){
+			 setError(referrerInput);
 			 $("#error-input-referrer").show();
 			 return false;
 		 }
@@ -557,6 +621,15 @@ function verifyFrom(){
 	if(!verifyInputNotNull($(".userPhone"))) {
 		$("#error-userPhone").show();
 		return false;
+	}else{
+		var phone=$(".userPhone").val();
+		if(!checkMobile(phone)){
+			$("#error-userPhone").show();
+			setError($(".userPhone"));
+			return false;
+		}else{
+			$("#error-userPhone").hide();
+		}
 	}
 	
 	if(!priceVerifyInputNotNull()){
@@ -577,9 +650,7 @@ function priceVerifyInputNotNull() {
 		if(!verifyInputNotNull(first))return false;
 		if(!checkNumber(first.val())){
 			first.val("");
-			first.focus();
-			var div=first.parent();
-			div.addClass('has-error');
+			setError(first);
 			$("#error-radio-price").show();
 			return false;
 		}else{
@@ -590,9 +661,7 @@ function priceVerifyInputNotNull() {
 		
 		if(!checkNumber(last.val())){
 			last.val("");
-			last.focus();
-			var div=last.parent();
-			div.addClass('has-error');
+			setError(last);
 			$("#error-radio-price").show();
 			return false;
 		}else{
@@ -601,9 +670,7 @@ function priceVerifyInputNotNull() {
 		}
 		if(parseInt(first.val())>parseInt(last.val())){
 			last.val("");
-			last.focus();
-			var div=last.parent();
-			div.addClass('has-error');
+			last(last);
 			$("#error-radio-price").show();
 			return false;
 		}else{
@@ -692,21 +759,44 @@ function showRecommend(){
 		 }
    });
 }
+function setError(input){
+	var div=input.parent();
+	div.addClass('has-error');
+	input.focus();
+}
+
+function clearError(input){
+	var div=input.parent();
+	div.removeClass('has-error');
+}
 //add wangliming 2016.5.10 11:00 begin
 //-->添加联系人相关处理
-function initReferrer(sourece,referrer) {
+function initReferrer(sourece,referrerId) {
 	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
 		 $("#div-friendship").removeClass('hide');
-		 $("#input-referrer").val(referrer);
+		 $("#referrer-Id-hidden").val(referrerId);
+		 loadData(function(msg) {
+				referrerList=msg;
+				
+				referrerList.forEach(function(referrer){
+					var staffId=referrer.staffId+''.trim();
+					if(staffId==referrerId){
+						$("#referrer-Id-hidden").val(staffId);
+						$("#input-referrer").val(referrer.staffName);
+					}
+				});
+				
+		 }, getContextPath() + '/mgr/projects/staff/static/list', null);
 	 }
 	 else{
 		 $("#div-friendship").addClass('hide');
 		 $("#input-referrer").val("");
+		 $("#referrer-Id-hidden").val("");
 	 }
 }
 function getReferrer() {
 	if($("#projectSource").val().trim()=='个人信息下单'){
-		 return  $("#input-referrer").val();
+		 return  $("#referrer-Id-hidden").val();
 	 }
 	 else{
 		 return '';

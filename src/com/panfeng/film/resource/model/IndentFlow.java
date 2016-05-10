@@ -7,10 +7,11 @@ import java.util.Map;
 
 import com.panfeng.film.domain.BaseObject;
 
+
 public class IndentFlow extends BaseObject {
 
 	private static final long serialVersionUID = 927916387241744169L;
-	static String defaultDate = "1970-01-01";
+	public static String defaultDate = "1970-01-01";
 
 	public final static String FLOWENABLE = "Y";
 	public final static String FLOWDISABLE = "N";
@@ -127,7 +128,7 @@ public class IndentFlow extends BaseObject {
 		Map<String, String> time = indentProject.getTime();
 		for (FlowDate flowDate : lDates) {
 			// update time
-			String dateStr = time.get(flowDate.getFdTaskId()).equals("") ? defaultDate
+			String dateStr = time.get(flowDate.getFdTaskId())!=null&&"".equals(time.get(flowDate.getFdTaskId())) ? defaultDate
 					: time.get(flowDate.getFdTaskId());
 			flowDate.setFdStartTime(dateStr);
 		}
