@@ -143,10 +143,9 @@ var="cookiejs" />
 							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" ></select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
 						</div>
-						<div class="divtable hide" id="div-friendship">
+						<div class="divtable" id="div-friendship">
 							<div class="baseinfo-table-key">推荐人</div>
-							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
-							<label class="error-label" id="error-input-referrer">该信息不能为空</label>
+							<input type="text" class="tableinput-baseinfo form-control">
 						</div>
 						
                    </div>
@@ -207,7 +206,7 @@ var="cookiejs" />
 							<div class="final-price-div">
 								<div class="pirce-div mleft" >
 									<input type="text" id="firstinput" class="pirce-input form-control firstinput">
-									<input class="midinput"/>
+									<div class="midinput"></div>
 									<input type="text" id="lastinput" class="pirce-input form-control lastinput"> 元
 									<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 								</div>
@@ -240,7 +239,10 @@ var="cookiejs" />
 				</ul>
 
 				<ul class="ul-option-source" id="ul-select-source">
-				</ul>                          
+				</ul>
+
+				
+
           	</div>
         </div>	
 	</div>

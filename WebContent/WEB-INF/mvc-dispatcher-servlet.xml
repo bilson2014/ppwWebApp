@@ -21,6 +21,8 @@
 	
 	<mvc:view-controller path="/mgr/recover" view-name="/manager/recover" />
 	
+	<mvc:view-controller path="/provider/leader" view-name="/provider/leader" />
+	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

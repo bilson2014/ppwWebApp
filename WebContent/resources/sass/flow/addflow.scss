@@ -342,10 +342,10 @@
 	width: 175px;
 	font-size: $font-size-base;
 	position: absolute;
-	margin-top: -688px;
+	margin-top: -685px;
 	z-index: 999;
 	border: 1px solid $gray-border;
-	margin-left: 650px;
+	margin-left: 425px;
 	background-color: #fff;
 
 	li {
@@ -358,6 +358,13 @@
 		}
 	}
 }
+
+
+
+
+
+
+
 .tableinput-time {
 	font-size: $font-size;
 }
@@ -581,13 +588,14 @@
 }
 
 .midinput{
+    height:7px;
     border:none;
 	border-top:3px solid $gray-light;
 	width:35px;
 	position:relative;
-	top:10px;
 	margin-left:10px;
 	margin-right:10px;
+	display:inline-block;
     
 }
 
