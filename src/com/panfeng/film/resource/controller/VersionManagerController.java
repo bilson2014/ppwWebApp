@@ -39,6 +39,7 @@ import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
 import com.panfeng.film.resource.model.IndentResource;
 import com.panfeng.film.resource.model.Info;
+import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.VersionManager;
@@ -352,7 +353,18 @@ public class VersionManagerController extends BaseController {
 		}
 		return new ArrayList<>();
 	}
-
+	
+	
+	@RequestMapping("/projects/staff/static/list")
+	public List<Staff> getStaffList(final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX
+				+ "/portal/staff/static/list";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toList(str);
+		}
+		return new ArrayList<>();
+	}
 	/**
 	 * 添加简单客户
 	 */

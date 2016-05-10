@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.panfeng.film.domain.BaseObject;
 
+
 public class IndentProject extends BaseObject {
 
 	private static final long serialVersionUID = 4610963805615371485L;
@@ -29,9 +30,9 @@ public class IndentProject extends BaseObject {
 	private long userId = -1; // 视频管家ID
 	
 	//价格字段
-	private double priceFirst =0.00;//预计起始价格
-	private double priceLast =0.00;//预计结束价格
-	private double priceFinish =0.00;//最终价格
+	private Double priceFirst = null;//预计起始价格
+	private Double priceLast = null;//预计结束价格
+	private Double priceFinish = null;//最终价格
 
 	
 	private String managerRealName = null; // 管家名字
@@ -40,19 +41,30 @@ public class IndentProject extends BaseObject {
 	
 	private Long teamId = null; // 供应商ID
 	
-	private String updateTime=null;
+	private String updateTime = null;
 	
-	private String referrer=null; //友情推荐人
+	private String createTime = null;
 	
+	private Long referrerId = null; //友情推荐人Id
 	
-	public String getReferrer() {
-		return referrer;
+	private String referrerName=null;//友情推荐人Name
+	
+	public Long getReferrerId() {
+		return referrerId;
 	}
 
-	public void setReferrer(String referrer) {
-		this.referrer = referrer;
+	public void setReferrerId(Long referrerId) {
+		this.referrerId = referrerId;
 	}
 
+	public String getReferrerName() {
+		return referrerName;
+	}
+
+	public void setReferrerName(String referrerName) {
+		this.referrerName = referrerName;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -167,32 +179,32 @@ public class IndentProject extends BaseObject {
 	// -----------------------------
 	// 冗余taskdate--------------------------------------
 
-	public double getPriceFirst() {
+	public int getState() {
+		return state;
+	}
+
+	public Double getPriceFirst() {
 		return priceFirst;
 	}
 
-	public void setPriceFirst(double priceFirst) {
+	public void setPriceFirst(Double priceFirst) {
 		this.priceFirst = priceFirst;
 	}
 
-	public double getPriceLast() {
+	public Double getPriceLast() {
 		return priceLast;
 	}
 
-	public void setPriceLast(double priceLast) {
+	public void setPriceLast(Double priceLast) {
 		this.priceLast = priceLast;
 	}
 
-	public double getPriceFinish() {
+	public Double getPriceFinish() {
 		return priceFinish;
 	}
 
-	public void setPriceFinish(double priceFinish) {
+	public void setPriceFinish(Double priceFinish) {
 		this.priceFinish = priceFinish;
-	}
-
-	public int getState() {
-		return state;
 	}
 
 	public void setState(int state) {
@@ -266,6 +278,14 @@ public class IndentProject extends BaseObject {
 
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 
 }

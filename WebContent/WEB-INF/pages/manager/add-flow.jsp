@@ -143,7 +143,8 @@ var="cookiejs" />
 							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" ></select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
 						</div>
-						<div class="divtable" id="div-friendship">
+						<div class="divtable hide" id="div-friendship">
+							<input type="hidden" id="referrer-Id-hidden">
 							<div class="baseinfo-table-key">推荐人</div>
 							<input type="text" class="tableinput-baseinfo form-control">
 						</div>
@@ -171,7 +172,7 @@ var="cookiejs" />
 						<div class="divtable" id="div-userPhone">
 							<div class="baseinfo-table-key">客户电话</div>
 							<input type="text" class="tableinput-baseinfo form-control userPhone">
-							<label class="error-label" id="error-userPhone" >该信息不能为空</label>
+							<label class="error-label" id="error-userPhone" >号码有误</label>
 						</div>
                    </div>
 				<div class="baseinfo-table">
@@ -198,7 +199,6 @@ var="cookiejs" />
 					
 					<div class="divtable">
 						<div class="baseinfo-table-key">项目价格</div>
-						<input style="visibility: hidden;">
 					</div>
 
 					<div class="divtable pospricediv">
@@ -216,7 +216,6 @@ var="cookiejs" />
 					<div class="divtable finishdiv finish">
 							<div class="baseinfo-table-key">项目最终价格</div>
 							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput"/>元
-
 					</div>
 					<div>
                     <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>
@@ -228,7 +227,6 @@ var="cookiejs" />
 	  			<div class="baseinfo-table">
 					<div class="divtable">
 						<div class="baseinfo-table-key" >项目描述</div>
-	<!-- 					<input style="visibility: hidden;"> -->	
 					</div>
 					<textarea rows="2" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
@@ -238,11 +236,8 @@ var="cookiejs" />
 				<ul class="ul-option-team" id="ul-select-team">
 				</ul>
 
-				<ul class="ul-option-source" id="ul-select-source">
-				</ul>
-
-				
-
+				<ul class="ul-option-source" id="ul-select-referrer">
+				</ul>                          
           	</div>
         </div>	
 	</div>
