@@ -281,7 +281,7 @@ var="cookiejs" />
 		</div>
 	</div>
 	<div class="indent-btn-div">
-		<button class="indent-btn">确认</button>
+		<button class="indent-btn" id="indent-btn">确认</button>
 		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
 	</div>  	
 </div>

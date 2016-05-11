@@ -479,10 +479,16 @@ function submitForm(){
 	var key=getCurrentProject();
 	//var body=$("body");
 	var path=getContextPath()+ "/mgr/projects/flow-index";
-	var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
+	var formBody = '<form action="'+path+'" method="post" oncomplete="false" id="submitkey" style="display: none;">';
+	formBody += '<input type="text" name="key" value="'+ key +'" style="display: none">';
+	formBody += '</form>';
+	$('#indent-btn').append(formBody);
+	$('#submitkey').submit().remove();
+	/*var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
 	var input=$("<input type=\"text\" name=\"key\" style=\"display: none\">");
 	input.val(key);
 	form.append(input);
+	$('#upload-info-btn-id').append(form);*/
 	form.submit();
 }
 function addProject() {
