@@ -439,7 +439,7 @@ function updateProjectajax() {
 	var zzstarttime = $(".zzstarttime").val().trim();
 	var jfstarttime = $(".jfstarttime").val().trim();
 	
-	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
+	//获取推荐人，是友情推荐时为 “人名” 否则为 ‘’
 	var referrerId=getReferrer();
 	loadData(function(msg) {
 		if (msg) {
@@ -770,7 +770,7 @@ function clearError(input){
 	div.removeClass('has-error');
 }
 //add wangliming 2016.5.10 11:00 begin
-//-->添加联系人相关处理
+//-->添加推荐人相关处理
 function initReferrer(sourece,referrerId) {
 	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
 		 $("#div-friendship").removeClass('hide');
