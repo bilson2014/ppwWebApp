@@ -9,9 +9,9 @@ public class WechatToken extends BaseObject {
 
 	private static final long serialVersionUID = 2862541565626913853L;
 
-	final private String appid = "wx3d453a7abb5fc026";
+	private String appid = null;
 	
-	final private String secret = "6184e93dee1f145ad49977d3c1456391";
+	private String secret = null;
 	
 	private String code = null; // 参数
 	
@@ -117,8 +117,16 @@ public class WechatToken extends BaseObject {
 		return appid;
 	}
 
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
 	public String getSecret() {
 		return secret;
 	}
-	
+
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
+
 }

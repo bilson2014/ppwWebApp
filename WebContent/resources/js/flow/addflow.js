@@ -619,6 +619,7 @@ function verifyFrom(){
 	//add by wangliming 2016-5-10 end
 	if(!verifyInputNotNull( $("#userName"))) {
 		$("#error-userName").show();
+		return false;
 	}
 	if(!verifyInputNotNull($(".userContact"))){
 		$("#error-userContact").show();

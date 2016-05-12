@@ -51,6 +51,7 @@
 			<mvc:exclude-mapping path="/provider/checkExisting" />
 			<mvc:exclude-mapping path="/provider/info/register" />
 			<mvc:exclude-mapping path="/provider/info/recover" />
+			<mvc:exclude-mapping path="/provider/login/**" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />
 		</mvc:interceptor>
 		<!-- 视频管家登陆拦截器 -->

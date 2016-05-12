@@ -46,9 +46,13 @@
 	<script src="${commonJs }"></script>
 	<script src="${providerLoginJs }"></script>
 	
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 </head>
 <body>
 	<input type="hidden" id="action" value="${action }"/>
+	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
+	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
 	<div class="index-content-wrap">
 	
 		<div class="header">
@@ -229,6 +233,39 @@
 					</form>
 				</div>
 			</div>
+			
+			<!-- 账号绑定 start -->
+			<div class="bind-container hide">
+				<div class="well">
+					<h2 >供应商账号绑定</h2>
+					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="bind-form">
+						<fieldset>
+							<!-- 提示框 -->
+							<div class="tooltip-show-bind" style="display: none;">
+								<label class="tooltip-message-bind"></label>
+							</div>
+							<div class="form-group">
+								<input type="text" autofocus="autofocus" autocomplete="off" tabindex="1" maxlength="255" size="255" class="form-control" id="bind_loginName" placeholder="请输入用户名">
+							</div>
+							<div class="form-group">
+								<input type="password" autofocus="autofocus" autocomplete="off" tabindex="2" maxlength="16" size="16" class="form-control" id="bind_password" placeholder="请输入新密码">
+							</div>
+							<div class="form-group">
+								<input type="text" id="kaptcha_code_bind" class="form-control verfication" tabindex="3" placeholder="图片验证码" autocomplete="off" maxlength="4">
+								<label class="control-label">
+									<img alt="图片验证码" src='' id="kaptcha_pic_bind" class="btn-validation">
+								</label>
+							</div>
+							
+						</fieldset>
+						<div class="actions">
+							<input class="btn btn-danger btn-login" id="bindBt" type="button" value="立即绑定">
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- 账号绑定 end -->
+			
 		</div>
 	</div>
 </body>
