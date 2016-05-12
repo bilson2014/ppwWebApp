@@ -1,176 +1,238 @@
-$().ready(
-		function() {
+ var step = 1;
+$().ready(function(){
+  
+    resumeError();
+	$('#checkbtn').on('click',function(){
+		  resumeError();
+		 checkStepOneData();
+	});
+	$('#surebtn').on('click',function(){
+		  resumeError();
+		 checkStepTwoData();
+	});
+    $('#backbtn').on('click',function(){
+         step=1;
+         showStepOne();
+	});
 
-loadflowdata(); 
-
-
+  
 
 });
 
+function checkStepOneData(){
+ if(step==1){
 
-//加载流程模块
-function loadflowdata() {
-	var key = getCurrentProject();
-	loadData(
-		function(msg) {
-			//构建流程结构对象，填充流程时间信息
-			stepListJson = new Array(msg.length);
-			for (var i = 0; i < msg.length; i++) {
-				stepListJson[i] = {
-					StepNum : (i + 1),
-					StepText : msg[i].name,
-					StepDescription : msg[i].description
-				};
-				var time = msg[i].scheduledTime;
-				//填充预计时间
-				if (time != null) {
-					if (time.fdStartTime != null && time.fdStartTime != '') {
-						$("#et_" + msg[i].taskDefinitionKey).text(
-								time.fdStartTime);
-					}
-				}
-				//填充实际时间
-				if (msg[i].createTime != null && msg[i].createTime != '') {
-					$("#cu_" + msg[i].taskDefinitionKey).text(
-							msg[i].createTime.split(' ')[0]);
-				}
-			}
-			// 当前进行到第几步；默认为第一步
-			var currentStep = 1;
-			//创建流程结构对象
-			StepTool = new Step_Tool_dc("test", "mycall");
-			// 使用工具对，页面绘制相关流程步骤图形显示
-			StepTool.drawStep(currentStep, stepListJson);
-			//配置当前正在执行中的任务
-			loadData(
-				function(msg) {
-					// 时间逻辑！检测任务是否超时，设置状态提示
-					$("#cu_" + msg.taskDefinitionKey).text(
-							getCurrentTime());
-					var et_date = $("#et_" + msg.taskDefinitionKey)
-							.text();
-					var overdue = dateCompare(getCurrentTime(), et_date);
-					if (overdue) {
-						resetTime('curr');
-						$("#cu_" + msg.taskDefinitionKey).addClass(
-								'get-step');
-					}
-					
-					var times=$("div[id^='cu_']");
-					var isEnd=false;
-					for (var int = 0; int < times.length; int++) {
-						var item=times[int];
-						var id=item.id;
-						var taskKey;
-						if(id!=null&&id!=''&&(id.indexOf('_')!=-1)){
-							var idarray=id.split('_');
-							taskKey=idarray[1];
-						}
-						if(isEnd){
-							$(item).text("");
-						}
-						if(taskKey==msg.taskDefinitionKey)
-							isEnd=true;
-					}
-					
-					//填充当前任务描述信息
-					$(".description-text").text(msg.description);
-					//迁移节点
-					var num;
-					$(".test ul li").each(function(index) {
-						num = jQuery(this).attr("data-value");
-						var text = jQuery(this).attr("data-text");
-						if (text.trim() == msg.name.trim()) {
-							StepTool.drawStep(num, stepListJson);
-							currentIndex = num;
-							return;
-						}
-					});
-					//暂停状态
-					if (msg.suspended) {
-						$(".pausebtn").text("恢复");
-						$(".flowbtn").removeClass('red-btn');
-						$(".pausebtn").removeClass('gray-btn');
-						$(".pausebtn").addClass('red-btn');
-						$(".flowbtn").addClass('gray-btn');
-						$(".pausebtn").off("click");
-						//配置按钮功能为恢复项目运行
-						$(".pausebtn").on("click", function() {
-							resumeBtn();
-							$(".pausebtn").text("暂停");
-							$(".flowbtn").removeClass('gray-btn');
-							$(".pausebtn").removeClass('red-btn');
-							$(".pausebtn").addClass('gray-btn');
-							$(".flowbtn").addClass('red-btn');
-							$(".pausebtn").off("click");
-							$(".pausebtn").on("click", function() {
-								pauseBtn();
-								loadflowdata();
-							});
-						});
-					}
-					if (msg.name.trim() == '任务不存在') {
-						StepTool.drawStep(num, stepListJson);
-						currentIndex = num;
-						return;
-					}
-					//添加特效时间
-					$(".drop-content a").each(function(index) {
-						$(this).css({
-							'animation-delay' : (index / 10) + 's'
-						});
-					});
-					//配置弹出信息
-					(function() {
-						var init, isMobile, setupExamples, setupHero, _Drop
-						_Drop = Drop.createContext({
-							classPrefix : 'drop'
-						});
-						init = function() {
-							return setupExamples();
-						};
-						setupExamples = function() {
-							return $('.test').each(function() {
-								var $example, $target, content, drop, openOn, theme;
-								$example = $(this);
-								theme = $example
-										.data('theme');
-								openOn = $example
-										.data('open-on')
-										|| 'click';
-								$target = $example
-										.find('.drop-target');
-								$target.addClass(theme);
-								content = function() {
-									return $('.drop-content').html();
-								};
-								for (var int = 0; int < $target.length; int++) {
-									drop = new _Drop(
-									{
-										target : $target[int],
-										classes : theme,
-										position : 'bottom right',
-										constrainToWindow : true,
-										constrainToScrollParent : false,
-										openOn : openOn,
-										content : content
-									});
-									//设置弹出框内部信息
-									drop.on("open",function() {
-										var text = jQuery(this.target).attr("data-description");
-										$(".description-c").html("<span class='word-size'>"+ text+ "</span>");
-										$(".content-title").html("<p class='word-title'>"+ jQuery(this.target).text()+ "阶段</p>");
-									});
-								}
-							});
-						};
-						init();
-					}).call(this);
-				}, getContextPath() + '/mgr/flow/getCurrectTask', $
-						.toJSON({
-							id : key
-				}));
-			}, getContextPath() + '/mgr/flow/getnodes', $.toJSON({
-				id : key
-			}));
+      if(checkStepOne()){
+      	step=2;
+      	showStepTwo();
+      }
+	 }
 }
+
+function checkStepTwoData(){
+ if(step==2){
+      if(checkStepTwo()){
+      	infoSave();
+      	alert('success');
+      }
+	 }
+}
+
+
+function resumeError(){
+
+		$('#company-name-error').hide();
+		$('#company-email-error').hide();
+		$('#company-linkman-error').hide();
+		$('#company-webchat-error').hide();
+		$('#company-phoneNumber-error').hide();
+		$('#company-address-error').hide();
+		$('#company-qq-error').hide();
+	    $('#business-checkbox-error').hide();
+	    $('#company-teamDesc-error').hide();
+		$('#company-scale-error').hide();
+        $('#company-demand-error').hide();
+}
+
+function showStepOne(){
+  $('.step-one-div').addClass('hide');
+  $('.step-two-div').removeClass('hide');
+}
+
+function showStepTwo(){
+ $('.step-one-div').removeClass('hide');
+ $('.step-two-div').addClass('hide');
+}
+
+
+
+function checkStepOne(){
+   		    var name = $('#company-name').val().trim(); // 公司名称
+			var email = $('#company-email').val().trim(); // 公司邮箱
+			var linkman = $('#company-linkman').val().trim(); // 联系人
+			var webchat = $('#company-webchat').val().trim(); // 微信
+			var qq = $('#company-qq').val().trim(); // QQ
+			var phoneNumber = $('#company-phoneNumber').val().trim();
+			var address = $('#company-address').val().trim();
+
+			
+			if(name == '' || name == null || name == undefined){
+				$('#company-name-error').show();
+                $('#company-name-error').text('请输入公司名称!');
+				$('#company-name').focus();
+				return false;
+			}
+
+			if(linkman == '' || linkman == null || linkman == undefined){
+				$('#company-linkman-error').show();
+                $('#company-linkman-error').text('请输入联系人!');
+				$('#company-linkman').focus();
+				return false;
+			}
+			
+			if(phoneNumber == '' || phoneNumber == null || phoneNumber == undefined){
+				$('#company-phoneNumber-error').show();
+                $('#company-phoneNumber-error').text('请输入联系号码!');
+				$('#company-phoneNumber').focus();
+				return false;
+			}
+
+			// 验证电话号码正确性
+			if(!checkMobile(phoneNumber)){
+				$('#company-phoneNumber-error').show();
+                $('#company-phoneNumber-error').text('手机号码格式不正确');
+				$('#company-phoneNumber').focus();
+				return false;
+			}
+
+				if(webchat == '' || webchat == null || webchat == undefined){
+				$('#company-webchat-error').show();
+                $('#company-webchat-error').text('请输入微信号!');
+				$('#company-webchat').focus();
+				return false;
+			}
+			
+			if(qq == '' || qq == null || qq == undefined){
+			    $('#company-qq-error').show();
+                $('#company-qq-error').text('请输入QQ号码!');
+				$('#company-qq').focus();
+				return false;
+			}
+			
+			if(email == '' || email == null || email == undefined){
+			    $('#company-email-error').show();
+                $('#company-email-error').text('请输入公司邮箱!');
+				$('#company-email').focus();
+				return false;
+			}
+			
+			// 验证邮箱正确性
+			if(!checkEmail(email)){
+				$('#company-email-error').show();
+                $('#company-email-error').text('邮箱格式不正确!');
+				$('#company-email').focus();
+				return false;
+			}
+
+			if(address == '' || address == null || address == undefined){
+			    $('#company-address-error').show();
+                $('#company-address-error').text('请输入公司地址!');
+				$('#company-address').focus();
+				return false;
+			}
+			return true;
+}
+
+function checkStepTwo(){
+
+			var business = getBusinessVal(); // 业务范围
+			var teamDesc = $('#company-teamDesc').val().trim(); // 公司简介
+			var scale = $('#company-scale').val().trim(); // 公司规模
+            var demand = $('#company-demand').val().trim();
+
+
+            	if(business == '' || business == null || business == undefined){
+			    $('#business-checkbox-error').show();
+                $('#business-checkbox-error').text('请输入对客户的需求!');
+				return false;
+			}
+
+				if(teamDesc == '' || teamDesc == null || teamDesc == undefined){
+			    $('#company-teamDesc-error').show();
+                $('#company-teamDesc-error').text('请输入公司简介!');
+				$('#company-teamDesc').focus();
+				return false;
+			}
+
+				if(scale == '' || scale == null || scale == undefined){
+			    $('#company-scale-error').show();
+                $('#company-scale-error').text('请输入公司规模!');
+				$('#company-scale').focus();
+				return false;
+			}
+
+				if(demand == '' || demand == null || demand == undefined){
+			    $('#company-demand-error').show();
+                $('#company-demand-error').text('请输入对客户的需求!');
+				$('#company-demand').focus();
+				return false;
+			}
+			return true;
+}
+
+function getBusinessVal(){
+	var busArr;
+	$('input[name="business"]:checked').each(function(i){
+		if(0 == i){
+			busArr = this.value;
+		}else {
+			busArr += ',' + this.value;
+		}
+	});
+	return busArr;
+}
+
+
+function infoSave(){
+	
+	if(checkData(1)){ // 检测数据完整性
+		// TODO 如果更改手机号码的话，验证手机号码是否已经注册
+		// 执行update方法
+		loadData(function(flag){
+			if(flag){
+				// 更新成功
+				successToolTipShow();
+			}else{
+				// 更新失败
+				toolTipShow('请重新保存');
+			}
+		}, getContextPath() + '/provider/update/teamInfomation', $.toJSON({
+			teamId : $('#company-id').val().trim(),
+			teamName : $('#company-name').val().trim(),
+			email : $('#company-email').val().trim(),
+			address : $('#company-address').val().trim(),
+			teamDescription : $('#company-teamDesc').val().trim(),
+			linkman : $('#company-linkman').val().trim(),
+			webchat : $('#company-webchat').val().trim(),
+			qq : $('#company-qq').val().trim(),
+			establishDate : $('#company-establishDate').val(),
+			officialSite : $('#company-officialSite').val(),
+			city : $('#company-city option:selected').val(),
+			priceRange : $('#company-priceRange option:selected').val(),
+			infoResource : $('#company-infoResource option:selected').val(),
+			business : getBusinessVal(),
+			scale : $('#company-scale').val().trim(),
+			businessDesc : $('#company-businessDesc').val().trim(),
+			demand : $('#company-demand').val().trim(),
+			description : $('#company-description').val().trim(),
+			phoneNumber : $('#company-phoneNumber').val().trim()
+		}));
+	}
+	
+	
+}
+
+
+
+
+

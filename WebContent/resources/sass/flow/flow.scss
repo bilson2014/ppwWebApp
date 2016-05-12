@@ -80,8 +80,8 @@
 		}
 		.indent-selected {
 			font-size: $font-size;
-			color: red;
-			border-left: solid 2px red;
+			color: #fa7872;
+			border-left: solid 2px  #fa7872;
 			text-decoration: none;
 		}
 		.indent-more {
@@ -109,23 +109,8 @@
 		.mo-time {
 			margin-top: 10px;
 		}
-		.time-div {
-			width: 83px;
-			color: $gray;
-			font-size: $font-size-base;
-			display: inline-block;
-			text-align: center;
-		}
-		.div-margin {
-			margin-left: 50px;
-		}
-		.div-margin-mid {
-			margin-left: 45px;
-		}
-		.div-margin-sm {
-			margin-left: 25px;
-		}
 		.time-div-title {
+
 			margin-top: 5px;
 			margin-bottom: 5px;
 			font-size: $font-size;
@@ -200,7 +185,7 @@
 			line-height: 15px;
 		}
 		.indent-content {
-			width: 150px;
+			width: 160px;
 			color: $gray;
 			display: inline-block;
 			font-size: $font-size-base;
@@ -208,6 +193,20 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
+
+			
+		.indent-content-mid {
+			width: 220px;
+			color: $gray;
+			display: inline-block;
+			font-size: $font-size-base;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+
+
 		.indent-margin {
 			width: 100px;
 			margin-left: 50px;
@@ -842,4 +841,97 @@ img {
 	margin: auto;
 	position: relative;
 	top: 80px;
+}
+.time-div {
+	color: $gray;
+	font-size: $font-size-base;
+	display: inline-block;
+	text-align: center;
+
+
+	.hovertime {
+		margin: 0 auto;
+	    width: 100px;
+	    height: 50px;
+	    border: solid 1px #fff;
+	    @include box-shadow(0px 1px 3px lighten(#999,20%));
+
+	    dt{
+	    padding-top:5px;
+	    }
+	}
+
+
+	li {
+		line-height: 20px;
+	}
+
+	img{
+	height:10px;
+	}
+}
+
+
+.firstline {
+	width: 140px;
+}
+.secondline{
+	width:150px;
+}
+.thirdline{
+	width:120px;
+}
+.fourline{
+	width:137px;
+}
+
+.fiveline{
+	width:120px;
+}
+
+
+
+
+.div-margin-sm {
+     position:relative;
+     left:5px;
+}
+
+.div-margin-mid {
+     position:relative;
+     left:-4px;
+}
+
+.div-margin-large{
+     position:relative;
+     left:-8px;
+}
+
+.div-margin-xl{
+     position:relative;
+     left:-12px;
+}
+
+.li-top{
+	position:relative;
+	top:-4px;
+}
+
+.timeword{
+	font-size:$font-size-base;
+	color:$gray;
+}
+
+.stepword{
+	font-size:$font-size-sm;
+	color:$gray-light;
+}
+.timeout{
+	color:$red-base;
+}
+.doing{
+	color:$gold-yellow;
+}
+.opacity-li{
+	opacity:0;
 }

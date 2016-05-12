@@ -169,29 +169,90 @@
 						<a href="#" class="drop-a content-title" ></a>
 			            <a href="#" class="description-c"></a>
 				</div>
-				<div class="descriptiondiv top-margin">
+
+
+                <div class="descriptiondiv top-margin">
+                
+                <ul class="time-div firstline div-margin-sm ">
+                	<li class="timeword" id="cu_gt" ></li>
+                	<li class="stepword" id="stepword_gt">未完成</li>
+                	<li><img class="firstline" src="/resources/images/flow/timeline.png"/></li>
+                	<li class="li-top  opacity-li" id="div_gt"><dl class="hovertime">
+                		   <dt class="stepword">计划完成时间</dt>
+                		   <dd class="timeword" id="et_gt">未设置</dd>
+                        </dl>
+                	</li>
+                </ul>
+
+                <ul class="time-div secondline">
+                	<li class="timeword" id="cu_fa"></li>
+                	<li class="stepword" id="stepword_fa">未完成</li>
+                	<li><img class="secondline" src="/resources/images/flow/timeline.png"/></li>
+                	<li class="li-top opacity-li" id="div_fa"><dl class="hovertime">
+                		   <dt class="stepword">计划完成时间</dt>
+                		   <dd class="timeword" id="et_fa">未设置</dd>
+                        </dl>
+                	</li>
+                </ul>
+
+                <ul class="time-div thirdline div-margin-mid">
+                	<li class="timeword" id="cu_sw"></li>
+                	<li class="stepword" id="stepword_sw" >未完成</li>
+                	<li><img class="thirdline" src="/resources/images/flow/timeline.png"/></li>
+                	<li class="li-top  opacity-li" id="div_sw" ><dl class="hovertime">
+                		   <dt class="stepword">计划完成时间</dt>
+                		   <dd class="timeword" id="et_sw">未设置</dd>
+                        </dl>
+                	</li>
+                </ul>
+
+                 <ul class="time-div fourline div-margin-large">
+                	<li class="timeword" id="cu_zz"></li>
+                	<li class="stepword " id="stepword_zz">未完成</li>
+                	<li><img class="fourline " src="/resources/images/flow/timeline.png"/></li>
+                	<li class="li-top opacity-li" id="div_zz"><dl class="hovertime">
+                		   <dt class="stepword">计划完成时间</dt>
+                		   <dd class="timeword" id="et_zz">未设置</dd>
+                        </dl>
+                	</li>
+                </ul>
+
+                 <ul class="time-div fiveline  div-margin-xl">
+                	<li class="timeword" id="cu_jf"></li>
+                	<li class="stepword " id="stepword_jf">完成</li>
+                	<li><img class="fiveline " src="/resources/images/flow/timeline.png"/></li>
+                	<li class="li-top opacity-li" id="div_jf"><dl class="hovertime">
+                		   <dt class="stepword" >计划完成时间</dt>
+                		   <dd class="timeword" id="et_jf">未设置</dd>
+                        </dl>
+                	</li>
+                </ul>
+                </div>	
+
+
+				<!-- <div class="descriptiondiv top-margin">
 					<div class="description-title-text ">项目进度：</div>
 					<div class="time-div-title">预计完成日期</div>
 					<div >
-					    <div class="time-div div-margin-sm " id="et_gt"></div>
-                       	<div class="time-div div-margin" id="et_fa"></div>
-                       	<div class="time-div div-margin" id="et_sw"></div>
-                       	<div class="time-div div-margin-mid" id="et_zz"></div>
-                       	<div class="time-div div-margin-mid"  id="et_jf"></div>
+					    <div aclss="time-div div-margin-sm" id="et_gt"></div>
+				                       	<div class="time-div div-margin" id="et_fa"></div>
+				                       	<div class="time-div div-margin" id="et_sw"></div>
+				                       	<div class="time-div div-margin-mid" id="et_zz"></div>
+				                       	<div class="time-div div-margin-mid"  id="et_jf"></div>
 					</div>
-                    <div class="time-div-title">实际完成日期</div>
-                  	<div class="mo-time">
+				                    <div class="time-div-title">实际完成日期</div>
+				                  	<div class="mo-time">
 					    <div class="time-div div-margin-sm " id="cu_gt"></div>
-                       	<div class="time-div div-margin" id="cu_fa"></div>
-                       	<div class="time-div div-margin" id="cu_sw"></div>
-                       	<div class="time-div div-margin-mid"  id="cu_zz"></div>
-                       	<div class="time-div div-margin-mid" id="cu_jf"></div>
+				                       	<div class="time-div div-margin" id="cu_fa"></div>
+				                       	<div class="time-div div-margin" id="cu_sw"></div>
+				                       	<div class="time-div div-margin-mid"  id="cu_zz"></div>
+				                       	<div class="time-div div-margin-mid" id="cu_jf"></div>
 					</div>
 					<div class="description-title-text" style="display: none">阶段描述：</div>
 					<br>
 					<br> 
 					<label class="description-text" style="display: none"></label>
-				</div>
+				</div> -->
 				<r:multPermission uri3="/completeTask" uri2="/suspendProcess" uri="/project/cancelProject">
 					<div class="flowbtndiv" id="btndiv-id">
 						<r:permission uri="/completeTask">
@@ -204,7 +265,7 @@
 						<button class="cancelbtn gray-btn btn-margin">取消</button>
 						</r:permission>
 						<r:permission uri="/jumpPrevTask">
-						<button class="prev-task gray-btn btn-margin">上一步</button>
+						<button class="prev-task gray-btn btn-margin hide">上一步</button>
 						</r:permission>
 					</div>
 				</r:multPermission>
@@ -222,37 +283,37 @@
 							<li>
 								<div class="indent-title">项目信息</div>
 								<div class="indent-content">项目编号</div>
-								<div class="indent-content">项目名称</div>
+								<div class="indent-content-mid">项目名称</div>
 								<div class="indent-content">项目预算区间</div>
 							</li>
 							<li class="li-margin">
 								<div class="indent-title "></div>
 								<div class="indent-content content-color projectId"></div>
-								<div class="indent-content content-color projectName"></div>
+								<div class="indent-content-mid content-color projectName"></div>
 								<div class="indent-content content-color viedoPrice "></div>
 							</li>
 							<li>
 								<div class="indent-title">客户信息</div>
 								<div class="indent-content">客户名称</div>
-								<div class="indent-content">客户联系人</div>
+								<div class="indent-content-mid">客户联系人</div>
 								<div class="indent-content">客户电话</div>
 							</li>
 							<li class="li-margin">
 								<div class="indent-title "></div>
 								<div class="indent-content content-color userName"></div>
-								<div class="indent-content content-color userContact"></div>
+								<div class="indent-content-mid content-color userContact"></div>
 								<div class="indent-content content-color userPhone"></div>
 							</li>
 							<li>
 								<div class="indent-title">供应商信息</div>
 								<div class="indent-content ">供应商名称</div>
-								<div class="indent-content ">供应商联系人</div>
+								<div class="indent-content-mid ">供应商联系人</div>
 								<div class="indent-content ">供应商电话</div>
 							</li>
 							<li class="li-margin">
 								<div class="indent-title"></div>
 								<div class="indent-content content-color teamName"></div>
-								<div class="indent-content content-color teamContact"></div>
+								<div class="indent-content-mid content-color teamContact"></div>
 								<div class="indent-content content-color teamPhone"></div>
 							</li>
 							<li>

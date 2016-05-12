@@ -12,6 +12,7 @@ var oTimer;
 $().ready(
 		function() {
 			init();
+			showOrderTime();
 			loadprojecctlist(false,false);
 			$(".flowbtn").on("click", function() {
 				$("#toolbar-check").modal('show');
@@ -293,12 +294,16 @@ function loadflowdata() {
 					if (time.fdStartTime != null && time.fdStartTime != '') {
 						$("#et_" + msg[i].taskDefinitionKey).text(
 								time.fdStartTime);
+					}else{
+						$("#et_" + msg[i].taskDefinitionKey).text(
+								'未设置');
 					}
 				}
 				//填充实际时间
 				if (msg[i].createTime != null && msg[i].createTime != '') {
 					$("#cu_" + msg[i].taskDefinitionKey).text(
 							msg[i].createTime.split(' ')[0]);
+				
 				}
 			}
 			// 当前进行到第几步；默认为第一步
@@ -318,11 +323,26 @@ function loadflowdata() {
 					var overdue = dateCompare(getCurrentTime(), et_date);
 					if (overdue) {
 						resetTime('curr');
-						$("#cu_" + msg.taskDefinitionKey).addClass(
-								'get-step');
+						$("#stepword_" + msg.taskDefinitionKey).addClass(
+								'timeout');
+					}else{
+						resetTime('curr');
+                        $("#stepword_" + msg.taskDefinitionKey).addClass(
+								'doing');
 					}
 					
-					var times=$("div[id^='cu_']");
+					//设置步骤状态
+					var lablearray=$("li[id^='stepword_']");
+					for (var int = 0; int < lablearray.length; int++) {
+						var currLable=lablearray[int];
+						var id='stepword_'+msg.taskDefinitionKey;
+						if(id==currLable.id){
+							break;
+						}
+						$(currLable).text('完成');
+					}
+					
+					var times=$("li[id^='cu_']");
 					var isEnd=false;
 					for (var int = 0; int < times.length; int++) {
 						var item=times[int];
@@ -347,6 +367,11 @@ function loadflowdata() {
 						num = jQuery(this).attr("data-value");
 						var text = jQuery(this).attr("data-text");
 						if (text.trim() == msg.name.trim()) {
+							if(parseInt(num)==1){
+								$('.prev-task').addClass('hide');
+							}else{
+								$('.prev-task').removeClass('hide');
+							}
 							StepTool.drawStep(num, stepListJson);
 							currentIndex = num;
 							return;
@@ -442,11 +467,16 @@ function loadflowdata() {
 }
 function resetTime(mode) {
 	if(mode!='curr'){
-		$("div[id^='et_']").html("");
-		$("div[id^='cu_']").html("");
-		$("div[id^='cu_']").removeClass('get-step');
+		$("dd[id^='et_']").html("");
+		$("dd[id^='cu_']").html("");
+		$("li[id^='stepword_']").html('未完成');
+		$("li[id^='stepword_']").removeClass('timeout');
+		$("li[id^='stepword_']").removeClass('doing');
 	}else{
-		$("div[id^='cu_']").removeClass('get-step');
+		
+		$("li[id^='stepword_']").removeClass('timeout');
+		$("li[id^='stepword_']").removeClass('doing');
+		
 	}
 }
 //上传文件
@@ -466,6 +496,7 @@ function uploadfile() {
 			// delete by guoyang, 2016-04-19 04:19 begin
 			// delete by guoyang, 2016-04-19 04:19 end
 			loadfiledata(false);
+			loadcommentdata(false);
 			// add by guoyang, 2016-04-19 03:19 begin
 			// -> 停止计时器
 			window.clearInterval(oTimer); // 停止计时器
@@ -988,6 +1019,8 @@ function dateCompare(date1, date2) {
 	var date1 = new Date(time1);
 	var time2 = date2.replace(/-/g, "/");
 	var date2 = new Date(time2);
+	
+	//TODO:time
 	if (date1.getTime() >= date2.getTime())
 		return true;
 	else
@@ -1019,3 +1052,51 @@ Array.prototype.contains = function(element) {
     }  
     return false;  
 }
+// add by lt, 2016-05-11 14:56 begin
+// -> 添加hover显示时间
+function showOrderTime(){
+
+	$('#stepword_gt').mouseover(function(){
+          $('#div_gt').removeClass('opacity-li');
+	});
+
+	$('#stepword_gt').mouseout(function(){
+          $('#div_gt').addClass('opacity-li');
+	});
+	
+	$('#stepword_fa').mouseover(function(){
+          $('#div_fa').removeClass('opacity-li');
+	});
+
+	$('#stepword_fa').mouseout(function(){
+          $('#div_fa').addClass('opacity-li');
+	});
+    $('#stepword_sw').mouseover(function(){
+          $('#div_sw').removeClass('opacity-li');
+	});
+
+	$('#stepword_sw').mouseout(function(){
+          $('#div_sw').addClass('opacity-li');
+	});
+
+	  $('#stepword_zz').mouseover(function(){
+          $('#div_zz').removeClass('opacity-li');
+	});
+
+	$('#stepword_zz').mouseout(function(){
+          $('#div_zz').addClass('opacity-li');
+	});
+
+	$('#stepword_jf').mouseover(function(){
+          $('#div_jf').removeClass('opacity-li');
+	});
+
+	$('#stepword_jf').mouseout(function(){
+          $('#div_jf').addClass('opacity-li');
+	});
+
+
+
+}
+
+
