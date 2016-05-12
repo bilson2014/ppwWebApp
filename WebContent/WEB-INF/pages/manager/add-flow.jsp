@@ -147,13 +147,13 @@ var="cookiejs" />
 							<input type="hidden" id="referrer-Id-hidden">
 							<div class="baseinfo-table-key">推荐人</div>
 							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
-							<label class="error-label" id="error-input-referrer">该信息不能为空</label>
+							<label class="error-label" id="error-input-referrer">该信息有误</label>
 						</div>
 						
                    </div>
 
                    <div class="baseinfo-table">
-                   		<input type="hidden" class="userId">
+                   		<input type="hidden" class="userId" id="userId">
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户信息</div>
 							<div class="baseinfo-table-key-add" id="add-user">添加用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</div>
@@ -162,7 +162,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">客户名称</div>
 							<div class="tableinput-baseinfo-noborder userName" id="userName-id">
 								<input id="userName"  class="info-input border-gray form-control"/>
-								<label class="username-error-label" id="error-userName">该信息不能为空</label>
+								<label class="username-error-label" id="error-userName">信息输入有误</label>
 							</div>
 						</div>
 						<div class="divtable" id="div-userContact">
@@ -177,7 +177,7 @@ var="cookiejs" />
 						</div>
                    </div>
 				<div class="baseinfo-table">
-						<input type="hidden" class="teamId">
+						<input type="hidden" class="teamId" id="teamId">
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商信息</div>
 						</div>
@@ -185,6 +185,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">供应商名称</div>
 							<div class="tableinput-baseinfo-noborder teamName" id="teamName-id" >
 								<input id="teamName" class="info-input form-control " id="error-teamName"/>
+								<label class="error-label" id="error-teamName" >该信息输入有误</label>
 							</div>
 						</div>
 						<div class="divtable">

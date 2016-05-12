@@ -15,7 +15,6 @@ $().ready(function() {
 	$('.final-price-left-label').hide();
 	//end
 	$(".tableinput-error").hide();
-	
 	loadSource();
 	$("#ul-select").hide();
 	$("#ul-select-team").hide();
@@ -50,27 +49,16 @@ $().ready(function() {
 
 	$("input[name$='time']").val("请选择日期");
 	$('#gtstarttime').val(getCurrentTime());
-
-	$(".indent-btn").on("click", function() {
-		addProject();
-	});
-	$(".pirce-btn").on("click", function() {
-		
-	});
+	enableSubmitBtnEnent();
 	var state=$(".state").text().trim()
-		if(state=='update'){
-			updateProject_ViewInit();
-		}else{
-			//新增模式，生成序列号
-			fillSerialID();
-		}
+	if(state=='update'){
+		updateProject_ViewInit();
+	}else{
+		//新增模式，生成序列号
+		fillSerialID();
+	}
 	$("input[name$='time']").val("请选择日期");
 	$('#gtstarttime').val(getCurrentTime());
-
-	$(".pirce-btn").on("click", function() {
-		formatPrice();
-	});
-
 	$("#user-info-btn-finish").on('click',function(){
 		addUser();
 	});
@@ -83,23 +71,29 @@ $().ready(function() {
 //设置验证错误提示
 function setInputErrorStyle(){
 	$(".projectId").on('change',function(){
-		$("#div-projectId").removeClass('has-error');
+		clearError($(".projectId"));
 		$("#error-projectId").hide();
 	});
 	$(".projectName").on('change',function(){
-		$("#div-projectName").removeClass('has-error');
+		clearError($(".projectName"));
 		$("#error-projectName").hide();
 	});
 	$("#projectSource").on('change',function(){
-		$("#div-projectSource").removeClass("has-error");
+		clearError($("#projectSource"));
 		$("#error-projectSource").hide();
 	});
 	$("#userName").on('change',function(){
-		$("#div-userName").removeClass('has-error');
+		clearError($("#userName"));
 		$("#error-userName").hide();
 	});
+	
+	$("#teamName").on('change',function(){
+		clearError($("#teamName"));
+		$("#error-teamName").hide();
+	});
+	
 	$(".userContact").on('change',function(){
-		$("#div-userContact").removeClass('has-error');
+		clearError($(".userContact"));
 		$("#error-userContact").hide();
 	});
 	$(".userPhone").on('change',function(){
@@ -118,10 +112,10 @@ function setInputErrorStyle(){
 	$("#firstinput").on('change',function(){
 		var res=priceVerifyInputNotNull();
 		if(res){
-			$("#mleft").removeClass('has-error');
+			clearError($("#firstinput"));
 			$("#error-radio-price").hide();
 		}else{
-			$("#mleft").addClass('has-error');
+			setError($("#firstinput"));
 			$("#error-radio-price").show();
 		}
 	});
@@ -130,10 +124,10 @@ function setInputErrorStyle(){
 	$("#lastinput").on('change',function(){
 		var res=priceVerifyInputNotNull();
 		if(res){
-			$("#mleft").removeClass('has-error');
+			clearError($("#lastinput"));
 			$("#error-radio-price").hide();
 		}else{
-			$("#mleft").addClass('has-error');
+			setError($("#firstinput"));
 			$("#error-radio-price").show();
 		}
 	});
@@ -148,29 +142,29 @@ function setInputErrorStyle(){
 	$("#input-referrer").on('change',function(){
 		var id=$("#referrer-Id-hidden").val();
 		if($(this).val()!='' && id!=null && id!=''){
-		$("#error-input-referrer").hide();
-			$("#div-friendship").removeClass('has-error');
+			$("#error-input-referrer").hide();
+			clearError($("#input-referrer"));
 		}
 	});
 	//add by wangliming 2016-5-10 end
 	$("#gtstarttime").on('blur',function(){
-		$("#div-gtstarttime").removeClass('has-error');
+		clearError($("#gtstarttime"));
 		$("#error-gtstarttime").hide();
 	});
 	$("#fastarttime").on('blur',function(){
-		$("#div-fastarttime").removeClass('has-error');
+		clearError($("#fastarttime"));
 		$("#error-fastarttime").hide();
 	});
 	$("#swstarttime").on('blur',function(){
-		$("#div-swstarttime").removeClass('has-error');
+		clearError($("#swstarttime"));
 		$("#error-swstarttime").hide();
 	});
 	$("#zzstarttime").on('blur',function(){
-		$("#div-zzstarttime").removeClass('has-error');
+		clearError($("#zzstarttime"));
 		$("#error-zzstarttime").hide();
 	});
 	$("#jfstarttime").on('blur',function(){
-		$("#div-jfstarttime").removeClass('has-error');
+		clearError($("#jfstarttime"));
 		$("#error-jfstarttime").hide();
 	});
 }
@@ -287,15 +281,17 @@ function searchUser() {
 		userName : userName
 	}));
 }
-
-//推荐人检索
-function searchReferrer() {
-	var inputString=$('#input-referrer').val().trim();
+function getReferrerData(){
 	if(referrerList==null||referrerList==''){
 		syncLoadData(function(msg) {
 			referrerList=msg;
 		}, getContextPath() + '/mgr/projects/staff/static/list', null);
 	}
+}
+//推荐人检索
+function searchReferrer() {
+	var inputString=$('#input-referrer').val().trim();
+	getReferrerData();
 	var index=0;
 	var table=$("#ul-select-referrer");
 	table.html("");
@@ -403,18 +399,20 @@ function updateProject_ViewInit() {
 		$(".zzstarttime").val(msg.time.zz);
 		$(".jfstarttime").val(msg.time.jf);
 		$(".page-title-title").text("项目信息修改");
-		$(".indent-btn").off("click");
-		$(".indent-btn").on("click", function() {
-			updateProjectajax();
-		});
+			enableSubmitBtnEnent();
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
 }
 
 function updateProjectajax() {
-	if(!verifyFrom())
+	//解绑事件防止多次点击
+	disableSubmitBtnEnent();
+	if(!verifyFrom()){
+		//验证错误，恢复事件
+		enableSubmitBtnEnent();
 		return;
+	}
 	
 	var currentProject = getCurrentProject();
 	var projectSerial = $(".projectId").val().trim();
@@ -448,6 +446,8 @@ function updateProjectajax() {
 		} else {
 			alert('error:' + msg);
 		}
+		//提交完成，恢复事件
+		enableSubmitBtnEnent();
 	}, getContextPath() + '/mgr/projects/update-indentProject', $.toJSON({
 		id : currentProject,
 		serial : projectSerial,
@@ -492,8 +492,13 @@ function submitForm(){
 	form.submit();
 }
 function addProject() {
-	if(!verifyFrom())
+	//取消事件防止多次点击
+	disableSubmitBtnEnent();
+	if(!verifyFrom()){
+		//验证错误，恢复事件
+		enableSubmitBtnEnent();
 		return;
+	}
 	
 	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
@@ -525,6 +530,8 @@ function addProject() {
 		} else {
 			alert('error:' + msg);
 		}
+		//恢复事件
+		enableSubmitBtnEnent();
 	}, getContextPath() + '/mgr/projects/save', $.toJSON({
 		serial : projectSerial,
 		projectName : projectName,
@@ -614,13 +621,47 @@ function verifyFrom(){
 			 setError(referrerInput);
 			 $("#error-input-referrer").show();
 			 return false;
+		 }else{
+			 //继续验证输入框，和人员id是否一致
+			 getReferrerData();
+			 var error=true;
+			 for (var int = 0; int < referrerList.length; int++) {
+				 var referrer=referrerList[int];
+				 if(referrer.staffId == id ){
+					 if(referrerInput.val().trim() == referrer.staffName+''.trim() ){
+						 error=false;
+						 break;
+					 }else{
+						 error=true;
+					 }
+				 }
+			 }
+			 if(error){
+				 setError(referrerInput);
+				 $("#error-input-referrer").show();
+				 return false;
+			 }
 		 }
 	 }
 	//add by wangliming 2016-5-10 end
 	if(!verifyInputNotNull( $("#userName"))) {
 		$("#error-userName").show();
+
+		 return false;
+	}else{
+		if(!verifyUser()){
+			setError($("#userName"));
+			$("#error-userName").show();
+			return false;
+		}
+	}
+	
+	if(!verifyTeam()){
+		setError($("#teamName"));
+		$("#error-teamName").show();
 		return false;
 	}
+	
 	if(!verifyInputNotNull($(".userContact"))){
 		$("#error-userContact").show();
 		 return false;
@@ -648,6 +689,7 @@ function verifyFrom(){
 		return false;
 	}
 	if(!VerifyTime()) return false;
+	
 	 return true;
 }
 //验证预计价格
@@ -726,6 +768,52 @@ function verifyInputNotNull(input) {
 		return true;
 	}
 }
+function verifyUser(){
+	var text=$("#userName").val();
+	var hidden=$("#userId").val();
+	var state=false;
+	syncLoadData(function(msg) {
+		for (var int = 0; int < msg.length; int++) {
+			var user = msg[int];
+			if(user.id+''.trim() == hidden.trim()){
+				if(user.userName.trim() == text.trim()){
+					state= true;
+				}else{
+					state= false;
+				}
+				break;
+			}
+		}
+	}, getContextPath() + '/mgr/projects/user/search/info', $.toJSON({
+		userName : text
+	}));
+	return state;
+}
+function verifyTeam(){
+	var text=$("#teamName").val();
+	var hidden=$("#teamId").val();
+	var state=false;
+	if(text.trim() == '' ){
+		return true;
+	}else{
+		syncLoadData(function(msg) {
+			for (var int = 0; int < msg.length; int++) {
+				var team = msg[int];
+				if(team.teamId+''.trim() == hidden.trim()){
+					if(team.teamName.trim() == text.trim()){
+						state= true;
+					}else{
+						state= false;
+					}
+					break;
+				}
+			}
+		}, getContextPath() + '/mgr/projects/team/search/info', $.toJSON({
+			teamName : text
+		}));
+	}
+	return state;
+}
 function getCurrentProject() {
 	//return $.cookie('currentproject');
 	return $("#key").val();
@@ -760,10 +848,11 @@ function showRecommend(){
 			 $("#div-friendship").removeClass('hide');
 		 }
 		 else{
-			 //选择其他选项需要清空
-			 // $("#input-referrer").val('');
 			 $("#div-friendship").addClass('hide');
 		 }
+		 //清空数据
+		 $("#input-referrer").val("");
+		 $("#referrer-Id-hidden").val("");
    });
 }
 function setError(input){
@@ -800,6 +889,22 @@ function initReferrer(sourece,referrerId) {
 		 $("#input-referrer").val("");
 		 $("#referrer-Id-hidden").val("");
 	 }
+}
+function enableSubmitBtnEnent(){
+	var state=$(".state").text().trim();
+	disableSubmitBtnEnent();
+	if(state=='update'){
+		$("#indent-btn").on('click',function(){
+			updateProjectajax();
+		});
+	}else{
+		$("#indent-btn").on('click',function(){
+			addProject();
+		});
+	}
+}
+function disableSubmitBtnEnent(){
+	$("#indent-btn").off('click');
 }
 function getReferrer() {
 	if($("#projectSource").val().trim()=='个人信息下单'){
