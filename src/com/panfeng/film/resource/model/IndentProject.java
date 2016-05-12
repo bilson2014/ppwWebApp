@@ -4,7 +4,6 @@ import java.util.Map;
 
 import com.panfeng.film.domain.BaseObject;
 
-
 public class IndentProject extends BaseObject {
 
 	private static final long serialVersionUID = 4610963805615371485L;
@@ -49,6 +48,26 @@ public class IndentProject extends BaseObject {
 	
 	private String referrerName=null;//友情推荐人Name
 	
+	private Double customerPayment=null;//用户实付金额
+	
+	private Double providerPayment=null;//供应商实付金额
+	
+	public Double getCustomerPayment() {
+		return customerPayment;
+	}
+
+	public void setCustomerPayment(Double customerPayment) {
+		this.customerPayment = customerPayment;
+	}
+
+	public Double getProviderPayment() {
+		return providerPayment;
+	}
+
+	public void setProviderPayment(Double providerPayment) {
+		this.providerPayment = providerPayment;
+	}
+
 	public Long getReferrerId() {
 		return referrerId;
 	}

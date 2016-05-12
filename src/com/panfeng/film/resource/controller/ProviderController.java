@@ -37,6 +37,8 @@ import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.model.Wechat;
+import com.panfeng.film.resource.model.WechatToken;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.SessionInfoService;
@@ -1351,6 +1353,132 @@ public class ProviderController extends BaseController {
 			return "success";
 		}
 		return "false@error3";
+	}
+	
+	/**
+	 * 第三方登录-微信登陆
+	 */
+	@RequestMapping("/login/wechat/callback.do")
+	public ModelAndView loginWithWeChat(@RequestParam("code") String code,
+			final HttpServletRequest request,ModelMap model) {
+
+		if (ValidateUtil.isValid(code)) {
+			WechatToken token = new WechatToken();
+			token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
+			token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
+			// 通过code获取access_token
+			final StringBuffer tokenUrl = new StringBuffer();
+			tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
+			tokenUrl.append("appid=" + token.getAppid());
+			tokenUrl.append("&secret=" + token.getSecret());
+			tokenUrl.append("&code=" + code);
+			tokenUrl.append("&grant_type=authorization_code");
+			final String str = HttpUtil.httpGet(tokenUrl.toString(),request);
+			if (str != null && !"".equals(str)) {
+				token = JsonUtil.toBean(str, WechatToken.class);
+				token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
+				token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
+			}
+
+			if (token.getErrcode() == null) {
+				// 正确
+				if (token.getAccess_token() != null
+						&& !"".equals(token.getAccess_token())) { // token 超时
+																	// 2小时
+					final StringBuffer refreshUrl = new StringBuffer();
+					refreshUrl.append("https://api.weixin.qq.com/sns/oauth2/refresh_token?");
+					refreshUrl.append("appid=" + token.getAppid());
+					refreshUrl.append("&grant_type=refresh_token");
+					refreshUrl.append("&refresh_token="
+							+ token.getRefresh_token());
+					final String refreshObj = HttpUtil.httpGet(refreshUrl
+							.toString(),request);
+					if (ValidateUtil.isValid(refreshObj)) {
+						token = JsonUtil.toBean(refreshObj, WechatToken.class);
+					}
+				}
+
+				final StringBuffer userUrl = new StringBuffer();
+				userUrl.append("https://api.weixin.qq.com/sns/userinfo?");
+				userUrl.append("access_token=" + token.getAccess_token());
+				userUrl.append("&openid=" + token.getOpenid());
+
+				Wechat wechat = new Wechat();
+				final String userStr = HttpUtil.httpGet(userUrl.toString(),request);
+				if (ValidateUtil.isValid(userStr)) {
+					wechat = JsonUtil.toBean(userStr, Wechat.class);
+				}
+				
+				if (wechat != null) {
+					Team team = new Team();
+					team.setUniqueId(wechat.getUnionid());
+					// 查询该用户是否存在
+					final String url = URL_PREFIX
+							+ "portal/team/thirdLogin/isExist";
+					final String json = HttpUtil.httpPost(url, team,request);
+					if (ValidateUtil.isValid(json)) {
+						final boolean flag = JsonUtil.toBean(json, Boolean.class);
+						if(flag){
+							// 绑定账号，则跳转至供应商界面
+							model.addAttribute("action", "bind");
+							model.addAttribute("thirdLoginType", "wechatUnique");
+							model.addAttribute("uniqueId",wechat.getUnionid());
+							return new ModelAndView("/provider/portal");
+						}
+					}
+					
+					// 未绑定账号
+					model.addAttribute("action", "login");
+					return new ModelAndView("login");
+				}
+			} else {
+				// 错误
+				logger.error("Provider wechat login error ... ");
+			}
+
+		}
+		return new ModelAndView("redirect:/provider/login");
+	}
+	
+	@RequestMapping("/bind")
+	public boolean bind(@RequestBody final Team team,final HttpServletRequest request){
+		final String pwd = team.getPassword();
+		final String name = team.getLoginName();
+		
+		if(ValidateUtil.isValid(pwd) && ValidateUtil.isValid(name)){
+			try {
+				
+				// AES 解密
+				final String password = AESUtil.Decrypt(pwd,UNIQUE_KEY);
+
+				// MD5 加密
+				team.setPassword(DataUtil.md5(password));
+
+				// 转码
+				team.setLoginName(URLEncoder.encode(
+						team.getLoginName(), "UTF-8"));
+				team.setPassword(URLEncoder.encode(team.getPassword(),
+						"UTF-8"));
+				team.setUniqueId(URLEncoder.encode(team.getUniqueId(), 
+						"UTF-8"));
+				team.setThirdLoginType(URLEncoder.encode(team.getThirdLoginType(), 
+						"UTF-8"));
+				
+				// 后台绑定
+				final String url = URL_PREFIX + "portal/team/thirdLogin/bind";
+				final String json = HttpUtil.httpPost(url, team,request);
+				if (ValidateUtil.isValid(json)) {
+					final boolean flag = JsonUtil.toBean(json, Boolean.class);
+					return flag;
+				}
+				
+			} catch (Exception e) {
+				logger.error("Provider bind error,teamName is " + team.getLoginName());
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
 	}
 	
 	public Team getCurrentTeam(final HttpServletRequest request){

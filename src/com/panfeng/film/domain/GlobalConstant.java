@@ -33,6 +33,18 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static final String ROLE_SYSTEM = "role_system"; // 用户身份 -- 系统输出
 	
+	public static final String CUSTOMER_WEBCHAT_APPID = "wx3d453a7abb5fc026"; // 客户微信登录AppID
+	
+	public static final String CUSTOMER_WEBCHAT_APPSECRET = "6184e93dee1f145ad49977d3c1456391"; // 客户微信登录AppID
+	
+	public static final String PROVIDER_WEBCHAT_APPID = "wx513aa29222bef371"; // 供应商微信登录AppID
+	
+	public static final String PROVIDER_WEBCHAT_APPSECRET = "e7e6e8c7cf5216a933f53bf360dee939"; // 供应商微信登录AppSecret
+	
+	public static final String MANAGER_WEBCHAT_APPID = "wxbfbda700bd7a3c1c"; // 供应商微信登录AppID
+	
+	public static final String MANAGER_WEBCHAT_APPSECRET = "6a1c40422295b85dc8d55e7c38aef968"; // 供应商微信登录AppSecret
+	
 	public static String FILE_PROFIX; // 文件前缀
 	
 	public static String VIDEO_IMAGE_PERFIX; // 视频前缀

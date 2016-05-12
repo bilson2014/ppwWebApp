@@ -245,6 +245,7 @@ function pause() {
 	loadData(function(msg) {
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
+		loadcommentdata(false);
 	}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
 		id : key
 	}));
@@ -254,6 +255,7 @@ function resume() {
 	loadData(function(msg) {
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
+		loadcommentdata(false);
 	}, getContextPath() + '/mgr/flow/resumeProcess', $.toJSON({
 		id : key
 	}));
