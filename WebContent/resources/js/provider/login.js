@@ -163,7 +163,7 @@ $().ready(function(){
 	// 绑定验证码发送按钮
 	$('#verification_code_recover_btn').on('click',verificationOnRecover);
 	
-	login.webcat(); // 微信登录
+	loginer.webcat(); // 微信登录
 });
 
 // 注册
@@ -594,7 +594,7 @@ function hideTooltipRecover(){
 	$('.tooltip-show-recover').hide('normal');
 }
 
-var login = {
+var loginer = {
 	sina : function(){
 		
 	},
@@ -603,7 +603,7 @@ var login = {
 		$('#webcat').on('click',function(){
 			
 			var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx513aa29222bef371&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Fprovider%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
-			window.open (url,'_blank','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+			window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
 		})
 	},
 	qq : function(){
