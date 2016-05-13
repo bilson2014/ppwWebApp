@@ -320,6 +320,7 @@ function loadflowdata() {
 					// 时间逻辑！检测任务是否超时，设置状态提示
 					$("#cu_" + msg.taskDefinitionKey).text(
 							getCurrentTime());
+					$("#stepword_" + msg.taskDefinitionKey).text("进行中");
 					var et_date = $("#et_" + msg.taskDefinitionKey)
 							.text();
 					var overdue = dateCompare(getCurrentTime(), et_date);
@@ -516,8 +517,8 @@ function uploadfile() {
 //加载文件模块
 function loadfiledata(more) {
 var key = getCurrentProject();
-loadData(
-	function(msg) {
+	
+	loadData(function(msg) {
 		var tab = $(".file-table");
 		tab.html("");
 		if(msg.length==0){
@@ -964,8 +965,8 @@ function finish() {
 	$(".comment").hide();
 	$(".comment-btn").hide();
 	
-	$(".more-file-btn").shwo();
-	$(".more-comment").shwo();
+	$(".more-file-btn").show();
+	$(".more-comment").show();
 }
 //未完成项目样式
 function show() {
@@ -1022,8 +1023,7 @@ function dateCompare(date1, date2) {
 	var time2 = date2.replace(/-/g, "/");
 	var date2 = new Date(time2);
 	
-	//TODO:time
-	if (date1.getTime() >= date2.getTime())
+	if (date1.getTime() > date2.getTime())
 		return true;
 	else
 		return false;
