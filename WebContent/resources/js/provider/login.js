@@ -192,7 +192,7 @@ function register(){
 								$('#kaptchaSpan').removeClass('hide');
 							}
 							
-						}, getContextPath() + '/provider/info/register', $.toJSON({
+						},  getContextPath() + '/provider/info/register', $.toJSON({
 							loginName : $('#user_name').val().trim(),
 							password : Encrypt($('#user_password').val().trim()),
 							phoneNumber : $('#user_phoneNumber').val().trim(),

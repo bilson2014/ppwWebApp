@@ -186,7 +186,6 @@
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >服务</a>
 					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
-					
 					<a href="javascript:void(0);" class="top-margin">工作时间</a>
 					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
 				</div>
