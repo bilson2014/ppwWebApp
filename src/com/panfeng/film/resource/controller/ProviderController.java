@@ -1481,6 +1481,15 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 	
+	@RequestMapping("/leader")
+	public ModelAndView leader(final HttpServletRequest request,final ModelMap model){
+		Team team = getCurrentTeam(request);
+		team.getTeamId();
+		model.addAttribute("unqiueId", team.getTeamId());
+		
+		return new ModelAndView("provider/leader");
+	}
+	
 	public Team getCurrentTeam(final HttpServletRequest request){
 		final SessionInfo info = getCurrentInfo(request);
 		final String url = GlobalConstant.URL_PREFIX + "portal/team/static/data/" + info.getReqiureId();
