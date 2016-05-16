@@ -850,21 +850,36 @@ function loadprojecctlist(more,state) {
 				tab.append(tr);	
 		}
 		var tr = $("<tr></tr>");
-		var td = $("<td class='indent-more'>历史回顾</td>");
-		//change + to big by lt 
+
+		//var td = $("<td class='indent-more'>历史回顾</td>");
+		
+		
+		// modify by lutao,2016-05-16 begin
+		// -> change + to big
+    var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
 		//var tdimg = $("<td class='indent-more-icon'>+</td>");
-		//
-        var tdimg = $("<td class='indent-more-add'>+</td>");
+		
+        var tdimg = $("<td class='indent-more-add'></td>");
+        // modify by lutao,2016-05-16 end
 
         tr.on('click',function(){
 			var tlist=$(".indentlisthistory");
 			var display=$(tlist).css('display');
 			if(display=='none'){
 				tlist.show();
-				$(".indent-more-add").html('-');
+                 
+				$(".indent-more-add").removeClass('circle-180');
+				//change + to big by lt 
+		        //no need
+				//$(".indent-more-add").html('-');
 			}else{
 				tlist.hide();
-				$(".indent-more-add").html('+');
+                
+                $(".indent-more-add").addClass('circle-180');
+				
+				//change + to big by lt 
+		        //no need
+				//$(".indent-more-add").html('+');
 			}
 		});
 		tr.append(td);

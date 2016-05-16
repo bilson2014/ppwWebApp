@@ -74,7 +74,6 @@ function resumeError(){
 		$('#company-email-error').hide();
 		$('#company-linkman-error').hide();
 		$('#company-webchat-error').hide();
-		$('#company-phoneNumber-error').hide();
 		$('#company-address-error').hide();
 		$('#company-qq-error').hide();
 	    $('#business-checkbox-error').hide();
@@ -115,7 +114,6 @@ function checkStepOne(){
 			var linkman = $('#company-linkman').val().trim(); // 联系人
 			var webchat = $('#company-webchat').val().trim(); // 微信
 			var qq = $('#company-qq').val().trim(); // QQ
-			var phoneNumber = $('#company-phoneNumber').val().trim();
 			var address = $('#company-address').val().trim();
 
 			
@@ -133,20 +131,7 @@ function checkStepOne(){
 				return false;
 			}
 			
-			if(phoneNumber == '' || phoneNumber == null || phoneNumber == undefined){
-				$('#company-phoneNumber-error').show();
-                $('#company-phoneNumber-error').text('请输入联系号码!');
-				$('#company-phoneNumber').focus();
-				return false;
-			}
-
-			// 验证电话号码正确性
-			if(!checkMobile(phoneNumber)){
-				$('#company-phoneNumber-error').show();
-                $('#company-phoneNumber-error').text('号码格式不正确');
-				$('#company-phoneNumber').focus();
-				return false;
-			}
+	
 
 				if(webchat == '' || webchat == null || webchat == undefined){
 				$('#company-webchat-error').show();
@@ -244,7 +229,7 @@ function infoSave(){
 		if(teamId != undefined && teamId != ''){
 			loadData(function(flag){
 			
-		}, getContextPath() + '/provider/update/teamInfomation', $.toJSON({
+		}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamId : teamId, 
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
@@ -258,8 +243,7 @@ function infoSave(){
 			demand : $('#company-demand').val().trim(),
 			city : $('#company-city option:selected').val(),
 			priceRange : $('#company-priceRange option:selected').val(),
-			infoResource : $('#company-infoResource option:selected').val(),
-			phoneNumber : $('#company-phoneNumber').val().trim()
+			infoResource : $('#company-infoResource option:selected').val()
 		}));
 	}
 

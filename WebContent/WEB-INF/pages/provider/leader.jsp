@@ -136,11 +136,6 @@
   	      					  <span class="error-word" id="company-linkman-error">联系人未填写</span>
   	      				  </div>
   	      				   <div class="input-group-div">
-  	      		       	 	  <span class="title-word">联系电话</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-phoneNumber" placeholder="请填写公司联系电话" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-phoneNumber-error">联系电话未填写</span>
-  	      				  </div>
-  	      				   <div class="input-group-div">
   	      		       	 	  <span class="title-word">微信号</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-webchat" placeholder="请填写微信号" aria-describedby="basic-addon2">
   	      					  <span class="error-word" id="company-webchat-error">微信号未填写</span>
@@ -206,6 +201,7 @@
 			            				<option value="31" >乌鲁木齐</option>
 			            				<option value="32" >天津</option>
 									</select>
+
   	      				  </div>
 
   	      			 <div class="input-group-div">
@@ -294,8 +290,9 @@
 										 </ul>   
 										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>
 									</div>
+                </div>
 
-                          <div class="input-group-div">
+                    <div class="input-group-div">
   	      		       	 	  <span class="title-checkbox-word" for="company-teamDesc">公司简介</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-teamDesc" rows="4" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>	
   	      					  <span class="error-area-word" id="company-teamDesc-error">公司简介未填写</span>
@@ -314,7 +311,7 @@
   	      				  </div>
      
                            <div class="bottom-div">
-                           	 <Button class="red-btn btn-left"  id="surebtn">确定</Button>        <Button class="red-btn btn-right" id="backbtn">返回上一步</Button>
+                           	 <Button class="red-btn btn-left"  id="surebtn">确定</Button>        <Button class="red-btn btn-right" id="backbtn">上一步</Button>
                            </div>
                 </div>
 	      </div>	
