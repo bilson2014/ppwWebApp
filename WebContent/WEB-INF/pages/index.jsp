@@ -71,10 +71,6 @@
 					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
-				<%-- <r:identity role="employee">
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
-				</r:identity> --%>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
@@ -130,6 +126,23 @@
 			<div class="info-section">
 				<dl>
 					<dt class="first-desc"></dt>
+					<dd>免费创意策划</dd>
+					<dd>专属视频管家-站式服务</dd>
+				</dl>
+				
+				<dl>
+					<dt class="second-desc"></dt>
+					<dd>低预算拍大片</dd>
+					<dd>低于行业价30%</dd>
+				</dl>
+				
+				<dl>
+					<dt class="third-desc"></dt>
+					<dd>72小时极速出片</dd>
+					<dd>不满意全额退款</dd>
+				</dl>
+				<!-- <dl>
+					<dt class="first-desc"></dt>
 					<dd>价格低选择更多</dd>
 					<dd>供应商选择多多</dd>
 					<dd>透明报价一价全包</dd>
@@ -147,7 +160,7 @@
 					<dd>效果满意再付款</dd>
 					<dd>制作费托管</dd>
 					<dd>不满意可退款或重拍</dd>
-				</dl>
+				</dl> -->
 			</div>
 		</div>
 		<!-- 首推区域 end -->
@@ -241,6 +254,7 @@
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+					<a href="mailto:bd@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bd@paipianwang.cn</h3></a>
 				</div>
 				
 				<div class="footer-column">

@@ -114,6 +114,7 @@
 							<input type="hidden" id="indentPrice" name="indentPrice" value="${indentPrice}"/>
 							<input type="hidden" id="second" name="second" value="${second}"/>
 							<input type="hidden" id="product_name" name="product_name" value="${product_name}"/>
+							<input type="hidden" id="salesmanUniqueId" name="salesmanUniqueId" value="${uniqueId}"/>
 						
 							<div class="form-group">
 								<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder="您的姓名"/>
@@ -179,6 +180,7 @@
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+					<a href="mailto:bd@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bd@paipianwang.cn</h3></a>
 				</div>
 				
 				<div class="footer-column">

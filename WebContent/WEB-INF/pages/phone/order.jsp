@@ -69,6 +69,7 @@
 				<input type="hidden" id="indentPrice" name="indentPrice" value="${indentPrice}"/>
 				<input type="hidden" id="second" name="second" value="${second}"/>
 				<input type="hidden" id="product_name" name="product_name" value="${product_name}"/>
+				<input type="hidden" id="salesmanUniqueId" name="salesmanUniqueId" value="${uniqueId}"/>
 				<input type="hidden" id="indentName" name="indentName" value="新订单"/>
 				<div class="order-section">
 					<div class="order-input-wrap">
