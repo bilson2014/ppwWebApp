@@ -182,7 +182,8 @@ function register(){
 						// 注册
 						loadData(function(info){
 							if(info.key){
-								$('#register-form').attr('action',getContextPath() + '/provider/portal').submit().remove();
+								//$('#register-form').attr('action',getContextPath() + '/provider/portal').submit().remove(); // 注册后跳转至供应商首页
+								$('#register-form').attr('action',getContextPath() + '/provider/leader').submit().remove(); // 注册后跳转至供应商引导页
 								$('#kaptchaGroup').removeClass('has-error');
 								$('#kaptchaSpan').text('');
 								$('#kaptchaSpan').addClass('hide');
