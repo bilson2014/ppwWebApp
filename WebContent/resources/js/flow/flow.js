@@ -406,6 +406,7 @@ function loadflowdata() {
 					if (msg.name.trim() == '任务不存在') {
 						StepTool.drawStep(num, stepListJson);
 						currentIndex = num;
+						finish();
 						return;
 					}
 					//添加特效时间
