@@ -886,6 +886,8 @@ function loadprojecctlist(more,state) {
 		tr.append(td);
 		tr.append(tdimg);
 		tab.append(tr);
+		$(".indentlisthistory").hide();
+		$(".indent-more-add").addClass('circle-180');
 		
 	// load more component
 	resetTime('');
