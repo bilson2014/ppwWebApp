@@ -151,7 +151,7 @@
 	border-bottom: solid 1px $gray-border;
 }
 
-.footer-content .footer-column { 
+.footer-content .footer-column {
 	display: inline-block;
 	vertical-align: top;
 	@include media_screen_width_avg(6);
@@ -199,8 +199,6 @@
 
 	.qq-icon {
 		display: inline-block;
-		//background: image-url('../images/icons/qq-icon.png') no-repeat;
-		//background-size: 16px;
 		@include icons-sprite(qq-icon);
 		width: 16px;
 		height: 16px;
@@ -215,6 +213,19 @@
 		height: 16px;
 		vertical-align: middle;
 		margin-right: 6px;
+	}
+
+	.mail-icon {
+		display: inline-block;
+		@include icons-sprite(mail-icon);
+		width: 16px;
+		height: 16px;
+		vertical-align: middle;
+		margin-right: 6px;
+	}
+
+	.mailClient {
+		margin-bottom: 12px; 
 	}
 }
 
@@ -234,7 +245,6 @@
 		font-size: $font-size-sm;
 		line-height: $font-size-sm;
 		margin: 5px auto;
-		//color: lighten(#eee,1%);
 		color: darken(#eee,20%);
 	}
 }
