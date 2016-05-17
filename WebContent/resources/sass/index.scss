@@ -131,17 +131,17 @@
 	@include media_screen_width();
 
 	dt {
-		width: 47px;
+		width: 42px;
 		height: 47px;
 		margin: 0 auto 30px;
 	}
 
 	.first-desc {
 		@include index-sprite(first-desc);
-	}
+	} 
 
 	.second-desc {
-		width: 34px;
+		width: 45px;
 		@include index-sprite(second-desc);
 	}
 
@@ -162,11 +162,11 @@
 	
 	dd {
 		font: {
-			size: $font-size-base;
+			size: $font-size;
 			weight: $font-weight-base;
 		}
 		color: $gray;
-		line-height: 1.4rem;
+		line-height: $font-size;
 	}
 
 	> dd:nth-child(2) {

@@ -424,68 +424,36 @@ public class ProviderController extends BaseController {
 
 		if (team != null) {
 			try {
-				// 转码
-				final String teamName = team.getTeamName();
-				final String teamDesc = team.getTeamDescription();
-				final String address = team.getAddress();
-				final String email = team.getEmail();
-				final String linkman = team.getLinkman();
-				final String webchat = team.getWebchat();
-				final String officialSite = team.getOfficialSite();
-				final String scale = team.getScale();
-				final String businessDesc = team.getBusinessDesc();
-				final String demand = team.getDemand();
-				final String description = team.getDescription();
+				return updateInfo(team,request);
+			} catch (UnsupportedEncodingException e) {
+				logger.error("ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...");
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 供应商注册引导页信息保存
+	 * 
+	 * @param team
+	 *            团队信息(供应商名称、简介、地址、邮箱等)
+	 * @return 成功返回 true, 失败返回 false
+	 */
+	@RequestMapping("/update/leaderInfomation")
+	public boolean leadUserupdateInformation(final HttpServletRequest request,
+			@RequestBody final Team team) {
 
-				if (teamName != null && !"".equals(teamName)) {
-					team.setTeamName(URLEncoder.encode(teamName, "UTF-8"));
+		if (team != null) {
+			try {
+				final boolean ret = updateInfo(team,request);
+				if(ret){
+					final String url = URL_PREFIX
+							+ "portal/team/static/data/updateStatus";
+					final String json = HttpUtil.httpPost(url, team,request);
+					final boolean flag = JsonUtil.toBean(json, Boolean.class);
+					return flag;
 				}
-
-				if (teamDesc != null && !"".equals(teamDesc)) {
-					team.setTeamDescription(URLEncoder.encode(teamDesc,"UTF-8"));
-				}
-
-				if (address != null && !"".equals(address)) {
-					team.setAddress(URLEncoder.encode(address, "UTF-8"));
-				}
-
-				if (email != null && !"".equals(email)) {
-					team.setEmail(URLEncoder.encode(email, "UTF-8"));
-				}
-				
-				if (linkman != null && !"".equals(linkman)) {
-					team.setLinkman(URLEncoder.encode(linkman, "UTF-8"));
-				}
-				
-				if (webchat != null && !"".equals(webchat)) {
-					team.setWebchat(URLEncoder.encode(webchat, "UTF-8"));
-				}
-				
-				if (officialSite != null && !"".equals(officialSite)) {
-					team.setOfficialSite(URLEncoder.encode(officialSite, "UTF-8"));
-				}
-				
-				if (scale != null && !"".equals(scale)) {
-					team.setScale(URLEncoder.encode(scale, "UTF-8"));
-				}
-				
-				if (businessDesc != null && !"".equals(businessDesc)) {
-					team.setBusinessDesc(URLEncoder.encode(businessDesc, "UTF-8"));
-				}
-				
-				if (demand != null && !"".equals(demand)) {
-					team.setDemand(URLEncoder.encode(demand, "UTF-8"));
-				}
-				
-				if (description != null && !"".equals(description)) {
-					team.setDescription(URLEncoder.encode(description, "UTF-8"));
-				}
-
-				final String updateUrl = URL_PREFIX
-						+ "portal/team/static/data/updateTeamInformation";
-				final String json = HttpUtil.httpPost(updateUrl, team,request);
-				final boolean flag = JsonUtil.toBean(json, Boolean.class);
-				return flag;
 			} catch (UnsupportedEncodingException e) {
 				logger.error("ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...");
 				e.printStackTrace();
@@ -1500,5 +1468,70 @@ public class ProviderController extends BaseController {
 		}
 		
 		return null;
+	}
+	
+	public boolean updateInfo(final Team team,final HttpServletRequest request) throws UnsupportedEncodingException{
+		// 转码
+		final String teamName = team.getTeamName();
+		final String teamDesc = team.getTeamDescription();
+		final String address = team.getAddress();
+		final String email = team.getEmail();
+		final String linkman = team.getLinkman();
+		final String webchat = team.getWebchat();
+		final String officialSite = team.getOfficialSite();
+		final String scale = team.getScale();
+		final String businessDesc = team.getBusinessDesc();
+		final String demand = team.getDemand();
+		final String description = team.getDescription();
+
+		if (teamName != null && !"".equals(teamName)) {
+			team.setTeamName(URLEncoder.encode(teamName, "UTF-8"));
+		}
+
+		if (teamDesc != null && !"".equals(teamDesc)) {
+			team.setTeamDescription(URLEncoder.encode(teamDesc,"UTF-8"));
+		}
+
+		if (address != null && !"".equals(address)) {
+			team.setAddress(URLEncoder.encode(address, "UTF-8"));
+		}
+
+		if (email != null && !"".equals(email)) {
+			team.setEmail(URLEncoder.encode(email, "UTF-8"));
+		}
+		
+		if (linkman != null && !"".equals(linkman)) {
+			team.setLinkman(URLEncoder.encode(linkman, "UTF-8"));
+		}
+		
+		if (webchat != null && !"".equals(webchat)) {
+			team.setWebchat(URLEncoder.encode(webchat, "UTF-8"));
+		}
+		
+		if (officialSite != null && !"".equals(officialSite)) {
+			team.setOfficialSite(URLEncoder.encode(officialSite, "UTF-8"));
+		}
+		
+		if (scale != null && !"".equals(scale)) {
+			team.setScale(URLEncoder.encode(scale, "UTF-8"));
+		}
+		
+		if (businessDesc != null && !"".equals(businessDesc)) {
+			team.setBusinessDesc(URLEncoder.encode(businessDesc, "UTF-8"));
+		}
+		
+		if (demand != null && !"".equals(demand)) {
+			team.setDemand(URLEncoder.encode(demand, "UTF-8"));
+		}
+		
+		if (description != null && !"".equals(description)) {
+			team.setDescription(URLEncoder.encode(description, "UTF-8"));
+		}
+
+		final String updateUrl = URL_PREFIX
+				+ "portal/team/static/data/updateTeamInformation";
+		final String json = HttpUtil.httpPost(updateUrl, team,request);
+		final boolean flag = JsonUtil.toBean(json, Boolean.class);
+		return flag;
 	}
 }

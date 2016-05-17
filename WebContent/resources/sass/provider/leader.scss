@@ -3,7 +3,7 @@
 @import "video";
 @import "bootstrap-grid";
 
-.nav .logo {
+.nav .logo { 
 	background: url(../../images/common/logo.svg) no-repeat;
 }
 body {
@@ -111,10 +111,15 @@ body {
 		width: 370px;
 		resize: none;
 	}
-	.bot-area {
-		margin-top: 20px;
-	}
+
 }
+
+
+
+.bot-area{
+	margin-top:20px;
+}
+
 .bottom-div {
 	position: relative;
 	top: 50px;

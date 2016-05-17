@@ -120,7 +120,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="page">
+	<div class="page" >
 	 <div class="noproject hide">
        <div class="no-poject-div" id="no-poject-div">
        	<ul>
@@ -140,14 +140,13 @@
    </div>
 		<div class="left-page">
 			<div class="left-title">
-				<label class="left-title-text">所有项目</label>
+				<div class="newBtn">
 				<r:permission uri="/add-view">
-	                <img src="${imgPath }/flow/plus.png" class="left-title-images newBtn" title="添加项目">
+	                <img src="${imgPath }/flow/plus.png" class="left-title-images " title="添加项目">
 				</r:permission>
-				
-				<r:permission uri="/project/get/report">
-					<img src="${imgPath }/flow/report.png" class="left-title-images" id="project-report" title="导出报表">
-				</r:permission>
+				<label class="left-title-text-top">新建项目</label>
+			    </div>
+				<label class="left-title-text">所有项目</label>
 			</div>
 			
 			<div class="indentdiv">
@@ -160,19 +159,24 @@
 		<div class="right-page">
 			<div class="flowblock">
 				<div class="flow-title">
-					<label class="flow-title-text">项目流程</label>
+                <div class="right-div" id="project-report">
+				<r:permission uri="/project/get/report">
+					<img src="${imgPath }/flow/report.png" class="left-title-images"  title="导出报表">
+				</r:permission>
+				    <label class="left-title-text-top">导出报表</label>
+				 </div>   
 				</div>
+	            <label class="flow-title-text">项目进度</label>
 				<div class="step_context step_margin test" data-open-on="hover">
 				</div>
 					<div class="drop-content" style="display: none;">
 						<a href="#" class="drop-a"><img src="/resources/img/flow/point.png"/></a>
 						<a href="#" class="drop-a content-title" ></a>
 			            <a href="#" class="description-c"></a>
-				</div>
+				   </div>
 
 
                 <div class="descriptiondiv top-margin">
-                
                 <ul class="time-div firstline div-margin-sm ">
                 	<li class="timeword" id="cu_gt" ></li>
                 	<li class="stepword" id="stepword_gt">未完成</li>
@@ -374,6 +378,7 @@
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+					<a href="mailto:bd@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bd@paipianwang.cn</h3></a>
 				</div>
 				
 				<div class="footer-column">
