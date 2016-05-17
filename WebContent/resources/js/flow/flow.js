@@ -406,6 +406,7 @@ function loadflowdata() {
 					if (msg.name.trim() == '任务不存在') {
 						StepTool.drawStep(num, stepListJson);
 						currentIndex = num;
+						finish();
 						return;
 					}
 					//添加特效时间
@@ -885,6 +886,8 @@ function loadprojecctlist(more,state) {
 		tr.append(td);
 		tr.append(tdimg);
 		tab.append(tr);
+		$(".indentlisthistory").hide();
+		$(".indent-more-add").addClass('circle-180');
 		
 	// load more component
 	resetTime('');
