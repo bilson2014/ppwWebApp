@@ -72,7 +72,7 @@
 <script src="${modelJs }"></script>
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
-<body style="background:#000" >
+<body  >
 <!-- <div class="circle-div"></div> -->
 
 <div class="header">
@@ -120,7 +120,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="page" style="background:#000" >
+	<div class="page" >
 	
 
 		<div class="left-page" >
