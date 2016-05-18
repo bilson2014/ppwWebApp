@@ -209,6 +209,7 @@ function loadFileTags() {
 function cancelBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要取消项目吗？");
+	noWorkproject=false;
 	setModalEvent(cancel);
 }
 function cancel() {
@@ -824,6 +825,7 @@ function loadcommentdata(more) {
 	}));
 }
 var firstClick=false;
+var  noWorkproject=true;
 //加载项目列表
 function loadprojecctlist(more,state) {
 	loadData(function(msg) {
@@ -843,7 +845,7 @@ function loadprojecctlist(more,state) {
 			$(".noproject").addClass('hide');
 		}
 		var  selectFirst=false;
-		var  noWorkproject=true;
+		
 
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
