@@ -72,7 +72,7 @@
 <script src="${modelJs }"></script>
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
-<body>
+<body >
 <!-- <div class="circle-div"></div> -->
 
 <div class="header">

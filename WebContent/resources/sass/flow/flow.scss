@@ -4,7 +4,7 @@
 @import "model";
 @import "compass/typography/text/ellipsis";
 
-.page { 
+.page {
 	margin: auto;
 	width: 956px;
 
@@ -21,9 +21,9 @@
 			margin-top: 30px;
 		}
 		.left-title-text {
-			margin-left: 5px;
+			margin-left: 14px;
 			font-weight: bold;
-			font-size: $font-size-lg;
+			font-size: 17px;
 			color: $gray-dark;
 			height: 20px;
 			display: block;
@@ -37,17 +37,17 @@
 	}
 	.left-title-text-top {
 		margin-left: 5px;
-		font-weight: bold;
 		font-size: $font-size;
 		color: $gray-dark;
 		height: 20px;
 		display: inline-block;
-		&:hover{
-		cursor:pointer;
+
+		&:hover {
+			cursor: pointer;
 		}
 	}
 	.left-title-images {
-		margin-left: 5px;
+		margin-left: 14px;
 		height: 20px;
 		width: 20px;
 		position: relative;
@@ -59,7 +59,7 @@
 		width: 731px;
 		margin: 20px 0px 47px 0px;
 		position: relative;
-		left: 18px;
+		left: 12px;
 
 		.flowblock {
 			background: white;
@@ -70,28 +70,24 @@
 				padding-top: 30px;
 				margin-left: 10px;
 			}
-			
 		}
 	}
-
-
-  .flow-title-text {
-				font-size: $font-size;
-				font-weight: bold;
-				color: $gray-dark;
-				position: relative;
-				left: 20px;
-				top: 55px;
-			}
-
-
+	.flow-title-text {
+		font-size: $font-size;
+		font-weight: bold;
+		color: $gray-dark;
+		position: relative;
+		left: 20px;
+		top: 55px;
+	}
 	.step_margin {
 		margin-top: 74px;
 		padding-left: 20px;
 	}
 	.indentdiv {
 		width: 100%;
-		margin-top:5px;
+		margin-top: 5px;
+		margin-bottom: 25px;
 
 		.indent-ednt-btn {
 			width: 15px;
@@ -101,26 +97,28 @@
 			font-size: $font-size-base;
 			color: $gray;
 			text-decoration: none;
-
 		}
 		.indent-a:hover {
 			color: $gray-dark;
 			font-size: 14px;
 		}
 		.indent-selected {
-			font-size: $font-size;
+			font-size: $font-size-base;
 			color: #fa7872;
 			border-left: solid 2px  #fa7872;
 			text-decoration: none;
+			position:relative;
+			left:-2px;
 		}
 		.indent-more {
 			font-size: $font-size;
 			color: $gray-dark;
 			cursor: pointer;
-			padding-left: 5px;
+			padding-left: 14px;
 		}
 		td {
 			padding-top: 5px;
+			padding-left: 7px;
 		}
 	}
 	.descriptiondiv {
@@ -232,8 +230,8 @@
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
-			position:relative;
-			left:50px;
+			position: relative;
+			left: 50px;
 		}
 		.indent-margin {
 			width: 100px;
@@ -836,9 +834,9 @@
 	}
 }
 .indent-more-add {
-      position:relative;
-      left:16px;
-      top:3px;
+	position: relative;
+	left: 16px;
+	top: 3px;
 }
 .modal-body dl {
 	text-align: left;
@@ -947,11 +945,9 @@ img {
 .opacity-li {
 	opacity: 0;
 }
-
-.circle-180{
-	transform:rotate(180deg);
+.circle-180 {
+	transform: rotate(180deg);
 }
-
-.circle-360{
-	transform:rotate(360deg);
+.circle-360 {
+	transform: rotate(360deg);
 }

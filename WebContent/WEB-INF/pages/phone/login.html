@@ -1,0 +1,90 @@
+
+<spring:url value="/resources/css/phone/success.css" var="successCss"/>
+<!-- imgPath -->
+<spring:url value="/resources/img" var="imgPath"/>
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<!-- iphone 手机默认全屏 -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- 取消数字被识别为电话号码 -->
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="keywords" content="拍片网,视频营销,拍广告,找导演,拍片">
+	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<title>登录</title>
+	
+	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	<link rel="stylesheet" href="${successCss }">
+    <link rel="stylesheet" href="../../../resources/lib/Bootstrap/css/bootstrap-alert.min.css">
+    <link rel="stylesheet" href="../../../resources/lib/Bootstrap/css/bootstrap-button.min.css">
+	<link rel="stylesheet" href="../../../resources/css/phone/userLogin.css">
+	<!--[if lt IE 9]>
+		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
+	<![endif]-->
+</head>
+
+
+<body>
+	<div class="wrap">
+		<div class="header">
+			<!-- logo -->
+			<dl class="header-ul">
+				<dd>
+					<a href="javascript:history.back(-1);">
+						<div class="back"></div>
+					</a>
+				</dd>
+				<dd>
+					<a href="/phone/portal" target="_self">
+						<div class="logo"></div>
+					</a>
+				</dd>
+			</dl>
+		</div>
+
+     <div class="outside-div">
+     	        <div class="loginLogo" >
+      				<img src="../../../resources/images/phone/login/logo.png"/>
+      			</div>	
+
+      	<div class="login-content ">
+
+      		<input class="input-error form-control"  style= placeholder="图片验证码"/>
+      		<div class="input-div">
+      			<img class="input-img" src="../../../resources/images/phone/login/phone.png"/>
+      			<input class="login-input form-control" type="text" placeholder="手机号"/>
+      		</div>
+
+      		<div class="input-div">
+      			<img class="input-img" src="../../../resources/images/phone/login/pwd.png"/>
+      			<input class="login-input form-control" type="text" placeholder="密码"/>
+      		</div>	
+             
+            <div class="mid-div">
+      			<button class="red-common-btn btn-size">登录</button>
+      			<label class="left-word">忘记密码</label>
+      			<label class="right-word">注册</label>
+      		</div>
+
+      		 <div class="bottom-div">
+                <div class="left-img">
+      				<img  src="../../../resources/images/phone/login/wechat.png"/>
+      			</div>	
+      			<div class="right-img">
+      				<img  src="../../../resources/images/phone/login/wb.png"/>
+      		    </div>
+      		    <div class="mid-img">
+      				<img  src="../../../resources/images/phone/login/qq.png"/>
+      			</div>	
+      		</div>
+        
+      	</div>	
+
+     </div>	
+
+
+
+</body>
+</html>
