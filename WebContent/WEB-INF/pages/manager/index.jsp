@@ -72,7 +72,7 @@
 <script src="${modelJs }"></script>
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
-<body >
+<body style="background:#000" >
 <!-- <div class="circle-div"></div> -->
 
 <div class="header">
@@ -120,25 +120,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="page" >
-	 <div class="noproject hide">
-       <div class="no-poject-div" id="no-poject-div">
-       	<ul>
-        	<li><img src="/resources/img/flow/warning.png"></li>
-        	<r:identity role="provider">
-        		<li><label>当前没有项目分配</label></li>
-        	</r:identity>
-        	<r:identity role="customer">
-        		<li><label>当前没有项目启动</label></li>
-        	</r:identity>
-        	<r:identity role="manager">
-        		<li><label>当前没有任何项目,立即创建一个</label></li>
-        		<li><button class="red-btn" id="new-project">确定</button></li>
-        	</r:identity>
-         </ul>
-       </div>	
-   </div>
-		<div class="left-page">
+	<div class="page" style="background:#000" >
+	
+
+		<div class="left-page" >
 			<div class="left-title">
 				<r:permission uri="/add-view">
 					<div class="newBtn">
@@ -156,6 +141,29 @@
 				</table>
 			</div>
 		</div>
+  
+
+
+     <div class="noproject hide">
+       <div class="no-poject-div" id="no-poject-div">
+       	<ul>
+        	<li><img src="/resources/img/flow/warning.png"></li>
+        	<r:identity role="provider">
+        		<li><label>当前没有项目分配</label></li>
+        	</r:identity>
+        	<r:identity role="customer">
+        		<li><label>当前没有项目启动</label></li>
+        	</r:identity>
+        	<r:identity role="manager">
+        		<li><label>当前没有任何项目,立即创建一个</label></li>
+        		<li><button class="red-btn" id="new-project">确定</button></li>
+        	</r:identity>
+         </ul>
+       </div>	
+   </div>
+
+         
+
 		<div class="right-page">
 			<div class="flowblock">
 				<div class="flow-title">

@@ -808,12 +808,15 @@ function loadprojecctlist(more,state) {
 			$(".left-page").hide();
 			$(".right-page").hide();
 			$(".noproject").removeClass('hide');
+			return;
 		}else{
-			$(".left-page").show();
-			$(".right-page").show();
+			// $(".left-page").show();
+			// $(".right-page").show();
 			$(".noproject").addClass('hide');
 		}
 		var  selectFirst=false;
+		var  noWorkproject=true;
+
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
@@ -823,15 +826,21 @@ function loadprojecctlist(more,state) {
 				currentprojectkey = msg[i].id + '';
 				putCurrentProject(currentprojectkey);
 				selectFirst=true;
+				
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
+				else
+					noWorkproject =false;
 			}else if(msg[i].id==getCurrentProject()){
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
+				else
+					noWorkproject =false;
 			}
 			var a = $("<a class=\"indent-a\" data-state=" + msg[i].state
 					+ " data-value=" + msg[i].id + ">");
 			$(a).on("click", function() {
+				firstClick=true;
 				var key = $(this).attr("data-value");
 				putCurrentProject(key);
 				var state=jQuery(this).attr('data-state');
@@ -858,14 +867,15 @@ function loadprojecctlist(more,state) {
 		
 		// modify by lutao,2016-05-16 begin
 		// -> change + to big
-    var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
+   		 var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
 		//var tdimg = $("<td class='indent-more-icon'>+</td>");
 		
         var tdimg = $("<td class='indent-more-add'></td>");
         // modify by lutao,2016-05-16 end
         
         tr.on('click',function(){
-        	firstClick=true;
+
+        	
 			var tlist=$(".indentlisthistory");
 			var display=$(tlist).css('display');
 			if(display=='none'){
@@ -888,11 +898,26 @@ function loadprojecctlist(more,state) {
 		tr.append(td);
 		tr.append(tdimg);
 		tab.append(tr);
+		//control histroy project when init hide it
 		if(!firstClick){
 			$(".indentlisthistory").hide();
 			$(".indent-more-add").addClass('circle-180');
 		}
-	// load more component
+		//if has histroy project but no working peoject show window（！）
+
+       if(noWorkproject && !firstClick){
+	        $(".right-page").addClass('hide');
+			$(".noproject").removeClass('hide');
+			$(".noproject").addClass('set-width');
+			$(".indentlisthistory").show();
+			$(".indent-more-add").removeClass('circle-180');
+       }else{
+       	$(".noproject").addClass('hide');
+       	$(".right-page").removeClass('hide');
+       }
+      
+
+			// load more component
 	resetTime('');
 	loadflowdata();
 	loadfiledata(false);
