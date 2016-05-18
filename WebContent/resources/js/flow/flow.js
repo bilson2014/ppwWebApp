@@ -179,12 +179,18 @@ function setModalEvent(Confirm){
 }
 function getBtnWidth(){
 	  //var select_btn = document.getElementById("btndiv-id").getElementsByTagName("button");
-var select_btn = $('#btndiv-id').find('button');
-	if(select_btn.length==1){
+	var select_btn = $('#btndiv-id').find('button');
+	var count=0;
+	for (var int = 0; int < select_btn.length; int++) {
+		var value=$(select_btn[int]).css('display');
+		if(value!='none')
+			count++;
+	}
+	if(count==1){
 		$(".flowbtndiv").css("width","105");
 	}
 	else if(select_btn.length>1){
-		var width=110*select_btn.length+20*(select_btn.length-1);
+		var width=115*count+20*(count);
 		$(".flowbtndiv").css("width",width);
 	}
 }
@@ -232,12 +238,18 @@ function PrevTask(){
 function pauseBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要暂停项目吗？");
+	$(".flowbtn").hide();
+	$(".prev-task").hide();
+	getBtnWidth();
 	setModalEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要恢复项目吗？");
+	$(".flowbtn").show();
+	$(".prev-task").show();
+	getBtnWidth();
 	setModalEvent(resume);
 }
 function pause() {
@@ -382,6 +394,8 @@ function loadflowdata() {
 					});
 					//暂停状态
 					if (msg.suspended) {
+						$(".flowbtn").hide();
+						$(".prev-task").hide();
 						$(".pausebtn").text("恢复");
 						$(".flowbtn").removeClass('red-btn');
 						$(".pausebtn").removeClass('gray-btn');
@@ -402,7 +416,20 @@ function loadflowdata() {
 								loadflowdata();
 							});
 						});
+					}else{
+						$(".flowbtn").show();
+						$(".prev-task").show();
+						$(".pausebtn").text("暂停");
+						$(".flowbtn").removeClass('gray-btn');
+						$(".pausebtn").removeClass('red-btn');
+						$(".pausebtn").addClass('gray-btn');
+						$(".flowbtn").addClass('red-btn');
+						$(".pausebtn").off("click");
+						$(".pausebtn").on("click", function() {
+							pauseBtn();
+						});
 					}
+					getBtnWidth();
 					if (msg.name.trim() == '任务不存在') {
 						StepTool.drawStep(num, stepListJson);
 						currentIndex = num;
@@ -469,6 +496,7 @@ function loadflowdata() {
 				id : key
 			}));
 }
+
 function resetTime(mode) {
 	if(mode!='curr'){
 		$("dd[id^='et_']").html("");
@@ -1142,9 +1170,6 @@ function showOrderTime(){
 	$('#stepword_jf').mouseout(function(){
           $('#div_jf').addClass('opacity-li');
 	});
-
-
-
 }
 
 
