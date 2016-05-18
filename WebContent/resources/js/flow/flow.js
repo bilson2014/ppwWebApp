@@ -795,6 +795,7 @@ function loadcommentdata(more) {
 			id : key
 	}));
 }
+var firstClick=false;
 //加载项目列表
 function loadprojecctlist(more,state) {
 	loadData(function(msg) {
@@ -862,8 +863,9 @@ function loadprojecctlist(more,state) {
 		
         var tdimg = $("<td class='indent-more-add'></td>");
         // modify by lutao,2016-05-16 end
-
+        
         tr.on('click',function(){
+        	firstClick=true;
 			var tlist=$(".indentlisthistory");
 			var display=$(tlist).css('display');
 			if(display=='none'){
@@ -886,9 +888,10 @@ function loadprojecctlist(more,state) {
 		tr.append(td);
 		tr.append(tdimg);
 		tab.append(tr);
-		$(".indentlisthistory").hide();
-		$(".indent-more-add").addClass('circle-180');
-		
+		if(!firstClick){
+			$(".indentlisthistory").hide();
+			$(".indent-more-add").addClass('circle-180');
+		}
 	// load more component
 	resetTime('');
 	loadflowdata();
