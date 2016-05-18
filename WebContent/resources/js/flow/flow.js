@@ -179,12 +179,18 @@ function setModalEvent(Confirm){
 }
 function getBtnWidth(){
 	  //var select_btn = document.getElementById("btndiv-id").getElementsByTagName("button");
-var select_btn = $('#btndiv-id').find('button');
-	if(select_btn.length==1){
+	var select_btn = $('#btndiv-id').find('button');
+	var count=0;
+	for (var int = 0; int < select_btn.length; int++) {
+		var value=$(select_btn[int]).css('display');
+		if(value!='none')
+			count++;
+	}
+	if(count==1){
 		$(".flowbtndiv").css("width","105");
 	}
 	else if(select_btn.length>1){
-		var width=110*select_btn.length+20*(select_btn.length-1);
+		var width=115*count+20*(count);
 		$(".flowbtndiv").css("width",width);
 	}
 }
@@ -203,6 +209,7 @@ function loadFileTags() {
 function cancelBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要取消项目吗？");
+	noWorkproject=false;
 	setModalEvent(cancel);
 }
 function cancel() {
@@ -232,12 +239,18 @@ function PrevTask(){
 function pauseBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要暂停项目吗？");
+	$(".flowbtn").hide();
+	$(".prev-task").hide();
+	getBtnWidth();
 	setModalEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要恢复项目吗？");
+	$(".flowbtn").show();
+	$(".prev-task").show();
+	getBtnWidth();
 	setModalEvent(resume);
 }
 function pause() {
@@ -382,6 +395,8 @@ function loadflowdata() {
 					});
 					//暂停状态
 					if (msg.suspended) {
+						$(".flowbtn").hide();
+						$(".prev-task").hide();
 						$(".pausebtn").text("恢复");
 						$(".flowbtn").removeClass('red-btn');
 						$(".pausebtn").removeClass('gray-btn');
@@ -402,7 +417,20 @@ function loadflowdata() {
 								loadflowdata();
 							});
 						});
+					}else{
+						$(".flowbtn").show();
+						$(".prev-task").show();
+						$(".pausebtn").text("暂停");
+						$(".flowbtn").removeClass('gray-btn');
+						$(".pausebtn").removeClass('red-btn');
+						$(".pausebtn").addClass('gray-btn');
+						$(".flowbtn").addClass('red-btn');
+						$(".pausebtn").off("click");
+						$(".pausebtn").on("click", function() {
+							pauseBtn();
+						});
 					}
+					getBtnWidth();
 					if (msg.name.trim() == '任务不存在') {
 						StepTool.drawStep(num, stepListJson);
 						currentIndex = num;
@@ -469,6 +497,7 @@ function loadflowdata() {
 				id : key
 			}));
 }
+
 function resetTime(mode) {
 	if(mode!='curr'){
 		$("dd[id^='et_']").html("");
@@ -795,6 +824,8 @@ function loadcommentdata(more) {
 			id : key
 	}));
 }
+var firstClick=false;
+var  noWorkproject=true;
 //加载项目列表
 function loadprojecctlist(more,state) {
 	loadData(function(msg) {
@@ -807,12 +838,15 @@ function loadprojecctlist(more,state) {
 			$(".left-page").hide();
 			$(".right-page").hide();
 			$(".noproject").removeClass('hide');
+			return;
 		}else{
-			$(".left-page").show();
-			$(".right-page").show();
+			// $(".left-page").show();
+			// $(".right-page").show();
 			$(".noproject").addClass('hide');
 		}
 		var  selectFirst=false;
+		
+
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
 			var td = $("<td ></td>");
@@ -822,15 +856,21 @@ function loadprojecctlist(more,state) {
 				currentprojectkey = msg[i].id + '';
 				putCurrentProject(currentprojectkey);
 				selectFirst=true;
+				
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
+				else
+					noWorkproject =false;
 			}else if(msg[i].id==getCurrentProject()){
 				if(stateStr == 1 || stateStr == 2)
 					state=true;
+				else
+					noWorkproject =false;
 			}
 			var a = $("<a class=\"indent-a\" data-state=" + msg[i].state
 					+ " data-value=" + msg[i].id + ">");
 			$(a).on("click", function() {
+				firstClick=true;
 				var key = $(this).attr("data-value");
 				putCurrentProject(key);
 				var state=jQuery(this).attr('data-state');
@@ -857,13 +897,15 @@ function loadprojecctlist(more,state) {
 		
 		// modify by lutao,2016-05-16 begin
 		// -> change + to big
-    var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
+   		 var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
 		//var tdimg = $("<td class='indent-more-icon'>+</td>");
 		
         var tdimg = $("<td class='indent-more-add'></td>");
         // modify by lutao,2016-05-16 end
-
+        
         tr.on('click',function(){
+
+        	
 			var tlist=$(".indentlisthistory");
 			var display=$(tlist).css('display');
 			if(display=='none'){
@@ -886,10 +928,26 @@ function loadprojecctlist(more,state) {
 		tr.append(td);
 		tr.append(tdimg);
 		tab.append(tr);
-		$(".indentlisthistory").hide();
-		$(".indent-more-add").addClass('circle-180');
-		
-	// load more component
+		//control histroy project when init hide it
+		if(!firstClick){
+			$(".indentlisthistory").hide();
+			$(".indent-more-add").addClass('circle-180');
+		}
+		//if has histroy project but no working peoject show window（！）
+
+       if(noWorkproject && !firstClick){
+	        $(".right-page").addClass('hide');
+			$(".noproject").removeClass('hide');
+			$(".noproject").addClass('set-width');
+			$(".indentlisthistory").show();
+			$(".indent-more-add").removeClass('circle-180');
+       }else{
+       	$(".noproject").addClass('hide');
+       	$(".right-page").removeClass('hide');
+       }
+      
+
+			// load more component
 	resetTime('');
 	loadflowdata();
 	loadfiledata(false);
@@ -1114,9 +1172,6 @@ function showOrderTime(){
 	$('#stepword_jf').mouseout(function(){
           $('#div_jf').addClass('opacity-li');
 	});
-
-
-
 }
 
 

@@ -4,16 +4,17 @@
 @import "model";
 @import "compass/typography/text/ellipsis";
 
-.page { 
+.page {
 	margin: auto;
 	width: 956px;
+	top:75px;
+
 
 	.left-page {
 		display: inline-block;
 		width: 212px;
 		float: left;
 		background-color: $white;
-		margin: 20px 0px 0px 0px;
 
 		.left-title {
 			width: 100%;
@@ -21,9 +22,9 @@
 			margin-top: 30px;
 		}
 		.left-title-text {
-			margin-left: 5px;
+			margin-left: 14px;
 			font-weight: bold;
-			font-size: $font-size-lg;
+			font-size: 17px;
 			color: $gray-dark;
 			height: 20px;
 			display: block;
@@ -35,19 +36,20 @@
 		right: 25px;
 		float: right;
 	}
+
 	.left-title-text-top {
 		margin-left: 5px;
-		font-weight: bold;
 		font-size: $font-size;
 		color: $gray-dark;
 		height: 20px;
 		display: inline-block;
-		&:hover{
-		cursor:pointer;
+		&:hover {
+			cursor: pointer;
 		}
 	}
+
 	.left-title-images {
-		margin-left: 5px;
+		margin-left: 14px;
 		height: 20px;
 		width: 20px;
 		position: relative;
@@ -57,9 +59,8 @@
 	.right-page {
 		display: inline-block;
 		width: 731px;
-		margin: 20px 0px 47px 0px;
 		position: relative;
-		left: 18px;
+		left: 10px;
 
 		.flowblock {
 			background: white;
@@ -70,28 +71,24 @@
 				padding-top: 30px;
 				margin-left: 10px;
 			}
-			
 		}
 	}
-
-
-  .flow-title-text {
-				font-size: $font-size;
-				font-weight: bold;
-				color: $gray-dark;
-				position: relative;
-				left: 20px;
-				top: 55px;
-			}
-
-
+	.flow-title-text {
+		font-size: $font-size;
+		font-weight: bold;
+		color: $gray-dark;
+		position: relative;
+		left: 20px;
+		top: 55px;
+	}
 	.step_margin {
 		margin-top: 74px;
 		padding-left: 20px;
 	}
 	.indentdiv {
 		width: 100%;
-		margin-top:5px;
+		margin-top: 5px;
+		margin-bottom: 25px;
 
 		.indent-ednt-btn {
 			width: 15px;
@@ -101,26 +98,28 @@
 			font-size: $font-size-base;
 			color: $gray;
 			text-decoration: none;
-
 		}
 		.indent-a:hover {
 			color: $gray-dark;
 			font-size: 14px;
 		}
 		.indent-selected {
-			font-size: $font-size;
+			font-size: $font-size-base;
 			color: #fa7872;
 			border-left: solid 2px  #fa7872;
 			text-decoration: none;
+			position: relative;
+			left: -2px;
 		}
 		.indent-more {
 			font-size: $font-size;
 			color: $gray-dark;
 			cursor: pointer;
-			padding-left: 5px;
+			padding-left: 14px;
 		}
 		td {
 			padding-top: 5px;
+			padding-left: 7px;
 		}
 	}
 	.descriptiondiv {
@@ -170,7 +169,7 @@
 			width: 100%;
 			height: 20px;
 			padding-top: 40px;
-			padding-left: 10px;
+			padding-left: 20px;
 		}
 		.indentinfo-title-text {
 			font-size: $font-size;
@@ -179,7 +178,7 @@
 		}
 		.indentinfo-table-div {
 			padding-top: 32px;
-			padding-left: 10px;
+			padding-left: 20px;
 			padding-bottom: 40px;
 		}
 		.indentinfo-table {
@@ -216,7 +215,7 @@
 			line-height: 15px;
 		}
 		.indent-content {
-			width: 160px;
+			width: 150px;
 			color: $gray;
 			display: inline-block;
 			font-size: $font-size-base;
@@ -232,8 +231,8 @@
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
-			position:relative;
-			left:50px;
+			position: relative;
+			left: 50px;
 		}
 		.indent-margin {
 			width: 100px;
@@ -268,7 +267,7 @@
 			font-weight: bold;
 			color: $gray-dark;
 			float: left;
-			padding-left: 10px;
+			padding-left: 20px;
 		}
 	}
 	.upload-file-btn {
@@ -396,7 +395,7 @@
 
 		.message-title {
 			width: 100%;
-			padding-left: 10px;
+			padding-left: 20px;
 			padding-top: 50px;
 
 			.message-title-text {
@@ -408,6 +407,7 @@
 		.message-table-div {
 			position: relative;
 			top: 30px;
+			margin-bottom:100px;
 			background: #fff;
 
 			.message-table {
@@ -421,11 +421,13 @@
 				width: 693px;
 				height: 78px;
 				position: relative;
-				left: 10px;
+				left: 20px;
+				padding-left:5px;
+				padding-top:5px;
 			}
 			.comment-btn {
 				position: relative;
-				left: 628px;
+				left: 648px;
 				top: 10px;
 			}
 			.message-portrait {
@@ -469,7 +471,7 @@
 	h1 {
 		position: relative;
 		left: 25%;
-		font-size: $font-size;
+		font-size: $font-size-base;
 	}
 	h2 {
 		position: relative;
@@ -479,16 +481,18 @@
 	.upload-text {
 		position: relative;
 		left: 141px;
-		top: 10px;
-		height: 40px;
+		top: 8px;
+		height: 35px;
 		width: 160px;
 		color: $gray-light;
 		border: 1px solid $gray-light;
 		text-align: center;
-		line-height: 40px;
+		line-height: 35px;
 		display: inline-block;
 		border-radius: 5px;
-		font-size: $font-size;
+		font-size: $font-size-base;
+		font-weight:100;
+
 	}
 	.upload-btn {
 		display: inline-block;
@@ -503,14 +507,15 @@
 		position: relative;
 		top: 10px;
 		text-align: center;
-		height: 40px;
+		height: 35px;
 		width: 266px;
 		left: 25%;
 		color: $gray-light;
 		display: inline-block;
-		line-height: 40px;
+		line-height: 35px;
 		border: 1px solid $gray-light;
 		border-radius: 5px;
+		font-size:$font-size-base;
 	}
 	.ul-option {
 		visibility: hidden;
@@ -567,7 +572,7 @@
 	font-size: $font-size-base;
 }
 .red-small-btn {
-	height: 40px;
+	height: 35px;
 	width: 96px;
 	background-color: $red-base;
 	border-color: $white;
@@ -575,6 +580,7 @@
 	border: none;
 	color: $white;
 	font-size: $font-size-base;
+	font-weight:100;
 }
 .red-btn:hover {
 	background-color: darken($red-base, 10%);
@@ -729,7 +735,6 @@
 	@include media_screen_height(370px, 640px, 910px);
 	background: $white;
 	margin: 0 auto;
-	margin-top: 40px;
 	margin-bottom: 40px;
 
 	.no-poject-div {
@@ -836,9 +841,9 @@
 	}
 }
 .indent-more-add {
-      position:relative;
-      left:16px;
-      top:3px;
+	position: relative;
+	left: 16px;
+	top: 3px;
 }
 .modal-body dl {
 	text-align: left;
@@ -947,11 +952,17 @@ img {
 .opacity-li {
 	opacity: 0;
 }
-
-.circle-180{
-	transform:rotate(180deg);
+.circle-180 {
+	transform: rotate(180deg);
 }
-
-.circle-360{
-	transform:rotate(360deg);
+.circle-360 {
+	transform: rotate(360deg);
+}
+.page-visible {
+	visibility: hidden;
+}
+.set-width{
+	width: 700px;
+    position: relative;
+    left: 10%;
 }

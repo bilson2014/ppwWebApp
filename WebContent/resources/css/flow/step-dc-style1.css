@@ -36,6 +36,8 @@ div.step_context {
 	list-style: none;
 	text-align: center;
 	margin-top: 3px;
+	
+	line-height: 36px;
 }
 li.finshStep {
 	background-position: right -119px;
@@ -44,6 +46,7 @@ li.finshStep {
 li.finshStep a {
 	background-position: right -158px;
 	background-color: #FA7872;
+	    line-height: 36px;
 }
 li.firstFinshStep {
 	//margin-top:1px;
@@ -55,6 +58,7 @@ li.firstFinshStep a {
 	width:123px;
 	padding-left:10px;
 	background-color: #FA7872;
+	    line-height: 36px;
 }
 li.firstFinshStepTwo {
 	background-position: right 1px;
@@ -64,6 +68,7 @@ li.firstFinshStepTwo {
 li.firstFinshStepTwo a {
 	width:123px;
 	background-color: #FA7872;
+	    line-height: 36px;
 }
 
 li.firstFinshStep_curr1 {
@@ -77,6 +82,7 @@ li.firstFinshStep_curr1 a {
 	background-position: right -0px;
 	height: 39px;
 	width:123px;
+	
 }
 
 li.coressStep {
@@ -87,6 +93,7 @@ li.coressStep a {
 	margin-top: 1px;
 	background-color: #FE5453;
 	height: 39px;
+	    line-height: 36px;
 }
 li.loadStep {
 	background-position: right -179px;
@@ -95,6 +102,7 @@ li.loadStep {
 li.loadStep a {
 	background-color: #b9b9b9;
 	background-position: 153px -198px;
+	    line-height: 36px;
 }
 li.finshlastBefore {
 	background-position: right 1px;
@@ -103,6 +111,7 @@ li.finshlastBefore {
 li.finshlastBefore a {
 	background-position: 153px -237px;
 	background-color: #FA7872;
+	    line-height: 36px;
 }
 li.finshlast {
 	background-position: right -239px;
@@ -112,6 +121,7 @@ li.finshlast a {
 	margin-top: 1px;
 	background-color: #FE5453;
 	height: 39px;
+	    line-height: 36px;
 }
 li.last {
 	background-position: right -303px;
@@ -119,4 +129,5 @@ li.last {
 
 li.last a {
 	background-color: #b9b9b9;
+	    line-height: 36px;
 }
