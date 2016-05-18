@@ -140,12 +140,12 @@
    </div>
 		<div class="left-page">
 			<div class="left-title">
-				<div class="newBtn">
 				<r:permission uri="/add-view">
-	                <img src="${imgPath }/flow/plus.png" class="left-title-images " title="添加项目">
-				</r:permission>
-				<label class="left-title-text-top">新建项目</label>
-			    </div>
+					<div class="newBtn">
+		                <img src="${imgPath }/flow/plus.png" class="left-title-images " title="添加项目">
+		                <label class="left-title-text-top">新建项目</label>
+				    </div>
+			    </r:permission>
 				<label class="left-title-text">所有项目</label>
 			</div>
 			
@@ -159,12 +159,12 @@
 		<div class="right-page">
 			<div class="flowblock">
 				<div class="flow-title">
-                <div class="right-div" id="project-report">
 				<r:permission uri="/project/get/report">
-					<img src="${imgPath }/flow/report.png" class="left-title-images"  title="导出报表">
+	                <div class="right-div" id="project-report">
+						<img src="${imgPath }/flow/report.png" class="left-title-images"  title="导出报表">
+						<label class="left-title-text-top">导出报表</label>
+					 </div>   
 				</r:permission>
-				    <label class="left-title-text-top">导出报表</label>
-				 </div>   
 				</div>
 	            <label class="flow-title-text">项目进度</label>
 				<div class="step_context step_margin test" data-open-on="hover">
@@ -232,31 +232,6 @@
                 	</li>
                 </ul>
                 </div>	
-
-
-				<!-- <div class="descriptiondiv top-margin">
-					<div class="description-title-text ">项目进度：</div>
-					<div class="time-div-title">预计完成日期</div>
-					<div >
-					    <div aclss="time-div div-margin-sm" id="et_gt"></div>
-				                       	<div class="time-div div-margin" id="et_fa"></div>
-				                       	<div class="time-div div-margin" id="et_sw"></div>
-				                       	<div class="time-div div-margin-mid" id="et_zz"></div>
-				                       	<div class="time-div div-margin-mid"  id="et_jf"></div>
-					</div>
-				                    <div class="time-div-title">实际完成日期</div>
-				                  	<div class="mo-time">
-					    <div class="time-div div-margin-sm " id="cu_gt"></div>
-				                       	<div class="time-div div-margin" id="cu_fa"></div>
-				                       	<div class="time-div div-margin" id="cu_sw"></div>
-				                       	<div class="time-div div-margin-mid"  id="cu_zz"></div>
-				                       	<div class="time-div div-margin-mid" id="cu_jf"></div>
-					</div>
-					<div class="description-title-text" style="display: none">阶段描述：</div>
-					<br>
-					<br> 
-					<label class="description-text" style="display: none"></label>
-				</div> -->
 				<r:multPermission uri3="/completeTask" uri2="/suspendProcess" uri="/project/cancelProject">
 					<div class="flowbtndiv" id="btndiv-id">
 						<r:permission uri="/completeTask">
