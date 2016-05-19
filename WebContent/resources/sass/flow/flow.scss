@@ -29,6 +29,7 @@
 			height: 20px;
 			display: block;
 			margin-top: 25px;
+			
 		}
 	}
 	.right-div {
@@ -253,6 +254,8 @@
 		}
 	}
 	.indentfile {
+		position: relative;
+		top:10px;
 		background: $white;
 
 		.indentfile-title {
@@ -390,7 +393,7 @@
 	.message-div {
 		background: $white;
 		position: relative;
-		top: 10px;
+		top: 20px;
 		margin-bottom: 30px;
 
 		.message-title {

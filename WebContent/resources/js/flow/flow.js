@@ -179,14 +179,24 @@ function setModalEvent(Confirm){
 }
 function getBtnWidth(){
 	  //var select_btn = document.getElementById("btndiv-id").getElementsByTagName("button");
-var select_btn = $('#btndiv-id').find('button');
-	if(select_btn.length==1){
-		$(".flowbtndiv").css("width","105");
+	var select_btn = $('#btndiv-id').find('button');
+	var count=0;
+	for (var int = 0; int < select_btn.length; int++) {
+		var value=$(select_btn[int]).css('display');
+		if(value!='none')
+			count++;
 	}
-	else if(select_btn.length>1){
-		var width=110*select_btn.length+20*(select_btn.length-1);
-		$(".flowbtndiv").css("width",width);
+	var width = 0;
+	if(count==1){
+		width = 105;
 	}
+	else if(count == 2){
+		width=108*count+24*(count - 1) + 30;
+	}
+	else if(count > 2){
+		width=108*count+24*(count - 1) + 4;
+	}
+	$(".flowbtndiv").css("width",width);
 }
 //加载文件类型
 function loadFileTags() {
@@ -203,6 +213,7 @@ function loadFileTags() {
 function cancelBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要取消项目吗？");
+	noWorkproject=false;
 	setModalEvent(cancel);
 }
 function cancel() {
@@ -243,6 +254,9 @@ function resumeBtn() {
 function pause() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$(".flowbtn").hide();
+		$(".prev-task").hide();
+		getBtnWidth();
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
 		loadcommentdata(false);
@@ -253,6 +267,22 @@ function pause() {
 function resume() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$(".pausebtn").text("暂停");
+		$(".flowbtn").removeClass('gray-btn');
+		$(".pausebtn").removeClass('red-btn');
+		$(".pausebtn").addClass('gray-btn');
+		$(".flowbtn").addClass('red-btn');
+		$(".pausebtn").off("click");
+		$(".pausebtn").on("click", function() {
+			pauseBtn();
+			loadflowdata();
+		});
+		
+		
+		
+		$(".flowbtn").show();
+		$(".prev-task").show();
+		getBtnWidth();
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
 		loadcommentdata(false);
@@ -382,6 +412,8 @@ function loadflowdata() {
 					});
 					//暂停状态
 					if (msg.suspended) {
+						$(".flowbtn").hide();
+						$(".prev-task").hide();
 						$(".pausebtn").text("恢复");
 						$(".flowbtn").removeClass('red-btn');
 						$(".pausebtn").removeClass('gray-btn');
@@ -391,18 +423,21 @@ function loadflowdata() {
 						//配置按钮功能为恢复项目运行
 						$(".pausebtn").on("click", function() {
 							resumeBtn();
-							$(".pausebtn").text("暂停");
-							$(".flowbtn").removeClass('gray-btn');
-							$(".pausebtn").removeClass('red-btn');
-							$(".pausebtn").addClass('gray-btn');
-							$(".flowbtn").addClass('red-btn');
-							$(".pausebtn").off("click");
-							$(".pausebtn").on("click", function() {
-								pauseBtn();
-								loadflowdata();
-							});
+						});
+					}else{
+						$(".flowbtn").show();
+						$(".prev-task").show();
+						$(".pausebtn").text("暂停");
+						$(".flowbtn").removeClass('gray-btn');
+						$(".pausebtn").removeClass('red-btn');
+						$(".pausebtn").addClass('gray-btn');
+						$(".flowbtn").addClass('red-btn');
+						$(".pausebtn").off("click");
+						$(".pausebtn").on("click", function() {
+							pauseBtn();
 						});
 					}
+					getBtnWidth();
 					if (msg.name.trim() == '任务不存在') {
 						StepTool.drawStep(num, stepListJson);
 						currentIndex = num;
@@ -469,6 +504,7 @@ function loadflowdata() {
 				id : key
 			}));
 }
+
 function resetTime(mode) {
 	if(mode!='curr'){
 		$("dd[id^='et_']").html("");
@@ -796,6 +832,7 @@ function loadcommentdata(more) {
 	}));
 }
 var firstClick=false;
+var  noWorkproject=true;
 //加载项目列表
 function loadprojecctlist(more,state) {
 	loadData(function(msg) {
@@ -815,7 +852,7 @@ function loadprojecctlist(more,state) {
 			$(".noproject").addClass('hide');
 		}
 		var  selectFirst=false;
-		var  noWorkproject=true;
+		
 
 		for (var i = 0; i < msg.length; i++) {
 			var tr = $("<tr></tr>");
@@ -1142,9 +1179,6 @@ function showOrderTime(){
 	$('#stepword_jf').mouseout(function(){
           $('#div_jf').addClass('opacity-li');
 	});
-
-
-
 }
 
 
