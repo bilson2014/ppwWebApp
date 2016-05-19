@@ -186,13 +186,17 @@ function getBtnWidth(){
 		if(value!='none')
 			count++;
 	}
+	var width = 0;
 	if(count==1){
-		$(".flowbtndiv").css("width","105");
+		width = 105;
 	}
-	else if(select_btn.length>1){
-		var width=115*count+20*(count);
-		$(".flowbtndiv").css("width",width);
+	else if(count == 2){
+		width=108*count+24*(count - 1) + 30;
 	}
+	else if(count > 2){
+		width=108*count+24*(count - 1) + 4;
+	}
+	$(".flowbtndiv").css("width",width);
 }
 //加载文件类型
 function loadFileTags() {
@@ -239,23 +243,20 @@ function PrevTask(){
 function pauseBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要暂停项目吗？");
-	$(".flowbtn").hide();
-	$(".prev-task").hide();
-	getBtnWidth();
 	setModalEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
 	$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要恢复项目吗？");
-	$(".flowbtn").show();
-	$(".prev-task").show();
-	getBtnWidth();
 	setModalEvent(resume);
 }
 function pause() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$(".flowbtn").hide();
+		$(".prev-task").hide();
+		getBtnWidth();
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
 		loadcommentdata(false);
@@ -266,6 +267,22 @@ function pause() {
 function resume() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
+		$(".pausebtn").text("暂停");
+		$(".flowbtn").removeClass('gray-btn');
+		$(".pausebtn").removeClass('red-btn');
+		$(".pausebtn").addClass('gray-btn');
+		$(".flowbtn").addClass('red-btn');
+		$(".pausebtn").off("click");
+		$(".pausebtn").on("click", function() {
+			pauseBtn();
+			loadflowdata();
+		});
+		
+		
+		
+		$(".flowbtn").show();
+		$(".prev-task").show();
+		getBtnWidth();
 		$("#toolbar-check").modal('hide');
 		loadflowdata();
 		loadcommentdata(false);
@@ -406,16 +423,6 @@ function loadflowdata() {
 						//配置按钮功能为恢复项目运行
 						$(".pausebtn").on("click", function() {
 							resumeBtn();
-							$(".pausebtn").text("暂停");
-							$(".flowbtn").removeClass('gray-btn');
-							$(".pausebtn").removeClass('red-btn');
-							$(".pausebtn").addClass('gray-btn');
-							$(".flowbtn").addClass('red-btn');
-							$(".pausebtn").off("click");
-							$(".pausebtn").on("click", function() {
-								pauseBtn();
-								loadflowdata();
-							});
 						});
 					}else{
 						$(".flowbtn").show();
