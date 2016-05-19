@@ -217,7 +217,7 @@ var="cookiejs" />
 
 					<div class="divtable finishdiv finish">
 							<div class="baseinfo-table-key">项目最终价格</div>
-							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput"/>元
+							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
 					</div>
 					<div>
                     <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>

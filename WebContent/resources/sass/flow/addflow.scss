@@ -202,7 +202,7 @@
 }
 .right-border-time {
 	display: inline-block;
-	width: 150px;
+	width: 145px;
 	background-size: cover;
 }
 .right-border-time-end {
@@ -211,14 +211,14 @@
 }
 .img-size {
 	height: 15px;
-	width: 155px;
+	width: 153px;
 }
 .img-size-end {
 	height: 15px;
 	width: 15px;
 }
 .right-border-margin {
-	margin-left: 50px;
+	margin-left: 45px;
 }
 .indent-time-table {
 	width: 100%;
@@ -607,5 +607,9 @@
 .pospricediv{
 	position:relative;
 	left:-5px;
+}
+
+.wordMargin{
+	margin-right:5px;
 }
 
