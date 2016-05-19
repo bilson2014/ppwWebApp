@@ -1,0 +1,279 @@
+/* 手机端 主页 */
+@import "compass/css3";
+@import "constant";
+@import "mixin";
+@import "../common_portal";
+@import "compass/typography/text/ellipsis";
+
+$flexslider-section-height: 210px; // 轮播图区域高度(280px)
+$flexslider-section-height320: 190px; // 轮播图区域高度(320px)
+$flexslider-section-height640: 230px; // 轮播图区域高度(640px)
+$flexslider-section-height720: 250px; // 轮播图区域高度(720px)
+$activity-section-height: 315px; // 活动区域高度
+$activity-section-height320: 241px; // 活动区域高度(320px)
+$activity-section-height360: 262px; // 活动区域高度(360px)
+$activity-section-height390: 278px; // 活动区域高度(390px)
+$activity-section-height640: 412px; // 活动区域高度(640px)
+$activity-section-height720: 455px; // 活动区域高度(720px)
+$split-desc-height: 70px; // 区域介绍描述高度
+$activity-video-section-width: 400px; // 活动、视频区域宽度
+$activity-video-section-width320: 274px; // 活动、视频区域宽度(320px)
+$activity-video-section-width360: 306px; // 活动、视频区域宽度(350px)
+$activity-video-section-width390: 338px; // 活动、视频区域宽度(390px)
+$activity-video-section-width640: 562px; // 活动、视频区域宽度(640px)
+$activity-video-section-width720: 636px; // 活动、视频区域宽度(720px)
+$video-content-height: 421px; // 一行视频的高度
+$video-content-height320: 334px; // 一行视频的高度(320px)
+$video-content-height360: 356px; // 一行视频的高度(360px)
+$video-content-height390: 372px; // 视频图片的高度(390px)
+$video-content-height640: 511px; // 一行视频的高度(640px)
+$video-content-height720: 558px; // 一行视频的高度(720px)
+$video-image-height: 270px; // 视频图片的高度
+$video-image-height320: 180px; // 视频图片的高度(320px)
+$video-image-height360: 202px; // 视频图片的高度(360px)
+$video-image-height390: 220px; // 视频图片的高度(320px)
+$video-image-height640: 360px; // 视频图片的高度(640px)
+$video-image-height720: 405px; // 视频图片的高度(720px)
+
+%split-section {
+	position: relative;
+	top: 20px;
+	width: 96%;
+	height: $split-desc-height;
+	@include margin-auto;
+	text-align: center;
+	color: $fe5453;
+
+	h3 {
+		width:118px;
+		height: 28px;
+		@include margin-auto;
+		letter-spacing: 1px;
+		font: {
+			size: $big-font-size;
+			weight: 600;
+		}
+		border-bottom: solid 2px $fe5453;
+	}
+
+	.spilt-line {
+		height: 2px;
+		border-top: solid 1px $fe5453;
+	}
+}
+
+.wrap {
+
+	/* 视频 start */
+	.video-section {
+		position: relative;
+		width: 100%;
+		@include margin-auto;
+
+		.recomment-line {
+			position: relative;
+			padding: 22px 0;
+			text-align: center;
+			clear: both;
+			cursor: default;
+			width: 90%;
+			@include margin-auto;
+			
+			&:before,&:after {
+			display: block;
+			position: absolute;
+			top: 30px;
+			width: 32%;
+			content: "";
+			border-top: 1px solid #dddddd;
+			};
+
+			&:before {
+			left: 0;
+			}
+
+			&:after {
+			right: 0;
+			}
+
+			& a {
+					text-decoration: none;
+					color: #999;
+					cursor: default;
+					font: {
+						size: $big-font-size;
+						weight: 600;
+					}
+			}
+		}
+
+		.video-content {
+			width: 100%;
+			
+			$col-width: 95%;
+			.contain-row {
+				width: $col-width;
+				height: $video-content-height;
+				background-color: #ffffff;
+				margin: 0 auto;
+				margin-bottom: 10px;
+				@extend %phone-border;
+				//@include box-shadow(lighten(#000,85%) 0 2px 2px);
+				@include clearfix();
+				
+				@media screen and (max-width: 360px) {
+					width: $col-width;
+					//max-width: $activity-video-section-width320;
+					height: $video-content-height320;
+				}
+
+				@media screen and (min-width: 360px) and (max-width: 390px) {
+					width: $col-width;
+					//max-width: $activity-video-section-width360;
+					height: $video-content-height360;
+				}
+
+				@media screen and (min-width: 390px) and (max-width: 460px) {
+					width: $col-width;
+					//max-width: $activity-video-section-width390;
+					height: $video-content-height390;
+				}
+
+				@media screen and (min-width: 640px) and (max-width: 720px) {
+					width: $col-width;
+					//max-width: $activity-video-section-width640;
+					height: $video-content-height640;
+				}
+
+				@media screen and (min-width: 720px) {
+					width: $col-width;
+					//max-width: $activity-video-section-width720;
+					height: $video-content-height720;
+				}
+
+				.video-col{
+					position: relative;
+					width: 100%;
+					height: 100%;
+					@include clearfix();
+
+					.video-post {
+						img {
+							width: 100%;
+							height: $video-image-height;
+							
+							@media screen and (max-width: 360px) {
+								height: $video-image-height320;
+							}
+
+							@media screen and (min-width: 360px) and (max-width: 390px) {
+								height: $video-image-height360;
+							}
+
+							@media screen and (min-width: 390px) and (max-width: 460px) {
+								height: $video-image-height390;
+							}
+
+							@media screen and (min-width: 640px) and (max-width: 720px) {
+								height: $video-image-height640;
+							}
+
+							@media screen and (min-width: 720px) {
+								height: $video-image-height720;
+							}
+
+						}
+					}
+
+					.video-desc {
+						position: relative;
+						width: 100%;
+						margin: 0;
+						padding: 0;
+						@include clearfix();
+						height: ($video-content-height - $video-image-height - 3);
+						dl {
+							position: relative;
+							top: 15px;
+							width: 90%;
+							height: ($video-content-height - $video-image-height - 3) - 15;
+							@include margin-auto;
+							dt:nth-child(1) {
+								margin-bottom: 15px;
+								h2 {
+									color: #333;
+									font: {
+										size: $big-font-size;
+										weight: 600;
+									}
+									letter-spacing: 1px;
+								}
+							}
+
+							dd:nth-child(2) {
+								color: #666;
+								font: {
+									size: $small-font-size;
+									weight: normal;
+								}
+								line-height: 20px;
+								letter-spacing: 1px;
+								height: 56px;
+
+								word-break: break-all;
+								word-wrap: break-word;
+								white-space: normal;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+
+							dt:nth-child(3) {
+								display: inline-block;
+								float: left;
+								margin-top: 15px;
+								color: $fe5453;
+								font: {
+									size: $bigger-font-size;
+									weight: 600;
+								}
+								label {
+									font: {
+										size: $normal-font-size;
+										weight: normal;
+									}
+								}
+								
+								.doraction {
+									color: #333;
+									margin-left: 4px;
+									text-decoration: line-through;
+								}
+							}
+
+							dd:last-child {
+								display: inline-block;
+								float: right;
+								margin-top: 10px;
+								.detail-btn {
+									width: 102px;
+									height: 26px;
+									line-height: 26px;
+									@include border-radius(25px);
+									background-color:#fff;
+									color: $fe5453;
+									border: solid 1px #fe5453;
+									text-align: center;
+									font: {
+										size: $small-font-size;
+										weight: normal;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/* 视频 end */
+} 
