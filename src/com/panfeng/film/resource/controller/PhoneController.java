@@ -172,28 +172,6 @@ public class PhoneController extends BaseController {
 	}
 	
 	/**
-	 * 分销人下单
-	 * @param uniqueId
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/salesman/order/{uniqueId}")
-	public ModelAndView order(@PathVariable("uniqueId") final String uniqueId,final HttpServletRequest request,final ModelMap model){
-		
-		model.addAttribute("teamId", -1);
-		model.addAttribute("productId", -1);
-		model.addAttribute("serviceId", -1);
-		model.addAttribute("indentPrice", 0);
-		model.addAttribute("second", 0);
-		model.addAttribute("product_name", null);
-		model.addAttribute("indentName", null);
-		model.addAttribute("uniqueId", uniqueId);
-
-		return new ModelAndView("/phone/order", model);
-	}
-
-	/**
 	 * 活动页面 下单
 	 */
 	@RequestMapping("/order/{teamId}/{productId}/{serviceId}/{indentPrice}/{productName}")
