@@ -9,6 +9,13 @@
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/phone/salesman/portal.js" var="portalJs"/>
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap-alert.min.css" var="bsAlterCss"/>
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap-button.min.css" var="bsCss"/>
+<spring:url value="/resources/css/phone/drpOrder.css" var="drpCss"/>
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="Js"/>
+<spring:url value="/resources/js/phone/drpOrder.js" var="drpJs"/>
+<spring:url value="/resources/css/phone/salesman" var="bsAlterCss"/>
+<spring:url value="/resources/lib/jquery/jquery.base64.js" var="baseJs"/>
 <!-- imgPath -->
 <spring:url value="/resources/img" var="imgPath"/>
 <!DOCTYPE html>
@@ -30,65 +37,157 @@
 
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${portalCss }">
-	<!--[if lt IE 9]>
-		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
-	<![endif]-->
+	
+
+
+   
 </head>
 <body>
-	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
-	<div class="wrap">
 
-		<div class="video-section">
-			<!-- 视频列表 -->
-			<div class="recomment-line">
-				<a href="javascript: void(0);">经济适用型</a>
-			</div>
+	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
+	
+	   <!-- toolbar modal begin -->
+    <div class="upload-window" id="toolbar-modal">
+       <div class="player-wrap" id="player-wrap">
+         <%--  <video  class="video-size" controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video> --%>
+        <video id="showVideo"></video> 
+        </div>
+    </div>
+    <!-- toolbar modal end -->
+
+	
 			
-			<!-- 第一块视频区域 -->
-			<div class="video-content" id="first-video-section">
-				<%-- <div class="contain-row">
-					<a href="<spring:url value='/phone/play/7'/>">
-						<div class="video-col">
-							<div class="video-post">
-								<img src="http://www.apaipian.com/product/img/product7-201510281611495342.jpg" alt="智能硬件专场_拍片网">
-							</div>
-							
-							<div class="video-desc">
-								<dl>
-									<dt><h2>精致的智能硬件宣传影片</h2></dt>
-									<dd>逼真的工业级渲染，家庭的使用场景展示，通过高科技的视觉元素渲染产品特点，完美呈现产品精致的一面，国际市场取得了惊人的销量。</dd>
-									<dt><label>￥</label>56,880元<label class="doraction">113,760</label></dt>
-									<dd><a href="<spring:url value='/phone/play/7'/>"><div class="detail-btn">查看详情</div></a></dd>
-								</dl>
+	
+			
+		<div class="outside-div"  >
+             <div class="top-div">
+	               <div class="title-word">经济实惠:</div>
+	               <div class="title-content">
+	               	    <div class="left-content">
+	               	    	<label class="left-price" id="firstPrice">12800</label><label class="left-desc">元套餐</lable>
+	                    </div>
+	                     <div class="right-content">
+	               	    	<label class="right-price">30<span class="right-desc">小时极速出片</span></label>
+	               	    	<label class="right-price">HD<span class="right-desc">专业级高清拍摄及制作</span></label>
+	                    </div>
+	               </div>
+              </div> 
+            
+             <div class="inside-div" id="first-video-section" >
+                        <!-- example 
+                         <div class="video-area">
+                        	 <div class="video-img">
+                              <img src="http://www.apaipian.com/product/img/product7-201510281611495342.jpg" alt="智能硬件专场_拍片网">
+                                          	         </div>
+                                          	         <div class="video-content">
+                                  	<div class="video-title">产品展示片</div>
+                                  	<div class="video-title-content">sssssssssssss</br>hhhhhhhhhhhhhhhhhhhhhhhhhhhh</br>vvvvvvvvvvvvvvv</br></div>
+                                          	         </div>	
+                                          	         <button class="btn-red-common video-btn">立即下单</button>
+                        </div>	 -->
+
+                      
+             		</div> 
+        	 </div>
+
+
+         		<div class="outside-div" >
+			             <div class="top-div">
+				               <div class="title-word">高性价比:</div>
+				               <div class="title-content">
+				               	    <div class="left-content">
+				               	    	<label class="left-price" id="secondPrice">29800</label><label class="left-desc">元套餐</lable>
+				                    </div>
+				                     <div class="right-content">
+				               	    	<label class="right-price">48<span class="right-desc">小时极速出片</span></label>
+				               	    	<label class="right-price">4K<span class="right-desc">广告级拍摄和制作</span></label>
+				                    </div>
+				               </div>
+			              </div> 
+            
+			             <div class="inside-div"  id="second-video-section" >
+			             </div> 
+			     </div>
+
+
+			     <div class="outside-div"  >
+			             <div class="top-div">
+				               <div class="title-word">高端精致:</div>
+				               <div class="title-content">
+				               	    <div class="left-content">
+				               	    	<label class="left-price" id="thirdPrice">59800</label><label class="left-desc">元套餐</lable>
+				                    </div>
+				                     <div class="right-content">
+				               	    	<label class="right-price">72<span class="right-desc">小时极速出片</span></label>
+				               	    	<label class="right-price">4k<span class="right-desc">电影级拍摄和制作</span></label>
+				                    </div>
+				               </div>
+			              </div> 
+            
+			             <div class="inside-div" id="third-video-section"  >
+			             </div> 
+			     </div>
+
+
+
+
+           <div class="footer">
+							<div class="footer-content">
+								<div class="content-header">
+									<ul>
+										<li><a href="javascript:void(0);">关于我们</a></li>
+										<li><a href="javascript:void(0);">合作联系</a></li>
+										<li><a href="javascript:void(0);">服务协议</a></li>
+									</ul>
+								</div>
+								<div class="content-footer">
+									<label>&copy; 2014 攀峰文化 京ICP备 14036662号-1</label>
+								</div>
 							</div>
 						</div>
-					</a>
-				</div> --%>
-			</div>
+					</div>
+
+
+
+
+
+
+
 			
-			
-		</div>
 		
-		<div class="footer">
-			<div class="footer-content">
-				<div class="content-header">
-					<ul>
-						<li><a href="javascript:void(0);">关于我们</a></li>
-						<li><a href="javascript:void(0);">合作联系</a></li>
-						<li><a href="javascript:void(0);">服务协议</a></li>
-					</ul>
-				</div>
-				<div class="content-footer">
-					<label>&copy; 2014 攀峰文化 京ICP备 14036662号-1</label>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 </body>
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${commonJs }"></script>
-<script src="${portalJs }"></script>
+<script src="${portalJs}"></script>
+<script src="http://player.youku.com/jsapi"></script>
+<script src="${playJs}"></script>
+<script src="${baseJs}"></script>  
+
 <!-- 加载Mob share 控件 -->
 <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </html>
+
+
+<!-- 		第一块视频区域
+	<div class="video-content">
+		<%-- <div class="contain-row">
+			<a href="<spring:url value='/phone/play/7'/>">
+				<div class="video-col">
+					<div class="video-post">
+						<img src="http://www.apaipian.com/product/img/product7-201510281611495342.jpg" alt="智能硬件专场_拍片网">
+					</div>
+					
+					<div class="video-desc">
+						<dl>
+							<dt><h2>精致的智能硬件宣传影片</h2></dt>
+							<dd>逼真的工业级渲染，家庭的使用场景展示，通过高科技的视觉元素渲染产品特点，完美呈现产品精致的一面，国际市场取得了惊人的销量。</dd>
+							<dt><label>￥</label>56,880元<label class="doraction">113,760</label></dt>
+							<dd><a href="<spring:url value='/phone/play/7'/>"><div class="detail-btn">查看详情</div></a></dd>
+						</dl>
+					</div>
+				</div>
+			</a>
+		</div> --%>
+	</div> -->

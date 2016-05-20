@@ -4,6 +4,9 @@
 @import "mixin";
 @import "../common_portal";
 @import "compass/typography/text/ellipsis";
+@import "common";
+@import "buttons";
+
 
 $flexslider-section-height: 210px; // 轮播图区域高度(280px)
 $flexslider-section-height320: 190px; // 轮播图区域高度(320px)
@@ -35,245 +38,164 @@ $video-image-height390: 220px; // 视频图片的高度(320px)
 $video-image-height640: 360px; // 视频图片的高度(640px)
 $video-image-height720: 405px; // 视频图片的高度(720px)
 
-%split-section {
-	position: relative;
-	top: 20px;
-	width: 96%;
-	height: $split-desc-height;
-	@include margin-auto;
-	text-align: center;
-	color: $fe5453;
 
-	h3 {
-		width:118px;
-		height: 28px;
-		@include margin-auto;
-		letter-spacing: 1px;
-		font: {
-			size: $big-font-size;
-			weight: 600;
+body{
+	
+	-webkit-overflow-scrolling: touch;
+	overflow-y: auto;;
+}
+
+.outside-div {
+	width: 100%;
+	height: auto;
+
+}
+.inside-div {
+    margin-top:16px;
+	width: 100%;
+	height:auto;
+	white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.upload-window {
+	position: absolute;
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	display: none;
+}
+.video-size {
+	width: 100%;
+	margin: 0 auto;
+}
+.top-div {
+	width: 100%;
+	height:auto;
+
+	.title-word {
+		margin-top:22px;
+		margin-left:10px;
+		font-size: $font-size-lg;
+		font-weight: bold;
+		
+		color: black;
+	}
+	.title-content {
+		margin-top:19px;
+	}
+}
+.left-content {
+	display: inline-block;
+	width: 50%;
+	height: 90px;
+	border-right: 3px solid $gold-yellow;
+
+	.left-price {
+		margin-left:10px;
+		font-size: 32px;
+		font-weight: bold;
+		color: $red-base;
+		line-height: 90px;
+	}
+	.left-desc {
+		font-size: $font-size;
+		color: $gray;
+		margin-left:5px;
+		font-weight: 300;
+	}
+}
+.right-content {
+	display: inline-block;
+	width: 50%;
+	height: 90px;
+	float: right;
+
+	.right-price {
+		display: block;
+		margin-left:10px;
+		font-size: $font-size-lg;
+		font-weight: bold;
+		color: black;
+		font-weight: bold;
+		line-height: 45px;
+	}
+	.right-desc {
+		font-size: $font-size;
+		color: $gray;
+		margin-left:5px;
+		font-weight: 300;
+
+
+	}
+}
+.video-area {
+	margin-left:10px;
+	display: inline-block;
+	height:auto;
+	width: 90%;
+	border: 1px soild #d8d8d8;
+	background:#f7f7f7;
+
+	img {
+		width: 100%;
+		height: $video-image-height;
+
+		@media screen and (max-width:360px) {
+			height: $video-image-height320;
 		}
-		border-bottom: solid 2px $fe5453;
+		@media screen and (min-width:360px) and (max-width:390px) {
+			height: $video-image-height360;
+		}
+		@media screen and (min-width:390px) and (max-width:460px) {
+			height: $video-image-height390;
+		}
+		@media screen and (min-width:640px) and (max-width:720px) {
+			height: $video-image-height640;
+		}
+		@media screen and (min-width:720px) {
+			height: $video-image-height720;
+		}
+	}
+	.video-content {
+		margin-top:20px;
+		width: 100%;
+		height: 100px;
+		text-align: center;
+		line-height: 20px;
 	}
 
-	.spilt-line {
-		height: 2px;
-		border-top: solid 1px $fe5453;
+	.video-title{
+	font-size:$font-size;
+	color:$gray-dark;
+	}
+
+	.video-title-content{
+	margin-top:10px;
+	font-size:$font-size-base;
+	color:$gray;
+	}
+
+	.video-btn{
+    margin-top:20px;
+    margin-bottom:20px;
+    width:90%;
+    margin-left:5%;
 	}
 }
 
-.wrap {
+.footer{
+  width:260px;
+  margin:0 auto;  
+}
 
-	/* 视频 start */
-	.video-section {
-		position: relative;
-		width: 100%;
-		@include margin-auto;
-
-		.recomment-line {
-			position: relative;
-			padding: 22px 0;
-			text-align: center;
-			clear: both;
-			cursor: default;
-			width: 90%;
-			@include margin-auto;
-			
-			&:before,&:after {
-			display: block;
-			position: absolute;
-			top: 30px;
-			width: 32%;
-			content: "";
-			border-top: 1px solid #dddddd;
-			};
-
-			&:before {
-			left: 0;
-			}
-
-			&:after {
-			right: 0;
-			}
-
-			& a {
-					text-decoration: none;
-					color: #999;
-					cursor: default;
-					font: {
-						size: $big-font-size;
-						weight: 600;
-					}
-			}
-		}
-
-		.video-content {
-			width: 100%;
-			
-			$col-width: 95%;
-			.contain-row {
-				width: $col-width;
-				height: $video-content-height;
-				background-color: #ffffff;
-				margin: 0 auto;
-				margin-bottom: 10px;
-				@extend %phone-border;
-				//@include box-shadow(lighten(#000,85%) 0 2px 2px);
-				@include clearfix();
-				
-				@media screen and (max-width: 360px) {
-					width: $col-width;
-					//max-width: $activity-video-section-width320;
-					height: $video-content-height320;
-				}
-
-				@media screen and (min-width: 360px) and (max-width: 390px) {
-					width: $col-width;
-					//max-width: $activity-video-section-width360;
-					height: $video-content-height360;
-				}
-
-				@media screen and (min-width: 390px) and (max-width: 460px) {
-					width: $col-width;
-					//max-width: $activity-video-section-width390;
-					height: $video-content-height390;
-				}
-
-				@media screen and (min-width: 640px) and (max-width: 720px) {
-					width: $col-width;
-					//max-width: $activity-video-section-width640;
-					height: $video-content-height640;
-				}
-
-				@media screen and (min-width: 720px) {
-					width: $col-width;
-					//max-width: $activity-video-section-width720;
-					height: $video-content-height720;
-				}
-
-				.video-col{
-					position: relative;
-					width: 100%;
-					height: 100%;
-					@include clearfix();
-
-					.video-post {
-						img {
-							width: 100%;
-							height: $video-image-height;
-							
-							@media screen and (max-width: 360px) {
-								height: $video-image-height320;
-							}
-
-							@media screen and (min-width: 360px) and (max-width: 390px) {
-								height: $video-image-height360;
-							}
-
-							@media screen and (min-width: 390px) and (max-width: 460px) {
-								height: $video-image-height390;
-							}
-
-							@media screen and (min-width: 640px) and (max-width: 720px) {
-								height: $video-image-height640;
-							}
-
-							@media screen and (min-width: 720px) {
-								height: $video-image-height720;
-							}
-
-						}
-					}
-
-					.video-desc {
-						position: relative;
-						width: 100%;
-						margin: 0;
-						padding: 0;
-						@include clearfix();
-						height: ($video-content-height - $video-image-height - 3);
-						dl {
-							position: relative;
-							top: 15px;
-							width: 90%;
-							height: ($video-content-height - $video-image-height - 3) - 15;
-							@include margin-auto;
-							dt:nth-child(1) {
-								margin-bottom: 15px;
-								h2 {
-									color: #333;
-									font: {
-										size: $big-font-size;
-										weight: 600;
-									}
-									letter-spacing: 1px;
-								}
-							}
-
-							dd:nth-child(2) {
-								color: #666;
-								font: {
-									size: $small-font-size;
-									weight: normal;
-								}
-								line-height: 20px;
-								letter-spacing: 1px;
-								height: 56px;
-
-								word-break: break-all;
-								word-wrap: break-word;
-								white-space: normal;
-								text-overflow: ellipsis;
-								overflow: hidden;
-							}
-
-							dt:nth-child(3) {
-								display: inline-block;
-								float: left;
-								margin-top: 15px;
-								color: $fe5453;
-								font: {
-									size: $bigger-font-size;
-									weight: 600;
-								}
-								label {
-									font: {
-										size: $normal-font-size;
-										weight: normal;
-									}
-								}
-								
-								.doraction {
-									color: #333;
-									margin-left: 4px;
-									text-decoration: line-through;
-								}
-							}
-
-							dd:last-child {
-								display: inline-block;
-								float: right;
-								margin-top: 10px;
-								.detail-btn {
-									width: 102px;
-									height: 26px;
-									line-height: 26px;
-									@include border-radius(25px);
-									background-color:#fff;
-									color: $fe5453;
-									border: solid 1px #fe5453;
-									text-align: center;
-									font: {
-										size: $small-font-size;
-										weight: normal;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	/* 视频 end */
-} 
+.upload-window{
+ position:absolute;
+ z-index:999;
+ height:100%;
+ width:100%;
+ background:#000;
+ display:none;
+}
