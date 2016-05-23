@@ -8,23 +8,7 @@
 @import "buttons";
 
 
-$flexslider-section-height: 210px; // 轮播图区域高度(280px)
-$flexslider-section-height320: 190px; // 轮播图区域高度(320px)
-$flexslider-section-height640: 230px; // 轮播图区域高度(640px)
-$flexslider-section-height720: 250px; // 轮播图区域高度(720px)
-$activity-section-height: 315px; // 活动区域高度
-$activity-section-height320: 241px; // 活动区域高度(320px)
-$activity-section-height360: 262px; // 活动区域高度(360px)
-$activity-section-height390: 278px; // 活动区域高度(390px)
-$activity-section-height640: 412px; // 活动区域高度(640px)
-$activity-section-height720: 455px; // 活动区域高度(720px)
-$split-desc-height: 70px; // 区域介绍描述高度
-$activity-video-section-width: 400px; // 活动、视频区域宽度
-$activity-video-section-width320: 274px; // 活动、视频区域宽度(320px)
-$activity-video-section-width360: 306px; // 活动、视频区域宽度(350px)
-$activity-video-section-width390: 338px; // 活动、视频区域宽度(390px)
-$activity-video-section-width640: 562px; // 活动、视频区域宽度(640px)
-$activity-video-section-width720: 636px; // 活动、视频区域宽度(720px)
+
 $video-content-height: 421px; // 一行视频的高度
 $video-content-height320: 334px; // 一行视频的高度(320px)
 $video-content-height360: 356px; // 一行视频的高度(360px)
@@ -38,20 +22,109 @@ $video-image-height390: 220px; // 视频图片的高度(320px)
 $video-image-height640: 360px; // 视频图片的高度(640px)
 $video-image-height720: 405px; // 视频图片的高度(720px)
 
+$video-image-height: 243px; // 视频图片的高度
+$video-image-height320: 162px; // 视频图片的高度(320px)
+$video-image-height360: 180px; // 视频图片的高度(360px)
+$video-image-height390: 198px; // 视频图片的高度(320px)
+$video-image-height640: 324px; // 视频图片的高度(640px)
+$video-image-height720: 365px; // 视频图片的高度(720px)
+
 
 body{
-	
+background:#f7f7f7;
+}
+
+.topMargin{
+	margin-top:45px;
+}
+
+.closeVideo{
+   width:100%;
+   height:20%;
+}
+
+.header{
+	z-index:100;
+}
+
+.player-video{
+
+   margin:0 auto;
+   	@media screen and (max-width:360px) {
+			height: $video-content-height320;
+		}
+		@media screen and (min-width:360px) and (max-width:390px) {
+			height: $video-content-height360;
+		}
+		@media screen and (min-width:390px) and (max-width:460px) {
+			height: $video-content-height390;
+		}
+		@media screen and (min-width:640px) and (max-width:720px) {
+			height: $video-content-height640;
+		}
+		@media screen and (min-width:720px) {
+			height: $video-content-height720;
+		}
+
+}
+
+.logo {
+	width: 90px;
+	height: 30px;
+	background:image-url("phone/icons/logo_black.png") no-repeat;
+	background-size: 76px;
+	margin: 14px auto;
+} 
+
+
+.videoSize{
+
+   margin:0 auto;
+   width:100%;
+   	@media screen and (max-width:360px) {
+			height: $video-content-height320;
+		}
+		@media screen and (min-width:360px) and (max-width:390px) {
+			height: $video-content-height360;
+		}
+		@media screen and (min-width:390px) and (max-width:460px) {
+			height: $video-content-height390;
+		}
+		@media screen and (min-width:640px) and (max-width:720px) {
+			height: $video-content-height640;
+		}
+		@media screen and (min-width:720px) {
+			height: $video-content-height720;
+		}
+}
+
+
+#closeBtn{
+    float:right;
+    margin-right:10%;
+	color:#fff;
+	font-size:30px;
+	margin-top:20px;
+}
+
+
+.show-video-div{
+	position: relative;
+	width: 100%;
+	height: 100%;
 	-webkit-overflow-scrolling: touch;
 	overflow-y: auto;;
 }
+	
 
 .outside-div {
 	width: 100%;
 	height: auto;
 
 }
+
 .inside-div {
-    margin-top:16px;
+    
 	width: 100%;
 	height:auto;
 	white-space: nowrap;
@@ -61,7 +134,7 @@ body{
 }
 .upload-window {
 	position: absolute;
-	z-index: 999;
+	z-index: 9999;
 	height: 100%;
 	width: 100%;
 	background: #000;
@@ -72,15 +145,19 @@ body{
 	margin: 0 auto;
 }
 .top-div {
+    
+    margin-top:22px;
+    background:#fff;
 	width: 100%;
 	height:auto;
+	padding-top:22px;
+	padding-bottom:16px;
 
 	.title-word {
-		margin-top:22px;
-		margin-left:10px;
+		
+		padding-left:10px;
 		font-size: $font-size-lg;
 		font-weight: bold;
-		
 		color: black;
 	}
 	.title-content {
@@ -90,15 +167,16 @@ body{
 .left-content {
 	display: inline-block;
 	width: 50%;
-	height: 90px;
+	height: 60px;
+	padding-top:15px;
 	border-right: 3px solid $gold-yellow;
 
 	.left-price {
 		margin-left:10px;
-		font-size: 32px;
+		font-size: 3.4rem;
 		font-weight: bold;
 		color: $red-base;
-		line-height: 90px;
+		
 	}
 	.left-desc {
 		font-size: $font-size;
@@ -110,7 +188,7 @@ body{
 .right-content {
 	display: inline-block;
 	width: 50%;
-	height: 90px;
+	height: 60px;
 	float: right;
 
 	.right-price {
@@ -120,26 +198,32 @@ body{
 		font-weight: bold;
 		color: black;
 		font-weight: bold;
-		line-height: 45px;
+		padding-top:8px;
+		
 	}
 	.right-desc {
 		font-size: $font-size;
 		color: $gray;
-		margin-left:5px;
 		font-weight: 300;
+	
 
 
 	}
 }
 .video-area {
+    margin-top:5px;
 	margin-left:10px;
 	display: inline-block;
 	height:auto;
 	width: 90%;
-	border: 1px soild #d8d8d8;
-	background:#f7f7f7;
+	border:solid 1px #ccc;
+	
+	background:#fff;
+	
 
 	img {
+	    
+
 		width: 100%;
 		height: $video-image-height;
 
@@ -168,28 +252,37 @@ body{
 	}
 
 	.video-title{
-	font-size:$font-size;
+	font-size:$font-size-lg;
 	color:$gray-dark;
+	font-weight:bold;
 	}
 
 	.video-title-content{
 	margin-top:10px;
 	font-size:$font-size-base;
 	color:$gray;
+	margin-left:12%;
+	width:76%;
+	height:80px;
+    white-space: normal;
+    text-align:center;
+    text-overflow:ellipsis; 
+    overflow:hidden;
 	}
 
 	.video-btn{
-    margin-top:20px;
+	display:block;
+    margin-top:10px;
     margin-bottom:20px;
-    width:90%;
-    margin-left:5%;
+    width:76%;
+    margin-left:12%;
+    text-align:center;
+    height:40px;
+    line-height:40px;
 	}
 }
 
-.footer{
-  width:260px;
-  margin:0 auto;  
-}
+
 
 .upload-window{
  position:absolute;
