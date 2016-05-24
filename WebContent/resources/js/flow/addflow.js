@@ -33,13 +33,13 @@ $().ready(function() {
 		}
 	});
 	
-	$("#add-user").click(function() {
-		$('#toolbar-modal').modal('show');
-	});
+//	$("#add-user").click(function() {
+//		$('#toolbar-modal').modal('show');
+//	});
 	
-	$("#hide-btn").click(function() {
-		$('#toolbar-modal').modal('hide');
-	});
+//	$("#hide-btn").click(function() {
+//		$('#toolbar-modal').modal('hide');
+//	});
 	
 	$("input[id$='time']").datepicker({
 			language: 'zh',
@@ -316,36 +316,36 @@ function searchReferrer() {
 		}
 	});
 }
-//添加用户
-function addUser(){
-	//验证
-	var username=$("#add_username");
-	var contactname=$("#add_contactname");
-	var userphone=$("#add_userphone");
-
-	if(!verifyInputNotNull(username)) return;
-	
-	if(!verifyInputNotNull(contactname)) return;
-	
-	if(!verifyInputNotNull(userphone)) return;
-	var usernameValue=username.val().trim();
-	var contactnameValue=contactname.val().trim();
-	var userphoneValue=userphone.val().trim();
-	
-	loadData(function(msg) {
-		if (msg) {
-			$('#toolbar-modal').modal('hide');
-			$("#toolbar-modal").clearQueue();
-		} else {
-			alert('error:' + msg);
-		}
-	}, getContextPath() + '/mgr/projects/user/save/simple', $.toJSON({
-		userName:usernameValue,
-		realName:contactnameValue,
-		telephone:userphoneValue
-	}));
-	
-}
+////添加用户
+//function addUser(){
+//	//验证
+//	var username=$("#add_username");
+//	var contactname=$("#add_contactname");
+//	var userphone=$("#add_userphone");
+//
+//	if(!verifyInputNotNull(username)) return;
+//	
+//	if(!verifyInputNotNull(contactname)) return;
+//	
+//	if(!verifyInputNotNull(userphone)) return;
+//	var usernameValue=username.val().trim();
+//	var contactnameValue=contactname.val().trim();
+//	var userphoneValue=userphone.val().trim();
+//	
+//	loadData(function(msg) {
+//		if (msg) {
+//			$('#toolbar-modal').modal('hide');
+//			$("#toolbar-modal").clearQueue();
+//		} else {
+//			alert('error:' + msg);
+//		}
+//	}, getContextPath() + '/mgr/projects/user/save/simple', $.toJSON({
+//		userName:usernameValue,
+//		realName:contactnameValue,
+//		telephone:userphoneValue
+//	}));
+//	
+//}
 //本页作为更新页面时，填充页面数据方法
 function updateProject_ViewInit() {
 	var currentProject = getCurrentProject();

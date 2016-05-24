@@ -156,7 +156,6 @@ var="cookiejs" />
                    		<input type="hidden" class="userId" id="userId">
 						<div class="divtable">
 							<div class="baseinfo-table-key">客户信息</div>
-							<div class="baseinfo-table-key-add" id="add-user">添加用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</div>
 						</div>
 						<div class="divtable" id="div-userName">
 							<div class="baseinfo-table-key">客户名称</div>
@@ -343,33 +342,6 @@ var="cookiejs" />
 				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
 			</div>
 		</div>
-		<!-- 底栏 end -->
-			<!-- toolbar modal begin -->
-	<div class="modal fade upload-window" id="toolbar-modal">            
-		<div class="circle-div">
-		</div>	
-        <div class="circle-img" id="circle-img-id"></div>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">	 
-                   <div class="title-model">添加新用户</div>                   
-                   <div class="user-info-div">
-                     <div class="user-info-title">客户名称</div>
-                     <div class="user-info-title">客户联系人</div>
-                     <div class="user-info-title">客户电话</div>
-                   </div>
-                     <div class="user-info-input-div">
-			               <input class="user-info-input" placeholder="请输入" id="add_username"></input>
-			               <input class="user-info-input" placeholder="请输入" id="add_contactname"></input>
-			               <input class="user-info-input" placeholder="请输入" id="add_userphone"></input>
-                     </div>
-                     <button class="user-info-btn" id="user-info-btn-finish">完成</button>
-                     <button class="user-info-btn-cancle" id="hide-btn">取消</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- toolbar modal end -->
 		<input type="hidden" id="key" style="display: none;" value="${key}">
 		<label class="state" >${state }</label>
 	</div>
