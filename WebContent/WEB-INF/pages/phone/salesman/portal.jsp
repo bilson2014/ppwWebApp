@@ -52,7 +52,7 @@
 			<dl class="header-ul">
 			
 				<dd>
-					<a href="<spring:url value="/phone/${uniqueId }"/>" target="_self">
+					<a href="<spring:url value="/phone/salesman/${uniqueId }"/>" target="_self">
 						<div class="logo"></div>
 					</a>
 				</dd>
