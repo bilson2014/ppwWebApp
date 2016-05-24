@@ -49,21 +49,23 @@ background:#f7f7f7;
 
 .player-video{
 
-   margin:0 auto;
-   	@media screen and (max-width:360px) {
-			height: $video-content-height320;
+	width: 100%;
+		height: $video-image-height;
+
+		@media screen and (max-width:360px) {
+			height: $video-image-height320;
 		}
 		@media screen and (min-width:360px) and (max-width:390px) {
-			height: $video-content-height360;
+			height: $video-image-height360;
 		}
 		@media screen and (min-width:390px) and (max-width:460px) {
-			height: $video-content-height390;
+			height: $video-image-height390;
 		}
 		@media screen and (min-width:640px) and (max-width:720px) {
-			height: $video-content-height640;
+			height: $video-image-height640;
 		}
 		@media screen and (min-width:720px) {
-			height: $video-content-height720;
+			height: $video-image-height720;
 		}
 
 }
@@ -73,28 +75,29 @@ background:#f7f7f7;
 	height: 30px;
 	background:image-url("phone/icons/logo_black.png") no-repeat;
 	background-size: 76px;
-	margin: 14px auto;
+	margin: 20px auto;
 } 
 
 
 .videoSize{
 
-   margin:0 auto;
-   width:100%;
-   	@media screen and (max-width:360px) {
-			height: $video-content-height320;
+  	width: 100%;
+		height: $video-image-height;
+
+		@media screen and (max-width:360px) {
+			height: $video-image-height320;
 		}
 		@media screen and (min-width:360px) and (max-width:390px) {
-			height: $video-content-height360;
+			height: $video-image-height360;
 		}
 		@media screen and (min-width:390px) and (max-width:460px) {
-			height: $video-content-height390;
+			height: $video-image-height390;
 		}
 		@media screen and (min-width:640px) and (max-width:720px) {
-			height: $video-content-height640;
+			height: $video-image-height640;
 		}
 		@media screen and (min-width:720px) {
-			height: $video-content-height720;
+			height: $video-image-height720;
 		}
 }
 
@@ -124,7 +127,7 @@ background:#f7f7f7;
 }
 
 .inside-div {
-    
+    clear:both;
 	width: 100%;
 	height:auto;
 	white-space: nowrap;
@@ -216,8 +219,9 @@ background:#f7f7f7;
 	display: inline-block;
 	height:auto;
 	width: 90%;
-	border:solid 1px #ccc;
-	
+	$border-color: lighten(#ccc,10%);
+	border:solid 1px $border-color;
+
 	background:#fff;
 	
 
@@ -263,11 +267,13 @@ background:#f7f7f7;
 	color:$gray;
 	margin-left:12%;
 	width:76%;
-	height:80px;
+	height:48px;
+	line-height:$font-size;
     white-space: normal;
     text-align:center;
     text-overflow:ellipsis; 
     overflow:hidden;
+
 	}
 
 	.video-btn{

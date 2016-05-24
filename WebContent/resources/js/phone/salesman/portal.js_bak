@@ -1,4 +1,4 @@
-var critical = [12800,28800]; // 临界值
+var critical = [12800,28800,59800]; // 临界值
 
 $().ready(function() {
 	loadVideoList();
@@ -7,39 +7,60 @@ $().ready(function() {
 function loadVideoList() {
 
 	loadData(function(list) {
-		
+		var priceList = new Array();
 		if (list != null && list.length > 0) {
-			var first_section = new Array(); // 第一区域
-			var second_section = new Array(); // 第二区域
-			var third_section = new Array(); // 第三区域
-			var lowerPrice = critical[0];
-			var higherPrice = critical[1];
 			// 筛选
 			$.each(list, function(i, product) {
 				var price = Math.round(product.serviceRealPrice);
-				if(price > 0 && price <= lowerPrice ){
-					first_section.push(product);
-				} else if(price > lowerPrice && price <= higherPrice ){
-					second_section.push(product);
-				} else if (price > higherPrice){
-					third_section.push(product);
+				if (priceList.length == 0) {
+					priceList.push(price);
+				} else {
+					//检测到有重复的，退出循环，添加到价格集合中
+					var hastrue = false;
+					for (var j = 0; j < priceList.length; j++) {
+						if (price == priceList[j]) {
+							hastrue = true;
+							break;
+						} else {
+							hastrue = false;
+						}
+					}
+					if (!hastrue)
+						priceList.push(price);
 				}
 			});
+			// 排序
+			priceList.sort(compare);
+			//分组
+			var allList=new Array();//map 结构
+			$.each(priceList, function(i, item) {
+				allList[item]=new Array(); 
+			});
 			
-			// 填充数据
-			$('#first-video-section').empty();
-			$('#first-video-section').append(composing(first_section));
+			$.each(list, function(i, product) {
+				var currArray=allList[product.serviceRealPrice];
+				currArray.push(product);
+			});
+			//数据分组填充
+			var index=0;
+			for(var item in allList){  
+				var html = composing(allList[item]);
+				fill(html,item,index);
+				index++;
+		    } 
 			
-			// 装配第二块视频
-			$('#second-video-section').empty();
-			$('#second-video-section').append(composing(second_section));
-			
-			// 装配第三块视频
-			$('#third-video-section').empty();
-			$('#third-video-section').append(composing(third_section));
 		}
 	}, getContextPath() + '/phone/salesman/load/product', null);
 
+}
+function compare(str1, str2) {
+	if (str1 < str2) {
+		return -1;
+	} else if (str1 > str2) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
  function composing(list) {

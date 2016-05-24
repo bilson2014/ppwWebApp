@@ -64,7 +64,7 @@
       <div class="closeVideo">
             <label id="closeBtn">X</label>
         </div>
-        <video class="videoSize" controls id="recomment-video" src="" poster="" preload="auto" style="display: none;"></video> 
+        <video class="videoSize"  id="recomment-video" src="" poster="" controls preload="auto" style="display: none;"></video> 
       <!--youku video  -->
        <div class="player-video" id="player-video"></div>
         <div class="closeVideo"></div>
@@ -140,25 +140,7 @@
 			             <div class="inside-div" id="third-video-section"  >
 			             </div> 
 			     </div>
-			     
-			     
-			     
-			     
 			 </div>
-
-
-
-
-         
-
-
-
-
-
-
-
-			
-		
 	
 </body>
 <script src="${jqueryJs }"></script>
