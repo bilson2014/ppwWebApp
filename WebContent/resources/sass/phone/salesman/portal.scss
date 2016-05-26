@@ -1,20 +1,5 @@
-/* 手机端 主页 */
-@import "compass/css3";
-@import "constant";
-@import "mixin";
-@import "../common_portal";
-@import "compass/typography/text/ellipsis";
-@import "common";
-@import "buttons";
+@import "variables";
 
-
-
-$video-content-height: 421px; // 一行视频的高度
-$video-content-height320: 334px; // 一行视频的高度(320px)
-$video-content-height360: 356px; // 一行视频的高度(360px)
-$video-content-height390: 372px; // 视频图片的高度(390px)
-$video-content-height640: 511px; // 一行视频的高度(640px)
-$video-content-height720: 558px; // 一行视频的高度(720px)
 $video-image-height: 270px; // 视频图片的高度
 $video-image-height320: 180px; // 视频图片的高度(320px)
 $video-image-height360: 202px; // 视频图片的高度(360px)
@@ -22,52 +7,17 @@ $video-image-height390: 220px; // 视频图片的高度(320px)
 $video-image-height640: 360px; // 视频图片的高度(640px)
 $video-image-height720: 405px; // 视频图片的高度(720px)
 
-$video-image-height: 243px; // 视频图片的高度
-$video-image-height320: 162px; // 视频图片的高度(320px)
-$video-image-height360: 180px; // 视频图片的高度(360px)
-$video-image-height390: 198px; // 视频图片的高度(320px)
-$video-image-height640: 324px; // 视频图片的高度(640px)
-$video-image-height720: 365px; // 视频图片的高度(720px)
-
-
-body{
-background:#f7f7f7;
+body {
+	background: #000;
 }
-
-.topMargin{
-	margin-top:45px;
-}
-
-.closeVideo{
-   width:100%;
-   height:20%;
-}
-
-.header{
-	z-index:100;
-}
-
-.player-video{
-
+.outside-div {
 	width: 100%;
-		height: $video-image-height;
+	height: auto;
+}
 
-		@media screen and (max-width:360px) {
-			height: $video-image-height320;
-		}
-		@media screen and (min-width:360px) and (max-width:390px) {
-			height: $video-image-height360;
-		}
-		@media screen and (min-width:390px) and (max-width:460px) {
-			height: $video-image-height390;
-		}
-		@media screen and (min-width:640px) and (max-width:720px) {
-			height: $video-image-height640;
-		}
-		@media screen and (min-width:720px) {
-			height: $video-image-height720;
-		}
 
+.logo-width{
+	width:100%;
 }
 
 .logo {
@@ -76,225 +26,243 @@ background:#f7f7f7;
 	background:image-url("phone/icons/logo_black.png") no-repeat;
 	background-size: 76px;
 	margin: 20px auto;
-} 
+  } 
 
 
-.videoSize{
 
-  	width: 100%;
+.video-play-sections {
+		position: relative;
+		width: 100%;
+		background:#000;
+
 		height: $video-image-height;
-
-		@media screen and (max-width:360px) {
+		
+		@media screen and (max-width: 360px) {
 			height: $video-image-height320;
 		}
-		@media screen and (min-width:360px) and (max-width:390px) {
+
+		@media screen and (min-width: 360px) and (max-width: 390px) {
 			height: $video-image-height360;
 		}
-		@media screen and (min-width:390px) and (max-width:460px) {
+
+		@media screen and (min-width: 390px) and (max-width: 460px) {
 			height: $video-image-height390;
 		}
-		@media screen and (min-width:640px) and (max-width:720px) {
+
+		@media screen and (min-width: 640px) and (max-width: 720px) {
 			height: $video-image-height640;
 		}
-		@media screen and (min-width:720px) {
+
+		@media screen and (min-width: 720px) {
 			height: $video-image-height720;
 		}
-}
+
+		.video-play {
+			width: 100%;
+			height: 100%;
+		}
+
+		video {
+			width: 100%;
+			height: 100%;
+			
+		}
+}		
 
 
-#closeBtn{
-    float:right;
-    margin-right:10%;
-	color:#fff;
-	font-size:30px;
-	margin-top:20px;
-}
 
 
-.show-video-div{
-	position: relative;
-	width: 100%;
-	height: 100%;
-	-webkit-overflow-scrolling: touch;
-	overflow-y: auto;;
-}
-	
-
-.outside-div {
+.top-div {
+	background: $white;
+	background: #fff;
 	width: 100%;
 	height: auto;
-
-}
-
-.inside-div {
-    clear:both;
-	width: 100%;
-	height:auto;
-	white-space: nowrap;
-	overflow-y: hidden;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
-}
-.upload-window {
-	position: absolute;
-	z-index: 9999;
-	height: 100%;
-	width: 100%;
-	background: #000;
-	display: none;
-}
-.video-size {
-	width: 100%;
-	margin: 0 auto;
-}
-.top-div {
-    
-    margin-top:22px;
-    background:#fff;
-	width: 100%;
-	height:auto;
-	padding-top:22px;
-	padding-bottom:16px;
+	padding-top: 22px;
+	
 
 	.title-word {
-		
-		padding-left:10px;
-		font-size: $font-size-lg;
+		padding-left: 10px;
+		font-size: 18px;
 		font-weight: bold;
 		color: black;
 	}
 	.title-content {
-		margin-top:19px;
+		margin-top: 19px;
+		height:70px;
 	}
 }
 .left-content {
-	display: inline-block;
+	background: $white;
 	width: 50%;
-	height: 60px;
-	padding-top:15px;
+	height: 45px;
+	padding-top: 15px;
+	float: left;
 	border-right: 3px solid $gold-yellow;
 
 	.left-price {
-		margin-left:10px;
-		font-size: 3.4rem;
+		margin-left: 10px;
+		font-size: 34px;
 		font-weight: bold;
 		color: $red-base;
-		
 	}
 	.left-desc {
-		font-size: $font-size;
+		font-size: 16px;
 		color: $gray;
-		margin-left:5px;
+		margin-left: 5px;
 		font-weight: 300;
 	}
 }
 .right-content {
+	background: $white;
 	display: inline-block;
-	width: 50%;
+	width: 49%;
 	height: 60px;
 	float: right;
 
 	.right-price {
 		display: block;
-		margin-left:10px;
-		font-size: $font-size-lg;
+		margin-left: 10px;
+		font-size: 18px;
 		font-weight: bold;
 		color: black;
 		font-weight: bold;
-		padding-top:8px;
-		
+		padding-top: 8px;
 	}
 	.right-desc {
-		font-size: $font-size;
+		font-size: 16px;
 		color: $gray;
 		font-weight: 300;
-	
-
-
 	}
 }
-.video-area {
-    margin-top:5px;
-	margin-left:10px;
-	display: inline-block;
-	height:auto;
-	width: 90%;
-	$border-color: lighten(#ccc,10%);
-	border:solid 1px $border-color;
+.inside-div {
+	width: 100%;
+	height: auto;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling:touch;
+}
+.upload-window {
+	position: fixed;
+	z-index: 999999;
+	height: 100%;
+	width: 100%;
+	display:none;
+	overflow:hidden;
+}
 
-	background:#fff;
+.closeVideo{
+   height:30%;
+   background:#000;
+   opacity:0.75; 
 	
+}
 
-	img {
-	    
+.closeVideoBot{
+   height:100%;
+   background:#000;
+   opacity:0.75; 
+   
+}
 
+#closeBtn {
+	float: right;
+	margin-right: 5%;
+	color: #fff;
+	font-size: 30px;
+	margin-top: 20px;
+	background:#000;
+	border:none;
+	outline:none;
+}
+.close-icon{
+	font-size:3.0rem;
+	font-weight:lighter;
+}
+
+.margin-div{
+	margin-top:22px;
+}
+
+.video-area-card {
+    margin-top:5px;
+	display: inline-block;
+	width: 90%;
+	height: auto;
+	margin-left: 10px;
+	border: 1px solid #ccc;
+	background: $white;
+
+	video-play-section {
+		position: relative;
 		width: 100%;
-		height: $video-image-height;
+		height: $video-image-height720;
+		opacity:1;
 
 		@media screen and (max-width:360px) {
-			height: $video-image-height320;
+			height: $video-image-height720;
 		}
 		@media screen and (min-width:360px) and (max-width:390px) {
-			height: $video-image-height360;
+			height: $video-image-height720;
 		}
 		@media screen and (min-width:390px) and (max-width:460px) {
-			height: $video-image-height390;
+			height: $video-image-height720;
 		}
 		@media screen and (min-width:640px) and (max-width:720px) {
-			height: $video-image-height640;
+			height: $video-image-height720;
 		}
 		@media screen and (min-width:720px) {
 			height: $video-image-height720;
 		}
 	}
-	.video-content {
-		margin-top:20px;
-		width: 100%;
-		height: 100px;
-		text-align: center;
-		line-height: 20px;
-	}
 
-	.video-title{
-	font-size:$font-size-lg;
-	color:$gray-dark;
-	font-weight:bold;
-	}
-
-	.video-title-content{
-	margin-top:10px;
-	font-size:$font-size-base;
-	color:$gray;
-	margin-left:12%;
-	width:76%;
-	height:48px;
-	line-height:$font-size;
-    white-space: normal;
-    text-align:center;
-    text-overflow:ellipsis; 
-    overflow:hidden;
-
-	}
-
-	.video-btn{
-	display:block;
-    margin-top:10px;
-    margin-bottom:20px;
-    width:76%;
-    margin-left:12%;
-    text-align:center;
-    height:40px;
-    line-height:40px;
+	&:last-child{
+	margin-right:10px;
 	}
 }
+.video-content {
+	position: relative;
+	margin-top: 20px;
 
+	.font-title {
+		text-align: center;
+		font-size: 18px;
+		color: $gray-dark;
+		font-weight: bold;
+	}
+	.font-content {
 
+	    padding-top:10px;
+		
+		width: 80%;
+		margin: 0 auto;
+		color: $gray;
+		height: 50px;
+		white-space: normal;
+		text-align: center;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		font-size:14px;
+		line-height:17px;
+	}
+	.video-btn {
+		margin: 20px 10% 20px 10%;
+		width: 80%;
+		display: block;
+		text-align: center;
+		height: 40px;
+		background-color: $red-base;
+		border-color: $white;
+		border-radius: 5px;
+		border: none;
+		color: $white;
+		font-size: 24px;
+		line-height: 40px;
 
-.upload-window{
- position:absolute;
- z-index:999;
- height:100%;
- width:100%;
- background:#000;
- display:none;
+		&:hover {
+			background-color: $gray;
+			color: $white;
+			cursor: pointer;
+		}
+	}
 }

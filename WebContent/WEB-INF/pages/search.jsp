@@ -167,7 +167,13 @@
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
+<%-- 							//20160525 lt
+								//del teanName
+								//begin pm1705
 								<h4>${solr.teamName }</h4>
+								//end
+								 --%>
+								<h4></h4>
 								<div class="video-desc">
 									${solr.pDescription }
 								</div>

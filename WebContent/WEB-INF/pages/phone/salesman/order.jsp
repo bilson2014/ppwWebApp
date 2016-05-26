@@ -26,9 +26,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
 	<!-- iphone 手机默认全屏 -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="keywords" content="拍片网下单,视频交易,广告购买,导演制作费,拍片下单">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_移动端_订单页</title>
+	<title>拍片网－移动端_订单页</title>
 
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${bootstrapAlertCss }">
@@ -58,7 +56,7 @@
 				<input type="hidden" id="indentName" name="indentName" value="新订单"/>
 				<div class="order-section">
 					<div class="order-input-wrap">
-						<input type="text" placeholder="您的手机号码" id="indent_tele" name="indent_tele"/><button type="button" id="order-btn" class="btn btn-primary" style="position: relative;background-color: #fe5453;border-color: #fe5453;padding:0 2px;">拍片预约</button>
+						<input type="text" placeholder="您的手机号码" id="indent_tele" name="indent_tele"/><button type="button" id="order-btn" class="btn btn-primary" style="position: relative;background-color: #fe5453;border-color: #fe5453;padding:0 2px;">立即下单</button>
 						<label id="label-message" class="label-message alert alert-danger" style="display: none;padding:0;position: relative;top: 5px;">请输入正确的手机格式</label>
 					</div>
 					<div class="order-phone-wrap">
