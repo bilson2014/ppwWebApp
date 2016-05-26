@@ -385,23 +385,3 @@
 		}
 	}
 }
-//lutao add in 20160518 
-//add all redbtn style 
-//begin
-.red-common-btn {
-	width: 140px;
-	height: 35px;
-	background-color: $red-base;
-	border-color: $white;
-	border-radius: 5px;
-	border: none;
-	color: $white;
-	font-size: $font-size-base;
-
-	&:hover {
-		background-color: $gray;
-		color: #fff;
-		cursor: pointer;
-	}
-}
-//end

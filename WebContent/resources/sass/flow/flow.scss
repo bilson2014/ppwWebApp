@@ -29,6 +29,7 @@
 			height: 20px;
 			display: block;
 			margin-top: 25px;
+			
 		}
 	}
 	.right-div {
@@ -219,6 +220,7 @@
 			color: $gray;
 			display: inline-block;
 			font-size: $font-size-base;
+			line-height: $font-size-base;
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -253,6 +255,8 @@
 		}
 	}
 	.indentfile {
+		position: relative;
+		top:10px;
 		background: $white;
 
 		.indentfile-title {
@@ -390,7 +394,7 @@
 	.message-div {
 		background: $white;
 		position: relative;
-		top: 10px;
+		top: 20px;
 		margin-bottom: 30px;
 
 		.message-title {
@@ -524,7 +528,7 @@
 		width: 266px;
 		font-size: $font-size-base;
 		position: absolute;
-		top: 215px;
+		top: 227px;
 		z-index: 999;
 		border: 1px solid $gray-light;
 		left: 26.5%;

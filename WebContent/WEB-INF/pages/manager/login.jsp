@@ -50,7 +50,7 @@
 						<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 					</r:identity>
-					<r:identity role="manager">
+					<r:identity role="employee">
 						<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 					</r:identity>
@@ -74,7 +74,7 @@
 						<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 						<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 					</r:identity>
-					<r:identity role="manager">
+					<r:identity role="employee">
 						<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 						<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 					</r:identity>

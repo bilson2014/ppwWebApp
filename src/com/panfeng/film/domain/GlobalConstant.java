@@ -27,7 +27,7 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static final String ROLE_PROVIDER = "role_provider"; // 用户身份 -- 供应商
 	
-	public static final String ROLE_MANAGER = "role_manager"; // 用户身份 -- 视频管家
+	// public static final String ROLE_MANAGER = "role_manager"; // 用户身份 -- 视频管家
 	
 	public static final String PROCESS_STATUS = "process_status"; // 上传进度
 	
@@ -55,6 +55,8 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static String COOKIES_SCOPE; // 域名
 	
+	public static String PHONENUMBER_ORDER; // 下单手机号码
+	
 	private static GlobalConstant GLOBALCONSTANT = new GlobalConstant();
 
 	
@@ -68,6 +70,7 @@ public final class GlobalConstant extends BaseObject {
 				VIDEO_IMAGE_PERFIX = propertis.getProperty("upload.server.product.image");
 				STAFF_IMAGE_PERIX = propertis.getProperty("upload.server.staff.image");
 				COOKIES_SCOPE = propertis.getProperty("cookies_scope");
+				PHONENUMBER_ORDER = propertis.getProperty("service_tel");
 			} catch (Exception e) {
 				
 			} finally{
