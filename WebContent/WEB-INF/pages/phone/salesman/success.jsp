@@ -19,9 +19,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<!-- 取消数字被识别为电话号码 -->
 	<meta name="format-detection" content="telephone=no" />
-	<meta name="keywords" content="拍片网,视频营销,拍广告,找导演,拍片">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_移动端_订单成功提示页面</title>
+	<title>拍片网-移动端_订单成功提示页面</title>
 	
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${successCss }">
@@ -44,11 +42,29 @@
 
 		<div class="wechat-section">
 			<div class="wechat-wrap">
-				<ul>
-					<li>拍片进度尽在掌控</li>
-					<li></li>
-					<li>关注"拍片网官微"</li>
-				</ul>
+			
+		 <div class="info-wrap">
+			<div class="info-section">
+				<dl>
+					<dt class="first-desc"></dt>
+					<dd>免费创意策划</dd>
+					<dd>专属视频管家-站式服务</dd>
+				</dl>
+				
+				<dl>
+					<dt class="second-desc"></dt>
+					<dd>低预算拍大片</dd>
+					<dd>低于行业价30%</dd>
+				</dl>
+				
+				<dl>
+					<dt class="third-desc"></dt>
+					<dd>72小时极速出片</dd>
+					<dd>不满意全额退款</dd>
+				</dl>
+			
+			</div>
+		</div>
 			</div>
 		</div>
 	</div>
