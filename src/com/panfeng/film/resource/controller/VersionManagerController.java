@@ -34,6 +34,7 @@ import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.ActivitiTask;
+import com.panfeng.film.resource.model.Employee;
 import com.panfeng.film.resource.model.IndentComment;
 import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
@@ -63,24 +64,27 @@ public class VersionManagerController extends BaseController {
 		return new ModelAndView("/manager/login");
 	}
 
+	/**
+	 * 登录
+	 */
 	@RequestMapping("/doLogin")
 	public Result doLogin(final HttpServletRequest request,
-			@RequestBody final VersionManager manager) {
+			@RequestBody final Employee employee) {
 
 		final Result result = new Result();
-		if (manager != null) {
-			final String pwd = manager.getManagerPassword();
-			final String loginName = manager.getManagerLoginName();
+		if (employee != null) {
+			final String pwd = employee.getEmployeePassword();
+			final String loginName = employee.getEmployeeLoginName();
 			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
 				// 解密
 				try {
 					final String password = AESUtil.Decrypt(pwd,
 							GlobalConstant.UNIQUE_KEY);
-					manager.setManagerPassword(DataUtil.md5(password));
+					employee.setEmployeePassword(DataUtil.md5(password));
 					final String url = GlobalConstant.URL_PREFIX
 							+ "/portal/manager/static/encipherment";
 					final String json = HttpUtil
-							.httpPost(url, manager, request);
+							.httpPost(url, employee, request);
 					if (ValidateUtil.isValid(json)) {
 						final boolean ret = JsonUtil
 								.toBean(json, Boolean.class);
@@ -92,7 +96,7 @@ public class VersionManagerController extends BaseController {
 					}
 
 				} catch (Exception e) {
-					logger.error("Manager login error,Becase of decrypt password error ...");
+					logger.error("VersionManager login error,Becase of decrypt password error ...");
 					e.printStackTrace();
 				}
 			}
@@ -102,7 +106,11 @@ public class VersionManagerController extends BaseController {
 		result.setMessage("用户名或密码错误!");
 		return result;
 	}
-
+	
+	/**
+	 * 验证手机号唯一性
+	 * @param phoneNumber 手机号码
+	 */
 	@RequestMapping("/recover/check/{phoneNumber}")
 	public boolean checkPhoneNumber(
 			@PathVariable("phoneNumber") final String phoneNumber,

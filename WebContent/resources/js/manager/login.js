@@ -20,8 +20,8 @@ var login = {
 					window.setInterval(hideTooltipRecover, 4000);
 				}
 			}, getContextPath() + '/mgr/doLogin', $.toJSON({
-				managerLoginName : $('#loginName').val().trim(),
-				managerPassword : Encrypt($('#pwd').val().trim())
+				employeeLoginName : $('#loginName').val().trim(),
+				employeePassword : Encrypt($('#pwd').val().trim())
 			}));
 		});
 	}

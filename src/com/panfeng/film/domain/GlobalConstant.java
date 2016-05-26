@@ -27,7 +27,7 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static final String ROLE_PROVIDER = "role_provider"; // 用户身份 -- 供应商
 	
-	public static final String ROLE_MANAGER = "role_manager"; // 用户身份 -- 视频管家
+	// public static final String ROLE_MANAGER = "role_manager"; // 用户身份 -- 视频管家
 	
 	public static final String PROCESS_STATUS = "process_status"; // 上传进度
 	
