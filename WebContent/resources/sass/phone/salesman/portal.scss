@@ -7,9 +7,35 @@ $video-image-height390: 220px; // 视频图片的高度(320px)
 $video-image-height640: 360px; // 视频图片的高度(640px)
 $video-image-height720: 405px; // 视频图片的高度(720px)
 
-body {
-	background: #000;
+
+$video-image-height: 243px; // 视频图片的高度
+$video-image-height320: 162px; // 视频图片的高度(320px)
+$video-image-height360: 180px; // 视频图片的高度(360px)
+$video-image-height390: 198px; // 视频图片的高度(320px)
+$video-image-height640: 324px; // 视频图片的高度(640px)
+$video-image-height720: 365px; // 视频图片的高度(720px)
+
+
+body{
+background:#f7f7f7;
+	
 }
+
+video {
+	position: relative;
+	z-index: 0;
+}
+
+.topMargin{
+	margin-top:45px;
+}
+
+.closeVideo{
+   width:100%;
+   height:20%;
+}
+
+
 .outside-div {
 	width: 100%;
 	height: auto;
