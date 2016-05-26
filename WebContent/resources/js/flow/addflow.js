@@ -66,7 +66,11 @@ $().ready(function() {
 	initUserInput();
 	initTeamInput();
 	initReferrerInput();
-	
+	//add Synergy by laowng begin 2016-5-25 12:35 
+	$("#add-Synergy").on('click', function() {
+		addSynergy();
+	});
+	//add Synergy by laowng end 2016-5-25 12:35
 });
 //设置验证错误提示
 function setInputErrorStyle(){
@@ -216,19 +220,30 @@ function initReferrerInput(){
 	});
 	$("#input-referrer").on('keyup', function() {
 		if (userName != $('#input-referrer').val().trim()) {
-			searchReferrer();
-			var select_lis = document.getElementById("ul-select-referrer").getElementsByTagName("li");
-			$("#ul-select-referrer").show();
+			var inputString=$('#input-referrer').val().trim();
+			searchReferrer(inputString);
 			isShow = true;
-			for(i=0;i<select_lis.length;i++) {
-				select_lis[i].onclick = function() {
-					//document.getElementById("teamName").value=this.innerHTML;
-					$("#ul-select-referrer").hide();
-				}
-			}
+			$("#ul-select-referrer").show();
 		}
 	});
 }
+
+function initSynergy(input_div){
+	var input=$(input_div).find("input#name");
+	$(input).off('keydown');
+	$(input).off('keyup');
+	$(input).on('keydown', function() {
+		userName = $(input).val().trim();
+	});
+	$(input).on('keyup', function() {
+		if (userName != $(input).val().trim()) {
+			searchSynergy($(input));
+			$("#ul-select-synergy").show();
+			isShow = true;
+		}
+	});
+}
+
 //团队搜索方法 
 function searchTeam() {
 	var teamName = $("#teamName").val();
@@ -289,8 +304,7 @@ function getReferrerData(){
 	}
 }
 //推荐人检索
-function searchReferrer() {
-	var inputString=$('#input-referrer').val().trim();
+function searchReferrer(inputString) {
 	getReferrerData();
 	var index=0;
 	var table=$("#ul-select-referrer");
@@ -299,18 +313,48 @@ function searchReferrer() {
 		var name=referrer.staffName+''.trim();
 		if(name.indexOf(inputString)>-1){
 			index++;
-			
 			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
 			li.on("click",function(){
 				var name=jQuery(this).attr('data-name');
 				var id=jQuery(this).attr('data-id');
+				isShow = false;
+				table.html("");
+				$("#error-input-referrer").hide();
+				//详细业务相关
+				
 				$("#referrer-Id-hidden").val(id);
 				$("#input-referrer").val(name);
 				$("#ul-select-referrer").hide();
+				clearError($("#input-referrer"));
+			});
+			table.append(li);
+		}
+	});
+}
+//协同人
+function searchSynergy(input) {
+	var inputString=input.val().trim();
+	var div=$(input).parent().parent();
+	getReferrerData();
+	var index=0;
+	var table=div.find("ul#ul-select-synergy");
+	table.html("");
+	referrerList.forEach(function(referrer){
+		var name=referrer.staffName+''.trim();
+		if(name.indexOf(inputString)>-1){
+			index++;
+			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
+			li.on("click",function(){
+				var name=jQuery(this).attr('data-name');
+				var id=jQuery(this).attr('data-id');
+				var div=$(input).parent().parent();
+				var table=div.find("ul#ul-select-synergy");
 				isShow = false;
 				table.html("");
-				clearError($("#input-referrer"));
-				$("#error-input-referrer").hide();
+				table.hide();
+				//详细业务相关
+				div.find("input#name").val(name);
+				div.find("input#user-id").val(id);
 			});
 			table.append(li);
 		}
@@ -400,6 +444,15 @@ function updateProject_ViewInit() {
 		$(".jfstarttime").val(msg.time.jf);
 		$(".page-title-title").text("项目信息修改");
 			enableSubmitBtnEnent();
+			
+		// 初始化协同人
+		var synergys = msg.synergys;
+		$("#Synergy-root").html("");
+		if(synergys != null && synergys.length > 0){
+			$.each(synergys,function(i,item){
+				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
+			});
+		}
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
@@ -439,6 +492,7 @@ function updateProjectajax() {
 	
 	//获取推荐人，是友情推荐时为 “人名” 否则为 ‘’
 	var referrerId=getReferrer();
+	
 	loadData(function(msg) {
 		if (msg) {
 			//window.location.href = getContextPath() + "/mgr/projects/flow-index";
@@ -472,7 +526,8 @@ function updateProjectajax() {
 			sw : swstarttime,
 			zz : zzstarttime,
 			jf : jfstarttime
-		}
+		},
+		synergys:getViewSynerhy()
 	}));
 }
 function submitForm(){
@@ -522,7 +577,6 @@ function addProject() {
 	var jfstarttime = $(".jfstarttime").val().trim();
 	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
 	var referrerId=getReferrer();
-	
 	loadData(function(msg) {
 		if (msg) {
 			clearProject();
@@ -555,7 +609,8 @@ function addProject() {
 			sw : swstarttime,
 			zz : zzstarttime,
 			jf : jfstarttime
-		}
+		},
+		synergys:getViewSynerhy()
 	}));
 }
 function loadSource() {
@@ -915,3 +970,76 @@ function getReferrer() {
 	 }
 }
 //add wangliming 2016.5.10 11:00 end
+////////////////////////////////////////////////////////////////////////
+//add Synergy by laowang begin 2016-5-25 12:35
+function addSynergy(name,ratio,userid,synergyid){
+	var currCount=$("div[id^=Synergy-info]").length;
+	if(currCount<3){
+		var html = createSynergyView(name == undefined ? "" : name,
+				ratio == undefined ? "" : ratio,userid == undefined ? "" : userid,
+				synergyid == undefined ? "" : synergyid);
+		$("#Synergy-root").append(html);
+		setSynergyEvent();
+	}else{
+		alert('在点我就打死你！');
+	}
+}
+
+function setSynergyEvent(){
+	var deleteSynergys=$("[id^=deleteSynergy]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		if(cout != 0){
+			var x=$(this).parent().parent().find("input#synergy-id");
+			removeSynergy($(x).val());
+			$(this).parent().remove();
+		}				
+	});
+	$.each(deleteSynergys,function(i,item){
+		var x2=$(item).parent();
+		//var x3=x2.find("input#name")
+		initSynergy(x2);
+	});
+}
+function removeSynergy(id){
+	loadData(null, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
+		name:id
+	}));
+}
+
+function createSynergyView(name,ratio,userid,synergyid){
+	var $body='<div id="Synergy-info">';
+	$body+='协助人：' +
+	'<div id="select" style="display: inline-block;">'+
+	' <input type="text" id="name" value="'+name+'" />'+
+	' <ul  id="ul-select-synergy" style="position: absolute; overflow: auto;width:160px; overflow: hidden; background-color: white;"  > </ul>  '+
+	'</div>'+
+	' 协助人占有率：<input type="text" id="ratio"  value="'+ratio+'" />'+
+	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
+	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
+	' <button  id = "deleteSynergy" >-</button>';
+	$body+='</div>';
+	return $body;
+}
+function getViewSynerhy() {
+	var base_Synergy = $("div[id^=Synergy-info]");
+	var currCount=base_Synergy.length;
+	var synergys = new Array(currCount);
+	for (var i = 0; i < synergys.length; i++) {
+		var synergy=base_Synergy[i];
+		var userId=$(synergy).find("input#user-id").val();
+		var ratio=$(synergy).find("input#ratio").val().trim();
+		var userName=$(synergy).find("input#name").val().trim();
+		var synergyId=$(synergy).find("input#synergy-id").val().trim();
+		synergys[i] = {
+				userId:userId,
+				userName:userName,
+				ratio:ratio,
+				synergyId:synergyId
+		};
+	}
+	return synergys;
+}
+
+//add Synergy by laowang end 2016-5-25 12:35

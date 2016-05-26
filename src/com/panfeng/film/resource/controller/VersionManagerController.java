@@ -34,6 +34,7 @@ import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.ActivitiTask;
+import com.panfeng.film.resource.model.BizBean;
 import com.panfeng.film.resource.model.IndentComment;
 import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
@@ -206,6 +207,14 @@ public class VersionManagerController extends BaseController {
 			return result;
 		}
 		return false;
+	}
+	
+	@RequestMapping(value = "/projects/remove/synergy", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public boolean removeSynergy(@RequestBody final BizBean bizBean,
+			final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "project/remove/synergy";
+		String str=HttpUtil.httpPost(url, bizBean, request);
+		return str == null;
 	}
 
 	@RequestMapping("/projects/flow-index")
