@@ -4,7 +4,6 @@ $().ready(function() {
 	loadVideoList();
 	closeVideo();
 	
-
 });
 
 function loadVideoList() {
@@ -32,18 +31,18 @@ function loadVideoList() {
 			// 填充数据
 			$('#first-video-section').empty();
 			$('#first-video-section').append(composing(first_section));
-			$('#firstPrice').text(first_section[0].serviceRealPrice);
+			$('#firstPrice').text('12800');
 			
 			// 装配第二块视频
 			$('#second-video-section').empty();
 			$('#second-video-section').append(composing(second_section));
-			$('#secondPrice').text(second_section[0].serviceRealPrice);
+			$('#secondPrice').text('28800');
 			
 			
 			// 装配第三块视频
 			$('#third-video-section').empty();
 			$('#third-video-section').append(composing(third_section));
-			$('#thirdPrice').text(third_section[0].serviceRealPrice);
+			$('#thirdPrice').text('59800');
 			
 			playVideo();
 		}
@@ -62,12 +61,11 @@ function loadVideoList() {
 			var videoId = product.productId;
 			var url = getContextPath() + '/phone/salesman/order/'+videoId+'/'+uniqueId+''; 
 			var posterUrl = product.picLDUrl;
-			var youkuId="videoYK"+videoId;
 			var videoId="video"+videoId;
 			
 			if(posterUrl != undefined && posterUrl != null){
 				var imgName = getFileName(posterUrl);
-				var imgPath = "http://test.apaipian.com:8080" + '/product/img/' + imgName;
+				var imgPath = getHostName() + '/product/img/' + imgName;
 				imgUrl = imgPath;
 			} 
 			
@@ -76,27 +74,10 @@ function loadVideoList() {
 				if(videoUrl != undefined && videoUrl != null){
 					
 					var videoName = getFileName(videoUrl);
-					var videoPath = "http://test.apaipian.com:8080" + '/product/video/' + videoName;
+					var videoPath = getHostName() + '/product/video/' + videoName;
 					
 				}
 			
-//			$body += '<div class="video-area">';
-//			$body += '<div class="video-size">';
-//			$body += '<div class="video-img" id="playVideo">';
-//			$body += '<img  class="player-video"  src="'+imgPath+'"/>';
-//			$body += '<input id="imgPath" value="'+imgName+'" style="display:none" />';
-//			$body += '<input id="videoPath" value="'+videoPath+'" style="display:none" />';
-//			$body += '</div>';
-//			$body += '<div class="video-content"  >' 
-//		    $body += '<ul>';	
-//			$body += '<li class="video-title"  >' + product.productName+ '</li>';
-//			$body += '<li class="video-title-content">' + product.pDescription+ '</li>';
-//			$body += '</ul>';
-//			$body += '</div>'
-//			$body += '<a href="'+url+'" class="btn-red-common video-btn">立即下单</a>';
-//			$body += '</div>';
-//			$body += '</div>';
-				
 				$body += '<div class="video-area-card">';
 				$body += '<div class="video-play-section" id="first-video-section">';
 				$body += '<img class="video-play-section" src="'+imgPath+'" />';
@@ -117,7 +98,6 @@ function loadVideoList() {
 	}
 	return $body;
 }
- 
  
  function closeVideo(){
 	 
@@ -142,19 +122,14 @@ function loadVideoList() {
                 $('.video-play-section').on('click',function(){
                  $('#toolbar-modal').show();
                   var imgpath = $(this).find('#imgPath').val();
-                  var imgX = "http://test.apaipian.com:8080" + '/product/img/' + imgpath;
+                  var imgX = getHostName() + '/product/img/' + imgpath;
 				  var videoPath = $(this).find('#videoPath').val();
 				  $('#recomment-video').attr('src',videoPath);
 				  $('#recomment-video').attr('poster',imgX);
                 });
 }
  
- function playVideos(){
-   
-     $('.inside-div').on('click',function(){
-      $('#toolbar-modal').fadeIn();
-     });
-}
+
 
 
 

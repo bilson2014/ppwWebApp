@@ -74,7 +74,7 @@
 				                    </div>
 				                     <div class="right-content">
 				               	    	<label class="right-price">30<span class="right-desc">小时极速出片</span></label>
-				               	    	<label class="right-price">HD<span class="right-desc">专业高清拍摄制作</span></label>
+				               	    	<label class="right-price">HD<span class="right-desc">专业级高清拍摄制作</span></label>
 				                    </div>
 				                    
 				               </div>
@@ -117,7 +117,7 @@
 	   
 	   	   <div class="outside-div margin-div" >
             		<div class="top-div">
-		               		<div class="title-word">高性价比:</div>
+		               		<div class="title-word">高端精致:</div>
 					               <div class="title-content">
 					               	    <div class="left-content">
 					               	    	<label class="left-price" id="thirdPrice"></label><label class="left-desc">元套餐</lable>
