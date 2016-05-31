@@ -2,6 +2,8 @@ var critical = [12800,28800]; // 临界值
 
 $().ready(function() {
 	loadVideoList();
+	closeVideo();
+	
 });
 
 function loadVideoList() {
@@ -29,14 +31,20 @@ function loadVideoList() {
 			// 填充数据
 			$('#first-video-section').empty();
 			$('#first-video-section').append(composing(first_section));
+			$('#firstPrice').text('12800');
 			
 			// 装配第二块视频
 			$('#second-video-section').empty();
 			$('#second-video-section').append(composing(second_section));
+			$('#secondPrice').text('28800');
+			
 			
 			// 装配第三块视频
 			$('#third-video-section').empty();
 			$('#third-video-section').append(composing(third_section));
+			$('#thirdPrice').text('59800');
+			
+			playVideo();
 		}
 	}, getContextPath() + '/phone/salesman/load/product', null);
 
@@ -53,7 +61,6 @@ function loadVideoList() {
 			var videoId = product.productId;
 			var url = getContextPath() + '/phone/salesman/order/'+videoId+'/'+uniqueId+''; 
 			var posterUrl = product.picLDUrl;
-			var youkuId="videoYK"+videoId;
 			var videoId="video"+videoId;
 			
 			if(posterUrl != undefined && posterUrl != null){
@@ -63,32 +70,66 @@ function loadVideoList() {
 			} 
 			
 			var realPrice = thousandCount(product.serviceRealPrice);
-			$body += '<div class="video-area">';
-			var videoHret = product.hret;
-		
-				$body += '<div class="video-img" id="'+youkuId+'" >';
-				var videoUrl = product.videoUrl;
+			var videoUrl = product.videoUrl;
 				if(videoUrl != undefined && videoUrl != null){
 					
 					var videoName = getFileName(videoUrl);
 					var videoPath = getHostName() + '/product/video/' + videoName;
-					$body += '<video class="player-video"  id="'+videoId+'"  src="'+videoPath+'"  poster="'+imgPath+'" controls preload="none" />';
+					
 				}
-		
-			$body += '</div>';
-			$body += '<div class="video-content"  >' 
-		    $body += '<ul>';	
-			$body += '<li class="video-title"  >' + product.productName+ '</li>';
-			$body += '<li class="video-title-content">' + product.pDescription+ '</li>';
-			$body += '</ul>';
-			$body += '</div>'
-			$body += '<a href="'+url+'" class="btn-red-common video-btn">立即下单</a>';
-			$body += '</div>';
+			
+				$body += '<div class="video-area-card">';
+				$body += '<div class="video-play-section" id="first-video-section">';
+				$body += '<img class="video-play-section" src="'+imgPath+'" />';
+				$body += '<input id="imgPath" value="'+imgName+'" style="display:none" />';
+				$body += '<input id="videoPath" value="'+videoPath+'" style="display:none" />';
+				$body += '</div>';
+				$body += '<div class="video-content">';
+				$body += '<ul>';
+				$body += '<li class="font-title">' + product.productName+ '</li>';
+				$body += '<li class="font-content">' + product.pDescription+ '</li>';
+				$body += '<li><a href="'+url+'" class="btn-red-common video-btn">立即下单</a></li>';
+				$body += '</div>';
+				$body += '</ul>';
+				$body += '</div>';
+				$body += '</div>';
 			
 		}
 	}
 	return $body;
 }
+ 
+ function closeVideo(){
+	 
+     $('.closeVideo').on('click',function(){
+    	 $('#toolbar-modal').fadeOut();
+         $('#recomment-video').attr('src',"");
+     });
+     $('#closeBtn').on('click',function(){
+      $('#toolbar-modal').fadeOut();
+      $('#recomment-video').attr('src',"");
+     });
+     
+     $('#closeVideoBot').on('click',function(){
+         $('#toolbar-modal').fadeOut();
+         $('#recomment-video').attr('src',"");
+        });
+}
+
+
+ function playVideo(){
+	            $('.video-play-section').off('click');
+                $('.video-play-section').on('click',function(){
+                 $('#toolbar-modal').show();
+                  var imgpath = $(this).find('#imgPath').val();
+                  var imgX = getHostName() + '/product/img/' + imgpath;
+				  var videoPath = $(this).find('#videoPath').val();
+				  $('#recomment-video').attr('src',videoPath);
+				  $('#recomment-video').attr('poster',imgX);
+                });
+}
+ 
+
 
 
 
@@ -111,7 +152,7 @@ function loadVideoList() {
 	if(element!=null){
 		element.empty();
 		element.append(html);
-		playVideo();
+		
 	}
  }
 

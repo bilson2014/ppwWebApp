@@ -46,6 +46,8 @@ public class User extends Customer{
 	private String imgFileName = null; // 头像文件名称
 	
 	private String userCompany = null; // 用户公司
+	
+	private int clientLevel = 0; // 客户级别
 
 	public long getId() {
 		return id;
@@ -198,5 +200,13 @@ public class User extends Customer{
 	public void setUserCompany(String userCompany) {
 		this.userCompany = userCompany;
 	}
-	
+
+	public int getClientLevel() {
+		return clientLevel;
+	}
+
+	public void setClientLevel(int clientLevel) {
+		this.clientLevel = clientLevel;
+	}
+
 }

@@ -25,7 +25,7 @@ body {
 		position: relative;
 		margin: 0 auto;
 		width: 100%;
-		padding: 20px;
+		padding: 5px;
 		//height: 420px;
 		border: 1px solid $body-color;
 		border-radius: 5px;
@@ -41,7 +41,7 @@ body {
 	}
 	h2 {
 		margin: 15px 0px 0px 20px;
-		font-size: $font-size-base;
+		font-size: $font-size-sm;
 		color: #fb9b6a;
 
 
@@ -51,7 +51,7 @@ body {
 	}
 
 	h3{
-	font-size: $font-size-base;
+	font-size: $font-size-sm;
 	color:$gray-light;
 	text-align:center;
 	margin-bottom:20px;
@@ -62,14 +62,14 @@ body {
 		height: 38px;
 		margin: 20px 0px 0px 20px; 
 		color: $gray-light;
-		font-size: $font-size;
+		font-size: $font-size-base;
 		padding-left: 10px;
 		border: solid 1px $login-border;
 		border-radius: 5px;
 	}
 
 	.loginbtn {
-		margin: 15px 0px 0px 20px;
+		margin: 35px 0px 0px 20px;
   		width: 90%;
 		height: 38px;
 		background-color: $red-base;
@@ -165,7 +165,7 @@ body {
 }
 
 .footer-content-three{
-	height: 110px;
+	height: 130px;
 }
 
 .footer-content-three ul{
