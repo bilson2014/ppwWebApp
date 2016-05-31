@@ -277,9 +277,6 @@ function resume() {
 			pauseBtn();
 			loadflowdata();
 		});
-		
-		
-		
 		$(".flowbtn").show();
 		$(".prev-task").show();
 		getBtnWidth();

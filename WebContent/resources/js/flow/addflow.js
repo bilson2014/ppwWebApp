@@ -118,9 +118,6 @@ function setInputErrorStyle(){
 		if(res){
 			clearError($("#firstinput"));
 			$("#error-radio-price").hide();
-		}else{
-			setError($("#firstinput"));
-			$("#error-radio-price").show();
 		}
 	});
 	//modify wangliming 5.9 end
@@ -130,9 +127,6 @@ function setInputErrorStyle(){
 		if(res){
 			clearError($("#lastinput"));
 			$("#error-radio-price").hide();
-		}else{
-			setError($("#firstinput"));
-			$("#error-radio-price").show();
 		}
 	});
 	
@@ -180,15 +174,8 @@ function initUserInput(){
 	$('#userName').on('keyup', function() {
 		if (userName != $('#userName').val().trim()) {
 			searchUser();
-			var select_lis = document.getElementById("ul-select").getElementsByTagName("li");
 			$("#ul-select").show();
 			isShow = true;
-			for(i=0;i<select_lis.length;i++) {
-				select_lis[i].onclick = function() {
-					document.getElementById("teamName").value=this.innerHTML;
-					$("#ul-select").hide();
-				}
-			}
 		}
 		
 	});
@@ -201,15 +188,8 @@ function initTeamInput(){
 	$('#teamName').on('keyup', function() {
 		if (teamName != $('#teamName').val().trim()) {
 			searchTeam();
-			var select_lis = document.getElementById("ul-select-team").getElementsByTagName("li");
 			$("#ul-select-team").show();
 			isShow = true;
-			for(i=0;i<select_lis.length;i++) {
-				select_lis[i].onclick = function() {
-					document.getElementById("teamName").value=this.innerHTML;
-					$("#ul-select-team").hide();
-				}
-			}
 		}
 		
 	});
@@ -237,9 +217,9 @@ function initSynergy(input_div){
 	});
 	$(input).on('keyup', function() {
 		if (userName != $(input).val().trim()) {
-			searchSynergy($(input));
-			$("#ul-select-synergy").show();
 			isShow = true;
+			searchSynergy($(input));
+			input_div.find("ul#ul-select-synergy").show();
 		}
 	});
 }
@@ -276,22 +256,26 @@ function searchUser() {
 	loadData(function(msg) {
 		var table=$("#ul-select");
 		table.html("");
-		for (var int = 0; int < msg.length; int++) {
-			var li=$("<li data-id='"+msg[int].id+"' data-contact='"+msg[int].realName+"' data-phone='"+msg[int].telephone+"' >"+msg[int].userName+"</li>");
-			li.on("click",function(){
-				var contact=jQuery(this).attr('data-contact');
-				var phone=jQuery(this).attr('data-phone');
-				var id=jQuery(this).attr('data-id');
-				$(".userContact").val(contact);
-				$(".userPhone").val(phone);
-				$(".userId").val(id);
-				document.getElementById("userName").value=this.innerHTML;
-				$("#ul-select").hide();
-				isShow = false;
-				table.html("");
-			});
-			table.append(li);
-		}
+//		if(msg.length > 0){
+			for (var int = 0; int < msg.length; int++) {
+				var li=$("<li data-id='"+msg[int].id+"' data-contact='"+msg[int].realName+"' data-phone='"+msg[int].telephone+"' >"+msg[int].userName+"</li>");
+				li.on("click",function(){
+					var contact=jQuery(this).attr('data-contact');
+					var phone=jQuery(this).attr('data-phone');
+					var id=jQuery(this).attr('data-id');
+					$(".userContact").val(contact);
+					$(".userPhone").val(phone);
+					$(".userId").val(id);
+					document.getElementById("userName").value=this.innerHTML;
+					$("#ul-select").hide();
+					isShow = false;
+					table.html("");
+				});
+				table.append(li);
+			}
+//		}else{
+//			var li=$("<li>没有搜索到</li>");
+//		}
 	}, getContextPath() + '/mgr/projects/user/search/info', $.toJSON({
 		userName : userName
 	}));
@@ -347,8 +331,6 @@ function searchSynergy(input) {
 			li.on("click",function(){
 				var name=jQuery(this).attr('data-name');
 				var id=jQuery(this).attr('data-id');
-				var div=$(input).parent().parent();
-				var table=div.find("ul#ul-select-synergy");
 				isShow = false;
 				table.html("");
 				table.hide();
@@ -357,6 +339,18 @@ function searchSynergy(input) {
 				div.find("input#user-id").val(id);
 			});
 			table.append(li);
+		}
+	});
+	var hover=false;
+	$(table).hover(function(){
+			hover=true;
+	 },function(){
+	    	hover=false;
+	  });
+	$(input).on('blur',function(){
+		if(!hover){
+			table.html("");
+			table.hide();
 		}
 	});
 }
@@ -743,7 +737,12 @@ function verifyFrom(){
 		$("#error-finishInput").show();
 		return false;
 	}
-	if(!VerifyTime()) return false;
+	if(!VerifyTime()) 
+		return false;
+	
+	if(verifySynerhy())
+		return false;
+	
 	
 	 return true;
 }
@@ -772,9 +771,10 @@ function priceVerifyInputNotNull() {
 			var div=last.parent();
 			div.removeClass('has-error');
 		}
+		
 		if(parseInt(first.val())>parseInt(last.val())){
 			last.val("");
-			last(last);
+			setError(last);
 			$("#error-radio-price").show();
 			return false;
 		}else{
@@ -992,7 +992,11 @@ function setSynergyEvent(){
 	deleteSynergys.on('click',function(){
 		if(cout != 0){
 			var x=$(this).parent().parent().find("input#synergy-id");
-			removeSynergy($(x).val());
+			if(x.val().trim() != ''){
+				alert(x.val().trim());
+				removeSynergy($(x).val().trim());
+				alert("12");
+			}
 			$(this).parent().remove();
 		}				
 	});
@@ -1040,6 +1044,45 @@ function getViewSynerhy() {
 		};
 	}
 	return synergys;
+}
+function verifySynerhy(){
+	var dbUser = '';
+	var base_Synergy = $("div[id^=Synergy-info]");
+	if(base_Synergy  != null && base_Synergy.length > 0){
+		var hasError=false;
+		$.each(base_Synergy,function(i,item){
+			//1.用户身份服务器验证
+			//2.占有比例
+			var userId = $(item).find("input#user-id").val().trim();
+			var userName = $(item).find("input#name").val().trim();
+			var ratio = $(item).find("input#ratio").val().trim();
+			syncLoadData(function(msg) {
+				dbUser=msg;
+			}, getContextPath() + '/mgr/projects/staff/static/list', null);
+			
+			if(dbUser != ''){
+				var verifyTrue =false;
+				for (var int = 0; int < dbUser.length; int++) {
+					var referrer = dbUser[int];
+					var name=referrer.staffName+''.trim();
+					var id=referrer.staffId;
+					if(userId == id && name == userName){
+						verifyTrue =true;
+						break;
+					}else{
+						verifyTrue =false;
+					}
+				}
+				
+				if(!verifyTrue){
+					hasError=true;
+					alert("填写错误了哟  ！ "+userName);
+				}
+			}
+		});
+		return hasError;
+		
+	}
 }
 
 //add Synergy by laowang end 2016-5-25 12:35
