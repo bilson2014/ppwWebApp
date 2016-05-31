@@ -149,8 +149,21 @@ var="cookiejs" />
 							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
 							<label class="error-label" id="error-input-referrer">该信息有误</label>
 						</div>
-						
                    </div>
+                   
+                   
+                    <div class="baseinfo-table">
+						<div class="divtable">
+							<div class="baseinfo-table-key">来源信息</div>
+						</div>
+							<div>
+								<button data-id="1" id="add-Synergy">添加协助人</button>
+								<div id="Synergy-root" style="display: inline-block;">
+								
+								</div>
+							</div>
+                   </div>
+                   
 
                    <div class="baseinfo-table">
                    		<input type="hidden" class="userId" id="userId">
@@ -236,9 +249,8 @@ var="cookiejs" />
 
 				<ul class="ul-option-team" id="ul-select-team">
 				</ul>
-
-				<ul class="ul-option-source" id="ul-select-referrer">
-				</ul>                          
+				<ul class="ul-option-source" style="" id="ul-select-referrer">
+				</ul>    
           	</div>
         </div>	
 	</div>
