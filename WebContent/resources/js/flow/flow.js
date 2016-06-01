@@ -1002,11 +1002,11 @@ function loadIndentInfo() {
 //添加协同人
 
 function loadSynerhyList(){
+	var key=getCurrentProject();
 	loadData(function(msg) {
-		
+		var x=msg;
 	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
-		icContent : comment,
-		icIndentId : key
+		id : key
 	}));
 }
 
