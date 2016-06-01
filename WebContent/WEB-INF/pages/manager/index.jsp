@@ -32,6 +32,9 @@
 <spring:url value="/resources/js/flow/step-jquery-dc.js"
 	var="stepjquery" />
 <spring:url value="/resources/js/flow/flow.js" var="indexjs" />
+<spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
+
+
 <spring:url value="/resources/lib/dist/tether.min.js" var="tetherjs" />
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
@@ -70,6 +73,8 @@
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
+<script src="${leftjs}"></script>
+
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
 <body  >
@@ -135,10 +140,53 @@
 			</div>
 			
 			<div class="indentdiv">
-				<table class="indentlist projectliststyle">
+			<!-- 	<table class="indentlist projectliststyle">
 				</table>
 				<table class="indentlisthistory projectliststyle">
-				</table>
+				</table> -->
+				
+			<div id="content">
+			    <div class="menu" id="menuId">
+			        <ul>
+			        <li><a id="doingProject" href="#">进行中项目</a>
+			            <ul>
+			              
+			                <li><a id="myProject" href="#">我的项目</a>
+			                    <ul id="myProjectId">
+			                      <!--   <li><a class="title-content" href="#">Subitem 1</a></li>
+			                        <li><a class="title-content" href="#">Subitem 2</a></li>
+			                        <li><a class="title-content" href="#">Subitem 3</a></li>
+			                        <li><a class="title-content" href="#">Subitem 4</a></li> -->
+			                    </ul>
+			                </li>
+			                
+			               <r:identity role="employee">
+			                 <li ><a id="helpProject" href="#">协同人项目</a>
+			                    <ul id="helpProjectId">
+			                       
+			                    </ul>
+			                </li>
+			               </r:identity>
+			            </ul>
+			        </li>
+			        
+			         <li><a id="pauseProject" href="#">停滞项目</a>
+			            <ul id="pauseProjectId">
+			               
+			            </ul>
+			        </li>
+			    
+			        <li><a id="historyProject" href="#">历史项目</a>
+			            <ul id="historyProjectId">
+			              
+			            </ul>
+			        </li>
+			     
+			    </ul>
+			    </div>
+			</div>
+				
+				
 			</div>
 		</div>
   

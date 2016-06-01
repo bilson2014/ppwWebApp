@@ -11,9 +11,15 @@ var oTimer;
 
 $().ready(
 		function() {
+			//树形
+			 $(".menu ul li").menu({
+				 autostart: 0,
+		         autohide: 0
+			 });
+			//
 			init();
 			showOrderTime();
-			loadprojecctlist(false,false);
+			loadprojecctlist(false);
 			$(".flowbtn").on("click", function() {
 				$("#toolbar-check").modal('show');
 				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
@@ -167,7 +173,7 @@ getBtnWidth();
 function nextFlow(){
 	var key = getCurrentProject();
 	loadData(function(msg) {
-		loadprojecctlist(false,false);
+		loadprojecctlist(false);
 		$("#toolbar-check").modal('hide');
 	}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 		id : key
@@ -220,7 +226,7 @@ function cancel() {
 	var key = getCurrentProject();
 	loadData(function(msg) {
 		$("#toolbar-check").modal('hide');
-		loadprojecctlist(false,true);
+		loadprojecctlist(true);
 	}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
 		id : key
 	}));
@@ -233,7 +239,7 @@ function PrevTaskBtn() {
 function PrevTask(){
 	var key=getCurrentProject();
 	loadData(function(msg) {
-		loadprojecctlist(false,false);
+		loadprojecctlist(false);
 		$("#toolbar-check").modal('hide');
 	}, getContextPath() + '/mgr/flow/jumpPrevTask', $.toJSON({
 		id : key
@@ -831,12 +837,18 @@ function loadcommentdata(more) {
 var firstClick=false;
 var  noWorkproject=true;
 //加载项目列表
-function loadprojecctlist(more,state) {
+function loadprojecctlist(state) {
 	loadData(function(msg) {
-		var tab = $(".indentlist");
-		var tab2=$(".indentlisthistory");
-		tab.html("<tr><td class='indent-more'>正在进行</td></tr>");
-		tab2.html("");
+		var doing = $("#myProjectId");
+		var help=$("#helpProjectId");
+		var pause=$("#pauseProjectId");
+		var history=$("#historyProjectId");
+		
+		doing.html('');
+		help.html('');
+		pause.html('');
+		history.html('');
+		
 		var currentprojectkey = '';
 		if(msg.length<=0){
 			$(".left-page").hide();
@@ -849,14 +861,9 @@ function loadprojecctlist(more,state) {
 			$(".noproject").addClass('hide');
 		}
 		var  selectFirst=false;
-		
-
 		for (var i = 0; i < msg.length; i++) {
-			var tr = $("<tr></tr>");
-			var td = $("<td ></td>");
 			var stateStr=msg[i].state;
-			
-			if (!selectFirst && !more && getCurrentProject() == null && stateStr==0) {
+			if (!selectFirst  && getCurrentProject() == null && stateStr==0) {
 				currentprojectkey = msg[i].id + '';
 				putCurrentProject(currentprojectkey);
 				selectFirst=true;
@@ -871,8 +878,9 @@ function loadprojecctlist(more,state) {
 				else
 					noWorkproject =false;
 			}
-			var a = $("<a class=\"indent-a\" data-state=" + msg[i].state
-					+ " data-value=" + msg[i].id + ">");
+			var liStar = $('<li></li>')
+			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
+					+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
 			$(a).on("click", function() {
 				firstClick=true;
 				var key = $(this).attr("data-value");
@@ -880,62 +888,30 @@ function loadprojecctlist(more,state) {
 				var state=jQuery(this).attr('data-state');
 				if (state == 1 || state == 2)
 				{
-					loadprojecctlist(false,true);
+					loadprojecctlist(true);
 				}else{
-					loadprojecctlist(false,false);
+					loadprojecctlist(false);
 				}
 			});
-			a.append("&nbsp;&nbsp;");
-			a.append(msg[i].projectName);
-			td.append(a);
-			tr.append(td);
-			if(msg[i].state)
-				tab2.append(tr);
-			else
-				tab.append(tr);	
-		}
-		var tr = $("<tr></tr>");
 
-		//var td = $("<td class='indent-more'>历史回顾</td>");
-		
-		
-		// modify by lutao,2016-05-16 begin
-		// -> change + to big
-   		 var td = $("<td class='indent-more'>历史回顾<img  class='indent-more-add' src='/resources/images/flow/selectmore.png'/></td>");
-		//var tdimg = $("<td class='indent-more-icon'>+</td>");
-		
-        var tdimg = $("<td class='indent-more-add'></td>");
-        // modify by lutao,2016-05-16 end
-        
-        tr.on('click',function(){
-
-        	
-			var tlist=$(".indentlisthistory");
-			var display=$(tlist).css('display');
-			if(display=='none'){
-				tlist.show();
-                 
-				$(".indent-more-add").removeClass('circle-180');
-				//change + to big by lt 
-		        //no need
-				//$(".indent-more-add").html('-');
-			}else{
-				tlist.hide();
-                
-                $(".indent-more-add").addClass('circle-180');
+			liStar.append(a);
+			
+			
+			switch (msg[i].state) {
+			case 0:
+				doing.append(liStar);
+				break;
 				
-				//change + to big by lt 
-		        //no need
-				//$(".indent-more-add").html('+');
+			case 1:
+									
+			case 2:
+				history.append(liStar);
+				break;
+			case 3:
+				pause.append(liStar);
+				break;
+
 			}
-		});
-		tr.append(td);
-		tr.append(tdimg);
-		tab.append(tr);
-		//control histroy project when init hide it
-		if(!firstClick){
-			$(".indentlisthistory").hide();
-			$(".indent-more-add").addClass('circle-180');
 		}
 		//if has histroy project but no working peoject show window（！）
 
@@ -957,6 +933,7 @@ function loadprojecctlist(more,state) {
 	loadfiledata(false);
 	loadcommentdata(false);
 	loadIndentInfo();
+	loadSynerhyList();
 	updateProjectTreeView();
 	if(state) finish(); else show();
 	}, getContextPath() + '/mgr/projects/all-project', $.toJSON({}));
@@ -964,30 +941,16 @@ function loadprojecctlist(more,state) {
 }
 //加载项目列表视图
 function updateProjectTreeView() {
-	$(".indentlist tr td a").each(function(index) {
+	
+   	$("#menuId ul li a").each(function(index) {
 		num = jQuery(this).attr("data-value");
 		var key = getCurrentProject();
 		if (num == key) {
-			jQuery(this).attr("class", "indent-selected");
-
-			// var editImg = $("<img class='indent-ednt-btn'
-			// src=\"/resources/img/flow/edit.png\"/>");
+              $(this).addClass('indent-selected');
+              $(this).prepend('<label class="border-select"></label>');
 		} else {
-			jQuery(this).attr("class", "indent-a");
-			jQuery(this).next().remove();
-		}
-	});
-	$(".indentlisthistory tr td a").each(function(index) {
-		num = jQuery(this).attr("data-value");
-		var key = getCurrentProject();
-		if (num == key) {
-			jQuery(this).attr("class", "indent-selected");
-
-			// var editImg = $("<img class='indent-ednt-btn'
-			// src=\"/resources/img/flow/edit.png\"/>");
-		} else {
-			jQuery(this).attr("class", "indent-a");
-			jQuery(this).next().remove();
+	    $(this).removeClass("class", "indent-selected");
+	    
 		}
 	});
 }
@@ -1037,6 +1000,19 @@ function loadIndentInfo() {
 		}));
 	}
 }
+
+//添加协同人
+
+function loadSynerhyList(){
+	loadData(function(msg) {
+		
+	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
+		icContent : comment,
+		icIndentId : key
+	}));
+}
+
+
 //完成项目页面样式
 function finish() {
 	$("#btndiv-id").hide();

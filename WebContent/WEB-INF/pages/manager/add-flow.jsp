@@ -261,7 +261,7 @@ var="cookiejs" />
 					</div>
 
 					<div class="divtable finishdiv finish providerPrice">
-							<div class="userPriceTitle">供应商支付金额</div>
+							<div class="userPriceTitle">支付供应商金额</div>
 							<input type="text" id='providerInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
 					</div>
 					<div>

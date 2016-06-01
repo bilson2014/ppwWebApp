@@ -1111,6 +1111,7 @@ function setSynergyEvent(){
 		initSynergy(x2);
 	});
 }
+
 function removeSynergy(id){
 	loadData(null, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
 		name:id
@@ -1122,7 +1123,7 @@ function createSynergyView(name,ratio,userid,synergyid){
 	$body+=
 	'<div id="select" style="display: inline-block;">'+
 	' <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
-	' <ul id="ul-select-synergy" style="position: absolute;left:200px; overflow: auto;width:160px; overflow: hidden; background-color: white;"  > </ul>  '+
+	' <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
 	'</div>'+
 	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+

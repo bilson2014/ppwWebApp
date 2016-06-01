@@ -107,7 +107,6 @@
 		.indent-selected {
 			font-size: $font-size-base;
 			color: #fa7872;
-			border-left: solid 2px  #fa7872;
 			text-decoration: none;
 			position: relative;
 			left: -2px;
@@ -971,3 +970,56 @@ img {
     position: relative;
     left: 10%;
 }
+
+
+
+//树形
+.menu ul li {display:block;width:270px;padding-top:2px;margin-bottom:5px;list-style:none;overflow:visible;}
+
+.menu ul li a {display:block;height:40px; width:170px;margin-top:0px;padding-top:10px;padding-left:0px;font-size:$font-size;color:$gray-dark;outline:none;}
+
+.menu ul li .active {background:url(../../images/flow/ias_on.png) top right  no-repeat;}
+
+.menu ul li .inactive {background:url(../../images/flow/ias_off.png) top right  no-repeat;}
+
+.menu ul li ul {display:none; margin-top:-4px;margin-bottom:10px;   }
+
+.menu ul li ul li ul {margin-bottom:5px;}
+
+.menu ul li ul li {display:block;background:none;font-size:12px;list-style:circle;color:#8f9d4c;margin-bottom:0px;margin-top:0px;padding-top:0px;padding-bottom:0px;padding-left:1px;margin-left:35px;}
+
+.menu ul li ul li a {background:none;font-size:$font-size;height:30px;color:$gray-dark;padding-left:0px;underline:none;padding-left:10px; }
+
+.menu{
+
+	a{
+	text-decoration:none;
+	}
+	.title-content{
+      color:$gray-dark;
+      font-size:$font-size-base;
+	}
+	#doingProject,#historyProject,#pauseProject{
+	position:relative;
+	left:35px;
+	font-weight:bold;
+	}
+
+	.border-select{
+
+       background:#fa7872;
+       width:2px;
+       height:15px;
+       position:relative;
+       top:1px;
+       right:7px;
+
+	}
+
+}
+
+
+
+//end
+
+
