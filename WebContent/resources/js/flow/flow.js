@@ -893,7 +893,6 @@ function loadprojecctlist(state) {
 					loadprojecctlist(false);
 				}
 			});
-
 			liStar.append(a);
 			
 			
@@ -910,7 +909,6 @@ function loadprojecctlist(state) {
 			case 3:
 				pause.append(liStar);
 				break;
-
 			}
 		}
 		//if has histroy project but no working peoject show window（！）
