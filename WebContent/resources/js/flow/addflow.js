@@ -13,12 +13,16 @@ $().ready(function() {
 	//change final price label by lt
 	$('.final-price-label').hide();
 	$('.final-price-left-label').hide();
+	$('#error-user-price').hide();
+	$('#error-provider-price').hide();
+	$('#error-Synergy').hide();
 	//end
 	$(".tableinput-error").hide();
 	loadSource();
 	$("#ul-select").hide();
 	$("#ul-select-team").hide();
 	$("#ul-select-referrer").hide();
+	$("#").hide();
 	$('.page').on('click', function() {
 		if(checkHidden) {
 			checkHidden = false;
@@ -68,6 +72,7 @@ $().ready(function() {
 	initReferrerInput();
 	//add Synergy by laowng begin 2016-5-25 12:35 
 	$("#add-Synergy").on('click', function() {
+		$('.cooperative').css('visibility','visible');
 		addSynergy();
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
@@ -133,6 +138,21 @@ function setInputErrorStyle(){
 	$("#finishInput").on('change',function(){
 		checkFinishPrice();
 	});
+	
+	
+  
+	
+	//add by lt 2016-5-31 18:50 begin
+	//-->添加 用户 供应商错误消息
+	$("#userinput").on('change',function(){
+		checkUserPrice();
+	});
+	
+	$("#providerInput").on('change',function(){
+		checkProviderPrice();
+	});
+	
+	//end
 	//5.9 修改 end
 	
 	//add by wangliming 2016-5-10 11:00 begin
@@ -444,6 +464,7 @@ function updateProject_ViewInit() {
 		$("#Synergy-root").html("");
 		if(synergys != null && synergys.length > 0){
 			$.each(synergys,function(i,item){
+				$('.cooperative').css('visibility','visible');
 				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
 			});
 		}
@@ -737,11 +758,33 @@ function verifyFrom(){
 		$("#error-finishInput").show();
 		return false;
 	}
+	
+	
+	
+	
 	if(!VerifyTime()) 
 		return false;
 	
 	if(verifySynerhy())
 		return false;
+	
+
+	//新增错误判断
+	if(!checkUserPrice()){
+		$("#error-user-price").show();
+		return false;
+	}
+	
+	if(!checkProviderPrice()){
+		$("#error-provider-price").show();
+		return false;
+	}
+	//
+	
+	
+	
+	
+	
 	
 	
 	 return true;
@@ -803,6 +846,67 @@ function checkFinishPrice() {
 		return true;
 	}
 }
+
+////验证客户支付价格
+function checkUserPrice() {
+	var text=$("#userinput").val();
+	if(text == null ||text=='' || text=='0')
+		
+		return true;
+	if(!checkNumber(text)){
+		$("#userinput").val("");
+		$("#userinput").focus();
+		var div=$("#userinput").parent();
+		div.addClass('has-error');
+		$("#error-user-price").show();
+		return false;
+	}else{
+		var div=$("#userinput").parent();
+		div.removeClass('has-error');
+		$("#error-user-price").hide();
+		
+		if(text=="0.0"){
+			$("#userinput").val("0");
+		}
+		return true;
+	}
+}
+
+////验证供应商支付价格
+function checkProviderPrice() {
+	var text=$("#providerInput").val();
+	if(text == null ||text=='' || text=='0')
+	
+		return true;
+	if(!checkNumber(text)){
+		$("#providerInput").val("");
+		$("#providerInput").focus();
+		var div=$("#providerInput").parent();
+		div.addClass('has-error');
+		$("#error-provider-price").show();
+		return false;
+	}else{
+		var div=$("#providerInput").parent();
+		div.removeClass('has-error');
+		$("#error-provider-price").hide();
+		if(text=="0.0"){
+			$("#providerInput").val("0");
+		}
+		return true;
+	}
+}
+
+////验证比例
+function checkBiliPrice(text) {
+	var bili=text;
+     if(!checkNumber(text)){
+    	 return false;
+     }
+     else{
+    	 return true;
+     }
+}
+
 //填充序列号
 function fillSerialID() {
 	loadData(function(msg) {
@@ -981,7 +1085,8 @@ function addSynergy(name,ratio,userid,synergyid){
 		$("#Synergy-root").append(html);
 		setSynergyEvent();
 	}else{
-		alert('在点我就打死你！');
+		$('#error-Synergy').text('不能多于3个协同人');
+		$('#error-Synergy').show();
 	}
 }
 
@@ -993,9 +1098,9 @@ function setSynergyEvent(){
 		if(cout != 0){
 			var x=$(this).parent().parent().find("input#synergy-id");
 			if(x.val().trim() != ''){
-				alert(x.val().trim());
+				
 				removeSynergy($(x).val().trim());
-				alert("12");
+				
 			}
 			$(this).parent().remove();
 		}				
@@ -1014,18 +1119,19 @@ function removeSynergy(id){
 
 function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">';
-	$body+='协助人：' +
+	$body+=
 	'<div id="select" style="display: inline-block;">'+
-	' <input type="text" id="name" value="'+name+'" />'+
-	' <ul  id="ul-select-synergy" style="position: absolute; overflow: auto;width:160px; overflow: hidden; background-color: white;"  > </ul>  '+
+	' <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
+	' <ul id="ul-select-synergy" style="position: absolute;left:200px; overflow: auto;width:160px; overflow: hidden; background-color: white;"  > </ul>  '+
 	'</div>'+
-	' 协助人占有率：<input type="text" id="ratio"  value="'+ratio+'" />'+
+	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
 	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
-	' <button  id = "deleteSynergy" >-</button>';
+	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>';
 	$body+='</div>';
 	return $body;
 }
+
 function getViewSynerhy() {
 	var base_Synergy = $("div[id^=Synergy-info]");
 	var currCount=base_Synergy.length;
@@ -1047,8 +1153,13 @@ function getViewSynerhy() {
 }
 function verifySynerhy(){
 	var dbUser = '';
+	var totalPrice='';
+
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
+		
+		
+		
 		var hasError=false;
 		$.each(base_Synergy,function(i,item){
 			//1.用户身份服务器验证
@@ -1071,12 +1182,38 @@ function verifySynerhy(){
 						break;
 					}else{
 						verifyTrue =false;
+						$(item).find("input#name").focus();
+						$('#error-Synergy').text('协同人不正确');
 					}
 				}
 				
+				$(item).find("input#name").on('click',function(){
+					$('#error-Synergy').hide();
+				});
+				
+			//验证比例
+				if(checkBiliPrice(ratio)){
+					
+						totalPrice = totalPrice+ratio;
+						if(totalPrice>=100||totalPrice<0){
+							verifyTrue =false;
+							$(item).find("input#ratio").focus();
+							$('#error-Synergy').text('比例总和不能大于100');
+						}
+				}
+				
+				else{
+					$('#error-Synergy').text('请填写数字');
+				}
+				$('#error-Synergy').hide();
+			//	
 				if(!verifyTrue){
 					hasError=true;
-					alert("填写错误了哟  ！ "+userName);
+					
+					$('#error-Synergy').show();
+				}
+				else{
+					$('error-Synergy').hide();
 				}
 			}
 		});
