@@ -152,16 +152,24 @@ var="cookiejs" />
                    </div>
                    
                    
-                    <div class="baseinfo-table">
+                    <div class="cooperative-div">
 						<div class="divtable">
-							<div class="baseinfo-table-key">来源信息</div>
+							<div class="cooperative-table-key">协同人信息</div>
+							<div class="cooperative-table-key pos-top glyphicon glyphicon-plus" data-id="1" id="add-Synergy"></div>
 						</div>
 							<div>
-								<button data-id="1" id="add-Synergy">添加协助人</button>
+								<div id="cooperative-id">
+									<div class="cooperative">协同人名称</div>
+									<div class="cooperative pos-left">比例</div>
+								</div>
 								<div id="Synergy-root" style="display: inline-block;">
+								
+								
 								
 								</div>
 							</div>
+							
+							<div class="synergy" id="error-Synergy">信息填写错误</div>
                    </div>
                    
 
@@ -235,9 +243,40 @@ var="cookiejs" />
                     <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>
                     </div>
 					<div class="mright">
-					</div> 	
+					</div> 
 								
 				</div>
+				
+				
+			<div class="price-inarea">
+					
+					<div class="divtable userPrice">
+						<div class="userPriceTitle pirce-title">客户支付金额</div>
+							<div class="final-price-div">
+								<div class="pirce-div mleft" >
+									<input type="text" id="userinput" class="pirce-input-user form-control lastinput"> 元
+									<label class="user-price-label" id="error-user-price">请输入数字</label>
+								</div>
+						 </div>
+					</div>
+
+					<div class="divtable finishdiv finish providerPrice">
+							<div class="userPriceTitle">供应商支付金额</div>
+							<input type="text" id='providerInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
+					</div>
+					<div>
+                    <label class="provider-price-left-label" id="error-provider-price">请输入数字</label>
+                    </div>
+					
+								
+				</div>
+				
+				
+				
+			     
+				
+				
+				
 	  			<div class="baseinfo-table">
 					<div class="divtable">
 						<div class="baseinfo-table-key" >项目描述</div>
