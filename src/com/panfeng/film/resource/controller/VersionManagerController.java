@@ -224,6 +224,24 @@ public class VersionManagerController extends BaseController {
 		String str=HttpUtil.httpPost(url, bizBean, request);
 		return str == null;
 	}
+	
+	@RequestMapping(value = "/projects/get/synergys", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public List<IndentProject> getSynergys(
+			@RequestBody final IndentProject indentProject,
+			final HttpServletRequest request) {
+		// fill userinfo
+		fillUserInfo(request, indentProject);
+
+		final String url = GlobalConstant.URL_PREFIX + "project/get/synergys";
+		String str = HttpUtil.httpPost(url, indentProject, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toList(str);
+		}
+
+		return new ArrayList<>();
+	}
+	
 
 	@RequestMapping("/projects/flow-index")
 	public ModelAndView projectsView(final ModelMap model,String key) {

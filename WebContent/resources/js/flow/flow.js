@@ -908,25 +908,14 @@ function loadprojecctlist(more,state) {
         // modify by lutao,2016-05-16 end
         
         tr.on('click',function(){
-
-        	
 			var tlist=$(".indentlisthistory");
 			var display=$(tlist).css('display');
 			if(display=='none'){
 				tlist.show();
-                 
 				$(".indent-more-add").removeClass('circle-180');
-				//change + to big by lt 
-		        //no need
-				//$(".indent-more-add").html('-');
 			}else{
 				tlist.hide();
-                
                 $(".indent-more-add").addClass('circle-180');
-				
-				//change + to big by lt 
-		        //no need
-				//$(".indent-more-add").html('+');
 			}
 		});
 		tr.append(td);

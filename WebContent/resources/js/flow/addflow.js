@@ -77,6 +77,9 @@ $().ready(function() {
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
 });
+
+
+
 //设置验证错误提示
 function setInputErrorStyle(){
 	$(".projectId").on('change',function(){
@@ -374,36 +377,7 @@ function searchSynergy(input) {
 		}
 	});
 }
-////添加用户
-//function addUser(){
-//	//验证
-//	var username=$("#add_username");
-//	var contactname=$("#add_contactname");
-//	var userphone=$("#add_userphone");
-//
-//	if(!verifyInputNotNull(username)) return;
-//	
-//	if(!verifyInputNotNull(contactname)) return;
-//	
-//	if(!verifyInputNotNull(userphone)) return;
-//	var usernameValue=username.val().trim();
-//	var contactnameValue=contactname.val().trim();
-//	var userphoneValue=userphone.val().trim();
-//	
-//	loadData(function(msg) {
-//		if (msg) {
-//			$('#toolbar-modal').modal('hide');
-//			$("#toolbar-modal").clearQueue();
-//		} else {
-//			alert('error:' + msg);
-//		}
-//	}, getContextPath() + '/mgr/projects/user/save/simple', $.toJSON({
-//		userName:usernameValue,
-//		realName:contactnameValue,
-//		telephone:userphoneValue
-//	}));
-//	
-//}
+
 //本页作为更新页面时，填充页面数据方法
 function updateProject_ViewInit() {
 	var currentProject = getCurrentProject();
@@ -429,6 +403,8 @@ function updateProject_ViewInit() {
 		$("#firstinput").val("");
 		$("#lastinput").val("");
 		$("#finishInput").val("");
+		$("#userinput").val("");
+		$("#providerInput").val("");
 		// put data
 		$(".projectId").val(msg.serial);
 		$(".projectName").val(msg.projectName);
@@ -468,6 +444,15 @@ function updateProject_ViewInit() {
 				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
 			});
 		}
+		if(msg.customerPayment+'' == '0.0')
+			$("#userinput").val('0');
+		else
+			$("#userinput").val(msg.customerPayment);
+		if(msg.providerPayment+'' == '0.0')
+			$("#providerInput").val('0');
+		else
+			$("#providerInput").val(msg.providerPayment);
+		
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
@@ -508,6 +493,16 @@ function updateProjectajax() {
 	//获取推荐人，是友情推荐时为 “人名” 否则为 ‘’
 	var referrerId=getReferrer();
 	
+	//add laowng
+	var customerPayment=$("#userinput").val().trim();
+	var providerPayment=$("#providerInput").val().trim();
+	if(providerPayment == ''){
+		providerPayment =0;
+	}
+	if(customerPayment == ''){
+		customerPayment= 0;
+	}
+	
 	loadData(function(msg) {
 		if (msg) {
 			//window.location.href = getContextPath() + "/mgr/projects/flow-index";
@@ -542,7 +537,9 @@ function updateProjectajax() {
 			zz : zzstarttime,
 			jf : jfstarttime
 		},
-		synergys:getViewSynerhy()
+		synergys:getViewSynerhy(),
+		providerPayment:providerPayment,
+		customerPayment:customerPayment
 	}));
 }
 function submitForm(){
@@ -592,6 +589,10 @@ function addProject() {
 	var jfstarttime = $(".jfstarttime").val().trim();
 	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
 	var referrerId=getReferrer();
+	//add laowng
+	var customerPayment=$("#userinput").val().trim();
+	var providerPayment=$("#providerInput").val().trim();
+	
 	loadData(function(msg) {
 		if (msg) {
 			clearProject();
@@ -625,7 +626,9 @@ function addProject() {
 			zz : zzstarttime,
 			jf : jfstarttime
 		},
-		synergys:getViewSynerhy()
+		synergys:getViewSynerhy(),
+		providerInput:providerInput,
+		customerPayment:customerPayment
 	}));
 }
 function loadSource() {
@@ -780,12 +783,6 @@ function verifyFrom(){
 		return false;
 	}
 	//
-	
-	
-	
-	
-	
-	
 	
 	 return true;
 }
@@ -1153,7 +1150,7 @@ function getViewSynerhy() {
 }
 function verifySynerhy(){
 	var dbUser = '';
-	var totalPrice='';
+	var totalPrice = 0 ;
 
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
@@ -1167,6 +1164,7 @@ function verifySynerhy(){
 			var userId = $(item).find("input#user-id").val().trim();
 			var userName = $(item).find("input#name").val().trim();
 			var ratio = $(item).find("input#ratio").val().trim();
+			var ratio_int=parseInt(ratio);
 			syncLoadData(function(msg) {
 				dbUser=msg;
 			}, getContextPath() + '/mgr/projects/staff/static/list', null);
@@ -1193,20 +1191,17 @@ function verifySynerhy(){
 				
 			//验证比例
 				if(checkBiliPrice(ratio)){
-					
-						totalPrice = totalPrice+ratio;
-						if(totalPrice>=100||totalPrice<0){
+						totalPrice = totalPrice + ratio_int;
+						if(totalPrice >= 100||totalPrice < 0){
 							verifyTrue =false;
 							$(item).find("input#ratio").focus();
 							$('#error-Synergy').text('比例总和不能大于100');
 						}
 				}
-				
 				else{
 					$('#error-Synergy').text('请填写数字');
 				}
 				$('#error-Synergy').hide();
-			//	
 				if(!verifyTrue){
 					hasError=true;
 					

@@ -246,8 +246,6 @@ var="cookiejs" />
 					</div> 
 								
 				</div>
-				
-				
 			<div class="price-inarea">
 					
 					<div class="divtable userPrice">
@@ -259,7 +257,6 @@ var="cookiejs" />
 								</div>
 						 </div>
 					</div>
-
 					<div class="divtable finishdiv finish providerPrice">
 							<div class="userPriceTitle">供应商支付金额</div>
 							<input type="text" id='providerInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
@@ -267,16 +264,7 @@ var="cookiejs" />
 					<div>
                     <label class="provider-price-left-label" id="error-provider-price">请输入数字</label>
                     </div>
-					
-								
 				</div>
-				
-				
-				
-			     
-				
-				
-				
 	  			<div class="baseinfo-table">
 					<div class="divtable">
 						<div class="baseinfo-table-key" >项目描述</div>
