@@ -67,6 +67,31 @@ var="cookiejs" />
 <body >
 
 <div class="header">
+     
+     	<!-- show Modal start -->
+<%-- 		<div class="modal" id="isShow" data-backdrop="static" data-keyboard=true>
+			<div class="modal-dialog">
+				<div class="modal-content model-distance" id="mymodal-content">
+					<div class="modal-body" id="mymodal-body">
+						
+						<div class="alert alert-warning" role="alert">数据处理中请勿关闭页面</div>
+						<img id="circleId" src="${imgPath }/flow/circle.png"/>
+						    <div class="load-word">加载中</div>
+							<div class="spinner">
+							  <div class="bounce1"></div>
+							  <div class="bounce2"></div>
+							  <div class="bounce3"></div>
+							</div>
+					</div>
+					
+				</div>
+			</div>
+		</div> --%>
+		
+		<!-- show Modal end -->
+
+
+
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -150,13 +175,16 @@ var="cookiejs" />
 							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
 							<label class="error-label" id="error-input-referrer">该信息有误</label>
 						</div>
+						
+				<ul class="ul-option-source" style="" id="ul-select-referrer">
+				</ul>  
                    </div>
                    
                    
                     <div class="cooperative-div">
 						<div class="divtable">
 							<div class="cooperative-table-key">协同人信息</div>
-							<div class="cooperative-table-key pos-top" data-id="1" id="add-Synergy"><img src="${imgPath }/flow/addMore.png"/></div>
+							<div class="cooperative-table-key pos-top glyphicon glyphicon-plus" data-id="1" id="add-Synergy"></div>
 						</div>
 							<div>
 								<div id="cooperative-id">
@@ -170,7 +198,7 @@ var="cookiejs" />
 								</div>
 							</div>
 							
-							<div class="synergy" id="error-Synergy">信息填写错误</div>
+							
                    </div>
                    
 
@@ -196,6 +224,9 @@ var="cookiejs" />
 							<input type="text" class="tableinput-baseinfo form-control userPhone">
 							<label class="error-label" id="error-userPhone" >号码有误</label>
 						</div>
+						
+						<ul class="ul-option" id="ul-select">
+								</ul>
                    </div>
 				<div class="baseinfo-table">
 						<input type="hidden" class="teamId" id="teamId">
@@ -217,11 +248,14 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">供应商电话</div>
 							<input type="text" class="tableinput-baseinfo form-control teamPhone" id="error-teamPhone">
 						</div>
+						
+						<ul class="ul-option-team" id="ul-select-team">
+			 	        </ul>
 				</div> 
-				<div class="baseinfo-table" id="open-id">
+				<div class="baseinfo-table" style="height:180px" >
 					
 					<div class="divtable">
-						<div class="baseinfo-table-key">项目价格</div>
+						<div class="baseinfo-table-key" >项目价格</div>
 					</div>
 
 					<div class="divtable pospricediv">
@@ -266,20 +300,17 @@ var="cookiejs" />
                     <label class="provider-price-left-label" id="error-provider-price">请输入数字</label>
                     </div>
 				</div>
-				<button id="open-div">button</button>
+				<div class="loadMore" id="open-div"><div style="display:inline-block;" id="loadWord">展开更多</div><img id="circleImg" style="display:inline-block;position:relative;left:10px;" src="${imgPath }/flow/getMore.png"/></div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
 						<div class="baseinfo-table-key" >项目描述</div>
 					</div>
 					<textarea rows="2" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
-				<ul class="ul-option" id="ul-select">
-				</ul>
+			
 
-				<ul class="ul-option-team" id="ul-select-team">
-				</ul>
-				<ul class="ul-option-source" style="" id="ul-select-referrer">
-				</ul>    
+				
+  
           	</div>
         </div>	
 	</div>
@@ -325,6 +356,20 @@ var="cookiejs" />
 		<button class="indent-btn" id="indent-btn">确认</button>
 		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
 	</div>  	
+	            
+	            <div class="bottom-div">
+	                      <div class="loadmore-div">
+				       			<div class="load-word">加载中</div>
+										<div class="spinner">
+										  <div class="bounce1"></div>
+										  <div class="bounce2"></div>
+										  <div class="bounce3"></div>
+										</div>
+								</div>
+						  </div>	
+				</div>	
+	
+	
 </div>
 
 <div class="footer">

@@ -321,7 +321,7 @@
 	width: 175px;
 	font-size: $font-size-base;
 	position: absolute;
-	margin-top: -680px;
+	margin-top: 102px;
 	z-index: 999;
 	border: 1px solid $gray-border;
 	margin-left: 200px;
@@ -347,7 +347,7 @@
 	border: 1px solid $gray-border;
 	background-color: #fff;
 	margin-left: 200px;
-	margin-top: -520px;
+	margin-top:100px;
 
 	li {
 		@include ellipsis;
@@ -365,7 +365,7 @@
 	width: 175px;
 	font-size: $font-size-base;
 	position: absolute;
-	margin-top: -685px;
+	margin-top: 103px;
 	z-index: 999;
 	border: 1px solid $gray-border;
 	margin-left: 425px;
@@ -646,10 +646,12 @@
 	border:none;
 	background:none;
 	outline:none;
+	display:inline-block;
 }
 .pos-top{
 	position:relative;
 	top:12px;
+	left:57px;
 }
 
 .pos-left{
@@ -816,6 +818,7 @@
 			background: $white;
 			border-radius: 5px;
 			border: 1px soild $white;
+			display:none;
 }
 
 .userPriceTitle{
@@ -828,26 +831,141 @@
 .synergy{
 	font-size:$font-size-base;
 	color:$red-base;
+	
+}
+.synergy-left{
 	position:relative;
-	top:5px;
-	left:200px;
+	top:7px;
+	left:50px;
+    display:none;
 }
 
-//左侧树形
+.synergy-right{
+	position:relative;
+	top:7px;
+	left:230px;
+	display:none;
+}
 
-.menu ul li {display:block;width:311px;padding-top:2px;margin-bottom:5px;background: url(../images/ias_zakladka.png) top left no-repeat;list-style:none;overflow:visible;}
 
-.menu ul li a {display:block;height:34px; width:273px;margin-top:0px;padding-top:10px;padding-left:35px;font-size:14px;color:#82846f;outline:none;}
+//数据处理中
 
-.menu ul li .active {background:url(../images/ias_on.png) top right no-repeat;}
+#circleId{
+width:50px;
+-webkit-animation:circle 1s infinite linear;/*匀速 循环*/
+}
+@-webkit-keyframes circle{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
 
-.menu ul li .inactive {background:url(../images/ias_off.png) top right no-repeat;}
+@keyframes circle
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
 
-.menu ul li ul {display:none; margin-top:-4px;margin-bottom:20px;   }
+@-moz-keyframes circle 
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
 
-.menu ul li ul li ul {margin-bottom:5px;}
+@-webkit-keyframes circle 
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
 
-.menu ul li ul li {display:block;background:none;font-size:12px;list-style:circle;color:#8f9d4c;margin-bottom:0px;margin-top:0px;padding-top:0px;padding-bottom:0px;padding-left:1px;margin-left:35px;}
+@-o-keyframes circle
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
 
-.menu ul li ul li a {background:none;font-size:12px;height:15px;color:#8f9d4c;padding-left:0px; }
-//end
+.spinner {
+ 
+  width: 150px;
+  text-align: center;
+  display:inline;
+}
+ 
+.spinner > div {
+  width: 10px;
+  height: 10px;
+  background-color:$red-base;
+ 
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+ 
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+ 
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+ 
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+.load-word{
+	color:$red-base;
+	font-size:$font-size;
+	position:relative;
+	top:0px;
+	left:0px;
+	text-align:center;
+	display:inline-block;
+}
+
+//loadmore
+
+.loadMore{
+    position:relative;
+    left:0px;
+    top:-30px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+}
+
+.circle-180 {
+	transform: rotate(180deg);
+}
+
+.bottom-div{
+	position:relative;
+	top:-65px;
+	left:35px;
+	display:none;
+}
+
+.loadmore-div{
+    position:relative;
+    top:0px;
+    margin:-30px auto;
+	width:150px;
+	height:10px;
+}

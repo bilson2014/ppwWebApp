@@ -5,18 +5,13 @@ var checkHidden = false;
 var userName;
 var teamName;
 var referrerList;
-var isMore = false;
+var isMore = true;
+var angle = 0;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
 	
-	
-	
 
-	
-
-	
-	
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
@@ -466,6 +461,8 @@ function updateProject_ViewInit() {
 		else
 			$("#providerInput").val(msg.providerPayment);
 		
+		hasPirce();
+		
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
@@ -479,9 +476,9 @@ function updateProjectajax() {
 		enableSubmitBtnEnent();
 		return;
 	}
+
 	
 	var currentProject = getCurrentProject();
-	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
 	var userName = $("#userName").val().trim();
 	var userContact = $(".userContact").val().trim();
@@ -1062,18 +1059,23 @@ function initReferrer(sourece,referrerId) {
 function enableSubmitBtnEnent(){
 	var state=$(".state").text().trim();
 	disableSubmitBtnEnent();
+	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
 			updateProjectajax();
+			//$("#isShow").modal('show');
+			
 		});
 	}else{
 		$("#indent-btn").on('click',function(){
 			addProject();
+			$('.bottom-div').show();
 		});
 	}
 }
 function disableSubmitBtnEnent(){
 	$("#indent-btn").off('click');
+	
 }
 function getReferrer() {
 	if($("#projectSource").val().trim()=='个人信息下单'){
@@ -1138,7 +1140,8 @@ function createSynergyView(name,ratio,userid,synergyid){
 	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
 	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
-	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>';
+	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>'+
+	'<div><label  class="synergy synergy-left" id="error-Synergy" >协同人</label> <label  class="synergy synergy-right">比例</label></div>';
 	$body+='</div>';
 	return $body;
 }
@@ -1168,9 +1171,6 @@ function verifySynerhy(){
 
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
-		
-		
-		
 		var hasError=false;
 		$.each(base_Synergy,function(i,item){
 			//1.用户身份服务器验证
@@ -1195,7 +1195,7 @@ function verifySynerhy(){
 					}else{
 						verifyTrue =false;
 						$(item).find("input#name").focus();
-						$('#error-Synergy').text('协同人不正确');
+						$(item).find('.synergy-left').text('协同人不正确');
 					}
 				}
 				
@@ -1209,7 +1209,7 @@ function verifySynerhy(){
 						if(totalPrice >= 100||totalPrice < 0){
 							verifyTrue =false;
 							$(item).find("input#ratio").focus();
-							$('#error-Synergy').text('比例总和不能大于100');
+							$('.synergy-right').text('比例总和不能大于100');
 						}
 				}
 				else{
@@ -1233,17 +1233,47 @@ function verifySynerhy(){
 
 //add Synergy by laowang end 2016-5-25 12:35
 
+//add showMore by lt end 2016-6-2 12:35
 function isMoreShow(){
 	
     if(isMore)
         {
     		$("#close-div").slideDown();
+    		$('#loadWord').text('收起');
+    		$('#circleImg').addClass('circle-180');
     		isMore=false;
         }   
     
       else
            {
     		$("#close-div").slideUp();
+    		$('#loadWord').text('展开更多');
+    		$('#circleImg').removeClass('circle-180');
     		isMore=true;
           }	
+	
 }
+//end
+
+//add checkHasPirce by lt end 2016-6-2 12:35
+function hasPirce(){
+	
+	var userPrirce =$("#userinput").val().trim();
+	var providerPrice =$('#providerInput').val().trim();
+	
+	if(userPrirce!=0||providerPrice!=0){
+		$("#close-div").slideDown();
+		$('#loadWord').text('收起');
+		$('#circleImg').addClass('circle-180');
+		isMore=false;
+	}
+	else{
+		$("#close-div").slideUp();
+		$('#loadWord').text('展开更多');
+		$('#circleImg').removeClass('circle-180');
+		isMore=true;
+	}
+	
+	
+}
+
