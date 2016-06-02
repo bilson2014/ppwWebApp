@@ -5,9 +5,18 @@ var checkHidden = false;
 var userName;
 var teamName;
 var referrerList;
+var isMore = false;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
+	
+	
+	
+
+	
+
+	
+	
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
@@ -76,6 +85,10 @@ $().ready(function() {
 		addSynergy();
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
+	
+	$("#open-div").on('click',function(){
+		isMoreShow();
+	});
 });
 
 
@@ -1219,3 +1232,18 @@ function verifySynerhy(){
 }
 
 //add Synergy by laowang end 2016-5-25 12:35
+
+function isMoreShow(){
+	
+    if(isMore)
+        {
+    		$("#close-div").slideDown();
+    		isMore=false;
+        }   
+    
+      else
+           {
+    		$("#close-div").slideUp();
+    		isMore=true;
+          }	
+}

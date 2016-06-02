@@ -301,6 +301,8 @@
 	font-size: $font-size-base;
 	border: 1px solid $gray-border;
 	background-color: #fff;
+	display:none;
+
 	li {
 		@include ellipsis;
 

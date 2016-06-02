@@ -31,6 +31,7 @@ var="cookiejs" />
 <spring:url value="/resources/js/flow/addflow.js" var="addflowjs" />
 <spring:url value="/resources/lib/jquery/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
+	<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -155,7 +156,7 @@ var="cookiejs" />
                     <div class="cooperative-div">
 						<div class="divtable">
 							<div class="cooperative-table-key">协同人信息</div>
-							<div class="cooperative-table-key pos-top glyphicon glyphicon-plus" data-id="1" id="add-Synergy"></div>
+							<div class="cooperative-table-key pos-top" data-id="1" id="add-Synergy"><img src="${imgPath }/flow/addMore.png"/></div>
 						</div>
 							<div>
 								<div id="cooperative-id">
@@ -217,7 +218,7 @@ var="cookiejs" />
 							<input type="text" class="tableinput-baseinfo form-control teamPhone" id="error-teamPhone">
 						</div>
 				</div> 
-				<div class="baseinfo-table">
+				<div class="baseinfo-table" id="open-id">
 					
 					<div class="divtable">
 						<div class="baseinfo-table-key">项目价格</div>
@@ -246,7 +247,7 @@ var="cookiejs" />
 					</div> 
 								
 				</div>
-			<div class="price-inarea">
+			<div class="price-inarea" id="close-div">
 					
 					<div class="divtable userPrice">
 						<div class="userPriceTitle pirce-title">客户支付金额</div>
@@ -265,6 +266,7 @@ var="cookiejs" />
                     <label class="provider-price-left-label" id="error-provider-price">请输入数字</label>
                     </div>
 				</div>
+				<button id="open-div">button</button>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
 						<div class="baseinfo-table-key" >项目描述</div>
