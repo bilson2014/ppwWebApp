@@ -1162,13 +1162,13 @@ function createSynergyView(name,ratio,userid,synergyid){
 		'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
 
 		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;z-index:999; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
-		'  <label  class="synergy synergy-left visible" id="name-error" >请选择协同人</label>'+
+		'  <label  class="synergy synergy-left visible" id="name-error" >协同人不存在</label>'+
 
 		' <input type="hidden" id="user-id"  value="'+userid+'"  />' +
 		'</div>'+
 		'<div style="display:inline-block;margin-left:48px">'+
 		'  <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
-		'  <label  class="synergy synergy-right visible" id="proportionError">比例错误</label>'+
+		'  <label  class="synergy synergy-right visible" id="proportionError">协同比例错误</label>'+
 		'</div>' +
 		' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
 		' <button class="glyphicon glyphicon-minus " id = "deleteSynergy" ></button>';
@@ -1252,7 +1252,9 @@ function verifySynerhy(){
     				 //输入的信息数据库里不存在
     				hasError =true;
     			}
-   			
+    			var logiNname = $("#logiNname").val();
+    			if(logiNname == userName)
+    				hasError =true;
     			
     			if(hasError){
     				$(item).find("input#name").focus();
@@ -1294,7 +1296,7 @@ function verifySynerhyRatio(ratio,baseRatio){
 	} else if(!checkNumber(ratio)){
 		res = "只能输入数字呦";
 	}else if(baseRatio >= 100 || baseRatio < 1 ){
-		res = "输入的比例过大";
+		res = "所有协同人比例之和小于100%";
 	}
 	return {str:res,baseRatio:baseRatio};
 }

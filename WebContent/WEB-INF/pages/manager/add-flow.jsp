@@ -137,6 +137,7 @@ var="cookiejs" />
 		</div>
 	</div>
 <div class="page" >
+<input type="hidden" value="<r:outName />"  id="logiNname">
 	<div class="page-title">
 		<label class="page-title-title">项目信息添加</label>
 	</div>
@@ -211,7 +212,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">客户名称</div>
 							<div class="tableinput-baseinfo-noborder userName" id="userName-id">
 								<input id="userName"  class="info-input border-gray form-control"/>
-								<label class="username-error-label" id="error-userName">信息输入有误</label>
+								<label class="username-error-label" id="error-userName">客户不存在</label>
 							</div>
 						</div>
 						<div class="divtable" id="div-userContact">
@@ -237,7 +238,7 @@ var="cookiejs" />
 							<div class="baseinfo-table-key">供应商名称</div>
 							<div class="tableinput-baseinfo-noborder teamName" id="teamName-id" >
 								<input id="teamName" class="info-input form-control " id="error-teamName"/>
-								<label class="error-label" id="error-teamName" >该信息输入有误</label>
+								<label class="error-label" id="error-teamName" >供应商不存在</label>
 							</div>
 						</div>
 						<div class="divtable">

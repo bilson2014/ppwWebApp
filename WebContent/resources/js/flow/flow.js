@@ -851,6 +851,9 @@ function loadprojecctlist(state) {
 		var currentprojectkey = '';
 		if(msg.length<=0){
 			loadSynerhyList();
+			$(".left-page").hide();
+			$(".right-page").hide();
+			$(".noproject").removeClass('hide');
 			return;
 		}else{
 			// $(".left-page").show();
@@ -1012,9 +1015,7 @@ function loadSynerhyList(){
 	//TODO
 	syncLoadData(function(msg) {
 		if(msg.length <=0){
-			$(".left-page").hide();
-			$(".right-page").hide();
-			$(".noproject").removeClass('hide');
+			
 		}else{
 			var help=$("#helpProjectId");
 			help.html('');
