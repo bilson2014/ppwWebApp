@@ -457,11 +457,8 @@ function updateProject_ViewInit() {
 			$.each(synergys,function(i,item){
 				$('.cooperative').css('visibility','visible');
 				$('#helpLabel').hide();
-<<<<<<< HEAD
-=======
 				
 				//addSynergy(item.userName,(item.radio * 100),item.userId,item.synergyId);
->>>>>>> afa2e1b85b5bd1d834f2ca7629add287d012b09b
 				addSynergy(item.userName,(parseFloat(item.ratio) * 100).toFixed(0),item.userId,item.synergyId);
 			});
 		}
