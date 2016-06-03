@@ -5,6 +5,7 @@ var checkHidden = false;
 var userName;
 var teamName;
 var referrerList;
+var referrerList1;
 var isMore = true;
 var angle = 0;
 $().ready(function() {
@@ -320,6 +321,14 @@ function getReferrerData(name){
 			name:name
 		}));
 }
+
+function getReferrerData_2(name){
+	syncLoadData(function(msg) {
+		referrerList1=msg;
+	}, getContextPath() + '/mgr/projects/get/reffers', $.toJSON({
+		name:name
+	}));
+}
 //推荐人检索
 function searchReferrer(inputString) {
 	//getReferrerData();
@@ -344,7 +353,7 @@ function searchReferrer(inputString) {
 				});
 				table.append(li);
 		});
-	}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+	}, getContextPath() + '/mgr/projects/get/reffers', $.toJSON({
 		name:inputString
 	}));
 }
@@ -717,10 +726,11 @@ function verifyFrom(){
 			 return false;
 		 }else{
 			 //继续验证输入框，和人员id是否一致
-			 getReferrerData(referrerInput.val().trim());
+			 //getReferrerData(referrerInput.val().trim());
+			 getReferrerData_2(referrerInput.val().trim());
 			 var error=true;
-			 for (var int = 0; int < referrerList.length; int++) {
-				 var referrer=referrerList[int];
+			 for (var int = 0; int < referrerList1.length; int++) {
+				 var referrer=referrerList1[int];
 				 if(referrer.employeeId == id ){
 					 if(referrerInput.val().trim() == referrer.employeeRealName+''.trim() ){
 						 error=false;
