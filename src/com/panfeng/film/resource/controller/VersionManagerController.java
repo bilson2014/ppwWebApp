@@ -242,6 +242,20 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 	
+	@RequestMapping(value = "/projects/search/employee/list", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public List<Employee> searchEmployee(
+			@RequestBody BizBean bizBean,
+			final HttpServletRequest request) {
+		// fill userinfo
+		final String url = GlobalConstant.URL_PREFIX + "portal/search/employee/list";
+		String str = HttpUtil.httpPost(url, bizBean, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toList(str);
+		}
+
+		return new ArrayList<>();
+	}
 
 	@RequestMapping("/projects/flow-index")
 	public ModelAndView projectsView(final ModelMap model,String key) {
