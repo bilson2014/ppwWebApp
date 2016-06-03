@@ -262,7 +262,7 @@ function pause() {
 		$(".prev-task").hide();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadprojecctlist();
+		loadprojecctlist(false);
 	}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
 		id : key
 	}));
@@ -284,7 +284,7 @@ function resume() {
 		$(".prev-task").show();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadprojecctlist();
+		loadprojecctlist(false);
 	}, getContextPath() + '/mgr/flow/resumeProcess', $.toJSON({
 		id : key
 	}));
