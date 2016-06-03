@@ -647,6 +647,9 @@
 	background:none;
 	outline:none;
 	display:inline-block;
+	vertical-align: top;
+    position: relative;
+    top: 8px;
 }
 .pos-top{
 	position:relative;
@@ -837,16 +840,21 @@
 	position:relative;
 	top:7px;
 	left:50px;
-    display:none;
+	display:block;
+	
+   
 }
 
 .synergy-right{
 	position:relative;
 	top:7px;
-	left:230px;
-	display:none;
+	left:50px;
+	display:block;
+	
 }
-
+.visible{
+	visibility:hidden;
+}
 
 //数据处理中
 
