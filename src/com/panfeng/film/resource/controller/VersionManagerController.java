@@ -242,6 +242,23 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 	
+	@RequestMapping(value = "/projects/get/reffers", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public List<IndentProject> getReffers(
+			@RequestBody BizBean bizBean,
+			final HttpServletRequest request) {
+		// fill userinfo
+		//fillUserInfo(request, indentProject);
+
+		final String url = GlobalConstant.URL_PREFIX + "portal/getEmployeeListByReffer";
+		String str = HttpUtil.httpPost(url, bizBean, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toList(str);
+		}
+
+		return new ArrayList<>();
+	}
+	
 	@RequestMapping(value = "/projects/search/employee/list", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<Employee> searchEmployee(
 			@RequestBody BizBean bizBean,
