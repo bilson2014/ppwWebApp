@@ -552,7 +552,7 @@
 .midinput{
     height:7px;
     border:none;
-	border-top:3px solid $gray-light;
+	border-top:1px solid #d8d8d8;
 	width:35px;
 	position:relative;
 	margin-left:10px;
@@ -634,7 +634,6 @@
 	border-radius: 5px;
 	border: solid 1px $gray-border;
 	outline: none;
-	margin-left:48px;
 }
 
 #Synergy-info{
@@ -654,7 +653,7 @@
 .pos-top{
 	position:relative;
 	top:12px;
-	left:57px;
+	left:30px;
 }
 
 .pos-left{
@@ -816,7 +815,8 @@
 
 .price-inarea{
             position:relative;
-	        height: 150px;
+            margin-top:-60px;
+	        height: 160px;
 			width: 100%;
 			background: $white;
 			border-radius: 5px;
@@ -839,18 +839,13 @@
 .synergy-left{
 	position:relative;
 	top:7px;
-	left:50px;
 	display:block;
-	
-   
 }
 
 .synergy-right{
 	position:relative;
 	top:7px;
-	left:50px;
 	display:block;
-	
 }
 .visible{
 	visibility:hidden;
@@ -952,11 +947,13 @@ width:50px;
 .loadMore{
     position:relative;
     left:0px;
-    top:-30px;
+    margin-top:-10px;
+    top:-35px;
     width:100%;
     text-align:center;
     font-size:$font-size-base;
     cursor:pointer;
+    color:$gray-light;
 }
 
 .circle-180 {
@@ -977,3 +974,21 @@ width:50px;
 	width:150px;
 	height:10px;
 }
+
+
+.price-table-key {
+				margin-top: 20px;
+				width: 150px;
+				font-size: $font-size-base;
+				color: $gray;
+				padding-left: 50px;
+				margin-bottom: 2px;
+			}
+
+
+//价格			
+.font-weight-title{
+	font-weight:bold;
+}
+
+

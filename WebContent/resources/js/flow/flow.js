@@ -11,12 +11,7 @@ var oTimer;
 
 $().ready(
 		function() {
-			//树形
-			 $(".menu ul li").menu({
-				 autostart: 0,
-		         autohide: 0
-			 });
-			//
+	
 			init();
 			showOrderTime();
 			loadprojecctlist(false);
@@ -79,6 +74,9 @@ $().ready(
 			$(".prev-task").on("click",function(){
 				PrevTaskBtn();
 			});
+			
+			
+			
 		});
 
 function submitForm(){
@@ -838,6 +836,9 @@ var firstClick=false;
 var  noWorkproject=true;
 //加载项目列表
 function loadprojecctlist(state) {
+	
+	//TODO
+	
 	loadData(function(msg) {
 		var doing = $("#myProjectId");
 		var help=$("#helpProjectId");
@@ -895,7 +896,6 @@ function loadprojecctlist(state) {
 			});
 			liStar.append(a);
 			
-			
 			switch (msg[i].state) {
 			case 0:
 				doing.append(liStar);
@@ -933,24 +933,34 @@ function loadprojecctlist(state) {
 	loadIndentInfo();
 	loadSynerhyList();
 	updateProjectTreeView();
+	
 	if(state) finish(); else show();
 	}, getContextPath() + '/mgr/projects/all-project', $.toJSON({}));
+	
+	
 
 }
 //加载项目列表视图
 function updateProjectTreeView() {
 	
-   	$("#menuId ul li a").each(function(index) {
-		num = jQuery(this).attr("data-value");
+   	$("#menuId ul li a").each(function(index,item) {
+		var num = jQuery(item).attr("data-value");
 		var key = getCurrentProject();
 		if (num == key) {
-              $(this).addClass('indent-selected');
-              $(this).prepend('<label class="border-select"></label>');
+              $(item).addClass('indent-selected');
+              $(item).prepend('<label class="border-select"></label>');
 		} else {
-	    $(this).removeClass("class", "indent-selected");
-	    
+	    $(item).removeClass("class", "indent-selected");
 		}
 	});
+   	
+    $(".menu ul li").menu({
+		 autostart: 0,	
+        autohide: 0
+	 });
+	$("#doingProject").click();
+	$("#myProjectId").slideDown();
+   	
 }
 //加载项目基础信息
 function loadIndentInfo() {
@@ -1003,8 +1013,32 @@ function loadIndentInfo() {
 
 function loadSynerhyList(){
 	var key=getCurrentProject();
-	loadData(function(msg) {
-		var x=msg;
+	//TODO
+	syncLoadData(function(msg) {
+		var help=$("#helpProjectId");
+		help.html('');
+		for (var i = 0; i < msg.length; i++){
+		var liStar = $('<li></li>')
+		var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
+				+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
+		$(a).on("click", function() {
+			firstClick=true;
+			var key = $(this).attr("data-value");
+			putCurrentProject(key);
+			var state=jQuery(this).attr('data-state');
+			if (state == 1 || state == 2)
+			{
+				loadprojecctlist(true);
+			}else{
+				loadprojecctlist(false);
+			}
+		});
+		liStar.append(a);
+		help.append(liStar);
+		}
+		
+		
+		
 	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
 		id : key
 	}));

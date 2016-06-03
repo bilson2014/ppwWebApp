@@ -1144,13 +1144,13 @@ function removeSynergy(id){
 
 function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">'+
-		'<div id="select" style="display:inline-block">'+
+		'<div id="select" style="display:inline-block;margin-left:48px">'+
 		'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
-		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
 		'  <label  class="synergy synergy-left visible" id="name-error" >协同人信息错误</label>'+
 		' <input type="hidden" id="user-id"  value="'+userid+'"  />' +
 		'</div>'+
-		'<div style="display:inline-block">'+
+		'<div style="display:inline-block;margin-left:48px">'+
 		'  <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 		'  <label  class="synergy synergy-right visible" id="proportionError">比例错误</label>'+
 		'</div>' +
@@ -1218,18 +1218,21 @@ function verifySynerhy(){
     				}
     				
     			}else{
-    				 //输入的信息数据库里不存在
+    				hasError =true;
+					$(item).find("input#name").focus();
+					nameError.removeClass("visible");
+					setError($(item).find("input#name"));
     			}
     			
     			if(verifySynerhyRatio(ratioName,ratio,proportionError)){
     				hasError =false;
-    				break;
+    				
     			}
+    			
     			else{
     				hasError =true;
+    				break;
     			}
-    			
-    			
             }
 		}
 		
@@ -1281,7 +1284,7 @@ function isMoreShow(){
 	
     if(isMore)
         {
-    		$("#close-div").slideDown();
+    		$("#close-div").slideDown(10);
     		$('#loadWord').text('收起');
     		$('#circleImg').addClass('circle-180');
     		isMore=false;
@@ -1289,7 +1292,7 @@ function isMoreShow(){
     
       else
            {
-    		$("#close-div").slideUp();
+    		$("#close-div").slideUp(10);
     		$('#loadWord').text('展开更多');
     		$('#circleImg').removeClass('circle-180');
     		isMore=true;
@@ -1305,13 +1308,13 @@ function hasPirce(){
 	var providerPrice =$('#providerInput').val().trim();
 	
 	if(userPrirce!=0||providerPrice!=0){
-		$("#close-div").slideDown();
+		$("#close-div").slideDown(10);
 		$('#loadWord').text('收起');
 		$('#circleImg').addClass('circle-180');
 		isMore=false;
 	}
 	else{
-		$("#close-div").slideUp();
+		$("#close-div").slideUp(10);
 		$('#loadWord').text('展开更多');
 		$('#circleImg').removeClass('circle-180');
 		isMore=true;

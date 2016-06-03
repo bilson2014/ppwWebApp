@@ -145,7 +145,7 @@ var="cookiejs" />
 			<div class="baseinfo-right">
                    <div class="baseinfo-table">
 						<div class="divtable">
-							<div class="baseinfo-table-key">项目信息</div>
+							<div class="baseinfo-table-key font-weight-title">项目信息</div>
 						</div>
 						<div class="divtable" id="div-projectId">
 							<div class="baseinfo-table-key">项目编号</div>
@@ -162,7 +162,7 @@ var="cookiejs" />
 
                   <div class="baseinfo-table">
 						<div class="divtable">
-							<div class="baseinfo-table-key">来源信息</div>
+							<div class="baseinfo-table-key font-weight-title">来源信息</div>
 						</div>
 						<div class="divtable" id="div-projectSource">
 							<div class="baseinfo-table-key" >项目来源</div>
@@ -183,7 +183,7 @@ var="cookiejs" />
                    
                     <div class="cooperative-div">
 						<div class="divtable">
-							<div class="cooperative-table-key">协同人信息</div>
+							<div class="cooperative-table-key font-weight-title">协同人信息</div>
 							<div class="cooperative-table-key pos-top glyphicon glyphicon-plus" data-id="1" id="add-Synergy"></div>
 						</div>
 							<div>
@@ -203,7 +203,7 @@ var="cookiejs" />
                    <div class="baseinfo-table">
                    		<input type="hidden" class="userId" id="userId">
 						<div class="divtable">
-							<div class="baseinfo-table-key">客户信息</div>
+							<div class="baseinfo-table-key font-weight-title">客户信息</div>
 						</div>
 						<div class="divtable" id="div-userName">
 							<div class="baseinfo-table-key">客户名称</div>
@@ -229,7 +229,7 @@ var="cookiejs" />
 				<div class="baseinfo-table">
 						<input type="hidden" class="teamId" id="teamId">
 						<div class="divtable">
-							<div class="baseinfo-table-key">供应商信息</div>
+							<div class="baseinfo-table-key font-weight-title">供应商信息</div>
 						</div>
 						<div class="divtable">
 							<div class="baseinfo-table-key">供应商名称</div>
@@ -250,27 +250,27 @@ var="cookiejs" />
 						<ul class="ul-option-team" id="ul-select-team">
 			 	        </ul>
 				</div> 
-				<div class="baseinfo-table" style="height:180px" >
+				<div class="baseinfo-table" style="height:175px" >
 					
 					<div class="divtable">
-						<div class="baseinfo-table-key" >项目价格</div>
+						<div class="baseinfo-table-key font-weight-title" >项目价格</div>
 					</div>
 
 					<div class="divtable pospricediv">
-						<div class="baseinfo-table-key pirce-title">项目预算信息</div>
+						<div class="price-table-key pirce-title ">项目预算信息</div>
 							<div class="final-price-div">
 								<div class="pirce-div mleft" >
 									<input type="text" id="firstinput" class="pirce-input form-control firstinput">
 									<div class="midinput"></div>
-									<input type="text" id="lastinput" class="pirce-input form-control lastinput"> 元
+									<input type="text" id="lastinput" class="pirce-input form-control lastinput"><label style="color:#666;padding-left:5px">元</label>
 									<label class="final-price-label" id="error-radio-price">输入信息有误</label>
 								</div>
 						 </div>
 					</div>
 
 					<div class="divtable finishdiv finish">
-							<div class="baseinfo-table-key">项目最终价格</div>
-							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
+							<div class="price-table-key ">项目最终价格</div>
+							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput wordMargin"/><label style="color:#666;">元</label>
 					</div>
 					<div>
                     <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>
@@ -285,14 +285,14 @@ var="cookiejs" />
 						<div class="userPriceTitle pirce-title">客户支付金额</div>
 							<div class="final-price-div">
 								<div class="pirce-div mleft" >
-									<input type="text" id="userinput" class="pirce-input-user form-control lastinput"> 元
+									<input type="text" id="userinput" class="pirce-input-user form-control lastinput"><label style="color:#666;padding-left:5px">元</label>
 									<label class="user-price-label" id="error-user-price">请输入数字</label>
 								</div>
 						 </div>
 					</div>
 					<div class="divtable finishdiv finish providerPrice">
 							<div class="userPriceTitle">支付供应商金额</div>
-							<input type="text" id='providerInput' class="tableinput-baseinfo form-control finishInput wordMargin"/>元
+							<input type="text" id='providerInput' class="tableinput-baseinfo form-control finishInput wordMargin"/><label style="color:#666;">元</label>
 					</div>
 					<div>
                     <label class="provider-price-left-label" id="error-provider-price">请输入数字</label>
@@ -301,7 +301,7 @@ var="cookiejs" />
 				<div class="loadMore" id="open-div"><div style="display:inline-block;" id="loadWord">展开更多</div><img id="circleImg" style="display:inline-block;position:relative;left:10px;" src="${imgPath }/flow/getMore.png"/></div>
 	  			<div class="baseinfo-table">
 					<div class="divtable">
-						<div class="baseinfo-table-key" >项目描述</div>
+						<div class="baseinfo-table-key font-weight-title" >项目描述</div>
 					</div>
 					<textarea rows="2" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
@@ -316,7 +316,7 @@ var="cookiejs" />
 		<div class="indent-time-right">
 
 			<div class="indent-time-table-border-tr">
-				 <div class="right-border">项目时间表</div>
+				 <div class="right-border font-weight-title">项目时间表</div>
 				 <div class="right-border right-border-margin">沟通</div>
 				 <div class="right-border right-border-margin">方案</div>
 				 <div class="right-border right-border-margin">商务</div>
@@ -332,7 +332,7 @@ var="cookiejs" />
 				<div class="right-border-time-end"  id="jfstarttimeid"><img class="img-size-end" src="/resources/img/flow/time-end.png"/></div>
 			</div>	
 			<div class="indent-time-table-border-tr-time">
-				<div class="right-border">预计时间</div>
+				<div class="right-border font-weight-title">预计时间</div>
 				<div class="right-border right-border-margin" id="div-gtstarttime"><input type="text" class="tableinput gtstarttime form-control" id="gtstarttime"></div>
 				<div class="right-border right-border-margin" id="div-fastarttime"><input type="text" class="tableinput fastarttime form-control" id="fastarttime"></div>
 				<div class="right-border right-border-margin" id="div-swstarttime"><input type="text" class="tableinput swstarttime form-control" id="swstarttime"></div>

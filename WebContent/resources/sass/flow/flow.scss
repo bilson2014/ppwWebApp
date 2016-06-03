@@ -110,6 +110,9 @@
 			text-decoration: none;
 			position: relative;
 			left: -2px;
+			&:hover{
+			color: #fa7872;
+			}
 		}
 		.indent-more {
 			font-size: $font-size;
@@ -986,7 +989,7 @@ img {
 
 .menu ul li ul li ul {margin-bottom:5px;position:relative;left:-20px;}
 
-.menu ul li ul li {display:block;background:none;font-size:12px;list-style:circle;color:#8f9d4c;margin-bottom:0px;margin-top:0px;padding-top:0px;padding-bottom:0px;padding-left:1px;margin-left:35px;}
+.menu ul li ul li {display:block;background:none;font-size:12px;list-style:circle;color:#8f9d4c;margin-bottom:0px;margin-top:0px;padding-top:0px;padding-bottom:0px;padding-left:1px;margin-left:34px;}
 
 .menu ul li ul li a {background:none;font-size:$font-size;height:30px;color:$gray-dark;padding-left:0px;underline:none;padding-left:10px; }
 
@@ -1002,7 +1005,7 @@ img {
       width:150px;
       @include ellipsis;
 	}
-	#doingProject,#historyProject,#pauseProject{
+	#doingProject,#historyProject{
 	position:relative;
 	left:35px;
 	font-size:1.7rem;

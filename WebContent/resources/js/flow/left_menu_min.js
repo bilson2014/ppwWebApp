@@ -11,7 +11,8 @@
         b);
         c = $(this);
         item = c.children("ul").parent("li").children("a");
-        httpAdress = window.location;
+       // httpAdress = window.location;
+        httpAdress='';
         item.addClass("inactive");
         function _item() {
             var a = $(this);
