@@ -5,9 +5,13 @@ var checkHidden = false;
 var userName;
 var teamName;
 var referrerList;
+var isMore = true;
+var angle = 0;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
+	
+
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
@@ -76,6 +80,10 @@ $().ready(function() {
 		addSynergy();
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
+	
+	$("#open-div").on('click',function(){
+		isMoreShow();
+	});
 });
 
 
@@ -460,6 +468,8 @@ function updateProject_ViewInit() {
 		else
 			$("#providerInput").val(msg.providerPayment);
 		
+		hasPirce();
+		
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
@@ -473,9 +483,9 @@ function updateProjectajax() {
 		enableSubmitBtnEnent();
 		return;
 	}
+
 	
 	var currentProject = getCurrentProject();
-	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
 	var userName = $("#userName").val().trim();
 	var userContact = $(".userContact").val().trim();
@@ -1056,18 +1066,23 @@ function clearError(input){
 function enableSubmitBtnEnent(){
 	var state=$(".state").text().trim();
 	disableSubmitBtnEnent();
+	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
 			updateProjectajax();
+			//$("#isShow").modal('show');
+			
 		});
 	}else{
 		$("#indent-btn").on('click',function(){
 			addProject();
+			$('.bottom-div').show();
 		});
 	}
 }
 function disableSubmitBtnEnent(){
 	$("#indent-btn").off('click');
+	
 }
 function getReferrer() {
 	if($("#projectSource").val().trim()=='个人信息下单'){
@@ -1124,15 +1139,16 @@ function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">';
 	$body+=
 	'<div id="select" style="display: inline-block;">'+
-	'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
-	'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;z-index:9999998;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
-	'  <label class ="hide" id ="name-error" >协助人名称填写错误<label>'+
+	'  <input   type="text" id="name" value="'+name+'" />'+
+	'  <ul  id="ul-select-synergy"> </ul>  '+
+	' <label id ="name-error" >协同人</label> ' +
 	'</div>'+
 	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
 	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
 	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>'+
-	' <label class ="hide"  id ="proportion-error">输入比例错误<label>';
+	' <div><label  class="synergy synergy-left" id ="name-error" >协同人</label>'+
+	' <label  class="synergy synergy-right" id ="proportion-error" >比例</label></div>';
 	$body+='</div>';
 	return $body;
 }
@@ -1163,7 +1179,7 @@ function verifySynerhy(){
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
 		var hasError=false;
-		
+		var baseRatio = 0;
 		for (var int = 0; int < base_Synergy.length; int++) {
 			var item = base_Synergy[int];
 			
@@ -1175,10 +1191,6 @@ function verifySynerhy(){
 			var nameError=$(item).find("input#name-error");
 			var proportionError=$(item).find("input#proportionError");
 			var ratio_int=parseInt(ratio);
-			
-			syncLoadData(function(msg) {
-				dbUser=msg;
-			}, getContextPath() + '/mgr/projects/search/employee/list', null);
 			getReferrerData(userName);
 			if(referrerList != ''){
 				var verifyTrue =false;
@@ -1187,10 +1199,10 @@ function verifySynerhy(){
 					var name=referrer.employeeRealName+''.trim();
 					var id=referrer.employeeId;
 					if(userId == id && name == userName){
-						verifyTrue =true;
+						hasError =false;
 						break;
 					}else{
-						verifyTrue =false;
+						hasError =true;
 						$(item).find("input#name").focus();
 						//$('#error-Synergy').text('协同人不正确');\
 						nameError.removeClass('hide');
@@ -1198,23 +1210,11 @@ function verifySynerhy(){
 					}
 				}
 				
-//				//验证比例
-//				if(checkBiliPrice(ratio)){
-//						totalPrice = totalPrice + ratio_int;
-//						if(totalPrice >= 100||totalPrice < 0){
-//							verifyTrue =false;
-//							$(item).find("input#ratio").focus();
-//							$('#error-Synergy').text('比例总和不能大于100');
-//						}
-//				}
-				if(!verifyTrue){
-					hasError=true;
-					//$('#error-Synergy').show();
-					
-					break ;
-				}else{
-					//$('error-Synergy').hide();
-				}
+				//  开始验证 
+				setError($(item).find("input#ratio"));
+				
+				//
+				
 			}
 		}
 		
@@ -1248,3 +1248,48 @@ function verifySynerhyRatio(inputRatio,baseRatio){
 }
 
 //add Synergy by laowang end 2016-5-25 12:35
+
+//add showMore by lt end 2016-6-2 12:35
+function isMoreShow(){
+	
+    if(isMore)
+        {
+    		$("#close-div").slideDown();
+    		$('#loadWord').text('收起');
+    		$('#circleImg').addClass('circle-180');
+    		isMore=false;
+        }   
+    
+      else
+           {
+    		$("#close-div").slideUp();
+    		$('#loadWord').text('展开更多');
+    		$('#circleImg').removeClass('circle-180');
+    		isMore=true;
+          }	
+	
+}
+//end
+
+//add checkHasPirce by lt end 2016-6-2 12:35
+function hasPirce(){
+	
+	var userPrirce =$("#userinput").val().trim();
+	var providerPrice =$('#providerInput').val().trim();
+	
+	if(userPrirce!=0||providerPrice!=0){
+		$("#close-div").slideDown();
+		$('#loadWord').text('收起');
+		$('#circleImg').addClass('circle-180');
+		isMore=false;
+	}
+	else{
+		$("#close-div").slideUp();
+		$('#loadWord').text('展开更多');
+		$('#circleImg').removeClass('circle-180');
+		isMore=true;
+	}
+	
+	
+}
+

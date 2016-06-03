@@ -90,7 +90,7 @@
 					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
+					<a href="<spring:url value='/provider/portal' /> " class="header-item" >信息管理</a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 				</r:identity>
