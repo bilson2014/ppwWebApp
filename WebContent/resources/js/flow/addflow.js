@@ -312,13 +312,11 @@ function searchUser() {
 	}));
 }
 function getReferrerData(name){
-	if(referrerList==null||referrerList==''){
 		syncLoadData(function(msg) {
 			referrerList=msg;
 		}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
 			name:name
 		}));
-	}
 }
 //推荐人检索
 function searchReferrer(inputString) {
@@ -486,6 +484,7 @@ function updateProjectajax() {
 
 	var projectSerial = $(".projectId").val().trim();
 	var currentProject = getCurrentProject();
+	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
 	var userName = $("#userName").val().trim();
 	var userContact = $(".userContact").val().trim();
@@ -1122,7 +1121,7 @@ function setSynergyEvent(){
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
 		if(cout != 0){
-			var x=$(this).parent().parent().find("input#synergy-id");
+			var x=$(this).parent().find("input#synergy-id");
 			if(x.val().trim() != ''){
 				removeSynergy($(x).val().trim());
 			}
@@ -1146,8 +1145,10 @@ function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">'+
 		'<div id="select" style="display:inline-block;margin-left:48px">'+
 		'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
+
 		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
 		'  <label  class="synergy synergy-left visible" id="name-error" >协同人信息错误</label>'+
+
 		' <input type="hidden" id="user-id"  value="'+userid+'"  />' +
 		'</div>'+
 		'<div style="display:inline-block;margin-left:48px">'+
@@ -1165,18 +1166,22 @@ function getViewSynerhy() {
 	var base_Synergy = $("div[id^=Synergy-info]");
 	var currCount=base_Synergy.length;
 	var synergys = new Array(currCount);
+	var index =0 ;
 	for (var i = 0; i < synergys.length; i++) {
 		var synergy=base_Synergy[i];
 		var userId=$(synergy).find("input#user-id").val();
 		var ratio=$(synergy).find("input#ratio").val().trim();
 		var userName=$(synergy).find("input#name").val().trim();
 		var synergyId=$(synergy).find("input#synergy-id").val().trim();
-		synergys[i] = {
+		if(userId == null || userId == '' || userId == undefined )
+			continue ;
+		synergys[index] = {
 				userId:userId,
 				userName:userName,
 				ratio:ratio,
 				synergyId:synergyId
 		};
+		index++;
 	}
 	return synergys;
 }
@@ -1188,93 +1193,77 @@ function verifySynerhy(){
 	if(base_Synergy  != null && base_Synergy.length > 0){
 		var hasError=false;
 		var baseRatio = 0;
-		for (var int = 0; int < base_Synergy.length; int++) {
-			var item = base_Synergy[int];
+		for (var ix = 0; ix < base_Synergy.length; ix++) {
+			var item = base_Synergy[ix];
 			var userId = $(item).find("input#user-id").val().trim();
 			var userName = $(item).find("input#name").val().trim();
 			var ratio = $(item).find("input#ratio").val().trim();
 			var ratioName =$(item).find("input#ratio");
 			var nameError=$(item).find("label#name-error");
 			var proportionError=$(item).find("label#proportionError");
-			var ratio_int=parseInt(ratio);
-            if(userName!=''){
+            if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
             	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
     			if(referrerList != ''){
-    				
     				for (var int = 0; int < referrerList.length; int++) {
     					var referrer = referrerList[int];
     					var name=referrer.employeeRealName+''.trim();
     					var id=referrer.employeeId;
     					if(userId == id && name == userName){
     						hasError =false;
-    				
     						break;
     					}else{
     						hasError =true;
-    						$(item).find("input#name").focus();
-    						nameError.removeClass("visible");
-    						setError($(item).find("input#name"));
     					}
     				}
-    				
     			}else{
+
+    				 //输入的信息数据库里不存在
     				hasError =true;
-					$(item).find("input#name").focus();
-					nameError.removeClass("visible");
-					setError($(item).find("input#name"));
     			}
     			
-    			if(verifySynerhyRatio(ratioName,ratio,proportionError)){
-    				hasError =false;
-    				
+    			if(hasError){
+    				$(item).find("input#name").focus();
+    				nameError.removeClass("visible");
+    				setError($(item).find("input#name"));
     			}
+    			// 继续验证价格
+    			var res = verifySynerhyRatio(ratio,baseRatio);
     			
-    			else{
+    			if(res.str != 'ok'){
+    				//价格发生问题
+    				proportionError.text(res.str);
+    				proportionError.removeClass('visible');
+    				ratioName.focus();
+    				setError(ratioName);
     				hasError =true;
     				break;
     			}
-            }
+    			baseRatio=res.baseRatio;
+           }
+
 		}
 		
-		return hasError;
+		return hasError ? true : false;
 	}
 }
 
-function verifySynerhyRatio(inputRatio,baseRatio,errorLabel){
+function verifySynerhyRatio(ratio,baseRatio){
 	/**
 	 * 1.验证是否非空
 	 * 2.验证输入是否为数字
 	 * 3.验证价格是否超过100
 	 * 4.协调输出错误信息
 	 */
-	var total = 0;
 	var res ="ok";
-	var ratio = inputRatio.val();
-	total = Number(baseRatio)+Number(total);
+	baseRatio = Number(baseRatio)+Number(ratio);
 	if(ratio == null || ratio == undefined || ratio == '' ){
-		errorLabel.text("请填写占有比例");
-		errorLabel.removeClass("visible");
-		inputRatio.focus();
-		return false;
+		res = "请填写占有比例";
+	} else if(!checkNumber(ratio)){
+		res = "只能输入数字呦";
+	}else if(baseRatio >= 100 || baseRatio < 1 ){
+		res = "输入的比例过大";
 	}
-	
-	if(!checkNumber(ratio)){
-		errorLabel.text("只能输入数字呦");
-		errorLabel.removeClass("visible");
-		inputRatio.focus();
-		return false;
-	}
-	
-	if(total >= 100 || total < 1 ){
-		errorLabel.text("输入的比例过大");
-		errorLabel.removeClass("visible");
-		inputRatio.focus();
-		return false;
-	}
-	
-	return true;
-	
-	
+	return {str:res,baseRatio:baseRatio};
 }
 
 //add Synergy by laowang end 2016-5-25 12:35
