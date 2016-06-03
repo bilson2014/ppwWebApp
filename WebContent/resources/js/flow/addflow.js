@@ -457,7 +457,9 @@ function updateProject_ViewInit() {
 			$.each(synergys,function(i,item){
 				$('.cooperative').css('visibility','visible');
 				$('#helpLabel').hide();
-				addSynergy(item.userName,(item.ratio * 100),item.userId,item.synergyId);
+				
+				//addSynergy(item.userName,(item.radio * 100),item.userId,item.synergyId);
+				addSynergy(item.userName,(parseFloat(item.ratio) * 100).toFixed(0),item.userId,item.synergyId);
 			});
 		}
 		if(msg.customerPayment+'' == '0.0')
@@ -1102,7 +1104,7 @@ function getReferrer() {
 	 }
 }
 //add wangliming 2016.5.10 11:00 end
-////////////////////////////////////////////////////////////////////////
+
 //add Synergy by laowang begin 2016-5-25 12:35
 function addSynergy(name,ratio,userid,synergyid){
 	var currCount=$("div[id^=Synergy-info]").length;
@@ -1159,8 +1161,8 @@ function createSynergyView(name,ratio,userid,synergyid){
 		'<div id="select" style="display:inline-block;margin-left:48px">'+
 		'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
 
-		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
-		'  <label  class="synergy synergy-left visible" id="name-error" >协同人信息错误</label>'+
+		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;z-index:999; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+		'  <label  class="synergy synergy-left visible" id="name-error" >请选择协同人</label>'+
 
 		' <input type="hidden" id="user-id"  value="'+userid+'"  />' +
 		'</div>'+
@@ -1214,6 +1216,23 @@ function verifySynerhy(){
 			var ratioName =$(item).find("input#ratio");
 			var nameError=$(item).find("label#name-error");
 			var proportionError=$(item).find("label#proportionError");
+			
+			/*$(item).find("input#name").on('change',function(){
+				nameError.addClass("visible");
+			});
+			
+            $(item).find("input#ratio").on('change',function(){
+            	proportionError.addClass("visible");
+			});*/
+			
+			$("input#name").on('click',function(){
+				 $("label#name-error").addClass("visible");
+				});
+			
+           $(item).find("input#ratio").on('change',function(){
+           	proportionError.addClass("visible");
+			});
+			
             if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
             	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
     			if(referrerList != ''){
