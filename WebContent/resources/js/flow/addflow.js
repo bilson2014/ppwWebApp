@@ -486,6 +486,7 @@ function updateProjectajax() {
 
 	
 	var currentProject = getCurrentProject();
+	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
 	var userName = $("#userName").val().trim();
 	var userContact = $(".userContact").val().trim();
@@ -1211,7 +1212,7 @@ function verifySynerhy(){
 				}
 				
 				//  开始验证 
-				setError($(item).find("input#ratio"));
+				//setError($(item).find("input#ratio"));
 				
 				//
 				
