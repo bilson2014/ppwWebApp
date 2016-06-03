@@ -262,8 +262,7 @@ function pause() {
 		$(".prev-task").hide();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadflowdata();
-		loadcommentdata(false);
+		loadprojecctlist();
 	}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
 		id : key
 	}));
@@ -285,8 +284,7 @@ function resume() {
 		$(".prev-task").show();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadflowdata();
-		loadcommentdata(false);
+		loadprojecctlist();
 	}, getContextPath() + '/mgr/flow/resumeProcess', $.toJSON({
 		id : key
 	}));
@@ -852,9 +850,7 @@ function loadprojecctlist(state) {
 		
 		var currentprojectkey = '';
 		if(msg.length<=0){
-			$(".left-page").hide();
-			$(".right-page").hide();
-			$(".noproject").removeClass('hide');
+			loadSynerhyList();
 			return;
 		}else{
 			// $(".left-page").show();
@@ -1015,30 +1011,33 @@ function loadSynerhyList(){
 	var key=getCurrentProject();
 	//TODO
 	syncLoadData(function(msg) {
-		var help=$("#helpProjectId");
-		help.html('');
-		for (var i = 0; i < msg.length; i++){
-		var liStar = $('<li></li>')
-		var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
-				+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
-		$(a).on("click", function() {
-			firstClick=true;
-			var key = $(this).attr("data-value");
-			putCurrentProject(key);
-			var state=jQuery(this).attr('data-state');
-			if (state == 1 || state == 2)
-			{
-				loadprojecctlist(true);
-			}else{
-				loadprojecctlist(false);
+		if(msg.length <=0){
+			$(".left-page").hide();
+			$(".right-page").hide();
+			$(".noproject").removeClass('hide');
+		}else{
+			var help=$("#helpProjectId");
+			help.html('');
+			for (var i = 0; i < msg.length; i++){
+			var liStar = $('<li></li>')
+			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
+					+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
+			$(a).on("click", function() {
+				firstClick=true;
+				var key = $(this).attr("data-value");
+				putCurrentProject(key);
+				var state=jQuery(this).attr('data-state');
+				if (state == 1 || state == 2)
+				{
+					loadprojecctlist(true);
+				}else{
+					loadprojecctlist(false);
+				}
+			});
+			liStar.append(a);
+			help.append(liStar);
 			}
-		});
-		liStar.append(a);
-		help.append(liStar);
 		}
-		
-		
-		
 	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
 		id : key
 	}));

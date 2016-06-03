@@ -457,7 +457,7 @@ function updateProject_ViewInit() {
 			$.each(synergys,function(i,item){
 				$('.cooperative').css('visibility','visible');
 				$('#helpLabel').hide();
-				addSynergy(item.userName,(item.ratio * 100),item.userId,item.synergyId);
+				addSynergy(item.userName,(parseFloat(item.ratio) * 100).toFixed(0),item.userId,item.synergyId);
 			});
 		}
 		if(msg.customerPayment+'' == '0.0')
@@ -1233,6 +1233,7 @@ function verifySynerhy(){
     				 //输入的信息数据库里不存在
     				hasError =true;
     			}
+   			
     			
     			if(hasError){
     				$(item).find("input#name").focus();
