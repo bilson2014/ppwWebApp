@@ -303,54 +303,52 @@ function searchUser() {
 		userName : userName
 	}));
 }
-function getReferrerData(){
+function getReferrerData(name){
 	if(referrerList==null||referrerList==''){
 		syncLoadData(function(msg) {
 			referrerList=msg;
-		}, getContextPath() + '/mgr/projects/staff/static/list', null);
+		}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+			name:name
+		}));
 	}
 }
 //推荐人检索
 function searchReferrer(inputString) {
-	getReferrerData();
-	var index=0;
-	var table=$("#ul-select-referrer");
-	table.html("");
-	referrerList.forEach(function(referrer){
-		var name=referrer.staffName+''.trim();
-		if(name.indexOf(inputString)>-1){
-			index++;
-			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
-			li.on("click",function(){
-				var name=jQuery(this).attr('data-name');
-				var id=jQuery(this).attr('data-id');
-				isShow = false;
-				table.html("");
-				$("#error-input-referrer").hide();
-				//详细业务相关
-				
-				$("#referrer-Id-hidden").val(id);
-				$("#input-referrer").val(name);
-				$("#ul-select-referrer").hide();
-				clearError($("#input-referrer"));
-			});
-			table.append(li);
-		}
-	});
+	//getReferrerData();
+	loadData(function (msg){
+		var table=$("#ul-select-referrer");
+		table.html("");
+		msg.forEach(function(referrer){
+			var name=referrer.employeeRealName+''.trim();
+				var li=$("<li data-id='"+referrer.employeeId+"' data-name='"+referrer.employeeRealName+"'>"+referrer.employeeRealName+"</li>");
+				li.on("click",function(){
+					var name=jQuery(this).attr('data-name');
+					var id=jQuery(this).attr('data-id');
+					isShow = false;
+					table.html("");
+					$("#error-input-referrer").hide();
+					//详细业务相关
+					
+					$("#referrer-Id-hidden").val(id);
+					$("#input-referrer").val(name);
+					$("#ul-select-referrer").hide();
+					clearError($("#input-referrer"));
+				});
+				table.append(li);
+		});
+	}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+		name:inputString
+	}));
 }
 //协同人
 function searchSynergy(input) {
-	var inputString=input.val().trim();
-	var div=$(input).parent().parent();
-	getReferrerData();
-	var index=0;
-	var table=div.find("ul#ul-select-synergy");
-	table.html("");
-	referrerList.forEach(function(referrer){
-		var name=referrer.staffName+''.trim();
-		if(name.indexOf(inputString)>-1){
-			index++;
-			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
+	loadData(function (msg){
+		var inputString=input.val().trim();
+		var div=$(input).parent().parent();
+		var table=div.find("ul#ul-select-synergy");
+		table.html("");
+		msg.forEach(function(referrer){
+			var li=$("<li data-id='"+referrer.employeeId+"' data-name='"+referrer.employeeRealName+"'>"+referrer.employeeRealName+"</li>");
 			li.on("click",function(){
 				var name=jQuery(this).attr('data-name');
 				var id=jQuery(this).attr('data-id');
@@ -360,22 +358,26 @@ function searchSynergy(input) {
 				//详细业务相关
 				div.find("input#name").val(name);
 				div.find("input#user-id").val(id);
+				clearError(div.find("input#name"));
+				$('#error-Synergy').hide();
 			});
 			table.append(li);
-		}
-	});
-	var hover=false;
-	$(table).hover(function(){
-			hover=true;
-	 },function(){
-	    	hover=false;
-	  });
-	$(input).on('blur',function(){
-		if(!hover){
-			table.html("");
-			table.hide();
-		}
-	});
+		});
+		var hover=false;
+		$(table).hover(function(){
+				hover=true;
+		 },function(){
+		    	hover=false;
+		  });
+		$(input).on('blur',function(){
+			if(!hover){
+				table.html("");
+				table.hide();
+			}
+		});
+	}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+		name:input.val().trim()
+	}));
 }
 
 //本页作为更新页面时，填充页面数据方法
@@ -417,7 +419,12 @@ function updateProject_ViewInit() {
 		$("#projectSource").val(msg.source);
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
-		initReferrer(msg.source,msg.referrerId);
+		if($("#projectSource").val().trim()=='个人信息下单'){
+			$("#div-friendship").removeClass('hide');
+			$("#referrer-Id-hidden").val(msg.referrerId);
+			$("#input-referrer").val(msg.referrerName);
+		}
+		
 		//add wangliming 2016.5.10 11:29 end
 		$(".teamId").val(msg.teamId);
 		$(".userId").val(msg.customerId);
@@ -696,12 +703,12 @@ function verifyFrom(){
 			 return false;
 		 }else{
 			 //继续验证输入框，和人员id是否一致
-			 getReferrerData();
+			 getReferrerData(referrerInput.val().trim());
 			 var error=true;
 			 for (var int = 0; int < referrerList.length; int++) {
 				 var referrer=referrerList[int];
-				 if(referrer.staffId == id ){
-					 if(referrerInput.val().trim() == referrer.staffName+''.trim() ){
+				 if(referrer.employeeId == id ){
+					 if(referrerInput.val().trim() == referrer.employeeRealName+''.trim() ){
 						 error=false;
 						 break;
 					 }else{
@@ -1023,29 +1030,29 @@ function clearError(input){
 }
 //add wangliming 2016.5.10 11:00 begin
 //-->添加推荐人相关处理
-function initReferrer(sourece,referrerId) {
-	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
-		 $("#div-friendship").removeClass('hide');
-		 $("#referrer-Id-hidden").val(referrerId);
-		 loadData(function(msg) {
-				referrerList=msg;
-				
-				referrerList.forEach(function(referrer){
-					var staffId=referrer.staffId+''.trim();
-					if(staffId==referrerId){
-						$("#referrer-Id-hidden").val(staffId);
-						$("#input-referrer").val(referrer.staffName);
-					}
-				});
-				
-		 }, getContextPath() + '/mgr/projects/staff/static/list', null);
-	 }
-	 else{
-		 $("#div-friendship").addClass('hide');
-		 $("#input-referrer").val("");
-		 $("#referrer-Id-hidden").val("");
-	 }
-}
+//function initReferrer(sourece,referrerId) {
+//	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
+//		 $("#div-friendship").removeClass('hide');
+//		 $("#referrer-Id-hidden").val(referrerId);
+//		 loadData(function(msg) {
+//				referrerList=msg;
+//				
+//				referrerList.forEach(function(referrer){
+//					var staffId=referrer.employeeId+''.trim();
+//					if(staffId==referrerId){
+//						$("#referrer-Id-hidden").val(staffId);
+//						$("#input-referrer").val(referrer.staffName);
+//					}
+//				});
+//				
+//		 }, getContextPath() + '/mgr/projects/search/employee/list', null);
+//	 }
+//	 else{
+//		 $("#div-friendship").addClass('hide');
+//		 $("#input-referrer").val("");
+//		 $("#referrer-Id-hidden").val("");
+//	 }
+//}
 function enableSubmitBtnEnent(){
 	var state=$(".state").text().trim();
 	disableSubmitBtnEnent();
@@ -1095,9 +1102,7 @@ function setSynergyEvent(){
 		if(cout != 0){
 			var x=$(this).parent().parent().find("input#synergy-id");
 			if(x.val().trim() != ''){
-				
 				removeSynergy($(x).val().trim());
-				
 			}
 			$(this).parent().remove();
 		}				
@@ -1119,13 +1124,15 @@ function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">';
 	$body+=
 	'<div id="select" style="display: inline-block;">'+
-	' <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
-	' <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+	'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
+	'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;z-index:9999998;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+	'  <label class ="hide" id ="name-error" >协助人名称填写错误<label>'+
 	'</div>'+
 	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
 	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
-	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>';
+	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>'+
+	' <label class ="hide"  id ="proportion-error">输入比例错误<label>';
 	$body+='</div>';
 	return $body;
 }
@@ -1155,67 +1162,89 @@ function verifySynerhy(){
 
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
-		
-		
-		
 		var hasError=false;
-		$.each(base_Synergy,function(i,item){
+		
+		for (var int = 0; int < base_Synergy.length; int++) {
+			var item = base_Synergy[int];
+			
 			//1.用户身份服务器验证
 			//2.占有比例
 			var userId = $(item).find("input#user-id").val().trim();
 			var userName = $(item).find("input#name").val().trim();
 			var ratio = $(item).find("input#ratio").val().trim();
+			var nameError=$(item).find("input#name-error");
+			var proportionError=$(item).find("input#proportionError");
 			var ratio_int=parseInt(ratio);
+			
 			syncLoadData(function(msg) {
 				dbUser=msg;
-			}, getContextPath() + '/mgr/projects/staff/static/list', null);
-			
-			if(dbUser != ''){
+			}, getContextPath() + '/mgr/projects/search/employee/list', null);
+			getReferrerData(userName);
+			if(referrerList != ''){
 				var verifyTrue =false;
-				for (var int = 0; int < dbUser.length; int++) {
-					var referrer = dbUser[int];
-					var name=referrer.staffName+''.trim();
-					var id=referrer.staffId;
+				for (var int = 0; int < referrerList.length; int++) {
+					var referrer = referrerList[int];
+					var name=referrer.employeeRealName+''.trim();
+					var id=referrer.employeeId;
 					if(userId == id && name == userName){
 						verifyTrue =true;
 						break;
 					}else{
 						verifyTrue =false;
 						$(item).find("input#name").focus();
-						$('#error-Synergy').text('协同人不正确');
+						//$('#error-Synergy').text('协同人不正确');\
+						nameError.removeClass('hide');
+						setError($(item).find("input#name"))
 					}
 				}
 				
-				$(item).find("input#name").on('click',function(){
-					$('#error-Synergy').hide();
-				});
-				
-			//验证比例
-				if(checkBiliPrice(ratio)){
-						totalPrice = totalPrice + ratio_int;
-						if(totalPrice >= 100||totalPrice < 0){
-							verifyTrue =false;
-							$(item).find("input#ratio").focus();
-							$('#error-Synergy').text('比例总和不能大于100');
-						}
-				}
-				else{
-					$('#error-Synergy').text('请填写数字');
-				}
-				$('#error-Synergy').hide();
+//				//验证比例
+//				if(checkBiliPrice(ratio)){
+//						totalPrice = totalPrice + ratio_int;
+//						if(totalPrice >= 100||totalPrice < 0){
+//							verifyTrue =false;
+//							$(item).find("input#ratio").focus();
+//							$('#error-Synergy').text('比例总和不能大于100');
+//						}
+//				}
 				if(!verifyTrue){
 					hasError=true;
+					//$('#error-Synergy').show();
 					
-					$('#error-Synergy').show();
-				}
-				else{
-					$('error-Synergy').hide();
+					break ;
+				}else{
+					//$('error-Synergy').hide();
 				}
 			}
-		});
-		return hasError;
+		}
 		
+		return hasError;
 	}
+}
+
+function verifySynerhyRatio(inputRatio,baseRatio){
+	/**
+	 * 1.验证是否非空
+	 * 2.验证输入是否为数字
+	 * 3.验证价格是否超过100
+	 * 4.协调输出错误信息
+	 */
+	var res ="ok";
+	var ratio = inputRatio.val().trim();
+	if(ratio == null || ratio == undefined || ratio == '' ){
+		res = "请填写占有比例";
+	}
+	
+	if(!checkNumber(ratio)){
+		res =  "只能输入数字呦";
+	}
+	
+	if(ratio + baseRatio >= 100 || ratio + baseRatio < 1 ){
+		res =  "输入的比例过大 ";
+	}
+	
+	return  res;
+	
 }
 
 //add Synergy by laowang end 2016-5-25 12:35
