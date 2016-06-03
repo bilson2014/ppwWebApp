@@ -161,7 +161,7 @@
 			                </li>
 			                
 			               <r:identity role="employee">
-			                 <li ><a id="helpProject" >协同人项目</a>
+			                 <li ><a id="helpProject" >协同项目</a>
 			                    <ul id="helpProjectId">
 			                       
 			                    </ul>

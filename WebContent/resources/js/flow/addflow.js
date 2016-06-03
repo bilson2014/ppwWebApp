@@ -77,6 +77,8 @@ $().ready(function() {
 	//add Synergy by laowng begin 2016-5-25 12:35 
 	$("#add-Synergy").on('click', function() {
 		$('.cooperative').css('visibility','visible');
+		$('#helpLabel').hide();
+		
 		addSynergy();
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
@@ -454,7 +456,8 @@ function updateProject_ViewInit() {
 		if(synergys != null && synergys.length > 0){
 			$.each(synergys,function(i,item){
 				$('.cooperative').css('visibility','visible');
-				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
+				$('#helpLabel').hide();
+				addSynergy(item.userName,(item.ratio * 100),item.userId,item.synergyId);
 			});
 		}
 		if(msg.customerPayment+'' == '0.0')
@@ -1126,7 +1129,17 @@ function setSynergyEvent(){
 				removeSynergy($(x).val().trim());
 			}
 			$(this).parent().remove();
-		}				
+		}	
+		
+		var deleteSecondSynergys=$("[id^=deleteSynergy]");
+		var couts=deleteSecondSynergys.length;
+		
+		if(couts==0){
+			
+			$('.cooperative').css('visibility','hidden');
+			$('#helpLabel').show();
+			
+		}
 	});
 	$.each(deleteSynergys,function(i,item){
 		var x2=$(item).parent();
@@ -1178,7 +1191,7 @@ function getViewSynerhy() {
 		synergys[index] = {
 				userId:userId,
 				userName:userName,
-				ratio:ratio,
+				ratio:(ratio / 100),
 				synergyId:synergyId
 		};
 		index++;

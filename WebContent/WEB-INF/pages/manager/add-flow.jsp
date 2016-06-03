@@ -196,6 +196,8 @@ var="cookiejs" />
 								</div>
 							</div>
 							
+						<label id="helpLabel" style="position: relative;left: 50px;font-size: 14px;color: #B8B8B8">无协同人信息</label>
+							
 							
                    </div>
                    
