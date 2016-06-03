@@ -22,6 +22,7 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
+<spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
 
@@ -32,6 +33,7 @@
 <spring:url value="/resources/js/flow/step-jquery-dc.js"
 	var="stepjquery" />
 <spring:url value="/resources/js/flow/flow.js" var="indexjs" />
+
 <spring:url value="/resources/lib/dist/tether.min.js" var="tetherjs" />
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
@@ -64,12 +66,15 @@
 <script src="${blockUIJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
+<script src="${leftjs}"></script>
 <script src="${WdatePicker }"></script>
 <script src="${stepjquery }"></script>
 <script src="${indexjs }"></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
+
+
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
 <body  >
@@ -85,7 +90,7 @@
 					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
+					<a href="<spring:url value='/provider/portal' /> " class="header-item" >信息管理</a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 				</r:identity>
@@ -135,10 +140,55 @@
 			</div>
 			
 			<div class="indentdiv">
-				<table class="indentlist projectliststyle">
+			<!-- 	<table class="indentlist projectliststyle">
 				</table>
 				<table class="indentlisthistory projectliststyle">
-				</table>
+				</table> -->
+				
+			<div id="content">
+			    <div class="menu" id="menuId">
+			        <ul>
+			        <li><a id="doingProject" >进行中项目</a>
+			            <ul>
+			              
+			                <li><a id="myProject" >我的项目</a>
+			                    <ul id="myProjectId">
+			                      <!--   <li><a class="title-content" href="#">Subitem 1</a></li>
+			                        <li><a class="title-content" href="#">Subitem 2</a></li>
+			                        <li><a class="title-content" href="#">Subitem 3</a></li>
+			                        <li><a class="title-content" href="#">Subitem 4</a></li> -->
+			                    </ul>
+			                </li>
+			                
+			               <r:identity role="employee">
+			                 <li ><a id="helpProject" >协同项目</a>
+			                    <ul id="helpProjectId">
+			                       
+			                    </ul>
+			                </li>
+			               </r:identity>
+			               
+			                 <li><a id="pauseProject" >暂停项目</a>
+					            <ul id="pauseProjectId">
+					               
+					            </ul>
+					        </li>
+			               
+			               
+			            </ul>
+			        </li>
+			    
+			        <li><a id="historyProject" >历史项目</a>
+			            <ul id="historyProjectId">
+			              
+			            </ul>
+			        </li>
+			     
+			    </ul>
+			    </div>
+			</div>
+				
+				
 			</div>
 		</div>
   

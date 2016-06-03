@@ -1,29 +1,24 @@
 @import "variables";
-@import "compass/css3";
-@import "constant";
-@import "mixin";
-@import "../common_portal";
-@import "compass/typography/text/ellipsis";
 
-$video-video-height: 270px; // 视频图片的高度
-$video-video-height320: 180px; // 视频图片的高度(320px)
-$video-video-height360: 202px; // 视频图片的高度(360px)
-$video-video-height390: 220px; // 视频图片的高度(320px)
-$video-video-height640: 360px; // 视频图片的高度(640px)
-$video-video-height720: 405px; // 视频图片的高度(720px)
+$video-image-height: 270px; // 视频图片的高度
+$video-image-height320: 180px; // 视频图片的高度(320px)
+$video-image-height360: 202px; // 视频图片的高度(360px)
+$video-image-height390: 220px; // 视频图片的高度(320px)
+$video-image-height640: 360px; // 视频图片的高度(640px)
+$video-image-height720: 405px; // 视频图片的高度(720px)
 
 
-$video-play-section-height: 250px; // 视频播放区域高度
-$video-play-section-height320: 170px; // 视频播放区域高度(320px)
-$video-play-section-height360: 192px; // 视频播放区域高度(360px)
-$video-play-section-height390: 210px; // 视频播放区域高度(390px)
-$video-play-section-height640: 351px; // 视频播放区域高度(640px)
-$video-play-section-height720: 396px; // 视频播放区域高度(720px)
-
+$video-image-height: 243px; // 视频图片的高度
+$video-image-height320: 162px; // 视频图片的高度(320px)
+$video-image-height360: 180px; // 视频图片的高度(360px)
+$video-image-height390: 198px; // 视频图片的高度(320px)
+$video-image-height640: 324px; // 视频图片的高度(640px)
+$video-image-height720: 365px; // 视频图片的高度(720px)
 
 
 body{
 background:#f7f7f7;
+	
 }
 
 video {
@@ -66,26 +61,26 @@ video {
 		width: 100%;
 		background:#000;
 
-		height: $video-video-height;
+		height: $video-image-height;
 		
 		@media screen and (max-width: 360px) {
-			height: $video-video-height320;
+			height: $video-image-height320;
 		}
 
 		@media screen and (min-width: 360px) and (max-width: 390px) {
-			height: $video-video-height360;
+			height: $video-image-height360;
 		}
 
 		@media screen and (min-width: 390px) and (max-width: 460px) {
-			height: $video-video-height390;
+			height: $video-image-height390;
 		}
 
 		@media screen and (min-width: 640px) and (max-width: 720px) {
-			height: $video-video-height640;
+			height: $video-image-height640;
 		}
 
 		@media screen and (min-width: 720px) {
-			height: $video-video-height720;
+			height: $video-image-height720;
 		}
 
 		.video-play {
@@ -175,7 +170,7 @@ video {
 }
 .upload-window {
 	position: fixed;
-	z-index: 999999; 
+	z-index: 999999;
 	height: 100%;
 	width: 100%;
 	display:none;
@@ -224,32 +219,27 @@ video {
 	border: 1px solid #ccc;
 	background: $white;
 
-		.video-play-section {
+	video-play-section {
 		position: relative;
 		width: 100%;
+		height: $video-image-height720;
+		opacity:1;
 
-		height: $video-play-section-height;
-		
-		@media screen and (max-width: 360px) {
-			height: $video-play-section-height320;
+		@media screen and (max-width:360px) {
+			height: $video-image-height720;
 		}
-
-		@media screen and (min-width: 360px) and (max-width: 390px) {
-			height: $video-play-section-height360;
+		@media screen and (min-width:360px) and (max-width:390px) {
+			height: $video-image-height720;
 		}
-
-		@media screen and (min-width: 390px) and (max-width: 460px) {
-			height: $video-play-section-height390;
+		@media screen and (min-width:390px) and (max-width:460px) {
+			height: $video-image-height720;
 		}
-
-		@media screen and (min-width: 640px) and (max-width: 720px) {
-			height: $video-play-section-height640;
+		@media screen and (min-width:640px) and (max-width:720px) {
+			height: $video-image-height720;
 		}
-
-		@media screen and (min-width: 720px) {
-			height: $video-play-section-height720;
+		@media screen and (min-width:720px) {
+			height: $video-image-height720;
 		}
-
 	}
 
 	&:last-child{
@@ -302,5 +292,3 @@ video {
 		}
 	}
 }
-
-

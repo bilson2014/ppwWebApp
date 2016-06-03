@@ -289,16 +289,39 @@
 	background-color: darken($gray, 10%);
 }
 .mleft {
+    margin-top:15px;
 	padding-left: 50px;
 	display: inline-block;
 }
+
+.ul-option-common {
+	text-align: center;
+	line-height: 20px;
+	width: 175px;
+	font-size: $font-size-base;
+	border: 1px solid $gray-border;
+	background-color: #fff;
+	display:none;
+
+	li {
+		@include ellipsis;
+
+		&:hover {
+			background-color: $gray;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+}
+
+
 .ul-option {
 	text-align: center;
 	line-height: 20px;
 	width: 175px;
 	font-size: $font-size-base;
 	position: absolute;
-	margin-top: -528px;
+	margin-top: 102px;
 	z-index: 999;
 	border: 1px solid $gray-border;
 	margin-left: 200px;
@@ -324,7 +347,7 @@
 	border: 1px solid $gray-border;
 	background-color: #fff;
 	margin-left: 200px;
-	margin-top: -368px;
+	margin-top:100px;
 
 	li {
 		@include ellipsis;
@@ -342,7 +365,7 @@
 	width: 175px;
 	font-size: $font-size-base;
 	position: absolute;
-	margin-top: -685px;
+	margin-top: 103px;
 	z-index: 999;
 	border: 1px solid $gray-border;
 	margin-left: 425px;
@@ -450,55 +473,8 @@
 		}
 	}
 }
-.price-inline {
-	display: inline-block;
-}
-.price-input {
-	border: solid 1px $gray-border;
-	padding-left: 10px;
-	border-radius: 5px;
-	width: 80px;
-	height: 30px;
-	margin-left: 50px;
-	color: $gray-dark;
-	font-size: $font-size-base;
-}
-.price-input-margin {
-	margin-left: 0px;
-}
-.price-hr {
-	position: relative;
-	top: 8px;
-	width: 30px;
-	color: $gray-dark;
-}
-.priec-input-word {
-	border: solid 0px $gray-border;
-	width: 30px;
-	padding-left: 5px;
-	color: $gray;
-}
-.radio-price {
-	margin-left: 30px;
-	height: 15px;
-	width: 15px;
-	padding-top: 10px;
-	float: left;
-	display: inline-block;
-	position: relative;
-	top: 1px;
-}
-.final-price-div {
-	width: 500px;
-	float: left;
-}
-.finishInput {
-	width: 80px;
-	height: 30px;
-	border-radius: 5px;
-	padding-left: 5px;
-	display: inline-block;
-}
+
+
 .checkword {
 	height: 30px;
 	line-height: 26px;
@@ -562,21 +538,7 @@
 	font-size: $font-size-base;
 	padding-top: 10px;
 }
-.final-price-label {
-	position: relative;
-	color: #fe5453;
-	font-size: 1.4rem;
-	left: -190px;
-	top: 30px;
-}
 
-.final-price-left-label{
-	position: relative;
-	color: #fe5453;
-	font-size: 1.4rem;
-	left: 655px;
-	top: 10px;
-}
 
 
 
@@ -590,7 +552,7 @@
 .midinput{
     height:7px;
     border:none;
-	border-top:3px solid $gray-light;
+	border-top:1px solid #d8d8d8;
 	width:35px;
 	position:relative;
 	margin-left:10px;
@@ -599,10 +561,7 @@
     
 }
 
-.finishdiv{
-	position:relative;
-	left:-55px;
-}
+
 
 .pospricediv{
 	position:relative;
@@ -611,5 +570,424 @@
 
 .wordMargin{
 	margin-right:5px;
+}
+
+//协同人
+
+
+.cooperative-div{
+	
+    margin-top: 10px;
+	height: autopx;
+	width: 100%;
+	background: $white;
+	border-radius: 5px;
+	border: 1px soild $white;
+	padding-bottom: 40px;
+
+}
+.error-coop{
+ margin-top: 40px;
+ width: 150px;
+ font-size: $font-size-base;
+ color: $red-base;
+ padding-left: 50px;
+ margin-bottom: 5px;
+ display:inline-block;
+}
+.cooperative-table-key{
+	width: 150px;
+	font-size: $font-size-base;
+	color: $gray;
+	padding-left: 50px;
+    padding-top: 20px;
+}
+
+.glyphicon{
+	
+	&:hover{
+	cursor:pointer;
+	}
+}
+
+
+
+.cooperative{
+ margin-top: 40px;
+ width: 150px;
+ font-size: $font-size-base;
+ color: $gray;
+ padding-left: 50px;
+ margin-bottom: 5px;
+ display:inline-block;
+ visibility:hidden;
+}
+
+.cooperative-input{
+	display:inline-block;
+	@include ellipsis;
+	border: solid 1px $gray-border;
+	width: 175px;
+	height: 30px;
+	color: $gray;
+	font-size: $font-size-base;
+	border-radius: 5px;
+	border: solid 1px $gray-border;
+	outline: none;
+}
+
+#Synergy-info{
+	margin-top:20px;
+}
+
+#deleteSynergy{
+	width:50px;
+	border:none;
+	background:none;
+	outline:none;
+	display:inline-block;
+	vertical-align: top;
+    position: relative;
+    top: 8px;
+}
+.pos-top{
+	position:relative;
+	top:12px;
+	left:30px;
+}
+
+.pos-left{
+	position:relative;
+	left:68px;
+}
+
+//价格
+
+
+.price-top-word{
+ margin-top: 20px;
+ width: 150px;
+ font-size: $font-size-base;
+ color: $gray;
+ padding-left: 50px;
+ margin-bottom: 5px;
+}
+
+.price-div{
+	margin-top: 10px;
+	height: 250px;
+	width: 100%;
+	background: $white;
+	border-radius: 5px;
+	border: 1px soild $white;
+	padding-bottom: 40px;
+}
+
+.price-inline {
+	display: inline-block;
+}
+.price-input {
+	border: solid 1px $gray-border;
+	padding-left: 10px;
+	border-radius: 5px;
+	width: 80px;
+	height: 30px;
+	margin-left: 50px;
+	color: $gray-dark;
+	font-size: $font-size-base;
+}
+.price-input-margin {
+	margin-left: 0px;
+}
+.price-hr {
+	position: relative;
+	top: 8px;
+	width: 30px;
+	color: $gray-dark;
+}
+.priec-input-word {
+	border: solid 0px $gray-border;
+	width: 30px;
+	padding-left: 5px;
+	color: $gray;
+}
+
+.radio-price {
+	margin-left: 30px;
+	height: 15px;
+	width: 15px;
+	padding-top: 10px;
+	float: left;
+	display: inline-block;
+	position: relative;
+	top: 1px;
+}
+.final-price-div {
+	width: 500px;
+	float: left;
+
+}
+.finishInput {
+	width: 175px;
+	height: 30px;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+	margin-top:15px;
+}
+
+.final-price-label {
+	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: -280px;
+	top: 30px;
+}
+
+.user-price-label {
+	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: -195px;
+	top: 30px;
+}
+
+
+.final-price-left-label{
+	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: 655px;
+	top: 10px;
+}
+
+.provider-price-left-label{
+ 	position: relative;
+	color: #fe5453;
+	font-size: 1.4rem;
+	left: -85px;
+	top: 87px;
+ 
+
+}
+
+.finishdiv{
+	position:relative;
+	left:-50px;
+}
+
+.userPrice{
+	position:relative;
+	left:145px;
+}
+
+.providerPrice{
+	position:relative;
+	left:102px;
+}
+.error-user-price{
+	
+	position:relative;
+	left:0px;
+	top:0px;
+}
+
+
+
+.error-provider-price{
+	position:relative;
+	left:0px;
+	top:0px;
+
+}
+
+.divtablePrice{
+	
+	position:relative;
+	top:0px;
+	display:inline-block;
+	
+}
+
+.pirce-input-user{
+	width:175px;
+}
+
+.price-inarea{
+            position:relative;
+            margin-top:-60px;
+	        height: 160px;
+			width: 100%;
+			background: $white;
+			border-radius: 5px;
+			border: 1px soild $white;
+			display:none;
+}
+
+.userPriceTitle{
+	    width: 150px;
+    font-size: 1.4rem;
+    color: #666;
+    padding-left: 50px;
+}
+
+.synergy{
+	font-size:$font-size-base;
+	color:$red-base;
+	
+}
+.synergy-left{
+	position:relative;
+	top:7px;
+	display:block;
+}
+
+.synergy-right{
+	position:relative;
+	top:7px;
+	display:block;
+}
+.visible{
+	visibility:hidden;
+}
+
+//数据处理中
+
+#circleId{
+width:50px;
+-webkit-animation:circle 1s infinite linear;/*匀速 循环*/
+}
+@-webkit-keyframes circle{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+
+@keyframes circle
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+
+@-moz-keyframes circle 
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+
+@-webkit-keyframes circle 
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+
+@-o-keyframes circle
+{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(-360deg); }
+}
+
+.spinner {
+ 
+  width: 150px;
+  text-align: center;
+  display:inline;
+}
+ 
+.spinner > div {
+  width: 10px;
+  height: 10px;
+  background-color:$red-base;
+ 
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+ 
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+ 
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+ 
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+.load-word{
+	color:$red-base;
+	font-size:$font-size;
+	position:relative;
+	top:0px;
+	left:0px;
+	text-align:center;
+	display:inline-block;
+}
+
+//loadmore
+
+.loadMore{
+    position:relative;
+    left:0px;
+    margin-top:-10px;
+    top:-35px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+    color:$gray-light;
+}
+
+.circle-180 {
+	transform: rotate(180deg);
+}
+
+.bottom-div{
+	position:relative;
+	top:-65px;
+	left:35px;
+	display:none;
+}
+
+.loadmore-div{
+    position:relative;
+    top:0px;
+    margin:-30px auto;
+	width:150px;
+	height:10px;
+}
+
+
+.price-table-key {
+				margin-top: 20px;
+				width: 150px;
+				font-size: $font-size-base;
+				color: $gray;
+				padding-left: 50px;
+				margin-bottom: 2px;
+			}
+
+
+//价格			
+.font-weight-title{
+	font-weight:bold;
 }
 

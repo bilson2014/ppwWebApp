@@ -27,7 +27,7 @@
 	<meta content="telephone=no" name="format-detection">
 	<title>拍片网－移动端_产品页</title>
 	<link rel="shortcut icon" href="${imgPath}/favicon.ico" >
-	<link rel="stylesheet" href="${playCss}">
+	
 	<link rel="stylesheet" href="${portalCss}">
 </head>
 <body>
@@ -74,7 +74,7 @@
 				                    </div>
 				                     <div class="right-content">
 				               	    	<label class="right-price">30<span class="right-desc">小时极速出片</span></label>
-				               	    	<label class="right-price">HD<span class="right-desc">专业级高清拍摄制作</span></label>
+				               	    	<label class="right-price">HD<span class="right-desc">专业高清拍摄制作</span></label>
 				                    </div>
 				                    
 				               </div>

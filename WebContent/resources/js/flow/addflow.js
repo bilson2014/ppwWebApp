@@ -5,20 +5,28 @@ var checkHidden = false;
 var userName;
 var teamName;
 var referrerList;
+var isMore = true;
+var angle = 0;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
+	
+
 	$(".error-label").hide();
 	$(".username-error-label").hide();
 	//change final price label by lt
 	$('.final-price-label').hide();
 	$('.final-price-left-label').hide();
+	$('#error-user-price').hide();
+	$('#error-provider-price').hide();
+	$('#error-Synergy').hide();
 	//end
 	$(".tableinput-error").hide();
 	loadSource();
 	$("#ul-select").hide();
 	$("#ul-select-team").hide();
 	$("#ul-select-referrer").hide();
+	$("#").hide();
 	$('.page').on('click', function() {
 		if(checkHidden) {
 			checkHidden = false;
@@ -68,10 +76,20 @@ $().ready(function() {
 	initReferrerInput();
 	//add Synergy by laowng begin 2016-5-25 12:35 
 	$("#add-Synergy").on('click', function() {
+		$('.cooperative').css('visibility','visible');
+		$('#helpLabel').hide();
+		
 		addSynergy();
 	});
 	//add Synergy by laowng end 2016-5-25 12:35
+	
+	$("#open-div").on('click',function(){
+		isMoreShow();
+	});
 });
+
+
+
 //设置验证错误提示
 function setInputErrorStyle(){
 	$(".projectId").on('change',function(){
@@ -133,6 +151,21 @@ function setInputErrorStyle(){
 	$("#finishInput").on('change',function(){
 		checkFinishPrice();
 	});
+	
+	
+  
+	
+	//add by lt 2016-5-31 18:50 begin
+	//-->添加 用户 供应商错误消息
+	$("#userinput").on('change',function(){
+		checkUserPrice();
+	});
+	
+	$("#providerInput").on('change',function(){
+		checkProviderPrice();
+	});
+	
+	//end
 	//5.9 修改 end
 	
 	//add by wangliming 2016-5-10 11:00 begin
@@ -280,54 +313,50 @@ function searchUser() {
 		userName : userName
 	}));
 }
-function getReferrerData(){
-	if(referrerList==null||referrerList==''){
+function getReferrerData(name){
 		syncLoadData(function(msg) {
 			referrerList=msg;
-		}, getContextPath() + '/mgr/projects/staff/static/list', null);
-	}
+		}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+			name:name
+		}));
 }
 //推荐人检索
 function searchReferrer(inputString) {
-	getReferrerData();
-	var index=0;
-	var table=$("#ul-select-referrer");
-	table.html("");
-	referrerList.forEach(function(referrer){
-		var name=referrer.staffName+''.trim();
-		if(name.indexOf(inputString)>-1){
-			index++;
-			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
-			li.on("click",function(){
-				var name=jQuery(this).attr('data-name');
-				var id=jQuery(this).attr('data-id');
-				isShow = false;
-				table.html("");
-				$("#error-input-referrer").hide();
-				//详细业务相关
-				
-				$("#referrer-Id-hidden").val(id);
-				$("#input-referrer").val(name);
-				$("#ul-select-referrer").hide();
-				clearError($("#input-referrer"));
-			});
-			table.append(li);
-		}
-	});
+	//getReferrerData();
+	loadData(function (msg){
+		var table=$("#ul-select-referrer");
+		table.html("");
+		msg.forEach(function(referrer){
+			var name=referrer.employeeRealName+''.trim();
+				var li=$("<li data-id='"+referrer.employeeId+"' data-name='"+referrer.employeeRealName+"'>"+referrer.employeeRealName+"</li>");
+				li.on("click",function(){
+					var name=jQuery(this).attr('data-name');
+					var id=jQuery(this).attr('data-id');
+					isShow = false;
+					table.html("");
+					$("#error-input-referrer").hide();
+					//详细业务相关
+					
+					$("#referrer-Id-hidden").val(id);
+					$("#input-referrer").val(name);
+					$("#ul-select-referrer").hide();
+					clearError($("#input-referrer"));
+				});
+				table.append(li);
+		});
+	}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+		name:inputString
+	}));
 }
 //协同人
 function searchSynergy(input) {
-	var inputString=input.val().trim();
-	var div=$(input).parent().parent();
-	getReferrerData();
-	var index=0;
-	var table=div.find("ul#ul-select-synergy");
-	table.html("");
-	referrerList.forEach(function(referrer){
-		var name=referrer.staffName+''.trim();
-		if(name.indexOf(inputString)>-1){
-			index++;
-			var li=$("<li data-id='"+referrer.staffId+"' data-name='"+referrer.staffName+"'>"+referrer.staffName+"</li>");
+	loadData(function (msg){
+		var inputString=input.val().trim();
+		var div=$(input).parent().parent();
+		var table=div.find("ul#ul-select-synergy");
+		table.html("");
+		msg.forEach(function(referrer){
+			var li=$("<li data-id='"+referrer.employeeId+"' data-name='"+referrer.employeeRealName+"'>"+referrer.employeeRealName+"</li>");
 			li.on("click",function(){
 				var name=jQuery(this).attr('data-name');
 				var id=jQuery(this).attr('data-id');
@@ -337,53 +366,28 @@ function searchSynergy(input) {
 				//详细业务相关
 				div.find("input#name").val(name);
 				div.find("input#user-id").val(id);
+				clearError(div.find("input#name"));
+				$('#error-Synergy').hide();
 			});
 			table.append(li);
-		}
-	});
-	var hover=false;
-	$(table).hover(function(){
-			hover=true;
-	 },function(){
-	    	hover=false;
-	  });
-	$(input).on('blur',function(){
-		if(!hover){
-			table.html("");
-			table.hide();
-		}
-	});
+		});
+		var hover=false;
+		$(table).hover(function(){
+				hover=true;
+		 },function(){
+		    	hover=false;
+		  });
+		$(input).on('blur',function(){
+			if(!hover){
+				table.html("");
+				table.hide();
+			}
+		});
+	}, getContextPath() + '/mgr/projects/search/employee/list', $.toJSON({
+		name:input.val().trim()
+	}));
 }
-////添加用户
-//function addUser(){
-//	//验证
-//	var username=$("#add_username");
-//	var contactname=$("#add_contactname");
-//	var userphone=$("#add_userphone");
-//
-//	if(!verifyInputNotNull(username)) return;
-//	
-//	if(!verifyInputNotNull(contactname)) return;
-//	
-//	if(!verifyInputNotNull(userphone)) return;
-//	var usernameValue=username.val().trim();
-//	var contactnameValue=contactname.val().trim();
-//	var userphoneValue=userphone.val().trim();
-//	
-//	loadData(function(msg) {
-//		if (msg) {
-//			$('#toolbar-modal').modal('hide');
-//			$("#toolbar-modal").clearQueue();
-//		} else {
-//			alert('error:' + msg);
-//		}
-//	}, getContextPath() + '/mgr/projects/user/save/simple', $.toJSON({
-//		userName:usernameValue,
-//		realName:contactnameValue,
-//		telephone:userphoneValue
-//	}));
-//	
-//}
+
 //本页作为更新页面时，填充页面数据方法
 function updateProject_ViewInit() {
 	var currentProject = getCurrentProject();
@@ -409,6 +413,8 @@ function updateProject_ViewInit() {
 		$("#firstinput").val("");
 		$("#lastinput").val("");
 		$("#finishInput").val("");
+		$("#userinput").val("");
+		$("#providerInput").val("");
 		// put data
 		$(".projectId").val(msg.serial);
 		$(".projectName").val(msg.projectName);
@@ -421,7 +427,12 @@ function updateProject_ViewInit() {
 		$("#projectSource").val(msg.source);
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
-		initReferrer(msg.source,msg.referrerId);
+		if($("#projectSource").val().trim()=='个人信息下单'){
+			$("#div-friendship").removeClass('hide');
+			$("#referrer-Id-hidden").val(msg.referrerId);
+			$("#input-referrer").val(msg.referrerName);
+		}
+		
 		//add wangliming 2016.5.10 11:29 end
 		$(".teamId").val(msg.teamId);
 		$(".userId").val(msg.customerId);
@@ -444,9 +455,22 @@ function updateProject_ViewInit() {
 		$("#Synergy-root").html("");
 		if(synergys != null && synergys.length > 0){
 			$.each(synergys,function(i,item){
-				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
+				$('.cooperative').css('visibility','visible');
+				$('#helpLabel').hide();
+				addSynergy(item.userName,(item.ratio * 100),item.userId,item.synergyId);
 			});
 		}
+		if(msg.customerPayment+'' == '0.0')
+			$("#userinput").val('0');
+		else
+			$("#userinput").val(msg.customerPayment);
+		if(msg.providerPayment+'' == '0.0')
+			$("#providerInput").val('0');
+		else
+			$("#providerInput").val(msg.providerPayment);
+		
+		hasPirce();
+		
 	}, getContextPath() + '/mgr/projects/get-redundantProject', $.toJSON({
 		id : currentProject
 	}));
@@ -454,13 +478,14 @@ function updateProject_ViewInit() {
 
 function updateProjectajax() {
 	//解绑事件防止多次点击
-	disableSubmitBtnEnent();
+	disableSubmitBtnEnent(0);
 	if(!verifyFrom()){
 		//验证错误，恢复事件
 		enableSubmitBtnEnent();
 		return;
 	}
-	
+
+	var projectSerial = $(".projectId").val().trim();
 	var currentProject = getCurrentProject();
 	var projectSerial = $(".projectId").val().trim();
 	var projectName = $(".projectName").val().trim();
@@ -486,6 +511,16 @@ function updateProjectajax() {
 	
 	//获取推荐人，是友情推荐时为 “人名” 否则为 ‘’
 	var referrerId=getReferrer();
+	
+	//add laowng
+	var customerPayment=$("#userinput").val().trim();
+	var providerPayment=$("#providerInput").val().trim();
+	if(providerPayment == ''){
+		providerPayment =0;
+	}
+	if(customerPayment == ''){
+		customerPayment= 0;
+	}
 	
 	loadData(function(msg) {
 		if (msg) {
@@ -521,7 +556,9 @@ function updateProjectajax() {
 			zz : zzstarttime,
 			jf : jfstarttime
 		},
-		synergys:getViewSynerhy()
+		synergys:getViewSynerhy(),
+		providerPayment:providerPayment,
+		customerPayment:customerPayment
 	}));
 }
 function submitForm(){
@@ -542,7 +579,7 @@ function submitForm(){
 }
 function addProject() {
 	//取消事件防止多次点击
-	disableSubmitBtnEnent();
+	disableSubmitBtnEnent(0);
 	if(!verifyFrom()){
 		//验证错误，恢复事件
 		enableSubmitBtnEnent();
@@ -571,6 +608,10 @@ function addProject() {
 	var jfstarttime = $(".jfstarttime").val().trim();
 	//获取推荐人，是友情推荐时为“人名”否则为 ‘’
 	var referrerId=getReferrer();
+	//add laowng
+	var customerPayment=$("#userinput").val().trim();
+	var providerPayment=$("#providerInput").val().trim();
+	
 	loadData(function(msg) {
 		if (msg) {
 			clearProject();
@@ -604,7 +645,9 @@ function addProject() {
 			zz : zzstarttime,
 			jf : jfstarttime
 		},
-		synergys:getViewSynerhy()
+		synergys:getViewSynerhy(),
+		providerInput:providerInput,
+		customerPayment:customerPayment
 	}));
 }
 function loadSource() {
@@ -672,12 +715,12 @@ function verifyFrom(){
 			 return false;
 		 }else{
 			 //继续验证输入框，和人员id是否一致
-			 getReferrerData();
+			 getReferrerData(referrerInput.val().trim());
 			 var error=true;
 			 for (var int = 0; int < referrerList.length; int++) {
 				 var referrer=referrerList[int];
-				 if(referrer.staffId == id ){
-					 if(referrerInput.val().trim() == referrer.staffName+''.trim() ){
+				 if(referrer.employeeId == id ){
+					 if(referrerInput.val().trim() == referrer.employeeRealName+''.trim() ){
 						 error=false;
 						 break;
 					 }else{
@@ -737,12 +780,29 @@ function verifyFrom(){
 		$("#error-finishInput").show();
 		return false;
 	}
+	
+	
+	
+	
 	if(!VerifyTime()) 
 		return false;
+	
 	
 	if(verifySynerhy())
 		return false;
 	
+
+	//新增错误判断
+	if(!checkUserPrice()){
+		$("#error-user-price").show();
+		return false;
+	}
+	
+	if(!checkProviderPrice()){
+		$("#error-provider-price").show();
+		return false;
+	}
+	//
 	
 	 return true;
 }
@@ -803,6 +863,67 @@ function checkFinishPrice() {
 		return true;
 	}
 }
+
+////验证客户支付价格
+function checkUserPrice() {
+	var text=$("#userinput").val();
+	if(text == null ||text=='' || text=='0')
+		
+		return true;
+	if(!checkNumber(text)){
+		$("#userinput").val("");
+		$("#userinput").focus();
+		var div=$("#userinput").parent();
+		div.addClass('has-error');
+		$("#error-user-price").show();
+		return false;
+	}else{
+		var div=$("#userinput").parent();
+		div.removeClass('has-error');
+		$("#error-user-price").hide();
+		
+		if(text=="0.0"){
+			$("#userinput").val("0");
+		}
+		return true;
+	}
+}
+
+////验证供应商支付价格
+function checkProviderPrice() {
+	var text=$("#providerInput").val();
+	if(text == null ||text=='' || text=='0')
+	
+		return true;
+	if(!checkNumber(text)){
+		$("#providerInput").val("");
+		$("#providerInput").focus();
+		var div=$("#providerInput").parent();
+		div.addClass('has-error');
+		$("#error-provider-price").show();
+		return false;
+	}else{
+		var div=$("#providerInput").parent();
+		div.removeClass('has-error');
+		$("#error-provider-price").hide();
+		if(text=="0.0"){
+			$("#providerInput").val("0");
+		}
+		return true;
+	}
+}
+
+////验证比例
+function checkBiliPrice(text) {
+	var bili=text;
+     if(!checkNumber(text)){
+    	 return false;
+     }
+     else{
+    	 return true;
+     }
+}
+
 //填充序列号
 function fillSerialID() {
 	loadData(function(msg) {
@@ -922,44 +1043,55 @@ function clearError(input){
 }
 //add wangliming 2016.5.10 11:00 begin
 //-->添加推荐人相关处理
-function initReferrer(sourece,referrerId) {
-	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
-		 $("#div-friendship").removeClass('hide');
-		 $("#referrer-Id-hidden").val(referrerId);
-		 loadData(function(msg) {
-				referrerList=msg;
-				
-				referrerList.forEach(function(referrer){
-					var staffId=referrer.staffId+''.trim();
-					if(staffId==referrerId){
-						$("#referrer-Id-hidden").val(staffId);
-						$("#input-referrer").val(referrer.staffName);
-					}
-				});
-				
-		 }, getContextPath() + '/mgr/projects/staff/static/list', null);
-	 }
-	 else{
-		 $("#div-friendship").addClass('hide');
-		 $("#input-referrer").val("");
-		 $("#referrer-Id-hidden").val("");
-	 }
-}
+//function initReferrer(sourece,referrerId) {
+//	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
+//		 $("#div-friendship").removeClass('hide');
+//		 $("#referrer-Id-hidden").val(referrerId);
+//		 loadData(function(msg) {
+//				referrerList=msg;
+//				
+//				referrerList.forEach(function(referrer){
+//					var staffId=referrer.employeeId+''.trim();
+//					if(staffId==referrerId){
+//						$("#referrer-Id-hidden").val(staffId);
+//						$("#input-referrer").val(referrer.staffName);
+//					}
+//				});
+//				
+//		 }, getContextPath() + '/mgr/projects/search/employee/list', null);
+//	 }
+//	 else{
+//		 $("#div-friendship").addClass('hide');
+//		 $("#input-referrer").val("");
+//		 $("#referrer-Id-hidden").val("");
+//	 }
+//}
 function enableSubmitBtnEnent(){
 	var state=$(".state").text().trim();
 	disableSubmitBtnEnent();
+	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
 			updateProjectajax();
+			//$("#isShow").modal('show');
+			
 		});
 	}else{
 		$("#indent-btn").on('click',function(){
 			addProject();
 		});
 	}
+	$('.bottom-div').hide();
+	
+	
 }
-function disableSubmitBtnEnent(){
+function disableSubmitBtnEnent(check){
 	$("#indent-btn").off('click');
+
+	if(check!=undefined){
+		$('.bottom-div').show();
+	}
+	
 }
 function getReferrer() {
 	if($("#projectSource").val().trim()=='个人信息下单'){
@@ -981,7 +1113,8 @@ function addSynergy(name,ratio,userid,synergyid){
 		$("#Synergy-root").append(html);
 		setSynergyEvent();
 	}else{
-		alert('在点我就打死你！');
+		$('#error-Synergy').text('不能多于3个协同人');
+		$('#error-Synergy').show();
 	}
 }
 
@@ -991,14 +1124,22 @@ function setSynergyEvent(){
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
 		if(cout != 0){
-			var x=$(this).parent().parent().find("input#synergy-id");
+			var x=$(this).parent().find("input#synergy-id");
 			if(x.val().trim() != ''){
-				alert(x.val().trim());
 				removeSynergy($(x).val().trim());
-				alert("12");
 			}
 			$(this).parent().remove();
-		}				
+		}	
+		
+		var deleteSecondSynergys=$("[id^=deleteSynergy]");
+		var couts=deleteSecondSynergys.length;
+		
+		if(couts==0){
+			
+			$('.cooperative').css('visibility','hidden');
+			$('#helpLabel').show();
+			
+		}
 	});
 	$.each(deleteSynergys,function(i,item){
 		var x2=$(item).parent();
@@ -1006,6 +1147,7 @@ function setSynergyEvent(){
 		initSynergy(x2);
 	});
 }
+
 function removeSynergy(id){
 	loadData(null, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
 		name:id
@@ -1013,76 +1155,173 @@ function removeSynergy(id){
 }
 
 function createSynergyView(name,ratio,userid,synergyid){
-	var $body='<div id="Synergy-info">';
-	$body+='协助人：' +
-	'<div id="select" style="display: inline-block;">'+
-	' <input type="text" id="name" value="'+name+'" />'+
-	' <ul  id="ul-select-synergy" style="position: absolute; overflow: auto;width:160px; overflow: hidden; background-color: white;"  > </ul>  '+
-	'</div>'+
-	' 协助人占有率：<input type="text" id="ratio"  value="'+ratio+'" />'+
-	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
-	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
-	' <button  id = "deleteSynergy" >-</button>';
-	$body+='</div>';
+	var $body='<div id="Synergy-info">'+
+		'<div id="select" style="display:inline-block;margin-left:48px">'+
+		'  <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
+
+		'  <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+		'  <label  class="synergy synergy-left visible" id="name-error" >协同人信息错误</label>'+
+
+		' <input type="hidden" id="user-id"  value="'+userid+'"  />' +
+		'</div>'+
+		'<div style="display:inline-block;margin-left:48px">'+
+		'  <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
+		'  <label  class="synergy synergy-right visible" id="proportionError">比例错误</label>'+
+		'</div>' +
+		' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
+		' <button class="glyphicon glyphicon-minus " id = "deleteSynergy" ></button>';
+		$body+='</div>';
+
 	return $body;
 }
+
 function getViewSynerhy() {
 	var base_Synergy = $("div[id^=Synergy-info]");
 	var currCount=base_Synergy.length;
 	var synergys = new Array(currCount);
+	var index =0 ;
 	for (var i = 0; i < synergys.length; i++) {
 		var synergy=base_Synergy[i];
 		var userId=$(synergy).find("input#user-id").val();
 		var ratio=$(synergy).find("input#ratio").val().trim();
 		var userName=$(synergy).find("input#name").val().trim();
 		var synergyId=$(synergy).find("input#synergy-id").val().trim();
-		synergys[i] = {
+		if(userId == null || userId == '' || userId == undefined )
+			continue ;
+		synergys[index] = {
 				userId:userId,
 				userName:userName,
-				ratio:ratio,
+				ratio:(ratio / 100),
 				synergyId:synergyId
 		};
+		index++;
 	}
 	return synergys;
 }
 function verifySynerhy(){
 	var dbUser = '';
+	var totalPrice = 0 ;
+
 	var base_Synergy = $("div[id^=Synergy-info]");
 	if(base_Synergy  != null && base_Synergy.length > 0){
 		var hasError=false;
-		$.each(base_Synergy,function(i,item){
-			//1.用户身份服务器验证
-			//2.占有比例
+		var baseRatio = 0;
+		for (var ix = 0; ix < base_Synergy.length; ix++) {
+			var item = base_Synergy[ix];
 			var userId = $(item).find("input#user-id").val().trim();
 			var userName = $(item).find("input#name").val().trim();
 			var ratio = $(item).find("input#ratio").val().trim();
-			syncLoadData(function(msg) {
-				dbUser=msg;
-			}, getContextPath() + '/mgr/projects/staff/static/list', null);
-			
-			if(dbUser != ''){
-				var verifyTrue =false;
-				for (var int = 0; int < dbUser.length; int++) {
-					var referrer = dbUser[int];
-					var name=referrer.staffName+''.trim();
-					var id=referrer.staffId;
-					if(userId == id && name == userName){
-						verifyTrue =true;
-						break;
-					}else{
-						verifyTrue =false;
-					}
-				}
-				
-				if(!verifyTrue){
-					hasError=true;
-					alert("填写错误了哟  ！ "+userName);
-				}
-			}
-		});
-		return hasError;
+			var ratioName =$(item).find("input#ratio");
+			var nameError=$(item).find("label#name-error");
+			var proportionError=$(item).find("label#proportionError");
+            if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
+            	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
+    			if(referrerList != ''){
+    				for (var int = 0; int < referrerList.length; int++) {
+    					var referrer = referrerList[int];
+    					var name=referrer.employeeRealName+''.trim();
+    					var id=referrer.employeeId;
+    					if(userId == id && name == userName){
+    						hasError =false;
+    						break;
+    					}else{
+    						hasError =true;
+    					}
+    				}
+    			}else{
+
+    				 //输入的信息数据库里不存在
+    				hasError =true;
+    			}
+    			
+    			if(hasError){
+    				$(item).find("input#name").focus();
+    				nameError.removeClass("visible");
+    				setError($(item).find("input#name"));
+    			}
+    			// 继续验证价格
+    			var res = verifySynerhyRatio(ratio,baseRatio);
+    			
+    			if(res.str != 'ok'){
+    				//价格发生问题
+    				proportionError.text(res.str);
+    				proportionError.removeClass('visible');
+    				ratioName.focus();
+    				setError(ratioName);
+    				hasError =true;
+    				break;
+    			}
+    			baseRatio=res.baseRatio;
+           }
+
+		}
 		
+		return hasError ? true : false;
 	}
 }
 
+function verifySynerhyRatio(ratio,baseRatio){
+	/**
+	 * 1.验证是否非空
+	 * 2.验证输入是否为数字
+	 * 3.验证价格是否超过100
+	 * 4.协调输出错误信息
+	 */
+	var res ="ok";
+	baseRatio = Number(baseRatio)+Number(ratio);
+	if(ratio == null || ratio == undefined || ratio == '' ){
+		res = "请填写占有比例";
+	} else if(!checkNumber(ratio)){
+		res = "只能输入数字呦";
+	}else if(baseRatio >= 100 || baseRatio < 1 ){
+		res = "输入的比例过大";
+	}
+	return {str:res,baseRatio:baseRatio};
+}
+
 //add Synergy by laowang end 2016-5-25 12:35
+
+//add showMore by lt end 2016-6-2 12:35
+function isMoreShow(){
+	
+    if(isMore)
+        {
+    		$("#close-div").slideDown(10);
+    		$('#loadWord').text('收起');
+    		$('#circleImg').addClass('circle-180');
+    		isMore=false;
+        }   
+    
+      else
+           {
+    		$("#close-div").slideUp(10);
+    		$('#loadWord').text('展开更多');
+    		$('#circleImg').removeClass('circle-180');
+    		isMore=true;
+          }	
+	
+}
+//end
+
+//add checkHasPirce by lt end 2016-6-2 12:35
+function hasPirce(){
+	
+	var userPrirce =$("#userinput").val().trim();
+	var providerPrice =$('#providerInput').val().trim();
+	
+	if(userPrirce!=0||providerPrice!=0){
+		$("#close-div").slideDown(10);
+		$('#loadWord').text('收起');
+		$('#circleImg').addClass('circle-180');
+		isMore=false;
+	}
+	else{
+		$("#close-div").slideUp(10);
+		$('#loadWord').text('展开更多');
+		$('#circleImg').removeClass('circle-180');
+		isMore=true;
+	}
+	
+	
+}
+
