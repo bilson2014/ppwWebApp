@@ -176,8 +176,8 @@ var="cookiejs" />
 							<label class="error-label" id="error-input-referrer">该信息有误</label>
 						</div>
 						
-				<ul class="ul-option-source" style="" id="ul-select-referrer">
-				</ul>  
+						<ul class="ul-option-source" style="" id="ul-select-referrer">
+						</ul>  
                    </div>
                    
                    
@@ -192,8 +192,6 @@ var="cookiejs" />
 									<div class="cooperative pos-left">比例</div>
 								</div>
 								<div id="Synergy-root" style="display: inline-block;">
-								
-								
 								
 								</div>
 							</div>

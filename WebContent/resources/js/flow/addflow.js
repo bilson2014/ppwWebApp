@@ -1133,15 +1133,18 @@ function removeSynergy(id){
 function createSynergyView(name,ratio,userid,synergyid){
 	var $body='<div id="Synergy-info">';
 	$body+=
-	'<div id="select" style="display: inline-block;">'+
+	'<div id="select">'+
 	' <input  class="cooperative-input cooperative-input border-gray form-control" type="text" id="name" value="'+name+'" />'+
 	' <ul class="ul-option-common" id="ul-select-synergy" style="position: absolute;left:198px; overflow: auto; overflow: hidden; background-color: white;"  > </ul>  '+
+	'<label  class="synergy synergy-left" id="error-Synergy" >协同人</label>'+
 	'</div>'+
+	'<div>'+
+	'<label  class="synergy synergy-right">比例</label>'
 	' <input class="cooperative-input cooperative-input border-gray form-control" type="text" id="ratio"  value="'+ratio+'" />&nbsp%'+
 	' <input type="hidden" id="user-id"  value="'+userid+'"  /> '+
 	' <input type="hidden" id="synergy-id"  value="'+synergyid+'"  /> '+
 	' <button class="glyphicon glyphicon-minus" id = "deleteSynergy" ></button>'+
-	'<div><label  class="synergy synergy-left" id="error-Synergy" >协同人</label> <label  class="synergy synergy-right">比例</label></div>';
+	'</div>'
 	$body+='</div>';
 	return $body;
 }
