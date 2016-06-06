@@ -1084,7 +1084,11 @@ function enableSubmitBtnEnent(){
 	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
+
+			  
+			    // business logic..
 			updateProjectajax();
+			 
 			//$("#isShow").modal('show');
 			
 		});
@@ -1239,6 +1243,7 @@ function verifySynerhy(){
 			});
             
             
+           
 
 			
             if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
@@ -1252,6 +1257,7 @@ function verifySynerhy(){
     						hasError =false;
     						break;
     					}else{
+    						$(item).find("input#user-id").val('');
     						hasError =true;
     					}
     				}
@@ -1260,13 +1266,10 @@ function verifySynerhy(){
     				 //输入的信息数据库里不存在
     				hasError =true;
     			}
-    			var logiNname = $("#logiNname").val();
-    			if(logiNname == userName)
-    				hasError =true;
+    		
     			
     			if(hasError){
     				$(item).find("input#name").focus();
-    				nameError.text('协同人不存在');
     				nameError.removeClass("visible");
     				setError($(item).find("input#name"));
     			}
@@ -1287,7 +1290,8 @@ function verifySynerhy(){
             
             
             //add same people check by lt 20160606
-            
+            //begin
+            var userId = $(item).find("input#user-id").val().trim();
             if(userIdArray.length!=1){
             	
             for(var i=0;i<userIdArray.length-1;i++)
@@ -1296,9 +1300,10 @@ function verifySynerhy(){
                     {
                             if(userIdArray[i]==userIdArray[j])
                             {
-                            	$(item).find("input#name").focus();
+                            	
                             	nameError.text('协同人重复了');
                 				nameError.removeClass("visible");
+                				$(item).find("input#name").focus();
                 				setError($(item).find("input#name"));
                 				hasError =true;   
                                 break;
@@ -1309,6 +1314,22 @@ function verifySynerhy(){
             }
 
 		}
+		
+		
+		 if(userName==''||userId==''){
+         	nameError.text('协同人不存在');
+         }
+		 
+			var logiNname = $("#logiNname").val();
+			if(logiNname == userName){
+				nameError.text('自己不能是协同人');
+				nameError.removeClass("visible");
+				$(item).find("input#name").focus();
+				setError($(item).find("input#name"));
+				hasError =true;
+			}
+		 
+		//end
 		
 		return hasError ? true : false;
 	}

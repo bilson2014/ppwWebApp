@@ -173,14 +173,12 @@
 					               
 					            </ul>
 					        </li>
-			               
-			               
 			            </ul>
 			        </li>
 			    
-			        <li><a id="historyProject"   >历史项目</a>
-			            <ul id="historyProjectId" style="height:500px;overflow-y:auto;overflow-x:hidden" >
-			              
+			        <li><a id="historyProject">历史项目</a>
+			            <ul id="historyProjectId">
+			                         
 			            </ul>
 			        </li>
 			     
