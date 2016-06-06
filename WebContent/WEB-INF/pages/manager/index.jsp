@@ -151,7 +151,7 @@
 			        <li><a id="doingProject" >进行中项目</a>
 			            <ul>
 			              
-			                <li><a id="myProject" >我的项目</a>
+			                <li><a id="myProject" >负责项目</a>
 			                    <ul id="myProjectId">
 			                      <!--   <li><a class="title-content" href="#">Subitem 1</a></li>
 			                        <li><a class="title-content" href="#">Subitem 2</a></li>

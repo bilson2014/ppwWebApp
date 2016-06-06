@@ -123,6 +123,7 @@ function init() {
 		if (file != null&&file!='' && tag != '') {
 			var res=uploadfile();
 			// modify by guoyang, 2016-04-19 03:11 begin
+			
 			$('#toolbar-modal').modal('hide');
 			$("#upload-file-name").val("");
 			oTimer = setInterval("getProgress()", 500);
@@ -262,8 +263,7 @@ function pause() {
 		$(".prev-task").hide();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadflowdata();
-		loadcommentdata(false);
+		loadprojecctlist(false);
 	}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
 		id : key
 	}));
@@ -285,8 +285,7 @@ function resume() {
 		$(".prev-task").show();
 		getBtnWidth();
 		$("#toolbar-check").modal('hide');
-		loadflowdata();
-		loadcommentdata(false);
+		loadprojecctlist(false);
 	}, getContextPath() + '/mgr/flow/resumeProcess', $.toJSON({
 		id : key
 	}));
@@ -852,6 +851,7 @@ function loadprojecctlist(state) {
 		
 		var currentprojectkey = '';
 		if(msg.length<=0){
+			loadSynerhyList();
 			$(".left-page").hide();
 			$(".right-page").hide();
 			$(".noproject").removeClass('hide');
@@ -1015,30 +1015,31 @@ function loadSynerhyList(){
 	var key=getCurrentProject();
 	//TODO
 	syncLoadData(function(msg) {
-		var help=$("#helpProjectId");
-		help.html('');
-		for (var i = 0; i < msg.length; i++){
-		var liStar = $('<li></li>')
-		var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
-				+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
-		$(a).on("click", function() {
-			firstClick=true;
-			var key = $(this).attr("data-value");
-			putCurrentProject(key);
-			var state=jQuery(this).attr('data-state');
-			if (state == 1 || state == 2)
-			{
-				loadprojecctlist(true);
-			}else{
-				loadprojecctlist(false);
+		if(msg.length <=0){
+			
+		}else{
+			var help=$("#helpProjectId");
+			help.html('');
+			for (var i = 0; i < msg.length; i++){
+			var liStar = $('<li></li>')
+			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
+					+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
+			$(a).on("click", function() {
+				firstClick=true;
+				var key = $(this).attr("data-value");
+				putCurrentProject(key);
+				var state=jQuery(this).attr('data-state');
+				if (state == 1 || state == 2)
+				{
+					loadprojecctlist(true);
+				}else{
+					loadprojecctlist(false);
+				}
+			});
+			liStar.append(a);
+			help.append(liStar);
 			}
-		});
-		liStar.append(a);
-		help.append(liStar);
 		}
-		
-		
-		
 	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
 		id : key
 	}));
