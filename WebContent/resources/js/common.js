@@ -263,6 +263,14 @@ function checkNumber(str){
 		return false;
 }
 
+function checkDecimal(str){
+	reg =/^\d+(\.\d+)?$/;
+	if(str.match(reg))
+		return true;
+	else
+		return false;
+	
+}
 /**
  * 检验 用户名格式
  * @param name 用户名
