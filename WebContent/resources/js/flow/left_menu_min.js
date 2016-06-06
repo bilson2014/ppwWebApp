@@ -39,13 +39,13 @@
         item.unbind('click').click(_item);
         if (b.autostart) {
             c.children("a").each(function() {
-                if (this.href == httpAdress) {
-                    $(this).parent("li").parent("ul").slideDown(b.Speed, 
-                    function() {
-                        $(this).parent("li").children(".inactive").removeAttr("class");
-                        $(this).parent("li").children("a").addClass("active")
-                    })
-                }
+//                if (this.href == httpAdress) {
+//                    $(this).parent("li").parent("ul").slideDown(b.Speed, 
+//                    function() {
+//                        $(this).parent("li").children(".inactive").removeAttr("class");
+//                        $(this).parent("li").children("a").addClass("active")
+//                    })
+//                }
             })
         }
     }

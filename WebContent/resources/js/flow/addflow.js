@@ -468,7 +468,7 @@ function updateProject_ViewInit() {
 				$('#helpLabel').hide();
 				
 				//addSynergy(item.userName,(item.radio * 100),item.userId,item.synergyId);
-				addSynergy(item.userName,(parseFloat(item.ratio) * 100).toFixed(0),item.userId,item.synergyId);
+				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
 			});
 		}
 		if(msg.customerPayment+'' == '0.0')
@@ -1203,7 +1203,7 @@ function getViewSynerhy() {
 		synergys[index] = {
 				userId:userId,
 				userName:userName,
-				ratio:(ratio / 100),
+				ratio:ratio,
 				synergyId:synergyId
 		};
 		index++;
@@ -1303,7 +1303,7 @@ function verifySynerhyRatio(ratio,baseRatio){
 	baseRatio = Number(baseRatio)+Number(ratio);
 	if(ratio == null || ratio == undefined || ratio == '' ){
 		res = "请填写占有比例";
-	} else if(!checkNumber(ratio)){
+	} else if(!checkDecimal(ratio)){
 		res = "只能输入数字呦";
 	}else if(baseRatio >= 100 || baseRatio < 1 ){
 		res = "所有协同人比例之和小于100%";
