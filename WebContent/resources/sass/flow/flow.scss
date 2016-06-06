@@ -1011,9 +1011,14 @@ img {
 	font-size:1.7rem;
 	color:black;
 	}
+     
+#historyProjectId{
+	height:700px;
+	overflow-y:auto;
+	overflow-x:hidden
+}
 
 	.border-select{
-
        background:#fa7872;
        width:2px;
        height:15px;
@@ -1025,9 +1030,12 @@ img {
 
 }
 
+
+
+
 //end
 
-
+::-webkit-scrollbar{width:0px;}
 
 
 
