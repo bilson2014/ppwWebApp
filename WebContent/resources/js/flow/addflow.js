@@ -367,7 +367,7 @@ function searchSynergy(input) {
 				div.find("input#name").val(name);
 				div.find("input#user-id").val(id);
 				clearError(div.find("input#name"));
-				$('#error-Synergy').hide();
+				div.find("label#proportionError");
 			});
 			table.append(li);
 		});
@@ -1214,6 +1214,17 @@ function verifySynerhy(){
 			var ratioName =$(item).find("input#ratio");
 			var nameError=$(item).find("label#name-error");
 			var proportionError=$(item).find("label#proportionError");
+			
+
+			 $("input#name").on('click',function(){
+				 $("label#name-error").addClass("visible");
+				});
+			
+            $(item).find("input#ratio").on('change',function(){
+            	proportionError.addClass("visible");
+			});
+			
+			
             if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
             	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
     			if(referrerList != ''){
