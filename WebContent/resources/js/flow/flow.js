@@ -123,6 +123,7 @@ function init() {
 		if (file != null&&file!='' && tag != '') {
 			var res=uploadfile();
 			// modify by guoyang, 2016-04-19 03:11 begin
+			
 			$('#toolbar-modal').modal('hide');
 			$("#upload-file-name").val("");
 			oTimer = setInterval("getProgress()", 500);

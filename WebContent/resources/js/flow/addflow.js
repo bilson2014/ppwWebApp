@@ -376,7 +376,7 @@ function searchSynergy(input) {
 				div.find("input#name").val(name);
 				div.find("input#user-id").val(id);
 				clearError(div.find("input#name"));
-				$('#error-Synergy').hide();
+				div.find("label#proportionError");
 			});
 			table.append(li);
 		});
@@ -1084,7 +1084,11 @@ function enableSubmitBtnEnent(){
 	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
+
+			  
+			    // business logic..
 			updateProjectajax();
+			 
 			//$("#isShow").modal('show');
 			
 		});
@@ -1218,6 +1222,7 @@ function verifySynerhy(){
 	if(base_Synergy  != null && base_Synergy.length > 0){
 		var hasError=false;
 		var baseRatio = 0;
+		var userIdArray = new Array();
 		for (var ix = 0; ix < base_Synergy.length; ix++) {
 			var item = base_Synergy[ix];
 			var userId = $(item).find("input#user-id").val().trim();
@@ -1226,22 +1231,20 @@ function verifySynerhy(){
 			var ratioName =$(item).find("input#ratio");
 			var nameError=$(item).find("label#name-error");
 			var proportionError=$(item).find("label#proportionError");
-			
-			/*$(item).find("input#name").on('change',function(){
-				nameError.addClass("visible");
-			});
-			
-            $(item).find("input#ratio").on('change',function(){
-            	proportionError.addClass("visible");
-			});*/
-			
-			$("input#name").on('click',function(){
+			userIdArray.push(userId);
+
+       
+			 $("input#name").on('click',function(){
 				 $("label#name-error").addClass("visible");
 				});
 			
-           $(item).find("input#ratio").on('change',function(){
-           	proportionError.addClass("visible");
+            $(item).find("input#ratio").on('change',function(){
+            	proportionError.addClass("visible");
 			});
+            
+            
+           
+
 			
             if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
             	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
@@ -1254,6 +1257,7 @@ function verifySynerhy(){
     						hasError =false;
     						break;
     					}else{
+    						$(item).find("input#user-id").val('');
     						hasError =true;
     					}
     				}
@@ -1262,9 +1266,7 @@ function verifySynerhy(){
     				 //输入的信息数据库里不存在
     				hasError =true;
     			}
-    			var logiNname = $("#logiNname").val();
-    			if(logiNname == userName)
-    				hasError =true;
+    		
     			
     			if(hasError){
     				$(item).find("input#name").focus();
@@ -1285,8 +1287,49 @@ function verifySynerhy(){
     			}
     			baseRatio=res.baseRatio;
            }
+            
+            
+            //add same people check by lt 20160606
+            //begin
+            var userId = $(item).find("input#user-id").val().trim();
+            if(userIdArray.length!=1){
+            	
+            for(var i=0;i<userIdArray.length-1;i++)
+            {
+                    for(var j=1;j<userIdArray.length;j++)
+                    {
+                            if(userIdArray[i]==userIdArray[j])
+                            {
+                            	
+                            	nameError.text('协同人重复了');
+                				nameError.removeClass("visible");
+                				$(item).find("input#name").focus();
+                				setError($(item).find("input#name"));
+                				hasError =true;   
+                                break;
+                            }
+                    }
+                    
+                 }
+            }
 
 		}
+		
+		
+		 if(userName==''||userId==''){
+         	nameError.text('协同人不存在');
+         }
+		 
+			var logiNname = $("#logiNname").val();
+			if(logiNname == userName){
+				nameError.text('自己不能是协同人');
+				nameError.removeClass("visible");
+				$(item).find("input#name").focus();
+				setError($(item).find("input#name"));
+				hasError =true;
+			}
+		 
+		//end
 		
 		return hasError ? true : false;
 	}

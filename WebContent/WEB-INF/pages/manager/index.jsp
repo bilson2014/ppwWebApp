@@ -145,7 +145,7 @@
 				<table class="indentlisthistory projectliststyle">
 				</table> -->
 				
-			<div id="content">
+			<div id="content" >
 			    <div class="menu" id="menuId">
 			        <ul>
 			        <li><a id="doingProject" >进行中项目</a>
@@ -173,14 +173,12 @@
 					               
 					            </ul>
 					        </li>
-			               
-			               
 			            </ul>
 			        </li>
 			    
-			        <li><a id="historyProject" >历史项目</a>
+			        <li><a id="historyProject">历史项目</a>
 			            <ul id="historyProjectId">
-			              
+			                         
 			            </ul>
 			        </li>
 			     
