@@ -107,7 +107,7 @@
 		</div>
 	</div>
 
-	<div class="page">
+	<div class="page" >
 		<!-- 标题区域 start -->
 		<div class="title-section">
 			<div class="title-wrap">
