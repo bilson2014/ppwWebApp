@@ -1294,15 +1294,16 @@ function verifySynerhy(){
             //add same people check by lt 20160606
             //begin
             var userId = $(item).find("input#user-id").val().trim();
+            var s =userIdArray.length;
             if(userIdArray.length!=1){
             	
             for(var i=0;i<userIdArray.length-1;i++)
             {
                     for(var j=1;j<userIdArray.length;j++)
                     {
-                            if(userIdArray[i]==userIdArray[j])
+
+                    	   if(userIdArray[i]==userIdArray[j]&&i!=j)
                             {
-                            	
                             	nameError.text('协同人重复了');
                 				nameError.removeClass("visible");
                 				$(item).find("input#name").focus();
@@ -1318,7 +1319,7 @@ function verifySynerhy(){
 		}
 		
 		
-		 if(userName==''||userId==''){
+		 if(userId==''){
          	nameError.text('协同人不存在');
          }
 		 
