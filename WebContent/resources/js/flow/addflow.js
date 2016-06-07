@@ -8,10 +8,12 @@ var referrerList;
 var referrerList1;
 var isMore = true;
 var angle = 0;
+var kaptcharInterValObj; // timer变量，控制时间
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
-	
+
+
 
 	$(".error-label").hide();
 	$(".username-error-label").hide();
@@ -1314,6 +1316,7 @@ function verifySynerhy(){
             }
 
 		}
+		//end
 		
 		
 		 if(userName==''||userId==''){
@@ -1398,5 +1401,23 @@ function hasPirce(){
 	}
 	
 	
+}
+
+
+
+//初始化弹出框
+function popshow(id,content){
+	window.clearInterval(kaptcharInterValObj); // 停止计时器
+	$(id).popover({
+		template:'<div class="popover" role="tooltip"><div class="arrow "></div><h3 class="popover-title"></h3><div class="popover-content" style="color:red"></div></div>',
+		placement : 'bottom',
+		content : content,
+		trigger : 'manual',
+		delay: { show: 200, hide: 100 }
+	}).popover('show');
+	
+	kaptcharInterValObj = window.setInterval(function(){
+		$(id).popover('hide');
+	}, 2000);
 }
 

@@ -12,6 +12,17 @@ var oTimer;
 $().ready(
 		function() {
 	
+			
+			$('#test').on('click',function(){
+				
+				ControlTree.OpenMyProjectTree();
+			});
+            $('#test2').on('click',function(){
+            	ControlTree.CloseMyProjectTree();
+          
+			});
+			
+			
 			init();
 			showOrderTime();
 			loadprojecctlist();
@@ -1206,6 +1217,68 @@ function showOrderTime(){
 	$('#stepword_jf').mouseout(function(){
           $('#div_jf').addClass('opacity-li');
 	});
+}
+
+var ControlTree = {
+		CommonDoingProjectTree : function(){
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenDoingProjectTree : function(){
+			$('#doingProject').removeClass('inactive');
+			$('#doingProject').addClass('active');
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenMyProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+			$('#myProject').removeClass('inactive');
+			$('#myProject').addClass('active');
+		    $('#myProjectId').slideDown();
+		},
+		OpenHelpProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+			$('#helpProject').removeClass('inactive');
+			$('#helpProject').addClass('active');
+			$('#helpProjectId').slideDown();
+		},
+		OpenPauseProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+			$('#pauseProject').removeClass('inactive');
+			$('#pauseProjecd').addClass('active');
+			$('#pauseProjectId').slideDown();
+		},
+		OpenHistoryProjectTree : function(){
+			$('#historyProject').removeClass('inactive');
+			$('#historyProject').addClass('active');
+			$('#historyProjectId').slideDown();
+		},
+		CloseDoingProjectTree : function(){
+			$('#doingProject').removeClass('active');
+			$('#doingProject').addClass('inactive');
+    	    $('#doingProjectId').slideUp();
+       },
+       CloseMyProjectTree : function(){
+    	   $('#myProject').removeClass('active');
+		   $('#myProject').addClass('inactive');
+    	   $('#myProjectId').slideUp();
+       },
+       CloseHelpProjectTree : function(){
+    	   $('#helpProject').removeClass('active');
+		   $('#helpProject').addClass('inactive');
+    	   $('#helpProjectId').slideUp();
+       },
+       ClosePauseProjectTree : function(){
+    	   $('#pauseProject').removeClass('active');
+		   $('#pauseProject').addClass('inactive');
+    	   $('#pauseProjectId').slideUp();
+       },
+       CloseHistoryProjectTree : function(){
+    	   $('#historyProject').removeClass('active');
+		   $('#historyProject').addClass('inactive');
+    	   $('#historyProjectId').slideUp();
+       }
+
 }
 
 

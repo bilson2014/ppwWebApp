@@ -149,7 +149,7 @@
 			    <div class="menu" id="menuId">
 			        <ul>
 			        <li><a id="doingProject" >进行中项目</a>
-			            <ul>
+			            <ul id="doingProjectId" >
 			              
 			                <li><a id="myProject" >负责项目</a>
 			                    <ul id="myProjectId">
@@ -396,6 +396,7 @@
 			</div>
 		</div>
 	</div>
+	
 	
 	<div class="footer">
 		<!-- 底栏 start -->
