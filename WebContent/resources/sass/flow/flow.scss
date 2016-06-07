@@ -1093,19 +1093,13 @@ img {
         width: 150px;
         @include ellipsis;
     }
-    #doingProject,
-    #historyProject {
+    #doingProject,#historyProject {
         position: relative;
         left: 35px;
         font-size: 1.7rem;
         color: black;
     }
-    #historyProjectId {
-        height: 700px;
-        width: 205px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+
     .border-select {
         background: #fa7872;
         width: 2px;
@@ -1114,6 +1108,14 @@ img {
         top: 3px;
         right: 10px;
     }
+}
+
+#menuId{
+        height: 1200px;
+        width: 205px;
+        overflow-y: auto;
+        overflow-x: hidden;
+
 }
 
 //end
@@ -1128,6 +1130,7 @@ img {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #555;
+    -webkit-box-shadow: inset 0 0 6px $gray-dark;
+    background-color:$gray;
 }
+

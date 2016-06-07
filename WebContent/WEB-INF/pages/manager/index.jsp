@@ -170,7 +170,7 @@
 			               
 			                 <li><a id="pauseProject" >暂停项目</a>
 					            <ul id="pauseProjectId">
-					               
+					                         
 					            </ul>
 					        </li>
 			            </ul>
@@ -178,7 +178,7 @@
 			    
 			        <li><a id="historyProject">历史项目</a>
 			            <ul id="historyProjectId">
-			                         
+			                           
 			            </ul>
 			        </li>
 			     
