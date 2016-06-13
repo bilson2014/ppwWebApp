@@ -29,8 +29,9 @@ var="cookiejs" />
 <spring:url value="/resources/js/model.js" var="modelJs" />
 <spring:url value="/resources/css/flow/addflow.css" var="addflowcss" />
 <spring:url value="/resources/js/flow/addflow.js" var="addflowjs" />
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/resources/lib/jquery/ajaxfileupload.js"
-	var="ajaxfileuploadJs" />
+var="ajaxfileuploadJs" />
 	<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -63,6 +64,10 @@ var="cookiejs" />
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 <script type="text/javascript" src="${datepickerJs }"></script>
 <script type="text/javascript" src="${datepickerZhJs }"></script>
+<script type="text/javascript" src="${bootstrapJs }"></script>
+
+
+
 </head>
 <body >
 
@@ -354,9 +359,10 @@ var="cookiejs" />
 		</div>
 	</div>
 	<div class="indent-btn-div">
-		<button class="indent-btn" id="indent-btn">确认</button>
+		<button  class="indent-btn" id="indent-btn"  >确认</button>
 		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
 	</div>  	
+
 	            
 	            <div class="bottom-div">
 	                      <div class="loadmore-div">
