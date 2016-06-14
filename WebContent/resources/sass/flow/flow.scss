@@ -7,6 +7,9 @@
     margin: auto;
     width: 960px;
     top: 75px;
+
+
+    //左侧树形
     .left-page {
         display: inline-block;
         width: 212px;
@@ -27,11 +30,7 @@
             margin-top: 25px;
         }
     }
-    .right-div {
-        position: relative;
-        right: 25px;
-        float: right;
-    }
+
     .left-title-text-top {
         margin-left: 5px;
         font-size: $font-size;
@@ -50,34 +49,9 @@
         top: 3px;
         display: inline-block;
     }
-    .right-page {
-        display: inline-block;
-        width: 731px;
-        position: relative;
-        left: 10px;
-        .flowblock {
-            background: white;
-            .flow-title {
-                width: 100%;
-                height: 16px;
-                padding-top: 30px;
-                margin-left: 10px;
-            }
-        }
-    }
-    .flow-title-text {
-        font-size: $font-size;
-        font-weight: bold;
-        color: $gray-dark;
-        position: relative;
-        left: 20px;
-        top: 55px;
-    }
-    .step_margin {
-        margin-top: 74px;
-        padding-left: 20px;
-    }
-    .indentdiv {
+
+//左侧树形菜单文字
+  .indentdiv {
         width: 100%;
         margin-top: 5px;
         margin-bottom: 25px;
@@ -115,6 +89,52 @@
             padding-left: 7px;
         }
     }
+    //end
+
+
+
+
+    //右侧模块
+    .right-page {
+        display: inline-block;
+        width: 731px;
+        position: relative;
+        left: 10px;
+
+
+            .right-div {
+        position: relative;
+        right: 25px;
+        float: right;
+    }
+
+
+        .flowblock {
+            background: white;
+            .flow-title {
+                width: 100%;
+                height: 16px;
+                padding-top: 30px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+
+    .flow-title-text {
+        font-size: $font-size;
+        font-weight: bold;
+        color: $gray-dark;
+        position: relative;
+        left: 20px;
+        top: 55px;
+    }
+    .step_margin {
+        margin-top: 74px;
+        padding-left: 20px;
+    }
+  
+  //流程时间模块
     .descriptiondiv {
         margin: 30px 0px 0px 0px;
         padding-left: 10px;
@@ -143,6 +163,8 @@
             color: $red-base;
         }
     }
+    //end
+
     .flowbtndiv {
         margin: 0 auto;
         width: auto;
@@ -151,6 +173,8 @@
             margin-left: 20px;
         }
     }
+
+    //项目信息
     .indentinfo {
         background: $white;
         position: relative;
@@ -243,6 +267,16 @@
             height: 25px;
         }
     }
+      .change-file-btn {
+        display: inline-block;
+        position: relative;
+        float: right;
+        right: 15px;
+    }
+    //end
+
+
+    //项目文件模块
     .indentfile {
         position: relative;
         top: 10px;
@@ -262,18 +296,18 @@
             padding-left: 20px;
         }
     }
+
+    #addfile {
+        display: none;
+    }
+
     .upload-file-btn {
         display: inline-block;
         position: relative;
         float: right;
         right: 15px;
     }
-    .change-file-btn {
-        display: inline-block;
-        position: relative;
-        float: right;
-        right: 15px;
-    }
+  
     .file-table {
         padding-left: 10px;
         margin-top: 30px;
@@ -379,6 +413,9 @@
         width: 100%;
         text-align: center;
     }
+    //end
+
+  //留言板
     .message-div {
         background: $white;
         position: relative;
@@ -452,11 +489,13 @@
             }
         }
     }
-    #addfile {
-        display: none;
-    }
+    //end
+
+   
 }
 
+
+//弹出框上传文件
 .upload-window {
     h1 {
         position: relative;
@@ -623,7 +662,11 @@
     margin-top: 50px;
     margin-bottom: 20px;
 }
+//end
 
+
+
+//无项目提示框
 .circle-img {
     position: absolute;
     z-index: 999;
@@ -804,7 +847,9 @@
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
 }
+//end
 
+//旋转动画
 @-webkit-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -864,12 +909,9 @@
         transform: scale3d(1, 1, 1);
     }
 }
+//end
 
-.indent-more-add {
-    position: relative;
-    left: 16px;
-    top: 3px;
-}
+
 
 .modal-body dl {
     text-align: left;
@@ -880,10 +922,6 @@
     margin-left: 10x;
 }
 
-.projectliststyle tr {
-    cursor: pointer;
-}
-
 img {
     cursor: pointer;
 }
@@ -892,6 +930,7 @@ img {
     height: 200px;
 }
 
+//下一步 上一步
 .check-message {
     margin: auto;
     display: block;
@@ -909,6 +948,7 @@ img {
     top: 80px;
 }
 
+//流程时间进度模块
 .time-div {
     color: $gray;
     font-size: $font-size-base;
@@ -995,10 +1035,15 @@ img {
     color: $gold-yellow;
 }
 
+
 .opacity-li {
     opacity: 0;
 }
 
+//end
+
+
+//图标旋转
 .circle-180 {
     transform: rotate(180deg);
 }

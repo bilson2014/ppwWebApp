@@ -140,10 +140,7 @@
 			</div>
 			
 			<div class="indentdiv">
-			<!-- 	<table class="indentlist projectliststyle">
-				</table>
-				<table class="indentlisthistory projectliststyle">
-				</table> -->
+		
 				
 			<div id="content" >
 			    <div class="menu" id="menuId">
@@ -151,7 +148,7 @@
 			        <li><a id="doingProject" >进行中项目</a>
 			            <ul id="doingProjectId" >
 			              
-			                <li><a id="myProject" >负责项目</a>
+			                <li ><a id="myProject" >负责项目</a>
 			                    <ul id="myProjectId">
 			                      <!--   <li><a class="title-content" href="#">Subitem 1</a></li>
 			                        <li><a class="title-content" href="#">Subitem 2</a></li>
@@ -161,7 +158,7 @@
 			                </li>
 			                
 			               <r:identity role="employee">
-			                 <li ><a id="helpProject" >协同项目</a>
+			                 <li  ><a id="helpProject" >协同项目</a>
 			                    <ul id="helpProjectId">
 			                       
 			                    </ul>
@@ -178,6 +175,7 @@
 			    
 			        <li><a id="historyProject">历史项目</a>
 			            <ul id="historyProjectId">
+			                 
 			                           
 			            </ul>
 			        </li>

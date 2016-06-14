@@ -34,6 +34,8 @@
 	}
 }
 
+
+//项目信息整体模块
 .infobody {
 	width: 100%;
 
@@ -62,9 +64,6 @@
 		width: 100%;
 		display: inline-block;
 		height: 100%;
-
-
-
 
 		.baseinfo-table {
 			margin-top: 10px;
@@ -140,6 +139,9 @@
 		}
 	}
 }
+
+
+//项目描述文本域
 .textarea-baseinfo {
 	border: solid 1px $gray-border;
 	border-radius: 3px;
@@ -149,6 +151,7 @@
 	top:-10px;
 	width: 880px;
 }
+//项目时间
 .indent-time {
 	margin-top: 10px;
 	border-radius: 5px;
@@ -183,6 +186,7 @@
 		height: 100%;
 	}
 }
+
 .right-border {
 	display: inline-block;
 	width: 100px;
@@ -228,6 +232,7 @@
 		text-align: center;
 	}
 }
+
 .indent-time-table-border-tr {
 	margin-top: 60px;
 	padding-left: 50px;
@@ -240,6 +245,7 @@
 	margin-top: 10px;
 	padding-left: 50px;
 }
+
 .tableinput {
 	width: 110px;
 	border: 0px;
@@ -255,6 +261,16 @@
 	color: $red-base;
 	font-size: $font-size-base;
 }
+
+.divtable {
+	margin-top: 20px;
+	float: left;
+}
+
+
+//end
+
+//底部确认取消
 .indent-btn-div {
 	margin-top: 50px;
 	width: 100%;
@@ -288,12 +304,15 @@
 .indent-btn-cancle:hover {
 	background-color: darken($gray, 10%);
 }
+
+//end
 .mleft {
     margin-top:15px;
 	padding-left: 50px;
 	display: inline-block;
 }
 
+//下拉框
 .ul-option-common {
 	text-align: center;
 	line-height: 20px;
@@ -382,22 +401,11 @@
 	}
 }
 
+//end
 
 
 
-
-
-
-.tableinput-time {
-	font-size: $font-size;
-}
-.divtable {
-	margin-top: 20px;
-	float: left;
-}
-.width-div {
-	width: 150px;
-}
+//提示框
 .modal-body {
 	height: 300px;
 	width: 750px;
@@ -473,33 +481,13 @@
 		}
 	}
 }
+//end
 
 
-.checkword {
-	height: 30px;
-	line-height: 26px;
-}
-.border-red {
-	border: solid 1px $red-base;
-}
-.firstinput {
-	width: 100px;
-	height: 30px;
-	border-radius: 5px;
-	padding-left: 5px;
-	display: inline-block;
-}
-.lastinput {
-	width: 100px;
-	height: 30px;
-	border-radius: 5px;
-	padding-left: 5px;
-	display: inline-block;
-}
-.mright {
-	display: inline-block;
-	height: 30px;
-}
+
+
+
+//客户模块
 .tableinput-baseinfo {
 	padding-left: 10px;
 	border-radius: 5px;
@@ -538,39 +526,12 @@
 	font-size: $font-size-base;
 	padding-top: 10px;
 }
+//end
 
 
 
 
-.mark-icon {
-	width: 100px;
-	height: 100px;
-	background: url(../../images/common/mark.jpg) no-repeat;
-	background-size: cover;
-}
 
-.midinput{
-    height:7px;
-    border:none;
-	border-top:1px solid #d8d8d8;
-	width:35px;
-	position:relative;
-	margin-left:10px;
-	margin-right:10px;
-	display:inline-block;
-    
-}
-
-
-
-.pospricediv{
-	position:relative;
-	left:-5px;
-}
-
-.wordMargin{
-	margin-right:5px;
-}
 
 //协同人
 
@@ -790,6 +751,52 @@
 	position:relative;
 	left:0px;
 	top:0px;
+}
+
+.mark-icon {
+	width: 100px;
+	height: 100px;
+	background: url(../../images/common/mark.jpg) no-repeat;
+	background-size: cover;
+}
+
+.midinput{
+    height:7px;
+    border:none;
+	border-top:1px solid #d8d8d8;
+	width:35px;
+	position:relative;
+	margin-left:10px;
+	margin-right:10px;
+	display:inline-block;
+    
+}
+
+
+
+.pospricediv{
+	position:relative;
+	left:-5px;
+}
+
+.wordMargin{
+	margin-right:5px;
+}
+
+
+.firstinput {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+}
+.lastinput {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
 }
 
 
