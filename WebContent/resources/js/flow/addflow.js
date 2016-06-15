@@ -1167,7 +1167,9 @@ function setSynergyEvent(){
 }
 
 function removeSynergy(id){
-	loadData(null, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
+	loadData(function(){
+		
+	}, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
 		name:id
 	}));
 }
@@ -1321,6 +1323,8 @@ function verifySynerhy(){
 		
 		 if(userId==''){
          	nameError.text('协同人不存在');
+         	$(item).find("input#name").focus();
+         	hasError =true;
          }
 		 
 			var logiNname = $("#logiNname").val();

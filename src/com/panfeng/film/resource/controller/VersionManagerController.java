@@ -222,7 +222,11 @@ public class VersionManagerController extends BaseController {
 			final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "project/remove/synergy";
 		String str=HttpUtil.httpPost(url, bizBean, request);
-		return str == null;
+		if(ValidateUtil.isValid(str)){
+			boolean ret = JsonUtil.toBean(str, Boolean.class);
+			return ret;
+		}
+		return false;
 	}
 	
 	@RequestMapping(value = "/projects/get/synergys", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
