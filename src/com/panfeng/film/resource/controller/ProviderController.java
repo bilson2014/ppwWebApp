@@ -30,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.code.kaptcha.Producer;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Info;
@@ -42,7 +41,6 @@ import com.panfeng.film.resource.model.WechatToken;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.SessionInfoService;
-import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
@@ -84,12 +82,6 @@ public class ProviderController extends BaseController {
 	private static String PRODUCT_IMAGE_PATH = null; // 产品图片路径
 
 	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
-
-	@Autowired
-	private SmsService smsService = null;
-
-	@Autowired
-	private Producer captchaProducer = null;
 
 	@Autowired
 	private KindeditorService kindService;
