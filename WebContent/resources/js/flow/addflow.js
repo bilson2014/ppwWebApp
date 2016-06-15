@@ -1321,6 +1321,7 @@ function verifySynerhy(){
 		
 		 if(userId==''){
          	nameError.text('协同人不存在');
+         	hasError =true;
          }
 		 
 			var logiNname = $("#logiNname").val();

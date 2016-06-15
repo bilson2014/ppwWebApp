@@ -18,15 +18,7 @@ $().ready(
 	
 			
 			
-			
-			$('#test').on('click',function(){
-				
-				ControlTree.OpenMyProjectTree();
-			});
-            $('#test2').on('click',function(){
-            	ControlTree.CloseMyProjectTree();
-          
-			});
+
 			
 			
 			init();
