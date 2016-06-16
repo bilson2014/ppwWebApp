@@ -891,6 +891,7 @@ function loadprojecctlist() {
 		
 		// 优先加载 协同人
 		loadSynerhyList();
+	
 		var help=$("#helpProjectId").find('a');
 		
 		if(msg.length <= 0 &&  help.length <= 0){
@@ -1110,7 +1111,7 @@ function loadIndentInfo() {
 
 function loadSynerhyList(){
 	var key=getCurrentProject();
-
+	
 	syncLoadData(function(msg) {
 		if(msg.length <=0){
 			
