@@ -84,7 +84,7 @@ $().ready(
 				PrevTaskBtn();
 			});
 			
-			
+			ControlPay.initControlPay();
 			
 			
 			
@@ -883,6 +883,7 @@ function loadprojecctlist() {
 		
 		// 优先加载 协同人
 		loadSynerhyList();
+		
 		var help=$("#helpProjectId").find('a');
 		
 		if(msg.length <= 0 &&  help.length <= 0){
@@ -1271,6 +1272,114 @@ function showOrderTime(){
           $('#div_jf').addClass('opacity-li');
 	});
 }
+
+var ControlPay ={
+		
+		clickOnLine:function(){
+			
+			$('#Online').on('click',function(){
+				ControlPay.showOnlineInfo();
+				
+			});
+			
+		},
+		
+		
+		showOnlineInfo:function(){
+			$('#payInfo').slideDown();
+			ControlPay.initOnlineInfo();
+		},
+		
+		initOnlineInfo:function(){
+			var mydate = new Date();
+			var t=mydate.toLocaleString();
+			$('#checkWay').val("1");
+			
+			$('#Online').addClass('pay-click-btn');
+			$('#Online').removeClass('pay-btn');
+			$('#Outline').removeClass('pay-click-btn');
+			$('#Outline').addClass('pay-btn');
+			$('#pay-time').text('发起收款时间');
+			$('#pay-people').text('付款方');
+			$('#OnlineInfo').removeClass('hide');
+			$('#payTime-online').removeClass('hide');
+			$('#payTime-online').text(t);
+			$('#payTime-outline').addClass('hide');
+			$('#order-online').removeClass('hide');
+			$('#order-outline').addClass('hide');
+			 $('#pay-sure').text('确认');
+			 $('#link').addClass('hide');
+		},
+		
+        clickOutLine:function(){
+			
+			$('#Outline').on('click',function(){
+				ControlPay.showOutlineInfo();
+			});
+			
+		},
+		
+		showOutlineInfo:function(){
+			$('#payInfo').slideDown();
+			ControlPay.initOutlineInfo();
+		},
+		
+		initOutlineInfo:function(){
+			$('#checkWay').val("2");
+			$('#Outline').addClass('pay-click-btn');
+			$('#Outline').removeClass('pay-btn');
+			$('#Online').removeClass('pay-click-btn');
+			$('#Online').addClass('pay-btn');
+			$('#pay-time').text('收款时间');
+			$('#pay-people').text('客户名称');
+			$('#OnlineInfo').removeClass('hide');
+			$('#payTime-online').addClass('hide');
+			$('#payTime-outline').removeClass('hide');
+			$('#order-online').addClass('hide');
+			$('#order-outline').removeClass('hide');
+			 $('#pay-sure').text('确认');
+			 $('#link').addClass('hide');
+		},
+		
+		
+		   clickpay:function(){
+				
+				$('#pay-sure').on('click',function(){
+					ControlPay.initPayInfo();
+				});
+				
+			},
+			initPayInfo:function(){
+				var check=$('#checkWay').val();
+				if(check=="1"){
+				  $('#pay-sure').text('返回');
+				  $('#checkWay').val('3');
+				  $('#OnlineInfo').addClass('hide');
+				  $('#link').removeClass('hide');
+				}
+				else if(check=="2"){
+					alert('我跳转');
+				}
+				else if(check=="3"){
+					  $('#pay-sure').text('确认');
+					  $('#checkWay').val('1');
+					  $('#OnlineInfo').removeClass('hide');
+					  $('#link').addClass('hide');
+				}
+			},
+		
+		
+		initControlPay:function(){
+			ControlPay.clickOnLine();
+			ControlPay.clickOutLine();
+			ControlPay.clickpay();
+		}
+		
+		
+		
+}
+
+
 
 var ControlTree = {
 		CommonDoingProjectTree : function(){

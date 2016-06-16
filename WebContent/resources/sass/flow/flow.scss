@@ -1179,3 +1179,166 @@ img {
     background-color:$gray;
 }
 
+//支付模块
+
+.payInfo{
+ width: 100%;
+ height: 150px;
+ background: $white;
+  
+   .pay-title{
+            width: 100px;
+            height: 20px;
+            padding-top: 40px;
+            padding-left: 20px;
+            font-size:$font-size;
+            font-weight: bold;
+        }
+
+
+
+   .pay-way{
+    width:100%;
+    height:20px;
+    position: relative;
+    top:5px;
+   }
+
+   .payBtnOnline{
+       float: left;
+       position: relative;
+       left:30%;
+   }
+
+   .payBtnOutline{
+       float: right;
+       position: relative;
+       right:30%;
+   } 
+
+  .top-line{
+    position: relative;
+    left:30%;
+    color:$gray;
+  }
+
+
+.pay-btn {
+    width: 100px;
+    height: 28px;
+    border-radius: 5px;
+    font-size: $font-size-sm;
+    color: $gray-light;
+    background: none;
+    border: 1px solid $gray-light;
+    outline: none;
+}
+
+ 
+
+.pay-click-btn {
+     outline: none;
+    width: 100px;
+    height: 28px;
+    border-radius: 5px;
+    font-size: $font-size-sm;
+    color: $gray-light;
+    background: none;
+    border: 1px solid $red-base;
+}
+
+
+
+
+.pay-red-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #fe5453;
+    border-color: #fff;
+    border-radius: 5px;
+    border: none;
+    margin: 0px auto;
+    text-align: center;
+    line-height: 35px;
+    color: $white;
+    font-size: $font-size-base;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+   
+}
+
+ 
+ .payLeft{
+    position: relative;
+    left:30%;
+ }
+ .payRight{
+    position: relative;
+    left:50px;
+
+ }
+.pay-bottom{
+    width:100%;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+ .pay-input{
+    height:30px;
+    width:150px;
+    margin-top:10px;
+    margin-bottom: 15px;
+    line-height: 30px;
+ } 
+
+ .createLink{
+margin-top: 80px;
+ }
+
+ .getLink{
+  width: 500px;
+  margin-top:10px;
+ }
+
+ .getLinkInput{
+    color: $red-base;
+    font-size: $font-size;
+ }
+
+ .getLinkBtn{
+   color:$white;
+    font-size: $font-size;
+    background: $red-base;
+ }
+
+
+
+        
+}
+
+.payTop{
+    position: relative;
+    margin-top: 10px;
+}
+
+.payBtnPos{
+    position: relative;
+    top:-10px;
+    left:540px;
+}
+
+.payInfoheight{
+    height:auto;
+}
+
+.payInline{
+    display: inline-block;
+}
+
+#payInfo{
+    display: none;
+}

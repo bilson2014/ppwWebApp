@@ -1323,6 +1323,7 @@ function verifySynerhy(){
 		
 		 if(userId==''){
          	nameError.text('协同人不存在');
+
          	$(item).find("input#name").focus();
          	hasError =true;
          }

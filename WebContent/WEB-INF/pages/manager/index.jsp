@@ -307,6 +307,91 @@
 					</div>
 				</r:multPermission>
 			</div>
+			
+
+			<div class="payInfo payTop">
+			
+			
+			    <label class="pay-title">收款方式</label>
+			    <button class="border-btn payBtnPos" type="button" >支付记录</button>
+		
+			 
+			  
+			  <div class="pay-way">
+			     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
+			     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
+			  </div> 
+				
+			</div>
+			
+		    <div class="payInfo payInfoheight" id="payInfo">
+		        <div class="top-line">------------------------------------------------------</div> 
+			    <div class="pay-title">收款信息</div>
+				     <div class="payLeft ">
+				        <ul class="hide" id="OnlineInfo">
+				           <li>
+				              <div class="payInline" > 
+				                  <div id="pay-time">发起收款时间</div>
+				                  <input id="payTime-outline" class="pay-input form-control hide"></input>
+				                  <div id="payTime-online" class="pay-input">20160606</div>
+				              </div>
+				              
+				               <div  class="payInline payRight" > 
+				                  <div>支付单号</div>
+				                  <input id="order-outline" class="pay-input form-control hide"></input>
+				                  <div id="order-online" class="pay-input">231252264994</div>
+				              </div>
+				           </li>
+				           
+				            <li>
+				              <div class="payInline" > 
+				                  <div>项目名称</div>
+				                  <input class="pay-input form-control"></input>
+				              </div>
+				              
+				               <div class="payInline payRight" > 
+				                  <div id="pay-people">付款方</div>
+				                  <input class="pay-input form-control"></input>
+				              </div>
+				           </li>
+				           
+				            <li>
+				              <div> 
+				                  <div>支付金额</div>
+				                  <input class="pay-input form-control"></input>
+				              </div>
+				           </li>
+				        </ul>
+				        
+				        <div class="createLink hide" id="link">
+				           <ul>
+				              <li>
+				                 <div class="payInline"><img style="width:10px;height:20px;" src=""/></div>
+				                 <div class="payInline">成功创建支付链接</div>
+				              </li>
+				              
+				              <li>
+				                <div class="input-group getLink">
+								  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" aria-describedby="basic-addon2">
+								  <span class="input-group-addon getLinkBtn" id="basic-addon2">复制链接</span>
+								</div>
+				              </li>
+				           </ul>
+				        </div>
+				     </div>
+				     
+				   
+				     
+				   <div class="pay-bottom">
+				     <div id="pay-sure" class="pay-red-btn">确认</div>
+				     <input id="checkWay" class="hide" value="0"></input>
+				   </div>  
+			</div>
+			
+	
+			
+			
+			
 			<div class="indentinfo">
 				<div class="indentinfo-title">
 					<label class="indentinfo-title-text">项目详细信息</label>
