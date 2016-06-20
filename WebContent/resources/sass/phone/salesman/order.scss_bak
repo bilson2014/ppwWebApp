@@ -151,7 +151,6 @@ $background-color: #ffffff;
 
 	.order-input-wrap {
 		position: relative;
-		top: 35px;
 		width: 80%;
 		height: 40px;
 		margin: 0 auto;
@@ -198,13 +197,4 @@ $background-color: #ffffff;
 			}
 		}
 	}
-}
-
-.btnborder{
-  
-   border-top-left-radius: 5px;
-   border-bottom-left-radius: 5px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-
 }
