@@ -18,6 +18,10 @@ var order = {
 				if(checkMobile($('#indent_tele').val())){ // 检查 是否 是手机号码
 					$('#label-message').hide('normal');
 					// 提交表单
+					var token = $('#token').val();
+					console.info(token);
+					$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
+					alert($('#token'));
 					$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 				}else{
 					$('#label-message').show('normal');

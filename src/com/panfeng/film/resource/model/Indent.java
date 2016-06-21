@@ -64,6 +64,8 @@ public class Indent extends BaseObject {
 	
 	private String user_email = null;
 	
+	private String token = null;
+	
 	public long getIndentId() {
 		return indentId;
 	}
@@ -272,6 +274,14 @@ public class Indent extends BaseObject {
 
 	public void setSalesmanName(String salesmanName) {
 		this.salesmanName = salesmanName;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 }
