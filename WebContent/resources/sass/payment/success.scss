@@ -1,0 +1,106 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "image";
+@import "compass/typography/text/ellipsis";
+
+
+body{
+  background: $white;
+}
+
+.logos {
+    position: relative;
+    float: left;
+    top: 14px;
+    background: url(../../images/common/logo.svg) no-repeat;
+    width: 92px;
+    height: 30px;
+    margin-right: 76px;
+}
+
+
+.page{
+  background: $white;
+}
+
+.errorDiv{
+  background: $white;
+
+
+  
+
+  width:600px;
+  height:300px;
+
+   @media screen and (min-width:1276px) and (max-width:1500px) {
+       height:400px;
+    }
+    @media screen and (min-width:1500px) {
+     height:550px;
+    }
+
+
+  margin: 0 auto;
+
+    a{
+    color:$red-base;
+    font-size: 2.0rem;
+    text-decoration:none;
+
+  }
+
+
+  .centerWord{
+    position: relative;
+    top:36px;
+    color:$gray;
+    font-size: $font-size;
+  }
+
+  span{
+    color:$red-base;
+    font-size: 2.0rem;
+  }
+
+}
+
+ .centerDiv {
+        text-align: center;
+        position: relative;
+        top: 30%;
+        
+        
+         
+        
+
+        li:first-child {
+            font-size: $font-size-lg;
+            color:$gray-dark;
+        }
+
+           li:last-child {
+              margin-top:10px;
+        }
+
+        
+        li:nth-child(2){
+          margin-top:30px;
+        }
+
+        li{
+          font-size: $font-size;
+          color:$gray;
+
+      
+        }
+    }
+
+
+.liImg{
+           position: relative;
+          top:4px;
+          right:2px;
+         }
+

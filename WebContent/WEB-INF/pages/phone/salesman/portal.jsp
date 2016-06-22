@@ -27,7 +27,6 @@
 	<meta content="telephone=no" name="format-detection">
 	<title>拍片网－移动端_产品页</title>
 	<link rel="shortcut icon" href="${imgPath}/favicon.ico" >
-	
 	<link rel="stylesheet" href="${portalCss}">
 </head>
 <body>

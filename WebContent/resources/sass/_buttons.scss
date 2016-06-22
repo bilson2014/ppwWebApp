@@ -27,6 +27,7 @@
     &.focus {
       @include tab-focus();
     }
+
   }
 
   @include hover-focus {

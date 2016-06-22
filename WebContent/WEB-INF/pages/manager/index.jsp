@@ -21,7 +21,6 @@
 	var="blockUIJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
-<spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
@@ -34,11 +33,16 @@
 	var="stepjquery" />
 <spring:url value="/resources/js/flow/flow.js" var="indexjs" />
 
+
 <spring:url value="/resources/lib/dist/tether.min.js" var="tetherjs" />
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
 <spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -58,21 +62,24 @@
 <link rel="stylesheet" href="${index }">
 <link rel="stylesheet" href="${stepdcstyle }">
 <link rel="stylesheet" href="${dropTheme }">
+<link rel="stylesheet" href="${datepickerCss }">
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<script src="${commonJs }"></script>
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
 <script src="${jsonJs }"></script>
-<script src="${commonJs }"></script>
 <script src="${leftjs}"></script>
 <script src="${WdatePicker }"></script>
 <script src="${stepjquery }"></script>
 <script src="${indexjs }"></script>
+<script src="${datepickerJs }"></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
+<script src="${datepickerZhJs }"></script>
 
 
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
@@ -308,20 +315,34 @@
 				</r:multPermission>
 			</div>
 			
-
-			<div class="payInfo payTop">
 			
-			
+			<div class="payInfo payTop" id="cusId">
 			    <label class="pay-title">收款方式</label>
-			    <button class="border-btn payBtnPos" type="button" >支付记录</button>
-		
-			 
+			    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
+			     
+			      <div class="userContent">
+				       <div  style="display:inline-block">
+				         <img src="${imgPath }/flow/ring.png"></img>
+				       </div>
+				       <div style="display:inline-block" id="userContent">
+				           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
+				           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
+				           <div id="openHistory">立即前往></div>
+				       </div>
+			      </div>
+			</div>
+			
+			
+
+			<div class="payInfo payTop" id="managerId">
+			    <label class="pay-title">收款方式</label>
+			    <a href="<spring:url value='/payment/payList'/>"  class="hide" ><span id="historyList">跳转</span></a>
+			    <button class="border-btn payBtnPos" type="button" id="payHistory" >支付记录</button>
 			  
-			  <div class="pay-way">
-			     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
-			     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
-			  </div> 
-				
+				  <div class="pay-way">
+				     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
+				     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
+				  </div> 
 			</div>
 			
 		    <div class="payInfo payInfoheight" id="payInfo">
@@ -330,35 +351,40 @@
 				     <div class="payLeft ">
 				        <ul class="hide" id="OnlineInfo">
 				           <li>
-				              <div class="payInline" > 
-				                  <div id="pay-time">发起收款时间</div>
-				                  <input id="payTime-outline" class="pay-input form-control hide"></input>
-				                  <div id="payTime-online" class="pay-input">20160606</div>
+				              <div class="payInline" id="payTime-outlineDiv" > 
+				                  <div class="payBigWord" id="pay-time">发起收款时间</div>
+				                  <input id="payTime-outline" class="pay-input form-control hide paySmallWord"></input>
+				                  <input disabled="disabled"   id="payTime-online" class="pay-input form-control paySmallWord" value="231231231"></input>
+				                  <div class="pay-error hide" id="payTime-outlineError">错误提示</div>
 				              </div>
 				              
-				               <div  class="payInline payRight" > 
-				                  <div>支付单号</div>
-				                  <input id="order-outline" class="pay-input form-control hide"></input>
-				                  <div id="order-online" class="pay-input">231252264994</div>
+				               <div  class="payInline payRight" id="order-outlineDiv" > 
+				                  <div class="payBigWord">支付单号</div>
+				                  <input id="order-outline" class="pay-input form-control hide paySmallWord"></input>
+				                  <input disabled="disabled"  id="order-online" class="pay-input form-control paySmallWord" value="231231231"></input>
+				                   <div class="pay-error hide" id="order-outlineError">错误提示</div>
 				              </div>
 				           </li>
 				           
 				            <li>
-				              <div class="payInline" > 
-				                  <div>项目名称</div>
-				                  <input class="pay-input form-control"></input>
+				              <div class="payInline" id="projectNameDiv" > 
+				                  <div class="payBigWord">项目名称</div>
+				                  <input class="pay-input form-control paySmallWord" id="projectName"></input>
+				                  <div class="pay-error hide" id="projectNameError">错误提示</div>
 				              </div>
 				              
-				               <div class="payInline payRight" > 
-				                  <div id="pay-people">付款方</div>
-				                  <input class="pay-input form-control"></input>
+				               <div class="payInline payRight"  id="cusNameDiv"  > 
+				                  <div class="payBigWord" id="pay-people">付款方</div>
+				                  <input class="pay-input form-control paySmallWord" id="cusName"}></input>
+				                  <div class="pay-error hide" id="cusNameError">错误提示</div>
 				              </div>
 				           </li>
 				           
 				            <li>
-				              <div> 
-				                  <div>支付金额</div>
-				                  <input class="pay-input form-control"></input>
+				              <div id="payMoneyDiv"> 
+				                  <div class="payBigWord">支付金额</div>
+				                  <input class="pay-input form-control paySmallWord" id="payMoney"></input>
+				                  <div class="pay-error hide" id="payMoneyError">错误提示</div>
 				              </div>
 				           </li>
 				        </ul>
@@ -366,8 +392,8 @@
 				        <div class="createLink hide" id="link">
 				           <ul>
 				              <li>
-				                 <div class="payInline"><img style="width:10px;height:20px;" src=""/></div>
-				                 <div class="payInline">成功创建支付链接</div>
+				                 <div class="payInline"><img src="${imgPath }/flow/link.png"/></div>
+				                 <div class="payInline createTitle">成功创建支付链接</div>
 				              </li>
 				              
 				              <li>
@@ -387,6 +413,320 @@
 				     <input id="checkWay" class="hide" value="0"></input>
 				   </div>  
 			</div>
+			
+			
+			<div class="payCardHeight payInfo" id="payHistoryList">
+			   
+				   <div class="payInfoTop">
+				      <div class="pay-top-title " style="float:left">支付历史</div>
+				      <img class="imgInfo imgLeft" src="${imgPath }/flow/payHistory.png"  style="float:left"></img>
+				      <img class="imgInfo imgRight" src="${imgPath }/flow/closeList.png" id="payHistoryClose" style="float:right"></img>
+				   </div>
+				      
+				   <div class="payCardZoom" id="payListPage">
+			            <%--   <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线上支付
+				                   </div>
+				                    <div class="cardRightStatue payInline hide">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundFinish">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn hide">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div class="contentWord">霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div class="contentWord">20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class=" smallWord">付款时间</div>
+				                                    <div class="smallWord">2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                             
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div class="contentWord">帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle ">订单号</div>
+				                                    <div class="contentWord">7708801314520</div>
+				                                </li>
+				                                 <li>
+				                                    <div class=" smallWord">失败时间</div>
+				                                    <div class="smallWord">2016-03-12 12:25</div>
+				                                </li>
+				                                
+				                             </ul>
+				                          
+				                   </div>
+				                </div>
+			              </div>
+			              
+			                 <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线上支付
+				                   </div>
+				                    <div class="cardRightStatue payInline">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundTimeOut">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div>霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div>20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">付款时间</div>
+				                                    <div>2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div>帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">订单号</div>
+				                                    <div>7708801314520</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">逾期时间</div>
+				                                    <div>2016-03-12 12:25</div>
+				                                </li>
+				                             </ul>
+				                   </div>
+				                </div>
+			              </div>
+			              
+			                  <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线上支付
+				                   </div>
+				                    <div class="cardRightStatue payInline hide">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundFail">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div>霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div>20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">付款时间</div>
+				                                    <div>2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div>帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">订单号</div>
+				                                    <div>7708801314520</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">失败时间</div>
+				                                    <div>2016-03-12 12:25</div>
+				                                </li>
+				                             </ul>
+				                   </div>
+				                </div>
+			              </div>
+			              
+			               <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线上支付
+				                   </div>
+				                    <div class="cardRightStatue payInline hide">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundBank">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn hide">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div>霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div>20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">付款时间</div>
+				                                    <div>2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div>帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">订单号</div>
+				                                    <div>7708801314520</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">完成时间</div>
+				                                    <div>2016-03-12 12:25</div>
+				                                </li>
+				                             </ul>
+				                   </div>
+				                </div>
+			              </div>
+			              
+			              
+			               <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线上支付
+				                   </div>
+				                    <div class="cardRightStatue payInline hide">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundWait">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div>霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div>20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">付款时间</div>
+				                                    <div>2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div>帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">订单号</div>
+				                                    <div>7708801314520</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">逾期时间</div>
+				                                    <div>2016-03-12 12:25</div>
+				                                </li>
+				                             </ul>
+				                   </div>
+				                </div>
+			              </div>
+			              
+			                <div class="payCard">
+				                <div class="payCard-top">
+				                   <div class="cardLeftStatue payInline">
+				                                                          线下支付
+				                   </div>
+				                    <div class="cardRightStatue payInline hide">
+				                         <img src="${imgPath }/flow/updateInfo.png" ></img>                                    
+				                   </div>
+				                </div>
+				                
+					             <div class="payCard-info backgroundFinish">
+					                   <div class="info-left">
+					                        <div class="infoTitle">高逼格产品宣传片</div>
+					                        <button class="info-btn red-btn hide">分享支付链接</button> 
+					                   </div>
+					                    <div class="info-right">
+				                             <ul class="payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">支付方</div>
+				                                    <div>霸天第一公司</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">支付金额</div>
+				                                    <div>20000元</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">付款时间</div>
+				                                    <div>2016-03-12 12:12</div>
+				                                </li>
+				                             </ul>
+				                             
+				                              <ul class="rightUl payInline"> 
+				                                <li>
+				                                    <div class="contentTitle">收款方</div>
+				                                    <div>帅气卢</div>
+				                                </li>
+				                                 <li>
+				                                    <div class="contentTitle">订单号</div>
+				                                    <div>7708801314520</div>
+				                                </li>
+				                                 <li class="hide">
+				                                    <div class="contentTitle">失败时间</div>
+				                                    <div>2016-03-12 12:25</div>
+				                                </li>
+				                                
+				                             </ul>
+				                          
+				                   </div>
+				                </div>
+			              </div> --%>
+			              
+			              
+			              
+			              
+			              
+				   </div>
+			</div>
+			
+			
 			
 	
 			

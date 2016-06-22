@@ -13,12 +13,11 @@ var countCheck = 0;
 var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
+
+
 $().ready(
 		function() {
-	
-			
-			
-
+	      
 			
 			
 			init();
@@ -431,6 +430,23 @@ function loadflowdata() {
 								}
 								StepTool.drawStep(num, stepListJson);
 								currentIndex = num;
+							    
+								//TODO:lt add payList beigin 20160622
+								
+								if(currentIndex==3||currentIndex==5){
+								$('#managerId').removeClass('hide')
+								$('#cusId').removeClass('hide');
+								}
+								else{
+									$('#managerId').addClass('hide')
+									$('#cusId').addClass('hide');
+									$('#payListPage').html('');
+									$('#payInfo').slideUp('');
+									
+									payInfo
+								}
+								//end
+								
 								return;
 							}
 						});
@@ -514,6 +530,7 @@ function loadflowdata() {
 											var text = jQuery(this.target).attr("data-description");
 											$(".description-c").html("<span class='word-size'>"+ text+ "</span>");
 											$(".content-title").html("<p class='word-title'>"+ jQuery(this.target).text()+ "阶段</p>");
+											
 										});
 									}
 								});
@@ -1272,6 +1289,9 @@ function showOrderTime(){
 	});
 }
 
+
+
+//支付
 var ControlPay ={
 		
 		clickOnLine:function(){
@@ -1291,9 +1311,9 @@ var ControlPay ={
 		
 		initOnlineInfo:function(){
 			var mydate = new Date();
-			var t=mydate.toLocaleString();
+			var t= formatterDateTime(mydate);
+			//var t=mydate.toLocaleString();
 			$('#checkWay').val("1");
-			
 			$('#Online').addClass('pay-click-btn');
 			$('#Online').removeClass('pay-btn');
 			$('#Outline').removeClass('pay-click-btn');
@@ -1302,12 +1322,13 @@ var ControlPay ={
 			$('#pay-people').text('付款方');
 			$('#OnlineInfo').removeClass('hide');
 			$('#payTime-online').removeClass('hide');
-			$('#payTime-online').text(t);
+			$('#payTime-online').val(t);
 			$('#payTime-outline').addClass('hide');
 			$('#order-online').removeClass('hide');
 			$('#order-outline').addClass('hide');
-			 $('#pay-sure').text('确认');
-			 $('#link').addClass('hide');
+			$('#pay-sure').text('确认');
+			$('#link').addClass('hide');
+			checkPayList.checkOnBlur();
 		},
 		
         clickOutLine:function(){
@@ -1324,6 +1345,9 @@ var ControlPay ={
 		},
 		
 		initOutlineInfo:function(){
+			
+		
+			
 			$('#checkWay').val("2");
 			$('#Outline').addClass('pay-click-btn');
 			$('#Outline').removeClass('pay-btn');
@@ -1336,8 +1360,15 @@ var ControlPay ={
 			$('#payTime-outline').removeClass('hide');
 			$('#order-online').addClass('hide');
 			$('#order-outline').removeClass('hide');
-			 $('#pay-sure').text('确认');
-			 $('#link').addClass('hide');
+			$('#pay-sure').text('确认');
+			$('#link').addClass('hide');
+			$('#payTime-outline').datepicker({
+				language: 'zh',
+				dateFormat:'yyyy-MM-dd ',
+				minDate: new Date() 
+		});
+			
+			checkPayList.checkOutBlur();
 		},
 		
 		
@@ -1351,13 +1382,21 @@ var ControlPay ={
 			initPayInfo:function(){
 				var check=$('#checkWay').val();
 				if(check=="1"){
-				  $('#pay-sure').text('返回');
-				  $('#checkWay').val('3');
-				  $('#OnlineInfo').addClass('hide');
-				  $('#link').removeClass('hide');
+					
+					if(checkPayList.checkOnLinePayList()){
+						  $('#pay-sure').text('返回');
+						  $('#checkWay').val('3');
+						  $('#OnlineInfo').addClass('hide');
+						  $('#link').removeClass('hide');
+						}
+					
+				
 				}
 				else if(check=="2"){
-					alert('我跳转');
+					//$("#historyList").click();
+					if(checkPayList.checkOutLinePayList()){
+					ControlPay.openHistory();
+					}
 				}
 				else if(check=="3"){
 					  $('#pay-sure').text('确认');
@@ -1366,12 +1405,319 @@ var ControlPay ={
 					  $('#link').addClass('hide');
 				}
 			},
-		
+			
+			
+			  clickPayOpenHistory:function(){
+				
+				   
+				
+				   
+					//立即前往
+					$('#openHistory').on('click',function(){
+						ControlPay.openHistory();
+						
+					});
+					//管家历史按钮
+					$('#payHistory').on('click',function(){
+						ControlPay.openHistory();
+						$("#payHistory").addClass('payBtnPosClick');
+						  var base_Card = $("div[class^=payId]");
+						
+						if(base_Card.length<=0){
+							$("#payListPage").append(payList());
+						}
+					});
+					//客户历史按钮
+					$('#payHistoryBtnOrder').on('click',function(){
+						ControlPay.openHistory();
+						$("#payHistoryBtnOrder").addClass('payBtnPosClick');
+						  var base_Card = $("div[class^=payCard]");
+						  
+						if(base_Card.length<=0){
+							$("#payListPage").append(payList());
+						}
+						
+					});
+					
+					
+					
+				},
+				
+				  clickPayHistoryClose:function(){
+						$('#payHistoryClose').on('click',function(){
+							$("#payHistoryList").slideUp();
+							$('#payHistory').removeClass('payBtnPosClick');
+							$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
+						});
+						
+					},
+					
+					openHistory:function(){
+						$("#payHistoryList").slideDown();
+						
+					},
+
+					
 		
 		initControlPay:function(){
 			ControlPay.clickOnLine();
 			ControlPay.clickOutLine();
 			ControlPay.clickpay();
+			ControlPay.clickPayOpenHistory();
+			ControlPay.clickPayHistoryClose();
+	
+		}
+		
+		
+		
+}
+
+
+var checkPayList = {
+		
+		
+	
+		
+		//支付验证线下
+		
+		checkOutLinePayList:function(){
+			
+			var payTime =$('#payTime-outline'); 
+			var payorder =$('#order-outline'); 
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+
+			var payTimeError =$('#payTime-outlineError'); 
+			var payorderError =$('#order-outlineError'); 
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			var payTimeDiv =$('#payTime-outlineDiv'); 
+			var payorderDiv =$('#order-outlineDiv'); 
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+	
+
+			if(payTime.val()==''||payTime.val()==null){
+				payTime.focus();
+				payTimeDiv.addClass('has-error');
+				payTimeError.removeClass('hide');
+				payTimeError.text('请填写时间');
+				return false;
+			}else{
+				payTimeDiv.removeClass('has-error');
+				payTimeError.addClass('hide');
+			}
+			if(payorder.val()==''||payorder.val()==null){
+				payorder.focus();
+				payorderDiv.addClass('has-error');
+				payorderError.removeClass('hide');
+				payorderError.text('请填写单号');
+				return false;
+			}else{
+				payorderDiv.removeClass('has-error');
+				payorderError.addClass('hide');
+			}
+			
+			if(projectName.val()==''||projectName.val()==null){
+				projectName.focus();
+				projectNameDiv.addClass('has-error');
+				projectNameError.removeClass('hide');
+				projectNameError.text('请填写项目名');
+				return false;
+			}else{
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			}
+			
+			if(cusName.val()==''||cusName.val()==null){
+				cusName.focus();
+				cusNameDiv.addClass('has-error');
+				cusNameError.removeClass('hide');
+				cusNameError.text('请填写客户名称');
+				return false;
+			}else{
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			}
+			
+			if(payMoney.val()==''||payMoney.val()==null){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请填写支付金额');
+				return false;
+			}
+			else if(!checkNumber(payMoney.val())){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请输入数字');
+				return false;
+			}  
+			
+			else{
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			}
+			
+			return true;
+			
+		},
+		
+		
+		checkOutBlur:function(){
+			
+			
+			var payTime =$('#payTime-outline'); 
+			var payorder =$('#order-outline'); 
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+
+			var payTimeError =$('#payTime-outlineError'); 
+			var payorderError =$('#order-outlineError'); 
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			var payTimeDiv =$('#payTime-outlineDiv'); 
+			var payorderDiv =$('#order-outlineDiv'); 
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+			
+			
+			$(payTime).on('blur',function(){
+				payTimeDiv.removeClass('has-error');
+				payTimeError.addClass('hide');
+			});
+			
+			$(payorder).on('blur',function(){
+				payorderDiv.removeClass('has-error');
+				payorderError.addClass('hide');
+			});
+			
+			$(projectName).on('blur',function(){
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			});
+			
+			$(cusName).on('blur',function(){
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+				
+			});
+			
+			$(payMoney).on('blur',function(){
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			});
+		},
+		
+
+		checkOnBlur:function(){
+			
+			
+			
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+
+			
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+			
+			
+			$(projectName).on('blur',function(){
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			});
+			
+			$(cusName).on('blur',function(){
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			});
+			
+			$(payMoney).on('blur',function(){
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			});
+		},
+		
+		//线上
+		checkOnLinePayList:function(){
+	
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+
+			
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+	
+
+			if(projectName.val()==''||projectName.val()==null){
+				projectName.focus();
+				projectNameDiv.addClass('has-error');
+				projectNameError.removeClass('hide');
+				projectNameError.text('请填写项目名');
+				return false;
+			}else{
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			}
+			
+			if(cusName.val()==''||cusName.val()==null){
+				cusName.focus();
+				cusNameDiv.addClass('has-error');
+				cusNameError.removeClass('hide');
+				cusNameError.text('请填写付款方');
+				return false;
+			}else{
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			}
+			
+			
+			if(payMoney.val()==''||payMoney.val()==null){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请填写支付金额');
+				return false;
+			}
+			else if(!checkNumber(payMoney.val())){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请输入数字');
+				return false;
+			}
+			
+			else{
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			}
+			
+		
+			
+			return true;
 		}
 		
 		
@@ -1380,100 +1726,150 @@ var ControlPay ={
 
 
 
-var ControlTree = {
-		CommonDoingProjectTree : function(){
-			$('#doingProjectId').slideDown();
-			
-		},
-		OpenDoingProjectTree : function(){
-			$('#doingProject').removeClass('inactive');
-			$('#doingProject').addClass('active');
-			$('#doingProjectId').slideDown();
-			
-		},
-		OpenMyProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
-			$('#myProject').removeClass('inactive');
-			$('#myProject').addClass('active');
-		    $('#myProjectId').slideDown();
-		},
-		OpenHelpProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
+function payList(){
+	var $body='<div class="payId payCard">'+
+	'<div class="payCard-top">'+
+	'<div class="cardLeftStatue payInline">线上支付</div>'+
+	'<div class="cardRightStatue payInline"><img src="${imgPath }/flow/updateInfo.png" ></img></div>'+
+	'</div>'+
+	'<div class="payCard-info backgroundFinish">'+
+	'<div class="info-left">'+
+	'<div class="infoTitle">高逼格产品宣传片</div>'+
+	'<button class="info-btn red-btn">分享支付链接</button>'+
+	'</div>'+
+	'<div class="info-right">'+
+	'<ul class="payInline">'+
+	'<li><div class="contentTitle">支付方</div><div class="contentWord">霸天第一公司</div></li>'+
+	'<li><div class="contentTitle">支付金额</div><div class="contentWord">20000元</div></li>'+
+	'<li><div class="smallWord">付款时间</div><div class="smallWord">2016-03-12 12:12</div></li>'+
+	'</ul>'+
+	'<ul class="rightUl payInline">'+
+	'<li><div class="contentTitle">收款方</div><div class="contentWord">帅气卢</div></li>'+
+	'<li><div class="contentTitle">订单号</div><div class="contentWord">7708801314520</div></li>'+
+	'<li><div class="smallWord">失败时间</div><div class="smallWord">2016-03-12 12:12</div></li>'+
+	'</ul>'+
+	'</div>'+
+	'</div>';	
+	$body+='</div>';
+   return $body;
+}
 
-			$('#helpProject').removeClass('inactive');
-			$('#helpProject').addClass('active');
-			$('#helpProjectId').slideDown();
-		},
-		OpenPauseProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
-		
-			$('#pauseProject').removeClass('inactive');
-			$('#pauseProject').addClass('active');
-			$('#pauseProjectId').slideDown();
-		},
-		OpenHistoryProjectTree : function(){
-			$('#historyProject').removeClass('inactive');
-			$('#historyProject').addClass('active');
-			$('#historyProjectId').slideDown();
-		},
-		CloseDoingProjectTree : function(){
-			$('#doingProject').removeClass('active');
-			$('#doingProject').addClass('inactive');
-    	    $('#doingProjectId').slideUp();
-       },
-       CloseMyProjectTree : function(){
-    	   $('#myProject').removeClass('active');
-		   $('#myProject').addClass('inactive');
-    	   $('#myProjectId').slideUp();
-       },
-       CloseHelpProjectTree : function(){
-    	   $('#helpProject').removeClass('active');
-		   $('#helpProject').addClass('inactive');
-    	   $('#helpProjectId').slideUp();
-       },
-       ClosePauseProjectTree : function(){
-    	   $('#pauseProject').removeClass('active');
-		   $('#pauseProject').addClass('inactive');
-    	   $('#pauseProjectId').slideUp();
-       },
-       CloseHistoryProjectTree : function(){
-    	   $('#historyProject').removeClass('active');
-		   $('#historyProject').addClass('inactive');
-    	   $('#historyProjectId').slideUp();
-       },
-       
-       showTreeImg : function(){
-    	 if(nowImg==0){
- 			$('#helpProject').removeClass('inactive');
- 			$('#helpProject').addClass('active');
-    	 }
-    	 
-    	 else if(nowImg==1){
-  			$('#pauseProject').removeClass('inactive');
-  			$('#pauseProject').addClass('active');
-    	 }
-    	 
-    	 else if(nowImg==2){
-   			$('#myProject').removeClass('inactive');
-   			$('#myProject').addClass('active');
-     	 }
-    	   
-    	   
-       },
-       
-       shutMyProject : function(){
-    	 $('#myProjectId').on('click',function(){
-    		if(('#myProject').attr('class')=='active'){
-    		    CloseMyProjectTree();
-    		} 
-    		else if(('#myProject').attr('class')=='inactive'){
-    			OpenMyProjectTree();
-    		}
-    	 });
-    	   
-       }
-       
 
+
+//var ControlTree = {
+//		CommonDoingProjectTree : function(){
+//			$('#doingProjectId').slideDown();
+//			
+//		},
+//		OpenDoingProjectTree : function(){
+//			$('#doingProject').removeClass('inactive');
+//			$('#doingProject').addClass('active');
+//			$('#doingProjectId').slideDown();
+//			
+//		},
+//		OpenMyProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//			$('#myProject').removeClass('inactive');
+//			$('#myProject').addClass('active');
+//		    $('#myProjectId').slideDown();
+//		},
+//		OpenHelpProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//
+//			$('#helpProject').removeClass('inactive');
+//			$('#helpProject').addClass('active');
+//			$('#helpProjectId').slideDown();
+//		},
+//		OpenPauseProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//		
+//			$('#pauseProject').removeClass('inactive');
+//			$('#pauseProject').addClass('active');
+//			$('#pauseProjectId').slideDown();
+//		},
+//		OpenHistoryProjectTree : function(){
+//			$('#historyProject').removeClass('inactive');
+//			$('#historyProject').addClass('active');
+//			$('#historyProjectId').slideDown();
+//		},
+//		CloseDoingProjectTree : function(){
+//			$('#doingProject').removeClass('active');
+//			$('#doingProject').addClass('inactive');
+//    	    $('#doingProjectId').slideUp();
+//       },
+//       CloseMyProjectTree : function(){
+//    	   $('#myProject').removeClass('active');
+//		   $('#myProject').addClass('inactive');
+//    	   $('#myProjectId').slideUp();
+//       },
+//       CloseHelpProjectTree : function(){
+//    	   $('#helpProject').removeClass('active');
+//		   $('#helpProject').addClass('inactive');
+//    	   $('#helpProjectId').slideUp();
+//       },
+//       ClosePauseProjectTree : function(){
+//    	   $('#pauseProject').removeClass('active');
+//		   $('#pauseProject').addClass('inactive');
+//    	   $('#pauseProjectId').slideUp();
+//       },
+//       CloseHistoryProjectTree : function(){
+//    	   $('#historyProject').removeClass('active');
+//		   $('#historyProject').addClass('inactive');
+//    	   $('#historyProjectId').slideUp();
+//       },
+//       
+//       showTreeImg : function(){
+//    	 if(nowImg==0){
+// 			$('#helpProject').removeClass('inactive');
+// 			$('#helpProject').addClass('active');
+//    	 }
+//    	 
+//    	 else if(nowImg==1){
+//  			$('#pauseProject').removeClass('inactive');
+//  			$('#pauseProject').addClass('active');
+//    	 }
+//    	 
+//    	 else if(nowImg==2){
+//   			$('#myProject').removeClass('inactive');
+//   			$('#myProject').addClass('active');
+//     	 }
+//    	   
+//    	   
+//       },
+//       
+//       shutMyProject : function(){
+//    	 $('#myProjectId').on('click',function(){
+//    		if(('#myProject').attr('class')=='active'){
+//    		    CloseMyProjectTree();
+//    		} 
+//    		else if(('#myProject').attr('class')=='inactive'){
+//    			OpenMyProjectTree();
+//    		}
+//    	 });
+//    	   
+//       }
+//       
+//
+//}
+
+function formatterDateTime (date) {
+    var datetime = date.getFullYear()
+            + "-"// "年"
+            + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
+                    + (date.getMonth() + 1))
+            + "-"// "月"
+            + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+            + " "
+            + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+            + ":"
+            + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+            + ":"
+            + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+    return datetime;
 }
 
 
