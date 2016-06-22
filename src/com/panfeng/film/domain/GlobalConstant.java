@@ -45,6 +45,8 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static final String MANAGER_WEBCHAT_APPSECRET = "6a1c40422295b85dc8d55e7c38aef968"; // 供应商微信登录AppSecret
 	
+	public static final String ORDER_TOKEN_UNIQUE_KEY = "Jackyang1100_abc"; // 订单提交token加密 AES key
+	
 	public static String FILE_PROFIX; // 文件前缀
 	
 	public static String VIDEO_IMAGE_PERFIX; // 视频前缀
@@ -56,6 +58,8 @@ public final class GlobalConstant extends BaseObject {
 	public static String COOKIES_SCOPE; // 域名
 	
 	public static String PHONENUMBER_ORDER; // 下单手机号码
+	
+	public static String HTTP_REFERER; // 访问来源
 	
 	private static GlobalConstant GLOBALCONSTANT = new GlobalConstant();
 
@@ -71,6 +75,7 @@ public final class GlobalConstant extends BaseObject {
 				STAFF_IMAGE_PERIX = propertis.getProperty("upload.server.staff.image");
 				COOKIES_SCOPE = propertis.getProperty("cookies_scope");
 				PHONENUMBER_ORDER = propertis.getProperty("service_tel");
+				HTTP_REFERER = propertis.getProperty("http_referer");
 			} catch (Exception e) {
 				
 			} finally{

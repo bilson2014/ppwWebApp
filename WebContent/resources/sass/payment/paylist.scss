@@ -1,0 +1,282 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "compass/typography/text/ellipsis";
+
+
+
+
+
+
+.orderDiv{   
+   margin: 0 auto;
+   height:490px;
+   width:800px;
+   background:$white;
+   @include box-shadow(0px 1px 3px lighten(#999, 20%));
+
+    .imgTitle{
+       width:92px;
+       height:30px;
+       position: relative;
+       top:37px;
+
+      
+    }
+
+    .titleWord{
+       
+        text-align: center;
+        font-size: $font-size-lg;
+        font-weight:bold;
+        margin:15px;
+    }
+
+    .topLine{
+       
+        height:1px;
+        width:calc(100% - 150px);
+        background:$gray-dark;
+        margin:20px 0px 5px 75px;
+    }
+
+
+
+}
+
+.orderDiv .orderContent{
+
+          width:calc(100% - 150px);
+          height:auto;
+
+          .topContent{
+            width:100%;
+            height:50px;
+            background: $gray;
+            color:$white;
+            font-size: $font-size;
+
+          }
+
+          .midContent{
+            width:100%;
+            height:auto;
+
+          }
+
+          .midContentDiv{
+             font-size: $font-size;
+ 
+             margin-top:15px;
+
+             span{
+              font-weight: bold;
+
+             }
+          }
+
+
+          .contentLeft{
+            display:inline-block;
+            padding-left: 30px;
+            width:50%;
+            height:50px;
+            line-height: 50px;
+
+          }
+
+          .contentPayLeft{
+            display:inline-block;
+            padding-left: 30px;
+            width:auto;
+            height:50px;
+            line-height: 50px;
+
+          }
+
+           .contentRight{
+            display:inline-block;
+            width:45%;
+            height:50px;
+            line-height: 50px;
+            position: relative;
+            left:45px;
+
+
+            .imgPad{
+              position: relative;
+              left: -50px;
+              height:48px;
+              width:136px;
+            }
+
+            
+          }
+
+          .payStatue{
+            color:$gold-yellow;
+            font-size: $font-size;
+          }
+
+          .contentSpan{
+            padding-left: 15px;
+            
+          }
+          
+         .contentTitleSpan{
+          vertical-align: top;
+          font-weight: none;
+         }
+
+          .contentSpanBig{
+            color:$red-base;
+            font-size: 2.4rem;
+            position: relative;
+            left:-13px;
+          }
+
+          .contentSpanSmall{
+             color:$red-base;
+              font-size: $font-size-base;
+              position: relative;
+              left:-12px;
+              top:-1px;
+          }
+
+          .solidLine{
+            width:calc(100% - 160px);
+            height:50px;
+            margin-left:80px;
+            overflow: hidden;
+            white-space:nowrap;
+            line-height: 50px;
+          }
+
+
+          .btn-red{
+          width:100px;
+          height:35px;
+          line-height: 32px;
+          background-color: $red-base;
+          border-color: $white;
+          border: none;
+          color:$white;
+          position: relative;
+          left: 100px;
+          top:-5px;
+
+           &:hover {
+                background-color: $gray;
+                color: #fff;
+                cursor: pointer;
+                }
+ 
+          }
+
+
+}
+
+.timeOut{
+    position: relative;
+    top:55px;
+    text-align: center;
+
+    li{
+        margin-top: 10px;
+    }
+    li:nth-child(2){
+       font-size: $font-size;
+       margin-top:20px;
+    }
+
+     li:last-child{
+       color:$gold-yellow;
+        font-size: $font-size-sm;
+    }
+}
+
+
+.cue{
+    text-align: center;
+    position: relative;
+    top: 15px;
+    color:$gray-light;
+}
+
+
+.imgWord{
+    vertical-align: top;
+}
+
+.topmargin{
+    margin-top:50px;
+}
+
+.leftMargin{
+    margin-left:75px;
+}
+
+.upload-window{
+ 
+  .canclemodal {
+    position: relative;
+    left: 540px;
+}
+
+ .titleModal{
+
+   position: relative;
+   top:-15px;
+
+ }
+
+  .modalContent{
+
+    display: inline-block;
+    vertical-align: top;
+    width:49%;
+    margin: 50px 0px 50px 0px;
+  }
+
+    .modalSingleContent{
+    width:100%;
+    margin: 50px 0px 50px 0px;
+  }
+
+
+  ul{
+      text-align: center;
+  }
+
+   li{
+    margin-top:10px;
+   }
+
+  li:nth-child(2){
+       font-size: $font-size;
+    }
+
+     li:nth-child(3){
+       color:$gold-yellow;
+        font-size: $font-size-base;
+    }
+       li:nth-child(4){
+       color:$gold-yellow;
+        font-size: $font-size-base;
+    }
+
+
+}
+
+.grayColor{
+ color:$gray-dark;
+}
+
+.grayDarkColor{
+  color:$gray-dark;
+  font-size: $font-size;
+}
+
+
+

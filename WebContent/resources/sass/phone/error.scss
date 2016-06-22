@@ -1,0 +1,74 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "image";
+@import "compass/typography/text/ellipsis";
+
+
+body{
+  background: $white;
+}
+
+.page{
+  background: $white;
+}
+
+.outSideDiv{
+
+ width:100%;
+ height:100%;
+
+
+   .centerWord{
+    position: relative;
+    top:20px;
+    color:$gray;
+    font-size: $font-size;
+  }
+
+  a{
+    color:$red-base;
+    font-size: 2.0rem;
+    text-decoration:none;
+
+  }
+
+  img{
+    position: relative;
+    left:-10px;
+  }
+
+   
+
+   .centerDiv{
+
+    text-align: center;
+     position: relative;
+     top:20%;
+
+     li:last-child{
+          position: relative;
+          top:20px;
+          font-size: $font-size-lg;
+     }
+        
+   }
+     
+
+
+}
+
+
+.logo-width{
+  width:100%;
+}
+
+.logo {
+  width: 90px;
+  height: 30px;
+  background:image-url("phone/icons/logo_black.png") no-repeat;
+  background-size: 76px;
+  margin: 20px auto;
+  } 
+

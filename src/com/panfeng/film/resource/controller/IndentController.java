@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.Result;
 import com.panfeng.film.resource.model.Indent;
+import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.HttpUtil;
+import com.panfeng.film.util.JsonUtil;
 
 @RestController
 @RequestMapping("/order")
@@ -68,26 +72,42 @@ public class IndentController extends BaseController {
 			if(indent.getIndent_recomment() != null && !"".equals(indent.getIndent_recomment())) {
 				indent.setIndent_recomment(URLEncoder.encode(indent.getIndent_recomment(), "UTF-8"));
 			}
+			
+			String token = indent.getToken();
+			// token 解密
+			token = AESUtil.Decrypt(token, GlobalConstant.ORDER_TOKEN_UNIQUE_KEY);
+			
+			final Indent nIndent = JsonUtil.toBean(token, Indent.class);
+			indent.setTeamId(nIndent.getTeamId());
+			indent.setProductId(nIndent.getProductId());
+			indent.setServiceId(nIndent.getServiceId());
+			
 			String str = HttpUtil.httpPost(url, indent,request);
 			if(str != null && !"".equals(str)){
 				
-				// 当前系统时间
-				DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String currentTime = format.format(new Date());
+				final Result result = JsonUtil.toBean(str, Result.class);
+				if(result.isRet()){
+					
+					// 当前系统时间
+					DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String currentTime = format.format(new Date());
+					
+					final StringBuffer info = new StringBuffer();
+					info.append("下单提示信息：手机号码为【" + indent.getIndent_tele() + "】,");
+					info.append("用户名为【" + custom + "】 的客户,");
+					info.append("于" + currentTime);
+					final String pName = result.getMessage() == null ? "" : result.getMessage();
+					info.append("下单购买【" + pName + "】,");
+					info.append("请您及时处理！");
+					// 发送短信
+					smsService.smsSend(TELEPHONE, info.toString());
+					
+					serLogger.info("Order submit at PC,Message is " + info.toString());
+					return new ModelAndView("redirect:/success");
+				}
 				
-				final StringBuffer info = new StringBuffer();
-				info.append("下单提示信息：手机号码为【" + indent.getIndent_tele() + "】,");
-				info.append("用户名为【" + custom + "】 的客户,");
-				info.append("于" + currentTime);
-				info.append("下单购买【" + indent.getProduct_name() + "】,");
-				info.append("请您及时处理！");
-				// 发送短信
-				smsService.smsSend(TELEPHONE, info.toString());
-				
-				serLogger.info("Order submit at PC,Message is " + info.toString());
-				return new ModelAndView("redirect:/success");
 			}
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			logger.error("IndentController method:successView() Order encode Failure ...");
 			e.printStackTrace();
 		}

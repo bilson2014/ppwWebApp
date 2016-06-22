@@ -99,6 +99,7 @@ Step.prototype = {
 		} else if (this.currStep <= 0) {
 			this.currStep = 1;
 		}
+		 
 		var classSype;
 		if ((this.currStep - 1) == this.StepNum && this.StepNum == 1) {
 			classSype = "firstFinshStepTwo drop-target";

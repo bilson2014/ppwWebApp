@@ -60,4 +60,12 @@ public class ValidateUtil {
 		return false;
 	}
 	
+	public static boolean isValid(final Long id){
+		
+		if(id != null){
+			return true;
+		}
+		return false;
+	}
+	
 }

@@ -36,6 +36,7 @@ import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.ProductView;
+import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
@@ -155,16 +156,28 @@ public class PCController extends BaseController {
 		final Indent indent = new Indent().fromString(json, Indent.class);
 		final String productName = URLDecoder.decode(indent.getProduct_name(),
 				"UTF-8");
+		indent.setProduct_name(productName);
 
 		final User user = (User) request.getSession().getAttribute("username");
-		model.addAttribute("teamId", indent.getTeamId());
+		// modify by Jack,2016-06-21 12:06 begin
+		// to promote security for order
+		// change hidden input to encrypt token
+		/*model.addAttribute("teamId", indent.getTeamId());
 		model.addAttribute("productId", indent.getProductId());
 		model.addAttribute("serviceId", indent.getServiceId());
 		model.addAttribute("indentPrice", indent.getIndentPrice());
 		model.addAttribute("second", indent.getSecond());
-		model.addAttribute("product_name", productName);
+		model.addAttribute("product_name", productName);*/
 		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-
+		
+		try {
+			final String token = generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			logger.error("method PCController orderView ,order page has error,bacase generate order use AES Decrypt token error ...");
+			e.printStackTrace();
+		}
+		// modify by Jack,2016-06-21 12:10 end
 		serLogger
 				.info("PCController method:orderView() Redirect order page,product_id:"
 						+ indent.getProductId()
@@ -178,16 +191,33 @@ public class PCController extends BaseController {
 	public ModelAndView patView(final HttpServletRequest request,
 			final ModelMap model) {
 		final User user = (User) request.getSession().getAttribute("username");
-		model.addAttribute("teamId", -1);
+		// modify by jack, 2016-06-21 12:00 begin
+		// to promote security for order
+		// change hidden input to encrypt token
+		/*model.addAttribute("teamId", -1);
 		model.addAttribute("productId", -1);
 		model.addAttribute("serviceId", -1);
 		model.addAttribute("indentPrice", 0);
-		model.addAttribute("second", 0);
+		model.addAttribute("second", 0);*/
 		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
+		
+		final Indent indent = new Indent();
+		indent.setTeamId(-1l);
+		indent.setProductId(-1l);
+		indent.setServiceId(-1l);
+		try {
+			final String token = generateOrderToken(request,indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			logger.error("method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...");
+			e.printStackTrace();
+		}
+		// modify by Jack,2016-06-21 12:05 end
+		
 
 		return new ModelAndView("order", model);
 	}
-	
+
 	/**
 	 * 分销人下单
 	 * @param uniqueId
@@ -199,14 +229,31 @@ public class PCController extends BaseController {
 	public ModelAndView order(@PathVariable("uniqueId") final String uniqueId,final HttpServletRequest request,final ModelMap model){
 		
 		final User user = (User) request.getSession().getAttribute("username");
-		model.addAttribute("teamId", -1);
+		// modify by Jack,2016-06-21 12:28 begin
+		// to promote security for order
+		// change hidden input to encrypt token
+		/*model.addAttribute("teamId", -1);
 		model.addAttribute("productId", -1);
 		model.addAttribute("serviceId", -1);
 		model.addAttribute("indentPrice", 0);
 		model.addAttribute("second", 0);
-		model.addAttribute("uniqueId", uniqueId);
+		model.addAttribute("uniqueId", uniqueId);*/
 		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-
+		
+		final Indent indent = new Indent();
+		indent.setTeamId(-1l);
+		indent.setProductId(-1l);
+		indent.setServiceId(-1l);
+		indent.setSalesmanUniqueId(uniqueId);
+		try {
+			final String token = generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			logger.error("method PCController order ,salesman order page has error,bacase generate order use AES Decrypt token error ...");
+			e.printStackTrace();
+		}
+		// modify by Jack,2016-06-21 12:35 end
+		
 		return new ModelAndView("order", model);
 	}
 
@@ -647,4 +694,18 @@ public class PCController extends BaseController {
 		return null;
 	}
 
+	// 生成订单token
+	private String generateOrderToken(final HttpServletRequest request,final Indent indent) throws Exception {
+		// 如果没有，则创建
+		final StringBuffer sb = new StringBuffer();
+		sb.append("{");
+		sb.append("teamId:" + indent.getTeamId());
+		sb.append(",productId:" + indent.getProductId());
+		sb.append(",serviceId:" + indent.getServiceId());
+		sb.append(",salesmanUniqueId:" + indent.getSalesmanUniqueId());
+		sb.append("}");
+		
+		final String token = AESUtil.Encrypt(sb.toString(), GlobalConstant.ORDER_TOKEN_UNIQUE_KEY);
+		return token;
+	}
 }
