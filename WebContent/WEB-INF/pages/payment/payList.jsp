@@ -2,7 +2,6 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
 
 <%-- import CSS --%>
 <spring:url value="/resources/css/payment/paylist.css" var="paylistCss"/>
@@ -32,30 +31,40 @@
 	
 </head>
 <body>
-
-
 	<div class="page">
-     
      <div class="orderDiv">
-       
          <img class="imgTitle leftMargin" src="${imgPath }/icons/logo_red.png"/>
          <div class="titleWord">项目支付</div>
          <div class="topLine leftMargin"></div>
          <div class="orderContent">
 	           <div class="topContent leftMargin">
-	              <div class="contentLeft">支付单号：<span>20160285100471</span></div>
-	              <div class="contentRight">截止时间：<span>2016/06/12 12:22</span></div>
+	              <div class="contentLeft" style="white-space:nowrap;overflow:hidden;width:200px">支付单号：
+		              <span > ${dealLog.billNo}</span>
+	              </div>
+	              <div class="contentRight">截止时间：<span>${dealLog.orderTimeOut }</span></div>
 	           </div>
 	           
 	           <div class="midContent leftMargin">
 	                 <div class="midContentDiv">
-			              <div class="contentLeft grayColor">项目名称：<span class="grayDarkColor">产品宣传片</span></div>
-			              <div class="contentRight grayColor">支付状态：<span class="payStatue">支付进行中</span></div>
+			              <div class="contentLeft grayColor">项目名称：<span class="grayDarkColor">${dealLog.projectName}</span></div>
+			              <div class="contentRight grayColor">支付状态：
+			              	<span class="payStatue">
+			              		<c:if test="${dealLog.dealStatus == 0}">
+			              			等待支付中
+			              		</c:if>
+			              		<c:if test="${dealLog.dealStatus == 1}">
+			              			交易成功
+			              		</c:if>
+			              		<c:if test="${dealLog.dealStatus == 2}">
+			              			支付已关闭
+			              		</c:if>
+			              	</span>
+			              </div>
 		             </div> 
 		             
 		             <div class="midContentDiv">
-			              <div class="contentLeft grayColor">收款方：<span class="contentSpan grayDarkColor">北京拍片乐科技有限公司</span></div>
-			              <div class="contentRight grayColor">支付方：<span class="contentSpan grayDarkColor">穷的不行可有无限公司</span></div>
+			              <div class="contentLeft grayColor">收款方：<span class="contentSpan grayDarkColor">${dealLog.proceedsSide}</span></div>
+			              <div class="contentRight grayColor">支付方：<span class="contentSpan grayDarkColor">${dealLog.userName}</span></div>
 		             </div> 
 		             
 		             <div class="midContentDiv ">
@@ -65,8 +74,14 @@
 		             
 		             <div class="solidLine">----------------------------------------------------------------------------------------------------------------------------------------</div>
 		             <div class="midContentDiv">
-			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400">付款金额：</span><span class="contentSpan contentSpanBig">20000</span><span class="contentSpanSmall">元</span></div>
-			              <div class="contentRight"><button class="btn-red">确认</button></div>
+			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400">付款金额：
+			              </span><span class="contentSpan contentSpanBig">${dealLog.payPrice}</span>
+			              <span class="contentSpanSmall">元</span></div>
+			              <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
+			             	 <div class="contentRight">
+			             	 	<a href="?token=${dealLog.token}" id ="submit"><button class="btn-red">确认</button></a>
+			             	 </div>
+			              </c:if>
 		             </div> 
 	           </div>
 	           
@@ -76,95 +91,17 @@
      
      <div class="cue">请仔细核对项目支付信息</div>
      
-       <div>
+      <c:if test="${! dealLog.urlEffective}">
+		<div>
             <ul class="timeOut">
               <li><img src="${imgPath }/icons/linkTimeOut.png"/></li>
               <li>这个链接失效 </li>
               <li>可以重新向视频管家申请</li>
             </ul>
        </div>
-     
-     
-     
+	  </c:if>
+       
     </div>
-    
-    
-    
-    	<!-- toolbar modal begin doing -->
-		<div class="modal fade upload-window" id="doingModals">
-		<!-- 	<img class="circle-img" src="/resources/img/flow/circle.png" id="circle-img-id"></img> -->
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-							<img class="canclemodal" src="/resources/img/flow/canclemodal.png">
-							<div class="titleModal">进行中...</div>
-							
-							<div class="modalContent">
-							    <ul>
-							       <li><img src="${imgPath }/icons/success.png"></li>
-							       <li>支付成功</li>
-							       <li>立即查看账单详情</li>
-							    </ul>
-							</div>
-							
-							<div class="modalContent">
-							    <ul>
-							       <li><img src="${imgPath }/icons/rePay.png"></li>
-							       <li>重新支付</li>		
-							    </ul>
-							</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- toolbar modal end -->
-		
-		<!-- toolbar modal begin success -->
-		<div class="modal fade upload-window" id="successModals">
-		<!-- 	<img class="circle-img" src="/resources/img/flow/circle.png" id="circle-img-id"></img> -->
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-							<img class="canclemodal" src="/resources/img/flow/canclemodal.png">
-							
-							<div class="modalSingleContent">
-							    <ul>
-							       <li><img src="${imgPath }/icons/finishSmile.png"></li>
-							       <li>支付成功啦</li>
-							       <li>点击返回支付记录</li>
-							    </ul>
-							</div>
-							
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- toolbar modal end -->
-		
-				<!-- toolbar modal begin fail -->
-		<div class="modal fade upload-window" id="failModals">
-		<!-- 	<img class="circle-img" src="/resources/img/flow/circle.png" id="circle-img-id"></img> -->
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-							<img class="canclemodal" src="/resources/img/flow/canclemodal.png">
-							
-							<div class="modalSingleContent">
-							    <ul>
-							       <li><img src="${imgPath }/icons/failSmile.png"></li>
-							       <li>支付失败</li>
-							       <li>请重新支付</li>
-							       <li>返回支付记录</li>
-							    </ul>
-							</div>
-							
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- toolbar modal end -->
-    
-		
 	<script src="${jqueryJs }"></script>
 	<script src="${modelJs }"></script>
 	<script src="${commonJs }"></script>
