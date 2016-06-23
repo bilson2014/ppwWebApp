@@ -17,16 +17,12 @@ var oTimer;
 
 $().ready(
 		function() {
-	        
 						
 			// add by lt, 2016-04-19 03:17 begin 剪切板
 			ZeroClipboard.config({hoverClass: "hand"});
 			var client = new ZeroClipboard($("#copyLink"));
 			//add by lt, 2016-04-19 03:17 end
-			
-			
-	
-			
+
 			init();
 			showOrderTime();
 			loadprojecctlist();
@@ -450,7 +446,6 @@ function loadflowdata() {
 									$('#payListPage').html('');
 									$('#payInfo').slideUp('');
 									
-									payInfo
 								}
 								//end
 								
@@ -1305,12 +1300,8 @@ var ControlPay ={
 			
 			$('#Online').on('click',function(){
 				ControlPay.showOnlineInfo();
-				
 			});
-			
 		},
-		
-		
 		showOnlineInfo:function(){
 			$('#payInfo').slideDown();
 			ControlPay.initOnlineInfo();
@@ -1335,15 +1326,19 @@ var ControlPay ={
 			$('#order-outline').addClass('hide');
 			$('#pay-sure').text('确认');
 			$('#link').addClass('hide');
+			ControlPay.initBillNo();
 			checkPayList.checkOnBlur();
 		},
-		
+		initBillNo:function(){
+			getData(function(msg){
+				var billNo = msg.billNo;
+				$('#order-online').val(billNo);
+			}, getContextPath() + '/pay/get/billno');
+		},
         clickOutLine:function(){
-			
 			$('#Outline').on('click',function(){
 				ControlPay.showOutlineInfo();
 			});
-			
 		},
 		
 		showOutlineInfo:function(){
@@ -1352,9 +1347,6 @@ var ControlPay ={
 		},
 		
 		initOutlineInfo:function(){
-			
-		
-			
 			$('#checkWay').val("2");
 			$('#Outline').addClass('pay-click-btn');
 			$('#Outline').removeClass('pay-btn');
@@ -1377,27 +1369,43 @@ var ControlPay ={
 			
 			checkPayList.checkOutBlur();
 		},
-		
-		
-		   clickpay:function(){
+		clickpay:function(){
 				
 				$('#pay-sure').on('click',function(){
 					ControlPay.initPayInfo();
 				});
 				
 			},
+			// TODO:
 			initPayInfo:function(){
 				var check=$('#checkWay').val();
-				if(check=="1"){
-					
+				if(check == "1"){
 					if(checkPayList.checkOnLinePayList()){
 						  $('#pay-sure').text('返回');
 						  $('#checkWay').val('3');
 						  $('#OnlineInfo').addClass('hide');
 						  $('#link').removeClass('hide');
+					 }
+					var orderId = $("#order-online").val().trim();
+					var projectName = $("#projectName").val().trim();
+					var cusName = $("#cusName").val().trim();
+					var payMoney = $("#payMoney").val().trim();
+					var projectId = getCurrentProject();
+					// 发起线上支付
+					loadData(function(msg){
+						if(msg.errorCode == 200){
+							var url =  msg.result;
+							$("#shareLink").val(getHostName()+url);
+						}else{
+							alert("出错啦");
 						}
-					
-				
+					},  getContextPath() + '/pay/sendpay',$.toJSON({
+						billNo:orderId,
+						projectName:projectName,
+						userName:cusName,
+						payPrice:payMoney,
+						projectId:projectId
+					}));
 				}
 				else if(check=="2"){
 					//$("#historyList").click();
@@ -1412,12 +1420,7 @@ var ControlPay ={
 					  $('#link').addClass('hide');
 				}
 			},
-			
-			
 			  clickPayOpenHistory:function(){
-				
-				   
-				
 				   
 					//立即前往
 					$('#openHistory').on('click',function(){
@@ -1431,7 +1434,7 @@ var ControlPay ={
 						  var base_Card = $("div[class^=payId]");
 						
 						if(base_Card.length<=0){
-							$("#payListPage").append(payList());
+							payList();
 						}
 					});
 					//客户历史按钮
@@ -1445,9 +1448,6 @@ var ControlPay ={
 						}
 						
 					});
-					
-					
-					
 				},
 				
 				  clickPayHistoryClose:function(){
@@ -1489,9 +1489,6 @@ var ControlPay ={
 
 
 var checkPayList = {
-		
-		
-	
 		
 		//支付验证线下
 		
@@ -1742,34 +1739,71 @@ var checkPayList = {
 
 
 function payList(){
-	var $body='<div class="payId payCard">'+
-	'<div class="payCard-top">'+
-	'<div class="cardLeftStatue payInline">线上支付</div>'+
-	'<div class="cardRightStatue payInline"><img src="${imgPath }/flow/updateInfo.png" ></img></div>'+
-	'</div>'+
-	'<div class="payCard-info backgroundFinish">'+
-	'<div class="info-left">'+
-	'<div class="infoTitle">高逼格产品宣传片</div>'+
-	'<button class="info-btn red-btn">分享支付链接</button>'+
-	'</div>'+
-	'<div class="info-right">'+
-	'<ul class="payInline">'+
-	'<li><div class="contentTitle">支付方</div><div class="contentWord">霸天第一公司</div></li>'+
-	'<li><div class="contentTitle">支付金额</div><div class="contentWord">20000元</div></li>'+
-	'<li><div class="smallWord">付款时间</div><div class="smallWord">2016-03-12 12:12</div></li>'+
-	'</ul>'+
-	'<ul class="rightUl payInline">'+
-	'<li><div class="contentTitle">收款方</div><div class="contentWord">帅气卢</div></li>'+
-	'<li><div class="contentTitle">订单号</div><div class="contentWord">7708801314520</div></li>'+
-	'<li><div class="smallWord">失败时间</div><div class="smallWord">2016-03-12 12:12</div></li>'+
-	'</ul>'+
-	'</div>'+
-	'</div>';	
-	$body+='</div>';
-   return $body;
+	var listnode = $("#payListPage");
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg != null ){
+			msg.forEach(function(deal){
+				
+				var backgruond = "";
+				var btn_shareLink = "";
+				var btn_goPay = "";
+				var left_time ="";
+				var right_time ="";
+				switch (deal.dealStatus) {
+				case 0: // 正常
+					backgruond ='	<div class="payCard-info backgroundWait">';
+					btn_shareLink = '<button class="info-btn red-btn">分享支付链接</button>';
+					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">2016-03-12 12:12</div></li>';
+					break;
+				case 1: // 完成
+					backgruond ='	<div class="payCard-info backgroundFinish">';
+					break;
+				case 2: // 支付关闭
+					backgruond ='	<div class="payCard-info backgroundFail">';
+					break;
+				}
+				
+				
+				if(deal.dealLogSource == 0){
+					//线上
+				}else{
+					//线下
+				}
+				
+				var $body=
+					'<div class="payId payCard">'+
+					'	<div class="payCard-top">'+
+					'		<div class="cardLeftStatue payInline">'+deal.dealLogSource+'</div>'+
+					'	</div>';
+				
+					$body+=
+					'		<div class="info-left">'+
+					'			<div class="infoTitle">'+deal.projectName+'</div>'+
+					'		</div>'+
+					'		<div class="info-right">'+
+					'			<ul class="payInline">'+
+					'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
+					'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>'+
+					
+					'			</ul>'+
+					'			<ul class="rightUl payInline">'+
+					'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
+					'				<li><div class="contentTitle">订单号</div><div class="contentWord" style="width:100px">'+deal.billNo+'</div></li>'+
+					
+					'			</ul>'+
+					'		</div>'+
+					'	</div>'+
+					'</div>';
+					listnode.append($body);
+			});
+		}
+	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
+		projectId:key
+	}));
 }
-
-
 
 //var ControlTree = {
 //		CommonDoingProjectTree : function(){
