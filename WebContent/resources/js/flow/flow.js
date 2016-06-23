@@ -17,8 +17,15 @@ var oTimer;
 
 $().ready(
 		function() {
-	      
+	        
+						
+			// add by lt, 2016-04-19 03:17 begin 剪切板
+			ZeroClipboard.config({hoverClass: "hand"});
+			var client = new ZeroClipboard($("#copyLink"));
+			//add by lt, 2016-04-19 03:17 end
 			
+			
+	
 			
 			init();
 			showOrderTime();
@@ -1066,7 +1073,7 @@ function updateProjectTreeView() {
     	countCheck++;
     }
     
-	ControlTree.showTreeImg();
+	//ControlTree.showTreeImg();
    	
 }
 //加载项目基础信息
@@ -1456,6 +1463,12 @@ var ControlPay ={
 						$("#payHistoryList").slideDown();
 						
 					},
+					
+					copyLink:function(){
+						$('#copyLink').on('click',function(){
+
+						});
+					},
 
 					
 		
@@ -1465,6 +1478,8 @@ var ControlPay ={
 			ControlPay.clickpay();
 			ControlPay.clickPayOpenHistory();
 			ControlPay.clickPayHistoryClose();
+			ControlPay.copyLink();
+			
 	
 		}
 		

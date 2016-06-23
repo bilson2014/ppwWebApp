@@ -42,6 +42,7 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
+<spring:url value="/resources/js/flow/ZeroClipboard.js" var="zclipJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -66,7 +67,8 @@
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
-	<script src="${commonJs }"></script>
+
+<script src="${commonJs }"></script>
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
@@ -80,6 +82,8 @@
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
 <script src="${datepickerZhJs }"></script>
+<script src="${zclipJs }"></script>
+
 
 
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
@@ -392,14 +396,14 @@
 				        <div class="createLink hide" id="link">
 				           <ul>
 				              <li>
-				                 <div class="payInline"><img src="${imgPath }/flow/link.png"/></div>
-				                 <div class="payInline createTitle">成功创建支付链接</div>
+				                 <div style="display:inline-block"><img src="${imgPath }/flow/link.png"/></div>
+				                 <div class="createTitle" style="display:inline-block">成功创建支付链接</div>
 				              </li>
 				              
 				              <li>
 				                <div class="input-group getLink">
-								  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" aria-describedby="basic-addon2">
-								  <span class="input-group-addon getLinkBtn" id="basic-addon2">复制链接</span>
+								  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" id="shareLink">
+								  <span class="input-group-addon getLinkBtn" id="copyLink"  data-clipboard-target="shareLink">复制链接</span>
 								</div>
 				              </li>
 				           </ul>

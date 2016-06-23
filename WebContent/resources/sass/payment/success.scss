@@ -70,6 +70,7 @@ body{
         text-align: center;
         position: relative;
         top: 30%;
+  
         
         
          
@@ -90,8 +91,8 @@ body{
         }
 
         li{
-          font-size: $font-size;
-          color:$gray;
+          font-size: $font-size-base;
+          color:$gray-dark;
 
       
         }
@@ -100,7 +101,9 @@ body{
 
 .liImg{
            position: relative;
-          top:4px;
-          right:2px;
+          top:25px;
+          right:60px;
+          width:27px;
+          height:27px;
          }
 

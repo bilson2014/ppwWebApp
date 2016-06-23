@@ -92,10 +92,13 @@
 	   <div class="errorDiv">
 	       
 	       <div class="centerDiv">
+	       
+	       <img class="liImg" src='${imgPath }/icons/successSure.png'>
 	         <ul>
-				          <li><img class="liImg" src='${imgPath }/icons/successSure.png'>支付成功啦</li>
-				          <li>请尽快联系拍片网视频管家</li>
-				          <li>支付已完成,我们将尽快为您服务</li>
+	                        
+				          <li>支付成功啦</li>
+				          <li>请尽快联系拍片网视频管家，支付已完成，我们将尽快为您服务！</li>
+				   
 				       </ul>
 	   </div>
 	  

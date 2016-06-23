@@ -12,8 +12,10 @@
 
 .liImg{
            position: relative;
-          top:4px;
-          right:2px;
+          top:25px;
+          right:60px;
+          width:27px;
+          height:27px;
          }
 
 
@@ -24,6 +26,7 @@
         text-align: center;
         position: relative;
         top: 30%;
+        left:2px;
         
         
          
@@ -45,7 +48,7 @@
 
         li{
           font-size: $font-size;
-          color:$gray;
+          color:$gray-dark;
 
       
         }

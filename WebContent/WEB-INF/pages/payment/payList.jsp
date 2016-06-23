@@ -43,7 +43,7 @@
          <div class="topLine leftMargin"></div>
          <div class="orderContent">
 	           <div class="topContent leftMargin">
-	              <div class="contentLeft">支付单号：<span>20160285100471</span></div>
+	              <div class="contentLeft">支付单号：<span>475157f444e440d6b52945ba875357d7</span></div>
 	              <div class="contentRight">截止时间：<span>2016/06/12 12:22</span></div>
 	           </div>
 	           
@@ -65,7 +65,7 @@
 		             
 		             <div class="solidLine">----------------------------------------------------------------------------------------------------------------------------------------</div>
 		             <div class="midContentDiv">
-			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400">付款金额：</span><span class="contentSpan contentSpanBig">20000</span><span class="contentSpanSmall">元</span></div>
+			              <div class="contentLeft"><div class="contentTitleSpan grayColor inline" style="font-weight:400">付款金额：</div><div class="contentSpan contentSpanBig inline">20000</div><div class="contentSpanSmall inline">元</div></div>
 			              <div class="contentRight"><button class="btn-red">确认</button></div>
 		             </div> 
 	           </div>
