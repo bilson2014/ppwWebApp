@@ -19,9 +19,7 @@ var order = {
 					$('#label-message').hide('normal');
 					// 提交表单
 					var token = $('#token').val();
-					console.info(token);
 					$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-					alert($('#token'));
 					$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 				}else{
 					$('#label-message').show('normal');
@@ -29,7 +27,6 @@ var order = {
 					return false;
 				}
 			}
-			
 		});
 	}
 }

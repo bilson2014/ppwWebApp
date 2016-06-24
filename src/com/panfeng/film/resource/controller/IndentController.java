@@ -73,6 +73,8 @@ public class IndentController extends BaseController {
 				indent.setIndent_recomment(URLEncoder.encode(indent.getIndent_recomment(), "UTF-8"));
 			}
 			
+			// add by Jack,2016-06-21 19:45 begin
+			// -> to promote security for order
 			String token = indent.getToken();
 			// token 解密
 			token = AESUtil.Decrypt(token, GlobalConstant.ORDER_TOKEN_UNIQUE_KEY);
@@ -81,6 +83,7 @@ public class IndentController extends BaseController {
 			indent.setTeamId(nIndent.getTeamId());
 			indent.setProductId(nIndent.getProductId());
 			indent.setServiceId(nIndent.getServiceId());
+			// add by Jack,2016-06-21 19:45 end
 			
 			String str = HttpUtil.httpPost(url, indent,request);
 			if(str != null && !"".equals(str)){
@@ -129,26 +132,43 @@ public class IndentController extends BaseController {
 			if(indent.getIndent_recomment() != null && !"".equals(indent.getIndent_recomment())) {
 				indent.setIndent_recomment(URLEncoder.encode(indent.getIndent_recomment(), "UTF-8"));
 			}
+			
+			// add by Jack,2016-06-22 19:45 begin
+			// -> to promote security for order
+			String token = indent.getToken();
+			// token 解密
+			token = AESUtil.Decrypt(token, GlobalConstant.ORDER_TOKEN_UNIQUE_KEY);
+			
+			final Indent nIndent = JsonUtil.toBean(token, Indent.class);
+			indent.setTeamId(nIndent.getTeamId());
+			indent.setProductId(nIndent.getProductId());
+			indent.setServiceId(nIndent.getServiceId());
+			// add by Jack,2016-06-22 19:45 end
+			
 			String str = HttpUtil.httpPost(url, indent,request);
 			if(str != null && !"".equals(str)){
-				
-				// 当前系统时间
-				DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String currentTime = format.format(new Date());
-				
-				final StringBuffer info = new StringBuffer();
-				info.append("下单提示信息：手机号码为【" + indent.getIndent_tele() + "】,");
-				info.append("用户名为【" + custom + "】 的客户,");
-				info.append("于" + currentTime);
-				info.append("下单购买【" + indent.getProduct_name() + "】,");
-				info.append("请您及时处理！");
-				// 发送短信
-				smsService.smsSend(TELEPHONE, info.toString());
-				
-				serLogger.info("Order submit at Phone,Message is " + info.toString());
-				return new ModelAndView("redirect:/phone/success");
+				final Result result = JsonUtil.toBean(str, Result.class);
+				if(result.isRet()){
+					
+					// 当前系统时间
+					DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String currentTime = format.format(new Date());
+					
+					final StringBuffer info = new StringBuffer();
+					info.append("下单提示信息：手机号码为【" + indent.getIndent_tele() + "】,");
+					info.append("用户名为【" + custom + "】 的客户,");
+					info.append("于" + currentTime);
+					final String pName = result.getMessage() == null ? "" : result.getMessage();
+					info.append("下单购买【" + pName + "】,");
+					info.append("请您及时处理！");
+					// 发送短信
+					smsService.smsSend(TELEPHONE, info.toString());
+					
+					serLogger.info("Order submit at Phone,Message is " + info.toString());
+					return new ModelAndView("redirect:/phone/success");
+				}
 			}
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			logger.error("IndentController method:successViewOnPhone() Order encode Failure ...");
 			e.printStackTrace();
 		}

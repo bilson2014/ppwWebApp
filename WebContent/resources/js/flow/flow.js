@@ -13,14 +13,8 @@ var countCheck = 0;
 var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
-$().ready(
-		function() {
+$().ready(function() {
 	
-			
-			
-
-			
-			
 			init();
 			showOrderTime();
 			loadprojecctlist();
@@ -85,8 +79,6 @@ $().ready(
 			});
 			
 			ControlPay.initControlPay();
-			
-			
 			
 		});
 
