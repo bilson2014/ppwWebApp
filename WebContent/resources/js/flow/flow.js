@@ -1753,7 +1753,7 @@ function payList(){
 				switch (deal.dealStatus) {
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
-					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
+					btn_shareLink = '<button class="info-btn red-btn" id="toShare" data-token="'+deal.token+'">分享支付链接</button>';
 					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
@@ -1765,8 +1765,6 @@ function payList(){
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
-					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
-					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
@@ -1840,20 +1838,22 @@ function payList(){
 }
 
 function toShare(){
-	
-	
 	var deleteSynergys=$("[id^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
-		if(cout != 0){
-			var x=$(this).parent().parent().find("div#project").text();
-			alert(x);
-		}
-	
+		var token=$(this).attr("data-token");
+		getData(function(msg){
+			if(msg.errorCode == 200){
+				console.log(getHostName()+msg.result);
+				alert(getHostName()+msg.result);
+			}
+			else
+				alert(msg.errorMsg);
+			
+			
+		}, getContextPath()+'/pay/shareurl?token='+token);
 	});
-	
-
 }
 
 //var ControlTree = {

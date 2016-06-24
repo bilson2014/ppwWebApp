@@ -38,15 +38,10 @@
          <div class="topLine leftMargin"></div>
          <div class="orderContent">
 	           <div class="topContent leftMargin">
-<<<<<<< HEAD
-	              <div class="contentLeft">支付单号：<span>475157f444e440d6b52945ba875357d7</span></div>
-	              <div class="contentRight">截止时间：<span>2016/06/12 12:22</span></div>
-=======
 	              <div class="contentLeft" style="white-space:nowrap;overflow:hidden;width:200px">支付单号：
 		              <span > ${dealLog.billNo}</span>
 	              </div>
 	              <div class="contentRight">截止时间：<span>${dealLog.orderTimeOut }</span></div>
->>>>>>> 92d53675f89c0faa83fd15eaec12ebc5c3add796
 	           </div>
 	           
 	           <div class="midContent leftMargin">
