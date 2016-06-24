@@ -104,6 +104,23 @@
 	<div class="page">
 		<div class="content-wrap">
 				
+				<div class="order-title">我要拍片</div>
+				<!-- 订单信息 start-->
+				<div class="information-section">
+					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
+						<%-- <input type="hidden" id="teamId" name="teamId" value="${teamId}"/>
+						<input type="hidden" id="productId" name="productId" value="${productId}"/>
+						<input type="hidden" id="serviceId" name="serviceId" value="${serviceId}"/>
+						<input type="hidden" id="indentPrice" name="indentPrice" value="${indentPrice}"/>
+						<input type="hidden" id="second" name="second" value="${second}"/>
+						<input type="hidden" id="product_name" name="product_name" value="${product_name}"/>
+						<input type="hidden" id="salesmanUniqueId" name="salesmanUniqueId" value="${uniqueId}"/> --%>
+						<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+						<input type="hidden" id="token" name="token" value="${token}"/>
+					
+						<div class="form-group">
+							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder="您的姓名"/>
+						</div>
 					<div class="order-title">我要拍片</div>
 					<!-- 订单信息 start-->
 					<div class="information-section">
@@ -119,46 +136,47 @@
 							<div class="form-group">
 								<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder="您的姓名"/>
 							</div>
+>>>>>>> e6a3f47f33278698348f3aa6f00bb2f57375ae3c
 
-							<div class="form-group">
-								<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder="您的移动电话"/>
-							</div>
+						<div class="form-group">
+							<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder="您的移动电话"/>
+						</div>
 
-							<div class="form-group textarea-box">
-								<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder="(选填) 如有必要，可以简单描述下您的需求"></textarea>
-							</div>
-							
-							<label id="label-message" class="label-message" style="display: none;">请输入正确的手机格式</label>
+						<div class="form-group textarea-box">
+							<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder="(选填) 如有必要，可以简单描述下您的需求"></textarea>
+						</div>
+						
+						<label id="label-message" class="label-message" style="display: none;">请输入正确的手机格式</label>
 
-							<div class="form-group">
-								<a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
-							</div>
-						</form>
-					</div>
-					<!-- 订单信息 end-->
-					
-					<!-- 订单官方描述 start-->
-					<div class="description-section">
-						<dl class="dl1">
-							<dd>请留下您的联系方式</dd>
-							<dd>通常情况下</dd>
-							<dd>我们的视频营销顾问会在2小时内联系您</dd>
-						</dl>
+						<div class="form-group">
+							<a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+						</div>
+					</form>
+				</div>
+				<!-- 订单信息 end-->
+				
+				<!-- 订单官方描述 start-->
+				<div class="description-section">
+					<dl class="dl1">
+						<dd>请留下您的联系方式</dd>
+						<dd>通常情况下</dd>
+						<dd>我们的视频营销顾问会在2小时内联系您</dd>
+					</dl>
 
-						<dl class="dl2">
-							<dd>您也可以拨打我们的拍片热线</dd>
-							<dd>4006609728</dd>
-							<dd class="red-font">创意策划阶段是完全免费的</dd>
-						</dl>
+					<dl class="dl2">
+						<dd>您也可以拨打我们的拍片热线</dd>
+						<dd>4006609728</dd>
+						<dd class="red-font">创意策划阶段是完全免费的</dd>
+					</dl>
 
-						<dl class="dl3">
-							<dd>我们非常乐意为您效劳</dd>
-							<dd>助力您的产品大获成功</dd>
-							<dd>拍片网，试过都知好!</dd>
-						</dl>
+					<dl class="dl3">
+						<dd>我们非常乐意为您效劳</dd>
+						<dd>助力您的产品大获成功</dd>
+						<dd>拍片网，试过都知好!</dd>
+					</dl>
 
-					</div>
-					<!-- 订单官方描述 end-->
+				</div>
+				<!-- 订单官方描述 end-->
 				
 			</div>
 	</div>

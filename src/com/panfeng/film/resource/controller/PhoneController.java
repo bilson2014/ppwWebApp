@@ -22,6 +22,7 @@ import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.util.HttpUtil;
+import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 
 @RestController
@@ -129,24 +130,33 @@ public class PhoneController extends BaseController {
 	@RequestMapping("/order")
 	public ModelAndView orderView(final HttpServletRequest request,
 								  final ModelMap model) {
+		final String json = request.getParameter("json");
+		final Indent indent = new Indent().fromString(json, Indent.class);
 		try {
-			final String json = request.getParameter("json");
-			final Indent indent = new Indent().fromString(json, Indent.class);
 			final String productName = URLDecoder.decode(
 					indent.getProduct_name(), "UTF-8");
-			model.addAttribute("teamId", indent.getTeamId());
+			indent.setProduct_name(productName);
+			// modify by Jack, 2016-06-22 19:36 begin
+			// to promote security for order
+			// change hidden input to encrypt token
+			/*model.addAttribute("teamId", indent.getTeamId());
 			model.addAttribute("productId", indent.getProductId());
 			model.addAttribute("serviceId", indent.getServiceId());
 			model.addAttribute("indentPrice", indent.getIndentPrice());
 			model.addAttribute("second", indent.getSecond());
-			model.addAttribute("product_name", productName);
+			model.addAttribute("product_name", productName);*/
 
+			final String token = IndentUtil.generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+			// modify by Jack, 2016-06-22 19:36 end
+			
 			serLogger.info("Order at Phone,teamId:" + indent.getTeamId()
 					+ " ,productId:" + indent.getProductId() + " ,indentPrice:"
 					+ indent.getIndentPrice());
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("phone order is error ...");
+			logger.error("method PhoneController orderView ,order has error,bacase generate order use AES Decrypt token error ...");
+			e.printStackTrace();
 		}
 
 		return new ModelAndView("/phone/order", model);
@@ -161,13 +171,30 @@ public class PhoneController extends BaseController {
 	public ModelAndView orderRedirectView(final HttpServletRequest request,
 			final ModelMap model) throws UnsupportedEncodingException {
 
-		model.addAttribute("teamId", 0);
+		// modify by Jack, 2016-06-22 19:38 begin
+		// to promote security for order
+		// change hidden input to encrypt token
+		/*model.addAttribute("teamId", 0);
 		model.addAttribute("productId", 0);
 		model.addAttribute("serviceId", 0);
 		model.addAttribute("indentPrice", 0);
 		model.addAttribute("second", 0);
 		model.addAttribute("product_name", null);
-		model.addAttribute("indentName", null);
+		model.addAttribute("indentName", null);*/
+		
+		try {
+			final Indent indent = new Indent();
+			indent.setTeamId(-1l);
+			indent.setProductId(-1l);
+			indent.setServiceId(-1l);
+			final String token= IndentUtil.generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			logger.error("method PhoneController orderRedirectView ,direct order has error,bacase generate order use AES Decrypt token error ...");
+			e.printStackTrace();
+		}
+		// modify by Jack, 2016-06-22 19:38 end
+		
 		return new ModelAndView("/phone/order", model);
 	}
 	
@@ -182,12 +209,17 @@ public class PhoneController extends BaseController {
 			@PathVariable("serviceId") final Long serviceId,
 			@PathVariable("indentPrice") final Double indentPrice,
 			@PathVariable("productName") final String productName) {
-
+		
+		// modify by jack, 2016-06-22 20:00 begin
+		// -> to promote security for order
+		// change hidden input to encrypt token
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
 		model.addAttribute("serviceId", serviceId);
 		model.addAttribute("indentPrice", indentPrice);
 		model.addAttribute("second", 0);
+		
+		
 		try {
 			model.addAttribute("product_name",
 					URLDecoder.decode(productName, "UTF-8"));

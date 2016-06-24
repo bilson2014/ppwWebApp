@@ -11,7 +11,7 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/phone/salesman/portal.js" var="portalJs"/>
 <!-- imgPath -->
-<spring:url value="/resources/img" var="imgPath"/>
+<spring:url value="/resources/images" var="imgPath"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -80,14 +80,15 @@
 		              </div> 
             
 		             <div class="inside-div"  id="first-video-section" >
-			            <!--example  <div class="video-area-card">
+			            <!-- example  
+			            	<div class="video-area-card">
 				              <div class="video-play-section" id="first-video-section">
 									<img class="video-play-section" src="http://test.apaipian.com:8080/product/img/product606-201605191420186152.JPG " />
 							  </div>
 							  <div class="video-content">
 							     <ul>
-							       <li class="font-title">sss</li>
-		                           <li class="font-content">还是sOA啥事都静安寺殴打就的撒地加速的骄傲是京东丹娜丝殴打静安寺呕到家哦还是sOA啥事都静安寺殴打就的撒地加速的骄傲是京东丹娜丝殴打静安寺呕到家哦还是sOA啥事都静安寺殴打就的撒地加速的骄傲是京东丹娜丝殴打静安寺呕到家哦还是sOA啥事都静安寺殴打就的撒地加速的骄傲是京东丹娜丝殴打静安寺呕到家哦还是sOA啥事都静安寺殴打就的撒地加速的骄傲是京东丹娜丝殴打静安寺呕到家哦</li>					      
+							       <li class="font-title">闪灵App</li>
+		                           <li class="font-content">产品简介</li>					      
 							       <li><a href="" class="btn-red-common video-btn">立即下单</a></li>
 							     </ul>
 							  </div> -->

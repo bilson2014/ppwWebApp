@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.DealLog;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -75,8 +76,13 @@ public class PayController extends BaseController {
 	}
 
 	@RequestMapping(value = "/get/deallogs", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public List<DealLog> getDealLogByProject(@RequestBody Map<String, Long> projectId,
+	public List<DealLog> getDealLogByProject(@RequestBody Map<String, String> projectId,
 			final HttpServletRequest request) {
+		final SessionInfo info = getCurrentInfo(request);
+		Long userid = info.getReqiureId();
+		String userType = info.getSessionType();
+		projectId.put("userid", userid.toString());
+		projectId.put("userType", userType);
 		final String url = GlobalConstant.URL_PREFIX + "pay/get/deallogs";
 		String str = HttpUtil.httpPost(url, projectId, request);
 		if (str != null && !"".equals(str)) {
@@ -152,5 +158,4 @@ public class PayController extends BaseController {
 			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
 		}
 	}
-
 }
