@@ -38,12 +38,11 @@
          <div class="topLine leftMargin"></div>
          <div class="orderContent">
 	           <div class="topContent leftMargin">
-	              <div class="contentLeft" style="white-space:nowrap;overflow:hidden;width:200px">支付单号：
+	              <div class="contentLeft">支付单号：
 		              <span > ${dealLog.billNo}</span>
 	              </div>
 	              <div class="contentRight">截止时间：<span>${dealLog.orderTimeOut }</span></div>
 	           </div>
-	           
 	           <div class="midContent leftMargin">
 	                 <div class="midContentDiv">
 			              <div class="contentLeft grayColor">项目名称：<span class="grayDarkColor">${dealLog.projectName}</span></div>

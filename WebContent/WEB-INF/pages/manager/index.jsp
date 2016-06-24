@@ -662,6 +662,29 @@
 		</div>
 		</div>
 		<!-- toolbar modal end -->
+		
+							<!-- toolbar modal begin 分享 -->
+		<div class="modal fade upload-window" id="toolbar-share">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+					 <div class="input-group getShareLink">
+								  <input type="text" class="form-control getShareLinkInput" value="http:测试测试" id="shareLinkList">
+								  <span class="input-group-addon getShareLinkBtn" id="copyShareLink"  data-clipboard-target="shareLinkList">复制链接</span>
+					</div>
+					 <div class="input-group getShareLink">
+						  <dl class="share-list">
+										<dt >分享:</dt>
+										<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/img/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/img/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/img/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
+						 </dl>
+					 </div>
+				</div>	
+			</div>
+		</div>
+		<!-- toolbar modal end -->
+	
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>
 	<div class="-mob-share-ui" style="display: none">
