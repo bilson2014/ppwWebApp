@@ -1786,8 +1786,7 @@ function payList(){
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">完成时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
