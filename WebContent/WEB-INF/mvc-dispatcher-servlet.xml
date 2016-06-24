@@ -17,11 +17,27 @@
 	
 	<mvc:view-controller path="/order-flow.html" view-name="/order-flow" />
 	
+	<mvc:view-controller path="/apaipian.com.html" view-name="/apaipian.com" />
+	
 	<mvc:view-controller path="/member.html" view-name="/member" />
 	
 	<mvc:view-controller path="/mgr/recover" view-name="/manager/recover" />
 	
 	<mvc:view-controller path="/provider/leader" view-name="/provider/leader" />
+	
+	<mvc:view-controller path="/payment/payList" view-name="/payment/payList" />
+	
+	<mvc:view-controller path="/payment/success" view-name="/payment/success" />
+	
+	<mvc:view-controller path="/phone/payment/payList" view-name="/phone/payment/payList" />
+	
+	<mvc:view-controller path="/phone/payment/payListSuccess" view-name="/phone/payment/payListSuccess" />
+	
+	<mvc:view-controller path="/phone/payment/payListFail" view-name="/phone/payment/payListFail" />
+	
+	<mvc:view-controller path="/error" view-name="/error" />
+	
+	<mvc:view-controller path="/phone/error" view-name="/phone/error" />
 	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
