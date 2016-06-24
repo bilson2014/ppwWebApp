@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,21 +52,31 @@ public class PayController extends BaseController {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
 			if (baseMsg.getErrorCode() == BaseMsg.NORMAL) {
 				result = (String) baseMsg.getResult();
+				try {
+					response.setContentType("text/html;charset=utf-8");
+					PrintWriter out = response.getWriter();
+					out.println(result);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} else {
-				result = "待定|"+baseMsg.getErrorMsg();
+				result = "待定|" + baseMsg.getErrorMsg();
+				try {
+					response.sendRedirect("/pay/error");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-		try {
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println(result);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	}
+	@RequestMapping("/error")
+	public ModelAndView error(){
+		return new ModelAndView("error");
 	}
 	
 	@RequestMapping(value = "/get/deallogs", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public List<DealLog> getDealLogByProject(@RequestBody Map<String,Long> projectId, final HttpServletRequest request) {
+	public List<DealLog> getDealLogByProject(@RequestBody Map<String, Long> projectId,
+			final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "pay/get/deallogs";
 		String str = HttpUtil.httpPost(url, projectId, request);
 		if (str != null && !"".equals(str)) {
@@ -94,20 +105,26 @@ public class PayController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR, "发起失败", null);
 	}
 
-	@RequestMapping(value = "/shareurl", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public BaseMsg shareUrl(@RequestBody DealLog dealLog, final HttpServletRequest request) {
+	@RequestMapping(value = "/shareurl",  produces = "application/json; charset=UTF-8")
+	public BaseMsg shareUrl(String token, final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "pay/shareurl";
-		String str = HttpUtil.httpGet(url, request);
+		Map<String, String> pram = new HashMap<>();
+		pram.put("token", token);
+		String str = HttpUtil.httpPost(url, pram, request);
 		if (str != null && !"".equals(str)) {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
 			// 数据正常添加url前缀
 			if (baseMsg.getErrorCode() == BaseMsg.NORMAL) {
-				String token = (String) baseMsg.getResult();
-				String urlview = "/pay/shareview?token=" + token;
+				String newToken = (String) baseMsg.getResult();
+				String urlview = "/pay/shareview?token=" + newToken;
 				baseMsg.setResult(urlview);
+				return baseMsg;
+			} else {
+				return baseMsg;
 			}
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
 		}
-		return new BaseMsg();
 	}
 
 	@RequestMapping("/shareview")
@@ -120,7 +137,7 @@ public class PayController extends BaseController {
 			model.put("dealLog", dealLog);
 			return new ModelAndView("/payment/payList", model);
 		}
-		return new ModelAndView("404");
+		return new ModelAndView("error");
 	}
 
 }

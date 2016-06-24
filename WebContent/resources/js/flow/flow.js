@@ -1756,7 +1756,7 @@ function payList(){
 				switch (deal.dealStatus) {
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
-					btn_shareLink = '<button class="info-btn red-btn" name="toShare">分享支付链接</button>';
+					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
 					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
@@ -1842,25 +1842,26 @@ function payList(){
 }
 
 function toShare(){
-	
-	
 	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
-
 	deleteSynergys.on('click',function(){
-		if(cout != 0){
-			var x=$(this).parent().parent().find("input#urlLink").val();
-		//	ZeroClipboard.config({hoverClass: "handShare"});
-			var clientShare = new ZeroClipboard($("#copyShareLink"));
-			$('#toolbar-share').modal('show');
-			shareSpace();
 		
-		}
-	
-	});
-	
+		var token=$(this).attr("data-token");
+		getData(function(msg){
+			if(msg.errorCode == 200){
+				    $('#shareLinkList').val(getHostName()+msg.result);
+					ZeroClipboard.config({hoverClass: "handShare"});
+					var clientShare = new ZeroClipboard($("#copyShareLink"));
+					$('#toolbar-share').modal('show');
+					shareSpace();
+			}
+			else{
+				alert(msg.errorMsg);
+			}
+		}, getContextPath()+'/pay/shareurl?token='+token);
 
+	});
 }
 
 function shareSpace(){ // 分享
