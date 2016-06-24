@@ -1778,12 +1778,12 @@ function payList(){
 					var $body=
 						'<div class="payId payCard">'+
 						'	<div class="payCard-top">'+
-						'		<div class="cardLeftStatue payInline">'+deal.dealLogSource+'</div>'+
+						'		<div class="cardLeftStatue payInline">线上支付</div>'+
 						'	</div>';
 					    $body+= backgruond;
 						$body+=
 						'		<div class="info-left">'+
-						'			<div class="infoTitle">'+deal.projectName+'</div>';
+						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
 						$body+=btn_shareLink;
 						$body+='		</div>'+
 						'		<div class="info-right">'+
@@ -1802,12 +1802,35 @@ function payList(){
 						'</div>';
 				}else{
 					//线下
+					var $body=
+						'<div class="payId payCard">'+
+						'	<div class="payCard-top">'+
+						'		<div class="cardLeftStatue payInline">线下支付</div>'+
+						'	</div>';
+					    $body+= backgruond;
+						$body+=
+						'		<div class="info-left">'+
+						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
+						$body+='		</div>'+
+						'		<div class="info-right">'+
+						'			<ul class="payInline">'+
+						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
+						$body+=left_time;
+						$body+='			</ul>'+
+						'			<ul class="rightUl payInline">'+
+						'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
+						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
+						$body+='			</ul>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
 				}
 				
 				
 					listnode.append($body);
-					ZeroClipboard.config({hoverClass: "hand"});
-					var client = new ZeroClipboard($("#toShare"));
+//					ZeroClipboard.config({hoverClass: "hand"});
+//					var client = new ZeroClipboard($("#toShare"));
 					toShare();
 			});
 		}
@@ -1817,9 +1840,20 @@ function payList(){
 }
 
 function toShare(){
-	$('#toShare').on('click',function(){
-		alert('确定');
+	
+	
+	var deleteSynergys=$("[id^=toShare]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		if(cout != 0){
+			var x=$(this).parent().parent().find("div#project").text();
+			alert(x);
+		}
+	
 	});
+	
+
 }
 
 //var ControlTree = {
