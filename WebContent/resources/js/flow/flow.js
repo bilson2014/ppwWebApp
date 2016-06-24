@@ -1753,56 +1753,73 @@ function payList(){
 				switch (deal.dealStatus) {
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
-					btn_shareLink = '<button class="info-btn red-btn">分享支付链接</button>';
+					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
 					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
-					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">2016-03-12 12:12</div></li>';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">完成时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
+					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
+					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
 				}
 				
 				
 				if(deal.dealLogSource == 0){
 					//线上
+					var $body=
+						'<div class="payId payCard">'+
+						'	<div class="payCard-top">'+
+						'		<div class="cardLeftStatue payInline">'+deal.dealLogSource+'</div>'+
+						'	</div>';
+					    $body+= backgruond;
+						$body+=
+						'		<div class="info-left">'+
+						'			<div class="infoTitle">'+deal.projectName+'</div>';
+						$body+=btn_shareLink;
+						$body+='		</div>'+
+						'		<div class="info-right">'+
+						'			<ul class="payInline">'+
+						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
+						$body+=left_time;
+						$body+='			</ul>'+
+						'			<ul class="rightUl payInline">'+
+						'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
+						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
+						$body+=right_time;
+						$body+='			</ul>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
 				}else{
 					//线下
 				}
 				
-				var $body=
-					'<div class="payId payCard">'+
-					'	<div class="payCard-top">'+
-					'		<div class="cardLeftStatue payInline">'+deal.dealLogSource+'</div>'+
-					'	</div>';
 				
-					$body+=
-					'		<div class="info-left">'+
-					'			<div class="infoTitle">'+deal.projectName+'</div>'+
-					'		</div>'+
-					'		<div class="info-right">'+
-					'			<ul class="payInline">'+
-					'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
-					'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>'+
-					
-					'			</ul>'+
-					'			<ul class="rightUl payInline">'+
-					'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
-					'				<li><div class="contentTitle">订单号</div><div class="contentWord" style="width:100px">'+deal.billNo+'</div></li>'+
-					
-					'			</ul>'+
-					'		</div>'+
-					'	</div>'+
-					'</div>';
 					listnode.append($body);
+					ZeroClipboard.config({hoverClass: "hand"});
+					var client = new ZeroClipboard($("#toShare"));
+					toShare();
 			});
 		}
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
 		projectId:key
 	}));
+}
+
+function toShare(){
+	$('#toShare').on('click',function(){
+		alert('确定');
+	});
 }
 
 //var ControlTree = {

@@ -1387,6 +1387,11 @@ img {
       color:$red-base;
  }
 
+ .order{
+    width:200px;
+    @include ellipsis;
+ }
+
  .createLink{
 margin-top: 80px;
  }
@@ -1395,7 +1400,6 @@ margin-top: 80px;
   width: 500px;
   margin-top:10px;
  }
-
  .getLinkInput{
     color: $gray;
     font-size: $font-size;
