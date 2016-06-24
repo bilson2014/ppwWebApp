@@ -17,11 +17,6 @@ var oTimer;
 
 $().ready(
 		function() {
-						
-			// add by lt, 2016-04-19 03:17 begin 剪切板
-			ZeroClipboard.config({hoverClass: "hand"});
-			var client = new ZeroClipboard($("#copyLink"));
-			//add by lt, 2016-04-19 03:17 end
 
 			init();
 			showOrderTime();
@@ -1380,12 +1375,7 @@ var ControlPay ={
 			initPayInfo:function(){
 				var check=$('#checkWay').val();
 				if(check == "1"){
-					if(checkPayList.checkOnLinePayList()){
-						  $('#pay-sure').text('返回');
-						  $('#checkWay').val('3');
-						  $('#OnlineInfo').addClass('hide');
-						  $('#link').removeClass('hide');
-					 }
+					
 					var orderId = $("#order-online").val().trim();
 					var projectName = $("#projectName").val().trim();
 					var cusName = $("#cusName").val().trim();
@@ -1393,11 +1383,24 @@ var ControlPay ={
 					var projectId = getCurrentProject();
 					// 发起线上支付
 					loadData(function(msg){
+						
+						
+						if(checkPayList.checkOnLinePayList()){
 						if(msg.errorCode == 200){
 							var url =  msg.result;
 							$("#shareLink").val(getHostName()+url);
+						
+								  $('#pay-sure').text('返回');
+								  $('#checkWay').val('3');
+								  $('#OnlineInfo').addClass('hide');
+								  $('#link').removeClass('hide');
+								  ZeroClipboard.config({hoverClass: "hand"});
+								  var client = new ZeroClipboard($("#copyLink"));
+
+								 
 						}else{
 							alert("出错啦");
+						}
 						}
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
 						billNo:orderId,
@@ -1753,7 +1756,7 @@ function payList(){
 				switch (deal.dealStatus) {
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
-					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
+					btn_shareLink = '<button class="info-btn red-btn" name="toShare">分享支付链接</button>';
 					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
@@ -1765,8 +1768,6 @@ function payList(){
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
-					btn_shareLink = '<button class="info-btn red-btn" id="toShare">分享支付链接</button>';
-					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
@@ -1784,16 +1785,17 @@ function payList(){
 						$body+=
 						'		<div class="info-left">'+
 						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
+						
 						$body+=btn_shareLink;
 						$body+='		</div>'+
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
-						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
-						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
+						'				<li><div class="contentTitle">支付方</div><div class="contentWord ">'+deal.userName+'</div></li>'+
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord " >'+deal.payPrice+'元</div></li>';
 						$body+=left_time;
 						$body+='			</ul>'+
 						'			<ul class="rightUl payInline">'+
-						'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
+						'				<li><div class="contentTitle">收款方</div><div class="contentWord order">'+deal.proceedsSide+'</div></li>'+
 						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
 						$body+=right_time;
 						$body+='			</ul>'+
@@ -1829,8 +1831,8 @@ function payList(){
 				
 				
 					listnode.append($body);
-//					ZeroClipboard.config({hoverClass: "hand"});
-//					var client = new ZeroClipboard($("#toShare"));
+					ZeroClipboard.config({hoverClass: "hand"});
+					var client = new ZeroClipboard($("#toShare"));
 					toShare();
 			});
 		}
@@ -1842,18 +1844,38 @@ function payList(){
 function toShare(){
 	
 	
-	var deleteSynergys=$("[id^=toShare]");
+	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
+
 	deleteSynergys.on('click',function(){
 		if(cout != 0){
-			var x=$(this).parent().parent().find("div#project").text();
-			alert(x);
+			var x=$(this).parent().parent().find("input#urlLink").val();
+		//	ZeroClipboard.config({hoverClass: "handShare"});
+			var clientShare = new ZeroClipboard($("#copyShareLink"));
+			$('#toolbar-share').modal('show');
+			shareSpace();
+		
 		}
 	
 	});
 	
 
+}
+
+function shareSpace(){ // 分享
+	$('.share').on('click',function(){
+		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
+		var share_title = $(this).parent().parent().parent().find('.media-heading').text().split('标题：')[1];
+		var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
+		var imgPath = '';
+		if(imgUrl != undefined && imgUrl != null){
+			var img_Name = getFileName(imgUrl);
+			imgPath = getHostName() + '/product/img/' + img_Name;
+		}
+		
+		share.init(shareUrl, share_title, imgPath);
+	});
 }
 
 //var ControlTree = {

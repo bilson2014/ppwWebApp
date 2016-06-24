@@ -1417,10 +1417,7 @@ margin-top: 80px;
   .hand{
         cursor: pointer;
     }
-
-
-
-        
+  
 }
 
 .payTop{
@@ -1624,4 +1621,61 @@ margin-top: 80px;
     .createTitle{
         position: relative;
         top:-7px;
+    }
+
+
+    //分享弹出框
+
+     .getShareLink{
+  width: 80%;
+  height:auto;
+  margin-bottom:30px;
+  margin: 30px auto;
+
+ }
+ .getShareLinkInput{
+    color: $gray;
+    font-size: $font-size;
+ }
+
+ .getShareLinkBtn{
+   color:$white;
+    font-size: $font-size-base;
+    background: $red-base;
+    border:none;
+
+   
+ }
+
+ .share-list {
+    position: relative;
+    display: inline-block;
+     margin: 0px auto;
+}
+
+.share-list dt{
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    width: 40px;
+    height: 23px;
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.share-list dd{
+    display: inline-block;
+    width: 26px;
+    height: 23px;
+    vertical-align: middle;
+}
+
+.share-list img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+  .handShare{
+        cursor: pointer;
     }
