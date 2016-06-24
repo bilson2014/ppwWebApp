@@ -1427,40 +1427,59 @@ var ControlPay ={
 				   
 					//立即前往
 					$('#openHistory').on('click',function(){
-						ControlPay.openHistory();
+						if($('#payHistoryBtnOrder').hasClass('payBtnPosClick')){
+                        	ControlPay.closeList();
+					  }else{
+						  ControlPay.openHistory();
+						  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+						  var base_Card = $("div[class^=payCard]");
+					      payList();
+					  }
 						
 					});
 					//管家历史按钮
 					$('#payHistory').on('click',function(){
-						ControlPay.openHistory();
-						$("#payHistory").addClass('payBtnPosClick');
-						  var base_Card = $("div[class^=payId]");
 						
-						if(base_Card.length<=0){
-							payList();
-						}
+						
+						  if($(this).hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistory").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
+						      payList();
+						  }
+						
 					});
 					//客户历史按钮
 					$('#payHistoryBtnOrder').on('click',function(){
-						ControlPay.openHistory();
-						$("#payHistoryBtnOrder").addClass('payBtnPosClick');
-						  var base_Card = $("div[class^=payCard]");
-						  
-						if(base_Card.length<=0){
-							$("#payListPage").append(payList());
-						}
+						
+                            if($(this).hasClass('payBtnPosClick')){
+                            	ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payCard]");
+						      payList();
+						  }
 						
 					});
 				},
 				
 				  clickPayHistoryClose:function(){
 						$('#payHistoryClose').on('click',function(){
-							$("#payHistoryList").slideUp();
-							$('#payHistory').removeClass('payBtnPosClick');
-							$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
+							ControlPay.closeList();
 						});
 						
 					},
+			          
+					closeList:function(){
+						$("#payHistoryList").slideUp();
+						$('#payHistory').removeClass('payBtnPosClick');
+						$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
+						$("#payListPage").html('');
+					},
+					
 					
 					openHistory:function(){
 						$("#payHistoryList").slideDown();
@@ -1636,22 +1655,17 @@ var checkPayList = {
 
 		checkOnBlur:function(){
 			
-			
-			
 			var projectName =$('#projectName');
 			var cusName =$('#cusName');
 			var payMoney =$('#payMoney');
-
 			
 			var projectNameError =$('#projectNameError');
 			var cusNameError =$('#cusNameError');
 			var payMoneyError =$('#payMoneyError');
-
 			
 			var projectNameDiv =$('#projectNameDiv');
 			var cusNameDiv =$('#cusNameDiv');
 			var payMoneyDiv =$('#payMoneyDiv'); 
-			
 			
 			$(projectName).on('blur',function(){
 				projectNameDiv.removeClass('has-error');
@@ -1675,18 +1689,15 @@ var checkPayList = {
 			var projectName =$('#projectName');
 			var cusName =$('#cusName');
 			var payMoney =$('#payMoney');
-
 			
 			var projectNameError =$('#projectNameError');
 			var cusNameError =$('#cusNameError');
 			var payMoneyError =$('#payMoneyError');
-
 			
 			var projectNameDiv =$('#projectNameDiv');
 			var cusNameDiv =$('#cusNameDiv');
 			var payMoneyDiv =$('#payMoneyDiv'); 
 	
-
 			if(projectName.val()==''||projectName.val()==null){
 				projectName.focus();
 				projectNameDiv.addClass('has-error');
@@ -1697,7 +1708,6 @@ var checkPayList = {
 				projectNameDiv.removeClass('has-error');
 				projectNameError.addClass('hide');
 			}
-			
 			if(cusName.val()==''||cusName.val()==null){
 				cusName.focus();
 				cusNameDiv.addClass('has-error');
@@ -1708,8 +1718,6 @@ var checkPayList = {
 				cusNameDiv.removeClass('has-error');
 				cusNameError.addClass('hide');
 			}
-			
-			
 			if(payMoney.val()==''||payMoney.val()==null){
 				payMoney.focus();
 				payMoneyDiv.addClass('has-error');
@@ -1724,18 +1732,12 @@ var checkPayList = {
 				payMoneyError.text('请输入数字');
 				return false;
 			}
-			
 			else{
 				payMoneyDiv.removeClass('has-error');
 				payMoneyError.addClass('hide');
 			}
-			
-		
-			
 			return true;
 		}
-		
-		
 		
 }
 
@@ -1757,7 +1759,7 @@ function payList(){
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
-					btn_goPay = 	'<button class="info-btn red-btn">去支付</button>';
+					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
 					break;
@@ -1817,7 +1819,7 @@ function payList(){
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
 						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
-						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'</div></li>';
 						$body+=left_time;
 						$body+='			</ul>'+
 						'			<ul class="rightUl payInline">'+
@@ -1864,6 +1866,17 @@ function toShare(){
 	});
 }
 
+
+function toPay(){
+	var deleteSynergys=$("[name^=toPay]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		 alert('去支付');
+	});
+}
+
+
 function shareSpace(){ // 分享
 	$('.share').on('click',function(){
 		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
@@ -1874,10 +1887,10 @@ function shareSpace(){ // 分享
 			var img_Name = getFileName(imgUrl);
 			imgPath = getHostName() + '/product/img/' + img_Name;
 		}
-		
 		share.init(shareUrl, share_title, imgPath);
 	});
 }
+
 
 //var ControlTree = {
 //		CommonDoingProjectTree : function(){

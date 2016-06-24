@@ -109,7 +109,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
@@ -151,7 +150,6 @@
 			</div>
 			
 			<div class="indentdiv">
-		
 				
 			<div id="content" >
 			    <div class="menu" id="menuId">
@@ -387,7 +385,7 @@
 				            <li>
 				              <div id="payMoneyDiv"> 
 				                  <div class="payBigWord">支付金额</div>
-				                  <input class="pay-input form-control paySmallWord" id="payMoney"></input>
+				                  <input class="pay-input form-control paySmallWord" id="payMoney"></input><label class="yuan">元<label/>
 				                  <div class="pay-error hide" id="payMoneyError">错误提示</div>
 				              </div>
 				           </li>

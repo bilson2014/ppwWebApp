@@ -12,7 +12,7 @@
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
-<spring:url value="/resources/js/phone/payment/paylist.js" var="paylistJs"/>
+<spring:url value="/resources/js/payment/paylist.js" var="paylistJs"/>
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
@@ -65,24 +65,32 @@
 			             <div class="controlWidth">
 			                    <div class="topBackground">
 					             <div class="contentTop">
-					                 <div class="contentTitle">200510560</div>
-					                 <div class="contentDate" style="color:#fff;font-size:1.4rem">2016/06/06 12:12</div>
+					                 <div class="contentTitle">${dealLog.billNo}</div>
+					                 <div class="contentDate" style="color:#fff;font-size:1.4rem">${dealLog.orderTimeOut }</div>
 					             </div>
 					             </div>
 					             
 					              <div class="contentMargin">
 					                <div class="contentTitle">项目名称：</div>
-					                <div class="contentDate">高逼格产品宣传片</div>
+					                <div class="contentDate">${dealLog.projectName}</div>
 					              </div> 
 					                
 					               <div class="contentMargin"> 
 					                <div class="contentTitle">付款金额：</div>
-					                <div class="contentDate"  style="color:#fe5453"><span style="font-size:2.0rem;vertical-align: middle">20000</span>元</div>
+					                <div class="contentDate"  style="color:#fe5453"><span style="font-size:2.0rem;vertical-align: middle">${dealLog.payPrice}</span>元</div>
 					               </div>
 					               
 					                 <div class="contentMargin">
 					                <div class="contentTitle">支付状态：</div>
-					                <div class="contentDate" style="color:#fb9b6a">支付进行中</div>
+					                <div class="contentDate" style="color:#fb9b6a"><c:if test="${dealLog.dealStatus == 0}">
+			              			支付进行中
+			              		</c:if>
+			              		<c:if test="${dealLog.dealStatus == 1}">
+			              			交易成功
+			              		</c:if>
+			              		<c:if test="${dealLog.dealStatus == 2}">
+			              			支付已关闭
+			              		</c:if></div>
 					              </div>  
 					      </div>         
 			       </div>
@@ -91,12 +99,12 @@
 	              <div class="controlWidth">
 		              <div class="contentMargin">
 			                <div class="contentTitle">收款方：</div>
-			                <div class="contentDate">北京某科技</div>
+			                <div class="contentDate">${dealLog.proceedsSide}</div>
 		              </div> 
 		                
 		               <div class="contentMargin"> 
 			                <div class="contentTitle">支付方：</div>
-			                <div class="contentDate " >我</div>
+			                <div class="contentDate " >${dealLog.userName}</div>
 		               </div> 
 	               </div>
 	       </div>
@@ -112,14 +120,13 @@
 	                 
 	       </div>
 	       <div class="bottomBtn">
-	       <button class="orderbtn">确认</button>
+	       	<a href="?token=${dealLog.token}" id ="submit"><button class="orderbtn">确认</button></a>
 	       </div>
      </div>
      
-  
-    
 		
 	<script src="${jqueryJs }"></script>
+	<script src="${paylistJs }"></script>
 
 
 </body>
