@@ -1325,10 +1325,15 @@ var ControlPay ={
 			checkPayList.checkOnBlur();
 		},
 		initBillNo:function(){
-			getData(function(msg){
-				var billNo = msg.billNo;
-				$('#order-online').val(billNo);
-			}, getContextPath() + '/pay/get/billno');
+			var key = getCurrentProject();
+			loadData(function(msg){
+				$("#order-online").val(msg.billNo);
+				$("#projectName").val(msg.projectName);
+				$("#cusName").val(msg.userName);
+				$("#payMoney").val(msg.payPrice);
+			}, getContextPath() + '/pay/get/billno', $.toJSON({
+				projectId : key
+			}));
 		},
         clickOutLine:function(){
 			$('#Outline').on('click',function(){
@@ -1411,10 +1416,26 @@ var ControlPay ={
 					}));
 				}
 				else if(check=="2"){
-					//$("#historyList").click();
-					if(checkPayList.checkOutLinePayList()){
-					ControlPay.openHistory();
-					}
+					var key = getCurrentProject();
+					var outlineTime = $("#payTime-outline").val().trim();
+					var orderOutLine = $("#order-outline").val().trim();
+					var projectName = $("#projectName").val().trim();
+					var cusName = $("#cusName").val().trim();
+					var payMoney = $("#payMoney").val().trim();
+					
+					loadData(function(msg){
+						
+						if(checkPayList.checkOutLinePayList()){
+							ControlPay.openHistory();
+						}
+					}, getContextPath()+'/pay/offline/save', $.toJSON({
+						projectId : key,
+						payTime : outlineTime,
+						billNo : orderOutLine,
+						projectName : projectName,
+						userName : cusName,
+						payPrice : payMoney
+					}));
 				}
 				else if(check=="3"){
 					  $('#pay-sure').text('确认');

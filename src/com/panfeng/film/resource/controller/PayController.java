@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,14 +30,14 @@ public class PayController extends BaseController {
 	static String RESULT_KEY = "result";
 
 	@RequestMapping("/get/billno")
-	public HashMap<String, String> getBillNo(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "/pay/get/billno";
-		String str = HttpUtil.httpGet(url, request);
-		// User information = null;
+	public DealLog getBillNo(@RequestBody Map<String,String> id,final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "pay/get/billno";
+		String str = HttpUtil.httpPost(url, id, request);
+		
 		if (str != null && !"".equals(str)) {
-			return JsonUtil.toBean(str, HashMap.class);
+			return JsonUtil.toBean(str, DealLog.class);
 		}
-		return new HashMap<String, String>();
+		return new DealLog();
 	}
 
 	@RequestMapping(value = "/income", produces = "application/json; charset=UTF-8")
@@ -69,11 +68,12 @@ public class PayController extends BaseController {
 			}
 		}
 	}
+
 	@RequestMapping("/error")
-	public ModelAndView error(){
+	public ModelAndView error() {
 		return new ModelAndView("error");
 	}
-	
+
 	@RequestMapping(value = "/get/deallogs", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<DealLog> getDealLogByProject(@RequestBody Map<String, Long> projectId,
 			final HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class PayController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR, "发起失败", null);
 	}
 
-	@RequestMapping(value = "/shareurl",  produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/shareurl", produces = "application/json; charset=UTF-8")
 	public BaseMsg shareUrl(String token, final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "pay/shareurl";
 		Map<String, String> pram = new HashMap<>();
@@ -138,6 +138,19 @@ public class PayController extends BaseController {
 			return new ModelAndView("/payment/payList", model);
 		}
 		return new ModelAndView("error");
+	}
+
+	@RequestMapping("/offline/save")
+	public BaseMsg offlineSave(@RequestBody DealLog dealLog, final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "pay/offline/save";
+		String str = HttpUtil.httpPost(url, dealLog, request);
+		if (str != null && !"".equals(str)) {
+			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
+			// 数据正常添加url前缀
+			return baseMsg;
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
+		}
 	}
 
 }
