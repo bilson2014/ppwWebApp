@@ -319,25 +319,25 @@
 				</r:multPermission>
 			</div>
 			
+			<r:identity role="customer">
+				<div class="payInfo payTop" id="cusId">
+				    <label class="pay-title">收款方式</label>
+				    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
+				     
+				      <div class="userContent">
+					       <div  style="display:inline-block">
+					         <img src="${imgPath }/flow/ring.png"></img>
+					       </div>
+					       <div style="display:inline-block" id="userContent">
+					           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
+					           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
+					           <div id="openHistory">立即前往></div>
+					       </div>
+				      </div>
+				</div>
+			</r:identity>
 			
-			<div class="payInfo payTop" id="cusId">
-			    <label class="pay-title">收款方式</label>
-			    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
-			     
-			      <div class="userContent">
-				       <div  style="display:inline-block">
-				         <img src="${imgPath }/flow/ring.png"></img>
-				       </div>
-				       <div style="display:inline-block" id="userContent">
-				           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
-				           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
-				           <div id="openHistory">立即前往></div>
-				       </div>
-			      </div>
-			</div>
-			
-			
-
+			<r:identity role="employee">
 			<div class="payInfo payTop" id="managerId">
 			    <label class="pay-title">收款方式</label>
 			    <a href="<spring:url value='/payment/payList'/>"  class="hide" ><span id="historyList">跳转</span></a>
@@ -435,6 +435,7 @@
 								           
 				   </div>
 			</div>
+			</r:identity>
 			
 			<div class="indentinfo">
 				<div class="indentinfo-title">
