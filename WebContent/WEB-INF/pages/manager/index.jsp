@@ -92,6 +92,15 @@
 <!-- <div class="circle-div"></div> -->
 
 <div class="header">
+		<r:identity role="customer">
+			<input type="hidden" value="customer" id = "type">
+		</r:identity>
+		<r:identity role="provider">
+			<input type="hidden" value="provider" id = "type">
+		</r:identity>
+		<r:identity role="employee">
+			<input type="hidden" value="employee" id = "type">
+		</r:identity>
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -137,7 +146,6 @@
 	</div>
 	<div class="page" >
 	
-
 		<div class="left-page" >
 			<div class="left-title">
 				<r:permission uri="/add-view">
@@ -418,7 +426,7 @@
 				   </div>  
 			</div>
 			
-			
+			</r:identity>
 			<div class="payCardHeight payInfo" id="payHistoryList">
 			   
 				   <div class="payInfoTop">
@@ -429,11 +437,8 @@
 				      
 				   <div class="payCardZoom" id="payListPage">
 								<!-- 支付历史 -->	  
-			
-								           
 				   </div>
 			</div>
-			</r:identity>
 			
 			<div class="indentinfo">
 				<div class="indentinfo-title">

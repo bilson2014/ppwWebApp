@@ -1470,7 +1470,7 @@ var ControlPay ={
 					//客户历史按钮
 					$('#payHistoryBtnOrder').on('click',function(){
 						
-                            if($(this).hasClass('payBtnPosClick')){
+                          if($(this).hasClass('payBtnPosClick')){
                             	ControlPay.closeList();
 						  }else{
 							  ControlPay.openHistory();
@@ -1771,10 +1771,15 @@ function payList(){
 				var btn_goPay = "";
 				var left_time ="";
 				var right_time ="";
+				var type = $("#type").val();
 				switch (deal.dealStatus) {
 				case 0: // 正常
 					backgruond ='	<div class="payCard-info backgroundWait">';
+					if(type == "customer"){
+						btn_shareLink = '<button class="info-btn red-btn" name="toPay" data-token="'+deal.token+'">去支付</button>';
+					}else{
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
+					}
 					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
 					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
@@ -1852,6 +1857,7 @@ function payList(){
 					ZeroClipboard.config({hoverClass: "hand"});
 					var client = new ZeroClipboard($("#toShare"));
 					toShare();
+					toPay();
 			});
 		}
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
@@ -1888,7 +1894,16 @@ function toPay(){
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
-		 alert('去支付');
+		var token=$(this).attr("data-token");
+		getData(function(msg){
+		if(msg.errorCode == 200){
+			var url = getHostName() + msg.result;
+			window.location.href = url;
+		}
+		else{
+			alert(msg.errorMsg);
+		}
+		}, getContextPath() + '/pay/shareurl?token='+token);
 	});
 }
 
