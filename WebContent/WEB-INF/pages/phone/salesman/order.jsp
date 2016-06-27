@@ -46,18 +46,24 @@
 		
 		<div class="content-wrap">
 			<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-				<input type="hidden" id="teamId" name="teamId" value="${teamId}"/>
+				<%-- <input type="hidden" id="teamId" name="teamId" value="${teamId}"/>
 				<input type="hidden" id="productId" name="productId" value="${productId}"/>
 				<input type="hidden" id="serviceId" name="serviceId" value="${serviceId}"/>
 				<input type="hidden" id="indentPrice" name="indentPrice" value="${indentPrice}"/>
 				<input type="hidden" id="second" name="second" value="${second}"/>
 				<input type="hidden" id="product_name" name="product_name" value="${product_name}"/>
 				<input type="hidden" id="salesmanUniqueId" name="salesmanUniqueId" value="${uniqueId}"/>
-				<input type="hidden" id="indentName" name="indentName" value="新订单"/>
+				<input type="hidden" id="indentName" name="indentName" value="新订单"/> --%>
+				<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+				<input type="hidden" id="token" name="token" value="${token}"/>
+				<input type="hidden" id="indentName" name="indentName" value="BD分销渠道订单"/>
 				<div class="order-section">
 					<div class="order-input-wrap">
 						<input class="btnborder" type="text" placeholder="您的手机号码" id="indent_tele" name="indent_tele"/><button type="button" id="order-btn" class="btn btn-primary" style="position: relative;background-color: #fe5453;border-color: #fe5453;padding:0 2px;">立即下单</button>
 						<label id="label-message" class="label-message alert alert-danger" style="display: none;padding:0;position: relative;top: 5px;">请输入正确的手机格式</label>
+					</div>
+					<div class="order-phone-wrap hide">
+						<span><a href="tel:4006609728" >创意咨询 4006609728</a></span>
 					</div>
 				</div>
 			</form>

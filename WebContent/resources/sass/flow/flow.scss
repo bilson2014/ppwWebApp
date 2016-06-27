@@ -645,6 +645,7 @@
     color: $gray-light;
     background: none;
     border: 1px solid $gray-light;
+    outline: none;
 }
 
 .border-btn:hover {
@@ -1185,6 +1186,63 @@ img {
  width: 100%;
  height: 150px;
  background: $white;
+
+
+ .userContent{
+   height:100px;
+   width:180px;
+   margin:0 auto;
+
+   img{
+       position:relative;
+       top:-12px;
+         }
+ }
+
+ #userContent{
+    div{
+        margin-top:5px;
+    }
+
+    span{
+        color:$red-base;
+    }
+
+    #openHistory{
+        position: relative;
+        left:80px;
+        top:2px;
+        color:$gold-yellow;
+        font-size: $font-size-sm;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    
+            
+ }
+
+
+
+   .payInfoTop{
+    width: 80%;
+    height: 80px;
+    margin: 0 auto;
+          .imgInfo{
+             margin-top:40px;
+             position: relative;
+             top:-2px;
+          }
+
+          .imgLeft{
+            left:-20px;
+          }
+
+          .imgRight{
+            left:50px;
+          }
+   }
   
    .pay-title{
             width: 100px;
@@ -1195,13 +1253,23 @@ img {
             font-weight: bold;
         }
 
+         .pay-top-title{
+            width: 100px;
+            height: 20px;
+            margin-top: 40px;
+            margin--left: 20px;
+            font-size:$font-size;
+            font-weight: bold;
+            color:$gray-dark;
+        }
+
 
 
    .pay-way{
     width:100%;
     height:20px;
     position: relative;
-    top:5px;
+    top:15px;
    }
 
    .payBtnOnline{
@@ -1220,34 +1288,50 @@ img {
     position: relative;
     left:30%;
     color:$gray;
+    width: 290px;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
 
 .pay-btn {
-    width: 100px;
-    height: 28px;
+    width: 106px;
+    height: 35px;
     border-radius: 5px;
-    font-size: $font-size-sm;
-    color: $gray-light;
+    font-size: $font-size-base;
+    color: $gray;
     background: none;
     border: 1px solid $gray-light;
     outline: none;
+    letter-spacing: 1px;
+
+
 }
 
  
 
 .pay-click-btn {
      outline: none;
-    width: 100px;
-    height: 28px;
+    width: 106px;
+    height: 35px;
     border-radius: 5px;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     color: $gray-light;
     background: none;
+    color:$red-base;
     border: 1px solid $red-base;
+    letter-spacing: 1px;
 }
 
+.payBigWord{
+    color:$gray;
+    font-size: $font-size-base;
+}
 
+.paySmallWord{
+     color:$gray;
+    font-size: $font-size-sm;
+}
 
 
 .pay-red-btn {
@@ -1291,9 +1375,22 @@ img {
     height:30px;
     width:150px;
     margin-top:10px;
-    margin-bottom: 15px;
+    margin-bottom:10px;
     line-height: 30px;
+     @include ellipsis;
  } 
+
+ .pay-error{
+      margin-top:5px;
+      margin-bottom: 10px;
+      font-size: $font-size-sm;
+      color:$red-base;
+ }
+
+ .order{
+    width:200px;
+    @include ellipsis;
+ }
 
  .createLink{
 margin-top: 80px;
@@ -1303,21 +1400,24 @@ margin-top: 80px;
   width: 500px;
   margin-top:10px;
  }
-
  .getLinkInput{
-    color: $red-base;
+    color: $gray;
     font-size: $font-size;
  }
 
  .getLinkBtn{
    color:$white;
-    font-size: $font-size;
+    font-size: $font-size-base;
     background: $red-base;
+    border:none;
+
+   
  }
 
-
-
-        
+  .hand{
+        cursor: pointer;
+    }
+  
 }
 
 .payTop{
@@ -1328,7 +1428,24 @@ margin-top: 80px;
 .payBtnPos{
     position: relative;
     top:-10px;
-    left:540px;
+    left:544px;
+}
+
+.payBtnPosClick{
+    width: 65px;
+    height: 28px;
+    border-radius: 5px;
+    font-size: $font-size-sm;
+    color: $red-base;
+    background: none;
+    border: 1px solid $red-base;
+    outline: none;
+
+    &:hover{
+          color: $red-base;
+    background: none;
+    border: 1px solid $red-base;
+    }
 }
 
 .payInfoheight{
@@ -1337,8 +1454,234 @@ margin-top: 80px;
 
 .payInline{
     display: inline-block;
+    vertical-align: top;
 }
 
-#payInfo{
+#payInfo,#payHistoryList{
     display: none;
 }
+
+
+.payCardZoom{
+ width: 100%;
+ height: auto;
+
+}
+
+
+.payCardHeight{
+
+    height:auto;
+    padding-bottom:50px;
+}
+
+.payCard{
+ width: 80%;
+ height: auto;
+ margin: 0 auto;
+ line-height: 30px;
+ border: 1px solid #ccc;
+ margin-bottom:10px;
+
+
+    .payCard-top{
+          background: $gray;
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+    }
+
+
+       .backgroundFinish{
+            background: url('../../img/flow/finish.png') center center no-repeat;
+          } 
+
+       .backgroundTimeOut{
+            background: url('../../img/flow/timeout.png') center center no-repeat;
+          }
+
+        .backgroundFail{
+            background: url('../../img/flow/fail.png') center center no-repeat;
+          } 
+        .backgroundBank{
+            background: url('../../img/flow/bank.png') center center no-repeat;
+          }
+
+        .backgroundWait{
+            background: url('../../img/flow/wating.png') center center no-repeat;
+          }      
+
+
+    
+    .cardLeftStatue{
+        width:80%;    
+        color:$white;
+        font-size: $font-size-base;
+        position: relative;
+        left: 50px;
+
+    }
+
+    .cardRightStatue{
+        width:10%;  
+
+         img{
+            position: relative;
+            top:5px;
+            left:70px;
+         } 
+    }
+
+}
+
+ .payCard .payCard-info{
+          width:100%;
+          height:auto;
+          padding-bottom: 20px;
+
+
+          .infoTitle{
+             margin-top: 10px;
+             font-size: $font-size-lg;
+             font-weight: bold;
+             color:$gray-dark;
+          }
+
+          .info-btn{
+                height: 30px;
+                border-radius: 0px;
+                position: relative;
+                top: 50px;
+                text-align: center;
+          }
+
+          .info-left{
+             margin-left:50px;
+             display: inline-block;
+             width:150px;
+             vertical-align: top;  
+             height:auto;
+             margin-top: 20px;          
+
+          }
+
+            .info-right{
+             height:auto;
+             display: inline-block;
+             width:auto;
+             margin-top: 20px;  
+   
+
+          }
+
+          .rightUl{
+                position: relative;
+                left:50px;
+
+          }
+          
+          ul{
+            vertical-align: top; 
+
+          }
+
+          li{
+           
+            margin-top:10px;
+
+              .contentTitle{
+               
+               font-size: $font-size;
+               font-weight: bold;
+               color:$gray-dark;
+
+              }
+              .contentWord{
+               
+               font-size: $font-size-base;
+               color:$gray;
+
+              }
+
+          }
+
+
+
+    }
+
+    .smallWord{
+    color: $gray;
+    font-size: $font-size-sm;
+    }
+
+    .colorGray{
+        color:$gray;
+    }
+
+    .createTitle{
+        position: relative;
+        top:-7px;
+    }
+
+
+    //分享弹出框
+
+     .getShareLink{
+  width: 80%;
+  height:auto;
+  margin-bottom:30px;
+  margin: 30px auto;
+
+ }
+ .getShareLinkInput{
+    color: $gray;
+    font-size: $font-size;
+ }
+
+ .getShareLinkBtn{
+   color:$white;
+    font-size: $font-size-base;
+    background: $red-base;
+    border:none;
+
+   
+ }
+
+ .share-list {
+    position: relative;
+    display: inline-block;
+     margin: 0px auto;
+}
+
+.share-list dt{
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    width: 40px;
+    height: 23px;
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.share-list dd{
+    display: inline-block;
+    width: 26px;
+    height: 23px;
+    vertical-align: middle;
+}
+
+.share-list img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.yuan{
+    position: relative;
+    top: -31px;
+    left: 155px;
+}
+
+  .handShare{
+        cursor: pointer;
+    }

@@ -18,10 +18,11 @@ var order = {
 				if(checkMobile($('#indent_tele').val())){ // 检查 是否 是手机号码
 					$('#label-message').hide('normal');
 					// 提交表单
+<<<<<<< HEAD
 					var token = $('#token').val();
-					console.info(token);
 					$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-					alert($('#token'));
+=======
+>>>>>>> e6a3f47f33278698348f3aa6f00bb2f57375ae3c
 					$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 				}else{
 					$('#label-message').show('normal');
@@ -29,7 +30,6 @@ var order = {
 					return false;
 				}
 			}
-			
 		});
 	}
 }

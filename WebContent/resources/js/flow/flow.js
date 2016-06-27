@@ -13,14 +13,8 @@ var countCheck = 0;
 var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
-$().ready(
-		function() {
+$().ready(function() {
 	
-			
-			
-
-			
-			
 			init();
 			showOrderTime();
 			loadprojecctlist();
@@ -85,8 +79,6 @@ $().ready(
 			});
 			
 			ControlPay.initControlPay();
-			
-			
 			
 		});
 
@@ -431,6 +423,22 @@ function loadflowdata() {
 								}
 								StepTool.drawStep(num, stepListJson);
 								currentIndex = num;
+							    
+								//TODO:lt add payList beigin 20160622
+								
+								if(currentIndex==3||currentIndex==5){
+								/*$('#managerId').removeClass('hide')
+								$('#cusId').removeClass('hide');*/
+								}
+								else{
+									$('#managerId').addClass('hide')
+									$('#cusId').addClass('hide');
+									$('#payListPage').html('');
+									$('#payInfo').slideUp('');
+									
+								}
+								//end
+								
 								return;
 							}
 						});
@@ -514,6 +522,7 @@ function loadflowdata() {
 											var text = jQuery(this.target).attr("data-description");
 											$(".description-c").html("<span class='word-size'>"+ text+ "</span>");
 											$(".content-title").html("<p class='word-title'>"+ jQuery(this.target).text()+ "阶段</p>");
+											
 										});
 									}
 								});
@@ -1049,7 +1058,7 @@ function updateProjectTreeView() {
     	countCheck++;
     }
     
-	ControlTree.showTreeImg();
+	//ControlTree.showTreeImg();
    	
 }
 //加载项目基础信息
@@ -1272,18 +1281,17 @@ function showOrderTime(){
 	});
 }
 
+
+
+//支付
 var ControlPay ={
 		
 		clickOnLine:function(){
 			
 			$('#Online').on('click',function(){
 				ControlPay.showOnlineInfo();
-				
 			});
-			
 		},
-		
-		
 		showOnlineInfo:function(){
 			$('#payInfo').slideDown();
 			ControlPay.initOnlineInfo();
@@ -1291,9 +1299,9 @@ var ControlPay ={
 		
 		initOnlineInfo:function(){
 			var mydate = new Date();
-			var t=mydate.toLocaleString();
+			var t= formatterDateTime(mydate);
+			//var t=mydate.toLocaleString();
 			$('#checkWay').val("1");
-			
 			$('#Online').addClass('pay-click-btn');
 			$('#Online').removeClass('pay-btn');
 			$('#Outline').removeClass('pay-click-btn');
@@ -1302,20 +1310,30 @@ var ControlPay ={
 			$('#pay-people').text('付款方');
 			$('#OnlineInfo').removeClass('hide');
 			$('#payTime-online').removeClass('hide');
-			$('#payTime-online').text(t);
+			$('#payTime-online').val(t);
 			$('#payTime-outline').addClass('hide');
 			$('#order-online').removeClass('hide');
 			$('#order-outline').addClass('hide');
-			 $('#pay-sure').text('确认');
-			 $('#link').addClass('hide');
+			$('#pay-sure').text('确认');
+			$('#link').addClass('hide');
+			ControlPay.initBillNo();
+			checkPayList.checkOnBlur();
 		},
-		
+		initBillNo:function(){
+			var key = getCurrentProject();
+			loadData(function(msg){
+				$("#order-online").val(msg.billNo);
+				$("#projectName").val(msg.projectName);
+				$("#cusName").val(msg.userName);
+				$("#payMoney").val(msg.payPrice);
+			}, getContextPath() + '/pay/get/billno', $.toJSON({
+				projectId : key
+			}));
+		},
         clickOutLine:function(){
-			
 			$('#Outline').on('click',function(){
 				ControlPay.showOutlineInfo();
 			});
-			
 		},
 		
 		showOutlineInfo:function(){
@@ -1336,28 +1354,83 @@ var ControlPay ={
 			$('#payTime-outline').removeClass('hide');
 			$('#order-online').addClass('hide');
 			$('#order-outline').removeClass('hide');
-			 $('#pay-sure').text('确认');
-			 $('#link').addClass('hide');
+			$('#pay-sure').text('确认');
+			$('#link').addClass('hide');
+			$('#payTime-outline').datepicker({
+				language: 'zh',
+				dateFormat:'yyyy-MM-dd ',
+				minDate: new Date() 
+		});
+			
+			checkPayList.checkOutBlur();
 		},
-		
-		
-		   clickpay:function(){
+		clickpay:function(){
 				
 				$('#pay-sure').on('click',function(){
 					ControlPay.initPayInfo();
 				});
 				
 			},
+			// TODO:
 			initPayInfo:function(){
 				var check=$('#checkWay').val();
-				if(check=="1"){
-				  $('#pay-sure').text('返回');
-				  $('#checkWay').val('3');
-				  $('#OnlineInfo').addClass('hide');
-				  $('#link').removeClass('hide');
+				if(check == "1"){
+					
+					var orderId = $("#order-online").val().trim();
+					var projectName = $("#projectName").val().trim();
+					var cusName = $("#cusName").val().trim();
+					var payMoney = $("#payMoney").val().trim();
+					var projectId = getCurrentProject();
+					// 发起线上支付
+					loadData(function(msg){
+						
+						
+						if(checkPayList.checkOnLinePayList()){
+						if(msg.errorCode == 200){
+							var url =  msg.result;
+							$("#shareLink").val(getHostName()+url);
+						
+								  $('#pay-sure').text('返回');
+								  $('#checkWay').val('3');
+								  $('#OnlineInfo').addClass('hide');
+								  $('#link').removeClass('hide');
+								  ZeroClipboard.config({hoverClass: "hand"});
+								  var client = new ZeroClipboard($("#copyLink"));
+
+								 
+						}else{
+							alert("出错啦");
+						}
+						}
+					},  getContextPath() + '/pay/sendpay',$.toJSON({
+						billNo:orderId,
+						projectName:projectName,
+						userName:cusName,
+						payPrice:payMoney,
+						projectId:projectId
+					}));
 				}
 				else if(check=="2"){
-					alert('我跳转');
+					var key = getCurrentProject();
+					var outlineTime = $("#payTime-outline").val().trim();
+					var orderOutLine = $("#order-outline").val().trim();
+					var projectName = $("#projectName").val().trim();
+					var cusName = $("#cusName").val().trim();
+					var payMoney = $("#payMoney").val().trim();
+					
+					loadData(function(msg){
+						
+						if(checkPayList.checkOutLinePayList()){
+							ControlPay.openHistory();
+						}
+					}, getContextPath()+'/pay/offline/save', $.toJSON({
+						projectId : key,
+						payTime : outlineTime,
+						billNo : orderOutLine,
+						projectName : projectName,
+						userName : cusName,
+						payPrice : payMoney
+					}));
 				}
 				else if(check=="3"){
 					  $('#pay-sure').text('确认');
@@ -1366,12 +1439,86 @@ var ControlPay ={
 					  $('#link').addClass('hide');
 				}
 			},
-		
+			  clickPayOpenHistory:function(){
+				   
+					//立即前往
+					$('#openHistory').on('click',function(){
+						if($('#payHistoryBtnOrder').hasClass('payBtnPosClick')){
+                        	ControlPay.closeList();
+					  }else{
+						  ControlPay.openHistory();
+						  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+						  var base_Card = $("div[class^=payCard]");
+					      payList();
+					  }
+						
+					});
+					//管家历史按钮
+					$('#payHistory').on('click',function(){
+						
+						
+						  if($(this).hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistory").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
+						      payList();
+						  }
+						
+					});
+					//客户历史按钮
+					$('#payHistoryBtnOrder').on('click',function(){
+						
+                          if($(this).hasClass('payBtnPosClick')){
+                            	ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payCard]");
+						      payList();
+						  }
+						
+					});
+				},
+				
+				  clickPayHistoryClose:function(){
+						$('#payHistoryClose').on('click',function(){
+							ControlPay.closeList();
+						});
+						
+					},
+			          
+					closeList:function(){
+						$("#payHistoryList").slideUp();
+						$('#payHistory').removeClass('payBtnPosClick');
+						$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
+						$("#payListPage").html('');
+					},
+					
+					
+					openHistory:function(){
+						$("#payHistoryList").slideDown();
+						
+					},
+					
+					copyLink:function(){
+						$('#copyLink').on('click',function(){
+
+						});
+					},
+
+					
 		
 		initControlPay:function(){
 			ControlPay.clickOnLine();
 			ControlPay.clickOutLine();
 			ControlPay.clickpay();
+			ControlPay.clickPayOpenHistory();
+			ControlPay.clickPayHistoryClose();
+			ControlPay.copyLink();
+			
+	
 		}
 		
 		
@@ -1379,101 +1526,517 @@ var ControlPay ={
 }
 
 
-
-var ControlTree = {
-		CommonDoingProjectTree : function(){
-			$('#doingProjectId').slideDown();
-			
-		},
-		OpenDoingProjectTree : function(){
-			$('#doingProject').removeClass('inactive');
-			$('#doingProject').addClass('active');
-			$('#doingProjectId').slideDown();
-			
-		},
-		OpenMyProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
-			$('#myProject').removeClass('inactive');
-			$('#myProject').addClass('active');
-		    $('#myProjectId').slideDown();
-		},
-		OpenHelpProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
-
-			$('#helpProject').removeClass('inactive');
-			$('#helpProject').addClass('active');
-			$('#helpProjectId').slideDown();
-		},
-		OpenPauseProjectTree : function(){
-			ControlTree.CommonDoingProjectTree();
+var checkPayList = {
 		
-			$('#pauseProject').removeClass('inactive');
-			$('#pauseProject').addClass('active');
-			$('#pauseProjectId').slideDown();
-		},
-		OpenHistoryProjectTree : function(){
-			$('#historyProject').removeClass('inactive');
-			$('#historyProject').addClass('active');
-			$('#historyProjectId').slideDown();
-		},
-		CloseDoingProjectTree : function(){
-			$('#doingProject').removeClass('active');
-			$('#doingProject').addClass('inactive');
-    	    $('#doingProjectId').slideUp();
-       },
-       CloseMyProjectTree : function(){
-    	   $('#myProject').removeClass('active');
-		   $('#myProject').addClass('inactive');
-    	   $('#myProjectId').slideUp();
-       },
-       CloseHelpProjectTree : function(){
-    	   $('#helpProject').removeClass('active');
-		   $('#helpProject').addClass('inactive');
-    	   $('#helpProjectId').slideUp();
-       },
-       ClosePauseProjectTree : function(){
-    	   $('#pauseProject').removeClass('active');
-		   $('#pauseProject').addClass('inactive');
-    	   $('#pauseProjectId').slideUp();
-       },
-       CloseHistoryProjectTree : function(){
-    	   $('#historyProject').removeClass('active');
-		   $('#historyProject').addClass('inactive');
-    	   $('#historyProjectId').slideUp();
-       },
-       
-       showTreeImg : function(){
-    	 if(nowImg==0){
- 			$('#helpProject').removeClass('inactive');
- 			$('#helpProject').addClass('active');
-    	 }
-    	 
-    	 else if(nowImg==1){
-  			$('#pauseProject').removeClass('inactive');
-  			$('#pauseProject').addClass('active');
-    	 }
-    	 
-    	 else if(nowImg==2){
-   			$('#myProject').removeClass('inactive');
-   			$('#myProject').addClass('active');
-     	 }
-    	   
-    	   
-       },
-       
-       shutMyProject : function(){
-    	 $('#myProjectId').on('click',function(){
-    		if(('#myProject').attr('class')=='active'){
-    		    CloseMyProjectTree();
-    		} 
-    		else if(('#myProject').attr('class')=='inactive'){
-    			OpenMyProjectTree();
-    		}
-    	 });
-    	   
-       }
-       
+		//支付验证线下
+		
+		checkOutLinePayList:function(){
+			
+			var payTime =$('#payTime-outline'); 
+			var payorder =$('#order-outline'); 
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
 
+			var payTimeError =$('#payTime-outlineError'); 
+			var payorderError =$('#order-outlineError'); 
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			var payTimeDiv =$('#payTime-outlineDiv'); 
+			var payorderDiv =$('#order-outlineDiv'); 
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+	
+
+			if(payTime.val()==''||payTime.val()==null){
+				payTime.focus();
+				payTimeDiv.addClass('has-error');
+				payTimeError.removeClass('hide');
+				payTimeError.text('请填写时间');
+				return false;
+			}else{
+				payTimeDiv.removeClass('has-error');
+				payTimeError.addClass('hide');
+			}
+			if(payorder.val()==''||payorder.val()==null){
+				payorder.focus();
+				payorderDiv.addClass('has-error');
+				payorderError.removeClass('hide');
+				payorderError.text('请填写单号');
+				return false;
+			}else{
+				payorderDiv.removeClass('has-error');
+				payorderError.addClass('hide');
+			}
+			
+			if(projectName.val()==''||projectName.val()==null){
+				projectName.focus();
+				projectNameDiv.addClass('has-error');
+				projectNameError.removeClass('hide');
+				projectNameError.text('请填写项目名');
+				return false;
+			}else{
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			}
+			
+			if(cusName.val()==''||cusName.val()==null){
+				cusName.focus();
+				cusNameDiv.addClass('has-error');
+				cusNameError.removeClass('hide');
+				cusNameError.text('请填写客户名称');
+				return false;
+			}else{
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			}
+			
+			if(payMoney.val()==''||payMoney.val()==null){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请填写支付金额');
+				return false;
+			}
+			else if(!checkNumber(payMoney.val())){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请输入数字');
+				return false;
+			}  
+			
+			else{
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			}
+			
+			return true;
+			
+		},
+		
+		
+		checkOutBlur:function(){
+			
+			
+			var payTime =$('#payTime-outline'); 
+			var payorder =$('#order-outline'); 
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+
+			var payTimeError =$('#payTime-outlineError'); 
+			var payorderError =$('#order-outlineError'); 
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+
+			var payTimeDiv =$('#payTime-outlineDiv'); 
+			var payorderDiv =$('#order-outlineDiv'); 
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+			
+			
+			$(payTime).on('blur',function(){
+				payTimeDiv.removeClass('has-error');
+				payTimeError.addClass('hide');
+			});
+			
+			$(payorder).on('blur',function(){
+				payorderDiv.removeClass('has-error');
+				payorderError.addClass('hide');
+			});
+			
+			$(projectName).on('blur',function(){
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			});
+			
+			$(cusName).on('blur',function(){
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+				
+			});
+			
+			$(payMoney).on('blur',function(){
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			});
+		},
+		
+
+		checkOnBlur:function(){
+			
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+			
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+			
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+			
+			$(projectName).on('blur',function(){
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			});
+			
+			$(cusName).on('blur',function(){
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			});
+			
+			$(payMoney).on('blur',function(){
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			});
+		},
+		
+		//线上
+		checkOnLinePayList:function(){
+	
+			var projectName =$('#projectName');
+			var cusName =$('#cusName');
+			var payMoney =$('#payMoney');
+			
+			var projectNameError =$('#projectNameError');
+			var cusNameError =$('#cusNameError');
+			var payMoneyError =$('#payMoneyError');
+			
+			var projectNameDiv =$('#projectNameDiv');
+			var cusNameDiv =$('#cusNameDiv');
+			var payMoneyDiv =$('#payMoneyDiv'); 
+	
+			if(projectName.val()==''||projectName.val()==null){
+				projectName.focus();
+				projectNameDiv.addClass('has-error');
+				projectNameError.removeClass('hide');
+				projectNameError.text('请填写项目名');
+				return false;
+			}else{
+				projectNameDiv.removeClass('has-error');
+				projectNameError.addClass('hide');
+			}
+			if(cusName.val()==''||cusName.val()==null){
+				cusName.focus();
+				cusNameDiv.addClass('has-error');
+				cusNameError.removeClass('hide');
+				cusNameError.text('请填写付款方');
+				return false;
+			}else{
+				cusNameDiv.removeClass('has-error');
+				cusNameError.addClass('hide');
+			}
+			if(payMoney.val()==''||payMoney.val()==null){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请填写支付金额');
+				return false;
+			}
+			else if(!checkNumber(payMoney.val())){
+				payMoney.focus();
+				payMoneyDiv.addClass('has-error');
+				payMoneyError.removeClass('hide');
+				payMoneyError.text('请输入数字');
+				return false;
+			}
+			else{
+				payMoneyDiv.removeClass('has-error');
+				payMoneyError.addClass('hide');
+			}
+			return true;
+		}
+		
+}
+
+
+
+function payList(){
+	var listnode = $("#payListPage");
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg != null ){
+			msg.forEach(function(deal){
+				
+				var backgruond = "";
+				var btn_shareLink = "";
+				var btn_goPay = "";
+				var left_time ="";
+				var right_time ="";
+				var type = $("#type").val();
+				switch (deal.dealStatus) {
+				case 0: // 正常
+					backgruond ='	<div class="payCard-info backgroundWait">';
+					if(type == "customer"){
+						btn_shareLink = '<button class="info-btn red-btn" name="toPay" data-token="'+deal.token+'">去支付</button>';
+					}else{
+					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
+					}
+					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					break;
+				case 1: // 完成
+					backgruond ='	<div class="payCard-info backgroundFinish">';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">完成时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					break;
+				case 2: // 支付关闭
+					backgruond ='	<div class="payCard-info backgroundFail">';
+					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					break;
+				}
+				
+				
+				if(deal.dealLogSource == 0){
+					//线上
+					var $body=
+						'<div class="payId payCard">'+
+						'	<div class="payCard-top">'+
+						'		<div class="cardLeftStatue payInline">线上支付</div>'+
+						'	</div>';
+					    $body+= backgruond;
+						$body+=
+						'		<div class="info-left">'+
+						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
+						
+						$body+=btn_shareLink;
+						$body+='		</div>'+
+						'		<div class="info-right">'+
+						'			<ul class="payInline">'+
+						'				<li><div class="contentTitle">支付方</div><div class="contentWord ">'+deal.userName+'</div></li>'+
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord " >'+deal.payPrice+'元</div></li>';
+						$body+=left_time;
+						$body+='			</ul>'+
+						'			<ul class="rightUl payInline">'+
+						'				<li><div class="contentTitle">收款方</div><div class="contentWord order">'+deal.proceedsSide+'</div></li>'+
+						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
+						$body+=right_time;
+						$body+='			</ul>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
+				}else{
+					//线下
+					var $body=
+						'<div class="payId payCard">'+
+						'	<div class="payCard-top">'+
+						'		<div class="cardLeftStatue payInline">线下支付</div>'+
+						'	</div>';
+					    $body+= backgruond;
+						$body+=
+						'		<div class="info-left">'+
+						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
+						$body+='		</div>'+
+						'		<div class="info-right">'+
+						'			<ul class="payInline">'+
+						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'</div></li>';
+						$body+=left_time;
+						$body+='			</ul>'+
+						'			<ul class="rightUl payInline">'+
+						'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
+						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
+						$body+='			</ul>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
+				}
+				
+				
+					listnode.append($body);
+					ZeroClipboard.config({hoverClass: "hand"});
+					var client = new ZeroClipboard($("#toShare"));
+					toShare();
+					toPay();
+			});
+		}
+	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
+		projectId:key
+	}));
+}
+
+function toShare(){
+	var deleteSynergys=$("[name^=toShare]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		
+		var token=$(this).attr("data-token");
+		getData(function(msg){
+			if(msg.errorCode == 200){
+				    $('#shareLinkList').val(getHostName()+msg.result);
+					ZeroClipboard.config({hoverClass: "handShare"});
+					var clientShare = new ZeroClipboard($("#copyShareLink"));
+					$('#toolbar-share').modal('show');
+					shareSpace();
+			}
+			else{
+				alert(msg.errorMsg);
+			}
+		}, getContextPath()+'/pay/shareurl?token='+token);
+
+	});
+}
+
+
+function toPay(){
+	var deleteSynergys=$("[name^=toPay]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		var token=$(this).attr("data-token");
+		getData(function(msg){
+		if(msg.errorCode == 200){
+			var url = getHostName() + msg.result;
+			window.location.href = url;
+		}
+		else{
+			alert(msg.errorMsg);
+		}
+		}, getContextPath() + '/pay/shareurl?token='+token);
+	});
+}
+
+
+function shareSpace(){ // 分享
+	$('.share').on('click',function(){
+		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
+		var share_title = $(this).parent().parent().parent().find('.media-heading').text().split('标题：')[1];
+		var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
+		var imgPath = '';
+		if(imgUrl != undefined && imgUrl != null){
+			var img_Name = getFileName(imgUrl);
+			imgPath = getHostName() + '/product/img/' + img_Name;
+		}
+		share.init(shareUrl, share_title, imgPath);
+	});
+}
+
+
+//var ControlTree = {
+//		CommonDoingProjectTree : function(){
+//			$('#doingProjectId').slideDown();
+//			
+//		},
+//		OpenDoingProjectTree : function(){
+//			$('#doingProject').removeClass('inactive');
+//			$('#doingProject').addClass('active');
+//			$('#doingProjectId').slideDown();
+//			
+//		},
+//		OpenMyProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//			$('#myProject').removeClass('inactive');
+//			$('#myProject').addClass('active');
+//		    $('#myProjectId').slideDown();
+//		},
+//		OpenHelpProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//
+//			$('#helpProject').removeClass('inactive');
+//			$('#helpProject').addClass('active');
+//			$('#helpProjectId').slideDown();
+//		},
+//		OpenPauseProjectTree : function(){
+//			ControlTree.CommonDoingProjectTree();
+//		
+//			$('#pauseProject').removeClass('inactive');
+//			$('#pauseProject').addClass('active');
+//			$('#pauseProjectId').slideDown();
+//		},
+//		OpenHistoryProjectTree : function(){
+//			$('#historyProject').removeClass('inactive');
+//			$('#historyProject').addClass('active');
+//			$('#historyProjectId').slideDown();
+//		},
+//		CloseDoingProjectTree : function(){
+//			$('#doingProject').removeClass('active');
+//			$('#doingProject').addClass('inactive');
+//    	    $('#doingProjectId').slideUp();
+//       },
+//       CloseMyProjectTree : function(){
+//    	   $('#myProject').removeClass('active');
+//		   $('#myProject').addClass('inactive');
+//    	   $('#myProjectId').slideUp();
+//       },
+//       CloseHelpProjectTree : function(){
+//    	   $('#helpProject').removeClass('active');
+//		   $('#helpProject').addClass('inactive');
+//    	   $('#helpProjectId').slideUp();
+//       },
+//       ClosePauseProjectTree : function(){
+//    	   $('#pauseProject').removeClass('active');
+//		   $('#pauseProject').addClass('inactive');
+//    	   $('#pauseProjectId').slideUp();
+//       },
+//       CloseHistoryProjectTree : function(){
+//    	   $('#historyProject').removeClass('active');
+//		   $('#historyProject').addClass('inactive');
+//    	   $('#historyProjectId').slideUp();
+//       },
+//       
+//       showTreeImg : function(){
+//    	 if(nowImg==0){
+// 			$('#helpProject').removeClass('inactive');
+// 			$('#helpProject').addClass('active');
+//    	 }
+//    	 
+//    	 else if(nowImg==1){
+//  			$('#pauseProject').removeClass('inactive');
+//  			$('#pauseProject').addClass('active');
+//    	 }
+//    	 
+//    	 else if(nowImg==2){
+//   			$('#myProject').removeClass('inactive');
+//   			$('#myProject').addClass('active');
+//     	 }
+//    	   
+//    	   
+//       },
+//       
+//       shutMyProject : function(){
+//    	 $('#myProjectId').on('click',function(){
+//    		if(('#myProject').attr('class')=='active'){
+//    		    CloseMyProjectTree();
+//    		} 
+//    		else if(('#myProject').attr('class')=='inactive'){
+//    			OpenMyProjectTree();
+//    		}
+//    	 });
+//    	   
+//       }
+//       
+//
+//}
+
+function formatterDateTime (date) {
+    var datetime = date.getFullYear()
+            + "-"// "年"
+            + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
+                    + (date.getMonth() + 1))
+            + "-"// "月"
+            + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+            + " "
+            + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+            + ":"
+            + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+            + ":"
+            + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+    return datetime;
 }
 
 

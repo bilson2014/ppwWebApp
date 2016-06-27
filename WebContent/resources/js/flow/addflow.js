@@ -12,6 +12,13 @@ var kaptcharInterValObj; // timer变量，控制时间
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
+	
+	
+	$("input[id$='time']").datepicker({
+		language: 'zh',
+		dateFormat:'yyyy-MM-dd',
+		minDate: new Date() 
+});
 
 
 
@@ -438,10 +445,12 @@ function updateProject_ViewInit() {
 		$("#projectSource").val(msg.source);
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
-		if($("#projectSource").val().trim()=='个人信息下单'){
+		if($("#projectSource").val().trim()!='个人信息下单'){
+			if($("#projectSource").val().trim()=='个人信息下单'){
 			$("#div-friendship").removeClass('hide');
 			$("#referrer-Id-hidden").val(msg.referrerId);
 			$("#input-referrer").val(msg.referrerName);
+			}
 		}
 		
 		//add wangliming 2016.5.10 11:29 end
@@ -624,7 +633,7 @@ function addProject() {
 	//add laowng
 	var customerPayment=$("#userinput").val().trim();
 	var providerPayment=$("#providerInput").val().trim();
-	
+	//TODO:
 	loadData(function(msg) {
 		if (msg) {
 			clearProject();
@@ -659,7 +668,7 @@ function addProject() {
 			jf : jfstarttime
 		},
 		synergys:getViewSynerhy(),
-		providerInput:providerInput,
+		providerInput:providerPayment,
 		customerPayment:customerPayment
 	}));
 }
@@ -835,11 +844,20 @@ function priceVerifyInputNotNull() {
 			div.removeClass('has-error');
 		}
 		if(!verifyInputNotNull(last))return false;
-		
+		//TODO:
+		if(first.val()=="0"){
+			first.val('0');
+		}
+		if(last.val()=="0"){
+			last.val('0');
+		}
 		if(!checkNumber(last.val())){
+		
+			
 			last.val("");
 			setError(last);
 			$("#error-radio-price").show();
+			
 			return false;
 		}else{
 			var div=last.parent();

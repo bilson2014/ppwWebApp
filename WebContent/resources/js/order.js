@@ -19,9 +19,7 @@ var order = {
 					$('#label-message').hide('normal');
 					// 提交表单
 					var token = $('#token').val();
-					console.info(token);
 					$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-					console.log($('#token').val());
 					$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 				}else{
 					$('#label-message').show('normal');
@@ -29,7 +27,6 @@ var order = {
 					return false;
 				}
 			}
-			
 		});
 	}
 }
@@ -59,7 +56,7 @@ function checkData(){
 
 // 验证 手机号
 function checkMobile(str) {
-	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
 	if(str.match(reg)){
 		return true;
 	} else{

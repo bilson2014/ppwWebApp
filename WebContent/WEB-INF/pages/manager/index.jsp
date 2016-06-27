@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -21,7 +22,6 @@
 	var="blockUIJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
-<spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
@@ -34,11 +34,17 @@
 	var="stepjquery" />
 <spring:url value="/resources/js/flow/flow.js" var="indexjs" />
 
+
 <spring:url value="/resources/lib/dist/tether.min.js" var="tetherjs" />
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
 <spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
+<spring:url value="/resources/js/flow/ZeroClipboard.js" var="zclipJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -58,21 +64,26 @@
 <link rel="stylesheet" href="${index }">
 <link rel="stylesheet" href="${stepdcstyle }">
 <link rel="stylesheet" href="${dropTheme }">
+<link rel="stylesheet" href="${datepickerCss }">
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
 <script src="${jqueryJs }"></script>
+<script src="${commonJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
 <script src="${jsonJs }"></script>
-<script src="${commonJs }"></script>
 <script src="${leftjs}"></script>
 <script src="${WdatePicker }"></script>
 <script src="${stepjquery }"></script>
 <script src="${indexjs }"></script>
+<script src="${datepickerJs }"></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
+<script src="${datepickerZhJs }"></script>
+<script src="${zclipJs }"></script>
+
 
 
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
@@ -81,6 +92,15 @@
 <!-- <div class="circle-div"></div> -->
 
 <div class="header">
+		<r:identity role="customer">
+			<input type="hidden" value="customer" id = "type">
+		</r:identity>
+		<r:identity role="provider">
+			<input type="hidden" value="provider" id = "type">
+		</r:identity>
+		<r:identity role="employee">
+			<input type="hidden" value="employee" id = "type">
+		</r:identity>
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -98,7 +118,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
@@ -127,7 +146,6 @@
 	</div>
 	<div class="page" >
 	
-
 		<div class="left-page" >
 			<div class="left-title">
 				<r:permission uri="/add-view">
@@ -140,7 +158,6 @@
 			</div>
 			
 			<div class="indentdiv">
-		
 				
 			<div id="content" >
 			    <div class="menu" id="menuId">
@@ -308,20 +325,34 @@
 				</r:multPermission>
 			</div>
 			
-
-			<div class="payInfo payTop">
+			<r:identity role="customer">
+				<div class="payInfo payTop hide" id="cusId">
+				    <label class="pay-title">收款方式</label>
+				    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
+				     
+				      <div class="userContent">
+					       <div  style="display:inline-block">
+					         <img src="${imgPath }/flow/ring.png"></img>
+					       </div>
+					       <div style="display:inline-block" id="userContent">
+					           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
+					           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
+					           <div id="openHistory">立即前往></div>
+					       </div>
+				      </div>
+				</div>
+			</r:identity>
 			
-			
+			<r:identity role="employee">
+			<div class="payInfo payTop hide" id="managerId">
 			    <label class="pay-title">收款方式</label>
-			    <button class="border-btn payBtnPos" type="button" >支付记录</button>
-		
-			 
+			    <a href="<spring:url value='/payment/payList'/>"  class="hide" ><span id="historyList">跳转</span></a>
+			    <button class="border-btn payBtnPos" type="button" id="payHistory" >支付记录</button>
 			  
-			  <div class="pay-way">
-			     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
-			     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
-			  </div> 
-				
+				  <div class="pay-way">
+				     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
+				     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
+				  </div> 
 			</div>
 			
 		    <div class="payInfo payInfoheight" id="payInfo">
@@ -330,35 +361,40 @@
 				     <div class="payLeft ">
 				        <ul class="hide" id="OnlineInfo">
 				           <li>
-				              <div class="payInline" > 
-				                  <div id="pay-time">发起收款时间</div>
-				                  <input id="payTime-outline" class="pay-input form-control hide"></input>
-				                  <div id="payTime-online" class="pay-input">20160606</div>
+				              <div class="payInline" id="payTime-outlineDiv" > 
+				                  <div class="payBigWord" id="pay-time">发起收款时间</div>
+				                  <input id="payTime-outline" class="pay-input form-control hide paySmallWord"></input>
+				                  <input disabled="disabled"   id="payTime-online" class="pay-input form-control paySmallWord" value="231231231"></input>
+				                  <div class="pay-error hide" id="payTime-outlineError">错误提示</div>
 				              </div>
 				              
-				               <div  class="payInline payRight" > 
-				                  <div>支付单号</div>
-				                  <input id="order-outline" class="pay-input form-control hide"></input>
-				                  <div id="order-online" class="pay-input">231252264994</div>
+				               <div  class="payInline payRight" id="order-outlineDiv" > 
+				                  <div class="payBigWord">支付单号</div>
+				                  <input id="order-outline" class="pay-input form-control hide paySmallWord"></input>
+				                  <input disabled="disabled"  id="order-online" class="pay-input form-control paySmallWord" ></input>
+				                   <div class="pay-error hide" id="order-outlineError">错误提示</div>
 				              </div>
 				           </li>
 				           
 				            <li>
-				              <div class="payInline" > 
-				                  <div>项目名称</div>
-				                  <input class="pay-input form-control"></input>
+				              <div class="payInline" id="projectNameDiv" > 
+				                  <div class="payBigWord">项目名称</div>
+				                  <input class="pay-input form-control paySmallWord" id="projectName"></input>
+				                  <div class="pay-error hide" id="projectNameError">错误提示</div>
 				              </div>
 				              
-				               <div class="payInline payRight" > 
-				                  <div id="pay-people">付款方</div>
-				                  <input class="pay-input form-control"></input>
+				               <div class="payInline payRight"  id="cusNameDiv"  > 
+				                  <div class="payBigWord" id="pay-people">付款方</div>
+				                  <input class="pay-input form-control paySmallWord" id="cusName"}></input>
+				                  <div class="pay-error hide" id="cusNameError">错误提示</div>
 				              </div>
 				           </li>
 				           
 				            <li>
-				              <div> 
-				                  <div>支付金额</div>
-				                  <input class="pay-input form-control"></input>
+				              <div id="payMoneyDiv"> 
+				                  <div class="payBigWord">支付金额</div>
+				                  <input class="pay-input form-control paySmallWord" id="payMoney"></input><label class="yuan">元<label/>
+				                  <div class="pay-error hide" id="payMoneyError">错误提示</div>
 				              </div>
 				           </li>
 				        </ul>
@@ -366,14 +402,16 @@
 				        <div class="createLink hide" id="link">
 				           <ul>
 				              <li>
-				                 <div class="payInline"><img style="width:10px;height:20px;" src=""/></div>
-				                 <div class="payInline">成功创建支付链接</div>
+				                 <div style="display:inline-block"><img src="${imgPath }/flow/link.png"/></div>
+				                 <div class="createTitle" style="display:inline-block">成功创建支付链接</div>
 				              </li>
 				              
 				              <li>
 				                <div class="input-group getLink">
-								  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" aria-describedby="basic-addon2">
-								  <span class="input-group-addon getLinkBtn" id="basic-addon2">复制链接</span>
+
+								  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" id="shareLink">
+								  <span class="input-group-addon getLinkBtn" id="copyLink"  data-clipboard-target="shareLink">复制链接</span>
+
 								</div>
 				              </li>
 				           </ul>
@@ -388,9 +426,19 @@
 				   </div>  
 			</div>
 			
-	
-			
-			
+			</r:identity>
+			<div class="payCardHeight payInfo" id="payHistoryList">
+			   
+				   <div class="payInfoTop">
+				      <div class="pay-top-title " style="float:left">支付历史</div>
+				      <img class="imgInfo imgLeft" src="${imgPath }/flow/payHistory.png"  style="float:left"></img>
+				      <img class="imgInfo imgRight" src="${imgPath }/flow/closeList.png" id="payHistoryClose" style="float:right"></img>
+				   </div>
+				      
+				   <div class="payCardZoom" id="payListPage">
+								<!-- 支付历史 -->	  
+				   </div>
+			</div>
 			
 			<div class="indentinfo">
 				<div class="indentinfo-title">
@@ -617,6 +665,29 @@
 		</div>
 		</div>
 		<!-- toolbar modal end -->
+		
+							<!-- toolbar modal begin 分享 -->
+		<div class="modal fade upload-window" id="toolbar-share">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+					 <div class="input-group getShareLink">
+								  <input type="text" class="form-control getShareLinkInput" value="http:测试测试" id="shareLinkList">
+								  <span class="input-group-addon getShareLinkBtn" id="copyShareLink"  data-clipboard-target="shareLinkList">复制链接</span>
+					</div>
+					 <div class="input-group getShareLink">
+						  <dl class="share-list">
+										<dt >分享:</dt>
+										<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/img/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/img/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/img/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
+						 </dl>
+					 </div>
+				</div>	
+			</div>
+		</div>
+		<!-- toolbar modal end -->
+	
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>
 	<div class="-mob-share-ui" style="display: none">
