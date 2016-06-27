@@ -108,13 +108,6 @@
 				<!-- 订单信息 start-->
 				<div class="information-section">
 					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-						<%-- <input type="hidden" id="teamId" name="teamId" value="${teamId}"/>
-						<input type="hidden" id="productId" name="productId" value="${productId}"/>
-						<input type="hidden" id="serviceId" name="serviceId" value="${serviceId}"/>
-						<input type="hidden" id="indentPrice" name="indentPrice" value="${indentPrice}"/>
-						<input type="hidden" id="second" name="second" value="${second}"/>
-						<input type="hidden" id="product_name" name="product_name" value="${product_name}"/>
-						<input type="hidden" id="salesmanUniqueId" name="salesmanUniqueId" value="${uniqueId}"/> --%>
 						<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
 						<input type="hidden" id="token" name="token" value="${token}"/>
 					

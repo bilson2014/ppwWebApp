@@ -165,7 +165,7 @@ function recover(){
 					}
 				}, getContextPath() + '/mgr/recover/pwd', $.toJSON({
 					phoneNumber : $('#recover_phone').val().trim(),
-					managerPassword : Encrypt($('#recover_password').val().trim()),
+					employeePassword : Encrypt($('#recover_password').val().trim()),
 					verification_code : $('#verification_code_recover').val().trim()
 				}));
 			}else{

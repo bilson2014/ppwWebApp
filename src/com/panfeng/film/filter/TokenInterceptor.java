@@ -4,10 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.ValidateUtil;
 
@@ -18,9 +16,6 @@ import com.panfeng.film.util.ValidateUtil;
  *
  */
 public class TokenInterceptor extends HandlerInterceptorAdapter {
-	
-	@Autowired
-	final SessionInfoService service = null;
 
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {

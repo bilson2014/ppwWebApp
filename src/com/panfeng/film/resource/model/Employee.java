@@ -32,6 +32,8 @@ public class Employee extends Customer {
 	private String phoneNumber = null; // 电话号码
 	
 	private String email = null; // 邮箱
+	
+	private String verification_code = null; // 验证码
 
 	public long getEmployeeId() {
 		return employeeId;
@@ -119,6 +121,14 @@ public class Employee extends Customer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getVerification_code() {
+		return verification_code;
+	}
+
+	public void setVerification_code(String verification_code) {
+		this.verification_code = verification_code;
 	}
 
 }
