@@ -433,9 +433,11 @@ function loadflowdata() {
 							    
 								//TODO:lt add payList beigin 20160622
 								
+
 								if(currentIndex>=3){
 								$('#managerId').removeClass('hide')
 								$('#cusId').removeClass('hide');
+
 								}
 								else{
 									$('#managerId').addClass('hide')

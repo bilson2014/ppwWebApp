@@ -326,8 +326,8 @@
 			</div>
 			
 			<r:identity role="customer">
-				<div class="payInfo payTop" id="cusId">
-				
+
+				<div class="payInfo payTop hide" id="cusId">
 				    <label class="pay-title">收款方式</label>
 				    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
 				      <div class="userContent">
@@ -346,7 +346,7 @@
 			</r:identity>
 			
 			<r:identity role="employee">
-			<div class="payInfo payTop" id="managerId">
+			<div class="payInfo payTop hide" id="managerId">
 			    <label class="pay-title">收款方式</label>
 			    <a href="<spring:url value='/payment/payList'/>"  class="hide" ><span id="historyList">跳转</span></a>
 			    <button class="border-btn payBtnPos" type="button" id="payHistory" >支付记录</button>
