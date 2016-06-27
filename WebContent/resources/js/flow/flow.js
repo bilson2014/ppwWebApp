@@ -19,7 +19,8 @@ $().ready(function() {
 			showOrderTime();
 			loadprojecctlist();
 			$(".flowbtn").on("click", function() {
-				$("#toolbar-check").modal('show');
+				$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+				//$("#toolbar-check").modal('show');
 				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
 				setModalEvent(nextFlow);
 			});
@@ -132,7 +133,8 @@ function init() {
 			oTimer = setInterval("getProgress()", 500);
 			$('.progress-bar-success').text('0')
 			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
-			$('#mymodal').modal('show');
+			$('#mymodal').modal({backdrop: 'static', keyboard: false});
+			//$('#mymodal').modal('show');
 			// modify by guoyang, 2016-04-19 03:11 end
 		} else {
 			showAlert(errorNotNull);
@@ -144,7 +146,8 @@ function getFileName(o) {
 	return o.substring(pos + 1);
 }
 $("#upload-file-btn-id").click(function() {
-	$('#toolbar-modal').modal('show');
+	$('#toolbar-modal').modal({backdrop: 'static', keyboard: false});
+	//$('#toolbar-modal').modal('show');
 });
 
 $('#cancle-btn').click(function() {
@@ -221,7 +224,8 @@ function loadFileTags() {
 }
 //取消按钮
 function cancelBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要取消项目吗？");
 	noWorkproject=false;
 	setModalEvent(cancel);
@@ -238,7 +242,8 @@ function cancel() {
 	}
 }
 function PrevTaskBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要回退到上一步吗？");
 	setModalEvent(PrevTask);
 }
@@ -255,13 +260,15 @@ function PrevTask(){
 }
 //暂停按钮
 function pauseBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要暂停项目吗？");
 	setModalEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要恢复项目吗？");
 	setModalEvent(resume);
 }
@@ -426,7 +433,7 @@ function loadflowdata() {
 							    
 								//TODO:lt add payList beigin 20160622
 								
-								if(currentIndex==3||currentIndex==5){
+								if(currentIndex>=3){
 								$('#managerId').removeClass('hide')
 								$('#cusId').removeClass('hide');
 								}
@@ -1216,7 +1223,8 @@ var errorNotNull='输入内容不能为空';
 var errorNotNull='输入内容不能为空';
 function showAlert(message){
 	$(".check-message").text(message);
-	$("#toolbar-no-message").modal('show');
+	$('#toolbar-no-message').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-no-message").modal('show');
 }
 // add by guoyang, 2016-04-19 03:14 begin
 // -> 添加进度条显示
@@ -1293,7 +1301,9 @@ var ControlPay ={
 			});
 		},
 		showOnlineInfo:function(){
-			$('#payInfo').slideDown();
+		//	$('#payInfo').slideDown();
+			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
+		//	$("#toolbar-OnOff").modal('show');
 			ControlPay.initOnlineInfo();
 		},
 		
@@ -1337,7 +1347,10 @@ var ControlPay ={
 		},
 		
 		showOutlineInfo:function(){
-			$('#payInfo').slideDown();
+			//$('#payInfo').slideDown();
+			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
+			//$("#toolbar-OnOff").modal('show');
+			
 			ControlPay.initOutlineInfo();
 		},
 		
@@ -1361,7 +1374,7 @@ var ControlPay ={
 				dateFormat:'yyyy-MM-dd ',
 				minDate: new Date() 
 		});
-			
+			ControlPay.initBillNo();
 			checkPayList.checkOutBlur();
 		},
 		clickpay:function(){
@@ -1384,22 +1397,19 @@ var ControlPay ={
 					// 发起线上支付
 					loadData(function(msg){
 						
-						
 						if(checkPayList.checkOnLinePayList()){
 						if(msg.errorCode == 200){
 							var url =  msg.result;
 							$("#shareLink").val(getHostName()+url);
-						
 								  $('#pay-sure').text('返回');
 								  $('#checkWay').val('3');
 								  $('#OnlineInfo').addClass('hide');
 								  $('#link').removeClass('hide');
 								  ZeroClipboard.config({hoverClass: "hand"});
 								  var client = new ZeroClipboard($("#copyLink"));
-
 								 
 						}else{
-							alert("出错啦");
+							alert("出错啦"+msg.errorCode);
 						}
 						}
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
@@ -1420,8 +1430,15 @@ var ControlPay ={
 					
 					loadData(function(msg){
 						
-						if(checkPayList.checkOutLinePayList()){
+						
+						if(msg.errorCode == 200){
+						if(checkPayList.checkOutLinePayList()){	
 							ControlPay.openHistory();
+							 payList();
+							
+						}
+						}else{
+							alert("出错啦"+msg.errorCode);
 						}
 					}, getContextPath()+'/pay/offline/save', $.toJSON({
 						projectId : key,
@@ -1467,6 +1484,18 @@ var ControlPay ={
 						  }
 						
 					});
+					//管家展开按钮
+					$('#loadEmployee').on('click',function(){
+						  if($("#payHistory").hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistory").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
+						      payList();
+						  }
+						
+					});
 					//客户历史按钮
 					$('#payHistoryBtnOrder').on('click',function(){
 						
@@ -1476,6 +1505,18 @@ var ControlPay ={
 							  ControlPay.openHistory();
 							  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
 							  var base_Card = $("div[class^=payCard]");
+						      payList();
+						  }
+						
+					});
+					//客户展开按钮
+					$('#loadCus').on('click',function(){
+						  if($("#payHistoryBtnOrder").hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
 						      payList();
 						  }
 						
@@ -1494,17 +1535,34 @@ var ControlPay ={
 						$('#payHistory').removeClass('payBtnPosClick');
 						$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
 						$("#payListPage").html('');
+						$("#loadWordEmployee").text('展开更多');
+						$("#circleEmployeeImg").removeClass('circle-180');
+						$("#loadWordCus").text('展开更多');
+						$("#circleCusImg").removeClass('circle-180');
+						
+						
 					},
 					
 					
 					openHistory:function(){
 						$("#payHistoryList").slideDown();
-						
+						$('#toolbar-OnOff').modal('hide');
+						$("#loadWordEmployee").text('收起');
+						$("#circleEmployeeImg").addClass('circle-180');
+						$("#loadWordCus").text('收起');
+						$("#circleCusImg").addClass('circle-180');
+	                    
 					},
 					
 					copyLink:function(){
 						$('#copyLink').on('click',function(){
 
+						});
+					},
+					closeMore:function(){
+						$("#canclePay").on('click',function(){
+							$('#toolbar-OnOff').modal('hide');
+							
 						});
 					},
 
@@ -1517,6 +1575,7 @@ var ControlPay ={
 			ControlPay.clickPayOpenHistory();
 			ControlPay.clickPayHistoryClose();
 			ControlPay.copyLink();
+			ControlPay.closeMore();
 			
 	
 		}
@@ -1790,8 +1849,8 @@ function payList(){
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				}
 				
@@ -1857,6 +1916,7 @@ function payList(){
 					var client = new ZeroClipboard($("#toShare"));
 					toShare();
 					toPay();
+					clickLink();
 			});
 		}
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
@@ -1876,7 +1936,9 @@ function toShare(){
 				    $('#shareLinkList').val(getHostName()+msg.result);
 					ZeroClipboard.config({hoverClass: "handShare"});
 					var clientShare = new ZeroClipboard($("#copyShareLink"));
-					$('#toolbar-share').modal('show');
+					$('#toolbar-share').modal({backdrop: 'static', keyboard: false});
+					//$('#toolbar-share').modal('show');
+					
 					shareSpace();
 			}
 			else{
@@ -1906,18 +1968,25 @@ function toPay(){
 	});
 }
 
+function clickLink(){
+	$('#canclePayLink').on('click',function(){
+		$('#toolbar-share').modal('hide');
+	});
+	
+}
+
 
 function shareSpace(){ // 分享
 	$('.share').on('click',function(){
 		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
-		var share_title = $(this).parent().parent().parent().find('.media-heading').text().split('标题：')[1];
-		var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
+		var share_title = '分享链接';
+		var imgUrl = '';
 		var imgPath = '';
 		if(imgUrl != undefined && imgUrl != null){
 			var img_Name = getFileName(imgUrl);
 			imgPath = getHostName() + '/product/img/' + img_Name;
 		}
-		share.init(shareUrl, share_title, imgPath);
+		share.init(shareUrl, share_title, '');
 	});
 }
 

@@ -1195,7 +1195,8 @@ img {
 
    img{
        position:relative;
-       top:-12px;
+       top:-10px;
+       height: 40px;
          }
  }
 
@@ -1357,8 +1358,14 @@ img {
  
  .payLeft{
     position: relative;
-    left:30%;
+    left:150px;
  }
+
+  .payLeftLink{
+    position: relative;
+    left:50px;
+ }
+
  .payRight{
     position: relative;
     left:50px;
@@ -1387,12 +1394,21 @@ img {
       color:$red-base;
  }
 
+  .pay-error-price{
+      margin-top:-10px;
+      margin-bottom: 10px;
+      font-size: $font-size-sm;
+      color:$red-base;
+ }
+
  .order{
     width:200px;
     @include ellipsis;
  }
 
  .createLink{
+    position: relative;
+    left:-100px;
 margin-top: 80px;
  }
 
@@ -1450,6 +1466,7 @@ margin-top: 80px;
 
 .payInfoheight{
     height:auto;
+    border-radius: 10px;
 }
 
 .payInline{
@@ -1457,7 +1474,7 @@ margin-top: 80px;
     vertical-align: top;
 }
 
-#payInfo,#payHistoryList{
+ #payHistoryList{
     display: none;
 }
 
@@ -1591,7 +1608,7 @@ margin-top: 80px;
 
               .contentTitle{
                
-               font-size: $font-size;
+               font-size: $font-size-base;
                font-weight: bold;
                color:$gray-dark;
 
@@ -1685,3 +1702,42 @@ margin-top: 80px;
   .handShare{
         cursor: pointer;
     }
+
+ .canclePay{
+    position: relative;
+    top: 15px;
+    float: right;
+    right:30px;
+    cursor: pointer;
+
+ }
+
+ .datepickers-container{
+    z-index:2500 !important;
+ }
+
+ .loadMore{
+    position:relative;
+    left:0px;
+    margin-top:-10px;
+    top:60px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+    color:$gray-light;
+}
+
+ .loadMoreCus{
+    position:relative;
+    top:-30px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+    color:$gray-light;
+}
+
+.circle-180 {
+    transform: rotate(180deg);
+}
