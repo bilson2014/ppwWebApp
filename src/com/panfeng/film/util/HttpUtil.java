@@ -41,7 +41,7 @@ public class HttpUtil {
 		cookieStore = null;
 		requestConfig = null;
 		cookieStore = null;
-
+		
 		context = HttpClientContext.create();
 		cookieStore = new BasicCookieStore();
 		addCookie("JSESSIONID", request.getSession().getId(), GlobalConstant.COOKIES_SCOPE, "/");
