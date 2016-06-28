@@ -15,7 +15,7 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
-	
+	$('.bottom-div').show();
 			init();
 			showOrderTime();
 			loadprojecctlist();
@@ -447,6 +447,7 @@ function loadflowdata() {
 										$('#payInfo').slideUp('');
 									}
 								}
+								ControlPay.closeList();
 								//end
 								
 								return;
@@ -1179,6 +1180,7 @@ function show() {
 	$("#upload-file-btn-id").show();
 	$(".comment").show();
 	$(".comment-btn").show();
+	
 }
 //获取当前进行中的项目 cookie-->currentproject
 function getCurrentProject() {
@@ -1391,7 +1393,7 @@ var ControlPay ={
 			$('#payTime-outline').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd ',
-				minDate: new Date() 
+				minDate: 0
 		});
 			ControlPay.initBillNo();
 			checkPayList.checkOutBlur();
@@ -1457,8 +1459,7 @@ var ControlPay ={
 						if(msg.errorCode == 200){
 						if(checkPayList.checkOutLinePayList()){	
 							ControlPay.openHistory();
-							 payList();
-							
+							 payList();	
 						}
 						}else{
 							//alert("出错啦"+msg.errorCode);
@@ -1558,11 +1559,12 @@ var ControlPay ={
 						$("#loadWordCus").text('展开更多');
 						$("#circleCusImg").removeClass('circle-180');
 						
-						
+			
 					},
 					
 					
 					openHistory:function(){
+						$('#listLoad').show();
 						$("#payHistoryList").slideDown();
 						$('#toolbar-OnOff').modal('hide');
 						$("#loadWordEmployee").text('收起');
@@ -1934,11 +1936,14 @@ function payList(){
 					toShare();
 					toPay();
 					clickLink();
+					$('#listLoad').hide();
 			});
 		}
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
 		projectId:key
 	}));
+
+	
 }
 
 function toShare(){

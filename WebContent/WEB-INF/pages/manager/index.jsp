@@ -430,8 +430,32 @@
 			</div> --%>
 			
 			</r:identity>
+			
+			
+<!-- 			<div class="loadmore-div" id="listLoad">
+				       			<div class="load-word">加载中</div>
+										<div class="spinner">
+										  <div class="bounce1"></div>
+										  <div class="bounce2"></div>
+										  <div class="bounce3"></div>
+										</div>
+								</div>
+						  </div> 	 -->
+						
+			
 			<div class="payCardHeight payInfo" id="payHistoryList">
-			   				      
+			
+			             
+						  <div class="loadmore-div" id="listLoad">
+				       			 <div class="load-word">加载中</div>
+										<div class="spinner">
+										  <div class="bounce1"></div>
+										  <div class="bounce2"></div>
+										  <div class="bounce3"></div>
+										</div>
+						</div>
+					
+			   		      
 				   <div class="payCardZoom" id="payListPage">
 								<!-- 支付历史 -->	  
 				   </div>
@@ -704,7 +728,7 @@
 						           <li>
 						              <div class="payInline" id="payTime-outlineDiv" > 
 						                  <div class="payBigWord" id="pay-time">发起收款时间</div>
-						                  <input id="payTime-outline" class="pay-input form-control hide paySmallWord"></input>
+						                  <input id="payTime-outline" readonly="readonly" class="pay-input form-control hide paySmallWord"></input>
 						                  <input disabled="disabled"   id="payTime-online" class="pay-input form-control paySmallWord" value="231231231"></input>
 						                  <div class="pay-error hide" id="payTime-outlineError">错误提示</div>
 						              </div>
