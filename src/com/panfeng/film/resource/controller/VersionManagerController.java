@@ -44,7 +44,6 @@ import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
-import com.panfeng.film.resource.model.VersionManager;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
@@ -135,7 +134,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/recover/pwd")
 	public Info recover(final HttpServletRequest request,
-			@RequestBody final VersionManager manager) throws Exception {
+			@RequestBody final Employee e) throws Exception {
 
 		final HttpSession session = request.getSession();
 		// 密码重置
@@ -143,18 +142,18 @@ public class VersionManagerController extends BaseController {
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (code.equals(manager.getVerification_code())) {
-				if (manager.getManagerPassword() != null
-						&& !"".equals(manager.getManagerPassword())) {
+			if (code.equals(e.getVerification_code())) {
+				if (e.getEmployeePassword() != null
+						&& !"".equals(e.getEmployeePassword())) {
 					// AES 密码解密
 					final String password = AESUtil.Decrypt(
-							manager.getManagerPassword(),
+							e.getEmployeePassword(),
 							GlobalConstant.UNIQUE_KEY);
 					// MD5 加密
-					manager.setManagerPassword(DataUtil.md5(password));
+					e.setEmployeePassword(DataUtil.md5(password));
 					final String url = GlobalConstant.URL_PREFIX
 							+ "portal/manager/static/editPwd";
-					String str = HttpUtil.httpPost(url, manager, request);
+					String str = HttpUtil.httpPost(url, e, request);
 					Boolean result = null;
 					if (str != null && !"".equals(str)) {
 						result = JsonUtil.toBean(str, Boolean.class);
