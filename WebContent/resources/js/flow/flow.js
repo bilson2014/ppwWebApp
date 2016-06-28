@@ -6,6 +6,7 @@ var currentIndex;
 var hasClick =false;
 var nowImg=2;
 var countCheck = 0;
+var isHistory=false;
 
 
 // add by guoyang, 2016-04-19 03:17 begin
@@ -19,7 +20,8 @@ $().ready(function() {
 			showOrderTime();
 			loadprojecctlist();
 			$(".flowbtn").on("click", function() {
-				$("#toolbar-check").modal('show');
+				$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+				//$("#toolbar-check").modal('show');
 				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
 				setModalEvent(nextFlow);
 			});
@@ -132,7 +134,8 @@ function init() {
 			oTimer = setInterval("getProgress()", 500);
 			$('.progress-bar-success').text('0')
 			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
-			$('#mymodal').modal('show');
+			$('#mymodal').modal({backdrop: 'static', keyboard: false});
+			//$('#mymodal').modal('show');
 			// modify by guoyang, 2016-04-19 03:11 end
 		} else {
 			showAlert(errorNotNull);
@@ -144,7 +147,8 @@ function getFileName(o) {
 	return o.substring(pos + 1);
 }
 $("#upload-file-btn-id").click(function() {
-	$('#toolbar-modal').modal('show');
+	$('#toolbar-modal').modal({backdrop: 'static', keyboard: false});
+	//$('#toolbar-modal').modal('show');
 });
 
 $('#cancle-btn').click(function() {
@@ -221,7 +225,8 @@ function loadFileTags() {
 }
 //取消按钮
 function cancelBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要取消项目吗？");
 	noWorkproject=false;
 	setModalEvent(cancel);
@@ -238,7 +243,8 @@ function cancel() {
 	}
 }
 function PrevTaskBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要回退到上一步吗？");
 	setModalEvent(PrevTask);
 }
@@ -255,13 +261,15 @@ function PrevTask(){
 }
 //暂停按钮
 function pauseBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要暂停项目吗？");
 	setModalEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
-	$("#toolbar-check").modal('show');
+	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-check").modal('show');
 	$(".check-step").text("您确定要恢复项目吗？");
 	setModalEvent(resume);
 }
@@ -425,17 +433,19 @@ function loadflowdata() {
 								currentIndex = num;
 							    
 								//TODO:lt add payList beigin 20160622
-								
-								if(currentIndex==3||currentIndex==5){
-								/*$('#managerId').removeClass('hide')
-								$('#cusId').removeClass('hide');*/
-								}
-								else{
-									$('#managerId').addClass('hide')
-									$('#cusId').addClass('hide');
-									$('#payListPage').html('');
-									$('#payInfo').slideUp('');
-									
+								if(!isHistory){
+									if(currentIndex>=3){
+											$('#managerId').removeClass('hide')
+											$('#cusId').removeClass('hide');
+											$('#Outline').removeClass('hide');
+											$('#Online').removeClass('hide');
+									}
+									else{
+										$('#managerId').addClass('hide')
+										$('#cusId').addClass('hide');
+										$('#payListPage').html('');
+										$('#payInfo').slideUp('');
+									}
 								}
 								//end
 								
@@ -456,6 +466,8 @@ function loadflowdata() {
 							$(".pausebtn").on("click", function() {
 								resumeBtn();
 							});
+							$("#Online").hide();
+							$("#Outline").hide();
 						}else{
 							$(".flowbtn").show();
 							$(".prev-task").show();
@@ -468,6 +480,9 @@ function loadflowdata() {
 							$(".pausebtn").on("click", function() {
 								pauseBtn();
 							});
+							$("#Online").show();
+							$("#Outline").show();
+
 						}
 						getBtnWidth();
 						if (msg.name.trim() == '任务不存在') {
@@ -938,13 +953,17 @@ function loadprojecctlist() {
 				if(stateStr == 1 || stateStr == 2){
 					//确定当前状态觉决定是否显示
 					finish();// 禁用所有按钮
+					isHistory=true;
+					
 				}
 				
 				else{
 					noWorkproject =false;
 					show();// 显示所有按钮
+					isHistory=false;
 				}
 			}
+			
 			//构造控件
 			var liStar = $('<li></li>')
 			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
@@ -1146,9 +1165,12 @@ function finish() {
 	$("#upload-file-btn-id").hide();
 	$(".comment").hide();
 	$(".comment-btn").hide();
-	
 	$(".more-file-btn").show();
 	$(".more-comment").show();
+	$("#Online").addClass('hide');
+	$("#Outline").addClass('hide');
+	$('#managerId').removeClass('hide');
+	$('#cusId').removeClass('hide');
 }
 //未完成项目样式
 function show() {
@@ -1216,7 +1238,8 @@ var errorNotNull='输入内容不能为空';
 var errorNotNull='输入内容不能为空';
 function showAlert(message){
 	$(".check-message").text(message);
-	$("#toolbar-no-message").modal('show');
+	$('#toolbar-no-message').modal({backdrop: 'static', keyboard: false});
+	//$("#toolbar-no-message").modal('show');
 }
 // add by guoyang, 2016-04-19 03:14 begin
 // -> 添加进度条显示
@@ -1293,7 +1316,10 @@ var ControlPay ={
 			});
 		},
 		showOnlineInfo:function(){
-			$('#payInfo').slideDown();
+		//	$('#payInfo').slideDown();
+			$('#copyListSuccess').addClass('hide');
+			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
+		//	$("#toolbar-OnOff").modal('show');
 			ControlPay.initOnlineInfo();
 		},
 		
@@ -1316,6 +1342,7 @@ var ControlPay ={
 			$('#order-outline').addClass('hide');
 			$('#pay-sure').text('确认');
 			$('#link').addClass('hide');
+			$('#payTitleId').text('收款信息');
 			ControlPay.initBillNo();
 			checkPayList.checkOnBlur();
 		},
@@ -1337,7 +1364,11 @@ var ControlPay ={
 		},
 		
 		showOutlineInfo:function(){
-			$('#payInfo').slideDown();
+			//$('#payInfo').slideDown();
+			$('#copyListSuccess').addClass('hide');
+			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
+			//$("#toolbar-OnOff").modal('show');
+			
 			ControlPay.initOutlineInfo();
 		},
 		
@@ -1356,12 +1387,13 @@ var ControlPay ={
 			$('#order-outline').removeClass('hide');
 			$('#pay-sure').text('确认');
 			$('#link').addClass('hide');
+			$('#payTitleId').text('收款信息');
 			$('#payTime-outline').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd ',
 				minDate: new Date() 
 		});
-			
+			ControlPay.initBillNo();
 			checkPayList.checkOutBlur();
 		},
 		clickpay:function(){
@@ -1384,22 +1416,23 @@ var ControlPay ={
 					// 发起线上支付
 					loadData(function(msg){
 						
-						
 						if(checkPayList.checkOnLinePayList()){
 						if(msg.errorCode == 200){
 							var url =  msg.result;
 							$("#shareLink").val(getHostName()+url);
-						
 								  $('#pay-sure').text('返回');
 								  $('#checkWay').val('3');
 								  $('#OnlineInfo').addClass('hide');
 								  $('#link').removeClass('hide');
+								  $('#payTitleId').text('链接信息');
 								  ZeroClipboard.config({hoverClass: "hand"});
 								  var client = new ZeroClipboard($("#copyLink"));
-
+								  client.on("copy", function(e){
+									  $('#copyListSuccess').removeClass('hide');
+									});
 								 
 						}else{
-							alert("出错啦");
+							//alert("出错啦"+msg.errorCode);
 						}
 						}
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
@@ -1420,8 +1453,15 @@ var ControlPay ={
 					
 					loadData(function(msg){
 						
-						if(checkPayList.checkOutLinePayList()){
+						
+						if(msg.errorCode == 200){
+						if(checkPayList.checkOutLinePayList()){	
 							ControlPay.openHistory();
+							 payList();
+							
+						}
+						}else{
+							//alert("出错啦"+msg.errorCode);
 						}
 					}, getContextPath()+'/pay/offline/save', $.toJSON({
 						projectId : key,
@@ -1437,6 +1477,7 @@ var ControlPay ={
 					  $('#checkWay').val('1');
 					  $('#OnlineInfo').removeClass('hide');
 					  $('#link').addClass('hide');
+					  $('#toolbar-OnOff').modal('hide');
 				}
 			},
 			  clickPayOpenHistory:function(){
@@ -1467,6 +1508,18 @@ var ControlPay ={
 						  }
 						
 					});
+					//管家展开按钮
+					$('#loadEmployee').on('click',function(){
+						  if($("#payHistory").hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistory").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
+						      payList();
+						  }
+						
+					});
 					//客户历史按钮
 					$('#payHistoryBtnOrder').on('click',function(){
 						
@@ -1480,31 +1533,54 @@ var ControlPay ={
 						  }
 						
 					});
-				},
-				
-				  clickPayHistoryClose:function(){
-						$('#payHistoryClose').on('click',function(){
-							ControlPay.closeList();
-						});
+					//客户展开按钮
+					$('#loadCus').on('click',function(){
+						  if($("#payHistoryBtnOrder").hasClass('payBtnPosClick')){
+							  ControlPay.closeList();
+						  }else{
+							  ControlPay.openHistory();
+							  $("#payHistoryBtnOrder").addClass('payBtnPosClick');
+							  var base_Card = $("div[class^=payId]");
+						      payList();
+						  }
 						
-					},
+					});
+				},
+
 			          
 					closeList:function(){
 						$("#payHistoryList").slideUp();
 						$('#payHistory').removeClass('payBtnPosClick');
 						$('#payHistoryBtnOrder').removeClass('payBtnPosClick');
 						$("#payListPage").html('');
+						$("#loadWordEmployee").text('展开更多');
+						$("#circleEmployeeImg").removeClass('circle-180');
+						$("#loadWordCus").text('展开更多');
+						$("#circleCusImg").removeClass('circle-180');
+						
+						
 					},
 					
 					
 					openHistory:function(){
 						$("#payHistoryList").slideDown();
-						
+						$('#toolbar-OnOff').modal('hide');
+						$("#loadWordEmployee").text('收起');
+						$("#circleEmployeeImg").addClass('circle-180');
+						$("#loadWordCus").text('收起');
+						$("#circleCusImg").addClass('circle-180');
+	                    
 					},
 					
 					copyLink:function(){
 						$('#copyLink').on('click',function(){
 
+						});
+					},
+					closeMore:function(){
+						$("#canclePay").on('click',function(){
+							$('#toolbar-OnOff').modal('hide');
+							
 						});
 					},
 
@@ -1515,8 +1591,8 @@ var ControlPay ={
 			ControlPay.clickOutLine();
 			ControlPay.clickpay();
 			ControlPay.clickPayOpenHistory();
-			ControlPay.clickPayHistoryClose();
 			ControlPay.copyLink();
+			ControlPay.closeMore();
 			
 	
 		}
@@ -1781,18 +1857,17 @@ function payList(){
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
 					}
 					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">完成时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">失败时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				}
 				
@@ -1840,7 +1915,7 @@ function payList(){
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
 						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
-						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'</div></li>';
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
 						$body+=left_time;
 						$body+='			</ul>'+
 						'			<ul class="rightUl payInline">'+
@@ -1858,6 +1933,7 @@ function payList(){
 					var client = new ZeroClipboard($("#toShare"));
 					toShare();
 					toPay();
+					clickLink();
 			});
 		}
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
@@ -1869,6 +1945,7 @@ function toShare(){
 	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
+	 $('#copySuccess').addClass('hide');
 	deleteSynergys.on('click',function(){
 		
 		var token=$(this).attr("data-token");
@@ -1877,11 +1954,16 @@ function toShare(){
 				    $('#shareLinkList').val(getHostName()+msg.result);
 					ZeroClipboard.config({hoverClass: "handShare"});
 					var clientShare = new ZeroClipboard($("#copyShareLink"));
-					$('#toolbar-share').modal('show');
+					clientShare.on("copy", function(e){
+						   $('#copySuccess').removeClass('hide');
+						});
+					$('#toolbar-share').modal({backdrop: 'static', keyboard: false});
+					//$('#toolbar-share').modal('show');
+					
 					shareSpace();
 			}
 			else{
-				alert(msg.errorMsg);
+				//alert(msg.errorMsg);
 			}
 		}, getContextPath()+'/pay/shareurl?token='+token);
 
@@ -1901,24 +1983,31 @@ function toPay(){
 			window.location.href = url;
 		}
 		else{
-			alert(msg.errorMsg);
+			//alert(msg.errorMsg);
 		}
 		}, getContextPath() + '/pay/shareurl?token='+token);
 	});
+}
+
+function clickLink(){
+	$('#canclePayLink').on('click',function(){
+		$('#toolbar-share').modal('hide');
+	});
+	
 }
 
 
 function shareSpace(){ // 分享
 	$('.share').on('click',function(){
 		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
-		var share_title = $(this).parent().parent().parent().find('.media-heading').text().split('标题：')[1];
-		var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
+		var share_title = '分享链接';
+		var imgUrl = '';
 		var imgPath = '';
 		if(imgUrl != undefined && imgUrl != null){
 			var img_Name = getFileName(imgUrl);
 			imgPath = getHostName() + '/product/img/' + img_Name;
 		}
-		share.init(shareUrl, share_title, imgPath);
+		share.init(shareUrl, share_title, '');
 	});
 }
 

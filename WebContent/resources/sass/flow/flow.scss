@@ -5,22 +5,33 @@
 @import "compass/typography/text/ellipsis";
 .page {
     margin: auto;
-    width: 960px;
+    width: $width-min;
     top: 75px;
+
+
+    @media screen and (min-width:1500px) {
+       width: $width-middle;
+    }
 
 
     //左侧树形
     .left-page {
         display: inline-block;
         width: 212px;
+            @media screen and (min-width:1500px) {
+       width: 300px;
+    }
         float: left;
         background-color: $white;
         .left-title {
             width: 100%;
-            height: 50;
+            height: 50px;
             margin-top: 30px;
         }
         .left-title-text {
+             @media screen and (min-width:1500px) {
+        margin-left: 30px;
+    }
             margin-left: 14px;
             font-weight: bold;
             font-size: 17px;
@@ -43,6 +54,9 @@
     }
     .left-title-images {
         margin-left: 14px;
+          @media screen and (min-width:1500px) {
+        margin-left: 30px;
+    }
         height: 20px;
         width: 20px;
         position: relative;
@@ -52,6 +66,10 @@
 
 //左侧树形菜单文字
   .indentdiv {
+     @media screen and (min-width:1500px) {
+       position: relative;
+       left: 15px;
+    }
         width: 100%;
         margin-top: 5px;
         margin-bottom: 25px;
@@ -100,6 +118,10 @@
         width: 731px;
         position: relative;
         left: 10px;
+           @media screen and (min-width:1500px) {
+             width: 800px;
+    }
+       
 
 
             .right-div {
@@ -132,12 +154,19 @@
     .step_margin {
         margin-top: 74px;
         padding-left: 20px;
+
+          @media screen and (min-width:1500px) {
+              padding-left: 70px;
+              }
     }
   
   //流程时间模块
     .descriptiondiv {
         margin: 30px 0px 0px 0px;
         padding-left: 10px;
+          @media screen and (min-width:1500px) {
+  padding-left: 59px;
+    }
         .description-title-text {
             margin-top: 30px;
             margin-bottom: 20px;
@@ -237,6 +266,9 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+              @media screen and (min-width:1500px) {
+                   margin-left:35px;
+    }
         }
         .indent-content-mid {
             width: 220px;
@@ -347,6 +379,10 @@
         font-size: $font-size-base;
         @include ellipsis;
         display: inline-block;
+          @media screen and (min-width:1500px) {
+         width: 120px;
+    }
+
     }
     .file-type {
         margin-left: 5px;
@@ -364,6 +400,11 @@
         display: inline-block;
         position: relative;
         top: -3px;
+          @media screen and (min-width:1500px) {
+          margin-left: 20px;
+    }
+         
+
     }
     .file-user-name {
         width: 60px;
@@ -376,6 +417,9 @@
         display: inline-block;
         font-weight: bold;
         vertical-align: middle;
+         @media screen and (min-width:1500px) {
+         width: 120px;
+    }
     }
     .file-time {
         padding-left: 5px;
@@ -450,6 +494,9 @@
                 left: 20px;
                 padding-left: 5px;
                 padding-top: 5px;
+                  @media screen and (min-width:1500px) {
+                    width: 755px;
+    }
             }
             .comment-btn {
                 position: relative;
@@ -1083,6 +1130,9 @@ img {
     font-size: $font-size;
     color: $gray-dark;
     outline: none;
+      @media screen and (min-width:1500px) {
+ width: 210px;
+    }
 }
 
 .menu ul li .active {
@@ -1138,12 +1188,27 @@ img {
         font-size: $font-size-base;
         width: 150px;
         @include ellipsis;
+
+        @media screen and (min-width:1500px) {
+        width: 180px;
+    }
     }
     #doingProject,#historyProject {
         position: relative;
         left: 35px;
+        top:20px;
         font-size: 1.7rem;
         color: black;
+    }
+
+
+    #historyProjectId{
+        position: relative;
+        top:15px;
+    }
+
+    #myProject{
+        margin-top:30px;
     }
 
     .border-select {
@@ -1161,6 +1226,9 @@ img {
         width: 205px;
         overflow-y: auto;
         overflow-x: hidden;
+          @media screen and (min-width:1500px) {
+            width: 250px;
+    }
 
 }
 
@@ -1195,7 +1263,8 @@ img {
 
    img{
        position:relative;
-       top:-12px;
+       top:-10px;
+       height: 40px;
          }
  }
 
@@ -1233,6 +1302,7 @@ img {
              margin-top:40px;
              position: relative;
              top:-2px;
+             cursor: pointer;
           }
 
           .imgLeft{
@@ -1357,8 +1427,14 @@ img {
  
  .payLeft{
     position: relative;
-    left:30%;
+    left:150px;
  }
+
+  .payLeftLink{
+    position: relative;
+    left:50px;
+ }
+
  .payRight{
     position: relative;
     left:50px;
@@ -1387,12 +1463,24 @@ img {
       color:$red-base;
  }
 
+  .pay-error-price{
+      margin-top:-10px;
+      margin-bottom: 10px;
+      font-size: $font-size-sm;
+      color:$red-base;
+ }
+
  .order{
     width:200px;
+    @media screen and (min-width:1500px) {
+    width:250px;
+    }
     @include ellipsis;
  }
 
  .createLink{
+    position: relative;
+    left:-100px;
 margin-top: 80px;
  }
 
@@ -1429,6 +1517,9 @@ margin-top: 80px;
     position: relative;
     top:-10px;
     left:544px;
+    @media screen and (min-width:1500px) {
+    left: 611px;
+    }
 }
 
 .payBtnPosClick{
@@ -1450,6 +1541,7 @@ margin-top: 80px;
 
 .payInfoheight{
     height:auto;
+    border-radius: 10px;
 }
 
 .payInline{
@@ -1457,8 +1549,9 @@ margin-top: 80px;
     vertical-align: top;
 }
 
-#payInfo,#payHistoryList{
+ #payHistoryList{
     display: none;
+    padding-top:10px;
 }
 
 
@@ -1591,7 +1684,7 @@ margin-top: 80px;
 
               .contentTitle{
                
-               font-size: $font-size;
+               font-size: $font-size-base;
                font-weight: bold;
                color:$gray-dark;
 
@@ -1685,3 +1778,86 @@ margin-top: 80px;
   .handShare{
         cursor: pointer;
     }
+
+ .canclePay{
+    position: relative;
+    float: right;
+    top:15px;
+    right:22px;
+    cursor: pointer;
+ }
+  .canclePayLink{
+    position: relative;
+    float: right;
+    right:22px;
+    cursor: pointer;
+ }
+
+ .datepickers-container{
+    z-index:2500 !important;
+ }
+
+ .loadMore{
+    position:relative;
+    left:0px;
+    margin-top:-10px;
+    top:60px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+    color:$gray-light;
+}
+
+ .loadMoreCus{
+    position:relative;
+    top:-30px;
+    width:100%;
+    text-align:center;
+    font-size:$font-size-base;
+    cursor:pointer;
+    color:$gray-light;
+}
+
+.circle-180 {
+    transform: rotate(180deg);
+}
+
+.copySuccess{
+    position: relative;
+    top:-15px;
+     @extend .success;
+}
+
+.copySuccessImg{
+    position: relative;
+    top:-15px;
+    left:0px;
+    @extend .success;
+}  
+
+.copyListSuccess{
+   position: relative;
+   top:-185px;
+    @extend .success;
+}
+
+.copyListSuccessImg{
+   position: relative;
+   top: -185px;
+   @extend .success;
+}
+
+.success{
+    text-align: center;
+    color:green;
+}
+
+  .pay-title-link{
+            width: 100px;
+            height: 20px;
+            padding-top: 20px;
+            padding-left: 20px;
+            font-size:$font-size;
+            font-weight: bold;
+        }

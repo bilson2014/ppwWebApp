@@ -326,10 +326,10 @@
 			</div>
 			
 			<r:identity role="customer">
+
 				<div class="payInfo payTop hide" id="cusId">
 				    <label class="pay-title">收款方式</label>
 				    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
-				     
 				      <div class="userContent">
 					       <div  style="display:inline-block">
 					         <img src="${imgPath }/flow/ring.png"></img>
@@ -340,6 +340,8 @@
 					           <div id="openHistory">立即前往></div>
 					       </div>
 				      </div>
+				         <div class="loadMoreCus" id="loadCus"><div style="display:inline-block;" id="loadWordCus">展开更多</div><img id="circleCusImg" style="display:inline-block;position:relative;left:10px;" src="${imgPath }/flow/getMore.png"/></div>
+				   
 				</div>
 			</r:identity>
 			
@@ -353,9 +355,10 @@
 				     <button class="payBtnOnline pay-btn" type="button" id="Online" >发起线上收款</button>
 				     <button class="payBtnOutline pay-btn" type="button" id="Outline">记录线下收款 </button>
 				  </div> 
+				  <div class="loadMore" id="loadEmployee"><div style="display:inline-block;" id="loadWordEmployee">展开更多</div><img id="circleEmployeeImg" style="display:inline-block;position:relative;left:10px;" src="${imgPath }/flow/getMore.png"/></div>
 			</div>
 			
-		    <div class="payInfo payInfoheight" id="payInfo">
+		 <%--    <div class="payInfo payInfoheight" id="payInfo">
 		        <div class="top-line">------------------------------------------------------</div> 
 			    <div class="pay-title">收款信息</div>
 				     <div class="payLeft ">
@@ -424,17 +427,11 @@
 				     <div id="pay-sure" class="pay-red-btn">确认</div>
 				     <input id="checkWay" class="hide" value="0"></input>
 				   </div>  
-			</div>
+			</div> --%>
 			
 			</r:identity>
 			<div class="payCardHeight payInfo" id="payHistoryList">
-			   
-				   <div class="payInfoTop">
-				      <div class="pay-top-title " style="float:left">支付历史</div>
-				      <img class="imgInfo imgLeft" src="${imgPath }/flow/payHistory.png"  style="float:left"></img>
-				      <img class="imgInfo imgRight" src="${imgPath }/flow/closeList.png" id="payHistoryClose" style="float:right"></img>
-				   </div>
-				      
+			   				      
 				   <div class="payCardZoom" id="payListPage">
 								<!-- 支付历史 -->	  
 				   </div>
@@ -670,11 +667,17 @@
 		<div class="modal fade upload-window" id="toolbar-share">
 			<div class="modal-dialog">
 				<div class="modal-content" >
+				  <div class="pay-title-link">链接信息</div>
+				       <img class="canclePayLink"  id="canclePayLink" src="/resources/img/flow/canclemodal.png">
 					 <div class="input-group getShareLink">
 								  <input type="text" class="form-control getShareLinkInput" value="http:测试测试" id="shareLinkList">
 								  <span class="input-group-addon getShareLinkBtn" id="copyShareLink"  data-clipboard-target="shareLinkList">复制链接</span>
 					</div>
-					 <div class="input-group getShareLink">
+					  <div id="copySuccess">
+						 <div class="copySuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>
+						 <div class="copySuccess">复制成功</div>
+					 </div>
+					 <div class="input-group getShareLink hide">
 						  <dl class="share-list">
 										<dt >分享:</dt>
 										<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
@@ -684,6 +687,85 @@
 						 </dl>
 					 </div>
 				</div>	
+			</div>
+		</div>
+		<!-- toolbar modal end -->
+		
+				<!-- toolbar modal begin 线上线下 -->
+		<div class="modal fade upload-window" id="toolbar-OnOff">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+				
+					 <div class="payInfo payInfoheight" id="payInfo">
+                          <img class="canclePay"  id="canclePay" src="/resources/img/flow/canclemodal.png">
+					    <div class="pay-title" id="payTitleId">收款信息</div>
+						     <div class="payLeft ">
+						        <ul id="OnlineInfo">
+						           <li>
+						              <div class="payInline" id="payTime-outlineDiv" > 
+						                  <div class="payBigWord" id="pay-time">发起收款时间</div>
+						                  <input id="payTime-outline" class="pay-input form-control hide paySmallWord"></input>
+						                  <input disabled="disabled"   id="payTime-online" class="pay-input form-control paySmallWord" value="231231231"></input>
+						                  <div class="pay-error hide" id="payTime-outlineError">错误提示</div>
+						              </div>
+						              
+						               <div  class="payInline payRight" id="order-outlineDiv" > 
+						                  <div class="payBigWord">支付单号</div>
+						                  <input id="order-outline" class="pay-input form-control hide paySmallWord"></input>
+						                  <input disabled="disabled"  id="order-online" class="pay-input form-control paySmallWord" ></input>
+						                   <div class="pay-error hide" id="order-outlineError">错误提示</div>
+						              </div>
+						           </li>
+						           
+						            <li>
+						              <div class="payInline" id="projectNameDiv" > 
+						                  <div class="payBigWord">项目名称</div>
+						                  <input class="pay-input form-control paySmallWord" id="projectName"></input>
+						                  <div class="pay-error hide" id="projectNameError">错误提示</div>
+						              </div>
+						              
+						               <div class="payInline payRight"  id="cusNameDiv"  > 
+						                  <div class="payBigWord" id="pay-people">付款方</div>
+						                  <input class="pay-input form-control paySmallWord" id="cusName"}></input>
+						                  <div class="pay-error hide" id="cusNameError">错误提示</div>
+						              </div>
+						           </li>
+						           
+						            <li>
+						              <div id="payMoneyDiv"> 
+						                  <div class="payBigWord">支付金额</div>
+						                  <input class="pay-input form-control paySmallWord" id="payMoney"></input><label class="yuan">元</label>
+						                  <div class="pay-error-price hide" id="payMoneyError">错误提示</div>
+						              </div>
+						           </li>
+						        </ul>
+						        
+						        <div class="createLink hide" id="link">
+						           <ul>
+						              <li>
+						                <div class="input-group getLink">
+										  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" id="shareLink">
+										  <span class="input-group-addon getLinkBtn" id="copyLink"  data-clipboard-target="shareLink">复制链接</span>
+										</div>
+										 
+						              </li>
+						             
+						           </ul>
+						        </div>
+						     </div>
+						     
+						   
+						     
+						   <div class="pay-bottom">
+						     <div id="pay-sure" class="pay-red-btn">确认</div>
+						     <input id="checkWay" class="hide" value="0"></input>
+						   </div>
+						   <div id="copyListSuccess">
+							   <div class="copyListSuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>  
+							   <div class="copyListSuccess">复制成功</div>
+						   </div>
+					</div>
+						</div>	
 			</div>
 		</div>
 		<!-- toolbar modal end -->

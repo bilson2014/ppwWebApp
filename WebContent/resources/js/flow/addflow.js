@@ -13,14 +13,11 @@ $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
 	
-	
 	$("input[id$='time']").datepicker({
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
 		minDate: new Date() 
 });
-
-
 
 	$(".error-label").hide();
 	$(".username-error-label").hide();
