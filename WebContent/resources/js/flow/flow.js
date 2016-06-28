@@ -6,6 +6,7 @@ var currentIndex;
 var hasClick =false;
 var nowImg=2;
 var countCheck = 0;
+var isHistory=false;
 
 
 // add by guoyang, 2016-04-19 03:17 begin
@@ -432,19 +433,19 @@ function loadflowdata() {
 								currentIndex = num;
 							    
 								//TODO:lt add payList beigin 20160622
-								
-
-								if(currentIndex>=3){
-								$('#managerId').removeClass('hide')
-								$('#cusId').removeClass('hide');
-
-								}
-								else{
-									$('#managerId').addClass('hide')
-									$('#cusId').addClass('hide');
-									$('#payListPage').html('');
-									$('#payInfo').slideUp('');
-									
+								if(!isHistory){
+									if(currentIndex>=3){
+											$('#managerId').removeClass('hide')
+											$('#cusId').removeClass('hide');
+											$('#Outline').removeClass('hide');
+											$('#Online').removeClass('hide');
+									}
+									else{
+										$('#managerId').addClass('hide')
+										$('#cusId').addClass('hide');
+										$('#payListPage').html('');
+										$('#payInfo').slideUp('');
+									}
 								}
 								//end
 								
@@ -465,6 +466,8 @@ function loadflowdata() {
 							$(".pausebtn").on("click", function() {
 								resumeBtn();
 							});
+							$("#Online").hide();
+							$("#Outline").hide();
 						}else{
 							$(".flowbtn").show();
 							$(".prev-task").show();
@@ -477,6 +480,9 @@ function loadflowdata() {
 							$(".pausebtn").on("click", function() {
 								pauseBtn();
 							});
+							$("#Online").show();
+							$("#Outline").show();
+
 						}
 						getBtnWidth();
 						if (msg.name.trim() == '任务不存在') {
@@ -947,13 +953,17 @@ function loadprojecctlist() {
 				if(stateStr == 1 || stateStr == 2){
 					//确定当前状态觉决定是否显示
 					finish();// 禁用所有按钮
+					isHistory=true;
+					
 				}
 				
 				else{
 					noWorkproject =false;
 					show();// 显示所有按钮
+					isHistory=false;
 				}
 			}
+			
 			//构造控件
 			var liStar = $('<li></li>')
 			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
@@ -1155,9 +1165,12 @@ function finish() {
 	$("#upload-file-btn-id").hide();
 	$(".comment").hide();
 	$(".comment-btn").hide();
-	
 	$(".more-file-btn").show();
 	$(".more-comment").show();
+	$("#Online").addClass('hide');
+	$("#Outline").addClass('hide');
+	$('#managerId').removeClass('hide');
+	$('#cusId').removeClass('hide');
 }
 //未完成项目样式
 function show() {
@@ -1304,6 +1317,7 @@ var ControlPay ={
 		},
 		showOnlineInfo:function(){
 		//	$('#payInfo').slideDown();
+			$('#copyListSuccess').addClass('hide');
 			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
 		//	$("#toolbar-OnOff").modal('show');
 			ControlPay.initOnlineInfo();
@@ -1328,6 +1342,7 @@ var ControlPay ={
 			$('#order-outline').addClass('hide');
 			$('#pay-sure').text('确认');
 			$('#link').addClass('hide');
+			$('#payTitleId').text('收款信息');
 			ControlPay.initBillNo();
 			checkPayList.checkOnBlur();
 		},
@@ -1350,6 +1365,7 @@ var ControlPay ={
 		
 		showOutlineInfo:function(){
 			//$('#payInfo').slideDown();
+			$('#copyListSuccess').addClass('hide');
 			$('#toolbar-OnOff').modal({backdrop: 'static', keyboard: false});
 			//$("#toolbar-OnOff").modal('show');
 			
@@ -1371,6 +1387,7 @@ var ControlPay ={
 			$('#order-outline').removeClass('hide');
 			$('#pay-sure').text('确认');
 			$('#link').addClass('hide');
+			$('#payTitleId').text('收款信息');
 			$('#payTime-outline').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd ',
@@ -1407,11 +1424,15 @@ var ControlPay ={
 								  $('#checkWay').val('3');
 								  $('#OnlineInfo').addClass('hide');
 								  $('#link').removeClass('hide');
+								  $('#payTitleId').text('链接信息');
 								  ZeroClipboard.config({hoverClass: "hand"});
 								  var client = new ZeroClipboard($("#copyLink"));
+								  client.on("copy", function(e){
+									  $('#copyListSuccess').removeClass('hide');
+									});
 								 
 						}else{
-							alert("出错啦"+msg.errorCode);
+							//alert("出错啦"+msg.errorCode);
 						}
 						}
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
@@ -1440,7 +1461,7 @@ var ControlPay ={
 							
 						}
 						}else{
-							alert("出错啦"+msg.errorCode);
+							//alert("出错啦"+msg.errorCode);
 						}
 					}, getContextPath()+'/pay/offline/save', $.toJSON({
 						projectId : key,
@@ -1456,6 +1477,7 @@ var ControlPay ={
 					  $('#checkWay').val('1');
 					  $('#OnlineInfo').removeClass('hide');
 					  $('#link').addClass('hide');
+					  $('#toolbar-OnOff').modal('hide');
 				}
 			},
 			  clickPayOpenHistory:function(){
@@ -1524,13 +1546,7 @@ var ControlPay ={
 						
 					});
 				},
-				
-				  clickPayHistoryClose:function(){
-						$('#payHistoryClose').on('click',function(){
-							ControlPay.closeList();
-						});
-						
-					},
+
 			          
 					closeList:function(){
 						$("#payHistoryList").slideUp();
@@ -1575,7 +1591,6 @@ var ControlPay ={
 			ControlPay.clickOutLine();
 			ControlPay.clickpay();
 			ControlPay.clickPayOpenHistory();
-			ControlPay.clickPayHistoryClose();
 			ControlPay.copyLink();
 			ControlPay.closeMore();
 			
@@ -1842,8 +1857,8 @@ function payList(){
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
 					}
 					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
-					left_time = '<li><div class="smallWord">发起时间</div><div class="smallWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="smallWord">逾期时间</div><div class="smallWord">'+deal.payTime+'</div></li>';
+					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
@@ -1900,7 +1915,7 @@ function payList(){
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
 						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
-						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'</div></li>';
+						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
 						$body+=left_time;
 						$body+='			</ul>'+
 						'			<ul class="rightUl payInline">'+
@@ -1930,6 +1945,7 @@ function toShare(){
 	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
+	 $('#copySuccess').addClass('hide');
 	deleteSynergys.on('click',function(){
 		
 		var token=$(this).attr("data-token");
@@ -1938,13 +1954,16 @@ function toShare(){
 				    $('#shareLinkList').val(getHostName()+msg.result);
 					ZeroClipboard.config({hoverClass: "handShare"});
 					var clientShare = new ZeroClipboard($("#copyShareLink"));
+					clientShare.on("copy", function(e){
+						   $('#copySuccess').removeClass('hide');
+						});
 					$('#toolbar-share').modal({backdrop: 'static', keyboard: false});
 					//$('#toolbar-share').modal('show');
 					
 					shareSpace();
 			}
 			else{
-				alert(msg.errorMsg);
+				//alert(msg.errorMsg);
 			}
 		}, getContextPath()+'/pay/shareurl?token='+token);
 
@@ -1964,7 +1983,7 @@ function toPay(){
 			window.location.href = url;
 		}
 		else{
-			alert(msg.errorMsg);
+			//alert(msg.errorMsg);
 		}
 		}, getContextPath() + '/pay/shareurl?token='+token);
 	});

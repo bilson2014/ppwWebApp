@@ -431,13 +431,7 @@
 			
 			</r:identity>
 			<div class="payCardHeight payInfo" id="payHistoryList">
-			   
-				   <div class="payInfoTop">
-				      <div class="pay-top-title " style="float:left">支付历史</div>
-				      <img class="imgInfo imgLeft" src="${imgPath }/flow/payHistory.png"  style="float:left"></img>
-				      <img class="imgInfo imgRight" src="${imgPath }/flow/closeList.png" id="payHistoryClose" style="float:right"></img>
-				   </div>
-				      
+			   				      
 				   <div class="payCardZoom" id="payListPage">
 								<!-- 支付历史 -->	  
 				   </div>
@@ -673,11 +667,16 @@
 		<div class="modal fade upload-window" id="toolbar-share">
 			<div class="modal-dialog">
 				<div class="modal-content" >
-				       <img class="canclePay"  id="canclePayLink" src="/resources/img/flow/canclemodal.png">
+				  <div class="pay-title-link">链接信息</div>
+				       <img class="canclePayLink"  id="canclePayLink" src="/resources/img/flow/canclemodal.png">
 					 <div class="input-group getShareLink">
 								  <input type="text" class="form-control getShareLinkInput" value="http:测试测试" id="shareLinkList">
 								  <span class="input-group-addon getShareLinkBtn" id="copyShareLink"  data-clipboard-target="shareLinkList">复制链接</span>
 					</div>
+					  <div id="copySuccess">
+						 <div class="copySuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>
+						 <div class="copySuccess">复制成功</div>
+					 </div>
 					 <div class="input-group getShareLink hide">
 						  <dl class="share-list">
 										<dt >分享:</dt>
@@ -699,7 +698,7 @@
 				
 					 <div class="payInfo payInfoheight" id="payInfo">
                           <img class="canclePay"  id="canclePay" src="/resources/img/flow/canclemodal.png">
-					    <div class="pay-title">收款信息</div>
+					    <div class="pay-title" id="payTitleId">收款信息</div>
 						     <div class="payLeft ">
 						        <ul id="OnlineInfo">
 						           <li>
@@ -744,18 +743,13 @@
 						        <div class="createLink hide" id="link">
 						           <ul>
 						              <li>
-						                 <div style="display:inline-block"><img src="${imgPath }/flow/link.png"/></div>
-						                 <div class="createTitle" style="display:inline-block">成功创建支付链接</div>
-						              </li>
-						              
-						              <li>
 						                <div class="input-group getLink">
-		
 										  <input type="text" class="form-control getLinkInput" value="http://www.apaipian.com" id="shareLink">
 										  <span class="input-group-addon getLinkBtn" id="copyLink"  data-clipboard-target="shareLink">复制链接</span>
-		
 										</div>
+										 
 						              </li>
+						             
 						           </ul>
 						        </div>
 						     </div>
@@ -765,7 +759,11 @@
 						   <div class="pay-bottom">
 						     <div id="pay-sure" class="pay-red-btn">确认</div>
 						     <input id="checkWay" class="hide" value="0"></input>
-						   </div>  
+						   </div>
+						   <div id="copyListSuccess">
+							   <div class="copyListSuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>  
+							   <div class="copyListSuccess">复制成功</div>
+						   </div>
 					</div>
 						</div>	
 			</div>
