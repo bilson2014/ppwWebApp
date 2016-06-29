@@ -1849,6 +1849,7 @@ function payList(){
 				var btn_goPay = "";
 				var left_time ="";
 				var right_time ="";
+				var btn_goClose = "";
 				var type = $("#type").val();
 				switch (deal.dealStatus) {
 				case 0: // 正常
@@ -1859,6 +1860,7 @@ function payList(){
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
 					}
 					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
+					btn_goClose =    '<button class="info-close gray-btn" name="toClose">关闭订单</button>';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
@@ -1885,8 +1887,8 @@ function payList(){
 						$body+=
 						'		<div class="info-left">'+
 						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
-						
 						$body+=btn_shareLink;
+						$body+=btn_goClose;
 						$body+='		</div>'+
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
@@ -1985,13 +1987,42 @@ function toPay(){
 		getData(function(msg){
 		if(msg.errorCode == 200){
 			var url = getHostName() + msg.result;
-			window.location.href = url;
-			//window.open(url);
+			//window.location.href = url;
+			   
+			    var a = document.createElement("a");  
+			    a.setAttribute("href", url);  
+			    a.setAttribute("target", "_blank");
+			    a.setAttribute("class", "hide");  
+			    document.body.appendChild(a);  
+			    a.click();
+
+			   
+			    
 		}
 		else{
 			//alert(msg.errorMsg);
 		}
 		}, getContextPath() + '/pay/shareurl?token='+token);
+	});
+}
+
+function toClose(){
+	var deleteSynergys=$("[name^=toClose]");
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		var token=$(this).attr("data-token");
+		loadData(function(msg){
+		if(msg.errorCode == 200){
+			
+			    alert('关闭成功');
+		}
+		else{
+			
+		}
+		}, getContextPath() + '/pay/offorder/',$.toJSON({
+			token : token
+		}));
 	});
 }
 
@@ -2018,101 +2049,101 @@ function shareSpace(){ // 分享
 }
 
 
-//var ControlTree = {
-//		CommonDoingProjectTree : function(){
-//			$('#doingProjectId').slideDown();
-//			
-//		},
-//		OpenDoingProjectTree : function(){
-//			$('#doingProject').removeClass('inactive');
-//			$('#doingProject').addClass('active');
-//			$('#doingProjectId').slideDown();
-//			
-//		},
-//		OpenMyProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//			$('#myProject').removeClass('inactive');
-//			$('#myProject').addClass('active');
-//		    $('#myProjectId').slideDown();
-//		},
-//		OpenHelpProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//
-//			$('#helpProject').removeClass('inactive');
-//			$('#helpProject').addClass('active');
-//			$('#helpProjectId').slideDown();
-//		},
-//		OpenPauseProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//		
-//			$('#pauseProject').removeClass('inactive');
-//			$('#pauseProject').addClass('active');
-//			$('#pauseProjectId').slideDown();
-//		},
-//		OpenHistoryProjectTree : function(){
-//			$('#historyProject').removeClass('inactive');
-//			$('#historyProject').addClass('active');
-//			$('#historyProjectId').slideDown();
-//		},
-//		CloseDoingProjectTree : function(){
-//			$('#doingProject').removeClass('active');
-//			$('#doingProject').addClass('inactive');
-//    	    $('#doingProjectId').slideUp();
-//       },
-//       CloseMyProjectTree : function(){
-//    	   $('#myProject').removeClass('active');
-//		   $('#myProject').addClass('inactive');
-//    	   $('#myProjectId').slideUp();
-//       },
-//       CloseHelpProjectTree : function(){
-//    	   $('#helpProject').removeClass('active');
-//		   $('#helpProject').addClass('inactive');
-//    	   $('#helpProjectId').slideUp();
-//       },
-//       ClosePauseProjectTree : function(){
-//    	   $('#pauseProject').removeClass('active');
-//		   $('#pauseProject').addClass('inactive');
-//    	   $('#pauseProjectId').slideUp();
-//       },
-//       CloseHistoryProjectTree : function(){
-//    	   $('#historyProject').removeClass('active');
-//		   $('#historyProject').addClass('inactive');
-//    	   $('#historyProjectId').slideUp();
-//       },
-//       
-//       showTreeImg : function(){
-//    	 if(nowImg==0){
-// 			$('#helpProject').removeClass('inactive');
-// 			$('#helpProject').addClass('active');
-//    	 }
-//    	 
-//    	 else if(nowImg==1){
-//  			$('#pauseProject').removeClass('inactive');
-//  			$('#pauseProject').addClass('active');
-//    	 }
-//    	 
-//    	 else if(nowImg==2){
-//   			$('#myProject').removeClass('inactive');
-//   			$('#myProject').addClass('active');
-//     	 }
-//    	   
-//    	   
-//       },
-//       
-//       shutMyProject : function(){
-//    	 $('#myProjectId').on('click',function(){
-//    		if(('#myProject').attr('class')=='active'){
-//    		    CloseMyProjectTree();
-//    		} 
-//    		else if(('#myProject').attr('class')=='inactive'){
-//    			OpenMyProjectTree();
-//    		}
-//    	 });
-//    	   
-//       }
-//       
-//
-//}
+var ControlTree = {
+		CommonDoingProjectTree : function(){
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenDoingProjectTree : function(){
+			$('#doingProject').removeClass('inactive');
+			$('#doingProject').addClass('active');
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenMyProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+			$('#myProject').removeClass('inactive');
+			$('#myProject').addClass('active');
+		    $('#myProjectId').slideDown();
+		},
+		OpenHelpProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+
+			$('#helpProject').removeClass('inactive');
+			$('#helpProject').addClass('active');
+			$('#helpProjectId').slideDown();
+		},
+		OpenPauseProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+		
+			$('#pauseProject').removeClass('inactive');
+			$('#pauseProject').addClass('active');
+			$('#pauseProjectId').slideDown();
+		},
+		OpenHistoryProjectTree : function(){
+			$('#historyProject').removeClass('inactive');
+			$('#historyProject').addClass('active');
+			$('#historyProjectId').slideDown();
+		},
+		CloseDoingProjectTree : function(){
+			$('#doingProject').removeClass('active');
+			$('#doingProject').addClass('inactive');
+    	    $('#doingProjectId').slideUp();
+       },
+       CloseMyProjectTree : function(){
+    	   $('#myProject').removeClass('active');
+		   $('#myProject').addClass('inactive');
+    	   $('#myProjectId').slideUp();
+       },
+       CloseHelpProjectTree : function(){
+    	   $('#helpProject').removeClass('active');
+		   $('#helpProject').addClass('inactive');
+    	   $('#helpProjectId').slideUp();
+       },
+       ClosePauseProjectTree : function(){
+    	   $('#pauseProject').removeClass('active');
+		   $('#pauseProject').addClass('inactive');
+    	   $('#pauseProjectId').slideUp();
+       },
+       CloseHistoryProjectTree : function(){
+    	   $('#historyProject').removeClass('active');
+		   $('#historyProject').addClass('inactive');
+    	   $('#historyProjectId').slideUp();
+       },
+       
+       showTreeImg : function(){
+    	 if(nowImg==0){
+ 			$('#helpProject').removeClass('inactive');
+ 			$('#helpProject').addClass('active');
+    	 }
+    	 
+    	 else if(nowImg==1){
+  			$('#pauseProject').removeClass('inactive');
+  			$('#pauseProject').addClass('active');
+    	 }
+    	 
+    	 else if(nowImg==2){
+   			$('#myProject').removeClass('inactive');
+   			$('#myProject').addClass('active');
+     	 }
+    	   
+    	   
+       },
+       
+       shutMyProject : function(){
+    	 $('#myProjectId').on('click',function(){
+    		if(('#myProject').attr('class')=='active'){
+    		    CloseMyProjectTree();
+    		} 
+    		else if(('#myProject').attr('class')=='inactive'){
+    			OpenMyProjectTree();
+    		}
+    	 });
+    	   
+       }
+       
+
+}
 
 function formatterDateTime (date) {
     var datetime = date.getFullYear()
