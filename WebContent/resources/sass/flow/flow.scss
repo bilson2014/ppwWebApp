@@ -1638,6 +1638,8 @@ margin-top: 80px;
              font-size: $font-size-lg;
              font-weight: bold;
              color:$gray-dark;
+             width:150px;
+             @include ellipsis;
           }
 
           .info-btn{

@@ -1986,6 +1986,7 @@ function toPay(){
 		if(msg.errorCode == 200){
 			var url = getHostName() + msg.result;
 			window.location.href = url;
+			//window.open(url);
 		}
 		else{
 			//alert(msg.errorMsg);

@@ -1,4 +1,5 @@
-var critical = [12800,28800]; // 临界值
+//var critical = [12800,28800]; // 临界值
+var critical = [28800,59800]; // 临界值
 
 $().ready(function() {
 	loadVideoList();
@@ -31,18 +32,21 @@ function loadVideoList() {
 			// 填充数据
 			$('#first-video-section').empty();
 			$('#first-video-section').append(composing(first_section));
-			$('#firstPrice').text('12800');
+			//$('#firstPrice').text('12800');
+			$('#firstPrice').text('28800');
 			
 			// 装配第二块视频
 			$('#second-video-section').empty();
 			$('#second-video-section').append(composing(second_section));
-			$('#secondPrice').text('28800');
+			//$('#secondPrice').text('28800');
+			$('#secondPrice').text('59800');
 			
 			
 			// 装配第三块视频
 			$('#third-video-section').empty();
 			$('#third-video-section').append(composing(third_section));
-			$('#thirdPrice').text('59800');
+			//$('#thirdPrice').text('59800');
+			$('#thirdPrice').text('96800');
 			
 			playVideo();
 		}
