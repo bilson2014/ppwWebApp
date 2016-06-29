@@ -439,15 +439,21 @@ function loadflowdata() {
 											$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
+											
+											
+										
+
+											
 									}
 									else{
 										$('#managerId').addClass('hide')
 										$('#cusId').addClass('hide');
 										$('#payListPage').html('');
-										$('#payInfo').slideUp('');
+										$('#payHistoryList').slideUp();
 									}
 								}
-								ControlPay.closeList();
+								
+								
 								//end
 								
 								return;
@@ -979,6 +985,7 @@ function loadprojecctlist() {
 				
 				var state=jQuery(this).attr('data-state');
 				loadprojecctlist();
+				ControlPay.closeList();
 			});
 			liStar.append(a);
 			// 选择添加到那个view
@@ -1172,6 +1179,7 @@ function finish() {
 	$("#Outline").addClass('hide');
 	$('#managerId').removeClass('hide');
 	$('#cusId').removeClass('hide');
+	$('#userContentId').addClass('hide');
 }
 //未完成项目样式
 function show() {
@@ -1180,6 +1188,7 @@ function show() {
 	$("#upload-file-btn-id").show();
 	$(".comment").show();
 	$(".comment-btn").show();
+	$('#userContentId').removeClass('hide');
 	
 }
 //获取当前进行中的项目 cookie-->currentproject
@@ -1846,7 +1855,6 @@ function payList(){
 				
 				var backgruond = "";
 				var btn_shareLink = "";
-				var btn_goPay = "";
 				var left_time ="";
 				var right_time ="";
 				var btn_goClose = "";
@@ -1858,9 +1866,10 @@ function payList(){
 						btn_shareLink = '<button class="info-btn red-btn" name="toPay" data-token="'+deal.token+'">去支付</button>';
 					}else{
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
-					}
-					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
 					btn_goClose =    '<button class="info-close gray-btn" name="toClose">关闭订单</button>';
+					}
+					
+					
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
@@ -1937,6 +1946,7 @@ function payList(){
 					var client = new ZeroClipboard($("#toShare"));
 					toShare();
 					toPay();
+					toClose();
 					clickLink();
 					$('#listLoad').hide();
 			});
@@ -1988,16 +1998,12 @@ function toPay(){
 		if(msg.errorCode == 200){
 			var url = getHostName() + msg.result;
 			//window.location.href = url;
-			   
 			    var a = document.createElement("a");  
 			    a.setAttribute("href", url);  
 			    a.setAttribute("target", "_blank");
 			    a.setAttribute("class", "hide");  
 			    document.body.appendChild(a);  
 			    a.click();
-
-			   
-			    
 		}
 		else{
 			//alert(msg.errorMsg);
@@ -2012,24 +2018,42 @@ function toClose(){
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
 		var token=$(this).attr("data-token");
-		loadData(function(msg){
-		if(msg.errorCode == 200){
-			
-			    alert('关闭成功');
-		}
-		else{
-			
-		}
-		}, getContextPath() + '/pay/offorder/',$.toJSON({
-			token : token
-		}));
+		toCheckListClose(token);
 	});
 }
 
-function clickLink(){
-	$('#canclePayLink').on('click',function(){
-		$('#toolbar-share').modal('hide');
+
+function toCheckListClose(token){
+	$('#close-list').modal({backdrop: 'static', keyboard: false});
+	
+	$('#sureClose').on('click',function(){
+		loadData(function(msg){
+			if(msg.errorCode == 200){
+				alert('关闭成功');
+				$('#payListPage').html('');
+				payList();
+				
+			}
+			else{
+				alert('关闭失败');
+			}
+			}, getContextPath() + '/pay/offorder/',$.toJSON({
+				token : token
+			}));
 	});
+	
+	$('#falseClose').on('click',function(){
+		$('#close-list').modal('hide');
+	});
+	
+	
+}
+
+function clickLink(token){
+	$('#canclePayLink').on('click',function(){
+		$('#falseClose').modal('hide');
+	});
+	
 	
 }
 

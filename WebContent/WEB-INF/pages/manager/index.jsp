@@ -328,16 +328,18 @@
 			<r:identity role="customer">
 
 				<div class="payInfo payTop hide" id="cusId">
-				    <label class="pay-title">收款方式</label>
+				    <label class="pay-title">订单信息</label>
 				    <button class="border-btn payBtnPos" type="button" id="payHistoryBtnOrder" >账单</button>
 				      <div class="userContent">
-					       <div  style="display:inline-block">
-					         <img src="${imgPath }/flow/ring.png"></img>
-					       </div>
-					       <div style="display:inline-block" id="userContent">
-					           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
-					           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
-					           <div id="openHistory">立即前往></div>
+				         <div  id="userContentId">
+							       <div  style="display:inline-block">
+							         <img src="${imgPath }/flow/ring.png"></img>
+							       </div>
+							       <div style="display:inline-block" id="userContent">
+							           <div class="colorGray">您有<span>订单</span>需要支付啦！</div>
+							           <div class="colorGray">请到<span>账单</span>进行支付哦！</div>
+							           <div id="openHistory">立即前往></div>
+							       </div>
 					       </div>
 				      </div>
 				         <div class="loadMoreCus" id="loadCus"><div style="display:inline-block;" id="loadWordCus">展开更多</div><img id="circleCusImg" style="display:inline-block;position:relative;left:10px;" src="${imgPath }/flow/getMore.png"/></div>
@@ -444,8 +446,6 @@
 						
 			
 			<div class="payCardHeight payInfo" id="payHistoryList">
-			
-			             
 						  <div class="loadmore-div" id="listLoad">
 				       			 <div class="load-word">加载中</div>
 										<div class="spinner">
@@ -684,6 +684,20 @@
 				</div>
 			</div>
 		</div>
+		</div>
+		
+
+		<div class="modal fade upload-window" id="close-list">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+					<div class="modal-body checkstep">
+					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
+		                   <button class="red-btn sure-margin" id="sureClose">确定</button>
+		                   <label class="check-step" >确定关闭当前订单吗</label>
+		                   <button class="gray-btn cancle-margin" id="falseClose">取消</button>   
+					</div>
+				</div>	
+			</div>
 		</div>
 		<!-- toolbar modal end -->
 		
