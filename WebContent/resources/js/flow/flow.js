@@ -1018,7 +1018,6 @@ function loadprojecctlist() {
              else if(helpList>0){
             	 var nowContent=$('#helpProjectId li').first();
   			   nowContent.find('a').click();
-  		       ControlTree.OpenHelpProjectTree();
   			   hasClick=true;
   			   nowImg=0;
             	 
@@ -1858,7 +1857,7 @@ function payList(){
 					}
 					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
@@ -1867,7 +1866,7 @@ function payList(){
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
 					break;
 				}
 				

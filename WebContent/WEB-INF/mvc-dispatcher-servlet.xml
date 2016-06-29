@@ -61,6 +61,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/order/submit"/>
 			<mvc:mapping path="/phone/submit"/>
+			<mvc:mapping path="/pay/income"/>
 			<bean class="com.panfeng.film.filter.ValidateTokenInterceptor" />
 		</mvc:interceptor>
 		
