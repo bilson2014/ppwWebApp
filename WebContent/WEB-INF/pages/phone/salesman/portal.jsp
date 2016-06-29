@@ -63,7 +63,7 @@
 				</dd>
 			</dl>
 		</div>
-	
+	<!-- 
 	   <div class="outside-div" >
             <div class="top-div">
 	               <div class="title-word">经济实惠:</div>
@@ -80,7 +80,7 @@
 		              </div> 
             
 		             <div class="inside-div"  id="first-video-section" >
-			            <!-- example  
+			         
 			            	<div class="video-area-card">
 				              <div class="video-play-section" id="first-video-section">
 									<img class="video-play-section" src="http://test.apaipian.com:8080/product/img/product606-201605191420186152.JPG " />
@@ -91,11 +91,32 @@
 		                           <li class="font-content">产品简介</li>					      
 							       <li><a href="" class="btn-red-common video-btn">立即下单</a></li>
 							     </ul>
-							  </div> -->
+							  </div>
 						</div>
 						
 				
-	   </div>
+	   </div> -->
+	   
+            
+            <div class="outside-div margin-div" >
+	            <div class="top-div">
+		               <div class="title-word">经济实惠:</div>
+					               <div class="title-content">
+					               	    <div class="left-content">
+					               	    	<label class="left-price" id="secondPrice"></label><label class="left-desc">元套餐</lable>
+					                    </div>
+					                     <div class="right-content">
+					               	    	<label class="right-price">48<span class="right-desc">小时极速出片</span></label>
+					               	    	<label class="right-price">1080HD<span class="right-desc">拍摄制作</span></label>
+					                    </div>
+					               </div>
+			              </div> 
+	            
+			             <div class="inside-div"  id="second-video-section" >
+				        </div>
+	   		</div>
+	   
+	   
 	   
 	   	   <div class="outside-div margin-div" >
 	            <div class="top-div">
@@ -105,8 +126,8 @@
 					               	    	<label class="left-price" id="secondPrice"></label><label class="left-desc">元套餐</lable>
 					                    </div>
 					                     <div class="right-content">
-					               	    	<label class="right-price">48<span class="right-desc">小时极速出片</span></label>
-					               	    	<label class="right-price">4K<span class="right-desc">广告级拍摄制作</span></label>
+					               	    	<label class="right-price">72<span class="right-desc">小时极速出片</span></label>
+					               	    	<label class="right-price">2K<span class="right-desc">广告级拍摄制作</span></label>
 					                    </div>
 					               </div>
 			              </div> 
@@ -123,8 +144,8 @@
 					               	    	<label class="left-price" id="thirdPrice"></label><label class="left-desc">元套餐</lable>
 					                    </div>
 					                     <div class="right-content">
-					               	    	<label class="right-price">72<span class="right-desc">小时极速出片</span></label>
-					               	    	<label class="right-price">4K<span class="right-desc">电影级拍摄和制作</span></label>
+					               	    	<label class="right-price">96<span class="right-desc">小时极速出片</span></label>
+					               	    	<label class="right-price">4K<span class="right-desc">电影级拍摄制作</span></label>
 					                    </div>
 					               </div>
 		              </div> 
