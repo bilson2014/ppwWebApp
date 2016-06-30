@@ -176,6 +176,7 @@ $('.modal').on('click', function() {
 loadFileTags();
 getBtnWidth();
 }
+
 function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
@@ -436,24 +437,27 @@ function loadflowdata() {
 								if(!isHistory){
 									if(currentIndex>=3){
 											$('#managerId').removeClass('hide')
-											$('#cusId').removeClass('hide');
+											//$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
-											
-											
-										
-
-											
 									}
 									else{
 										$('#managerId').addClass('hide')
-										$('#cusId').addClass('hide');
+										//$('#cusId').addClass('hide');
 										$('#payListPage').html('');
 										$('#payHistoryList').slideUp();
+										
 									}
 								}
+								var type = $("#type").val();
+								if(type == "customer"){
+									checkHasList();
+									checkHasNoPayList();
+								}
 								
-								
+								if(type=="employee"){
+									checkHasListForEm();
+								}
 								//end
 								
 								return;
@@ -986,6 +990,14 @@ function loadprojecctlist() {
 				var state=jQuery(this).attr('data-state');
 				loadprojecctlist();
 				ControlPay.closeList();
+				var type = $("#type").val();
+				if(type == "customer"){
+					checkHasList();
+					checkHasNoPayList();
+				}
+				if(type=="employee"){
+					checkHasListForEm();
+				}
 			});
 			liStar.append(a);
 			// 选择添加到那个view
@@ -1177,7 +1189,7 @@ function finish() {
 	$("#Online").addClass('hide');
 	$("#Outline").addClass('hide');
 	$('#managerId').removeClass('hide');
-	$('#cusId').removeClass('hide');
+	//$('#cusId').removeClass('hide');
 	$('#userContentId').addClass('hide');
 }
 //未完成项目样式
@@ -1440,6 +1452,9 @@ var ControlPay ={
 								  client.on("copy", function(e){
 									  $('#copyListSuccess').removeClass('hide');
 									});
+									 $('#loadEmployee').removeClass('hide');
+									 $('#payHistory').removeClass('hide');
+								  
 								 
 						}else{
 							//alert("出错啦"+msg.errorCode);
@@ -1452,6 +1467,7 @@ var ControlPay ={
 						payPrice:payMoney,
 						projectId:projectId
 					}));
+					
 				}
 				else if(check=="2"){
 					var key = getCurrentProject();
@@ -1460,6 +1476,8 @@ var ControlPay ={
 					var projectName = $("#projectName").val().trim();
 					var cusName = $("#cusName").val().trim();
 					var payMoney = $("#payMoney").val().trim();
+					 $('#loadEmployee').removeClass('hide');
+					 $('#payHistory').removeClass('hide');
 					
 					loadData(function(msg){
 						
@@ -1865,7 +1883,7 @@ function payList(){
 						btn_shareLink = '<button class="info-btn red-btn" name="toPay" data-token="'+deal.token+'">去支付</button>';
 					}else{
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
-					btn_goClose =    '<button class="info-close gray-btn" name="toClose">关闭订单</button>';
+					btn_goClose =    '<button class="info-close gray-btn" name="toClose" data-token="'+deal.token+'">关闭订单</button>';
 					}
 					
 					
@@ -1943,13 +1961,14 @@ function payList(){
 					listnode.append($body);
 					ZeroClipboard.config({hoverClass: "hand"});
 					var client = new ZeroClipboard($("#toShare"));
-					toShare();
-					toPay();
-					toClose();
-					clickLink();
+				
 					$('#listLoad').hide();
 			});
 		}
+		toShare();
+		toPay();
+		toClose();
+		clickLink();
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
 		projectId:key
 	}));
@@ -2013,6 +2032,7 @@ function toPay(){
 
 function toClose(){
 	var deleteSynergys=$("[name^=toClose]");
+
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
 	deleteSynergys.on('click',function(){
@@ -2020,37 +2040,109 @@ function toClose(){
 		toCheckListClose(token);
 	});
 }
+//TODO:
+function checkHasList(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>0){
+				 $('#cusId').removeClass('hide');
+			 }
+			 else{
+				 $('#cusId').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
+			projectId : key
+		}));
+	
+}
+
+function checkHasNoPayList(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>=1){
+				 $('#userContentId').removeClass('hide');
+			 }
+			 else{
+				 $('#userContentId').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasNotPayOrder',"");
+	
+}
+
+function checkHasListForEm(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>0){
+				 $('#loadEmployee').removeClass('hide');
+				 $('#payHistory').removeClass('hide');
+			 }
+			 else{
+				 $('#loadEmployee').addClass('hide');
+				 $('#payHistory').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
+			projectId : key
+		}));
+	
+}
 
 
 function toCheckListClose(token){
-	$('#close-list').modal({backdrop: 'static', keyboard: false});
 	
+	$('#close-list').modal({backdrop: 'static', keyboard: false});
 	$('#sureClose').on('click',function(){
+		
 		loadData(function(msg){
 			if(msg.errorCode == 200){
-				alert('关闭成功');
 				$('#payListPage').html('');
 				payList();
-				
+				$('#close-list').modal('hide');
 			}
 			else{
 				alert('关闭失败');
 			}
-			}, getContextPath() + '/pay/offorder/',$.toJSON({
+			}, getContextPath() + '/pay/offorder',$.toJSON({
 				token : token
 			}));
 	});
 	
 	$('#falseClose').on('click',function(){
 		$('#close-list').modal('hide');
+		$('#sureClose').unbind("click") ;
+		
+	});
+	
+	$('#canclestepClose').on('click',function(){
+		$('#close-list').modal('hide');
+		$('#sureClose').unbind("click");
+		
 	});
 	
 	
 }
 
-function clickLink(token){
+function clickLink(){
 	$('#canclePayLink').on('click',function(){
-		$('#falseClose').modal('hide');
+		$('#toolbar-share').modal('hide');
+	});
+	
+	$('.pay-redLink-btn').on('click',function(){
+		$('#toolbar-share').modal('hide');
 	});
 	
 	

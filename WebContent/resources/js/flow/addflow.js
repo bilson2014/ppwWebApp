@@ -442,13 +442,14 @@ function updateProject_ViewInit() {
 		$("#projectSource").val(msg.source);
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
-		if($("#projectSource").val().trim()!='个人信息下单'){
+	
 			if($("#projectSource").val().trim()=='个人信息下单'){
 			$("#div-friendship").removeClass('hide');
 			$("#referrer-Id-hidden").val(msg.referrerId);
 			$("#input-referrer").val(msg.referrerName);
 			}
-		}
+		
+		
 		
 		//add wangliming 2016.5.10 11:29 end
 		$(".teamId").val(msg.teamId);
