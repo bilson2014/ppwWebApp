@@ -1450,9 +1450,11 @@ var ControlPay ={
 					var payMoney = $("#payMoney").val().trim();
 					var projectId = getCurrentProject();
 					// 发起线上支付
+					if(checkPayList.checkOnLinePayList()){
 					loadData(function(msg){
 						
-						if(checkPayList.checkOnLinePayList()){
+						
+						
 						if(msg.errorCode == 200){
 							var url =  msg.result;
 							$("#shareLink").val(getHostName()+url);
@@ -1476,7 +1478,7 @@ var ControlPay ={
 						}else{
 							//alert("出错啦"+msg.errorCode);
 						}
-						}
+						
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
 						billNo:orderId,
 						projectName:projectName,
@@ -1484,6 +1486,7 @@ var ControlPay ={
 						payPrice:payMoney,
 						projectId:projectId
 					}));
+				}
 					
 				}
 				else if(check=="2"){
@@ -1495,15 +1498,12 @@ var ControlPay ={
 					var payMoney = $("#payMoney").val().trim();
 					 $('#loadEmployee').removeClass('hide');
 					 $('#payHistory').removeClass('hide');
-					
+					 if(checkPayList.checkOutLinePayList()){	
 					loadData(function(msg){
-						
-						
 						if(msg.errorCode == 200){
-						if(checkPayList.checkOutLinePayList()){	
 							ControlPay.openHistory();
 							 payList();	
-						}
+						
 						}else{
 							//alert("出错啦"+msg.errorCode);
 						}
@@ -1515,6 +1515,7 @@ var ControlPay ={
 						userName : cusName,
 						payPrice : payMoney
 					}));
+					 }
 				}
 				else if(check=="3"){
 					  $('#pay-sure').text('确认');
