@@ -176,6 +176,7 @@ $('.modal').on('click', function() {
 loadFileTags();
 getBtnWidth();
 }
+
 function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
@@ -436,18 +437,27 @@ function loadflowdata() {
 								if(!isHistory){
 									if(currentIndex>=3){
 											$('#managerId').removeClass('hide')
-											$('#cusId').removeClass('hide');
+											//$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
 									}
 									else{
 										$('#managerId').addClass('hide')
-										$('#cusId').addClass('hide');
+										//$('#cusId').addClass('hide');
 										$('#payListPage').html('');
-										$('#payInfo').slideUp('');
+										$('#payHistoryList').slideUp();
+										
 									}
 								}
-								ControlPay.closeList();
+								var type = $("#type").val();
+								if(type == "customer"){
+									checkHasList();
+									checkHasNoPayList();
+								}
+								
+								if(type=="employee"){
+									checkHasListForEm();
+								}
 								//end
 								
 								return;
@@ -979,6 +989,15 @@ function loadprojecctlist() {
 				
 				var state=jQuery(this).attr('data-state');
 				loadprojecctlist();
+				ControlPay.closeList();
+				var type = $("#type").val();
+				if(type == "customer"){
+					checkHasList();
+					checkHasNoPayList();
+				}
+				if(type=="employee"){
+					checkHasListForEm();
+				}
 			});
 			liStar.append(a);
 			// 选择添加到那个view
@@ -1019,7 +1038,6 @@ function loadprojecctlist() {
              else if(helpList>0){
             	 var nowContent=$('#helpProjectId li').first();
   			   nowContent.find('a').click();
-  		       ControlTree.OpenHelpProjectTree();
   			   hasClick=true;
   			   nowImg=0;
             	 
@@ -1171,7 +1189,8 @@ function finish() {
 	$("#Online").addClass('hide');
 	$("#Outline").addClass('hide');
 	$('#managerId').removeClass('hide');
-	$('#cusId').removeClass('hide');
+	//$('#cusId').removeClass('hide');
+	$('#userContentId').addClass('hide');
 }
 //未完成项目样式
 function show() {
@@ -1180,6 +1199,7 @@ function show() {
 	$("#upload-file-btn-id").show();
 	$(".comment").show();
 	$(".comment-btn").show();
+	$('#userContentId').removeClass('hide');
 	
 }
 //获取当前进行中的项目 cookie-->currentproject
@@ -1432,6 +1452,9 @@ var ControlPay ={
 								  client.on("copy", function(e){
 									  $('#copyListSuccess').removeClass('hide');
 									});
+									 $('#loadEmployee').removeClass('hide');
+									 $('#payHistory').removeClass('hide');
+								  
 								 
 						}else{
 							//alert("出错啦"+msg.errorCode);
@@ -1444,6 +1467,7 @@ var ControlPay ={
 						payPrice:payMoney,
 						projectId:projectId
 					}));
+					
 				}
 				else if(check=="2"){
 					var key = getCurrentProject();
@@ -1452,6 +1476,8 @@ var ControlPay ={
 					var projectName = $("#projectName").val().trim();
 					var cusName = $("#cusName").val().trim();
 					var payMoney = $("#payMoney").val().trim();
+					 $('#loadEmployee').removeClass('hide');
+					 $('#payHistory').removeClass('hide');
 					
 					loadData(function(msg){
 						
@@ -1846,9 +1872,9 @@ function payList(){
 				
 				var backgruond = "";
 				var btn_shareLink = "";
-				var btn_goPay = "";
 				var left_time ="";
 				var right_time ="";
+				var btn_goClose = "";
 				var type = $("#type").val();
 				switch (deal.dealStatus) {
 				case 0: // 正常
@@ -1857,10 +1883,12 @@ function payList(){
 						btn_shareLink = '<button class="info-btn red-btn" name="toPay" data-token="'+deal.token+'">去支付</button>';
 					}else{
 					btn_shareLink = '<button class="info-btn red-btn" name="toShare" data-token="'+deal.token+'">分享支付链接</button>';
+					btn_goClose =    '<button class="info-close gray-btn" name="toClose" data-token="'+deal.token+'">关闭订单</button>';
 					}
-					btn_goPay = 	'<button class="info-btn red-btn" name="toPay">去支付</button>';
+					
+					
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
@@ -1869,7 +1897,7 @@ function payList(){
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
-					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
+					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
 					break;
 				}
 				
@@ -1885,8 +1913,8 @@ function payList(){
 						$body+=
 						'		<div class="info-left">'+
 						'			<div class="infoTitle" id="project">'+deal.projectName+'</div>';
-						
 						$body+=btn_shareLink;
+						$body+=btn_goClose;
 						$body+='		</div>'+
 						'		<div class="info-right">'+
 						'			<ul class="payInline">'+
@@ -1933,12 +1961,14 @@ function payList(){
 					listnode.append($body);
 					ZeroClipboard.config({hoverClass: "hand"});
 					var client = new ZeroClipboard($("#toShare"));
-					toShare();
-					toPay();
-					clickLink();
+				
 					$('#listLoad').hide();
 			});
 		}
+		toShare();
+		toPay();
+		toClose();
+		clickLink();
 	}, getContextPath()+'/pay/get/deallogs', $.toJSON({
 		projectId:key
 	}));
@@ -1985,8 +2015,13 @@ function toPay(){
 		getData(function(msg){
 		if(msg.errorCode == 200){
 			var url = getHostName() + msg.result;
-			window.location.href = url;
-			//window.open(url);
+			//window.location.href = url;
+			    var a = document.createElement("a");  
+			    a.setAttribute("href", url);  
+			    a.setAttribute("target", "_blank");
+			    a.setAttribute("class", "hide");  
+			    document.body.appendChild(a);  
+			    a.click();
 		}
 		else{
 			//alert(msg.errorMsg);
@@ -1995,10 +2030,121 @@ function toPay(){
 	});
 }
 
+function toClose(){
+	var deleteSynergys=$("[name^=toClose]");
+
+	deleteSynergys.off('click');
+	var cout=deleteSynergys.length;
+	deleteSynergys.on('click',function(){
+		var token=$(this).attr("data-token");
+		toCheckListClose(token);
+	});
+}
+//TODO:
+function checkHasList(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>0){
+				 $('#cusId').removeClass('hide');
+			 }
+			 else{
+				 $('#cusId').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
+			projectId : key
+		}));
+	
+}
+
+function checkHasNoPayList(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>=1){
+				 $('#userContentId').removeClass('hide');
+			 }
+			 else{
+				 $('#userContentId').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasNotPayOrder',"");
+	
+}
+
+function checkHasListForEm(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>0){
+				 $('#loadEmployee').removeClass('hide');
+				 $('#payHistory').removeClass('hide');
+			 }
+			 else{
+				 $('#loadEmployee').addClass('hide');
+				 $('#payHistory').addClass('hide');
+			 }
+		}
+		else{
+			 $('#cusId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
+			projectId : key
+		}));
+	
+}
+
+
+function toCheckListClose(token){
+	
+	$('#close-list').modal({backdrop: 'static', keyboard: false});
+	$('#sureClose').on('click',function(){
+		
+		loadData(function(msg){
+			if(msg.errorCode == 200){
+				$('#payListPage').html('');
+				payList();
+				$('#close-list').modal('hide');
+			}
+			else{
+				alert('关闭失败');
+			}
+			}, getContextPath() + '/pay/offorder',$.toJSON({
+				token : token
+			}));
+	});
+	
+	$('#falseClose').on('click',function(){
+		$('#close-list').modal('hide');
+		$('#sureClose').unbind("click") ;
+		
+	});
+	
+	$('#canclestepClose').on('click',function(){
+		$('#close-list').modal('hide');
+		$('#sureClose').unbind("click");
+		
+	});
+	
+	
+}
+
 function clickLink(){
 	$('#canclePayLink').on('click',function(){
 		$('#toolbar-share').modal('hide');
 	});
+	
+	$('.pay-redLink-btn').on('click',function(){
+		$('#toolbar-share').modal('hide');
+	});
+	
 	
 }
 
@@ -2018,101 +2164,101 @@ function shareSpace(){ // 分享
 }
 
 
-//var ControlTree = {
-//		CommonDoingProjectTree : function(){
-//			$('#doingProjectId').slideDown();
-//			
-//		},
-//		OpenDoingProjectTree : function(){
-//			$('#doingProject').removeClass('inactive');
-//			$('#doingProject').addClass('active');
-//			$('#doingProjectId').slideDown();
-//			
-//		},
-//		OpenMyProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//			$('#myProject').removeClass('inactive');
-//			$('#myProject').addClass('active');
-//		    $('#myProjectId').slideDown();
-//		},
-//		OpenHelpProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//
-//			$('#helpProject').removeClass('inactive');
-//			$('#helpProject').addClass('active');
-//			$('#helpProjectId').slideDown();
-//		},
-//		OpenPauseProjectTree : function(){
-//			ControlTree.CommonDoingProjectTree();
-//		
-//			$('#pauseProject').removeClass('inactive');
-//			$('#pauseProject').addClass('active');
-//			$('#pauseProjectId').slideDown();
-//		},
-//		OpenHistoryProjectTree : function(){
-//			$('#historyProject').removeClass('inactive');
-//			$('#historyProject').addClass('active');
-//			$('#historyProjectId').slideDown();
-//		},
-//		CloseDoingProjectTree : function(){
-//			$('#doingProject').removeClass('active');
-//			$('#doingProject').addClass('inactive');
-//    	    $('#doingProjectId').slideUp();
-//       },
-//       CloseMyProjectTree : function(){
-//    	   $('#myProject').removeClass('active');
-//		   $('#myProject').addClass('inactive');
-//    	   $('#myProjectId').slideUp();
-//       },
-//       CloseHelpProjectTree : function(){
-//    	   $('#helpProject').removeClass('active');
-//		   $('#helpProject').addClass('inactive');
-//    	   $('#helpProjectId').slideUp();
-//       },
-//       ClosePauseProjectTree : function(){
-//    	   $('#pauseProject').removeClass('active');
-//		   $('#pauseProject').addClass('inactive');
-//    	   $('#pauseProjectId').slideUp();
-//       },
-//       CloseHistoryProjectTree : function(){
-//    	   $('#historyProject').removeClass('active');
-//		   $('#historyProject').addClass('inactive');
-//    	   $('#historyProjectId').slideUp();
-//       },
-//       
-//       showTreeImg : function(){
-//    	 if(nowImg==0){
-// 			$('#helpProject').removeClass('inactive');
-// 			$('#helpProject').addClass('active');
-//    	 }
-//    	 
-//    	 else if(nowImg==1){
-//  			$('#pauseProject').removeClass('inactive');
-//  			$('#pauseProject').addClass('active');
-//    	 }
-//    	 
-//    	 else if(nowImg==2){
-//   			$('#myProject').removeClass('inactive');
-//   			$('#myProject').addClass('active');
-//     	 }
-//    	   
-//    	   
-//       },
-//       
-//       shutMyProject : function(){
-//    	 $('#myProjectId').on('click',function(){
-//    		if(('#myProject').attr('class')=='active'){
-//    		    CloseMyProjectTree();
-//    		} 
-//    		else if(('#myProject').attr('class')=='inactive'){
-//    			OpenMyProjectTree();
-//    		}
-//    	 });
-//    	   
-//       }
-//       
-//
-//}
+var ControlTree = {
+		CommonDoingProjectTree : function(){
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenDoingProjectTree : function(){
+			$('#doingProject').removeClass('inactive');
+			$('#doingProject').addClass('active');
+			$('#doingProjectId').slideDown();
+			
+		},
+		OpenMyProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+			$('#myProject').removeClass('inactive');
+			$('#myProject').addClass('active');
+		    $('#myProjectId').slideDown();
+		},
+		OpenHelpProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+
+			$('#helpProject').removeClass('inactive');
+			$('#helpProject').addClass('active');
+			$('#helpProjectId').slideDown();
+		},
+		OpenPauseProjectTree : function(){
+			ControlTree.CommonDoingProjectTree();
+		
+			$('#pauseProject').removeClass('inactive');
+			$('#pauseProject').addClass('active');
+			$('#pauseProjectId').slideDown();
+		},
+		OpenHistoryProjectTree : function(){
+			$('#historyProject').removeClass('inactive');
+			$('#historyProject').addClass('active');
+			$('#historyProjectId').slideDown();
+		},
+		CloseDoingProjectTree : function(){
+			$('#doingProject').removeClass('active');
+			$('#doingProject').addClass('inactive');
+    	    $('#doingProjectId').slideUp();
+       },
+       CloseMyProjectTree : function(){
+    	   $('#myProject').removeClass('active');
+		   $('#myProject').addClass('inactive');
+    	   $('#myProjectId').slideUp();
+       },
+       CloseHelpProjectTree : function(){
+    	   $('#helpProject').removeClass('active');
+		   $('#helpProject').addClass('inactive');
+    	   $('#helpProjectId').slideUp();
+       },
+       ClosePauseProjectTree : function(){
+    	   $('#pauseProject').removeClass('active');
+		   $('#pauseProject').addClass('inactive');
+    	   $('#pauseProjectId').slideUp();
+       },
+       CloseHistoryProjectTree : function(){
+    	   $('#historyProject').removeClass('active');
+		   $('#historyProject').addClass('inactive');
+    	   $('#historyProjectId').slideUp();
+       },
+       
+       showTreeImg : function(){
+    	 if(nowImg==0){
+ 			$('#helpProject').removeClass('inactive');
+ 			$('#helpProject').addClass('active');
+    	 }
+    	 
+    	 else if(nowImg==1){
+  			$('#pauseProject').removeClass('inactive');
+  			$('#pauseProject').addClass('active');
+    	 }
+    	 
+    	 else if(nowImg==2){
+   			$('#myProject').removeClass('inactive');
+   			$('#myProject').addClass('active');
+     	 }
+    	   
+    	   
+       },
+       
+       shutMyProject : function(){
+    	 $('#myProjectId').on('click',function(){
+    		if(('#myProject').attr('class')=='active'){
+    		    CloseMyProjectTree();
+    		} 
+    		else if(('#myProject').attr('class')=='inactive'){
+    			OpenMyProjectTree();
+    		}
+    	 });
+    	   
+       }
+       
+
+}
 
 function formatterDateTime (date) {
     var datetime = date.getFullYear()

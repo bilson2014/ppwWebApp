@@ -55,11 +55,27 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static String URL_PREFIX; // URL前缀
 	
+	public static String URL_HTTPS_PREFIX; // URL前缀
+	
 	public static String COOKIES_SCOPE; // 域名
 	
 	public static String PHONENUMBER_ORDER; // 下单手机号码
 	
 	public static String HTTP_REFERER; // 访问来源
+	
+	// ssl
+	public static String KEY_STORE_TRUST_PATH; // truststore的路径
+
+	public static String KEY_STORE_TYPE; // truststore的类型
+
+	public static String KEY_STORE_TRUST_PASSWORD; // truststore的密码
+
+	public static String KEY_STORE_CLIENT_PATH;
+
+	public static String KEY_STORE_TYPE_P12;
+
+	public static String KEY_STORE_PASSWORD;
+	
 	
 	private static GlobalConstant GLOBALCONSTANT = new GlobalConstant();
 
@@ -76,6 +92,16 @@ public final class GlobalConstant extends BaseObject {
 				COOKIES_SCOPE = propertis.getProperty("cookies_scope");
 				PHONENUMBER_ORDER = propertis.getProperty("service_tel");
 				HTTP_REFERER = propertis.getProperty("http_referer");
+				
+				// ssl
+				KEY_STORE_TRUST_PATH = propertis.getProperty("key.store.trust.path");
+				KEY_STORE_TYPE = propertis.getProperty("key.store.type");
+				KEY_STORE_TRUST_PASSWORD = propertis.getProperty("key.store.trust.password");
+				KEY_STORE_CLIENT_PATH = propertis.getProperty("key.store.client.path");
+				KEY_STORE_TYPE_P12 = propertis.getProperty("key.store.type.p12");
+				KEY_STORE_PASSWORD = propertis.getProperty("key.store.password");
+				
+				URL_HTTPS_PREFIX = propertis.getProperty("url.https.prefix");
 			} catch (Exception e) {
 				
 			} finally{

@@ -21,7 +21,7 @@ import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.DealLog;
-import com.panfeng.film.util.HttpUtil;
+import com.panfeng.film.util.HttpsUtils;
 import com.panfeng.film.util.JsonUtil;
 
 @RestController
@@ -31,10 +31,10 @@ public class PayController extends BaseController {
 	static String RESULT_KEY = "result";
 
 	@RequestMapping("/get/billno")
-	public DealLog getBillNo(@RequestBody Map<String,String> id,final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "pay/get/billno";
-		String str = HttpUtil.httpPost(url, id, request);
-		
+	public DealLog getBillNo(@RequestBody Map<String, String> id, final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/get/billno";
+		String str = HttpsUtils.httpsPost(url, id, request, true);
+
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, DealLog.class);
 		}
@@ -43,10 +43,10 @@ public class PayController extends BaseController {
 
 	@RequestMapping(value = "/income", produces = "application/json; charset=UTF-8")
 	public void payIncome(String token, final HttpServletRequest request, final HttpServletResponse response) {
-		final String url = GlobalConstant.URL_PREFIX + "pay/income?token=" + token;
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/income?token=" + token;
 		Map<String, String> map = new HashMap<>();
 		map.put("token", url);
-		String str = HttpUtil.httpPost(url, map, request);
+		String str = HttpsUtils.httpsPost(url, map, request, true);
 		String result = "";
 		if (str != null && !"".equals(str)) {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
@@ -60,7 +60,7 @@ public class PayController extends BaseController {
 					e.printStackTrace();
 				}
 			} else {
-				result = "待定|" + baseMsg.getErrorMsg();
+				// result = "待定|" + baseMsg.getErrorMsg();
 				try {
 					response.sendRedirect("/pay/error");
 				} catch (IOException e) {
@@ -83,8 +83,8 @@ public class PayController extends BaseController {
 		String userType = info.getSessionType();
 		projectId.put("userid", userid.toString());
 		projectId.put("userType", userType);
-		final String url = GlobalConstant.URL_PREFIX + "pay/get/deallogs";
-		String str = HttpUtil.httpPost(url, projectId, request);
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/get/deallogs";
+		String str = HttpsUtils.httpsPost(url, projectId, request, true);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toList(str);
 		} else {
@@ -94,8 +94,8 @@ public class PayController extends BaseController {
 
 	@RequestMapping(value = "/sendpay", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg sendPay(@RequestBody DealLog dealLog, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "pay/sendpay";
-		String str = HttpUtil.httpPost(url, dealLog, request);
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/sendpay";
+		String str = HttpsUtils.httpsPost(url, dealLog, request, true);
 
 		if (str != null && !"".equals(str)) {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
@@ -113,10 +113,10 @@ public class PayController extends BaseController {
 
 	@RequestMapping(value = "/shareurl", produces = "application/json; charset=UTF-8")
 	public BaseMsg shareUrl(String token, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "pay/shareurl";
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/shareurl";
 		Map<String, String> pram = new HashMap<>();
 		pram.put("token", token);
-		String str = HttpUtil.httpPost(url, pram, request);
+		String str = HttpsUtils.httpsPost(url, pram, request, true);
 		if (str != null && !"".equals(str)) {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
 			// 数据正常添加url前缀
@@ -136,8 +136,8 @@ public class PayController extends BaseController {
 	@RequestMapping("/shareview")
 	public ModelAndView shareView(String token, final HttpServletRequest request, final ModelMap model) {
 		// 去后台检查，页面的合法性
-		final String url = GlobalConstant.URL_PREFIX + "pay/get/orderview?token=" + token;
-		String str = HttpUtil.httpGet(url, request);
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/get/orderview?token=" + token;
+		String str = HttpsUtils.httpsGet(url, request, true);
 		if (str != null && !"".equals(str)) {
 			DealLog dealLog = JsonUtil.toBean(str, DealLog.class);
 			model.put("dealLog", dealLog);
@@ -148,8 +148,53 @@ public class PayController extends BaseController {
 
 	@RequestMapping("/offline/save")
 	public BaseMsg offlineSave(@RequestBody DealLog dealLog, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "pay/offline/save";
-		String str = HttpUtil.httpPost(url, dealLog, request);
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/offline/save";
+		String str = HttpsUtils.httpsPost(url, dealLog, request, true);
+		if (str != null && !"".equals(str)) {
+			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
+			// 数据正常添加url前缀
+			return baseMsg;
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
+		}
+	}
+
+	@RequestMapping("/offorder")
+	public BaseMsg offOrder(@RequestBody Map<String, String> token, final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/offorder";
+		String str = HttpsUtils.httpsPost(url, token, request, true);
+		if (str != null && !"".equals(str)) {
+			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
+			// 数据正常添加url前缀
+			return baseMsg;
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
+		}
+	}
+	
+	@RequestMapping("/hasOrderHistory")
+	public BaseMsg hasOrderHistory(@RequestBody Map<String, Long> projectId, final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/hasOrderHistory";
+		String str = HttpsUtils.httpsPost(url, projectId, request, true);
+		if (str != null && !"".equals(str)) {
+			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
+			// 数据正常添加url前缀
+			return baseMsg;
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
+		}
+	}
+	
+	@RequestMapping("/hasNotPayOrder")
+	public BaseMsg hasNotPayOrder(final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_HTTPS_PREFIX + "pay/hasNotPayOrder";
+		Map<String,String>  userInfo = new HashMap<String, String>();
+		final SessionInfo info = getCurrentInfo(request);
+		Long userid = info.getReqiureId();
+		String userType = info.getSessionType();
+		userInfo.put("userId", userid.toString());
+		userInfo.put("userType", userType);
+		String str = HttpsUtils.httpsPost(url, userInfo, request, true);
 		if (str != null && !"".equals(str)) {
 			BaseMsg baseMsg = JsonUtil.toBean(str, BaseMsg.class);
 			// 数据正常添加url前缀

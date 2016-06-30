@@ -79,7 +79,7 @@
 			              <span class="contentSpanSmall">元</span></div>
 			              <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
 			             	 <div class="contentRight">
-			             	 	<a href="?token=${dealLog.token}" id ="submit"><button class="btn-red">确认</button></a>
+			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red">确认</button></a>
 			             	 </div>
 			              </c:if>
 
