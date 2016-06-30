@@ -67,6 +67,11 @@ function getContextPath() {
 	path = "/" + path.substr(0, path.indexOf("/"));
 	return '';
 }
+function getContextPathHttps() {
+	var path = document.location.pathname.substr(1);
+	path = "/" + path.substr(0, path.indexOf("/"));
+	return 'https://192.168.0.101:8446/';
+}
 
 //AJAX GET
 function getData(Func,url){
