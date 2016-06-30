@@ -691,7 +691,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content" >
 					<div class="modal-body checkstep">
-					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
+					<img class="canclestep"  id="canclestepClose" src="/resources/img/flow/canclemodal.png">
 		                   <button class="red-btn sure-margin" id="sureClose">确定</button>
 		                   <label class="check-step" >确定关闭当前订单吗</label>
 		                   <button class="gray-btn cancle-margin" id="falseClose">取消</button>   
@@ -707,14 +707,18 @@
 				<div class="modal-content" >
 				  <div class="pay-title-link">链接信息</div>
 				       <img class="canclePayLink"  id="canclePayLink" src="/resources/img/flow/canclemodal.png">
+				         <div id="copySuccess" class="copyDiv">
+						 <div class="copySuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>
+						 <div class="copySuccess">复制成功</div>
+					 </div>
 					 <div class="input-group getShareLink">
 								  <input type="text" class="form-control getShareLinkInput" value="http:测试测试" id="shareLinkList">
 								  <span class="input-group-addon getShareLinkBtn" id="copyShareLink"  data-clipboard-target="shareLinkList">复制链接</span>
 					</div>
-					  <div id="copySuccess">
-						 <div class="copySuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>
-						 <div class="copySuccess">复制成功</div>
-					 </div>
+					 <div class="pay-bottom-link">
+						     <div  class="pay-redLink-btn">返回</div>
+						   </div>
+					
 					 <div class="input-group getShareLink hide">
 						  <dl class="share-list">
 										<dt >分享:</dt>
