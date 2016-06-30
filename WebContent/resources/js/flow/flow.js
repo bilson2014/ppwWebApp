@@ -437,14 +437,20 @@ function loadflowdata() {
 								var type = $("#type").val();
 								if(!isHistory){
 									if(currentIndex>=3){
+
 											$('#managerId').removeClass('hide')
-											//$('#cusId').removeClass('hide');
+											$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
+											
+											if(type=="employee"){
+												checkHasListForEmFirst();
+											}
+											
 									}
 									else{
 										$('#managerId').addClass('hide')
-										//$('#cusId').addClass('hide');
+										$('#cusId').addClass('hide');
 										$('#payListPage').html('');
 										$('#payHistoryList').slideUp();
 										
@@ -1450,7 +1456,7 @@ var ControlPay ={
 						if(msg.errorCode == 200){
 							var url =  msg.result;
 							$("#shareLink").val(getHostName()+url);
-								  $('#pay-sure').text('返回');
+								  $('#pay-sure').text('关闭');
 								  $('#checkWay').val('3');
 								  $('#OnlineInfo').addClass('hide');
 								  $('#link').removeClass('hide');
@@ -1461,8 +1467,11 @@ var ControlPay ={
 									  $('#copyListSuccess').removeClass('hide');
 									});
 									 $('#loadEmployee').removeClass('hide');
-									 $('#payHistory').removeClass('hide');
-								  
+									 $('#payHistory').removeClass('hide'); 
+									 if($('#payHistory').hasClass('payBtnPosClick')){
+				                        	payList();
+									  }
+									 checkHasListForEmFirst();
 								 
 						}else{
 							//alert("出错啦"+msg.errorCode);
@@ -1873,6 +1882,7 @@ var checkPayList = {
 
 function payList(){
 	var listnode = $("#payListPage");
+	listnode.html('');
 	var key = getCurrentProject();
 	loadData(function(msg){
 		if(msg != null ){
@@ -2030,6 +2040,7 @@ function toPay(){
 			    a.setAttribute("class", "hide");  
 			    document.body.appendChild(a);  
 			    a.click();
+			    a.remove();
 		}
 		else{
 			//alert(msg.errorMsg);
@@ -2097,7 +2108,7 @@ function checkHasListForEm(){
 				 $('#loadEmployee').removeClass('hide');
 				 $('#payHistory').removeClass('hide');
 				 $('#managerId').removeClass('hide');
-    }
+                 }
 			 else{
 				 $('#loadEmployee').addClass('hide');
 				 $('#payHistory').addClass('hide');
@@ -2110,7 +2121,27 @@ function checkHasListForEm(){
 		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
 			projectId : key
 		}));
-	
+}
+
+function checkHasListForEmFirst(){
+	var key = getCurrentProject();
+	loadData(function(msg){
+		if(msg.errorCode == 200){
+			 if(msg.result>0){
+				 $('#loadEmployee').removeClass('hide');
+				 $('#payHistory').removeClass('hide');
+                 }
+			 else{
+				 $('#loadEmployee').addClass('hide');
+				 $('#payHistory').addClass('hide');
+			 }
+		}
+		else{
+			 $('#managerId').addClass('hide');
+		}
+		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
+			projectId : key
+		}));
 }
 
 
