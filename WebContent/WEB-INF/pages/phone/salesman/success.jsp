@@ -59,7 +59,7 @@
 				
 				<dl>
 					<dt class="third-desc"></dt>
-					<dd>72小时极速出片</dd>
+					<dd>极速出片</dd>
 					<dd>不满意全额退款</dd>
 				</dl>
 			
