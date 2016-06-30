@@ -434,6 +434,7 @@ function loadflowdata() {
 								currentIndex = num;
 							    
 								//TODO:lt add payList beigin 20160622
+								var type = $("#type").val();
 								if(!isHistory){
 									if(currentIndex>=3){
 											$('#managerId').removeClass('hide')
@@ -448,16 +449,21 @@ function loadflowdata() {
 										$('#payHistoryList').slideUp();
 										
 									}
-								}
-								var type = $("#type").val();
-								if(type == "customer"){
-									checkHasList();
-									checkHasNoPayList();
+								}else{
+									
+									$('#managerId').addClass('hide');
+									if(type == "customer"){
+										checkHasList();
+										checkHasNoPayList();
+									}
+									
+									if(type=="employee"){
+										checkHasListForEm();
+									}
+									
 								}
 								
-								if(type=="employee"){
-									checkHasListForEm();
-								}
+								
 								//end
 								
 								return;
@@ -966,12 +972,14 @@ function loadprojecctlist() {
 					finish();// 禁用所有按钮
 					isHistory=true;
 					
+					
 				}
 				
 				else{
 					noWorkproject =false;
 					show();// 显示所有按钮
 					isHistory=false;
+					
 				}
 			}
 			
@@ -995,9 +1003,9 @@ function loadprojecctlist() {
 					checkHasList();
 					checkHasNoPayList();
 				}
-				if(type=="employee"){
-					checkHasListForEm();
-				}
+//				if(type=="employee"){
+//					checkHasListForEm();
+//				}
 			});
 			liStar.append(a);
 			// 选择添加到那个view
@@ -1188,7 +1196,7 @@ function finish() {
 	$(".more-comment").show();
 	$("#Online").addClass('hide');
 	$("#Outline").addClass('hide');
-	$('#managerId').removeClass('hide');
+	//$('#managerId').removeClass('hide');
 	//$('#cusId').removeClass('hide');
 	$('#userContentId').addClass('hide');
 }
@@ -2067,6 +2075,8 @@ function checkHasNoPayList(){
 		if(msg.errorCode == 200){
 			 if(msg.result>=1){
 				 $('#userContentId').removeClass('hide');
+				 
+				
 			 }
 			 else{
 				 $('#userContentId').addClass('hide');
@@ -2086,14 +2096,16 @@ function checkHasListForEm(){
 			 if(msg.result>0){
 				 $('#loadEmployee').removeClass('hide');
 				 $('#payHistory').removeClass('hide');
-			 }
+				 $('#managerId').removeClass('hide');
+    }
 			 else{
 				 $('#loadEmployee').addClass('hide');
 				 $('#payHistory').addClass('hide');
+				 $('#managerId').addClass('hide');
 			 }
 		}
 		else{
-			 $('#cusId').addClass('hide');
+			 $('#managerId').addClass('hide');
 		}
 		}, getContextPath() + '/pay/hasOrderHistory',$.toJSON({
 			projectId : key
