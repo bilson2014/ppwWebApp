@@ -103,7 +103,7 @@
 		               <div class="title-word">经济实惠:</div>
 					               <div class="title-content">
 					               	    <div class="left-content">
-					               	    	<label class="left-price" id="secondPrice"></label><label class="left-desc">元套餐</lable>
+					               	    	<label class="left-price" id="firstPrice"></label><label class="left-desc">元套餐</lable>
 					                    </div>
 					                     <div class="right-content">
 					               	    	<label class="right-price">48<span class="right-desc">小时极速出片</span></label>
@@ -112,7 +112,7 @@
 					               </div>
 			              </div> 
 	            
-			             <div class="inside-div"  id="second-video-section" >
+			             <div class="inside-div"  id="first-video-section" >
 				        </div>
 	   		</div>
 	   
