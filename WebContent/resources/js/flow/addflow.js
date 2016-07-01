@@ -666,7 +666,7 @@ function addProject() {
 			jf : jfstarttime
 		},
 		synergys:getViewSynerhy(),
-		providerInput:providerPayment,
+		providerPayment:providerPayment,
 		customerPayment:customerPayment
 	}));
 }
