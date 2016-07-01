@@ -2004,9 +2004,9 @@ function toShare(){
 	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
-	 $('#copySuccess').addClass('hide');
+	
 	deleteSynergys.on('click',function(){
-		
+		 $('#copySuccess').addClass('hide');
 		var token=$(this).attr("data-token");
 		getData(function(msg){
 			if(msg.errorCode == 200){

@@ -17,8 +17,6 @@
 	
 	<mvc:view-controller path="/order-flow.html" view-name="/order-flow" />
 	
-	<mvc:view-controller path="/apaipian.com.html" view-name="/apaipian.com" />
-	
 	<mvc:view-controller path="/member.html" view-name="/member" />
 	
 	<mvc:view-controller path="/mgr/recover" view-name="/manager/recover" />
