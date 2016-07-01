@@ -752,7 +752,7 @@
 						              </div>
 						              
 						               <div  class="payInline payRight" id="order-outlineDiv" > 
-						                  <div class="payBigWord">支付单号</div>
+						                  <div class="payBigWord" id="payOrder">支付单号</div>
 						                  <input id="order-outline" class="pay-input form-control hide paySmallWord"></input>
 						                  <input disabled="disabled"  id="order-online" class="pay-input form-control paySmallWord" ></input>
 						                   <div class="pay-error hide" id="order-outlineError">错误提示</div>

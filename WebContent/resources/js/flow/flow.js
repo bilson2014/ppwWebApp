@@ -442,7 +442,6 @@ function loadflowdata() {
 											$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
-											
 											if(type=="employee"){
 												checkHasListForEmFirst();
 											}
@@ -1364,6 +1363,7 @@ var ControlPay ={
 			var t= formatterDateTime(mydate);
 			//var t=mydate.toLocaleString();
 			$('#checkWay').val("1");
+			$("#payOrder").text('支付单号');
 			$('#Online').addClass('pay-click-btn');
 			$('#Online').removeClass('pay-btn');
 			$('#Outline').removeClass('pay-click-btn');
@@ -1410,6 +1410,7 @@ var ControlPay ={
 		
 		initOutlineInfo:function(){
 			$('#checkWay').val("2");
+			$("#payOrder").text('银行流水号');
 			$('#Outline').addClass('pay-click-btn');
 			$('#Outline').removeClass('pay-btn');
 			$('#Online').removeClass('pay-click-btn');
@@ -1496,6 +1497,7 @@ var ControlPay ={
 					var projectName = $("#projectName").val().trim();
 					var cusName = $("#cusName").val().trim();
 					var payMoney = $("#payMoney").val().trim();
+					
 					 $('#loadEmployee').removeClass('hide');
 					 $('#payHistory').removeClass('hide');
 					 if(checkPayList.checkOutLinePayList()){	
@@ -1510,7 +1512,7 @@ var ControlPay ={
 					}, getContextPath()+'/pay/offline/save', $.toJSON({
 						projectId : key,
 						payTime : outlineTime,
-						billNo : orderOutLine,
+						unOrderId : orderOutLine,
 						projectName : projectName,
 						userName : cusName,
 						payPrice : payMoney
@@ -1894,6 +1896,7 @@ function payList(){
 				var left_time ="";
 				var right_time ="";
 				var btn_goClose = "";
+				var off_btnTime = "";
 				var type = $("#type").val();
 				switch (deal.dealStatus) {
 				case 0: // 正常
@@ -1905,18 +1908,20 @@ function payList(){
 					btn_goClose =    '<button class="info-close gray-btn" name="toClose" data-token="'+deal.token+'">关闭订单</button>';
 					}
 					
-					
+					off_btnTime ='<li><div class="contentTitle">付款时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="contentTitle">逾期时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
 					break;
 				case 1: // 完成
 					backgruond ='	<div class="payCard-info backgroundFinish">';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
+					off_btnTime ='<li><div class="contentTitle">付款时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				case 2: // 支付关闭
 					backgruond ='	<div class="payCard-info backgroundFail">';
 					left_time = '<li><div class="contentTitle">发起时间</div><div class="contentWord">'+deal.createTime+'</div></li>';
 					right_time = '<li><div class="contentTitle">失败时间</div><div class="contentWord">'+deal.orderTimeOut+'</div></li>';
+					off_btnTime ='<li><div class="contentTitle">付款时间</div><div class="contentWord">'+deal.payTime+'</div></li>';
 					break;
 				}
 				
@@ -1965,11 +1970,11 @@ function payList(){
 						'			<ul class="payInline">'+
 						'				<li><div class="contentTitle">支付方</div><div class="contentWord">'+deal.userName+'</div></li>'+
 						'				<li><div class="contentTitle">支付金额</div><div class="contentWord">'+deal.payPrice+'元</div></li>';
-						$body+=left_time;
+						$body+=off_btnTime;
 						$body+='			</ul>'+
 						'			<ul class="rightUl payInline">'+
 						'				<li><div class="contentTitle">收款方</div><div class="contentWord">'+deal.proceedsSide+'</div></li>'+
-						'				<li><div class="contentTitle ">订单号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
+						'				<li><div class="contentTitle ">银行流水号</div><div class="contentWord order">'+deal.billNo+'</div></li>';
 						$body+='			</ul>'+
 						'		</div>'+
 						'	</div>'+
@@ -2092,6 +2097,7 @@ function checkHasNoPayList(){
 			 }
 			 else{
 				 $('#userContentId').addClass('hide');
+				
 			 }
 		}
 		else{
