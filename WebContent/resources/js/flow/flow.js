@@ -2052,7 +2052,7 @@ function toShare(){
 		var token=$(this).attr("data-token");
 		getData(function(msg){
 			if(msg.errorCode == 200){
-				    $('#shareLinkList').val(getHostName()+msg.result);
+				    $('#shareLinkList').val('https://www.apaipian.com:8446'+msg.result);
 					ZeroClipboard.config({hoverClass: "handShare"});
 					var clientShare = new ZeroClipboard($("#copyShareLink"));
 					clientShare.on("copy", function(e){
