@@ -22,8 +22,21 @@ $().ready(function() {
 			$(".flowbtn").on("click", function() {
 				$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
 				//$("#toolbar-check").modal('show');
-				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
-				setModalEvent(nextFlow);
+				
+				if(currentIndex>4){
+					$(".check-step").addClass("hide");
+					$("#listLoadCheck").removeClass("hide");
+					listLoadCheck
+					$(".sure-margin").off('click');
+					}
+				   else
+				    {
+					$(".check-step").reMoveClass("hide");
+					$("#listLoadCheck").addClass("hide");
+					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+					$(".sure-margin").off('click');
+					setModalEvent(nextFlow);
+				   }
 			});
 			$(".cancle-margin").on("click",function(){
 				$("#toolbar-check").modal('hide');
@@ -60,6 +73,9 @@ $().ready(function() {
 			$("#canclestep").on('click',function(){
 				$("#toolbar-check").modal('hide');
 			});
+			$("#canclestepPause").on('click',function(){
+				$("#toolbar-pause-re").modal('hide');
+			});
 			$("#new-project").on('click',function(){
 				window.location.href = getContextPath()
 				+ "/mgr/flow/add-view";
@@ -79,10 +95,24 @@ $().ready(function() {
 			$(".prev-task").on("click",function(){
 				PrevTaskBtn();
 			});
-			
+			$("#cancleControl").on("click",function(){
+				$('#toolbar-pause-re').modal('hide');
+			});
 			ControlPay.initControlPay();
 			
 		});
+
+function checkPorjectInfo(){
+	
+	loadData(function(msg) {
+		var key = getCurrentProject();
+		
+		
+	}, getContextPath() + '/mgr/projects/verifyProjectInfo', $.toJSON({
+		id : key
+	}));
+	
+}
 
 function submitForm(){
 	var key=getCurrentProject();
@@ -188,6 +218,11 @@ function nextFlow(){
 		}));
 	}
 }
+function setModalMessageEvent(Confirm){
+	$("#sureControl").off('click');
+	$("#sureControl").on('click',Confirm);
+}
+
 function setModalEvent(Confirm){
 	$(".sure-margin").off('click');
 	$(".sure-margin").on('click',Confirm);
@@ -226,11 +261,14 @@ function loadFileTags() {
 }
 //取消按钮
 function cancelBtn() {
-	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	$('#toolbar-pause-re').modal({backdrop: 'static', keyboard: false});
 	//$("#toolbar-check").modal('show');
-	$(".check-step").text("您确定要取消项目吗？");
+	$("#pauseWord").text("您确定要取消项目吗？");
+	$("#reason").attr('placeholder','取消原因');
+	
+	
 	noWorkproject=false;
-	setModalEvent(cancel);
+	setModalMessageEvent(cancel);
 }
 function cancel() {
 	var key = getCurrentProject();
@@ -262,10 +300,11 @@ function PrevTask(){
 }
 //暂停按钮
 function pauseBtn() {
-	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	$('#toolbar-pause-re').modal({backdrop: 'static', keyboard: false});
+	$("#pauseWord").text("您确定暂停项目吗？");
+	$("#reason").attr('placeholder','暂停原因');
 	//$("#toolbar-check").modal('show');
-	$(".check-step").text("您确定要暂停项目吗？");
-	setModalEvent(pause);
+	setModalMessageEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
@@ -276,15 +315,17 @@ function resumeBtn() {
 }
 function pause() {
 	var key = getCurrentProject();
+	var input = $('#reason').val();
 	if(key != null ){
 		loadData(function(msg) {
 			$(".flowbtn").hide();
 			$(".prev-task").hide();
 			getBtnWidth();
-			$("#toolbar-check").modal('hide');
+			$("#toolbar-pause-re").modal('hide');
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
-			id : key
+			id : key,
+			description : input
 		}));
 	}
 }
@@ -438,8 +479,8 @@ function loadflowdata() {
 								if(!isHistory){
 									if(currentIndex>=3){
 
-											$('#managerId').removeClass('hide')
-											$('#cusId').removeClass('hide');
+											$('#managerId').removeClass('hide');
+											//$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
 											if(type=="employee"){
@@ -448,7 +489,7 @@ function loadflowdata() {
 											
 									}
 									else{
-										$('#managerId').addClass('hide')
+										$('#managerId').addClass('hide');
 										$('#cusId').addClass('hide');
 										$('#payListPage').html('');
 										$('#payHistoryList').slideUp();
@@ -1428,6 +1469,7 @@ var ControlPay ={
 			$('#payTime-outline').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd ',
+				timeFormat:'hh:mm:ss',
 				minDate: 0
 		});
 			ControlPay.initBillNo();
@@ -2004,9 +2046,9 @@ function toShare(){
 	var deleteSynergys=$("[name^=toShare]");
 	deleteSynergys.off('click');
 	var cout=deleteSynergys.length;
-	 $('#copySuccess').addClass('hide');
+	
 	deleteSynergys.on('click',function(){
-		
+		 $('#copySuccess').addClass('hide');
 		var token=$(this).attr("data-token");
 		getData(function(msg){
 			if(msg.errorCode == 200){
@@ -2150,7 +2192,6 @@ function checkHasListForEmFirst(){
 			projectId : key
 		}));
 }
-
 
 function toCheckListClose(token){
 	

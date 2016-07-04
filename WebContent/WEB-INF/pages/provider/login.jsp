@@ -100,8 +100,15 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		   <div class="outSideDiv">
+		         <div class="loginDiv">
+		         </div>
+		   
+		   </div>
 	
-		<div class="index-content">
+		<%-- <div class="index-content">
 			
 			<div class="login-container ">
 				<div class="well">
@@ -267,6 +274,6 @@
 			<!-- 账号绑定 end -->
 			
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>

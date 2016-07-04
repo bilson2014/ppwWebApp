@@ -763,6 +763,17 @@
     line-height: 20px;
     color: $gray-dark;
 }
+.check-step-load {
+    width: 400px;
+    color: $gray;
+    font-size: $font-size-lg;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    text-align: center;
+    line-height: 20px;
+    color: $gray-dark;
+}
 
 .checkstep {
     height: 200px;
@@ -1978,4 +1989,47 @@ margin-top: 80px;
 .copyDiv{
     position: relative;
     top:40px;
+}
+
+//暂停提示
+.pauseWord{
+    position: relative;
+    top:0px;
+    left:0px;
+    text-align:center; 
+    font-size: $font-size;
+    color:$gray;
+}
+
+.pauseBtn{
+    position: relative;
+    margin-top: 20px;
+    text-align:center; 
+}
+
+.canclestepPause{
+    position: relative;
+    left: 250px;
+    cursor: pointer;
+}
+
+.textareaInfo{
+    width: 360px;
+    height: 70px;
+    border-radius: 5px;
+
+}
+
+.pauseTop{
+    position: relative;
+    top:10px;
+}
+.puaseLeft{
+        position: relative;
+    right: 20px;
+}
+
+.puaseRight{
+        position: relative;
+    left: 20px;
 }
