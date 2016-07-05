@@ -190,10 +190,12 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/doLogin")
 	public Info login(@RequestBody final Team original,
 			final HttpServletRequest request) {
+		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
 		final String code = (String) request.getSession().getAttribute("code");
 		Info info = new Info();
 		if (!"".equals(code) && code != null) {
-			if (original.getVerification_code().equals("!!!!") || code.equals(original.getVerification_code())) {
+			if ( code.equals(original.getVerification_code())) {
+		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
 				if (original != null && original.getPassword() != null
 						&& !"".equals(original.getPassword())) {
 					try {
@@ -205,8 +207,10 @@ public class ProviderController extends BaseController {
 						original.setPassword(DataUtil.md5(password));
 
 						// 转码
+						//modify by wanglc 2016-7-5 16:37:45 登录无需loginName begin
 						//original.setLoginName(URLEncoder.encode(
 						//		original.getLoginName(), "UTF-8"));
+						//modify by wanglc 2016-7-5 16:37:45 登录登录无需loginName end
 						original.setPassword(URLEncoder.encode(original.getPassword(),
 								"UTF-8"));
 
@@ -218,13 +222,13 @@ public class ProviderController extends BaseController {
 							boolean ret = JsonUtil.toBean(json, Boolean.class);
 							// 写入 session
 							if(!ret){
-								info.setValue("用户名或密码错误!");
+								info.setValue("登录错误!");
 							}
 							info.setKey(ret);
 							return info;
 						} else {
 							info.setKey(false);
-							info.setValue("用户名或密码错误!");
+							info.setValue("登录错误!");
 							return info;
 						}
 					} catch (Exception e) {
@@ -305,7 +309,7 @@ public class ProviderController extends BaseController {
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (original.getVerification_code().equals("!!!!") || code.equals(original.getVerification_code())) {
+			if (code.equals(original.getVerification_code())) {
 				if (original != null && original.getPassword() != null
 						&& !"".equals(original.getPassword())) {
 					try {

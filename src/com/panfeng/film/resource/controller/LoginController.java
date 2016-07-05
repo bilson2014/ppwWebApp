@@ -86,33 +86,52 @@ public class LoginController extends BaseController {
 	 * @return 是否成功
 	 */
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public boolean login(@RequestBody final User user,
+	public Info login(@RequestBody final User user,
 			final HttpServletRequest request) {
+		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
+		final String code = (String) request.getSession().getAttribute("code");
+		Info info = new Info();
 		try {
-			if (user != null && user.getPassword() != null
-					&& !"".equals(user.getPassword())) {
-				// AES密码解密
-				final String password = AESUtil.Decrypt(user.getPassword(),
-						UNIQUE_KEY);
-				// MD5
-				user.setPassword(DataUtil.md5(password));
-				// 登录远程服务器进行比对
-				final String url = URL_PREFIX + "portal/user/encipherment";
-				String str = HttpUtil.httpPost(url, user,request);
-				//User information = null;
-				if (str != null && !"".equals(str)) {
-					
-					boolean result = JsonUtil.toBean(str, Boolean.class);
-					return result;
-				} 
-				return false;
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
+					//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
+					if (user != null && user.getPassword() != null
+							&& !"".equals(user.getPassword())) {
+						// AES密码解密
+						final String password = AESUtil.Decrypt(user.getPassword(),
+								UNIQUE_KEY);
+						// MD5
+						user.setPassword(DataUtil.md5(password));
+						// 登录远程服务器进行比对
+						final String url = URL_PREFIX + "portal/user/encipherment";
+						String str = HttpUtil.httpPost(url, user,request);
+						//User information = null;
+						if (str != null && !"".equals(str)) {
+							boolean result = JsonUtil.toBean(str, Boolean.class);
+							info.setKey(result);
+							info.setValue("登录成功");
+							return info;
+						} 
+						info.setKey(false);
+						info.setValue("登录失败");
+						return info;
+					}
+				}else {
+					// 验证码过期
+					info.setKey(false);
+					info.setValue("验证码输入错误!");
+				}
+			} else {
+				// session 过期
+				info.setKey(false);
+				info.setValue("请重新获取验证码!");
 			}
 		} catch (Exception e) {
 			logger.error("LoginController method:login() User Password Decrypt Error ...");
 			e.printStackTrace();
 		}
 
-		return false;
+		return info;
 	}
 
 	/**
