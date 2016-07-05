@@ -38,16 +38,17 @@
          <div class="topLine leftMargin"></div>
          <div class="orderContent">
 	           <div class="topContent leftMargin">
-	              <div class="contentLeft">支付单号：
-		              <span > ${dealLog.billNo}</span>
+	              <div class="contentLeft line-height">
+	                  <span>支付单号：</span>
+		              <span class="spanContent orderWord"> ${dealLog.billNo}</span>
 	              </div>
-	              <div class="contentRight">截止时间：<span>${dealLog.orderTimeOut }</span></div>
+	              <div class="contentRight"> <span>截止时间： </span><span>${dealLog.orderTimeOut }</span></div>
 	           </div>
 	           <div class="midContent leftMargin">
 	                 <div class="midContentDiv">
-			              <div class="contentLeft grayColor">项目名称：<span class="grayDarkColor">${dealLog.projectName}</span></div>
-			              <div class="contentRight grayColor">支付状态：
-			              	<span class="payStatue">
+			              <div class="contentLeft grayColor"><span>项目名称：</spa><span class="grayDarkColor spanContent" >${dealLog.projectName}</span></div>
+			              <div class="contentRight grayColor"><span>支付状态：</span>
+			              	<span class="payStatue spanContentMid ">
 			              		<c:if test="${dealLog.dealStatus == 0}">
 			              			等待支付中
 			              		</c:if>
@@ -62,8 +63,8 @@
 		             </div> 
 		             
 		             <div class="midContentDiv">
-			              <div class="contentLeft grayColor">收款方：<span class="contentSpan grayDarkColor">${dealLog.proceedsSide}</span></div>
-			              <div class="contentRight grayColor">支付方：<span class="contentSpan grayDarkColor">${dealLog.userName}</span></div>
+			              <div class="contentLeft grayColor topPos"><span>收款方：</span><span class="contentSpan grayDarkColor spanContent">${dealLog.proceedsSide}</span></div>
+			              <div class="contentRight grayColor topPos"><span>支付方：</span><span class="contentMoreSpan grayDarkColor spanContentMid spanContent">${dealLog.userName}</span></div>
 		             </div> 
 		             
 		             <div class="midContentDiv ">
@@ -74,14 +75,17 @@
 		             <div class="solidLine">----------------------------------------------------------------------------------------------------------------------------------------</div>
 
 
-			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400">付款金额：
-			              </span><span class="contentSpan contentSpanBig">${dealLog.payPrice}</span>
+			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400;font-size:1.6rem">付款金额：
+			              </span><span class="contentSpan contentSpanBig botPos">${dealLog.payPrice}</span>
 			              <span class="contentSpanSmall">元</span></div>
-			              <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
+			              <div class="contentRight">
+			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red botPos">确认</button></a>
+			             	 </div>
+			             <%--  <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
 			             	 <div class="contentRight">
 			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red">确认</button></a>
 			             	 </div>
-			              </c:if>
+			              </c:if> --%>
 
 		             </div> 
 	           </div>
