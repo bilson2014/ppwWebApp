@@ -20,12 +20,29 @@ $().ready(function() {
 			showOrderTime();
 			loadprojecctlist();
 			$(".flowbtn").on("click", function() {
+				
 				$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+				initModalBtn();
 				//$("#toolbar-check").modal('show');
-				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
-				setModalEvent(nextFlow);
+				
+				
+				if(currentIndex>4){
+					$(".check-step").addClass("hide");
+					$("#listLoadCheck").removeClass("hide");
+					$(".sure-margin").off('click');
+					checkPorjectInfo();
+					}
+				   else
+				    {
+					$(".sure-margin").on('click');
+					$(".check-step").removeClass("hide");
+					$("#listLoadCheck").addClass("hide");
+					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+					setModalEvent(nextFlow);
+				   }
 			});
 			$(".cancle-margin").on("click",function(){
+				
 				$("#toolbar-check").modal('hide');
 			});
 			$(".more-file-btn").on("click", function() {
@@ -46,9 +63,11 @@ $().ready(function() {
 			});
 
 			$(".pausebtn").on("click", function() {
+				initModalBtn();
 				pauseBtn();
 			});
 			$(".cancelbtn").on("click", function() {
+				initModalBtn();
 				cancelBtn();
 			});
 
@@ -59,6 +78,9 @@ $().ready(function() {
 			});
 			$("#canclestep").on('click',function(){
 				$("#toolbar-check").modal('hide');
+			});
+			$("#canclestepPause").on('click',function(){
+				$("#toolbar-pause-re").modal('hide');
 			});
 			$("#new-project").on('click',function(){
 				window.location.href = getContextPath()
@@ -77,12 +99,64 @@ $().ready(function() {
 			});
 			
 			$(".prev-task").on("click",function(){
+				initModalBtn();
 				PrevTaskBtn();
 			});
-			
+			$("#cancleControl").on("click",function(){
+				$('#toolbar-pause-re').modal('hide');
+			});
 			ControlPay.initControlPay();
 			
+			
 		});
+
+function initModalBtn(){
+	$(".check-step").css('color','#666');
+	$(".sure-margin").removeClass('gray-btn-no');
+	$(".sure-margin").addClass('red-btn');
+}
+
+function checkPorjectInfo(){
+	var key = getCurrentProject();
+	loadData(function(msg) {
+		if(msg.errorCode == 200){
+			$(".sure-margin").off('click');
+			$(".check-step").removeClass("hide");
+			$(".check-step").css('color','#666');
+			$(".check-step").html('验证通关可以提交完成啦！');
+			$("#listLoadCheck").addClass("hide");
+			$(".sure-margin").on('click');
+			setModalEvent(nextFlow);
+		}
+		
+		if(msg.errorCode == 300){
+			$(".sure-margin").off('click');
+			$(".check-step").removeClass("hide");
+			$(".check-step").css('color','#fb9b6a');
+			$(".check-step").html('还有订单未被支付，您确定要完成项目吗？');
+			$("#listLoadCheck").addClass("hide");
+			$(".sure-margin").on('click');
+			setModalEvent(nextFlow);
+		}
+		
+		if(msg.errorCode == 500){
+			$(".sure-margin").off('click');
+			$(".check-step").removeClass("hide");
+			$(".check-step").css('color','#fe5453');
+			$(".sure-margin").removeClass('red-btn');
+			$(".sure-margin").addClass('gray-btn-no');
+			$(".check-step").html(msg.result+"，才能完成项目！");
+			$("#listLoadCheck").addClass("hide");
+			$(".sure-margin").off('click');
+		}
+		
+		
+		
+	}, getContextPath() + '/mgr/projects/verifyProjectInfo', $.toJSON({
+		id : key
+	}));
+	
+}
 
 function submitForm(){
 	var key=getCurrentProject();
@@ -188,6 +262,11 @@ function nextFlow(){
 		}));
 	}
 }
+function setModalMessageEvent(Confirm){
+	$("#sureControl").off('click');
+	$("#sureControl").on('click',Confirm);
+}
+
 function setModalEvent(Confirm){
 	$(".sure-margin").off('click');
 	$(".sure-margin").on('click',Confirm);
@@ -226,20 +305,25 @@ function loadFileTags() {
 }
 //取消按钮
 function cancelBtn() {
-	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	$('#toolbar-pause-re').modal({backdrop: 'static', keyboard: false});
 	//$("#toolbar-check").modal('show');
-	$(".check-step").text("您确定要取消项目吗？");
+	$("#reason").val('');
+	$("#pauseWord").text("您确定要取消项目吗？");
+	$("#reason").attr('placeholder','取消原因');
 	noWorkproject=false;
-	setModalEvent(cancel);
+	setModalMessageEvent(cancel);
 }
 function cancel() {
 	var key = getCurrentProject();
+	var reason = $('#reason').val().trim();
 	if(key != null ){
 		loadData(function(msg) {
-			$("#toolbar-check").modal('hide');
+			$("#toolbar-pause-re").modal('hide');
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
-			id : key
+			id : key,
+			description : reason
+			
 		}));
 	}
 }
@@ -262,10 +346,12 @@ function PrevTask(){
 }
 //暂停按钮
 function pauseBtn() {
-	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+	$('#toolbar-pause-re').modal({backdrop: 'static', keyboard: false});
+	$("#reason").val('');
+	$("#pauseWord").text("您确定暂停项目吗？");
+	$("#reason").attr('placeholder','暂停原因');
 	//$("#toolbar-check").modal('show');
-	$(".check-step").text("您确定要暂停项目吗？");
-	setModalEvent(pause);
+	setModalMessageEvent(pause);
 }
 //恢复按钮
 function resumeBtn() {
@@ -276,15 +362,17 @@ function resumeBtn() {
 }
 function pause() {
 	var key = getCurrentProject();
+	var input = $('#reason').val().trim();
 	if(key != null ){
 		loadData(function(msg) {
 			$(".flowbtn").hide();
 			$(".prev-task").hide();
 			getBtnWidth();
-			$("#toolbar-check").modal('hide');
+			$("#toolbar-pause-re").modal('hide');
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
-			id : key
+			id : key,
+			description : input
 		}));
 	}
 }
@@ -438,8 +526,8 @@ function loadflowdata() {
 								if(!isHistory){
 									if(currentIndex>=3){
 
-											$('#managerId').removeClass('hide')
-											$('#cusId').removeClass('hide');
+											$('#managerId').removeClass('hide');
+											//$('#cusId').removeClass('hide');
 											$('#Outline').removeClass('hide');
 											$('#Online').removeClass('hide');
 											if(type=="employee"){
@@ -448,7 +536,7 @@ function loadflowdata() {
 											
 									}
 									else{
-										$('#managerId').addClass('hide')
+										$('#managerId').addClass('hide');
 										$('#cusId').addClass('hide');
 										$('#payListPage').html('');
 										$('#payHistoryList').slideUp();
@@ -1428,6 +1516,7 @@ var ControlPay ={
 			$('#payTime-outline').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd ',
+				timeFormat:'hh:mm:ss',
 				minDate: 0
 		});
 			ControlPay.initBillNo();
@@ -2150,7 +2239,6 @@ function checkHasListForEmFirst(){
 			projectId : key
 		}));
 }
-
 
 function toCheckListClose(token){
 	

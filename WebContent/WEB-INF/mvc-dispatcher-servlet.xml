@@ -33,11 +33,15 @@
 	
 	<mvc:view-controller path="/phone/payment/payListFail" view-name="/phone/payment/payListFail" />
 	
+	
+	
 	<mvc:view-controller path="/error" view-name="/error" />
 	
 	<mvc:view-controller path="/phone/error" view-name="/phone/error" />
 	
 	<mvc:view-controller path="/phone/gate/gate" view-name="/phone/gate/gate" />
+	
+    <mvc:view-controller path="/phone/entry/entry" view-name="/phone/entry/entry"/>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
