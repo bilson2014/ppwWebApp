@@ -680,6 +680,22 @@
     font-size: $font-size-base;
 }
 
+.gray-btn-no {
+    width: 105px;
+    height: 35px;
+    background-color: $gray-light;
+    border-color: $white;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    color: $white;
+    font-size: $font-size-base;
+    cursor:not-allowed;
+}
+
+
+
+
 .gray-btn:hover {
     background-color: $gold-yellow;
 }
@@ -765,7 +781,7 @@
 }
 .check-step-load {
     width: 400px;
-    color: $gray;
+  
     font-size: $font-size-lg;
     position: absolute;
     top: 50px;

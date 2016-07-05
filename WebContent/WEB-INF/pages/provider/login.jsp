@@ -104,6 +104,53 @@
 		
 		   <div class="outSideDiv">
 		         <div class="loginDiv">
+		            <h1>客户登录</h1>
+		            <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
+		                 <div class="otherDiv"></div>
+		                 <div class="errorDiv hidden" id="user_phoneNumberId"">手机号错误</div>
+		            </div>
+		            <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
+		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
+		                 <div class="errorDiv hidden" >验证码错误</div>
+		            </div>  
+		                <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
+		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn btn-default btn-get-validation">点击获取</button></div>
+		                 <div class="errorDiv hidden">验证码错误</div>
+		            </div>
+		            
+		            <div class="redBtn">登录</div> 
+		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
+		            <div class="footer-content-three">
+							<ul>
+								<li >
+									<a href="javascript:void(0);" id="webcat">
+										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
+									</a>
+									<span>微信</span>
+								</li>
+								<li>
+								<div id="qqBt">
+										<a href="javascript:void(0);">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+										</a>
+										<span>QQ</span>
+									</div>
+								</li>
+								<li>
+										<!-- <span>微博</span> -->
+									<div id="weiboBt">
+										<a href="javascript:void(0);" >
+											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
+										</a>
+										<span>微博</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+		            
 		         </div>
 		   
 		   </div>

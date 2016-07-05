@@ -9,148 +9,111 @@ var wb_uniqueId;
 var qq_uniqueId;
 
 $().ready(function(){
-	var action = $('#action').val();
-	
-	// 登陆
-	if(action == 'login'){ // 登陆
-		$('.login-container').removeClass('hide');
-		$('.register-container').addClass('hide');
-		$('.recover-container').addClass('hide');
-		$('.bind-container').addClass('hide');
-		
-		// 解绑 登陆 事件
-		$('#registerBt').unbind('click');
-		$('#recoverBt').unbind('click');
-		$('#loginBt').unbind('click');
-		$('#bindBt').unbind('click');
-		
-		// 绑定 注册 事件
-		$('#loginBt').bind('click',login);
-		$('#admin_password').keydown(function(e){
-			if(e.keyCode == 13){
-				$('#loginBt').click();
-			}
-		});
-	}else if(action == 'register'){ // 注册
-		$('.login-container').addClass('hide');
-		$('.register-container').removeClass('hide');
-		$('.recover-container').addClass('hide');
-		$('.bind-container').addClass('hide');
-		
-		// 解绑 登陆 事件
-		$('#loginBt').unbind('click');
-		$('#recoverBt').unbind('click');
-		$('#registerBt').unbind('click');
-		$('#bindBt').unbind('click');
-		
-		// 绑定 注册 事件
-		$('#registerBt').bind('click',register);
-		
-		// 初始化 验证码
-		$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
-		// 绑定  图片点击 事件
-		$('#kaptcha_pic').unbind('click');
-		$('#kaptcha_pic').bind('click',function(){
-			$('#kaptcha_pic').hide().attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
-		});
-		
-		// 注册 用户名 检验策略
-		$('#user_name').on('change',function(){
-			var userName = $('#user_name').val().trim();
-			if(userName == '' || userName == null || userName == undefined){
-				popshow('user_name','用户名不能为空!');
-				$('#user_name').focus();
-				return ;
-			}
-			
-			if(checkUserName(userName)){
-				
-				loadData(function(flag){
-					if(flag){
-						$('#userGroup').removeClass('has-error');
-						$('#userSpan').addClass('hide');
-					}else{
-						$('#userGroup').addClass('has-error');
-						$('#userSpan').removeClass('hide');
-					}
-				}, getContextPath() + '/provider/checkExisting', $.toJSON({
-					loginName : $('#user_name').val().trim()
-				}));
-			}else{
-				popshow('user_name','请输入6-16位，以字母开头，带有数字和下划线的用户名');
-				$('#user_name').focus();
-			}
-			
-		});
+//	var action = $('#action').val();
+//	
+//	// 登陆
+//	if(action == 'login'){ // 登陆
+//		$('.login-container').removeClass('hide');
+//		$('.register-container').addClass('hide');
+//		$('.recover-container').addClass('hide');
+//		$('.bind-container').addClass('hide');
+//		
+//		// 解绑 登陆 事件
+//		$('#registerBt').unbind('click');
+//		$('#recoverBt').unbind('click');
+//		$('#loginBt').unbind('click');
+//		$('#bindBt').unbind('click');
+//		
+//		// 绑定 注册 事件
+//		$('#loginBt').bind('click',login);
+//		$('#admin_password').keydown(function(e){
+//			if(e.keyCode == 13){
+//				$('#loginBt').click();
+//			}
+//		});
+//	}else if(action == 'register'){ // 注册
+//		$('.login-container').addClass('hide');
+//		$('.register-container').removeClass('hide');
+//		$('.recover-container').addClass('hide');
+//		$('.bind-container').addClass('hide');
+//		
+//		// 解绑 登陆 事件
+//		$('#loginBt').unbind('click');
+//		$('#recoverBt').unbind('click');
+//		$('#registerBt').unbind('click');
+//		$('#bindBt').unbind('click');
+//		
+//		// 绑定 注册 事件
+//		$('#registerBt').bind('click',register);
+//		
+//		// 初始化 验证码
+//		$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
+//		// 绑定  图片点击 事件
+//		$('#kaptcha_pic').unbind('click');
+//		$('#kaptcha_pic').bind('click',function(){
+//			$('#kaptcha_pic').hide().attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
+//		});
+//		
+//		// 注册 用户名 检验策略
+//		$('#user_name').on('change',function(){
+//			var userName = $('#user_name').val().trim();
+//			if(userName == '' || userName == null || userName == undefined){
+//				popshow('user_name','用户名不能为空!');
+//				$('#user_name').focus();
+//				return ;
+//			}
+//			
+//			if(checkUserName(userName)){
+//				
+//				loadData(function(flag){
+//					if(flag){
+//						$('#userGroup').removeClass('has-error');
+//						$('#userSpan').addClass('hide');
+//					}else{
+//						$('#userGroup').addClass('has-error');
+//						$('#userSpan').removeClass('hide');
+//					}
+//				}, getContextPath() + '/provider/checkExisting', $.toJSON({
+//					loginName : $('#user_name').val().trim()
+//				}));
+//			}else{
+//				popshow('user_name','请输入6-16位，以字母开头，带有数字和下划线的用户名');
+//				$('#user_name').focus();
+//			}
+//			
+//		});
 		
 		// 注册 手机号码 检验策略
 		$('#user_phoneNumber').on('change',function(){
 			var telephone = $('#user_phoneNumber').val().trim();
 			if(telephone == '' || telephone == null || telephone == undefined){
-				popshow('user_phoneNumber','请填写手机号码!');
+				$('#user_phoneNumberId').removeClass('hidden');
+				$('#user_phoneNumberId').text('请填写手机号');
 				$('#user_phoneNumber').focus();
 				return ;
 			}
-			
 			if(checkMobile(telephone)){
 				loadData(function(flag){
 					if(flag){
 						$('#phoneGroup').removeClass('has-error');
-						$('#phoneSpan').addClass('hide');
+						$('#phoneSpan').addClass('hidden');
 					}else{
 						$('#phoneGroup').addClass('has-error');
-						$('#phoneSpan').removeClass('hide');
+						$('#phoneSpan').removeClass('hidden');
 					}
 				}, getContextPath() + '/provider/checkExisting', $.toJSON({
 					phoneNumber : telephone
 				}));
 			}else{
-				popshow('user_phoneNumber','请填写手机号码!');
+				$('#user_phoneNumberId').removeClass('hidden');
+				$('#user_phoneNumberId').text('手机号不正确');
 				$('#user_phoneNumber').focus();
 				return ;
 			}
+			$('#user_phoneNumberId').addClass('hidden');
 		});
-		
 		// 绑定验证码发送按钮
 		$('#verification_code_btn').on('click',verification);
-		
-	}else if(action == 'recover'){ // 密码找回
-		$('.recover-container').removeClass('hide');
-		$('.login-container').addClass('hide');
-		$('.register-container').addClass('hide');
-		$('.bind-container').addClass('hide');
-		
-		// 解绑 登陆 事件
-		$('#registerBt').unbind('click');
-		$('#loginBt').unbind('click');
-		$('#recoverBt').unbind('click');
-		$('#bindBt').unbind('click');
-		
-		// 绑定 注册 事件
-		$('#recoverBt').bind('click',recover);
-		
-		// 初始化 验证码
-		$('#kaptcha_pic_recover').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
-		// 绑定  图片点击 事件
-		$('#kaptcha_pic_recover').unbind('click');
-		$('#kaptcha_pic_recover').bind('click',function(){
-			$('#kaptcha_pic_recover').hide().attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
-		});
-	}else if(action == 'bind') { // 账号绑定
-		$('.bind-container').removeClass('hide');
-		$('.recover-container').addClass('hide');
-		$('.login-container').addClass('hide');
-		$('.register-container').addClass('hide');
-		
-		// 解绑 登陆 事件
-		$('#registerBt').unbind('click');
-		$('#loginBt').unbind('click');
-		$('#recoverBt').unbind('click');
-		$('#bindBt').unbind('click');
-		
-		// 绑定 注册 事件
-		$('#bindBt').bind('click',bind);
-		
 		// 初始化 验证码
 		$('#kaptcha_pic_bind').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
 		// 绑定  图片点击 事件
@@ -158,12 +121,20 @@ $().ready(function(){
 		$('#kaptcha_pic_bind').bind('click',function(){
 			$('#kaptcha_pic_bind').hide().attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100)).fadeIn();
 		});
-	}
+		
+		$('#kaptcha_pic').on('click',function(){
+			$('#kaptcha_pic').val('');// 重置图片验证码
+			// 初始化 验证码
+			$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+			$('#kaptcha_pic').focus();
+		});
+		
+	
 	
 	// 绑定验证码发送按钮
-	$('#verification_code_recover_btn').on('click',verificationOnRecover);
+	//$('#verification_code_recover_btn').on('click',verificationOnRecover);
 	
-	loginer.webcat(); // 微信登录
+	//loginer.webcat(); // 微信登录
 });
 
 // 注册
