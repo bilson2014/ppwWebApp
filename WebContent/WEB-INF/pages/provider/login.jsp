@@ -117,7 +117,7 @@
 		            </div>  
 		             <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
-		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn btn-default btn-get-validation">点击获取</button></div>
+		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
 		            </div>  
 		            <div id="submitBtn" class="redBtn">登录</div> 

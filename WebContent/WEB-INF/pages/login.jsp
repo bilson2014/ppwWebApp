@@ -117,20 +117,20 @@
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
 		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv " id="user_phoneNumberId"">*手机号错误</div>
+		                 <div class="errorDiv hide" id="user_phoneNumberId"">*手机号错误</div>
 		            </div>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
 		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
-		                 <div class="errorDiv " >*验证码错误</div>
+		                 <div class="errorDiv hide" id="kapt_error_info" >*验证码错误</div>
 		            </div>  
 		                <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
-		                 <div class="errorDiv ">*验证码错误</div>
+		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
 		            </div>
 		            
-		            <div class="redBtn">登录</div> 
+		            <div class="redBtn" id="submitBtn">登录</div> 
 		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
 		            <div class="footer-content-three">
 							<ul>
