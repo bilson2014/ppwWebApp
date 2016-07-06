@@ -1,0 +1,58 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "compass/typography/text/ellipsis";
+
+
+.outSide{
+width:100%;
+height:100%;
+position: relative;
+
+.topDiv{
+width:100%;
+height:30%;
+position: relative;
+background: red;
+}
+
+.bottomDiv{
+width:100%;
+height:100%;
+position: relative;
+background: none;
+top:-10px;
+background: url(../../../images/phone/entry/login.jpg) no-repeat;
+background-size:100% 100%; 
+
+}
+
+}
+
+
+.bottomDiv .loginContent{
+position: relative;
+margin-left:10%;
+background: #fff;
+width:80%;
+height:100px;
+    
+      input{
+      	width:100px;
+      	height:30px;
+      	display: block;
+      }
+
+      .image{
+      	position: relative;
+      	float:right;
+      	width:50px;
+      	height: 50px;
+      	background: green;
+      }
+
+}
+
+
+

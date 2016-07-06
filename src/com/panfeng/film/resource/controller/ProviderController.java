@@ -190,53 +190,68 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/doLogin")
 	public Info login(@RequestBody final Team original,
 			final HttpServletRequest request) {
-
+		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
+		final String code = (String) request.getSession().getAttribute("code");
 		Info info = new Info();
-		if (original != null && original.getPassword() != null
-				&& !"".equals(original.getPassword())) {
-			try {
-				// AES 解密
-				final String password = AESUtil.Decrypt(original.getPassword(),
-						UNIQUE_KEY);
+		if (!"".equals(code) && code != null) {
+			if ( code.equals(original.getVerification_code())) {
+		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
+				if (original != null && original.getPassword() != null
+						&& !"".equals(original.getPassword())) {
+					try {
+						// AES 解密
+						final String password = AESUtil.Decrypt(original.getPassword(),
+								UNIQUE_KEY);
 
-				// MD5 加密
-				original.setPassword(DataUtil.md5(password));
+						// MD5 加密
+						original.setPassword(DataUtil.md5(password));
 
-				// 转码
-				original.setLoginName(URLEncoder.encode(
-						original.getLoginName(), "UTF-8"));
-				original.setPassword(URLEncoder.encode(original.getPassword(),
-						"UTF-8"));
+						// 转码
+						//modify by wanglc 2016-7-5 16:37:45 登录无需loginName begin
+						//original.setLoginName(URLEncoder.encode(
+						//		original.getLoginName(), "UTF-8"));
+						//modify by wanglc 2016-7-5 16:37:45 登录登录无需loginName end
+						original.setPassword(URLEncoder.encode(original.getPassword(),
+								"UTF-8"));
 
-				// 登录远程服务器进行比对
-				final String url = URL_PREFIX
-						+ "portal/team/static/data/doLogin";
-				String json = HttpUtil.httpPost(url, original,request);
-				if (json != null && !"".equals(json)) {
-					boolean ret = JsonUtil.toBean(json, Boolean.class);
-					// 写入 session
-					if(!ret){
-						info.setValue("用户名或密码错误!");
+						// 登录远程服务器进行比对
+						final String url = URL_PREFIX
+								+ "portal/team/static/data/doLogin";
+						String json = HttpUtil.httpPost(url, original,request);
+						if (json != null && !"".equals(json)) {
+							boolean ret = JsonUtil.toBean(json, Boolean.class);
+							// 写入 session
+							if(!ret){
+								info.setValue("登录错误!");
+							}
+							info.setKey(ret);
+							return info;
+						} else {
+							info.setKey(false);
+							info.setValue("登录错误!");
+							return info;
+						}
+					} catch (Exception e) {
+						logger.error("ProviderController method:login() Provider Password Decrypt Error On Provider Login ...");
+						e.printStackTrace();
 					}
-					info.setKey(ret);
-					return info;
+
 				} else {
+					serLogger.info("Provider Is Null On Provider Login ...");
 					info.setKey(false);
-					info.setValue("用户名或密码错误!");
+					info.setValue("密码不能为空!");
 					return info;
 				}
-			} catch (Exception e) {
-				logger.error("ProviderController method:login() Provider Password Decrypt Error On Provider Login ...");
-				e.printStackTrace();
+			}else {
+				// 验证码过期
+				info.setKey(false);
+				info.setValue("验证码输入错误!");
 			}
-
 		} else {
-			serLogger.info("Provider Is Null On Provider Login ...");
+			// session 过期
 			info.setKey(false);
-			info.setValue("密码不能为空!");
-			return info;
+			info.setValue("请重新获取验证码!");
 		}
-		info.setKey(false);
 		return info;
 	}
 
@@ -290,7 +305,6 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/info/register")
 	public Info register(@RequestBody final Team original,
 			final HttpServletRequest request) {
-
 		final String code = (String) request.getSession().getAttribute("code");
 		Info info = new Info(); // 信息载体
 		// 判断验证码
@@ -303,15 +317,14 @@ public class ProviderController extends BaseController {
 						final String password = AESUtil.Decrypt(
 								original.getPassword(), UNIQUE_KEY);
 
-						// MD5 加密
+						 //MD5 加密
 						original.setPassword(DataUtil.md5(password));
 
 						// 转码
 						original.setPassword(URLEncoder.encode(
 								original.getPassword(), "UTF-8"));
-						original.setLoginName(URLEncoder.encode(
-								original.getLoginName(), "UTF-8"));
-
+						//original.setLoginName(URLEncoder.encode(
+						//		original.getLoginName(), "UTF-8"));
 						// 连接远程服务器，传输数据
 						final String url = URL_PREFIX
 								+ "portal/team/static/register";
