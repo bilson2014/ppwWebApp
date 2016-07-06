@@ -46,7 +46,7 @@ import com.panfeng.film.util.JsonUtil;
  */
 @RestController
 @RequestMapping("/login")
-public class LoginController extends BaseController {
+public class LoginController2_abk extends BaseController {
 
 	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
 
@@ -65,7 +65,7 @@ public class LoginController extends BaseController {
 	@Autowired
 	private SessionInfoService service = null;
 
-	public LoginController() {
+	public LoginController2_abk() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader()
 					.getResourceAsStream("jdbc.properties");

@@ -9,98 +9,6 @@ var isShowKaptcha = false;
 
 $().ready(function(){
 	
-//	login.sina(); // 新浪-第三方登录
-//	
-//	login.webcat(); // 微信-第三方登录
-//	
-	login.qq(); // QQ-第三方登录
-//	// 根据手机号 判断登录还是注册
-//	isLogin = $('#loginAllRigster').val();
-//	
-//	if(isLogin == 'login'){
-//		// 登录操作
-//		$('#userName').bind('input propertychange',validationLogin);
-//	}else{
-//		// 忘记密码操作
-//		
-//		$('.header-logo').find('p').text('密码找回');
-//		
-//		$('.footer').addClass('hide');
-//		
-//		$('#loginBt').text('重置密码');
-//		
-//		$('#forget-group').addClass('hide');
-//		
-//		$('#userName').bind('input propertychange',validationRecover);
-//	}
-//	
-//});
-
-	var login = { 
-			sina : function(){ // 新浪登陆
-				$('#weiboBt').on('click',function(){
-					WB2.login(function() {
-							// 获取 用户信息
-						getWBUserData(function(o){
-							// 保存至session中，并跳转
-							var condition = $.toJSON({
-								userName : o.screen_name,
-								imgUrl : o.profile_image_url,
-								uniqueId : wb_uniqueId,
-								lType : 'weibo',
-								wbUnique : wb_uniqueId
-							});
-							
-							OAuthor(condition);
-						});
-					});
-				});
-			},
-			webcat : function(){ // 微信登陆
-				// open model
-				$('#webcat').on('click',function(){
-					
-					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
-					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
-				})
-			},
-			qq : function(){
-				$('#qqBt').on('click',function(){
-					alert(1);
-					QC.Login.showPopup();
-					
-					var paras = {};
-					
-					//用JS SDK调用OpenAPI
-					QC.api("get_user_info", paras)
-					//指定接口访问成功的接收函数，s为成功返回Response对象
-					.success(function(s){
-						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
-						QC.Login.getMe(function(openId, accessToken){
-							
-							// 存入session
-							var condition = $.toJSON({
-								userName : s.data.nickname,
-								imgUrl : s.data.figureurl,
-								uniqueId : openId,
-								lType : 'qq',
-								qqUnique : openId
-							});
-							
-							OAuthor(condition);
-						});
-					})
-					.error(function(e){
-						// 回掉失败
-						alert('获取用户信息失败');
-					})
-					.complete(function(c){
-						// 完成请求回掉
-					})
-				});
-				
-			}
-	}
 	
 	var user_login = {
 			init:function(){
@@ -112,6 +20,8 @@ $().ready(function(){
 				this.verificationCode();
 				//注册或者登录
 				this.regesterOrLogin();
+				//qq登陆
+				this.qq();
 			},
 			
 			phoneNumberChange:function(){
@@ -254,6 +164,41 @@ $().ready(function(){
 					verification_code : $('#verification_code').val().trim(),
 					flag : 3
 				}));
+			},
+			qq :function(){
+				$('#qqBt').on('click',function(){
+					
+						QC.Login.showPopup();
+						
+						var paras = {};
+						
+						//用JS SDK调用OpenAPI
+						QC.api("get_user_info", paras)
+						//指定接口访问成功的接收函数，s为成功返回Response对象
+						.success(function(s){
+							// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+							QC.Login.getMe(function(openId, accessToken){
+								
+								// 存入session
+								var condition = $.toJSON({
+									userName : s.data.nickname,
+									imgUrl : s.data.figureurl,
+									uniqueId : openId,
+									lType : 'qq',
+									qqUnique : openId
+								});
+								
+								OAuthor(condition);
+							});
+						})
+						.error(function(e){
+							// 回掉失败
+							alert('获取用户信息失败');
+						})
+						.complete(function(c){
+							// 完成请求回掉
+						})
+					});
 			}
 	} 
 	user_login.init();
@@ -277,6 +222,107 @@ $().ready(function(){
 	}
 	
 });
+function OAuthor(condition){
+	var url = getContextPath() + '/login/OAuthor';
+	
+	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
+	
+	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+}
+	
+//	login.sina(); // 新浪-第三方登录
+//	
+//	login.webcat(); // 微信-第三方登录
+//	
+//	login.qq(); // QQ-第三方登录
+//	// 根据手机号 判断登录还是注册
+//	isLogin = $('#loginAllRigster').val();
+//	
+//	if(isLogin == 'login'){
+//		// 登录操作
+//		$('#userName').bind('input propertychange',validationLogin);
+//	}else{
+//		// 忘记密码操作
+//		
+//		$('.header-logo').find('p').text('密码找回');
+//		
+//		$('.footer').addClass('hide');
+//		
+//		$('#loginBt').text('重置密码');
+//		
+//		$('#forget-group').addClass('hide');
+//		
+//		$('#userName').bind('input propertychange',validationRecover);
+//	}
+//	
+//});
+
+//	var login = { 
+//			sina : function(){ // 新浪登陆
+//				$('#weiboBt').on('click',function(){
+//					WB2.login(function() {
+//							// 获取 用户信息
+//						getWBUserData(function(o){
+//							// 保存至session中，并跳转
+//							var condition = $.toJSON({
+//								userName : o.screen_name,
+//								imgUrl : o.profile_image_url,
+//								uniqueId : wb_uniqueId,
+//								lType : 'weibo',
+//								wbUnique : wb_uniqueId
+//							});
+//							
+//							OAuthor(condition);
+//						});
+//					});
+//				});
+//			},
+//			webcat : function(){ // 微信登陆
+//				// open model
+//				$('#webcat').on('click',function(){
+//					
+//					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+//					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+//				})
+//			},
+//			qq : function(){
+//				alert(1);
+//				$('#qqBt').on('click',function(){
+//				
+//					QC.Login.showPopup();
+//					
+//					var paras = {};
+//					
+//					//用JS SDK调用OpenAPI
+//					QC.api("get_user_info", paras)
+//					//指定接口访问成功的接收函数，s为成功返回Response对象
+//					.success(function(s){
+//						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+//						QC.Login.getMe(function(openId, accessToken){
+//							
+//							// 存入session
+//							var condition = $.toJSON({
+//								userName : s.data.nickname,
+//								imgUrl : s.data.figureurl,
+//								uniqueId : openId,
+//								lType : 'qq',
+//								qqUnique : openId
+//							});
+//							
+//							OAuthor(condition);
+//						});
+//					})
+//					.error(function(e){
+//						// 回掉失败
+//						alert('获取用户信息失败');
+//					})
+//					.complete(function(c){
+//						// 完成请求回掉
+//					})
+//				});
+//				
+//			}
+//	}
 
 ///**
 // * 验证11位有效数字
@@ -691,10 +737,3 @@ $().ready(function(){
 // * @param code 用户唯一标识
 // * @param type 登录类型
 // */
-//function OAuthor(condition){
-//	var url = getContextPath() + '/login/OAuthor';
-//	
-//	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
-//	
-//	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
-//}
