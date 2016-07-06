@@ -9,11 +9,7 @@ var isShowKaptcha = false;
 
 $().ready(function(){
 	
-//	login.sina(); // 新浪-第三方登录
-//	
-//	login.webcat(); // 微信-第三方登录
-//	
-	login.qq(); // QQ-第三方登录
+
 //	// 根据手机号 判断登录还是注册
 //	isLogin = $('#loginAllRigster').val();
 //	
@@ -101,6 +97,13 @@ $().ready(function(){
 				
 			}
 	}
+	
+	
+	login.sina(); // 新浪-第三方登录
+	
+	login.webcat(); // 微信-第三方登录
+	
+	login.qq(); // QQ-第三方登录
 	
 	var user_login = {
 			init:function(){
