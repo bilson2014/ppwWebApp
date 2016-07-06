@@ -419,10 +419,10 @@ public class LoginController extends BaseController {
 
 			final String json = request.getParameter("json");
 			final User user = new User().fromString(json, User.class);
+			model.put("userName", user.getUserName());
 			final String userName = URLEncoder.encode(user.getUserName(),
 					"UTF-8");
 			user.setUserName(userName);
-
 			// 查询该用户是否存在
 			final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
 			String str = HttpUtil.httpPost(url, user,request);
@@ -431,7 +431,6 @@ public class LoginController extends BaseController {
 				
 			} else {
 				// 第三方登录账号绑定多于一个
-				
 				return new ModelAndView("redirect:/login");
 			}
 
@@ -440,7 +439,8 @@ public class LoginController extends BaseController {
 			e.printStackTrace();
 		}
 
-		return new ModelAndView("redirect:/");
+		//return new ModelAndView("redirect:/");
+		return new ModelAndView("threeLogin",model);
 	}
 
 	/**

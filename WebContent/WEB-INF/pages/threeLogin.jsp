@@ -112,7 +112,7 @@
 	
 	 <div class="outSideDiv">
 		         <div class="loginDiv">
-		            <h1><span>Hi,</span>&nbsp你是小王吧？</h1>
+		            <h1><span>Hi,</span>&nbsp${userName}</h1>
 		            <h2>请绑定拍片网账号</h2>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
