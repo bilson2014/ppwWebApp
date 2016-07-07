@@ -13,30 +13,38 @@ $().ready(function(){
 				this.changeKaptcha();
 				//获取手机验证码
 				this.verificationCode();
-				//注册或者登录
-				this.regesterOrLogin();
+				//绑定
+				this.bind();
 			},
 			
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
-					
+					$('#user_phoneNumberId').addClass('hide');
 					var telephone = $('#user_phoneNumber').val().trim();
 					if(telephone == '' || telephone == null || telephone == undefined){
 						$('#user_phoneNumberId').removeClass('hide');
 						$('#user_phoneNumberId').text('请填写手机号');
 						$('#user_phoneNumber').focus();
-						return ;
+						return false;
 					}
 					if(checkMobile(telephone)){
-						loadData(function(flag){
-							if(flag){
-								$('#submitBtn').text("登录");
-								$('#submitBtn').attr('data-id','login'); // 标记login
+						loadData(function(data){
+							$("#qq").val(data.qq);
+							$("#wechat").val(data.wechat);
+							$("#wb").val(data.wb);
+							if(data.register==0){
+								$('#bindBtn').attr('data-status','noregister'); // 标记手机号未注册过
 							}else{
-								$('#submitBtn').text("注册并登录");
-								$("#submitBtn").attr('data-id','register'); // 标记register
+								$('#bindBtn').attr('data-status','register'); // 标记手机号注册过
+								var type = $("#type").val(); //qq wechat wb 第三方来源
+								var thirdStatus = $("#"+type).val();//当前输入手机号绑定状态  0未绑定第三方 1已绑定
+								if(thirdStatus==1){//改手机号绑定过第三方
+									$('#user_phoneNumberId').removeClass('hide');
+									$('#user_phoneNumberId').text('手机号被占用');
+									return false;
+								}
 							}
-						}, getContextPath() + '/login/validation/phone', $.toJSON({
+						}, getContextPath() + '/login/threeLogin/phone', $.toJSON({
 							telephone : telephone
 						}));
 					}else{
@@ -104,12 +112,16 @@ $().ready(function(){
 					}
 				});
 			},
-			regesterOrLogin:function(){
+			bind:function(){
 				var _this = this;
-				$("#submitBtn").off("click").on("click",function(){
-					var action = $("#submitBtn").attr("data-id");//login or register
+				$("#bindBtn").off("click").on("click",function(){
+					var user_phoneNumber = $("#user_phoneNumber").val();
 					var veri_code = $('#verification_code').val();
 					var kap_code = $('#kaptcha_code').val();
+					if(user_phoneNumber == null || user_phoneNumber == '' || user_phoneNumber == undefined){
+						$("#user_phoneNumberId").text("请输入手机号").removeClass("hide");
+						return false;
+					}
 					if(kap_code == null || kap_code == '' || kap_code == undefined){
 						$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
 						return false;
@@ -118,45 +130,40 @@ $().ready(function(){
 						$("#code_error_info").text("请输入验证码").removeClass("hide");
 						return false;
 					}
-					if(action=='login'){
-						_this.login();
-					}
-					if(action=='register'){
-						_this.register();
-					}
+					
+					//通过验证后,提交到后台
+					_this.bindPerson();
 					
 				})
 			},
-			login:function(){
+			bindPerson:function(){
+				var code = $("#code").val();//0||1 第三方账户状态,不存在或者存在却无手机号
+				var type = $("#type").val(); //qq wechat wb 第三方来源
+				var phoneStatus = $("#bindBtn").attr("data-status");//手机号 register or noregister
+				var thirdStatus = $("#"+type).val();//当前输入手机号绑定状态  0未绑定第三方 1已绑定
+				var userId = $("#userId").val();
+				var userName = $("#userName").val();
+				var imgUrl = $("#imgUrl").val();
+				var unique = $("#unique").val();
 				loadData(function(info){
 					if(info.key){
-						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+ '/mgr/index';
 					}else{
-						$("#code_error_info").text(info.value).removeClass("hide");
-						return false;
+						$('#user_phoneNumberId').removeClass('hide');
+						$('#user_phoneNumberId').text(info.value);
 					}
-				}, getContextPath() + '/login/doLogin', $.toJSON({
+				}, getContextPath() + '/login/third/bind', $.toJSON({
+					code:code,
+					type:type,
+					phoneStatus:phoneStatus,
+					thirdStatus:thirdStatus,
+					userId:userId,
+					userName:userName,
+					imgUrl:imgUrl,
 					telephone : $('#user_phoneNumber').val().trim(),
-					password : Encrypt("123456"),
 					verification_code : $('#verification_code').val().trim(),
+					unique:unique
 				}))
-			},
-			register:function(){
-				loadData(function(info){
-					if(info.key){
-						$(".errorDiv").addClass("hide");
-						window.location.href=getContextPath()+'/mgr/index';
-					}else{
-						$("#code_error_info").text(info.value).removeClass("hide");
-						return false;
-					}
-				},  getContextPath() + '/login/register', $.toJSON({
-					telephone : $('#user_phoneNumber').val().trim(),
-					password : Encrypt("123456"),
-					verification_code : $('#verification_code').val().trim(),
-					flag : 3
-				}));
 			}
 	} 
 	user_login.init();

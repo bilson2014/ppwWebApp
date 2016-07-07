@@ -192,55 +192,62 @@ public class ProviderController extends BaseController {
 			final HttpServletRequest request) {
 		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
 		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		Info info = new Info();
 		if (!"".equals(code) && code != null) {
 			if ( code.equals(original.getVerification_code())) {
-		//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
-				if (original != null && original.getPassword() != null
-						&& !"".equals(original.getPassword())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(original.getPassword(),
-								UNIQUE_KEY);
+				if(null!=codeOfphone&&codeOfphone.equals(original.getPhoneNumber())){
+					//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
+					if (original != null && original.getPassword() != null
+							&& !"".equals(original.getPassword())) {
+						try {
+							// AES 解密
+							final String password = AESUtil.Decrypt(original.getPassword(),
+									UNIQUE_KEY);
 
-						// MD5 加密
-						original.setPassword(DataUtil.md5(password));
+							// MD5 加密
+							original.setPassword(DataUtil.md5(password));
 
-						// 转码
-						//modify by wanglc 2016-7-5 16:37:45 登录无需loginName begin
-						//original.setLoginName(URLEncoder.encode(
-						//		original.getLoginName(), "UTF-8"));
-						//modify by wanglc 2016-7-5 16:37:45 登录登录无需loginName end
-						original.setPassword(URLEncoder.encode(original.getPassword(),
-								"UTF-8"));
+							// 转码
+							//modify by wanglc 2016-7-5 16:37:45 登录无需loginName begin
+							//original.setLoginName(URLEncoder.encode(
+							//		original.getLoginName(), "UTF-8"));
+							//modify by wanglc 2016-7-5 16:37:45 登录登录无需loginName end
+							original.setPassword(URLEncoder.encode(original.getPassword(),
+									"UTF-8"));
 
-						// 登录远程服务器进行比对
-						final String url = URL_PREFIX
-								+ "portal/team/static/data/doLogin";
-						String json = HttpUtil.httpPost(url, original,request);
-						if (json != null && !"".equals(json)) {
-							boolean ret = JsonUtil.toBean(json, Boolean.class);
-							// 写入 session
-							if(!ret){
+							// 登录远程服务器进行比对
+							final String url = URL_PREFIX
+									+ "portal/team/static/data/doLogin";
+							String json = HttpUtil.httpPost(url, original,request);
+							if (json != null && !"".equals(json)) {
+								boolean ret = JsonUtil.toBean(json, Boolean.class);
+								// 写入 session
+								if(!ret){
+									info.setValue("登录错误!");
+								}
+								info.setKey(ret);
+								return info;
+							} else {
+								info.setKey(false);
 								info.setValue("登录错误!");
+								return info;
 							}
-							info.setKey(ret);
-							return info;
-						} else {
-							info.setKey(false);
-							info.setValue("登录错误!");
-							return info;
+						} catch (Exception e) {
+							logger.error("ProviderController method:login() Provider Password Decrypt Error On Provider Login ...");
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						logger.error("ProviderController method:login() Provider Password Decrypt Error On Provider Login ...");
-						e.printStackTrace();
-					}
 
-				} else {
-					serLogger.info("Provider Is Null On Provider Login ...");
+					} else {
+						serLogger.info("Provider Is Null On Provider Login ...");
+						info.setKey(false);
+						info.setValue("密码不能为空!");
+						return info;
+					}
+				}else{
+					// 手机号错误
 					info.setKey(false);
-					info.setValue("密码不能为空!");
-					return info;
+					info.setValue("手机号不正确!");
 				}
 			}else {
 				// 验证码过期
@@ -306,41 +313,48 @@ public class ProviderController extends BaseController {
 	public Info register(@RequestBody final Team original,
 			final HttpServletRequest request) {
 		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
 			if (code.equals(original.getVerification_code())) {
-				if (original != null && original.getPassword() != null
-						&& !"".equals(original.getPassword())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(
-								original.getPassword(), UNIQUE_KEY);
+				if(null!=codeOfphone&&codeOfphone.equals(original.getPhoneNumber())){
+					if (original != null && original.getPassword() != null
+							&& !"".equals(original.getPassword())) {
+						try {
+							// AES 解密
+							final String password = AESUtil.Decrypt(
+									original.getPassword(), UNIQUE_KEY);
 
-						 //MD5 加密
-						original.setPassword(DataUtil.md5(password));
+							 //MD5 加密
+							original.setPassword(DataUtil.md5(password));
 
-						// 转码
-						original.setPassword(URLEncoder.encode(
-								original.getPassword(), "UTF-8"));
-						//original.setLoginName(URLEncoder.encode(
-						//		original.getLoginName(), "UTF-8"));
-						// 连接远程服务器，传输数据
-						final String url = URL_PREFIX
-								+ "portal/team/static/register";
-						final String json = HttpUtil.httpPost(url, original,request);
-						//Team provider = null;
-						if (ValidateUtil.isValid(json)) {
-							boolean ret = JsonUtil.toBean(json, Boolean.class);
-							// 写入 session
-							//request.getSession().setAttribute(PROVIDER_SESSION,provider);
-							info.setKey(ret);
-							return info;
+							// 转码
+							original.setPassword(URLEncoder.encode(
+									original.getPassword(), "UTF-8"));
+							//original.setLoginName(URLEncoder.encode(
+							//		original.getLoginName(), "UTF-8"));
+							// 连接远程服务器，传输数据
+							final String url = URL_PREFIX
+									+ "portal/team/static/register";
+							final String json = HttpUtil.httpPost(url, original,request);
+							//Team provider = null;
+							if (ValidateUtil.isValid(json)) {
+								boolean ret = JsonUtil.toBean(json, Boolean.class);
+								// 写入 session
+								//request.getSession().setAttribute(PROVIDER_SESSION,provider);
+								info.setKey(ret);
+								return info;
+							}
+						} catch (Exception e) {
+							logger.error("ProviderController method:register() Provider Password Decrypt Error On Provider Register ...");
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						logger.error("ProviderController method:register() Provider Password Decrypt Error On Provider Register ...");
-						e.printStackTrace();
 					}
+				}else{
+					// 手机号错误
+					info.setKey(false);
+					info.setValue("手机号不正确!");
 				}
 			} else {
 				// 验证码过期

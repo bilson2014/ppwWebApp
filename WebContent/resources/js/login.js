@@ -22,6 +22,10 @@ $().ready(function(){
 				this.regesterOrLogin();
 				//qq登陆
 				this.qq();
+				//微信登陆
+				this.wechat();
+				//微博登陆
+				this.wb();
 			},
 			
 			phoneNumberChange:function(){
@@ -199,6 +203,32 @@ $().ready(function(){
 							// 完成请求回掉
 						})
 					});
+			},
+			wechat:function(){
+//			/	 open model
+				$('#webcat').on('click',function(){
+					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+				})
+			},
+			wb:function(){
+				$('#weiboBt').on('click',function(){
+					WB2.login(function() {
+							// 获取 用户信息
+						getWBUserData(function(o){
+							// 保存至session中，并跳转
+							var condition = $.toJSON({
+								userName : o.screen_name,
+								imgUrl : o.profile_image_url,
+								uniqueId : wb_uniqueId,
+								lType : 'weibo',
+								wbUnique : wb_uniqueId
+							});
+							
+							OAuthor(condition);
+						});
+					});
+				});
 			}
 	} 
 	user_login.init();
@@ -228,6 +258,35 @@ function OAuthor(condition){
 	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
 	
 	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+}
+
+////获取微博用户信息
+function getWBUserData(callback){
+	WB2.anyWhere(function(W){
+		W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+			if(bStatus){
+				getWBUserInfo(W, oResult);
+				wb_uniqueId = oResult.uid;
+			}else{
+				alert('授权失败或错误!');
+			}
+		},{},{
+			method : 'GET'
+		});
+	});
+	
+	function getWBUserInfo(W,result){
+		W.parseCMD('/users/show.json', function(sResult, bStatus) {
+			if(bStatus) {
+				callback.call(this,sResult);
+			}
+			
+		}, {
+			'uid' : result.uid
+		}, {
+			method : 'GET'
+		});
+	}
 }
 	
 //	login.sina(); // 新浪-第三方登录
