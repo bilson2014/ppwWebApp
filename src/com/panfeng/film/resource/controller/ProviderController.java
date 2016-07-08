@@ -314,10 +314,12 @@ public class ProviderController extends BaseController {
 			final HttpServletRequest request) {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		//是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (code.equals(original.getVerification_code())) {
+			if (isTest || code.equals(original.getVerification_code())) {
 				if(null!=codeOfphone&&codeOfphone.equals(original.getPhoneNumber())){
 					if (original != null && original.getPassword() != null
 							&& !"".equals(original.getPassword())) {

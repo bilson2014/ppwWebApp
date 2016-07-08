@@ -176,9 +176,11 @@ public class LoginController extends BaseController {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		Info info = new Info(); // 信息载体
+		//是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (code.equals(user.getVerification_code())) {
+			if (isTest || code.equals(user.getVerification_code())) {
 				if(null!=codeOfphone&&codeOfphone.equals(user.getTelephone())){
 					if (user.getPassword() != null
 							&& !"".equals(user.getPassword())) {
@@ -315,11 +317,13 @@ public class LoginController extends BaseController {
 			@PathVariable("kaptcha_code") final String kaptcha_code) {
 
 		final Info info = new Info();
+		//是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
 		if (kaptcha_code != null && !"".equals(kaptcha_code)) {
 			final String kaptchaCode = (String) request.getSession()
 					.getAttribute(Constants.KAPTCHA_SESSION_KEY);
 			if (kaptchaCode != null && !"".equals(kaptcha_code)) {
-				if (kaptchaCode.equalsIgnoreCase(kaptcha_code)) {
+				if (isTest || kaptchaCode.equalsIgnoreCase(kaptcha_code)) {
 					info.setKey(true);
 					serLogger.info("kaptcha code equal input code ...");
 				} else {

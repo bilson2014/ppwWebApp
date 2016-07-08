@@ -14,7 +14,9 @@ public final class Constants {
 	public static String PRODUCT_DESCRIPTION_IMAGE_PATH;
 	public static String PRODUCT_DESCRIPTION_IMAGE_URL;
 	public static String TEMP_DIR;
+	public static String AUTO_TEST;
 	public static Constants CONSTANTS = new Constants();
+	
 	
 
 	// state Constants
@@ -58,6 +60,7 @@ public final class Constants {
 		PRODUCT_DESCRIPTION_IMAGE_URL = properties
 				.getProperty("upload.server.product.description.image.url");
 		TEMP_DIR=properties.getProperty("upload.server.temp");
+		AUTO_TEST=properties.getProperty("auto.test");
 	}
 
 }
