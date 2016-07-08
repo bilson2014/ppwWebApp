@@ -14,10 +14,13 @@ var login = {
 				if(result.ret){
 					// 跳转
 					$('#login-form').attr('action',getContextPath() + '/mgr/index').submit().remove();
+					$('#pwdId').addClass('hide');
 				}else {
-					$('.tooltip-message-recover').text(result.message);
-					$('.tooltip-show-recover').slideDown('normal');
-					window.setInterval(hideTooltipRecover, 4000);
+//					$('.tooltip-message-recover').text(result.message);
+//					$('.tooltip-show-recover').slideDown('normal');
+//					window.setInterval(hideTooltipRecover, 4000);
+					$('#pwdId').text(result.message);
+					$('#pwdId').removeClass('hide');
 				}
 			}, getContextPath() + '/mgr/doLogin', $.toJSON({
 				employeeLoginName : $('#loginName').val().trim(),

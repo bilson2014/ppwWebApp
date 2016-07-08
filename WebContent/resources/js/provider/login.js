@@ -35,7 +35,7 @@ $().ready(function(){
 					if(checkMobile(telephone)){
 						loadData(function(flag){
 							if(flag){
-								$('#submitBtn').text("注册并登录");
+								$('#submitBtn').text("注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
 							}else{
 								$('#submitBtn').text("登录");
@@ -68,6 +68,14 @@ $().ready(function(){
 				$('#verification_code_recover_btn').off('click').on('click',function(){
 					curCount = count;
 					var kaptchaCode = $('#kaptcha_code').val().trim();
+					var telephone = $('#user_phoneNumber').val().trim();
+					if(telephone == '' || telephone == null || telephone == undefined){
+						$('#user_phoneNumberId').removeClass('hide');
+						$('#user_phoneNumberId').text('请填写手机号');
+						$('#user_phoneNumber').focus();
+						return ;
+					}
+					else{
 					if(kaptchaCode != null && kaptchaCode != '' && kaptchaCode != undefined){
 						// 判断 图片验证码 是否正确
 						getData(function(info){
@@ -107,22 +115,54 @@ $().ready(function(){
 						$('#kaptcha_code').focus();
 						$("#kapt_error_info").text("请填写图片验证码!").removeClass("hide");
 					}
+					}
 				});
 			},
 			regesterOrLogin:function(){
 				var _this = this;
 				$("#submitBtn").off("click").on("click",function(){
 					var action = $("#submitBtn").attr("data-id");//login or register
+					
+			
+//20160706 lt 修改 begin					
+//					var veri_code = $('#verification_code').val();
+//					var kap_code = $('#kaptcha_code').val();
+//					if(kap_code == null || kap_code == '' || kap_code == undefined){
+//						$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
+//						return false;
+//					}
+//					if(veri_code == null || veri_code == '' || veri_code == undefined){
+//						$("#code_error_info").text("请输入验证码").removeClass("hide");
+//						return false;
+//					}
+//end					
+					
+					var phone_code = $('#user_phoneNumber').val();				
 					var veri_code = $('#verification_code').val();
 					var kap_code = $('#kaptcha_code').val();
+					$("#user_phoneNumberId").addClass("hide");
+					$("#code_error_info").addClass("hide");
+					$("#kapt_error_info").addClass("hide");
+					
+					if(phone_code == null || phone_code == '' || phone_code == undefined){
+						$("#user_phoneNumberId").text("请输入手机号").removeClass("hide");
+						$('#user_phoneNumber').focus();
+						return false;
+					}
 					if(kap_code == null || kap_code == '' || kap_code == undefined){
 						$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
+						$('#kaptcha_code').focus();
 						return false;
 					}
 					if(veri_code == null || veri_code == '' || veri_code == undefined){
 						$("#code_error_info").text("请输入验证码").removeClass("hide");
+						$('#verification_code').focus();
 						return false;
 					}
+					//20160706 lt 添加验证begin		
+					provider_login.init();
+					//end
+					
 					if(action=='login'){
 						_this.login();
 					}

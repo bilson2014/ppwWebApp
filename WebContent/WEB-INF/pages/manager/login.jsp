@@ -81,8 +81,65 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+		
+		
+		 <div class="outSideDiv">
+		         <div class="loginDiv">
+		            <h1>视频管家登录</h1>
+		              <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
+		            <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="管家名" id="loginName"></input>
+		                 <div class="otherDiv"></div>
+		                 <div class="errorDiv hide" id="loginNameId">*管家名错误</div>
+		            </div>
+		                <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
+		                 <div class="errorDiv hide" id="pwdId">*用户名或密码错误</div>
+		            </div>
+		                </form>
+		            
+		            <div class="redBtn" id="loginbtn">登录</div> 
+		              <a href="/mgr/recover"><h2 id="forget">忘记密码？</h2></a>
+		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
+		            <div class="footer-content-three">
+							<ul>
+								<li >
+									<a href="javascript:void(0);" id="webcat">
+										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
+									</a>
+									<span></span>
+								</li>
+								<li>
+								<div id="qqBt">
+										<a href="javascript:void(0);">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+										</a>
+										<span></span>
+									</div>
+								</li>
+								<li>
+										<!-- <span>微博</span> -->
+									<div id="weiboBt">
+										<a href="javascript:void(0);" >
+											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
+										</a>
+										<span></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+		            
+		         </div>
+		   
+		   </div>
+		
+		
 	
-	<div class="page page-width">
+	<%-- <div class="page page-width">
 		<div class="login-div" >
        
           <h1>视频管家登录</h1>
@@ -133,7 +190,7 @@
 		</footer>
 		</div>
 
-    </div>
+    </div> --%>
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>

@@ -117,7 +117,7 @@
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
 		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="user_phoneNumberId"">*手机号错误</div>
+		                 <div class="errorDiv hide" id="user_phoneNumberId">*手机号错误</div>
 		            </div>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
