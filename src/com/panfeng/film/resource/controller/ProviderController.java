@@ -321,10 +321,12 @@ public class ProviderController extends BaseController {
 					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
 						try {
 							// AES 解密
-							final String password = AESUtil.Decrypt(original.getPassword(), UNIQUE_KEY);
+							// final String password =
+							// AESUtil.Decrypt(original.getPassword(),
+							// UNIQUE_KEY);
 
 							// MD5 加密
-							original.setPassword(DataUtil.md5(password));
+							// original.setPassword(DataUtil.md5(password));
 
 							// 转码
 							original.setPassword(URLEncoder.encode(original.getPassword(), "UTF-8"));
