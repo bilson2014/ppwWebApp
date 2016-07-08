@@ -79,6 +79,14 @@ public class Team extends BaseObject {
 	private String uniqueId = null; // 三方登录唯一ID
 	
 	private String thirdLoginType = null; // 第三方登录类型
+	
+	public final static String LTYPE_WEIBO = "weibo";
+
+	public final static String LTYPE_QQ = "qq";
+
+	public final static String LTYPE_WECHAT = "wechat";
+	
+	
 
 	public long getTeamId() {
 		return teamId;

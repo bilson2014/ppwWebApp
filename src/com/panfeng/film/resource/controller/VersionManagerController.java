@@ -134,10 +134,12 @@ public class VersionManagerController extends BaseController {
 		final HttpSession session = request.getSession();
 		// 密码重置
 		final String code = (String) session.getAttribute("code");
+		//是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (code.equals(e.getVerification_code())) {
+			if (isTest || code.equals(e.getVerification_code())) {
 				if (e.getEmployeePassword() != null && !"".equals(e.getEmployeePassword())) {
 					// AES 密码解密
 					final String password = AESUtil.Decrypt(e.getEmployeePassword(), GlobalConstant.UNIQUE_KEY);

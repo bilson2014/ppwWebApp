@@ -82,6 +82,8 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
 			<mvc:exclude-mapping path="/provider/login" />
+			<mvc:exclude-mapping path="/provider/otherLogin" />
+			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />
 			<mvc:exclude-mapping path="/provider/recover" />
 			<mvc:exclude-mapping path="/provider/header" />

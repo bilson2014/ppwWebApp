@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
@@ -14,7 +15,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/threeLogin.js" var="loginJs"/>
+<spring:url value="/resources/js/provider/threeLogin.js" var="loginJs"/>
 
 <spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
 <spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
@@ -112,18 +113,7 @@
 	
 	 <div class="outSideDiv">
 		         <div class="loginDiv">
-		            <h1><span>Hi,</span>&nbsp${userName}</h1>
-		            <!-- 第三方用户状态 不存在or存在却无手机号 -->
-		            <input type="hidden" id="code" value="${code}"></input>
-		            <input type="hidden" id="userId" value="${userId}"></input>
-		             <input type="hidden" id="unique" value="${unique}"></input>
-		            <input type="hidden" id="userName" value="${userName}"></input>
-		            <input type="hidden" id="imgUrl" value="${imgUrl}"></input>
-		            <!-- qq or wechat or wb -->
-		            <input type="hidden" id="type" value="${type}"></input>
-		            <input type="hidden" id="qq"></input>
-		            <input type="hidden" id="wechat"></input>
-		            <input type="hidden" id="wb"></input>
+		            <h1><span>Hi,</span>${linkMan}</h1>
 		            <h2>请绑定拍片网账号</h2>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
@@ -141,13 +131,9 @@
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
 		            </div>
 		            <h3>初次见面,欢迎加入拍片网</h3> 
-		            <div class="redBtn" id="bindBtn">立即绑定</div> 
-		            
-		           
-		            
+		            <div class="redBtn" id="submitBtn">立即绑定</div>
+		            <input type="hidden" value="${LType}" id = "LType">
 		         </div>
-		   
 		   </div>
-	
 </body>
 </html>
