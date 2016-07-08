@@ -1316,41 +1316,46 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/bind")
 	public BaseMsg bind(@RequestBody final Team team, final HttpServletRequest request) {
 		// TODO:
-		HttpSession httpSession =  request.getSession();
+		HttpSession httpSession = request.getSession();
 		final String phone = team.getPhoneNumber();
 		final String Ltype = team.getThirdLoginType();
-		final Object objUnique =httpSession.getAttribute(UNIQUE);
+		final Object objUnique = httpSession.getAttribute(UNIQUE);
 		final Object objLinkman = httpSession.getAttribute(LINKMAN);
-		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null) {
+		final Object objCode = request.getSession().getAttribute("code");
+		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) { // debug  objCode == null dev objCode != null
+			// 不需要输入验证码
 			try {
 				final String Unique = (String) objUnique;
 				final String Linkman = (String) objLinkman;
-				
-				// 删除 session
-				httpSession.removeAttribute(UNIQUE);
-				httpSession.removeAttribute(LINKMAN);
-				
-				team.setLinkman(Linkman);
-				if (ValidateUtil.isValid(Unique)) {
-					switch (Ltype) {
-					case Team.LTYPE_QQ:
-						team.setQqUnique(Unique);
-						break;
-					case Team.LTYPE_WECHAT:
-						team.setWechatUnique(Unique);
-						break;
-					case Team.LTYPE_WEIBO:
-						team.setWbUnique(Unique);
-						break;
-					}
-					// 后台绑定
-					final String url = URL_PREFIX + "portal/team/thirdLogin/bind";
-					final String json = HttpUtil.httpPost(url, team, request);
-					if (ValidateUtil.isValid(json)) {
-						final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
-						return msg;
-					}
+				final String code = (String) objCode;
 
+				// 不需要输入验证码 code == null dev code != null
+				if (code == null || code.equals(team.getVerification_code())) {
+					// 删除 session
+					httpSession.removeAttribute(UNIQUE);
+					httpSession.removeAttribute(LINKMAN);
+
+					team.setLinkman(Linkman);
+					if (ValidateUtil.isValid(Unique)) {
+						switch (Ltype) {
+						case Team.LTYPE_QQ:
+							team.setQqUnique(Unique);
+							break;
+						case Team.LTYPE_WECHAT:
+							team.setWechatUnique(Unique);
+							break;
+						case Team.LTYPE_WEIBO:
+							team.setWbUnique(Unique);
+							break;
+						}
+						// 后台绑定
+						final String url = URL_PREFIX + "portal/team/thirdLogin/bind";
+						final String json = HttpUtil.httpPost(url, team, request);
+						if (ValidateUtil.isValid(json)) {
+							final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
+							return msg;
+						}
+					}
 				}
 			} catch (Exception e) {
 				logger.error("Provider bind error,teamName is " + team.getLoginName());
