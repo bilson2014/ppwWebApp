@@ -112,7 +112,18 @@
 	
 	 <div class="outSideDiv">
 		         <div class="loginDiv">
-		            <h1><span>Hi,</span>&nbsp你是小王吧？</h1>
+		            <h1><span>Hi,</span>&nbsp${userName}</h1>
+		            <!-- 第三方用户状态 不存在or存在却无手机号 -->
+		            <input type="hidden" id="code" value="${code}"></input>
+		            <input type="hidden" id="userId" value="${userId}"></input>
+		             <input type="hidden" id="unique" value="${unique}"></input>
+		            <input type="hidden" id="userName" value="${userName}"></input>
+		            <input type="hidden" id="imgUrl" value="${imgUrl}"></input>
+		            <!-- qq or wechat or wb -->
+		            <input type="hidden" id="type" value="${type}"></input>
+		            <input type="hidden" id="qq"></input>
+		            <input type="hidden" id="wechat"></input>
+		            <input type="hidden" id="wb"></input>
 		            <h2>请绑定拍片网账号</h2>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
@@ -130,7 +141,7 @@
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
 		            </div>
 		            <h3>初次见面,欢迎加入拍片网</h3> 
-		            <div class="redBtn" id="">立即绑定</div> 
+		            <div class="redBtn" id="bindBtn">立即绑定</div> 
 		            
 		           
 		            

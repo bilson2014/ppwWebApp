@@ -39,7 +39,6 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
-import com.panfeng.film.resource.model.WechatToken;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.OtherLogin;
@@ -305,38 +304,47 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/info/register")
 	public Info register(@RequestBody final Team original, final HttpServletRequest request) {
 		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test") ? true : false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (code.equals(original.getVerification_code())) {
-				if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(original.getPassword(), UNIQUE_KEY);
+			if (isTest || code.equals(original.getVerification_code())) {
+				if (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber())) {
+					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
+						try {
+							// AES 解密
+							final String password = AESUtil.Decrypt(original.getPassword(), UNIQUE_KEY);
 
-						// MD5 加密
-						original.setPassword(DataUtil.md5(password));
+							// MD5 加密
+							original.setPassword(DataUtil.md5(password));
 
-						// 转码
-						original.setPassword(URLEncoder.encode(original.getPassword(), "UTF-8"));
-						// original.setLoginName(URLEncoder.encode(
-						// original.getLoginName(), "UTF-8"));
-						// 连接远程服务器，传输数据
-						final String url = URL_PREFIX + "portal/team/static/register";
-						final String json = HttpUtil.httpPost(url, original, request);
-						// Team provider = null;
-						if (ValidateUtil.isValid(json)) {
-							boolean ret = JsonUtil.toBean(json, Boolean.class);
-							// 写入 session
-							// request.getSession().setAttribute(PROVIDER_SESSION,provider);
-							info.setKey(ret);
-							return info;
+							// 转码
+							original.setPassword(URLEncoder.encode(original.getPassword(), "UTF-8"));
+							// original.setLoginName(URLEncoder.encode(
+							// original.getLoginName(), "UTF-8"));
+							// 连接远程服务器，传输数据
+							final String url = URL_PREFIX + "portal/team/static/register";
+							final String json = HttpUtil.httpPost(url, original, request);
+							// Team provider = null;
+							if (ValidateUtil.isValid(json)) {
+								boolean ret = JsonUtil.toBean(json, Boolean.class);
+								// 写入 session
+								// request.getSession().setAttribute(PROVIDER_SESSION,provider);
+								info.setKey(ret);
+								return info;
+							}
+						} catch (Exception e) {
+							logger.error(
+									"ProviderController method:register() Provider Password Decrypt Error On Provider Register ...");
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						logger.error(
-								"ProviderController method:register() Provider Password Decrypt Error On Provider Register ...");
-						e.printStackTrace();
 					}
+				} else {
+					// 手机号错误
+					info.setKey(false);
+					info.setValue("手机号不正确!");
 				}
 			} else {
 				// 验证码过期
@@ -1231,87 +1239,90 @@ public class ProviderController extends BaseController {
 		return "false@error3";
 	}
 
-	/**
-	 * 第三方登录-微信登陆
-	 */
-	@RequestMapping("/login/wechat/callback.do")
-	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
-			ModelMap model) {
-
-		if (ValidateUtil.isValid(code)) {
-			WechatToken token = new WechatToken();
-			token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
-			token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
-			// 通过code获取access_token
-			final StringBuffer tokenUrl = new StringBuffer();
-			tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
-			tokenUrl.append("appid=" + token.getAppid());
-			tokenUrl.append("&secret=" + token.getSecret());
-			tokenUrl.append("&code=" + code);
-			tokenUrl.append("&grant_type=authorization_code");
-			final String str = HttpUtil.httpGet(tokenUrl.toString(), request);
-			if (str != null && !"".equals(str)) {
-				token = JsonUtil.toBean(str, WechatToken.class);
-				token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
-				token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
-			}
-
-			if (token.getErrcode() == null) {
-				// 正确
-				if (token.getAccess_token() != null && !"".equals(token.getAccess_token())) { // token
-																								// 超时
-																								// 2小时
-					final StringBuffer refreshUrl = new StringBuffer();
-					refreshUrl.append("https://api.weixin.qq.com/sns/oauth2/refresh_token?");
-					refreshUrl.append("appid=" + token.getAppid());
-					refreshUrl.append("&grant_type=refresh_token");
-					refreshUrl.append("&refresh_token=" + token.getRefresh_token());
-					final String refreshObj = HttpUtil.httpGet(refreshUrl.toString(), request);
-					if (ValidateUtil.isValid(refreshObj)) {
-						token = JsonUtil.toBean(refreshObj, WechatToken.class);
-					}
-				}
-
-				final StringBuffer userUrl = new StringBuffer();
-				userUrl.append("https://api.weixin.qq.com/sns/userinfo?");
-				userUrl.append("access_token=" + token.getAccess_token());
-				userUrl.append("&openid=" + token.getOpenid());
-
-				Wechat wechat = new Wechat();
-				final String userStr = HttpUtil.httpGet(userUrl.toString(), request);
-				if (ValidateUtil.isValid(userStr)) {
-					wechat = JsonUtil.toBean(userStr, Wechat.class);
-				}
-
-				if (wechat != null) {
-					Team team = new Team();
-					team.setUniqueId(wechat.getUnionid());
-					// 查询该用户是否存在
-					final String url = URL_PREFIX + "portal/team/thirdLogin/isExist";
-					final String json = HttpUtil.httpPost(url, team, request);
-					if (ValidateUtil.isValid(json)) {
-						final boolean flag = JsonUtil.toBean(json, Boolean.class);
-						if (flag) {
-							// 绑定账号，则跳转至供应商界面
-							model.addAttribute("action", "bind");
-							model.addAttribute("thirdLoginType", "wechatUnique");
-							model.addAttribute("uniqueId", wechat.getUnionid());
-							return new ModelAndView("/provider/portal");
-						}
-					}
-
-					// 未绑定账号
-					model.addAttribute("action", "login");
-					return new ModelAndView("login");
-				}
-			} else {
-				// 错误
-				logger.error("Provider wechat login error ... ");
-			}
-
-		}
-		return new ModelAndView("redirect:/provider/login");
-	}
+	// /**
+	// * 第三方登录-微信登陆
+	// */
+	// @RequestMapping("/login/wechat/callback.do")
+	// public ModelAndView loginWithWeChat(@RequestParam("code") String code,
+	// final HttpServletRequest request,
+	// ModelMap model) {
+	//
+	// if (ValidateUtil.isValid(code)) {
+	// WechatToken token = new WechatToken();
+	// token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
+	// token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
+	// // 通过code获取access_token
+	// final StringBuffer tokenUrl = new StringBuffer();
+	// tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
+	// tokenUrl.append("appid=" + token.getAppid());
+	// tokenUrl.append("&secret=" + token.getSecret());
+	// tokenUrl.append("&code=" + code);
+	// tokenUrl.append("&grant_type=authorization_code");
+	// final String str = HttpUtil.httpGet(tokenUrl.toString(), request);
+	// if (str != null && !"".equals(str)) {
+	// token = JsonUtil.toBean(str, WechatToken.class);
+	// token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
+	// token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
+	// }
+	//
+	// if (token.getErrcode() == null) {
+	// // 正确
+	// if (token.getAccess_token() != null &&
+	// !"".equals(token.getAccess_token())) { // token
+	// // 超时
+	// // 2小时
+	// final StringBuffer refreshUrl = new StringBuffer();
+	// refreshUrl.append("https://api.weixin.qq.com/sns/oauth2/refresh_token?");
+	// refreshUrl.append("appid=" + token.getAppid());
+	// refreshUrl.append("&grant_type=refresh_token");
+	// refreshUrl.append("&refresh_token=" + token.getRefresh_token());
+	// final String refreshObj = HttpUtil.httpGet(refreshUrl.toString(),
+	// request);
+	// if (ValidateUtil.isValid(refreshObj)) {
+	// token = JsonUtil.toBean(refreshObj, WechatToken.class);
+	// }
+	// }
+	//
+	// final StringBuffer userUrl = new StringBuffer();
+	// userUrl.append("https://api.weixin.qq.com/sns/userinfo?");
+	// userUrl.append("access_token=" + token.getAccess_token());
+	// userUrl.append("&openid=" + token.getOpenid());
+	//
+	// Wechat wechat = new Wechat();
+	// final String userStr = HttpUtil.httpGet(userUrl.toString(), request);
+	// if (ValidateUtil.isValid(userStr)) {
+	// wechat = JsonUtil.toBean(userStr, Wechat.class);
+	// }
+	//
+	// if (wechat != null) {
+	// Team team = new Team();
+	// team.setUniqueId(wechat.getUnionid());
+	// // 查询该用户是否存在
+	// final String url = URL_PREFIX + "portal/team/thirdLogin/isExist";
+	// final String json = HttpUtil.httpPost(url, team, request);
+	// if (ValidateUtil.isValid(json)) {
+	// final boolean flag = JsonUtil.toBean(json, Boolean.class);
+	// if (flag) {
+	// // 绑定账号，则跳转至供应商界面
+	// model.addAttribute("action", "bind");
+	// model.addAttribute("thirdLoginType", "wechatUnique");
+	// model.addAttribute("uniqueId", wechat.getUnionid());
+	// return new ModelAndView("/provider/portal");
+	// }
+	// }
+	//
+	// // 未绑定账号
+	// model.addAttribute("action", "login");
+	// return new ModelAndView("login");
+	// }
+	// } else {
+	// // 错误
+	// logger.error("Provider wechat login error ... ");
+	// }
+	//
+	// }
+	// return new ModelAndView("redirect:/provider/login");
+	// }
 
 	@RequestMapping("/bind")
 	public BaseMsg bind(@RequestBody final Team team, final HttpServletRequest request) {
@@ -1322,7 +1333,14 @@ public class ProviderController extends BaseController {
 		final Object objUnique = httpSession.getAttribute(UNIQUE);
 		final Object objLinkman = httpSession.getAttribute(LINKMAN);
 		final Object objCode = request.getSession().getAttribute("code");
-		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) { // debug  objCode == null dev objCode != null
+		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) { // debug
+																													// objCode
+																													// ==
+																													// null
+																													// dev
+																													// objCode
+																													// !=
+																													// null
 			// 不需要输入验证码
 			try {
 				final String Unique = (String) objUnique;
@@ -1448,5 +1466,30 @@ public class ProviderController extends BaseController {
 		final String json = HttpUtil.httpPost(updateUrl, team, request);
 		final boolean flag = JsonUtil.toBean(json, Boolean.class);
 		return flag;
+	}
+
+	@RequestMapping("/wechat/callback.do")
+	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
+			ModelMap modelMap) {
+		Wechat wechat = otherLogin.decodeWechatToken(code, request);
+		if (wechat == null)
+			return new ModelAndView("/provider/threeLogin");
+		Team original = new Team();
+		original.setLinkman(wechat.getNickname());
+		original.setWechatUnique(wechat.getUnionid());
+		original.setTeamPhotoUrl(wechat.getHeadimgurl());
+		original.setThirdLoginType(Team.LTYPE_WECHAT);
+		boolean isBind = otherLogin.login(original, request);
+		if (isBind) {
+			return new ModelAndView("/provider/portal");
+		} else {
+			HttpSession httpSession = request.getSession();
+			String unique = original.getWechatUnique();
+			httpSession.setAttribute(UNIQUE, unique);
+			modelMap.put("linkMan", original.getLinkman());
+			modelMap.put("LType", original.getThirdLoginType());
+			return new ModelAndView("/provider/threeLogin", modelMap);
+		}
+
 	}
 }
