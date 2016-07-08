@@ -35,7 +35,6 @@ import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.resource.model.WechatToken;
 import com.panfeng.film.security.AESUtil;
-import com.panfeng.film.service.OtherLogin;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
@@ -92,11 +91,13 @@ public class LoginController extends BaseController {
 		// add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		//是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		Info info = new Info();
 		try {
-			if (!"".equals(code) && code != null) {
-				if (code.equals(user.getVerification_code())) {
-					if(null!=codeOfphone&&codeOfphone.equals(user.getTelephone())){
+			if (isTest || (!"".equals(code) && code != null)) {
+				if (isTest || code.equals(user.getVerification_code())) {
+					if(isTest || (null!=codeOfphone&&codeOfphone.equals(user.getTelephone()))){
 						//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
 						if (user != null && user.getPassword() != null
 								&& !"".equals(user.getPassword())) {
@@ -172,11 +173,11 @@ public class LoginController extends BaseController {
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		Info info = new Info(); // 信息载体
 		//是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		// 判断验证码
-		if (!"".equals(code) && code != null) {
+		if (isTest || (!"".equals(code) && code != null)) {
 			if (isTest || code.equals(user.getVerification_code())) {
-				if(null!=codeOfphone&&codeOfphone.equals(user.getTelephone())){
+				if(isTest || (null!=codeOfphone&&codeOfphone.equals(user.getTelephone()))){
 					if (user.getPassword() != null
 							&& !"".equals(user.getPassword())) {
 						// AES 密码解密
@@ -307,7 +308,7 @@ public class LoginController extends BaseController {
 
 		final Info info = new Info();
 		//是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		if (kaptcha_code != null && !"".equals(kaptcha_code)) {
 			final String kaptchaCode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 			if (kaptchaCode != null && !"".equals(kaptcha_code)) {

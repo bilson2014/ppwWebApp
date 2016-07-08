@@ -135,7 +135,7 @@ public class VersionManagerController extends BaseController {
 		// 密码重置
 		final String code = (String) session.getAttribute("code");
 		//是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test")?true:false;
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {

@@ -129,6 +129,12 @@ $().ready(function(){
 						$("#code_error_info").text("请输入验证码").removeClass("hide");
 						return false;
 					}
+					if(!checkMobile($('#user_phoneNumber').val().trim())){
+						$('#user_phoneNumberId').removeClass('hide');
+						$('#user_phoneNumberId').text('手机号不正确');
+						$('#user_phoneNumber').focus();
+						return false;
+					}
 					if(action=='login'){
 						_this.login();
 					}

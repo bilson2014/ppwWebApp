@@ -196,29 +196,35 @@ public class ProviderController extends BaseController {
 
 		// add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
 		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		BaseMsg baseMsg = new BaseMsg();
 		// original.getVerification_code() !=null 为测试增加，不验证短信验证码，所以不用获取验证码
-		if (original.getVerification_code() != null || code.equals(original.getVerification_code())) {
-
-			// add by laowang -->登录认证
-			// 1.手机号数据库中存在
-			// 2.短信验证码正确
-			// **推翻以前登录名密码方式
-
-			// 登录远程服务器进行比对
-			final String url = URL_PREFIX + "portal/team/static/data/doLogin";
-			String json = HttpUtil.httpPost(url, original, request);
-			if (json != null && !"".equals(json)) {
-				boolean ret = JsonUtil.toBean(json, Boolean.class);
-				if (ret) {
-					baseMsg.setErrorCode(BaseMsg.NORMAL);
-					baseMsg.setResult(true);
-					return baseMsg;
+		if (isTest || original.getVerification_code() != null || code.equals(original.getVerification_code())) {
+			if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
+				// add by laowang -->登录认证
+				// 1.手机号数据库中存在
+				// 2.短信验证码正确
+				// **推翻以前登录名密码方式
+				// 登录远程服务器进行比对
+				final String url = URL_PREFIX + "portal/team/static/data/doLogin";
+				String json = HttpUtil.httpPost(url, original, request);
+				if (json != null && !"".equals(json)) {
+					boolean ret = JsonUtil.toBean(json, Boolean.class);
+					if (ret) {
+						baseMsg.setErrorCode(BaseMsg.NORMAL);
+						baseMsg.setResult(true);
+						return baseMsg;
+					}
 				}
+				baseMsg.setErrorCode(BaseMsg.ERROR);
+				baseMsg.setErrorMsg("登录错误!");
+				return baseMsg;
+			}else {
+				serLogger.info("手机号错误");
+				return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
 			}
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("登录错误!");
-			return baseMsg;
 		} else {
 			serLogger.info("Provider Verification_code timeout ...");
 			return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
@@ -306,12 +312,12 @@ public class ProviderController extends BaseController {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("test") ? true : false;
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
-		if (!"".equals(code) && code != null) {
+		if (isTest || (!"".equals(code) && code != null)) {
 			if (isTest || code.equals(original.getVerification_code())) {
-				if (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber())) {
+				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
 						try {
 							// AES 解密
