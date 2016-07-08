@@ -46,8 +46,13 @@
 	<script src="${commonJs }"></script>
 	<script src="${providerLoginJs }"></script>
 	
+	<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
 	<!-- webcat -->
 	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
+	
 </head>
 <body>
 	<input type="hidden" id="action" value="${action }"/>
@@ -106,7 +111,7 @@
 		         <div class="loginDiv">
 		            <h1>供应商登录</h1>
 		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" value="18801376524"></input>
 		                 <div class="otherDiv"></div>
 		                 <div class="errorDiv hide" id="user_phoneNumberId"">手机号错误</div>
 		            </div>
@@ -116,11 +121,11 @@
 		                 <div class="errorDiv hide" id="kapt_error_info" >验证码错误</div>
 		            </div>  
 		             <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code" value="123123"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
 		            </div>  
-		            <div id="submitBtn" class="redBtn">登录</div> 
+		            <div id="submitBtn" class="redBtn" data-id="login">登录</div> 
 		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
 		            <div class="footer-content-three">
 							<ul>
