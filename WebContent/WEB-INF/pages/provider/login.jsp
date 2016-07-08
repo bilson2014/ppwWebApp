@@ -111,7 +111,7 @@
 		         <div class="loginDiv">
 		            <h1>供应商登录</h1>
 		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" value="18801376524"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" ></input>
 		                 <div class="otherDiv"></div>
 		                 <div class="errorDiv hide" id="user_phoneNumberId"">手机号错误</div>
 		            </div>
@@ -121,11 +121,11 @@
 		                 <div class="errorDiv hide" id="kapt_error_info" >验证码错误</div>
 		            </div>  
 		             <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code" value="123123"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
 		            </div>  
-		            <div id="submitBtn" class="redBtn" data-id="login">登录</div> 
+		            <div id="submitBtn" class="redBtn">登录</div> 
 		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
 		            <div class="footer-content-three">
 							<ul>
