@@ -31,9 +31,12 @@ function changeDiv(){
 		if($('#checkboxId').is(':checked')){
 			$('#submitBtn').addClass('submitBtn');
 			$('#submitBtn').removeClass('nosubmitBtn');
+			$('#submitBtn').on('click');
 		}else{
 			$('#submitBtn').removeClass('submitBtn');
 			$('#submitBtn').addClass('nosubmitBtn');
+			$('#submitBtn').off('click');
+			
 		}
 	});
 	
@@ -97,11 +100,15 @@ var user_login = {
 						if(flag){
 							$('#submitBtn').text("登录");
 							$('#submitBtn').attr('data-id','login'); // 标记login
-							$('#infoOrder').addClass('hide');
+						//	$('#infoOrder').addClass('hide');
+							$('#submitBtn').addClass('submitBtn');
+							$('#submitBtn').removeClass('nosubmitBtn');
+							$('#submitBtn').on('click');
+							$('#checkboxId').attr("checked",'checked');;
 						}else{
 							$('#submitBtn').text("注册");
 							$("#submitBtn").attr('data-id','register'); // 标记register
-							$('#infoOrder').removeClass('hide');
+						//	$('#infoOrder').removeClass('hide');
 						}
 					}, getContextPath() + '/login/validation/phone', $.toJSON({
 						telephone : telephone
@@ -285,9 +292,11 @@ var provider_login = {
 						if(flag){
 							$('#submitBtn').text("注册");
 							$("#submitBtn").attr('data-id','register'); // 标记register
+							$('#infoOrder').removeClass('hide');
 						}else{
 							$('#submitBtn').text("登录");
 							$('#submitBtn').attr('data-id','login'); // 标记login
+							$('#infoOrder').addClass('hide');
 						}
 					}, getContextPath() + '/provider/checkExisting', $.toJSON({
 						phoneNumber : telephone

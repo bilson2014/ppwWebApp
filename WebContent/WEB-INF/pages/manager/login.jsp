@@ -99,6 +99,7 @@
 		                <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
 		                 <div class="errorDiv hide" id="pwdId">*用户名或密码错误</div>
+		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>
 		                </form>
 		            
