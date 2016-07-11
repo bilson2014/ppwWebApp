@@ -153,8 +153,10 @@ function lrfunction(phoneNo){
 							$('#form-login').submit().remove();
 						}else{
 							// 注册失败，请用户重新注册
-							$('#label-info').removeClass('hide');
-							$('#label-info').text(info.value);
+//							$('#label-info').removeClass('hide');
+//							$('#label-info').text(info.value);
+							$('#login_error_info').removeClass('hide');
+							$('#login_error_info').text(info.value);
 							$('#loginBt').removeAttr('disabled'); // 重置
 							$('#loginBt').text('注册');
 						}

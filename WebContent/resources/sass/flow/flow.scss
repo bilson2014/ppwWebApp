@@ -648,6 +648,19 @@
     font-size: $font-size-base;
 }
 
+.no-red-btn {
+    width: 105px;
+    height: 35px;
+    background-color: $gray;
+    border-color: $white;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    color: $white;
+    font-size: $font-size-base;
+    cursor:not-allowed;
+}
+
 .red-small-btn {
     height: 35px;
     width: 96px;
@@ -679,6 +692,22 @@
     color: $white;
     font-size: $font-size-base;
 }
+
+.gray-btn-no {
+    width: 105px;
+    height: 35px;
+    background-color: $gray-light;
+    border-color: $white;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    color: $white;
+    font-size: $font-size-base;
+    cursor:not-allowed;
+}
+
+
+
 
 .gray-btn:hover {
     background-color: $gold-yellow;
@@ -755,6 +784,17 @@
 .check-step {
     width: 400px;
     color: $gray;
+    font-size: $font-size-lg;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    text-align: center;
+    line-height: 20px;
+    color: $gray-dark;
+}
+.check-step-load {
+    width: 400px;
+  
     font-size: $font-size-lg;
     position: absolute;
     top: 50px;
@@ -1978,4 +2018,54 @@ margin-top: 80px;
 .copyDiv{
     position: relative;
     top:40px;
+}
+
+//暂停提示
+.pauseWord{
+    position: relative;
+    top:0px;
+    left:0px;
+    text-align:center; 
+    font-size: $font-size;
+    color:$gray;
+}
+
+.pauseBtn{
+    position: relative;
+    margin-top: 20px;
+    text-align:center; 
+}
+
+.canclestepPause{
+    position: relative;
+    left: 250px;
+    cursor: pointer;
+}
+
+.textareaInfo{
+    width: 360px;
+    height: 70px;
+    border-radius: 5px;
+}
+
+.textareaInfoError{
+    width: 360px;
+    height: 70px;
+    border-radius: 5px;
+    outline: none;
+    border-color: $red-base;
+}
+
+.pauseTop{
+    position: relative;
+    top:10px;
+}
+.puaseLeft{
+        position: relative;
+    right: 20px;
+}
+
+.puaseRight{
+        position: relative;
+    left: 20px;
 }

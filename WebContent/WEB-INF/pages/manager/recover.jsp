@@ -82,14 +82,46 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		 <div class="outSideDiv">
+		         <div class="loginDiv">
+		            <h1>视频管家密码找回</h1>
+		            <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
+				            <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight" type="text" autofocus="autofocus" autocomplete="off" tabindex="1" maxlength="11"  placeholder="手机号" id="recover_phone"></input>
+				                 <div class="otherDiv"></div>
+				                 <div class="errorDiv hide" id="recover_phoneId">*手机号错误</div>
+				            </div>
+				             <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight"  placeholder="新密码" id="recover_password" type="password" autofocus="autofocus" autocomplete="off" tabindex="2" maxlength="16" size="16"></input>
+				                 <div class="errorDiv hide" id="recover_passwordId" >*验证码错误</div>
+				            </div> 
+				            <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code_recover"></input>
+				                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic_recover" class="btn-validation"></div>
+				                 <div class="errorDiv hide" id="kaptcha_pic_recoverId" >*验证码错误</div>
+				            </div>  
+				                <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code_recover"></input>
+				                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
+				                 <div class="errorDiv hide" id="verification_code_recoverId">*验证码错误</div>
+				            </div>
+				            <div class="redBtn" id="recoverBt">密码找回</div> 
+		            </form>
+		           
+		         </div>
+		   
+		   </div>
 	
-	<div class="page-container">
+	<!-- <div class="page-container">
 		<div class="recover-container">
 				<div class="well">
 					<h2>视频管家密码找回</h2>
 					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
 						<fieldset>
-							<!-- 提示框 -->
+							提示框
 							<div class="tooltip-show-recover" style="display: none;">
 								<label class="tooltip-message-recover" ></label>
 							</div>
@@ -117,7 +149,7 @@
 					</form>
 				</div>
 			</div>
-    </div>
+    </div> -->
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>

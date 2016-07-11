@@ -46,8 +46,13 @@
 	<script src="${commonJs }"></script>
 	<script src="${providerLoginJs }"></script>
 	
+	<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
 	<!-- webcat -->
 	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
+	
 </head>
 <body>
 	<input type="hidden" id="action" value="${action }"/>
@@ -100,8 +105,62 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		   <div class="outSideDiv">
+		         <div class="loginDiv">
+		            <h1>供应商登录</h1>
+		            <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" ></input>
+		                 <div class="otherDiv"></div>
+		                 <div class="errorDiv hide" id="user_phoneNumberId"">手机号错误</div>
+		            </div>
+		            <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
+		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
+		                 <div class="errorDiv hide" id="kapt_error_info" >验证码错误</div>
+		            </div>  
+		             <div class="loginContent input-group">
+		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
+		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
+		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
+		                  <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
+		            </div>  
+		            <div id="submitBtn" class="redBtn">登录</div> 
+		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
+		            <div class="footer-content-three">
+							<ul>
+								<li >
+									<a href="javascript:void(0);" id="webcat">
+										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
+									</a>
+									<span></span>
+								</li>
+								<li>
+								<div id="qqBt">
+										<a href="javascript:void(0);">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+										</a>
+										<span></span>
+									</div>
+								</li>
+								<li>
+										<!-- <span>微博</span> -->
+									<div id="weiboBt">
+										<a href="javascript:void(0);" >
+											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
+										</a>
+										<span></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+		            
+		         </div>
+		   
+		   </div>
 	
-		<div class="index-content">
+		<%-- <div class="index-content">
 			
 			<div class="login-container ">
 				<div class="well">
@@ -267,6 +326,6 @@
 			<!-- 账号绑定 end -->
 			
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>

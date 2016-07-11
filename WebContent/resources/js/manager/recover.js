@@ -31,35 +31,75 @@ function validate(){
 	var password = $('#recover_password').val().trim();
 	var vtcode = $('#verification_code_recover').val().trim();
 	
+	$('#recover_phoneId').addClass('hide');
+	$('#recover_passwordId').addClass('hide');
+	$('#verification_code_recoverId').addClass('hide');
+	
 	if(phone == null || phone == '' || phone == undefined){
-		popshow('recover_phone','请输入注册手机号码');
-		$('#recover_phone').focus();
-		return false;
-	}
+	$('#recover_phoneId').text('请输入注册手机号码');
+	$('#recover_phoneId').removeClass('hide');
+	$('#recover_phone').focus();
+	return false;
+   }
+
+if(password == null || password == '' || password == undefined){
+	$('#recover_passwordId').text('请输入密码');
+	$('#recover_passwordId').removeClass('hide');
+	$('#recover_password').focus();
+	return false;
+}
+
+if(vtcode == null || vtcode == '' || vtcode == undefined){
+	$('#verification_code_recoverId').text('请输入短信验证码');
+	$('#verification_code_recoverId').removeClass('hide');
+	$('#verification_code_recover').focus();
+	return false;
+}
+
+// 验证码密码
+if(password.length < 6){
+	$('#recover_passwordId').text('密码不能少于6位');
+	$('#recover_passwordId').removeClass('hide');
+	return false;
+}
+
+// 验证手机号码
+if(!checkMobile(phone)){
+	$('#recover_phoneId').text('请输入格式正确的手机号码');
+	$('#recover_phoneId').removeClass('hide');
+	return false;
+}
 	
-	if(password == null || password == '' || password == undefined){
-		popshow('recover_password','请输入不少于6位的密码');
-		$('#recover_password').focus();
-		return false;
-	}
-	
-	if(vtcode == null || vtcode == '' || vtcode == undefined){
-		popshow('verification_code_recover','请输入短信验证码');
-		$('#verification_code_recover').focus();
-		return false;
-	}
-	
-	// 验证码密码
-	if(password.length < 6){
-		popshow('recover_password','密码不能少于6位');
-		return false;
-	}
-	
-	// 验证手机号码
-	if(!checkMobile(phone)){
-		popshow('recover_phone','请输入格式正确的手机号码');
-		return false;
-	}
+//	if(phone == null || phone == '' || phone == undefined){
+//		popshow('recover_phone','请输入注册手机号码');
+//		$('#recover_phoneId').removeClass('hide');
+//		$('#recover_phone').focus();
+//		return false;
+//	}
+//	
+//	if(password == null || password == '' || password == undefined){
+//		popshow('recover_password','请输入不少于6位的密码');
+//		$('#recover_password').focus();
+//		return false;
+//	}
+//	
+//	if(vtcode == null || vtcode == '' || vtcode == undefined){
+//		popshow('verification_code_recover','请输入短信验证码');
+//		$('#verification_code_recover').focus();
+//		return false;
+//	}
+//	
+//	// 验证码密码
+//	if(password.length < 6){
+//		popshow('recover_password','密码不能少于6位');
+//		return false;
+//	}
+//	
+//	// 验证手机号码
+//	if(!checkMobile(phone)){
+//		popshow('recover_phone','请输入格式正确的手机号码');
+//		return false;
+//	}
 	return true;
 }
 
@@ -97,8 +137,11 @@ function sendMsg(){
 								$('#kaptcha_code_recover').val(''); // 重置 图片验证码 信息
 								// 初始化 验证码
 								$('#kaptcha_pic_recover').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+//								$('#kaptcha_code_recover').focus();
+//								popshow('kaptcha_code_recover', info.value);
+								$('#kaptcha_pic_recoverId').text(info.value);
+								$('#kaptcha_pic_recoverId').removeClass('hide');
 								$('#kaptcha_code_recover').focus();
-								popshow('kaptcha_code_recover', info.value);
 							}else{
 								// 验证通过,发送验证码
 								loadData(function(flag){
@@ -122,23 +165,35 @@ function sendMsg(){
 						$('#kaptcha_code_recover').val('');// 重置图片验证码
 						// 初始化 验证码
 						$('#kaptcha_pic_recover').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+//						$('#kaptcha_code_recover').focus();
+//						popshow('kaptcha_code_recover', '请输入验证码');
+						$('#kaptcha_pic_recoverId').text('请输入验证码');
+						$('#kaptcha_pic_recoverId').removeClass('hide');
 						$('#kaptcha_code_recover').focus();
-						popshow('kaptcha_code_recover', '请输入验证码');
 					}
 				
 				}else{
 					// 该号码未注册，提醒用户先注册
 					// 错误信息
-					$('.tooltip-message-recover').text('该手机号未注册');
-					$('.tooltip-show-recover').slideDown('normal');
-					window.setInterval(hideTooltipRecover, 4000);
+//					$('.tooltip-message-recover').text('该手机号未注册');
+//					$('.tooltip-show-recover').slideDown('normal');
+//					window.setInterval(hideTooltipRecover, 4000);
+					$('#recover_phoneId').text('该手机号未注册');
+					$('#recover_phoneId').removeClass('hide');
+					$('#recover_phone').focus();
 				}
 			}, getContextPath() + '/mgr/recover/check/' + telephone, null);
 		}else{
-			popshow('recover_phone', '请输入正确格式的手机号码');
+		//	popshow('recover_phone', '请输入正确格式的手机号码');
+			$('#recover_phoneId').text('请输入正确格式的手机号码');
+			$('#recover_phoneId').removeClass('hide');
+			$('#recover_phone').focus();
 		}
 	}else{
-		popshow('recover_phone', '请输入注册时使用的手机号码');
+		//popshow('recover_phone', '请输入注册时使用的手机号码');
+		$('#recover_phoneId').text('请输入注册时使用的手机号码');
+		$('#recover_phoneId').removeClass('hide');
+		$('#recover_phone').focus();
 	}
 
 }
@@ -159,9 +214,12 @@ function recover(){
 						$('#recover-form').attr('action',getContextPath() + '/mgr/login').submit().remove();
 					}else{
 						// 错误信息
-						$('.tooltip-message-recover').text(info.value);
-						$('.tooltip-show-recover').slideDown('normal');
-						window.setInterval(hideTooltipRecover, 4000);
+//						$('.tooltip-message-recover').text(info.value);
+//						$('.tooltip-show-recover').slideDown('normal');
+//						window.setInterval(hideTooltipRecover, 4000);
+						$('#recover_phoneId').text(info.value);
+						$('#recover_phoneId').removeClass('hide');
+						$('#recover_phone').focus();
 					}
 				}, getContextPath() + '/mgr/recover/pwd', $.toJSON({
 					phoneNumber : $('#recover_phone').val().trim(),
@@ -170,9 +228,13 @@ function recover(){
 				}));
 			}else{
 				// 错误信息
-				$('.tooltip-message-recover').text('该手机号还未注册');
-				$('.tooltip-show-recover').slideDown('normal');
-				window.setInterval(hideTooltipRecover, 4000);
+//				$('.tooltip-message-recover').text('该手机号还未注册');
+//				$('.tooltip-show-recover').slideDown('normal');
+//				window.setInterval(hideTooltipRecover, 4000);
+				$('#recover_phoneId').text('该手机号还未注册');
+				$('#recover_phoneId').removeClass('hide');
+				$('#recover_phone').focus();
+				
 			}
 		}, getContextPath() + '/mgr/recover/check/' + $('#recover_phone').val().trim(), null);
 	}

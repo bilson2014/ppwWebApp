@@ -33,11 +33,19 @@
 	
 	<mvc:view-controller path="/phone/payment/payListFail" view-name="/phone/payment/payListFail" />
 	
+	
+	
 	<mvc:view-controller path="/error" view-name="/error" />
 	
 	<mvc:view-controller path="/phone/error" view-name="/phone/error" />
 	
 	<mvc:view-controller path="/phone/gate/gate" view-name="/phone/gate/gate" />
+	
+    <mvc:view-controller path="/phone/login/phoneLogin" view-name="/phone/login/phoneLogin"/>
+    
+    <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
+    
+    <mvc:view-controller path="/phone/login/phoneThreeLogin" view-name="/phone/login/phoneThreeLogin"/>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
@@ -81,6 +89,8 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
 			<mvc:exclude-mapping path="/provider/login" />
+			<mvc:exclude-mapping path="/provider/thirdLogin" />
+			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />
 			<mvc:exclude-mapping path="/provider/recover" />
 			<mvc:exclude-mapping path="/provider/header" />
@@ -96,6 +106,8 @@
 			<mvc:mapping path="/mgr/**" />
 			<mvc:exclude-mapping path="/mgr/login" />
 			<mvc:exclude-mapping path="/mgr/doLogin" />
+			<mvc:exclude-mapping path="/mgr/thirdLogin" />
+			<mvc:exclude-mapping path="/mgr/bind" />
 			<mvc:exclude-mapping path="/mgr/loginout" />
 			<mvc:exclude-mapping path="/mgr/doc/video/**" />
 			<mvc:exclude-mapping path="/mgr/recover/**" />

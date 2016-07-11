@@ -1,0 +1,144 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "compass/typography/text/ellipsis";
+
+
+.outside{
+ width:100%;
+ height:100%;
+ text-align: center;
+ position: relative;
+}
+
+.topDiv{
+	position: relative;
+   width:100%;
+ height:50%;
+ background: red;
+}
+
+.bottomDiv{
+ width:100%;
+ height:50%;
+ background: green;
+  position: relative;
+}
+
+.midBtn{
+	position:absolute;
+   
+    line-height: 100px;
+	z-index: 99;
+	left:0px;
+	right:0px;
+	top:calc(50% - 50px);
+	margin:0 auto;
+	width:100px;
+	height:100px;
+	color:#fff;
+	border-radius: 50px;
+	border:1px solid #fff;
+	line-height: 100px;
+}
+	
+
+p{
+	position:absolute;
+	z-index: 99;
+}
+
+.topBtn{
+	position:relative;
+	line-height: 100px;
+	z-index: 99;
+	left:0px;
+	right:0px;
+	top:calc(50% - 50px);;
+	margin:0 auto;
+	width:100px;
+	height:100px;
+	color:#fff;
+	border-radius: 50px;
+	border:1px solid #000;
+	line-height: 100px;
+}
+
+.topBtnOutSide{
+	position:absolute;
+	line-height: 100px;
+	z-index: 100;
+	left:0px;
+	right:0px;
+	top:calc(50% - 70px);;
+	margin:0 auto;
+	width:140px;
+	height:140px;
+	color:#fff;
+	border-radius: 70px;
+	border:1px solid blue;
+	line-height: 100px;
+	background: none;
+
+   -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+   
+}
+
+
+.bottomBtn{
+	position:relative;
+   	line-height: 100px;
+	z-index: 99;
+	left:0px;
+	right:0px;
+	top:calc(50% - 50px);;
+	margin:0 auto;
+	width:100px;
+	height:100px;
+	color:#fff;
+	border-radius: 50px;
+	border:1px solid #fff;
+	line-height: 100px;
+}
+.bottomBtnOutSide{
+	background: none;
+	position:absolute;
+   	line-height: 100px;
+	z-index: 99;
+	left:0px;
+	right:0px;
+	top:calc(50% - 70px);;
+	margin:0 auto;
+	width:140px;
+	height:140px;
+	color:#fff;
+	border-radius: 70px;
+	border:1px solid red;
+
+	  -webkit-animation: bounce 2.0s infinite ease-in-out;
+      animation: bounce 2.0s infinite ease-in-out;
+
+}
+
+
+
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(1.0);opacity:1; }
+  50% { -webkit-transform: scale(0.8); opacity:0.2; }
+}
+ 
+// @keyframes bounce {
+//   0%, 100% {
+//     transform: scale(0.0);
+//     -webkit-transform: scale(0.0);
+//   } 50% {
+//     transform: scale(1.0);
+//     -webkit-transform: scale(1.0);
+//      opacity: 0;
+//   }
+// }
+
+

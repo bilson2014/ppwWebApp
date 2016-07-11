@@ -2,6 +2,9 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
+@import "fontSize";
+
+
 
 body {
   width: 100%;
@@ -9,204 +12,6 @@ body {
   background: url(../../images/login/manager-login.jpg) no-repeat;
   background-size: cover;
   background-position: center 0;
-}
-
-
-
-.page-width {
-	position: relative;
-	top: 125px;
-	margin: 0 auto;
-	width: 380px;
- 	background:none;
- 	}
-
-	.login-div {
-		position: relative;
-		margin: 0 auto;
-		width: 100%;
-		padding: 5px;
-		//height: 420px;
-		border: 1px solid $body-color;
-		border-radius: 5px;
-		background:$white;
-		 @media screen and (min-width:1500px) {
-		 top:140px;
-            }
-		
-	
-	h1 {
-		margin: 20px 0px 0px 20px;
-		font-size: $font-size-lg;
-	}
-	h2 {
-		margin: 15px 0px 0px 20px;
-		font-size: $font-size-sm;
-		color: #fb9b6a;
-
-
-		&:hover {
-			cursor: pointer;
-		}
-	}
-
-	h3{
-	font-size: $font-size-sm;
-	color:$gray-light;
-	text-align:center;
-	margin-bottom:20px;
-
-	}
-	input {
-		width: 90%;
-		height: 38px;
-		margin: 20px 0px 0px 20px; 
-		color: $gray-light;
-		font-size: $font-size-base;
-		padding-left: 10px;
-		border: solid 1px $login-border;
-		border-radius: 5px;
-	}
-
-	.loginbtn {
-		margin: 35px 0px 0px 20px;
-  		width: 90%;
-		height: 38px;
-		background-color: $red-base;
-		border-color: $white;
-		border-radius: 5px;
-		display: inline-block;
-		border: none;
-		color: $white;
-		font-size: $font-size-base;
-	}
-
-	.loginbtn:hover {
-		cursor: pointer;
-		background-color: darken($red-base, 10%);
-	}
-	.div-border {
-		width: 330px;
-		margin: 37px auto;
-		height:1px;
-		border:none;
-		background-color:$login-border;
-	}
-  
-
-	.span-border {
-		width: 50px;
-		background: $white;
-		text-align: center;
-		margin: 0px auto;
-		position: relative;
-		top: -45px;
-		color:$login-border;
-	}
-	.three-login {
-		width: 234px;
-		margin: 0 auto;
-	    position: relative;
-		top: -20px;
-	}
-	img {
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		&:hover {
-			cursor: pointer;
-		}
-	}
-
-	.image-margin{
-	margin-left:30px;
-	}
-
-	.bottom{
-     position: relative;
-     left: -1px;
-     width:401px;
-	 height:60px;
-	 line-height:60px;
-	 background:#f1f1f1;
-     text-align:center;
-     color:$gray-light;
-     border: solid 1px $login-border;
-     border-bottom-right-radius:5px;
-     border-bottom-left-radius:5px;
-       strong{
-        color:#fb9b6a;
-       }
-	}
-	   strong:hover{
-       cursor: pointer;
-       color:darken(#fb9b6a,10%);
-       }
-}
-.footer-top {
-	margin-top: 150px;
-}
-
-.footer-three{
-	position: relative;
-	top: 25px;
-}
-
-.footer-title-three{
-	font-size: 16px;
-	color: #999;
-	margin-bottom : 20px;
-}
-
-.footer-title-three > h3{
-	font-size:12px;
-	font-weight: bold;
-	text-align: center;
-}
-
-.footer-content-three{
-	height: 130px;
-}
-
-.footer-content-three ul{
-	width: 300px;
-	margin:0 auto;
-}
-
-.footer-content-three li{
-	width: 100px;
-}
-
-.footer-content-three img{
-	width: 60px;
-	height:60px;
-}
-
-.footer-content-three span {
-	margin-top: 5px;
-	display: block;
-	color: #999;
-}
-
-li {
-	float: left;
-	text-align: center;
-}
-
-/* 第三方登录  start */
-.WB_loginButton{
-	width: 60px;
-}
-
-/* 第三方登录  end */
-
-.btn-danger {
-  background-color: #fe5453;
-  border-color: #fe5453;
-}
-
-.btn-link {
-	color: #fb9b6a;
 }
 
 .nav .logo {
@@ -220,78 +25,445 @@ li {
 }
 
 
-.forget-div {
-		position: relative;
-		top: 60px;
-		margin: 0 auto;
-		width: 400px;
-		height: 350px;
-		border: solid 1px $login-border;
-		border-radius: 5px;
-		background:$white;
-	}
-	h1 {
-		margin: 40px 0px 0px 20px;
-		font-size: $font-size-lger;
-	}
-	input {
-		width: 358px;
-		height: 38px;
-		margin: 20px 0px 0px 20px;
-		color: $gray-light;
-		font-size: $font-size;
-		padding-left: 10px;
-		border: solid 1px $login-border;
-		border-radius: 5px;
-	}
+.outSideDiv{
+  margin: 0 auto;
+  background: #fff;
+  width: 400px;
+  height: 508px;
+    padding: 0;
+  overflow: hidden;
+  position:relative;
+  top:80px;
+   @media screen and (min-width:1276px) and (max-width:1500px) {
+      top:100px;
+    }
+    @media screen and (min-width:1500px) {
+      top:180px;
+    }
+    border-radius: 5px;
+}
 
+.loginDiv{
+  margin: 0 auto;
+  width: 280px;
+  height:100%;
+    .redBtn{
+        background: $red-base;
+        width:100%;
+        height:38px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 38px;
+        font-size: $font-size;
+        color:#fff;
+        margin-top: 10px;
+        position: relative;
+        top: 8px;
+        cursor: pointer;
 
-	.use-code {
-		display: inline-block;
-		width: 190px;
-		height: 38px;
-	}
+       }
 
-	.use-get{
-		display: inline-block;
-		width: 148px;
-		height: 38px;
-		margin-left:15px;
-		padding-right:5px;
-		text-align:center;
-		color:$gold-yellow;
-		
-		&:hover{
-		cursor:pointer;
+  h1{
+   margin: 40px 0px 40px 0px;
+   position: relative;
+     top: 4px;
+   }
+
+   	h2 {
+		margin: 30px 0px 0px 0px;
+		font-size: $font-size-sm;
+		color: #fb9b6a;
+		&:hover {
+			cursor: pointer;
 		}
 	}
-	.forgetbtn {
+
+   .loginContent{
+    width: 100%;
+    height:60px;
+       input{
+        background: none;
+        height:35px;
+        width: 100%;
+        border:none;
+        outline: none;
+        border-bottom: 1px solid #d9d9df;
+         -webkit-box-shadow: 0 0 0px 1000px white inset;
+         
+       }
+
+       .otherDiv{
+        position: absolute;
+       }
+
+       .errorDiv{
+        position:relative;
+        top:5px;
+        color:$red-base;
+        font-size: $font-size-sm;
+       }
+
+             .errorMidDiv{
+        position:absolute;
+        top: 50px;
+        left: 115px;
+        color:$red-base;
+        font-size: $font-size-sm;
+       }
+
+
+
+   }
+ 
+}
+
+
+
+.infoWord{
+  margin:38px 0px 26px 0px;
+  width:100%;
+  text-align: center;
+}
+
+.btn-validation {
+  display: inline;
+  height: 34px;
+  width: 90px;
+  position: relative;
+    top: -35px;
+    left: 190px;
+    cursor: pointer;
+}
+
+.btn-get-validation {
+  display: inline;
+  height: 34px;
+  width: 90px;
+  position: relative;
+  line-height:3px;
+    top: -36px;
+    left: 195px;
+    background: none;
+    border: none;
+    color:$gray;
+    cursor: pointer;
+    &:hover{
+      color:$gray-dark;
+    }
+}
+
+
+.footer-content-three{
+  height: 90px;
+}
+
+.footer-content-three ul{
+  width: 280px;
+  margin:0 auto;
+}
+
+.footer-content-three li{
+  width: 93px;
+}
+
+.footer-content-three img{
+  width: 50px;
+  height:50px;
+}
+
+.footer-content-three span {
+  margin-top: 5px;
+  display: block;
+  color: #999;
+}
+
+li {
+  float: left;
+  text-align: center;
+}
+
+
+
+
+// .page-width {
+// 	position: relative;
+// 	top: 125px;
+// 	margin: 0 auto;
+// 	width: 380px;
+//  	background:none;
+//  	}
+
+// 	.login-div {
+// 		position: relative;
+// 		margin: 0 auto;
+// 		width: 100%;
+// 		padding: 5px;
+// 		//height: 420px;
+// 		border: 1px solid $body-color;
+// 		border-radius: 5px;
+// 		background:$white;
+// 		 @media screen and (min-width:1500px) {
+// 		 top:140px;
+//             }
+		
+	
+// 	h1 {
+// 		margin: 20px 0px 0px 20px;
+// 		font-size: $font-size-lg;
+// 	}
+// 	h2 {
+// 		margin: 15px 0px 0px 20px;
+// 		font-size: $font-size-sm;
+// 		color: #fb9b6a;
+
+
+// 		&:hover {
+// 			cursor: pointer;
+// 		}
+// 	}
+
+// 	h3{
+// 	font-size: $font-size-sm;
+// 	color:$gray-light;
+// 	text-align:center;
+// 	margin-bottom:20px;
+
+// 	}
+// 	input {
+// 		width: 90%;
+// 		height: 38px;
+// 		margin: 20px 0px 0px 20px; 
+// 		color: $gray-light;
+// 		font-size: $font-size-base;
+// 		padding-left: 10px;
+// 		border: solid 1px $login-border;
+// 		border-radius: 5px;
+// 	}
+
+// 	.loginbtn {
+// 		margin: 35px 0px 0px 20px;
+//   		width: 90%;
+// 		height: 38px;
+// 		background-color: $red-base;
+// 		border-color: $white;
+// 		border-radius: 5px;
+// 		display: inline-block;
+// 		border: none;
+// 		color: $white;
+// 		font-size: $font-size-base;
+// 	}
+
+// 	.loginbtn:hover {
+// 		cursor: pointer;
+// 		background-color: darken($red-base, 10%);
+// 	}
+// 	.div-border {
+// 		width: 330px;
+// 		margin: 37px auto;
+// 		height:1px;
+// 		border:none;
+// 		background-color:$login-border;
+// 	}
+  
+
+// 	.span-border {
+// 		width: 50px;
+// 		background: $white;
+// 		text-align: center;
+// 		margin: 0px auto;
+// 		position: relative;
+// 		top: -45px;
+// 		color:$login-border;
+// 	}
+// 	.three-login {
+// 		width: 234px;
+// 		margin: 0 auto;
+// 	    position: relative;
+// 		top: -20px;
+// 	}
+// 	img {
+// 		width: 50px;
+// 		height: 50px;
+// 		display: inline-block;
+// 		&:hover {
+// 			cursor: pointer;
+// 		}
+// 	}
+
+// 	.image-margin{
+// 	margin-left:30px;
+// 	}
+
+// 	.bottom{
+//      position: relative;
+//      left: -1px;
+//      width:401px;
+// 	 height:60px;
+// 	 line-height:60px;
+// 	 background:#f1f1f1;
+//      text-align:center;
+//      color:$gray-light;
+//      border: solid 1px $login-border;
+//      border-bottom-right-radius:5px;
+//      border-bottom-left-radius:5px;
+//        strong{
+//         color:#fb9b6a;
+//        }
+// 	}
+// 	   strong:hover{
+//        cursor: pointer;
+//        color:darken(#fb9b6a,10%);
+//        }
+// }
+// .footer-top {
+// 	margin-top: 150px;
+// }
+
+// .footer-three{
+// 	position: relative;
+// 	top: 25px;
+// }
+
+// .footer-title-three{
+// 	font-size: 16px;
+// 	color: #999;
+// 	margin-bottom : 20px;
+// }
+
+// .footer-title-three > h3{
+// 	font-size:12px;
+// 	font-weight: bold;
+// 	text-align: center;
+// }
+
+// .footer-content-three{
+// 	height: 130px;
+// }
+
+// .footer-content-three ul{
+// 	width: 300px;
+// 	margin:0 auto;
+// }
+
+// .footer-content-three li{
+// 	width: 100px;
+// }
+
+// .footer-content-three img{
+// 	width: 60px;
+// 	height:60px;
+// }
+
+// .footer-content-three span {
+// 	margin-top: 5px;
+// 	display: block;
+// 	color: #999;
+// }
+
+// li {
+// 	float: left;
+// 	text-align: center;
+// }
+
+// /* 第三方登录  start */
+// .WB_loginButton{
+// 	width: 60px;
+// }
+
+// /* 第三方登录  end */
+
+// .btn-danger {
+//   background-color: #fe5453;
+//   border-color: #fe5453;
+// }
+
+// .btn-link {
+// 	color: #fb9b6a;
+// }
+
+// .nav .logo {
+//   position: relative;
+//   float: left;
+//   top: 14px;
+//   background: url(../../images/common/logo.svg) no-repeat;
+//   width: 92px;
+//   height: 30px;
+//   margin-right: 76px;
+// }
+
+
+// .forget-div {
+// 		position: relative;
+// 		top: 60px;
+// 		margin: 0 auto;
+// 		width: 400px;
+// 		height: 350px;
+// 		border: solid 1px $login-border;
+// 		border-radius: 5px;
+// 		background:$white;
+// 	}
+// 	h1 {
+// 		margin: 40px 0px 0px 20px;
+// 		font-size: $font-size-lger;
+// 	}
+// 	input {
+// 		width: 358px;
+// 		height: 38px;
+// 		margin: 20px 0px 0px 20px;
+// 		color: $gray-light;
+// 		font-size: $font-size;
+// 		padding-left: 10px;
+// 		border: solid 1px $login-border;
+// 		border-radius: 5px;
+// 	}
+
+
+// 	.use-code {
+// 		display: inline-block;
+// 		width: 190px;
+// 		height: 38px;
+// 	}
+
+// 	.use-get{
+// 		display: inline-block;
+// 		width: 148px;
+// 		height: 38px;
+// 		margin-left:15px;
+// 		padding-right:5px;
+// 		text-align:center;
+// 		color:$gold-yellow;
+		
+// 		&:hover{
+// 		cursor:pointer;
+// 		}
+// 	}
+// 	.forgetbtn {
        
-		margin: 34px 0px 0px 20px;
-		width: 358px;
-		height: 38px;
-		background-color: $red-base;
-		border-color: $white;
-		border-radius: 5px;
-		display: inline-block;
-		border: none;
-		color: $white;
-		font-size: $font-size-base;
-	}
-	.forgetbtn:hover {
-		cursor: pointer;
-		background-color: darken($red-base, 10%);
-	}
+// 		margin: 34px 0px 0px 20px;
+// 		width: 358px;
+// 		height: 38px;
+// 		background-color: $red-base;
+// 		border-color: $white;
+// 		border-radius: 5px;
+// 		display: inline-block;
+// 		border: none;
+// 		color: $white;
+// 		font-size: $font-size-base;
+// 	}
+// 	.forgetbtn:hover {
+// 		cursor: pointer;
+// 		background-color: darken($red-base, 10%);
+// 	}
 
-.tooltip-show-recover {
-	height: 46px;
-	background-color: #F2DEDE;
-	color: #A94446;
-	border-radius: 4px;
-	text-align: center;
-	line-height: 36px;
-}
+// .tooltip-show-recover {
+// 	height: 46px;
+// 	background-color: #F2DEDE;
+// 	color: #A94446;
+// 	border-radius: 4px;
+// 	text-align: center;
+// 	line-height: 36px;
+// }
 
-label.tooltip-message-recover {
-	padding-top: 4px;
-}
+// label.tooltip-message-recover {
+// 	padding-top: 4px;
+// }

@@ -254,13 +254,12 @@
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>拍片网客服发发</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>拍片网客服美美</h3></a>
-					<a href="mailto:bd@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bd@paipianwang.cn</h3></a>
+					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
 				</div>
 				
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >服务</a>
-					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
-					
+					<a href="<spring:url value='/order-flow.html' />">服务流程</a>					
 					<a href="javascript:void(0);" class="top-margin">工作时间</a>
 					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
 				</div>

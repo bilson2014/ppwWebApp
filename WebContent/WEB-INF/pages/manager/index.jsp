@@ -453,7 +453,7 @@
 										  <div class="bounce2"></div>
 										  <div class="bounce3"></div>
 										</div>
-						</div>
+						   </div>
 					
 			   		      
 				   <div class="payCardZoom" id="payListPage">
@@ -566,7 +566,7 @@
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
-					<a href="mailto:bd@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bd@paipianwang.cn</h3></a>
+					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
 				</div>
 				
 				<div class="footer-column">
@@ -669,7 +669,36 @@
 					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
 		                   <button class="red-btn sure-margin">确定</button>
 		                   <label class="check-step" >确定下一步吗</label>
+		                   <div class="check-step-load hide" id="listLoadCheck">
+				       			 <div class="load-word">效验中</div>
+										<div class="spinner">
+										  <div class="bounce1"></div>
+										  <div class="bounce2"></div>
+										  <div class="bounce3"></div>
+										</div>
+						   </div>
 		                   <button class="gray-btn cancle-margin">取消</button>   
+					</div>
+				</div>	
+			</div>
+		</div>
+		
+				<div class="modal fade upload-window" id="toolbar-pause-re">
+			<div class="modal-dialog">
+				<div class="modal-content" >
+					<div class="modal-body checkstep">
+					
+					       <div class="pauseWord">
+					       <img class="canclestepPause"  id="canclestepPause" src="/resources/img/flow/canclemodal.png">
+					         <div id="pauseWord">确定暂停吗？</div>
+					         <div class="pauseTop" id="errorReason" style="display:inline-block;">
+					         	<textarea id="reason" placeholder="原因" class="textareaInfo" onpropertychange="smsCount()" oninput="smsCount()"></textarea>
+					         </div>  
+					       </div>
+					        <div class="pauseBtn">
+			                   <button class="red-btn puaseLeft" id="sureControl">确定</button>
+			                   <button class="gray-btn puaseRight" id="cancleControl">取消</button>
+		                   </div>   
 					</div>
 				</div>	
 			</div>
