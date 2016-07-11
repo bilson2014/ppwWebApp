@@ -41,13 +41,14 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
-import com.panfeng.film.service.OtherLogin;
+import com.panfeng.film.service.ProviderThirdLogin;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.ValidateUtil;
+import com.panfeng.film.util.WechatUtils;
 
 /**
  * 供应商模块 控制器
@@ -86,7 +87,7 @@ public class ProviderController extends BaseController {
 	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
 
 	@Autowired
-	private OtherLogin otherLogin;
+	private ProviderThirdLogin providerThirdLogin;
 
 	@Autowired
 	private KindeditorService kindService;
@@ -221,7 +222,7 @@ public class ProviderController extends BaseController {
 				baseMsg.setErrorCode(BaseMsg.ERROR);
 				baseMsg.setErrorMsg("登录错误!");
 				return baseMsg;
-			}else {
+			} else {
 				serLogger.info("手机号错误");
 				return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
 			}
@@ -231,13 +232,13 @@ public class ProviderController extends BaseController {
 		}
 	}
 
-	@RequestMapping("/otherLogin")
-	public ModelAndView otherLogin(String json, final HttpServletRequest request, ModelMap modelMap) {
+	@RequestMapping("/thirdLogin")
+	public ModelAndView thirdLogin(String json, final HttpServletRequest request, ModelMap modelMap) {
 		if (!ValidateUtil.isValid(json))
 			return new ModelAndView("/provider/login");
 		Team original = JsonUtil.toBean(json, Team.class);
 		// TODO:
-		boolean isBind = otherLogin.login(original, request);
+		boolean isBind = providerThirdLogin.login(original, request);
 		if (isBind) {
 			return new ModelAndView("/provider/portal");
 		} else {
@@ -1341,14 +1342,7 @@ public class ProviderController extends BaseController {
 		final Object objUnique = httpSession.getAttribute(UNIQUE);
 		final Object objLinkman = httpSession.getAttribute(LINKMAN);
 		final Object objCode = request.getSession().getAttribute("code");
-		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) { // debug
-																													// objCode
-																													// ==
-																													// null
-																													// dev
-																													// objCode
-																													// !=
-																													// null
+		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) {
 			// 不需要输入验证码
 			try {
 				final String Unique = (String) objUnique;
@@ -1357,10 +1351,6 @@ public class ProviderController extends BaseController {
 
 				// 不需要输入验证码 code == null dev code != null
 				if (code == null || code.equals(team.getVerification_code())) {
-					// 删除 session
-					httpSession.removeAttribute(UNIQUE);
-					httpSession.removeAttribute(LINKMAN);
-
 					team.setLinkman(Linkman);
 					if (ValidateUtil.isValid(Unique)) {
 						switch (Ltype) {
@@ -1379,6 +1369,11 @@ public class ProviderController extends BaseController {
 						final String json = HttpUtil.httpPost(url, team, request);
 						if (ValidateUtil.isValid(json)) {
 							final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
+							if (msg.getErrorCode() == BaseMsg.NORMAL) {
+								// 删除 session
+								httpSession.removeAttribute(UNIQUE);
+								httpSession.removeAttribute(LINKMAN);
+							}
 							return msg;
 						}
 					}
@@ -1479,7 +1474,7 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/wechat/callback.do")
 	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
 			ModelMap modelMap) {
-		Wechat wechat = otherLogin.decodeWechatToken(code, request);
+		Wechat wechat = WechatUtils.decodeWechatToken(code, request);
 		if (wechat == null)
 			return new ModelAndView("/provider/threeLogin");
 		Team original = new Team();
@@ -1487,7 +1482,7 @@ public class ProviderController extends BaseController {
 		original.setWechatUnique(wechat.getUnionid());
 		original.setTeamPhotoUrl(wechat.getHeadimgurl());
 		original.setThirdLoginType(Team.LTYPE_WECHAT);
-		boolean isBind = otherLogin.login(original, request);
+		boolean isBind = providerThirdLogin.login(original, request);
 		if (isBind) {
 			return new ModelAndView("/provider/portal");
 		} else {
@@ -1498,6 +1493,5 @@ public class ProviderController extends BaseController {
 			modelMap.put("LType", original.getThirdLoginType());
 			return new ModelAndView("/provider/threeLogin", modelMap);
 		}
-
 	}
 }

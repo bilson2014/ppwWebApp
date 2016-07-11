@@ -269,7 +269,7 @@ $().ready(function(){
 	provider_login.init();
 	
 	function otherLogin(condition){
-		var url = getContextPath() + '/provider/otherLogin';
+		var url = getContextPath() + '/provider/thirdLogin';
 		var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
 		$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
 	}

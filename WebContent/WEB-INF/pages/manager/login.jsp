@@ -34,6 +34,12 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body>
 	<div class="header">
