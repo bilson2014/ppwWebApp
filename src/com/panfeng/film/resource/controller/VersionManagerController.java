@@ -45,12 +45,15 @@ import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
+import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
+import com.panfeng.film.service.EmployeeThirdLogin;
 import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.ValidateUtil;
+import com.panfeng.film.util.WechatUtils;
 
 @RestController
 @RequestMapping("/mgr")
@@ -59,6 +62,11 @@ public class VersionManagerController extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger("error");
 	@Autowired
 	private ResourceService resourceService;
+	@Autowired
+	private EmployeeThirdLogin employeeThirdLogin;
+
+	static String UNIQUE = "unique_e";
+	static String LINKMAN = "username_e";
 
 	@RequestMapping("/login")
 	public ModelAndView loginView() {
@@ -104,6 +112,121 @@ public class VersionManagerController extends BaseController {
 	}
 
 	/**
+	 * 三方登录
+	 * 
+	 * @param json
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/thirdLogin")
+	public ModelAndView thirdLogin(String json, final HttpServletRequest request, ModelMap modelMap) {
+		if (!ValidateUtil.isValid(json))
+			return new ModelAndView("/manager/login");
+		Employee original = JsonUtil.toBean(json, Employee.class);
+		boolean isBind = employeeThirdLogin.login(original, request);
+		if (isBind) {
+			return new ModelAndView("/manager/index");
+		} else {
+			HttpSession httpSession = request.getSession();
+			String unique = "";
+			switch (original.getThirdLoginType()) {
+			case Team.LTYPE_QQ:
+				unique = original.getQqUnique();
+				break;
+			case Team.LTYPE_WECHAT:
+				unique = original.getWechatUnique();
+				break;
+			case Team.LTYPE_WEIBO:
+				unique = original.getWbUnique();
+				break;
+			}
+			httpSession.setAttribute(UNIQUE, unique);
+			httpSession.setAttribute(LINKMAN, original.getEmployeeRealName());
+			modelMap.put("linkMan", original.getEmployeeRealName());
+			modelMap.put("LType", original.getThirdLoginType());
+			return new ModelAndView("/manager/threeLogin", modelMap);
+		}
+	}
+
+	@RequestMapping("/wechat/callback.do")
+	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
+			ModelMap modelMap) {
+		Wechat wechat = WechatUtils.decodeWechatToken(code, request);
+		if (wechat == null)
+			return new ModelAndView("/provider/threeLogin");
+		Employee original = new Employee();
+		original.setThirdLoginType(Team.LTYPE_WECHAT);
+		original.setEmployeeRealName(wechat.getNickname());
+		original.setWechatUnique(wechat.getUnionid());
+		original.setEmployeeImg(wechat.getHeadimgurl());
+		boolean isBind = employeeThirdLogin.login(original, request);
+		if (isBind) {
+			return new ModelAndView("/provider/portal");
+		} else {
+			HttpSession httpSession = request.getSession();
+			String unique = original.getWechatUnique();
+			httpSession.setAttribute(UNIQUE, unique);
+			modelMap.put("linkMan", original.getEmployeeRealName());
+			modelMap.put("LType", original.getThirdLoginType());
+			return new ModelAndView("/provider/threeLogin", modelMap);
+		}
+	}
+
+	@RequestMapping("/bind")
+	public BaseMsg bind(@RequestBody final Employee employee, final HttpServletRequest request) {
+		// TODO:
+		HttpSession httpSession = request.getSession();
+		final String phone = employee.getPhoneNumber();
+		final String Ltype = employee.getThirdLoginType();
+		final Object objUnique = httpSession.getAttribute(UNIQUE);
+		final Object objLinkman = httpSession.getAttribute(LINKMAN);
+		final Object objCode = request.getSession().getAttribute("code");
+		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) {
+			// 不需要输入验证码
+			try {
+				final String Unique = (String) objUnique;
+				final String realName = (String) objLinkman;
+				final String code = (String) objCode;
+
+				// 不需要输入验证码 code == null dev code != null
+				if (code == null || code.equals(employee.getVerification_code())) {
+					employee.setEmployeeRealName(realName);
+					if (ValidateUtil.isValid(Unique)) {
+						switch (Ltype) {
+						case Team.LTYPE_QQ:
+							employee.setQqUnique(Unique);
+							break;
+						case Team.LTYPE_WECHAT:
+							employee.setWechatUnique(Unique);
+							break;
+						case Team.LTYPE_WEIBO:
+							employee.setWbUnique(Unique);
+							break;
+						}
+						// 后台绑定
+						final String url = GlobalConstant.URL_PREFIX + "portal/manager/thirdLogin/bind";
+						final String json = HttpUtil.httpPost(url, employee, request);
+						if (ValidateUtil.isValid(json)) {
+							final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
+							if (msg.getErrorCode() == BaseMsg.NORMAL) {
+								// 成功删除 session
+								httpSession.removeAttribute(UNIQUE);
+								httpSession.removeAttribute(LINKMAN);
+							}
+							return msg;
+						}
+					}
+				}
+			} catch (Exception e) {
+				logger.error("Provider bind error,teamName is " + employee.getEmployeeRealName());
+				e.printStackTrace();
+			}
+		}
+		return new BaseMsg(BaseMsg.ERROR, "绑定失败", null);
+	}
+
+	/**
 	 * 验证手机号唯一性
 	 * 
 	 * @param phoneNumber
@@ -134,8 +257,8 @@ public class VersionManagerController extends BaseController {
 		final HttpSession session = request.getSession();
 		// 密码重置
 		final String code = (String) session.getAttribute("code");
-		//是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
@@ -373,15 +496,14 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/verifyProjectInfo")
-	public BaseMsg verifyProjectInfo(final HttpServletRequest request,@RequestBody IndentProject indentProject) {
+	public BaseMsg verifyProjectInfo(final HttpServletRequest request, @RequestBody IndentProject indentProject) {
 		final String url = GlobalConstant.URL_PREFIX + "project/verifyProjectInfo";
-		String str = HttpUtil.httpPost(url,indentProject, request);
+		String str = HttpUtil.httpPost(url, indentProject, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, BaseMsg.class);
 		}
 		return new BaseMsg(BaseMsg.ERROR, "服务器繁忙", "");
 	}
-	
 
 	@RequestMapping("/projects/team/search/info")
 	public List<Team> getTeamByName(@RequestBody final Team team, final HttpServletRequest request) {

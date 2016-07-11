@@ -5,21 +5,53 @@
 @import "fontSize";
 @import "compass/typography/text/ellipsis";
 
+$video-height: 250px; // 视频播放区域高度
+$video-height320: 170px; // 视频播放区域高度(320px)
+$video-height360: 192px; // 视频播放区域高度(360px)
+$video-height390: 210px; // 视频播放区域高度(390px)
+$video-height640: 351px; // 视频播放区域高度(640px)
+$video-height720: 396px; // 视频播放区域高度(720px)
 
-
-
+@media (max-device-width : 1024px) and (orientation : landscape) {
+   
+}
 
 .cusSide {
     width: 100%;
     height: 100%;
+       
     background: $white;
     position: relative;
     .topDiv {
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/login/cusBack.jpg) no-repeat;
-        background-size: 100% 100%;
+        background: url(../../../images/phone/login/cusBackB.jpg) no-repeat;
+    
+          background-size:100%  $video-height;
+        
+        @media screen and (max-width: 360px) {
+            background-size:100%  $video-height320;
+        }
+
+        @media screen and (min-width: 360px) and (max-width: 390px) {
+            background-size:100%  $video-height360;
+        }
+
+        @media screen and (min-width: 390px) and (max-width: 460px) {
+            background-size:100%  $video-height390;
+        }
+
+        @media screen and (min-width: 640px) and (max-width: 720px) {
+            background-size:100%  $video-height640;
+        }
+
+        @media screen and (min-width: 720px) {
+            background-size:100%  $video-height720;
+        }
+
+
+
         .topContent {
             width: 100%;
             height: auto;
@@ -47,6 +79,9 @@
         height: 75%;
         position: absolute;
         top: 25%;
+        @media (max-device-width : 1024px) and (orientation : landscape) {
+            top: 40%;
+       }
         .cusBg {
             background: url(../../../images/phone/login/cusLogin.png) no-repeat;
             background-size: 100% 100%;
@@ -56,6 +91,9 @@
             width: 100%;
             height: 100%;
             padding-top: 5%;
+               @media (max-device-width : 1024px) and (orientation : landscape) {
+           height: 1000px;
+       }
         }
         .contentColor {
             background: $red-base;
@@ -127,6 +165,8 @@
             left: 25px;
             span {
                 color: $gold-yellow;
+                position: relative;
+                left:10px;
             }
         }
     }
@@ -196,7 +236,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/login/posBack.jpg) no-repeat;
+        background: url(../../../images/phone/login/posBackB.jpg) no-repeat;
         background-size: 100% 100%;
         .topContent {
             width: 100%;
