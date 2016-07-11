@@ -35,12 +35,12 @@
 			<bean class="com.google.code.kaptcha.util.Config">
 				<constructor-arg>
 					<props>
-						<prop key="kaptcha.border">yes</prop>  
-						<prop key="kaptcha.border.color">105,179,90</prop>  
-						<prop key="kaptcha.textproducer.font.color">blue</prop>  
+						<prop key="kaptcha.border">no</prop>  
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<prop key="kaptcha.textproducer.font.color">254,176,76</prop>  
 						<prop key="kaptcha.image.width">94</prop>  
 						<prop key="kaptcha.image.height">40</prop>  
-						<prop key="kaptcha.textproducer.font.size">35</prop>  
+						<prop key="kaptcha.textproducer.font.size">32</prop>  
 						<prop key="kaptcha.textproducer.char.length">4</prop>  
 						<prop key="kaptcha.textproducer.font.names">TimesNewMan</prop>  
 						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>  

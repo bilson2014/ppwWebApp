@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,10 +33,12 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Job;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Service;
+import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.ProductView;
+import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
@@ -458,9 +461,46 @@ public class PCController extends BaseController {
 	 * 作品页跳转
 	 */
 	@RequestMapping("/list.html")
-	public ModelAndView listView(final ModelMap model) {
+	public ModelAndView listView(final ModelMap model,final HttpServletRequest request) {
 
-		return new ModelAndView("list", model);
+		// modify by jack,2016-07-06 18:12 begin
+		// -> change search type database to solr 
+		//return new ModelAndView("list", model);
+		
+		model.addAttribute("q", "*");
+		
+		// 该字段是为了验证是否是从list.html页面中来的
+		model.addAttribute("validateP", "701511B4F6020EC61DE");
+		
+		try {
+			final SolrView view = new SolrView();
+			view.setCondition(URLEncoder.encode("*", "UTF-8"));
+			view.setLimit(20l);
+			final String url = URL_PREFIX + "portal/solr/query";
+			final String json = HttpUtil.httpPost(url,view,request);
+			long total = 0l;
+			if (json != null && !"".equals(json)) {
+				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
+				if (list != null && !list.isEmpty()) {
+					final Solr s = list.get(0);
+					if(s != null){
+						total = s.getTotal(); // 设置总数
+					}
+					for (final Solr solr : list) {
+						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
+							solr.setPicLDUrl(solr.getPicLDUrl().split(GlobalConstant.VIDEO_IMAGE_PERFIX)[1]);
+						}
+					}
+				}
+				model.addAttribute("list", list);
+				model.addAttribute("total", total);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("PCController method:listView() encode failue,q=*");
+		}
+		return new ModelAndView("search", model);
+		// modify by jack,2016-07-06 18:13 end
 	}
 
 	/**
