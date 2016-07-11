@@ -114,13 +114,11 @@ $().ready(function(){
 				loadData(function(msg){
 					if(msg.errorCode == 200){
 						$(".errorDiv").addClass("hide");
-						window.location.href=getContextPath()+ '/provider/portal';
-					}else if (msg.errorCode == 300 && msg.errorMsg == "引导流程"){
-						window.location.href=getContextPath()+'/provider/leader';
+						window.location.href=getContextPath()+ '/mgr/index';
 					}else{
 						alert(msg.errorMsg);
 					}
-				}, getContextPath() + '/provider/bind', $.toJSON({
+				}, getContextPath() + '/mgr/bind', $.toJSON({
 					phoneNumber : $('#user_phoneNumber').val().trim(),
 					verification_code : $('#verification_code').val().trim(),
 					thirdLoginType:$("#LType").val().trim()

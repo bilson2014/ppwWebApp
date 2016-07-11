@@ -9,104 +9,6 @@ var isShowKaptcha = false;
 
 $().ready(function(){
 	
-
-
-//	// 根据手机号 判断登录还是注册
-//	isLogin = $('#loginAllRigster').val();
-//	
-//	if(isLogin == 'login'){
-//		// 登录操作
-//		$('#userName').bind('input propertychange',validationLogin);
-//	}else{
-//		// 忘记密码操作
-//		
-//		$('.header-logo').find('p').text('密码找回');
-//		
-//		$('.footer').addClass('hide');
-//		
-//		$('#loginBt').text('重置密码');
-//		
-//		$('#forget-group').addClass('hide');
-//		
-//		$('#userName').bind('input propertychange',validationRecover);
-//	}
-//	
-//});
-
-	var login = { 
-			sina : function(){ // 新浪登陆
-				$('#weiboBt').on('click',function(){
-					WB2.login(function() {
-							// 获取 用户信息
-						getWBUserData(function(o){
-							// 保存至session中，并跳转
-							var condition = $.toJSON({
-								userName : o.screen_name,
-								imgUrl : o.profile_image_url,
-								uniqueId : wb_uniqueId,
-								lType : 'weibo',
-								wbUnique : wb_uniqueId
-							});
-							
-							OAuthor(condition);
-						});
-					});
-				});
-			},
-			webcat : function(){ // 微信登陆
-				// open model
-				$('#webcat').on('click',function(){
-					
-					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
-					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
-				})
-			},
-			qq : function(){
-				$('#qqBt').on('click',function(){
-					alert(1);
-					QC.Login.showPopup();
-					
-					var paras = {};
-					
-					//用JS SDK调用OpenAPI
-					QC.api("get_user_info", paras)
-					//指定接口访问成功的接收函数，s为成功返回Response对象
-					.success(function(s){
-						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
-						QC.Login.getMe(function(openId, accessToken){
-							
-							// 存入session
-							var condition = $.toJSON({
-								userName : s.data.nickname,
-								imgUrl : s.data.figureurl,
-								uniqueId : openId,
-								lType : 'qq',
-								qqUnique : openId
-							});
-							
-							OAuthor(condition);
-						});
-					})
-					.error(function(e){
-						// 回掉失败
-						alert('获取用户信息失败');
-					})
-					.complete(function(c){
-						// 完成请求回掉
-					})
-				});
-				
-			}
-	}
-
-	
-	
-	login.sina(); // 新浪-第三方登录
-	
-	login.webcat(); // 微信-第三方登录
-	
-	login.qq(); // QQ-第三方登录
-	
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -124,7 +26,6 @@ $().ready(function(){
 				//微博登陆
 				this.wb();
 			},
-			
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
 					
@@ -229,16 +130,6 @@ $().ready(function(){
 					var phone_code = $('#user_phoneNumber').val();				
 					var veri_code = $('#verification_code').val();
 					var kap_code = $('#kaptcha_code').val();
-//20160706 lt update beigin					
-//					if(kap_code == null || kap_code == '' || kap_code == undefined){
-//						$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
-//						return false;
-//					}
-//					if(veri_code == null || veri_code == '' || veri_code == undefined){
-//						$("#code_error_info").text("请输入验证码").removeClass("hide");
-//						return false;
-//					}
-//end              
 					$("#code_error_info").addClass("hide");
 					$("#user_phoneNumberId").addClass("hide");
 					$("#kapt_error_info").addClass("hide");
@@ -364,7 +255,6 @@ $().ready(function(){
 								lType : 'weibo',
 								wbUnique : wb_uniqueId
 							});
-							
 							OAuthor(condition);
 						});
 					});

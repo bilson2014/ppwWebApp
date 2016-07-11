@@ -74,6 +74,13 @@
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
+		<!-- 验证作品分类需要登陆才能使用 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/list.html"/>
+			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
+		</mvc:interceptor>
+		
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/info"/>
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
@@ -82,7 +89,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
 			<mvc:exclude-mapping path="/provider/login" />
-			<mvc:exclude-mapping path="/provider/otherLogin" />
+			<mvc:exclude-mapping path="/provider/thirdLogin" />
 			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />
 			<mvc:exclude-mapping path="/provider/recover" />
@@ -99,6 +106,8 @@
 			<mvc:mapping path="/mgr/**" />
 			<mvc:exclude-mapping path="/mgr/login" />
 			<mvc:exclude-mapping path="/mgr/doLogin" />
+			<mvc:exclude-mapping path="/mgr/thirdLogin" />
+			<mvc:exclude-mapping path="/mgr/bind" />
 			<mvc:exclude-mapping path="/mgr/loginout" />
 			<mvc:exclude-mapping path="/mgr/doc/video/**" />
 			<mvc:exclude-mapping path="/mgr/recover/**" />
