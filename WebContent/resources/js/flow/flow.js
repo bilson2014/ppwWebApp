@@ -316,21 +316,21 @@ function cancelBtn() {
 	$('#sureControl').addClass('red-btn');
 	$('#reason').addClass('textareaInfo');
 	$('#reason').removeClass('textareaInfoError');
-	var input = $('#reason').val().trim();
-	$('#sureControl').on('click',function(){
-		if(input==null||input==""||input==undefined){
-			$('#sureControl').removeClass('red-btn');
-			$('#sureControl').addClass('no-red-btn');
-			$('#sureControl').off('click');
-		
-		}else{
-			$('#sureControl').removeClass('no-red-btn');
-			$('#sureControl').addClass('red-btn');
-			$('#reason').focus();
-			noWorkproject=false;
-			setModalMessageEvent(cancel);
-		}
-	});
+	noWorkproject=false;
+	setModalMessageEvent(cancel);
+//	var input = $('#reason').val().trim();
+//	$('#sureControl').on('click',function(){
+//		if(input==null||input==""||input==undefined){
+//			$('#sureControl').removeClass('red-btn');
+//			$('#sureControl').addClass('no-red-btn');
+//			$('#sureControl').off('click');
+//		}else{
+//			$('#sureControl').removeClass('no-red-btn');
+//			$('#sureControl').addClass('red-btn');
+//			$('#reason').focus();
+//		
+//		}
+//	});
 	
 }
 function cancel() {
@@ -338,7 +338,7 @@ function cancel() {
 	var reason = $('#reason').val().trim();
 	
 	
-	if(input==null||input==""||input==undefined){
+	if(reason==null||reason==""||reason==undefined){
 		$('#sureControl').removeClass('red-btn');
 		$('#sureControl').addClass('no-red-btn');
 		$('#reason').removeClass('textareaInfo');

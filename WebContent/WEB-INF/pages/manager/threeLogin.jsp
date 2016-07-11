@@ -129,6 +129,7 @@
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
+		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>
 		            <h3>初次见面,欢迎加入拍片网</h3> 
 		            <div class="redBtn" id="submitBtn">立即绑定</div>

@@ -116,7 +116,7 @@ $().ready(function(){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+ '/mgr/index';
 					}else{
-						alert(msg.errorMsg);
+						$("#login_error_info").text(errorMsg).removeClass("hide");
 					}
 				}, getContextPath() + '/mgr/bind', $.toJSON({
 					phoneNumber : $('#user_phoneNumber').val().trim(),
