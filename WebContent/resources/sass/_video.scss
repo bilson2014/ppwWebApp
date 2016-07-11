@@ -146,10 +146,11 @@
 }
 
 .prompt-word {
-	margin: auto;
+	margin: 20px auto;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
 	color: $gray;
 	line-height: $font-size-lger;
+      
 }

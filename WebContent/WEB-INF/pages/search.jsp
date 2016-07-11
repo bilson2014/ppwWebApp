@@ -194,7 +194,7 @@
 				</c:if>
 				
 				<r:noLogin>
-					<div class="prompt-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
+					<div class="prompt-word">请<a href="<spring:url value='/login' />" > <span>登陆</span> </a>拍片网，观看更多作品!</div>
 				</r:noLogin>
 				
 				<r:noLevel>
