@@ -239,7 +239,7 @@ var user_login = {
 			loadData(function(info){
 				if(info.key){
 					$(".errorDiv").addClass("hide");
-					window.location.href=getContextPath()+ '/mgr/index';
+					window.location.href=getContextPath()+ '/phone/portal';
 				}else{
 					$("#code_error_info").text(info.value).removeClass("hide");
 					return false;
@@ -254,7 +254,7 @@ var user_login = {
 			loadData(function(info){
 				if(info.key){
 					$(".errorDiv").addClass("hide");
-					window.location.href=getContextPath()+'/mgr/index';
+					window.location.href=getContextPath()+'/phone/portal';
 				}else{
 					$("#code_error_info").text(info.value).removeClass("hide");
 					return false;
