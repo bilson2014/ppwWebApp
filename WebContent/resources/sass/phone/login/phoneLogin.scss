@@ -7,6 +7,8 @@
 
 
 
+
+
 .cusSide {
     width: 100%;
     height: 100%;
@@ -16,7 +18,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/entry/login.jpg) no-repeat;
+        background: url(../../../images/phone/login/cusBack.jpg) no-repeat;
         background-size: 100% 100%;
         .topContent {
             width: 100%;
@@ -53,6 +55,7 @@
         .contentHeight {
             width: 100%;
             height: 100%;
+            padding-top: 5%;
         }
         .contentColor {
             background: $red-base;
@@ -193,7 +196,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/entry/login.jpg) no-repeat;
+        background: url(../../../images/phone/login/posBack.jpg) no-repeat;
         background-size: 100% 100%;
         .topContent {
             width: 100%;
@@ -229,6 +232,7 @@
         .contentHeight {
             width: 100%;
             height: 100%;
+            padding-top: 5%;
         }
         .contentColor {
             background: $white;

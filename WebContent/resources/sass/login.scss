@@ -80,6 +80,14 @@ body {
         font-size: $font-size-sm;
        }
 
+      .errorMidDiv{
+        position:absolute;
+        top: 50px;
+        left: 115px;
+        color:$red-base;
+        font-size: $font-size-sm;
+       }
+
 
 
    }

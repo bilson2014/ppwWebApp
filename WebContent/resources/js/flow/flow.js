@@ -310,22 +310,56 @@ function cancelBtn() {
 	$("#reason").val('');
 	$("#pauseWord").text("您确定要取消项目吗？");
 	$("#reason").attr('placeholder','取消原因');
-	noWorkproject=false;
-	setModalMessageEvent(cancel);
+	$('#sureControl').removeClass('no-red-btn');
+	$('#sureControl').addClass('red-btn');
+	$('#sureControl').removeClass('no-red-btn');
+	$('#sureControl').addClass('red-btn');
+	$('#reason').addClass('textareaInfo');
+	$('#reason').removeClass('textareaInfoError');
+	var input = $('#reason').val().trim();
+	$('#sureControl').on('click',function(){
+		if(input==null||input==""||input==undefined){
+			$('#sureControl').removeClass('red-btn');
+			$('#sureControl').addClass('no-red-btn');
+			$('#sureControl').off('click');
+		
+		}else{
+			$('#sureControl').removeClass('no-red-btn');
+			$('#sureControl').addClass('red-btn');
+			$('#reason').focus();
+			noWorkproject=false;
+			setModalMessageEvent(cancel);
+		}
+	});
+	
 }
 function cancel() {
 	var key = getCurrentProject();
 	var reason = $('#reason').val().trim();
-	if(key != null ){
-		loadData(function(msg) {
-			$("#toolbar-pause-re").modal('hide');
-			loadprojecctlist();
-		}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
-			id : key,
-			description : reason
-			
-		}));
+	
+	
+	if(input==null||input==""||input==undefined){
+		$('#sureControl').removeClass('red-btn');
+		$('#sureControl').addClass('no-red-btn');
+		$('#reason').removeClass('textareaInfo');
+		$('#reason').addClass('textareaInfoError');
+		$('#reason').focus();
+	}else{
+		$('#sureControl').removeClass('no-red-btn');
+		$('#sureControl').addClass('red-btn');
+		$('#reason').addClass('textareaInfo');
+		$('#reason').removeClass('textareaInfoError');
+		if(key != null ){
+			loadData(function(msg) {
+				$("#toolbar-pause-re").modal('hide');
+				loadprojecctlist();
+			}, getContextPath() + '/mgr/projects/cancelProject', $.toJSON({
+				id : key,
+				description : reason
+			}));
+		}
 	}
+	
 }
 function PrevTaskBtn() {
 	$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
@@ -350,8 +384,14 @@ function pauseBtn() {
 	$("#reason").val('');
 	$("#pauseWord").text("您确定暂停项目吗？");
 	$("#reason").attr('placeholder','暂停原因');
+	$('#sureControl').removeClass('no-red-btn');
+	$('#sureControl').addClass('red-btn');
+	$('#reason').addClass('textareaInfo');
+	$('#reason').removeClass('textareaInfoError');
 	//$("#toolbar-check").modal('show');
 	setModalMessageEvent(pause);
+
+	
 }
 //恢复按钮
 function resumeBtn() {
@@ -363,18 +403,32 @@ function resumeBtn() {
 function pause() {
 	var key = getCurrentProject();
 	var input = $('#reason').val().trim();
-	if(key != null ){
-		loadData(function(msg) {
-			$(".flowbtn").hide();
-			$(".prev-task").hide();
-			getBtnWidth();
-			$("#toolbar-pause-re").modal('hide');
-			loadprojecctlist();
-		}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
-			id : key,
-			description : input
-		}));
-	}
+		
+		if(input==null||input==""||input==undefined){
+			$('#sureControl').removeClass('red-btn');
+			$('#sureControl').addClass('no-red-btn');
+			$('#reason').removeClass('textareaInfo');
+			$('#reason').addClass('textareaInfoError');
+			$('#reason').focus();
+		}else{
+			$('#sureControl').removeClass('no-red-btn');
+			$('#sureControl').addClass('red-btn');
+			$('#reason').addClass('textareaInfo');
+			$('#reason').removeClass('textareaInfoError');
+			if(key != null ){
+				loadData(function(msg) {
+					$(".flowbtn").hide();
+					$(".prev-task").hide();
+					getBtnWidth();
+					$("#toolbar-pause-re").modal('hide');
+					loadprojecctlist();
+				}, getContextPath() + '/mgr/flow/suspendProcess', $.toJSON({
+					id : key,
+					description : input
+				}));
+			}
+		}
+                                                        
 }
 function resume() {
 	var key = getCurrentProject();

@@ -648,6 +648,19 @@
     font-size: $font-size-base;
 }
 
+.no-red-btn {
+    width: 105px;
+    height: 35px;
+    background-color: $gray;
+    border-color: $white;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    color: $white;
+    font-size: $font-size-base;
+    cursor:not-allowed;
+}
+
 .red-small-btn {
     height: 35px;
     width: 96px;
@@ -2033,7 +2046,14 @@ margin-top: 80px;
     width: 360px;
     height: 70px;
     border-radius: 5px;
+}
 
+.textareaInfoError{
+    width: 360px;
+    height: 70px;
+    border-radius: 5px;
+    outline: none;
+    border-color: $red-base;
 }
 
 .pauseTop{
