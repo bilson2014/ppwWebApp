@@ -13,6 +13,16 @@ body{
 	background-position: center 0;
 }
 
+.nav .logo {
+  position: relative;
+  float: left;
+  top: 14px;
+  background: url(../../images/common/logo.svg) no-repeat; 
+  width: 92px;
+  height: 30px;
+  margin-right: 76px;
+}
+
 .outSideDiv{
   margin: 0 auto;
   background: #fff;

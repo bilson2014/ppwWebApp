@@ -13,6 +13,16 @@ body{
 	background-position: center 0;
 }
 
+.nav .logo {
+  position: relative;
+  float: left;
+  top: 14px;
+  background: url(../../images/common/logo.svg) no-repeat;
+  width: 92px;
+  height: 30px;
+  margin-right: 76px;
+}
+
 
 .outSideDiv{
 	margin: 0 auto;
@@ -76,6 +86,14 @@ body{
        .errorDiv{
        	position:relative;
        	top:5px;
+       	color:$red-base;
+       	font-size: $font-size-sm;
+       }
+
+         .errorMidDiv{
+       	position:absolute;
+       	top: 50px;
+        left: 115px;
        	color:$red-base;
        	font-size: $font-size-sm;
        }
@@ -386,12 +404,4 @@ li {
 	font-size: $font-size-base;
 }
 
-.nav .logo {
-  position: relative;
-  float: left;
-  top: 14px;
-  background: url(../../images/common/logo.svg) no-repeat;
-  width: 92px;
-  height: 30px;
-  margin-right: 76px;
-} */
+ */

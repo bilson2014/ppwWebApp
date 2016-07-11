@@ -31,9 +31,12 @@ function changeDiv(){
 		if($('#checkboxId').is(':checked')){
 			$('#submitBtn').addClass('submitBtn');
 			$('#submitBtn').removeClass('nosubmitBtn');
+			$('#submitBtn').on('click');
 		}else{
 			$('#submitBtn').removeClass('submitBtn');
 			$('#submitBtn').addClass('nosubmitBtn');
+			$('#submitBtn').off('click');
+			
 		}
 	});
 	
@@ -98,10 +101,19 @@ var user_login = {
 							$('#submitBtn').text("登录");
 							$('#submitBtn').attr('data-id','login'); // 标记login
 							$('#infoOrder').addClass('hide');
+							$('#submitBtn').addClass('submitBtn');
+							$('#submitBtn').removeClass('nosubmitBtn');
+							$('#submitBtn').on('click');
+							if($('#checkboxId').is(':checked')){
+							}else{
+								$('#checkboxId').click();
+							}
+							
 						}else{
 							$('#submitBtn').text("注册");
 							$("#submitBtn").attr('data-id','register'); // 标记register
 							$('#infoOrder').removeClass('hide');
+					
 						}
 					}, getContextPath() + '/login/validation/phone', $.toJSON({
 						telephone : telephone
@@ -124,7 +136,7 @@ var user_login = {
 				$('#kaptcha_pic').focus();
 			});
 		},
-		//点击获取手机验证码
+		//点击获取手机验证码;
 		verificationCode:function(){
 			// 点击获取手机验证码发送按钮
 			$('#verification_code_recover_btn').off('click').on('click',function(){
@@ -285,9 +297,11 @@ var provider_login = {
 						if(flag){
 							$('#submitBtn').text("注册");
 							$("#submitBtn").attr('data-id','register'); // 标记register
+							$('#infoOrder').removeClass('hide');
 						}else{
 							$('#submitBtn').text("登录");
 							$('#submitBtn').attr('data-id','login'); // 标记login
+							$('#infoOrder').addClass('hide');
 						}
 					}, getContextPath() + '/provider/checkExisting', $.toJSON({
 						phoneNumber : telephone

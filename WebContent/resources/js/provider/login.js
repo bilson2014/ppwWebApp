@@ -241,7 +241,8 @@ $().ready(function(){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+ '/provider/portal';
 					}else{
-						$("#code_error_info").text(info.value).removeClass("hide");
+						//$("#code_error_info").text(info.value).removeClass("hide");
+						$("#login_error_info").text(msg.value).removeClass("hide");
 						return false;
 					}
 				}, getContextPath() + '/provider/doLogin', $.toJSON({
@@ -256,6 +257,7 @@ $().ready(function(){
 						window.location.href=getContextPath()+'/provider/leader';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
+						$("#login_error_info").text(msg.result).removeClass("hide");
 						return false;
 					}
 				},  getContextPath() + '/provider/info/register', $.toJSON({

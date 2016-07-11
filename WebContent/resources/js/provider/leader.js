@@ -124,12 +124,12 @@ function checkStepOne(){
 				return false;
 			}
 
-			if(linkman == '' || linkman == null || linkman == undefined){
-				$('#company-linkman-error').show();
-                $('#company-linkman-error').text('请输入联系人!');
-				$('#company-linkman').focus();
-				return false;
-			}
+//			if(linkman == '' || linkman == null || linkman == undefined){
+//				$('#company-linkman-error').show();
+//                $('#company-linkman-error').text('请输入联系人!');
+//				$('#company-linkman').focus();
+//				return false;
+//			}
 			
 	
 
@@ -235,7 +235,7 @@ function infoSave(){
 			email : $('#company-email').val().trim(),
 			address : $('#company-address').val().trim(),
 			teamDescription : $('#company-teamDesc').val().trim(),
-			linkman : $('#company-linkman').val().trim(),
+//			linkman : $('#company-linkman').val().trim(),
 			webchat : $('#company-webchat').val().trim(),
 			qq : $('#company-qq').val().trim(),
 			business : getBusinessVal(),

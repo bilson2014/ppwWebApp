@@ -124,6 +124,7 @@
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
+		                  <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>  
 		            <div id="submitBtn" class="redBtn">登录</div> 
 		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
