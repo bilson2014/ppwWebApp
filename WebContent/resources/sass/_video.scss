@@ -146,10 +146,26 @@
 }
 
 .prompt-word {
-	margin: auto;
+	margin: 20px auto;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
 	color: $gray;
 	line-height: $font-size-lger;
+}
+
+.prompt-level-word {
+	margin: auto;
+	margin-top: 15px;
+	@include media_screen_width();
+	text-align: center;
+	font-size: $font-size-lger;
+	color: $gray;
+	line-height: $font-size-lger;
+
+	a {
+		    text-decoration: underline;
+		    color: #000;
+		    font-weight: 600;
+	}
 }

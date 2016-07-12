@@ -57,10 +57,17 @@
 		</attribute>
 	</tag>
 	
-	<!-- 是否登陆 -->
+	<!-- 没有登陆 -->
 	<tag>
 		<name>noLogin</name>
 		<tag-class>com.panfeng.film.taglib.JudgeSessionTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	
+	<!-- 没有分级 -->
+	<tag>
+		<name>noLevel</name>
+		<tag-class>com.panfeng.film.taglib.JudgeLevelTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
 	

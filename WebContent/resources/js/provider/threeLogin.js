@@ -118,7 +118,7 @@ $().ready(function(){
 					}else if (msg.errorCode == 300 && msg.errorMsg == "引导流程"){
 						window.location.href=getContextPath()+'/provider/leader';
 					}else{
-						alert(msg.errorMsg);
+						$("#login_error_info").text(errorMsg).removeClass("hide");
 					}
 				}, getContextPath() + '/provider/bind', $.toJSON({
 					phoneNumber : $('#user_phoneNumber').val().trim(),

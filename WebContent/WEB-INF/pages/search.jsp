@@ -153,8 +153,8 @@
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">
-				<!-- video-content -->
-				
+			
+			<!-- video-content -->
 				<c:if test="${!empty list}">
 					<!-- not empty -->
 					<c:forEach items="${list }" var="solr" varStatus="status">
@@ -167,12 +167,6 @@
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
-<%-- 							//20160525 lt
-								//del teanName
-								//begin pm1705
-								<h4>${solr.teamName }</h4>
-								//end
-								 --%>
 								<h4></h4>
 								<div class="video-desc">
 									${solr.pDescription }
@@ -189,7 +183,6 @@
 							</div>
 						</div>
 						
-						
 							<c:if test="${status.count % 4 == 0 }">
 								</div>
 							</c:if>
@@ -197,12 +190,23 @@
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty list}">
-					<div class="prompt-word">对不起，没有查询到您想要的数据!</div>
+					<div class="prompt-word">对不起，没有找到您想要的作品!</div>
 				</c:if>
+				
+				<r:noLogin>
+<<<<<<< HEAD
+					<div class="prompt-level-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
+=======
+					<div class="prompt-word">请<a href="<spring:url value='/login' />" > <span>登陆</span> </a>拍片网，观看更多作品!</div>
+>>>>>>> 9091ac89806732b88c9f90aeada722146ab40fb6
+				</r:noLogin>
+				
+				<r:noLevel>
+					<div class="prompt-level-word">如需观看更多作品，请拨打 400 660 9728 与我们取得联系!</div>
+				</r:noLevel>
 			</div>
 		</div>
 		<!-- video list end -->
-
 		<!-- pagination start -->
 		<div class="page-section">
 			<div class="page-wrap">

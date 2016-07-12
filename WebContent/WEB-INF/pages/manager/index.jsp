@@ -691,8 +691,9 @@
 					       <div class="pauseWord">
 					       <img class="canclestepPause"  id="canclestepPause" src="/resources/img/flow/canclemodal.png">
 					         <div id="pauseWord">确定暂停吗？</div>
+					          <div class="hide" id="pauseError">请填写原因</div>
 					         <div class="pauseTop" id="errorReason" style="display:inline-block;">
-					         	<textarea id="reason" placeholder="原因" class="textareaInfo" onpropertychange="smsCount()" oninput="smsCount()"></textarea>
+					         	<textarea class="form-control textareaInfo" id="reason" placeholder="原因"></textarea>
 					         </div>  
 					       </div>
 					        <div class="pauseBtn">

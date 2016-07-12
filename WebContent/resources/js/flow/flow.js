@@ -123,7 +123,7 @@ function checkPorjectInfo(){
 			$(".sure-margin").off('click');
 			$(".check-step").removeClass("hide");
 			$(".check-step").css('color','#666');
-			$(".check-step").html('验证通关可以提交完成啦！');
+			$(".check-step").html('确认完成项目吗？');
 			$("#listLoadCheck").addClass("hide");
 			$(".sure-margin").on('click');
 			setModalEvent(nextFlow);
@@ -145,7 +145,7 @@ function checkPorjectInfo(){
 			$(".check-step").css('color','#fe5453');
 			$(".sure-margin").removeClass('red-btn');
 			$(".sure-margin").addClass('gray-btn-no');
-			$(".check-step").html(msg.result+"，才能完成项目！");
+			$(".check-step").html(msg.result +"，才能完成项目！");
 			$("#listLoadCheck").addClass("hide");
 			$(".sure-margin").off('click');
 		}
@@ -316,21 +316,21 @@ function cancelBtn() {
 	$('#sureControl').addClass('red-btn');
 	$('#reason').addClass('textareaInfo');
 	$('#reason').removeClass('textareaInfoError');
-	var input = $('#reason').val().trim();
-	$('#sureControl').on('click',function(){
-		if(input==null||input==""||input==undefined){
-			$('#sureControl').removeClass('red-btn');
-			$('#sureControl').addClass('no-red-btn');
-			$('#sureControl').off('click');
-		
-		}else{
-			$('#sureControl').removeClass('no-red-btn');
-			$('#sureControl').addClass('red-btn');
-			$('#reason').focus();
-			noWorkproject=false;
-			setModalMessageEvent(cancel);
-		}
-	});
+	noWorkproject=false;
+	setModalMessageEvent(cancel);
+//	var input = $('#reason').val().trim();
+//	$('#sureControl').on('click',function(){
+//		if(input==null||input==""||input==undefined){
+//			$('#sureControl').removeClass('red-btn');
+//			$('#sureControl').addClass('no-red-btn');
+//			$('#sureControl').off('click');
+//		}else{
+//			$('#sureControl').removeClass('no-red-btn');
+//			$('#sureControl').addClass('red-btn');
+//			$('#reason').focus();
+//		
+//		}
+//	});
 	
 }
 function cancel() {
@@ -338,13 +338,17 @@ function cancel() {
 	var reason = $('#reason').val().trim();
 	
 	
-	if(input==null||input==""||input==undefined){
+	if(reason==null||reason==""||reason==undefined){
 		$('#sureControl').removeClass('red-btn');
 		$('#sureControl').addClass('no-red-btn');
 		$('#reason').removeClass('textareaInfo');
 		$('#reason').addClass('textareaInfoError');
 		$('#reason').focus();
+		$('#pauseError').removeClass('hdie');
+		
+		
 	}else{
+		$('#pauseError').addClass('hdie');
 		$('#sureControl').removeClass('no-red-btn');
 		$('#sureControl').addClass('red-btn');
 		$('#reason').addClass('textareaInfo');
@@ -410,7 +414,9 @@ function pause() {
 			$('#reason').removeClass('textareaInfo');
 			$('#reason').addClass('textareaInfoError');
 			$('#reason').focus();
+			$('#pauseError').removeClass('hdie');
 		}else{
+			$('#pauseError').addClass('hdie');
 			$('#sureControl').removeClass('no-red-btn');
 			$('#sureControl').addClass('red-btn');
 			$('#reason').addClass('textareaInfo');

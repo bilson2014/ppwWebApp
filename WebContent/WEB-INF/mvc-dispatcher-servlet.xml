@@ -74,6 +74,13 @@
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
+		<!-- 验证作品分类需要登陆才能使用 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/list.html"/>
+			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
+		</mvc:interceptor>
+		
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/info"/>
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
