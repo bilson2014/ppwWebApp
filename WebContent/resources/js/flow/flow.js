@@ -344,7 +344,11 @@ function cancel() {
 		$('#reason').removeClass('textareaInfo');
 		$('#reason').addClass('textareaInfoError');
 		$('#reason').focus();
+		$('#pauseError').removeClass('hdie');
+		
+		
 	}else{
+		$('#pauseError').addClass('hdie');
 		$('#sureControl').removeClass('no-red-btn');
 		$('#sureControl').addClass('red-btn');
 		$('#reason').addClass('textareaInfo');
@@ -410,7 +414,9 @@ function pause() {
 			$('#reason').removeClass('textareaInfo');
 			$('#reason').addClass('textareaInfoError');
 			$('#reason').focus();
+			$('#pauseError').removeClass('hdie');
 		}else{
+			$('#pauseError').addClass('hdie');
 			$('#sureControl').removeClass('no-red-btn');
 			$('#sureControl').addClass('red-btn');
 			$('#reason').addClass('textareaInfo');

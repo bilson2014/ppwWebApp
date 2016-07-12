@@ -2046,6 +2046,16 @@ margin-top: 80px;
     width: 360px;
     height: 70px;
     border-radius: 5px;
+    max-width: 360px;
+    max-height: 70px;
+
+}
+
+#pauseError{
+    color:$red-base;
+    position: relative;
+    top:5px;
+    left:-10px;
 }
 
 .textareaInfoError{
