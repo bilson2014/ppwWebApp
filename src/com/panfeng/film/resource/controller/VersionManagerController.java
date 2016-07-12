@@ -182,7 +182,7 @@ public class VersionManagerController extends BaseController {
 		final Object objUnique = httpSession.getAttribute(UNIQUE);
 		final Object objLinkman = httpSession.getAttribute(LINKMAN);
 		final Object objCode = request.getSession().getAttribute("code");
-		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) {
+		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode != null) {
 			// 不需要输入验证码
 			try {
 				final String Unique = (String) objUnique;
@@ -190,7 +190,7 @@ public class VersionManagerController extends BaseController {
 				final String code = (String) objCode;
 
 				// 不需要输入验证码 code == null dev code != null
-				if (code == null || code.equals(employee.getVerification_code())) {
+				if (code.equals(employee.getVerification_code())) {
 					employee.setEmployeeRealName(realName);
 					if (ValidateUtil.isValid(Unique)) {
 						switch (Ltype) {

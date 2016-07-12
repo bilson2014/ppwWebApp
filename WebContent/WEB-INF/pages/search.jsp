@@ -194,11 +194,11 @@
 				</c:if>
 				
 				<r:noLogin>
-					<div class="prompt-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
+					<div class="prompt-level-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
 				</r:noLogin>
 				
 				<r:noLevel>
-					<div class="prompt-word">如需观看更多作品，请拨打 400 660 9728 与我们取得联系!</div>
+					<div class="prompt-level-word">如需观看更多作品，请拨打 400 660 9728 与我们取得联系!</div>
 				</r:noLevel>
 			</div>
 		</div>
