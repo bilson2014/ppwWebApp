@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.film.resource.controller.BaseController;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
