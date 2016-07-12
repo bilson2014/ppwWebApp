@@ -83,6 +83,8 @@ $().ready(function(){
 				this.verificationCode();
 				//注册或者登录
 				this.regesterOrLogin();
+				//切换
+				this.changeLogin();
 			},
 			
 			phoneNumberChange:function(){
@@ -266,6 +268,25 @@ $().ready(function(){
 					verification_code : $('#verification_code').val().trim(),
 					flag : 3
 				}));
+			},
+			changeLogin:function(){
+				$('#changeLoginId').on('click',function(){
+					
+					if($('#showLogin').hasClass('hide')){
+						$('input').val('');
+						$('#changeLoginId').text('账号登入在这里');
+						$('#showLogin').removeClass('hide');
+						$('#nameLogin').addClass('hide');
+					}else{
+						$('input').val('');
+						$('#changeLoginId').text('手机号登入在这里');
+						$('#showLogin').addClass('hide');
+						$('#nameLogin').removeClass('hide');
+					}
+					
+					
+				});
+				
 			}
 	} 
 	provider_login.init();
