@@ -123,7 +123,7 @@ function checkPorjectInfo(){
 			$(".sure-margin").off('click');
 			$(".check-step").removeClass("hide");
 			$(".check-step").css('color','#666');
-			$(".check-step").html('验证通关可以提交完成啦！');
+			$(".check-step").html('确认完成项目吗？');
 			$("#listLoadCheck").addClass("hide");
 			$(".sure-margin").on('click');
 			setModalEvent(nextFlow);
@@ -145,7 +145,7 @@ function checkPorjectInfo(){
 			$(".check-step").css('color','#fe5453');
 			$(".sure-margin").removeClass('red-btn');
 			$(".sure-margin").addClass('gray-btn-no');
-			$(".check-step").html(msg.result+"，才能完成项目！");
+			$(".check-step").html(msg.result +"，才能完成项目！");
 			$("#listLoadCheck").addClass("hide");
 			$(".sure-margin").off('click');
 		}
