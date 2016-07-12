@@ -150,8 +150,6 @@ function checkPorjectInfo(){
 			$(".sure-margin").off('click');
 		}
 		
-		
-		
 	}, getContextPath() + '/mgr/projects/verifyProjectInfo', $.toJSON({
 		id : key
 	}));
