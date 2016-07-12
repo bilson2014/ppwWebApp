@@ -202,7 +202,7 @@ public class ProviderController extends BaseController {
 		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		BaseMsg baseMsg = new BaseMsg();
 		// original.getVerification_code() !=null 为测试增加，不验证短信验证码，所以不用获取验证码
-		if (isTest || original.getVerification_code() != null || code.equals(original.getVerification_code())) {
+		if (isTest || original.getVerification_code() != null && code.equals(original.getVerification_code())) {
 			if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 				// add by laowang -->登录认证
 				// 1.手机号数据库中存在
@@ -1343,7 +1343,6 @@ public class ProviderController extends BaseController {
 		final Object objLinkman = httpSession.getAttribute(LINKMAN);
 		final Object objCode = request.getSession().getAttribute("code");
 		if (ValidateUtil.isValid(phone) && ValidateUtil.isValid(Ltype) && objUnique != null && objCode == null) {
-			// 不需要输入验证码
 			try {
 				final String Unique = (String) objUnique;
 				final String Linkman = (String) objLinkman;

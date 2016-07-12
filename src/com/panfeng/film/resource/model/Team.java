@@ -14,7 +14,7 @@ public class Team extends BaseObject {
 
 	private long teamId = 0l;
 	
-	private String password = null; // 密码
+	private String password = "123456"; // 密码
 	
 	private String phoneNumber = null; // 联系电话
 	
