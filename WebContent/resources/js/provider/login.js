@@ -274,14 +274,24 @@ $().ready(function(){
 					
 					if($('#showLogin').hasClass('hide')){
 						$('input').val('');
-						$('#changeLoginId').text('账号登入在这里');
+						$('#loginWord').text('账号登入在这里');
 						$('#showLogin').removeClass('hide');
 						$('#nameLogin').addClass('hide');
+						$('#changeId').removeClass('changeImgPhone');
+						$('#changeId').addClass('changeImg');
+						$('#outSideId').addClass('phoneHeight');
+						$('#outSideId').removeClass('userheight');
+					
+					
 					}else{
 						$('input').val('');
-						$('#changeLoginId').text('手机号登入在这里');
+						$('#loginWord').text('手机号登入在这里');
 						$('#showLogin').addClass('hide');
 						$('#nameLogin').removeClass('hide');
+						$('#changeId').removeClass('changeImg');
+						$('#changeId').addClass('changeImgPhone');
+						$('#outSideId').removeClass('phoneHeight');
+						$('#outSideId').addClass('userheight');
 					}
 					
 					

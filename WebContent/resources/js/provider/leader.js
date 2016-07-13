@@ -73,6 +73,7 @@ function resumeError(){
 		$('#company-name-error').hide();
 		$('#company-email-error').hide();
 		$('#company-linkman-error').hide();
+		$('#company-pwd-error').hide();
 		$('#company-webchat-error').hide();
 		$('#company-address-error').hide();
 		$('#company-qq-error').hide();
@@ -111,7 +112,8 @@ function showStepThree(){
 function checkStepOne(){
    		    var name = $('#company-name').val().trim(); // 公司名称
 			var email = $('#company-email').val().trim(); // 公司邮箱
-			var linkman = $('#company-linkman').val().trim(); // 联系人
+		//	var linkman = $('#company-linkman').val().trim(); // 联系人
+		//	var pwd = $('#company-pwd').val().trim(); // 联系人
 			var webchat = $('#company-webchat').val().trim(); // 微信
 			var qq = $('#company-qq').val().trim(); // QQ
 			var address = $('#company-address').val().trim();
@@ -128,6 +130,13 @@ function checkStepOne(){
 //				$('#company-linkman-error').show();
 //                $('#company-linkman-error').text('请输入联系人!');
 //				$('#company-linkman').focus();
+//				return false;
+//			}
+//			
+//			if(pwd == '' || pwd == null || pwd == undefined){
+//				$('#company-pwd-error').show();
+//                $('#company-pwd-error').text('请输入密码!');
+//				$('#company-pwd').focus();
 //				return false;
 //			}
 			
