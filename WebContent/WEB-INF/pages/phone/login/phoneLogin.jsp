@@ -6,11 +6,14 @@
 <spring:url value="/resources/css/phone/login/phoneLogin.css" var="phoneLoginCss"/>
 
 <%-- import JS --%>
+<spring:url value="/resources/js/phone/login/phoneLogin.js" var="phoneLoginJs"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
-<spring:url value="/resources/js/phone/login/phoneLogin.js" var="phoneLoginJs"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
+<spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
+<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 
 
 <!-- imgPath -->
@@ -26,7 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_登录须知</title>
+	<title>移动端登录&&注册</title>
 	<link rel="shortcut icon" href="${imgPath}/favicon.ico" >
 	<link rel="stylesheet" href="${bootstrapCss}">
 	<link rel="stylesheet" href="${commonCss}">
@@ -36,10 +39,16 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+
+	
 	<script src="${jqueryJs }"></script>
-	<script src="${phoneLoginJs }"></script>
-	<script src="${commonJs }"></script>
+	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
+	<script src="${bootstrapJs }"></script>
+	<script src="${aesJs }"></script>
+	<script src="${padJs }"></script>
+	<script src="${commonJs }"></script>
+	<script src="${phoneLoginJs }"></script>
 
 
 </head>
@@ -59,7 +68,7 @@
 	      </div>
 	      
 	      <div class="bottomDiv">
-	               
+	               <input id="login_type" value="phone" type="hidden"></input>
 	               <div class="titleWord cusBg">
 	                  <div class="leftWord wc" id="checkCus">客户</div>
 	                  <div class="rightWord red" id="checkPos">供应商</div>
