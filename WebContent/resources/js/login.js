@@ -185,9 +185,9 @@ $().ready(function(){
 							return false;
 						}
 						loadData(function(msg){
-							if(msg.errorCode == 200){
+							if(msg.key){
 								$(".errorDiv").addClass("hide");
-								window.location.href=getContextPath()+ '/provider/portal';
+								window.location.href=getContextPath()+ '/mgr/index';
 							}else{
 								$("#pwd_error").text(msg.value).removeClass("hide");
 								return false;
@@ -211,6 +211,7 @@ $().ready(function(){
 						return false;
 					}
 				}, getContextPath() + '/login/doLogin', $.toJSON({
+					loginType : $("#login_type").val(),
 					telephone : $('#user_phoneNumber').val().trim(),
 					password : Encrypt("123456"),
 					verification_code : $('#verification_code').val().trim(),

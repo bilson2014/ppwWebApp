@@ -148,10 +148,12 @@
 		         </div> 
 		            
 		            <div class="redBtn" id="submitBtn">登录</div> 
-		                 <div class="changeDiv" id="changeLoginId">
-		                 <div class="changeImg hide" id="changeId"></div>
+		             <!--
+		             <div class="changeDiv" id="changeLoginId">
+		                  <div class="changeImg hide" id="changeId"></div>
 		                  <div class="changeLogin" id="loginWord">账户登入在这里</div> 
-		             </div>
+		             </div> 
+		             -->
 		            <div class="infoWord fontSizeBaseLight hide">第三方登录</div>
 		            <div class="footer-content-three hide">
 							<ul>
