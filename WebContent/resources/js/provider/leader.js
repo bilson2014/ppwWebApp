@@ -21,13 +21,6 @@ $().ready(function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
 	});
-
-    
-
-     
-
-  
-
 });
 
 
@@ -44,7 +37,7 @@ function SetRemainTime(){
 		else{
 			  curCount--;
 			 $('#lasttime').text(curCount); 
-		 }
+		}
 }
 
 
@@ -223,33 +216,23 @@ function getBusinessVal(){
 
 
 function infoSave(){
-	
-		var teamId = $('#unqiueId').val();
-
-		if(teamId != undefined && teamId != ''){
-			loadData(function(flag){
-			
-		}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
-			teamId : teamId, 
-			teamName : $('#company-name').val().trim(),
-			email : $('#company-email').val().trim(),
-			address : $('#company-address').val().trim(),
-			teamDescription : $('#company-teamDesc').val().trim(),
+	loadData(function(flag){
+		window.location.href=getContextPath()+ '/provider/portal';
+	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
+		teamName : $('#company-name').val().trim(),
+		email : $('#company-email').val().trim(),
+		address : $('#company-address').val().trim(),
+		teamDescription : $('#company-teamDesc').val().trim(),
 //			linkman : $('#company-linkman').val().trim(),
-			webchat : $('#company-webchat').val().trim(),
-			qq : $('#company-qq').val().trim(),
-			business : getBusinessVal(),
-			scale : $('#company-scale').val().trim(),
-			demand : $('#company-demand').val().trim(),
-			city : $('#company-city option:selected').val(),
-			priceRange : $('#company-priceRange option:selected').val(),
-			infoResource : $('#company-infoResource option:selected').val()
-		}));
-	}
-
-	else{
-		window.location.href=getContextPath() + '/provider/portal';
-	}
+		webchat : $('#company-webchat').val().trim(),
+		qq : $('#company-qq').val().trim(),
+		business : getBusinessVal(),
+		scale : $('#company-scale').val().trim(),
+		demand : $('#company-demand').val().trim(),
+		city : $('#company-city option:selected').val(),
+		priceRange : $('#company-priceRange option:selected').val(),
+		infoResource : $('#company-infoResource option:selected').val()
+	}));
 }
 
 	      

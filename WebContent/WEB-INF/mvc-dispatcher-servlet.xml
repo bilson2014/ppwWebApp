@@ -92,6 +92,8 @@
 			<mvc:exclude-mapping path="/provider/thirdLogin" />
 			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />
+			<mvc:exclude-mapping path="/provider/leader" />
+			<mvc:exclude-mapping path="/provider/update/leaderInfomation" />
 			<mvc:exclude-mapping path="/provider/recover" />
 			<mvc:exclude-mapping path="/provider/header" />
 			<mvc:exclude-mapping path="/provider/doLogin" />

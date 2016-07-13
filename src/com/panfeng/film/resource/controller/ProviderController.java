@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
@@ -95,8 +96,13 @@ public class ProviderController extends BaseController {
 	@Autowired
 	private SessionInfoService sessionService = null;
 
-	static String UNIQUE = "unique_s";
-	static String LINKMAN = "username_s";
+	static String UNIQUE = "unique_s"; // 三方登录凭证
+	static String LINKMAN = "username_s";// 用户名
+	static String ORIGINAL = "original";// 源对象
+	static String TYPE = "type_s";// 当前处理任务类型，（注册）
+	static String LTYPE = "ltype_s"; // 三方登录类型
+
+	static String REGISTER_KET = "register";
 
 	public ProviderController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
@@ -221,6 +227,7 @@ public class ProviderController extends BaseController {
 				}
 				baseMsg.setErrorCode(BaseMsg.ERROR);
 				baseMsg.setErrorMsg("登录错误!");
+				logger.error("服务器返回数据错误，请求服务器异常");
 				return baseMsg;
 			} else {
 				serLogger.info("手机号错误");
@@ -257,6 +264,7 @@ public class ProviderController extends BaseController {
 			}
 			httpSession.setAttribute(UNIQUE, unique);
 			httpSession.setAttribute(LINKMAN, original.getLinkman());
+			httpSession.setAttribute(LTYPE, original.getThirdLoginType());
 			modelMap.put("linkMan", original.getLinkman());
 			modelMap.put("LType", original.getThirdLoginType());
 			return new ModelAndView("/provider/threeLogin", modelMap);
@@ -310,6 +318,7 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/info/register")
 	public Info register(@RequestBody final Team original, final HttpServletRequest request) {
+		// TODO：
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
@@ -320,35 +329,14 @@ public class ProviderController extends BaseController {
 			if (isTest || code.equals(original.getVerification_code())) {
 				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
-						try {
-							// AES 解密
-							// final String password =
-							// AESUtil.Decrypt(original.getPassword(),
-							// UNIQUE_KEY);
-
-							// MD5 加密
-							// original.setPassword(DataUtil.md5(password));
-
-							// 转码
-							original.setPassword(URLEncoder.encode(original.getPassword(), "UTF-8"));
-							// original.setLoginName(URLEncoder.encode(
-							// original.getLoginName(), "UTF-8"));
-							// 连接远程服务器，传输数据
-							final String url = URL_PREFIX + "portal/team/static/register";
-							final String json = HttpUtil.httpPost(url, original, request);
-							// Team provider = null;
-							if (ValidateUtil.isValid(json)) {
-								boolean ret = JsonUtil.toBean(json, Boolean.class);
-								// 写入 session
-								// request.getSession().setAttribute(PROVIDER_SESSION,provider);
-								info.setKey(ret);
-								return info;
-							}
-						} catch (Exception e) {
-							logger.error(
-									"ProviderController method:register() Provider Password Decrypt Error On Provider Register ...");
-							e.printStackTrace();
-						}
+						HttpSession httpSession = request.getSession();
+						Gson gson = new Gson();
+						String json = gson.toJson(original);
+						httpSession.setAttribute(ORIGINAL, json); // session
+																	// 内不能存储对象，存储json字符串
+						httpSession.setAttribute(TYPE, REGISTER_KET);
+						info.setKey(true);
+						return info;
 					}
 				} else {
 					// 手机号错误
@@ -455,16 +443,10 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/update/leaderInfomation")
 	public boolean leadUserupdateInformation(final HttpServletRequest request, @RequestBody final Team team) {
-
 		if (team != null) {
 			try {
-				final boolean ret = updateInfo(team, request);
-				if (ret) {
-					final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
-					final String json = HttpUtil.httpPost(url, team, request);
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					return flag;
-				}
+				final boolean ret = updateInfo_register(team, request);
+				return ret;
 			} catch (UnsupportedEncodingException e) {
 				logger.error(
 						"ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...");
@@ -1248,91 +1230,6 @@ public class ProviderController extends BaseController {
 		return "false@error3";
 	}
 
-	// /**
-	// * 第三方登录-微信登陆
-	// */
-	// @RequestMapping("/login/wechat/callback.do")
-	// public ModelAndView loginWithWeChat(@RequestParam("code") String code,
-	// final HttpServletRequest request,
-	// ModelMap model) {
-	//
-	// if (ValidateUtil.isValid(code)) {
-	// WechatToken token = new WechatToken();
-	// token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
-	// token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
-	// // 通过code获取access_token
-	// final StringBuffer tokenUrl = new StringBuffer();
-	// tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
-	// tokenUrl.append("appid=" + token.getAppid());
-	// tokenUrl.append("&secret=" + token.getSecret());
-	// tokenUrl.append("&code=" + code);
-	// tokenUrl.append("&grant_type=authorization_code");
-	// final String str = HttpUtil.httpGet(tokenUrl.toString(), request);
-	// if (str != null && !"".equals(str)) {
-	// token = JsonUtil.toBean(str, WechatToken.class);
-	// token.setAppid(GlobalConstant.PROVIDER_WEBCHAT_APPID);
-	// token.setSecret(GlobalConstant.PROVIDER_WEBCHAT_APPSECRET);
-	// }
-	//
-	// if (token.getErrcode() == null) {
-	// // 正确
-	// if (token.getAccess_token() != null &&
-	// !"".equals(token.getAccess_token())) { // token
-	// // 超时
-	// // 2小时
-	// final StringBuffer refreshUrl = new StringBuffer();
-	// refreshUrl.append("https://api.weixin.qq.com/sns/oauth2/refresh_token?");
-	// refreshUrl.append("appid=" + token.getAppid());
-	// refreshUrl.append("&grant_type=refresh_token");
-	// refreshUrl.append("&refresh_token=" + token.getRefresh_token());
-	// final String refreshObj = HttpUtil.httpGet(refreshUrl.toString(),
-	// request);
-	// if (ValidateUtil.isValid(refreshObj)) {
-	// token = JsonUtil.toBean(refreshObj, WechatToken.class);
-	// }
-	// }
-	//
-	// final StringBuffer userUrl = new StringBuffer();
-	// userUrl.append("https://api.weixin.qq.com/sns/userinfo?");
-	// userUrl.append("access_token=" + token.getAccess_token());
-	// userUrl.append("&openid=" + token.getOpenid());
-	//
-	// Wechat wechat = new Wechat();
-	// final String userStr = HttpUtil.httpGet(userUrl.toString(), request);
-	// if (ValidateUtil.isValid(userStr)) {
-	// wechat = JsonUtil.toBean(userStr, Wechat.class);
-	// }
-	//
-	// if (wechat != null) {
-	// Team team = new Team();
-	// team.setUniqueId(wechat.getUnionid());
-	// // 查询该用户是否存在
-	// final String url = URL_PREFIX + "portal/team/thirdLogin/isExist";
-	// final String json = HttpUtil.httpPost(url, team, request);
-	// if (ValidateUtil.isValid(json)) {
-	// final boolean flag = JsonUtil.toBean(json, Boolean.class);
-	// if (flag) {
-	// // 绑定账号，则跳转至供应商界面
-	// model.addAttribute("action", "bind");
-	// model.addAttribute("thirdLoginType", "wechatUnique");
-	// model.addAttribute("uniqueId", wechat.getUnionid());
-	// return new ModelAndView("/provider/portal");
-	// }
-	// }
-	//
-	// // 未绑定账号
-	// model.addAttribute("action", "login");
-	// return new ModelAndView("login");
-	// }
-	// } else {
-	// // 错误
-	// logger.error("Provider wechat login error ... ");
-	// }
-	//
-	// }
-	// return new ModelAndView("redirect:/provider/login");
-	// }
-
 	@RequestMapping("/bind")
 	public BaseMsg bind(@RequestBody final Team team, final HttpServletRequest request) {
 		// TODO:
@@ -1369,10 +1266,17 @@ public class ProviderController extends BaseController {
 						final String json = HttpUtil.httpPost(url, team, request);
 						if (ValidateUtil.isValid(json)) {
 							final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
-							if (msg.getErrorCode() == BaseMsg.NORMAL) {
+							if (msg.getErrorCode().equals(BaseMsg.NORMAL)) {
 								// 删除 session
 								httpSession.removeAttribute(UNIQUE);
 								httpSession.removeAttribute(LINKMAN);
+							} else if (msg.getErrorCode().equals(BaseMsg.WARNING)) {
+								// 进入引导页
+								Gson gson =new Gson();
+								String str = gson.toJson(msg.getResult());
+								httpSession.setAttribute(ORIGINAL,str ); // session
+																			// 内不能存储对象，存储json字符串
+								httpSession.setAttribute(TYPE, REGISTER_KET);
 							}
 							return msg;
 						}
@@ -1383,16 +1287,22 @@ public class ProviderController extends BaseController {
 				e.printStackTrace();
 			}
 		}
-		return new BaseMsg(BaseMsg.ERROR, "绑定失败", null);
+		logger.error("信息不完整");
+		return new BaseMsg(BaseMsg.ERROR, "信息不完整", null);
 	}
 
 	@RequestMapping("/leader")
 	public ModelAndView leader(final HttpServletRequest request, final ModelMap model) {
-		Team team = getCurrentTeam(request);
-		team.getTeamId();
-		model.addAttribute("unqiueId", team.getTeamId());
-
-		return new ModelAndView("provider/leader");
+		// Team team = getCurrentTeam(request);
+		// team.getTeamId();
+		// model.addAttribute("unqiueId", team.getTeamId());
+		HttpSession httpSession = request.getSession();
+		Object object = httpSession.getAttribute(ORIGINAL);
+		if (object != null) {
+			return new ModelAndView("provider/leader");
+		} else {
+			return new ModelAndView("error");
+		}
 	}
 
 	public Team getCurrentTeam(final HttpServletRequest request) {
@@ -1469,6 +1379,103 @@ public class ProviderController extends BaseController {
 		final String json = HttpUtil.httpPost(updateUrl, team, request);
 		final boolean flag = JsonUtil.toBean(json, Boolean.class);
 		return flag;
+	}
+
+	public boolean updateInfo_register(@RequestBody final Team team, final HttpServletRequest request)
+			throws UnsupportedEncodingException {
+		// 转码
+		final String teamName = team.getTeamName();
+		final String teamDesc = team.getTeamDescription();
+		final String address = team.getAddress();
+		final String email = team.getEmail();
+		final String linkman = team.getLinkman();
+		final String webchat = team.getWebchat();
+		final String officialSite = team.getOfficialSite();
+		final String scale = team.getScale();
+		final String businessDesc = team.getBusinessDesc();
+		final String demand = team.getDemand();
+		final String description = team.getDescription();
+
+		if (teamName != null && !"".equals(teamName)) {
+			team.setTeamName(URLEncoder.encode(teamName, "UTF-8"));
+		}
+
+		if (teamDesc != null && !"".equals(teamDesc)) {
+			team.setTeamDescription(URLEncoder.encode(teamDesc, "UTF-8"));
+		}
+
+		if (address != null && !"".equals(address)) {
+			team.setAddress(URLEncoder.encode(address, "UTF-8"));
+		}
+
+		if (email != null && !"".equals(email)) {
+			team.setEmail(URLEncoder.encode(email, "UTF-8"));
+		}
+
+		if (linkman != null && !"".equals(linkman)) {
+			team.setLinkman(URLEncoder.encode(linkman, "UTF-8"));
+		}
+
+		if (webchat != null && !"".equals(webchat)) {
+			team.setWebchat(URLEncoder.encode(webchat, "UTF-8"));
+		}
+
+		if (officialSite != null && !"".equals(officialSite)) {
+			team.setOfficialSite(URLEncoder.encode(officialSite, "UTF-8"));
+		}
+
+		if (scale != null && !"".equals(scale)) {
+			team.setScale(URLEncoder.encode(scale, "UTF-8"));
+		}
+
+		if (businessDesc != null && !"".equals(businessDesc)) {
+			team.setBusinessDesc(URLEncoder.encode(businessDesc, "UTF-8"));
+		}
+
+		if (demand != null && !"".equals(demand)) {
+			team.setDemand(URLEncoder.encode(demand, "UTF-8"));
+		}
+
+		if (description != null && !"".equals(description)) {
+			team.setDescription(URLEncoder.encode(description, "UTF-8"));
+		}
+
+		try {
+			HttpSession httpSession = request.getSession();
+			// String unique = (String) httpSession.getAttribute(UNIQUE);
+			// String ltype = (String) httpSession.getAttribute(LTYPE);
+			String type = (String) httpSession.getAttribute(TYPE);
+			String original_str = (String) httpSession.getAttribute(ORIGINAL);
+			Gson gson = new Gson();
+			Team original = gson.fromJson(original_str, Team.class);
+			if (original != null && ValidateUtil.isValid(type) && type.equals(REGISTER_KET)) {
+				team.setPhoneNumber(original.getPhoneNumber());
+				if (ValidateUtil.isValid(original.getThirdLoginType())) {
+					switch (original.getThirdLoginType()) {
+					case Team.LTYPE_QQ:
+						team.setQqUnique(original.getQqUnique());
+						break;
+					case Team.LTYPE_WECHAT:
+						team.setQqUnique(original.getWechatUnique());
+						break;
+					case Team.LTYPE_WEIBO:
+						team.setQqUnique(original.getWbUnique());
+						break;
+					}
+				}
+				team.setFlag(0);// 设置审核状态为审核中
+				final String updateUrl = URL_PREFIX + "portal/team/static/data/registerteam";
+				final String json = HttpUtil.httpPost(updateUrl, team, request);
+				final boolean flag = JsonUtil.toBean(json, Boolean.class);
+				return flag;
+			} else {
+				// 非法请求
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@RequestMapping("/wechat/callback.do")
