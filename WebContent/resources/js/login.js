@@ -184,6 +184,11 @@ $().ready(function(){
 							$('#pwd_error').focus();
 							return false;
 						}
+						if(pwd.length<6){
+							$("#pwd_error").text("密码最少六位").removeClass("hide");
+							$('#pwd_error').focus();
+							return false;
+						}
 						loadData(function(msg){
 							if(msg.errorCode == 200){
 								$(".errorDiv").addClass("hide");
