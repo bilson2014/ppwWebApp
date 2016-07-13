@@ -109,6 +109,7 @@
 		
 		   <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
+		          	<input id="login_type" value="phone" type="hidden"></input>
 		            <h1>供应商登录</h1>
 		            
 		             <div class="" id="showLogin">
@@ -133,23 +134,25 @@
 		            
 		         <div class="hide" id="nameLogin">
 			            <div class="loginContent input-group">
-			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="" ></input>
+			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName" ></input>
 			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="">手机号错误</div>
+			                 <div class="errorDiv hide" id="loginName_error"></div>
 			            </div>
 			            <div class="loginContent input-group" id="pwdId" >
 			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
 			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="pwd_error" >密码错误</div>
+			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
 			            </div>  
 		         </div>  
 		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->
+
 		            <div id="submitBtn" class="redBtn">登录</div> 
 		             <div class="changeDiv" id="changeLoginId">
 		                 <div class="changeImg hide" id="changeId"></div>
 		                  <div class="changeLogin" id="loginWord">账户登入在这里</div> 
 		             </div>
 		            
+
 		            <div class="infoWord fontSizeBaseLight hide">第三方登录</div>
 		            <div class="footer-content-three hide">
 							<ul>

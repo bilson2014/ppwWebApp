@@ -28,7 +28,7 @@ public class AESUtil {
     
         return Base64.encodeBase64String(encrypted);//此处使用BAES64做转码功能，同时能起到2次加密的作用。    
     }    
-    
+
     // 解密    
     public static String Decrypt(String sSrc, String sKey) throws Exception {    
         try {    
