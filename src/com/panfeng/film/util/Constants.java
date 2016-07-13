@@ -63,7 +63,9 @@ public final class Constants {
 		AUTO_TEST=properties.getProperty("auto.test");
 	}
 	
-	
+	/**
+	 * 登录方式
+	 */
 	public enum loginType {
 		phone("phone", 1), // 手机登录
 		account("loginName", 2);// 账号登录
