@@ -142,6 +142,7 @@
 			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
+			                  <div class="errorMidDiv hide" id="name_login_error_info">登录错误</div>
 			            </div>  
 		         </div>  
 		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->

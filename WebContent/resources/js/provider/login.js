@@ -241,11 +241,14 @@ $().ready(function(){
 							return false;
 						}
 						loadData(function(msg){
+							
 							if(msg.errorCode == 200){
 								$(".errorDiv").addClass("hide");
 								window.location.href=getContextPath()+ '/provider/portal';
 							}else{
-								$("#pwd_error").text(msg.value).removeClass("hide");
+								$("#pwd_error").addClass('hide');
+								$('#loginName_error').addClass('hide');
+								$("#name_login_error_info").text(msg.value).removeClass("hide");
 								return false;
 							}
 						}, getContextPath() + '/provider/doLogin', $.toJSON({
