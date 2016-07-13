@@ -86,7 +86,15 @@ public class Team extends BaseObject {
 
 	public final static String LTYPE_WECHAT = "wechat";
 	
-	
+	private String loginType;//登录方式 
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
 
 	public long getTeamId() {
 		return teamId;

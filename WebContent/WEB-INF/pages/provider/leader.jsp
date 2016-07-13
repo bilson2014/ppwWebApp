@@ -131,9 +131,14 @@
   	      					  <span class="error-word" id="company-name-error">公司名称未填写</span>
   	      				  </div>
   	      				   <div class="input-group-div">
-  	      		       	 	  <span class="title-word">联系人</span>	
-  	      					  <input type="text" readonly="readonly" class="form-control step-one-input" id="company-linkman" placeholder="不必填写" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-linkman-error">联系人未填写</span>
+  	      		       	 	  <span class="title-word">用户名</span>	
+  	      					  <input type="text"  class="form-control step-one-input" id="company-linkman" placeholder="请填写昵称" aria-describedby="basic-addon2">
+  	      					  <span class="error-word" id="company-linkman-error">用户名未填写</span>
+  	      				  </div>
+  	      				   <div class="input-group-div hide">
+  	      		       	 	  <span class="title-word">密码</span>	
+  	      					  <input type="text" class="form-control step-one-input" id="company-pwd" placeholder="请填写密码" aria-describedby="basic-addon2">
+  	      					  <span class="error-word" id="company-pwd-error">密码未填写</span>
   	      				  </div>
   	      				   <div class="input-group-div">
   	      		       	 	  <span class="title-word">微信号</span>	

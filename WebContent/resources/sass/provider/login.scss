@@ -28,7 +28,6 @@ body{
 	margin: 0 auto;
 	background: #fff;
 	width: 400px;
-	height: 508px;
     padding: 0;
 	overflow: hidden;
 	position:relative;
@@ -55,7 +54,7 @@ body{
        	line-height: 38px;
        	font-size: $font-size;
        	color:#fff;
-       	margin-top: 10px;
+       	margin-top: 30px;
        	position: relative;
         top: 8px;
         cursor: pointer;
@@ -77,6 +76,7 @@ body{
        	border:none;
        	outline: none;
        	border-bottom: 1px solid #d9d9df;
+       	 -webkit-box-shadow: 0 0 0px 1000px white inset;
        }
 
        .otherDiv{
@@ -167,6 +167,60 @@ body{
 li {
 	float: left;
 	text-align: center;
+}
+
+
+
+.changeDiv{
+margin-top: 40px;
+   height:30px;
+		width:100%;
+		cursor: pointer;
+	div{
+		display: inline-block;
+	}
+
+	.changeImg{
+		height:30px;
+		width:30px;
+		background: url(../../images/login/user.png) no-repeat;
+		background-size: 30px 30px;
+	}
+
+
+	.changeImgPhone{
+		height:30px;
+		width:30px;
+		background: url(../../images/login/phone.png) no-repeat;
+		background-size: 30px 30px;
+	}
+
+	.changeLogin{
+	position: relative;
+	color:$gold-yellow;
+	font-size: $font-size-sm;
+	width:150px;
+	top:20px;
+   }
+
+}
+
+.phoneHeight{
+	height:440px;
+}
+
+.userheight{
+	height:390px;
+
+	top:100px;
+	 @media screen and (min-width:1276px) and (max-width:1500px) {
+     	top:120px;
+    }
+    @media screen and (min-width:1500px) {
+     	top:200px;
+    }
+
+
 }
 
 /* h2 {

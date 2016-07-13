@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.film.resource.controller.BaseController;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
@@ -44,6 +45,7 @@ import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.ProviderThirdLogin;
 import com.panfeng.film.service.SessionInfoService;
+import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
@@ -196,47 +198,57 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/doLogin")
 	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request) {
-
-		if (original == null || !ValidateUtil.isValid(original.getPhoneNumber())
-				|| !ValidateUtil.isValid(original.getVerification_code()))
+		if (original == null){
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
-
-		// add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
-		final String code = (String) request.getSession().getAttribute("code");
-		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		BaseMsg baseMsg = new BaseMsg();
-		// original.getVerification_code() !=null 为测试增加，不验证短信验证码，所以不用获取验证码
-		if (isTest || original.getVerification_code() != null && code.equals(original.getVerification_code())) {
-			if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
-				// add by laowang -->登录认证
-				// 1.手机号数据库中存在
-				// 2.短信验证码正确
-				// **推翻以前登录名密码方式
-				// 登录远程服务器进行比对
-				final String url = URL_PREFIX + "portal/team/static/data/doLogin";
-				String json = HttpUtil.httpPost(url, original, request);
-				if (json != null && !"".equals(json)) {
-					boolean ret = JsonUtil.toBean(json, Boolean.class);
-					if (ret) {
-						baseMsg.setErrorCode(BaseMsg.NORMAL);
-						baseMsg.setResult(true);
-						return baseMsg;
-					}
-				}
-				baseMsg.setErrorCode(BaseMsg.ERROR);
-				baseMsg.setErrorMsg("登录错误!");
-				logger.error("服务器返回数据错误，请求服务器异常");
-				return baseMsg;
-			} else {
-				serLogger.info("手机号错误");
-				return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
-			}
-		} else {
-			serLogger.info("Provider Verification_code timeout ...");
-			return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
 		}
+		if(original.getLoginType().equals(loginType.phone.getKey())){//手机号登录
+			final String code = (String) request.getSession().getAttribute("code");
+			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+			// 是否是测试程序
+			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+			if (isTest || original.getVerification_code() != null && code.equals(original.getVerification_code())) {
+				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
+					final String url = URL_PREFIX + "portal/team/static/data/doLogin";
+					String json = HttpUtil.httpPost(url, original, request);
+					if (json != null && !"".equals(json)) {
+						boolean ret = JsonUtil.toBean(json, Boolean.class);
+						if (ret) {
+							return new BaseMsg(BaseMsg.NORMAL, "", true);
+						}else{
+							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
+						}
+					}
+				} else {
+					serLogger.info("手机号错误");
+					return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
+				}
+			} else {
+				serLogger.info("Provider Verification_code timeout ...");
+				return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
+			}
+		}else{//用户名登录
+			final String pwd = original.getPassword();
+			final String loginName = original.getLoginName();
+			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
+				try {// 解密
+					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
+					original.setPassword(DataUtil.md5(password));
+					final String url = GlobalConstant.URL_PREFIX + "portal/team/static/data/doLogin";
+					final String json = HttpUtil.httpPost(url, original, request);
+					if (ValidateUtil.isValid(json)) {
+						final boolean ret = JsonUtil.toBean(json, Boolean.class);
+						if (ret) {
+							return new BaseMsg(BaseMsg.NORMAL, "", true);
+						}else{
+							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 	}
 
 	@RequestMapping("/thirdLogin")

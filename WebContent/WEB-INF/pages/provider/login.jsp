@@ -107,14 +107,18 @@
 		</div>
 		
 		
-		   <div class="outSideDiv">
+		   <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
+		          	<input id="login_type" value="phone" type="hidden"></input>
 		            <h1>供应商登录</h1>
+		            
+		             <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" ></input>
 		                 <div class="otherDiv"></div>
 		                 <div class="errorDiv hide" id="user_phoneNumberId"">手机号错误</div>
 		            </div>
+		       
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
 		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
@@ -124,11 +128,33 @@
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
-		                  <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
-		            </div>  
+		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
+		            </div>
+		            </div>
+		            
+		         <div class="hide" id="nameLogin">
+			            <div class="loginContent input-group">
+			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName" ></input>
+			                 <div class="otherDiv"></div>
+			                 <div class="errorDiv hide" id="loginName_error"></div>
+			            </div>
+			            <div class="loginContent input-group" id="pwdId" >
+			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
+			                 <div class="otherDiv"></div>
+			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
+			            </div>  
+		         </div>  
+		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->
+
 		            <div id="submitBtn" class="redBtn">登录</div> 
-		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
-		            <div class="footer-content-three">
+		             <div class="changeDiv" id="changeLoginId">
+		                 <div class="changeImg hide" id="changeId"></div>
+		                  <div class="changeLogin" id="loginWord">账户登入在这里</div> 
+		             </div>
+		            
+
+		            <div class="infoWord fontSizeBaseLight hide">第三方登录</div>
+		            <div class="footer-content-three hide">
 							<ul>
 								<li >
 									<a href="javascript:void(0);" id="webcat">

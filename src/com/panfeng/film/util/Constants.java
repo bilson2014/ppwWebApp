@@ -62,5 +62,38 @@ public final class Constants {
 		TEMP_DIR=properties.getProperty("upload.server.temp");
 		AUTO_TEST=properties.getProperty("auto.test");
 	}
+	
+	/**
+	 * 登录方式
+	 */
+	public enum loginType {
+		phone("phone", 1), // 手机登录
+		account("loginName", 2);// 账号登录
+		// 成员变量
+		private String key;
+		private int value;
+
+		// 构造方法
+		private loginType(String key, int value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		// get set 方法
+		public String getKey() {
+			return key;
+		}
+
+		public void setKey(String key) {
+			this.key = key;
+		}
+
+		public int getValue() {
+			return value;
+		}
+		public void setValue(int value) {
+			this.value = value;
+		}
+	}
 
 }

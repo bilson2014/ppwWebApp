@@ -40,6 +40,8 @@ import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.ValidateUtil;
+import com.panfeng.film.util.Constants.loginType;
 
 /**
  * 登陆事件 控制器
@@ -94,50 +96,76 @@ public class LoginController extends BaseController {
 		//是否是测试程序
 		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes")?true:false;
 		Info info = new Info();
-		try {
-			if (isTest || (!"".equals(code) && code != null)) {
-				if (isTest || code.equals(user.getVerification_code())) {
-					if(isTest || (null!=codeOfphone&&codeOfphone.equals(user.getTelephone()))){
-						//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
-						if (user != null && user.getPassword() != null
-								&& !"".equals(user.getPassword())) {
-							// AES密码解密
-							final String password = AESUtil.Decrypt(user.getPassword(),
-									UNIQUE_KEY);
-							// MD5
-							user.setPassword(DataUtil.md5(password));
-							// 登录远程服务器进行比对
-							final String url = URL_PREFIX + "portal/user/encipherment";
-							String str = HttpUtil.httpPost(url, user,request);
-							//User information = null;
-							if (str != null && !"".equals(str)) {
-								boolean result = JsonUtil.toBean(str, Boolean.class);
-								info.setKey(result);
-								info.setValue("登录成功");
+		
+		if(user.getLoginType().equals(loginType.phone.getKey())){//手机号登录
+			try {
+				if (isTest || (!"".equals(code) && code != null)) {
+					if (isTest || code.equals(user.getVerification_code())) {
+						if(isTest || (null!=codeOfphone&&codeOfphone.equals(user.getTelephone()))){
+							//add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
+							if (user != null && user.getPassword() != null
+									&& !"".equals(user.getPassword())) {
+								// AES密码解密
+								final String password = AESUtil.Decrypt(user.getPassword(),
+										UNIQUE_KEY);
+								// MD5
+								user.setPassword(DataUtil.md5(password));
+								// 登录远程服务器进行比对
+								final String url = URL_PREFIX + "portal/user/encipherment";
+								String str = HttpUtil.httpPost(url, user,request);
+								//User information = null;
+								if (str != null && !"".equals(str)) {
+									boolean result = JsonUtil.toBean(str, Boolean.class);
+									info.setKey(result);
+									info.setValue("登录成功");
+									return info;
+								} 
+								info.setKey(false);
+								info.setValue("登录失败");
 								return info;
-							} 
+							}
+						}else{
+							// 手机号错误
 							info.setKey(false);
-							info.setValue("登录失败");
-							return info;
+							info.setValue("手机号不正确!");
 						}
-					}else{
-						// 手机号错误
+					} else {
+						// 验证码过期
 						info.setKey(false);
-						info.setValue("手机号不正确!");
+						info.setValue("验证码输入错误!");
 					}
 				} else {
-					// 验证码过期
+					// session 过期
 					info.setKey(false);
-					info.setValue("验证码输入错误!");
+					info.setValue("请重新获取验证码!");
 				}
-			} else {
-				// session 过期
-				info.setKey(false);
-				info.setValue("请重新获取验证码!");
+			} catch (Exception e) {
+				logger.error("LoginController method:login() User Password Decrypt Error ...");
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			logger.error("LoginController method:login() User Password Decrypt Error ...");
-			e.printStackTrace();
+		}else{//用户名登录
+			final String pwd = user.getPassword();
+			final String loginName = user.getLoginName();
+			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
+				try {// 解密
+					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
+					user.setPassword(DataUtil.md5(password));
+					final String url = URL_PREFIX + "portal/user/encipherment";
+					String str = HttpUtil.httpPost(url, user,request);
+					if (ValidateUtil.isValid(str)) {
+						final boolean ret = JsonUtil.toBean(str, Boolean.class);
+						if (ret) {
+							info.setKey(true);
+							info.setValue("登录成功");
+						}else{
+							info.setKey(false);
+							info.setValue("登录失败");
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return info;

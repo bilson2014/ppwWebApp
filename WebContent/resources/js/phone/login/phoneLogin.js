@@ -197,6 +197,7 @@ var user_login = {
 		regesterOrLogin:function(){
 			var _this = this;
 			$("#submitBtn").off("click").on("click",function(){
+				var loginType = $("#login_type").val();
 				var action = $("#submitBtn").attr("data-id");//login or register
 				var phone_code = $('#user_phoneNumber').val();				
 				var veri_code = $('#verification_code').val();
@@ -236,17 +237,18 @@ var user_login = {
 			})
 		},
 		login:function(){
-			loadData(function(info){
-				if(info.key){
+			loadData(function(msg){
+				if(msg.key){
 					$(".errorDiv").addClass("hide");
 					window.location.href=getContextPath()+ '/phone/portal';
 				}else{
-					$("#code_error_info").text(info.value).removeClass("hide");
+					$("#code_error_info").text(msg.value).removeClass("hide");
 					return false;
 				}
 			}, getContextPath() + '/login/doLogin', $.toJSON({
 				telephone : $('#user_phoneNumber').val().trim(),
 				password : Encrypt("123456"),
+				loginType : $("#login_type").val(),
 				verification_code : $('#verification_code').val().trim(),
 			}))
 		},
