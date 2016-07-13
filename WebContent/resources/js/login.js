@@ -194,7 +194,9 @@ $().ready(function(){
 								$(".errorDiv").addClass("hide");
 								window.location.href=getContextPath()+ '/mgr/index';
 							}else{
-								$("#pwd_error").text(msg.value).removeClass("hide");
+								$("#pwd_error").addClass('hide');
+								$('#loginName_error').addClass('hide');
+								$("#login_error_info").text(msg.value).removeClass("hide");
 								return false;
 							}
 						}, getContextPath() + '/login/doLogin', $.toJSON({
