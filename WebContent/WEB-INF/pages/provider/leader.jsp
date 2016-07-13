@@ -132,7 +132,7 @@
   	      				  </div>
   	      				   <div class="input-group-div">
   	      		       	 	  <span class="title-word">用户名</span>	
-  	      					  <input type="text" readonly="readonly" class="form-control step-one-input" id="company-linkman" placeholder="请填写昵称" aria-describedby="basic-addon2">
+  	      					  <input type="text"  class="form-control step-one-input" id="company-linkman" placeholder="请填写昵称" aria-describedby="basic-addon2">
   	      					  <span class="error-word" id="company-linkman-error">用户名未填写</span>
   	      				  </div>
   	      				   <div class="input-group-div hide">
