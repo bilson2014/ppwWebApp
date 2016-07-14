@@ -359,7 +359,7 @@
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="safe">
-				<div class="form-wrap">
+				<div class="form-wrap" id="loginpwdupdate">
 					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
 						<fieldset>
 							<!-- 成功提示框 start -->
@@ -407,7 +407,7 @@
 					</form>
 				</div>
 				
-					<div class="form-wrap">
+					<div class="form-wrap" id="loginpwdinsert" >
 					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
 						<fieldset>
 							<!-- 成功提示框 start -->
@@ -423,27 +423,27 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-6">
-									<input type="password" class="form-control" id="" maxlength="16" placeholder="请输入用户名">
+									<input type="text" class="form-control" id="insUserName" maxlength="16" placeholder="请输入用户名">
 								</div>
 								<span style="color:red;">*</span>
 							</div>
 							<div class="form-group">
 								<label for="company-password" class="col-sm-2 control-label">密码</label>
 								<div class="col-sm-6">
-									<input type="password" class="form-control" id="" maxlength="16" placeholder="请输入当前密码">
+									<input type="password" class="form-control" id="insPassword" maxlength="16" placeholder="请输入当前密码">
 								</div>
 								<span style="color:red;">*</span>
 							</div>
 							<div class="form-group">
 								<label for="company-confirmPassword" class="col-sm-2 control-label">密码确认</label>
 								<div class="col-sm-6">
-									<input type="password" class="form-control" id="" maxlength="16" placeholder="请重新输入密码">
+									<input type="password" class="form-control" id="insTwoPassword" maxlength="16" placeholder="请重新输入密码">
 								</div>
 								<span style="color:red;">*</span>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-6">
-									<button type="button" class="btn btn-default" id="">保存</button>
+									<button type="button" class="btn btn-default" id="insSubmit">保存</button>
 								</div>
 							</div>
 						</fieldset>
