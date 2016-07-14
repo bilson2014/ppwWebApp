@@ -47,7 +47,7 @@ public class User extends Customer{
 	
 	private String userCompany = null; // 用户公司
 	
-	private int clientLevel = 0; // 客户级别
+	private Integer clientLevel = null; // 客户级别
 
 	public long getId() {
 		return id;
@@ -201,11 +201,11 @@ public class User extends Customer{
 		this.userCompany = userCompany;
 	}
 
-	public int getClientLevel() {
+	public Integer getClientLevel() {
 		return clientLevel;
 	}
 
-	public void setClientLevel(int clientLevel) {
+	public void setClientLevel(Integer clientLevel) {
 		this.clientLevel = clientLevel;
 	}
 
