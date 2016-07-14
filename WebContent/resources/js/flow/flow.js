@@ -314,6 +314,7 @@ function cancelBtn() {
 	$('#sureControl').addClass('red-btn');
 	$('#reason').addClass('textareaInfo');
 	$('#reason').removeClass('textareaInfoError');
+	$('#pauseError').addClass('hide');
 	noWorkproject=false;
 	setModalMessageEvent(cancel);
 //	var input = $('#reason').val().trim();
@@ -341,12 +342,9 @@ function cancel() {
 		$('#sureControl').addClass('no-red-btn');
 		$('#reason').removeClass('textareaInfo');
 		$('#reason').addClass('textareaInfoError');
-		$('#reason').focus();
-		$('#pauseError').removeClass('hdie');
-		
-		
+		$('#pauseError').removeClass('hide');
 	}else{
-		$('#pauseError').addClass('hdie');
+		$('#pauseError').addClass('hide');
 		$('#sureControl').removeClass('no-red-btn');
 		$('#sureControl').addClass('red-btn');
 		$('#reason').addClass('textareaInfo');
@@ -390,6 +388,7 @@ function pauseBtn() {
 	$('#sureControl').addClass('red-btn');
 	$('#reason').addClass('textareaInfo');
 	$('#reason').removeClass('textareaInfoError');
+	$('#pauseError').addClass('hide');
 	//$("#toolbar-check").modal('show');
 	setModalMessageEvent(pause);
 
@@ -411,10 +410,9 @@ function pause() {
 			$('#sureControl').addClass('no-red-btn');
 			$('#reason').removeClass('textareaInfo');
 			$('#reason').addClass('textareaInfoError');
-			$('#reason').focus();
-			$('#pauseError').removeClass('hdie');
+			$('#pauseError').removeClass('hide');
 		}else{
-			$('#pauseError').addClass('hdie');
+			$('#pauseError').addClass('hide');
 			$('#sureControl').removeClass('no-red-btn');
 			$('#sureControl').addClass('red-btn');
 			$('#reason').addClass('textareaInfo');

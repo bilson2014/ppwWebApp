@@ -21,6 +21,8 @@ $().ready(function(){
 	// 注册安全设置保存按钮
 	$('#passwordBt').on('click',safeInfo);
 	
+	$('#insSubmit').on('click',addAccount);
+	
 	$('#uploadBt').on('click',function(){
 		$.blockUI({
 			message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
@@ -40,6 +42,25 @@ $().ready(function(){
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
 		maxDate: new Date() 
+	});
+	
+	var loginName = $("#userName").text();
+	if(loginName == null ||loginName == ''){
+		$("#loginpwdinsert").removeClass("hide");
+		$("#loginpwdupdate").addClass("hide");
+	}else{
+		$("#loginpwdupdate").removeClass("hide");
+		$("#loginpwdinsert").addClass("hide");
+	}
+	
+	$("#insUserName").on("change",function(){
+		loadData(function(flag){
+			if(!flag){
+				popshow('insUserName','用户名已经重复');
+			}
+		}, getContextPath() + '/provider/checkExisting', $.toJSON({
+			loginName : $("#insUserName").val().trim()
+		}));
 	});
 });
 
@@ -146,6 +167,28 @@ function safeInfo(){
 		}, getContextPath() + '/provider/validateLoginStatus', $.toJSON({
 			loginName : $('#userName').text().trim(),
 			password : Encrypt($('#company-password').val().trim())
+		}));
+	}
+}
+
+
+function addAccount(){
+	if(checkData(3)){ // 检测数据完整性
+		// 检验当前密码是否正确
+		var loginName = $('#insUserName').val().trim();
+		loadData(function(info){
+			if(info){
+				// TODO:
+				$("#userName").text(loginName);
+				$("#loginpwdinsert").addClass("hide");
+				$("#loginpwdupdate").removeClass("hide");
+			}else{
+				toolTipShow('设置失败！');	
+			}
+		}, getContextPath() + '/provider/add/account', $.toJSON({
+			loginName : loginName,
+			password : Encrypt($('#insTwoPassword').val().trim()),
+			teamId : $("#company-id").val().trim()
 		}));
 	}
 }
@@ -301,6 +344,38 @@ function checkData(type){
 				return false;
 			}
 			
+			if(newPassword != comfrimPassword){
+				toolTipShow('密码两次输入不一致');
+				return false;
+			}
+			return true;
+		case 3:
+			var insloginName = $('#insUserName').val().trim();
+			var newPassword = $('#insPassword').val().trim();
+			var comfrimPassword = $('#insTwoPassword').val().trim();
+			if(insUserName == '' || insUserName == null || insUserName == undefined){
+				popshow('insUserName','用户名不能为空');
+				$('#insUserName').focus();
+				return false;
+			}
+			
+			var x; 
+			syncLoadData(function(flag){
+				if(!flag){
+					popshow('insUserName','用户名已经重复');
+					x = true;
+				}
+			}, getContextPath() + '/provider/checkExisting', $.toJSON({
+				loginName : loginName
+			}));
+			if(x){
+				return false;
+			}
+			if(newPassword == '' || newPassword == null || newPassword == undefined){
+				popshow('insPassword', '密码不能少于6位!');
+				$('#insPassword').focus();
+				return false;
+			}
 			if(newPassword != comfrimPassword){
 				toolTipShow('密码两次输入不一致');
 				return false;

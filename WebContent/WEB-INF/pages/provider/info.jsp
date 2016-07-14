@@ -62,7 +62,7 @@
 		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">基本信息</a></li>
-			<!-- <li role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li> -->
+			<li role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li>
 			<li role="presentation"><a href="#logo" aria-controls="logo" role="tab" data-toggle="tab">供应商LOGO</a></li>
 		</ul>
 
@@ -359,7 +359,7 @@
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="safe">
-				<div class="form-wrap">
+				<div class="form-wrap" id="loginpwdupdate">
 					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
 						<fieldset>
 							<!-- 成功提示框 start -->
@@ -375,6 +375,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">用户名</label>
 								<label class="col-sm-6 control-label field-label" style="text-align: left;" id="userName">${provider.loginName }</label>
+								
 							</div>
 							<div class="form-group">
 								<label for="company-password" class="col-sm-2 control-label">密码</label>
@@ -405,6 +406,50 @@
 						</fieldset>
 					</form>
 				</div>
+				
+					<div class="form-wrap" id="loginpwdinsert" >
+					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
+						<fieldset>
+							<!-- 成功提示框 start -->
+							<div class="tooltip-success-show" style="display: none;">
+								<label class="tooltip-success-message">信息更新成功</label>
+							</div>
+							<!-- 成功提示框  end -->
+							<!-- 错误提示框 start -->
+							<div class="tooltip-show" style="display: none;">
+								<label class="tooltip-message"></label>
+							</div>
+							<!-- 错误提示框  end -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="insUserName" maxlength="16" placeholder="请输入用户名">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<label for="company-password" class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="insPassword" maxlength="16" placeholder="请输入当前密码">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<label for="company-confirmPassword" class="col-sm-2 control-label">密码确认</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="insTwoPassword" maxlength="16" placeholder="请重新输入密码">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-6">
+									<button type="button" class="btn btn-default" id="insSubmit">保存</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				
 			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="logo">
 				<div class="form-wrap">

@@ -194,11 +194,7 @@
 				</c:if>
 				
 				<r:noLogin>
-<<<<<<< HEAD
 					<div class="prompt-level-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
-=======
-					<div class="prompt-word">请<a href="<spring:url value='/login' />" > <span>登陆</span> </a>拍片网，观看更多作品!</div>
->>>>>>> 9091ac89806732b88c9f90aeada722146ab40fb6
 				</r:noLogin>
 				
 				<r:noLevel>
@@ -245,8 +241,8 @@
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >联系我们</a>
 					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
-					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>拍片网客服发发</h3></a>
-					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>拍片网客服美美</h3></a>
+					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
+					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
 					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
 				</div>
 				
