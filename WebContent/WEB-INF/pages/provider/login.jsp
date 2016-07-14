@@ -109,9 +109,8 @@
 		
 		   <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
-		          	<input id="login_type" value="phone" type="hidden"></input>
 		            <h1>供应商登录</h1>
-		            
+		            <input type="hidden" id="login_type" value="phone"> 
 		             <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" ></input>

@@ -21,13 +21,6 @@ $().ready(function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
 	});
-
-    
-
-     
-
-  
-
 });
 
 
@@ -44,7 +37,7 @@ function SetRemainTime(){
 		else{
 			  curCount--;
 			 $('#lasttime').text(curCount); 
-		 }
+		}
 }
 
 
@@ -232,19 +225,14 @@ function getBusinessVal(){
 
 
 function infoSave(){
-	
-		var teamId = $('#unqiueId').val();
-
-		if(teamId != undefined && teamId != ''){
-			loadData(function(flag){
-			
-		}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
-			teamId : teamId, 
+	loadData(function(flag){
+		window.location.href=getContextPath()+ '/provider/portal';
+	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
 			address : $('#company-address').val().trim(),
 			teamDescription : $('#company-teamDesc').val().trim(),
-			linkman : $('#company-linkman').val().trim(),
+		//		linkman : $('#company-linkman').val().trim(),
 			webchat : $('#company-webchat').val().trim(),
 			qq : $('#company-qq').val().trim(),
 			business : getBusinessVal(),
@@ -255,11 +243,6 @@ function infoSave(){
 			infoResource : $('#company-infoResource option:selected').val()
 		}));
 	}
-
-	else{
-		window.location.href=getContextPath() + '/provider/portal';
-	}
-}
 
 	      
 		

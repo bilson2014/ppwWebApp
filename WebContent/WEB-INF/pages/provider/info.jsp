@@ -375,6 +375,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">用户名</label>
 								<label class="col-sm-6 control-label field-label" style="text-align: left;" id="userName">${provider.loginName }</label>
+								
 							</div>
 							<div class="form-group">
 								<label for="company-password" class="col-sm-2 control-label">密码</label>
@@ -405,6 +406,50 @@
 						</fieldset>
 					</form>
 				</div>
+				
+					<div class="form-wrap">
+					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
+						<fieldset>
+							<!-- 成功提示框 start -->
+							<div class="tooltip-success-show" style="display: none;">
+								<label class="tooltip-success-message">信息更新成功</label>
+							</div>
+							<!-- 成功提示框  end -->
+							<!-- 错误提示框 start -->
+							<div class="tooltip-show" style="display: none;">
+								<label class="tooltip-message"></label>
+							</div>
+							<!-- 错误提示框  end -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="" maxlength="16" placeholder="请输入用户名">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<label for="company-password" class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="" maxlength="16" placeholder="请输入当前密码">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<label for="company-confirmPassword" class="col-sm-2 control-label">密码确认</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="" maxlength="16" placeholder="请重新输入密码">
+								</div>
+								<span style="color:red;">*</span>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-6">
+									<button type="button" class="btn btn-default" id="">保存</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				
 			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="logo">
 				<div class="form-wrap">
