@@ -198,10 +198,10 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/doLogin")
 	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request) {
-		if (original == null){
+		if (original == null) {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
-		if(original.getLoginType().equals(loginType.phone.getKey())){//手机号登录
+		if (original.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			// 是否是测试程序
@@ -214,7 +214,7 @@ public class ProviderController extends BaseController {
 						boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
-						}else{
+						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
 						}
 					}
@@ -226,7 +226,7 @@ public class ProviderController extends BaseController {
 				serLogger.info("Provider Verification_code timeout ...");
 				return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
 			}
-		}else{//用户名登录
+		} else {// 用户名登录
 			final String pwd = original.getPassword();
 			final String loginName = original.getLoginName();
 			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
@@ -239,7 +239,7 @@ public class ProviderController extends BaseController {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
-						}else{
+						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
 						}
 					}
@@ -658,6 +658,29 @@ public class ProviderController extends BaseController {
 	public boolean updateStatus(final HttpServletRequest request, @RequestBody final Team team) {
 		if (team != null) {
 			final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
+			final String json = HttpUtil.httpPost(url, team, request);
+			final boolean flag = JsonUtil.toBean(json, Boolean.class);
+			/*
+			 * final Team sTeam = (Team) request.getSession().getAttribute(
+			 * PROVIDER_SESSION); if (sTeam != null) { if (flag) {
+			 * sTeam.setFlag(0);
+			 * request.getSession().setAttribute(PROVIDER_SESSION, sTeam); } }
+			 */
+			return flag;
+		}
+		return false;
+	}
+
+	@RequestMapping("/add/account")
+	public boolean addAccount(final HttpServletRequest request, @RequestBody final Team team) {
+		if (team != null) {
+			try {
+				String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
+				team.setPassword(DataUtil.md5(password));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			final String url = URL_PREFIX + "portal/team/static/data/add/account";
 			final String json = HttpUtil.httpPost(url, team, request);
 			final boolean flag = JsonUtil.toBean(json, Boolean.class);
 			/*
@@ -1284,9 +1307,9 @@ public class ProviderController extends BaseController {
 								httpSession.removeAttribute(LINKMAN);
 							} else if (msg.getErrorCode().equals(BaseMsg.WARNING)) {
 								// 进入引导页
-								Gson gson =new Gson();
+								Gson gson = new Gson();
 								String str = gson.toJson(msg.getResult());
-								httpSession.setAttribute(ORIGINAL,str ); // session
+								httpSession.setAttribute(ORIGINAL, str); // session
 																			// 内不能存储对象，存储json字符串
 								httpSession.setAttribute(TYPE, REGISTER_KET);
 							}

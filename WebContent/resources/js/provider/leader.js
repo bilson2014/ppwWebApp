@@ -55,7 +55,7 @@ function checkStepTwoData(){
  if(step==2){
       if(checkStepTwo()){
       	infoSave();
-      	showStepThree();
+      //	showStepThree();
       }
 	 }
 }
@@ -226,7 +226,8 @@ function getBusinessVal(){
 
 function infoSave(){
 	loadData(function(flag){
-		window.location.href=getContextPath()+ '/provider/portal';
+		showStepThree();
+		//window.location.href=getContextPath()+ '/provider/portal';
 	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
