@@ -248,7 +248,7 @@ $().ready(function(){
 							}else{
 								$("#pwd_error").addClass('hide');
 								$('#loginName_error').addClass('hide');
-								$("#name_login_error_info").text(msg.value).removeClass("hide");
+								$("#name_login_error_info").text(msg.errorMsg).removeClass("hide");
 								return false;
 							}
 						}, getContextPath() + '/provider/doLogin', $.toJSON({
