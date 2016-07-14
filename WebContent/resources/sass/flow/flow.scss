@@ -651,14 +651,14 @@
 .no-red-btn {
     width: 105px;
     height: 35px;
-    background-color: $gray;
+    background-color: $red-base;
     border-color: $white;
     border-radius: 5px;
     display: inline-block;
     border: none;
     color: $white;
     font-size: $font-size-base;
-    cursor:not-allowed;
+    cursor:pointer;
 }
 
 .red-small-btn {
