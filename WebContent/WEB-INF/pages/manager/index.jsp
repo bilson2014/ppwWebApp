@@ -687,14 +687,15 @@
 			<div class="modal-dialog">
 				<div class="modal-content" >
 					<div class="modal-body checkstep">
-					
+					         
 					       <div class="pauseWord">
 					       <img class="canclestepPause"  id="canclestepPause" src="/resources/img/flow/canclemodal.png">
 					         <div id="pauseWord">确定暂停吗？</div>
 					          <div class="hide" id="pauseError">请填写原因</div>
 					         <div class="pauseTop" id="errorReason" style="display:inline-block;">
 					         	<textarea class="form-control textareaInfo" id="reason" placeholder="原因"></textarea>
-					         </div>  
+					         </div>
+					       
 					       </div>
 					        <div class="pauseBtn">
 			                   <button class="red-btn puaseLeft" id="sureControl">确定</button>

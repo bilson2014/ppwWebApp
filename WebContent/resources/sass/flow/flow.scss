@@ -2048,7 +2048,6 @@ margin-top: 80px;
     border-radius: 5px;
     max-width: 360px;
     max-height: 70px;
-
 }
 
 #pauseError{
@@ -2062,7 +2061,8 @@ margin-top: 80px;
     width: 360px;
     height: 70px;
     border-radius: 5px;
-    outline: none;
+    max-width: 360px;
+    max-height: 70px;
     border-color: $red-base;
 }
 
