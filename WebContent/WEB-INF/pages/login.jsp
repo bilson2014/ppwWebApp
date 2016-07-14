@@ -154,8 +154,8 @@
 		                  <div class="changeLogin" id="loginWord">账户登入在这里</div> 
 		             </div> 
 		             -->
-		            <div class="infoWord fontSizeBaseLight hide">第三方登录</div>
-		            <div class="footer-content-three hide">
+		            <div class="infoWord fontSizeBaseLight ">第三方登录</div>
+		            <div class="footer-content-three ">
 							<ul>
 								<li >
 									<a href="javascript:void(0);" id="webcat">
