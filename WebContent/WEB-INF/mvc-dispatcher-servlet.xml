@@ -39,14 +39,8 @@
 	
 	<mvc:view-controller path="/phone/error" view-name="/phone/error" />
 	
-	<mvc:view-controller path="/phone/gate/gate" view-name="/phone/gate/gate" />
-	
-    <mvc:view-controller path="/phone/login/phoneLogin" view-name="/phone/login/phoneLogin"/>
-    
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
-    <mvc:view-controller path="/phone/login/phoneThreeLogin" view-name="/phone/login/phoneThreeLogin"/>
-	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

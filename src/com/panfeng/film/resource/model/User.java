@@ -47,7 +47,7 @@ public class User extends Customer{
 	
 	private String userCompany = null; // 用户公司
 	
-	private int clientLevel = 0; // 客户级别
+	private Integer clientLevel = null; // 客户级别
 	
 	//add by wanglc 2016-7-13 14:04:24 添加用户名密码登录方式 begin
 	private String loginType;//登录方式 
@@ -222,11 +222,11 @@ public class User extends Customer{
 		this.userCompany = userCompany;
 	}
 
-	public int getClientLevel() {
+	public Integer getClientLevel() {
 		return clientLevel;
 	}
 
-	public void setClientLevel(int clientLevel) {
+	public void setClientLevel(Integer clientLevel) {
 		this.clientLevel = clientLevel;
 	}
 

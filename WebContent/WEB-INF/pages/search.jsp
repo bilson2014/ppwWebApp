@@ -203,6 +203,7 @@
 			</div>
 		</div>
 		<!-- video list end -->
+		
 		<!-- pagination start -->
 		<div class="page-section">
 			<div class="page-wrap">
