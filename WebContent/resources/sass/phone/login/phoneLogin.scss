@@ -21,7 +21,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/login/cusBackB.jpg) no-repeat;
+        background: url(../../../images/phone/login/cusbg.jpg) no-repeat;
         background-size: 100% $video-height;
         @media screen and (max-width: 360px) {
             background-size: 100% $video-height320;
@@ -217,8 +217,23 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         width: 100%;
         height: 100%;
         position: relative;
-        background: url(../../../images/phone/login/posBackB.jpg) no-repeat;
-        background-size: 100% 100%;
+        background: url(../../../images/phone/login/posbg.jpg) no-repeat;
+        background-size: 100% $video-height;
+        @media screen and (max-width: 360px) {
+            background-size: 100% $video-height320;
+        }
+        @media screen and (min-width: 360px) and (max-width: 390px) {
+            background-size: 100% $video-height360;
+        }
+        @media screen and (min-width: 390px) and (max-width: 460px) {
+            background-size: 100% $video-height390;
+        }
+        @media screen and (min-width: 640px) and (max-width: 720px) {
+            background-size: 100% $video-height640;
+        }
+        @media screen and (min-width: 720px) {
+            background-size: 100% $video-height720;
+        }
         .topContent {
             width: 100%;
             height: auto;
@@ -268,6 +283,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .leftWord {
             position: relative;
             left: 20px;
+            width:100px;
             float: left;
             font-size: $font-size;
             color: $white;
@@ -276,6 +292,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .rightWord {
             position: relative;
             right: 20px;
+             width:100px;
             float: right;
             font-size: $font-size;
             color: $red-base;

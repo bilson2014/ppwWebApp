@@ -21,13 +21,6 @@ $().ready(function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
 	});
-
-    
-
-     
-
-  
-
 });
 
 
@@ -44,7 +37,7 @@ function SetRemainTime(){
 		else{
 			  curCount--;
 			 $('#lasttime').text(curCount); 
-		 }
+		}
 }
 
 
@@ -62,7 +55,7 @@ function checkStepTwoData(){
  if(step==2){
       if(checkStepTwo()){
       	infoSave();
-      	showStepThree();
+      //	showStepThree();
       }
 	 }
 }
@@ -73,6 +66,7 @@ function resumeError(){
 		$('#company-name-error').hide();
 		$('#company-email-error').hide();
 		$('#company-linkman-error').hide();
+		$('#company-pwd-error').hide();
 		$('#company-webchat-error').hide();
 		$('#company-address-error').hide();
 		$('#company-qq-error').hide();
@@ -112,6 +106,7 @@ function checkStepOne(){
    		    var name = $('#company-name').val().trim(); // 公司名称
 			var email = $('#company-email').val().trim(); // 公司邮箱
 			var linkman = $('#company-linkman').val().trim(); // 联系人
+		//	var pwd = $('#company-pwd').val().trim();
 			var webchat = $('#company-webchat').val().trim(); // 微信
 			var qq = $('#company-qq').val().trim(); // QQ
 			var address = $('#company-address').val().trim();
@@ -124,10 +119,17 @@ function checkStepOne(){
 				return false;
 			}
 
-//			if(linkman == '' || linkman == null || linkman == undefined){
-//				$('#company-linkman-error').show();
-//                $('#company-linkman-error').text('请输入联系人!');
-//				$('#company-linkman').focus();
+			if(linkman == '' || linkman == null || linkman == undefined){
+				$('#company-linkman-error').show();
+                $('#company-linkman-error').text('请输入联系人!');
+				$('#company-linkman').focus();
+				return false;
+			}
+//			
+//			if(pwd == '' || pwd == null || pwd == undefined){
+//				$('#company-pwd-error').show();
+//                $('#company-pwd-error').text('请输入密码!');
+//				$('#company-pwd').focus();
 //				return false;
 //			}
 			
@@ -223,19 +225,15 @@ function getBusinessVal(){
 
 
 function infoSave(){
-	
-		var teamId = $('#unqiueId').val();
-
-		if(teamId != undefined && teamId != ''){
-			loadData(function(flag){
-			
-		}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
-			teamId : teamId, 
+	loadData(function(flag){
+		showStepThree();
+		//window.location.href=getContextPath()+ '/provider/portal';
+	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
 			address : $('#company-address').val().trim(),
 			teamDescription : $('#company-teamDesc').val().trim(),
-//			linkman : $('#company-linkman').val().trim(),
+		//		linkman : $('#company-linkman').val().trim(),
 			webchat : $('#company-webchat').val().trim(),
 			qq : $('#company-qq').val().trim(),
 			business : getBusinessVal(),
@@ -246,11 +244,6 @@ function infoSave(){
 			infoResource : $('#company-infoResource option:selected').val()
 		}));
 	}
-
-	else{
-		window.location.href=getContextPath() + '/provider/portal';
-	}
-}
 
 	      
 		

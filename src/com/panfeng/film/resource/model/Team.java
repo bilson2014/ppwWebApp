@@ -14,7 +14,7 @@ public class Team extends BaseObject {
 
 	private long teamId = 0l;
 	
-	private String password = null; // 密码
+	private String password = "E10ADC3949BA59ABBE56E057F20F883E"; //123456 密码
 	
 	private String phoneNumber = null; // 联系电话
 	
@@ -86,7 +86,15 @@ public class Team extends BaseObject {
 
 	public final static String LTYPE_WECHAT = "wechat";
 	
-	
+	private String loginType;//登录方式 
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
 
 	public long getTeamId() {
 		return teamId;
