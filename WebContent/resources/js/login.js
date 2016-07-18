@@ -313,8 +313,10 @@ $().ready(function(){
 						$('#outSideId').addClass('phoneHeight');
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
+						$('#threeId').removeClass('hide');
 					
 					}else{
+						$('#threeId').addClass('hide');
 						$('input').val('');
 						$('#loginWord').text('手机号登入在这里');//用户名登录
 						$('#showLogin').addClass('hide');

@@ -33,7 +33,7 @@
 	
 	<mvc:view-controller path="/phone/payment/payListFail" view-name="/phone/payment/payListFail" />
 	
-	
+	<mvc:view-controller path="/phone/login/phoneLogin" view-name="/phone/login/phoneLogin" />
 	
 	<mvc:view-controller path="/error" view-name="/error" />
 	

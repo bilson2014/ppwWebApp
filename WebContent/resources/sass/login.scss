@@ -133,7 +133,7 @@ body {
 
 
 .footer-content-three{
-  height: 90px;
+  height: 60px;
 }
 
 .footer-content-three ul{
@@ -163,7 +163,7 @@ li {
 }
 
 .changeDiv{
-margin-top: 40px;
+   margin-top:10px;
    height:30px;
     width:100%;
     cursor: pointer;
@@ -197,18 +197,17 @@ margin-top: 40px;
 }
 
 .phoneHeight{
-  height:505px;
+  height:525px;
 }
 
 .userheight{
-  height:390px;
-
-  top:100px;
+  height:330px;
+  top:130px;
    @media screen and (min-width:1276px) and (max-width:1500px) {
-      top:120px;
+      top:150px;
     }
     @media screen and (min-width:1500px) {
-      top:200px;
+      top:230px;
     }
 
 
