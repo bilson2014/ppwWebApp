@@ -281,7 +281,7 @@ $().ready(function(){
 						window.location.href=getContextPath()+'/provider/leader';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
-						$("#login_error_info").text(msg.result).removeClass("hide");
+						$("#login_error_info").text(info.result).removeClass("hide");
 						return false;
 					}
 				},  getContextPath() + '/provider/info/register', $.toJSON({
