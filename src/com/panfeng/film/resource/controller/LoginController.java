@@ -187,6 +187,24 @@ public class LoginController extends BaseController {
 		}
 		return false;
 	}
+	
+	/**
+	 * 验证手机号码是否注册
+	 */
+	@RequestMapping("/validation/userName")
+	public boolean validationUserName(@RequestBody Map<String,String> userName, final ModelMap model, final HttpServletRequest request) {
+		String userName_key = "username";
+		final String url = URL_PREFIX + "portal/user/valication/loginname";
+		String json = HttpUtil.httpPost(url, userName, request);
+		if ("true".equals(json)) { // 被注册
+			serLogger.info("validation telephone " + userName.get(userName_key) + " can't register,Becase it is exist ...");
+			return true;
+		} else if ("false".equals(json)) { // 未被注册
+			serLogger.info("validation telephone " + userName.get(userName_key) + " can register,Becase it is not exist ...");
+			return false;
+		}
+		return false;
+	}
 
 	/**
 	 * 注册
