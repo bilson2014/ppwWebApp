@@ -127,7 +127,7 @@ public class LoginController extends BaseController {
 						}else{
 							// 手机号错误
 							info.setKey(false);
-							info.setValue("手机号不正确!");
+							info.setValue("和验证手机不符!");
 						}
 					} else {
 						// 验证码过期
