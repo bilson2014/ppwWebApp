@@ -144,6 +144,7 @@
 			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
+			                  <div class="errorMidDiv hide" id="login_error_info_user">登录错误</div>
 			            </div>  
 		         </div> 
 		            
@@ -190,88 +191,6 @@
 		   </div>
 	
 	
-	<%-- <div class="wrap">
-		<div class="card">
-			<div class="front">
-				<div class="login-content">
-					<header >
-						<div class="header-logo">
-							<a href='<spring:url value="/" />' >
-								<h1>拍片网</h1>
-							</a>
-							<p>客户登录</p>
-						</div>
-					</header>
-					<section>
-						<h2 class="login-title">客户登录</h2>
-						<div class="form-wrap">
-							<form id="form-login" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-								<div class="form-group">
-									<input id="userName" type="text" class="form-control form-height" tabindex="1" placeholder="手机登录" autocomplete="off" >
-								</div>
-								<div id="kaptcha_code_wrap" class="form-group form-item hide">
-									<input type="text" id="kaptcha_code" class="form-control verfication form-height" tabindex="2" placeholder="图片验证码" autocomplete="off" maxlength="4">
-									<label class="control-label">
-										<img alt="图片验证码" src='' id="kaptcha_pic" class="kaptcha_pic_image">
-									</label>
-								</div>
-								<div id="verification_code_wrap" class="form-group form-item hide">
-									<input type="text" id="verification_code" class="form-control verfication form-height" tabindex="2" placeholder="短信验证码" autocomplete="off" maxlength="6">
-									<button type="button" id="verification_code_btn" class="btn btn-default line_height form-height button94">点击获取</button>
-								</div>
-								<div id="uPassw0rd_wrap" class="form-group form-item hide">
-									<input type="password" id="uPassw0rd" class="form-control form-height" tabindex="3" placeholder="请输入密码" autocomplete="off" >
-									<span class="help-block label-left color-red font12 hide" id="label-info"></span>
-								</div>
-								<div id="message-wrap" class="form-group form-item hide">
-									<span class="help-block label-left color-red font12" id="message-info"></span>
-								</div>
-								<div class="form-group">
-									<button id="loginBt" data-id="login" type="button" class="btn btn-primary btn-wrap" >登录/注册</button>
-								</div>
-								<div class="form-group" id="forget-group">
-									<div class="forget">
-										<a target="_self" href='<spring:url value="/recover"/>' class="btn btn-link">忘记密码</a>
-									</div>
-								</div>
-							</form>
-						</div>
-					</section>
-					<footer class="footer">
-						<div class="footer-title">
-							<h3>第三方账号登录</h3>
-						</div>
-						<div class="footer-content">
-							<ul>
-								<li >
-									<!-- <span>微博</span> -->
-									<div id="weiboBt">
-										<a href="javascript:void(0);" >
-											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
-										</a>
-										<span>微博</span>
-									</div>
-								</li>
-								<li>
-									<a href="javascript:void(0);" id="webcat">
-										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
-									</a>
-									<span>微信</span>
-								</li>
-								<li>
-									<div id="qqBt">
-										<a href="javascript:void(0);">
-											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
-										</a>
-										<span>QQ</span>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</footer>
-				</div>
-			</div>
-		</div>
-	</div> --%>
+	
 </body>
 </html>

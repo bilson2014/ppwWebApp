@@ -196,7 +196,7 @@ $().ready(function(){
 							}else{
 								$("#pwd_error").addClass('hide');
 								$('#loginName_error').addClass('hide');
-								$("#login_error_info").text(msg.value).removeClass("hide");
+								$("#login_error_info_user").text(msg.value).removeClass("hide");
 								return false;
 							}
 						}, getContextPath() + '/login/doLogin', $.toJSON({
