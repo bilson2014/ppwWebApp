@@ -350,7 +350,7 @@ function checkData(type){
 			}
 			return true;
 		case 3:
-			var insloginName = $('#insUserName').val().trim();
+			var insloginName = $('#insuserName').val().trim();
 			var newPassword = $('#insPassword').val().trim();
 			var comfrimPassword = $('#insTwoPassword').val().trim();
 			if(insUserName == '' || insUserName == null || insUserName == undefined){

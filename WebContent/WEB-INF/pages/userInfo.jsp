@@ -200,33 +200,33 @@
 						<!-- 密码修改 -->
 						<div class="password-info-content information">
 						
-						   <div  class="" id="">
+						   <div  id="ins">
 							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
 							<div class="form-group">
 									<label class="col-sm-2 control-label item-height">用户名</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入用户名" autocomplete="off" />
+										<input type="text" class="form-control" id="insuserName" tabindex="1" placeholder="请输入用户名" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+										<label id="insuserName-error" class="label-message hide" ></label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新密码</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
+										<input type="password" class="form-control" id="insPassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+										<label id="insPassword-error" class="label-message hide" >请输入6位以上密码</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">密码确认</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="confirm-passw0rd" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
+										<input type="password" class="form-control" id="insTwoPassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-confirm-passw0rd" class="label-message hide" >两次输入的密码不一致</label>
+										<label id="insTwoPassword-error" class="label-message hide" >两次输入的密码不一致</label>
 									</div>
 								</div>
 								<div class="form-group">
@@ -238,12 +238,12 @@
 							</form>
 							</div>
 							
-							<div  class="hide" id="">
+							<div  class="hide" id="upd">
 							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
 							<div class="form-group">
 									<label class="col-sm-2 control-label item-height">用户名</label>
 									<div class="col-sm-5">
-										<div class="col-sm-2 control-label item-height" style="width:100px">用户名</div>
+										<div class="col-sm-2 control-label item-height" id = "userLoginName" style="width:100px">${user.loginName }</div>
 									</div>
 									<div class="col-sm-5">
 										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
@@ -252,34 +252,34 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">原密码</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入原密码" autocomplete="off" />
+										<input type="text" class="form-control" id="upd-password"  placeholder="请输入原密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+										<label  class="label-message hide" id ="upd-password-error">请输入6位以上密码</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新密码</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
+										<input type="password" class="form-control" id="upd-newpassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+										<label  class="label-message hide" id = "upd-newpassword-error" >请输入6位以上密码</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">密码确认</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="confirm-passw0rd" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
+										<input type="password" class="form-control" id="upd-towpassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-confirm-passw0rd" class="label-message hide" >两次输入的密码不一致</label>
+										<label  class="label-message hide" id = "upd-towpassword-error">两次输入的密码不一致</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"> </label>
 									<div class="col-sm-5">
-										<a class="btn btn-primary" href="javascript:void(0);" id="password-info-contentBt" >修改</a>
+										<a class="btn btn-primary" href="javascript:void(0);" id="upd-btn" >修改</a>
 									</div>
 								</div>
 							</form>
