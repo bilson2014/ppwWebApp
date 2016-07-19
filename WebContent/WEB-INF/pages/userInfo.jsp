@@ -188,6 +188,20 @@
 										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
 									</div>
 								</div>
+									<div class="form-group">
+									<label class="col-sm-2 control-label">客户来源</label>
+									<div class="col-sm-5">
+										<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" >
+											  <option value ="volvo">Volvo</option>
+											  <option value ="saab">Saab</option>
+											  <option value="opel">Opel</option>
+											  <option value="audi">Audi</option>
+										</select>
+									</div>
+									<div class="col-sm-5">
+										<label id="" class="label-message hide" >请输入来源</label>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-5">
