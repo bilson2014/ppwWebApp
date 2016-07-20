@@ -130,7 +130,7 @@
 						<div class="navigation">
 							<ul class="nav nav-tabs">
 								<li><a href="javascript:void(0);" data-url="self-info-content">个人资料</a></li>
-								<li><a href="javascript:void(0);" data-url="password-info-content">密码修改</a></li>
+								<li><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
 								<li><a href="javascript:void(0);" data-url="userpic-info-content">头像修改</a></li>
 								<li><a href="javascript:void(0);" data-url="phone-info-content">更换手机</a></li>
 							</ul>
@@ -188,6 +188,20 @@
 										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
 									</div>
 								</div>
+									<div class="form-group">
+									<label class="col-sm-2 control-label">客户来源</label>
+									<div class="col-sm-5">
+										<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" >
+											  <option value ="volvo">Volvo</option>
+											  <option value ="saab">Saab</option>
+											  <option value="opel">Opel</option>
+											  <option value="audi">Audi</option>
+										</select>
+									</div>
+									<div class="col-sm-5">
+										<label id="" class="label-message hide" >请输入来源</label>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-5">
@@ -199,7 +213,18 @@
 						
 						<!-- 密码修改 -->
 						<div class="password-info-content information">
+						
+						   <div  class="" id="">
 							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
+							<div class="form-group">
+									<label class="col-sm-2 control-label item-height">用户名</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入用户名" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新密码</label>
 									<div class="col-sm-5">
@@ -225,6 +250,54 @@
 									</div>
 								</div>
 							</form>
+							</div>
+							
+							<div  class="hide" id="">
+							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
+							<div class="form-group">
+									<label class="col-sm-2 control-label item-height">用户名</label>
+									<div class="col-sm-5">
+										<div class="col-sm-2 control-label item-height" style="width:100px">用户名</div>
+									</div>
+									<div class="col-sm-5">
+										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">原密码</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入原密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">新密码</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">密码确认</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="confirm-passw0rd" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label id="label-confirm-passw0rd" class="label-message hide" >两次输入的密码不一致</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> </label>
+									<div class="col-sm-5">
+										<a class="btn btn-primary" href="javascript:void(0);" id="password-info-contentBt" >修改</a>
+									</div>
+								</div>
+							</form>
+							</div>
 						</div>
 						
 						<!-- 头像修改 -->
