@@ -150,7 +150,8 @@ function selfInfo(){
 					realName : $('#trueName').val().trim(),
 					email : $('#contact-email').val().trim(),
 					qq : $('#contact-qq').val().trim(),
-					userCompany : $('#company').val().trim()
+					userCompany : $('#company').val().trim(),
+					customerSource : $("#customerSource").val().trim()
 				}))
 			}
 		}else{

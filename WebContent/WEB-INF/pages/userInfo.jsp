@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
@@ -191,11 +192,15 @@
 									<div class="form-group">
 									<label class="col-sm-2 control-label">客户来源</label>
 									<div class="col-sm-5">
-										<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" >
-											  <option value ="volvo">Volvo</option>
-											  <option value ="saab">Saab</option>
-											  <option value="opel">Opel</option>
-											  <option value="audi">Audi</option>
+										<select class="tableinput-baseinfo form-control selectdiv" id="customerSource" >
+										<c:if test="${!empty userSource}">
+											<c:forEach items="${userSource }" var="source" varStatus="status">
+											  <option value ="${source.key }" 
+											  	<c:if test="${user.customerSource == source.key }">
+											  		selected="selected"
+											  	</c:if> >${source.value }</option>
+											</c:forEach>
+										</c:if>
 										</select>
 									</div>
 									<div class="col-sm-5">

@@ -62,6 +62,23 @@ $().ready(function(){
 			loginName : $("#insUserName").val().trim()
 		}));
 	});
+	
+	// 添加省下拉框监听
+	$("#company-province").on('change',function(){
+		var ProvinceId = $(this).val();
+		loadData(function(msg){
+			if(msg != null && msg.length >0 ){
+				var select = $("#company-city");
+				select.empty();
+				msg.forEach(function(city){
+					var html = '<option value = "' + city.cityID + '" >'+city.city+'</option>'  ;
+					select.append(html);
+				});
+			}
+		}, getContextPath() + '/get/citys', $.toJSON({
+			provinceId : ProvinceId
+		}))
+	});
 });
 
 // 信息回显
@@ -133,7 +150,9 @@ function infoSave(){
 			businessDesc : $('#company-businessDesc').val().trim(),
 			demand : $('#company-demand').val().trim(),
 			description : $('#company-description').val().trim(),
-			phoneNumber : $('#company-phoneNumber').val().trim()
+			phoneNumber : $('#company-phoneNumber').val().trim(),
+			teamProvince : $("#company-province").val(),
+			teamCity : $("#company-city").val()
 		}));
 	}
 	
@@ -214,7 +233,10 @@ function checkData(type){
 			var linkman = $('#company-linkman').val().trim(); // 联系人
 			var webchat = $('#company-webchat').val().trim(); // 微信
 			var qq = $('#company-qq').val().trim(); // QQ
+			
+			var province = $('#company-province option:selected').val(); // 所在城市
 			var city = $('#company-city option:selected').val(); // 所在城市
+			
 			var priceRange = $('#company-priceRange option:selected').val(); // 价格区间
 			var infoResource = $('#company-infoResource option:selected').val(); // 获知渠道
 			var business = getBusinessVal(); // 业务范围
@@ -263,11 +285,18 @@ function checkData(type){
 				return false;
 			}
 			
+			if(province == '' || province == null || province == undefined){
+				popshow('company-province', '请选择所在省!');
+				$('#company-province').focus();
+				return false;
+			}
+			
 			if(city == '' || city == null || city == undefined){
 				popshow('company-city', '请选择所在城市!');
 				$('#company-city').focus();
 				return false;
 			}
+			
 			
 			if(priceRange == '' || priceRange == null || priceRange == undefined){
 				popshow('company-priceRange', '请选择价格区间!');
