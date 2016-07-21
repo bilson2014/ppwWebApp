@@ -9,6 +9,9 @@ var isShowKaptcha = false;
 
 $().ready(function(){
 	
+	
+	
+	
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -27,6 +30,9 @@ $().ready(function(){
 				this.wb();
 				//切换登陆
 				this.changeLogin();
+				//回车
+				getEnter();
+				
 			},
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
@@ -386,6 +392,16 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#submitBtn').click();
+		}
+	});
 }
 	
 //	login.sina(); // 新浪-第三方登录

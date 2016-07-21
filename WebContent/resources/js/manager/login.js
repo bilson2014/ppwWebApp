@@ -1,5 +1,8 @@
 $().ready(function(){
 	
+	
+
+	
 	var third_login = { 
 			sina : function(){ // 新浪登陆
 				$('#weiboBt').on('click',function(){
@@ -63,6 +66,7 @@ $().ready(function(){
 	third_login.qq();
 	showForget.doshowForget();
 	login.doLogin();
+	getEnter();
 	function otherLogin(condition){
 		var url = getContextPath() + '/mgr/thirdLogin';
 		var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
@@ -78,7 +82,7 @@ var login = {
 			loadData(function(result){
 				if(result.ret){
 					// 跳转
-					$('#login-form').attr('action',getContextPath() + '/mgr/index').submit().remove();
+					$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
 					$('#pwdId').addClass('hide');
 				}else {
 //					$('.tooltip-message-recover').text(result.message);
@@ -134,4 +138,13 @@ function getWBUserData(callback){
 }
 function hideTooltipRecover(){
 	$('.tooltip-show-recover').hide('normal');
+}
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#loginbtn').click();
+		}
+	});
 }

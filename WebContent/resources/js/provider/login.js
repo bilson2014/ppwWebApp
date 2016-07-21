@@ -85,6 +85,8 @@ $().ready(function(){
 				this.regesterOrLogin();
 				//切换
 				this.changeLogin();
+				//回车
+				getEnter();
 			},
 			
 			phoneNumberChange:function(){
@@ -380,4 +382,13 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#submitBtn').click();
+		}
+	});
 }

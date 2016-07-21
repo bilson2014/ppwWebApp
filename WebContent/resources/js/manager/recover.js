@@ -13,6 +13,8 @@ $().ready(function(){
 	
 	// 密码找回按钮
 	$('#recoverBt').click(recover);
+	
+	getEnter();
 });
 
 function refreshValidateImage(){
@@ -264,4 +266,13 @@ function SetRemainTime_recover(){
 		recoverCount--;  
 		$("#verification_code_recover_btn").text('已发送('+ recoverCount +')');
 	}
+}
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#recoverBt').click();
+		}
+	});
 }
