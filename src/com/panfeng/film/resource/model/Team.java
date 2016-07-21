@@ -6,6 +6,7 @@ import com.panfeng.film.domain.BaseObject;
 
 /**
  * 供应商业务类
+ * 
  * @author GY
  */
 public class Team extends BaseObject {
@@ -13,80 +14,100 @@ public class Team extends BaseObject {
 	private static final long serialVersionUID = -2618543190652423599L;
 
 	private long teamId = 0l;
-	
-	private String password = "E10ADC3949BA59ABBE56E057F20F883E"; //123456 密码
-	
+
+	private String password = "E10ADC3949BA59ABBE56E057F20F883E"; // 123456 密码
+
 	private String phoneNumber = null; // 联系电话
-	
+
 	private String loginName = null; // 登陆名
-	
+
 	private String email = null; // 邮箱
-	
+
 	private String address = null; // 公司地址
-	
+
 	private int flag = 0; // 状态位
-	
+
 	private String teamName = null; // 团队名称
-	
+
 	private String teamPhotoUrl = null; // 团队照片
-	
+
 	private String teamDescription = null; // 团队介绍
-	
+
 	private String createDate = null; // 创建时间
-	
+
 	private String updateDate = null; // 更新时间
-	
+
 	private String verification_code = null; // 短信验证码
-	
+
 	private int od; // 用于排序
-	
+
 	private List<Product> proList = null; // 关联项目
-	
+
 	private String recommendation = null; // 审核意见
-	
+
 	private int city = 0; // 城市
-	
+
 	private String linkman = null; // 联系人
-	
+
 	private String webchat = null; // 微信号
-	
+
 	private String qq = null; // QQ号
-	
+
 	private String officialSite = null; // 官方网站
-	
+
 	private String scale = null; // 公司规模
-	
+
 	private String establishDate = null; // 公司成立时间
-	
+
 	private String business = null;
-	
+
 	private String businessDesc = null; // 主要客户/作品及价格
-	
+
 	private int priceRange; // 价格区间
-	
+
 	private String demand; // 对客户的要求
-	
+
 	private int infoResource = 0; // 获知渠道
 
 	private String description = null; // 备注
-	
+
 	private String qqUnique = null; // QQToken
-	
+
 	private String wbUnique = null; // 微博Token
-	
+
 	private String wechatUnique = null; // 微信Token
-	
+
 	private String uniqueId = null; // 三方登录唯一ID
-	
+
 	private String thirdLoginType = null; // 第三方登录类型
-	
+
 	public final static String LTYPE_WEIBO = "weibo";
 
 	public final static String LTYPE_QQ = "qq";
 
 	public final static String LTYPE_WECHAT = "wechat";
-	
-	private String loginType;//登录方式 
+
+	private String loginType;// 登录方式
+
+	private String teamCity = null; // 城市ID
+
+	private String teamProvince = null; // 省ID
+
+	public String getTeamCity() {
+		return teamCity;
+	}
+
+	public void setTeamCity(String teamCity) {
+		this.teamCity = teamCity;
+	}
+
+	public String getTeamProvince() {
+		return teamProvince;
+	}
+
+	public void setTeamProvince(String teamProvince) {
+		this.teamProvince = teamProvince;
+	}
 
 	public String getLoginType() {
 		return loginType;
@@ -159,7 +180,7 @@ public class Team extends BaseObject {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getLoginName() {
 		return loginName;
 	}
@@ -367,5 +388,5 @@ public class Team extends BaseObject {
 	public void setThirdLoginType(String thirdLoginType) {
 		this.thirdLoginType = thirdLoginType;
 	}
-	
+
 }

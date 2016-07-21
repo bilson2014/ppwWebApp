@@ -196,7 +196,7 @@ $().ready(function(){
 							return false;
 						}
 						loadData(function(msg){
-							if(msg.key){
+							if(msg.key){ 
 								$(".errorDiv").addClass("hide");
 								window.location.href=getContextPath()+ '/mgr/index';
 							}else{
