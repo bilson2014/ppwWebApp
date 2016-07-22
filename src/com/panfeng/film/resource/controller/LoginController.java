@@ -159,7 +159,7 @@ public class LoginController extends BaseController {
 							info.setValue("登录成功");
 						}else{
 							info.setKey(false);
-							info.setValue("登录失败");
+							info.setValue("帐户名或密码错误");
 						}
 					}
 				} catch (Exception e) {
