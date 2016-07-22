@@ -311,7 +311,7 @@ $().ready(function(){
 					
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
-						$('#loginWord').text('账号登入在这里');
+						$('#loginWord').text('使用账号登录');
 						$('#showLogin').removeClass('hide');
 						$('#nameLogin').addClass('hide');
 						$('#changeId').removeClass('changeImgPhone');
@@ -324,7 +324,7 @@ $().ready(function(){
 					}else{
 						$('#threeId').addClass('hide');
 						$('input').val('');
-						$('#loginWord').text('手机号登入在这里');//用户名登录
+						$('#loginWord').text('使用手机号登录');//用户名登录
 						$('#showLogin').addClass('hide');
 						$('#nameLogin').removeClass('hide');
 						$('#changeId').removeClass('changeImg');
