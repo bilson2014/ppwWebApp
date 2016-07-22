@@ -589,6 +589,10 @@ function loadflowdata() {
 											if(type=="employee"){
 												checkHasListForEmFirst();
 											}
+											if(type == "customer"){
+												checkHasList();
+												checkHasNoPayList();
+											}
 											
 									}
 									else{

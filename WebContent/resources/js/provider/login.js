@@ -85,6 +85,8 @@ $().ready(function(){
 				this.regesterOrLogin();
 				//切换
 				this.changeLogin();
+				//回车
+				getEnter();
 			},
 			
 			phoneNumberChange:function(){
@@ -295,7 +297,7 @@ $().ready(function(){
 				$('#changeLoginId').on('click',function(){
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
-						$('#loginWord').text('账号登入在这里');
+						$('#loginWord').text('使用账户登录');
 						$('#showLogin').removeClass('hide');
 						$('#nameLogin').addClass('hide');
 						$('#changeId').removeClass('changeImgPhone');
@@ -305,7 +307,7 @@ $().ready(function(){
 						$('#login_type').val("phone");
 					}else{
 						$('input').val('');
-						$('#loginWord').text('手机号登入在这里');//用户名登录
+						$('#loginWord').text('使用手机登陆');//用户名登录
 						$('#showLogin').addClass('hide');
 						$('#nameLogin').removeClass('hide');
 						$('#changeId').removeClass('changeImg');
@@ -372,4 +374,13 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#submitBtn').click();
+		}
+	});
 }

@@ -395,7 +395,7 @@ function checkData(type){
 					x = true;
 				}
 			}, getContextPath() + '/provider/checkExisting', $.toJSON({
-				loginName : loginName
+				loginName : insloginName
 			}));
 			if(x){
 				return false;
