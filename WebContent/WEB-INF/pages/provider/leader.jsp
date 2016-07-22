@@ -169,12 +169,12 @@
                 <div class="step-two-div hide" id="step2" data-step="2">
 
                 	 <div class="input-group-div">
-  	      		       	 	  <span for="company-city" class="title-word">所在城市</span>	
+  	      		       	 	  <span for="company-city" class="title-word">所在省</span>	
   	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
 									<select class="step-two-select-city form-control" id="company-city" >
 									</select>
 									
-									  <span for="company-city" class="title-word-city">所在省</span>	
+									  <span for="company-city" class="title-word-city">所在市</span>	
   	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
 									<select class="step-two-select-city form-control" id="" >
 									</select>
