@@ -2,6 +2,7 @@
 <%@page import="java.lang.annotation.Target"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
@@ -168,18 +169,31 @@
 
                 <div class="step-two-div hide" id="step2" data-step="2">
 
-                	 <div class="input-group-div">
-  	      		       	 	  <span for="company-city" class="title-word">所在城市</span>	
-  	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
-									<select class="step-two-select-city form-control" id="company-city" >
-									</select>
+                <div class="input-group-div">
+  	      			<span for="company-city" class="title-word">所在城市</span>	
+							<select class="step-two-select-city form-control" id="company-province"   >
+								<c:if test="${!empty provinces}">
+									<c:forEach items="${provinces }" var="source" varStatus="status">
+									  <option value ="${source.provinceID }"
+									  	<c:if test="${provider.teamProvince == source.provinceID }">
+									  		selected="selected"
+									  	</c:if> >${source.provinceName }</option>
+									</c:forEach>
+								</c:if>
+							</select>
 									
-									  <span for="company-city" class="title-word-city">所在省</span>	
-  	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
-									<select class="step-two-select-city form-control" id="" >
-									</select>
-  	      				  </div>
-
+					<span for="company-city" class="title-word-city">所在省</span>	
+							<select class="step-two-select-city form-control"  id="company-city">
+								<c:if test="${!empty citys}">
+									<c:forEach items="${citys }" var="source" varStatus="status">
+									  <option value ="${source.cityID }"
+									  	<c:if test="${provider.teamCity == source.cityID }">
+									  		selected="selected"
+									  	</c:if> >${source.city }</option>
+									</c:forEach>
+								</c:if>
+							</select>
+  	      		</div>
   	      			 <div class="input-group-div">
   	      		       	 	  <span for="company-priceRange" class="title-word">价格区间</span>	
   	      					  <input type="hidden" id="company-priceRange-value" value="${provider.priceRange }"/>

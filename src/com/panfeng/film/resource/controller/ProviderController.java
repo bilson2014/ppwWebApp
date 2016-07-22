@@ -132,7 +132,8 @@ public class ProviderController extends BaseController {
 
 	/**
 	 * 跳转至 公司基本信息页
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@RequestMapping("/company-info")
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
@@ -143,7 +144,7 @@ public class ProviderController extends BaseController {
 		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
-			List<Province> provinces = JsonUtil.fromJsonArray(str,Province.class);
+			List<Province> provinces = JsonUtil.fromJsonArray(str, Province.class);
 			model.addAttribute("provinces", provinces);
 			if (ValidateUtil.isValid(team.getTeamCity())) {
 				// 填充第一次市区
@@ -1357,10 +1358,23 @@ public class ProviderController extends BaseController {
 	}
 
 	@RequestMapping("/leader")
-	public ModelAndView leader(final HttpServletRequest request, final ModelMap model) {
-		// Team team = getCurrentTeam(request);
-		// team.getTeamId();
-		// model.addAttribute("unqiueId", team.getTeamId());
+	public ModelAndView leader(final HttpServletRequest request, final ModelMap model) throws Exception {
+
+		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			List<Province> provinces = JsonUtil.fromJsonArray(str, Province.class);
+			model.addAttribute("provinces", provinces);
+			if (ValidateUtil.isValid(provinces)) {
+				url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + provinces.get(0).getProvinceID();
+				String str1 = HttpUtil.httpGet(url, request);
+				if (str1 != null && !"".equals(str1)) {
+					List<City> citys = JsonUtil.fromJsonArray(str1,City.class);
+					model.addAttribute("citys", citys);
+				}
+			}
+		}
+
 		HttpSession httpSession = request.getSession();
 		Object object = httpSession.getAttribute(ORIGINAL);
 		if (object != null) {
