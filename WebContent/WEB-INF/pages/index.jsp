@@ -208,7 +208,7 @@
 		<div class="partner-wrap">
 			<div class="text-desc-wrap">
 				<h2 class="text-desc">合作客户</h2>
-				<div class="more-video">
+				<div class="more-video hide">
 					<a href="javascript:void(0);">更多客户</a>
 				</div>
 			</div>

@@ -171,42 +171,13 @@
                 	 <div class="input-group-div">
   	      		       	 	  <span for="company-city" class="title-word">所在城市</span>	
   	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
-									<select class="step-two-select form-control" id="company-city" >
-										<option value="0" selected>北京</option>
-			            				<option value="1" >上海</option>
-			            				<option value="2" >深圳</option>
-			            				<option value="3" >武汉</option>
-			            				<option value="4" >广州</option>
-			            				<option value="5" >杭州</option>
-			            				<option value="6" >成都</option>
-			            				<option value="7" >石家庄</option>
-			            				<option value="8" >沈阳</option>
-			            				<option value="9" >哈尔滨</option>
-			            				<option value="10" >杭州</option>
-			            				<option value="11" >福州</option>
-			            				<option value="12" >济南</option>
-			            				<option value="13" >昆明</option>
-			            				<option value="14" >兰州</option>
-			            				<option value="15" >台北</option>
-			            				<option value="16" >南宁</option>
-			            				<option value="17" >银川</option>
-			            				<option value="18" >太原</option>
-			            				<option value="19" >长春</option>
-			            				<option value="20" >南京</option>
-			            				<option value="21" >合肥</option>
-			            				<option value="22" >南昌</option>
-			            				<option value="23" >郑州</option>
-			            				<option value="24" >长沙</option>
-			            				<option value="25" >海口</option>
-			            				<option value="26" >贵阳</option>
-			            				<option value="27" >西安</option>
-			            				<option value="28" >西宁</option>
-			            				<option value="29" >呼和浩特</option>
-			            				<option value="30" >拉萨</option>
-			            				<option value="31" >乌鲁木齐</option>
-			            				<option value="32" >天津</option>
+									<select class="step-two-select-city form-control" id="company-city" >
 									</select>
-
+									
+									  <span for="company-city" class="title-word-city">所在省</span>	
+  	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
+									<select class="step-two-select-city form-control" id="" >
+									</select>
   	      				  </div>
 
   	      			 <div class="input-group-div">

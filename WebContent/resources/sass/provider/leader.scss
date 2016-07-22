@@ -74,6 +74,20 @@ body {
 			border-color: #66afe9;
 		}
 	}
+
+		.step-two-select-city {
+		width: 142px;
+		height: 35px;
+		display: inline-block;
+		color: $gray-dark;
+		font-size: $font-size-base;
+		border-radius: 5px;
+
+		&:focus {
+			outline: none;
+			border-color: #66afe9;
+		}
+	}
 	.title-word {
 		display: inline-block;
 		height: 50px;
@@ -81,6 +95,16 @@ body {
 		font-size: $font-size-base;
 		color: black;
 		font-weight: bold;
+	}
+	.title-word-city {
+		display: inline-block;
+		height: 50px;
+		width: 77px;
+		font-size: $font-size-base;
+		color: black;
+		font-weight: bold;
+		position: relative;
+		left:10px;
 	}
 	.error-word {
 		display: inline-block;
