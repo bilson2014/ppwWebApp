@@ -442,7 +442,7 @@ function checkData(flag){
 		return true;
 	}else if(flag == 3){
 		var insloginName = $('#userLoginName').text().trim();
-		var upd_password = $('#upd-password').val().trim();
+		var upd_password = $('#upd-passwords').val().trim();
 		var upd_newpassword = $('#upd-newpassword').val().trim();
 		var upd_towpassword = $('#upd-towpassword').val().trim();
 		if(upd_password == '' || upd_password == null || upd_password == undefined || upd_password.length < 6){
@@ -458,12 +458,12 @@ function checkData(flag){
 			if(msg.errorCode == 200 && !msg.result){
 				$("#upd-password-error").removeClass('hide');
 				$("#upd-password-error").text('密码错误！');
-				$('#upd-password').focus();
+				$('#upd-passwords').focus();
 				x = true;
 			}else if(msg.errorCode == 500){
 				$("#upd-password-error").removeClass('hide');
 				$("#upd-password-error").text('服务器繁忙，请重试！');
-				$('#upd-password').focus();
+				$('#upd-passwords').focus();
 				x = true;
 			}else{
 				$("#upd-password-error").addClass('hide');

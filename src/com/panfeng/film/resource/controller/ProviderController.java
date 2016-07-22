@@ -132,9 +132,10 @@ public class ProviderController extends BaseController {
 
 	/**
 	 * 跳转至 公司基本信息页
+	 * @throws Exception 
 	 */
 	@RequestMapping("/company-info")
-	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) {
+	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
 
 		final Team team = getCurrentTeam(request);
 		model.addAttribute("provider", team);
@@ -142,16 +143,26 @@ public class ProviderController extends BaseController {
 		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
-			List<Province> provinces = JsonUtil.toList(str);
+			List<Province> provinces = JsonUtil.fromJsonArray(str,Province.class);
 			model.addAttribute("provinces", provinces);
-		}
-		if (ValidateUtil.isValid(team.getTeamCity())) {
-			// 填充第一次市区
-			url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + team.getTeamProvince();
-			String str1 = HttpUtil.httpGet(url, request);
-			if (str1 != null && !"".equals(str1)) {
-				List<City> citys = JsonUtil.toList(str1);
-				model.addAttribute("citys", citys);
+			if (ValidateUtil.isValid(team.getTeamCity())) {
+				// 填充第一次市区
+				url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + team.getTeamProvince();
+				String str1 = HttpUtil.httpGet(url, request);
+				if (str1 != null && !"".equals(str1)) {
+					List<City> citys = JsonUtil.toList(str1);
+					model.addAttribute("citys", citys);
+				}
+			} else {
+				// 填充默认市！
+				if (ValidateUtil.isValid(provinces)) {
+					url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + provinces.get(0).getProvinceID();
+					String str1 = HttpUtil.httpGet(url, request);
+					if (str1 != null && !"".equals(str1)) {
+						List<City> citys = JsonUtil.toList(str1);
+						model.addAttribute("citys", citys);
+					}
+				}
 			}
 		}
 
@@ -514,6 +525,8 @@ public class ProviderController extends BaseController {
 				if (json != null && !"".equals(json)) {
 					final boolean ret = JsonUtil.toBean(json, Boolean.class);
 					info.setKey(ret);
+					if (!ret)
+						info.setValue("密码输入错误!");
 					return info;
 				} else {
 					info.setKey(false);
