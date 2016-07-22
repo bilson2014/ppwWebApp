@@ -9,6 +9,9 @@ var isShowKaptcha = false;
 
 $().ready(function(){
 	
+	
+	
+	
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -27,6 +30,9 @@ $().ready(function(){
 				this.wb();
 				//切换登陆
 				this.changeLogin();
+				//回车
+				getEnter();
+				
 			},
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
@@ -190,13 +196,13 @@ $().ready(function(){
 							return false;
 						}
 						loadData(function(msg){
-							if(msg.key){
+							if(msg.key){ 
 								$(".errorDiv").addClass("hide");
 								window.location.href=getContextPath()+ '/mgr/index';
 							}else{
 								$("#pwd_error").addClass('hide');
 								$('#loginName_error').addClass('hide');
-								$("#login_error_info").text(msg.value).removeClass("hide");
+								$("#login_error_info_user").text(msg.value).removeClass("hide");
 								return false;
 							}
 						}, getContextPath() + '/login/doLogin', $.toJSON({
@@ -313,8 +319,10 @@ $().ready(function(){
 						$('#outSideId').addClass('phoneHeight');
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
+						$('#threeId').removeClass('hide');
 					
 					}else{
+						$('#threeId').addClass('hide');
 						$('input').val('');
 						$('#loginWord').text('手机号登入在这里');//用户名登录
 						$('#showLogin').addClass('hide');
@@ -384,6 +392,16 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#submitBtn').click();
+		}
+	});
 }
 	
 //	login.sina(); // 新浪-第三方登录

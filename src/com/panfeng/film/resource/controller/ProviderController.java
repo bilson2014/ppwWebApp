@@ -35,10 +35,11 @@ import com.google.gson.Gson;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
-import com.panfeng.film.resource.controller.BaseController;
+import com.panfeng.film.resource.model.City;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
+import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
@@ -137,6 +138,22 @@ public class ProviderController extends BaseController {
 
 		final Team team = getCurrentTeam(request);
 		model.addAttribute("provider", team);
+		// 第一次填充省
+		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			List<Province> provinces = JsonUtil.toList(str);
+			model.addAttribute("provinces", provinces);
+		}
+		if (ValidateUtil.isValid(team.getTeamCity())) {
+			// 填充第一次市区
+			url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + team.getTeamProvince();
+			String str1 = HttpUtil.httpGet(url, request);
+			if (str1 != null && !"".equals(str1)) {
+				List<City> citys = JsonUtil.toList(str1);
+				model.addAttribute("citys", citys);
+			}
+		}
 
 		return new ModelAndView("provider/info", model);
 	}

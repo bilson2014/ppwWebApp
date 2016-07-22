@@ -1,61 +1,74 @@
 package com.panfeng.film.resource.model;
 
-
 /**
  * 用户业务类
+ * 
  * @author GY
  */
-public class User extends Customer{
+public class User extends Customer {
 
 	private static final long serialVersionUID = -3500839628063835593L;
-	
+
 	private long id = 0l;
-	
+
 	private String userName = null; // 昵称
-	
+
 	private String realName = null; // 真实姓名
-	
+
 	private String password = null; // 密码
-	
-	private int sex = 0; // 性别 : 0:男  1:女  2:保密
-	
+
+	private int sex = 0; // 性别 : 0:男 1:女 2:保密
+
 	private String telephone = null; // 手机
-	
+
 	private String email = null; // 邮箱
-	
+
 	private String birthday = null; // 生日
-	
+
 	private String createDate = null; // 创建日期
-	
+
 	private String verification_code = null; // 短信验证码
-	
+
 	private String imgUrl = null; // 用户头像
-	
+
 	private String qq = null; // QQ号码
-	
-	private String lType = null; // 第三方登录方式  1.微博登录:weibo  2.qq登录:qq  3.微信登录:wechat
-	
+
+	private String lType = null; // 第三方登录方式 1.微博登录:weibo 2.qq登录:qq 3.微信登录:wechat
+
 	private String uniqueId = null; // 第三方登录用户唯一标识
-	
+
 	private String qqUnique = null; // 第三方登录用户唯一ID-QQ
-	
+
 	private String wbUnique = null; // 第三方登录用户唯一ID-微博
-	
+
 	private String wechatUnique = null; // 第三方登录用户唯一ID-微信
-	
+
 	private String imgFileName = null; // 头像文件名称
-	
+
 	private String userCompany = null; // 用户公司
-	
+
 	private Integer clientLevel = null; // 客户级别
-	
-	//add by wanglc 2016-7-13 14:04:24 添加用户名密码登录方式 begin
-	private String loginType;//登录方式 
-	
-	private String loginName;//登录名
-	//add by wanglc 2016-7-13 14:04:24 添加用户名密码登录方式end
+
+	// add by wanglc 2016-7-13 14:04:24 添加用户名密码登录方式 begin
+	private String loginType;// 登录方式
+
+	private String loginName;// 登录名
+	// add by wanglc 2016-7-13 14:04:24 添加用户名密码登录方式end
+
+	// add by laowang 2016-07-19 13:05 begin
+	private Integer customerSource = null;// 客户来源
+	// add by laowang 2016-07-19 13:05 end
+
 	public String getLoginName() {
 		return loginName;
+	}
+
+	public Integer getCustomerSource() {
+		return customerSource;
+	}
+
+	public void setCustomerSource(Integer customerSource) {
+		this.customerSource = customerSource;
 	}
 
 	public void setLoginName(String loginName) {
@@ -165,7 +178,7 @@ public class User extends Customer{
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
-	
+
 	public String getlType() {
 		return lType;
 	}

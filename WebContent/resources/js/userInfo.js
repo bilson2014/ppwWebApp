@@ -55,7 +55,14 @@ $().ready(function(){
 	
 	// 隐藏 提示信息
 	$('.tooltip-show').hide();
-	
+	var userLoginName = $("#userLoginName").text();
+	if(userLoginName != null && userLoginName != '' && userLoginName != undefined){
+		$("#ins").addClass('hide');
+		$("#upd").removeClass('hide');
+	}else{
+		$("#ins").removeClass('hide');
+		$("#upd").addClass('hide');
+	}
 });
 
 // 初始化数据
@@ -143,7 +150,8 @@ function selfInfo(){
 					realName : $('#trueName').val().trim(),
 					email : $('#contact-email').val().trim(),
 					qq : $('#contact-qq').val().trim(),
-					userCompany : $('#company').val().trim()
+					userCompany : $('#company').val().trim(),
+					customerSource : $("#customerSource").val().trim()
 				}))
 			}
 		}else{
@@ -159,28 +167,58 @@ function passwordInfo(){
 	// 注册 个人资料-修改按钮点击事件
 	$('#password-info-contentBt').unbind('click');
 	$('#password-info-contentBt').bind('click',function(){
-		if(checkData(0)){
-			var confirmPassw0rd = $('#confirm-passw0rd').val();
-			var passw0rd = $('#passw0rd').val();
-			if(confirmPassw0rd == passw0rd){
-				$('#label-confirm-passw0rd').addClass('hide');
+		if(checkData(2)){
+			var confirmPassw0rd = $('#insTwoPassword').val().trim();
+			var loginName = $('#insuserName').val().trim();
+			var id = $('#user_unique').val();
 				loadData(function(flag){
-					// 提示成功
 					$('.tooltip-show').slideDown('normal');
-					if(flag){
-						$('.tooltip-message').text('密码修改成功!');
+					if(flag.errorCode == 200){
+						if(flag.result){
+							$('.tooltip-message').text('修改成功！');
+							$("#userLoginName").text(loginName);
+							$("#upd").removeClass("hide");
+							$("#ins").addClass("hide");
+						}else{
+							$('.tooltip-message').text('修改失败！');
+						}
+					}else if(flag.errorCode == 500){
+						$('.tooltip-message').text(flag.errorMsg);
 					}else{
-						$('.tooltip-message').text('密码修改失败，请刷新后再试!');
+						$('.tooltip-message').text('修改失败，请稍后重试！');
 					}
 					window.setInterval(hideTooltip, 2000);
-				}, getContextPath() + '/user/modify/password', $.toJSON({
-					id : $('#user_unique').val(),
-					password : Encrypt($('#passw0rd').val().trim())
+				}, getContextPath() + '/login/modify/logName', $.toJSON({
+					id : id,
+					password : Encrypt(confirmPassw0rd),
+					loginName : loginName
 				}));
 			}else{
 				$('#label-confirm-passw0rd').removeClass('hide');
 			}
-		}
+	});
+	
+	$('#upd-btn').unbind('click');
+	$('#upd-btn').bind('click',function(){
+		if(checkData(3)){
+			var password = $('#upd-towpassword').val().trim();
+			var id = $('#user_unique').val();
+				loadData(function(flag){
+					// 提示信息修改成功
+					$('.tooltip-show').slideDown('normal');
+					if(flag){
+						$('.tooltip-message').text('信息修改成功!');
+					}else{
+						$('.tooltip-message').text('信息修改失败，请刷新后再试!');
+					}
+					window.setInterval(hideTooltip, 2000);
+				}, getContextPath() + '/user/modify/password', $.toJSON({
+					id : id,
+					password : Encrypt(password),
+				}));
+			}else{
+				$('#label-confirm-passw0rd').removeClass('hide');
+			}
 	});
 }
 
@@ -280,6 +318,7 @@ function isPhoneNumExit(teleNum){
 	}
 }
 
+
 /**
  * 获取验证码钮 点击事件
  */
@@ -353,6 +392,106 @@ function checkData(flag){
 			$('#label-code').addClass('hide');
 		}
 		
+		return true;
+	}else if(flag == 2){ // 验证添加用户名密码
+		var insloginName = $('#insuserName').val().trim();
+		var newPassword = $('#insPassword').val().trim();
+		var comfrimPassword = $('#insTwoPassword').val().trim();
+		if(insloginName == '' || insloginName == null || insloginName == undefined){
+			$("#insuserName-error").removeClass('hide');
+			$("#insuserName-error").text('用户名不能为空');
+			$('#insUserName').focus();
+			return false;
+		}else{
+			$("#insuserName-error").addClass('hide');
+		}
+		
+		var x; 
+		syncLoadData(function(flag){
+			if(flag){
+				$("#insuserName-error").removeClass('hide');
+				$("#insuserName-error").text('用户名已经重复过请更换用户名！');
+				$('#insUserName').focus();
+				x = true;
+			}else{
+				$("#insuserName-error").addClass('hide');
+			}
+		}, getContextPath() + '/login/validation/userName', $.toJSON({
+			loginName : insloginName
+		}));
+		if(x){
+			return false;
+		}
+		if(newPassword == '' || newPassword == null || newPassword == undefined || newPassword.length < 6){
+			$("#insPassword-error").removeClass('hide');
+			$("#insPassword-error").text('密码不能少于6位!');
+			$('#insPassword').focus();
+			return false;
+		}else{
+			$("#insPassword-error").addClass('hide');
+		}
+		if(newPassword != comfrimPassword){
+			$("#insTwoPassword-error").removeClass('hide');
+			$("#insTwoPassword-error").text('密码两次输入不一致!');
+			$('#insTwoPassword').focus();
+			return false;
+		}else{
+			$("#insTwoPassword-error").addClass('hide');
+		}
+		
+		return true;
+	}else if(flag == 3){
+		var insloginName = $('#userLoginName').text().trim();
+		var upd_password = $('#upd-password').val().trim();
+		var upd_newpassword = $('#upd-newpassword').val().trim();
+		var upd_towpassword = $('#upd-towpassword').val().trim();
+		if(upd_password == '' || upd_password == null || upd_password == undefined || upd_password.length < 6){
+			$("#upd-password-error").removeClass('hide');
+			$("#upd-password-error").text('密码不能少于6位!');
+			$('#insPassword').focus();
+			return false;
+		}else{
+			$("#upd-password-error").addClass('hide');
+		}
+		var x; 
+		syncLoadData(function(msg){
+			if(msg.errorCode == 200 && !msg.result){
+				$("#upd-password-error").removeClass('hide');
+				$("#upd-password-error").text('密码错误！');
+				$('#upd-password').focus();
+				x = true;
+			}else if(msg.errorCode == 500){
+				$("#upd-password-error").removeClass('hide');
+				$("#upd-password-error").text('服务器繁忙，请重试！');
+				$('#upd-password').focus();
+				x = true;
+			}else{
+				$("#upd-password-error").addClass('hide');
+				x = false;
+			}
+		}, getContextPath() + '/login/checkPwd', $.toJSON({
+			loginName : insloginName,
+			password :Encrypt(upd_password)
+		}));
+		if(x){
+			return false;
+		}
+		if(upd_newpassword == '' || upd_newpassword == null || upd_newpassword == undefined || upd_newpassword.length < 6){
+			$("#upd-newpassword-error").removeClass('hide');
+			$("#upd-newpassword-error").text('密码不能少于6位!');
+			$('#upd-newpassword').focus();
+			return false;
+		}else{
+			$("#upd-newpassword-error").addClass('hide');
+		}
+		if(upd_newpassword != upd_towpassword){
+			$("#upd-towpassword-error").removeClass('hide');
+			$("#upd-towpassword-error").text('两次输入密码不一致！');
+			$('#upd-towpassword').focus();
+			return false;
+		}else{
+			$("#upd-towpassword-error").addClass('hide');
+		}
 		return true;
 	}
 }

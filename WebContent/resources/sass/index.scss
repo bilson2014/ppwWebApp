@@ -9,7 +9,7 @@
 	width: 100%;
 	background: $body-bg;
 
-	@include  media_screen_height(440px,470px,540px); // self-adaption height
+	@include  media_screen_height(440px,470px,540px);
 	@include flexshow; 
 }
 
@@ -17,7 +17,10 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: $header-height;
+	top: 95px;
+	 @media screen and (min-width:1276px) and (max-width:1500px) {
+     top: 69px;
+    }
 	bottom: 0;
 	margin: 50px auto 50px;
 	width: $banner-title-width;
@@ -30,6 +33,7 @@
 		margin: 0 auto 30px;
 		text-align: center;
 		color: $white;
+		top:3px;
 	} 
 
 	.search-box {
@@ -139,8 +143,9 @@
 
 
 	dt {
-		width: 42px;
-		height: 47px;
+
+		width: 48px;
+		height: 48px;
 		margin: 0 auto 23px;
 	}
 
@@ -149,7 +154,7 @@
 	} 
 
 	.second-desc {
-		width: 45px;
+		
 		@include index-sprite(second-desc);
 	}
 

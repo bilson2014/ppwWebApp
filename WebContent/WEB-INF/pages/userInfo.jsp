@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
@@ -130,7 +131,7 @@
 						<div class="navigation">
 							<ul class="nav nav-tabs">
 								<li><a href="javascript:void(0);" data-url="self-info-content">个人资料</a></li>
-								<li><a href="javascript:void(0);" data-url="password-info-content">密码修改</a></li>
+								<li><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
 								<li><a href="javascript:void(0);" data-url="userpic-info-content">头像修改</a></li>
 								<li><a href="javascript:void(0);" data-url="phone-info-content">更换手机</a></li>
 							</ul>
@@ -188,6 +189,24 @@
 										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
 									</div>
 								</div>
+									<div class="form-group">
+									<label class="col-sm-2 control-label">客户来源</label>
+									<div class="col-sm-5">
+										<select class="tableinput-baseinfo form-control selectdiv" id="customerSource" >
+										<c:if test="${!empty userSource}">
+											<c:forEach items="${userSource }" var="source" varStatus="status">
+											  <option value ="${source.key }" 
+											  	<c:if test="${user.customerSource == source.key }">
+											  		selected="selected"
+											  	</c:if> >${source.value }</option>
+											</c:forEach>
+										</c:if>
+										</select>
+									</div>
+									<div class="col-sm-5">
+										<label id="" class="label-message hide" >请输入来源</label>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-5">
@@ -199,23 +218,34 @@
 						
 						<!-- 密码修改 -->
 						<div class="password-info-content information">
+						
+						   <div  id="ins">
 							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
+							<div class="form-group">
+									<label class="col-sm-2 control-label item-height">用户名</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="insuserName" tabindex="1" placeholder="请输入用户名" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label id="insuserName-error" class="label-message hide" ></label>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新密码</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="passw0rd" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
+										<input type="password" class="form-control" id="insPassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+										<label id="insPassword-error" class="label-message hide" >请输入6位以上密码</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">密码确认</label>
 									<div class="col-sm-5">
-										<input type="password" class="form-control" id="confirm-passw0rd" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
+										<input type="password" class="form-control" id="insTwoPassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
-										<label id="label-confirm-passw0rd" class="label-message hide" >两次输入的密码不一致</label>
+										<label id="insTwoPassword-error" class="label-message hide" >两次输入的密码不一致</label>
 									</div>
 								</div>
 								<div class="form-group">
@@ -225,6 +255,54 @@
 									</div>
 								</div>
 							</form>
+							</div>
+							
+							<div  class="hide" id="upd">
+							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
+							<div class="form-group">
+									<label class="col-sm-2 control-label item-height">用户名</label>
+									<div class="col-sm-5">
+										<div class="col-sm-2 control-label item-height" id = "userLoginName" style="width:100px">${user.loginName }</div>
+									</div>
+									<div class="col-sm-5">
+										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">原密码</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="upd-password"  placeholder="请输入原密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label  class="label-message hide" id ="upd-password-error">请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">新密码</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="upd-newpassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label  class="label-message hide" id = "upd-newpassword-error" >请输入6位以上密码</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label item-height">密码确认</label>
+									<div class="col-sm-5">
+										<input type="password" class="form-control" id="upd-towpassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
+									</div>
+									<div class="col-sm-5">
+										<label  class="label-message hide" id = "upd-towpassword-error">两次输入的密码不一致</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> </label>
+									<div class="col-sm-5">
+										<a class="btn btn-primary" href="javascript:void(0);" id="upd-btn" >修改</a>
+									</div>
+								</div>
+							</form>
+							</div>
 						</div>
 						
 						<!-- 头像修改 -->
@@ -323,7 +401,7 @@
 				
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >联系我们</a>
-					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+					<a href="tel:010-59005941" class="qqClient"><label class="tel-icon"></label><h3>010-59005941</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
 					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>

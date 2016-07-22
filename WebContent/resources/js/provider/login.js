@@ -85,6 +85,8 @@ $().ready(function(){
 				this.regesterOrLogin();
 				//切换
 				this.changeLogin();
+				//回车
+				getEnter();
 			},
 			
 			phoneNumberChange:function(){
@@ -241,7 +243,6 @@ $().ready(function(){
 							return false;
 						}
 						loadData(function(msg){
-							
 							if(msg.errorCode == 200){
 								$(".errorDiv").addClass("hide");
 								window.location.href=getContextPath()+ '/provider/portal';
@@ -282,7 +283,7 @@ $().ready(function(){
 						window.location.href=getContextPath()+'/provider/leader';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
-						$("#login_error_info").text(msg.result).removeClass("hide");
+						$("#login_error_info").text(info.result).removeClass("hide");
 						return false;
 					}
 				},  getContextPath() + '/provider/info/register', $.toJSON({
@@ -294,7 +295,6 @@ $().ready(function(){
 			},
 			changeLogin:function(){
 				$('#changeLoginId').on('click',function(){
-					
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
 						$('#loginWord').text('使用账户登录');
@@ -305,7 +305,6 @@ $().ready(function(){
 						$('#outSideId').addClass('phoneHeight');
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
-					
 					}else{
 						$('input').val('');
 						$('#loginWord').text('使用手机登陆');//用户名登录
@@ -315,13 +314,8 @@ $().ready(function(){
 						$('#changeId').addClass('changeImgPhone');
 						$('#outSideId').removeClass('phoneHeight');
 						$('#outSideId').addClass('userheight');
-
 						$('#login_type').val("loginName");
-						
-						
 					}
-					
-					
 				});
 				
 			}
@@ -380,4 +374,13 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+//回车
+function getEnter(){
+	$(document).keydown(function(e){
+		if(e.keyCode == 13){
+			$('#submitBtn').click();
+		}
+	});
 }
