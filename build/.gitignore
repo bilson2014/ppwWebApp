@@ -1,1 +1,6 @@
 /classes/
+/bin/
+.settings/
+.classpath
+/target/
+*.class
