@@ -200,6 +200,10 @@
 				<r:noLevel>
 					<div class="prompt-level-word">如需观看更多作品，请拨打 400 660 9728 与我们取得联系!</div>
 				</r:noLevel>
+				
+				<r:noIdentification>
+					<div class="prompt-level-word">待审核通过，可观看更多作品!</div>
+				</r:noIdentification>
 			</div>
 		</div>
 		<!-- video list end -->
