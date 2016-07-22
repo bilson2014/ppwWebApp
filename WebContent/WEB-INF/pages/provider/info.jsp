@@ -162,7 +162,7 @@
 											  <option value ="${source.provinceID }"
 											  	<c:if test="${provider.teamProvince == source.provinceID }">
 											  		selected="selected"
-											  	</c:if> >${source.province }</option>
+											  	</c:if> >${source.provinceName }</option>
 											</c:forEach>
 										</c:if>
 									</select>

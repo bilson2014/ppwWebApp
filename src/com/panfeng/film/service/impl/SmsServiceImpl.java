@@ -9,10 +9,9 @@ import com.panfeng.sms.utils.SendSMS;
 public class SmsServiceImpl implements SmsService {
 
 	@Override
-	public boolean smsSend(final String telephone,final String code) {
-		//final boolean ret = SendSMS.sendSms(telephone, code);
-		//return ret;
-		return true;
+	public boolean smsSend(final String telephone, final String code) {
+		final boolean ret = SendSMS.sendSms(telephone, code);
+		return ret;
 	}
 
 }

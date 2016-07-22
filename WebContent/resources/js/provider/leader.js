@@ -21,6 +21,23 @@ $().ready(function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
 	});
+	 
+	// 添加省下拉框监听
+	$("#company-province").on('change',function(){
+		var ProvinceId = $(this).val();
+		loadData(function(msg){
+			if(msg != null && msg.length >0 ){
+				var select = $("#company-city");
+				select.empty();
+				msg.forEach(function(city){
+					var html = '<option value = "' + city.cityID + '" >'+city.city+'</option>'  ;
+					select.append(html);
+				});
+			}
+		}, getContextPath() + '/get/citys', $.toJSON({
+			provinceId : ProvinceId
+		}))
+	});
 });
 
 
@@ -241,7 +258,9 @@ function infoSave(){
 			demand : $('#company-demand').val().trim(),
 			city : $('#company-city option:selected').val(),
 			priceRange : $('#company-priceRange option:selected').val(),
-			infoResource : $('#company-infoResource option:selected').val()
+			infoResource : $('#company-infoResource option:selected').val(),
+			teamProvince : $("#company-province").val(),
+			teamCity : $("#company-city").val()
 		}));
 	}
 

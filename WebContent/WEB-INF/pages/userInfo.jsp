@@ -271,7 +271,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">原密码</label>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" id="upd-password"  placeholder="请输入原密码" autocomplete="off" />
+										<input type="password" class="form-control" id="upd-passwords"  placeholder="请输入原密码" autocomplete="off" />
 									</div>
 									<div class="col-sm-5">
 										<label  class="label-message hide" id ="upd-password-error">请输入6位以上密码</label>
