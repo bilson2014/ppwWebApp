@@ -204,6 +204,28 @@
 		</div>
 		<!-- 视频案例区域 end -->
 		
+				<!-- 合作伙伴区域 start -->
+		<div class="partner-wrap">
+			<div class="text-desc-wrap">
+				<h2 class="text-desc">合作客户</h2>
+				<div class="more-video">
+					<a href="javascript:void(0);">更多客户</a>
+				</div>
+			</div>
+			<div class="partent-list">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 合作伙伴区域 end -->
+	</div>
+		
 				
 	<div class="footer">
 		<!-- 拍片网介绍区域 start -->
