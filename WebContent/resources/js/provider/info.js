@@ -169,7 +169,7 @@ function safeInfo(){
 				loadData(function(flag){
 					if(flag){
 						// 更新成功
-						successToolTipShow();
+						successToolTipShow('更新成功！');
 					}else{
 						// 更新失败
 						toolTipShow('请重新操作!');
