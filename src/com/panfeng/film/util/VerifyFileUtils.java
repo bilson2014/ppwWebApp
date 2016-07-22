@@ -18,7 +18,7 @@ public final class VerifyFileUtils {
 		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
 	}
 
-	private final static long DEFAULT_FILE_MAX_SIZE = 250 * 1024;
+	private final static long DEFAULT_FILE_MAX_SIZE = 500 * 1024;
 
 	/**
 	 * 验证文件
