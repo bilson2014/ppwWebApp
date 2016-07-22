@@ -42,6 +42,9 @@ $().ready(function(){
 		var q = $('#search-q').val().trim();
 		if(q != null && q != '' && q != undefined){
 			$('#s-form').submit();
+		} else if(q == null || q == ''){
+			$('#search-q').val('*');
+			$('#s-form').submit();
 		}
 	});
 	

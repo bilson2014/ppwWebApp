@@ -201,7 +201,47 @@
 
 			</div>
 			<!-- video content end -->
-		</div>
+			</div>
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">经济型创业视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-2">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">高性价比企业视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-3">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">定制原创视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-4">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
 		<!-- 视频案例区域 end -->
 		
 				<!-- 合作伙伴区域 start -->

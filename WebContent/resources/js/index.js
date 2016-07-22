@@ -32,6 +32,8 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 	this.config = {
 		scrollDiv : '#know-bg-btn'
 	}
+	
+	var critical = [1,2,3,4]; // 推荐值数组
 
 	var bar = new toolbar.Toolbar();
 	bar.registerClick();
@@ -81,10 +83,47 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 	
 	// 数据加载 start
 	common.loadData(function(data){
+		
+		var first_section = new Array(); // 第一区域
+		var second_section = new Array(); // 第二区域
+		var third_section = new Array(); // 第三区域
+		var forth_section = new Array(); // 第四区域
+		
+		$.each(data,function(i,product){
+			
+			if(product.recommend == critical[0]){
+				first_section.push(product);
+			}
+			
+			if(product.recommend == critical[1]){
+				second_section.push(product);
+			}
+			
+			if(product.recommend == critical[2]){
+				third_section.push(product);
+			}
+			
+			if(product.recommend == critical[3]){
+				forth_section.push(product);
+			}
+		});
+		
 		// 填充数据
-		$('#video-content').empty();
+		
 		var videoLayout = new vLayout.VideoLayout();
-		videoLayout.column3(data,'video-content');
+		
+		$('#video-content').empty();
+		videoLayout.column3(first_section,'video-content');
+		console.info(first_section);
+		$('#video-content-2').empty();
+		videoLayout.column3(second_section,'video-content-2');
+		console.info(second_section);
+		$('#video-content-3').empty();
+		videoLayout.column3(third_section,'video-content-3');
+		console.info(third_section);
+		$('#video-content-4').empty();
+		videoLayout.column3(forth_section,'video-content-4');
+		console.info(forth_section);
 	},common.getContextPath() + '/product/loadProduct',null);
 	// 数据加载 end
 	

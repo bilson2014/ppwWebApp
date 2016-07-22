@@ -9,7 +9,7 @@
 	width: 100%;
 	background: $body-bg;
 
-	@include  media_screen_height(440px,470px,540px); // self-adaption height
+	@include  media_screen_height(440px,470px,540px);
 	@include flexshow; 
 }
 
