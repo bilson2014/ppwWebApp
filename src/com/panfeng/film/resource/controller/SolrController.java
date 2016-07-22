@@ -53,10 +53,14 @@ public class SolrController extends BaseController {
 	}
 
 	@RequestMapping("/search")
-	public ModelAndView searchView(final String q, final String item,
+	public ModelAndView searchView(String q, final String item,
 			final String length, final String price, final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
+
+		if("".equals(q)){
+			q = "*";
+		}
 
 		model.addAttribute("q", q);
 		model.addAttribute("price",price );

@@ -149,7 +149,7 @@
 		            <div id="submitBtn" class="redBtn">登录</div> 
 		             <div class="changeDiv" id="changeLoginId">
 		                 <div class="changeImg hide" id="changeId"></div>
-		                  <div class="changeLogin" id="loginWord">账户登入在这里</div> 
+		                  <div class="changeLogin" id="loginWord">使用账户登录</div> 
 		             </div>
 		            
 

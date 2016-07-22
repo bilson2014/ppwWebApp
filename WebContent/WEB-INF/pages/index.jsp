@@ -125,20 +125,20 @@
 		<div class="info-wrap">
 			<div class="info-section">
 				<dl>
-					<dt class="first-desc"></dt>
-					<dd>免费创意策划</dd>
-					<dd>专属视频管家-站式服务</dd>
+					<dt class="first-desc changePosition"></dt>
+					<dd class="changePosition">免费创意策划</dd>
+					<dd class="">专属视频管家-站式服务</dd>
 				</dl>
 				
 				<dl>
-					<dt class="second-desc"></dt>
-					<dd>低预算拍大片</dd>
+					<dt class="second-desc changePosition"></dt>
+					<dd class="changePosition">低预算拍大片</dd>
 					<dd>低于行业价30%</dd>
 				</dl>
 				
 				<dl>
-					<dt class="third-desc"></dt>
-					<dd>72小时极速出片</dd>
+					<dt class="third-desc changePosition"></dt>
+					<dd class="changePosition">72小时极速出片</dd >
 					<dd>不满意全额退款</dd>
 				</dl>
 				<!-- <dl>
@@ -165,11 +165,11 @@
 		</div>
 		<!-- 首推区域 end -->
 
-		<!-- 视频案例区域 start -->
+		<!-- 视频热门爆款区域 start -->
 		<div class="video-wrap">
 			<div class="text-desc-wrap">
-				<h2 class="text-desc">视频案例</h2>
-				<div class="more-video">
+				<h2 class="text-desc">热门爆款</h2>
+				<div class="more-video hide">
 					<a href="<spring:url value='/list.html'/>" target="_blank">更多视频</a>
 				</div>
 			</div>
@@ -201,10 +201,50 @@
 
 			</div>
 			<!-- video content end -->
-		</div>
+			</div>
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">经济型创业视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-2">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">高性价比企业视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-3">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
+			<div class="video-wrap">
+				<div class="text-desc-wrap">
+					<h2 class="text-desc">定制原创视频</h2>
+				</div>
+	
+				<!-- video content start -->
+				<div class="video-content" id="video-content-4">
+	
+				</div>
+				<!-- video content end -->
+			</div>
+			
+			
 		<!-- 视频案例区域 end -->
 		
-		<!-- 合作伙伴区域 start -->
+				<!-- 合作伙伴区域 start -->
 		<div class="partner-wrap">
 			<div class="text-desc-wrap">
 				<h2 class="text-desc">合作客户</h2>
@@ -225,6 +265,8 @@
 		</div>
 		<!-- 合作伙伴区域 end -->
 	</div>
+		
+				
 	<div class="footer">
 		<!-- 拍片网介绍区域 start -->
 		<div class="footer-desc-wrap">
@@ -251,7 +293,7 @@
 				
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >联系我们</a>
-					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+					<a href="tel:010-59005941" class="qqClient"><label class="tel-icon"></label><h3>010-59005941</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
 					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>

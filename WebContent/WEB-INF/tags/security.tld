@@ -71,6 +71,13 @@
 		<body-content>JSP</body-content>
 	</tag>
 	
+	<!-- 供应商未审核 -->
+	<tag>
+		<name>noIdentification</name>
+		<tag-class>com.panfeng.film.taglib.JudgeProviderNoIndentityTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	
 	<!-- 输出登录名 -->
 	<tag>
 		<name>outName</name>

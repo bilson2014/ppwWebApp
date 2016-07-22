@@ -17,7 +17,7 @@
 
 }
 
-.video-row:last-child {
+.video-row:last-child { 
 	margin: 0 auto;
 }
 
@@ -58,6 +58,7 @@
 .video-card .video-desc-section{
 	width: $video-card-width;
 	padding: 20px 0;
+	padding-bottom: 55px;
 	margin: auto;
 	border-bottom: solid 1px $gray-border;
 
@@ -65,8 +66,7 @@
 		color: $gray-dark;
 		line-height: 12px;
 		font: {
-			size: $font-size-sm;
-			weight: 600;
+			size: $font-size-base;
 		}
 		margin-bottom: 10px;
 	}
