@@ -266,7 +266,6 @@
 		<!-- 合作伙伴区域 end -->
 	</div>
 		
-				
 	<div class="footer">
 		<!-- 拍片网介绍区域 start -->
 		<div class="footer-desc-wrap">
