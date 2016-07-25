@@ -18,7 +18,7 @@
 		.right-icon {
 			width: 80px;
 			height: 80px;
-			color: #ffffff;
+			color: #ffffff; 
 			@include icons-sprite(right-icon);
 			margin: 16px auto;
 			@include border-radius(50px);

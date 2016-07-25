@@ -114,16 +114,16 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		
 		$('#video-content').empty();
 		videoLayout.column3(first_section,'video-content');
-		console.info(first_section);
+		
 		$('#video-content-2').empty();
 		videoLayout.column3(second_section,'video-content-2');
-		console.info(second_section);
+		
 		$('#video-content-3').empty();
 		videoLayout.column3(third_section,'video-content-3');
-		console.info(third_section);
+		
 		$('#video-content-4').empty();
 		videoLayout.column3(forth_section,'video-content-4');
-		console.info(forth_section);
+		
 	},common.getContextPath() + '/product/loadProduct',null);
 	// 数据加载 end
 	
