@@ -126,19 +126,19 @@
 			<div class="info-section">
 				<dl>
 					<dt class="first-desc changePosition"></dt>
-					<dd class="changePosition">免费创意策划</dd>
+					<dd class="changeMidPosition">免费创意策划</dd>
 					<dd class="">专属视频管家-站式服务</dd>
 				</dl>
 				
 				<dl>
 					<dt class="second-desc changePosition"></dt>
-					<dd class="changePosition">低预算拍大片</dd>
+					<dd class="changeMidPosition">低预算拍大片</dd>
 					<dd>低于行业价30%</dd>
 				</dl>
 				
 				<dl>
 					<dt class="third-desc changePosition"></dt>
-					<dd class="changePosition">72小时极速出片</dd >
+					<dd class="changeMidPosition">72小时极速出片</dd >
 					<dd>不满意全额退款</dd>
 				</dl>
 				<!-- <dl>
@@ -266,7 +266,6 @@
 		<!-- 合作伙伴区域 end -->
 	</div>
 		
-				
 	<div class="footer">
 		<!-- 拍片网介绍区域 start -->
 		<div class="footer-desc-wrap">
