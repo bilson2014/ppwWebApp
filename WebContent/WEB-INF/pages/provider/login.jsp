@@ -87,8 +87,8 @@
 				
 				<div class="right-part">
 					<r:noLogin>
-						<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-						<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+						<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self" id="providerLogin">供应商登录</a>
+						<a href="<spring:url value="/login" />" class="header-item login-item" target="_self" id="userLogin">客户登录</a>
 					</r:noLogin>
 					<r:identity role="customer">
 						<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -141,7 +141,8 @@
 			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
-			                  <div class="errorMidDiv hide" id="name_login_error_info">登录错误</div>
+			                 <div class="errorMidDiv hide" id="name_login_error_info">登录错误</div>
+			                 <a href="<spring:url value='/repwd'/>"><div class="forget">忘记密码</div></a>
 			            </div>  
 		         </div>  
 		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->

@@ -41,6 +41,10 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
+    <mvc:view-controller path="/repwd" view-name="/repwd"/>
+    
+     <mvc:view-controller path="/updatePwd" view-name="/updatePwd"/>
+    
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
