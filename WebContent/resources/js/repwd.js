@@ -197,28 +197,41 @@ $().ready(function(){
 			login:function(){
 				if(userType == 'role_customer'){
 					// 客户
-					
+					$('#submitbtn').on('click',function(){
+						if(checkData()){
+							loadData(function(info){
+								if(info.key){
+									$(".errorDiv").addClass("hide");
+									window.location.href=getContextPath()+ '/user/updatePwd';
+								}else{
+									$("#code_error_info").text('验证失败').removeClass("hide");
+								}
+							}, getContextPath() + '/login/doLogin', $.toJSON({
+								loginType : $("#login_type").val(),
+								telephone : $('#user_phoneNumber').val().trim(),
+								password : Encrypt("123456"),
+								verification_code : $('#verification_code').val().trim(),
+							}));
+						}
+					});
 				}else if(userType == 'role_provider'){
 					// 供应商
 					$('#submitbtn').on('click',function(){
-						loadData(function(info){
-							if(info.key){
-								$("#verify").addClass('hide');
-								$(".errorDiv").addClass("hide");
-								//window.location.href=getContextPath()+ '/mgr/index';
-								$('#outSideId').removeClass('hide');
-								$('#userLogin').addClass('hide');
-								$('#providerLogin').addClass('hide');
-							}else{
-								$("#code_error_info").text(info.value).removeClass("hide");
-								return false;
-							}
-						}, getContextPath() + '/login/doLogin', $.toJSON({
-							loginType : 'phone',
-							telephone : $('#user_phoneNumber').val().trim(),
-							password : Encrypt("123456"),
-							verification_code : $('#verification_code').val().trim(),
-						}))
+						if(checkData()){
+							loadData(function(info){
+								if(info.result){
+									$(".errorDiv").addClass("hide");
+									window.location.href=getContextPath()+ '/provider/updatePwd';
+								}else{
+									$("#code_error_info").text('验证失败').removeClass("hide");
+								}
+							},
+							getContextPath() + '/provider/doLogin', $.toJSON({
+								phoneNumber : $('#user_phoneNumber').val().trim(),
+								loginType : "phone",
+								verification_code : $('#verification_code').val().trim(),
+							}))
+						}
 					});
 				}
 			}
@@ -235,11 +248,46 @@ $().ready(function(){
 			getData(function(data){
 				// 清除session code
 			}, getContextPath() + '/login/clear/code');
-			
 		}else{
 			curCount--;  
 			$("#verification_code_recover_btn").text('已发送('+ curCount +')');
 		}
+	}
+	
+	function checkData(){
+		var telephone = $('#user_phoneNumber').val().trim();
+		var kaptcha_code = $('#kaptcha_code').val().trim();
+		var verification_code = $('#verification_code').val().trim();
+		
+		if(telephone == '' || telephone == null || telephone == undefined){
+			$('#user_phoneNumberId').removeClass('hide');
+			$('#user_phoneNumberId').text('请填写手机号');
+			$('#user_phoneNumber').focus();
+			return false;
+		}else{
+			$('#user_phoneNumberId').addClass('hide');
+		}
+		if(!checkMobile(telephone)){
+			$('#user_phoneNumberId').removeClass('hide');
+			$('#user_phoneNumberId').text('手机号不正确');
+			$('#user_phoneNumber').focus();
+			return false;
+		}else{
+			$('#user_phoneNumberId').addClass('hide');
+		}
+		if(kaptcha_code == '' || kaptcha_code == null || kaptcha_code == undefined){
+			$('#kapt_error_info').removeClass('hide');
+			return false;
+		}else{
+			$('#kapt_error_info').addClass('hide');
+		}
+		if(verification_code == '' || verification_code == null || verification_code == undefined){
+			$('#code_error_info').removeClass('hide');
+			return false;
+		}else{
+			$('#code_error_info').addClass('hide');
+		}
+		return true;
 	}
 	
 });
