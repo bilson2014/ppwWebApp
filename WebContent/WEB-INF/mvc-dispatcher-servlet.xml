@@ -88,6 +88,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
 			<mvc:exclude-mapping path="/provider/login" />
+			<mvc:exclude-mapping path="/provider/repwd" />
 			<mvc:exclude-mapping path="/provider/thirdLogin" />
 			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />

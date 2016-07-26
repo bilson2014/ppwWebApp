@@ -19,7 +19,6 @@
 <spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
 <spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
 <spring:url value="/resources/lib/disk/rAF.js" var="rAFJs"/>
-<spring:url value="/resources/lib/disk/demo-1.js" var="demoJs"/>
 
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
@@ -52,16 +51,10 @@
 	<script src="${EasePackJs }"></script>
 	<script src="${TweenLiteJs }"></script>
 	<script src="${rAFJs }"></script>
-	<script src="${demoJs }"></script>
-	<!-- sina weibo -->
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
-	<!-- webcat -->
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-	<!-- qq -->
-	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
+
 </head>
 <body >
-	<input type="hidden" value="${isLogin}" id="loginAllRigster"/>
+	<input type="hidden" value="${userType}" id="userType"/>
 	<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">
@@ -108,7 +101,7 @@
 		</div>
 	</div>
 	
-	 <div class="outSideDiv phoneHeight">
+	 <div class="outSideDiv phoneHeight" id = "verify">
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>
 		            <h1>找回密码</h1>
@@ -130,7 +123,7 @@
 		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>
 		           </div>
-		            <div class="redBtn" id="submitBtn">去修改</div> 
+		            <div class="redBtn" id="submitbtn">去修改</div> 
 		         </div>
 		   </div>
 		   
@@ -140,9 +133,9 @@
 		            <h1>修改密码</h1>
 		            <div class="" id="showLogin">
 		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="用户名" id="user_phoneNumber"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="用户名" id=""></input>
 		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="user_phoneNumberId">*用户名错误</div>
+		                 <div class="errorDiv hide" id="">*用户名错误</div>
 		            </div>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="新密码" id=""></input>
@@ -156,7 +149,7 @@
 		                 <div class="errorMidDiv hide" id="">登录错误</div>
 		            </div>
 		           </div>
-		            <div class="redBtn" id="submitBtn">修改密码</div> 
+		            <div class="redBtn" id="">修改密码</div> 
 		         </div>
 		   </div>
 	
