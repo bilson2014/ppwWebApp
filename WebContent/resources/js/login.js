@@ -48,9 +48,11 @@ $().ready(function(){
 						loadData(function(flag){
 							if(flag){
 								$('#submitBtn').text("登录");
+								$('#title').text("客户登录");
 								$('#submitBtn').attr('data-id','login'); // 标记login
 							}else{
-								$('#submitBtn').text("注册并登录");
+								$('#submitBtn').text("注册");
+								$('#title').text("客户注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
 							}
 						}, getContextPath() + '/login/validation/phone', $.toJSON({

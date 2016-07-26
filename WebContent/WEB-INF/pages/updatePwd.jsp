@@ -131,6 +131,8 @@
 		            </div>
 		           </div>
 		            <div class="redBtn" id="">修改密码</div> 
+		            
+						  </div>
 		         </div>
 		   </div>
 	

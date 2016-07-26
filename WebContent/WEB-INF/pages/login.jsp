@@ -114,7 +114,7 @@
 	 <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>
-		            <h1>客户登录</h1>
+		            <h1 id="title">客户登录</h1>
 		            <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
