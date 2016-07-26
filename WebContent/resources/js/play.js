@@ -109,4 +109,12 @@ $().ready(function(){
 			$(this).hide('fast');
 		});
 	},getContextPath() + '/product/loadWithTeam/' + $('#company-unique').val(),null);
+	
+	toDirector();
 });
+
+function toDirector(){
+	  $('#toDirector').on('click',function(){
+		  alert($('#productId').text().trim()); 
+	  });
+}

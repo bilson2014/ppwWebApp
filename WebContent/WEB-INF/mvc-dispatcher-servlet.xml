@@ -43,7 +43,7 @@
     
     <mvc:view-controller path="/repwd" view-name="/repwd"/>
     
-     <mvc:view-controller path="/updatePwd" view-name="/updatePwd"/>
+    <mvc:view-controller path="/updatePwd" view-name="/updatePwd"/>
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
