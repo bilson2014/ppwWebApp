@@ -1580,4 +1580,9 @@ public class ProviderController extends BaseController {
 			return new ModelAndView("/provider/threeLogin", modelMap);
 		}
 	}
+	@RequestMapping("/repwd")
+	public ModelAndView repwd(ModelMap modelMap){
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		return new ModelAndView("/repwd", modelMap);
+	}
 }

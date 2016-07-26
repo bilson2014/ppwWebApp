@@ -142,7 +142,7 @@
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
 			                 <div class="errorMidDiv hide" id="name_login_error_info">登录错误</div>
-			                 <a href="<spring:url value='/repwd'/>"><div class="forget">忘记密码</div></a>
+			                 <a href="<spring:url value='/provider/repwd'/>"><div class="forget">忘记密码</div></a>
 			            </div>  
 		         </div>  
 		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->
