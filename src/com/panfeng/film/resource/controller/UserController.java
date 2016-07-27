@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -136,6 +138,46 @@ public class UserController extends BaseController{
 		}
 		return false;
 	}
+	/**
+	 * 根据手机验证码修改用户密码
+	 * @throws Exception
+	 */
+	@RequestMapping("/modify/code/password")
+	public Map<String, Object> modifiedUserPasswordByVerificationCode(@RequestBody final User user,
+					final HttpServletRequest request) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", 0);
+		map.put("msg", "信息修改失败，请刷新后再试!");
+		if(user != null){
+			final String code = (String) request.getSession().getAttribute("userCode");
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
+					final long userId = user.getId();
+					if(user.getPassword() != null && !"".equals(user.getPassword())){
+						// AES密码解密
+						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						// MD5加密
+						user.setPassword(DataUtil.md5(password));
+						
+						// 修改 用户密码
+						final String url = URL_PREFIX + "portal/user/modify/password";
+						final String json = HttpUtil.httpPost(url, user,request);
+						final Boolean result = JsonUtil.toBean(json, Boolean.class);
+						
+						serLogger.info("User id is " + userId + " update password -success=" + result);
+						if(result){
+							map.put("code", 1);
+							map.put("msg", "修改成功");
+						}
+					}
+					logger.info("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...");
+				}else{
+					map.put("msg", "验证码错误");
+				}
+			}
+		}
+		return map;
+	}
 	
 	/**
 	 * 发送验证码
@@ -146,6 +188,7 @@ public class UserController extends BaseController{
 		
 		final String code = DataUtil.random(true, 6);
 		request.getSession().setAttribute("userCode", code); // 存放验证码
+		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		final boolean ret = smsService.smsSend(telephone, code);
 		
 		serLogger.info("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret);

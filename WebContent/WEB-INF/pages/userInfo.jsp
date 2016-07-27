@@ -122,8 +122,8 @@
 						<img alt="用户头像" src="${imgPath }/icons/default.png" class="img-circle" id="user-circle-img"/>
 					</div>
 					<div class="user-info">
-						<h1>${user.userName }</h1>
-						<p>${user.telephone }</p>
+						<h1 id="user-name">${user.userName }</h1>
+						<p id="user-telephone">${user.telephone }</p>
 					</div>
 				</section>
 				<section class="user-info-section-wrap">
@@ -249,6 +249,19 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-sm-2 control-label">验证码</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+									</div>
+									<div class="col-sm-3">
+										<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>
+									</div>
+									<div class="col-sm-4">
+										<label id="label-code" class="label-message hide" >请输入验证码</label>
+										<label id="label-code-error" class="label-message hide" >验证码错误</label>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-sm-2 control-label"> </label>
 									<div class="col-sm-5">
 										<a class="btn btn-primary" href="javascript:void(0);" id="password-info-contentBt" >修改</a>
@@ -259,7 +272,7 @@
 							
 							<div  class="hide" id="upd">
 							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
-							<div class="form-group">
+								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">用户名</label>
 									<div class="col-sm-5">
 										<div class="col-sm-2 control-label item-height" id = "userLoginName" style="width:100px">${user.loginName }</div>
@@ -268,6 +281,8 @@
 										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
 									</div>
 								</div>
+								
+								<!--  
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">原密码</label>
 									<div class="col-sm-5">
@@ -277,6 +292,8 @@
 										<label  class="label-message hide" id ="upd-password-error">请输入6位以上密码</label>
 									</div>
 								</div>
+								 -->
+								
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新密码</label>
 									<div class="col-sm-5">
@@ -293,6 +310,19 @@
 									</div>
 									<div class="col-sm-5">
 										<label  class="label-message hide" id = "upd-towpassword-error">两次输入的密码不一致</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">验证码</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="upd-veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-default" id="upd-codeBt">获取验证码</button>
+									</div>
+									<div class="col-sm-4">
+										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
+										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
 									</div>
 								</div>
 								<div class="form-group">
@@ -346,6 +376,12 @@
 										<label id="concat_tele_old">${user.telephone }</label>
 									</div>
 								</div>
+								
+								
+								<div class="phone-bind">
+								
+								</div>
+								<!--  
 								<div class="form-group">
 									<label class="col-sm-2 control-label item-height">新手机号</label>
 									<div class="col-sm-5">
@@ -373,6 +409,7 @@
 										<button type="button" class="btn btn-primary" id="phone-info-contentBt" >修改</button>
 									</div>
 								</div>
+							-->
 							</form>
 						</div>
 						

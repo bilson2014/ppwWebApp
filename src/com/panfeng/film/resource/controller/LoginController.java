@@ -404,22 +404,32 @@ public class LoginController extends BaseController {
 	@RequestMapping("/modify/logName")
 	public BaseMsg modifyLogName(final HttpServletRequest request, @RequestBody final User user) {
 		try {
-			if (user != null && ValidateUtil.isValid(user.getPassword()) && ValidateUtil.isValid(user.getLoginName())) {
-				// AES 密码解密
-				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-				// MD5 加密
-				user.setPassword(DataUtil.md5(password));
-				final String url = URL_PREFIX + "portal/user/modify/loginName";
-				String str = HttpUtil.httpPost(url, user, request);
-				if (str != null && !"".equals(str)) {
-					boolean result = JsonUtil.toBean(str, Boolean.class);
-					// 添加 session
-					return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
-				} else {
-					return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
+			final HttpSession session = request.getSession();
+			final String code = (String) session.getAttribute("userCode");
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
+					if (user != null && ValidateUtil.isValid(user.getPassword()) && ValidateUtil.isValid(user.getLoginName())) {
+						// AES 密码解密
+						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						// MD5 加密
+						user.setPassword(DataUtil.md5(password));
+						final String url = URL_PREFIX + "portal/user/modify/loginName";
+						String str = HttpUtil.httpPost(url, user, request);
+						if (str != null && !"".equals(str)) {
+							boolean result = JsonUtil.toBean(str, Boolean.class);
+							// 添加 session
+							return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
+						} else {
+							return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
+						}
+					} else {
+						return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
+					}
+				}else{
+					return new BaseMsg(BaseMsg.ERROR, "验证码错误！", false);
 				}
-			} else {
-				return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
+			}else{
+				return new BaseMsg(BaseMsg.ERROR, "请输入验证码！", false);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -643,7 +653,6 @@ public class LoginController extends BaseController {
 		return new ModelAndView("redirect:/login");
 	}
 
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面验证手机号码 begin
 	/**
 	 * 第三方登录验证手机号码 register:0未注册||1注册 qq:0未绑定||1绑定 wechat: wb:
 	 */
@@ -657,9 +666,6 @@ public class LoginController extends BaseController {
 		return map;
 	}
 
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面验证手机号码 end
-
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面绑定手机 begin
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/third/bind", method = RequestMethod.POST)
 	public Info thirdBind(@RequestBody final ThirdBind bind, final HttpServletRequest request) {
@@ -702,6 +708,4 @@ public class LoginController extends BaseController {
 		}
 		return info;
 	}
-
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面绑定手机 end
 }
