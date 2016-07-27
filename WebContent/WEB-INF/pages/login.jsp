@@ -145,7 +145,7 @@
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
 			                  <div class="errorMidDiv hide" id="login_error_info_user">登录错误</div>
-			                   <a href="<spring:url value='/repwd'/>"><div class="forget" id="forget">忘记密码</div></a>
+			                   <a href="<spring:url value='/user/repwd'/>"><div class="forget" id="forget">忘记密码</div></a>
 			            </div>  
 		         </div> 
 		            
