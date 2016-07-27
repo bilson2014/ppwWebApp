@@ -10,8 +10,9 @@ public class SmsServiceImpl implements SmsService {
 
 	@Override
 	public boolean smsSend(final String telephone, final String code) {
-		final boolean ret = SendSMS.sendSms(telephone, code);
-		return ret;
+		//final boolean ret = SendSMS.sendSms(telephone, code);
+		return true;
+		//return ret;
 	}
 
 }

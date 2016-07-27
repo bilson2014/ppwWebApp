@@ -16,6 +16,9 @@ $().ready(function(){
 		$('.tooltip-success-show').hide();
 	})
 	
+	//初始化綁定信息
+	checkBand();
+	
 	// 注册基本信息保存按钮
 	$('#infoBt').on('click',infoSave);
 	// 注册安全设置保存按钮
@@ -501,4 +504,39 @@ function getBusinessVal(){
 		}
 	});
 	return busArr;
+}
+
+function checkBand(){
+	  
+	 var wechatWord = $('#wechatWord');
+	 var wechatBtn = $('#wechatBtn');
+	 var qqWord = $('#qqWord');
+	 var qqBtn = $('#qqBtn');
+	 var wbWord = $('#wbWord');
+	 var wbBtn = $('#wbBtn');
+	
+	if($('#wechat').hasClass('band')){
+		wechatWord.text('未绑定');
+		wechatBtn.text('绑定');
+	}else{
+		wechatWord.text('绑定');
+		wechatBtn.text('取消绑定');
+	}
+	
+	if($('#qq').hasClass('band')){
+		qqWord.text('未绑定');
+		qqBtn.text('绑定');
+	}else{
+		qqWord.text('绑定');
+		qqBtn.text('取消绑定');
+	}
+	
+	if($('#wb').hasClass('band')){
+		wbWord.text('未绑定');
+		wbBtn.text('绑定');
+	}else{
+		wbWord.text('绑定');
+		wbBtn.text('取消绑定');
+	}
+	
 }

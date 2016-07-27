@@ -715,5 +715,22 @@ public class PCController extends BaseController {
 
 		return null;
 	}
+	
+	/**
+	 * 验证手机验证码是否正确
+	 * @param request
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/phone/validate")
+	public boolean phoneValidate(@RequestBody final User user,
+			final HttpServletRequest request) {
+
+		final String code = (String) request.getSession().getAttribute("userCode");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		if (ValidateUtil.isValid(code) && ValidateUtil.isValid(codeOfphone)) {
+			return	code.equals(user.getVerification_code())&&codeOfphone.equals(user.getTelephone());	
+		}else return false;
+	}
 
 }
