@@ -33,9 +33,15 @@ public class OutNameTag extends TagSupport {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}else {
+			}else if(ValidateUtil.isValid(info.getLoginName())){
 				try {
 					pageContext.getOut().print(info.getLoginName());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					pageContext.getOut().print(info.getTelephone());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

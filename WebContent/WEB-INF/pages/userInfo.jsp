@@ -100,7 +100,7 @@
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item header-name" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
@@ -251,7 +251,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">验证码</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+										<input type="text" class="form-control" id="veritifyCode-pwd" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
 									</div>
 									<div class="col-sm-3">
 										<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>

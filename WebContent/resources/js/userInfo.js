@@ -139,6 +139,7 @@ function selfInfo(){
 					$('.tooltip-show').slideDown('normal');
 					if(flag){
 						$("#user-name").text($("#nickName").val());
+						$(".header-name").text($("#trueName").val());
 						$('.tooltip-message').text('信息修改成功!');
 					}else{
 						$('.tooltip-message').text('信息修改失败，请刷新后再试!');
@@ -178,7 +179,7 @@ function passwordInfo(){
 			var confirmPassw0rd = $('#insTwoPassword').val().trim();
 			var loginName = $('#insuserName').val().trim();
 			var id = $('#user_unique').val();
-			var verification_code = $("#veritifyCode").val().trim();
+			var verification_code = $("#veritifyCode-pwd").val().trim();
 				loadData(function(flag){
 					$('.tooltip-show').slideDown('normal');
 					if(flag.errorCode == 200){
@@ -306,14 +307,14 @@ function phoneInfo(){
 						}
 					});
 				}else{
-					$("#label-code-error").removeClass("hide");
+					$("#label-code-phone-error").removeClass("hide");
 				}
 			}, getContextPath() + '/phone/validate', $.toJSON({
 				telephone : $('#concat_tele_old').text().trim(),
 				verification_code : veritifyCode
 			}));
 		}else{
-			$('#label-code').removeClass('hide');
+			$('#label-code-phone').removeClass('hide');
 			return false;
 		}
 	})
@@ -806,8 +807,8 @@ var userInfo_tpl={
 	'			<button type="button" class="btn btn-default" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
-	'			<label id="label-code" class="label-message hide" >请输入验证码</label>',
-	'			<label id="label-code-error" class="label-message hide" >验证码错误</label>',
+	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
+	'			<label id="label-code-phone-error" class="label-message hide" >验证码错误</label>',
 	'		</div>',
 	'	</div>',
 	'	<div class="form-group">',
@@ -837,8 +838,8 @@ var userInfo_tpl={
 	'			<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
-	'			<label id="label-code" class="label-message hide" >请输入验证码</label>',
-	'			<label id="label-code-error" class="label-message hide" >验证码错误</label>',
+	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
+	'			<label id="label-code--phone-error" class="label-message hide" >验证码错误</label>',
 	'		</div>',
 	'	</div>',
 	'	<div class="form-group">',

@@ -476,4 +476,25 @@ public class UserController extends BaseController{
 		return new ModelAndView("/updatePwd", modelMap);
 	}
 	
+	/**
+	 * 删除 取消的自定义上传文件
+	 */
+	@RequestMapping("/third/status")
+	public Map<String, Object> thirdBindStatus(@RequestBody final User user){
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(user != null){
+			final String path = user.getImgUrl();
+			// 删除文件
+			File file = new File(FILE_PROFIX + path);
+			if(file.exists()){
+				if(!file.isDirectory()){
+					file.delete();
+					serLogger.info("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl());
+				}
+			}
+		}
+		return map;
+	}
+	
+	
 }
