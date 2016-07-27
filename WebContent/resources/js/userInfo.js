@@ -43,6 +43,10 @@ $().ready(function(){
 			case 'phone-info-content':
 				phoneInfo();
 				break;
+				
+			case 'three-band':
+				bandInfo();
+				break;
 			default:
 				break;
 		}
@@ -55,6 +59,7 @@ $().ready(function(){
 	
 	// 隐藏 提示信息
 	$('.tooltip-show').hide();
+	$('.tooltip-showBand').hide();
 	var userLoginName = $("#userLoginName").text();
 	if(userLoginName != null && userLoginName != '' && userLoginName != undefined){
 		$("#ins").addClass('hide');
@@ -849,5 +854,47 @@ var userInfo_tpl={
 	'		</div>',
 	'	</div>',
 	 ].join(""),
+}
+
+
+function bandInfo(){
+	$('.three-band').slideDown('normal');
+	//$('.tooltip-showBand').slideDown('normal');
+	check();
+}
+
+function check(){
+	  
+	 var wechatWord = $('#wechatWord');
+	 var wechatBtn = $('#wechatBtn');
+	 var qqWord = $('#qqWord');
+	 var qqBtn = $('#qqBtn');
+	 var wbWord = $('#wbWord');
+	 var wbBtn = $('#wbBtn');
+	
+	if($('#wechat').hasClass('band')){
+		wechatWord.text('未绑定');
+		wechatBtn.text('绑定');
+	}else{
+		wechatWord.text('绑定');
+		wechatBtn.text('取消绑定');
+	}
+	
+	if($('#qq').hasClass('band')){
+		qqWord.text('未绑定');
+		qqBtn.text('绑定');
+	}else{
+		qqWord.text('绑定');
+		qqBtn.text('取消绑定');
+	}
+	
+	if($('#wb').hasClass('band')){
+		wbWord.text('未绑定');
+		wbBtn.text('绑定');
+	}else{
+		wbWord.text('绑定');
+		wbBtn.text('取消绑定');
+	}
+	
 }
 

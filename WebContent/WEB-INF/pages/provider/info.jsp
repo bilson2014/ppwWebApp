@@ -22,6 +22,8 @@
 <spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
 
 <spring:url value="/resources/img" var="path" />
+
+<spring:url value="/resources/images" var="imgPaths" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -65,6 +67,7 @@
 			<li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">基本信息</a></li>
 			<li role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li>
 			<li role="presentation"><a href="#logo" aria-controls="logo" role="tab" data-toggle="tab">供应商LOGO</a></li>
+			<li role="presentation"><a href="#band" aria-controls="band" role="tab" data-toggle="tab">三方绑定</a></li>
 		</ul>
 
 		<!-- Tab panes -->
@@ -479,6 +482,47 @@
 					</div>
 				</div>
 			</div>
+			
+			<div role="tabpanel" class="tab-pane fade in" id="band">
+			    		  <div class="band" id="wechat">
+								       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+								       <div class="inLine vertical">
+								            <ul>
+								               <li>微信登录</li>
+								               <li class="bandWord" id="wechatWord"></li>
+								            </ul>
+								       </div>
+								       <div class="bandBtn" id="wechatBtn"></div>
+								  </div>
+								  
+											 <div class="line"></div>
+								  
+									    <div class="noBand" id="qq">
+										   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+										       <div class="inLine vertical">
+										            <ul>
+										               <li>QQ账号</li>
+										               <li class="bandWord" id="qqWord"></li>
+										            </ul>
+										       </div>
+										       <div class="bandBtn" id="qqBtn"></div>
+										  </div>
+										  
+										  <div class="line"></div>
+										  
+								    <div class="noBand" id="wb">
+									   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+									       <div class="inLine vertical">
+									            <ul>
+									               <li>微博账号</li>
+									               <li class="bandWord" id="wbWord"></li>
+									            </ul>
+									       </div>
+									       <div class="bandBtn" id="wbBtn"></div>
+									  </div>
+			</div>
+			
+			
 		</div>
 	</div>
 </body>

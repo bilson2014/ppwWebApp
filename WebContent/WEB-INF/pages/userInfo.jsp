@@ -22,6 +22,7 @@
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
 
 <spring:url value="/resources/img" var="imgPath"/>
+<spring:url value="/resources/images" var="imgPaths"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -134,6 +135,7 @@
 								<li><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
 								<li><a href="javascript:void(0);" data-url="userpic-info-content">头像修改</a></li>
 								<li><a href="javascript:void(0);" data-url="phone-info-content">更换手机</a></li>
+								<li><a href="javascript:void(0);" data-url="three-band">三方绑定</a></li>
 							</ul>
 						</div>
 						<div class="self-info-content information">
@@ -412,6 +414,53 @@
 							-->
 							</form>
 						</div>
+						
+						<div class="three-band information">
+						<!-- 提示框 -->
+						<div class="tooltip-showBand">
+							<label class="tooltip-message">修改成功!</label>
+						</div>
+								  <div class="band" id="wechat">
+								       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+								       <div class="inLine vertical">
+								            <ul>
+								               <li>微信登录</li>
+								               <li class="bandWord" id="wechatWord"></li>
+								            </ul>
+								       </div>
+								       <div class="bandBtn" id="wechatBtn"></div>
+								  </div>
+								  
+											 <div class="line"></div>
+								  
+									    <div class="noBand" id="qq">
+										   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+										       <div class="inLine vertical">
+										            <ul>
+										               <li>QQ账号</li>
+										               <li class="bandWord" id="qqWord"></li>
+										            </ul>
+										       </div>
+										       <div class="bandBtn" id="qqBtn"></div>
+										  </div>
+										  
+										  <div class="line"></div>
+										  
+								    <div class="noBand" id="wb">
+									   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+									       <div class="inLine vertical">
+									            <ul>
+									               <li>微博账号</li>
+									               <li class="bandWord" id="wbWord"></li>
+									            </ul>
+									       </div>
+									       <div class="bandBtn" id="wbBtn"></div>
+									  </div>
+								  
+						</div>
+								
+							
+								
 						
 						<!-- 提示框 -->
 						<div class="tooltip-show">

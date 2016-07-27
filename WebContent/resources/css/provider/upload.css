@@ -29,11 +29,15 @@ label.tooltip-message {
 
 .tooltip-success-show{
 	height: 46px;
+	width:100%;
 	background-color: #DFF0D8;
 	color: #3C764B;
 	border-radius: 4px;
 	text-align: center;
 	line-height: 36px;
+	position: fixed;
+	z-index: 100;
+	top: 0;
 }
 
 label.tooltip-success-message {
@@ -65,6 +69,13 @@ label.tooltip-success-message {
 .model-distance{
 	position: relative;
 	top: 120px;
+	margin:0 auto;
+
+}
+
+.model-distance-warm{
+	position: relative;
+	top: 120px;
 }
 
 .exampleUrl {
@@ -75,6 +86,10 @@ label.tooltip-success-message {
 
 .previewImg {
 	width: 470px;
+}
+.closeBtn{
+	position:relative;
+	top:-7px;
 }
 
 .upload_filed_area {
@@ -163,3 +178,52 @@ label.tooltip-success-message {
 .btn_keyword_del a{
 	text-decoration: none;
 }
+
+
+.modal-body ul{
+	width:80%;
+	margin:0 auto;
+}
+
+.modal-body li{
+	font-weight: 500;
+    color: #5f6a6d;
+    line-height:22px;
+    font-size:12px;
+}
+
+.modal-body li span{
+	font-weight: bold;
+    color: #f45453;
+    font-size:14px;
+}
+
+.modal-body li label{
+    vertical-align: text-top;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.checkInfo{
+	 width:140px;
+	 height:auto;
+	 margin:0 auto;
+}
+
+.circle{
+	width:10px;
+	height:10px;
+	background:#666;
+	border-radius:100px;
+}
+
+.top{
+	margin-bottom:20px;
+}
+.bot{
+	margin-top:20px;
+}
+
