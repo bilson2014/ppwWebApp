@@ -1369,7 +1369,7 @@ public class ProviderController extends BaseController {
 				url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + provinces.get(0).getProvinceID();
 				String str1 = HttpUtil.httpGet(url, request);
 				if (str1 != null && !"".equals(str1)) {
-					List<City> citys = JsonUtil.fromJsonArray(str1,City.class);
+					List<City> citys = JsonUtil.fromJsonArray(str1, City.class);
 					model.addAttribute("citys", citys);
 				}
 			}
@@ -1579,5 +1579,20 @@ public class ProviderController extends BaseController {
 			modelMap.put("LType", original.getThirdLoginType());
 			return new ModelAndView("/provider/threeLogin", modelMap);
 		}
+	}
+
+	@RequestMapping("/repwd")
+	public ModelAndView repwd(ModelMap modelMap) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		return new ModelAndView("/repwd", modelMap);
+	}
+
+	@RequestMapping("/updatePwd")
+	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
+		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
+		return new ModelAndView("/updatePwd", modelMap);
 	}
 }

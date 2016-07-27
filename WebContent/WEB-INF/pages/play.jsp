@@ -180,13 +180,13 @@
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
-								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded">
+								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" id="toDirector">
 							</c:if>
 							<c:if test="${!empty product.teamPhotoUrl }">
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 							</c:if>
 						</dt>
-						
+						<div class="hide" id="productId">${product.productId }</div>
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
 						<dd  class="teamTitle" title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>

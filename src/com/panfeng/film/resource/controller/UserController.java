@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.PhotoCutParam;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.security.AESUtil;
@@ -455,6 +459,21 @@ public class UserController extends BaseController{
 			
 		}
 		return null;
+	}
+	
+	@RequestMapping("/repwd")
+	public ModelAndView repwd(ModelMap modelMap) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		return new ModelAndView("/repwd", modelMap);
+	}
+
+	@RequestMapping("/updatePwd")
+	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
+		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
+		return new ModelAndView("/updatePwd", modelMap);
 	}
 	
 }

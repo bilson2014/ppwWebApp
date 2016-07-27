@@ -312,12 +312,16 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping("/verification/{telephone}")
 	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
-		final String code = DataUtil.random(true, 6);
-		final boolean ret = smsService.smsSend(telephone, code);
-		request.getSession().setAttribute("code", code); // 存放验证码
-		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
-		serLogger.info("Send sms code " + code + " to telephone " + telephone);
-		return ret;
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		if(!isTest){
+			final String code = DataUtil.random(true, 6);
+			final boolean ret = smsService.smsSend(telephone, code);
+			request.getSession().setAttribute("code", code); // 存放验证码
+			request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
+			serLogger.info("Send sms code " + code + " to telephone " + telephone);	
+			return ret;
+		}
+		return true;
 	}
 
 	/**
