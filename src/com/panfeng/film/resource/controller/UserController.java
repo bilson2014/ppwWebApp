@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.PhotoCutParam;
@@ -477,7 +478,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 删除 取消的自定义上传文件
+	 * 第三方绑定状态
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/third/status")
@@ -486,11 +487,9 @@ public class UserController extends BaseController{
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		User user = new User();
 		user.setId(sessionInfo.getReqiureId());
-		if(user != null){
-			final String url = URL_PREFIX + "portal/user/third/status";
-			final String json = HttpUtil.httpPost(url, user,request);
-			result = JsonUtil.toBean(json, Map.class);
-		}
+		final String url = URL_PREFIX + "portal/user/third/status";
+		final String json = HttpUtil.httpPost(url, user,request);
+		result = JsonUtil.toBean(json, Map.class);
 		return result;
 	}
 	
@@ -499,27 +498,19 @@ public class UserController extends BaseController{
 	 * 如果第三方账号已经存在,不允许绑定
 	 */
 	@RequestMapping("/bind/third")
-	public ModelAndView bindThird(final HttpServletRequest request, final HttpServletResponse response,
-			final ModelMap model) {
+	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
+			@RequestBody final User user) {
+		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		try {
-			request.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html;charset=UTF-8");
-			final String json = request.getParameter("json");
-			final User user = new User().fromString(json, User.class);
-			user.setId(sessionInfo.getReqiureId());//填充用户id
-			
-			final String url = URL_PREFIX + "portal/user/info/bind";
-			String str = HttpUtil.httpPost(url, user, request);
-			Boolean b = JsonUtil.toBean(str, Boolean.class);
-			if(b) {
-				model.addAttribute("msg", "绑定成功");//返回页面用作提示绑定成功
-			}else model.addAttribute("msg", "该账号已经存在绑定");
-		} catch (Exception e) {
-			logger.error("OAthur encoding error ...");
-			e.printStackTrace();
-		}
-		return new ModelAndView("redirect:/user/info");
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		final String url = URL_PREFIX + "portal/user/info/bind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		if(b) {
+			baseMsg.setCode(1);
+			baseMsg.setResult("绑定成功");
+		}else baseMsg.setResult("账号存在绑定");
+		return baseMsg;
 	}
 	
 	/**

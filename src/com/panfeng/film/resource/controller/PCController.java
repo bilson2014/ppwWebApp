@@ -718,9 +718,6 @@ public class PCController extends BaseController {
 	
 	/**
 	 * 验证手机验证码是否正确
-	 * @param request
-	 * @param id
-	 * @return
 	 */
 	@RequestMapping("/phone/validate")
 	public boolean phoneValidate(@RequestBody final User user,
@@ -731,6 +728,19 @@ public class PCController extends BaseController {
 		if (ValidateUtil.isValid(code) && ValidateUtil.isValid(codeOfphone)) {
 			return	code.equals(user.getVerification_code())&&codeOfphone.equals(user.getTelephone());	
 		}else return false;
+	}
+	
+	/**
+	 * 验证登录者是否完善登录名,密码
+	 * 	 ROLE_EMPLOYEE = "role_employee"; // 用户身份 -- 内部员工
+	 *	 ROLE_CUSTOMER = "role_customer"; // 用户身份 -- 客户
+     *   ROLE_PROVIDER = "role_provider"; // 用户身份 -- 供应商
+	 */
+	@RequestMapping("/loginName/validate")
+	public boolean loginNameValidate(final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "portal/loginName/validate";
+		final String json = HttpUtil.httpGet(url,request);
+		return JsonUtil.toBean(json, Boolean.class);
 	}
 
 }

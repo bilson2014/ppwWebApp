@@ -174,8 +174,18 @@ function passwordInfo(){
 	
 	$("#upd-codeBt").off("click").on("click",function(){
 		var telPhone = $("#user-telephone").text();
-		if(checkMobile(telPhone)){
-			verification(telPhone);
+		if(checkData(5)){
+			if(checkMobile(telPhone)){
+				verification(telPhone);
+			}
+		}
+	})
+	$("#codeBt").off("click").on("click",function(){
+		var telPhone = $("#user-telephone").text();
+		if(checkData(6)){
+			if(checkMobile(telPhone)){
+				verification(telPhone);
+			}
 		}
 	})
 	// 注册 个人资料-修改按钮点击事件
@@ -216,10 +226,7 @@ function passwordInfo(){
 	
 	$('#upd-btn').unbind('click');
 	$('#upd-btn').bind('click',function(){
-		//modify by wanglc 安全设置修改，不需要原密码,改为验证码 begin
-		//if(checkData(3)){
 		if(checkData(4)){
-		//modify by wanglc 安全设置修改，不需要原密码,改为验证码 end
 			var password = $('#upd-towpassword').val().trim();
 			var id = $('#user_unique').val();
 			var verification_code = $("#upd-veritifyCode").val().trim();
@@ -458,14 +465,14 @@ function verification(phone){
 	// 发送验证码
 	loadData(function(flag){
 		if(flag){ // 发送成功
-			$('#codeBt').text('已发送('+ curCount +')');
+			$('.codeBt').text('已发送('+ curCount +')');
 			// 设置 button 效果为禁用
-			$('#codeBt').attr('disabled','disabled');
+			$('.codeBt').attr('disabled','disabled');
 			InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
 		}else{ // 发送不成功
 			// 显示重新发送
-			$('#codeBt').text('重新获取');
-			$('#codeBt').removeAttr('disabled');
+			$('.codeBt').text('重新获取');
+			$('.codeBt').removeAttr('disabled');
 		}
 	}, getContextPath() + '/user/verification/' + phone, null);
 
@@ -656,6 +663,55 @@ function checkData(flag){
 			return false;
 		}else{
 			$("#upd-towpassword-error").addClass('hide');
+		}
+		return true;
+	}else if(flag==5){
+		var upd_newpassword = $('#upd-newpassword').val().trim();
+		var upd_towpassword = $('#upd-towpassword').val().trim();
+		if(upd_newpassword == '' || upd_newpassword == null || upd_newpassword == undefined || upd_newpassword.length < 6){
+			$("#upd-newpassword-error").removeClass('hide');
+			$("#upd-newpassword-error").text('密码不能少于6位!');
+			$('#upd-newpassword').focus();
+			return false;
+		}else{
+			$("#upd-newpassword-error").addClass('hide');
+		}
+		if(upd_newpassword != upd_towpassword){
+			$("#upd-towpassword-error").removeClass('hide');
+			$("#upd-towpassword-error").text('两次输入密码不一致！');
+			$('#upd-towpassword').focus();
+			return false;
+		}else{
+			$("#upd-towpassword-error").addClass('hide');
+		}
+		return true;
+	}else if(flag==6){
+		var insloginName = $('#insuserName').val().trim();
+		var newPassword = $('#insPassword').val().trim();
+		var comfrimPassword = $('#insTwoPassword').val().trim();
+		if(insloginName == '' || insloginName == null || insloginName == undefined){
+			$("#insuserName-error").removeClass('hide');
+			$("#insuserName-error").text('用户名不能为空');
+			$('#insUserName').focus();
+			return false;
+		}else{
+			$("#insuserName-error").addClass('hide');
+		}
+		if(newPassword == '' || newPassword == null || newPassword == undefined || newPassword.length < 6){
+			$("#insPassword-error").removeClass('hide');
+			$("#insPassword-error").text('密码不能少于6位!');
+			$('#insPassword').focus();
+			return false;
+		}else{
+			$("#insPassword-error").addClass('hide');
+		}
+		if(newPassword != comfrimPassword){
+			$("#insTwoPassword-error").removeClass('hide');
+			$("#insTwoPassword-error").text('密码两次输入不一致!');
+			$('#insTwoPassword').focus();
+			return false;
+		}else{
+			$("#insTwoPassword-error").addClass('hide');
 		}
 		return true;
 	}
@@ -972,12 +1028,20 @@ var userinfo_third = {
 			});
 		},
 }
-function userInfoToBind(condition){
+/*function userInfoToBind(condition){
 	var url = getContextPath() + '/user/bind/third';
 	
 	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
 	
 	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+}*/
+function userInfoToBind(condition){
+	loadData(function(data){
+		if(data.code==1){
+			bandInfo();
+			$('.tooltip-showBand').slideDown('normal');
+		}
+	}, getContextPath() + '/user/bind/third',condition);
 }
 ////获取微博用户信息
 function getWBUserData(callback){

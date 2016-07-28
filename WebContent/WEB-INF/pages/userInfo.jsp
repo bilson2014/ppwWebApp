@@ -265,7 +265,7 @@
 										<input type="text" class="form-control" id="veritifyCode-pwd" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>
+										<button type="button" data-flag="new-bind" class="btn btn-default codeBt" id="codeBt">获取验证码</button>
 									</div>
 									<div class="col-sm-4">
 										<label id="label-code" class="label-message hide" >请输入验证码</label>
@@ -329,7 +329,7 @@
 										<input type="text" class="form-control" id="upd-veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" class="btn btn-default" id="upd-codeBt">获取验证码</button>
+										<button type="button" class="btn btn-default codeBt" id="upd-codeBt">获取验证码</button>
 									</div>
 									<div class="col-sm-4">
 										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>

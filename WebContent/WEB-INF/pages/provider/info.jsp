@@ -57,6 +57,12 @@
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${providerInfoJs }"></script>
+	<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
 <body>
@@ -384,8 +390,8 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">用户名</label>
 								<label class="col-sm-6 control-label field-label" style="text-align: left;" id="userName">${provider.loginName }</label>
-								
 							</div>
+							<!-- 
 							<div class="form-group">
 								<label for="company-password" class="col-sm-2 control-label">密码</label>
 								<div class="col-sm-6">
@@ -393,6 +399,7 @@
 								</div>
 								<span style="color:red;">*</span>
 							</div>
+							 -->
 							<div class="form-group">
 								<label for="company-newPassword" class="col-sm-2 control-label">新密码</label>
 								<div class="col-sm-6">
@@ -408,6 +415,19 @@
 								<span style="color:red;">*</span>
 							</div>
 							<div class="form-group">
+									<label class="col-sm-2 control-label">验证码</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="upd-veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-default codeBt" id="upd-codeBt">获取验证码</button>
+									</div>
+									<div class="col-sm-4">
+										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
+										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
+									</div>
+								</div>
+							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-6">
 									<button type="button" class="btn btn-default" id="passwordBt">保存</button>
 								</div>
@@ -416,7 +436,7 @@
 					</form>
 				</div>
 				
-					<div class="form-wrap" id="loginpwdinsert" >
+				<div class="form-wrap" id="loginpwdinsert" >
 					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
 						<fieldset>
 							<!-- 成功提示框 start -->
@@ -451,6 +471,19 @@
 								<span style="color:red;">*</span>
 							</div>
 							<div class="form-group">
+									<label class="col-sm-2 control-label">验证码</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-default codeBt" id="codeBt">获取验证码</button>
+									</div>
+									<div class="col-sm-4">
+										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
+										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
+									</div>
+								</div>
+							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-6">
 									<button type="button" class="btn btn-default" id="insSubmit">保存</button>
 								</div>
@@ -484,42 +517,46 @@
 			</div>
 			
 			<div role="tabpanel" class="tab-pane fade in" id="band">
-			    		  <div class="band" id="wechat">
-								       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
-								       <div class="inLine vertical">
-								            <ul>
-								               <li>微信登录</li>
-								               <li class="bandWord" id="wechatWord"></li>
-								            </ul>
-								       </div>
-								       <div class="bandBtn" id="wechatBtn"></div>
-								  </div>
-								  
-											 <div class="line"></div>
-								  
-									    <div class="noBand" id="qq">
-										   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
-										       <div class="inLine vertical">
-										            <ul>
-										               <li>QQ账号</li>
-										               <li class="bandWord" id="qqWord"></li>
-										            </ul>
-										       </div>
-										       <div class="bandBtn" id="qqBtn"></div>
-										  </div>
-										  
-										  <div class="line"></div>
-										  
-								    <div class="noBand" id="wb">
-									   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
-									       <div class="inLine vertical">
-									            <ul>
-									               <li>微博账号</li>
-									               <li class="bandWord" id="wbWord"></li>
-									            </ul>
-									       </div>
-									       <div class="bandBtn" id="wbBtn"></div>
-									  </div>
+			<!-- 成功提示框 start -->
+			<div class="tooltip-success-show" style="display: none;">
+				<label class="tooltip-success-message">信息更新成功</label>
+			</div>
+    		  <div class="noband" id="wechat">
+			       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+			       <div class="inLine vertical">
+			            <ul>
+			               <li>微信登录</li>
+			               <li class="bandWord" id="wechatWord"></li>
+			            </ul>
+			       </div>
+			       <div class="bandBtn"  data-status="0"  id="wechatBtn"></div>
+			  </div>
+					  
+			 <div class="line"></div>
+		  
+			    <div class="noBand" id="qq">
+				   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+				       <div class="inLine vertical">
+				            <ul>
+				               <li>QQ账号</li>
+				               <li class="bandWord" id="qqWord"></li>
+				            </ul>
+				       </div>
+				       <div class="bandBtn"  data-status="0"  id="qqBtn"></div>
+				  </div>
+				  
+				  <div class="line"></div>
+				  
+		    <div class="noBand" id="wb">
+			   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+			       <div class="inLine vertical">
+			            <ul>
+			               <li>微博账号</li>
+			               <li class="bandWord" id="wbWord"></li>
+			            </ul>
+			       </div>
+			       <div class="bandBtn"  data-status="0"  id="wbBtn"></div>
+			  </div>
 			</div>
 			
 			

@@ -1,3 +1,5 @@
+var count = 120; // 间隔函数，1秒执行 
+var curCount; // 当前剩余秒数 
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	
@@ -19,6 +21,22 @@ $().ready(function(){
 	//初始化綁定信息
 	checkBand();
 	
+	$("#upd-codeBt").off("click").on("click",function(){
+		var telPhone = $("#company-phoneNumber").val();
+		if(checkData(4)){
+			if(checkMobile(telPhone)){
+				verification(telPhone);
+			}
+		}
+	})
+	$("#codeBt").off("click").on("click",function(){
+		var telPhone = $("#company-phoneNumber").val();
+		if(checkData(5)){
+			if(checkMobile(telPhone)){
+				verification(telPhone);
+			}
+		}
+	})
 	// 注册基本信息保存按钮
 	$('#infoBt').on('click',infoSave);
 	// 注册安全设置保存按钮
@@ -166,51 +184,79 @@ function infoSave(){
 function safeInfo(){
 	if(checkData(2)){ // 检测数据完整性
 		// 检验当前密码是否正确
-		loadData(function(info){
-			if(info.key){
-				// 修改密码
-				loadData(function(flag){
-					if(flag){
-						// 更新成功
-						successToolTipShow('更新成功！');
-					}else{
-						// 更新失败
-						toolTipShow('请重新操作!');
-					}
-				}, getContextPath() + '/provider/recover/password', $.toJSON({
-					loginName : $('#userName').text().trim(),
-					password : Encrypt($('#company-newPassword').val().trim())
-				}));
+		// 修改密码
+		loadData(function(data){
+			if(data.code==1){
+				// 更新成功
+				successToolTipShow('更新成功！');
 			}else{
-				// 不正确,提示不能修改密码
-				toolTipShow(info.value);
-				$('#company-password').focus();
+				// 更新失败
+				toolTipShow(data.result);
 			}
-		}, getContextPath() + '/provider/validateLoginStatus', $.toJSON({
+		}, getContextPath() + '/provider/recover/password', $.toJSON({
 			loginName : $('#userName').text().trim(),
-			password : Encrypt($('#company-password').val().trim())
+			password : Encrypt($('#company-newPassword').val().trim()),
+			verification_code:$("#upd-veritifyCode").val().trim()
 		}));
 	}
 }
 
+/**
+ * 获取验证码钮 点击事件
+ */
+function verification(phone,ID){
+	curCount = count;
+	// 发送验证码
+	loadData(function(flag){
+		if(flag){ // 发送成功
+			$('.codeBt').text('已发送('+ curCount +')');
+			// 设置 button 效果为禁用
+			$('.codeBt').attr('disabled','disabled');
+			InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+		}else{ // 发送不成功
+			// 显示重新发送
+			$('.codeBt').text('重新获取');
+			$('.codeBt').removeAttr('disabled');
+		}
+	}, getContextPath() + '/login/verification/' + phone, null);
 
+}
+
+//timer 处理函数
+function SetRemainTime(){
+	if(curCount == 0){
+		window.clearInterval(InterValObj); // 停止计时器
+		$('.codeBt').text('重新获取');
+		$('.codeBt').removeAttr('disabled')
+		// 清除session code
+		getData(function(data){
+			// 清除session code
+		}, getContextPath() + '/login/clear/code');
+		
+	}else{
+		curCount--;  
+		$(".codeBt").text('已发送('+ curCount +')');
+	}
+}
 function addAccount(){
 	if(checkData(3)){ // 检测数据完整性
 		// 检验当前密码是否正确
 		var loginName = $('#insUserName').val().trim();
-		loadData(function(info){
-			if(info){
-				// TODO:
+		loadData(function(data){
+			if(data.code==1){
 				$("#userName").text(loginName);
 				$("#loginpwdinsert").addClass("hide");
 				$("#loginpwdupdate").removeClass("hide");
+				$(".name-item").text($("#userName").text());
 			}else{
-				toolTipShow('设置失败！');	
+				toolTipShow(data.result);	
 			}
 		}, getContextPath() + '/provider/add/account', $.toJSON({
 			loginName : loginName,
 			password : Encrypt($('#insTwoPassword').val().trim()),
-			teamId : $("#company-id").val().trim()
+			teamId : $("#company-id").val().trim(),
+			verification_code:$("#veritifyCode").val().trim()
+			
 		}));
 	}
 }
@@ -343,21 +389,13 @@ function checkData(type){
 			return true;
 		case 2 : // 验证 安全信息
 			var loginName = $('#userName').text().trim();
-			var curPassword = $('#company-password').val().trim();
 			var newPassword = $('#company-newPassword').val().trim();
 			var comfrimPassword = $('#company-confirmPassword').val().trim();
-			
+			var veritifyCode = $('#upd-veritifyCode').val().trim();
 			if(loginName == '' || loginName == null || loginName == undefined){
 				toolTipShow('用户名为空，请重新登陆!');
 				return false;
 			}
-			
-			if(curPassword == '' || curPassword == null || curPassword == undefined){
-				popshow('company-password', '请填写密码!');
-				$('#company-password').focus();
-				return false;
-			}
-			
 			if(newPassword == '' || newPassword == null || newPassword == undefined){
 				popshow('company-newPassword', '密码不能少于6位!');
 				$('#company-newPassword').focus();
@@ -369,7 +407,6 @@ function checkData(type){
 				$('#company-confirmPassword').focus();
 				return false;
 			}
-			
 			if(newPassword.length < 6){
 				popshow('company-newPassword', '密码不能少于6位!');
 				$('#company-newPassword').focus();
@@ -380,11 +417,17 @@ function checkData(type){
 				toolTipShow('密码两次输入不一致');
 				return false;
 			}
+			if(veritifyCode == '' || veritifyCode == null || veritifyCode == undefined){
+				popshow('upd-veritifyCode', '请填写验证码!');
+				$('#upd-veritifyCode').focus();
+				return false;
+			}
 			return true;
 		case 3:
-			var insloginName = $('#insuserName').val().trim();
+			var insloginName = $('#insUserName').val().trim();
 			var newPassword = $('#insPassword').val().trim();
 			var comfrimPassword = $('#insTwoPassword').val().trim();
+			var veritifyCode = $('#veritifyCode').val().trim();
 			if(insUserName == '' || insUserName == null || insUserName == undefined){
 				popshow('insUserName','用户名不能为空');
 				$('#insUserName').focus();
@@ -401,6 +444,60 @@ function checkData(type){
 				loginName : insloginName
 			}));
 			if(x){
+				return false;
+			}
+			if(newPassword == '' || newPassword == null || newPassword == undefined){
+				popshow('insPassword', '密码不能少于6位!');
+				$('#insPassword').focus();
+				return false;
+			}
+			if(newPassword != comfrimPassword){
+				toolTipShow('密码两次输入不一致');
+				return false;
+			}
+			if(veritifyCode == '' || veritifyCode == null || veritifyCode == undefined){
+				popshow('veritifyCode', '请填写验证码!');
+				$('#veritifyCode').focus();
+				return false;
+			}
+			return true;
+		case 4:
+			var loginName = $('#userName').text().trim();
+			var newPassword = $('#company-newPassword').val().trim();
+			var comfrimPassword = $('#company-confirmPassword').val().trim();
+			if(loginName == '' || loginName == null || loginName == undefined){
+				toolTipShow('用户名为空，请重新登陆!');
+				return false;
+			}
+			if(newPassword == '' || newPassword == null || newPassword == undefined){
+				popshow('company-newPassword', '密码不能少于6位!');
+				$('#company-newPassword').focus();
+				return false;
+			}
+			
+			if(comfrimPassword == '' || comfrimPassword == null || comfrimPassword == undefined){
+				popshow('company-confirmPassword', '请填写确认密码!');
+				$('#company-confirmPassword').focus();
+				return false;
+			}
+			if(newPassword.length < 6){
+				popshow('company-newPassword', '密码不能少于6位!');
+				$('#company-newPassword').focus();
+				return false;
+			}
+			
+			if(newPassword != comfrimPassword){
+				toolTipShow('密码两次输入不一致');
+				return false;
+			}
+			return true;
+		case 5:
+			var insloginName = $('#insUserName').val().trim();
+			var newPassword = $('#insPassword').val().trim();
+			var comfrimPassword = $('#insTwoPassword').val().trim();
+			if(insUserName == '' || insUserName == null || insUserName == undefined){
+				popshow('insUserName','用户名不能为空');
+				$('#insUserName').focus();
 				return false;
 			}
 			if(newPassword == '' || newPassword == null || newPassword == undefined){
@@ -505,8 +602,34 @@ function getBusinessVal(){
 	});
 	return busArr;
 }
-
+//初始化绑定信息
 function checkBand(){
+	$("#qq").attr("class","");
+	$("#wechat").attr("class","");
+	$("#wb").attr("class","");
+	loadData(function(data){
+		if(data.qq==1){
+			$("#qq").addClass("band");
+		}else{
+			$("#qq").addClass("noBand");
+		}
+		if(data.wechat==1){
+			$("#wechat").addClass("band");
+		}else{
+			$("#wechat").addClass("noBand");
+		}
+		if(data.wb==1){
+			$("#wb").addClass("band");
+		}else{
+			$("#wb").addClass("noBand");
+		}
+		check();
+		//初始化第三方
+		userinfo_third.init();
+		
+	}, getContextPath() + '/provider/third/status');
+}
+function check(){
 	  
 	 var wechatWord = $('#wechatWord');
 	 var wechatBtn = $('#wechatBtn');
@@ -516,27 +639,183 @@ function checkBand(){
 	 var wbBtn = $('#wbBtn');
 	
 	if($('#wechat').hasClass('band')){
-		wechatWord.text('未绑定');
-		wechatBtn.text('绑定');
-	}else{
 		wechatWord.text('绑定');
 		wechatBtn.text('取消绑定');
+		$("#wechatBtn").attr("data-status","1");
+	}else{
+		wechatWord.text('未绑定');
+		wechatBtn.text('绑定');
+		$("#wechatBtn").attr("data-status","0");
 	}
 	
 	if($('#qq').hasClass('band')){
-		qqWord.text('未绑定');
-		qqBtn.text('绑定');
-	}else{
 		qqWord.text('绑定');
 		qqBtn.text('取消绑定');
+		$("#qqBtn").attr("data-status","1");
+	}else{
+		qqWord.text('未绑定');
+		qqBtn.text('绑定');
+		$("#qqBtn").attr("data-status","0");
 	}
 	
 	if($('#wb').hasClass('band')){
-		wbWord.text('未绑定');
-		wbBtn.text('绑定');
-	}else{
 		wbWord.text('绑定');
 		wbBtn.text('取消绑定');
+		$("#wbBtn").attr("data-status","1");
+	}else{
+		wbWord.text('未绑定');
+		wbBtn.text('绑定');
+		$("#wbBtn").attr("data-status","0");
 	}
 	
+}
+var userinfo_third = {
+		init:function(){
+			//qq登陆
+			this.qq();
+			//微信登陆
+			this.wechat();
+			//微博登陆
+			this.wb();
+		},
+		qq :function(){
+			$('#qqBtn').on('click',function(){
+				if($("#qqBtn").attr("data-status")==0){//去绑定
+					QC.Login.showPopup();
+					var paras = {};
+					//用JS SDK调用OpenAPI
+					QC.api("get_user_info", paras)
+					//指定接口访问成功的接收函数，s为成功返回Response对象
+					.success(function(s){
+						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+						QC.Login.getMe(function(openId, accessToken){
+							// 存入session
+							var condition = $.toJSON({
+								linkman : s.data.nickname,
+								teamPhotoUrl : s.data.figureurl,
+								thirdLoginType : 'qq',
+								qqUnique : openId,
+								uniqueId:openId
+							});
+							//个人中心绑定
+							userInfoToBind(condition);
+						});
+					})
+					.error(function(e){
+						// 回掉失败
+						alert('获取用户信息失败');
+					})
+					.complete(function(c){
+						// 完成请求回掉
+					})
+				}else{//取消绑定
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#qq').removeAttr("class").addClass("noBand");
+							check();
+							successToolTipShow();
+						}
+					}, getContextPath() + '/provider/unbind/third',  $.toJSON({
+						thirdLoginType:"qq"
+					}));
+				}
+			});
+		},
+		wechat:function(){
+//		/	 open model
+			$('#wechatBtn').on('click',function(){
+				if($("#wechatBtn").attr("data-status")==0){//去绑定
+					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wechat').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/provider/unbind/third',  $.toJSON({
+						thirdLoginType:"wechat"
+					}));
+				}
+			})
+		},
+		wb:function(){
+			$('#wbBtn').on('click',function(){
+				if($("#wbBtn").attr("data-status")==0){//去绑定
+					WB2.login(function() {
+						// 获取 用户信息
+						getWBUserData(function(o){
+							// 保存至session中，并跳转
+							var condition = $.toJSON({
+								linkman : o.screen_name,
+								teamPhotoUrl : o.profile_image_url,
+								thirdLoginType : 'weibo',
+								wbUnique : wb_uniqueId,
+								uniqueId:wb_uniqueId
+							});
+							userInfoToBind(condition);
+						});
+					});
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wb').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/provider/unbind/third',  $.toJSON({
+						thirdLoginType:"wb"
+					}));
+				}
+				
+			});
+		},
+}
+/*function userInfoToBind(condition){
+	var url = getContextPath() + '/provider/bind/third';
+	
+	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
+	
+	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+}*/
+function userInfoToBind(condition){
+	loadData(function(data){
+		if(data.code==1){
+			checkBand();
+			successToolTipShow();
+		}
+	}, getContextPath() + '/provider/bind/third',condition);
+}
+////获取微博用户信息
+function getWBUserData(callback){
+	WB2.anyWhere(function(W){
+		W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+			if(bStatus){
+				getWBUserInfo(W, oResult);
+				wb_uniqueId = oResult.uid;
+			}else{
+				alert('授权失败或错误!');
+			}
+		},{},{
+			method : 'GET'
+		});
+	});
+	
+	function getWBUserInfo(W,result){
+		W.parseCMD('/users/show.json', function(sResult, bStatus) {
+			if(bStatus) {
+				callback.call(this,sResult);
+			}
+			
+		}, {
+			'uid' : result.uid
+		}, {
+			method : 'GET'
+		});
+	}
 }
