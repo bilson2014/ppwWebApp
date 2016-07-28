@@ -30,6 +30,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.ThirdBind;
 import com.panfeng.film.resource.model.User;
@@ -567,7 +568,7 @@ public class LoginController extends BaseController {
 	@RequestMapping("/wechat/callback.do")
 	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
 			final ModelMap model) {
-
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (code != null && !"".equals(code)) {
 			WechatToken token = new WechatToken();
 			token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
@@ -615,37 +616,50 @@ public class LoginController extends BaseController {
 				// 获取到 用户信息后，写入session
 				if (wechat != null) {
 					User user = new User();
-					try {
-						user.setUserName(URLEncoder.encode(wechat.getNickname(), "UTF-8"));
-						user.setImgUrl(wechat.getHeadimgurl());
-						user.setlType("wechat");
+					if(null!=sessionInfo&&ValidateUtil.isValid(sessionInfo.getReqiureId())){//用户已经登录,个人资料页绑定
 						user.setUniqueId(token.getOpenid());
-						user.setWechatUnique(token.getOpenid());
-						model.put("userName", wechat.getNickname());
-						model.put("imgUrl", wechat.getHeadimgurl());
-						model.put("unique", token.getOpenid());
-						model.put("type", "wechat");
-						// 查询该用户是否存在
-						final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
-						final String json = HttpUtil.httpPost(url, user, request);
-						Map<String, Object> map = JsonUtil.toBean(json, Map.class);
-						if (null != map) {
-							int num = Integer.parseInt(String.valueOf(map.get("code")));
-							if (num == 2) {// 可直接登录
-								return new ModelAndView("redirect:/mgr/index");
-							} else if (num == 0) {// 不存在账户
-								model.put("code", "0");
-								return new ModelAndView("threeLogin", model);
-							} else if (num == 1) {// 存在账号,需要更新手机号
-								model.put("code", "1");
-								model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
-								return new ModelAndView("threeLogin", model);
+						user.setlType("wechat");
+						user.setId(sessionInfo.getReqiureId());
+						final String url = URL_PREFIX + "portal/user/info/bind";
+						String s = HttpUtil.httpPost(url, user, request);
+						Boolean b = JsonUtil.toBean(s, Boolean.class);
+						if(b) {
+							model.addAttribute("msg", "绑定成功");//返回页面用作提示绑定成功
+						}else model.addAttribute("msg", "该账号已经存在绑定");
+						return new ModelAndView("redirect:/user/info");
+					}else{
+						try {
+							user.setUserName(URLEncoder.encode(wechat.getNickname(), "UTF-8"));
+							user.setImgUrl(wechat.getHeadimgurl());
+							user.setlType("wechat");
+							user.setUniqueId(token.getOpenid());
+							user.setWechatUnique(token.getOpenid());
+							model.put("userName", wechat.getNickname());
+							model.put("imgUrl", wechat.getHeadimgurl());
+							model.put("unique", token.getOpenid());
+							model.put("type", "wechat");
+							// 查询该用户是否存在
+							final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
+							final String json = HttpUtil.httpPost(url, user, request);
+							Map<String, Object> map = JsonUtil.toBean(json, Map.class);
+							if (null != map) {
+								int num = Integer.parseInt(String.valueOf(map.get("code")));
+								if (num == 2) {// 可直接登录
+									return new ModelAndView("redirect:/mgr/index");
+								} else if (num == 0) {// 不存在账户
+									model.put("code", "0");
+									return new ModelAndView("threeLogin", model);
+								} else if (num == 1) {// 存在账号,需要更新手机号
+									model.put("code", "1");
+									model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
+									return new ModelAndView("threeLogin", model);
+								}
 							}
+							return new ModelAndView("redirect:/");
+						} catch (UnsupportedEncodingException e) {
+							logger.error("UserName Encode error on Wechat Login Process ...");
+							e.printStackTrace();
 						}
-						return new ModelAndView("redirect:/");
-					} catch (UnsupportedEncodingException e) {
-						logger.error("UserName Encode error on Wechat Login Process ...");
-						e.printStackTrace();
 					}
 				}
 			} else {

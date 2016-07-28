@@ -19,8 +19,8 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/juicer.js" var="juicerJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
-
 <spring:url value="/resources/img" var="imgPath"/>
 <spring:url value="/resources/images" var="imgPaths"/>
 <!DOCTYPE html>
@@ -53,7 +53,16 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
+	<script src="${juicerJs }"></script>
 	<script src="${userInfoJs }"></script>
+	
+	
+<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body>
 	<input type="hidden" id="user_sex" value="${user.sex }"/>
@@ -420,43 +429,42 @@
 						<div class="tooltip-showBand">
 							<label class="tooltip-message">修改成功!</label>
 						</div>
-								  <div class="band" id="wechat">
-								       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
-								       <div class="inLine vertical">
-								            <ul>
-								               <li>微信登录</li>
-								               <li class="bandWord" id="wechatWord"></li>
-								            </ul>
-								       </div>
-								       <div class="bandBtn" id="wechatBtn"></div>
-								  </div>
+						  <div class="noBand" id="wechat">
+						       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>微信登录</li>
+						               <li class="bandWord" id="wechatWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="wechatBtn"></div>
+						  </div>
 								  
-											 <div class="line"></div>
+						 <div class="line"></div>
 								  
-									    <div class="noBand" id="qq">
-										   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
-										       <div class="inLine vertical">
-										            <ul>
-										               <li>QQ账号</li>
-										               <li class="bandWord" id="qqWord"></li>
-										            </ul>
-										       </div>
-										       <div class="bandBtn" id="qqBtn"></div>
-										  </div>
+					    <div class="noBand" id="qq">
+						   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>QQ账号</li>
+						               <li class="bandWord" id="qqWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="qqBtn"></div>
+						  </div>
+						  
+						  <div class="line"></div>
 										  
-										  <div class="line"></div>
-										  
-								    <div class="noBand" id="wb">
-									   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
-									       <div class="inLine vertical">
-									            <ul>
-									               <li>微博账号</li>
-									               <li class="bandWord" id="wbWord"></li>
-									            </ul>
-									       </div>
-									       <div class="bandBtn" id="wbBtn"></div>
-									  </div>
-								  
+					    <div class="noBand" id="wb">
+						   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>微博账号</li>
+						               <li class="bandWord" id="wbWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="wbBtn"></div>
+						  </div>
 						</div>
 								
 							

@@ -1,7 +1,8 @@
 var InterValObj; // timer变量，控制时间 
 var count = 120; // 间隔函数，1秒执行 
 var curCount; // 当前剩余秒数 
-
+var wb_uniqueId;
+var qq_uniqueId;
 // 头像裁剪参数 
 var jcrop_api;
 var x;
@@ -796,7 +797,216 @@ function updateCoords(coords){
 }
 //图片裁剪功能 end
 
+function bandInfo(){
+	$('.three-band').slideDown('normal');
+	$("#qq").attr("class","");
+	$("#wechat").attr("class","");
+	$("#wb").attr("class","");
+	loadData(function(data){
+		if(data.qq==1){
+			$("#qq").addClass("band");
+		}else{
+			$("#qq").addClass("noBand");
+		}
+		if(data.wechat==1){
+			$("#wechat").addClass("band");
+		}else{
+			$("#wechat").addClass("noBand");
+		}
+		if(data.wb==1){
+			$("#wb").addClass("band");
+		}else{
+			$("#wb").addClass("noBand");
+		}
+		check();
+		//初始化第三方
+		userinfo_third.init();
+		
+	}, getContextPath() + '/user/third/status');
+}
 
+function check(){
+	  
+	 var wechatWord = $('#wechatWord');
+	 var wechatBtn = $('#wechatBtn');
+	 var qqWord = $('#qqWord');
+	 var qqBtn = $('#qqBtn');
+	 var wbWord = $('#wbWord');
+	 var wbBtn = $('#wbBtn');
+	
+	if($('#wechat').hasClass('band')){
+		wechatWord.text('绑定');
+		wechatBtn.text('取消绑定');
+		$("#wechatBtn").attr("data-status","1");
+	}else{
+		wechatWord.text('未绑定');
+		wechatBtn.text('绑定');
+		$("#wechatBtn").attr("data-status","0");
+	}
+	
+	if($('#qq').hasClass('band')){
+		qqWord.text('绑定');
+		qqBtn.text('取消绑定');
+		$("#qqBtn").attr("data-status","1");
+	}else{
+		qqWord.text('未绑定');
+		qqBtn.text('绑定');
+		$("#qqBtn").attr("data-status","0");
+	}
+	
+	if($('#wb').hasClass('band')){
+		wbWord.text('绑定');
+		wbBtn.text('取消绑定');
+		$("#wbBtn").attr("data-status","1");
+	}else{
+		wbWord.text('未绑定');
+		wbBtn.text('绑定');
+		$("#wbBtn").attr("data-status","0");
+	}
+	
+}
+
+var userinfo_third = {
+		init:function(){
+			//qq登陆
+			this.qq();
+			//微信登陆
+			this.wechat();
+			//微博登陆
+			this.wb();
+		},
+		qq :function(){
+			$('#qqBtn').on('click',function(){
+				if($("#qqBtn").attr("data-status")==0){//去绑定
+					QC.Login.showPopup();
+					var paras = {};
+					//用JS SDK调用OpenAPI
+					QC.api("get_user_info", paras)
+					//指定接口访问成功的接收函数，s为成功返回Response对象
+					.success(function(s){
+						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+						QC.Login.getMe(function(openId, accessToken){
+							// 存入session
+							var condition = $.toJSON({
+								userName : s.data.nickname,
+								imgUrl : s.data.figureurl,
+								uniqueId : openId,
+								lType : 'qq',
+								qqUnique : openId
+							});
+							//个人中心绑定
+							userInfoToBind(condition);
+						});
+					})
+					.error(function(e){
+						// 回掉失败
+						alert('获取用户信息失败');
+					})
+					.complete(function(c){
+						// 完成请求回掉
+					})
+				}else{//取消绑定
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#qq').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"qq"
+					}));
+				}
+			});
+		},
+		wechat:function(){
+//		/	 open model
+			$('#wechatBtn').on('click',function(){
+				if($("#wechatBtn").attr("data-status")==0){//去绑定
+					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wechat').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"wechat"
+					}));
+				}
+			})
+		},
+		wb:function(){
+			$('#wbBtn').on('click',function(){
+				if($("#wbBtn").attr("data-status")==0){//去绑定
+					WB2.login(function() {
+						// 获取 用户信息
+						getWBUserData(function(o){
+							// 保存至session中，并跳转
+							var condition = $.toJSON({
+								userName : o.screen_name,
+								imgUrl : o.profile_image_url,
+								uniqueId : wb_uniqueId,
+								lType : 'weibo',
+								wbUnique : wb_uniqueId
+							});
+							userInfoToBind(condition);
+						});
+					});
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wb').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"wb"
+					}));
+				}
+				
+			});
+		},
+}
+function userInfoToBind(condition){
+	var url = getContextPath() + '/user/bind/third';
+	
+	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
+	
+	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+}
+////获取微博用户信息
+function getWBUserData(callback){
+	WB2.anyWhere(function(W){
+		W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+			if(bStatus){
+				getWBUserInfo(W, oResult);
+				wb_uniqueId = oResult.uid;
+			}else{
+				alert('授权失败或错误!');
+			}
+		},{},{
+			method : 'GET'
+		});
+	});
+	
+	function getWBUserInfo(W,result){
+		W.parseCMD('/users/show.json', function(sResult, bStatus) {
+			if(bStatus) {
+				callback.call(this,sResult);
+			}
+			
+		}, {
+			'uid' : result.uid
+		}, {
+			method : 'GET'
+		});
+	}
+}
 /**
  * 更换手机模板
  */
@@ -857,44 +1067,5 @@ var userInfo_tpl={
 }
 
 
-function bandInfo(){
-	$('.three-band').slideDown('normal');
-	//$('.tooltip-showBand').slideDown('normal');
-	check();
-}
 
-function check(){
-	  
-	 var wechatWord = $('#wechatWord');
-	 var wechatBtn = $('#wechatBtn');
-	 var qqWord = $('#qqWord');
-	 var qqBtn = $('#qqBtn');
-	 var wbWord = $('#wbWord');
-	 var wbBtn = $('#wbBtn');
-	
-	if($('#wechat').hasClass('band')){
-		wechatWord.text('未绑定');
-		wechatBtn.text('绑定');
-	}else{
-		wechatWord.text('绑定');
-		wechatBtn.text('取消绑定');
-	}
-	
-	if($('#qq').hasClass('band')){
-		qqWord.text('未绑定');
-		qqBtn.text('绑定');
-	}else{
-		qqWord.text('绑定');
-		qqBtn.text('取消绑定');
-	}
-	
-	if($('#wb').hasClass('band')){
-		wbWord.text('未绑定');
-		wbBtn.text('绑定');
-	}else{
-		wbWord.text('绑定');
-		wbBtn.text('取消绑定');
-	}
-	
-}
 

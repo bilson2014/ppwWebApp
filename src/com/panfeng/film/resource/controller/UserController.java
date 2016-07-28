@@ -479,22 +479,60 @@ public class UserController extends BaseController{
 	/**
 	 * 删除 取消的自定义上传文件
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/third/status")
-	public Map<String, Object> thirdBindStatus(@RequestBody final User user){
-		Map<String, Object> map = new HashMap<String, Object>();
+	public Map<String, Object> thirdBindStatus(HttpServletRequest request){
+		Map<String, Object> result = new HashMap<String,Object>();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		User user = new User();
+		user.setId(sessionInfo.getReqiureId());
 		if(user != null){
-			final String path = user.getImgUrl();
-			// 删除文件
-			File file = new File(FILE_PROFIX + path);
-			if(file.exists()){
-				if(!file.isDirectory()){
-					file.delete();
-					serLogger.info("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl());
-				}
-			}
+			final String url = URL_PREFIX + "portal/user/third/status";
+			final String json = HttpUtil.httpPost(url, user,request);
+			result = JsonUtil.toBean(json, Map.class);
 		}
-		return map;
+		return result;
 	}
 	
+	/**
+	 * 个人中心绑定第三方
+	 * 如果第三方账号已经存在,不允许绑定
+	 */
+	@RequestMapping("/bind/third")
+	public ModelAndView bindThird(final HttpServletRequest request, final HttpServletResponse response,
+			final ModelMap model) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
+			final String json = request.getParameter("json");
+			final User user = new User().fromString(json, User.class);
+			user.setId(sessionInfo.getReqiureId());//填充用户id
+			
+			final String url = URL_PREFIX + "portal/user/info/bind";
+			String str = HttpUtil.httpPost(url, user, request);
+			Boolean b = JsonUtil.toBean(str, Boolean.class);
+			if(b) {
+				model.addAttribute("msg", "绑定成功");//返回页面用作提示绑定成功
+			}else model.addAttribute("msg", "该账号已经存在绑定");
+		} catch (Exception e) {
+			logger.error("OAthur encoding error ...");
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/user/info");
+	}
 	
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unbind/third")
+	public boolean unBindThird(@RequestBody final User user,final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		// 查询该用户是否存在
+		final String url = URL_PREFIX + "portal/user/info/unbind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
 }
