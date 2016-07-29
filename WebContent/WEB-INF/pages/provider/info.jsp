@@ -73,6 +73,7 @@
 			<li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">基本信息</a></li>
 			<li role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li>
 			<li role="presentation"><a href="#logo" aria-controls="logo" role="tab" data-toggle="tab">供应商LOGO</a></li>
+			<li role="presentation"><a href="#changephone" aria-controls="changephone" role="tab" data-toggle="tab">更换手机</a></li>
 			<li role="presentation"><a href="#band" aria-controls="band" role="tab" data-toggle="tab">三方绑定</a></li>
 		</ul>
 
@@ -126,7 +127,7 @@
 							<div class="form-group">
 								<label for="company-phoneNumber" class="col-sm-2 control-label">手机号码</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
+									<input type="text" readonly class="form-control" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
 								</div>
 								<span style="color:red;">*</span>
 							</div>
@@ -515,7 +516,35 @@
 					</div>
 				</div>
 			</div>
-			
+			<div role="tabpanel" class="tab-pane fade in" id="changephone">
+				<div class="form-wrap" id="phone-change">
+					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
+						<fieldset>
+							<!-- 成功提示框 start -->
+							<div class="tooltip-success-show" style="display: none;">
+								<label class="tooltip-success-message">信息更新成功</label>
+							</div>
+							<!-- 成功提示框  end -->
+							<!-- 错误提示框 start -->
+							<div class="tooltip-show" style="display: none;">
+								<label class="tooltip-message"></label>
+							</div>
+							<!-- 错误提示框  end -->
+							<div id="old-phone-container">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">原手机号</label>
+									<label class="col-sm-6 control-label field-label" style="text-align: left;" id="provider-phone">${provider.phoneNumber }</label>
+								</div>
+							</div>
+							<div id='old-content'>
+							</div>
+							<div id="new-phone-content">
+							</div>
+							
+						</fieldset>
+					</form>
+				</div>
+			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="band">
 			<!-- 成功提示框 start -->
 			<div class="tooltip-success-show" style="display: none;">

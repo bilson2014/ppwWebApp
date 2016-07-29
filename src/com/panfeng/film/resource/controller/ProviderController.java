@@ -42,6 +42,7 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
@@ -1671,5 +1672,25 @@ public class ProviderController extends BaseController {
 		String str = HttpUtil.httpPost(url, team, request);
 		Boolean b = JsonUtil.toBean(str, Boolean.class);
 		return b;
+	}
+	/**
+	 * 修改供应商手机号码
+	 */
+	@RequestMapping("/modify/phone")
+	public boolean modifyUserPhone(@RequestBody final Team team,
+			final HttpServletRequest request){
+		if(team != null){
+			final String code = (String) request.getSession().getAttribute("code");
+			if(code != null && !"".equals(code)){
+				if(code.equals(team.getVerification_code())){
+					// 修改 用户密码
+					final String url = URL_PREFIX + "portal/team/modify/phone";
+					final String json = HttpUtil.httpPost(url, team,request);
+					final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					return result;
+				}
+			}
+		}
+		return false;
 	}
 }

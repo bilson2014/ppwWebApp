@@ -723,12 +723,13 @@ public class PCController extends BaseController {
 	public boolean phoneValidate(@RequestBody final User user,
 			final HttpServletRequest request) {
 
-		final String code = (String) request.getSession().getAttribute("userCode");
+		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		if (ValidateUtil.isValid(code) && ValidateUtil.isValid(codeOfphone)) {
 			return	code.equals(user.getVerification_code())&&codeOfphone.equals(user.getTelephone());	
 		}else return false;
 	}
+	
 	
 	/**
 	 * 验证登录者是否完善登录名,密码

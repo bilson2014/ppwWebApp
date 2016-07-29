@@ -10,6 +10,7 @@ var browserCfg = {};
 var localAddress;
 var sessionId;
 var editor;
+oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
 	createEditor('textarea[name="pageDescription"]');
@@ -93,6 +94,7 @@ $().ready(function(){
 		$('#picLDFile').unbind('change');
 		$('#picLDFile').bind('change',function(){
 			checkFile('picLDFile');
+			showPic("picLDFile","LDImg","video-picLD-div");
 		});
 	});
 	
@@ -101,6 +103,7 @@ $().ready(function(){
 		$('#picHDFile').unbind('change');
 		$('#picHDFile').bind('change',function(){
 			checkFile('picHDFile');
+			showPic("picHDFile","HDImg","video-picHD-div");
 		});
 	});
 	
@@ -762,6 +765,14 @@ function cancleUpdate(){
 	$('#cancleUpdate').on('click',function(){
 		$('#warmModel').modal('hide');
 	});
-	
-	
 }
+function showPic(inputFile,imgID,container){
+	 if (document.getElementById(inputFile).files.length === 0) { return; }
+	  var oFile = document.getElementById(inputFile).files[0];
+	  if (!rFilter.test(oFile.type)) { alert("只能选择图片文件!"); return; }
+	  oFReader.readAsDataURL(oFile);
+	  oFReader.onload = function (oFREvent) {
+	  	$("#"+container).show();
+	    document.getElementById(imgID).src = oFREvent.target.result;
+	  };
+}	

@@ -154,7 +154,7 @@ public class UserController extends BaseController{
 		map.put("code", 0);
 		map.put("msg", "信息修改失败，请刷新后再试!");
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("userCode");
+			final String code = (String) request.getSession().getAttribute("code");
 			if (!"".equals(code) && code != null) {
 				if (code.equals(user.getVerification_code())) {
 					final long userId = user.getId();
@@ -192,7 +192,7 @@ public class UserController extends BaseController{
 			@PathVariable("telephone") final String telephone){
 		
 		final String code = DataUtil.random(true, 6);
-		request.getSession().setAttribute("userCode", code); // 存放验证码
+		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		final boolean ret = smsService.smsSend(telephone, code);
 		
@@ -210,7 +210,7 @@ public class UserController extends BaseController{
 			final HttpServletRequest request){
 		
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("userCode");
+			final String code = (String) request.getSession().getAttribute("code");
 			if(code != null && !"".equals(code)){
 				if(code.equals(user.getVerification_code())){
 					
@@ -238,7 +238,7 @@ public class UserController extends BaseController{
 	@RequestMapping("/clear/code")
 	public int clearCode(final HttpServletRequest request){
 		
-		request.getSession().removeAttribute("userCode");
+		request.getSession().removeAttribute("code");
 		return 0;
 	}
 	

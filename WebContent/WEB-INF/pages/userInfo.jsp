@@ -387,43 +387,10 @@
 										<label id="concat_tele_old">${user.telephone }</label>
 									</div>
 								</div>
-								
-								
 								<div class="phone-bind">
-								
 								</div>
-								<!--  
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">新手机号</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="concat_tele_new" tabindex="1" placeholder="请输入新手机号" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="label-telephone" class="label-message hide" >请输入正确的手机号码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">验证码</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
-									</div>
-									<div class="col-sm-3">
-										<button type="button" class="btn btn-default" id="codeBt">获取验证码</button>
-									</div>
-									<div class="col-sm-4">
-										<label id="label-code" class="label-message hide" >请输入验证码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"> </label>
-									<div class="col-sm-5">
-										<button type="button" class="btn btn-primary" id="phone-info-contentBt" >修改</button>
-									</div>
-								</div>
-							-->
 							</form>
 						</div>
-						
 						<div class="three-band information">
 						<!-- 提示框 -->
 						<div class="tooltip-showBand">

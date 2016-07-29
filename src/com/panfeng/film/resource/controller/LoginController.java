@@ -410,7 +410,7 @@ public class LoginController extends BaseController {
 	public BaseMsg modifyLogName(final HttpServletRequest request, @RequestBody final User user) {
 		try {
 			final HttpSession session = request.getSession();
-			final String code = (String) session.getAttribute("userCode");
+			final String code = (String) session.getAttribute("code");
 			if (!"".equals(code) && code != null) {
 				if (code.equals(user.getVerification_code())) {
 					if (user != null && ValidateUtil.isValid(user.getPassword()) && ValidateUtil.isValid(user.getLoginName())) {

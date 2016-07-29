@@ -2,6 +2,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
+	provider_info.init();
 	
 	// 显示Logo
 	var logoPath = $('#logoPath').val().trim();
@@ -204,7 +205,7 @@ function safeInfo(){
 /**
  * 获取验证码钮 点击事件
  */
-function verification(phone,ID){
+function verification(phone){
 	curCount = count;
 	// 发送验证码
 	loadData(function(flag){
@@ -509,6 +510,25 @@ function checkData(type){
 				toolTipShow('密码两次输入不一致');
 				return false;
 			}
+			return true;
+		case 6:
+			var telephone = $('#provider-newphone').val().trim();
+			var verification_code = $('#provider-phonecode').val().trim();
+			
+			if(telephone == '' || telephone == null || telephone == undefined){
+				$('#label-telephone').removeClass('hide');
+				return false;
+			}else{
+				$('#label-telephone').addClass('hide');
+			}
+			
+			if(verification_code == '' || verification_code == null || verification_code == undefined){
+				$('#label-code').removeClass('hide');
+				return false;
+			}else{
+				$('#label-code').addClass('hide');
+			}
+			
 			return true;
 		default: // 其他
 			return false;
@@ -819,3 +839,150 @@ function getWBUserData(callback){
 		});
 	}
 }
+
+//add by wanglc
+var provider_info = {
+		init:function(){
+			//更换手机获取验证码验证旧手机
+			this.changePhone();
+			
+		},
+		changePhone:function(){
+			$("#old-content").empty().append(info_tpl.tpl_old_phone);
+			// 激活 获取验证码 按钮
+			getVeritifyCodeValidate();
+			//点击验证
+			$("#code-validate").off("click").on("click",function(){
+				var veritifyCode = $("#provider-phoneCode").val().trim();
+				if(null!=veritifyCode&&veritifyCode!=''&&veritifyCode!=undefined){
+					loadData(function(result){
+						if(result){
+							window.clearInterval(InterValObj);
+							$("#new-phone-content").empty().append(info_tpl.tpl_new_phone);
+							$("#old-content").empty();
+							$("#old-phone-container").addClass("hide");
+							getVeritifyCodeValidate();
+							// 注册 个人资料-修改按钮点击事件
+							$('#newphone-save').unbind('click');
+							$('#newphone-save').bind('click',function(){
+								var newPhone = $('#provider-newphone').val().trim();
+								if(checkData(6)){
+									loadData(function(result){
+										if(result){
+											window.clearInterval(InterValObj);
+											$("#new-phone-content").empty();
+											$("#old-phone-container").removeClass("hide");
+											$("#provider-phone").text(newPhone);
+											$("#old-content").empty().append(info_tpl.tpl_old_phone);
+											$('.tooltip-message').text('电话修改成功!');
+										}else{
+											$('.tooltip-message').text('电话修改失败!');
+										}
+									}, getContextPath() + '/provider/modify/phone', $.toJSON({
+										teamId : $('#company-id').val(),
+										phoneNumber : newPhone,
+										verification_code : $('#provider-phonecode').val().trim()
+									}));
+								}
+							});
+						}else{
+							$("#label-code-phone-error").removeClass("hide");
+						}
+					}, getContextPath() + '/phone/validate', $.toJSON({
+						telephone : $("#provider-phone").text().trim(),
+						verification_code : $("#provider-phoneCode").val().trim()
+					}));
+				}else{
+					$('#label-code-phone').removeClass('hide');
+					return false;
+				}
+			})
+		}
+}
+function getVeritifyCodeValidate(){
+	$('#phone-codeBt').unbind('click');
+	$('#phone-codeBt').bind('click',function(){
+	var flag = $("#phone-codeBt").attr("data-flag");
+	var phoneNum = $('#provider-phone').text().trim();
+		var flag = $("#phone-codeBt").attr("data-flag");
+		if(flag=='new-bind'){//新手机获取验证码
+			var concat_tele_new = $("#provider-newphone").val().trim();
+			if(concat_tele_new == '' || concat_tele_new == null || concat_tele_new == undefined){
+				$("#label-telephone").removeClass("hide").text("请输入正确的手机号码");
+				return false;
+			}
+			loadData(function(flag){
+				if(flag){
+					// 注册过
+					$('#label-telephone').text('您输入的手机号码已被注册');
+					$('#label-telephone').removeClass('hide');
+				}else{ // 未注册
+					$('#label-telephone').addClass('hide');
+					verification(concat_tele_new);
+				}
+			}, getContextPath() + '/provider/checkExisting', $.toJSON({
+				telephone : concat_tele_new
+			}));
+		}else{//老手机获取验证码
+			verification(phoneNum);
+		}
+	});
+}
+var info_tpl = {
+	//旧手机模板
+	tpl_old_phone:[
+	'<div class="form-group">',
+	'	<label class="col-sm-2 control-label">验证码</label>',
+	'	<div class="col-sm-3">',
+	'		<input type="text" class="form-control" id="provider-phoneCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />',
+	'	</div>',
+	'	<div class="col-sm-3">',
+	'		<button type="button" class="btn btn-default phonecodeBt codeBt" data-flag="old-bind" id="phone-codeBt">获取验证码</button>',
+	'	</div>',
+	'	<div class="col-sm-3">',
+	'		<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
+	'		<label id="label-code-phone-error" class="label-message hide" >验证码错误</label>',
+	'	</div>',
+	'</div>',
+	'<div class="form-group">',
+	'	<div class="col-sm-offset-2 col-sm-6">',
+	'		<button type="button" class="btn btn-default" id="code-validate">验证</button>',
+	'	</div>',
+	'</div>'
+	 ].join(""),
+	//新手机模板
+	tpl_new_phone:[
+	'<div class="form-group">',
+	'	<label class="col-sm-2 control-label">新手机号</label>',
+	'	<div class="col-sm-3">',
+	'		<input type="text" class="form-control" id="provider-newphone" tabindex="2" placeholder="请输入新手机号" autocomplete="off" />',
+	'	</div>',
+	'	<div class="col-sm-5">',
+	'		<label id="label-telephone" class="label-message hide" >请输入正确的手机号码</label>',
+	'	</div>',
+	'</div>',
+	'<div class="form-group">',
+	'	<label class="col-sm-2 control-label">验证码</label>',
+	'	<div class="col-sm-3">',
+	'		<input type="text" class="form-control" id="provider-phonecode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />',
+	'	</div>',
+	'	<div class="col-sm-3">',
+	'		<button type="button" class="btn btn-default codeBt"  data-flag="new-bind" id="phone-codeBt">获取验证码</button>',
+	'	</div>',
+	'	<div class="col-sm-4">',
+	'		<label id="upd-label-code" class="label-message hide" >请输入验证码</label>',
+	'		<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>',
+	'	</div>',
+	'</div>',
+	'<div class="form-group">',
+	'	<div class="col-sm-offset-2 col-sm-6">',
+	'		<button type="button" class="btn btn-default" id="newphone-save">保存</button>',
+	'	</div>',
+	'</div>'
+	 ].join(""),
+}
+
+
+
+
+
