@@ -10,6 +10,7 @@
 <spring:url value="/resources/css/provider/upload.css" var="providerUploadCss"/>
 <spring:url value="/resources/lib/kindeditor/themes/default/default.css" var="defaultCss" />
 <spring:url value="/resources/lib/kindeditor/plugins/code/prettify.css" var="prettifyCss" />
+<spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
@@ -24,6 +25,8 @@
 <spring:url value="/resources/lib/kindeditor/lang/zh_CN.js" var="kindeditorzhJs" />
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/upload.js" var="providerUploadJs"/>
+<spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
+<spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
 
 <!-- imgPath -->
 <spring:url value="/resources/img" var="imgPath"/>
@@ -47,6 +50,7 @@
 	<link rel="stylesheet" href="${defaultCss }">
 	<link rel="stylesheet" href="${prettifyCss }">
 	<link rel="stylesheet" href="${providerUploadCss }">
+	<link rel="stylesheet" href="${datepickerCss }">
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -103,6 +107,13 @@
 						<label for="video-switch" class="col-sm-2 control-label">是否可见</label>
 						<div class="col-sm-3">
 							<input type="checkbox" id="video-switch" name="video-switch" value="${model.visible }">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="video-switch" class="col-sm-2 control-label">创作时间</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="creationTime" placeholder="请选择作品创作时间" readonly="readonly" value="${model.creationTime }">
 						</div>
 					</div>
 					
@@ -251,5 +262,7 @@
 <script src="${kindeditorzhJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${providerUploadJs }"></script>
+<script src="${datepickerJs }" ></script>
+<script src="${datepickerZHJs }" ></script>
 </body>
 </html>

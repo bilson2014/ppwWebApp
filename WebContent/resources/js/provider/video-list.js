@@ -31,6 +31,7 @@ var video = {
 		register : function() {
 			$('.btn-update').on('click',modify); // 注册修改事件
 			$('.btn-danger').on('click',delProduct); // 注册 删除事件
+			$('.btn-setMaster').on('click',setMaster);
 			// 注册 上传 按钮点击事件
 			$('#uploadBt').on('click',function(){
 				$('#content-frame', parent.document).prop('src',getContextPath() + '/provider/product/upload/' + $('#company-key').val() + '/0');
@@ -124,4 +125,14 @@ function delProduct() {
 			$('.nav-stacked li:nth-child(2)', parent.document).click();
 		}, getContextPath() + '/provider/delete/product/' + pKey, null);
 	}
+}
+// 设置代表作
+function setMaster(){
+	var productId  = $(this).attr('data-id');
+	loadData(function(){
+		$('.nav-stacked li:nth-child(2)', parent.document).click();
+	}, getContextPath() + '/provider/set/masterWork',$.toJSON({
+		productId : productId,
+		teamId:$('#company-key').val()
+	}));
 }

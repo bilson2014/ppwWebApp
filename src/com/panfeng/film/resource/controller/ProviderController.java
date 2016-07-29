@@ -1595,4 +1595,11 @@ public class ProviderController extends BaseController {
 		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
 		return new ModelAndView("/updatePwd", modelMap);
 	}
+	
+	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public boolean setMasterWork(@RequestBody final Product product,HttpServletRequest request) {
+		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
+		HttpUtil.httpPost(updateUrl, product, request);
+		return true;
+	}
 }

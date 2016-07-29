@@ -66,7 +66,28 @@ public class Product extends BaseObject {
 	
 	private String sessionId = null; // 临时文件夹
 	
+	private String creationTime = null; // 创作时间
 	
+	private Integer masterWork = null; // 推荐作品，0为正常 1 为推荐 
+	
+	
+	
+	public String getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public Integer getMasterWork() {
+		return masterWork;
+	}
+
+	public void setMasterWork(Integer masterWork) {
+		this.masterWork = masterWork;
+	}
+
 	public String getSessionId() {
 		return sessionId;
 	}
