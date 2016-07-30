@@ -144,7 +144,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="page" >
+	<div class="page hide" id="page" >
 	
 		<div class="left-page" >
 			<div class="left-title">

@@ -1,7 +1,7 @@
 var InterValObj; // timer变量，控制时间 
 var count = 120; // 间隔函数，1秒执行 
 var curCount; // 当前剩余秒数 
-
+var PopInterValObj,oTimer,successIntervalObj; // timer变量，控制时间
 // 头像裁剪参数 
 var jcrop_api;
 var x;
@@ -858,8 +858,8 @@ var userInfo_tpl={
 
 function bandInfo(){
 	$('.three-band').slideDown('normal');
-	//$('.tooltip-showBand').slideDown('normal');
 	check();
+	successToolTipShow();
 }
 
 function check(){
@@ -895,5 +895,16 @@ function check(){
 		wbBtn.text('取消绑定');
 	}
 	
+}
+
+//成功信息 提示框弹出方法
+function successToolTipShow(){
+	window.clearInterval(successIntervalObj);
+	$('.tooltip-showBand').slideDown('normal');
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}
+
+function hideSuccessTooltip(){
+	$('.tooltip-showBand').hide('normal');
 }
 

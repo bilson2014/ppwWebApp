@@ -16,9 +16,6 @@ $().ready(function(){
 		$('.tooltip-success-show').hide();
 	})
 	
-	//初始化綁定信息
-	checkBand();
-	
 	// 注册基本信息保存按钮
 	$('#infoBt').on('click',infoSave);
 	// 注册安全设置保存按钮
@@ -540,3 +537,4 @@ function checkBand(){
 	}
 	
 }
+

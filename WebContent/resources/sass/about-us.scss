@@ -65,9 +65,7 @@
 }
 
  .image-1 {
-    
- 
-     width: 100%;
+    width: 100%;
     @include media_screen_height(440px,470px,540px);
     background: url('../images/introduce/about-us/about-us-1.jpg') no-repeat;
     background-size: cover;

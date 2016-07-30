@@ -700,7 +700,7 @@
 .final-price-label {
 	position: relative;
 	color: #fe5453;
-	font-size: 1.4rem;
+	font-size: $font-size-base;
 	left: -280px;
 	top: 30px;
 }
@@ -708,7 +708,7 @@
 .user-price-label {
 	position: relative;
 	color: #fe5453;
-	font-size: 1.4rem;
+	font-size:$font-size-base;
 	left: -195px;
 	top: 30px;
 }
@@ -717,7 +717,7 @@
 .final-price-left-label{
 	position: relative;
 	color: #fe5453;
-	font-size: 1.4rem;
+	font-size:$font-size-base;
 	left: 655px;
 	top: 10px;
 }
@@ -725,7 +725,7 @@
 .provider-price-left-label{
  	position: relative;
 	color: #fe5453;
-	font-size: 1.4rem;
+	font-size: $font-size-base;
 	left: -85px;
 	top: 87px;
  
@@ -833,7 +833,7 @@
 
 .userPriceTitle{
 	    width: 150px;
-    font-size: 1.4rem;
+    font-size: $font-size-base;
     color: #666;
     padding-left: 50px;
 }

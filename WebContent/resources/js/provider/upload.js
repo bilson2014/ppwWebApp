@@ -762,6 +762,4 @@ function cancleUpdate(){
 	$('#cancleUpdate').on('click',function(){
 		$('#warmModel').modal('hide');
 	});
-	
-	
 }
