@@ -100,30 +100,13 @@
 
 	<div class="page" >
 
-
- 
-
 	      <div class="step">
 
-
-  <div class="step-bar" id="step-bar">
-      <div class="first">1.基本信息</div>
-      <div class="first">2.详细信息</div>
-      <div class="first">3.注册完成</div>
-  </div>
-
-
-
-	      	        <!--   <div class="step-title">
-                                           <div class="step-bar step-1">
-                                            <div class="first">1. 填写基本资料</div>
-                                            <div class="second">2. 注册完成</div>
-                                           </div>
-                                      <div class="step-bar step-2">
-                                                <div class="first">1. 填写基本资料</div>
-                                                <div class="second">2. 注册完成</div>
-                                        </div>
-                  </div>   -->
+			  <div class="step-bar" id="step-bar">
+			      <div class="first">1.基本信息</div>
+			      <div class="first">2.详细信息</div>
+			      <div class="first">3.注册完成</div>
+			  </div>
 
 	      		 <div class="step-one-div" id="step1" data-step="1">
   	 				      <div class="input-group-div">
@@ -169,9 +152,8 @@
 
                 <div class="step-two-div hide" id="step2" data-step="2">
 
-<<<<<<< HEAD
                 <div class="input-group-div">
-  	      			<span for="company-city" class="title-word">所在城市</span>	
+  	      			<span for="company-city" class="title-word">所在省</span>	
 							<select class="step-two-select-city form-control" id="company-province"   >
 								<c:if test="${!empty provinces}">
 									<c:forEach items="${provinces }" var="source" varStatus="status">
@@ -183,7 +165,7 @@
 								</c:if>
 							</select>
 									
-					<span for="company-city" class="title-word-city">所在省</span>	
+					<span for="company-city" class="title-word-city">所在城市</span>	
 							<select class="step-two-select-city form-control"  id="company-city">
 								<c:if test="${!empty citys}">
 									<c:forEach items="${citys }" var="source" varStatus="status">
@@ -195,20 +177,7 @@
 								</c:if>
 							</select>
   	      		</div>
-=======
-                	 <div class="input-group-div">
-  	      		       	 	  <span for="company-city" class="title-word">所在省</span>	
-  	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
-									<select class="step-two-select-city form-control" id="company-city" >
-									</select>
-									
-									  <span for="company-city" class="title-word-city">所在市</span>	
-  	      					  <input type="hidden" id="company-city-value" value="${provider.city }"/>
-									<select class="step-two-select-city form-control" id="" >
-									</select>
-  	      				  </div>
 
->>>>>>> 10a808dfcc09026f033513f2d2d0a609d90d9626
   	      			 <div class="input-group-div">
   	      		       	 	  <span for="company-priceRange" class="title-word">价格区间</span>	
   	      					  <input type="hidden" id="company-priceRange-value" value="${provider.priceRange }"/>
