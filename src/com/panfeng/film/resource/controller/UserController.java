@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.PhotoCutParam;
@@ -153,7 +154,7 @@ public class UserController extends BaseController{
 		map.put("code", 0);
 		map.put("msg", "信息修改失败，请刷新后再试!");
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("userCode");
+			final String code = (String) request.getSession().getAttribute("code");
 			if (!"".equals(code) && code != null) {
 				if (code.equals(user.getVerification_code())) {
 					final long userId = user.getId();
@@ -191,7 +192,7 @@ public class UserController extends BaseController{
 			@PathVariable("telephone") final String telephone){
 		
 		final String code = DataUtil.random(true, 6);
-		request.getSession().setAttribute("userCode", code); // 存放验证码
+		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		final boolean ret = smsService.smsSend(telephone, code);
 		
@@ -209,7 +210,7 @@ public class UserController extends BaseController{
 			final HttpServletRequest request){
 		
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("userCode");
+			final String code = (String) request.getSession().getAttribute("code");
 			if(code != null && !"".equals(code)){
 				if(code.equals(user.getVerification_code())){
 					
@@ -237,7 +238,7 @@ public class UserController extends BaseController{
 	@RequestMapping("/clear/code")
 	public int clearCode(final HttpServletRequest request){
 		
-		request.getSession().removeAttribute("userCode");
+		request.getSession().removeAttribute("code");
 		return 0;
 	}
 	
@@ -476,4 +477,53 @@ public class UserController extends BaseController{
 		return new ModelAndView("/updatePwd", modelMap);
 	}
 	
+	/**
+	 * 第三方绑定状态
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/third/status")
+	public Map<String, Object> thirdBindStatus(HttpServletRequest request){
+		Map<String, Object> result = new HashMap<String,Object>();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		User user = new User();
+		user.setId(sessionInfo.getReqiureId());
+		final String url = URL_PREFIX + "portal/user/third/status";
+		final String json = HttpUtil.httpPost(url, user,request);
+		result = JsonUtil.toBean(json, Map.class);
+		return result;
+	}
+	
+	/**
+	 * 个人中心绑定第三方
+	 * 如果第三方账号已经存在,不允许绑定
+	 */
+	@RequestMapping("/bind/third")
+	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
+			@RequestBody final User user) {
+		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		final String url = URL_PREFIX + "portal/user/info/bind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		if(b) {
+			baseMsg.setCode(1);
+			baseMsg.setResult("绑定成功");
+		}else baseMsg.setResult("账号存在绑定");
+		return baseMsg;
+	}
+	
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unbind/third")
+	public boolean unBindThird(@RequestBody final User user,final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		// 查询该用户是否存在
+		final String url = URL_PREFIX + "portal/user/info/unbind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
 }

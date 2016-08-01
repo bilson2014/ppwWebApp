@@ -19,8 +19,8 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/juicer.js" var="juicerJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
-
 <spring:url value="/resources/img" var="imgPath"/>
 <spring:url value="/resources/images" var="imgPaths"/>
 <!DOCTYPE html>
@@ -53,7 +53,16 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
+	<script src="${juicerJs }"></script>
 	<script src="${userInfoJs }"></script>
+	
+	
+<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body>
 	<input type="hidden" id="user_sex" value="${user.sex }"/>
@@ -101,7 +110,7 @@
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item header-name" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
@@ -253,10 +262,10 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">验证码</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
+										<input type="text" class="form-control" id="veritifyCode-pwd" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>
+										<button type="button" data-flag="new-bind" class="btn btn-default codeBt" id="codeBt">获取验证码</button>
 									</div>
 									<div class="col-sm-4">
 										<label id="label-code" class="label-message hide" >请输入验证码</label>
@@ -320,7 +329,7 @@
 										<input type="text" class="form-control" id="upd-veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" class="btn btn-default" id="upd-codeBt">获取验证码</button>
+										<button type="button" class="btn btn-default codeBt" id="upd-codeBt">获取验证码</button>
 									</div>
 									<div class="col-sm-4">
 										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
@@ -378,85 +387,51 @@
 										<label id="concat_tele_old">${user.telephone }</label>
 									</div>
 								</div>
-								
-								
 								<div class="phone-bind">
-								
 								</div>
-								<!--  
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">新手机号</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="concat_tele_new" tabindex="1" placeholder="请输入新手机号" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="label-telephone" class="label-message hide" >请输入正确的手机号码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">验证码</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
-									</div>
-									<div class="col-sm-3">
-										<button type="button" class="btn btn-default" id="codeBt">获取验证码</button>
-									</div>
-									<div class="col-sm-4">
-										<label id="label-code" class="label-message hide" >请输入验证码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"> </label>
-									<div class="col-sm-5">
-										<button type="button" class="btn btn-primary" id="phone-info-contentBt" >修改</button>
-									</div>
-								</div>
-							-->
 							</form>
 						</div>
-						
 						<div class="three-band information">
 						<!-- 提示框 -->
 						<div class="tooltip-showBand">
 							<label class="tooltip-message">修改成功!</label>
 						</div>
-								  <div class="band" id="wechat">
-								       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
-								       <div class="inLine vertical">
-								            <ul>
-								               <li>微信登录</li>
-								               <li class="bandWord" id="wechatWord"></li>
-								            </ul>
-								       </div>
-								       <div class="bandBtn" id="wechatBtn"></div>
-								  </div>
+						  <div class="noBand" id="wechat">
+						       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>微信登录</li>
+						               <li class="bandWord" id="wechatWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="wechatBtn"></div>
+						  </div>
 								  
-											 <div class="line"></div>
+						 <div class="line"></div>
 								  
-									    <div class="noBand" id="qq">
-										   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
-										       <div class="inLine vertical">
-										            <ul>
-										               <li>QQ账号</li>
-										               <li class="bandWord" id="qqWord"></li>
-										            </ul>
-										       </div>
-										       <div class="bandBtn" id="qqBtn"></div>
-										  </div>
+					    <div class="noBand" id="qq">
+						   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>QQ账号</li>
+						               <li class="bandWord" id="qqWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="qqBtn"></div>
+						  </div>
+						  
+						  <div class="line"></div>
 										  
-										  <div class="line"></div>
-										  
-								    <div class="noBand" id="wb">
-									   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
-									       <div class="inLine vertical">
-									            <ul>
-									               <li>微博账号</li>
-									               <li class="bandWord" id="wbWord"></li>
-									            </ul>
-									       </div>
-									       <div class="bandBtn" id="wbBtn"></div>
-									  </div>
-								  
+					    <div class="noBand" id="wb">
+						   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+						       <div class="inLine vertical">
+						            <ul>
+						               <li>微博账号</li>
+						               <li class="bandWord" id="wbWord"></li>
+						            </ul>
+						       </div>
+						       <div class="bandBtn" data-status="0" id="wbBtn"></div>
+						  </div>
 						</div>
 								
 							
