@@ -116,7 +116,7 @@
 		        <ul>
 		           <li>
 		                  <div class="infoHeadSide">
-			                 <img class="infoHead" src="${imgPath}/provder/providerHead.jpg">
+			                 <img class="infoHead" id="infoHead" src="${provider.teamPhotoUrl }">
 			              </div>  
 		           </li>
 		           <li class="providerName">${provider.teamName }</li>
