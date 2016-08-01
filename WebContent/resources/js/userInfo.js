@@ -23,12 +23,12 @@ var AllowExt=".jpg|.gif" //允许上传的文件类型 ŀ为无限制 每个扩�
 var AllowImgFileSize=70;  //允许上传图片文件的大小 0为无限制  单位：KB
 var FileObj,ImgFileSize,FileExt,ErrMsg,FileMsg,HasCheked,IsImg//全局变量 图片相关属性
 // 自定义图片上传 检验参数
+userinfo.init();
 
 $().ready(function(){
 	
 	// 加载头部
 	$('#header-content').prop('src',getContextPath() + '/header');
-	
 	// 导航切换方法
 	$('.nav-tabs').find('a').on('click',function(){
 		var item = $(this).data('url');
@@ -343,84 +343,6 @@ function phoneInfo(){
 		}
 	})
 }
-// 更换手机
-/*
-function phoneInfo(){
-	$('.phone-info-content').slideDown('normal');
-	$(".phone-bind").empty().append(userInfo_tpl.tpl_old_phone);
-	
-	// 激活 获取验证码 按钮
-	$('#codeBt').unbind('click');
-	$('#codeBt').bind('click',function(){
-		var phoneNum = $('#concat_tele_old').text();
-		if(checkMobile(phoneNum)){
-			loadData(function(flag){
-				if(flag){
-					// 注册过
-					$('#label-telephone').text('您输入的手机号码已被注册');
-					$('#label-telephone').removeClass('hide');
-				}else{ // 未注册
-					$('#label-telephone').addClass('hide');
-					verification();
-				}
-			}, getContextPath() + '/login/validation/phone', $.toJSON({
-				telephone : phoneNum
-			}));
-				
-		}else{
-			// 输入正确的手机号
-			$('#label-telephone').text('请输入正确的手机号码');
-			$('#label-telephone').removeClass('hide');
-		}
-	});
-	// 激活 获取验证码 按钮
-	$('#codeBt').unbind('click');
-	$('#codeBt').bind('click',function(){
-		var phoneNum = $('#concat_tele_new').val();
-		if(checkMobile(phoneNum)){
-			loadData(function(flag){
-				if(flag){
-					// 注册过
-					$('#label-telephone').text('您输入的手机号码已被注册');
-					$('#label-telephone').removeClass('hide');
-				}else{ // 未注册
-					$('#label-telephone').addClass('hide');
-					verification();
-				}
-			}, getContextPath() + '/login/validation/phone', $.toJSON({
-				telephone : phoneNum
-			}));
-				
-		}else{
-			// 输入正确的手机号
-			$('#label-telephone').text('请输入正确的手机号码');
-			$('#label-telephone').removeClass('hide');
-		}
-	});
-	
-	// 注册 个人资料-修改按钮点击事件
-	$('#phone-info-contentBt').unbind('click');
-	$('#phone-info-contentBt').bind('click',function(){
-		if(checkData(1)){
-			$(this).attr('disabled','disabled');
-			loadData(function(result){
-				$('.tooltip-show').slideDown('normal');
-				if(result){
-					$('.tooltip-message').text('电话修改成功!');
-				}else{
-					$('.tooltip-message').text('电话修改失败!');
-				}
-				$('#phone-info-contentBt').removeAttr('disabled');
-				window.setInterval(hideTooltip, 2000);
-			}, getContextPath() + '/user/modify/phone', $.toJSON({
-				id : $('#user_unique').val(),
-				telephone : $('#concat_tele_new').val().trim(),
-				verification_code : $('#veritifyCode').val().trim()
-			}));
-		}
-	});
-}*/
-
 /**
  * 验证手机号码是否已被注册
  */
@@ -935,6 +857,8 @@ function check(){
 
 var userinfo_third = {
 		init:function(){
+			//安全设置给出提示
+			this.safePoint();
 			//qq登陆
 			this.qq();
 			//微信登陆
@@ -1039,13 +963,6 @@ var userinfo_third = {
 			});
 		},
 }
-/*function userInfoToBind(condition){
-	var url = getContextPath() + '/user/bind/third';
-	
-	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
-	
-	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
-}*/
 function userInfoToBind(condition){
 	loadData(function(data){
 		if(data.code==1){
@@ -1074,7 +991,6 @@ function getWBUserData(callback){
 			if(bStatus) {
 				callback.call(this,sResult);
 			}
-			
 		}, {
 			'uid' : result.uid
 		}, {
@@ -1140,16 +1056,6 @@ var userInfo_tpl={
 	'	</div>',
 	 ].join(""),
 }
-
-
-
-/*function bandInfo(){
-	$('.three-band').slideDown('normal');
-	check();
-	successToolTipShow();
-}*/
-
-
 
 //成功信息 提示框弹出方法
 function successToolTipShow(){

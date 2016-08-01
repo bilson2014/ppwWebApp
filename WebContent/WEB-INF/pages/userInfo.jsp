@@ -141,7 +141,7 @@
 						<div class="navigation">
 							<ul class="nav nav-tabs">
 								<li><a href="javascript:void(0);" data-url="self-info-content">个人资料</a></li>
-								<li><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
+								<li id="safe-point"><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
 								<li><a href="javascript:void(0);" data-url="userpic-info-content">头像修改</a></li>
 								<li><a href="javascript:void(0);" data-url="phone-info-content">更换手机</a></li>
 								<li><a href="javascript:void(0);" data-url="three-band">三方绑定</a></li>

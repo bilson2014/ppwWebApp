@@ -71,10 +71,10 @@
 		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">基本信息</a></li>
-			<li role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li>
+			<li id="safe-point" role="presentation"><a href="#safe" aria-controls="safe" role="tab" data-toggle="tab">安全设置</a></li>
 			<li role="presentation"><a href="#logo" aria-controls="logo" role="tab" data-toggle="tab">供应商LOGO</a></li>
 			<li role="presentation"><a href="#changephone" aria-controls="changephone" role="tab" data-toggle="tab">更换手机</a></li>
-			<li role="presentation"><a href="#band" aria-controls="band" role="tab" data-toggle="tab">三方绑定</a></li>
+	<!-- 		<li role="presentation"><a href="#band" aria-controls="band" role="tab" data-toggle="tab">三方绑定</a></li> -->
 		</ul>
 
 		<!-- Tab panes -->
