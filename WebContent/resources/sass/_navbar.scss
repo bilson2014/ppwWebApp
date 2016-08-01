@@ -43,12 +43,15 @@
 	overflow: hidden;
     @include ellipsis;
 	cursor: pointer;
+
 }
 
 .login-item {
 	color: $red-light;
 	font-weight: 500;
 	margin-right: 26px;
+
+
 }
 
 #shelper {
