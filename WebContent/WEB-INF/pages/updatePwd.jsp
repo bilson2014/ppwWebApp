@@ -112,12 +112,12 @@
 		                 <div class="errorDiv hide" id="errorloginName">*用户名错误</div>
 		            </div>
 		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="新密码" id="password"></input>
+		                 <input class="fontSizeBaseLight" type="password"  placeholder="新密码" id="password"></input>
 		                 <div class="otherDiv hide"><img alt="图片验证码" class="btn-validation"></div>
 		                 <div class="errorDiv hide" id="errorpassword" >*密码错误</div>
 		            </div>  
 		                <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="确认密码" id="comfrimPassword"></input>
+		                 <input class="fontSizeBaseLight"  type="password" placeholder="确认密码" id="comfrimPassword"></input>
 		                 <div class="errorDiv hide" id="errorcomfrimPassword">*密码错误</div>
 		                 <div class="errorMidDiv hide" id="updateerror">修改失败</div>
 		            </div>

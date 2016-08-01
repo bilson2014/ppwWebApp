@@ -51,7 +51,7 @@ $().ready(function(){
 						}else{
 							upd.returnRes(false);	
 						}
-					}, getContextPath() + '/login/modify/logName', $.toJSON({
+					}, getContextPath() + '/login/modify/logName2', $.toJSON({
 						id : id,
 						password : Encrypt(password),
 						loginName : loginName
@@ -60,7 +60,7 @@ $().ready(function(){
 					// 检验当前密码是否正确
 					loadData(function(flag){
 						upd.returnRes(flag);
-					}, getContextPath() + '/provider/add/account', $.toJSON({
+					}, getContextPath() + '/provider/add/account2', $.toJSON({
 						loginName : loginName,
 						password : Encrypt(password),
 						teamId : id

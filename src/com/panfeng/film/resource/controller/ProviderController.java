@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -557,34 +558,45 @@ public class ProviderController extends BaseController {
 	 *            包含(登录名和密码)
 	 */
 	@RequestMapping("/recover/password")
-	public boolean updatePasswordByLoginName(@RequestBody final Team team, final HttpServletRequest request) {
-		if (team != null && team.getPassword() != null && !"".equals(team.getPassword()) && team.getLoginName() != null
-				&& !"".equals(team.getLoginName())) {
-			try {
-				// AES 解密
-				final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
+	public BaseMsg updatePasswordByLoginName(@RequestBody final Team team, final HttpServletRequest request) {
+		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
+		final String code = (String) request.getSession().getAttribute("code");
+		if (!"".equals(code) && code != null) {
+			if (code.equals(team.getVerification_code())) {
+				if (team != null && team.getPassword() != null && !"".equals(team.getPassword()) && team.getLoginName() != null
+						&& !"".equals(team.getLoginName())) {
+					try {
+						// AES 解密
+						final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
 
-				// MD5 加密
-				team.setPassword(DataUtil.md5(password));
+						// MD5 加密
+						team.setPassword(DataUtil.md5(password));
 
-				// 转码
-				team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
-				team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
+						// 转码
+						team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
+						team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
 
-				// 连接远程服务器，传输数据
-				final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
-				final String json = HttpUtil.httpPost(url, team, request);
-				if (ValidateUtil.isValid(json)) {
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					return flag;
+						// 连接远程服务器，传输数据
+						final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
+						final String json = HttpUtil.httpPost(url, team, request);
+						if (ValidateUtil.isValid(json)) {
+							final boolean flag = JsonUtil.toBean(json, Boolean.class);
+							if(flag){
+								msg.setCode(1);
+								msg.setResult("修改成功");
+							}
+						}
+					} catch (Exception e) {
+						logger.error(
+								"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...");
+						e.printStackTrace();
+					}
 				}
-			} catch (Exception e) {
-				logger.error(
-						"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...");
-				e.printStackTrace();
+			}else{
+				msg.setResult("验证码错误");
 			}
 		}
-		return false;
+		return msg;
 	}
 
 	/**
@@ -701,9 +713,46 @@ public class ProviderController extends BaseController {
 		}
 		return false;
 	}
-
+	/**
+	 * 带有短信验证的供应商用户名密码注册
+	 * @param request
+	 * @param team
+	 * @return
+	 */
 	@RequestMapping("/add/account")
-	public boolean addAccount(final HttpServletRequest request, @RequestBody final Team team) {
+	public BaseMsg addAccount(final HttpServletRequest request, @RequestBody final Team team) {
+		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
+		final String code = (String) request.getSession().getAttribute("code");
+		if (!"".equals(code) && code != null) {
+			if (code.equals(team.getVerification_code())) {
+				if (team != null) {
+					try {
+						String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
+						team.setPassword(DataUtil.md5(password));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					final String url = URL_PREFIX + "portal/team/static/data/add/account";
+					final String json = HttpUtil.httpPost(url, team, request);
+					final boolean flag = JsonUtil.toBean(json, Boolean.class);
+					if(flag){
+						msg.setCode(1);
+						msg.setResult("修改成功");
+					}
+				}
+			}else msg.setResult("验证码错误");
+		}
+		return msg;
+	}
+	/**
+	 * 不带有短信验证的供应商用户名密码注册
+	 * @param request
+	 * @param team
+	 * @return
+	 */
+	@RequestMapping("/add/account2")
+	public BaseMsg addAccountNoMsgAuth(final HttpServletRequest request, @RequestBody final Team team){
+		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		if (team != null) {
 			try {
 				String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
@@ -714,17 +763,13 @@ public class ProviderController extends BaseController {
 			final String url = URL_PREFIX + "portal/team/static/data/add/account";
 			final String json = HttpUtil.httpPost(url, team, request);
 			final boolean flag = JsonUtil.toBean(json, Boolean.class);
-			/*
-			 * final Team sTeam = (Team) request.getSession().getAttribute(
-			 * PROVIDER_SESSION); if (sTeam != null) { if (flag) {
-			 * sTeam.setFlag(0);
-			 * request.getSession().setAttribute(PROVIDER_SESSION, sTeam); } }
-			 */
-			return flag;
+			if(flag){
+				msg.setCode(1);
+				msg.setResult("修改成功");
+			}
 		}
-		return false;
+		return msg;
 	}
-
 	/**
 	 * 供应商根据 视频ID 删除
 	 * 
@@ -1298,7 +1343,6 @@ public class ProviderController extends BaseController {
 
 	@RequestMapping("/bind")
 	public BaseMsg bind(@RequestBody final Team team, final HttpServletRequest request) {
-		// TODO:
 		HttpSession httpSession = request.getSession();
 		final String phone = team.getPhoneNumber();
 		final String Ltype = team.getThirdLoginType();
@@ -1561,23 +1605,38 @@ public class ProviderController extends BaseController {
 	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
 			ModelMap modelMap) {
 		Wechat wechat = WechatUtils.decodeWechatToken(code, request);
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (wechat == null)
 			return new ModelAndView("/provider/threeLogin");
 		Team original = new Team();
-		original.setLinkman(wechat.getNickname());
-		original.setWechatUnique(wechat.getUnionid());
-		original.setTeamPhotoUrl(wechat.getHeadimgurl());
-		original.setThirdLoginType(Team.LTYPE_WECHAT);
-		boolean isBind = providerThirdLogin.login(original, request);
-		if (isBind) {
-			return new ModelAndView("/provider/portal");
-		} else {
-			HttpSession httpSession = request.getSession();
-			String unique = original.getWechatUnique();
-			httpSession.setAttribute(UNIQUE, unique);
-			modelMap.put("linkMan", original.getLinkman());
-			modelMap.put("LType", original.getThirdLoginType());
-			return new ModelAndView("/provider/threeLogin", modelMap);
+		if(null!=sessionInfo&&ValidateUtil.isValid(sessionInfo.getReqiureId())){//用户已经登录,个人资料页绑定
+			original.setUniqueId(wechat.getUnionid());
+			original.setThirdLoginType(Team.LTYPE_WECHAT);
+			original.setTeamId(sessionInfo.getReqiureId());
+			final String url = URL_PREFIX + "portal/team/info/bind";
+			String s = HttpUtil.httpPost(url, original, request);
+			Boolean b = JsonUtil.toBean(s, Boolean.class);
+			if(b) {
+				modelMap.addAttribute("msg", "绑定成功");//返回页面用作提示绑定成功
+			}else modelMap.addAttribute("msg", "该账号已经存在绑定");
+			return new ModelAndView("redirect:/provider/portal");
+		}else{
+			original.setLinkman(wechat.getNickname());
+			//这个是微信的唯一标识么?唯一标识不是token.getOpenid吗? 提出by wanglc
+			original.setWechatUnique(wechat.getUnionid());
+			original.setTeamPhotoUrl(wechat.getHeadimgurl());
+			original.setThirdLoginType(Team.LTYPE_WECHAT);
+			boolean isBind = providerThirdLogin.login(original, request);
+			if (isBind) {
+				return new ModelAndView("/provider/portal");
+			} else {
+				HttpSession httpSession = request.getSession();
+				String unique = original.getWechatUnique();
+				httpSession.setAttribute(UNIQUE, unique);
+				modelMap.put("linkMan", original.getLinkman());
+				modelMap.put("LType", original.getThirdLoginType());
+				return new ModelAndView("/provider/threeLogin", modelMap);
+			}
 		}
 	}
 
@@ -1601,5 +1660,73 @@ public class ProviderController extends BaseController {
 		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
 		HttpUtil.httpPost(updateUrl, product, request);
 		return true;
+	}
+	/**
+	 * 第三方绑定状态
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/third/status")
+	public Map<String, Object> thirdBindStatus(HttpServletRequest request){
+		Map<String, Object> result = new HashMap<String,Object>();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Team team = new Team();
+		team.setTeamId(sessionInfo.getReqiureId());
+		final String url = URL_PREFIX + "portal/team/third/status";
+		final String json = HttpUtil.httpPost(url, team,request);
+		result = JsonUtil.toBean(json, Map.class);
+		return result;
+	}
+	/**
+	 * 个人中心绑定第三方
+	 * 如果第三方账号已经存在,不允许绑定
+	 */
+	@RequestMapping("/bind/third")
+	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
+			@RequestBody final Team team) {
+		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		team.setTeamId(sessionInfo.getReqiureId());//填充用户id
+		final String url = URL_PREFIX + "portal/team/info/bind";
+		String str = HttpUtil.httpPost(url, team, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		if(b) {
+			baseMsg.setCode(1);
+			baseMsg.setResult("绑定成功");
+		}else baseMsg.setResult("账号存在绑定");
+		return baseMsg;
+	}
+	
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unbind/third")
+	public boolean unBindThird(@RequestBody final Team team,final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		team.setTeamId(sessionInfo.getReqiureId());//填充用户id
+		// 查询该用户是否存在
+		final String url = URL_PREFIX + "portal/team/info/unbind";
+		String str = HttpUtil.httpPost(url, team, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
+	/**
+	 * 修改供应商手机号码
+	 */
+	@RequestMapping("/modify/phone")
+	public boolean modifyUserPhone(@RequestBody final Team team,
+			final HttpServletRequest request){
+		if(team != null){
+			final String code = (String) request.getSession().getAttribute("code");
+			if(code != null && !"".equals(code)){
+				if(code.equals(team.getVerification_code())){
+					// 修改 用户密码
+					final String url = URL_PREFIX + "portal/team/modify/phone";
+					final String json = HttpUtil.httpPost(url, team,request);
+					final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					return result;
+				}
+			}
+		}
+		return false;
 	}
 }

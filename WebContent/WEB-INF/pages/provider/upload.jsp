@@ -56,6 +56,12 @@
 	<![endif]-->
 </head>
 <body>
+
+			<!-- 成功提示框 start -->
+					<div class="tooltip-success-show" style="display: none;">
+						<label class="tooltip-success-message">信息更新成功</label>
+					</div>
+					<!-- 成功提示框  end -->
 	<input type="hidden" value="${cKey }" id="company-id"/>
 	<input type="hidden" value="${productKey }" id="p-id"/>
 	<input type="hidden" value="${action }" id="action"/>
@@ -72,6 +78,7 @@
 						<label class="tooltip-message"></label>
 					</div>
 					<!-- 错误提示框  end -->
+			
 					<div class="form-group">
 						<label for="video-name" class="col-sm-2 control-label">视频标题</label>
 						<div class="col-sm-6">
@@ -203,11 +210,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- 成功提示框 start -->
-					<div class="tooltip-success-show" style="display: none;">
-						<label class="tooltip-success-message">信息更新成功</label>
-					</div>
-					<!-- 成功提示框  end -->
+				
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-6">
 							<button type="button" class="btn btn-default" id="infoBt">保存</button>
@@ -239,10 +242,38 @@
 			<div class="modal-dialog" id="photoModel-dialog">
 				<div class="modal-content model-distance" id="photoModel-content">
 					<div class="modal-header model-no-border">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<button type="button" class="close" data-dismiss="modal"><span class="closeBtn" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					</div>
 					<div class="modal-body">
 						<img src="" alt="" id="previewImg" class="previewImg"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- photo Modal end -->
+		
+			<!-- photo Modal start -->
+		<div class="modal" id="warmModel" >
+			<div class="modal-dialog" id="photoModel-dialog">
+				<div class="modal-content model-distance-warm" id="photoModel-content">
+					<div class="modal-header model-no-border">
+						<button type="button" class="close" data-dismiss="modal"><span class="closeBtn" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					</div>
+					<div class="modal-body">
+					    <div>
+                             <ul>
+                                <li><span>拍片网郑重提醒您:</span></li>
+                                <li class="top"> 为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个健康文明的网络环境，给大家一个和谐积极的家园。</li>
+                                <li><label class="circle"></label>1.不得上传任何有违国家法律法规的视频。</li>
+                                <li><label class="circle"></label>2.不得上传具有色情内容的视频。</li>
+                                <li><label class="circle"></label>3.不得上传内容低俗，格调不高的视频。</li>
+                                <li><label class="circle"></label>4.不得上传具有色情诱导性内容的视频。</li>
+                                <li><label class="circle"></label>5.不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</li>
+                                <li><label class="circle"></label>6.不含有涉及版权问题的影视片段。</li>
+                                <li class="bot">如果您上传了这些内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</li>
+                                <li><div class="checkInfo"><button type="button" class="btn btn-default" id="sureUpdate" style="margin-right:10px;">确认</button><button type="button" class="btn btn-default" id="cancleUpdate">取消</button></div></li>
+                             </ul>
+					    </div>
 					</div>
 				</div>
 			</div>

@@ -48,6 +48,14 @@ $().ready(function(){
 		}
 	});
 	
+	
+	//检测用户是否完善登录名和密码
+	loadData(function(flag){
+		if(flag){
+		}else{
+		}
+	}, getContextPath() + '/loginName/validate');
+	
 });
 
 function debug(obj) {

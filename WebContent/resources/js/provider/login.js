@@ -103,9 +103,11 @@ $().ready(function(){
 						loadData(function(flag){
 							if(flag){
 								$('#submitBtn').text("注册");
+								$('#title').text("供应商注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
 							}else{
 								$('#submitBtn').text("登录");
+								$('#title').text("供应商登录");
 								$('#submitBtn').attr('data-id','login'); // 标记login
 							}
 						}, getContextPath() + '/provider/checkExisting', $.toJSON({

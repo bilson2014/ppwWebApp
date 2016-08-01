@@ -109,7 +109,7 @@
 		
 		   <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
-		            <h1>供应商登录</h1>
+		            <h1 id="title">供应商登录</h1>
 		            <input type="hidden" id="login_type" value="phone"> 
 		             <div class="" id="showLogin">
 		            <div class="loginContent input-group">

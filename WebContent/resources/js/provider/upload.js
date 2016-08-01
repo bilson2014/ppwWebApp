@@ -10,6 +10,7 @@ var browserCfg = {};
 var localAddress;
 var sessionId;
 var editor;
+oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
 	createEditor('textarea[name="pageDescription"]');
@@ -20,6 +21,8 @@ $().ready(function(){
 		maxDate: new Date() 
 	});
 	
+	createEditor('textarea[name="pageDescription"]');
+	cancleUpdate();
 	// 判断浏览器格式
 	var ua = window.navigator.userAgent;
 	if (ua.indexOf("MSIE")>=1){
@@ -99,6 +102,7 @@ $().ready(function(){
 		$('#picLDFile').unbind('change');
 		$('#picLDFile').bind('change',function(){
 			checkFile('picLDFile');
+			showPic("picLDFile","LDImg","video-picLD-div");
 		});
 	});
 	
@@ -107,6 +111,7 @@ $().ready(function(){
 		$('#picHDFile').unbind('change');
 		$('#picHDFile').bind('change',function(){
 			checkFile('picHDFile');
+			showPic("picHDFile","HDImg","video-picHD-div");
 		});
 	});
 	
@@ -129,13 +134,17 @@ $().ready(function(){
 			$('#video-picLD-div').hide();
 			// 注册 保存 按钮
 			$('#infoBt').on('click',function(){
-				if($('#video-switch').val() == 1){
+				$('#sureUpdate').on('click',function(){
+					$('#warmModel').modal('hide');
+					if($('#video-switch').val() == 1){
 					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
 						upload();
 					}
 				}else{
 					upload();
 				}
+
+				});
 			});
 			// 开关注册
 			initSwitch(true);
@@ -150,13 +159,18 @@ $().ready(function(){
 		
 		// 修改界面
 		$('#infoBt').on('click',function(){
-			if($('#video-switch').val() == 1){
+			$('#warmModel').modal('show');
+			
+			$('#sureUpdate').on('click',function(){
+				$('#warmModel').modal('hide');
+				if($('#video-switch').val() == 1){
 				if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
 					modify();
 				}
 			}else{
 				modify();
 			}
+			});
 		});
 		
 		// 如果 停止启用，则改变  switch 状态
@@ -200,10 +214,13 @@ $().ready(function(){
 		$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
 		$('#previewImg').css({'width':width + 'px','height':height + 'px'});
 		if(name.indexOf('default-thumbnail') > -1){ // 缩略图
-			$('#photoModel-content').css({'width':'1080px','height':'700px','top':'40px'});
+			$('#photoModel-content').css({'width':'1080px','height':'700px','top':'40px','position':'relative','left':'45%',});
 			$('#photoModel-dialog').css({'margin':0});
+			$('#previewImg').css({'left':'24px','top':'15px','position':'relative'});
 		}else{ // 封面
-			$('#photoModel-content').css({'width':'680px','height':'420px','top':'40px'});
+		    //TODO:我改了它我是卢涛就是这么吊
+			//$('#photoModel-content').css({'width':'680px','height':'420px','top':'40px'});
+			$('#photoModel-content').css({'width':'680px','height':'420px'});
 			$('#photoModel-dialog').css({'margin':'30px auto'});
 		}
 		$('#photoModel').modal('show');
@@ -752,3 +769,19 @@ function createEditor(name){
 					'table', 'formatblock', 'preview' ]
 	});
 }
+
+function cancleUpdate(){
+	$('#cancleUpdate').on('click',function(){
+		$('#warmModel').modal('hide');
+	});
+}
+function showPic(inputFile,imgID,container){
+	 if (document.getElementById(inputFile).files.length === 0) { return; }
+	  var oFile = document.getElementById(inputFile).files[0];
+	  if (!rFilter.test(oFile.type)) { alert("只能选择图片文件!"); return; }
+	  oFReader.readAsDataURL(oFile);
+	  oFReader.onload = function (oFREvent) {
+	  	$("#"+container).show();
+	    document.getElementById(imgID).src = oFREvent.target.result;
+	  };
+}	

@@ -30,6 +30,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.ThirdBind;
 import com.panfeng.film.resource.model.User;
@@ -218,7 +219,7 @@ public class LoginController extends BaseController {
 			final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 			// MD5加密
 			user.setPassword(DataUtil.md5(password));
-			
+
 			final String url = URL_PREFIX + "portal/user/checkPwd";
 			String json = HttpUtil.httpPost(url, user, request);
 			if (json != null) {
@@ -313,12 +314,12 @@ public class LoginController extends BaseController {
 	@RequestMapping("/verification/{telephone}")
 	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if(!isTest){
-			final String code = DataUtil.random(true, 6);
+		final String code = DataUtil.random(true, 6);
+		request.getSession().setAttribute("code", code); // 存放验证码
+		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
+		if (!isTest) {
 			final boolean ret = smsService.smsSend(telephone, code);
-			request.getSession().setAttribute("code", code); // 存放验证码
-			request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
-			serLogger.info("Send sms code " + code + " to telephone " + telephone);	
+			serLogger.info("Send sms code " + code + " to telephone " + telephone);
 			return ret;
 		}
 		return true;
@@ -408,7 +409,45 @@ public class LoginController extends BaseController {
 	@RequestMapping("/modify/logName")
 	public BaseMsg modifyLogName(final HttpServletRequest request, @RequestBody final User user) {
 		try {
-			if (user != null && ValidateUtil.isValid(user.getPassword()) && ValidateUtil.isValid(user.getLoginName())) {
+			final HttpSession session = request.getSession();
+			final String code = (String) session.getAttribute("code");
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
+					if (user != null && ValidateUtil.isValid(user.getPassword())
+							&& ValidateUtil.isValid(user.getLoginName())) {
+						// AES 密码解密
+						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						// MD5 加密
+						user.setPassword(DataUtil.md5(password));
+						final String url = URL_PREFIX + "portal/user/modify/loginName";
+						String str = HttpUtil.httpPost(url, user, request);
+						if (str != null && !"".equals(str)) {
+							boolean result = JsonUtil.toBean(str, Boolean.class);
+							// 添加 session
+							return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
+						} else {
+							return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
+						}
+					} else {
+						return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
+					}
+				} else {
+					return new BaseMsg(BaseMsg.ERROR, "验证码错误！", false);
+				}
+			} else {
+				return new BaseMsg(BaseMsg.ERROR, "请输入验证码！", false);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new BaseMsg(BaseMsg.ERROR, "密码解码失败！", false);
+		}
+
+	}
+	@RequestMapping("/modify/logName2")
+	public BaseMsg modifyLogNameNoMsgAuth(final HttpServletRequest request, @RequestBody final User user) {
+		if (user != null && ValidateUtil.isValid(user.getPassword())
+				&& ValidateUtil.isValid(user.getLoginName())) {
+			try {
 				// AES 密码解密
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 				// MD5 加密
@@ -422,14 +461,13 @@ public class LoginController extends BaseController {
 				} else {
 					return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
 				}
-			} else {
-				return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new BaseMsg(BaseMsg.ERROR, "登陆错误，请重试！", false);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new BaseMsg(BaseMsg.ERROR, "密码解码失败！", false);
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
 		}
-
 	}
 
 	/**
@@ -557,7 +595,7 @@ public class LoginController extends BaseController {
 	@RequestMapping("/wechat/callback.do")
 	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
 			final ModelMap model) {
-
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (code != null && !"".equals(code)) {
 			WechatToken token = new WechatToken();
 			token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
@@ -605,37 +643,51 @@ public class LoginController extends BaseController {
 				// 获取到 用户信息后，写入session
 				if (wechat != null) {
 					User user = new User();
-					try {
-						user.setUserName(URLEncoder.encode(wechat.getNickname(), "UTF-8"));
-						user.setImgUrl(wechat.getHeadimgurl());
-						user.setlType("wechat");
+					if (null != sessionInfo && ValidateUtil.isValid(sessionInfo.getReqiureId())) {// 用户已经登录,个人资料页绑定
 						user.setUniqueId(token.getOpenid());
-						user.setWechatUnique(token.getOpenid());
-						model.put("userName", wechat.getNickname());
-						model.put("imgUrl", wechat.getHeadimgurl());
-						model.put("unique", token.getOpenid());
-						model.put("type", "wechat");
-						// 查询该用户是否存在
-						final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
-						final String json = HttpUtil.httpPost(url, user, request);
-						Map<String, Object> map = JsonUtil.toBean(json, Map.class);
-						if (null != map) {
-							int num = Integer.parseInt(String.valueOf(map.get("code")));
-							if (num == 2) {// 可直接登录
-								return new ModelAndView("redirect:/mgr/index");
-							} else if (num == 0) {// 不存在账户
-								model.put("code", "0");
-								return new ModelAndView("threeLogin", model);
-							} else if (num == 1) {// 存在账号,需要更新手机号
-								model.put("code", "1");
-								model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
-								return new ModelAndView("threeLogin", model);
+						user.setlType("wechat");
+						user.setId(sessionInfo.getReqiureId());
+						final String url = URL_PREFIX + "portal/user/info/bind";
+						String s = HttpUtil.httpPost(url, user, request);
+						Boolean b = JsonUtil.toBean(s, Boolean.class);
+						if (b) {
+							model.addAttribute("msg", "绑定成功");// 返回页面用作提示绑定成功
+						} else
+							model.addAttribute("msg", "该账号已经存在绑定");
+						return new ModelAndView("redirect:/user/info");
+					} else {
+						try {
+							user.setUserName(URLEncoder.encode(wechat.getNickname(), "UTF-8"));
+							user.setImgUrl(wechat.getHeadimgurl());
+							user.setlType("wechat");
+							user.setUniqueId(token.getOpenid());
+							user.setWechatUnique(token.getOpenid());
+							model.put("userName", wechat.getNickname());
+							model.put("imgUrl", wechat.getHeadimgurl());
+							model.put("unique", token.getOpenid());
+							model.put("type", "wechat");
+							// 查询该用户是否存在
+							final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
+							final String json = HttpUtil.httpPost(url, user, request);
+							Map<String, Object> map = JsonUtil.toBean(json, Map.class);
+							if (null != map) {
+								int num = Integer.parseInt(String.valueOf(map.get("code")));
+								if (num == 2) {// 可直接登录
+									return new ModelAndView("redirect:/mgr/index");
+								} else if (num == 0) {// 不存在账户
+									model.put("code", "0");
+									return new ModelAndView("threeLogin", model);
+								} else if (num == 1) {// 存在账号,需要更新手机号
+									model.put("code", "1");
+									model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
+									return new ModelAndView("threeLogin", model);
+								}
 							}
+							return new ModelAndView("redirect:/");
+						} catch (UnsupportedEncodingException e) {
+							logger.error("UserName Encode error on Wechat Login Process ...");
+							e.printStackTrace();
 						}
-						return new ModelAndView("redirect:/");
-					} catch (UnsupportedEncodingException e) {
-						logger.error("UserName Encode error on Wechat Login Process ...");
-						e.printStackTrace();
 					}
 				}
 			} else {
@@ -647,7 +699,6 @@ public class LoginController extends BaseController {
 		return new ModelAndView("redirect:/login");
 	}
 
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面验证手机号码 begin
 	/**
 	 * 第三方登录验证手机号码 register:0未注册||1注册 qq:0未绑定||1绑定 wechat: wb:
 	 */
@@ -661,9 +712,6 @@ public class LoginController extends BaseController {
 		return map;
 	}
 
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面验证手机号码 end
-
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面绑定手机 begin
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/third/bind", method = RequestMethod.POST)
 	public Info thirdBind(@RequestBody final ThirdBind bind, final HttpServletRequest request) {
@@ -706,6 +754,4 @@ public class LoginController extends BaseController {
 		}
 		return info;
 	}
-
-	// add by wanglc 2016-7-6 15:13:47 第三方登录绑定页面绑定手机 end
 }
