@@ -191,12 +191,12 @@
 					</div>
 				</div>
 				
-				<div class="team-info ">
+				<div class="team-info" id="toDirector">
 					<input type="hidden" value="${teamId }" id="productId"/>
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
-								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" id="toDirector">
+								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
 							</c:if>
 							<c:if test="${!empty product.teamPhotoUrl }">
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
