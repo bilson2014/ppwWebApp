@@ -163,19 +163,22 @@
             display: inline-block;
             margin-right: 20px;
             .controlCard {
-                line-height: 30px
+                line-height: 30px;
             }
             .cardWord {
                 margin-right: 16px;
             }
-            img {
+                  .pencil {
                 margin-left: 16px;
                 margin-right: 8px;
                 height: 16px;
                 width: 16px;
                 position: relative;
                 top: 1px;
+                background: url('../../images/provder/pencil.png') no-repeat;
+                background-size: 16px 16px;
             }
+
         }
     }
     .leftLine {
