@@ -283,6 +283,7 @@ function addAccount(){
 				$(".name-item").text($("#userName").text());
 				window.clearInterval(InterValObj); // 停止计时器
 				$("#upd-codeBt").text("获取验证码");
+				$(".warn").attr("class","").text("");//清除右上角提示标识
 			}else{
 				toolTipShow(data.result);	
 			}

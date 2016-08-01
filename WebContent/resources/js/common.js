@@ -52,7 +52,8 @@ $().ready(function(){
 	//检测用户是否完善登录名和密码
 	loadData(function(flag){
 		if(!flag){
-			$(".right-part").children(":first").before('<div class="warn">1</div>');
+			$(".right-part").append('<div class="warn">1</div>');
+			//.append('<div class="warnWindom"><div class="divImg"></div><div></div></div>');
 		}
 	}, getContextPath() + '/loginName/validate');
 	

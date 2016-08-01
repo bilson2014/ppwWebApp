@@ -210,6 +210,7 @@ function passwordInfo(){
 							$("#userLoginName").text(loginName);
 							$("#upd").removeClass("hide");
 							$("#ins").addClass("hide");
+							$(".warn").attr("class","").text("");//清除右上角提示标识
 						}else{
 							$('.tooltip-message').text('修改失败！');
 						}
