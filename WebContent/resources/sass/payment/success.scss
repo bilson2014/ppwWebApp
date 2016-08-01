@@ -46,7 +46,7 @@ body{
 
     a{
     color:$red-base;
-    font-size: 2.0rem;
+    font-size: $font-size-lger;
     text-decoration:none;
 
   }
@@ -61,7 +61,7 @@ body{
 
   span{
     color:$red-base;
-    font-size: 2.0rem;
+    font-size: $font-size-lger;
   }
 
 }

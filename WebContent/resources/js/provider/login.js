@@ -4,12 +4,14 @@ var InterValRecoverObj; // timer变量，控制时间 - 密码找回
 var count = 120; // 间隔函数，1秒执行 
 var curCount; // 当前剩余秒数 - 注册
 var recoverCount; // 当前剩余秒数 - 密码找回
-
+var sendCode =true;
 var qq_uniqueId;
 var wb_uniqueId;
 var qq_uniqueId;
 
 $().ready(function(){
+	
+
 	var login = { 
 			sina : function(){ // 新浪登陆
 				$('#weiboBt').on('click',function(){
@@ -87,6 +89,8 @@ $().ready(function(){
 				this.changeLogin();
 				//回车
 				getEnter();
+				
+				this.checkImageCode();
 			},
 			
 			phoneNumberChange:function(){
@@ -122,6 +126,8 @@ $().ready(function(){
 					$('#user_phoneNumberId').addClass('hide');
 				});
 			},
+			
+			
 			//更换图片验证码
 			changeKaptcha:function(){
 				$('#kaptcha_pic').off("click").on('click',function(){
@@ -130,6 +136,31 @@ $().ready(function(){
 					$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
 					$('#kaptcha_pic').focus();
 				});
+			},
+			//图片验证码
+			checkImageCode:function(){
+			$('#kaptcha_code').on('input propertychange',function(){
+				var kaptchaCode = $('#kaptcha_code').val().trim();
+				if(kaptchaCode.length==4){
+						// 点击获取手机验证码发送按钮
+				         	
+							var kaptchaCode = $('#kaptcha_code').val().trim();
+							var telephone = $('#user_phoneNumber').val().trim();
+							if(telephone == '' || telephone == null || telephone == undefined){
+								$('#user_phoneNumberId').removeClass('hide');
+								$('#user_phoneNumberId').text('请填写手机号');
+								$('#user_phoneNumber').focus();
+								return ;
+							}
+							
+                            if(sendCode){
+                            sendCode=false;
+                            curCount = count;
+                            provider_login.checkVerification();
+                            }
+
+				}
+			});
 			},
 			//点击获取手机验证码
 			verificationCode:function(){
@@ -145,47 +176,53 @@ $().ready(function(){
 						return ;
 					}
 					else{
-					if(kaptchaCode != null && kaptchaCode != '' && kaptchaCode != undefined){
-						// 判断 图片验证码 是否正确
-						getData(function(info){
-							if(!info.key){
-								// 图片验证码 不一致 
-								// 重置图片验证码
-								$('#kaptcha_code').val(''); // 重置 图片验证码 信息
-								// 初始化 验证码
-								$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
-								$('#kaptcha_code').focus();
-								$("#kapt_error_info").text("图形验证码错误").removeClass("hide");
-							}else{
-								// 验证通过
-								// 发送验证码
-								$("#kapt_error_info").addClass("hide");
-								loadData(function(flag){
-									if(flag){
-										// 发送成功
-										// 设置 button 效果为禁用
-										$('#verification_code_recover_btn').text('已发送('+ curCount +')');
-										$('#verification_code_recover_btn').attr('disabled','disabled');
-										InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
-										// 倒计时
-									}else{
-										// 发送不成功
-										// 显示重新发送
-										$('#verification_code_btn').text('重新获取');
-										$('#verification_code_btn').removeAttr('disabled');
-									}
-								}, getContextPath() + '/login/verification/' + $('#user_phoneNumber').val().trim(), null);
-							}
-						}, getContextPath() + '/login/kaptcha/compare/' + kaptchaCode);
-					}else{ // 图片验证码为空
-						$('#kaptcha_code').val('');// 重置图片验证码
-						// 初始化 验证码
-						$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
-						$('#kaptcha_code').focus();
-						$("#kapt_error_info").text("请填写图片验证码!").removeClass("hide");
-					}
+						provider_login.checkVerification();
 					}
 				});
+			},
+			checkVerification:function(){
+				var kaptchaCode = $('#kaptcha_code').val().trim();
+				if(kaptchaCode != null && kaptchaCode != '' && kaptchaCode != undefined){
+					// 判断 图片验证码 是否正确
+					getData(function(info){
+						if(!info.key){
+							// 图片验证码 不一致 
+							// 重置图片验证码
+							$('#kaptcha_code').val(''); // 重置 图片验证码 信息
+							// 初始化 验证码
+							$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+							$('#kaptcha_code').focus();
+							$("#kapt_error_info").text("图形验证码错误").removeClass("hide");
+							return;
+						}else{
+							// 验证通过
+							// 发送验证码
+							$("#kapt_error_info").addClass("hide");
+							loadData(function(flag){
+								if(flag){
+									// 发送成功
+									// 设置 button 效果为禁用
+									$('#verification_code_recover_btn').text('已发送('+ curCount +')');
+									$('#verification_code_recover_btn').attr('disabled','disabled');
+									InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+									// 倒计时
+								}else{
+									// 发送不成功
+									// 显示重新发送
+									sendCode=true;
+									$('#verification_code_btn').text('重新获取');
+									$('#verification_code_btn').removeAttr('disabled');
+								}
+							}, getContextPath() + '/login/verification/' + $('#user_phoneNumber').val().trim(), null);
+						}
+					}, getContextPath() + '/login/kaptcha/compare/' + kaptchaCode);
+				}else{ // 图片验证码为空
+					$('#kaptcha_code').val('');// 重置图片验证码
+					// 初始化 验证码
+					$('#kaptcha_pic').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+					$('#kaptcha_code').focus();
+					$("#kapt_error_info").text("请填写图片验证码!").removeClass("hide");
+				}
 			},
 			regesterOrLogin:function(){
 				var _this = this;
@@ -334,6 +371,7 @@ $().ready(function(){
 	function SetRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
+			sendCode=true;
 			$('#verification_code_recover_btn').text('重新获取');
 			$('#verification_code_recover_btn').removeAttr('disabled')
 			// 清除session code

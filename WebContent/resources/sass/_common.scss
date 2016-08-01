@@ -385,3 +385,33 @@
 		}
 	}
 }
+
+
+.warn{
+	
+		width:15px;
+		height:15px;
+		border-radius: 120px;
+		background: $red-base;
+		color:white;
+		text-align: center;
+		line-height: 15px;
+		position: relative;
+		top:25px;
+		left:57px;
+	
+}
+
+.warnWindom{
+
+   width:100px;
+   height: 50px;
+   border: 1px solid black;
+   position: relative;
+   top:0px;
+   background: white;
+
+}
+
+
+

@@ -774,7 +774,10 @@ function cancleUpdate(){
 	$('#cancleUpdate').on('click',function(){
 		$('#warmModel').modal('hide');
 	});
+
 }
+
+
 function showPic(inputFile,imgID,container){
 	 if (document.getElementById(inputFile).files.length === 0) { return; }
 	  var oFile = document.getElementById(inputFile).files[0];
@@ -785,3 +788,4 @@ function showPic(inputFile,imgID,container){
 	    document.getElementById(imgID).src = oFREvent.target.result;
 	  };
 }	
+
