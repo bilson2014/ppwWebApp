@@ -38,6 +38,11 @@ $().ready(function() {
 			var infoHead = $('#infoHead');
 			var src =infoHead.attr('src');
 			var fileName = getFileName(src);
+			if(src==null){
+				var fileName ="default.png";
+			}
+			
+			
 			infoHead.attr('src','/team/img/'+fileName);
 		}
 	}
