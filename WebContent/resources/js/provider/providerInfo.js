@@ -11,13 +11,13 @@ $().ready(function() {
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
-					// 添加年节点
-					if(checkYearIsExist(year)){
-						$body+=drawYearView(year);
-					}
 					//创建叶子节点
 					if(int % 2 == 0){
 						// left
+						// 添加年节点
+						if(!checkYearIsExist(year)){
+							$body+=drawYearView(year);
+						}
 						$body+=drawVideoAreaBegin();
 						$body+=drawLeftCard(msg[int]);
 					}else{
