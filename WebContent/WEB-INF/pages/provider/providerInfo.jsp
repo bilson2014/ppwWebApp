@@ -142,28 +142,15 @@
 			            <div class="line"></div>
 			            <div class="circleTag"></div>
 		           </div>
-		           <div class="midLine">
-		           		<input type="hidden" id="provderTags" value="${providerTags }">
-		                <div class="card">
+		           <div class="midLine" id="provderTagId">
+		           		<div class="hide" id="provderTags" >${providerTags}</div>
+		            <!--      <div class="card">
 		                     <div class="controlCard"> 
-		                     		<div><img src="${imgPath}/provder/pencil.png"></div><div class="cardWord">电影</div>
+		                     		<div class="pencil"></div>
+		                     		<div class="cardWord">电影</div>
 		                     </div>
-		                 </div>
-		                    <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><img src="${imgPath}/provder/pencil.png"></div><div class="cardWord">电影少打</div>
-		                     </div>
-		                 </div>
-		                   <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><img src="${imgPath}/provder/pencil.png"></div><div class="cardWord">电影</div>
-		                     </div>
-		                 </div>
-		                    <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><img src="${imgPath}/provder/pencil.png"></div><div class="cardWord">电影</div>
-		                     </div>
-		                 </div>
+		                 </div> -->
+		        
 		         </div>
 		            <div class="rightLine">
 			            <div class="circleTag"></div>
@@ -176,9 +163,12 @@
 		     
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
-			         	<input type="hidden" id="ykVideoUrl" value="${product.videoUrl }">
-						<video class="showVideo" controls src='' preload="auto" poster=''></video>
+			         	<input type="hidden" id="ykVideoUrl" value="">
+			         	<input type="hidden" id="localVideoUrl" value="${product.videoUrl}">
+			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
+			         	<div class="showVideo" id="showVideo" >
+						<!-- <video class="showVideo" controls src='' preload="auto" poster=''></video> -->
+						</div>
 			         </div>
 			         <div class="videoInfo">
 			             <div class="NameInfo">${product.productName }</div>
@@ -210,112 +200,13 @@
 		         <img src="${imgPath}/provder/blackJiao.png">
 		     </div>
 		     
-		     
 		     <div class="videoSpace">
-		          
-		          <div class="productOutSide">
-		             <div class="productInSide">影视作品</div>
-		          </div>
-		          
-		          
-		          
-		          <div class="timeLine">
-		                   
-		                  <div class="videoArea">
-		                    <div class="yearTimeLine"></div>
-			                   <div class="year">
-			                       <div><div>2015</div></div>
-			                   </div> 
-		                     <div class="yearTimeLine"></div>
-		                 </div>
-		                 
-		                 <div class="videoArea">
-		                     <div class="leftCard">
-		                         <div class="leftDian">
-		                           <div class="leftJiaoImg"></div>
-		                            <div class="day">06/20</div>
-		                            <div class="dianImg"></div>
-		                         </div>
-		                         
-		                            
-		                         <div class="videoCrad">
-		                             <div class="title">我只是个标题</div>
-		                             <a><img src='${imgPath}/provder/videoImg.png'></a>
-		                             <div class="videoContentInfo">我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题</div>
-		                             <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'></div><div>战争/</div><div>爱情</div></div>
-		                             <div class="videoBtn btn-red-common">了解详情</div>
-		                         </div>
-		                         
-		                     </div>
-		                     <div class="rightCard">
-		                         <div class="rightDian">
-		                            <div class="dianImg"></div>
-		                            <div class="day">06/20</div>
-		                            <div class="rightJiaoImg"></div>
-		                         </div>
-		                         
-		                         <div class="videoCrad">
-		                             <div class="title">我只是个标题</div>
-		                             <a><img src='${imgPath}/provder/videoImg.png'></a>
-		                             <div class="videoContentInfo">我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题</div>
-		                             <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'></div><div>战争/</div><div>爱情</div></div>
-		                             <div class="videoBtn btn-red-common">了解详情</div>
-		                         </div>
-		                      
-		                     </div>
-		                     <div class="midTimeLine"></div>
-		                 </div>
-		                 
-		                      <div class="videoArea">
-		                     <div class="leftCard">
-		                         <div class="leftDian">
-		                           <div class="leftJiaoImg"></div>
-		                            <div class="day">06/20</div>
-		                            <div class="dianImg"></div>
-		                         </div>
-		                         
-		                            
-		                         <div class="videoCrad">
-		                             <div class="title">我只是个标题</div>
-		                             <a><img src='${imgPath}/provder/videoImg.png'></a>
-		                             <div class="videoContentInfo">我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题</div>
-		                             <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'></div><div>战争/</div><div>爱情</div></div>
-		                             <div class="videoBtn btn-red-common">了解详情</div>
-		                         </div>
-		                         
-		                     </div>
-		                     <div class="rightCard">
-		                         <div class="rightDian">
-		                            <div class="dianImg"></div>
-		                            <div class="day">06/20</div>
-		                            <div class="jiaoImg"></div>
-		                         </div>
-		                         
-		                         <div class="videoCrad">
-		                             <div class="title">我只是个标题</div>
-		                             <a><img src='${imgPath}/provder/videoImg.png'></a>
-		                             <div class="videoContentInfo">我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题我只是个标题</div>
-		                             <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'></div><div>战争/</div><div>爱情</div></div>
-		                             <div class="videoBtn btn-red-common">了解详情</div>
-		                         </div>
-		                      
-		                     </div>
-		                     <div class="midTimeLine"></div>
-		                 </div>
-		                
-		                   <div class="videoArea topMore">
-		                    <ul class="yearTimeUlLine">
-		                         <li></li>
-		                         <li></li>
-		                         <li></li>
-		                    </ul>
-			                   <div class="more">
-			                       <div><div>Read More</div></div>
-			                   </div> 
-		                 </div>
-		     
-		     </div>
-		
+	          <div class="productOutSide">
+	             <div class="productInSide">影视作品</div>
+	          </div>
+	          <div class="timeLine" id ="timeLine">
+	     		<!-- 时间树  -->
+	   		  </div>
 		</div>
 		
 		<div class="infoBottom">

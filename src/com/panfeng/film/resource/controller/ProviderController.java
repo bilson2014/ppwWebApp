@@ -1747,34 +1747,33 @@ public class ProviderController extends BaseController {
 		final Team result = JsonUtil.toBean(json, Team.class);
 		if(result != null){
 			modelMap.addAttribute("provider", result);
-		}
-		// 加载导演标签
-		
-		url = URL_PREFIX + "portal/item/static/get/tags";
-		String strtags=result.getBusiness();
-		if(ValidateUtil.isValid(strtags)){
-			try {
-				String[] tagsarray= strtags.split("\\,");
-				List<Long> ids =new ArrayList<>();
-				for (int i = 0; i < tagsarray.length; i++) {
-					ids.add(Long.parseLong(tagsarray[i]));
-				}
-				json = HttpUtil.httpPost(url, ids, request);
-				if(ValidateUtil.isValid(json)){
-					List<Item> items = JsonUtil.fromJsonArray(json, Item.class);
-					List<String> tags = new  ArrayList<String>();
-					for (int i = 0; i < items.size(); i++) {
-						tags.add(items.get(i).getItemName());
+			// 加载导演标签
+			url = URL_PREFIX + "portal/item/static/get/tags";
+			String strtags=result.getBusiness();
+			if(ValidateUtil.isValid(strtags)){
+				try {
+					String[] tagsarray= strtags.split("\\,");
+					List<Long> ids =new ArrayList<>();
+					for (int i = 0; i < tagsarray.length; i++) {
+						ids.add(Long.parseLong(tagsarray[i]));
 					}
-					modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
+					json = HttpUtil.httpPost(url, ids, request);
+					if(ValidateUtil.isValid(json)){
+						List<Item> items = JsonUtil.fromJsonArray(json, Item.class);
+						List<String> tags = new  ArrayList<String>();
+						for (int i = 0; i < items.size(); i++) {
+							tags.add(items.get(i).getItemName());
+						}
+						modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
+			}else{
+				logger.error("provider business is null ...");
 			}
-		}else{
-			logger.error("provider business is null ...");
 		}
 		// 加载代表作
 		url = URL_PREFIX + "portal/get/masterWork/" + teamId;
