@@ -163,7 +163,7 @@
 		     
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-			         	<input type="hidden" id="ykVideoUrl" value="">
+			         	<input type="hidden" id="ykVideoUrl" value="${product.hret}">
 			         	<input type="hidden" id="localVideoUrl" value="${product.videoUrl}">
 			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
 			         	<div class="showVideo" id="showVideo" >
@@ -173,7 +173,7 @@
 			         <div class="videoInfo">
 			             <div class="NameInfo">${product.productName }</div>
 			             <div class="InfoLine"></div>
-			             <div class="NameContent">
+			             <div class="NameContent" title="${product.pDescription }">
 			             	${product.pDescription }
 			             </div>
 			              <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'>
@@ -209,13 +209,14 @@
 	   		  </div>
 		</div>
 		
-		<div class="infoBottom">
-		   <div class="bottomWord">
+		<div class="infoBottom ">
+		  <div class="buChong"></div>
+		   <div class="bottomWord hide">
 		   dasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
 		   asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
 		   asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
 		   </div>
-		   <div class="bottomBtn btn-red-common">join us</div>
+		   <div class="bottomBtn btn-red-common hide">join us</div>
 		</div>
 		
 		</div>
