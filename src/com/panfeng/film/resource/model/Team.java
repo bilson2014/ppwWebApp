@@ -93,6 +93,27 @@ public class Team extends BaseObject {
 
 	private String teamProvince = null; // 省ID
 
+	// 冗余字段
+	private String teamProvinceName = null;// 省名
+
+	private String teamCityName = null; // 城市名
+
+	public String getTeamProvinceName() {
+		return teamProvinceName;
+	}
+
+	public void setTeamProvinceName(String teamProvinceName) {
+		this.teamProvinceName = teamProvinceName;
+	}
+
+	public String getTeamCityName() {
+		return teamCityName;
+	}
+
+	public void setTeamCityName(String teamCityName) {
+		this.teamCityName = teamCityName;
+	}
+
 	public String getTeamCity() {
 		return teamCity;
 	}

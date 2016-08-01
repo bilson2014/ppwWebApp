@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
@@ -14,8 +17,8 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/provider/login.js" var="providerLoginJs"/>
-<spring:url value="/resources/js/play.js" var="playJs"/>
+<spring:url value="/resources/js/youku-player.js" var="ykJs" />
+<spring:url value="/resources/js/provider/providerInfo.js" var="providerInfo" />
 
 <spring:url value="/resources/images" var="imgPath"/>
 <!DOCTYPE html>
@@ -38,6 +41,8 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -45,15 +50,8 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
-	<script src="${providerLoginJs }"></script>
-	<script src="${playJs }"></script>
-	
-	<!-- sina weibo -->
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
-	<!-- webcat -->
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-	<!-- qq -->
-	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
+	<script src="${ykJs }"></script>
+	<script src="${providerInfo }"></script>
 	
 </head>
 <body>
@@ -107,9 +105,11 @@
 				</div>
 			</div>
 		</div>
-		
+	</div>
 		
 		<div class="page">
+			<input type="hidden" id="teamId" value="${product.teamId }">
+			<input type="hidden" id="masterWorkProductId" value="${product.productId }">	
 		     <div class="infoTop">
 		        <div  class="image-video"></div>
 		        <div  class="image-video-model"></div>
@@ -119,9 +119,9 @@
 			                 <img class="infoHead" src="${imgPath}/provder/providerHead.jpg">
 			              </div>  
 		           </li>
-		           <li class="providerName">两个王</li>
+		           <li class="providerName">${provider.teamName }</li>
 		           <li class="providerPlace"><img class="place" src="${imgPath}/provder/place.png"></li>
-		           <li class="provinceCity"><div id="province">北京省</div><div class="circle"></div><div id="city">北京市</div></li>
+		           <li class="provinceCity"><div id="province">${provider.teamProvinceName }</div><div class="circle"></div><div id="city">${provider.teamCityName }</div></li>
 		        </ul>
 		     </div>
 		     
@@ -130,18 +130,20 @@
 		             <div class="name">
 		                <div><img src="${imgPath}/provder/providerIcon.png" ></div><div class="cn">导演简介</div><div class="en">Director profile</div>
 		             </div>
-		             <div class="textTxt">北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省
-		                北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省
-		                北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省北京省
+		             <div class="textTxt">
+		             	${provider.teamDescription }
 		             </div>
 		         </div>
 		         
 		         <div class="tag">
+		         	
+		         
 		           <div class="leftLine">
 			            <div class="line"></div>
 			            <div class="circleTag"></div>
 		           </div>
 		           <div class="midLine">
+		           		<input type="hidden" id="provderTags" value="${providerTags }">
 		                <div class="card">
 		                     <div class="controlCard"> 
 		                     		<div><img src="${imgPath}/provder/pencil.png"></div><div class="cardWord">电影</div>
@@ -174,20 +176,32 @@
 		     
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-							 <video class="showVideo" controls src='' preload="auto" poster=''></video>
+			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
+			         	<input type="hidden" id="ykVideoUrl" value="${product.videoUrl }">
+						<video class="showVideo" controls src='' preload="auto" poster=''></video>
 			         </div>
 			         <div class="videoInfo">
-			             <div class="NameInfo">阿瓦隆</div>
+			             <div class="NameInfo">${product.productName }</div>
 			             <div class="InfoLine"></div>
-			             <div class="NameContent">阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
-			             阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
-			             阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
-			             阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
-			             阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
-			             阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆阿瓦隆
+			             <div class="NameContent">
+			             	${product.pDescription }
 			             </div>
-			              <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'></div><div>战争/</div><div>爱情</div></div>
-			             <div class="specialVideoInfo btn-red-common">了解详情</div>
+			              <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'>
+			              </div>
+			              	<c:if test="${!empty tags}">
+								<c:forEach items="${tags }" var="source" varStatus="status">
+								<div>
+									<c:if test="${status.index >0 }">
+									/
+									</c:if>
+									${source }
+								</div>
+								</c:forEach>
+							</c:if>
+			              </div>
+			             <a href="/play/${product.teamId }_${product.productId }.html">
+			             	<div class="specialVideoInfo btn-red-common">了解详情</div>
+			             </a>
 			         </div>
 			    </div>     
 		     </div>
@@ -288,10 +302,6 @@
 		                     </div>
 		                     <div class="midTimeLine"></div>
 		                 </div>
-		                 
-		                 
-		                 
-		                   
 		                
 		                   <div class="videoArea topMore">
 		                    <ul class="yearTimeUlLine">
@@ -303,17 +313,8 @@
 			                       <div><div>Read More</div></div>
 			                   </div> 
 		                 </div>
-		                 
-		           
-		           
-	
 		     
 		     </div>
-		     
-		     
-		     
-		
-	          
 		
 		</div>
 		
@@ -326,7 +327,7 @@
 		   <div class="bottomBtn btn-red-common">join us</div>
 		</div>
 		
-		
+		</div>
 		 
 </body>
 </html>
