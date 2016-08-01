@@ -80,7 +80,7 @@
 						<label id="label-message" class="label-message alert alert-danger" style="display: none;padding:0;position: relative;top: 5px;">请输入正确的手机格式</label>
 					</div>
 					<div class="order-phone-wrap">
-						<span><a href="tel:010-59005941" >创意咨询 010-59005941</a></span>
+						<span><a href="tel:4006609728" >创意咨询 4006609728</a></span>
 					</div>
 				</div>
 			</form>
