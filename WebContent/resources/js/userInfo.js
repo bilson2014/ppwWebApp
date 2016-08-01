@@ -180,7 +180,7 @@ function passwordInfo(){
 			}
 		}
 	})
-	$("#codeBt").off("click").on("click",function(){
+	$("#pwd-codeBt").off("click").on("click",function(){
 		var telPhone = $("#user-telephone").text();
 		if(checkData(6)){
 			if(checkMobile(telPhone)){
@@ -200,6 +200,8 @@ function passwordInfo(){
 					$('.tooltip-show').slideDown('normal');
 					if(flag.errorCode == 200){
 						if(flag.result){
+							window.clearInterval(InterValObj);
+							$("#upd-codeBt").text("获取验证码");
 							$('.tooltip-message').text('修改成功！');
 							$("#userLoginName").text(loginName);
 							$("#upd").removeClass("hide");
@@ -234,6 +236,8 @@ function passwordInfo(){
 					// 提示信息修改成功
 					$('.tooltip-show').slideDown('normal');
 					if(data.code==1){
+						window.clearInterval(InterValObj);
+						$("#upd-codeBt").text("获取验证码");
 						$('.tooltip-message').text('信息修改成功!');
 					}else{
 						$('.tooltip-message').text(data.msg);
@@ -306,6 +310,7 @@ function phoneInfo(){
 								if(result){
 									$("#concat_tele_old").text($('#concat_tele_new').val().trim());
 									$("#user-telephone").text($('#concat_tele_new').val().trim());
+									$("#codeBt").text("获取验证码");
 									$('.tooltip-message').text('电话修改成功!');
 								}else{
 									$('.tooltip-message').text('电话修改失败!');
@@ -482,8 +487,8 @@ function verification(phone){
 function SetRemainTime(){
 	if(curCount == 0){
 		window.clearInterval(InterValObj); // 停止计时器
-		$('#codeBt').text('重新获取');
-		$('#codeBt').removeAttr('disabled')
+		$('.codeBt').text('重新获取');
+		$('.codeBt').removeAttr('disabled')
 		// 清除session code
 		getData(function(data){
 			// 清除session code
@@ -491,7 +496,7 @@ function SetRemainTime(){
 		
 	}else{
 		curCount--;  
-		$("#codeBt").text('已发送('+ curCount +')');
+		$(".codeBt").text('已发送('+ curCount +')');
 	}
 }
 
@@ -534,7 +539,7 @@ function checkData(flag){
 		var insloginName = $('#insuserName').val().trim();
 		var newPassword = $('#insPassword').val().trim();
 		var comfrimPassword = $('#insTwoPassword').val().trim();
-		var code = $('#veritifyCode').val().trim();
+		var code = $('#veritifyCode-pwd').val().trim();
 		if(insloginName == '' || insloginName == null || insloginName == undefined){
 			$("#insuserName-error").removeClass('hide');
 			$("#insuserName-error").text('用户名不能为空');
@@ -545,7 +550,7 @@ function checkData(flag){
 		}
 		if(code == '' || code == null || code == undefined){
 			$("#label-code").removeClass('hide');
-			$('#veritifyCode').focus();
+			$('#veritifyCode-pwd').focus();
 			return false;
 		}else{
 			$("#label-code").addClass('hide');
@@ -1083,7 +1088,7 @@ var userInfo_tpl={
 	'			<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />',
 	'		</div>',
 	'		<div class="col-sm-2">',
-	'			<button type="button" class="btn btn-default" id="codeBt">获取验证码</button>',
+	'			<button type="button" class="btn btn-default codeBt" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
 	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
@@ -1114,7 +1119,7 @@ var userInfo_tpl={
 	'			<input type="text" class="form-control" id="veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />',
 	'		</div>',
 	'		<div class="col-sm-3">',
-	'			<button type="button" data-flag="new-bind" class="btn btn-default" id="codeBt">获取验证码</button>',
+	'			<button type="button" data-flag="new-bind" class="btn btn-default codeBt" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
 	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',

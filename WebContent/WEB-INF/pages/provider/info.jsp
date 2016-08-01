@@ -13,7 +13,7 @@
 <spring:url value="/resources/lib/jquery.blockui/jquery.blockUI.js" var="blockUIJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
+<spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
@@ -510,7 +510,7 @@
 					<img src="<%=request.getContextPath() %>/team/img/default.png" alt="供应商LOGO" class="img-thumbnail" id="logoImg">
 					<div class="group-form">
 						<p class="help-block" style="color: red;">点击图片打开文件</p>
-						<button class="btn btn-primary" id="uploadBt" type="button">保存LOGO</button>
+						<!-- <button class="btn btn-primary" id="uploadBt" type="button">保存LOGO</button> -->
 						<input type="file" id="file" name="file" style="display: none;"/>
 						<p class="help-block">仅支持小于5M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
 					</div>

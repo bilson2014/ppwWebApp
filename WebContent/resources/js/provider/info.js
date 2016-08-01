@@ -26,7 +26,7 @@ $().ready(function(){
 		var telPhone = $("#company-phoneNumber").val();
 		if(checkData(4)){
 			if(checkMobile(telPhone)){
-				verification(telPhone);
+				verification(telPhone,"upd-codeBt");
 			}
 		}
 	})
@@ -34,7 +34,7 @@ $().ready(function(){
 		var telPhone = $("#company-phoneNumber").val();
 		if(checkData(5)){
 			if(checkMobile(telPhone)){
-				verification(telPhone);
+				verification(telPhone,"codeBt");
 			}
 		}
 	})
@@ -45,17 +45,25 @@ $().ready(function(){
 	
 	$('#insSubmit').on('click',addAccount);
 	
-	$('#uploadBt').on('click',function(){
+/*	$('#uploadBt').on('click',function(){
 		$.blockUI({
 			message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
 		});
 		// 上传图片
 		uploadImg();
-	});
+	});*/
 	
 	// 图片上传 点击事件
 	$('#logoImg').on('click',function(){
 		$('#file').click();
+		// 图片上传 点击事件
+		$('#file').off("change").on("change",function(){
+			$.blockUI({
+				message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
+			});
+			// 上传图片
+			uploadImg();
+		});
 	});
 	
 	infoEcho();
@@ -190,6 +198,8 @@ function safeInfo(){
 			if(data.code==1){
 				// 更新成功
 				successToolTipShow('更新成功！');
+				window.clearInterval(InterValObj); // 停止计时器
+				$("#upd-codeBt").text("获取验证码");
 			}else{
 				// 更新失败
 				toolTipShow(data.result);
@@ -222,6 +232,26 @@ function verification(phone){
 	}, getContextPath() + '/login/verification/' + phone, null);
 
 }
+/**
+ * 获取验证码钮 点击事件,动态绑定按钮id 方法
+ */
+function verification(phone,ID){
+	curCount = count;
+	// 发送验证码
+	loadData(function(flag){
+		if(flag){ // 发送成功
+			$('#'+ID).text('已发送('+ curCount +')');
+			// 设置 button 效果为禁用
+			$('#'+ID).attr('disabled','disabled');
+			InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+		}else{ // 发送不成功
+			// 显示重新发送
+			$('#'+ID).text('重新获取');
+			$('#'+ID).removeAttr('disabled');
+		}
+	}, getContextPath() + '/login/verification/' + phone, null);
+
+}
 
 //timer 处理函数
 function SetRemainTime(){
@@ -249,6 +279,8 @@ function addAccount(){
 				$("#loginpwdinsert").addClass("hide");
 				$("#loginpwdupdate").removeClass("hide");
 				$(".name-item").text($("#userName").text());
+				window.clearInterval(InterValObj); // 停止计时器
+				$("#upd-codeBt").text("获取验证码");
 			}else{
 				toolTipShow(data.result);	
 			}
@@ -859,6 +891,7 @@ var provider_info = {
 						if(result){
 							window.clearInterval(InterValObj);
 							$("#new-phone-content").empty().append(info_tpl.tpl_new_phone);
+							$("#phone-codeBt").text("获取验证码");
 							$("#old-content").empty();
 							$("#old-phone-container").addClass("hide");
 							getVeritifyCodeValidate();
@@ -874,9 +907,9 @@ var provider_info = {
 											$("#old-phone-container").removeClass("hide");
 											$("#provider-phone").text(newPhone);
 											$("#old-content").empty().append(info_tpl.tpl_old_phone);
-											$('.tooltip-message').text('电话修改成功!');
+											successToolTipShow();
 										}else{
-											$('.tooltip-message').text('电话修改失败!');
+											toolTipShow("验证码错误");
 										}
 									}, getContextPath() + '/provider/modify/phone', $.toJSON({
 										teamId : $('#company-id').val(),
@@ -924,7 +957,7 @@ function getVeritifyCodeValidate(){
 				telephone : concat_tele_new
 			}));
 		}else{//老手机获取验证码
-			verification(phoneNum);
+			verification(phoneNum,"phone-codeBt");
 		}
 	});
 }
@@ -937,7 +970,7 @@ var info_tpl = {
 	'		<input type="text" class="form-control" id="provider-phoneCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />',
 	'	</div>',
 	'	<div class="col-sm-3">',
-	'		<button type="button" class="btn btn-default phonecodeBt codeBt" data-flag="old-bind" id="phone-codeBt">获取验证码</button>',
+	'		<button type="button" class="btn btn-default phonecodeBt" data-flag="old-bind" id="phone-codeBt">获取验证码</button>',
 	'	</div>',
 	'	<div class="col-sm-3">',
 	'		<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
