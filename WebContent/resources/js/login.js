@@ -33,7 +33,7 @@ $().ready(function(){
 				//回车
 				getEnter();
 				
-				this.checkImageCode();
+				//this.checkImageCode();
 				
 			},
 			phoneNumberChange:function(){
