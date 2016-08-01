@@ -1739,8 +1739,8 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 
-	@RequestMapping("/get/providerInfo")
-	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap, Long teamId) {
+	@RequestMapping("/get/providerInfo/{teamId}.html")
+	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap,@PathVariable("teamId") Long teamId) {
 		// 传递导演信息
 		String url = URL_PREFIX + "portal/team/info/" + teamId;
 		String json = HttpUtil.httpGet(url, request);
