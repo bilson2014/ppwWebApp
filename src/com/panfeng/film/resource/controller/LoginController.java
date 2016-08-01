@@ -219,7 +219,7 @@ public class LoginController extends BaseController {
 			final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 			// MD5加密
 			user.setPassword(DataUtil.md5(password));
-			
+
 			final String url = URL_PREFIX + "portal/user/checkPwd";
 			String json = HttpUtil.httpPost(url, user, request);
 			if (json != null) {
@@ -313,16 +313,16 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping("/verification/{telephone}")
 	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
-		//boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		//if(!isTest){
-			final String code = DataUtil.random(true, 6);
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		final String code = DataUtil.random(true, 6);
+		request.getSession().setAttribute("code", code); // 存放验证码
+		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
+		if (!isTest) {
 			final boolean ret = smsService.smsSend(telephone, code);
-			request.getSession().setAttribute("code", code); // 存放验证码
-			request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
-			serLogger.info("Send sms code " + code + " to telephone " + telephone);	
+			serLogger.info("Send sms code " + code + " to telephone " + telephone);
 			return ret;
-		//}
-		//return true;
+		}
+		return true;
 	}
 
 	/**
@@ -413,7 +413,8 @@ public class LoginController extends BaseController {
 			final String code = (String) session.getAttribute("code");
 			if (!"".equals(code) && code != null) {
 				if (code.equals(user.getVerification_code())) {
-					if (user != null && ValidateUtil.isValid(user.getPassword()) && ValidateUtil.isValid(user.getLoginName())) {
+					if (user != null && ValidateUtil.isValid(user.getPassword())
+							&& ValidateUtil.isValid(user.getLoginName())) {
 						// AES 密码解密
 						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 						// MD5 加密
@@ -430,10 +431,10 @@ public class LoginController extends BaseController {
 					} else {
 						return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
 					}
-				}else{
+				} else {
 					return new BaseMsg(BaseMsg.ERROR, "验证码错误！", false);
 				}
-			}else{
+			} else {
 				return new BaseMsg(BaseMsg.ERROR, "请输入验证码！", false);
 			}
 		} catch (Exception e) {
@@ -441,6 +442,32 @@ public class LoginController extends BaseController {
 			return new BaseMsg(BaseMsg.ERROR, "密码解码失败！", false);
 		}
 
+	}
+	@RequestMapping("/modify/logName2")
+	public BaseMsg modifyLogNameNoMsgAuth(final HttpServletRequest request, @RequestBody final User user) {
+		if (user != null && ValidateUtil.isValid(user.getPassword())
+				&& ValidateUtil.isValid(user.getLoginName())) {
+			try {
+				// AES 密码解密
+				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+				// MD5 加密
+				user.setPassword(DataUtil.md5(password));
+				final String url = URL_PREFIX + "portal/user/modify/loginName";
+				String str = HttpUtil.httpPost(url, user, request);
+				if (str != null && !"".equals(str)) {
+					boolean result = JsonUtil.toBean(str, Boolean.class);
+					// 添加 session
+					return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
+				} else {
+					return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new BaseMsg(BaseMsg.ERROR, "登陆错误，请重试！", false);
+			}
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "密码或用户名不完整！", false);
+		}
 	}
 
 	/**
@@ -616,18 +643,19 @@ public class LoginController extends BaseController {
 				// 获取到 用户信息后，写入session
 				if (wechat != null) {
 					User user = new User();
-					if(null!=sessionInfo&&ValidateUtil.isValid(sessionInfo.getReqiureId())){//用户已经登录,个人资料页绑定
+					if (null != sessionInfo && ValidateUtil.isValid(sessionInfo.getReqiureId())) {// 用户已经登录,个人资料页绑定
 						user.setUniqueId(token.getOpenid());
 						user.setlType("wechat");
 						user.setId(sessionInfo.getReqiureId());
 						final String url = URL_PREFIX + "portal/user/info/bind";
 						String s = HttpUtil.httpPost(url, user, request);
 						Boolean b = JsonUtil.toBean(s, Boolean.class);
-						if(b) {
-							model.addAttribute("msg", "绑定成功");//返回页面用作提示绑定成功
-						}else model.addAttribute("msg", "该账号已经存在绑定");
+						if (b) {
+							model.addAttribute("msg", "绑定成功");// 返回页面用作提示绑定成功
+						} else
+							model.addAttribute("msg", "该账号已经存在绑定");
 						return new ModelAndView("redirect:/user/info");
-					}else{
+					} else {
 						try {
 							user.setUserName(URLEncoder.encode(wechat.getNickname(), "UTF-8"));
 							user.setImgUrl(wechat.getHeadimgurl());

@@ -94,7 +94,9 @@
 											<c:if test="${product.visible == 1}">
 												<label class="label label-danger">关闭</label>
 											</c:if>
-											
+											<c:if test="${product.masterWork == 1 }">
+												<label class="label label-danger">代表作</label>
+											</c:if>
 											<c:if test="${cType == 4 }">
 												<dl class="share-list">
 													<dt >分享:</dt>
@@ -110,6 +112,9 @@
 								<td class="td1 td-content t-center">
 									<button class="btn btn-info btn-update" data-id='<c:out value="${product.productId }" />'>修改</button>
 									<button class="btn btn-danger" data-id='<c:out value="${product.productId }" />'>删除</button>
+									<c:if test="${product.masterWork == 0 && product.visible == 0}">
+										<button class="btn btn-info btn-setMaster" data-id='<c:out value="${product.productId }" />'>设为代表作</button>
+									</c:if>
 								</td>
 							</tr>
 					</c:forEach>

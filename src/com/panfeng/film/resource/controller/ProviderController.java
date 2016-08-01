@@ -42,7 +42,6 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
-import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.KindeditorService;
@@ -714,7 +713,12 @@ public class ProviderController extends BaseController {
 		}
 		return false;
 	}
-
+	/**
+	 * 带有短信验证的供应商用户名密码注册
+	 * @param request
+	 * @param team
+	 * @return
+	 */
 	@RequestMapping("/add/account")
 	public BaseMsg addAccount(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
@@ -740,7 +744,32 @@ public class ProviderController extends BaseController {
 		}
 		return msg;
 	}
-
+	/**
+	 * 不带有短信验证的供应商用户名密码注册
+	 * @param request
+	 * @param team
+	 * @return
+	 */
+	@RequestMapping("/add/account2")
+	public BaseMsg addAccountNoMsgAuth(final HttpServletRequest request, @RequestBody final Team team){
+		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
+		if (team != null) {
+			try {
+				String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
+				team.setPassword(DataUtil.md5(password));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			final String url = URL_PREFIX + "portal/team/static/data/add/account";
+			final String json = HttpUtil.httpPost(url, team, request);
+			final boolean flag = JsonUtil.toBean(json, Boolean.class);
+			if(flag){
+				msg.setCode(1);
+				msg.setResult("修改成功");
+			}
+		}
+		return msg;
+	}
 	/**
 	 * 供应商根据 视频ID 删除
 	 * 
@@ -1624,6 +1653,13 @@ public class ProviderController extends BaseController {
 		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
 		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
 		return new ModelAndView("/updatePwd", modelMap);
+	}
+	
+	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public boolean setMasterWork(@RequestBody final Product product,HttpServletRequest request) {
+		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
+		HttpUtil.httpPost(updateUrl, product, request);
+		return true;
 	}
 	/**
 	 * 第三方绑定状态

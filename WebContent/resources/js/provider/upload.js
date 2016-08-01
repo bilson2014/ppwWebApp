@@ -14,6 +14,14 @@ oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gi
 $.base64.utf8encode = true;
 $().ready(function(){
 	createEditor('textarea[name="pageDescription"]');
+	
+	$('#creationTime').datepicker({
+		language: 'zh',
+		dateFormat:'yyyy-MM-dd',
+		maxDate: new Date() 
+	});
+	
+	createEditor('textarea[name="pageDescription"]');
 	cancleUpdate();
 	// 判断浏览器格式
 	var ua = window.navigator.userAgent;
@@ -135,8 +143,8 @@ $().ready(function(){
 				}else{
 					upload();
 				}
-				});
 
+				});
 			});
 			// 开关注册
 			initSwitch(true);
@@ -163,7 +171,6 @@ $().ready(function(){
 				modify();
 			}
 			});
-
 		});
 		
 		// 如果 停止启用，则改变  switch 状态
@@ -284,7 +291,8 @@ function upload(){
 					'visible' : $('#video-switch').val(),
 					'tags' : mergeTag(),
 					'videoDescription' : videoDescription.trim(),
-					'sessionId' : sessionId
+					'sessionId' : sessionId,
+					'creationTime' : $('#creationTime').val()
 				},
 				success: function(data){
 					window.clearInterval(oTimer); // 停止计时器
@@ -366,7 +374,8 @@ function modify(){
 						'visible' : $('#video-switch').val(),
 						'tags' : mergeTag(),
 						'videoDescription' : videoDescription.trim(),
-						'sessionId' : sessionId
+						'sessionId' : sessionId,
+						'creationTime' : $('#creationTime').val()
 					},
 					success: function(data){
 						window.clearInterval(oTimer); // 停止计时器
