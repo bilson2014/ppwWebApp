@@ -7,6 +7,9 @@
 .page {
     background: #f2f2f2;
 }
+a:link,a:visited{
+ text-decoration:none;  /*超链接无下划线*/
+}
 
 .infoTop {
     position: relative;
@@ -318,6 +321,7 @@
             font-size: $font-size-base;
             line-height: 26px;
             overflow: hidden;
+            cursor: pointer;
         }
         .specialVideoInfo {
             text-align: center;
@@ -486,6 +490,7 @@
         color: $gray-dark;
         font-size: $font-size-lg24;
         @include ellipsis;
+        margin-bottom: 10px;
     }
     a {
         img {
@@ -510,6 +515,7 @@
         font-size: $font-size-base;
         color: $gray-light;
         border-bottom: 1px solid #ccc;
+        cursor: pointer;
     }
     .videoBtn {
         width: 98px;
@@ -589,12 +595,12 @@
     .day {
         font-size: $font-size-base;
         color: $gray-light;
-         width: 51px;;
+         width: 59px;;
           @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 111px;
+        width: 119px;
     }
     @media screen and (min-width:1500px) {
-       width: 111px;
+       width: 119px;
     }
         vertical-align: bottom;
         text-align: center;
@@ -628,6 +634,13 @@
     width: 100%;
     margin: 0 auto;
     background: white;
+
+    .buChong{
+        width: 100%;
+        height:20px;
+        background: #f2f2f2;
+    }
+
     .bottomWord {
         padding-top: 70px;
         color: $gray-dark;
