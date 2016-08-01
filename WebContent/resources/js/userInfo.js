@@ -315,6 +315,7 @@ function phoneInfo(){
 								if(result){
 									$("#concat_tele_old").text($('#concat_tele_new').val().trim());
 									$("#user-telephone").text($('#concat_tele_new').val().trim());
+									window.clearInterval(InterValObj); // 停止计时器
 									$("#codeBt").text("获取验证码");
 									$('.tooltip-message').text('电话修改成功!');
 								}else{
@@ -975,7 +976,7 @@ var userinfo_third = {
 					loadData(function(flag){
 						if(flag){ // 发送成功
 							//提示成功
-							$('.tooltip-showBand').slideDown('normal');
+							successToolTipShow();
 							$('#qq').removeAttr("class").addClass("noBand");
 							check();
 						}
@@ -1049,7 +1050,7 @@ function userInfoToBind(condition){
 	loadData(function(data){
 		if(data.code==1){
 			bandInfo();
-			$('.tooltip-showBand').slideDown('normal');
+			successToolTipShow();
 		}
 	}, getContextPath() + '/user/bind/third',condition);
 }
@@ -1142,11 +1143,11 @@ var userInfo_tpl={
 
 
 
-function bandInfo(){
+/*function bandInfo(){
 	$('.three-band').slideDown('normal');
 	check();
 	successToolTipShow();
-}
+}*/
 
 
 
