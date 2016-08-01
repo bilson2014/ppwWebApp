@@ -1742,7 +1742,7 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/get/providerInfo")
 	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap, Long teamId) {
 		// 传递导演信息
-		String url = URL_PREFIX + "portal/team/info?teamId=" + teamId;
+		String url = URL_PREFIX + "portal/team/info/" + teamId;
 		String json = HttpUtil.httpGet(url, request);
 		final Team result = JsonUtil.toBean(json, Team.class);
 		if(result != null){
@@ -1777,7 +1777,7 @@ public class ProviderController extends BaseController {
 			logger.error("provider business is null ...");
 		}
 		// 加载代表作
-		url = URL_PREFIX + "portal/get/masterWork?teamId=" + teamId;
+		url = URL_PREFIX + "portal/get/masterWork/" + teamId;
 		json = HttpUtil.httpGet(url, request);
 		final Product product = JsonUtil.toBean(json, Product.class);
 		if(product != null){

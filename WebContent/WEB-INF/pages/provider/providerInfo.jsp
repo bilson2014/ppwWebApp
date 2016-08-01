@@ -108,6 +108,8 @@
 	</div>
 		
 		<div class="page">
+			<input type="hidden" id="teamId" value="${product.teamId }">
+			<input type="hidden" id="masterWorkProductId" value="${product.productId }">	
 		     <div class="infoTop">
 		        <div  class="image-video"></div>
 		        <div  class="image-video-model"></div>
