@@ -109,12 +109,18 @@ $().ready(function(){
 			$(this).hide('fast');
 		});
 	},getContextPath() + '/product/loadWithTeam/' + $('#company-unique').val(),null);
-	
 	toDirector();
 });
 
 function toDirector(){
 	  $('#toDirector').on('click',function(){
-		  alert($('#productId').text().trim()); 
+		  var id = $('#productId').val().trim();
+		  var path = getContextPath() + '/provider/get/providerInfo';
+		  var formBody = '<form action="'+path+'" method="post" oncomplete="false" id="submitkey" style="display: none;">';
+			formBody += '<input type="text" name="teamId" value="'+ id +'" style="display: none">';
+			formBody += '</form>';
+			$('body').append(formBody);
+			$('#submitkey').submit().remove();
 	  });
 }
+
