@@ -108,6 +108,8 @@
 	</div>
 		
 		<div class="page">
+			<input type="hidden" id="teamId" value="${product.teamId }">
+			<input type="hidden" id="masterWorkProductId" value="${product.productId }">	
 		     <div class="infoTop">
 		        <div  class="image-video"></div>
 		        <div  class="image-video-model"></div>
@@ -142,27 +144,13 @@
 		           </div>
 		           <div class="midLine" id="provderTagId">
 		           		<div class="hide" id="provderTags" >${providerTags}</div>
-		                 <div class="card">
+		            <!--      <div class="card">
 		                     <div class="controlCard"> 
 		                     		<div class="pencil"></div>
 		                     		<div class="cardWord">电影</div>
 		                     </div>
-		                 </div>
-		                   <!--  <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><div ></div><div class="cardWord">电影少打</div>
-		                     </div>
-		                 </div>
-		                   <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><div ></div><div class="cardWord">电影</div>
-		                     </div>
-		                 </div>
-		                    <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div><img ></div><div class="cardWord">电影</div>
-		                     </div>
 		                 </div> -->
+		        
 		         </div>
 		            <div class="rightLine">
 			            <div class="circleTag"></div>
@@ -175,9 +163,12 @@
 		     
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
-			         	<input type="hidden" id="ykVideoUrl" value="${product.videoUrl }">
-						<video class="showVideo" controls src='' preload="auto" poster=''></video>
+			         	<input type="hidden" id="ykVideoUrl" value="">
+			         	<input type="hidden" id="localVideoUrl" value="${product.videoUrl}">
+			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
+			         	<div class="showVideo" id="showVideo" >
+						<!-- <video class="showVideo" controls src='' preload="auto" poster=''></video> -->
+						</div>
 			         </div>
 			         <div class="videoInfo">
 			             <div class="NameInfo">${product.productName }</div>

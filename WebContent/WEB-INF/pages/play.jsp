@@ -191,12 +191,12 @@
 					</div>
 				</div>
 				
-				<div class="team-info ">
+				<div class="team-info" id="toDirector">
 					<input type="hidden" value="${teamId }" id="productId"/>
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
-								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" id="toDirector">
+								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
 							</c:if>
 							<c:if test="${!empty product.teamPhotoUrl }">
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
@@ -303,7 +303,7 @@
 				
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >联系我们</a>
-					<a href="tel:010-59005941" class="qqClient"><label class="tel-icon"></label><h3>010-59005941</h3></a>
+					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
 					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
 					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
 					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
