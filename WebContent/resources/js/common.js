@@ -51,8 +51,9 @@ $().ready(function(){
 	
 	//检测用户是否完善登录名和密码
 	loadData(function(flag){
-		if(flag){
-		}else{
+		if(!flag){
+			$(".right-part").append('<div class="warn">1</div>');
+			//.append('<div class="warnWindom"><div class="divImg"></div><div></div></div>');
 		}
 	}, getContextPath() + '/loginName/validate');
 	
