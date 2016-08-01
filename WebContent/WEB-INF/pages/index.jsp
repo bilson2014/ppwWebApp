@@ -77,7 +77,7 @@
 				</r:identity>
 				<r:identity role="provider">
 				    <div class="warn">!</div>
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /><div class="warnWindom">sss</div></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /><div class="warnWindom"><img src="${imgPath }/index/upJiao.png">sss</div></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="employee">
