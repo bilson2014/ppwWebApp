@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.PhotoCutParam;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.security.AESUtil;
@@ -136,6 +143,46 @@ public class UserController extends BaseController{
 		}
 		return false;
 	}
+	/**
+	 * 根据手机验证码修改用户密码
+	 * @throws Exception
+	 */
+	@RequestMapping("/modify/code/password")
+	public Map<String, Object> modifiedUserPasswordByVerificationCode(@RequestBody final User user,
+					final HttpServletRequest request) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", 0);
+		map.put("msg", "信息修改失败，请刷新后再试!");
+		if(user != null){
+			final String code = (String) request.getSession().getAttribute("code");
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
+					final long userId = user.getId();
+					if(user.getPassword() != null && !"".equals(user.getPassword())){
+						// AES密码解密
+						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						// MD5加密
+						user.setPassword(DataUtil.md5(password));
+						
+						// 修改 用户密码
+						final String url = URL_PREFIX + "portal/user/modify/password";
+						final String json = HttpUtil.httpPost(url, user,request);
+						final Boolean result = JsonUtil.toBean(json, Boolean.class);
+						
+						serLogger.info("User id is " + userId + " update password -success=" + result);
+						if(result){
+							map.put("code", 1);
+							map.put("msg", "修改成功");
+						}
+					}
+					logger.info("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...");
+				}else{
+					map.put("msg", "验证码错误");
+				}
+			}
+		}
+		return map;
+	}
 	
 	/**
 	 * 发送验证码
@@ -145,7 +192,8 @@ public class UserController extends BaseController{
 			@PathVariable("telephone") final String telephone){
 		
 		final String code = DataUtil.random(true, 6);
-		request.getSession().setAttribute("userCode", code); // 存放验证码
+		request.getSession().setAttribute("code", code); // 存放验证码
+		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		final boolean ret = smsService.smsSend(telephone, code);
 		
 		serLogger.info("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret);
@@ -162,7 +210,7 @@ public class UserController extends BaseController{
 			final HttpServletRequest request){
 		
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("userCode");
+			final String code = (String) request.getSession().getAttribute("code");
 			if(code != null && !"".equals(code)){
 				if(code.equals(user.getVerification_code())){
 					
@@ -190,7 +238,7 @@ public class UserController extends BaseController{
 	@RequestMapping("/clear/code")
 	public int clearCode(final HttpServletRequest request){
 		
-		request.getSession().removeAttribute("userCode");
+		request.getSession().removeAttribute("code");
 		return 0;
 	}
 	
@@ -414,4 +462,68 @@ public class UserController extends BaseController{
 		return null;
 	}
 	
+	@RequestMapping("/repwd")
+	public ModelAndView repwd(ModelMap modelMap) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		return new ModelAndView("/repwd", modelMap);
+	}
+
+	@RequestMapping("/updatePwd")
+	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
+		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
+		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
+		return new ModelAndView("/updatePwd", modelMap);
+	}
+	
+	/**
+	 * 第三方绑定状态
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/third/status")
+	public Map<String, Object> thirdBindStatus(HttpServletRequest request){
+		Map<String, Object> result = new HashMap<String,Object>();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		User user = new User();
+		user.setId(sessionInfo.getReqiureId());
+		final String url = URL_PREFIX + "portal/user/third/status";
+		final String json = HttpUtil.httpPost(url, user,request);
+		result = JsonUtil.toBean(json, Map.class);
+		return result;
+	}
+	
+	/**
+	 * 个人中心绑定第三方
+	 * 如果第三方账号已经存在,不允许绑定
+	 */
+	@RequestMapping("/bind/third")
+	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
+			@RequestBody final User user) {
+		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		final String url = URL_PREFIX + "portal/user/info/bind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		if(b) {
+			baseMsg.setCode(1);
+			baseMsg.setResult("绑定成功");
+		}else baseMsg.setResult("账号存在绑定");
+		return baseMsg;
+	}
+	
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unbind/third")
+	public boolean unBindThird(@RequestBody final User user,final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		user.setId(sessionInfo.getReqiureId());//填充用户id
+		// 查询该用户是否存在
+		final String url = URL_PREFIX + "portal/user/info/unbind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
 }

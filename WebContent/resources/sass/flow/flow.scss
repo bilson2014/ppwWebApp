@@ -34,7 +34,7 @@
     }
             margin-left: 14px;
             font-weight: bold;
-            font-size: 17px;
+            font-size: $font-size;
             color: $gray-dark;
             height: 20px;
             display: block;
@@ -84,7 +84,7 @@
         }
         .indent-a:hover {
             color: $gray-dark;
-            font-size: 14px;
+            font-size: $font-size-base;
         }
         .indent-selected {
             font-size: $font-size-base;
@@ -470,7 +470,7 @@
             padding-left: 20px;
             padding-top: 50px;
             .message-title-text {
-                font-size: 16px;
+                font-size: $font-size;
                 font-weight: bold;
                 color: $gray-dark;
             }
@@ -1198,7 +1198,7 @@ img {
 .menu ul li ul li {
     display: block;
     background: none;
-    font-size: 12px;
+    font-size: $font-size-sm;
     list-style: circle;
     color: #8f9d4c;
     margin-bottom: 0px;
@@ -1237,7 +1237,7 @@ img {
         position: relative;
         left: 35px;
         top:20px;
-        font-size: 1.7rem;
+        font-size:$font-size;
         color: black;
     }
 
@@ -1800,7 +1800,7 @@ margin-top: 80px;
 .share-list dt{
     display: inline-block;
     color: #666;
-    font-size: 14px;
+    font-size: $font-size-base;
     width: 40px;
     height: 23px;
     vertical-align: middle;

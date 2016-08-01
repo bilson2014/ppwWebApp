@@ -15,6 +15,8 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
+	
+	
 	$('.bottom-div').show();
 			init();
 			showOrderTime();
@@ -106,7 +108,6 @@ $().ready(function() {
 				$('#toolbar-pause-re').modal('hide');
 			});
 			ControlPay.initControlPay();
-			
 			
 		});
 
@@ -1313,8 +1314,9 @@ function loadSynerhyList(){
 	
 	syncLoadData(function(msg) {
 		if(msg.length <=0){
-			
+			$('#page').removeClass('hide');
 		}else{
+			$('#page').removeClass('hide');
 			var help=$("#helpProjectId");
 			help.html('');
 			for (var i = 0; i < msg.length; i++){

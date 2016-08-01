@@ -247,6 +247,8 @@ function lrfunction(phoneNo){
 							$('#label-info').text(info.value);
 							$('#loginBt').removeAttr('disabled'); // 重置
 							$('#loginBt').text('注册');
+							$('#title').text('客户注册');
+						
 						}
 					}, getContextPath() + '/login/register', $.toJSON({
 						telephone : phoneNo,
@@ -274,6 +276,7 @@ function lrfunction(phoneNo){
 					// 是手机号，执行登录方法
 					loadData(function(flag){
 						$('#loginBt').text('登录');
+						$('#title').text('客户登录');
 						if(flag){
 							// 跳转
 							$('#form-login').attr('action',getContextPath() + '/mgr/index');

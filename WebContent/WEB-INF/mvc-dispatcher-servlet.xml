@@ -41,6 +41,8 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
+    <mvc:view-controller path="/provider/providerInfo" view-name="/provider/providerInfo"/>
+    
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -76,7 +78,9 @@
 		
 		
 		<mvc:interceptor>
-			<mvc:mapping path="/user/info"/>
+			<mvc:mapping path="/user/**"/>
+			<mvc:exclude-mapping path="/user/info" />
+			<mvc:exclude-mapping path="/user/repwd" />
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
 		</mvc:interceptor>
 		
@@ -84,6 +88,8 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
 			<mvc:exclude-mapping path="/provider/login" />
+			<mvc:exclude-mapping path="/provider/repwd" />
+			<mvc:exclude-mapping path="/provider/updatePwd" />
 			<mvc:exclude-mapping path="/provider/thirdLogin" />
 			<mvc:exclude-mapping path="/provider/bind" />
 			<mvc:exclude-mapping path="/provider/register" />

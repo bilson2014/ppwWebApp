@@ -1,1 +1,791 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('6 2S(){30()}6 30(){1j(6(a){r b,c;13($("#4-N").2F(),$y=\'<y 1h="-1"> -- 请选择类型 -- </y>\',a.A>0)3j(b=0;b<a.A;b++)$y+=\'<y 1h="\'+a[b].3l+\'">\',$y+=a[b].3m,$y+="</y>";$("#4-N").20($y),c=$("#3g").3(),""!=c&&8 0!=c&&$.2i($("#4-N y"),6(){$(E).3()==c&&$(E).S("1i","1i")})},G()+"/1p/3q/1N",7)}6 Z(){13($("#t").n(),$("#J").n(),1K("Z")&&1L()){1k=1w("1S()",2y),$(".14-1c-B").v("0"),$(".14-1c-B").S("1Q-1W","0").O({W:"0%"}),$("#K").M("o"),$.X.1F=!0;r a=$.X.2Q(1l.1q());$.2z({2D:G()+"/1p/3p/R/1R",2B:!1,2A:["D","F","H"],2P:"v/1q",11:{2W:$("#p-C").3().q(),34:$("#1P-C").3(),33:$("#4-1b").3().q(),2t:$("#4-N y:1i").3(),35:$("#4-A").3().q(),36:$("#4-1e").3().q(),38:$("#4-Y").3(),2Z:$("#4-10").3(),2T:1H(),2R:a.q(),I:I},B:6(a){T.1z(1k),a.z("19=1")>-1?($("#J").o(),$("#J").v("视频大小超出1I上限,请重新上传!"),$("#K").M("n")):a.z("19=2")>-1?($("#t").o(),$("#t").v("图片大小超出1J上限,请重新上传!"),$("#K").M("n")):($("#t").n(),$("#J").n(),$("#K-2J").2F(),$U=\'<L 15="U U-B" 3n="U">信息保存成功</L>\',$("#K-2J").20($U),$1s=\'<L 15="M-1s">\',$1s+=\'<24 N="24" 15="2H 2H-2L" 11-3K="M" C="2N">确定</24>\',$1s+="</L>",$("#K-18").20($1s),$("#2N").P("u",6(){$("#18-3G",21.1y).3L("1f",G()+"/1p/4-3E")}))},19:6(){U("文件上传失败...")}})}}6 1a(){13($("#t").n(),$("#J").n(),1K("1a")&&1L()){$("#t").n(),$("#J").n(),""!=$("#D").3()&&(1k=1w("1S()",2y),$(".14-1c-B").v("0"),$(".14-1c-B").S("1Q-1W","0").O({W:"0%"}),$("#K").M("o")),$.X.1F=!0;r a=$.X.2Q(1l.1q());$.2z({2D:G()+"/1p/3u/R/1R",2B:!1,2A:["D","F","H"],2P:"v/1q",11:{2W:$("#p-C").3().q(),34:$("#1P-C").3(),33:$("#4-1b").3().q(),2t:$("#4-N y:1i").3(),35:$("#4-A").3().q(),36:$("#4-1e").3().q(),2U:$("#s-C").3(),38:$("#4-Y").3(),2Z:$("#4-10").3(),2T:1H(),2R:a.q(),I:I},B:6(a){T.1z(1k),a.z("19=1")>-1?($("#J").o(),$("#J").v("视频大小超出1I上限,请重新上传!"),$("#K").M("n")):a.z("19=2")>-1?($("#t").o(),$("#t").v("图片大小超出1J上限,请重新上传!"),$("#K").M("n")):((""==$("#s-C").3()||7==$("#s-C").3())&&$("#s-C").3(2U),$("#K").M("n"),2e(),1j(6(a){r b,c,d,e;7!=a.1g&&""!=a.1g&&8 0!=a.1g&&(b=1G(a.1g),c=1B()+"/R/1u/"+b,$("#2O").S("1f",c)),7!=a.17&&""!=a.17&&8 0!=a.17&&(d=1G(a.17),e=1B()+"/R/1u/"+d,$("#2M").S("1f",e))},G()+"/1p/R/11/"+$("#p-C").3(),7))},19:6(){U("文件上传失败...")}})}}6 1S(){r a=2f 3D;1j(6(a){r b=3Q(2g*(a.3A/a.3B)).3C(0)+"%";$(".14-1c-B").v("已完成"+b),$(".14-1c-B").S("1Q-1W",b).O({W:b})},G()+"/3z/14",a.3y())}6 1K(a){r g,h,i,j,k,l,m,b=$("#4-1b").3().q(),c=$("#4-N y:1i").3(),d=$("#4-A").3().q(),e=$("#4-1e").3().q(),f=$("#4-Y").3();Q""==b||7==b||8 0==b?(w("4-1b","请输入视频标题!"),$("#4-1b").V(),!1):-1==c?(w("4-N","请选择视频类型!"),$("#4-N").V(),!1):""==d||7==d||8 0==d?(w("4-A","请填写视频长度!"),$("#4-A").V(),!1):""==e||7==e||8 0==e?(w("4-1e","请填写视频简介!"),$("#4-1e").V(),!1):""==f||7==f||8 0==f?(w("4-Y","请填写价格!"),$("#4-Y").V(),!1):(g=2f 3t("^[0-9]*$"),g.3v(d)?3w(f)?(w("4-Y","请输入数字!"),$("#4-Y").V(),!1):"Z"==a?(h=$("#F").3(),i=$("#H").3(),j=$("#D").3(),""==h||7==h||8 0==h?(w("28","请上传缩略图!"),!1):""==i||7==i||8 0==i?(w("29","请上传封面!"),!1):""==j||7==j||8 0==j?(w("22","请上传视频!"),!1):!0):"1a"==a?(k=$("#4-17").3(),l=$("#4-1g").3(),m=$("#3x").3(),""!=k&&7!=k&&8 0!=k||7!=$("#F").3()&&""!=$("#F").3()?""!=l&&7!=l&&8 0!=l||7!=$("#H").3()&&""!=$("#H").3()?""!=m&&7!=m&&8 0!=m||7!=$("#D").3()&&""!=$("#D").3()?!0:(w("22","请上传视频!"),!1):(w("29","请上传封面!"),!1):(w("28","请上传缩略图!"),!1)):8 0:(w("4-A","请填写整数!"),$("#4-A").V(),!1))}6 w(a,b){T.1z(25),$("#"+a).2b({3F:"3N",18:b,3O:"3P",3s:{o:3M,n:2g}}).2b("o"),25=T.1w(6(){$("#"+a).2b("n")},3H)}6 2e(){T.1z(2d),$(".2k-B-o").3I("2l"),2d=T.1w(2q,3J)}6 2q(){$(".2k-B-o").n("2l")}6 1L(){r a=$("#F").3(),b=$("#H").3(),c=$("#D").3();Q 7!=a&&""!=a&&8 0!=a&&(a=1C(a),a.z("."+1o[0])<0&&a.z("."+1o[1])<0)?($("#t").o(),$("#t").v("缩略图请上传26、2a格式的图片!"),!1):7!=b&&""!=b&&8 0!=b&&(b=1C(b),b.z("."+1o[0])<0&&b.z("."+1o[1])<0)?($("#t").o(),$("#t").v("封面请上传26、2a格式的图片!"),!1):7!=c&&""!=c&&8 0!=c&&(c=1C(c),c.z("."+1N[0])<0)?($("#J").o(),$("#J").v("请上传2n格式的视频!"),!1):!0}6 1v(a){r d,b=1y.2o(a),c=0;3R{13(7==b.1h||8 0==b.1h||""==b.1h)Q U("请上传文件"),8 0;13(12.37||12.2Y)c=b.3k[0].3c;3e{13(!12.2m)Q;d=1y.2o("39"),d.3r=b.1h,c=d.3o}13(-1==c)Q;10(a){1U"H":1U"F":Q c>2r?($("#t").o(),$("#t").v(2s),8 0):($("#t").n(),!0);1U"D":Q c>2p?($("#t").o(),$("#t").v(2j),8 0):($("#t").n(),!0)}}3h(e){3i.1R(e)}}6 1D(a){$("#4-10").3f({3d:!0,3a:a,3b:"B",4b:"4P",4O:"可见",4N:"关闭",4M:6(a,b){b?$(E).3(0):$(E).3(1)}})}6 1C(a){Q 7!=a&&""!=a&&8 0!=a?a.4Q():7}6 1H(){r a="";Q $.2i($(".1O"),6(b,c){r d=$(c).v().1x(/,/g,"").q();7!=d&&""!=d&&8 0!=d&&(a+=d,b!=$(".1O").A-1&&(a+=" "))}),a}6 1M(a){r b,c;7!=a&&8 0!=a&&""!=a?(b=$(".1X").A,5>b&&(c=\'<1V 15="1X">\',c+=\'<b 15="1O">\'+a+"</b>",c+=\'<a 2K="4R:8(0);" 15="1E">\',c+="<1V>x</1V>",c+="</a>",$(".4U").4T(c),$(".1E").1A("u"),$(".1E").1n("u",6(){1T($(E))})),$(".1m").3("")):$(".1m").3("")}6 1T(a){a.21().4S();r b=$(".1X").A;0==b&&$(".23").o("1Y")}6 2h(a){1l=4L.4K(a,{4E:G()+"/4D/4C/2c/4B/4W/4G.O",4J:G()+"/2c/4I",4H:4V,W:"5c",1r:"5b",5a:0,5e:!0,5d:["58","51","|","50","4Z","4X","4Y","52","59","|","53","57","56","55","54","|","4F","4z","48","47","46","3S","45","49"]})}r 25,1k,2d,4a,I,1l,1o=["26","2a"],1N=["2n"],2r=4d,2p=4c,2s="图片大小超出1J上限,请重新上传!",2j="视频大小超出1I上限,请重新上传!",4A="您的浏览器暂不支持计算上传文件的大小，为保证操作体验，建议使用43、42、2X浏览器",12={};$.X.1F=!0,$().3W(6(){r a,d,f,g,h,i,j,k,l,m;2h(\'3V[1b="3U"]\'),a=T.3T.3X,a.z("3Y")>=1?12.2m=!0:a.z("41")>=1?12.37=!0:a.z("2X")>=1&&(12.2Y=!0),$("#1P-C").3(),$("#p-C").3(),d=$("#40").3(),2S(),$(".1m").1n("3Z",6(a){r b,c,d;e=a?a:T.2V?T.2V:7,b=e.4e||e.4f||e.4t,(32==b||44==b)&&(c=$(E).3().1x(/,/g,"").q(),7!=c&&""!=c&&8 0!=c&&(d=c.1x(/[^\\4s-\\4r]/g,"**").A,d>16?$("#31").o():($("#31").n(),1M(c))))}),$(".1m").4u(6(){r b,a=$(E).3().1x(/,/g,"").q();7==a||""==a||8 0==a?(b=1H(),(7==b||""==b||8 0==b)&&$(".23").o("1Y")):1M(a)}),$(".1E").P("u",6(){1T($(E))}),$(".23").u(6(){$(E).n("1Y"),$(".1m").V()}),$("#4v").P("u",6(){"Z"==d&&1j(6(){},G()+"/2c/4y/"+I,7),$(".4x-18 4w:4q(1)",21.1y).u()}),$("#29").P("u",6(){$("#H").u(),$("#H").1A("1d"),$("#H").1n("1d",6(){1v("H")})}),$("#28").P("u",6(){$("#F").u(),$("#F").1A("1d"),$("#F").1n("1d",6(){1v("F")})}),$("#22").P("u",6(){$("#D").u(),$("#D").1A("1d"),$("#D").1n("1d",6(){1v("D")})}),"Z"==d?1j(6(a){I=a.I,$("#4-1Z-L").n(),$("#4-27-L").n(),$("#2u").P("u",6(){1==$("#4-10").3()?2x("关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？")&&Z():Z()}),1D(!0)},G()+"/R/I",7):"1a"==d&&(I=$("#I").3(),f=$("#4p-1e").3().q(),$.X.1F=!0,g=$.q($.X.4j(f,!0)),1l.1q(g),$("#2u").P("u",6(){1==$("#4-10").3()?2x("关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？")&&1a():1a()}),1==$("#4-10").3()?1D(!1):1D(!0),h=$("#4-17").3(),""!=h&&7!=h?($("#4-1Z-L").o(),i=1G(h),j=1B()+"/R/1u/"+i,$("#2M").S("1f",j)):$("#4-1Z-L").n(),k=$("#4-1g").3(),""!=k&&7!=k?($("#4-27-L").o(),l=1G(k),m=1B()+"/R/1u/"+l,$("#2O").S("1f",m)):$("#4-27-L").n()),$(".4i").P("u",6(){r a=$(E).11("2K"),b=$(E).11("W"),c=$(E).11("1r");$("#2G").S("1f",G()+"/R/1u/"+a),$("#2G").O({W:b+"2I",1r:c+"2I"}),a.z("2L-4h")>-1?($("#1t-18").O({W:"4g",1r:"4k",2E:"2w"}),$("#1t-2v").O({2C:0})):($("#1t-18").O({W:"4l",1r:"4o",2E:"2w"}),$("#1t-2v").O({2C:"4n 4m"})),$("#1t").M("o")})});',62,325,'|||val|video||function|null|void|||||||||||||||hide|show||trim|var||imageLabel|click|text|popshow||option|indexOf|length|success|id|videoFile|this|picHDFile|getContextPath|picLDFile|sessionId|videoLabel|mymodal|div|modal|type|css|on|return|product|attr|window|alert|focus|width|base64|price|upload|switch|data|browserCfg|if|progress|class||picHDUrl|content|error|modify|name|bar|change|description|src|picLDUrl|value|selected|loadData|oTimer|editor|input_inner|bind|imageType|provider|html|height|footer|photoModel|img|checkFile|setInterval|replace|document|clearInterval|unbind|getHostName|transformLower|initSwitch|btn_keyword_del|utf8encode|getFileName|mergeTag|500M|250KB|checkData|checkFileDecriminalization|addTags|videoType|keyword_item_inner|company|aria|info|getProgress|removeTags|case|span|valuenow|keyword_item|fast|picHD|append|parent|uploadVideoBt|keyword_placeholder|button|PopInterValObj|png|picLD|uploadHDBt|uploadLDBt|jpg|popover|kindeditor|successIntervalObj|successToolTipShow|new|100|createEditor|each|video_err_msg|tooltip|normal|ie|mp4|getElementById|video_max_size|hideSuccessTooltip|image_max_size|image_err_msg|productType|infoBt|dialog|40px|confirm|500|ajaxFileUpload|fileElementId|secureuri|margin|url|top|empty|previewImg|btn|px|body|href|default|HDImg|modelBT|LDImg|dataType|btoa|videoDescription|initData|tags|serviceId|event|productId|Chrome|chrome|visible|loadVideoType|tagLabel||productName|teamId|videoLength|pDescription|firefox|servicePrice|tempImg|state|onColor|size|animate|else|bootstrapSwitch|vType|catch|console|for|files|itemId|itemName|role|fileSize|save|load|dynsrc|delay|RegExp|update|test|isNaN|videoUrl|getTime|upfile|pBytesRead|pContentLength|toFixed|Date|list|placement|frame|2e3|slideDown|3e3|dismiss|prop|200|bottom|trigger|manual|Number|try|table|navigator|pageDescription|textarea|ready|userAgent|MSIE|keypress|action|Firefox|FireFox|IE||formatblock|fullscreen|unlink|link|preview|localAddress|offColor|524288e3|256e3|keyCode|which|1080px|thumbnail|exampleUrl|atob|700px|680px|auto|30px|420px|page|eq|xff|x00|charCode|blur|backBt|li|menu|delete|image|tipMsg|plugins|lib|resources|cssPath|emoticons|prettify|zIndex|uploadImage|uploadJson|create|KindEditor|onSwitchChange|offText|onText|danger|toLowerCase|javascript|remove|before|keyword_input|888888|code|bold|italic|hilitecolor|forecolor|fontsize|underline|justifyleft|insertunorderedlist|insertorderedlist|justifyright|justifycenter|fontname|removeformat|resizeType|350px|600px|items|allowImageUpload'.split('|'),0,{}))
+var PopInterValObj,oTimer,successIntervalObj; // timer变量，控制时间
+var imageType = ['png','jpg'];
+var videoType = ['mp4'];
+var image_max_size = 1024*250; // 250KB
+var video_max_size = 500*1024*1024; // 500MB
+var image_err_msg = '图片大小超出250KB上限,请重新上传!';
+var video_err_msg = '视频大小超出500M上限,请重新上传!';
+var tipMsg = "您的浏览器暂不支持计算上传文件的大小，为保证操作体验，建议使用IE、FireFox、Chrome浏览器";
+var browserCfg = {};
+var localAddress;
+var sessionId;
+var editor;
+oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+$.base64.utf8encode = true;
+$().ready(function(){
+	createEditor('textarea[name="pageDescription"]');
+	
+	$('#creationTime').datepicker({
+		language: 'zh',
+		dateFormat:'yyyy-MM-dd',
+		maxDate: new Date() 
+	});
+	
+	createEditor('textarea[name="pageDescription"]');
+	cancleUpdate();
+	// 判断浏览器格式
+	var ua = window.navigator.userAgent;
+	if (ua.indexOf("MSIE")>=1){
+		browserCfg.ie = true;
+	}else if(ua.indexOf("Firefox")>=1){
+		browserCfg.firefox = true;
+	}else if(ua.indexOf("Chrome")>=1){
+		browserCfg.chrome = true;
+	}
+	
+	var companyKey = $('#company-id').val();
+	var pKey = $('#p-id').val();
+	var action = $('#action').val();
+	
+	initData(); // 初始化数据
+	
+	// 注册 标签输入 监听
+	$('.input_inner').bind('keypress',function(event){
+		// 如果含有, 或者 空格 ，则添加标签，然后清空input
+		e = event ? event :(window.event ? window.event : null);
+		var code = e.keyCode||e.which||e.charCode;
+		if(code == 32 || code == 44){
+			var tag = $(this).val().replace (/,/g,'').trim();
+			
+			// 检查是否 汉字或是 全角
+			if(tag != null && tag != '' && tag != undefined){
+				var count = tag.replace(/[^\x00-\xff]/g,"**").length;
+				if(count > 16){
+					// 提示错误信息
+					$('#tagLabel').show();
+				}else {
+					$('#tagLabel').hide();
+					addTags(tag); // 增加标签
+				}
+			}
+		}
+		
+	});
+	
+	// 注册 标签输入框 的失去焦点事件
+	$('.input_inner').blur(function(){
+		var tag = $(this).val().replace (/,/g,'').trim();
+		if(tag == null || tag == '' || tag == undefined){
+			// 为空时，查看是否有标签，如果没有，则显示 placeholder 提示
+			var tagName = mergeTag();
+			if(tagName == null || tagName == '' || tagName == undefined){
+				$('.keyword_placeholder').show('fast');
+			}
+		}else {
+			addTags(tag); // 增加标签
+		}
+	});
+	
+	// 注册 标签关闭 按钮
+	$('.btn_keyword_del').on('click',function(){
+		removeTags($(this));
+	});
+	
+	// 注册 placeholder 的focus 事件
+	$('.keyword_placeholder').click(function(){
+		$(this).hide('fast');
+		$('.input_inner').focus();
+	});
+	
+	// 注册 返回 按钮点击事件
+	$('#backBt').on('click',function(){
+		if(action == 'upload'){
+			loadData(function(){
+				
+			}, getContextPath()+'/kindeditor/delete/' + sessionId, null);
+		}
+		$('.menu-content li:eq(1)', parent.document).click();
+	});
+	 
+	$('#uploadLDBt').on('click',function(){
+		$('#picLDFile').click();
+		$('#picLDFile').unbind('change');
+		$('#picLDFile').bind('change',function(){
+			checkFile('picLDFile');
+			showPic("picLDFile","LDImg","video-picLD-div");
+		});
+	});
+	
+	$('#uploadHDBt').on('click',function(){
+		$('#picHDFile').click();
+		$('#picHDFile').unbind('change');
+		$('#picHDFile').bind('change',function(){
+			checkFile('picHDFile');
+			showPic("picHDFile","HDImg","video-picHD-div");
+		});
+	});
+	
+	$('#uploadVideoBt').on('click',function(){
+		$('#videoFile').click();
+		$('#videoFile').unbind('change');
+		$('#videoFile').bind('change',function(){
+			checkFile('videoFile');
+		});
+	});
+	
+	// 注册变更模式
+	
+	if(action == 'upload'){
+		
+		//新增首先获取sessionid
+		loadData(function(pData){
+			sessionId = pData.sessionId;
+			$('#video-picHD-div').hide();
+			$('#video-picLD-div').hide();
+			// 注册 保存 按钮
+			$('#infoBt').on('click',function(){
+				$('#sureUpdate').on('click',function(){
+					$('#warmModel').modal('hide');
+					if($('#video-switch').val() == 1){
+					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+						upload();
+					}
+				}else{
+					upload();
+				}
+
+				});
+			});
+			// 开关注册
+			initSwitch(true);
+		}, getContextPath()+'/product/sessionId', null);
+	}else if(action == 'modify'){
+		sessionId=$("#sessionId").val();
+		// 加载Editor
+		var pageDescription = $('#page-description').val().trim();
+		$.base64.utf8encode = true;
+		var pageContent =$.trim($.base64.atob(pageDescription,true));
+		editor.html(pageContent);
+		
+		// 修改界面
+		$('#infoBt').on('click',function(){
+			$('#warmModel').modal('show');
+			
+			$('#sureUpdate').on('click',function(){
+				$('#warmModel').modal('hide');
+				if($('#video-switch').val() == 1){
+				if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+					modify();
+				}
+			}else{
+				modify();
+			}
+			});
+		});
+		
+		// 如果 停止启用，则改变  switch 状态
+		if($('#video-switch').val() == 1){
+			initSwitch(false);
+		}else{
+			initSwitch(true);
+		}
+		
+		// 显示缩略图
+		var picHDUrl = $('#video-picHDUrl').val();
+		if(picHDUrl != '' && picHDUrl != null){
+			// 上传过缩略图
+			$('#video-picHD-div').show();
+			var picHDName = getFileName(picHDUrl);
+			var picHDPath = getHostName() + '/product/img/' + picHDName;
+			$('#HDImg').attr('src',picHDPath);
+		}else{
+			// 显示请上传图片
+			$('#video-picHD-div').hide();
+		}
+		
+		// 显示封面
+		var picLDUrl = $('#video-picLDUrl').val();
+		if(picLDUrl != '' && picLDUrl != null){
+			// 上传过封面
+			$('#video-picLD-div').show();
+			var picLDName = getFileName(picLDUrl);
+			var picLDPath = getHostName() + '/product/img/' + picLDName;
+			$('#LDImg').attr('src',picLDPath);
+		}else{
+			// 显示请上传图片
+			$('#video-picLD-div').hide();
+		}
+	}
+	
+	$('.exampleUrl').on('click',function(){
+		var name = $(this).data('href');
+		var width = $(this).data('width');
+		var height = $(this).data('height');
+		$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
+		$('#previewImg').css({'width':width + 'px','height':height + 'px'});
+		if(name.indexOf('default-thumbnail') > -1){ // 缩略图
+			$('#photoModel-content').css({'width':'1080px','height':'700px','top':'40px','position':'relative','left':'45%',});
+			$('#photoModel-dialog').css({'margin':0});
+			$('#previewImg').css({'left':'24px','top':'15px','position':'relative'});
+		}else{ // 封面
+		    //TODO:我改了它我是卢涛就是这么吊
+			//$('#photoModel-content').css({'width':'680px','height':'420px','top':'40px'});
+			$('#photoModel-content').css({'width':'680px','height':'420px'});
+			$('#photoModel-dialog').css({'margin':'30px auto'});
+		}
+		$('#photoModel').modal('show');
+	});
+});
+
+// 初始化数据
+function initData(){
+	loadVideoType(); // 初始化 视频类型
+}
+
+// 加载视频类型
+function loadVideoType(){
+	loadData(function(tList){
+		$('#video-type').empty(); // 清空原始数据
+		$option = '<option value="-1"> -- 请选择类型 -- </option>';
+		if(tList.length > 0){
+			for(var i = 0;i < tList.length; i++){
+				$option += '<option value="'+ tList[i].itemId +'">';
+				$option += tList[i].itemName;
+				$option += '</option>';
+			}
+		}
+		$('#video-type').append($option);
+		
+		var videoType = $('#vType').val();
+		if(videoType != '' && videoType != undefined){
+			$.each($('#video-type option'),function(i,n){
+				if($(this).val() == videoType){
+					$(this).attr('selected','selected');
+				}
+			});
+		}
+	}, getContextPath() + '/provider/load/videoType', null);
+}
+
+// 新增上传
+function upload(){
+	
+	$('#imageLabel').hide();
+	$('#videoLabel').hide();
+	if(checkData('upload')){ // 检验数据完整性
+		
+		if(checkFileDecriminalization()){
+			
+			oTimer = setInterval("getProgress()", 500);
+			$('.progress-bar-success').text('0')
+			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
+			$('#mymodal').modal('show');
+			
+			// 获取 videoDescription 值
+			$.base64.utf8encode = true;
+			var videoDescription= $.base64.btoa(editor.html());
+			
+			$.ajaxFileUpload({
+				url : getContextPath() + '/provider/save/product/info',
+				secureuri : false,
+				fileElementId : ['videoFile','picHDFile','picLDFile'],
+				dataType : 'text/html',
+				data : {
+					'productId' : $('#p-id').val().trim(),
+					'teamId' : $('#company-id').val(),
+					'productName' : $('#video-name').val().trim(),
+					'productType' : $('#video-type option:selected').val(),
+					'videoLength' : $('#video-length').val().trim(),
+					'pDescription' : $('#video-description').val().trim(),
+					'servicePrice' : $('#video-price').val(),
+					'visible' : $('#video-switch').val(),
+					'tags' : mergeTag(),
+					'videoDescription' : videoDescription.trim(),
+					'sessionId' : sessionId,
+					'creationTime' : $('#creationTime').val()
+				},
+				success: function(data){
+					window.clearInterval(oTimer); // 停止计时器
+					if(data.indexOf('error=1') > -1){
+						
+						$('#videoLabel').show();
+						$('#videoLabel').text('视频大小超出500M上限,请重新上传!');
+						$('#mymodal').modal('hide');
+					}else if(data.indexOf('error=2') > -1){
+						
+						$('#imageLabel').show();
+						$('#imageLabel').text('图片大小超出250KB上限,请重新上传!');
+						$('#mymodal').modal('hide');
+					}else {
+						// 文件验证通过，则隐藏提示信息
+						$('#imageLabel').hide();
+						$('#videoLabel').hide();
+						$('#mymodal-body').empty();
+						$alert = '<div class="alert alert-success" role="alert">信息保存成功</div>';
+						$('#mymodal-body').append($alert);
+						$footer = '<div class="modal-footer">';
+						$footer += '<button type="button" class="btn btn-default" data-dismiss="modal" id="modelBT">确定</button>';
+						$footer += '</div>';
+						$('#mymodal-content').append($footer);
+						// 注册 模态框 确认点击事件
+						$('#modelBT').on('click',function(){
+							$('#content-frame', parent.document).prop('src',getContextPath() + '/provider/video-list');
+						});
+					}
+					
+				},
+				error : function(data, status, e){
+					alert('文件上传失败...');
+				}
+			});
+		}
+	}
+}
+
+// 修改
+function modify(){
+	
+	$('#imageLabel').hide();
+	$('#videoLabel').hide();
+	if(checkData('modify')){ // 检验数据完整性
+		
+		if(checkFileDecriminalization()){
+			
+			// 文件验证成功，则隐藏错误提示
+			$('#imageLabel').hide();
+			$('#videoLabel').hide();
+			
+				
+				if($('#videoFile').val() != ''){
+					oTimer = setInterval("getProgress()", 500);
+					$('.progress-bar-success').text('0')
+					$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
+					$('#mymodal').modal('show');
+				}
+				
+				// 获取 videoDescription 值
+				$.base64.utf8encode = true;
+				var videoDescription= $.base64.btoa(editor.html());
+				
+				$.ajaxFileUpload({
+					url : getContextPath() + '/provider/update/product/info',
+					secureuri : false,
+					fileElementId : ['videoFile','picHDFile','picLDFile'],
+					dataType : 'text/html',
+					data : {
+						'productId' : $('#p-id').val().trim(),
+						'teamId' : $('#company-id').val(),
+						'productName' : $('#video-name').val().trim(),
+						'productType' : $('#video-type option:selected').val(),
+						'videoLength' : $('#video-length').val().trim(),
+						'pDescription' : $('#video-description').val().trim(),
+						'serviceId' : $('#s-id').val(),
+						'servicePrice' : $('#video-price').val(),
+						'visible' : $('#video-switch').val(),
+						'tags' : mergeTag(),
+						'videoDescription' : videoDescription.trim(),
+						'sessionId' : sessionId,
+						'creationTime' : $('#creationTime').val()
+					},
+					success: function(data){
+						window.clearInterval(oTimer); // 停止计时器
+						
+						if(data.indexOf('error=1') > -1){
+							$('#videoLabel').show();
+							$('#videoLabel').text('视频大小超出500M上限,请重新上传!');
+							$('#mymodal').modal('hide');
+						}else if(data.indexOf('error=2') > -1){
+							$('#imageLabel').show();
+							$('#imageLabel').text('图片大小超出250KB上限,请重新上传!');
+							$('#mymodal').modal('hide');
+						}else {
+							// 成功
+							
+							if($('#s-id').val() == '' || $('#s-id').val() == null){
+								$('#s-id').val(serviceId);
+							}
+							
+							$('#mymodal').modal('hide');
+							
+							// 显示保存成功
+							successToolTipShow();
+							
+							loadData(function(product){
+								// 替换图片
+								if(product.picLDUrl != null && product.picLDUrl != '' && product.picLDUrl != undefined){
+									var picLDName = getFileName(product.picLDUrl);
+									var picLDPath = getHostName() + '/product/img/' + picLDName;
+									$('#LDImg').attr('src',picLDPath);
+								}
+								
+								if(product.picHDUrl != null && product.picHDUrl != '' && product.picHDUrl != undefined){
+									
+									var picHDName = getFileName(product.picHDUrl);
+									var picHDPath = getHostName() + '/product/img/' + picHDName;
+									$('#HDImg').attr('src',picHDPath);
+								}
+							}, getContextPath() + '/provider/product/data/' + $('#p-id').val(), null);
+						}
+						
+						},
+						error : function(data, status, e){
+							alert('文件上传失败...');
+						}
+					});
+		}
+	}
+}
+
+// 进度条显示进程
+function getProgress() {
+	var now = new Date();
+	loadData(function(data){
+		var progress = Number((data.pBytesRead / data.pContentLength) * 100).toFixed(0) + '%';
+		$('.progress-bar-success').text('已完成' + progress)
+		$('.progress-bar-success').attr('aria-valuenow',progress).css({"width":progress});
+	}, getContextPath() + '/upfile/progress', now.getTime());
+}
+
+// 检测数据的完整性
+function checkData(type){
+	var name = $('#video-name').val().trim(); // 视频名称
+	var videoType = $('#video-type option:selected').val(); // 视频类型
+	var videoLength = $('#video-length').val().trim(); // 视频长度
+	var description = $('#video-description').val().trim(); // 视频描述
+	var price = $('#video-price').val(); // 
+	
+	if(name == '' || name == null || name == undefined){
+		popshow('video-name', '请输入视频标题!');
+		$('#video-name').focus();
+		return false;
+	}
+	
+	if(videoType == -1){
+		popshow('video-type', '请选择视频类型!');
+		$('#video-type').focus();
+		return false;
+	}
+	
+	if(videoLength == '' || videoLength == null || videoLength == undefined){
+		popshow('video-length', '请填写视频长度!');
+		$('#video-length').focus();
+		return false;
+	}
+	
+	if(description == '' || description == null || description == undefined){
+		popshow('video-description', '请填写视频简介!');
+		$('#video-description').focus();
+		return false;
+	}
+	
+	if(price == '' || price == null || price == undefined){
+		popshow('video-price', '请填写价格!');
+		$('#video-price').focus();
+		return false;
+	}
+	
+	var numReg = new RegExp("^[0-9]*$");
+	
+	if(!numReg.test(videoLength)){
+		popshow('video-length', '请填写整数!');
+		$('#video-length').focus();
+		return false;
+	}
+	
+	if(isNaN(price)){
+		popshow('video-price', '请输入数字!');
+		$('#video-price').focus();
+		return false;
+	}
+	
+	if(type == 'upload'){ // 新建
+		var hdFile = $('#picHDFile').val(); // 缩略图
+		var ldFile = $('#picLDFile').val(); // 封面
+		var videoFile = $('#videoFile').val(); // 视频
+		if(hdFile == '' || hdFile == null || hdFile == undefined){
+			
+			popshow('uploadHDBt', '请上传缩略图!');
+			return false;
+		}
+		
+		if(ldFile == '' || ldFile == null || ldFile == undefined){
+			
+			popshow('uploadLDBt', '请上传封面!');
+			return false;
+		}
+		
+		if(videoFile == '' || videoFile == null || videoFile == undefined){
+			
+			popshow('uploadVideoBt', '请上传视频!');
+			return false;
+		}
+		
+		return true;
+	}else if(type == 'modify'){
+		var HDImg = $('#video-picHDUrl').val(); // 缩略图
+		var LDImg = $('#video-picLDUrl').val(); // 封面图
+		var videoUrl = $('#videoUrl').val(); // 视频
+		if(HDImg == '' || HDImg == null || HDImg == undefined){
+			
+			if($('#picHDFile').val() == null || $('#picHDFile').val() == ''){
+				popshow('uploadHDBt', '请上传缩略图!');
+				return false;
+			}
+		}
+		
+		if(LDImg == '' || LDImg == null || LDImg == undefined){
+			
+			if($('#picLDFile').val() == null || $('#picLDFile').val() == ''){
+				popshow('uploadLDBt', '请上传封面!');
+				return false;
+			}
+		}
+		
+		if(videoUrl == '' || videoUrl == null || videoUrl == undefined){
+			
+			if($('#videoFile').val() == null || $('#videoFile').val() == ''){
+				popshow('uploadVideoBt', '请上传视频!');
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
+
+//初始化弹出框
+function popshow(id,content){
+	window.clearInterval(PopInterValObj); // 停止计时器
+	$('#' + id).popover({
+		placement : 'bottom',
+		content : content,
+		trigger : 'manual',
+		delay: { show: 200, hide: 100 }
+	}).popover('show');
+	
+	PopInterValObj = window.setInterval(function(){
+		$('#' + id).popover('hide');
+	}, 2000);
+}
+
+//成功信息 提示框弹出方法
+function successToolTipShow(){
+	window.clearInterval(successIntervalObj);
+	$('.tooltip-success-show').slideDown('normal');
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}
+
+function hideSuccessTooltip(){
+	$('.tooltip-success-show').hide('normal');
+}
+
+// 检验 文件格式
+function checkFileDecriminalization(){
+	var picHDFile = $('#picHDFile').val();
+	var picLDFile = $('#picLDFile').val();
+	var videoFile = $('#videoFile').val();
+	
+	if(picHDFile != null && picHDFile != '' && picHDFile!= undefined){
+		picHDFile = transformLower(picHDFile);
+		
+		if(picHDFile.indexOf('.' + imageType[0]) < 0 && picHDFile.indexOf('.' + imageType[1]) < 0){
+			
+			$('#imageLabel').show();
+			$('#imageLabel').text('缩略图请上传png、jpg格式的图片!');
+			return false;
+		}
+		
+	}
+	
+	if(picLDFile != null && picLDFile != '' && picLDFile!= undefined){
+		picLDFile = transformLower(picLDFile);
+		
+		if(picLDFile.indexOf('.' + imageType[0]) < 0 && picLDFile.indexOf('.' + imageType[1]) < 0){
+			$('#imageLabel').show();
+			$('#imageLabel').text('封面请上传png、jpg格式的图片!');
+			return false;
+		}
+		
+	}
+	
+	if(videoFile != null && videoFile != '' && videoFile!= undefined){
+		videoFile = transformLower(videoFile);
+		
+		if(videoFile.indexOf('.' + videoType[0]) < 0){
+			
+			$('#videoLabel').show();
+			$('#videoLabel').text('请上传mp4格式的视频!');
+			return false;
+		}
+		
+	}
+	
+	return true;
+}
+
+// 判断文件大小
+function checkFile(id){
+	// 检测文件是否为空
+	// 获取文件
+	var obj_file = document.getElementById(id); // 目标文件
+	var filesize = 0; // 文件大小
+	try{
+		if(obj_file.value == null || obj_file.value == undefined || obj_file.value == ''){
+			alert('请上传文件');
+			return ;
+		}else{
+			if(browserCfg.firefox || browserCfg.chrome ){
+				filesize = obj_file.files[0].size;
+			}else if(browserCfg.ie){
+				var obj_image = document.getElementById('tempImg');
+				obj_image.dynsrc=obj_file.value;
+				filesize = obj_image.fileSize;
+			}else{
+				//alert(tipMsg);
+				return;  
+			}
+			
+			if(filesize == -1){
+				//alert(tipMsg);
+				return ;
+			}
+			
+			switch(id){
+			// 检测文件格式
+				case 'picLDFile': //封面
+				case 'picHDFile': // 缩略图
+					if(filesize > image_max_size){
+						$('#imageLabel').show();
+						$('#imageLabel').text(image_err_msg);
+						return ;
+					}else {
+						$('#imageLabel').hide();
+						return true;
+					}
+					break;
+				case 'videoFile': // 视频文件
+					if(filesize > video_max_size){
+						$('#imageLabel').show();
+						$('#imageLabel').text(video_err_msg);
+						return ;
+					}else{
+						$('#imageLabel').hide();
+						return true;
+					}
+					break;
+				default: // 其他情况
+					break;
+			}
+		}
+	}catch(e){
+		console.info(e);
+	}
+}
+
+//启用switch开关
+function initSwitch(type){
+	$("#video-switch").bootstrapSwitch({
+		animate : true,
+		state : type,
+		onColor : 'success',
+		offColor : 'danger',
+		onText : '可见',
+		offText : '关闭',
+		onSwitchChange : function(event,state){
+			if(state){
+				$(this).val(0);
+			}else {
+				$(this).val(1);
+			}
+		}
+	});
+}
+
+function transformLower(value){
+	if(value != null && value != '' && value != undefined){
+		return value.toLowerCase();
+	}
+	return null;
+}
+
+// 提取标签
+function mergeTag(){
+	
+	var tagName = '';
+	$.each($('.keyword_item_inner'),function(i,obj){
+		var tag = $(obj).text().replace (/,/g,'').trim();
+		if(tag !=null && tag != '' && tag != undefined){
+			tagName += tag;
+			if (i != $('.keyword_item_inner').length - 1)
+				tagName += ' ';
+		}
+	});
+	return tagName;
+}
+
+// 增加标签
+function addTags(tag) {
+	
+	if(tag != null && tag != undefined && tag != ''){
+		
+		// 增加标签时 ,看其是否超过5条
+		var num = $('.keyword_item').length;
+		if(num < 5){ // 当前没有超过5条，则增加
+			var $tag = '<span class="keyword_item">';
+			$tag += '<b class="keyword_item_inner">'+ tag +'</b>';
+			$tag += '<a href="javascript:void(0);" class="btn_keyword_del">';
+			$tag += '<span>x</span>';
+			$tag += '</a>';
+			$('.keyword_input').before($tag);
+			
+			// 激活 x 
+			$('.btn_keyword_del').unbind('click');
+			$('.btn_keyword_del').bind('click',function(){
+				removeTags($(this));
+			});
+			
+		}
+		// 清空input
+		$('.input_inner').val('');
+	}else {
+		// 清空input
+		$('.input_inner').val('');
+	}
+}
+
+// 删除 标签
+function removeTags(obj) {
+	obj.parent().remove();
+	var num = $('.keyword_item').length;
+	if(num == 0){
+		$('.keyword_placeholder').show('fast');
+	}
+}
+
+function createEditor(name){
+	editor = KindEditor.create(name, {
+		cssPath : getContextPath() + '/resources/lib/kindeditor/plugins/code/prettify.css',
+		uploadJson : getContextPath() + '/kindeditor/uploadImage',
+		zIndex : 888888,
+		width : '600px',
+		height : '350px',
+		resizeType:0,
+		allowImageUpload : true,
+		items : [ 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
+					'bold', 'italic', 'underline', 'removeformat', '|',
+					'justifyleft', 'justifycenter', 'justifyright',
+					'insertorderedlist', 'insertunorderedlist', '|',
+					'emoticons', 'image', 'link', 'unlink', 'fullscreen',
+					'table', 'formatblock', 'preview' ]
+	});
+}
+
+function cancleUpdate(){
+	$('#cancleUpdate').on('click',function(){
+		$('#warmModel').modal('hide');
+	});
+
+}
+
+
+function showPic(inputFile,imgID,container){
+	 if (document.getElementById(inputFile).files.length === 0) { return; }
+	  var oFile = document.getElementById(inputFile).files[0];
+	  if (!rFilter.test(oFile.type)) { alert("只能选择图片文件!"); return; }
+	  oFReader.readAsDataURL(oFile);
+	  oFReader.onload = function (oFREvent) {
+	  	$("#"+container).show();
+	    document.getElementById(imgID).src = oFREvent.target.result;
+	  };
+}	
+

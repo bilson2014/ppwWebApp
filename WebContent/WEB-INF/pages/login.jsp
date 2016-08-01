@@ -114,7 +114,7 @@
 	 <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>
-		            <h1>客户登录</h1>
+		            <h1 id="title">客户登录</h1>
 		            <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
@@ -145,6 +145,7 @@
 			                 <div class="otherDiv"></div>
 			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
 			                  <div class="errorMidDiv hide" id="login_error_info_user">登录错误</div>
+			                   <a href="<spring:url value='/user/repwd'/>"><div class="forget" id="forget">忘记密码</div></a>
 			            </div>  
 		         </div> 
 		            

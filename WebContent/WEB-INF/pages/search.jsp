@@ -149,7 +149,7 @@
 			</div>
 		</div>
 		<!-- 搜索条件模块 end -->
-		
+		<div class="videoTag"><div>所有分类></div><div class="tag">战争<span>x</span></div><div class="tag">战争<span>x</span></div></div>
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">
