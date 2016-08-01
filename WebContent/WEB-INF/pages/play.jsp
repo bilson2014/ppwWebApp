@@ -43,6 +43,21 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<script type="text/javascript">
+		var _vds = _vds || [];
+		window._vds = _vds;
+		(function(){
+		  _vds.push(['setAccountId', '9f2e33a3d43b5d78']);
+		  (function() {
+		    var vds = document.createElement('script');
+		    vds.type='text/javascript';
+		    vds.async = true;
+		    vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+		    var s = document.getElementsByTagName('script')[0];
+		    s.parentNode.insertBefore(vds, s);
+		  })();
+		})();
+	</script>
 </head>
 <body>
 	<input type="hidden" id="company-unique" value="${teamId }"/>
@@ -177,6 +192,7 @@
 				</div>
 				
 				<div class="team-info ">
+					<input type="hidden" value="${teamId }" id="productId"/>
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
@@ -186,7 +202,6 @@
 								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 							</c:if>
 						</dt>
-						<div class="hide" id="productId">${product.productId }</div>
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
 						<dd  class="teamTitle" title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>
