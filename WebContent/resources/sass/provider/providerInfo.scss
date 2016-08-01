@@ -427,7 +427,7 @@
     }
     
       .yearTimeUlLine {
-        height: 50px;
+        height: 30px;
         width: 1px;
         background:none;
         margin: 0 auto;
@@ -437,19 +437,19 @@
         }
          
         li:nth-child(1){
-        height: 10px;
+        height: 5px;
         width: 1px;
         background: $gray-light;
         }
 
          li:nth-child(2){
-        height: 15px;
+        height: 7px;
         width: 1px;
         background: $gray-light;
         }
 
          li:nth-child(3){
-        height: 20px;
+        height: 9px;
         width: 1px;
         background: $gray-light;
         }
@@ -523,6 +523,7 @@
     float: right;
     width: 348px;
     height: 364px;
+    border:1px solid #ccc;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 408px;
         height: 404px;
@@ -551,8 +552,9 @@
 
 .videoSpace .videoArea .leftCard {
     float: left;
-        width: 348px;
+    width: 348px;
     height: 364px;
+    border:1px solid #ccc;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 408px;
         height: 404px;
@@ -599,11 +601,19 @@
         background: url('../../images/provder/timeImg.png') no-repeat;
         background-position: center;
     }
-    .jiaoImg {
+        .leftJiaoImg {
         height: 50px;
         width: 50px;
-        background: url('../../images/provder/blackJiao.png') no-repeat;
+        background: url('../../images/provder/leftSanJiao.png') no-repeat;
         background-position: center;
+    }
+
+       .rightJiaoImg {
+        height: 50px;
+        width: 50px;
+        background: url('../../images/provder/rightJiao.png') no-repeat;
+        background-position: center;
+        margin-left: 2px;
     }
 }
 

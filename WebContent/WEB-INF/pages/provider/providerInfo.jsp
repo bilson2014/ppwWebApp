@@ -218,7 +218,7 @@
 		                 <div class="videoArea">
 		                     <div class="leftCard">
 		                         <div class="leftDian">
-		                           <div class="jiaoImg"></div>
+		                           <div class="leftJiaoImg"></div>
 		                            <div class="day">06/20</div>
 		                            <div class="dianImg"></div>
 		                         </div>
@@ -237,7 +237,7 @@
 		                         <div class="rightDian">
 		                            <div class="dianImg"></div>
 		                            <div class="day">06/20</div>
-		                            <div class="jiaoImg"></div>
+		                            <div class="rightJiaoImg"></div>
 		                         </div>
 		                         
 		                         <div class="videoCrad">
@@ -255,7 +255,7 @@
 		                      <div class="videoArea">
 		                     <div class="leftCard">
 		                         <div class="leftDian">
-		                           <div class="jiaoImg"></div>
+		                           <div class="leftJiaoImg"></div>
 		                            <div class="day">06/20</div>
 		                            <div class="dianImg"></div>
 		                         </div>
