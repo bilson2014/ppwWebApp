@@ -1739,7 +1739,7 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 
-	@RequestMapping("/get/providerInfo/{teamId}.html")
+	@RequestMapping("/info_{teamId}.html")
 	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap,@PathVariable("teamId") Long teamId) {
 		// 传递导演信息
 		String url = URL_PREFIX + "portal/team/info/" + teamId;

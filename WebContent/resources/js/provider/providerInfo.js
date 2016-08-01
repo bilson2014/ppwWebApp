@@ -42,7 +42,6 @@ $().ready(function() {
 				var fileName ="default.png";
 			}
 			
-			
 			infoHead.attr('src','/team/img/'+fileName);
 		}
 	}
@@ -73,7 +72,7 @@ function drawLeftCard(product,month,day) {
 				+ '</div>'
 				+ '<div class="videoCrad">'
 					+ '<div class="title">'+product.productName+'</div>'
-					+ '<a><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
@@ -89,13 +88,13 @@ function drawRightCard(product,month,day) {
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
-				+ '<div class="dianJiaoImg"></div>'
+				+ '<div class="dianImg"></div>'
 				+ '<div class="day">'+month+'/'+day+'</div>'
 				+ '<div class="rightJiaoImg"></div>'
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
@@ -165,12 +164,13 @@ var providerInfo = {
         	  var yk =  $('#ykVideoUrl').val();
         	  var local = $('#localVideoUrl').val();
         	  var localImg = $('#localVideoImgUrl').val();
-        	 
+        	  var localUrl = getHostName() + '/product/video/' + getFileName(local); 
+        	  var localImgUrl = getHostName() + '/product/img/' + getFileName(localImg);
         	  if(yk!=undefined&&yk!=null&&yk!=""){
         		  makePlayer('showVideo', yk);
         	  }
         	  else{
-        		  var formBody =' <video class="showVideo" controls src="'+local+'" preload="auto" poster="'+localImg+'"></video>';
+        		  var formBody =' <video class="showVideo" controls src="'+localUrl+'" preload="auto" poster="'+localImgUrl+'"></video>';
         		  $("#showVideo").append(formBody);
         		//  <video class="showVideo" controls src="'+local+'" preload="auto" poster=''></video>
         	  }
