@@ -17,9 +17,8 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/provider/login.js" var="providerLoginJs"/>
-<spring:url value="/resources/js/play.js" var="playJs"/>
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
+<spring:url value="/resources/js/provider/providerInfo.js" var="providerInfo" />
 
 <spring:url value="/resources/images" var="imgPath"/>
 <!DOCTYPE html>
@@ -51,9 +50,8 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
-	<script src="${providerLoginJs }"></script>
-	<script src="${playJs }"></script>
 	<script src="${ykJs }"></script>
+	<script src="${providerInfo }"></script>
 	
 </head>
 <body>
