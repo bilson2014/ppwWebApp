@@ -404,12 +404,25 @@
 
 .warnWindom{
 
-   width:100px;
-   height: 50px;
-   border: 1px solid black;
-   position: relative;
-   top:0px;
-   background: white;
+  width: 80px;
+    height: 40px;
+    border: 1px solid #ccc;
+    position: relative;
+    top: 0px;
+    background: white;
+    color: $gray-dark;
+    border-radius: 5px;
+    line-height: 40px;
+    padding-right: 20px;;
+
+   img{
+   	position: absolute;
+    position: absolute;
+    top: -17px;
+    left: 37px;
+    width:25px;
+    height:25px;
+   }
 
 }
 
