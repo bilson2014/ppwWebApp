@@ -408,6 +408,27 @@ public class PCController extends BaseController {
 		serLogger.info("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size());
 		return list;
 	}
+	
+	
+	/**
+	 * 根据 团队编号 加载 产品列表
+	 * 
+	 * @param teamId
+	 *            产品编号
+	 */
+	@RequestMapping("/product/order/loadWithTeam/{teamId}")
+	public List<Product> productInformationByTeamOrder(@PathVariable("teamId") final Integer teamId,
+			final HttpServletRequest request) {
+
+		List<Product> list = new ArrayList<Product>();
+		final String url = URL_PREFIX + "portal/product/static/order/team/" + teamId;
+		String json = HttpUtil.httpGet(url, request);
+		list = JsonUtil.toList(json);
+
+		serLogger.info("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size());
+		return list;
+	}
+
 
 	/**
 	 * 根据 产品编号 获取 产品信息
