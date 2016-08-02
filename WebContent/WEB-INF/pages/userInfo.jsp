@@ -542,6 +542,8 @@
 					<button type="button" class="btn btn-warning" id="iKnow">知道了</button>
 				</div>
 			</div>
+			
+			
 		</div>
 	</div>
 	<!-- photo Modal start -->
