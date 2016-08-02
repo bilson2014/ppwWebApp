@@ -89,7 +89,7 @@ function drawRightCard(product,month,day) {
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
-				+ '<div class="dianJiaoImg"></div>'
+				+ '<div class="dianImg"></div>'
 				+ '<div class="day">'+month+'/'+day+'</div>'
 				+ '<div class="rightJiaoImg"></div>'
 			+ '</div>'
