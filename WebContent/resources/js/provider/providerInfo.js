@@ -7,13 +7,18 @@ $().ready(function() {
 			getData(function(msg) {
 				var timeLine = $('#timeLine');
 				var $body = '';
+				var index = 0;
+				var oidYear = 0;
 				for (var int = 0; int < msg.length; int++) {
 					var date = convert(msg[int].creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
+					
+					if(int == 0)
+						oidYear = year;
 					//创建叶子节点
-					if(int % 2 == 0){
+					if(index % 2 == 0){
 						// left
 						// 添加年节点
 						if(!checkYearIsExist(year)){
@@ -21,8 +26,39 @@ $().ready(function() {
 						}
 						$body+=drawVideoAreaBegin();
 						$body+=drawLeftCard(msg[int],month,day);
+						if(msg.length == 1){
+							$body+=drawMidTimeLine();
+							$body+=drawVideoAreaEnd();
+							
+							timeLine.append($body);
+							$body = '';
+						}
 					}else{
 						// right
+						if(!checkYearIsExist(year) && oidYear != year){
+							// 跨年了！！
+							// 首先结束是一片树叉
+							$body+=drawMidTimeLine();
+							$body+=drawVideoAreaEnd();
+							
+							timeLine.append($body);
+							$body = '';
+							// 添加新的树叉  --》年
+							$body+=drawYearView(year);
+							$body+=drawVideoAreaBegin();
+							$body+=drawLeftCard(msg[int],month,day);
+							index = 1;
+							oidYear = year;
+							// 最后一年只有一块
+							if((int+1) >= msg.length){
+								$body+=drawMidTimeLine();
+								$body+=drawVideoAreaEnd();
+								
+								timeLine.append($body);
+								$body = '';
+							}
+							continue;
+						}
 						$body+=drawRightCard(msg[int],month,day);
 						$body+=drawMidTimeLine();
 						$body+=drawVideoAreaEnd();
@@ -30,6 +66,8 @@ $().ready(function() {
 						timeLine.append($body);
 						$body = '';
 					}
+					index ++;
+					oidYear = year;
 				}
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
 			checkYearIsExist('2015');
