@@ -14,7 +14,7 @@ $().ready(function(){
 				$('.btn').unbind('click');
 				// 显示主页信息
 				$('#mainPage').show();
-				$('#myPage').attr('href',getContextPath() + '/provider/get/providerInfo/' + $('#company-key').val()+'.html');
+				$('#myPage').attr('href',getContextPath() + '/provider/info_' + $('#company-key').val()+'.html');
 				break;
 			case 2: // 未审核通过
 				$('#process-2').removeClass('hide');

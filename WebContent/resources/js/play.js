@@ -115,7 +115,7 @@ $().ready(function(){
 function toDirector(){
 	  $('#toDirector').on('click',function(){
 		  var id = $('#productId').val().trim();
-		  var path = getContextPath() + '/provider/get/providerInfo/'+id+'.html';
+		  var path = getContextPath() + '/provider/info_'+id+'.html';
 		  var formBody = '<form action="'+path+'" method="post" oncomplete="false" id="submitkey" style="display: none;">';
 			formBody += '<input type="text" name="teamId" value="'+ id +'" style="display: none">';
 			formBody += '</form>';

@@ -135,10 +135,10 @@
 		             </div>
 		         </div>
 		         
-		         <div class="tag">
+		         <div class="tag" id="tagId">
 		         	
 		         
-		           <div class="leftLine">
+		           <div class="leftLine" id="leftLineId">
 			            <div class="line"></div>
 			            <div class="circleTag"></div>
 		           </div>
@@ -152,7 +152,7 @@
 		                 </div> -->
 		        
 		         </div>
-		            <div class="rightLine">
+		            <div class="rightLine" id="rightLineId">
 			            <div class="circleTag"></div>
 			            <div class="line"></div>
 		           </div>
@@ -206,17 +206,16 @@
 	          </div>
 	          <div class="timeLine" id ="timeLine">
 	     		<!-- 时间树  -->
+	     		           
 	   		  </div>
 		</div>
 		
 		<div class="infoBottom ">
 		  <div class="buChong"></div>
-		   <div class="bottomWord hide">
-		   dasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
-		   asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
-		   asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas
+		   <div class="bottomWord ">
+                                              来自全球56个城市,1562名导演已加入,汇聚世界作品100000+,2000+客户在这里发布拍片需求
 		   </div>
-		   <div class="bottomBtn btn-red-common hide">join us</div>
+		   <a href="<spring:url value="/provider/login" />"><div class="bottomBtn btn-red-common ">立即加入</div>
 		</div>
 		
 		</div>
