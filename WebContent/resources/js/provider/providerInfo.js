@@ -1,5 +1,6 @@
 $().ready(function() {
 	providerInfo.init();
+	//http://192.168.0.101/team/img/team622-20160801213518191.png
 	var ProductTree = {
 		loadDatas : function() {
 			var teamId = $("#teamId").val();
@@ -19,10 +20,10 @@ $().ready(function() {
 							$body+=drawYearView(year);
 						}
 						$body+=drawVideoAreaBegin();
-						$body+=drawLeftCard(msg[int]);
+						$body+=drawLeftCard(msg[int],month,day);
 					}else{
 						// right
-						$body+=drawRightCard(msg[int]);
+						$body+=drawRightCard(msg[int],month,day);
 						$body+=drawMidTimeLine();
 						$body+=drawVideoAreaEnd();
 						
@@ -32,8 +33,20 @@ $().ready(function() {
 				}
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
 			checkYearIsExist('2015');
+		},
+		initInfoHead:function(){
+			var infoHead = $('#infoHead');
+			var src =infoHead.attr('src');
+			var fileName = getFileName(src);
+			if(src==null){
+				var fileName ="default.png";
+			}
+			
+			infoHead.attr('src','/team/img/'+fileName);
 		}
 	}
+	
+	ProductTree.initInfoHead();
 	ProductTree.loadDatas();
 });
 
@@ -49,19 +62,19 @@ function drawYearView(year) {
 	return $body;
 }
 // 创建叶子节点 --》 左
-function drawLeftCard(product) {
+function drawLeftCard(product,month,day) {
 	var $body = ''
 			+ '<div class="leftCard">'
 				+ '<div class="leftDian">'
 					+ '<div class="leftJiaoImg"></div>'
-					+ '<div class="day">06/20</div>'
+					+ '<div class="day">'+month+'/'+day+'</div>'
 					+ '<div class="dianImg"></div>'
 				+ '</div>'
 				+ '<div class="videoCrad">'
 					+ '<div class="title">'+product.productName+'</div>'
-					+ '<a><img src="'+product.picLDUrl+'"></a>'
+					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
-					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div><div>战争/</div><div>爱情</div></div>'
+					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 						+ '<div class="videoBtn btn-red-common">了解详情</div>' 
 					+ '</a>'
@@ -71,19 +84,19 @@ function drawLeftCard(product) {
 }
 
 // 创建叶子节点 --》 右
-function drawRightCard(product) {
+function drawRightCard(product,month,day) {
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
-				+ '<div class="dianJiaoImg"></div>'
-				+ '<div class="day">06/20</div>'
+				+ '<div class="dianImg"></div>'
+				+ '<div class="day">'+month+'/'+day+'</div>'
 				+ '<div class="rightJiaoImg"></div>'
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a><img src="'+product.picLDUrl+'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
-				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div><div>战争/</div><div>爱情</div></div>'
+				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 					+ '<div class="videoBtn btn-red-common">了解详情</div>' 
 				+ '</a>'
@@ -106,7 +119,21 @@ function drawVideoAreaBegin(){
 function drawVideoAreaEnd(){
 	return '</div>';
 }
-
+function drawTags(tags){
+	var tagsArray = tags.split(" ");
+	var $body = '';
+	if(tagsArray !=null ){
+		for (var int = 0; int < tagsArray.length; int++) {
+			var item = tagsArray[int];
+			$body+='<div>'+item+'</div>'
+		}
+	}
+	return $body;
+}
+function getFileName(fileName){
+    var pos=fileName.lastIndexOf("/");
+    return fileName.substring(pos+1,fileName.length); 
+}
 var providerInfo = {
 		init : function(){
 			this.controlTag();
@@ -137,12 +164,13 @@ var providerInfo = {
         	  var yk =  $('#ykVideoUrl').val();
         	  var local = $('#localVideoUrl').val();
         	  var localImg = $('#localVideoImgUrl').val();
-        	 
+        	  var localUrl = getHostName() + '/product/video/' + getFileName(local); 
+        	  var localImgUrl = getHostName() + '/product/img/' + getFileName(localImg);
         	  if(yk!=undefined&&yk!=null&&yk!=""){
         		  makePlayer('showVideo', yk);
         	  }
         	  else{
-        		  var formBody =' <video class="showVideo" controls src="'+local+'" preload="auto" poster="'+localImg+'"></video>';
+        		  var formBody =' <video class="showVideo" controls src="'+localUrl+'" preload="auto" poster="'+localImgUrl+'"></video>';
         		  $("#showVideo").append(formBody);
         		//  <video class="showVideo" controls src="'+local+'" preload="auto" poster=''></video>
         	  }

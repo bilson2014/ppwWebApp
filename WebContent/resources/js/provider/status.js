@@ -12,19 +12,9 @@ $().ready(function(){
 			case 1: // 审核通过
 				$('#process-1').removeClass('hide');
 				$('.btn').unbind('click');
-				
-				// 获取视频
-				loadData(function(key){
-					// 显示主页信息
-					$('#mainPage').show();
-					
-					if(key == 0){ // 没有作品
-						$('#alert-success').text('您还没有上传作品，请先上传作品');
-					}else{
-						$('#myPage').attr('href',getContextPath() + '/play/' + $('#company-key').val() + '_' + key + '.html');
-					}
-				}, getContextPath() + '/provider/loadVideo/' + $('#company-key').val(), null);
-				
+				// 显示主页信息
+				$('#mainPage').show();
+				$('#myPage').attr('href',getContextPath() + '/provider/info_' + $('#company-key').val()+'.html');
 				break;
 			case 2: // 未审核通过
 				$('#process-2').removeClass('hide');
