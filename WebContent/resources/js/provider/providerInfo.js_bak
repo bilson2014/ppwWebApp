@@ -8,15 +8,11 @@ $().ready(function() {
 				var timeLine = $('#timeLine');
 				var $body = '';
 				var index = 0;
-				var oidYear = 0;
 				for (var int = 0; int < msg.length; int++) {
 					var date = convert(msg[int].creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
-					
-					if(int == 0)
-						oidYear = year;
 					//创建叶子节点
 					if(index % 2 == 0){
 						// left
@@ -26,16 +22,9 @@ $().ready(function() {
 						}
 						$body+=drawVideoAreaBegin();
 						$body+=drawLeftCard(msg[int],month,day);
-						if(msg.length == 1){
-							$body+=drawMidTimeLine();
-							$body+=drawVideoAreaEnd();
-							
-							timeLine.append($body);
-							$body = '';
-						}
 					}else{
 						// right
-						if(!checkYearIsExist(year) && oidYear != year){
+						if(!checkYearIsExist(year)&& index != 1){
 							// 跨年了！！
 							// 首先结束是一片树叉
 							$body+=drawMidTimeLine();
@@ -48,15 +37,6 @@ $().ready(function() {
 							$body+=drawVideoAreaBegin();
 							$body+=drawLeftCard(msg[int],month,day);
 							index = 1;
-							oidYear = year;
-							// 最后一年只有一块
-							if((int+1) >= msg.length){
-								$body+=drawMidTimeLine();
-								$body+=drawVideoAreaEnd();
-								
-								timeLine.append($body);
-								$body = '';
-							}
 							continue;
 						}
 						$body+=drawRightCard(msg[int],month,day);
@@ -67,20 +47,18 @@ $().ready(function() {
 						$body = '';
 					}
 					index ++;
-					oidYear = year;
 				}
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
 			checkYearIsExist('2015');
 		},
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
-			var photoUrl =infoHead.attr('src');
-			var fileName;
-			if(photoUrl == null || photoUrl == '' || photoUrl == undefined){
-				fileName ="default.png";
-			}else {
-				fileName = getFileName(photoUrl);
+			var src =infoHead.attr('src');
+			var fileName = getFileName(src);
+			if(src==null){
+				var fileName ="default.png";
 			}
+			
 			
 			infoHead.attr('src','/team/img/'+fileName);
 		}
