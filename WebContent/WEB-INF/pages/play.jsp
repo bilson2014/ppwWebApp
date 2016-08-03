@@ -192,7 +192,7 @@
 				</div>
 				
 				<div class="team-info" id="toDirector">
-					<input type="hidden" value="${teamId }" id="productId"/>
+					<a href="/provider/info_${teamId }.html">
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
@@ -205,6 +205,7 @@
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
 						<dd  class="teamTitle" title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>
+					</a>
 				</div>
 			</div>
 		</div>
