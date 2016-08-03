@@ -57,6 +57,16 @@ $().ready(function(){
 		if(list != null && list.length > 0){
 			$('#video-content').empty(); // 清空区域
 			var $body = '';
+			var proId = $('#play-unique').val();
+			
+			// 删除重复元素
+			$.each(list,function(i,productq){
+				if(productq.productId == proId){
+					list.splice(i,1);
+					return false;
+				}
+			});
+			
 			$.each(list,function(i,product){
 				var imgName = getFileName(product.picLDUrl);
 				var imgPath = getHostName() + '/product/img/' + imgName;
