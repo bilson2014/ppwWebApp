@@ -1748,7 +1748,7 @@ public class ProviderController extends BaseController {
 		if(result != null){
 			modelMap.addAttribute("provider", result);
 			// 加载导演标签
-			url = URL_PREFIX + "portal/item/static/get/tags";
+			url = URL_PREFIX + "portal/team/tags";
 			String strtags=result.getBusiness();
 			if(ValidateUtil.isValid(strtags)){
 				try {
@@ -1759,11 +1759,7 @@ public class ProviderController extends BaseController {
 					}
 					json = HttpUtil.httpPost(url, ids, request);
 					if(ValidateUtil.isValid(json)){
-						List<Item> items = JsonUtil.fromJsonArray(json, Item.class);
-						List<String> tags = new  ArrayList<String>();
-						for (int i = 0; i < items.size(); i++) {
-							tags.add(items.get(i).getItemName());
-						}
+						List<String> tags = JsonUtil.fromJsonArray(json, String.class);
 						modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
 					}
 				} catch (NumberFormatException e) {

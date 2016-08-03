@@ -152,7 +152,7 @@ a:link,a:visited{
 
 .tag {
     .midLine {
-        width: 999px;
+        width: 800px;
         height: 20px;
         background: $white;
         margin: 0 auto;
@@ -165,6 +165,9 @@ a:link,a:visited{
             border-radius: 6px;
             display: inline-block;
             margin-right: 20px;
+            margin-top:10px;
+            position: relative;
+            top:-10px;
             .controlCard {
                 line-height: 30px;
             }
@@ -172,7 +175,7 @@ a:link,a:visited{
                 margin-right: 16px;
             }
                   .pencil {
-                margin-left: 16px;
+                margin-left: 8px;
                 margin-right: 8px;
                 height: 16px;
                 width: 16px;
@@ -186,6 +189,7 @@ a:link,a:visited{
     }
     .leftLine {
         float: left;
+        position: relative;
         width: 5%;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: 10%;
@@ -203,6 +207,7 @@ a:link,a:visited{
     .rightLine {
         float: right;
         width: 5%;
+        position: relative;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: 10%;
         }
@@ -379,7 +384,8 @@ a:link,a:visited{
 
 .topMore {
     position: relative;
-    top: 13px;
+    top: 35px;
+
 }
 
 .videoSpace .videoArea {
@@ -403,10 +409,14 @@ a:link,a:visited{
         border: 1px solid $gray;
         border-radius: 6px;
         font-size: $font-size-base;
+        cursor: pointer;
     }
+
+
     .year {
         height: 76px;
         width: 100%;
+
         div {
             height: 76px;
             width: 76px;
@@ -416,7 +426,7 @@ a:link,a:visited{
             div {
                 height: 70px;
                 width: 70px;
-                background: $gold-yellow;
+                //background: $gold-yellow;
                 margin: 0 auto;
                 border-radius: 120px;
                 position: relative;
@@ -425,6 +435,22 @@ a:link,a:visited{
                 font-size: $font-size;
                 line-height: 70px;
                 text-align: center;
+            }
+
+            .color1{
+                 background: #d339c6;
+            }
+            .color2{
+                 background:#f1b059;
+            }
+            .color3{
+                 background:#4cdbf8;
+            }
+             .color4{
+                 background:#929292;
+            }
+            .color4{
+                 background:#2c71a8;
             }
         }
     }
@@ -661,7 +687,8 @@ a:link,a:visited{
         text-align: center;
         margin: 0 auto;
         margin-top: 30px;
-        margin-bottom: 50px;
+        position: relative;
+        top:-45px;
     }
 }
 
@@ -685,3 +712,4 @@ a:link,a:visited{
     background: url(../../images/common/logo.svg) no-repeat;
 
 }
+
