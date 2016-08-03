@@ -23,10 +23,7 @@ var AllowExt=".jpg|.gif" //允许上传的文件类型 ŀ为无限制 每个扩�
 var AllowImgFileSize=70;  //允许上传图片文件的大小 0为无限制  单位：KB
 var FileObj,ImgFileSize,FileExt,ErrMsg,FileMsg,HasCheked,IsImg//全局变量 图片相关属性
 // 自定义图片上传 检验参数
-userinfo.init();
-
 $().ready(function(){
-	
 	// 加载头部
 	$('#header-content').prop('src',getContextPath() + '/header');
 	// 导航切换方法
@@ -74,20 +71,17 @@ $().ready(function(){
 		$("#upd").addClass('hide');
 	}
 });
-
 // 初始化数据
 function initData(){
 	// 性别 判断
 	if($('#user_sex').val() == null || $('#user_sex').val() == ''){
 		$('#user_sex').val(0);
 	}
-	
 	$.each($('input[name="sex"]'),function(i,n){
 		if($(this).val() == $('#user_sex').val()){
 			$(this).attr('checked',true);
 		}
 	});
-	
 	// 判断 昵称不能为空
 	$('#nickName').on('change',function(){
 		if($('#nickName').val().length < 1){
@@ -96,7 +90,6 @@ function initData(){
 			$('#label-nickName').addClass('hide');
 		}
 	});
-	
 	// 头像加载
 	var userImgPath = $('#user_img').val();
 	if(userImgPath != null && userImgPath != '' && userImgPath != undefined){ // 加载用户头像
@@ -175,7 +168,8 @@ function selfInfo(){
 // 密码修改
 function passwordInfo(){
 	$('.password-info-content').slideDown('normal');
-	
+	window.clearInterval(InterValObj);
+	$("#upd-codeBt").text("获取验证码").removeAttr("disabled");
 	$("#upd-codeBt").off("click").on("click",function(){
 		var telPhone = $("#user-telephone").text();
 		if(checkData(5)){
@@ -205,7 +199,7 @@ function passwordInfo(){
 					if(flag.errorCode == 200){
 						if(flag.result){
 							window.clearInterval(InterValObj);
-							$("#upd-codeBt").text("获取验证码");
+							$("#upd-codeBt").text("获取验证码").removeAttr("disabled");
 							$('.tooltip-message').text('修改成功！');
 							$("#userLoginName").text(loginName);
 							$("#upd").removeClass("hide");
@@ -242,7 +236,7 @@ function passwordInfo(){
 					$('.tooltip-show').slideDown('normal');
 					if(data.code==1){
 						window.clearInterval(InterValObj);
-						$("#upd-codeBt").text("获取验证码");
+						$("#upd-codeBt").text("获取验证码").removeAttr("disabled");
 						$('.tooltip-message').text('信息修改成功!');
 					}else{
 						$('.tooltip-message').text(data.msg);
@@ -293,6 +287,7 @@ function userpicInfo(){
 
 function phoneInfo(){
 	$('.phone-info-content').slideDown('normal');
+	window.clearInterval(InterValObj);
 	$(".phone-bind").empty().append(userInfo_tpl.tpl_old_phone);
 	// 激活 获取验证码 按钮
 	getVeritifyCodeValidate();
@@ -316,7 +311,7 @@ function phoneInfo(){
 									$("#concat_tele_old").text($('#concat_tele_new').val().trim());
 									$("#user-telephone").text($('#concat_tele_new').val().trim());
 									window.clearInterval(InterValObj); // 停止计时器
-									$("#codeBt").text("获取验证码");
+									$("#codeBt").text("获取验证码").removeAttr("disabled");
 									$('.tooltip-message').text('电话修改成功!');
 								}else{
 									$('.tooltip-message').text('电话修改失败!');
@@ -410,7 +405,6 @@ function verification(phone){
 	}, getContextPath() + '/user/verification/' + phone, null);
 
 }
-
 //timer 处理函数
 function SetRemainTime(){
 	if(curCount == 0){
@@ -857,8 +851,6 @@ function check(){
 
 var userinfo_third = {
 		init:function(){
-			//安全设置给出提示
-			this.safePoint();
 			//qq登陆
 			this.qq();
 			//微信登陆

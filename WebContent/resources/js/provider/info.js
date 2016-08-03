@@ -46,15 +46,6 @@ $().ready(function(){
 	$('#passwordBt').on('click',safeInfo);
 	
 	$('#insSubmit').on('click',addAccount);
-	
-/*	$('#uploadBt').on('click',function(){
-		$.blockUI({
-			message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
-		});
-		// 上传图片
-		uploadImg();
-	});*/
-	
 	// 图片上传 点击事件
 	$('#logoImg').on('click',function(){
 		$('#file').click();
@@ -245,7 +236,21 @@ function verification(phone,ID){
 			$('#'+ID).text('已发送('+ curCount +')');
 			// 设置 button 效果为禁用
 			$('#'+ID).attr('disabled','disabled');
-			InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+			InterValObj = window.setInterval(function(){
+				if(curCount == 0){
+					window.clearInterval(InterValObj); // 停止计时器
+					$('#'+ID).text('重新获取');
+					$('#'+ID).removeAttr('disabled')
+					// 清除session code
+					getData(function(data){
+						// 清除session code
+					}, getContextPath() + '/login/clear/code');
+					
+				}else{
+					curCount--;  
+					$('#'+ID).text('已发送('+ curCount +')');
+				}
+			}, 1000); // 启动计时器，1秒钟执行一次
 		}else{ // 发送不成功
 			// 显示重新发送
 			$('#'+ID).text('重新获取');
@@ -832,13 +837,6 @@ var userinfo_third = {
 			});
 		},
 }
-/*function userInfoToBind(condition){
-	var url = getContextPath() + '/provider/bind/third';
-	
-	var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
-	
-	$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
-}*/
 function userInfoToBind(condition){
 	loadData(function(data){
 		if(data.code==1){
@@ -955,7 +953,7 @@ function getVeritifyCodeValidate(){
 					$('#label-telephone').removeClass('hide');
 				}else{ // 未注册
 					$('#label-telephone').addClass('hide');
-					verification(concat_tele_new);
+					verification(concat_tele_new,"phone-codeBt");
 				}
 			}, getContextPath() + '/provider/checkExisting', $.toJSON({
 				telephone : concat_tele_new

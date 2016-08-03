@@ -3,7 +3,6 @@ $().ready(function() {
 	
 
 	providerInfo.init();
-	//http://192.168.0.101/team/img/team622-20160801213518191.png
 	var ProductTree = {
 		loadDatas : function(num) {
 			var teamId = $("#teamId").val();
@@ -109,7 +108,6 @@ $().ready(function() {
 				}
 				
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
-			checkYearIsExist('2015');
 		},
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
