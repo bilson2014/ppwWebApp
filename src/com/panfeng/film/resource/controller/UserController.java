@@ -155,8 +155,10 @@ public class UserController extends BaseController{
 		map.put("msg", "信息修改失败，请刷新后再试!");
 		if(user != null){
 			final String code = (String) request.getSession().getAttribute("code");
-			if (!"".equals(code) && code != null) {
-				if (code.equals(user.getVerification_code())) {
+			// 是否是测试程序
+			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+			if (isTest || (!"".equals(code) && code != null)) {
+				if (isTest || (code.equals(user.getVerification_code()))) {
 					final long userId = user.getId();
 					if(user.getPassword() != null && !"".equals(user.getPassword())){
 						// AES密码解密
@@ -211,8 +213,10 @@ public class UserController extends BaseController{
 		
 		if(user != null){
 			final String code = (String) request.getSession().getAttribute("code");
-			if(code != null && !"".equals(code)){
-				if(code.equals(user.getVerification_code())){
+			// 是否是测试程序
+			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+			if(isTest || (code != null && !"".equals(code))){
+				if(isTest || (code.equals(user.getVerification_code()))){
 					
 					serLogger.info("User id is " + user.getId() + " update phone number:" + user.getTelephone());
 					
