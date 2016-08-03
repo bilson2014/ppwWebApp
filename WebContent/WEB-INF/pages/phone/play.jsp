@@ -28,7 +28,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="keywords" content="拍片网,视频播放,视频详情,影片播放,影片介绍">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_移动端_${product.productName }视频播放页</title>
+	<title>${product.productName }播放页_移动端_拍片网－广告－宣传片－微电影－视频营销</title>
 	
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${playCss }">
