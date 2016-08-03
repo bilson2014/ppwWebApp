@@ -245,7 +245,7 @@ var providerInfo = {
 			this.controlSpecialVideo();
 		},
 		controlTag : function(){
-			var tags =$('#provderTags').val();
+			var tags =$('#provderTags').text();
 			if(tags == null || tags =="" )
 				return;
 			var tagList = $.parseJSON(tags);
