@@ -392,15 +392,6 @@
 								<label class="col-sm-2 control-label">用户名</label>
 								<label class="col-sm-6 control-label field-label" style="text-align: left;" id="userName">${provider.loginName }</label>
 							</div>
-							<!-- 
-							<div class="form-group">
-								<label for="company-password" class="col-sm-2 control-label">密码</label>
-								<div class="col-sm-6">
-									<input type="password" class="form-control" id="company-password" maxlength="16" placeholder="请输入当前密码">
-								</div>
-								<span style="color:red;">*</span>
-							</div>
-							 -->
 							<div class="form-group">
 								<label for="company-newPassword" class="col-sm-2 control-label">新密码</label>
 								<div class="col-sm-6">
@@ -423,6 +414,7 @@
 									<div class="col-sm-3">
 										<button type="button" class="btn btn-default codeBt" id="upd-codeBt">获取验证码</button>
 									</div>
+									<span style="color:red;">*</span>
 									<div class="col-sm-4">
 										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
 										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
@@ -479,6 +471,7 @@
 									<div class="col-sm-3">
 										<button type="button" class="btn btn-default codeBt" id="codeBt">获取验证码</button>
 									</div>
+									<span style="color:red;">*</span>
 									<div class="col-sm-4">
 										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
 										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
