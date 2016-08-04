@@ -113,6 +113,7 @@
 						<ul class="list-inline" id="item-list">
 							<!-- 行业分类 -->
 						</ul>
+						
 					</dd>
 
 					<div class="more-link" id="more-link">
@@ -149,7 +150,10 @@
 			</div>
 		</div>
 		<!-- 搜索条件模块 end -->
-		<div class="videoTag hide"><div>所有分类></div><div class="tag">战争<span>x</span></div><div class="tag">战争<span>x</span></div></div>
+		<div class="videoTag" id="videoTag">
+		           <div>所有分类    ></div>
+		            <!-- </div><div class="tag"><span  name="tagName">战争</span><span>x</span></div> -->
+		</div>
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">

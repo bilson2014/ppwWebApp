@@ -197,11 +197,11 @@
     @include media_screen_width();
     margin: 0 auto;
     position: relative;
-    top:20px;
+    margin-top: 20px;
     div {
         display: inline-block;
-        color: $gray-light;
-        font-size: $font-size-sm;
+        color: $gray;
+        font-size: $font-size-base;
     }
 
     .tag{
@@ -214,8 +214,13 @@
     		padding-right:5px;
     		font-size: $font-size-base;
     		position: relative;
-    		top:-1px;
 
+    	}
+
+    	.tagX{
+    		position: relative;
+    		color: $gray-light;
+    		top:-1px;
     	}
     }
 

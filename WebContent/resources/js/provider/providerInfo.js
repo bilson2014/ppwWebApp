@@ -89,13 +89,6 @@ $().ready(function() {
 						   }
 						$body = '';
 					}
-                   
-
-					
-					
-					
-					
-
 
 					index ++;
 					oidYear = year;
@@ -273,11 +266,11 @@ var providerInfo = {
 //				provderTagWidth = 150;
 //			}
 //			else 
-			if(tagLength>5){
-                var multiple = tagLength/5;
+			if(tagLength>6){
+                var multiple = tagLength/6;
                 var intMultiple = parseInt((Number(multiple)+1));
-                var provderTagHeight = intMultiple*30;
-                var topLine = provderTagHeight/2-20;
+                var provderTagHeight = intMultiple*30+30;
+                var topLine = provderTagHeight/2-15;
 				 
 				
 				$("#provderTagId").css("height",provderTagHeight);

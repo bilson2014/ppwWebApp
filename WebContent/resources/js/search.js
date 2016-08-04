@@ -6,6 +6,7 @@ $().ready(function(){
 	search.loadPrice(); // 装配价格
 	search.loadLength(); // 装配时长
 	search.pagination(); // 分页
+
 	
 });
 
@@ -42,13 +43,18 @@ var search = {
 			var item = $('#item').val();
 			if(item != null && item != undefined && item != '') {
 				$('.itemAll').removeClass('active');
-				
 				$.each($('.itemAll'),function(){
 					if($(this).data('id') == item){
 						$(this).addClass('active');
+						//TODO行业
+						searchVideo.addType($(this).text());
 					}
 				});
 			}
+			
+			if(item=="*"){
+				$('#item-all').addClass('active');
+				}
 		}, getContextPath() + '/item/list', null);
 	},
 	loadPrice : function(){ // 装配价格
@@ -118,12 +124,16 @@ var search = {
 		
 		// 标注选中状态
 		var price = $('#price').val();
+		
 		if(price != null && price != undefined && price != '') {
 			$('.priceAll').removeClass('active');
 			
 			$('.priceAll').each(function(){
 				if($(this).data('price') == price){
 					$(this).addClass('active');
+					//TODO
+					searchVideo.addPrice($(this).text());
+					
 				}
 			});
 		}
@@ -200,13 +210,19 @@ var search = {
 		var length = $('#length').val();
 		if(length != null && length != undefined && length != '') {
 			$('.lengthAll').removeClass('active');
-			
+ 			
 			$.each($('.lengthAll'),function(){
-				if($(this).data('length') == length)
+				if($(this).data('length') == length){
 					$(this).addClass('active');
+					searchVideo.addTime($(this).text());
+					
+				}
 			});
 		}
 	},
+	
+	
+	
 	pagination : function(){
 		$(".pagination").createPage({
 			pageCount: Math.ceil($('#total').val() / pageSize),
@@ -293,3 +309,62 @@ function loadProduction(start){
 		lengthFq : $('#length').val()
 	}));
 }
+
+
+var searchVideo= {
+		
+		addType : function(word){
+			
+			if(word!="全部"){
+			var formBody ='<div class="tag" id="tagType">';
+			formBody +='<div class="controlCard">';
+			formBody +='<span>'+word+'</span><span class="tagX">x</span></div>';
+			$("#videoTag").append(formBody);
+			this.typeClick();
+			}
+			if(word=="女性"||word=="体育健身"||word=="o2o"){
+				$('#more-link').click();
+			}
+		},
+		
+		addPrice: function(word){
+			if(word!="全部"){
+			var formBody ='<div class="tag" id="tagPrice">';
+			formBody +='<div class="controlCard">';
+			formBody +='<span >'+word+'</span><span class="tagX">x</span></div>';
+			$("#videoTag").append(formBody);
+			this.priceClick();
+			}
+		},
+		addTime: function(word){
+			if(word!="全部"){
+			var formBody ='<div class="tag" id="tagTime">';
+			formBody +='<div class="controlCard"  >';
+			formBody +='<span >'+word+'</span><span class="tagX">x</span></div>';
+			$("#videoTag").append(formBody);
+			this.timeClick();
+			}
+		},
+		typeClick:function(){
+			$('#tagType').on('click',function(){
+				var url = $('#item-all').attr('href');
+				location.href=url;
+				
+			});
+		},
+		priceClick:function(){
+			$('#tagPrice').on('click',function(){
+				var url = $('#price-all').attr('href');
+				location.href=url;
+				
+			});
+		},
+		timeClick:function(){
+			$('#tagTime').on('click',function(){
+				var url = $('#length-all').attr('href');
+				location.href=url;
+				
+			});
+		}
+}
+
