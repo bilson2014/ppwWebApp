@@ -53,15 +53,12 @@ $().ready(function(){
 	loadData(function(flag){
 		
 		if(!flag){
-			$(".right-part").append('<div class="warn">1</div>');
+			$(".right-part").append('<div class="warn">!</div>');
 			//.append('<div class="warnWindom"><div class="divImg"></div><div></div></div>');
 			//如果是供应商和客户info页面
 			var url = window.location.href;
-			if(url.indexOf("provider/company-info") != -1){
-				$("#safe-point").append('<div class="warn" style="left: 72px;">1</div>');
-			}
-			if(url.indexOf("user/info") != -1){
-				$("#safe-point").append('<div class="warn" style="left: 72px;">1</div>');
+			if(url.indexOf("provider/company-info") != -1 || url.indexOf("user/info") != -1){
+				$("#safe-point").append('<div class="warn" style="left: 72px;">!</div>');
 			}
 		}
 	}, getContextPath() + '/loginName/validate');
