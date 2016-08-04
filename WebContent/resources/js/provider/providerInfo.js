@@ -97,7 +97,12 @@ $().ready(function() {
 				timeLine.append($body);
 				ProductTree.getMore();
 				}
-				
+				if(msg.length == 1){
+					$body+=drawMidTimeLine();
+					$body+=drawVideoAreaEnd();
+					timeLine.append($body);
+					$body = '';
+				}
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
 		},
 		initInfoHead:function(){
@@ -251,6 +256,7 @@ var providerInfo = {
 			var tagList = $.parseJSON(tags);
 			var tagLength =tagList.length;
 			var provderTagWidth =0; 
+			
 			for(i=0;i<tagLength;i++){
 				var formBody ='<div class="card">';
 				formBody +='<div class="controlCard">';
