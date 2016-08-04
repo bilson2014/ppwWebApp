@@ -136,7 +136,11 @@ $().ready(function() {
 
 // 比较之前进行数据转换
 function convert(value) {
-	return new Date(Date.parse(value.replace(/-/g, "/")));
+	if(value != null && value != undefined && value != ''){
+		
+		return new Date(Date.parse(value.replace(/-/g, "/")));
+	}
+	return '';
 }
 // 创建轴节点 --》年
 function drawYearView(year) {
