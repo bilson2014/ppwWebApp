@@ -1,7 +1,5 @@
 var nowInt = 0;
 $().ready(function() {
-	
-
 	providerInfo.init();
 	var ProductTree = {
 		loadDatas : function(num) {
@@ -89,13 +87,6 @@ $().ready(function() {
 						   }
 						$body = '';
 					}
-                   
-
-					
-					
-					
-					
-
 
 					index ++;
 					oidYear = year;
@@ -106,7 +97,12 @@ $().ready(function() {
 				timeLine.append($body);
 				ProductTree.getMore();
 				}
-				
+				if(msg.length == 1){
+					$body+=drawMidTimeLine();
+					$body+=drawVideoAreaEnd();
+					timeLine.append($body);
+					$body = '';
+				}
 			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
 		},
 		initInfoHead:function(){
@@ -136,26 +132,30 @@ $().ready(function() {
 
 // 比较之前进行数据转换
 function convert(value) {
-	return new Date(Date.parse(value.replace(/-/g, "/")));
+	if(value != null && value != undefined && value != ''){
+		
+		return new Date(Date.parse(value.replace(/-/g, "/")));
+	}
+	return '';
 }
 // 创建轴节点 --》年
 function drawYearView(year) {
 	var moYear = year%5;
 	var $body = '<div class="videoArea"><div class="yearTimeLine"></div><div class="year" id ="'+year+'"><div>';
 	        if(moYear==1){
-	        	$body+='<div class="color2">'
+	        	$body+='<div class="color1">'
 	        }
 	        else if(moYear==2){
-	        	$body+='<div class="color3">'
+	        	$body+='<div class="color2">'
             }
 	        else if(moYear==3){
 	        	$body+='<div class="color3">'
             }
 	        else if(moYear==4){
-	        	$body+='<div class="color3">'
+	        	$body+='<div class="color4">'
             }
 	        else if(moYear==0){
-	        	$body+='<div class="color3">'
+	        	$body+='<div class="color5">'
             }
 	      
 	        $body+= year
@@ -173,7 +173,7 @@ function drawLeftCard(product,year,month,day) {
 				+ '</div>'
 				+ '<div class="videoCrad">'
 					+ '<div class="title">'+product.productName+'</div>'
-					+ '<a><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
@@ -195,7 +195,7 @@ function drawRightCard(product,year,month,day) {
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
@@ -218,9 +218,6 @@ function drawMore() {
 					+'</div>';
     return $body;
 }
-
-
-
 
 function checkYearIsExist(year) {
 	var yearView = $('#'+year);
@@ -257,9 +254,13 @@ var providerInfo = {
 			this.controlSpecialVideo();
 		},
 		controlTag : function(){
-			var tagList = $.parseJSON($('#provderTags').text());
+			var tags =$('#provderTags').text();
+			if(tags == null || tags =="" )
+				return;
+			var tagList = $.parseJSON(tags);
 			var tagLength =tagList.length;
 			var provderTagWidth =0; 
+			
 			for(i=0;i<tagLength;i++){
 				var formBody ='<div class="card">';
 				formBody +='<div class="controlCard">';
@@ -273,11 +274,11 @@ var providerInfo = {
 //				provderTagWidth = 150;
 //			}
 //			else 
-			if(tagLength>5){
-                var multiple = tagLength/5;
+			if(tagLength>6){
+                var multiple = tagLength/6;
                 var intMultiple = parseInt((Number(multiple)+1));
-                var provderTagHeight = intMultiple*30;
-                var topLine = provderTagHeight/2-20;
+                var provderTagHeight = intMultiple*30+30;
+                var topLine = provderTagHeight/2-15;
 				 
 				
 				$("#provderTagId").css("height",provderTagHeight);

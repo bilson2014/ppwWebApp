@@ -1776,6 +1776,8 @@ public class ProviderController extends BaseController {
 			}else{
 				logger.error("provider business is null ...");
 			}
+		}else{
+			logger.error("Team is null ...");
 		}
 		// 加载代表作
 		url = URL_PREFIX + "portal/get/masterWork/" + teamId;
@@ -1785,6 +1787,8 @@ public class ProviderController extends BaseController {
 			modelMap.addAttribute("product", product);
 			String[] tags =  product.getTags().split("\\ ");
 			modelMap.addAttribute("tags", tags);
+		}else{
+			logger.error("product is null ...");
 		}
 		return new ModelAndView("/provider/providerInfo", modelMap);
 	}

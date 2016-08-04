@@ -160,11 +160,11 @@
 		     </div>
 		     
 		     <div class="videoContent">
-		     
+		     	<input type="hidden" id="teamId" value="${product.teamId }">
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-			         	<input type="hidden" id="ykVideoUrl" value="${product.hret}">
-			         	<input type="hidden" id="localVideoUrl" value="${product.videoUrl}">
+			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
+			         	<input type="hidden" id="localVideoUrl" value="${fn:substringAfter(product.videoUrl,'/portal') }">
 			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
 			         	<div class="showVideo" id="showVideo" >
 						<!-- <video class="showVideo" controls src='' preload="auto" poster=''></video> -->
@@ -213,7 +213,8 @@
 		<div class="infoBottom ">
 		  <div class="buChong"></div>
 		   <div class="bottomWord ">
-                                              来自全球56个城市,1562名导演已加入,汇聚世界作品100000+,2000+客户在这里发布拍片需求
+                                              来自全球56个城市,1562名导演已加入,汇聚世界作品100000+
+                 <br/>2000+客户在这里发布拍片需求
 		   </div>
 		   <a href="<spring:url value="/provider/login" />"><div class="bottomBtn btn-red-common ">立即加入</div>
 		</div>
