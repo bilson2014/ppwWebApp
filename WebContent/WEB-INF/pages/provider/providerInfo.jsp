@@ -159,11 +159,11 @@
 		     </div>
 		     
 		     <div class="videoContent">
-		     
+		     	<input type="hidden" id="teamId" value="${product.teamId }">
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
-			         	<input type="hidden" id="ykVideoUrl" value="${product.hret}">
-			         	<input type="hidden" id="localVideoUrl" value="${product.videoUrl}">
+			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
+			         	<input type="hidden" id="localVideoUrl" value="${fn:substringAfter(product.videoUrl,'/portal') }">
 			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
 			         	<div class="showVideo" id="showVideo" >
 						<!-- <video class="showVideo" controls src='' preload="auto" poster=''></video> -->
