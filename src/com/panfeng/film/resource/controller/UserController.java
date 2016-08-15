@@ -528,4 +528,14 @@ public class UserController extends BaseController{
 		Boolean b = JsonUtil.toBean(str, Boolean.class);
 		return b;
 	}
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unique/username")
+	public boolean uniqueUserName(@RequestBody final User user,final HttpServletRequest request) {
+		final String url = URL_PREFIX + "portal/user/unique/username";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
 }
