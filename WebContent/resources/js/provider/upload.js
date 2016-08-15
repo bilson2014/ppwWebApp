@@ -134,9 +134,10 @@ $().ready(function(){
 			$('#video-picLD-div').hide();
 			// 注册 保存 按钮
 			$('#infoBt').on('click',function(){
+				$('#warmModel').modal('show');
 				$('#sureUpdate').on('click',function(){
 					$('#warmModel').modal('hide');
-					if($('#video-switch').val() == 1){
+				if($('#video-switch').val() == 1){
 					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
 						upload();
 					}
