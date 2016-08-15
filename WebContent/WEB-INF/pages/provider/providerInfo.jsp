@@ -32,7 +32,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>${provider.teamName }展示页_拍片网－广告－宣传片－微电影－视频营销 </title>
+	<title>${provider.teamName }_拍片网</title>
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
@@ -42,7 +42,6 @@
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
-	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
