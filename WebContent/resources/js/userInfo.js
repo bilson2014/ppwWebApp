@@ -117,70 +117,73 @@ function initData(){
 	
 	$('#passw0rd').val('');
 }
-
 // 个人资料
 function selfInfo(){
 	$('.self-info-content').slideDown('normal');
 	$("#nickName").off("change").on("change",function(){
-		loadData(function(flag){
-			if(!flag){
-				$("#self-info-contentBt").attr('disabled','disabled');
-				$('#label-nickName').removeClass("hide").text('昵称被占用!');
-			}else{
-				$("#self-info-contentBt").removeAttr('disabled');
-				$('#label-nickName').addClass("hide");
-			}
-		}, getContextPath() + '/user/unique/username', $.toJSON({
-			id : $('#user_unique').val(),
-			userName : $('#nickName').val().trim(),
-		}))
+		validateNickName();
 	})
 	// 注册 个人资料-修改按钮点击事件
 	$('#self-info-contentBt').unbind('click');
 	$('#self-info-contentBt').bind('click',function(){
-		if($("#self-info-contentBt").attr("disabled")=='disabled'){
-			return false;
-		}
-		if($('#nickName').val().trim() != ''){
-			var ret = true;
-			if($('#contact-email').val().trim() != ''){
-				ret = checkEmail($('#contact-email').val().trim());
-				if(!ret){
-					$('#label-email').removeClass('hide');
-				}else{
-					$('#label-email').addClass('hide');
-				}
+		validateNickName(function(){
+			if($("#self-info-contentBt").attr("disabled")=='disabled'){
+				return false;
 			}
-			
-			if(ret){
-				loadData(function(flag){
-					// 提示信息修改成功
-					$('.tooltip-show').slideDown('normal');
-					if(flag){
-						$("#user-name").text($("#nickName").val());
-						$(".header-name").text($("#trueName").val());
-						$('.tooltip-message').text('信息修改成功!');
+			if($('#nickName').val().trim() != ''){
+				var ret = true;
+				if($('#contact-email').val().trim() != ''){
+					ret = checkEmail($('#contact-email').val().trim());
+					if(!ret){
+						$('#label-email').removeClass('hide');
 					}else{
-						$('.tooltip-message').text('信息修改失败，请刷新后再试!');
+						$('#label-email').addClass('hide');
 					}
-					window.setInterval(hideTooltip, 2000);
-				}, getContextPath() + '/user/modify/info', $.toJSON({
-					id : $('#user_unique').val(),
-					userName : $('#nickName').val().trim(),
-					sex : $('input[name="sex"]:checked').val(),
-					realName : $('#trueName').val().trim(),
-					email : $('#contact-email').val().trim(),
-					qq : $('#contact-qq').val().trim(),
-					userCompany : $('#company').val().trim(),
-					customerSource : $("#customerSource").val().trim()
-				}))
+				}
+				if(ret){
+					loadData(function(flag){
+						// 提示信息修改成功
+						$('.tooltip-show').slideDown('normal');
+						if(flag){
+							$("#user-name").text($("#nickName").val());
+							$(".header-name").text($("#trueName").val());
+							$('.tooltip-message').text('信息修改成功!');
+						}else{
+							$('.tooltip-message').text('信息修改失败，请刷新后再试!');
+						}
+						window.setInterval(hideTooltip, 2000);
+					}, getContextPath() + '/user/modify/info', $.toJSON({
+						id : $('#user_unique').val(),
+						userName : $('#nickName').val().trim(),
+						sex : $('input[name="sex"]:checked').val(),
+						realName : $('#trueName').val().trim(),
+						email : $('#contact-email').val().trim(),
+						qq : $('#contact-qq').val().trim(),
+						userCompany : $('#company').val().trim(),
+						customerSource : $("#customerSource").val().trim()
+					}))
+				}
+			}else{
+				$('#label-nickName').removeClass('hide');
 			}
-		}else{
-			$('#label-nickName').removeClass('hide');
-		}
+		});
 	});
 }
-
+function validateNickName(fun){
+	loadData(function(flag){
+		if(!flag){
+			$("#self-info-contentBt").attr('disabled','disabled');
+			$('#label-nickName').removeClass("hide").text('昵称被占用!');
+		}else{
+			$("#self-info-contentBt").removeAttr('disabled');
+			$('#label-nickName').addClass("hide");
+			fun();
+		}
+	}, getContextPath() + '/user/unique/username', $.toJSON({
+		id : $('#user_unique').val(),
+		userName : $('#nickName').val().trim(),
+	}))
+}
 // 密码修改
 function passwordInfo(){
 	$('.password-info-content').slideDown('normal');

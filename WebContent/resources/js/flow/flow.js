@@ -2493,7 +2493,7 @@ function showError(str){
 	$('#sureToNext').html(info);
 	$('#sureCheck').off('click');
 	$('#noSureCheck').off('click');
-	window.setInterval(hideSuccessTooltip, 3000);
+	window.setTimeout(hideSuccessTooltip, 3000);
 }
 
 function hideSuccessTooltip(){
