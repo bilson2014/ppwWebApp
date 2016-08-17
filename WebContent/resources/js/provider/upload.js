@@ -134,6 +134,7 @@ $().ready(function(){
 			$('#video-picLD-div').hide();
 			// 注册 保存 按钮
 			$('#infoBt').on('click',function(){
+				$('#warmModel').modal('show');
 				$('#sureUpdate').on('click',function(){
 					$('#warmModel').modal('hide');
 				if($('#video-switch').val() == 1){

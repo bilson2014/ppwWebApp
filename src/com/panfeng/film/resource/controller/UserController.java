@@ -13,10 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -526,6 +524,16 @@ public class UserController extends BaseController{
 		user.setId(sessionInfo.getReqiureId());//填充用户id
 		// 查询该用户是否存在
 		final String url = URL_PREFIX + "portal/user/info/unbind";
+		String str = HttpUtil.httpPost(url, user, request);
+		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		return b;
+	}
+	/**
+	 * 个人中心解除第三方绑定
+	 */
+	@RequestMapping("/unique/username")
+	public boolean uniqueUserName(@RequestBody final User user,final HttpServletRequest request) {
+		final String url = URL_PREFIX + "portal/user/unique/username";
 		String str = HttpUtil.httpPost(url, user, request);
 		Boolean b = JsonUtil.toBean(str, Boolean.class);
 		return b;

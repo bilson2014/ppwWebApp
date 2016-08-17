@@ -121,10 +121,26 @@ function initData(){
 // 个人资料
 function selfInfo(){
 	$('.self-info-content').slideDown('normal');
-	
+	$("#nickName").off("change").on("change",function(){
+		loadData(function(flag){
+			if(!flag){
+				$("#self-info-contentBt").attr('disabled','disabled');
+				$('#label-nickName').removeClass("hide").text('昵称被占用!');
+			}else{
+				$("#self-info-contentBt").removeAttr('disabled');
+				$('#label-nickName').addClass("hide");
+			}
+		}, getContextPath() + '/user/unique/username', $.toJSON({
+			id : $('#user_unique').val(),
+			userName : $('#nickName').val().trim(),
+		}))
+	})
 	// 注册 个人资料-修改按钮点击事件
 	$('#self-info-contentBt').unbind('click');
 	$('#self-info-contentBt').bind('click',function(){
+		if($("#self-info-contentBt").attr("disabled")=='disabled'){
+			return false;
+		}
 		if($('#nickName').val().trim() != ''){
 			var ret = true;
 			if($('#contact-email').val().trim() != ''){
