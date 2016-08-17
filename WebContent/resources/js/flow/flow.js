@@ -1173,10 +1173,13 @@ function loadprojecctlist() {
 //				}
 			});
 			liStar.append(a);
+			var userId = $('#userId').val();
 			// 选择添加到那个view
 			switch (msg[i].state) {
 			case 0:
-				doing.append(liStar);
+				if(userId == msg[i].userId){
+					doing.append(liStar);
+				}
 				break;
 			case 1:
 			case 2:
@@ -1184,9 +1187,10 @@ function loadprojecctlist() {
 				break;
 			case 3:
 				pause.append(liStar);
-				
 				break;
 			}
+		
+			
 		}
 		//if has histroy project but no working project show window（！）
 		
