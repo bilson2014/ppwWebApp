@@ -188,9 +188,9 @@ public class VersionManagerController extends BaseController {
 				final String Unique = (String) objUnique;
 				final String realName = (String) objLinkman;
 				final String code = (String) objCode;
-
+				boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 				// 不需要输入验证码 code == null dev code != null
-				if (code.equals(employee.getVerification_code())) {
+				if (isTest || code.equals(employee.getVerification_code())) {
 					employee.setEmployeeRealName(realName);
 					if (ValidateUtil.isValid(Unique)) {
 						switch (Ltype) {
@@ -621,15 +621,15 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/flow/completeTask")
-	public boolean completeTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
+	public BaseMsg completeTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
 		final String url = GlobalConstant.URL_PREFIX + "completeTask";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
-			return JsonUtil.toBean(str, Boolean.class);
+			return JsonUtil.toBean(str, BaseMsg.class);
 		}
-		return false;
+		return new BaseMsg();
 	}
 
 	@RequestMapping(value = "/flow/getIndentFlows", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")

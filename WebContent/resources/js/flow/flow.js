@@ -24,6 +24,7 @@ $().ready(function() {
 			$(".flowbtn").on("click", function() {
 				
 				$('#toolbar-check').modal({backdrop: 'static', keyboard: false});
+				
 				initModalBtn();
 				//$("#toolbar-check").modal('show');
 				
@@ -40,6 +41,7 @@ $().ready(function() {
 					$(".check-step").removeClass("hide");
 					$("#listLoadCheck").addClass("hide");
 					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+		
 					setModalEvent(nextFlow);
 				   }
 			});
@@ -254,8 +256,12 @@ function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
-			loadprojecctlist();
+			if(msg.result == ""){
 			$("#toolbar-check").modal('hide');
+			}else{
+				showError(msg.result);
+			}
+			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
 		}));
@@ -2480,5 +2486,16 @@ function formatterDateTime (date) {
     return datetime;
 }
 
+function showError(str){
+	var info = str+"3秒后自动关闭"
+	$('#sureToNext').html('');
+	$('#sureToNext').css('color','#fe5453');
+	$('#sureToNext').html(info);
+	$('#sureCheck').off('click');
+	$('#noSureCheck').off('click');
+	window.setInterval(hideSuccessTooltip, 3000);
+}
 
-
+function hideSuccessTooltip(){
+	$('#toolbar-check').modal('hide');
+}
