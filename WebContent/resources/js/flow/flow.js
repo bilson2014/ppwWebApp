@@ -28,22 +28,27 @@ $().ready(function() {
 				initModalBtn();
 				//$("#toolbar-check").modal('show');
 				
-				
-				if(currentIndex>4){
-					$(".check-step").addClass("hide");
-					$("#listLoadCheck").removeClass("hide");
-					$(".sure-margin").off('click');
-					checkPorjectInfo();
-					}
-				   else
-				    {
-					$(".sure-margin").on('click');
-					$(".check-step").removeClass("hide");
-					$("#listLoadCheck").addClass("hide");
-					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
-		
-					setModalEvent(nextFlow);
-				   }
+				$(".sure-margin").on('click');
+				$(".check-step").removeClass("hide");
+				$("#listLoadCheck").addClass("hide");
+				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+	
+				setModalEvent(nextFlow);
+//				if(currentIndex>4){
+//					$(".check-step").addClass("hide");
+//					$("#listLoadCheck").removeClass("hide");
+//					$(".sure-margin").off('click');
+//					checkPorjectInfo();
+//					}
+//				   else
+//				    {
+//					$(".sure-margin").on('click');
+//					$(".check-step").removeClass("hide");
+//					$("#listLoadCheck").addClass("hide");
+//					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+//		
+//					setModalEvent(nextFlow);
+//				   }
 			});
 			$(".cancle-margin").on("click",function(){
 				
@@ -2492,10 +2497,10 @@ function showError(str){
 	$('#sureToNext').css('color','#fe5453');
 	$('#sureToNext').html(info);
 	$('#sureCheck').off('click');
-	$('#noSureCheck').off('click');
 	window.setTimeout(hideSuccessTooltip, 3000);
 }
 
 function hideSuccessTooltip(){
 	$('#toolbar-check').modal('hide');
+	$('#sureCheck').on('click');
 }
