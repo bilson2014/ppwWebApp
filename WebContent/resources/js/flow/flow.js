@@ -256,7 +256,7 @@ function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
-			if(msg.result == ""){
+			if(msg.result == "true"){
 			$("#toolbar-check").modal('hide');
 			}else{
 				showError(msg.result);
@@ -2493,7 +2493,7 @@ function showError(str){
 	$('#sureToNext').html(info);
 	$('#sureCheck').off('click');
 	$('#noSureCheck').off('click');
-	window.setInterval(hideSuccessTooltip, 3000);
+	window.setTimeout(hideSuccessTooltip, 3000);
 }
 
 function hideSuccessTooltip(){
