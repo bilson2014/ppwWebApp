@@ -627,8 +627,6 @@ function loadflowdata() {
 									}
 									
 								}
-								
-								
 								//end
 								
 								return;
