@@ -767,7 +767,7 @@ public class PCController extends BaseController {
 	public boolean loginNameValidate(final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "portal/loginName/validate";
 		final String json = HttpUtil.httpGet(url,request);
-		if(null!=json){
+		if(null!=json && !"".equals(json)){
 			return JsonUtil.toBean(json, Boolean.class);
 		}return true;
 	}
