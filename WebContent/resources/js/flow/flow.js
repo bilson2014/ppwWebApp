@@ -1082,9 +1082,6 @@ function loadprojecctlist() {
 		pause.html('');
 		history.html('');
 		// 检测该管家是否拥有属于自己的项目（非协同项目以外的）
-		
-	    
-		
 		// 优先加载 协同人
 		loadSynerhyList();
 		var help=$("#helpProjectId").find('a');
@@ -1111,11 +1108,10 @@ function loadprojecctlist() {
 			noWorkproject = true ;
 		}
 		
-		
+		var currIsSynergy = false;
 		// 加载属于我的项目 
 		for (var i = 0; i < msg.length; i++) {
 			var stateStr=msg[i].state;
-
 			// 默认第一次选中
 			// 当没有选中过项目，并且遍历的项目为正长状态下的第一个项目为默认选中项目
 			if (!selectFirst  && getCurrentProject() == null && stateStr==0) {
@@ -1124,25 +1120,22 @@ function loadprojecctlist() {
 				putCurrentProject(currentprojectkey);
 				selectFirst=true;
 				noWorkproject =false;
-				show();// 显示所有按钮
-
-			}else if(msg[i].id==getCurrentProject()){
-				
-				
+				show(true);// 显示所有按钮
+			}else if(msg[i].id== getCurrentProject()){
 				//判断当前项目是历史项目
 				if(stateStr == 1 || stateStr == 2){
 					//确定当前状态觉决定是否显示
 					finish();// 禁用所有按钮
 					isHistory=true;
-					
-					
 				}
-				
 				else{
+					if(userId == msg[i].userId){
+						show(true);// 显示所有按钮
+					}else{
+						show(false);// 显示所有按钮
+					}
 					noWorkproject =false;
-					show();// 显示所有按钮
 					isHistory=false;
-					
 				}
 			}
 			
@@ -1187,12 +1180,8 @@ function loadprojecctlist() {
 				pause.append(liStar);
 				break;
 			}
-		
-			
 		}
 		//if has histroy project but no working project show window（！）
-		
-		
 		//TODO:
 	//选中第一个项目 负责》暂停》协同 lt 20160608
 	//begin	
@@ -1215,7 +1204,6 @@ function loadprojecctlist() {
   			   nowContent.find('a').click();
   			   hasClick=true;
   			   nowImg=0;
-            	 
              }
 	   }
 	 }
@@ -1231,6 +1219,7 @@ function loadprojecctlist() {
 	       	$(".right-page").removeClass('hide');
        }
 	// load more component
+       
 	resetTime('');
 	loadflowdata();
 	loadfiledata(false);
@@ -1238,7 +1227,6 @@ function loadprojecctlist() {
 	loadIndentInfo();
 	loadSynerhyList();
 	updateProjectTreeView();
-	
 	}, getContextPath() + '/mgr/projects/all-project', $.toJSON({}));
 
 }
@@ -1369,9 +1357,13 @@ function finish() {
 	$('#userContentId').addClass('hide');
 }
 //未完成项目样式
-function show() {
+function show(isSynergy) {
 	$("#btndiv-id").show();
-	$("#upload-info-btn-id").show();
+	if(isSynergy){
+		$("#upload-info-btn-id").show();
+	}else{
+		$("#upload-info-btn-id").hide();
+	}
 	$("#upload-file-btn-id").show();
 	$(".comment").show();
 	$(".comment-btn").show();

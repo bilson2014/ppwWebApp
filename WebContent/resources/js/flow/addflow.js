@@ -1261,11 +1261,6 @@ function verifySynerhy(){
             $(item).find("input#ratio").on('change',function(){
             	proportionError.addClass("visible");
 			});
-            
-            
-           
-
-			
             if(userName!='' || ratioName.val().trim() !='' ){// 如果填写的价格，那么联系人必须通过验证
             	getReferrerData(userName);//获取数据库模糊查询用户名字相同的协助人
     			if(referrerList != ''){
@@ -1335,15 +1330,12 @@ function verifySynerhy(){
             }
 
 		}
-		
-		
 		 if(userId==''){
          	nameError.text('协同人不存在');
 
          	$(item).find("input#name").focus();
          	hasError =true;
          }
-		 
 			var logiNname = $("#logiNname").val();
 			if(logiNname == userName){
 				nameError.text('自己不能是协同人');

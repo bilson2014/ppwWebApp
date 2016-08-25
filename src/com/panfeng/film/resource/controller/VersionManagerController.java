@@ -469,8 +469,8 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/update-indentProject")
 	public boolean updateIndentProject(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
-		// fill userinfo
-		fillUserInfo(request, indentProject);
+		indentProject.setUserId(null);
+		indentProject.setUserType(null);
 		final String url = GlobalConstant.URL_PREFIX + "project/update-indentProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
