@@ -141,7 +141,7 @@
 				<dl>
 					<dt class="first-desc changePosition"></dt>
 					<dd class="changeMidPosition">免费创意策划</dd>
-					<dd class="">专属视频管家-站式服务</dd>
+					<dd class="">专属视频管家一站式服务</dd>
 				</dl>
 				
 				<dl>
