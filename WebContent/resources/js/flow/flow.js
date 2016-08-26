@@ -1107,7 +1107,7 @@ function loadprojecctlist() {
 		if(help.length > 0){
 			noWorkproject = true ;
 		}
-		
+		var userId = $('#userId').val();
 		var currIsSynergy = false;
 		// 加载属于我的项目 
 		for (var i = 0; i < msg.length; i++) {
@@ -1132,7 +1132,7 @@ function loadprojecctlist() {
 					if(userId == msg[i].userId){
 						show(true);// 显示所有按钮
 					}else{
-						show(false);// 显示所有按钮
+						show(true);// 显示所有按钮
 					}
 					noWorkproject =false;
 					isHistory=false;
@@ -1164,7 +1164,6 @@ function loadprojecctlist() {
 //				}
 			});
 			liStar.append(a);
-			var userId = $('#userId').val();
 			// 选择添加到那个view
 			switch (msg[i].state) {
 			case 0:

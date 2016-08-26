@@ -1336,14 +1336,14 @@ function verifySynerhy(){
          	$(item).find("input#name").focus();
          	hasError =true;
          }
-			var logiNname = $("#logiNname").val();
-			if(logiNname == userName){
-				nameError.text('自己不能是协同人');
-				nameError.removeClass("visible");
-				$(item).find("input#name").focus();
-				setError($(item).find("input#name"));
-				hasError =true;
-			}
+		var logiNname = $("#logiNname").val();
+		if(logiNname == userName){
+//			nameError.text('自己不能是协同人');
+//			nameError.removeClass("visible");
+//			$(item).find("input#name").focus();
+//			setError($(item).find("input#name"));
+//			hasError =true;
+		}
 		 
 		//end
 		
