@@ -399,8 +399,16 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/flow-index")
-	public ModelAndView projectsView(final ModelMap model, String key) {
+	public ModelAndView projectsView(final ModelMap model, String key,HttpServletRequest request) {
 		model.put("key", key);
+		final ServletContext sc = request.getServletContext();
+		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
+		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
+		
+		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		if(info != null){
+			model.put("userId",info.getReqiureId() );
+		}
 		return new ModelAndView("/manager/index", model);
 	}
 
@@ -461,9 +469,8 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/update-indentProject")
 	public boolean updateIndentProject(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
-		// fill userinfo
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "project/update-indentProject";
+		final String url = GlobalConstant.URL_PREFIX + "project/update-synergyProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {

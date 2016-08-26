@@ -12,8 +12,10 @@ public class IndentProject extends BaseObject {
 	public final static int PROJECT_NORMAL = 0;
 	public final static int PROJECT_CANCEL = 1;
 	public final static int PROJECT_FINISH = 2;
+	public final static int PROJECT_SUSPEND= 3;
 
 	private long id = 0l; // 项目流程ID
+	private long projectId = 0l; // 项目ID，冗余字段，以id属性为准
 	private String projectName = ""; //
 	private String userName = ""; // 客户公司名称
 	private String userContact = ""; // 客户名称
@@ -22,20 +24,23 @@ public class IndentProject extends BaseObject {
 	private String teamContact = "";
 	private String teamPhone = "";
 	private String description = "";
+	
+
+
 	private String serial = "";
 	private String source = "";
-	// 0 正常 1为取消 2为已完成
-	private int state = 0;
+	// 0 正常 1为取消 2为已完成  3为暂停
+	private Integer state = null;
 	private String userType = "";
-	private long userId = -1; // 视频管家ID
+	private Long userId = null; // 视频管家ID
 
 	// 价格字段
 	private Double priceFirst = null;// 预计起始价格
 	private Double priceLast = null;// 预计结束价格
 	private Double priceFinish = null;// 最终价格
 
-	private String managerRealName = null; // 管家名字
-
+	private String employeeRealName = null; // 管家名字
+	
 	private Long customerId = null; // 客户ID
 
 	private Long teamId = null; // 供应商ID
@@ -55,7 +60,7 @@ public class IndentProject extends BaseObject {
 	private List<Synergy> synergys = null; //协助人集合
 
 	private int clientLevel = 0; // 客户分级
- 
+	
 	public Double getCustomerPayment() {
 		return customerPayment;
 	}
@@ -82,6 +87,13 @@ public class IndentProject extends BaseObject {
 
 	public Long getReferrerId() {
 		return referrerId;
+	}
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 	public void setReferrerId(Long referrerId) {
@@ -180,11 +192,11 @@ public class IndentProject extends BaseObject {
 		this.userType = userType;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -207,9 +219,7 @@ public class IndentProject extends BaseObject {
 	// -----------------------------
 	// 冗余taskdate--------------------------------------
 
-	public int getState() {
-		return state;
-	}
+
 
 	public Double getPriceFirst() {
 		return priceFirst;
@@ -235,14 +245,21 @@ public class IndentProject extends BaseObject {
 		this.priceFinish = priceFinish;
 	}
 
-	public void setState(int state) {
-		this.state = state;
-	}
+	
 
 	private Map<String, String> time = null;
 	private ActivitiTask task = null;
 	private String tag = "";
 	private UserViewModel userViewModel = null;
+	private List<ActivitiTask> nodes = null;
+	
+	public List<ActivitiTask> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<ActivitiTask> nodes) {
+		this.nodes = nodes;
+	}
 
 	public UserViewModel getUserViewModel() {
 		return userViewModel;
@@ -276,12 +293,12 @@ public class IndentProject extends BaseObject {
 		this.tag = tag;
 	}
 
-	public String getManagerRealName() {
-		return managerRealName;
+	public String getEmployeeRealName() {
+		return employeeRealName;
 	}
 
-	public void setManagerRealName(String managerRealName) {
-		this.managerRealName = managerRealName;
+	public void setEmployeeRealName(String employeeRealName) {
+		this.employeeRealName = employeeRealName;
 	}
 
 	public Long getCustomerId() {
@@ -324,4 +341,12 @@ public class IndentProject extends BaseObject {
 		this.clientLevel = clientLevel;
 	}
 
+	public long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
+	}
+	
 }
