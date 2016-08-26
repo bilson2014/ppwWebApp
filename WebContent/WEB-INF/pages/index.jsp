@@ -120,6 +120,7 @@
 							<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 							<ul id="shelper" class="shelper-lucency"></ul>
 						</form>
+						<img alt="" src="${imgPath }/search.png" style="position: absolute;height: 35px;right: 20px;">
 					</div>
 					<div class="desc">35800+ 导演 / 编剧 / 摄影师 / 影视专家为您服务</div>
 					<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn" id="know-bg-btn">了解拍片网</div></a>
