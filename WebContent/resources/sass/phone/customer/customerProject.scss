@@ -1,0 +1,566 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "fontSize";
+@import "compass/typography/text/ellipsis";
+$flexslider-section-height: 80px; // 轮播图区域高度(280px)
+$flexslider-section-height320: 120px; // 轮播图区域高度(320px)
+$flexslider-section-height380: 160px; // 轮播图区域高度(320px)
+$flexslider-section-height420: 200px; // 轮播图区域高度(320px)
+$flexslider-section-height640: 350px; // 轮播图区域高度(640px)
+$flexslider-section-height720: 350px; // 轮播图区域高度(720px)
+body {
+    background: #F0F2F5;
+}
+
+box {
+    box-sizing: border-box;
+}
+
+.headerNew {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 48px;
+    background-color: #ffffff;
+    z-index: 2000;
+    bottom: 1px;
+    border-bottom: solid 1px $border-line;
+    .leftHeader {
+        position: relative;
+        float: left;
+        height: 48px;
+        width: 33.3%;
+    }
+    .rightHeader {
+        position: relative;
+        float: right;
+        height: 48px;
+        width: 30%;
+    }
+    .midHeader {
+        margin: 0 auto;
+        width: 20%;
+    }
+    .back {
+        height: 22px;
+        width: 22px;
+        background: image-url("phone/icons/back.png") no-repeat;
+        background-size: 12px;
+        top: 10px;
+        position: relative;
+        left: 20px;
+    }
+    .logo {
+        width: 90px;
+        height: 30px;
+        background: image-url("phone/icons/logo_black.png") no-repeat;
+        background-size: 76px;
+        margin: 0px auto;
+        position: relative;
+        top: 10px;
+    }
+    .share {
+        width: 22px;
+        height: 30px;
+        background: image-url("phone/icons/share.png") no-repeat;
+        background-size: 22px 22px;
+        margin: 0px auto;
+        position: relative;
+        top: 10px;
+        right: 20px;
+        float: right;
+    }
+}
+
+.topHeader {
+    position: relative;
+    margin-top: 48px;
+    width: 100%;
+    height: 70px;
+    background: white;
+    border-bottom: 1px solid $border-line;
+    .topContent {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .sameLine {
+        display: inline-block;
+    }
+    .toInfo {
+        width: 50px;
+        height: 70px;
+        float: right;
+        img {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 22px;
+        }
+    }
+    ul {
+        position: relative;
+        width: 50%;
+        div {
+            display: inline-block;
+        }
+        li {
+            line-height: 20px;
+        }
+        li:first-child {
+            font-size: $font-size-base;
+            color: $gray-dark;
+        }
+        li:nth-child(2) {
+            font-size: $font-size-base;
+            color: $gray-light;
+        }
+        .male {
+            height: 14px;
+            width: 14px;
+            position: relative;
+            top:1px;
+        }
+    }
+    .infoHead {
+        position: relative;
+        height: 46px;
+        width: 46px;
+        border-radius: 70px;
+        position: relative;
+        top: 5px;
+        left: 4px;
+        border-radius: 70px;
+        @media screen and (max-width: 320px) {
+            height: 46px;
+            width: 46px;
+            border-radius: 70px;
+            position: relative;
+            top: 5px;
+            left: 4px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 380px) {
+            height: 46px;
+            width: 46px;
+            border-radius: 70px;
+            position: relative;
+            top: 5px;
+            left: 4px;
+        }
+        @media screen and (min-width: 380px) and (max-width: 420px) {
+            height: 46px;
+            width: 46px;
+            border-radius: 70px;
+            position: relative;
+            top: 5px;
+            left: 4px;
+        }
+    }
+    .infoHeadSide {
+        position: relative;
+        top: 5px;
+        background: image-url('../images/provder/providerHeadSide.png') no-repeat;
+        height: 55px;
+        width: 55px;
+        background-size: 55px 55px;
+        @media screen and (max-width: 320px) {
+            height: 55px;
+            width: 55px;
+            background-size: 55px 55px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 380px) {
+            height: 55px;
+            width: 55px;
+            background-size: 55px 55px;
+        }
+        @media screen and (min-width: 380px) and (max-width: 420px) {
+            height: 55px;
+            width: 55px;
+            background-size: 55px 55px;
+        }
+    }
+}
+
+//选项卡
+.optionCard {
+    height: 60px;
+    width: 100%;
+    font-size: $font-size;
+    color: $gray-light;
+    background:white;
+    .doProject {
+        height: 60px;
+        border-right: 1px solid $border-line;
+    }
+    .historyProject {
+        height: 60px;
+    }
+    .doing {
+        color: $gray;
+        border-bottom: 3px solid $gray;
+        width: 65px;
+        height: 30px;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        top: 15px;
+    }
+    .noDoing {
+        width: 65px;
+        height: 30px;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        top: 15px;
+    }
+}
+
+.projectCard {
+    width: 95%;
+    height: auto;
+    border: 1px solid $border-line;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background: white;
+    .cardTitle {
+        width: 90%;
+        height: 50px;
+        margin: 0 auto;
+        .cardTitleWord {
+            display: inline-block;
+            width: 100px;
+            font-size: $font-size-lg;
+            color: $gray-dark;
+            position: relative;
+            top: 15px;
+        }
+        .cardStatues {
+            display: inline-block;
+            font-size: 2.2rem;
+            color: $gray;
+            float: right;
+            border: 1px solid red;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            position: relative;
+            top: 8px;
+            border-radius: 4px;
+        }
+    }
+    .step {
+        width: 100%;
+        height: auto;
+        border-top: 1px solid $border-line;
+        border-bottom: 1px solid $border-line;
+        .content {
+            width: 100%;
+            height: auto;
+        }
+        .stepTime {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            div {
+                display: inline-block;
+                width: calc(20% - 4px);
+                font-size: $font-size-sm;
+                color: $gray-light;
+                text-align: center;
+            }
+        }
+        .stepName {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            div {
+                display: inline-block;
+                width: calc(20% - 4px);
+                font-size: $font-size;
+                color: $gray-light;
+                text-align: center;
+            }
+        }
+        .stepLine {
+            width: 100%;
+            height: 24px;
+
+            .borderDiv{
+            position: absolute;
+            width: 85%;
+            left:7%;
+            height: 24px;
+            border: 1px solid $border-line;
+            border-radius: 120px;
+            background:none;
+            }
+
+            div {
+                position: relative;
+                float: left;
+                width: 20%;
+                height: 24px;
+                background: image-url("phone/customer/noClean.png") no-repeat center center;
+                background-size: 102% 15px;
+
+            }
+            .firstStep {
+                background: image-url("phone/customer/firstStep.png") no-repeat center center;
+                background-size: 55% 15px;
+                background-position: right;
+            }
+            .lastStep {
+                background: image-url("phone/customer/lastNoClean.png") no-repeat center center;
+                background-size: 50% 15px;
+                background-position: left;
+            }
+        }
+    }
+    .getMoreInfo {
+        .sameLine {
+            display: inline-block;
+        }
+        .autoDiv {
+            width: 100%;
+            height: auto;
+        }
+        .openDiv {
+            @extend .commonOpen;
+            border-bottom: 1px solid $border-line;
+        }
+        .openLastDiv {
+            @extend .commonOpen;
+        }
+        .commonOpen {
+            width: 90%;
+            height: 40px;
+            margin: 0 auto;
+        }
+        .infoTitle {
+            color: $gray-dark;
+            font-size: $font-size-base;
+            position: relative;
+            top: 11px;
+            left: 10px;
+        }
+        img {
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 13px;
+        }
+        .imgright {
+            float: right;
+        }
+        .openContent {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid $border-line;
+            .openArea {
+                width: calc(90% - 54px);
+                height: auto;
+                margin: 0 auto;
+                margin-top: 10px;
+                .openInfo {
+                    height: 25px;
+                    div {
+                        display: inline-block;
+                        color: $gray-light;
+                        font-size: $font-size-base;
+                        margin-right: 10px;
+                    }
+                    .projectWidth {
+                        width: 100px;
+                        @media screen and (max-width: 360px) {
+                            width: 50px;
+                        }
+                        @media screen and (min-width: 360px) and (max-width: 390px) {
+                            width: 100px;
+                        }
+                        @media screen and (min-width: 390px) and (max-width: 460px) {
+                            width: 150px;
+                        }
+                        @include ellipsis;
+                    }
+                }
+            }
+        }
+        .proJectDiv {
+            width: 100%;
+            height: auto;
+            border-top: 1px solid $border-line;
+            border-bottom: 1px solid $border-line;
+            .line {
+                width: 90%;
+                height: 1px;
+                margin: 0 auto;
+                background: $border-line;
+            }
+            .proJectArea {
+                width: 90%;
+                height: 50px;
+                margin: 0 auto;
+                margin-top: 10px;
+                .png {
+                    background: image-url("phone/customer/png.png") no-repeat;
+                    @extend .commonImg;
+                }
+                .share {
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    background: image-url("phone/customer/share.png") no-repeat center center;
+                    background-size: 30px;
+                }
+                .find {
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    background: image-url("phone/customer/find.png") no-repeat center center;
+                    background-size: 30px;
+                }
+                .commonImg {
+                    height: 40px;
+                    width: 40px;
+                    background-size: 40px;
+                    margin-left: 22px;
+                }
+                .line {
+                    width: 100%;
+                    height: 1px;
+                    background: $border-line;
+                }
+                .icon {
+                    display: inline-block;
+                    height: 40px;
+                    width: auto;
+                    float: right;
+                }
+                ul {
+                    vertical-align: top;
+                    margin-left: 5px;
+                    margin-top: 2px;
+                }
+                li {
+                    line-height: 20px;
+                }
+                li:first-child {
+                    font-size: $font-size-base;
+                    color: $gray-dark;
+                }
+                li:nth-child(2) {
+                    font-size: $font-size-base;
+                    color: $gray-light;
+                    width: 100px;
+                    @media screen and (max-width: 360px) {
+                        width: 60px;
+                    }
+                    @media screen and (min-width: 360px) and (max-width: 390px) {
+                        width: 100px;
+                    }
+                    @media screen and (min-width: 390px) and (max-width: 460px) {
+                        width: 120px;
+                    }
+                    @include ellipsis;
+                }
+            }
+        }
+        .board {
+            width: 100%;
+            height: auto;
+            border-top: 1px solid $border-line;
+            .boardArea {
+                width: 100%;
+                height: auto;
+                margin: 0 auto;
+                margin-top: 15px;
+                textarea {
+                    width: 100%;
+                    height: 150px;
+                    resize: none;
+                    border-radius: 6px;
+                    border-color: $border-line;
+                    line-height: 20px;
+                    padding: 5px;
+                }
+                .btn-red-common {
+                    width: 90%;
+                    height: 40px;
+                    margin: 0 auto;
+                    margin-top: 15px;
+                    line-height: 40px;
+                    text-align: center;
+                }
+                .historyNote {
+                    width: 90%;
+                    height: auto;
+                    margin: 0 auto;
+                    margin-top: 15px;
+                    margin-bottom: 10px;
+                    .noteArea {
+                        width: 100%;
+                        height: 50px;
+                        margin-top: 10px;
+                        div {
+                            display: inline-block;
+                            height: 40px;
+                            width: 40px;
+                        }
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 120px;
+                            background: green;
+                            display: table-footer-group;
+                        }
+                        ul {
+                            vertical-align: top;
+                            margin-left: 5px;
+                            margin-top: 2px;
+                        }
+                        li {
+                            line-height: 20px;
+                        }
+                        li:first-child {
+                            font-size: $font-size-base;
+                            color: $gray-dark;
+                        }
+                        li:nth-child(2) {
+                            font-size: $font-size-base;
+                            color: $gray;
+                            width: 100px;
+                            @media screen and (max-width: 360px) {
+                                width: 100px;
+                            }
+                            @media screen and (min-width: 360px) and (max-width: 390px) {
+                                width: 120px;
+                            }
+                            @media screen and (min-width: 390px) and (max-width: 460px) {
+                                width: 140px;
+                            }
+                            @include ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.deg0 {
+  width:100%;
+  background-color:#333;
+  background-image:linear-gradient(left, red 25%,transparent 25%);
+  //background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15)
+}
+
+.deg1 {
+  width:100%;
+
+  background:repeating-linear-gradient(left, red, red,red,red,blue);
+}
+

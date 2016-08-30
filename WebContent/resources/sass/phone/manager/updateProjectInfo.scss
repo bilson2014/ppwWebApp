@@ -1,0 +1,515 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "model";
+@import "fontSize";
+@import "compass/typography/text/ellipsis";
+$header-height-460: 48px; // 头部高度（分辨路低于460
+$header-height-top: 13px; // 头部top
+body {
+    background: #EEEFEF;
+}
+
+.headerNew {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: $header-height-460;
+    background-color: #ffffff;
+    z-index: 2000;
+    bottom: 1px;
+    border-bottom: solid 1px #ccc;
+    .leftHeader {
+        position: relative;
+        float: left;
+        height: $header-height-460;
+        width: 33.3%;
+    }
+    .rightHeader {
+        position: relative;
+        float: right;
+        height: $header-height-460;
+        width: 30%;
+    }
+    .midHeader {
+        margin: 0 auto;
+        width: 20%;
+    }
+    .back {
+        height: 22px;
+        width: 22px;
+        background: image-url("phone/icons/back.png") no-repeat;
+        background-size: 12px;
+        top: $header-height-top;
+        position: relative;
+        left: 30px;
+    }
+    .commit {
+        height: 22px;
+        width: 22px;
+        background: image-url("phone/icons/back.png") no-repeat;
+        background-size: 12px;
+        top: $header-height-top;
+        position: relative;
+        right: 30px;
+        float: right;
+    }
+    .logo {
+        width: 90px;
+        height: 30px;
+        background: image-url("phone/icons/logo_black.png") no-repeat;
+        background-size: 76px;
+        margin: 0px auto;
+        position: relative;
+        top: $header-height-top;
+    }
+}
+
+.errorDiv {
+    position: fixed;
+    top: 48px;
+    height: 48px;
+    width: 100%;
+    background: $red-base;
+    text-align: center;
+    line-height: 48px;
+    color: white;
+    font-size: $font-size-base;
+    z-index: 99;
+}
+
+.contentTextArea {
+    margin: 0 auto;
+    width: 85%;
+    height: 90px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .firstSpan {
+        color: $red-base;
+        font-size: $font-size-sm;
+        margin-right: 5px;
+    }
+    .secondSpan {
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+    .firstDiv {
+        width: 85px;
+        height: 30px;
+        display: inline-block;
+        line-height: 30px;
+        vertical-align: top;
+    }
+    .secondDiv {
+        width: calc(100% - 105px);
+        height: 30px;
+        display: inline-block;
+        .textareaSize {
+            width: 100%;
+            height: 90px;
+            border-radius: 5px;
+            resize: none;
+            background: none;
+            padding: 10px;
+            line-height: 20px;
+        }
+    }
+}
+
+.contentInput {
+    margin: 0 auto;
+    width: 85%;
+    height: 30px;
+    margin-bottom: 20px;
+    @extend .commonContentInput;
+}
+
+.commonContentInput {
+    select {
+        width: 100%;
+        height: 31px;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+        background: none;
+        padding-left: 10px;
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+    input {
+        width: 100%;
+        height: 30px;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+        background: none;
+        padding-left: 10px;
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+    .firstDiv {
+        width: 85px;
+        height: 30px;
+        display: inline-block;
+        line-height: 30px;
+        vertical-align: baseline;
+    }
+    .secondDiv {
+        width: calc(100% - 105px);
+        height: 30px;
+        display: inline-block;
+        .ul-option-source {
+            text-align: center;
+            line-height: 20px;
+            width: calc(85% - 105px);
+            font-size: $font-size-base;
+            position: absolute;
+            z-index: 999;
+            border: 1px solid $gray-border;
+            background-color: #fff;
+            li {
+                border-bottom: 1px solid #ccc;
+                height: 25px;
+                line-height: 25px;
+                width: 80%;
+                margin: 0 auto;
+                @include ellipsis;
+                border-bottom: 1px solid #ccc;
+                height: 25px;
+                line-height: 25px;
+                width: 80%;
+                margin: 0 auto;
+                &:hover {
+                    background-color: $gray;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
+        }
+        .positionAdd {
+            position: relative;
+            top: 10px;
+            float: right;
+        }
+        .add {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: image-url("phone/manager/add.png") no-repeat;
+            position: relative;
+            top: 10px;
+            cursor: pointer;
+            background-size: 12px 12px;
+        }
+        .addPeople {
+            display: inline-block;
+            height: 20px;
+            width: 100px;
+            color: $gray-light;
+            position: relative;
+            top: 1px;
+            font-size: $font-size-sm;
+        }
+        .openDiv {
+            width: 20px;
+            height: 20px;
+            background: image-url("phone/manager/jian.png") no-repeat;
+            position: relative;
+            top: 10px;
+            cursor: pointer;
+            background-size: 12px 12px;
+        }
+    }
+    .firstSpan {
+        color: $red-base;
+        font-size: $font-size-sm;
+        margin-right: 5px;
+    }
+    .secondSpan {
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+}
+
+.updateContent {
+    position: relative;
+    top: 90px;
+}
+
+.keBianShiDiv {
+    width: 100%;
+    height: auto;
+    .autoDiv {
+        border-top: 1px solid #ccc;
+        width: 100%;
+        padding-top: 25px;
+        padding-bottom: 5px;
+    }
+    .autoContent {
+        width: 85%;
+        margin: 0 auto;
+        span {
+            height: 30px;
+            width: 18px;
+            line-height: 30px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+            float: right;
+            cursor: pointer;
+            div {
+                height: 3px;
+                width: 10px;
+                background: $gray-dark;
+                position: relative;
+                top: 13px;
+            }
+        }
+        .divPosition {
+            position: relative;
+            width: calc(100% - 105px);
+            height: 40px;
+            margin-bottom: 10px;
+            margin-left: 90px;
+
+              .ul-option-common {
+                text-align: center;
+                line-height: 20px;
+                width: 40%;
+                font-size: $font-size-base;
+                position: absolute;
+                z-index: 999;
+                border: 1px solid $gray-border;
+                background-color: #fff;
+                li {
+                    height: 25px;
+                    line-height: 25px;
+                    width: 80%;
+                    margin: 0 auto;
+                    @include ellipsis;
+                    &:hover {
+                        background-color: $gray;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .ul-option {
+                text-align: center;
+                line-height: 20px;
+                width: 85%;
+                font-size: $font-size-base;
+                position: absolute;
+                z-index: 999;
+                border: 1px solid $gray-border;
+                background-color: #fff;
+                li {
+                    border-bottom: 1px solid #ccc;
+                    height: 25px;
+                    line-height: 25px;
+                    width: 80%;
+                    margin: 0 auto;
+                    @include ellipsis;
+                    &:hover {
+                        background-color: $gray;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .name {
+            width: 40%;
+            height: 30px;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+            background: none;
+            padding-left: 10px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+        .bl {
+            margin-left: 10%;
+            width: 25%;
+            height: 30px;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+            background: none;
+            padding-left: 10px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+        .info {
+            width: 85%;
+            height: 30px;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+            background: none;
+            padding-left: 10px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+        .leftPrice {
+            display: inline-block;
+            width: 50%;
+            height: 30px;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+            background: none;
+            padding-left: 10px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+        .midPrice {
+            display: inline-block;
+            width: 5%;
+            text-align: center;
+        }
+        .rightPrice {
+            display: inline-block;
+            width: 26%;
+            height: 30px;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+            background: none;
+            padding-left: 10px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+        .timeContent {
+            margin-left: 20%;
+            width: 79%;
+            height: auto;
+            .title {
+                color: $gray-dark;
+                font-size: $font-size-base;
+            }
+            .timeImg {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                top: 15px;
+                margin-left: 20px;
+                img {
+                    width: 18px;
+                    height: 18px;
+                    display: block;
+                    margin-bottom: 22px;
+                    position: relative;
+                    z-index: 20;
+                }
+                .vLine {
+                    width: 2px;
+                    height: 165px;
+                    background: #999;
+                    position: absolute;
+                    left: 7.5px;
+                    top: 5px;
+                }
+            }
+            .timeWord {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 20px;
+                li {
+                    margin-top: 10px;
+                    height: 30px;
+                    color: $gray;
+                    font-size: $font-size-base;
+                    line-height: 30px;
+                }
+            }
+            .timeInput {
+                display: inline-block;
+                li {
+                    margin-top: 10px;
+                }
+                input {
+                    width: 100px;
+                    height: 30px;
+                    border: 1px solid $gray-light;
+                    border-radius: 5px;
+                    background: none;
+                    padding-left: 10px;
+                    color: $gray-dark;
+                    font-size: $font-size-base;
+                }
+            }
+        }
+    }
+}
+
+.borderLine {
+    width: 85%;
+    height: 1px;
+    margin: 0 auto;
+    background: #ccc;
+}
+
+.white {
+    background: white;
+    margin-top: 10px;
+}
+
+.transform {
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    left: -10px;
+}
+
+.completeDiv {
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    .save {
+        width: 100px;
+        height: 40px;
+        line-height: 50px;
+        background: $red-base;
+        color: white;
+        font-size: $font-size-base;
+        float: right;
+        position: relative;
+        right: 10%;
+        border-radius: 5px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .cancle {
+        width: 100px;
+        height: 40px;
+        line-height: 50px;
+        background: $gray;
+        color: white;
+        font-size: $font-size-base;
+        float: left;
+        position: relative;
+        left: 10%;
+        border-radius: 5px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.color1 {
+    background: #f1b059;
+}
+
+.color2 {
+    background: #4cdbf8;
+}
+
+.color3 {
+    background: #d339c6;
+}
+
+.color4 {
+    background: #929292;
+}
+
+.color5 {
+    background: #2c71a8;
+}

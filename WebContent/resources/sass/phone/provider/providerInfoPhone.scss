@@ -1,0 +1,371 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+@import "compass/typography/text/ellipsis";
+@import "../common_portal";
+@import "../common_card";
+$flexslider-section-height: 210px; // 轮播图区域高度(280px)
+$flexslider-section-height320: 190px; // 轮播图区域高度(320px)
+$flexslider-section-height640: 230px; // 轮播图区域高度(640px)
+$flexslider-section-height720: 250px; // 轮播图区域高度(720px)
+$video-image-height: 270px; // 视频图片的高度
+$video-image-height320: 180px; // 视频图片的高度(320px)
+$video-image-height360: 202px; // 视频图片的高度(360px)
+$video-image-height390: 220px; // 视频图片的高度(320px)
+$video-image-height640: 360px; // 视频图片的高度(640px)
+$video-image-height720: 405px; // 视频图片的高度(720px)
+$centerWidth:calc(95% - 20px); // 轮播图区域高度(720px)
+.headerNew {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: $header-height-460;
+    background-color: #ffffff;
+    z-index: 2000;
+    bottom: 1px;
+    border-bottom: solid 1px #ccc;
+    .leftHeader {
+        position: relative;
+        float: left;
+        height: $header-height-460;
+        width: 33.3%;
+    }
+    .rightHeader {
+        position: relative;
+        float: right;
+        height: $header-height-460;
+        width: 30%;
+    }
+    .midHeader {
+        margin: 0 auto;
+        width: 20%;
+    }
+    .back {
+        height: 22px;
+        width: 22px;
+        background: image-url("phone/icons/back.png") no-repeat;
+        background-size: 12px;
+        top: 10px;
+        position: relative;
+        left: 20px;
+    }
+    .logo {
+        width: 90px;
+        height: 30px;
+        background: image-url("phone/icons/logo_black.png") no-repeat;
+        background-size: 76px;
+        margin: 0px auto;
+        position: relative;
+        top: 10px;
+    }
+    .share {
+        width: 22px;
+        height: 30px;
+        background: image-url("phone/icons/share.png") no-repeat;
+        background-size: 22px 22px;
+        margin: 0px auto;
+        position: relative;
+        top: 10px;
+        right: 20px;
+        float: right;
+    }
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    /*超链接无下划线*/
+}
+
+.topHeader {
+    position: relative;
+    margin-top: 48px;
+    background: image-url('phone/provider/backgroud.jpg') no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center 0;
+    height: $flexslider-section-height;
+    @media screen and (max-width: 320px) {
+        height: $flexslider-section-height320;
+    }
+    @media screen and (min-width: 640px) and (max-width: 720px) {
+        height: $flexslider-section-height640;
+    }
+    @media screen and (min-width: 720px) {
+        height: $flexslider-section-height720;
+    }
+    ul {
+        width: auto;
+        height: auto;
+        position: relative;
+        z-index: 100;
+        top: 10px;
+        @media screen and (max-width: 320px) {
+            top: 10px;
+        }
+        @media screen and (min-width: 640px) and (max-width: 720px) {
+            top: 10px;
+        }
+        @media screen and (min-width: 720px) {
+            top: 10px;
+        }
+        margin: 0 auto;
+        .infoHead {
+            height: 79px;
+            width: 79px;
+            border-radius: 70px;
+            margin-top: 17px;
+            margin-top: 8px;
+        }
+        .infoHeadSide {
+            height: 93px;
+            width: 93px;
+            background: image-url('../images/provder/providerHeadSide.png') no-repeat;
+            background-size: 93px 93px;
+        }
+        .place {
+            height: 18px;
+            width: 13px;
+            margin-top: 8px;
+        }
+        .provinceCity {
+            color: $white;
+            font-size: $font-size-base;
+        }
+        .providerName {
+            font-size: $font-size-base;
+            color: $white;
+        }
+        li {
+            text-align: center;
+            div {
+                color: $white;
+                display: inline-block;
+                height: 20px;
+            }
+            .circle {
+                height: 8px;
+                width: 8px;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 10px;
+                background: $white;
+            }
+        }
+    }
+}
+
+
+/* 介绍 */
+
+.introduce {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    .introduceTitle {
+        width: 80px;
+        text-align: center;
+        margin: 0 auto;
+        color: $red-base;
+        font-size: $font-size;
+        border-bottom: 3px solid $red-base;
+        padding-bottom: 5px;
+    }
+    .introduceLine {
+        width: 100%;
+        height: 1px;
+        background: $red-base;
+    }
+}
+
+
+/* 供应商介绍 */
+
+.providerInfo {
+    width: 95%;
+    height: 80px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: $font-size-base;
+    color: $gray-light;
+    text-align: center;
+    text-indent: 24px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 标签 */
+
+.tagBody {
+    width: $centerWidth;
+    height: auto;
+    margin: 0 auto;
+    .card {
+        width: auto;
+        height: 25px;
+        border: 1px solid $gray-light;
+        color: $gray-light;
+        font-size: $font-size;
+        border-radius: 3px;
+        display: inline-block;
+        margin-right: 10px;
+        margin-top: 10px;
+        position: relative;
+        top: -10px;
+        .controlCard {
+            line-height: 25px;
+            div {
+                display: inline-block;
+            }
+        }
+        .cardWord {
+            margin-right: 8px;
+            font-size: $font-size-base;
+        }
+        .pencil {
+            margin-left: 4px;
+            margin-right: 4px;
+            height: 10px;
+            width: 10px;
+            position: relative;
+            background: image-url('../images/provder/pencil.png') no-repeat;
+            background-size: 10px 10px;
+        }
+    }
+}
+
+//推荐视频
+.specialVideo {
+    width: 100%;
+    position: relative;
+    height: auto;
+    margin-top: 20px;
+    .videoCrad {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+//年
+.year {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    left: -21px;
+    background: white;
+    div {
+        height: 40px;
+        width: 40px;
+        border: 1px solid $gray;
+        border-radius: 120px;
+        div {
+            margin: 0 auto;
+            height: 34px;
+            width: 34px;
+            border-radius: 120px;
+            position: relative;
+            top: 2px;
+            color: white;
+            font-size: $font-size-sm;
+            line-height: 34px;
+            text-align: center;
+        }
+        .color1 {
+            background: #f1b059;
+        }
+        .color2 {
+            background: #4cdbf8;
+        }
+        .color3 {
+            background: #d339c6;
+        }
+        .color4 {
+            background: #929292;
+        }
+        .color5 {
+            background: #2c71a8;
+        }
+    }
+}
+
+.timeLine {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    .videoCrad {
+        width: calc(100% - 28px);
+        margin-left: 29px;
+        position: relative;
+        top: -45px;
+    }
+    .videoCardArea {
+        border-left: 1px solid #ccc;
+        width: $centerWidth;
+        margin: 0 auto;
+        height: auto;
+        .timeTitle {
+            font-size: $font-size-sm;
+            color: $gray-light;
+            padding-top: 10px;
+            margin-left: 39px;
+        }
+        .timeLineImg {
+            position: relative;
+            width: 42px;
+            margin-top: 40px;
+            position: relative;
+            left: -11px;
+        
+        div {
+            display: inline-block;
+        }
+        .dianImg {
+            height: 22px;
+            width: 22px;
+            background: url('../../../images/provder/timeImg.png') no-repeat;
+            background-size: 18px 18px;
+            background-position: center;
+        }
+        .rightJiaoImg {
+            height: 20px;
+            width: 20px;
+            background: url("../../../images/phone/provider/rightJiao.png") no-repeat;
+            background-size: 16px 20px;
+            position: relative;
+            top: 0px;
+            left: 2px;
+            z-index: 10;
+        }
+    }
+}
+
+.videoCardMore {
+    border-bottom: 1px solid $gray-light;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    .readMore {
+        font-size: $font-size-base;
+        color: $gray-light;
+        width: 100px;
+        border: 1px solid $gray-light;
+        margin: 0 auto;
+        text-align: center;
+        height: 25px;
+        line-height: 25px;
+        background: white;
+        border-radius: 5px;
+        position: relative;
+        top: 12px;
+    }
+}
+
+
+}

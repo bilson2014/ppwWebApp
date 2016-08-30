@@ -1,0 +1,96 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+@import "compass/typography/text/ellipsis";
+$video-image-height: 270px; // 视频图片的高度
+$video-image-height320: 180px; // 视频图片的高度(320px)
+$video-image-height360: 202px; // 视频图片的高度(360px)
+$video-image-height390: 220px; // 视频图片的高度(320px)
+$video-image-height640: 360px; // 视频图片的高度(640px)
+$video-image-height720: 405px; // 视频图片的高度(720px)
+.videoCrad {
+    width: 80%;
+    border: 1px solid $gray-light;
+    height: auto;
+    border-radius: 5px;
+    .videoContent {
+        width: 100%;
+        height: auto;
+
+    }
+    .title {
+        height: 24px;
+        width: 100%;
+        color: $gray-dark;
+        font-size: $font-size-lg;
+    }
+    text-align: center;
+    a {
+        img {
+            width: 100%;
+            height: $video-image-height;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            background-size: cover;
+            background-position: center 0;
+            @media screen and (max-width: 360px) {
+                height: $video-image-height320;
+            }
+            @media screen and (min-width: 360px) and (max-width: 390px) {
+                height: $video-image-height360;
+            }
+            @media screen and (min-width: 390px) and (max-width: 460px) {
+                height: $video-image-height390;
+            }
+            @media screen and (min-width: 640px) and (max-width: 720px) {
+                height: $video-image-height640;
+            }
+            @media screen and (min-width: 720px) {
+                height: $video-image-height720;
+            }
+        }
+    }
+    .videoContentInfo {
+        width: 90%;
+        height: 60px;
+        margin: 0 auto;
+        line-height: 30px;
+        font-size: $font-size-lg;
+        color: $gray-light;
+        border-top: 1px solid #ccc;
+        cursor: pointer;
+        text-align: center;
+        font-size: $font-size-base;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .videoBtn {
+        margin: 0 auto;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        width: 146px;
+        height: 30px;
+        color: white;
+        font-size: $font-size-base;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 5px;
+        font-size: $font-size-base;
+    }
+    .videoTag {
+        text-align: center;
+        width: auto;
+        div {
+            display: inline-block;
+            color: $gray-light;
+            font-size: $font-size-base;
+        }
+        img {
+            margin-right: 10px;
+            position: relative;
+            top: 2px;
+        }
+    }
+}
