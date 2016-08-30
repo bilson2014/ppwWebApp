@@ -667,8 +667,8 @@
 					
 					<div class="modal-body checkstep">
 					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
-		                   <button class="red-btn sure-margin">确定</button>
-		                   <label class="check-step" >确定下一步吗</label>
+		                   <button class="red-btn sure-margin" id="sureCheck">确定</button>
+		                   <label class="check-step" id="sureToNext" >确定下一步吗</label>
 		                   <div class="check-step-load hide" id="listLoadCheck">
 				       			 <div class="load-word">效验中</div>
 										<div class="spinner">
@@ -677,7 +677,7 @@
 										  <div class="bounce3"></div>
 										</div>
 						   </div>
-		                   <button class="gray-btn cancle-margin">取消</button>   
+		                   <button class="gray-btn cancle-margin" id="noSureCheck">取消</button>   
 					</div>
 				</div>	
 			</div>

@@ -47,6 +47,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             img {
                 height: 50px;
                 width: 150px;
+                cursor: pointer;
             }
             .lineWidth {
                 margin: 15px auto;
@@ -56,7 +57,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             }
             .infoWord {
                 color: $white;
-                font-size: $font-size-lg;
+                font-size: $font-size-lg22;
             }
         }
     }
@@ -93,6 +94,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .leftWord {
             position: relative;
             left: 20px;
+            width: 100px;
             float: left;
             font-size: $font-size;
             color: $white;
@@ -101,6 +103,8 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .rightWord {
             position: relative;
             right: 20px;
+            width: 100px;
+            text-align: right;
             float: right;
             font-size: $font-size;
             color: $red-base;
@@ -111,20 +115,25 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         position: relative;
         margin-left: 10%;
         width: 80%;
-        height: 65px;
+        height: 75px;
         margin-top: 10px;
         background: none;
+        @media screen and (max-width: 360px) {
+            height: 60px;
+        }
+        @media screen and (min-width: 360px) and (max-width: 420px) {
+            height: 65px;
+        }
         input {
-            width: 100%;
-            height: 38px;
-            display: block;
-            position: absolute;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            background: none;
-            outline: none;
-            border-radius: 0px;
             color: $white;
+            border: 1px solid white;
+            &:hover {
+                border: 2px solid white;
+            }
+            @extend .commonInputDiv;
+        }
+        .commonInput {
+            width: 60%;
         }
         .checkboxDiv {
             width: 20px;
@@ -134,11 +143,46 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             float: right;
             z-index: 200;
             position: relative;
+            height: 60px;
+            @media screen and (max-width: 360px) {
+                height: 40px;
+                width: 30%;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                height: 45px;
+                width: 30%;
+            }
+            width: 25%;
+            border: 1px solid white;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+            button {
+                height: 100%;
+                width: 100%;
+                color: white;
+                text-align: center;
+                line-height: 60px;
+                @media screen and (max-width: 360px) {
+                    line-height: 40px;
+                }
+                @media screen and (min-width: 360px) and (max-width: 420px) {
+                    line-height: 45px;
+                }
+            }
         }
         .error-word {
             position: relative;
-            top: 45px;
-            color: $gold-yellow;
+            top: 65px;
+            left: 28px;
+            color: $no-gray;
+            @media screen and (max-width: 360px) {
+                top: 45px;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                top: 50px;
+            }
         }
         .inline {
             display: inline-block;
@@ -148,38 +192,28 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .wordSize {
             position: relative;
             left: 25px;
-            span {
-                color: $gold-yellow;
-                position: relative;
-                left: 10px;
-            }
+            color:$no-gray;
         }
     }
     .submitBtn {
-        background: none;
+     
+      @extend .commonSubmit;
         border: none;
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #fff;
-        height: 50px;
-        width: 100%;
-        text-align: center;
-        line-height: 5.0rem;
+        border: 1px solid white;
         color: $white;
-        font-size: $font-size;
-        cursor: pointer;
+        &:hover {
+        border: 2px solid white;
+        }
     }
     .nosubmitBtn {
         background: $gray;
-        border: none;
-        border-top: 1px solid $gray;
-        border-bottom: 1px solid $gray;
-        height: 50px;
-        width: 100%;
-        text-align: center;
-        line-height: 5.0rem;
         color: $white;
-        font-size: $font-size;
-        cursor: not-allowed;
+        border: none;
+        border-bottom: 1px solid $gray;
+        @extend .commonNoSubmit;
+        &:hover {
+            border: 2px solid $gray;
+        }
     }
     .btn-validation {
         display: inline;
@@ -243,6 +277,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             img {
                 height: 50px;
                 width: 150px;
+                cursor: pointer;
             }
             .lineWidth {
                 margin: 15px auto;
@@ -252,7 +287,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             }
             .infoWord {
                 color: $white;
-                font-size: $font-size-lg;
+                font-size: $font-size-lg22;
             }
         }
     }
@@ -283,7 +318,7 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .leftWord {
             position: relative;
             left: 20px;
-            width:100px;
+            width: 100px;
             float: left;
             font-size: $font-size;
             color: $white;
@@ -292,7 +327,8 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .rightWord {
             position: relative;
             right: 20px;
-             width:100px;
+            width: 100px;
+            text-align: right;
             float: right;
             font-size: $font-size;
             color: $red-base;
@@ -303,20 +339,25 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         position: relative;
         margin-left: 10%;
         width: 80%;
-        height: 65px;
+        height: 75px;
         margin-top: 10px;
         background: none;
+        @media screen and (max-width: 360px) {
+            height: 60px;
+        }
+        @media screen and (min-width: 360px) and (max-width: 420px) {
+            height: 65px;
+        }
         input {
-            width: 100%;
-            height: 38px;
-            display: block;
-            position: absolute;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            background: none;
-            outline: none;
-            border-radius: 0px;
-            color: $gray-dark
+            color: $red-base;
+            border: 1px solid $red-base;
+            &:hover {
+                border: 2px solid $red-base
+            }
+            @extend .commonInputDiv;
+        }
+        .commonInput {
+            width: 60%;
         }
         .checkboxDiv {
             width: 20px;
@@ -326,11 +367,46 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             float: right;
             z-index: 200;
             position: relative;
+            height: 60px;
+            @media screen and (max-width: 360px) {
+                height: 40px;
+                width: 30%;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                height: 45px;
+                width: 30%;
+            }
+            width: 25%;
+            border: 1px solid $red-base;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+            button {
+                height: 100%;
+                width: 100%;
+                color: $red-base;
+                text-align: center;
+                line-height: 60px;
+                @media screen and (max-width: 360px) {
+                    line-height: 40px;
+                }
+                @media screen and (min-width: 360px) and (max-width: 420px) {
+                    line-height: 45px;
+                }
+            }
         }
         .error-word {
             position: relative;
-            top: 45px;
+            top: 65px;
+            left: 28px;
             color: $red-base;
+            @media screen and (max-width: 360px) {
+                top: 45px;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                top: 50px;
+            }
         }
         .inline {
             display: inline-block;
@@ -340,36 +416,29 @@ $video-height720: 396px; // 视频播放区域高度(720px)
         .wordSize {
             position: relative;
             left: 25px;
-            span {
-                color: $gold-yellow;
-            }
+            color:$red-base;
+           
         }
     }
-    .submitBtn {
-        background: none;
+
+    .submitBtn {     
+      @extend .commonSubmit;
         border: none;
-        border-top: 1px solid $red-base;
-        border-bottom: 1px solid $red-base;
-        height: 50px;
-        width: 100%;
-        text-align: center;
-        line-height: 5.0rem;
+        border: 1px solid $red-base;
         color: $red-base;
-        font-size: $font-size;
-        cursor: pointer;
+        &:hover {
+        border: 2px solid $red-base;
+        }
     }
     .nosubmitBtn {
         background: $gray;
-        border: none;
-        border-top: 1px solid $gray;
-        border-bottom: 1px solid $gray;
-        height: 50px;
-        width: 100%;
-        text-align: center;
-        line-height: 5.0rem;
         color: $white;
-        font-size: $font-size;
-        cursor: not-allowed;
+        border: none;
+        border-bottom: 1px solid $gray;
+        @extend .commonNoSubmit;
+        &:hover {
+            border: 2px solid $gray;
+        }
     }
     .btn-validation {
         display: inline;
@@ -396,4 +465,63 @@ $video-height720: 396px; // 视频播放区域高度(720px)
             color: $gray-dark;
         }
     }
+}
+
+.commonInputDiv {
+    width: 100%;
+    height: 60px;
+    display: block;
+    position: absolute;
+    background: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 28px;
+    @media screen and (max-width: 360px) {
+        height: 40px;
+    }
+    @media screen and (min-width: 360px) and (max-width: 420px) {
+        height: 45px;
+    }
+}
+
+.commonSubmit{
+        background: none;
+        height: 60px;
+        width: 80%;
+        text-align: center;
+        line-height: 60px;
+        font-size: $font-size;
+        cursor: pointer;
+        margin: 0 auto;
+        border-radius: 120px;
+            @media screen and (max-width: 360px) {
+                height: 40px;
+                 line-height: 40px;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                height: 45px;
+                line-height: 45px;
+            }
+}
+
+
+.commonNoSubmit{
+        height: 60px;
+        width: 80%;
+        text-align: center;
+        line-height:60px;
+        font-size: $font-size;
+        background: $gray;
+        cursor: not-allowed;
+        margin: 0 auto;
+        border-radius: 120px;
+            @media screen and (max-width: 360px) {
+                height: 40px;
+                line-height:40px;
+            }
+            @media screen and (min-width: 360px) and (max-width: 420px) {
+                height: 45px;
+                line-height:45px;
+            }
+      
 }

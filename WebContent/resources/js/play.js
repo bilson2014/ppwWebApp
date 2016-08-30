@@ -57,6 +57,16 @@ $().ready(function(){
 		if(list != null && list.length > 0){
 			$('#video-content').empty(); // 清空区域
 			var $body = '';
+			var proId = $('#play-unique').val();
+			
+			// 删除重复元素
+			$.each(list,function(i,productq){
+				if(productq.productId == proId){
+					list.splice(i,1);
+					return false;
+				}
+			});
+			
 			$.each(list,function(i,product){
 				var imgName = getFileName(product.picLDUrl);
 				var imgPath = getHostName() + '/product/img/' + imgName;
@@ -109,18 +119,4 @@ $().ready(function(){
 			$(this).hide('fast');
 		});
 	},getContextPath() + '/product/loadWithTeam/' + $('#company-unique').val(),null);
-	toDirector();
 });
-
-function toDirector(){
-	  $('#toDirector').on('click',function(){
-		  var id = $('#productId').val().trim();
-		  var path = getContextPath() + '/provider/info_'+id+'.html';
-		  var formBody = '<form action="'+path+'" method="post" oncomplete="false" id="submitkey" style="display: none;">';
-			formBody += '<input type="text" name="teamId" value="'+ id +'" style="display: none">';
-			formBody += '</form>';
-			$('body').append(formBody);
-			$('#submitkey').submit().remove();
-	  });
-}
-

@@ -58,10 +58,10 @@
 	      <div class="topDiv">
 	        
 	        <div class="topContent">
-	           <div><img class="" id="cusLogo" src="${imgPath}/phone/login/logorw.png" ></div>
-	            <div><img class="hide" id="posLogo" src="${imgPath}/phone/login/logocw.png" ></div>
+	             <a href="<spring:url value="/phone/portal"/>" target="_self"> <div><img class="" id="cusLogo" src="${imgPath}/phone/login/logorw.png" ></div></a>
+	             <a href="<spring:url value="/phone/portal"/>" target="_self"> <div><img class="hide" id="posLogo" src="${imgPath}/phone/login/logocw.png" ></div></a>
 	           <div class="lineWidth"></div>
-	           <div class="infoWord" id="infoWordId">来拍片网，收获最对的作品</div>
+	           <div class="infoWord" id="infoWordId">拍片就上拍片网</div>
 	        </div>
 	       
 	      </div>
@@ -81,13 +81,13 @@
 					                
 					                  <div class="loginContent">
 							                   <div class="image "><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"/></div> 
-							                   <input placeholder="图片验证码" id="kaptcha_code"></input>
+							                   <input class="commonInput" placeholder="图片验证码" id="kaptcha_code"></input>
 							                   <div class="error-word hide"  id="kapt_error_info">错误提示</div>
 					                 </div>
 					                 
 					                    <div class="loginContent">
 							                   <div class="image "><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div> 
-							                   <input placeholder="短信验证码" id="verification_code" ></input>
+							                   <input class="commonInput" placeholder="短信验证码" id="verification_code" ></input>
 							                   <div class="error-word hide" id="code_error_info">错误提示</div>
 					                    </div>
 					                    
@@ -96,12 +96,12 @@
 						                       <div class="inline">
 						                         <input class="checkboxDiv" type="checkbox" id="checkboxId" checked="checked" />
 						                       </div>
-						                       <div class="inline wordSize">我已阅读并同意<span>拍片网条款</span>
+						                       <div class="inline wordSize">我已阅读并同意拍片网条款
 						                       </div>
 					                      </div>
 					                 </div>
 					                 
-					                   <div class="submitBtn" id="submitBtn">登录</div>
+					                   <div class="submitBtn" id="submitBtn">登录/注册</div>
 					            </div>
 					               
 			              </div>

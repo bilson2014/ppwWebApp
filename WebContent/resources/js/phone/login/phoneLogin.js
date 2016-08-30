@@ -51,7 +51,7 @@ function initCus(){
 	$('#infoOrder').addClass('hide');
 	$('#cusLogo').removeClass('hide');
 	$('#posLogo').addClass('hide');
-	$('#infoWordId').text('来拍片网，  收获最对的作品');
+	$('#infoWordId').text('拍片就上拍片网');
 	
 	initInfo();
 }
@@ -61,7 +61,7 @@ function initPos(){
 	$('#infoOrder').addClass('hide');
     $('#posLogo').removeClass('hide');
 	$('#cusLogo').addClass('hide');
-	$('#infoWordId').text('来拍片网，  遇到最好的项目');
+	$('#infoWordId').text('接活就上拍片网');
 	initInfo();
 }
 function initInfo(){

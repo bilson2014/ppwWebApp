@@ -380,7 +380,7 @@
         @include ellipsis;
         display: inline-block;
           @media screen and (min-width:1500px) {
-         width: 120px;
+         width: 115px;
     }
 
     }
@@ -902,12 +902,12 @@
     }
 }
 
-.mark-icon {
-    width: 100px;
-    height: 100px;
-    background: url(../../images/common/mark.jpg) no-repeat;
-    background-size: cover;
-}
+// .mark-icon {
+//     width: 100px;
+//     height: 100px;
+//     background: url(../../images/common/mark.jpg) no-repeat;
+//     background-size: cover;
+// }
 
 .indentdiv-title {
     font-size: $font-size;

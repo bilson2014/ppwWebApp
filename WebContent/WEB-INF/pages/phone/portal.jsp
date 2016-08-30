@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
 
 <%-- import CSS --%>
 <spring:url value="/resources/lib/mMenu/jquery.mmenu.all.css" var="mmenuCss"/>
@@ -39,7 +40,72 @@
 	<![endif]-->
 </head>
 <body>
+
+				
+						<div class="footerBar">
+						 	      <div class="commonDiv">
+						 	        <a href="<spring:url value="/phone/portal"/>" target="_self"> 
+							 	        <ul>
+							 	           <li><div class="portal"></div></li>
+							 	           <li class="wordLeftRight">首页</li>
+							 	        </ul>
+						 	         </a> 
+						 	      </div>
+						 	       <div class="commonDiv">
+						 	        <a href="<spring:url value="/phone/order"/>" target="_self"> 
+							 	         <ul>
+							 	           <li><div class="order"></div></li>
+							 	           <li class="wordMid">我要拍片</li>
+							 	         </ul>
+							 	     </a>    
+						 	      </div>
+						 	       <div class="commonDiv">
+						 	        	<r:noLogin>
+								 	        <a href="<spring:url value="/phone/login/phoneLogin"/>" target="_self"> 
+									 	        <ul>
+									 	           <li>
+									 	              <div class="mySelf"></div>
+									 	           </li>
+									 	           <li class="wordLeftRight">登入</li>
+									 	        </ul>
+								 	        </a> 
+						 	        	</r:noLogin>
+						 	        	<r:identity role="provider">
+								 	        <a href="<spring:url value="/phone/login/phoneLogin"/>" target="_self"> 
+									 	        <ul>
+									 	           <li>
+									 	              <div class="mySelf"></div>
+									 	           </li>
+									 	           <li class="wordLeftRight">我的</li>
+									 	        </ul>
+								 	        </a> 
+						 	        	</r:identity>
+						 	        	<r:identity role="customer">
+								 	        <a href="<spring:url value="/phone/customer/customerProject"/>" target="_self"> 
+									 	        <ul>
+									 	           <li>
+									 	              <div class="mySelf"></div>
+									 	           </li>
+									 	           <li class="wordLeftRight">我的</li>
+									 	        </ul>
+								 	        </a> 
+						 	        	</r:identity>
+						 	        	<r:identity role="employee">
+								 	        <a href="<spring:url value="/phone/login/phoneLogin"/>" target="_self"> 
+									 	        <ul>
+									 	           <li>
+									 	              <div class="mySelf"></div>
+									 	           </li>
+									 	           <li class="wordLeftRight">我的</li>
+									 	        </ul>
+								 	        </a> 
+						 	        	</r:identity>
+						 	      </div>
+							</div>
+			
+
 	<div class="wrap">
+
 		<div class="header">
 			<!-- logo -->
 			<dl class="header-ul">
@@ -158,7 +224,9 @@
 			
 		</div>
 		
-		<div class="footer">
+	
+		
+		<div class="footer ">
 			<div class="footer-content">
 				<div class="content-header">
 					<ul>

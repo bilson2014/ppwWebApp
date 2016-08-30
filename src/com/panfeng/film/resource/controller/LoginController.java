@@ -92,7 +92,6 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public Info login(@RequestBody final User user, final HttpServletRequest request) {
-		// add by wanglc 2016-7-5 16:36:44 登录需要验证码 begin
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
@@ -104,7 +103,6 @@ public class LoginController extends BaseController {
 				if (isTest || (!"".equals(code) && code != null)) {
 					if (isTest || code.equals(user.getVerification_code())) {
 						if (isTest || (null != codeOfphone && codeOfphone.equals(user.getTelephone()))) {
-							// add by wanglc 2016-7-5 16:36:44 登录需要验证码 end
 							if (user != null && user.getPassword() != null && !"".equals(user.getPassword())) {
 								// AES密码解密
 								final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
@@ -113,7 +111,6 @@ public class LoginController extends BaseController {
 								// 登录远程服务器进行比对
 								final String url = URL_PREFIX + "portal/user/encipherment";
 								String str = HttpUtil.httpPost(url, user, request);
-								// User information = null;
 								if (str != null && !"".equals(str)) {
 									boolean result = JsonUtil.toBean(str, Boolean.class);
 									info.setKey(result);
@@ -411,8 +408,9 @@ public class LoginController extends BaseController {
 		try {
 			final HttpSession session = request.getSession();
 			final String code = (String) session.getAttribute("code");
-			if (!"".equals(code) && code != null) {
-				if (code.equals(user.getVerification_code())) {
+			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+			if (isTest || (!"".equals(code) && code != null)) {
+				if (isTest || (code.equals(user.getVerification_code()))) {
 					if (user != null && ValidateUtil.isValid(user.getPassword())
 							&& ValidateUtil.isValid(user.getLoginName())) {
 						// AES 密码解密

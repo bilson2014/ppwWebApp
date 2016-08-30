@@ -36,7 +36,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="拍片网,团队制作,拍片团队,导演介绍,广告制作">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_${product.teamName }页面</title>
+	<title>${product.teamName }作品页_拍片网－广告－宣传片－微电影－视频营销</title>
 	<link rel="stylesheet" href="${playCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
@@ -192,7 +192,7 @@
 				</div>
 				
 				<div class="team-info" id="toDirector">
-					<input type="hidden" value="${teamId }" id="productId"/>
+					<a href="/provider/info_${teamId }.html">
 					<dl>
 						<dt>
 							<c:if test="${empty product.teamPhotoUrl }">
@@ -205,6 +205,7 @@
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
 						<dd  class="teamTitle" title="${product.teamDescription }">${product.teamDescription }</dd>
 					</dl>
+					</a>
 				</div>
 			</div>
 		</div>
