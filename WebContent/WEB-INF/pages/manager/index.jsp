@@ -841,7 +841,17 @@
 			</div>
 		</div>
 		<!-- toolbar modal end -->
-	
+
+		<div class="modal fade upload-window" id="toolbar-list">
+			<div class="modal-dialog">
+				<div class="modal-content"  >
+				    <div id="showErrorList" style="margin-top:20px;margin-bottom:10px;text-align:center;"></div>
+					 <div class="pay-bottom-link">
+						     <div  class="pay-redLink-btn" id="closeThis">返回</div>
+					 </div>
+				</div>	
+			</div>
+		</div>
 	
 	<div class="-mob-share-ui-button -mob-share-open" id="share-open" style="visibility: hidden;"></div>
 	<div class="-mob-share-ui" style="display: none">
