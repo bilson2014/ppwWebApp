@@ -15,6 +15,8 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
+
+
 	
 	
 	$('.bottom-div').show();
@@ -264,6 +266,7 @@ function nextFlow(){
 			if(msg.result == "true"){
 			$("#toolbar-check").modal('hide');
 			}else{
+				$("#toolbar-check").modal('hide');
 				showError(msg.result);
 			}
 			loadprojecctlist();
@@ -2485,15 +2488,15 @@ function formatterDateTime (date) {
 }
 
 function showError(str){
+	$("#toolbar-list").modal('show');
 	var info = str+"3秒后自动关闭"
-	$('#sureToNext').html('');
-	$('#sureToNext').css('color','#fe5453');
-	$('#sureToNext').html(info);
-	$('#sureCheck').off('click');
+	$('#showErrorList').html(info);
+	$('#closeThis').on('click',function(){
+		$("#toolbar-list").modal('hide');
+	});
 	window.setTimeout(hideSuccessTooltip, 3000);
 }
 
 function hideSuccessTooltip(){
-	$('#toolbar-check').modal('hide');
-	$('#sureCheck').on('click');
+	$("#toolbar-list").modal('hide');
 }
