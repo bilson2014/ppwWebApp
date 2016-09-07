@@ -1,7 +1,10 @@
+var hasVideo = false;
 $().ready(function(){
 	
 	order.init();
-	
+	order.showVideo();
+	order.closeVideo();
+	order.playVideo();
 });
 
 var order = {
@@ -28,7 +31,51 @@ var order = {
 				}
 			}
 		});
-	}
+	},
+
+   showVideo : function(){
+	   
+	           $('#showVideo').on('click',function(){
+		       $('#area').attr('class','');
+		       $('#area').addClass('video-wrap contentSizeOpen');
+		       $('#word').addClass('hide');
+		       $('#video').removeClass('hide');
+		       $('#video').addClass('contentVideoOpen');
+		       $('#line').removeClass('LineSizeClose');
+		       $('#line').addClass('LineSizeOpen');
+	   });
+	   
+   },
+   
+   closeVideo : function(){
+	           $('#closeVideo').on('click',function(){
+		       $('#area').attr('class','');
+		       $('#area').addClass('content-wrap contentSizeClose');
+		       $('#word').removeClass('hide');
+		       $('#word').addClass('contentVideoOpen');
+		       $('#video').addClass('hide');
+		       $('#line').removeClass('LineSizeOpen');
+		       $('#line').addClass('LineSizeClose');
+	   });
+   },
+   playVideo:function(){
+	   $('#openVideo').on('click',function(){
+		   $('#playVideo').removeClass('hide');
+		  // $('#source').attr("src", "http://video.tezign.com/01.mp4");
+		   
+		   if(!hasVideo){
+		   var $body='<video autoplay loop  name="media">'+
+			   			 '<source  src="/resources/images/video/paipianwangMovie.mp4"  id="source" type="video/mp4">'+
+			   		  '</video>';
+			$body+='</div>';
+			$("#playVideo").append($body);
+			hasVideo = true;
+		   }
+	   });
+	   $('#playVideo').on('click',function(){
+		   $('#playVideo').addClass('hide');
+	   });
+   }
 }
 
 
@@ -58,6 +105,7 @@ function checkData(){
 function checkMobile(str) {
 	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
 	if(str.match(reg)){
+		
 		return true;
 	} else{
 		return false;

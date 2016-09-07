@@ -43,7 +43,139 @@
 	<script src="${suggestJs }"></script>
 	<script src="${orderJs }"></script>
 </head>
-<body>
+<body>.topHeader {
+    position: relative;
+    margin-top: 48px;
+    background: image-url('phone/company/banner.jpg') no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center 0;
+    height: $flexslider-section-height720;
+    @media screen and (max-width: 320px) {
+        height: $flexslider-section-height320;
+    }
+    @media screen and (min-width: 320px) and (max-width: 380px) {
+        height: $flexslider-section-height380;
+    }
+    @media screen and (min-width: 380px) and (max-width: 420px) {
+        height: $flexslider-section-height420;
+    }
+    @media screen and (min-width: 421px) and (max-width: 640px) {
+        height: $flexslider-section-height640;
+    }
+    @media screen and (min-width: 640px) and (max-width: 720px) {
+        height: $flexslider-section-height640;
+    }
+    @media screen and (min-width: 720px) {
+        height: $flexslider-section-height720;
+    }
+    ul {
+        width: auto;
+        height: auto;
+        position: relative;
+        z-index: 100;
+        top: 140px;
+        text-align: center;
+        @media screen and (max-width: 320px) {
+            top: 25px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 380px) {
+            top: 67px;
+        }
+        @media screen and (min-width: 380px) and (max-width: 420px) {
+            top: 70px;
+        }
+        @media screen and (min-width: 421px) and (max-width: 640px) {
+            top: 70px;
+        }
+        @media screen and (min-width: 640px) and (max-width: 720px) {
+            top: 100px;
+        }
+        @media screen and (min-width: 720px) {
+            top: 140px;
+        }
+        li:nth-child(1) {
+            font-size: 16px;
+            color: white;
+        }
+        div {
+            margin: 0 auto;
+            margin-top: 30px;
+            color: white;
+            font-size: 14px;
+            width: 50%;
+            height: 35px;
+            line-height: 35px;
+        }
+    }
+}.topHeader {
+    position: relative;
+    margin-top: 48px;
+    background: image-url('phone/company/banner.jpg') no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center 0;
+    height: $flexslider-section-height720;
+    @media screen and (max-width: 320px) {
+        height: $flexslider-section-height320;
+    }
+    @media screen and (min-width: 320px) and (max-width: 380px) {
+        height: $flexslider-section-height380;
+    }
+    @media screen and (min-width: 380px) and (max-width: 420px) {
+        height: $flexslider-section-height420;
+    }
+    @media screen and (min-width: 421px) and (max-width: 640px) {
+        height: $flexslider-section-height640;
+    }
+    @media screen and (min-width: 640px) and (max-width: 720px) {
+        height: $flexslider-section-height640;
+    }
+    @media screen and (min-width: 720px) {
+        height: $flexslider-section-height720;
+    }
+    ul {
+        width: auto;
+        height: auto;
+        position: relative;
+        z-index: 100;
+        top: 140px;
+        text-align: center;
+        @media screen and (max-width: 320px) {
+            top: 25px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 380px) {
+            top: 67px;
+        }
+        @media screen and (min-width: 380px) and (max-width: 420px) {
+            top: 70px;
+        }
+        @media screen and (min-width: 421px) and (max-width: 640px) {
+            top: 70px;
+        }
+        @media screen and (min-width: 640px) and (max-width: 720px) {
+            top: 100px;
+        }
+        @media screen and (min-width: 720px) {
+            top: 140px;
+        }
+        li:nth-child(1) {
+            font-size: 16px;
+            color: white;
+        }
+        div {
+            margin: 0 auto;
+            margin-top: 30px;
+            color: white;
+            font-size: 14px;
+            width: 50%;
+            height: 35px;
+            line-height: 35px;
+        }
+    }
+}
 	<input type="hidden" id="telephone" value="${telephone}"/>
 	<div class="header">
 		<div class="menu-bar nav">
@@ -102,9 +234,15 @@
 	</div>
 	
 	<div class="page">
-		<div class="content-wrap">
+	
+	
+	
+	
+		<div class="content-wrap" id="area">
+		
+		            
 				
-				<div class="order-title">我要拍片</div>
+				<div class="order-title" id="line">我要拍片</div>
 				<!-- 订单信息 start-->
 				<div class="information-section">
 					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
@@ -112,37 +250,39 @@
 						<input type="hidden" id="token" name="token" value="${token}"/>
 					
 						<div class="form-group">
-							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder="您的姓名"/>
+						    <div>留下您的姓名</div>
+							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder=""/>
 						</div>
 
 						<div class="form-group">
-							<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder="您的移动电话"/>
+						    <div>您的手机号</div>
+							<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder=""/>
 						</div>
 
 						<div class="form-group textarea-box">
-							<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder="(选填) 如有必要，可以简单描述下您的需求"></textarea>
+					     	<div>(选填)简单描述下您的需求</div>
+							<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder=""></textarea>
 						</div>
 						
+						<div class="form-group">
+						  <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+						</div>						
 						<label id="label-message" class="label-message" style="display: none;">请输入正确的手机格式</label>
 
-						<div class="form-group">
-							<a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
-						</div>
 					</form>
 				</div>
 				<!-- 订单信息 end-->
 				
 				<!-- 订单官方描述 start-->
-				<div class="description-section">
+				<div class="description-section" id="word">
 					<dl class="dl1">
 						<dd>请留下您的联系方式</dd>
-						<dd>通常情况下</dd>
 						<dd>我们的视频营销顾问会在2小时内联系您</dd>
 					</dl>
 
 					<dl class="dl2">
 						<dd>您也可以拨打我们的拍片热线</dd>
-						<dd>4006609728</dd>
+						<dd>400-660-9728</dd>
 						<dd class="red-font">创意策划阶段是完全免费的</dd>
 					</dl>
 
@@ -150,14 +290,36 @@
 						<dd>我们非常乐意为您效劳</dd>
 						<dd>助力您的产品大获成功</dd>
 						<dd>拍片网，试过都知好!</dd>
+						<div class="info">
+						  <div id="showVideo">视频介绍</div>
+						  <div class="triangle-right"></div>
+						</div>
 					</dl>
 
 				</div>
 				<!-- 订单官方描述 end-->
 				
+					<!-- 视频区域-->
+				<div class="description-section hide" id="video">
+						
+				
+						<video autoplay loop title="点击播放" id="openVideo" autoplay name="media">
+			   			 <source  src="/resources/images/video/paipianwang.mp4"  id="source" type="video/mp4">
+			   		  </video>
+						
+						<div class="info">
+							  <div id="closeVideo">文字介绍</div>
+							  <div class="triangle-right"></div>
+						</div>
+				</div>
+				<!-- 视频区域end-->
+				
 			</div>
 	</div>
 	
+	<div class="openVideo hide" id="playVideo">
+
+	</div>
 	
 	<div class="footer">
 		<!-- 底栏 start -->

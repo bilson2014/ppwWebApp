@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,6 +52,7 @@ import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.EmployeeThirdLogin;
 import com.panfeng.film.service.ResourceService;
+import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -188,9 +192,9 @@ public class VersionManagerController extends BaseController {
 				final String Unique = (String) objUnique;
 				final String realName = (String) objLinkman;
 				final String code = (String) objCode;
-
+				boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 				// 不需要输入验证码 code == null dev code != null
-				if (code.equals(employee.getVerification_code())) {
+				if (isTest || code.equals(employee.getVerification_code())) {
 					employee.setEmployeeRealName(realName);
 					if (ValidateUtil.isValid(Unique)) {
 						switch (Ltype) {
@@ -310,7 +314,15 @@ public class VersionManagerController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public ModelAndView indexView() {
+	public ModelAndView indexView(ModelMap model,HttpServletRequest request) {
+		final ServletContext sc = request.getServletContext();
+		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
+		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
+		
+		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		if(info != null){
+			model.put("userId",info.getReqiureId() );
+		}
 		return new ModelAndView("/manager/index");
 	}
 
@@ -387,8 +399,16 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/flow-index")
-	public ModelAndView projectsView(final ModelMap model, String key) {
+	public ModelAndView projectsView(final ModelMap model, String key,HttpServletRequest request) {
 		model.put("key", key);
+		final ServletContext sc = request.getServletContext();
+		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
+		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
+		
+		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		if(info != null){
+			model.put("userId",info.getReqiureId() );
+		}
 		return new ModelAndView("/manager/index", model);
 	}
 
@@ -449,9 +469,8 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/update-indentProject")
 	public boolean updateIndentProject(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
-		// fill userinfo
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "project/update-indentProject";
+		final String url = GlobalConstant.URL_PREFIX + "project/update-synergyProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -621,15 +640,15 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/flow/completeTask")
-	public boolean completeTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
+	public BaseMsg completeTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
 		final String url = GlobalConstant.URL_PREFIX + "completeTask";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
-			return JsonUtil.toBean(str, Boolean.class);
+			return JsonUtil.toBean(str, BaseMsg.class);
 		}
-		return false;
+		return new BaseMsg();
 	}
 
 	@RequestMapping(value = "/flow/getIndentFlows", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")

@@ -561,8 +561,10 @@ public class ProviderController extends BaseController {
 	public BaseMsg updatePasswordByLoginName(@RequestBody final Team team, final HttpServletRequest request) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		final String code = (String) request.getSession().getAttribute("code");
-		if (!"".equals(code) && code != null) {
-			if (code.equals(team.getVerification_code())) {
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		if (isTest || (!"".equals(code) && code != null)) {
+			if (isTest || (code.equals(team.getVerification_code()))) {
 				if (team != null && team.getPassword() != null && !"".equals(team.getPassword())
 						&& team.getLoginName() != null && !"".equals(team.getLoginName())) {
 					try {
@@ -725,8 +727,10 @@ public class ProviderController extends BaseController {
 	public BaseMsg addAccount(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		final String code = (String) request.getSession().getAttribute("code");
-		if (!"".equals(code) && code != null) {
-			if (code.equals(team.getVerification_code())) {
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		if (isTest || (!"".equals(code) && code != null)) {
+			if (isTest || (code.equals(team.getVerification_code()))) {
 				if (team != null) {
 					try {
 						String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
@@ -1726,8 +1730,10 @@ public class ProviderController extends BaseController {
 	public boolean modifyUserPhone(@RequestBody final Team team, final HttpServletRequest request) {
 		if (team != null) {
 			final String code = (String) request.getSession().getAttribute("code");
-			if (code != null && !"".equals(code)) {
-				if (code.equals(team.getVerification_code())) {
+			// 是否是测试程序
+			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+			if (isTest || (code != null && !"".equals(code))) {
+				if (isTest || (code.equals(team.getVerification_code()))) {
 					// 修改 用户密码
 					final String url = URL_PREFIX + "portal/team/modify/phone";
 					final String json = HttpUtil.httpPost(url, team, request);

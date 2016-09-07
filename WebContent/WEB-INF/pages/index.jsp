@@ -106,6 +106,13 @@
 		<div class="flex-wrap">
 				<div class="flexslider">
 					<ul class="slides">
+					    <li>
+					       <section>
+					        <video preload="auto" loop="" autoplay="" poster="/images/index_img/pic_home_banner.png" class="video-bg">
+				                <source src="http://7xok4u.com2.z0.glb.qiniucdn.com/static/videos/banner_video_df536a45.mp4" type="video/mp4">
+			                </video>
+			                </section>
+			            </li>
 						<li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex2.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
@@ -120,7 +127,9 @@
 							<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 							<ul id="shelper" class="shelper-lucency"></ul>
 						</form>
+
 						<img src="${imgPath }/search.png" style="position: absolute;height: 35px;right: 20px;"> 
+
 					</div>
 					<div class="desc">35800+ 导演 / 编剧 / 摄影师 / 影视专家为您服务</div>
 					<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn" id="know-bg-btn">了解拍片网</div></a>
@@ -142,7 +151,7 @@
 				<dl>
 					<dt class="first-desc changePosition"></dt>
 					<dd class="changeMidPosition">免费创意策划</dd>
-					<dd class="">专属视频管家-站式服务</dd>
+					<dd class="">专属视频管家一站式服务</dd>
 				</dl>
 				
 				<dl>

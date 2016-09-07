@@ -101,6 +101,7 @@
 		<r:identity role="employee">
 			<input type="hidden" value="employee" id = "type">
 		</r:identity>
+		<input type="hidden" value="${userId }" id ="userId">
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -204,8 +205,6 @@
 				
 			</div>
 		</div>
-  
-
 
      <div class="noproject hide">
        <div class="no-poject-div" id="no-poject-div">

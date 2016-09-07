@@ -28,6 +28,7 @@ $().ready(function() {
 				initModalBtn();
 				//$("#toolbar-check").modal('show');
 				
+<<<<<<< HEAD
 				
 				if(currentIndex>4){
 					$(".check-step").addClass("hide");
@@ -44,6 +45,29 @@ $().ready(function() {
 		
 					setModalEvent(nextFlow);
 				   }
+=======
+				$(".sure-margin").on('click');
+				$(".check-step").removeClass("hide");
+				$("#listLoadCheck").addClass("hide");
+				$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+	
+				setModalEvent(nextFlow);
+//				if(currentIndex>4){
+//					$(".check-step").addClass("hide");
+//					$("#listLoadCheck").removeClass("hide");
+//					$(".sure-margin").off('click');
+//					checkPorjectInfo();
+//					}
+//				   else
+//				    {
+//					$(".sure-margin").on('click');
+//					$(".check-step").removeClass("hide");
+//					$("#listLoadCheck").addClass("hide");
+//					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
+//		
+//					setModalEvent(nextFlow);
+//				   }
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 			});
 			$(".cancle-margin").on("click",function(){
 				
@@ -256,13 +280,21 @@ function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
+<<<<<<< HEAD
 			
 			if(msg.result=""){
 			loadprojecctlist();
+=======
+			if(msg.result == "true"){
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 			$("#toolbar-check").modal('hide');
 			}else{
 				showError(msg.result);
 			}
+<<<<<<< HEAD
+=======
+			loadprojecctlist();
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
 		}));
@@ -623,8 +655,6 @@ function loadflowdata() {
 									}
 									
 								}
-								
-								
 								//end
 								
 								return;
@@ -1080,9 +1110,6 @@ function loadprojecctlist() {
 		pause.html('');
 		history.html('');
 		// 检测该管家是否拥有属于自己的项目（非协同项目以外的）
-		
-	    
-		
 		// 优先加载 协同人
 		loadSynerhyList();
 		var help=$("#helpProjectId").find('a');
@@ -1107,12 +1134,11 @@ function loadprojecctlist() {
 		if(help.length > 0){
 			noWorkproject = true ;
 		}
-		
-		
+		var userId = $('#userId').val();
+		var currIsSynergy = false;
 		// 加载属于我的项目 
 		for (var i = 0; i < msg.length; i++) {
 			var stateStr=msg[i].state;
-
 			// 默认第一次选中
 			// 当没有选中过项目，并且遍历的项目为正长状态下的第一个项目为默认选中项目
 			if (!selectFirst  && getCurrentProject() == null && stateStr==0) {
@@ -1121,25 +1147,22 @@ function loadprojecctlist() {
 				putCurrentProject(currentprojectkey);
 				selectFirst=true;
 				noWorkproject =false;
-				show();// 显示所有按钮
-
-			}else if(msg[i].id==getCurrentProject()){
-				
-				
+				show(true);// 显示所有按钮
+			}else if(msg[i].id== getCurrentProject()){
 				//判断当前项目是历史项目
 				if(stateStr == 1 || stateStr == 2){
 					//确定当前状态觉决定是否显示
 					finish();// 禁用所有按钮
 					isHistory=true;
-					
-					
 				}
-				
 				else{
+					if(userId == msg[i].userId){
+						show(true);// 显示所有按钮
+					}else{
+						show(true);// 显示所有按钮
+					}
 					noWorkproject =false;
-					show();// 显示所有按钮
 					isHistory=false;
-					
 				}
 			}
 			
@@ -1171,7 +1194,9 @@ function loadprojecctlist() {
 			// 选择添加到那个view
 			switch (msg[i].state) {
 			case 0:
-				doing.append(liStar);
+				if(userId == msg[i].userId){
+					doing.append(liStar);
+				}
 				break;
 			case 1:
 			case 2:
@@ -1179,13 +1204,10 @@ function loadprojecctlist() {
 				break;
 			case 3:
 				pause.append(liStar);
-				
 				break;
 			}
 		}
 		//if has histroy project but no working project show window（！）
-		
-		
 		//TODO:
 	//选中第一个项目 负责》暂停》协同 lt 20160608
 	//begin	
@@ -1208,7 +1230,6 @@ function loadprojecctlist() {
   			   nowContent.find('a').click();
   			   hasClick=true;
   			   nowImg=0;
-            	 
              }
 	   }
 	 }
@@ -1224,6 +1245,7 @@ function loadprojecctlist() {
 	       	$(".right-page").removeClass('hide');
        }
 	// load more component
+       
 	resetTime('');
 	loadflowdata();
 	loadfiledata(false);
@@ -1231,7 +1253,6 @@ function loadprojecctlist() {
 	loadIndentInfo();
 	loadSynerhyList();
 	updateProjectTreeView();
-	
 	}, getContextPath() + '/mgr/projects/all-project', $.toJSON({}));
 
 }
@@ -1362,9 +1383,13 @@ function finish() {
 	$('#userContentId').addClass('hide');
 }
 //未完成项目样式
-function show() {
+function show(isSynergy) {
 	$("#btndiv-id").show();
-	$("#upload-info-btn-id").show();
+	if(isSynergy){
+		$("#upload-info-btn-id").show();
+	}else{
+		$("#upload-info-btn-id").hide();
+	}
 	$("#upload-file-btn-id").show();
 	$(".comment").show();
 	$(".comment-btn").show();
@@ -2492,10 +2517,18 @@ function showError(str){
 	$('#sureToNext').css('color','#fe5453');
 	$('#sureToNext').html(info);
 	$('#sureCheck').off('click');
+<<<<<<< HEAD
 	$('#noSureCheck').off('click');
 	window.setInterval(hideSuccessTooltip, 3000);
+=======
+	window.setTimeout(hideSuccessTooltip, 3000);
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 }
 
 function hideSuccessTooltip(){
 	$('#toolbar-check').modal('hide');
+<<<<<<< HEAD
+=======
+	$('#sureCheck').on('click');
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 }

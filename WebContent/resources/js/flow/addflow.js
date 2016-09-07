@@ -1318,6 +1318,7 @@ function verifySynerhy(){
          	$(item).find("input#name").focus();
          	hasError =true;
          }
+<<<<<<< HEAD
 			var logiNname = $("#logiNname").val();
 			if(logiNname == userName){
 				nameError.text('自己不能是协同人');
@@ -1326,6 +1327,17 @@ function verifySynerhy(){
 				setError($(item).find("input#name"));
 				hasError =true;
 			}
+=======
+		var logiNname = $("#logiNname").val();
+		if(logiNname == userName){
+//			nameError.text('自己不能是协同人');
+//			nameError.removeClass("visible");
+//			$(item).find("input#name").focus();
+//			setError($(item).find("input#name"));
+//			hasError =true;
+		}
+		 
+>>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 		//end
 		return hasError ? true : false;
 	}
