@@ -132,10 +132,13 @@ public class SolrController extends BaseController {
 	}
 	
 	@RequestMapping("/phone/search")
-	public ModelAndView phoneSearchView(final String q, final String sequence,
+	public ModelAndView phoneSearchView(String q, final String sequence,
 			final int sortord,final String item, final ModelMap model,
 			final HttpServletRequest request) throws Exception{
-		
+
+		if("".equals(q)){
+			q = "*";
+		}
 		model.addAttribute("q", q);
 		model.addAttribute("sequence",sequence );
 		model.addAttribute("sortord", sortord);
