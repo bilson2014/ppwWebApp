@@ -1338,11 +1338,11 @@ function verifySynerhy(){
          }
 		var logiNname = $("#logiNname").val();
 		if(logiNname == userName){
-//			nameError.text('自己不能是协同人');
-//			nameError.removeClass("visible");
-//			$(item).find("input#name").focus();
-//			setError($(item).find("input#name"));
-//			hasError =true;
+			nameError.text('自己不能是协同人');
+			nameError.removeClass("visible");
+			$(item).find("input#name").focus();
+			setError($(item).find("input#name"));
+			hasError =true;
 		}
 		 
 		//end
@@ -1364,8 +1364,8 @@ function verifySynerhyRatio(ratio,baseRatio){
 		res = "请填写占有比例";
 	} else if(!checkDecimal(ratio)){
 		res = "只能输入数字呦";
-	}else if(baseRatio >= 100 || baseRatio < 1 ){
-		res = "所有协同人比例之和小于100%";
+	}else if(baseRatio > 100 || baseRatio < 1 ){
+		res = "所有协同人比例之和不能大于100%";
 	}
 	return {str:res,baseRatio:baseRatio};
 }
