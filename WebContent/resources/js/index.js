@@ -74,8 +74,7 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 			
 			$('#header-search').show();
 			$('#banner-search').empty();
-			$('#header-search').empty().append($from);
-			
+			$('#header-search').empty().append($from);			
 			// 显示工具栏
 			$('#toolbar-section').css({visibility: 'visible'});
 		}

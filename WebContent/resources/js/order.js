@@ -36,26 +36,26 @@ var order = {
    showVideo : function(){
 	   
 	           $('#showVideo').on('click',function(){
-		       $('#area').attr('class','');
-		       $('#area').addClass('video-wrap contentSizeOpen');
+//		       $('#area').attr('class','');
+//		       $('#area').addClass('video-wrap contentSizeOpen');
 		       $('#word').addClass('hide');
 		       $('#video').removeClass('hide');
 		       $('#video').addClass('contentVideoOpen');
-		       $('#line').removeClass('LineSizeClose');
-		       $('#line').addClass('LineSizeOpen');
+//		       $('#line').removeClass('LineSizeClose');
+//		       $('#line').addClass('LineSizeOpen');
 	   });
 	   
    },
    
    closeVideo : function(){
 	           $('#closeVideo').on('click',function(){
-		       $('#area').attr('class','');
-		       $('#area').addClass('content-wrap contentSizeClose');
+//		       $('#area').attr('class','');
+//		       $('#area').addClass('content-wrap contentSizeClose');
 		       $('#word').removeClass('hide');
 		       $('#word').addClass('contentVideoOpen');
 		       $('#video').addClass('hide');
-		       $('#line').removeClass('LineSizeOpen');
-		       $('#line').addClass('LineSizeClose');
+//		       $('#line').removeClass('LineSizeOpen');
+//		       $('#line').addClass('LineSizeClose');
 	   });
    },
    playVideo:function(){
@@ -64,15 +64,15 @@ var order = {
 		  // $('#source').attr("src", "http://video.tezign.com/01.mp4");
 		   
 		   if(!hasVideo){
-		   var $body='<video autoplay loop  name="media">'+
-			   			 '<source  src="/resources/images/video/paipianwangMovie.mp4"  id="source" type="video/mp4">'+
+		   var $body='<video autoplay controls loop  name="media">'+
+			   			 '<source  src="/product/video/paipianwangMovie.mp4"  id="source" type="video/mp4">'+
 			   		  '</video>';
 			$body+='</div>';
 			$("#playVideo").append($body);
 			hasVideo = true;
 		   }
 	   });
-	   $('#playVideo').on('click',function(){
+	   $('#playVideo').on('dblclick',function(){
 		   $('#playVideo').addClass('hide');
 	   });
    }

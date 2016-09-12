@@ -43,139 +43,7 @@
 	<script src="${suggestJs }"></script>
 	<script src="${orderJs }"></script>
 </head>
-<body>.topHeader {
-    position: relative;
-    margin-top: 48px;
-    background: image-url('phone/company/banner.jpg') no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center 0;
-    height: $flexslider-section-height720;
-    @media screen and (max-width: 320px) {
-        height: $flexslider-section-height320;
-    }
-    @media screen and (min-width: 320px) and (max-width: 380px) {
-        height: $flexslider-section-height380;
-    }
-    @media screen and (min-width: 380px) and (max-width: 420px) {
-        height: $flexslider-section-height420;
-    }
-    @media screen and (min-width: 421px) and (max-width: 640px) {
-        height: $flexslider-section-height640;
-    }
-    @media screen and (min-width: 640px) and (max-width: 720px) {
-        height: $flexslider-section-height640;
-    }
-    @media screen and (min-width: 720px) {
-        height: $flexslider-section-height720;
-    }
-    ul {
-        width: auto;
-        height: auto;
-        position: relative;
-        z-index: 100;
-        top: 140px;
-        text-align: center;
-        @media screen and (max-width: 320px) {
-            top: 25px;
-        }
-        @media screen and (min-width: 320px) and (max-width: 380px) {
-            top: 67px;
-        }
-        @media screen and (min-width: 380px) and (max-width: 420px) {
-            top: 70px;
-        }
-        @media screen and (min-width: 421px) and (max-width: 640px) {
-            top: 70px;
-        }
-        @media screen and (min-width: 640px) and (max-width: 720px) {
-            top: 100px;
-        }
-        @media screen and (min-width: 720px) {
-            top: 140px;
-        }
-        li:nth-child(1) {
-            font-size: 16px;
-            color: white;
-        }
-        div {
-            margin: 0 auto;
-            margin-top: 30px;
-            color: white;
-            font-size: 14px;
-            width: 50%;
-            height: 35px;
-            line-height: 35px;
-        }
-    }
-}.topHeader {
-    position: relative;
-    margin-top: 48px;
-    background: image-url('phone/company/banner.jpg') no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center 0;
-    height: $flexslider-section-height720;
-    @media screen and (max-width: 320px) {
-        height: $flexslider-section-height320;
-    }
-    @media screen and (min-width: 320px) and (max-width: 380px) {
-        height: $flexslider-section-height380;
-    }
-    @media screen and (min-width: 380px) and (max-width: 420px) {
-        height: $flexslider-section-height420;
-    }
-    @media screen and (min-width: 421px) and (max-width: 640px) {
-        height: $flexslider-section-height640;
-    }
-    @media screen and (min-width: 640px) and (max-width: 720px) {
-        height: $flexslider-section-height640;
-    }
-    @media screen and (min-width: 720px) {
-        height: $flexslider-section-height720;
-    }
-    ul {
-        width: auto;
-        height: auto;
-        position: relative;
-        z-index: 100;
-        top: 140px;
-        text-align: center;
-        @media screen and (max-width: 320px) {
-            top: 25px;
-        }
-        @media screen and (min-width: 320px) and (max-width: 380px) {
-            top: 67px;
-        }
-        @media screen and (min-width: 380px) and (max-width: 420px) {
-            top: 70px;
-        }
-        @media screen and (min-width: 421px) and (max-width: 640px) {
-            top: 70px;
-        }
-        @media screen and (min-width: 640px) and (max-width: 720px) {
-            top: 100px;
-        }
-        @media screen and (min-width: 720px) {
-            top: 140px;
-        }
-        li:nth-child(1) {
-            font-size: 16px;
-            color: white;
-        }
-        div {
-            margin: 0 auto;
-            margin-top: 30px;
-            color: white;
-            font-size: 14px;
-            width: 50%;
-            height: 35px;
-            line-height: 35px;
-        }
-    }
-}
+<body>
 	<input type="hidden" id="telephone" value="${telephone}"/>
 	<div class="header">
 		<div class="menu-bar nav">
@@ -238,7 +106,7 @@
 	
 	
 	
-		<div class="content-wrap" id="area">
+		<div class="video-wrap" id="area">
 		
 		            
 				
@@ -300,7 +168,7 @@
 				<!-- 订单官方描述 end-->
 				
 					<!-- 视频区域-->
-				<div class="description-section hide" id="video">
+				<div class="description-sections hide" id="video">
 						
 				
 						<video autoplay loop title="点击播放" id="openVideo" autoplay name="media">
@@ -317,7 +185,7 @@
 			</div>
 	</div>
 	
-	<div class="openVideo hide" id="playVideo">
+	<div class="openVideo hide" title="双击关闭视频" id="playVideo">
 
 	</div>
 	

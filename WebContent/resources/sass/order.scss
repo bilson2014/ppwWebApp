@@ -239,7 +239,64 @@ $information-section-width: 420px;
         float: right;
         margin-right: 40px;
     }
-    .description-section {
+
+         .description-section {
+        position: relative;
+        width: 50%;
+        height: 440px;
+        float: left;
+        dl {
+            height: 75px;
+            color: #666;
+            margin-left: 140px;
+            font: {
+                size: 16px;
+                weight: normal;
+            }
+            dd {
+                height: 31px;
+                line-height: 31px;
+            }
+        }
+        dl:first-child {
+            margin-top: 3px;
+        }
+        dl:last-child {
+            margin-top: 45px;
+        }
+        .red-font {
+            color: $red-base;
+        }
+        .info {
+            border: 1px solid $border-line;
+            position: relative;
+            top: -24px;
+            left: 197px;
+            width: 87px;
+            height: 20px;
+            color: $border-line;
+            text-align: center;
+            line-height: 19px;
+            font-size: $font-size-sm;
+            border-radius: 120px;
+            cursor: pointer;
+            div {
+                display: inline-block;
+            }
+            .triangle-right {
+                margin-left: 2px;
+                width: 0;
+                height: 0;
+                border-top: 5px solid transparent;
+                border-left: 10px solid $border-line;
+                border-bottom: 5px solid transparent;
+            }
+        }
+    }
+
+
+
+    .description-sections {
         position: relative;
         width: 50%;
         height: 440px;
@@ -513,9 +570,11 @@ $information-section-width: 420px;
     /* Opera */
 }
 
+
+
 @keyframes VideoOpen {
     0% {
-        left: -100%
+        left: -76px;
     }
     100% {
         left: 0px
@@ -524,7 +583,7 @@ $information-section-width: 420px;
 
 @keyframes VideoOpen {
     0% {
-        left: -100%
+        left: -76px;
     }
     100% {
         left: 0px
@@ -533,7 +592,7 @@ $information-section-width: 420px;
 
 @keyframes VideoOpen {
     0% {
-        left: -100%
+        left: -76px;
     }
     100% {
         left: 0px
@@ -542,7 +601,7 @@ $information-section-width: 420px;
 
 @keyframes VideoOpen {
     0% {
-        left: -100%
+        left: -76px;
     }
     100% {
         left: 0px
@@ -556,6 +615,7 @@ $information-section-width: 420px;
     height: 100%;
     position: absolute;
     top: 0px;
+    overflow: hidden;
     z-index: 9999999999999999999;
     video {
         object-fit: contain;
