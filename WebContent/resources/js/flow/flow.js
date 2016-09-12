@@ -15,6 +15,8 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
+
+
 	
 	
 	$('.bottom-div').show();
@@ -28,24 +30,6 @@ $().ready(function() {
 				initModalBtn();
 				//$("#toolbar-check").modal('show');
 				
-<<<<<<< HEAD
-				
-				if(currentIndex>4){
-					$(".check-step").addClass("hide");
-					$("#listLoadCheck").removeClass("hide");
-					$(".sure-margin").off('click');
-					checkPorjectInfo();
-					}
-				   else
-				    {
-					$(".sure-margin").on('click');
-					$(".check-step").removeClass("hide");
-					$("#listLoadCheck").addClass("hide");
-					$(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
-		
-					setModalEvent(nextFlow);
-				   }
-=======
 				$(".sure-margin").on('click');
 				$(".check-step").removeClass("hide");
 				$("#listLoadCheck").addClass("hide");
@@ -67,7 +51,6 @@ $().ready(function() {
 //		
 //					setModalEvent(nextFlow);
 //				   }
->>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 			});
 			$(".cancle-margin").on("click",function(){
 				
@@ -280,21 +263,13 @@ function nextFlow(){
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
-<<<<<<< HEAD
-			
-			if(msg.result=""){
-			loadprojecctlist();
-=======
 			if(msg.result == "true"){
->>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 			$("#toolbar-check").modal('hide');
 			}else{
+				$("#toolbar-check").modal('hide');
 				showError(msg.result);
 			}
-<<<<<<< HEAD
-=======
 			loadprojecctlist();
->>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
 		}));
@@ -1122,6 +1097,7 @@ function loadprojecctlist() {
 			$(".noproject").removeClass('set-width');
 			return ;
 		}
+		
 		
 		else{
 			$(".noproject").addClass('hide');
@@ -2512,23 +2488,15 @@ function formatterDateTime (date) {
 }
 
 function showError(str){
+	$("#toolbar-list").modal('show');
 	var info = str+"3秒后自动关闭"
-	$('#sureToNext').html('');
-	$('#sureToNext').css('color','#fe5453');
-	$('#sureToNext').html(info);
-	$('#sureCheck').off('click');
-<<<<<<< HEAD
-	$('#noSureCheck').off('click');
-	window.setInterval(hideSuccessTooltip, 3000);
-=======
+	$('#showErrorList').html(info);
+	$('#closeThis').on('click',function(){
+		$("#toolbar-list").modal('hide');
+	});
 	window.setTimeout(hideSuccessTooltip, 3000);
->>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
 }
 
 function hideSuccessTooltip(){
-	$('#toolbar-check').modal('hide');
-<<<<<<< HEAD
-=======
-	$('#sureCheck').on('click');
->>>>>>> bf0f4cc7dd5611de0d99ae80f75d34b12b806fd2
+	$("#toolbar-list").modal('hide');
 }

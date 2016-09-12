@@ -54,30 +54,6 @@ Step_Tool_dc.prototype = {
 					eval(self.callFun + "(result)");
 			});
 		}
-		// if (this.mouseenter != null) {
-		// jQuery("." + this.ClassName + " ul li").on("mouseenter",function(){
-		// var num = jQuery(this).attr("data-value");
-		// var text = jQuery(this).attr("data-text");
-		// result = {
-		// value : num,
-		// text : text
-		// };
-		// if(num<=currentIndex)
-		// eval(self.mouseenter + "(result)");
-		// });
-		// }
-		// if (this.mouseleave != null) {
-		// jQuery("." + this.ClassName + " ul li").on("mouseleave",function(){
-		// var num = jQuery(this).attr("data-value");
-		// var text = jQuery(this).attr("data-text");
-		// result = {
-		// value : num,
-		// text : text
-		// };
-		// if(num<=currentIndex)
-		// eval(self.mouseleave + "(result)");
-		// });
-		// }
 	},
 	clear : function() {
 		this.Steps = new Array();

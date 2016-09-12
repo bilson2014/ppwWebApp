@@ -137,15 +137,13 @@ $().ready(function(){
 							// 验证通过
 							// 发送验证码
 							$("#kapt_error_info").addClass("hide");
+							// 设置 button 效果为禁用
+							//图片验证码通过就发短信,修改按钮状态为disabled,防止信息发送中的多次点击
+							$('#verification_code_recover_btn').text('已发送('+ curCount +')');
+							$('#verification_code_recover_btn').attr('disabled','disabled');
+							InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
 							loadData(function(flag){
-								if(flag){
-									// 发送成功
-									// 设置 button 效果为禁用
-									$('#verification_code_recover_btn').text('已发送('+ curCount +')');
-									$('#verification_code_recover_btn').attr('disabled','disabled');
-									InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
-									// 倒计时
-								}else{
+								if(!flag){
 									// 发送不成功
 									// 显示重新发送
 									sendCode=true;

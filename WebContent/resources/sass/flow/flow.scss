@@ -27,6 +27,7 @@
             width: 100%;
             height: 50px;
             margin-top: 30px;
+            
         }
         .left-title-text {
              @media screen and (min-width:1500px) {
@@ -2079,3 +2080,37 @@ margin-top: 80px;
         position: relative;
     left: 20px;
 }
+
+#showErrorList{
+    color:$red-base;
+}
+
+.curr{
+     
+     width:210px;
+     margin:0 auto;
+     list-style-type:none;
+     li{
+
+     list-style-type:none;
+     }
+    div{
+      display:inline-block;
+      color:$gray;
+      margin-bottom:10px;
+    }
+
+    .info{
+      width:150px;
+      margin-left:10px;
+      text-align:left;
+    }
+    .infoimgR{
+           color:green;
+    }
+       .infoimgG{
+         color:$red-base;
+    }
+
+}
+ 
