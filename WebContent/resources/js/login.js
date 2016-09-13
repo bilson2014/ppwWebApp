@@ -38,7 +38,8 @@ $().ready(function(){
 			},
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
-					
+					$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止换号后数据错误
+					$('#submitBtn').text("登录");
 					var telephone = $('#user_phoneNumber').val().trim();
 					if(telephone == '' || telephone == null || telephone == undefined){
 						$('#user_phoneNumberId').removeClass('hide');
@@ -169,6 +170,7 @@ $().ready(function(){
 					var loginType = $("#login_type").val();
 					if(loginType=='phone'){//手机号登录
 						var action = $("#submitBtn").attr("data-id");//login or register
+						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击
 						var phone_code = $('#user_phoneNumber').val();				
 						var veri_code = $('#verification_code').val();
 						var kap_code = $('#kaptcha_code').val();
