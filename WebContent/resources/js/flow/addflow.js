@@ -1101,13 +1101,13 @@ function enableSubmitBtnEnent(){
 	disableSubmitBtnEnent();
 	
 	if(state=='update'){
-		$("#save").on('click',function(){
+		$("#indent-btn").on('click',function(){
 			    // business logic..
 			updateProjectajax();
 			//$("#isShow").modal('show');
 		});
 	}else{
-		$("#save").on('click',function(){
+		$("#indent-btn").on('click',function(){
 			addProject();
 		});
 	}
