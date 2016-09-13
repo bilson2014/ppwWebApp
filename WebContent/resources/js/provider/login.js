@@ -229,8 +229,6 @@ $().ready(function(){
 				$("#submitBtn").off("click").on("click",function(){
 					var loginType = $("#login_type").val();
 					if(loginType=='phone'){//手机号登录
-						var action = $("#submitBtn").attr("data-id");//login or register
-						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击1
 						var phone_code = $('#user_phoneNumber').val();				
 						var veri_code = $('#verification_code').val();
 						var kap_code = $('#kaptcha_code').val();
@@ -256,7 +254,8 @@ $().ready(function(){
 						//20160706 lt 添加验证begin		
 						provider_login.init();
 						//end
-						
+						var action = $("#submitBtn").attr("data-id");//login or register
+						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击1
 						if(action=='login'){
 							_this.login(action);
 						}
