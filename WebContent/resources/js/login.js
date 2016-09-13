@@ -205,10 +205,10 @@ $().ready(function(){
 							return false;
 						}
 						if(action=='login'){
-							_this.login();
+							_this.login(action);
 						}
 						if(action=='register'){
-							_this.register();
+							_this.register(action);
 						}
 					}
 					if(loginType=='loginName'){//账号登录
@@ -248,13 +248,14 @@ $().ready(function(){
 					
 				})
 			},
-			login:function(){
+			login:function(action){
 				loadData(function(info){
 					if(info.key){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+ '/mgr/index';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				}, getContextPath() + '/login/doLogin', $.toJSON({
@@ -264,13 +265,14 @@ $().ready(function(){
 					verification_code : $('#verification_code').val().trim(),
 				}))
 			},
-			register:function(){
+			register:function(action){
 				loadData(function(info){
 					if(info.key){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+'/mgr/index';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				},  getContextPath() + '/login/register', $.toJSON({
