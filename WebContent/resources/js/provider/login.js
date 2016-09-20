@@ -229,8 +229,6 @@ $().ready(function(){
 				$("#submitBtn").off("click").on("click",function(){
 					var loginType = $("#login_type").val();
 					if(loginType=='phone'){//手机号登录
-						var action = $("#submitBtn").attr("data-id");//login or register
-						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击1
 						var phone_code = $('#user_phoneNumber').val();				
 						var veri_code = $('#verification_code').val();
 						var kap_code = $('#kaptcha_code').val();
@@ -256,12 +254,13 @@ $().ready(function(){
 						//20160706 lt 添加验证begin		
 						provider_login.init();
 						//end
-						
+						var action = $("#submitBtn").attr("data-id");//login or register
+						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击1
 						if(action=='login'){
-							_this.login();
+							_this.login(action);
 						}
 						if(action=='register'){
-							_this.register();
+							_this.register(action);
 						}
 					}
 					if(loginType=='loginName'){//账号登录
@@ -300,7 +299,7 @@ $().ready(function(){
 					}
 				})
 			},
-			login:function(){
+			login:function(action){
 				loadData(function(msg){
 					if(msg.errorCode == 200){
 						$(".errorDiv").addClass("hide");
@@ -308,6 +307,7 @@ $().ready(function(){
 					}else{
 						//$("#code_error_info").text(info.value).removeClass("hide");
 						$("#login_error_info").text(msg.value).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				}, getContextPath() + '/provider/doLogin', $.toJSON({
@@ -316,7 +316,7 @@ $().ready(function(){
 					verification_code : $('#verification_code').val().trim(),
 				}))
 			},
-			register:function(){
+			register:function(action){
 				loadData(function(info){
 					if(info.key){
 						$(".errorDiv").addClass("hide");
@@ -324,6 +324,7 @@ $().ready(function(){
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
 						$("#login_error_info").text(info.result).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				},  getContextPath() + '/provider/info/register', $.toJSON({
