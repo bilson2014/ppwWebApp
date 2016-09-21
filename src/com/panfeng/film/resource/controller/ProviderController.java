@@ -350,6 +350,40 @@ public class ProviderController extends BaseController {
 		final boolean flag = JsonUtil.toBean(json, Boolean.class);
 		return flag;
 	}
+	
+	/**
+	 * 检测登录名是否可用
+	 * 
+	 * @param phoneNumber
+	 *            注册的手机号码
+	 * @return 标识可以注册，返回true;标识已注册，返回false
+	 */
+	@RequestMapping("/checkPhoneExisting")
+	public BaseMsg phoneIsExisting(@RequestBody final Team team, final HttpServletRequest request) {
+
+		try {
+			// 转码
+			if (team.getLoginName() != null && !"".equals(team.getLoginName())) {
+				team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
+			}
+		} catch (UnsupportedEncodingException e) {
+
+			logger.error("Encoder LoginName Error On isExisting Method ...");
+			e.printStackTrace();
+		}
+		final String url = URL_PREFIX + "portal/team/static/checkIsExist";
+		final String json = HttpUtil.httpPost(url, team, request);
+		if(ValidateUtil.isValid(json)){
+			final boolean flag = JsonUtil.toBean(json, Boolean.class);
+			if(flag){
+				return new BaseMsg(BaseMsg.NORMAL,"",null); // 请求失败
+			}else{
+				return new BaseMsg(BaseMsg.WARNING,"手机号已经重复注册啦！",null); // 请求失败
+			}
+		}else{
+			return new BaseMsg(BaseMsg.ERROR,"服务器繁忙请稍后重试！",null); // 请求失败
+		}
+	}
 
 	/**
 	 * 注册

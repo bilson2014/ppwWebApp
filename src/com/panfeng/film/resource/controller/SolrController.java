@@ -131,45 +131,6 @@ public class SolrController extends BaseController {
 		return null;
 	}
 	
-	@RequestMapping("/phone/search")
-	public ModelAndView phoneSearchView(String q, final String sequence,
-			final int sortord,final String item, final ModelMap model,
-			final HttpServletRequest request) throws Exception{
-
-		if("".equals(q)){
-			q = "*";
-		}
-		model.addAttribute("q", q);
-		model.addAttribute("sequence",sequence );
-		model.addAttribute("sortord", sortord);
-		model.addAttribute("item",item);
-		SolrView view = new SolrView();
-		view.setCondition(URLEncoder.encode(q, "UTF-8"));
-		view.setItemFq(item);
-		view.setSequence(sequence);
-		view.setSortord(sortord);
-		try {
-			String url = URL_PREFIX + "portal/solr/phone/query";
-			final String json = HttpUtil.httpPost(url,view,request);
-			if (json != null && !"".equals(json)) {
-				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list != null && list.size() > 0) {
-					for (final Solr solr : list) {
-						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(solr.getPicLDUrl().split(VIDEO_IMAGE_PERFIX)[1]);
-						}
-					}
-				}
-				model.addAttribute("list", list);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			logger.error("SolrController method:phoneSearchView() encode failue,q="
-					+ q);
-		}
-		return new ModelAndView("/phone/search");
-	}
-	
 	@RequestMapping("/suggest/{token}")
 	public List<Solr> suggest(@PathVariable("token") final String token,
 			final HttpServletRequest request){
