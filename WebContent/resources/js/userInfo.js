@@ -159,6 +159,7 @@ function selfInfo(){
 						realName : $('#trueName').val().trim(),
 						email : $('#contact-email').val().trim(),
 						qq : $('#contact-qq').val().trim(),
+						weChat : $('#contact-wechat').val().trim(),
 						userCompany : $('#company').val().trim(),
 						customerSource : $("#customerSource").val().trim()
 					}))
@@ -978,6 +979,7 @@ function userInfoToBind(condition){
 	loadData(function(data){
 		if(data.code==1){
 			bandInfo();
+			$('.tooltip-message').text('绑定成功!');
 			successToolTipShow();
 		}
 	}, getContextPath() + '/user/bind/third',condition);

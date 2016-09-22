@@ -227,7 +227,8 @@ public class ProviderController extends BaseController {
 	 * @return 登陆:true,失败:false
 	 */
 	@RequestMapping("/doLogin")
-	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request) {
+	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request,
+			final HttpServletResponse response) {
 		if (original == null) {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
@@ -243,6 +244,7 @@ public class ProviderController extends BaseController {
 					if (json != null && !"".equals(json)) {
 						boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
+							addCookies(request,response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
@@ -268,6 +270,7 @@ public class ProviderController extends BaseController {
 					if (ValidateUtil.isValid(json)) {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
+							addCookies(request,response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);

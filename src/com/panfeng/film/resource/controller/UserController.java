@@ -95,6 +95,7 @@ public class UserController extends BaseController{
 			// 转码
 			user.setEmail(URLEncoder.encode(user.getEmail(), "UTF-8"));
 			user.setQq(URLEncoder.encode(user.getQq(), "UTF-8"));
+			user.setWeChat(URLEncoder.encode(user.getWeChat(), "UTF-8"));
 			user.setRealName(URLEncoder.encode(user.getRealName(), "UTF-8"));
 			user.setUserName(URLEncoder.encode(user.getUserName(), "UTF-8"));
 			

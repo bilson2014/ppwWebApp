@@ -81,7 +81,8 @@ public class VersionManagerController extends BaseController {
 	 * 登录
 	 */
 	@RequestMapping("/doLogin")
-	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee) {
+	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee,
+			final HttpServletResponse response) {
 
 		final Result result = new Result();
 		if (employee != null) {
@@ -98,6 +99,8 @@ public class VersionManagerController extends BaseController {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (!ret) {
 							result.setMessage("用户名或密码错误!");
+						}else{
+							addCookies(request,response);
 						}
 						result.setRet(ret);
 						return result;

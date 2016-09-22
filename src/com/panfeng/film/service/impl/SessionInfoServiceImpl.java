@@ -67,5 +67,31 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 		
 		dao.removeSession(request);
 	}
+	@Override
+	public void removeSessionByToken(HttpServletRequest request, String token) {
+		dao.removeSessionByToken(request,token);
+	}
 
+	@Override
+	public SessionInfo getSessionInfoWithToken(HttpServletRequest request,String token) {
+		final String str = dao.getSessionWithToken(request,token);
+		if(ValidateUtil.isValid(str)){
+			final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
+			return info;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, Object> map, int time) {
+		// 检验是否存在
+		if(!dao.exitSession(request)) {
+			if(ValidateUtil.isValid(map)){
+				final Map<String,String> destMap = RedisUtils.mapToJson(map);
+				return dao.addSessionSeveralTime(request, destMap,time);
+			}
+		}
+		
+		return false;
+	}
 }

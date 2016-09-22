@@ -1,6 +1,8 @@
 package com.panfeng.film.resource.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -55,6 +57,14 @@ public abstract class BaseController {
 		
 		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		return info;
+	}
+	
+	protected void addCookies(HttpServletRequest request, HttpServletResponse response) {
+		Cookie cookieUsername = new Cookie("token", request.getSession().getId());
+		cookieUsername.setPath("/");
+		cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);
+		cookieUsername.setMaxAge(60 * 60 * 24 * 7); /* 设置cookie的有效期为 7 天 */
+		response.addCookie(cookieUsername);
 	}
 	
 }
