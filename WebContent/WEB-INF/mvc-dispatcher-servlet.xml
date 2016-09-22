@@ -79,16 +79,15 @@
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
-		<!-- 免登陆拦截 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/resources/**" />
 			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
 		</mvc:interceptor>
 		
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
-			<!-- <mvc:exclude-mapping path="/user/info" /> -->
 			<mvc:exclude-mapping path="/user/repwd" />
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
 		</mvc:interceptor>

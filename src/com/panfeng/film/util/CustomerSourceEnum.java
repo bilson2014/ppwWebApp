@@ -1,7 +1,7 @@
 package com.panfeng.film.util;
 
 public enum CustomerSourceEnum {
-	//QUDAO("渠道", 1), 
+	QUDAO("渠道", 1), 
 	TUIGUANG("推广", 2), ZIZHUYANFA("自主开发", 3), HUIDONG("活动", 4), TUIJIAN("推荐", 5);
 
 	private String name;

@@ -27,14 +27,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
-		if(info != null){
-			return true;
+		String requestType = request.getHeader("X-Requested-With");
+		if(null == requestType || !"XMLHttpRequest".equals(requestType)){//非ajax
+			final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+			if(info != null){
+				return true;
+			}
+			//新客户端 ,获取cookie，检测客户端是否存在七天内登陆
+			return checkAutoLogin(request);
 		}
-		//新客户端 ,获取cookie，检测客户端是否存在七天内登陆
-		return getSessionId(request);
+		return true;
 	}
-	private boolean getSessionId(HttpServletRequest request) {
+	private boolean checkAutoLogin(HttpServletRequest request) {
 		String token = null;
 		Cookie[] cookie = request.getCookies();
 		if(cookie!=null){

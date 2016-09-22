@@ -28,7 +28,6 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
 
 		final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		if(info != null){
-			
 			return true;
 		}
 		

@@ -47,7 +47,7 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 
 	public Object getSessionWithField(final HttpServletRequest request,final String field) {
 		
-		final String str = dao.getSessionWithField(request, field);
+		String str = dao.getSessionWithField(request, field);
 		if(ValidateUtil.isValid(str)){
 			if(GlobalConstant.SESSION_INFO.equals(field)){
 				final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
@@ -59,7 +59,6 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 				return progress;
 			}
 		}
-		
 		return null;
 	}
 

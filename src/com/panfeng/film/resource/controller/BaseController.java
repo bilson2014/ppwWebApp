@@ -67,4 +67,23 @@ public abstract class BaseController {
 		response.addCookie(cookieUsername);
 	}
 	
+	//退出时删除redis 删除cookie
+	protected void logOutCookie(HttpServletRequest request,HttpServletResponse response) {
+		Cookie[] cookie = request.getCookies();
+		if(cookie!=null){
+			if(cookie.length>0){
+				for (Cookie c : cookie) {
+					if ("token".equals(c.getName())) {
+						sessionService.removeSessionByToken(request, c.getValue());
+						Cookie cookieUsername = new Cookie("token", null);
+						cookieUsername.setPath("/");
+						cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);
+						cookieUsername.setMaxAge(0);
+						response.addCookie(cookieUsername);
+						
+					}
+				}
+			}
+		}
+	}
 }

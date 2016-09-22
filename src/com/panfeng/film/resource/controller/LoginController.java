@@ -536,8 +536,8 @@ public class LoginController extends BaseController {
 	 * 退出登录
 	 */
 	@RequestMapping("/loginout")
-	public ModelAndView loginout(final HttpServletRequest request) {
-
+	public ModelAndView loginout(final HttpServletRequest request,final HttpServletResponse response) {
+		logOutCookie(request,response);
 		service.removeSession(request);
 		return new ModelAndView("redirect:/");
 	}
