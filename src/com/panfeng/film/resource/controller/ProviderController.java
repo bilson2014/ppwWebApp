@@ -233,7 +233,7 @@ public class ProviderController extends BaseController {
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			// 是否是测试程序
 			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || original.getVerification_code() != null && code.equals(original.getVerification_code())) {
+			if (isTest || (original.getVerification_code() != null && code !=null && code.equals(original.getVerification_code()))) {
 				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 					final String url = URL_PREFIX + "portal/team/static/data/doLogin";
 					String json = HttpUtil.httpPost(url, original, request);
