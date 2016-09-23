@@ -21,5 +21,12 @@ public interface SessionInfoDao {
 	public boolean exitSession(final HttpServletRequest request);
 
 	public void removeSession(final HttpServletRequest request);
+
+	public String getSessionWithToken(HttpServletRequest request,String token);
+
+	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, String> destMap, int time);
+
+	public void removeSessionByToken(HttpServletRequest request, String token);
+
 	
 }

@@ -92,7 +92,8 @@ public class LoginController extends BaseController {
 	 * @return 是否成功
 	 */
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public Info login(@RequestBody final User user, final HttpServletRequest request) {
+	public Info login(@RequestBody final User user, final HttpServletRequest request,
+			final HttpServletResponse response) {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
@@ -166,10 +167,9 @@ public class LoginController extends BaseController {
 				}
 			}
 		}
-
+		addCookies(request,response);
 		return info;
 	}
-
 	/**
 	 * 验证手机号码是否注册
 	 */
@@ -569,8 +569,8 @@ public class LoginController extends BaseController {
 	 * 退出登录
 	 */
 	@RequestMapping("/loginout")
-	public ModelAndView loginout(final HttpServletRequest request) {
-
+	public ModelAndView loginout(final HttpServletRequest request,final HttpServletResponse response) {
+		logOutCookie(request,response);
 		service.removeSession(request);
 		return new ModelAndView("redirect:/");
 	}

@@ -15,6 +15,7 @@ public final class Constants {
 	public static String PRODUCT_DESCRIPTION_IMAGE_URL;
 	public static String TEMP_DIR;
 	public static String AUTO_TEST;
+	public static String COOKIES_SCOPE;
 	public static Constants CONSTANTS = new Constants();
 	
 	
@@ -61,6 +62,7 @@ public final class Constants {
 				.getProperty("upload.server.product.description.image.url");
 		TEMP_DIR=properties.getProperty("upload.server.temp");
 		AUTO_TEST=properties.getProperty("auto.test");
+		COOKIES_SCOPE=properties.getProperty("cookies_scope");
 	}
 	
 	/**

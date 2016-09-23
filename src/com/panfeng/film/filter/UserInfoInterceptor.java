@@ -1,5 +1,6 @@
 package com.panfeng.film.filter;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,16 +26,13 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		
 		final String contextPath = request.getContextPath();
-
 		final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		if(info != null){
 			if(GlobalConstant.ROLE_CUSTOMER.equals(info.getSessionType())){
 				return true;
 			}
 		}
-		
 		response.sendRedirect(contextPath + "/login");
 		return false;
 	}
-	
 }

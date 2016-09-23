@@ -47,7 +47,7 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 
 	public Object getSessionWithField(final HttpServletRequest request,final String field) {
 		
-		final String str = dao.getSessionWithField(request, field);
+		String str = dao.getSessionWithField(request, field);
 		if(ValidateUtil.isValid(str)){
 			if(GlobalConstant.SESSION_INFO.equals(field)){
 				final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
@@ -59,7 +59,6 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 				return progress;
 			}
 		}
-		
 		return null;
 	}
 
@@ -67,5 +66,31 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 		
 		dao.removeSession(request);
 	}
+	@Override
+	public void removeSessionByToken(HttpServletRequest request, String token) {
+		dao.removeSessionByToken(request,token);
+	}
 
+	@Override
+	public SessionInfo getSessionInfoWithToken(HttpServletRequest request,String token) {
+		final String str = dao.getSessionWithToken(request,token);
+		if(ValidateUtil.isValid(str)){
+			final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
+			return info;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, Object> map, int time) {
+		// 检验是否存在
+		if(!dao.exitSession(request)) {
+			if(ValidateUtil.isValid(map)){
+				final Map<String,String> destMap = RedisUtils.mapToJson(map);
+				return dao.addSessionSeveralTime(request, destMap,time);
+			}
+		}
+		
+		return false;
+	}
 }

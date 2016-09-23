@@ -136,7 +136,7 @@
 						<p id="user-telephone">${user.telephone }</p>
 					</div>
 				</section>
-				<section class="user-info-section-wrap">
+				<section class="user-info-section-wrap" style="height:525px!important">
 					<div class="user-info-wrap">
 						<div class="navigation">
 							<ul class="nav nav-tabs">
@@ -198,6 +198,12 @@
 									<label class="col-sm-2 control-label">QQ</label>
 									<div class="col-sm-5">
 										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">微信</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
 									</div>
 								</div>
 									<div class="form-group">
