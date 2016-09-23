@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +50,7 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
 import com.panfeng.film.util.WechatUtils;
 
@@ -64,10 +63,6 @@ import com.panfeng.film.util.WechatUtils;
 @RestController
 @RequestMapping("/provider")
 public class ProviderController extends BaseController {
-
-	final Logger logger = LoggerFactory.getLogger("error");
-
-	final Logger serLogger = LoggerFactory.getLogger("service");
 
 	private static String URL_PREFIX = null;
 
@@ -125,7 +120,7 @@ public class ProviderController extends BaseController {
 				PRODUCT_VIDEO_PATH = propertis.getProperty("upload.server.product.video");
 				PRODUCT_IMAGE_PATH = propertis.getProperty("upload.server.product.image");
 			} catch (IOException e) {
-				logger.error("ProviderController method:constructor load Properties fail ...");
+				Log.error("ProviderController method:constructor load Properties fail ...", null);
 				e.printStackTrace();
 			}
 		}
@@ -194,7 +189,8 @@ public class ProviderController extends BaseController {
 					lists.add(product);
 				}
 			} catch (Exception e) {
-				logger.error("Json Parse Product error ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Json Parse Product error ...", sessionInfo);
 				e.printStackTrace();
 			}
 		}
@@ -227,7 +223,8 @@ public class ProviderController extends BaseController {
 	 * @return 登陆:true,失败:false
 	 */
 	@RequestMapping("/doLogin")
-	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request) {
+	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request,
+			final HttpServletResponse response) {
 		if (original == null) {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
@@ -243,17 +240,20 @@ public class ProviderController extends BaseController {
 					if (json != null && !"".equals(json)) {
 						boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
+							addCookies(request,response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
 						}
 					}
 				} else {
-					serLogger.info("手机号错误");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("手机号错误", sessionInfo);
 					return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
 				}
 			} else {
-				serLogger.info("Provider Verification_code timeout ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Provider Verification_code timeout ...", sessionInfo);
 				return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
 			}
 		} else {// 用户名登录
@@ -268,6 +268,7 @@ public class ProviderController extends BaseController {
 					if (ValidateUtil.isValid(json)) {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
+							addCookies(request,response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
@@ -341,14 +342,49 @@ public class ProviderController extends BaseController {
 				team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
 			}
 		} catch (UnsupportedEncodingException e) {
-
-			logger.error("Encoder LoginName Error On isExisting Method ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Encoder LoginName Error On isExisting Method ...", sessionInfo);
 			e.printStackTrace();
 		}
 		final String url = URL_PREFIX + "portal/team/static/checkIsExist";
 		final String json = HttpUtil.httpPost(url, team, request);
 		final boolean flag = JsonUtil.toBean(json, Boolean.class);
 		return flag;
+	}
+
+	/**
+	 * 检测登录名是否可用
+	 * 
+	 * @param phoneNumber
+	 *            注册的手机号码
+	 * @return 标识可以注册，返回true;标识已注册，返回false
+	 */
+	@RequestMapping("/checkPhoneExisting")
+	public BaseMsg phoneIsExisting(@RequestBody final Team team, final HttpServletRequest request) {
+
+		try {
+			// 转码
+			if (team.getLoginName() != null && !"".equals(team.getLoginName())) {
+				team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
+			}
+		} catch (UnsupportedEncodingException e) {
+
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Encoder LoginName Error On isExisting Method ...", sessionInfo);
+			e.printStackTrace();
+		}
+		final String url = URL_PREFIX + "portal/team/static/checkIsExist";
+		final String json = HttpUtil.httpPost(url, team, request);
+		if (ValidateUtil.isValid(json)) {
+			final boolean flag = JsonUtil.toBean(json, Boolean.class);
+			if (flag) {
+				return new BaseMsg(BaseMsg.NORMAL, "", null); // 请求失败
+			} else {
+				return new BaseMsg(BaseMsg.WARNING, "手机号已经重复注册啦！", null); // 请求失败
+			}
+		} else {
+			return new BaseMsg(BaseMsg.ERROR, "服务器繁忙请稍后重试！", null); // 请求失败
+		}
 	}
 
 	/**
@@ -434,8 +470,10 @@ public class ProviderController extends BaseController {
 							return info;
 						}
 					} catch (Exception e) {
-						logger.error(
-								"ProviderController method:recoverPassword() Provider Password Decrypt Error On Provider Register ...");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error(
+								"ProviderController method:recoverPassword() Provider Password Decrypt Error On Provider Register ...",
+								sessionInfo);
 						e.printStackTrace();
 					}
 				}
@@ -468,8 +506,10 @@ public class ProviderController extends BaseController {
 			try {
 				return updateInfo(team, request);
 			} catch (UnsupportedEncodingException e) {
-				logger.error(
-						"ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error(
+						"ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...",
+						sessionInfo);
 				e.printStackTrace();
 			}
 		}
@@ -490,8 +530,10 @@ public class ProviderController extends BaseController {
 				final boolean ret = updateInfo_register(team, request);
 				return ret;
 			} catch (UnsupportedEncodingException e) {
-				logger.error(
-						"ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error(
+						"ProviderController method:updateTeamInformation() Privder infomartion encode error On updateTeamInformation Method ...",
+						sessionInfo);
 				e.printStackTrace();
 			}
 		}
@@ -536,13 +578,16 @@ public class ProviderController extends BaseController {
 					return info;
 				}
 			} catch (Exception e) {
-				logger.error(
-						"ProviderController method:validateLogin() Provider Password Decrypt Error On Provider CheckLoginStatus ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error(
+						"ProviderController method:validateLogin() Provider Password Decrypt Error On Provider CheckLoginStatus ...",
+						sessionInfo);
 				e.printStackTrace();
 			}
 
 		} else {
-			serLogger.info("Provider Is Null On Provider CheckLoginStatus ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Provider Is Null On Provider CheckLoginStatus ...", sessionInfo);
 			info.setKey(false);
 			info.setValue("密码不能为空!");
 			return info;
@@ -589,8 +634,10 @@ public class ProviderController extends BaseController {
 							}
 						}
 					} catch (Exception e) {
-						logger.error(
-								"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error(
+								"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...",
+								sessionInfo);
 						e.printStackTrace();
 					}
 				}
@@ -623,8 +670,9 @@ public class ProviderController extends BaseController {
 
 			if (fileSize > maxSize * 1024) {
 				// 文件大小超出规定范围
-				serLogger.info("upload provider photo error,becase the photo (size:" + fileSize + ") more than "
-						+ maxSize + "...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
 				return "false@error=1";
 			} else {
 				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
@@ -678,12 +726,14 @@ public class ProviderController extends BaseController {
 						 * request.getSession().setAttribute(PROVIDER_SESSION,
 						 * teamInSession);
 						 */
-						serLogger.info("upload provider photo success,photoUrl:" + path);
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("upload provider photo success,photoUrl:" + path, sessionInfo);
 						return path;
 					}
 				} else {
 					// 文件格式不正确
-					serLogger.info("upload provider photo error,becase the photo type error...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
 					return "false@error=2";
 				}
 			}
@@ -819,7 +869,8 @@ public class ProviderController extends BaseController {
 		boolean flag = true;
 		if (!"".equals(json)) {
 			flag = JsonUtil.toBean(json, Boolean.class);
-			serLogger.info("Delete product By Product success,productId:" + productId);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Delete product By Product success,productId:" + productId, sessionInfo);
 		}
 		return flag;
 	}
@@ -889,8 +940,9 @@ public class ProviderController extends BaseController {
 						if (fileSize > video_MaxSize * 1024 * 1024) {
 
 							// 视频文件超过500M上限
-							serLogger.info("Save Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")");
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Save Upload Video error,becase video size(" + fileSize
+									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
 							return "false@error=1";
 						}
 						break;
@@ -899,8 +951,9 @@ public class ProviderController extends BaseController {
 						if (fileSize > img_MaxSize * 1024) {
 
 							// 图片文件超过250K上限
-							serLogger.info("Save Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")");
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Save Upload Video error,becase picture size(" + fileSize
+									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
 							return "false@error=2";
 						}
 						break;
@@ -996,10 +1049,13 @@ public class ProviderController extends BaseController {
 			product.setProductId(productId);
 			HttpUtil.httpPost(updateUrl, product, request);
 			// request.getSession().setAttribute(PROVIDER_PRODUCT, productId);
-			serLogger.info("Provider Save Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag());
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
+					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
+
 		} catch (IOException e) {
-			logger.error("ProviderController method:saveProduct() file upload error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("ProviderController method:saveProduct() file upload error ...", sessionInfo);
 			e.printStackTrace();
 			throw new RuntimeException("file upload error ...", e);
 		}
@@ -1030,8 +1086,9 @@ public class ProviderController extends BaseController {
 						if (fileSize > video_MaxSize * 1024 * 1024) {
 
 							// 视频文件超过500M上限
-							serLogger.info("Update Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")");
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Update Upload Video error,becase video size(" + fileSize
+									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
 							return "false@error=1";
 						}
 						break;
@@ -1040,8 +1097,9 @@ public class ProviderController extends BaseController {
 						if (fileSize > img_MaxSize * 1024) {
 
 							// 图片文件超过250K上限
-							serLogger.info("Update Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")");
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Update Upload Video error,becase picture size(" + fileSize
+									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
 							return "false@error=2";
 						}
 						break;
@@ -1168,11 +1226,13 @@ public class ProviderController extends BaseController {
 					}
 				}
 			}
-			serLogger.info("Provider Update Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag());
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
+					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
 			return String.valueOf(serviceId);
 		} catch (IOException e) {
-			logger.error("ProviderController method:updateProduct() file upload error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("ProviderController method:updateProduct() file upload error ...", sessionInfo);
 			e.printStackTrace();
 			throw new RuntimeException("Product update error ...", e);
 		}
@@ -1248,8 +1308,9 @@ public class ProviderController extends BaseController {
 				try {
 					productName = URLEncoder.encode(productName, "UTF-8");
 				} catch (UnsupportedEncodingException e1) {
-					logger.error("ProviderController method:uploadFiles() productName Encoder error, teamId="
-							+ providerId + "...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("ProviderController method:uploadFiles() productName Encoder error, teamId=" + providerId
+							+ "...", sessionInfo);
 					e1.printStackTrace();
 				}
 				product.setProductName(productName);
@@ -1298,12 +1359,14 @@ public class ProviderController extends BaseController {
 
 					try {
 						file.transferTo(destFile);
-						serLogger.info("ProviderController method:uploadFiles() file upload success,productId = "
-								+ productId + " ...");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("ProviderController method:uploadFiles() file upload success,productId = " + productId
+								+ " ...", sessionInfo);
 						return "success";
 					} catch (IllegalStateException | IOException e) {
-						logger.error("ProviderController method:uploadFiles() file upload error,productId = "
-								+ productId + " ...");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("ProviderController method:uploadFiles() file upload error,productId = " + productId
+								+ " ...", sessionInfo);
 						throw new RuntimeException(
 								"ProviderController method:uploadFiles() file upload error,productId = " + productId
 										+ " ...");
@@ -1403,11 +1466,13 @@ public class ProviderController extends BaseController {
 					}
 				}
 			} catch (Exception e) {
-				logger.error("Provider bind error,teamName is " + team.getLoginName());
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Provider bind error,teamName is " + team.getLoginName(), sessionInfo);
 				e.printStackTrace();
 			}
 		}
-		logger.error("信息不完整");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("信息不完整", sessionInfo);
 		return new BaseMsg(BaseMsg.ERROR, "信息不完整", null);
 	}
 
@@ -1746,25 +1811,26 @@ public class ProviderController extends BaseController {
 	}
 
 	@RequestMapping("/info_{teamId}.html")
-	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap,@PathVariable("teamId") Long teamId) {
+	public ModelAndView toProviderInfoView(HttpServletRequest request, ModelMap modelMap,
+			@PathVariable("teamId") Long teamId) {
 		// 传递导演信息
 		String url = URL_PREFIX + "portal/team/info/" + teamId;
 		String json = HttpUtil.httpGet(url, request);
 		final Team result = JsonUtil.toBean(json, Team.class);
-		if(result != null){
+		if (result != null) {
 			modelMap.addAttribute("provider", result);
 			// 加载导演标签
 			url = URL_PREFIX + "portal/team/tags";
-			String strtags=result.getBusiness();
-			if(ValidateUtil.isValid(strtags)){
+			String strtags = result.getBusiness();
+			if (ValidateUtil.isValid(strtags)) {
 				try {
-					String[] tagsarray= strtags.split("\\,");
-					List<Long> ids =new ArrayList<>();
+					String[] tagsarray = strtags.split("\\,");
+					List<Long> ids = new ArrayList<>();
 					for (int i = 0; i < tagsarray.length; i++) {
 						ids.add(Long.parseLong(tagsarray[i]));
 					}
 					json = HttpUtil.httpPost(url, ids, request);
-					if(ValidateUtil.isValid(json)){
+					if (ValidateUtil.isValid(json)) {
 						List<String> tags = JsonUtil.fromJsonArray(json, String.class);
 						modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
 					}
@@ -1773,22 +1839,25 @@ public class ProviderController extends BaseController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else{
-				logger.error("provider business is null ...");
+			} else {
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("provider business is null ...", sessionInfo);
 			}
-		}else{
-			logger.error("Team is null ...");
+		} else {
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Team is null ...", sessionInfo);
 		}
 		// 加载代表作
 		url = URL_PREFIX + "portal/get/masterWork/" + teamId;
 		json = HttpUtil.httpGet(url, request);
 		final Product product = JsonUtil.toBean(json, Product.class);
-		if(product != null){
+		if (product != null) {
 			modelMap.addAttribute("product", product);
-			String[] tags =  product.getTags().split("\\ ");
+			String[] tags = product.getTags().split("\\ ");
 			modelMap.addAttribute("tags", tags);
-		}else{
-			logger.error("product is null ...");
+		} else {
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("product is null ...", sessionInfo);
 		}
 		return new ModelAndView("/provider/providerInfo", modelMap);
 	}

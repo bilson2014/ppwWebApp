@@ -135,6 +135,7 @@ function convert(value) {
 	if(value != null && value != undefined && value != ''){
 		
 		return new Date(Date.parse(value.replace(/-/g, "/")));
+		
 	}
 	return '';
 }

@@ -236,6 +236,8 @@ body {
 	margin-bottom: 50px;
 	height: 560px;
 }
+
+
 .step-bar {
 	height: 40px;
 	@include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);

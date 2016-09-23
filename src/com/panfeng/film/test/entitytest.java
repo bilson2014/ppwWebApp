@@ -27,7 +27,7 @@ public class entitytest extends BaseTest{
 	public static CookieStore cookieStore = null;
 	public static RequestConfig requestConfig = null;
 
-	private  void init() {
+	private  void   init() {
 		context = HttpClientContext.create();
 		cookieStore = new BasicCookieStore();
 		

@@ -1086,22 +1086,13 @@ function enableSubmitBtnEnent(){
 	
 	if(state=='update'){
 		$("#indent-btn").on('click',function(){
-
-			  
-			    // business logic..
 			updateProjectajax();
-			 
-			//$("#isShow").modal('show');
-			
 		});
 	}else{
 		$("#indent-btn").on('click',function(){
 			addProject();
 		});
 	}
-	$('.bottom-div').hide();
-	
-	
 }
 function disableSubmitBtnEnent(check){
 	$("#indent-btn").off('click');

@@ -66,7 +66,7 @@ public class WechatUtils {
 				return wechat;
 			} else {
 				// 错误
-				logger.error("wechat login error ... ");
+				Log.error("wechat login error ... ",null);
 			}
 		}
 		return null;

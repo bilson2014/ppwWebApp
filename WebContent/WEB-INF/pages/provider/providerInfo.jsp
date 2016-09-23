@@ -60,50 +60,61 @@
 	<div class="index-content-wrap">
 	
 		<div class="header">
-			<div class="menu-bar nav">
-				<div class="left-part">
-					<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
-					<r:identity role="customer">
-						<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
-						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-						<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
-					</r:identity>
-					<r:identity role="provider">
-						<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
-						<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					</r:identity>
-					<r:identity role="employee">
-						<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					</r:identity>
-					
-					<r:noLogin>
-						<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-						<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
-					</r:noLogin>
-				</div>
+		<div class="menu-bar nav">
+			<div class="left-part">
+				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
+				<r:identity role="customer">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
+					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
+					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
+					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+				</r:identity>
 				
-				<div class="right-part">
-					<r:noLogin>
-						<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self" id="providerLogin">供应商登录</a>
-						<a href="<spring:url value="/login" />" class="header-item login-item" target="_self" id="userLogin">客户登录</a>
-					</r:noLogin>
-					<r:identity role="customer">
-						<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-						<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-					</r:identity>
-					<r:identity role="provider">
-						<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-						<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-					</r:identity>
-					<r:identity role="employee">
-						<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-						<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-					</r:identity>
+				<r:noLogin>
+					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+				</r:noLogin>
+			</div>
+			
+			<div class="middle-part">
+				<div class="search-box" id="header-search">
+					<form method="get" action="/search" id="s-form">
+						<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+						<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
+						<ul id="shelper" class="shelper-lucency"></ul>
+					</form>
 				</div>
 			</div>
+			
+			<div class="right-part">
+				<r:noLogin>
+					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+				</r:noLogin>
+				<r:identity role="customer">
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+			</div>
 		</div>
+	</div>
+	
 	</div>
 		
 		<div class="page">
@@ -219,6 +230,66 @@
 		</div>
 		
 		</div>
+		
+			<div class="footer">
+		
+		
+		<!-- 底栏 start -->
+		<div class="footer-wrap">
+			<div class="footer-content">
+			
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >登录</a>
+					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
+					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >联系我们</a>
+					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
+					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
+					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >服务</a>
+					<a href="<spring:url value='/order-flow.html' />">服务流程</a>					
+					<a href="javascript:void(0);" class="top-margin">工作时间</a>
+					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >授权 / 条款</a>
+					<a href="<spring:url value='/company-service.html' />">使用协议</a>
+					<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
+				</div>
+				
+				<div class="footer-column">
+					<a href="javascript:void(0);" class="title" >了解拍片网</a>
+					<a href="<spring:url value='/about-us.html' />">了解我们</a>
+					<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
+					<a href="<spring:url value='/company-activity.html' />">公司活动</a>
+					<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
+				</div>
+
+				<div class="footer-column">
+					<div class="mark-icon"></div>
+					<h4>关注官方微信</h4>
+				</div>
+
+				<div class="footer-notice">
+					<h2>版权信息</h2>
+					<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
+					<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
+				</div>
+			</div>
+			<div class="footer-box">
+				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
+			</div>
+		</div>
+		<!-- 底栏 end -->
+	</div>
 		 
 </body>
 </html>

@@ -8,10 +8,7 @@ var qq_uniqueId;
 var isShowKaptcha = false;
 
 $().ready(function(){
-	
-	
-
-	
+	changeAttr();
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -38,7 +35,8 @@ $().ready(function(){
 			},
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
-					
+					$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止换号后数据错误
+					$('#submitBtn').text("登录");
 					var telephone = $('#user_phoneNumber').val().trim();
 					if(telephone == '' || telephone == null || telephone == undefined){
 						$('#user_phoneNumberId').removeClass('hide');
@@ -48,14 +46,23 @@ $().ready(function(){
 					}
 					if(checkMobile(telephone)){
 						loadData(function(flag){
-							if(flag){
+							if(flag.errorCode == 200){
 								$('#submitBtn').text("登录");
 								$('#title').text("客户登录");
 								$('#submitBtn').attr('data-id','login'); // 标记login
-							}else{
+								$('#changeAttr').text('新用户注册');
+								$('#changeAttr').attr('data-event','login');
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 300){
 								$('#submitBtn').text("注册");
 								$('#title').text("客户注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
+								$('#changeAttr').text('客户登陆');
+								$('#changeAttr').attr('data-event','register');
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 500){
+								$('#user_phoneNumberId').removeClass('hide');
+								$('#user_phoneNumberId').text(flag.errorMsg);
 							}
 						}, getContextPath() + '/login/validation/phone', $.toJSON({
 							telephone : telephone
@@ -137,15 +144,13 @@ $().ready(function(){
 							// 验证通过
 							// 发送验证码
 							$("#kapt_error_info").addClass("hide");
+							// 设置 button 效果为禁用
+							//图片验证码通过就发短信,修改按钮状态为disabled,防止信息发送中的多次点击
+							$('#verification_code_recover_btn').text('已发送('+ curCount +')');
+							$('#verification_code_recover_btn').attr('disabled','disabled');
+							InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
 							loadData(function(flag){
-								if(flag){
-									// 发送成功
-									// 设置 button 效果为禁用
-									$('#verification_code_recover_btn').text('已发送('+ curCount +')');
-									$('#verification_code_recover_btn').attr('disabled','disabled');
-									InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
-									// 倒计时
-								}else{
+								if(!flag){
 									// 发送不成功
 									// 显示重新发送
 									sendCode=true;
@@ -170,7 +175,6 @@ $().ready(function(){
 				$("#submitBtn").off("click").on("click",function(){
 					var loginType = $("#login_type").val();
 					if(loginType=='phone'){//手机号登录
-						var action = $("#submitBtn").attr("data-id");//login or register
 						var phone_code = $('#user_phoneNumber').val();				
 						var veri_code = $('#verification_code').val();
 						var kap_code = $('#kaptcha_code').val();
@@ -204,11 +208,13 @@ $().ready(function(){
 							$('#user_phoneNumber').focus();
 							return false;
 						}
+						var action = $("#submitBtn").attr("data-id");//login or register
+						$('#submitBtn').removeAttr('data-id');//清空注册或登陆标记位，防止重复点击
 						if(action=='login'){
-							_this.login();
+							_this.login(action);
 						}
 						if(action=='register'){
-							_this.register();
+							_this.register(action);
 						}
 					}
 					if(loginType=='loginName'){//账号登录
@@ -248,13 +254,14 @@ $().ready(function(){
 					
 				})
 			},
-			login:function(){
+			login:function(action){
 				loadData(function(info){
 					if(info.key){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+ '/mgr/index';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				}, getContextPath() + '/login/doLogin', $.toJSON({
@@ -264,13 +271,14 @@ $().ready(function(){
 					verification_code : $('#verification_code').val().trim(),
 				}))
 			},
-			register:function(){
+			register:function(action){
 				loadData(function(info){
 					if(info.key){
 						$(".errorDiv").addClass("hide");
 						window.location.href=getContextPath()+'/mgr/index';
 					}else{
 						$("#code_error_info").text(info.value).removeClass("hide");
+						$("#submitBtn").attr("data-id",action);//login or register
 						return false;
 					}
 				},  getContextPath() + '/login/register', $.toJSON({
@@ -342,7 +350,6 @@ $().ready(function(){
 			},
 			changeLogin:function(){
 				$('#changeLoginId').on('click',function(){
-					
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
 						$('#loginWord').text('使用账号登录');
@@ -354,7 +361,7 @@ $().ready(function(){
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
 						$('#threeId').removeClass('hide');
-					
+						$('#changeAttr').show();
 					}else{
 						$('#threeId').addClass('hide');
 						$('input').val('');
@@ -366,6 +373,7 @@ $().ready(function(){
 						$('#outSideId').removeClass('phoneHeight');
 						$('#outSideId').addClass('userheight');
 						$('#login_type').val("loginName");
+						$('#changeAttr').hide();
 					}
 				});
 			}
@@ -438,7 +446,22 @@ function getEnter(){
 		}
 	});
 }
-	
+function changeAttr(){
+	$('#changeAttr').on('click',function(){
+		var type = $(this).attr('data-event');
+		if(type == 'login'){
+			$('#submitBtn').text('注册');
+			$(this).attr('data-event','register');
+			$(this).text('客户登陆');
+			$('#title').text('客户注册');
+		}else if(type == 'register'){
+			$('#submitBtn').text('登陆');
+			$(this).attr('data-event','login');
+			$(this).text('新用户注册');
+			$('#title').text('客户商登陆');
+		}
+	});
+}
 //function local(){
 //	if(window.localStorage){
 //		

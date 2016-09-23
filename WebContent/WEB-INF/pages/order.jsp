@@ -102,9 +102,15 @@
 	</div>
 	
 	<div class="page">
-		<div class="content-wrap">
+	
+	
+	
+	
+		<div class="video-wrap" id="area">
+		
+		            
 				
-				<div class="order-title">我要拍片</div>
+				<div class="order-title" id="line">我要拍片</div>
 				<!-- 订单信息 start-->
 				<div class="information-section">
 					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
@@ -112,37 +118,39 @@
 						<input type="hidden" id="token" name="token" value="${token}"/>
 					
 						<div class="form-group">
-							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder="您的姓名"/>
+						    <div>留下您的姓名</div>
+							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder=""/>
 						</div>
 
 						<div class="form-group">
-							<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder="您的移动电话"/>
+						    <div>您的手机号</div>
+							<input type="text" id="indent_tele" name="indent_tele" tabindex="2" autocomplete="off" placeholder=""/>
 						</div>
 
 						<div class="form-group textarea-box">
-							<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder="(选填) 如有必要，可以简单描述下您的需求"></textarea>
+					     	<div>(选填)简单描述下您的需求</div>
+							<textarea name="indent_recomment" id="indent_recomment" tabindex="3" autocomplete="off" cols="30" rows="9" placeholder=""></textarea>
 						</div>
 						
+						<div class="form-group">
+						  <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+						</div>						
 						<label id="label-message" class="label-message" style="display: none;">请输入正确的手机格式</label>
 
-						<div class="form-group">
-							<a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
-						</div>
 					</form>
 				</div>
 				<!-- 订单信息 end-->
 				
 				<!-- 订单官方描述 start-->
-				<div class="description-section">
+				<div class="description-section" id="word">
 					<dl class="dl1">
 						<dd>请留下您的联系方式</dd>
-						<dd>通常情况下</dd>
 						<dd>我们的视频营销顾问会在2小时内联系您</dd>
 					</dl>
 
 					<dl class="dl2">
 						<dd>您也可以拨打我们的拍片热线</dd>
-						<dd>4006609728</dd>
+						<dd>400-660-9728</dd>
 						<dd class="red-font">创意策划阶段是完全免费的</dd>
 					</dl>
 
@@ -150,14 +158,36 @@
 						<dd>我们非常乐意为您效劳</dd>
 						<dd>助力您的产品大获成功</dd>
 						<dd>拍片网，试过都知好!</dd>
+						<div class="info">
+						  <div id="showVideo">视频介绍</div>
+						  <div class="triangle-right"></div>
+						</div>
 					</dl>
 
 				</div>
 				<!-- 订单官方描述 end-->
 				
+					<!-- 视频区域-->
+				<div class="description-sections hide" id="video">
+						
+				
+						<video autoplay loop title="点击播放" id="openVideo" autoplay name="media">
+			   			 <source  src="/resources/images/video/paipianwang.mp4"  id="source" type="video/mp4">
+			   		  </video>
+						
+						<div class="info">
+							  <div id="closeVideo">文字介绍</div>
+							  <div class="triangle-right"></div>
+						</div>
+				</div>
+				<!-- 视频区域end-->
+				
 			</div>
 	</div>
 	
+	<div class="openVideo hide" title="双击关闭视频" id="playVideo">
+
+	</div>
 	
 	<div class="footer">
 		<!-- 底栏 start -->

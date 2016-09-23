@@ -100,5 +100,82 @@ public class SessionInfoDaoImpl implements SessionInfoDao {
 			}
 		}
 	}
+	
+	public String getSessionWithSessionId(final String sessionId, final String field) {
 
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			final String str = jedis.hget(DataUtil.md5(sessionId), field);
+			return str;
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if (jedis != null) {
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void removeSessionByToken(HttpServletRequest request, String token) {
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			Transaction tx = jedis.multi();
+			tx.hdel(DataUtil.md5(token), GlobalConstant.SESSION_INFO);
+			tx.exec();
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if(jedis != null){
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+	}
+
+	@Override
+	public String getSessionWithToken(HttpServletRequest request,String token) {
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			final String str = jedis.hget(DataUtil.md5(token), GlobalConstant.SESSION_INFO);
+			return str;
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if(jedis != null){
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+		return null;
+	}
+
+
+	@Override
+	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, String> map, int time) {
+		Jedis jedis = null;
+		try {
+			final String sessionId = request.getSession().getId();
+			jedis = pool.getResource();
+			Transaction tx = jedis.multi();
+			tx.hmset(DataUtil.md5(sessionId), map);
+			tx.expire(DataUtil.md5(sessionId), time);
+			tx.exec();
+			return true;
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if(jedis != null){
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+		
+		return false;
+	}
 }
