@@ -46,18 +46,23 @@ $().ready(function(){
 					}
 					if(checkMobile(telephone)){
 						loadData(function(flag){
-							if(flag){
+							if(flag.errorCode == 200){
 								$('#submitBtn').text("登录");
 								$('#title').text("客户登录");
 								$('#submitBtn').attr('data-id','login'); // 标记login
 								$('#changeAttr').text('新用户注册');
 								$('#changeAttr').attr('data-event','login');
-							}else{
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 300){
 								$('#submitBtn').text("注册");
 								$('#title').text("客户注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
 								$('#changeAttr').text('客户登陆');
 								$('#changeAttr').attr('data-event','register');
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 500){
+								$('#user_phoneNumberId').removeClass('hide');
+								$('#user_phoneNumberId').text(flag.errorMsg);
 							}
 						}, getContextPath() + '/login/validation/phone', $.toJSON({
 							telephone : telephone

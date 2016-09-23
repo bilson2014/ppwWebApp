@@ -42,6 +42,7 @@ import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
 import com.panfeng.film.util.Constants.loginType;
 
@@ -79,7 +80,7 @@ public class LoginController extends BaseController {
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
 			} catch (IOException e) {
-				logger.error("LoginController method:constructor load Properties fail ...");
+				Log.error("LoginController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -137,7 +138,8 @@ public class LoginController extends BaseController {
 					info.setValue("请重新获取验证码!");
 				}
 			} catch (Exception e) {
-				logger.error("LoginController method:login() User Password Decrypt Error ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("LoginController method:login() User Password Decrypt Error ...",sessionInfo);
 				e.printStackTrace();
 			}
 		} else {// 用户名登录
@@ -171,18 +173,37 @@ public class LoginController extends BaseController {
 	/**
 	 * 验证手机号码是否注册
 	 */
+//	@RequestMapping("/validation/phone")
+//	public boolean validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
+//		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
+//		String json = HttpUtil.httpGet(url, request);
+//		if ("true".equals(json)) { // 被注册
+//			serLogger.info("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...");
+//			return true;
+//		} else if ("false".equals(json)) { // 未被注册
+//			serLogger.info("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...");
+//			return false;
+//		}
+//		return false;
+//	}
+	
+	/**
+	 * 验证手机号码是否注册
+	 */
 	@RequestMapping("/validation/phone")
-	public boolean validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
+	public BaseMsg validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
 		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
 		String json = HttpUtil.httpGet(url, request);
 		if ("true".equals(json)) { // 被注册
-			serLogger.info("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...");
-			return true;
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...",sessionInfo);
+			return new BaseMsg(BaseMsg.NORMAL,"",null);
 		} else if ("false".equals(json)) { // 未被注册
-			serLogger.info("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...");
-			return false;
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...",sessionInfo);
+			return new BaseMsg(BaseMsg.WARNING,"",null);
 		}
-		return false;
+		return new BaseMsg(BaseMsg.ERROR,"服务器通信失败请稍后重试！",null);
 	}
 
 	/**
@@ -195,12 +216,12 @@ public class LoginController extends BaseController {
 		final String url = URL_PREFIX + "portal/user/valication/loginname";
 		String json = HttpUtil.httpPost(url, loginName, request);
 		if ("true".equals(json)) { // 被注册
-			serLogger.info(
-					"validation telephone " + loginName.get(userName_key) + " can't register,Becase it is exist ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("validation telephone " + loginName.get(userName_key) + " can't register,Becase it is exist ...",sessionInfo);
 			return true;
 		} else if ("false".equals(json)) { // 未被注册
-			serLogger.info(
-					"validation telephone " + loginName.get(userName_key) + " can register,Becase it is not exist ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("validation telephone " + loginName.get(userName_key) + " can register,Becase it is not exist ...",sessionInfo);
 			return false;
 		}
 		return false;
@@ -260,16 +281,17 @@ public class LoginController extends BaseController {
 							session.removeAttribute("code"); // 移除验证码
 							info.setKey(ret);
 
-							serLogger.info("Register User " + user.getUserName());
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Register User " + user.getUserName(),sessionInfo);
 							return info;
 						} else {
 							// 注册失败
 							info.setKey(false);
 							info.setValue("服务器繁忙，请稍候再试...");
 							session.removeAttribute("code"); // 移除验证码
-
-							serLogger.info("Register User " + user.getUserName()
-									+ " failure ,Becase HttpClient Connect error... ");
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.error("Register User " + user.getUserName()
+							+ " failure ,Becase HttpClient Connect error... ",sessionInfo);
 							return info;
 						}
 					} else {
@@ -292,15 +314,16 @@ public class LoginController extends BaseController {
 				info.setKey(false);
 				info.setValue("短信验证码不正确!");
 
-				serLogger.info("Register User " + user.getUserName() + " failure ,Becase sms code not equal ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Register User " + user.getUserName() + " failure ,Becase sms code not equal ...",sessionInfo);
 				return info;
 			}
 		} else {
 			// 验证码为空
 			info.setKey(false);
 			info.setValue("点击获取验证码!");
-
-			serLogger.info("Register User " + user.getUserName() + " failure ,Becase sms code is null ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Register User " + user.getUserName() + " failure ,Becase sms code is null ...",sessionInfo);
 			return info;
 		}
 	}
@@ -316,7 +339,8 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
 			final boolean ret = smsService.smsSend(telephone, code);
-			serLogger.info("Send sms code " + code + " to telephone " + telephone);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}
 		return true;
@@ -353,10 +377,12 @@ public class LoginController extends BaseController {
 			out = response.getOutputStream();
 			ImageIO.write(bi, "jpg", out);
 			out.flush();
-			serLogger.info("create kaptcha code is " + kaptchaCode);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("create kaptcha code is " + kaptchaCode,sessionInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("LoginController method:getKaptchaImage() Create Kaptcha error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("LoginController method:getKaptchaImage() Create Kaptcha error ...",sessionInfo);
 		} finally {
 			try {
 				out.close();
@@ -381,24 +407,28 @@ public class LoginController extends BaseController {
 			if (kaptchaCode != null && !"".equals(kaptcha_code)) {
 				if (isTest || kaptchaCode.equalsIgnoreCase(kaptcha_code)) {
 					info.setKey(true);
-					serLogger.info("kaptcha code equal input code ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("kaptcha code equal input code ...",sessionInfo);
 				} else {
 					// 验证码 不一致
 					info.setKey(false);
 					info.setValue("图片验证码输入错误!");
-					serLogger.info("kaptcha code not equal input code ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("kaptcha code not equal input code ...",sessionInfo);
 				}
 			} else {
 				// session 过时
 				info.setKey(false);
 				info.setValue("点击图片获取验证码!");
-				serLogger.info("kaptcha code in session is past due ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("kaptcha code in session is past due ...",sessionInfo);
 			}
 		} else {
 			// 图片验证码 为空
 			info.setKey(false);
 			info.setValue("请输入图片验证码!");
-			serLogger.info("input code is empty ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("input code is empty ...",sessionInfo);
 		}
 		return info;
 	}
@@ -496,14 +526,16 @@ public class LoginController extends BaseController {
 						// 添加 session
 						session.removeAttribute("code"); // 移除验证码
 						info.setKey(result);
-						serLogger.info("Recover user password success");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("Recover user password success",sessionInfo);
 						return info;
 					} else {
 						// 注册失败
 						info.setKey(false);
 						info.setValue("服务器繁忙，请稍候再试...");
-						serLogger.info("Recover user (userId:" + user.getId()
-								+ ") password error,becase HttpClient Connection error ...");
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("Recover user (userId:" + user.getId()
+						+ ") password error,becase HttpClient Connection error ...",sessionInfo);
 						return info;
 					}
 
@@ -511,8 +543,8 @@ public class LoginController extends BaseController {
 					// 验证码不匹配
 					info.setKey(false);
 					info.setValue("密码为空!");
-					serLogger.info(
-							"Recover user (userId:" + user.getId() + ") password error,becase password is empty ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("Recover user (userId:" + user.getId() + ") password error,becase password is empty ...",sessionInfo);
 					return info;
 				}
 			} else {
@@ -527,7 +559,8 @@ public class LoginController extends BaseController {
 			// 验证码为空
 			info.setKey(false);
 			info.setValue("点击获取验证码!");
-			serLogger.info("Recover user (userId:" + user.getId() + ") password error,becase code is empty ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Recover user (userId:" + user.getId() + ") password error,becase code is empty ...",sessionInfo);
 			return info;
 		}
 	}
@@ -580,7 +613,8 @@ public class LoginController extends BaseController {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("OAthur encoding error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("OAthur encoding error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		return new ModelAndView("redirect:/login");
@@ -683,14 +717,14 @@ public class LoginController extends BaseController {
 							}
 							return new ModelAndView("redirect:/");
 						} catch (UnsupportedEncodingException e) {
-							logger.error("UserName Encode error on Wechat Login Process ...");
+							Log.error("UserName Encode error on Wechat Login Process ...",sessionInfo);
 							e.printStackTrace();
 						}
 					}
 				}
 			} else {
 				// 错误
-				logger.error("wechat login error ... ");
+				Log.error("wechat login error ... ",sessionInfo);
 			}
 
 		}

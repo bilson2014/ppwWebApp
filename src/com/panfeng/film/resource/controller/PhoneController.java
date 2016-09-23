@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 
 @RestController
 @RequestMapping("/phone")
@@ -36,7 +38,7 @@ public class PhoneController extends BaseController {
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
 			} catch (IOException e) {
-				logger.error("PhoneController method:constructor load Properties fail ...");
+				Log.error("PhoneController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -59,7 +61,8 @@ public class PhoneController extends BaseController {
 		}
 		model.addAttribute("product", product);
 
-		serLogger.info("Play video at Phone,productId:" + productId + " ,productName:" + product.getProductName());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Play video at Phone,productId:" + productId + " ,productName:" + product.getProductName(),sessionInfo);
 		return new ModelAndView("/phone/play", model);
 	}
 

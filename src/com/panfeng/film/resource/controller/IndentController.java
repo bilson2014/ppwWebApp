@@ -21,11 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 
 @RestController
 @RequestMapping("/order")
@@ -36,7 +38,7 @@ public class IndentController extends BaseController {
 	
 	static private String TELEPHONE = null;
 	
-	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
+	//final Logger serLogger = LoggerFactory.getLogger("service"); // service log
 	
 	final Logger logger = LoggerFactory.getLogger("error");
 	
@@ -51,7 +53,7 @@ public class IndentController extends BaseController {
 				URL_PREFIX = propertis.getProperty("urlPrefix");
 				TELEPHONE = propertis.getProperty("service_tel");
 			} catch (IOException e) {
-				logger.error("IndentController method:constructor load Properties fail ...");
+				Log.error("IndentController method:constructor load Properties fail ...", null);
 				e.printStackTrace();
 			}
 		}
@@ -105,13 +107,15 @@ public class IndentController extends BaseController {
 					// 发送短信
 					smsService.smsSend(TELEPHONE, info.toString());
 					
-					serLogger.info("Order submit at PC,Message is " + info.toString());
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("Order submit at PC,Message is " + info.toString(),sessionInfo);
 					return new ModelAndView("redirect:/success");
 				}
 				
 			}
 		} catch (Exception e) {
-			logger.error("IndentController method:successView() Order encode Failure ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("IndentController method:successView() Order encode Failure ...",sessionInfo);
 			e.printStackTrace();
 		}
 		return new ModelAndView("redirect:/error");

@@ -70,7 +70,7 @@ public class HttpUtil {
 			httpGet.abort();
 			if (content.contains("<!DOCTYPE html>")) {
 				content = "";
-				logger.error("没有权限 url:" + url);
+				Log.error("没有权限 url:" + url,null);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +103,7 @@ public class HttpUtil {
 				result = EntityUtils.toString(response.getEntity());// 返回json格式
 				if (result.contains("<!DOCTYPE html>")) {
 					result = "";
-					logger.error("没有权限 url:" + url);
+					Log.error("没有权限 url:" + url,null);
 				}
 			}
 		} catch (Exception e) {

@@ -10,8 +10,6 @@ import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,17 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 
 @RestController
 public class SolrController extends BaseController {
-
-	final Logger logger = LoggerFactory.getLogger("error");
-
-	final Logger serLogger = LoggerFactory.getLogger("service");
 
 	private static String URL_PREFIX = null;
 
@@ -46,7 +42,7 @@ public class SolrController extends BaseController {
 				VIDEO_IMAGE_PERFIX = propertis
 						.getProperty("upload.server.product.image");
 			} catch (IOException e) {
-				logger.error("SolrController method:constructor load Properties fail ...");
+				Log.error("SolrController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -94,8 +90,9 @@ public class SolrController extends BaseController {
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			logger.error("SolrController method:searchView() encode failue,q="
-					+ q);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController method:searchView() encode failue,q="
+					+ q,sessionInfo);
 		}
 		return new ModelAndView("search", model);
 	}
@@ -125,8 +122,9 @@ public class SolrController extends BaseController {
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			logger.error("SolrController method:searchPagination() encode failue,q="
-					+ view.getCondition());
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController method:searchPagination() encode failue,q="
+					+ view.getCondition(),sessionInfo);
 		}
 		return null;
 	}

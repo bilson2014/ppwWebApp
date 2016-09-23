@@ -360,15 +360,15 @@ function phoneInfo(){
 /**
  * 验证手机号码是否已被注册
  */
-function isPhoneNumExit(teleNum){
-	if(teleNum != '' && teleNum != null && teleNum != undefined){
-		loadData(function(flag){
-			return flag;
-		}, getContextPath() + '/login/validation/phone', $.toJSON({
-			telephone : teleNum
-		}));
-	}
-}
+//function isPhoneNumExit(teleNum){
+//	if(teleNum != '' && teleNum != null && teleNum != undefined){
+//		loadData(function(flag){
+//			return flag;
+//		}, getContextPath() + '/login/validation/phone', $.toJSON({
+//			telephone : teleNum
+//		}));
+//	}
+//}
 
 function getVeritifyCodeValidate(){
 	$('#codeBt').unbind('click');
@@ -383,13 +383,16 @@ function getVeritifyCodeValidate(){
 					return false;
 				}
 				loadData(function(flag){
-					if(flag){
+					if(flag.errorCode == 200){
 						// 注册过
 						$('#label-telephone').text('您输入的手机号码已被注册');
 						$('#label-telephone').removeClass('hide');
-					}else{ // 未注册
+					}else if(flag.errorCode == 300){ // 未注册
 						$('#label-telephone').addClass('hide');
 						verification(concat_tele_new);
+					}else if(flag.errorCode == 500){
+						$('#label-telephone').text(flag.errorMsg);
+						$('#label-telephone').removeClass('hide');
 					}
 				}, getContextPath() + '/login/validation/phone', $.toJSON({
 					telephone : concat_tele_new

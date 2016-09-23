@@ -16,6 +16,8 @@ public interface SessionInfoDao {
 	 */
 	public String getSessionWithField(final HttpServletRequest request,final String field);
 	
+	public String getSessionWithSessionId(final String sessionId,final String field);
+	
 	public boolean exitSession(final HttpServletRequest request);
 
 	public void removeSession(final HttpServletRequest request);
