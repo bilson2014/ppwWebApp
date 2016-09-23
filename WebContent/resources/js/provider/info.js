@@ -191,7 +191,7 @@ function safeInfo(){
 			if(data.code==1){
 				// 更新成功
 				successToolTipShow('更新成功！');
-				window.clearInterval(InterValObj); // 停止计时器
+				InterValObj&&window.clearInterval(InterValObj); // 停止计时器
 				$("#upd-codeBt").text("获取验证码");
 			}else{
 				// 更新失败
@@ -490,6 +490,16 @@ function checkData(type){
 			if(newPassword == '' || newPassword == null || newPassword == undefined){
 				popshow('insPassword', '密码不能少于6位!');
 				$('#insPassword').focus();
+				return false;
+			}
+			if(newPassword.length < 6){
+				popshow('insPassword', '密码不能少于6位!');
+				$('#insPassword').focus();
+				return false;
+			}
+			if(comfrimPassword == '' || comfrimPassword == null || comfrimPassword == undefined){
+				popshow('insTwoPassword', '请填写确认密码!');
+				$('#insTwoPassword').focus();
 				return false;
 			}
 			if(newPassword != comfrimPassword){
