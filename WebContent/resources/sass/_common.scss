@@ -146,6 +146,10 @@
 	width: 100%;
 	height: $footer-height;
 	background: $footer-bg;
+
+	@media screen and (max-width: 1276px) {
+		height: $footer-height + 14;
+	}
 }
 
 .footer-wrap .footer-content{
@@ -153,6 +157,10 @@
 	height: $footer-height - $footer-box-height;
 	margin: 0 auto;
 	border-bottom: solid 1px $gray-border;
+
+	@media screen and (max-width: 1276px) {
+		height: $footer-height - $footer-box-height + 14;
+	}
 }
 
 .footer-content .footer-column {
