@@ -2177,7 +2177,7 @@ function toShare(){
 					$('#toolbar-share').modal({backdrop: 'static', keyboard: false});
 					//$('#toolbar-share').modal('show');
 					
-					shareSpace();
+					//shareSpace();
 			}
 			else{
 				//alert(msg.errorMsg);
@@ -2356,19 +2356,19 @@ function clickLink(){
 }
 
 
-function shareSpace(){ // 分享
-	$('.share').on('click',function(){
-		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
-		var share_title = '分享链接';
-		var imgUrl = '';
-		var imgPath = '';
-		if(imgUrl != undefined && imgUrl != null){
-			var img_Name = getFileName(imgUrl);
-			imgPath = getHostName() + '/product/img/' + img_Name;
-		}
-		share.init(shareUrl, share_title, '');
-	});
-}
+//function shareSpace(){ // 分享
+//	$('.share').on('click',function(){
+//		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
+//		var share_title = '分享链接';
+//		var imgUrl = '';
+//		var imgPath = '';
+//		if(imgUrl != undefined && imgUrl != null){
+//			var img_Name = getFileName(imgUrl);
+//			imgPath = getHostName() + '/product/img/' + img_Name;
+//		}
+//		share.init(shareUrl, share_title, '');
+//	});
+//}
 
 
 var ControlTree = {

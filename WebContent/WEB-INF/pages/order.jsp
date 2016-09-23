@@ -158,8 +158,8 @@
 						<dd>我们非常乐意为您效劳</dd>
 						<dd>助力您的产品大获成功</dd>
 						<dd>拍片网，试过都知好!</dd>
-						<div class="info">
-						  <div id="showVideo">视频介绍</div>
+						<div class="info" id="showVideo">
+						  <div>视频介绍</div>
 						  <div class="triangle-right"></div>
 						</div>
 					</dl>
