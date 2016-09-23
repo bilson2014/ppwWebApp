@@ -46,6 +46,7 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
@@ -80,7 +81,7 @@ public class PCController extends BaseController {
 				URL_PREFIX = propertis.getProperty("urlPrefix");
 				TELEPHONE = propertis.getProperty("service_tel");
 			} catch (IOException e) {
-				logger.error("PCController method:constructor load Properties fail ...");
+				Log.error("PCController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -100,7 +101,8 @@ public class PCController extends BaseController {
 		localUrl.append(request.getLocalPort());
 		Product product = new Product();
 		product.setPicHDUrl(localUrl.toString());
-		serLogger.info("PCController method:getAddress() Get address success:" + localUrl.toString());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("PCController method:getAddress() Get address success:" + localUrl.toString(),sessionInfo);
 		return product;
 	}
 
@@ -180,13 +182,14 @@ public class PCController extends BaseController {
 			final String token = IndentUtil.generateOrderToken(request, indent);
 			model.addAttribute("token", token);
 		} catch (Exception e) {
-			logger.error(
-					"method PCController orderView ,order page has error,bacase generate order use AES Decrypt token error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("method PCController orderView ,order page has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		// modify by Jack,2016-06-21 12:10 end
-		serLogger.info("PCController method:orderView() Redirect order page,product_id:" + indent.getProductId()
-				+ ",product_name:" + indent.getIndentName());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("PCController method:orderView() Redirect order page,product_id:" + indent.getProductId()
+		+ ",product_name:" + indent.getIndentName(),sessionInfo);
 		return new ModelAndView("order", model);
 	}
 
@@ -213,8 +216,8 @@ public class PCController extends BaseController {
 			final String token = IndentUtil.generateOrderToken(request, indent);
 			model.addAttribute("token", token);
 		} catch (Exception e) {
-			logger.error(
-					"method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		// modify by Jack,2016-06-21 12:05 end
@@ -255,8 +258,8 @@ public class PCController extends BaseController {
 			final String token = IndentUtil.generateOrderToken(request, indent);
 			model.addAttribute("token", token);
 		} catch (Exception e) {
-			logger.error(
-					"method PCController order ,salesman order page has error,bacase generate order use AES Decrypt token error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("method PCController order ,salesman order page has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		// modify by Jack,2016-06-21 12:35 end
@@ -282,12 +285,14 @@ public class PCController extends BaseController {
 		try {
 			model.addAttribute("product_name", URLDecoder.decode(productName, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-			logger.error("PCContronller method:activeOrderView() productName URLDecoder error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("PCContronller method:activeOrderView() productName URLDecoder error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
 
-		serLogger.info("PCController Redirect Activity order page,product_id:" + productId);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("PCController Redirect Activity order page,product_id:" + productId,sessionInfo);
 		return new ModelAndView("order", model);
 	}
 
@@ -304,7 +309,8 @@ public class PCController extends BaseController {
 			pageSize = Long.parseLong(str);
 		}
 
-		serLogger.info("Load product size,productType:" + view.getProductType() + " total number is " + pageSize);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load product size,productType:" + view.getProductType() + " total number is " + pageSize,sessionInfo);
 		return pageSize;
 	}
 
@@ -325,7 +331,8 @@ public class PCController extends BaseController {
 			list = JsonUtil.toList(str);
 		}
 
-		serLogger.info("List With Condition,productType:" + view.getProductType());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("List With Condition,productType:",sessionInfo);
 		return list;
 	}
 
@@ -346,7 +353,8 @@ public class PCController extends BaseController {
 			list = JsonUtil.toList(str);
 		}
 
-		serLogger.info("Load portal page products,size:" + list.size());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load portal page products,size:" + list.size(),sessionInfo);
 		return list;
 	}
 
@@ -370,7 +378,8 @@ public class PCController extends BaseController {
 		product = JsonUtil.toBean(json, Product.class);
 		model.addAttribute("product", product);
 
-		serLogger.info("Redirect team page,teamId:" + teamId + " ,productId:" + productId);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
 		return new ModelAndView("team", model);
 	}
 
@@ -386,7 +395,8 @@ public class PCController extends BaseController {
 		product = JsonUtil.toBean(json, Product.class);
 		model.addAttribute("product", product);
 
-		serLogger.info("Redirect team page,teamId:" + teamId + " ,productId:" + productId);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
 		return new ModelAndView("play", model);
 	}
 
@@ -405,7 +415,8 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		list = JsonUtil.toList(json);
 
-		serLogger.info("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(),sessionInfo);
 		return list;
 	}
 	
@@ -425,7 +436,8 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		list = JsonUtil.toList(json);
 
-		serLogger.info("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(),sessionInfo);
 		return list;
 	}
 
@@ -445,7 +457,8 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		product = JsonUtil.toBean(json, Product.class);
 
-		serLogger.info("Load product information,productId:" + productId);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load product information,productId:" + productId,sessionInfo);
 		return product;
 	}
 
@@ -464,7 +477,8 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		list = JsonUtil.toList(json);
 
-		serLogger.info("Load All Service By Product,productId:" + productId);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load All Service By Product,productId:" + productId,sessionInfo);
 		return list;
 	}
 
@@ -508,7 +522,8 @@ public class PCController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("PCController method:listView() encode failue,q=*");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("PCController method:listView() encode failue,q=*",sessionInfo);
 		}
 		return new ModelAndView("search", model);
 		// modify by jack,2016-07-06 18:13 end
@@ -525,7 +540,8 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpPost(url, null, request);
 		list = JsonUtil.toList(json);
 
-		serLogger.info("Load Video Item, total number is " + list.size());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Load Video Item, total number is " + list.size(),sessionInfo);
 		return list;
 	}
 
@@ -547,7 +563,8 @@ public class PCController extends BaseController {
 			if (ValidateUtil.isValid(sourecs)) {
 				model.addAttribute("userSource", sourecs);
 			}
-			serLogger.info("Redirecting userInfo page,userId:" + info.getReqiureId());
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(),sessionInfo);
 		}
 
 		return new ModelAndView("userInfo", model);
@@ -615,8 +632,9 @@ public class PCController extends BaseController {
 		}
 		model.addAttribute("flag", flag);
 
-		serLogger.info("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : "
-				+ team.getTeamName() + "flag is " + flag);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : "
+				+ team.getTeamName() + "flag is " + flag,sessionInfo);
 		return new ModelAndView("provider/portal", model);
 	}
 
@@ -638,7 +656,8 @@ public class PCController extends BaseController {
 			// 发送短信
 			final boolean result = smsService.smsSend(TELEPHONE, info.toString());
 
-			serLogger.info("Appointment Message :" + info.toString() + " ,telephone:" + telephone);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Appointment Message :" + info.toString() + " ,telephone:" + telephone,sessionInfo);
 			return result;
 		}
 		return false;

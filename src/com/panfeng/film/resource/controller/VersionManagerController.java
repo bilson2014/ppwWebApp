@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,6 +54,7 @@ import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
 import com.panfeng.film.util.WechatUtils;
 
@@ -63,7 +62,6 @@ import com.panfeng.film.util.WechatUtils;
 @RequestMapping("/mgr")
 public class VersionManagerController extends BaseController {
 
-	private static Logger logger = LoggerFactory.getLogger("error");
 	@Autowired
 	private ResourceService resourceService;
 	@Autowired
@@ -107,7 +105,8 @@ public class VersionManagerController extends BaseController {
 					}
 
 				} catch (Exception e) {
-					logger.error("VersionManager login error,Becase of decrypt password error ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("VersionManager login error,Becase of decrypt password error ...",sessionInfo);
 					e.printStackTrace();
 				}
 			}
@@ -226,7 +225,8 @@ public class VersionManagerController extends BaseController {
 					}
 				}
 			} catch (Exception e) {
-				logger.error("Provider bind error,teamName is " + employee.getEmployeeRealName());
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Provider bind error,teamName is " + employee.getEmployeeRealName(),sessionInfo);
 				e.printStackTrace();
 			}
 		}

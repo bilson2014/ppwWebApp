@@ -100,6 +100,24 @@ public class SessionInfoDaoImpl implements SessionInfoDao {
 			}
 		}
 	}
+	
+	public String getSessionWithSessionId(final String sessionId, final String field) {
+
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			final String str = jedis.hget(DataUtil.md5(sessionId), field);
+			return str;
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if (jedis != null) {
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void removeSessionByToken(HttpServletRequest request, String token) {

@@ -1,6 +1,5 @@
 var hasVideo = false;
 $().ready(function(){
-	
 	order.init();
 	order.showVideo();
 	order.closeVideo();

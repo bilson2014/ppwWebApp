@@ -8,10 +8,7 @@ var qq_uniqueId;
 var isShowKaptcha = false;
 
 $().ready(function(){
-	
-	
-
-	
+	changeAttr();
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -49,14 +46,23 @@ $().ready(function(){
 					}
 					if(checkMobile(telephone)){
 						loadData(function(flag){
-							if(flag){
+							if(flag.errorCode == 200){
 								$('#submitBtn').text("登录");
 								$('#title').text("客户登录");
 								$('#submitBtn').attr('data-id','login'); // 标记login
-							}else{
+								$('#changeAttr').text('新用户注册');
+								$('#changeAttr').attr('data-event','login');
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 300){
 								$('#submitBtn').text("注册");
 								$('#title').text("客户注册");
 								$("#submitBtn").attr('data-id','register'); // 标记register
+								$('#changeAttr').text('客户登陆');
+								$('#changeAttr').attr('data-event','register');
+								$('#user_phoneNumberId').text('手机号输入错误');
+							}else if(flag.errorCode == 500){
+								$('#user_phoneNumberId').removeClass('hide');
+								$('#user_phoneNumberId').text(flag.errorMsg);
 							}
 						}, getContextPath() + '/login/validation/phone', $.toJSON({
 							telephone : telephone
@@ -344,7 +350,6 @@ $().ready(function(){
 			},
 			changeLogin:function(){
 				$('#changeLoginId').on('click',function(){
-					
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
 						$('#loginWord').text('使用账号登录');
@@ -356,7 +361,7 @@ $().ready(function(){
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
 						$('#threeId').removeClass('hide');
-					
+						$('#changeAttr').show();
 					}else{
 						$('#threeId').addClass('hide');
 						$('input').val('');
@@ -368,6 +373,7 @@ $().ready(function(){
 						$('#outSideId').removeClass('phoneHeight');
 						$('#outSideId').addClass('userheight');
 						$('#login_type').val("loginName");
+						$('#changeAttr').hide();
 					}
 				});
 			}
@@ -440,7 +446,22 @@ function getEnter(){
 		}
 	});
 }
-	
+function changeAttr(){
+	$('#changeAttr').on('click',function(){
+		var type = $(this).attr('data-event');
+		if(type == 'login'){
+			$('#submitBtn').text('注册');
+			$(this).attr('data-event','register');
+			$(this).text('客户登陆');
+			$('#title').text('客户注册');
+		}else if(type == 'register'){
+			$('#submitBtn').text('登陆');
+			$(this).attr('data-event','login');
+			$(this).text('新用户注册');
+			$('#title').text('客户商登陆');
+		}
+	});
+}
 //function local(){
 //	if(window.localStorage){
 //		

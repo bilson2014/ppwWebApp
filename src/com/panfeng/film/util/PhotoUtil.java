@@ -98,12 +98,12 @@ public class PhotoUtil {
 				is.close();
 				
 			} catch (IOException e) {
-				logger.error("image cutting error ...");
+				Log.error("image cutting error ...",null);
 				e.printStackTrace();
 			}
 			
 		}else{
-			logger.error("photo inputStream is null ...");
+			Log.error("photo inputStream is null ...",null);
 			return false;
 		}
 		return true;
