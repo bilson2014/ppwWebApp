@@ -131,8 +131,9 @@ $().ready(function(){
 			checkFile(fileId);
 			$("#"+showName).text($('#'+fileId).val().substring($('#'+fileId).val().lastIndexOf("\\")+1));
 			if(fileId!='videoFile')showPic(fileId,showImg,content);
-			if($('#'+fileId).val())clearInterval(timer);
+			//if($('#'+fileId).val())clearInterval(timer);
 		}, 500);
+		clearInterval(timer);
 	}
 	$('.uploadbtn').off("click").on('click',startUpload);
 	
