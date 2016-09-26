@@ -21,9 +21,8 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
 
-<spring:url value="/resources/img" var="path" />
+<spring:url value="/resources/images" var="path" />
 
-<spring:url value="/resources/images" var="imgPaths" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -545,7 +544,7 @@
 				<label class="tooltip-success-message">信息更新成功</label>
 			</div>
     		  <div class="noband" id="wechat">
-			       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+			       <div class="inLine"><img src="${imgPath}/icons/webcat.png"></div>
 			       <div class="inLine vertical">
 			            <ul>
 			               <li>微信登录</li>
@@ -558,7 +557,7 @@
 			 <div class="line"></div>
 		  
 			    <div class="noBand" id="qq">
-				   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+				   <div class="inLine"><img src="${imgPath}/icons/qq.png"></div>
 				       <div class="inLine vertical">
 				            <ul>
 				               <li>QQ账号</li>
@@ -571,7 +570,7 @@
 				  <div class="line"></div>
 				  
 		    <div class="noBand" id="wb">
-			   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+			   <div class="inLine"><img src="${imgPath}/icons/weibo.png"></div>
 			       <div class="inLine vertical">
 			            <ul>
 			               <li>微博账号</li>

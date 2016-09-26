@@ -21,8 +21,8 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/juicer.js" var="juicerJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
-<spring:url value="/resources/img" var="imgPath"/>
-<spring:url value="/resources/images" var="imgPaths"/>
+<spring:url value="/resources/images" var="imgPath"/>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -403,7 +403,7 @@
 							<label class="tooltip-message">修改成功!</label>
 						</div>
 						  <div class="noBand" id="wechat">
-						       <div class="inLine"><img src="${imgPaths}/icons/webcat.png"></div>
+						       <div class="inLine"><img src="${imgPath}/icons/webcat.png"></div>
 						       <div class="inLine vertical">
 						            <ul>
 						               <li>微信登录</li>
@@ -416,7 +416,7 @@
 						 <div class="line"></div>
 								  
 					    <div class="noBand" id="qq">
-						   <div class="inLine"><img src="${imgPaths}/icons/qq.png"></div>
+						   <div class="inLine"><img src="${imgPath}/icons/qq.png"></div>
 						       <div class="inLine vertical">
 						            <ul>
 						               <li>QQ账号</li>
@@ -429,7 +429,7 @@
 						  <div class="line"></div>
 										  
 					    <div class="noBand" id="wb">
-						   <div class="inLine"><img src="${imgPaths}/icons/weibo.png"></div>
+						   <div class="inLine"><img src="${imgPath}/icons/weibo.png"></div>
 						       <div class="inLine vertical">
 						            <ul>
 						               <li>微博账号</li>

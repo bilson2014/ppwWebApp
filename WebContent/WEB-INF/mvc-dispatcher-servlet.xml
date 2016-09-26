@@ -33,6 +33,8 @@
     
      <!--测试-->
     
+    <mvc:view-controller path="/biao/biao" view-name="/biao/biao" />
+    
      <!--END-->
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />

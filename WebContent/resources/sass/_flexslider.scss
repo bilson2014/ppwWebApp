@@ -32,11 +32,11 @@
 		}
 	}
 	
-	.flex-control-nav{position:absolute;bottom:10px;z-index:2;width:100%;text-align:center;display: none;}
+	.flex-control-nav{position:absolute;bottom:10px;z-index:2;width:100%;text-align:center;}
 	.flex-control-nav li{display:inline-block;width:14px;height:14px;margin:0 5px;*display:inline;zoom:1;}
-	.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;}
+	.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:#999;border-radius:120px;&:hover{background:#fe5453}}
 	.flex-control-nav .flex-active{background-position:0 0;}
-
+	
 	.flex-direction-nav{position:absolute;z-index:3;width:100%;top:42%;}
 	.flex-direction-nav li a{display:block;width:30px;height:70px;overflow:hidden;cursor:pointer;position:absolute;}
 	.flex-direction-nav li a.flex-prev{left:0;background:url(../img/icons/prev.png) center center no-repeat;}

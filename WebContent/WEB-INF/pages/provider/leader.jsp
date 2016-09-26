@@ -15,7 +15,7 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/leader.js" var="leaderJs"/>
-<spring:url value="/resources/img" var="path" />
+<spring:url value="/resources/images" var="path" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

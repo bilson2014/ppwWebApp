@@ -122,13 +122,14 @@
 				<div class="new-banner" >
 					<div class="title">低预算拍大片 不满意全额退款</div>
 					<div class="search-box" id="banner-search">
-						<form method="get" action="/search" id="s-form">
-							<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+						<form method="get" action="/search" id="s-form" class="bannerOut">
+							<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />
 							<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 							<ul id="shelper" class="shelper-lucency"></ul>
+							<img src="${imgPath }/search.png" class="bannerSearch"> 
 						</form>
 
-						<img src="${imgPath }/search.png" style="position: absolute;height: 35px;right: 20px;"> 
+						
 
 					</div>
 					<div class="desc">35800+ 导演 / 编剧 / 摄影师 / 影视专家为您服务</div>
