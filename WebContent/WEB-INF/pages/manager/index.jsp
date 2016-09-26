@@ -39,7 +39,7 @@
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
-<spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
@@ -209,7 +209,7 @@
      <div class="noproject hide">
        <div class="no-poject-div" id="no-poject-div">
        	<ul>
-        	<li><img src="/resources/img/flow/warning.png"></li>
+        	<li><img src="/resources/images/flow/warning.png"></li>
         	<r:identity role="provider">
         		<li><label>当前没有项目分配</label></li>
         	</r:identity>
@@ -244,7 +244,7 @@
 				<div class="step_context step_margin test" data-open-on="hover">
 				</div>
 					<div class="drop-content" style="display: none;">
-						<a href="#" class="drop-a"><img src="/resources/img/flow/point.png"/></a>
+						<a href="#" class="drop-a"><img src="/resources/images/flow/point.png"/></a>
 						<a href="#" class="drop-a content-title" ></a>
 			            <a href="#" class="description-c"></a>
 				   </div>
@@ -626,13 +626,13 @@
 	
 	<!-- toolbar modal begin -->
 		<div class="modal fade upload-window" id="toolbar-modal">
-		<!-- 	<img class="circle-img" src="/resources/img/flow/circle.png" id="circle-img-id"></img> -->
+		<!-- 	<img class="circle-img" src="/resources/images/flow/circle.png" id="circle-img-id"></img> -->
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
 						<!-- <div class="common-icons-know-us-close-icon modal-icon"
 							data-dismiss="modal" aria-label="Close"></div> -->
-							<img class="canclemodal" src="/resources/img/flow/canclemodal.png">
+							<img class="canclemodal" src="/resources/images/flow/canclemodal.png">
 						<dl>
 							<dt>
 								<h1 id="modal-h3-first">选择文件</h1>
@@ -645,7 +645,7 @@
 								<h2 id="modal-h3-first">选择分类</h2>
 								<input id="input-value" class="input-select"
 									readonly="readonly" placeholder="未选择"></input> <img
-									class="select-image" src="/resources/img/flow/select.png">
+									class="select-image" src="/resources/images/flow/select.png">
 								<ul class="ul-option" id="ul-select">
 								</ul>
 							</dt>
@@ -665,7 +665,7 @@
 				<div class="modal-content" >
 					
 					<div class="modal-body checkstep">
-					<img class="canclestep"  id="canclestep" src="/resources/img/flow/canclemodal.png">
+					<img class="canclestep"  id="canclestep" src="/resources/images/flow/canclemodal.png">
 		                   <button class="red-btn sure-margin" id="sureCheck">确定</button>
 		                   <label class="check-step" id="sureToNext" >确定下一步吗</label>
 		                   <div class="check-step-load hide" id="listLoadCheck">
@@ -688,7 +688,7 @@
 					<div class="modal-body checkstep">
 					         
 					       <div class="pauseWord">
-					       <img class="canclestepPause"  id="canclestepPause" src="/resources/img/flow/canclemodal.png">
+					       <img class="canclestepPause"  id="canclestepPause" src="/resources/images/flow/canclemodal.png">
 					         <div id="pauseWord">确定暂停吗？</div>
 					          <div class="hide" id="pauseError">请填写原因</div>
 					         <div class="pauseTop" id="errorReason" style="display:inline-block;">
@@ -721,7 +721,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content" >
 					<div class="modal-body checkstep">
-					<img class="canclestep"  id="canclestepClose" src="/resources/img/flow/canclemodal.png">
+					<img class="canclestep"  id="canclestepClose" src="/resources/images/flow/canclemodal.png">
 		                   <button class="red-btn sure-margin" id="sureClose">确定</button>
 		                   <label class="check-step" >确定关闭当前订单吗</label>
 		                   <button class="gray-btn cancle-margin" id="falseClose">取消</button>   
@@ -736,7 +736,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content" >
 				  <div class="pay-title-link">链接信息</div>
-				       <img class="canclePayLink"  id="canclePayLink" src="/resources/img/flow/canclemodal.png">
+				       <img class="canclePayLink"  id="canclePayLink" src="/resources/images/flow/canclemodal.png">
 				         <div id="copySuccess" class="copyDiv">
 						 <div class="copySuccessImg"><img src="${imgPath }/flow/linkGreen.png"/></div>
 						 <div class="copySuccess">复制成功</div>
@@ -752,10 +752,10 @@
 					 <div class="input-group getShareLink hide">
 						  <dl class="share-list">
 										<dt >分享:</dt>
-										<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
-										<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/img/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
-										<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/img/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
-										<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/img/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/images/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/images/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/images/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
+										<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/images/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
 						 </dl>
 					 </div>
 				</div>	
@@ -769,7 +769,7 @@
 				<div class="modal-content" >
 				
 					 <div class="payInfo payInfoheight" id="payInfo">
-                          <img class="canclePay"  id="canclePay" src="/resources/img/flow/canclemodal.png">
+                          <img class="canclePay"  id="canclePay" src="/resources/images/flow/canclemodal.png">
 					    <div class="pay-title" id="payTitleId">收款信息</div>
 						     <div class="payLeft ">
 						        <ul id="OnlineInfo">

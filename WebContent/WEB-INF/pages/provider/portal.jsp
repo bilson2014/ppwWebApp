@@ -18,7 +18,7 @@
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
 
-<spring:url value="/resources/img/user" var="imgPath"/>
+<spring:url value="/resources/images/user" var="imgPath"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->

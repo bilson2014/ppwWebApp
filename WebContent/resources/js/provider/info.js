@@ -52,7 +52,7 @@ $().ready(function(){
 		// 图片上传 点击事件
 		$('#file').off("change").on("change",function(){
 			$.blockUI({
-				message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
+				message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
 			});
 			// 上传图片
 			uploadImg();

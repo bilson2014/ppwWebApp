@@ -21,8 +21,7 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/video-list.js" var="providerVideoListJs"/>
-
-<spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -78,7 +77,7 @@
 									<div class="media">
 										<a class="pull-left" href="javascript:void(0);">
 											<c:if test="${product.picLDUrl == null}">
-												<img class="media-object" src="/resources/img/provider/upload-icon.png" />
+												<img class="media-object" src="/resources/images/provider/upload-icon.png" />
 											</c:if>
 											<c:if test="${product.picLDUrl != null}">
 												<img class="media-object" src='/product/img<c:out value="${product.picLDUrl }"/>' />
@@ -100,10 +99,10 @@
 											<c:if test="${cType == 4 }">
 												<dl class="share-list">
 													<dt >分享:</dt>
-													<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
-													<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/img/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
-													<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/img/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
-													<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/img/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
+													<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/images/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
+													<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/images/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
+													<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/images/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
+													<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/images/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
 												</dl>
 											</c:if>
 										</div>
@@ -126,7 +125,7 @@
 					</c:if>
 						<td colspan=2 class="td1 td-content t-center">
 							<div id="uploadBt">
-								<img alt="添加作品" src="/resources/img/icons/plus.png" class="plusImg" />
+								<img alt="添加作品" src="/resources/images/icons/plus.png" class="plusImg" />
 							</div>
 						</td>
 					</tr>
@@ -135,7 +134,7 @@
 					<tr class="firstCol-btn">
 						<td colspan=2 class="td1 td-content t-center">
 							<div id="uploadBt" >
-								<img alt="添加作品" src="/resources/img/icons/plus.png" class="plusImg" />
+								<img alt="添加作品" src="/resources/images/icons/plus.png" class="plusImg" />
 							</div>
 						</td>
 					</tr>
