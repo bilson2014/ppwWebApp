@@ -13,10 +13,10 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +39,7 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.PhotoUtil;
 
 @RestController
@@ -47,10 +48,6 @@ public class UserController extends BaseController{
 
 	@Autowired
 	private SmsService smsService = null;
-	
-	final Logger logger = LoggerFactory.getLogger("error");
-	
-	final Logger serLogger = LoggerFactory.getLogger("service");
 	
 	private static String URL_PREFIX = null;
 	
@@ -76,7 +73,7 @@ public class UserController extends BaseController{
 				IMAGE_MAX_SIZE = propertis.getProperty("imageMaxSize");
 				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
 			} catch (IOException e) {
-				logger.error("UserController method:constructor load Properties fail ...");
+				Log.error("UserController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -95,22 +92,23 @@ public class UserController extends BaseController{
 			// 转码
 			user.setEmail(URLEncoder.encode(user.getEmail(), "UTF-8"));
 			user.setQq(URLEncoder.encode(user.getQq(), "UTF-8"));
+			user.setWeChat(URLEncoder.encode(user.getWeChat(), "UTF-8"));
 			user.setRealName(URLEncoder.encode(user.getRealName(), "UTF-8"));
 			user.setUserName(URLEncoder.encode(user.getUserName(), "UTF-8"));
-			
-			serLogger.info("User id is " + user.getId() + " update info(username:"+ user.getUserName() +",qq:"+ user.getQq() +",realname:"+ user.getRealName() +",email:"+ user.getEmail() +")");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("User id is " + user.getId() + " update info(username:"+ user.getUserName() +",qq:"+ user.getQq() +",realname:"+ user.getRealName() +",email:"+ user.getEmail() +")",sessionInfo);
 			
 			// 修改 用户基本信息
 			final String url = URL_PREFIX + "portal/user/modify/info";
 			String json = HttpUtil.httpPost(url, user,request);
 			Boolean result = JsonUtil.toBean(json, Boolean.class);
-			
-			serLogger.info("User id is " + user.getId() + " update info(username,qq,realname,email) -success=" + result);
+			Log.error("User id is " + user.getId() + " update info(username,qq,realname,email) -success=" + result,sessionInfo);
 			
 			//updateUserInSession(request);
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			logger.error("UserController method:modifiedUserInfo() user info encode error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("UserController method:modifiedUserInfo() user info encode error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		return false;
@@ -133,11 +131,13 @@ public class UserController extends BaseController{
 				final String json = HttpUtil.httpPost(url, user,request);
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
 				
-				serLogger.info("User id is " + userId + " update password -success=" + result);
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
 				//updateUserInSession(request);
 				return result;
 			}
-			logger.info("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
 		}
 		return false;
 	}
@@ -169,13 +169,15 @@ public class UserController extends BaseController{
 						final String json = HttpUtil.httpPost(url, user,request);
 						final Boolean result = JsonUtil.toBean(json, Boolean.class);
 						
-						serLogger.info("User id is " + userId + " update password -success=" + result);
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
 						if(result){
 							map.put("code", 1);
 							map.put("msg", "修改成功");
 						}
 					}
-					logger.info("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
 				}else{
 					map.put("msg", "验证码错误");
 				}
@@ -196,7 +198,8 @@ public class UserController extends BaseController{
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		final boolean ret = smsService.smsSend(telephone, code);
 		
-		serLogger.info("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret,sessionInfo);
 		
 		//updateUserInSession(request);
 		return ret;
@@ -216,14 +219,15 @@ public class UserController extends BaseController{
 			if(isTest || (code != null && !"".equals(code))){
 				if(isTest || (code.equals(user.getVerification_code()))){
 					
-					serLogger.info("User id is " + user.getId() + " update phone number:" + user.getTelephone());
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("User id is " + user.getId() + " update phone number:" + user.getTelephone(),sessionInfo);
 					
 					// 修改 用户密码
 					final String url = URL_PREFIX + "portal/user/modify/phone";
 					final String json = HttpUtil.httpPost(url, user,request);
 					final Boolean result = JsonUtil.toBean(json, Boolean.class);
 					
-					serLogger.info("User id is " + user.getId() + " update phone number -success=" + result);
+					Log.error("User id is " + user.getId() + " update phone number -success=" + result,sessionInfo);
 					
 					//updateUserInSession(request);
 					return result;
@@ -288,7 +292,8 @@ public class UserController extends BaseController{
 						File imageFile = new File(FILE_PROFIX + path);
 						file.transferTo(imageFile);
 						
-						serLogger.info("User id is " + user.getId() + " upload photo by self path is" + path);
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("User id is " + user.getId() + " upload photo by self path is" + path,sessionInfo);
 						
 						return path;
 					}else{
@@ -299,7 +304,8 @@ public class UserController extends BaseController{
 			}
 			
 		} catch (Exception e) {
-			logger.error("UserController method:modifyUserPhoto() Upload user image error ...");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("UserController method:modifyUserPhoto() Upload user image error ...",sessionInfo);
 			e.printStackTrace();
 		}
 		return null;
@@ -344,7 +350,8 @@ public class UserController extends BaseController{
 			File newFile = new File(FILE_PROFIX + path);
 			FileUtils.copyFile(original, newFile);
 			
-			serLogger.info("User id is " + user.getId() + " upload photo by system path is" + newFile);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("User id is " + user.getId() + " upload photo by system path is" + newFile,sessionInfo);
 			
 			// 更新数据库
 			if(user != null){
@@ -353,7 +360,7 @@ public class UserController extends BaseController{
 				final String json = HttpUtil.httpPost(url, user,request);
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
 				
-				serLogger.info("User id is " + user.getId() + " update photo by system -success=" + result);
+				Log.error("User id is " + user.getId() + " update photo by system -success=" + result,sessionInfo);
 				
 				//updateUserInSession(request);
 				return result;
@@ -367,7 +374,7 @@ public class UserController extends BaseController{
 	 * 删除 取消的自定义上传文件
 	 */
 	@RequestMapping("/delete/photo")
-	public boolean deleteTempPhoto(@RequestBody final User user){
+	public boolean deleteTempPhoto(@RequestBody final User user,HttpServletRequest request){
 		
 		if(user != null && !"".equals(user.getImgUrl())){
 			final String path = user.getImgUrl();
@@ -377,8 +384,8 @@ public class UserController extends BaseController{
 				if(!file.isDirectory()){
 					file.delete();
 					
-					serLogger.info("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl());
-					
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),sessionInfo);
 					return true;
 				}
 			}
@@ -401,13 +408,14 @@ public class UserController extends BaseController{
 				File original = new File(imgPath);
 				final String extName = FileUtils.getExtName(original.getName(), ".");
 				
-				serLogger.info("User id is " + param.getUserId() + " cut photo begin");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("User id is " + param.getUserId() + " cut photo begin",sessionInfo);
 				
 				// cut photo
 				final InputStream original_is = new FileInputStream(original);
 				final boolean ret = PhotoUtil.cutPhoto(original_is,param,original,extName);
 				
-				serLogger.info("User id is " + param.getUserId() + " cut photo - success = " + ret);
+				Log.error("User id is " + param.getUserId() + " cut photo - success = " + ret,sessionInfo);
 				
 				// save file
 				File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
@@ -447,7 +455,7 @@ public class UserController extends BaseController{
 				final String json = HttpUtil.httpPost(url, user,request);
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
 				
-				serLogger.info("User id is " + param.getUserId() + " update DIY photo - success = " + result);
+				Log.error("User id is " + param.getUserId() + " update DIY photo - success = " + result,sessionInfo);
 				
 				if(result){
 					//updateUserInSession(request);
@@ -456,7 +464,8 @@ public class UserController extends BaseController{
 					return null;
 				}
 			} catch (FileNotFoundException e) {
-				logger.error("UserController method:uploadDIYUserImg() cut user photo error ...");
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("UserController method:uploadDIYUserImg() cut user photo error ...",sessionInfo);
 				e.printStackTrace();
 			}
 			

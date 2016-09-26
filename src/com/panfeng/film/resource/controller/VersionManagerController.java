@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,6 +54,7 @@ import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
 import com.panfeng.film.util.WechatUtils;
 
@@ -63,7 +62,6 @@ import com.panfeng.film.util.WechatUtils;
 @RequestMapping("/mgr")
 public class VersionManagerController extends BaseController {
 
-	private static Logger logger = LoggerFactory.getLogger("error");
 	@Autowired
 	private ResourceService resourceService;
 	@Autowired
@@ -81,7 +79,8 @@ public class VersionManagerController extends BaseController {
 	 * 登录
 	 */
 	@RequestMapping("/doLogin")
-	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee) {
+	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee,
+			final HttpServletResponse response) {
 
 		final Result result = new Result();
 		if (employee != null) {
@@ -98,13 +97,16 @@ public class VersionManagerController extends BaseController {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (!ret) {
 							result.setMessage("用户名或密码错误!");
+						}else{
+							addCookies(request,response);
 						}
 						result.setRet(ret);
 						return result;
 					}
 
 				} catch (Exception e) {
-					logger.error("VersionManager login error,Becase of decrypt password error ...");
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("VersionManager login error,Becase of decrypt password error ...",sessionInfo);
 					e.printStackTrace();
 				}
 			}
@@ -223,7 +225,8 @@ public class VersionManagerController extends BaseController {
 					}
 				}
 			} catch (Exception e) {
-				logger.error("Provider bind error,teamName is " + employee.getEmployeeRealName());
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Provider bind error,teamName is " + employee.getEmployeeRealName(),sessionInfo);
 				e.printStackTrace();
 			}
 		}

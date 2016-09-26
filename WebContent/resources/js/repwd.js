@@ -36,11 +36,14 @@ $().ready(function(){
 						if(userType == 'role_customer'){
 							// 客户
 							loadData(function(flag){
-								if(flag){
+								if(flag.errorCode == 200){
 									error.addClass('hide');
-								}else{
+								}else if(flag.errorCode == 300){
 									error.removeClass('hide');
 									error.html('手机号不存在，请<a>注册</a>');
+								}else if(flag.errorCode == 500){
+									error.removeClass('hide');
+									error.html(flag.errorMsg);
 								}
 							}, getContextPath() + '/login/validation/phone', $.toJSON({
 								telephone : telephone

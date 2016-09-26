@@ -27,29 +27,11 @@
 	
 	<mvc:view-controller path="/payment/success" view-name="/payment/success" />
 	
-	<mvc:view-controller path="/phone/payment/payList" view-name="/phone/payment/payList" />
-	
-	<mvc:view-controller path="/phone/payment/payListSuccess" view-name="/phone/payment/payListSuccess" />
-	
-	<mvc:view-controller path="/phone/payment/payListFail" view-name="/phone/payment/payListFail" />
-	
-	<mvc:view-controller path="/phone/login/phoneLogin" view-name="/phone/login/phoneLogin" />
-	
 	<mvc:view-controller path="/error" view-name="/error" />
-	
-	<mvc:view-controller path="/phone/error" view-name="/phone/error" />
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
      <!--测试-->
-     
-    <mvc:view-controller path="/phone/provider/providerInfoPhone" view-name="/phone/provider/providerInfoPhone" />
-    
-    <mvc:view-controller path="/phone/manager/updateProjectInfo" view-name="/phone/manager/updateProjectInfo" />
-    
-    <mvc:view-controller path="/phone/customer/customerInfo" view-name="/phone/customer/customerInfo" />
-    
-    <mvc:view-controller path="/phone/customer/customerProject" view-name="/phone/customer/customerProject" />
     
     <mvc:view-controller path="/biao/biao" view-name="/biao/biao" />
     
@@ -75,22 +57,20 @@
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/order/submit"/>
-			<mvc:mapping path="/phone/submit"/>
 			<mvc:mapping path="/pay/income"/>
 			<bean class="com.panfeng.film.filter.ValidateTokenInterceptor" />
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
-		<!-- 验证作品分类需要登陆才能使用 -->
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/list.html"/>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/resources/**" />
 			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
-		</mvc:interceptor> -->
+		</mvc:interceptor>
 		
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
-			<mvc:exclude-mapping path="/user/info" />
 			<mvc:exclude-mapping path="/user/repwd" />
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
 		</mvc:interceptor>
@@ -111,6 +91,7 @@
 			<mvc:exclude-mapping path="/provider/header" />
 			<mvc:exclude-mapping path="/provider/doLogin" />
 			<mvc:exclude-mapping path="/provider/checkExisting" />
+			<mvc:exclude-mapping path="/provider/checkPhoneExisting" />
 			<mvc:exclude-mapping path="/provider/info/register" />
 			<mvc:exclude-mapping path="/provider/info/recover" />
 			<mvc:exclude-mapping path="/provider/login/**" />

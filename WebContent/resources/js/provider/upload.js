@@ -10,6 +10,7 @@ var browserCfg = {};
 var localAddress;
 var sessionId;
 var editor;
+var timer;
 oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
@@ -97,31 +98,70 @@ $().ready(function(){
 		$('.menu-content li:eq(1)', parent.document).click();
 	});
 	 
-	$('#uploadLDBt').on('click',function(){
+	//add by wanglc 2016-09-22 22:59:39
+	//上传图片和视频通用方法
+	var startUpload = function(){
+		var args = {};
+		var fileId = $(this).attr("id");
+		switch (fileId) {
+		case "uploadHDBt":
+			args.fileId = "picHDFile";
+			args.showName = "HDImgName";
+			args.showImg = "HDImg";
+			args.content = "video-picHD-div";
+			break;
+		case "uploadLDBt":
+			args.fileId = "picLDFile";
+			args.showName = "LDImgName";
+			args.showImg = "LDImg";
+			args.content = "video-picLD-div";
+			break;
+		case "uploadVideoBt":
+			args.fileId = "videoFile";
+			args.showName = "videoName";
+			break;
+		}
+		var fileId = args.fileId;
+		var showName = args.showName;
+		var showImg = args.showImg;
+		var content = args.content;
+		$('#'+fileId).click();
+		timer && clearInterval(timer);
+		timer = setInterval(function(){
+			checkFile(fileId);
+			$("#"+showName).text($('#'+fileId).val().substring($('#'+fileId).val().lastIndexOf("\\")+1));
+			if(fileId!='videoFile')showPic(fileId,showImg,content);
+			if($('#'+fileId).val())clearInterval(timer);
+		}, 500);
+	}
+	$('.uploadbtn').off("click").on('click',startUpload);
+	
+	/*$('#uploadLDBt').on('click',function(){
 		$('#picLDFile').click();
 		$('#picLDFile').unbind('change');
 		$('#picLDFile').bind('change',function(){
 			checkFile('picLDFile');
+			$("#LDImgName").text($('#picLDFile').val().substring($('#picLDFile').val().lastIndexOf("\\")+1));
 			showPic("picLDFile","LDImg","video-picLD-div");
 		});
-	});
-	
-	$('#uploadHDBt').on('click',function(){
+		});*/
+	/*$('#uploadHDBt').on('click',function(){
 		$('#picHDFile').click();
 		$('#picHDFile').unbind('change');
 		$('#picHDFile').bind('change',function(){
 			checkFile('picHDFile');
+			$("#HDImgName").text($('#picHDFile').val().substring($('#picHDFile').val().lastIndexOf("\\")+1));
 			showPic("picHDFile","HDImg","video-picHD-div");
 		});
-	});
-	
-	$('#uploadVideoBt').on('click',function(){
+	});*/
+	/*$('#uploadVideoBt').on('click',function(){
 		$('#videoFile').click();
 		$('#videoFile').unbind('change');
 		$('#videoFile').bind('change',function(){
 			checkFile('videoFile');
+			$("#videoName").text($('#videoFile').val().substring($('#videoFile').val().lastIndexOf("\\")+1));
 		});
-	});
+	});*/
 	
 	// 注册变更模式
 	
@@ -622,7 +662,7 @@ function checkFile(id){
 	var filesize = 0; // 文件大小
 	try{
 		if(obj_file.value == null || obj_file.value == undefined || obj_file.value == ''){
-			alert('请上传文件');
+			//alert('请上传文件');
 			return ;
 		}else{
 			if(browserCfg.firefox || browserCfg.chrome ){

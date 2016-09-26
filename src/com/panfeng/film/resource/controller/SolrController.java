@@ -10,8 +10,6 @@ import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,17 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 
 @RestController
 public class SolrController extends BaseController {
-
-	final Logger logger = LoggerFactory.getLogger("error");
-
-	final Logger serLogger = LoggerFactory.getLogger("service");
 
 	private static String URL_PREFIX = null;
 
@@ -46,7 +42,7 @@ public class SolrController extends BaseController {
 				VIDEO_IMAGE_PERFIX = propertis
 						.getProperty("upload.server.product.image");
 			} catch (IOException e) {
-				logger.error("SolrController method:constructor load Properties fail ...");
+				Log.error("SolrController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
 			}
 		}
@@ -94,8 +90,9 @@ public class SolrController extends BaseController {
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			logger.error("SolrController method:searchView() encode failue,q="
-					+ q);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController method:searchView() encode failue,q="
+					+ q,sessionInfo);
 		}
 		return new ModelAndView("search", model);
 	}
@@ -125,49 +122,11 @@ public class SolrController extends BaseController {
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			logger.error("SolrController method:searchPagination() encode failue,q="
-					+ view.getCondition());
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController method:searchPagination() encode failue,q="
+					+ view.getCondition(),sessionInfo);
 		}
 		return null;
-	}
-	
-	@RequestMapping("/phone/search")
-	public ModelAndView phoneSearchView(String q, final String sequence,
-			final int sortord,final String item, final ModelMap model,
-			final HttpServletRequest request) throws Exception{
-
-		if("".equals(q)){
-			q = "*";
-		}
-		model.addAttribute("q", q);
-		model.addAttribute("sequence",sequence );
-		model.addAttribute("sortord", sortord);
-		model.addAttribute("item",item);
-		SolrView view = new SolrView();
-		view.setCondition(URLEncoder.encode(q, "UTF-8"));
-		view.setItemFq(item);
-		view.setSequence(sequence);
-		view.setSortord(sortord);
-		try {
-			String url = URL_PREFIX + "portal/solr/phone/query";
-			final String json = HttpUtil.httpPost(url,view,request);
-			if (json != null && !"".equals(json)) {
-				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list != null && list.size() > 0) {
-					for (final Solr solr : list) {
-						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(solr.getPicLDUrl().split(VIDEO_IMAGE_PERFIX)[1]);
-						}
-					}
-				}
-				model.addAttribute("list", list);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			logger.error("SolrController method:phoneSearchView() encode failue,q="
-					+ q);
-		}
-		return new ModelAndView("/phone/search");
 	}
 	
 	@RequestMapping("/suggest/{token}")
