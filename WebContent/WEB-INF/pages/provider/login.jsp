@@ -139,53 +139,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-		
-		
-		   <div class="outSideDiv phoneHeight" id="outSideId">
-		         <div class="loginDiv">
-		            <h1  style="display:inline-block" id="title">供应商登录</h1>
-		            <div style="display: inline-block;position: relative;width: 170px;text-align: right;left: 10px;top: 5px;color: #fe5453;">新用户注册</div>
-		            <input type="hidden" id="login_type" value="phone"> 
-		             <div class="" id="showLogin">
-		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber" ></input>
-		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="user_phoneNumberId"">手机号错误</div>
-		            </div>
-		       
-		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
-		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
-		                 <div class="errorDiv hide" id="kapt_error_info" >验证码错误</div>
-		            </div>  
-		             <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
-		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation">点击获取</button></div>
-		                 <div class="errorDiv hide" id="code_error_info">验证码错误</div>
-		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
-		            </div>
-		            </div>
-		            
-		         <div class="hide" id="nameLogin">
-			            <div class="loginContent input-group">
-			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName" ></input>
-			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="loginName_error"></div>
-			            </div>
-			            <div class="loginContent input-group" id="pwdId" >
-			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
-			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
-			                 <div class="errorMidDiv hide" id="name_login_error_info">登录错误</div>
-			                 <a href="<spring:url value='/provider/repwd'/>"><div class="forget">忘记密码</div></a>
-			            </div>  
-		         </div>  
-		          <!--   <div id="welcomeId" class="welcome fontSizeSmLight">欢迎回到拍片网</div>    -->
-=======
->>>>>>> 89f67796425feee895e80b00b43cd96097d902b8
-
-
 		<div class="outSideDiv phoneHeight" id="outSideId">
 			<div class="loginDiv">
 				<h1 style="display: inline-block" id="title">供应商登录</h1>
