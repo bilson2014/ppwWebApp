@@ -51,6 +51,8 @@
     
     <mvc:view-controller path="/phone/customer/customerProject" view-name="/phone/customer/customerProject" />
     
+    <mvc:view-controller path="/biao/biao" view-name="/biao/biao" />
+    
      <!--END-->
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />

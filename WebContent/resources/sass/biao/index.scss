@@ -1,8 +1,7 @@
 @import "common";
 @import "buttons";
 @import "video";
-@import "flexslider";
-@import "index-sprite";
+
 
 .flex-wrap { 
 	position: relative;
@@ -19,7 +18,7 @@
 	 width: 695px !important;
 	 background: image-url("banner/banner_big.png") no-repeat !important;
 	 background-size:695px 70px !important;
-	 margin-left: -38px;
+	 margin-left: -66px;
 }
 
 input:focus{
@@ -64,19 +63,18 @@ input:focus{
     }
 	bottom: 0;
 	margin: 50px auto 50px;
-	width: 620px;
+	width: $banner-title-width;
 	height: 235px;
 	z-index: 10;
 	.title {
 		width: 100%;
-		font-size: 4.6rem;
+		font-size: $font-size-lgester;
 		line-height: $font-size-lgester;
 		margin: 0 auto 30px;
 		text-align: center;
 		color: $white;
 		top:5px;
 		position: relative;
-		font-weight: bold;
 	} 
 
 	.search-box {
@@ -117,7 +115,7 @@ input:focus{
 		text-align: center;
 		color: $white;
 		font: {
-			size: 22px;
+			size: 20px;
 			weight: 300;
 		}
 		//background: url(../images/common/desc.svg) no-repeat;

@@ -109,7 +109,8 @@
 		
 		   <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
-		            <h1 id="title">供应商登录</h1>
+		            <h1  style="display:inline-block" id="title">供应商登录</h1>
+		            <div style="display: inline-block;position: relative;width: 170px;text-align: right;left: 10px;top: 5px;color: #fe5453;">新用户注册</div>
 		            <input type="hidden" id="login_type" value="phone"> 
 		             <div class="" id="showLogin">
 		            <div class="loginContent input-group">
