@@ -102,6 +102,7 @@ $().ready(function(){
 	//上传图片和视频通用方法
 	var startUpload = function(){
 		var args = {};
+		var oldfile = $('#'+fileId).val();
 		var fileId = $(this).attr("id");
 		switch (fileId) {
 		case "uploadHDBt":
@@ -131,9 +132,8 @@ $().ready(function(){
 			checkFile(fileId);
 			$("#"+showName).text($('#'+fileId).val().substring($('#'+fileId).val().lastIndexOf("\\")+1));
 			if(fileId!='videoFile')showPic(fileId,showImg,content);
-			//if($('#'+fileId).val())clearInterval(timer);
+			if(oldfile!=$('#'+fileId).val())clearInterval(timer);
 		}, 500);
-		clearInterval(timer);
 	}
 	$('.uploadbtn').off("click").on('click',startUpload);
 	
