@@ -78,14 +78,14 @@
 			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400;font-size:1.6rem">付款金额：
 			              </span><span class="contentSpan contentSpanBig botPos">${dealLog.payPrice}</span>
 			              <span class="contentSpanSmall">元</span></div>
-			              <div class="contentRight">
+			              <%-- <div class="contentRight">
+			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red botPos">确认</button></a>
+			              </div> --%>
+			               <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
+			             	 <div class="contentRight">
 			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red botPos">确认</button></a>
 			             	 </div>
-			             <%--  <c:if test="${dealLog.dealStatus == 0 && dealLog.urlEffective }">
-			             	 <div class="contentRight">
-			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red">确认</button></a>
-			             	 </div>
-			              </c:if> --%>
+			              </c:if>
 
 		             </div> 
 	           </div>
