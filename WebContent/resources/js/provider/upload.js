@@ -175,7 +175,7 @@ $().ready(function(){
 			// 注册 保存 按钮
 			$('#infoBt').on('click',function(){
 				$('#warmModel').modal('show');
-				$('#sureUpdate').on('click',function(){
+				$('#sureUpdate').off('click').on('click',function(){
 					$('#warmModel').modal('hide');
 				if($('#video-switch').val() == 1){
 					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
@@ -202,7 +202,7 @@ $().ready(function(){
 		$('#infoBt').on('click',function(){
 			$('#warmModel').modal('show');
 			
-			$('#sureUpdate').on('click',function(){
+			$('#sureUpdate').off('click').on('click',function(){
 				$('#warmModel').modal('hide');
 				if($('#video-switch').val() == 1){
 				if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
@@ -483,7 +483,8 @@ function checkData(type){
 	var videoType = $('#video-type option:selected').val(); // 视频类型
 	var videoLength = $('#video-length').val().trim(); // 视频长度
 	var description = $('#video-description').val().trim(); // 视频描述
-	var price = $('#video-price').val(); // 
+	var price = $('#video-price').val(); //
+	var creationTime = $('#creationTime').val();//创作时间
 	
 	if(name == '' || name == null || name == undefined){
 		popshow('video-name', '请输入视频标题!');
@@ -500,6 +501,11 @@ function checkData(type){
 	if(videoLength == '' || videoLength == null || videoLength == undefined){
 		popshow('video-length', '请填写视频长度!');
 		$('#video-length').focus();
+		return false;
+	}
+	if(creationTime == '' || creationTime == null || creationTime == undefined){
+		popshow('creationTime', '请填写创作时间!');
+		$('#creationTime').focus();
 		return false;
 	}
 	

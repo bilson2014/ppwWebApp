@@ -48,7 +48,6 @@ $().ready(function(){
 	$('#insSubmit').on('click',addAccount);
 	// 图片上传 点击事件
 	$('#logoImg').on('click',function(){
-		$('#file').click();
 		// 图片上传 点击事件
 		$('#file').off("change").on("change",function(){
 			$.blockUI({
@@ -57,6 +56,7 @@ $().ready(function(){
 			// 上传图片
 			uploadImg();
 		});
+		$('#file').click();
 	});
 	
 	infoEcho();

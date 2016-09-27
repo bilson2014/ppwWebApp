@@ -122,6 +122,7 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="creationTime" placeholder="请选择作品创作时间" readonly="readonly" value="${model.creationTime }">
 						</div>
+						<span style="color:red;">*</span>
 					</div>
 					
 					<div class="form-group">
