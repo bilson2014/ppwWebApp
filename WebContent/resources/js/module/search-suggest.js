@@ -5,6 +5,20 @@ define(['common'],function(common){
 	}
 	
 	Suggest.prototype = {
+			
+			searchClick : function(){
+				
+			 $('#search').off().on('click',function(){
+				var q = $('#search-q').val().trim();
+				if(q != null && q != '' && q != undefined){
+					$('#s-form').submit();
+				} else if(q == null || q == ''){
+					$('#search-q').val('*');
+					$('#s-form').submit();
+				}
+				});
+			},
+			
 			smartSuggest : function(){
 				var oT=document.getElementById('search-q');
 				var oUl=document.getElementById('shelper');

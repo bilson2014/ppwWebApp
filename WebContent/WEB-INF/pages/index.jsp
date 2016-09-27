@@ -126,11 +126,8 @@
 							<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />
 							<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 							<ul id="shelper" class="shelper-lucency"></ul>
-							<img src="${imgPath }/search.png" class="bannerSearch"> 
+							<img src="${imgPath }/search.png" class="bannerSearch" id="search"> 
 						</form>
-
-						
-
 					</div>
 					<div class="desc">35800+ 导演 / 编剧 / 摄影师 / 影视专家为您服务</div>
 					<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn" id="know-bg-btn">了解拍片网</div></a>
