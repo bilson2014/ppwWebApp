@@ -8,7 +8,7 @@
 	var="normalizeCss" />
 <spring:url value="/resources/lib/h5bp/h5bp.css" var="h5bpCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/common.css" var="commonCss" />
+<spring:url value="/resources/css/commons.css" var="commonCss" />
 
 <spring:url value="/resources/lib/dist/css/drop-theme-basic.css"
 	var="dropTheme" />
