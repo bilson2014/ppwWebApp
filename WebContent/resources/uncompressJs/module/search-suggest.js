@@ -4,7 +4,15 @@ define(['common'],function(common){
 		common = new common.Common();
 	}
 	
+	
+	
 	Suggest.prototype = {
+		     
+		    searchClick :function(){
+		    	$('#s-btn').click();
+		    },
+		
+		
 			smartSuggest : function(){
 				var oT=document.getElementById('search-q');
 				var oUl=document.getElementById('shelper');

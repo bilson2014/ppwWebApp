@@ -25,6 +25,12 @@
 				    position: absolute;
 				    width: 120%;
 				    z-index: -1;
+                      
+                        @media screen and (min-width: 1500px){
+                        position: relative;
+                        top: -350px;
+                      }
+				    
 				}
 			}
 

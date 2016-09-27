@@ -46,6 +46,9 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 	suggest = new suggest.Suggest();
 	suggest.smartSuggest();
 	suggest.prototypeChange();
+	suggest.searchClick();
+	
+	
 	
 	var mta = new bdmta.Bdmta();
 	mta.init();
@@ -55,6 +58,8 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		pauseOnAction: false,
 		slideshowSpeed: 40000  
 	});
+	
+	
 	
 	// 滚动监听 start
 	$('#know-bg-btn').waypoint(function(direction){
@@ -71,7 +76,7 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		$from += '<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />';
 		$from += '<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>';
 		$from += '<ul id="shelper" class="shelper-lucency"></ul>';
-		$from += '<img src="/resources/images/search.png" class="bannerSearch"> ';
+		$from += '<img src="/resources/images/search.png" class="bannerSearch"> id="serch" ';
 		$from += '</form>';
 
 		
@@ -82,6 +87,7 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 			$('#banner-search').empty().append($from);
 			// 隐藏工具栏
 			$('#toolbar-section').css({visibility: 'hidden'});
+			
 		}else {
 			$('#header-search').show();
 			$('#banner-search').empty();
@@ -91,6 +97,7 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		}
 		suggest.smartSuggest();
 		suggest.prototypeChange();
+		//suggest.searchClick();
 	});
 	// 滚动监听 end
 	
