@@ -106,13 +106,13 @@
 		<div class="flex-wrap">
 				<div class="flexslider">
 					<ul class="slides">
-					    <!-- <li>
+					    <li>
 					       <section>
 					        <video preload="auto" loop="" autoplay="" poster="/images/index_img/pic_home_banner.png" class="video-bg">
-				                <source src="http://7xok4u.com2.z0.glb.qiniucdn.com/static/videos/banner_video_df536a45.mp4" type="video/mp4">
+				                <source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
 			                </video>
 			                </section>
-			            </li> -->
+			            </li>
 						<li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex2.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
