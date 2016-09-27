@@ -100,7 +100,7 @@ $().ready(function(){
 	 
 	//add by wanglc 2016-09-22 22:59:39
 	//上传图片和视频通用方法
-	var startUpload = function(){
+	/*var startUpload = function(){
 		var args = {};
 		var fileId = $(this).attr("id");
 		switch (fileId) {
@@ -134,34 +134,34 @@ $().ready(function(){
 			//if(fileValue!=$('#'+fileId).val())clearInterval(timer);
 		}, 500);
 	}
-	$('.uploadbtn').off("click").on('click',startUpload);
+	$('.uploadbtn').off("click").on('click',startUpload);*/
 	
-	/*$('#uploadLDBt').on('click',function(){
-		$('#picLDFile').click();
+	$('#uploadLDBt').on('click',function(){
 		$('#picLDFile').unbind('change');
 		$('#picLDFile').bind('change',function(){
 			checkFile('picLDFile');
 			$("#LDImgName").text($('#picLDFile').val().substring($('#picLDFile').val().lastIndexOf("\\")+1));
 			showPic("picLDFile","LDImg","video-picLD-div");
 		});
-	});*/
-	/*$('#uploadHDBt').on('click',function(){
-		$('#picHDFile').click();
+		$('#picLDFile').click();
+	});
+	$('#uploadHDBt').on('click',function(){
 		$('#picHDFile').unbind('change');
 		$('#picHDFile').bind('change',function(){
 			checkFile('picHDFile');
 			$("#HDImgName").text($('#picHDFile').val().substring($('#picHDFile').val().lastIndexOf("\\")+1));
 			showPic("picHDFile","HDImg","video-picHD-div");
 		});
-	});*/
-	/*$('#uploadVideoBt').on('click',function(){
-		$('#videoFile').click();
+		$('#picHDFile').click();
+	});
+	$('#uploadVideoBt').on('click',function(){
 		$('#videoFile').unbind('change');
 		$('#videoFile').bind('change',function(){
 			checkFile('videoFile');
 			$("#videoName").text($('#videoFile').val().substring($('#videoFile').val().lastIndexOf("\\")+1));
 		});
-	});*/
+		$('#videoFile').click();
+	});
 	
 	// 注册变更模式
 	
