@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/common.css" var="commonCss"/>
+<spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/css/about.css" var="aboutCss"/>
 <spring:url value="/resources/css/login.css" var="loginCss"/>
 <%-- import JS --%>

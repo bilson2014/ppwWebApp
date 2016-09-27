@@ -6,7 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
 <spring:url value="/resources/lib/h5bp/h5bp.css" var="h5bpCss" />
-<spring:url value="/resources/css/common.css" var="commonCss" />
+<spring:url value="/resources/css/commons.css" var="commonCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <%-- import JS --%>
