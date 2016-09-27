@@ -144,7 +144,7 @@ $().ready(function(){
 			$("#LDImgName").text($('#picLDFile').val().substring($('#picLDFile').val().lastIndexOf("\\")+1));
 			showPic("picLDFile","LDImg","video-picLD-div");
 		});
-		});*/
+	});*/
 	/*$('#uploadHDBt').on('click',function(){
 		$('#picHDFile').click();
 		$('#picHDFile').unbind('change');
