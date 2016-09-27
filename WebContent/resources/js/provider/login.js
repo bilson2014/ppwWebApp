@@ -357,8 +357,9 @@ $().ready(function(){
 						$('#outSideId').addClass('phoneHeight');
 						$('#outSideId').removeClass('userheight');
 						$('#login_type').val("phone");
-						$('#register').text("登录");
 						$('#changeAttr').show();
+						$('#changeAttr').attr('data-event','register');
+						$('#changeAttr').click();
 					}else{
 						$('input').val('');
 						$('#loginWord').text('使用手机号登录');//用户名登录
@@ -369,7 +370,7 @@ $().ready(function(){
 						$('#outSideId').removeClass('phoneHeight');
 						$('#outSideId').addClass('userheight');
 						$('#login_type').val("loginName");
-						$('#register').text("登录");
+						$('#submitBtn').text("登录");
 						$('#changeAttr').hide();
 					}
 				});
