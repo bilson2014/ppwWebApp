@@ -2312,7 +2312,7 @@ function checkHasListForEmFirst(){
 function toCheckListClose(token){
 	
 	$('#close-list').modal({backdrop: 'static', keyboard: false});
-	$('#sureClose').on('click',function(){
+	$('#sureClose').off('click').on('click',function(){
 		
 		loadData(function(msg){
 			if(msg.errorCode == 200){
