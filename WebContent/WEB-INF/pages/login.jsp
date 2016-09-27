@@ -115,6 +115,8 @@
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>
 
+
+
 		            <h1 style="display: inline-block" id="title">客户登录</h1>
 					<div id="changeAttr" data-event="login"
 					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
