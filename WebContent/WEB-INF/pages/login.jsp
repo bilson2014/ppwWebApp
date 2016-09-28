@@ -114,19 +114,9 @@
 	 <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>
-<<<<<<< HEAD
 		            <h1 style="display: inline-block" id="title">客户登录</h1>
 					<div id="changeAttr" data-event="login"
 					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
-=======
-
-
-
-		            <h1 style="display: inline-block" id="title">客户登录</h1>
-					<div id="changeAttr" data-event="login"
-					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
-
->>>>>>> dee2345ee47104a22adee84c2f75b17cfef9047a
 		            <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
