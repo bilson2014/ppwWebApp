@@ -1792,22 +1792,25 @@ public class ProviderController extends BaseController {
 	 * 修改供应商手机号码
 	 */
 	@RequestMapping("/modify/phone")
-	public boolean modifyUserPhone(@RequestBody final Team team, final HttpServletRequest request) {
+	public BaseMsg modifyUserPhone(@RequestBody final Team team, final HttpServletRequest request) {
 		if (team != null) {
 			final String code = (String) request.getSession().getAttribute("code");
+			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			// 是否是测试程序
 			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (code != null && !"".equals(code))) {
-				if (isTest || (code.equals(team.getVerification_code()))) {
+			if (isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))) {
+				if (isTest || (code.equals(team.getVerification_code()) && codeOfphone.equals(team.getPhoneNumber()))) {
 					// 修改 用户密码
-					final String url = URL_PREFIX + "portal/team/modify/phone";
+					//final String url = URL_PREFIX + "portal/team/modify/phone";update/newphone
+					final String url = URL_PREFIX + "portal/team/update/newphone";
 					final String json = HttpUtil.httpPost(url, team, request);
-					final Boolean result = JsonUtil.toBean(json, Boolean.class);
-					return result;
-				}
-			}
+					//final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
+					return baseMsg;
+				}return new BaseMsg(1,"验证码错误");
+			}return new BaseMsg(1,"验证码错误");
 		}
-		return false;
+		return new BaseMsg(0,"error");
 	}
 
 	@RequestMapping("/info_{teamId}.html")

@@ -209,32 +209,32 @@ public class UserController extends BaseController{
 	 * 修改用户手机号码
 	 */
 	@RequestMapping("/modify/phone")
-	public boolean modifyUserPhone(@RequestBody final User user,
+	public BaseMsg modifyUserPhone(@RequestBody final User user,
 			final HttpServletRequest request){
-		
 		if(user != null){
 			final String code = (String) request.getSession().getAttribute("code");
+			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			// 是否是测试程序
 			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if(isTest || (code != null && !"".equals(code))){
-				if(isTest || (code.equals(user.getVerification_code()))){
+			if(isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))){
+				if(isTest || (code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone()))){
 					
 					SessionInfo sessionInfo = getCurrentInfo(request);
 					Log.error("User id is " + user.getId() + " update phone number:" + user.getTelephone(),sessionInfo);
 					
-					// 修改 用户密码
-					final String url = URL_PREFIX + "portal/user/modify/phone";
+					//验证手机号是否是新的,然后 更新手机
+					final String url = URL_PREFIX + "portal/user/update/newphone";
 					final String json = HttpUtil.httpPost(url, user,request);
-					final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					final BaseMsg result = JsonUtil.toBean(json, BaseMsg.class);
 					
 					Log.error("User id is " + user.getId() + " update phone number -success=" + result,sessionInfo);
 					
 					//updateUserInSession(request);
 					return result;
-				}
-			}
+				}return new BaseMsg(1,"验证码错误");
+			}return new BaseMsg(1,"验证码错误");
 		}
-		return false;
+		return new BaseMsg(0,"error");
 	}
 	
 	/**

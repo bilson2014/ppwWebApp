@@ -566,14 +566,17 @@ function checkData(type){
 			var verification_code = $('#provider-phonecode').val().trim();
 			
 			if(telephone == '' || telephone == null || telephone == undefined){
-				$('#label-telephone').removeClass('hide');
+				$('#label-telephone').removeClass('hide').text("请输入正确的手机号");
 				return false;
 			}else{
 				$('#label-telephone').addClass('hide');
 			}
-			
+			if(!checkMobile(telephone)){
+				$('#label-telephone').removeClass('hide').text("请输入正确的手机号");
+				return false;
+			}
 			if(verification_code == '' || verification_code == null || verification_code == undefined){
-				$('#label-code').removeClass('hide');
+				$('#upd-label-code-phone').removeClass('hide');
 				return false;
 			}else{
 				$('#label-code').addClass('hide');
@@ -913,16 +916,19 @@ var provider_info = {
 								var newPhone = $('#provider-newphone').val().trim();
 								if(checkData(6)){
 									loadData(function(result){
-										if(result){
+										if(result.code == 2){
 											window.clearInterval(InterValObj);
 											$("#new-phone-content").empty();
 											$("#old-phone-container").removeClass("hide");
 											$("#provider-phone").text(newPhone);
 											$("#old-content").empty().append(info_tpl.tpl_old_phone);
 											successToolTipShow();
-										}else{
+										}else if(result.code == 1){
 											toolTipShow("验证码错误");
+										}else if(result.code == 3){
+											toolTipShow("手机号被占用");
 										}
+										
 									}, getContextPath() + '/provider/modify/phone', $.toJSON({
 										teamId : $('#company-id').val(),
 										phoneNumber : newPhone,
@@ -957,7 +963,7 @@ function getVeritifyCodeValidate(){
 				return false;
 			}
 			loadData(function(flag){
-				if(flag){
+				if(!flag){
 					// 注册过
 					$('#label-telephone').text('您输入的手机号码已被注册');
 					$('#label-telephone').removeClass('hide');
@@ -966,7 +972,7 @@ function getVeritifyCodeValidate(){
 					verification(concat_tele_new,"phone-codeBt");
 				}
 			}, getContextPath() + '/provider/checkExisting', $.toJSON({
-				telephone : concat_tele_new
+				phoneNumber : concat_tele_new
 			}));
 		}else{//老手机获取验证码
 			verification(phoneNum,"phone-codeBt");
@@ -1015,8 +1021,8 @@ var info_tpl = {
 	'		<button type="button" class="btn btn-default codeBt"  data-flag="new-bind" id="phone-codeBt">获取验证码</button>',
 	'	</div>',
 	'	<div class="col-sm-4">',
-	'		<label id="upd-label-code" class="label-message hide" >请输入验证码</label>',
-	'		<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>',
+	'		<label id="upd-label-code-phone" class="label-message hide" >请输入验证码</label>',
+	'		<label id="upd-label-code-phone-error" class="label-message hide" >验证码错误</label>',
 	'	</div>',
 	'</div>',
 	'<div class="form-group">',
