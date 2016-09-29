@@ -108,7 +108,7 @@
 					<ul class="slides">
 					    <li>
 					       <section>
-					        <video preload="auto" loop="" autoplay="" poster="/images/index_img/pic_home_banner.png" class="video-bg">
+					        <video preload="auto" loop="" autoplay  poster="${imgPath}/banner/flex2.jpg" class="video-bg">
 				                <source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
 			                </video>
 			                </section>
