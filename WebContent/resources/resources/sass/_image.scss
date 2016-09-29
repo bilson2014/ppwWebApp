@@ -1,9 +1,0 @@
-@import "mixins/image";
-
-.img-responsive {
-  @include img-responsive();
-}
-
-.img-rounded {
-  @include border-radius(50%);
-}
