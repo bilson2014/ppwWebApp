@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+
+
+
+
 .content-wrap {
 	margin: 0 auto;
 }
@@ -26,8 +30,9 @@
 	float: left;
 	position: relative;
 	height: 13px;
-	background-image: url(//misc.360buyimg.com/user/myjd-2015/widget/order-detail/i/bg_state.jpg);
+	background-image: url(/misc.360buyimg.com/user/myjd-2015/widget/order-detail/i/bg_state.jpg);
 	background-repeat: no-repeat;
+	
 }
 
 .node.ready {

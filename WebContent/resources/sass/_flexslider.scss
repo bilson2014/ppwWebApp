@@ -25,6 +25,8 @@
 				    position: absolute;
 				    width: 120%;
 				    z-index: -1;
+				    min-width: 960px;
+				    min-height: 440px;
                       
                         @media screen and (min-width: 1500px){
                         position: relative;
@@ -45,6 +47,6 @@
 	
 	.flex-direction-nav{position:absolute;z-index:3;width:100%;top:42%;}
 	.flex-direction-nav li a{display:block;width:30px;height:70px;overflow:hidden;cursor:pointer;position:absolute;}
-	.flex-direction-nav li a.flex-prev{left:0;background:url(../img/icons/prev.png) center center no-repeat;}
-	.flex-direction-nav li a.flex-next{right:0;background:url(../img/icons/next.png) center center no-repeat; }
+	.flex-direction-nav li a.flex-prev{left:0;background:url(../images/icons/prev.png) center center no-repeat;display: none}
+	.flex-direction-nav li a.flex-next{right:0;background:url(../images/icons/next.png) center center no-repeat;display: none }
 }
