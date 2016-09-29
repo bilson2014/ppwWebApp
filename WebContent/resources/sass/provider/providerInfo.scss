@@ -1,0 +1,715 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+@import "compass/typography/text/ellipsis";
+.page {
+    background: #f2f2f2;
+}
+a:link,a:visited{
+ text-decoration:none;  /*超链接无下划线*/
+}
+
+.infoTop {
+    position: relative;
+    width: 100%;
+    border: none;
+    @include media_screen_height(440px, 470px, 540px);
+    .image-video {
+        width: 100%;
+        @include media_screen_height(440px, 470px, 540px);
+        background: url('../../images/provder/banner.jpg') no-repeat;
+        background-size: cover;
+        background-position: center 0;
+        position: absolute;
+        z-index: 50;
+        border: none;
+    }
+    .image-video-model {
+        width: 100%;
+        @include media_screen_height(440px,
+        470px,
+        540px);
+        background: url('../../images/provder/banner.jpg') no-repeat;
+        background-size: 100% 100%;
+        background-position: center 0;
+        position: absolute;
+        z-index: 100;
+        border: none;
+    }
+    .providerName {
+        font-size: $font-size-lg24;
+        color: $white;
+        padding-top: 20px;
+    }
+    ul {
+        width: auto;
+        height: auto;
+        position: relative;
+        z-index: 100;
+        top:50px;
+                     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        top:100px;
+    }
+    @media screen and (min-width:1500px) {
+       top: 150px;
+    }
+        margin: 0 auto;
+        .infoHead {
+            height: 170px;
+            width: 170px;
+            border-radius: 170px;
+            margin-top: 17px;
+        }
+        .infoHeadSide {
+            height: 200px;
+            width: 200px;
+            background: url('../../images/provder/providerHeadSide.png') no-repeat;
+            background-size: 200px 200px;
+        }
+        .place {
+            height: 18px;
+            width: 13px;
+            margin-top: 8px;
+        }
+        .provinceCity {
+            color: $white;
+            font-size: $font-size-base;
+        }
+        li {
+            text-align: center;
+            div {
+                color: $white;
+                display: inline-block;
+                height: 20px;
+            }
+            .circle {
+                height: 8px;
+                width: 8px;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 10px;
+                background: $white;
+            }
+        }
+    }
+}
+
+.providerIntroduction {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: $white;
+    .content {
+        background: $white;
+        width: 78%;
+        height: auto;
+        margin: 0 auto;
+        padding-top: 10px;
+        margin-bottom: 42px;
+    }
+    .textTxt {
+        margin-top: 42px;
+        line-height: 24px;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 42px;
+        overflow: hidden;
+    }
+    .tag {
+        width: 100%;
+        height: 70px;
+        text-align: center;
+        div {
+            display: inline-block;
+        }
+    }
+}
+
+.content .name {
+    height: 20px;
+    width: 100%;
+    img {
+        height: 24px;
+        width: 16px;
+    }
+    div {
+        height: 20px;
+        width: auto;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .cn {
+        font-size: $font-size-lg24;
+        color: $red-base;
+    }
+    .en {
+        font-size: $font-size;
+        color: $gray;
+    }
+}
+
+.tag {
+    .midLine {
+        width: 800px;
+        height: 20px;
+        background: $white;
+        margin: 0 auto;
+        .card {
+            width: auto;
+            height: 30px;
+            border: 1px solid $gray-light;
+            color: $gray-light;
+            font-size: $font-size;
+            border-radius: 6px;
+            display: inline-block;
+            margin-right: 20px;
+            margin-top:10px;
+            position: relative;
+            top:-10px;
+            .controlCard {
+                line-height: 30px;
+            }
+            .cardWord {
+                margin-right: 16px;
+            }
+                  .pencil {
+                margin-left: 8px;
+                margin-right: 8px;
+                height: 16px;
+                width: 16px;
+                position: relative;
+                top: 1px;
+                background: url('../../images/provder/pencil.png') no-repeat;
+                background-size: 16px 16px;
+            }
+
+        }
+    }
+    .leftLine {
+        float: left;
+        position: relative;
+        width: 5%;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 10%;
+        }
+        @media screen and (min-width:1500px) {
+            width: 20%;
+        }
+        height: 30px;
+        .circleTag {
+            position: relative;
+            left: -4px;
+        }
+        @extend .sameLine;
+    }
+    .rightLine {
+        float: right;
+        width: 5%;
+        position: relative;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 10%;
+        }
+        @media screen and (min-width:1500px) {
+            width: 20%;
+        }
+        height: 30px;
+        .circleTag {
+            position: relative;
+            left: 4px;
+        }
+        @extend .sameLine;
+    }
+    .sameLine {
+        .line {
+            vertical-align: middle;
+            width: calc(100% - 14px);
+            height: 1px;
+            background: $gray;
+        }
+        .circleTag {
+            vertical-align: middle;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            border: 1px solid $gray;
+        }
+    }
+}
+
+.videoContent {
+    height: auto;
+    width: 100%;
+    background: black;
+    .contentWidth {
+        width: 78%;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        margin: 0 auto;
+    }
+    .showVideo {
+        height: 315px;
+        width: 420px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            height: 420px;
+            width: 560px;
+        }
+        @media screen and (min-width:1500px) {
+            height: 520px;
+            width: 860px;
+        }
+       
+        .videoSection {
+            height: 315px;
+            width: 420px;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                height: 420px;
+                width: 560px;
+            }
+            @media screen and (min-width:1500px) {
+                height: 520px;
+                width: 860px;
+            }
+        }
+    }
+    .videoInfo {
+        margin-left: 52px;
+        height: 315px;
+        width: 30%;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            height: 420px;
+            width: 30%;
+        }
+        @media screen and (min-width:1500px) and (max-width: 1600px) {
+            height: 520px;
+            width: 20%;
+        }
+
+         @media screen and (min-width:1600px) and (max-width: 1700px) {
+            height: 520px;
+            width: 25%;
+        }
+
+
+            @media screen and (min-width:1700px) {
+            height: 520px;
+            width: 30%;
+        }
+        
+
+        display: inline-block;
+        vertical-align: top;
+        overflow: hidden;
+        .NameInfo {
+            color: white;
+            font-size: $font-size-lg24;
+            margin-top: 30px;
+        }
+        .InfoLine {
+            width: 100%;
+            height: 1px;
+            background: white;
+            margin-top: 16px;
+            margin-bottom: 14px;
+        }
+        .NameContent {
+            width: 100%;
+            height: 120px;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                height: 220px;
+            }
+            @media screen and (min-width:1500px) {
+                height: 320px;
+            }
+            color: white;
+            font-size: $font-size-base;
+            line-height: 26px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .specialVideoInfo {
+            text-align: center;
+            width: 160px;
+            height: 40px;
+            line-height: 40px;
+            color: white;
+            font-size: $font-size-base;
+        }
+    }
+}
+
+.triangle {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    img {
+        height: 32px;
+        width: 66px;
+        margin: 0 auto;
+        position: relative;
+        top: -10px;
+    }
+}
+
+.videoSpace {
+    width: 100%;
+    height: auto;
+    margin-top: 58px;
+    .productOutSide {
+        width: 143px;
+        height: 143px;
+        border-radius: 120px;
+        border: 1px solid $gray-dark;
+        text-align: center;
+        margin: 0 auto;
+        padding: 6px;
+    }
+    .productInSide {
+        width: 130px;
+        height: 130px;
+        border-radius: 120px;
+        background: $gray-dark;
+        text-align: center;
+        color: $white;
+        line-height: 133px;
+        font-size: $font-size;
+    }
+}
+
+.videoSpace .timeLine {
+    width: 100%;
+    height: auto;
+}
+
+.topMore {
+    position: relative;
+    top: 35px;
+
+}
+
+.videoSpace .videoArea {
+    width: 960px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 1200px;
+    }
+    @media screen and (min-width:1500px) {
+        width: 1200px;
+    }
+    height: auto;
+    margin: 0 auto;
+    .more {
+        height: 30px;
+        width: 106px;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 30px;
+        background: white;
+        color: $gray;
+        border: 1px solid $gray;
+        border-radius: 6px;
+        font-size: $font-size-base;
+        cursor: pointer;
+    }
+
+
+    .year {
+        height: 76px;
+        width: 100%;
+
+        div {
+            height: 76px;
+            width: 76px;
+            background: white;
+            margin: 0 auto;
+            border-radius: 120px;
+            div {
+                height: 70px;
+                width: 70px;
+                //background: $gold-yellow;
+                margin: 0 auto;
+                border-radius: 120px;
+                position: relative;
+                top: 3px;
+                color: white;
+                font-size: $font-size;
+                line-height: 70px;
+                text-align: center;
+            }
+
+            .color1{
+                  background:#f1b059;
+            }
+            .color2{
+                 background:#4cdbf8;
+            }
+            .color3{
+                    background: #d339c6;
+            }
+            .color4{
+                 background:#929292;
+            }
+            .color5{
+                 background:#2c71a8;
+            }
+        }
+    }
+    .yearTimeLine {
+        height: 50px;
+        width: 1px;
+        background: $gray-light;
+        margin: 0 auto;
+    }
+    
+      .yearTimeUlLine {
+        height: 30px;
+        width: 1px;
+        background:none;
+        margin: 0 auto;
+        
+        li{
+            margin-top: 5px;
+        }
+         
+        li:nth-child(1){
+        height: 5px;
+        width: 1px;
+        background: $gray-light;
+        }
+
+         li:nth-child(2){
+        height: 7px;
+        width: 1px;
+        background: $gray-light;
+        }
+
+         li:nth-child(3){
+        height: 9px;
+        width: 1px;
+        background: $gray-light;
+        }
+    }
+
+    .midTimeLine {
+        height: 450px;
+        width: 1px;
+        background: $gray-light;
+        margin: 0 auto;
+    }
+}
+
+.videoSpace .videoArea .videoCrad {
+    width: 300px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 364px;
+    }
+    @media screen and (min-width:1500px) {
+        width: 364px;
+    }
+    height: auto;
+    margin-top: 32px;
+    position: absolute;
+    margin-left: 24px;
+    .title {
+        height: 24px;
+        width: 100%;
+        color: $gray-dark;
+        font-size: $font-size-lg24;
+        @include ellipsis;
+        margin-bottom: 10px;
+    }
+    a {
+        img {
+            width: 300px;
+            height: 158px;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: 364px;
+                height: 186px;
+            }
+            @media screen and (min-width:1500px) {
+                width: 364px;
+                height: 186px;
+            }
+        }
+    }
+    .videoContentInfo {
+        width: 100%;
+        height: 52px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 24px;
+        font-size: $font-size-base;
+        color: $gray-light;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+    }
+    .videoBtn {
+        width: 98px;
+        height: 26px;
+        color: white;
+        font-size: $font-size-sm10;
+        line-height: 26px;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+.videoSpace .videoArea .rightCard {
+    position: relative;
+    top: 50px;
+    float: right;
+    width: 348px;
+    height: 364px;
+    border:1px solid #ccc;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 408px;
+        height: 404px;
+    }
+    @media screen and (min-width:1500px) {
+        width: 408px;
+        height: 404px;
+    }
+    background: white;
+    .rightDian {
+        height: 50px;
+        width: 220px;
+        float: left;
+        position: relative;
+         right: 157px;
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+         right: 218px;
+    }
+    @media screen and (min-width:1500px) {
+       right: 218px;
+    }
+        top: 32px;
+        @extend .commonImg;
+    }
+}
+
+.videoSpace .videoArea .leftCard {
+    float: left;
+    width: 348px;
+    height: 364px;
+    border:1px solid #ccc;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 408px;
+        height: 404px;
+    }
+    @media screen and (min-width:1500px) {
+        width: 408px;
+        height: 404px;
+    }
+    background: white;
+    .leftDian {
+        height: 50px;
+        width: 221px;
+        float: right;
+        position: relative;
+        left: 220px;
+        top: 32px;
+        background-position: center;
+        @extend .commonImg;
+    }
+}
+
+.commonImg {
+    div {
+        display: inline-block;
+        height: 50px;
+    }
+    .day {
+        font-size: $font-size-base;
+        color: $gray-light;
+         width: 59px;;
+          @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 119px;
+    }
+    @media screen and (min-width:1500px) {
+       width: 119px;
+    }
+        vertical-align: bottom;
+        text-align: center;
+        line-height: 50px;
+    }
+    .dianImg {
+        height: 50px;
+        width: 50px;
+        background: url('../../images/provder/timeImg.png') no-repeat;
+        background-position: center;
+    }
+        .leftJiaoImg {
+        height: 50px;
+        width: 50px;
+        background: url('../../images/provder/leftSanJiao.png') no-repeat;
+        background-position: center;
+
+
+    }
+
+       .rightJiaoImg {
+        height: 50px;
+        width: 50px;
+        background: url('../../images/provder/rightJiao.png') no-repeat;
+        background-position: center;
+
+    }
+}
+
+.infoBottom {
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+
+    .buChong{
+        width: 100%;
+        height:20px;
+        background: #f2f2f2;
+    }
+
+    .bottomWord {
+        padding-top: 70px;
+        color: $gray-dark;
+        font-size: $font-size-lg;
+        text-align: center;
+        width: 80%;
+        height: 170px;
+        line-height: 3rem;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .bottomBtn {
+        width: 192px;
+        height: 32px;
+        color: white;
+        font-size: $font-size-base;
+        line-height: 32px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 30px;
+        position: relative;
+        top:-45px;
+    }
+}
+
+.videoTag {
+    margin: 10px 0 10px 0;
+    div {
+        display: inline-block;
+        color: $gray-light;
+        font-size: $font-size-sm10;
+    }
+    img {
+        margin-right: 10px;
+        position: relative;
+        top:2px;
+    }
+}
+
+
+
+    .nav .logo { 
+    background: url(../../images/common/logo.svg) no-repeat;
+
+}
+
