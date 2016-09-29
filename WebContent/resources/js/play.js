@@ -45,7 +45,7 @@ $().ready(function(){
 	// -> 注册 分享按钮 
 	$('.share').click(function(){
 		var title = $('#pName').text();
-		var url = 'http://www.apaipian.com/play/' + $('#company-unique').val() + '_' + $('#play-unique').val() + '.html';
+		var url = getHostName() + getContextPath() + '/phone/play/' + $('#play-unique').val();
 		var img_path = $('#picPath').val();
 		share.init(url,title,img_path);
 	});

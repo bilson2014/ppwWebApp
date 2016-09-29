@@ -39,7 +39,7 @@ var video = {
 		},
 		share : function(){ // 分享
 			$('.share').on('click',function(){
-				var shareUrl = 'http://www.apaipian.com/play/' + $('#company-key').val() + '_' + $(this).data('no') + '.html';
+				var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
 				var share_title = $(this).parent().parent().parent().find('.media-heading').text().split('标题：')[1];
 				var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
 				var imgPath = '';
