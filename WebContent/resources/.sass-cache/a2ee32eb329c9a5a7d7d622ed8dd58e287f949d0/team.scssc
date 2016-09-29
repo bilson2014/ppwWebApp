@@ -1,27 +1,27 @@
 3.4.22 (Selective Steve)
-0db4fbec1d32e21e2d4563a37599a8b0bbabbc16
-o:Sass::Tree::RootNode:@children[o:Sass::Tree::CommentNode:@value[I"Î./*
+52e0faf509673ec1b9f72ea8d7e9f4fc9b8b8522
+o:Sass::Tree::RootNode:@children[o:Sass::Tree::CommentNode:@value[I"Ä./*
 Error: Undefined mixin 'common-icons-sprite'.
         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'
         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss
-        from line 5 of E:/mavenspace/Film/WebContent/resources/sass/production.scss
+        from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss
 
-188: 						text-align: center;
-189: 						padding-top: 10px;
-190: 						padding-bottom: 10px;
-191: 						& dt{
-192: 							margin-bottom: 7px;
-193: 							color: #4a4a4a;
-194: 							font: {
-195: 								size: $normal-font-size;
-196: 								weight: 600;
-197: 							}
+188: 				float: right;
+189: 				position: relative;
+190: 				height: 476px;
+191: 				@expend $wrap-min-width;
+192: 				@extend %recomment-border;
+193: 				background: #ffffff;
+194: 
+195: 				dl:first-child{
+196: 					padding: 56px 20px 20px 20px;
+197: 					height:172px;
 198: 
 
 Backtrace:
 E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss:193:in `common-icons-sprite'
 E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss:193
-E:/mavenspace/Film/WebContent/resources/sass/production.scss:5
+E:/mavenspace/Film/WebContent/resources/sass/team.scss:4
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/tree/visitors/perform.rb:349:in `block in visit_mixin'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/stack.rb:115:in `with_frame'
@@ -133,37 +133,37 @@ C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adap
 */:ET:
 @type:normal;[ :@filename0:@options{ :
 @linei:@source_rangeo:Sass::Source::Range	:@start_poso:Sass::Source::Position;i:@offseti:@end_poso;;iƒ;i:
-@fileI"AD:/workforgit/Film/WebContent/resources/sass/production.scss:encoding"GBK:@importere:"Compass::ImportOnce::Importero: Sass::Importers::Filesystem:
-@rootI",D:/workforgit/Film/WebContent/resources;	T:@real_rootI",D:/workforgit/Film/WebContent/resources;	T:@same_name_warningso:Set:
+@fileI"ND:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/team.scss;	T:@importere:"Compass::ImportOnce::Importero: Sass::Importers::Filesystem:
+@rootI"?D:/workshop/paipianwang-workshop/Film/WebContent/resources;	T:@real_rootI"?D:/workshop/paipianwang-workshop/Film/WebContent/resources;	T:@same_name_warningso:Set:
 @hash} Fo:Sass::Tree::RuleNode:
-@rule[I"body:before;	T:@parsed_ruleso:"Sass::Selector::CommaSequence:@members[o:Sass::Selector::Sequence;#[o:#Sass::Selector::SimpleSequence;#[o:Sass::Selector::Element	:
-@nameI"	body;	T:@namespace0;i…;0o:Sass::Selector::Pseudo:@syntactic_type:
-class;'I"before;	T:	@arg0:@selector0;i…;0:@subject0:@sourceso;;} F;o;	;o;;i;i;o;;i;i;0;0;i…;0;i…;i…;0:@selector_source_rangeo;	;o;;i…;i;o;;i…;i;@;@:
-@tabsi ;[o:Sass::Tree::PropNode;'[I"white-space;	T;o: Sass::Script::Tree::Literal;o: Sass::Script::Value::String	;I"pre;	T;@;
-:identifier:"@deprecated_interp_equivalent0;i†;o;	;o;;i†;i;o;;i†;i;@;@;1i :@prop_syntax:new;[ ;0;@;i†;o;	;o;;i†;i;o;;i†;i;@;@:@name_source_rangeo;	;@7;o;;i†;i;@;@:@value_source_rangeo;	;o;;i†;i;@8;@;@o;2;'[I"font-family;	T;o;3;o;4	;I"monospace;	T;@;
-;5;60;i‡;o;	;o;;i‡;i;o;;i‡;i;@;@;1i ;7;8;[ ;0;@;i‡;o;	;o;;i‡;i;o;;i‡;i;@;@;9o;	;@H;o;;i‡;i;@;@;:o;	;o;;i‡;i;@I;@;@o;2;'[I"content;	T;o;3;o;4	;I""Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 5 of E:/mavenspace/Film/WebContent/resources/sass/production.scss\A \A 188: 						text-align: center;\A 189: 						padding-top: 10px;\A 190: 						padding-bottom: 10px;\A 191: 						& dt{\A 192: 							margin-bottom: 7px;\A 193: 							color: #4a4a4a;\A 194: 							font: {\A 195: 								size: $normal-font-size;\A 196: 								weight: 600;\A 197: 							}\A 198: ";	T;@;
-;5;60;iˆ;o;	;o;;iˆ;i;o;;iˆ;i‹;@;@;1i ;7;8;[ ;0;@;iˆ;o;	;o;;iˆ;i;o;;iˆ;i‹;@;@;9o;	;@Y;o;;iˆ;i;@;@;:o;	;o;;iˆ;i;@Z;@;@;0;@;i…;o;	;@);o;;i…;i;@;@:@has_childrenT;0;@:@templateI"š1/*
+@rule[I"body:before;	T:@parsed_ruleso:"Sass::Selector::CommaSequence:@members[o:Sass::Selector::Sequence;"[o:#Sass::Selector::SimpleSequence;"[o:Sass::Selector::Element	:
+@nameI"	body;	T:@namespace0;i„;0o:Sass::Selector::Pseudo:@syntactic_type:
+class;&I"before;	T:	@arg0:@selector0;i„;0:@subject0:@sourceso;;} F;o;	;o;;i;i;o;;i;i;0;0;i„;0;i„;i„;0:@selector_source_rangeo;	;o;;i„;i;o;;i„;i;@;@:
+@tabsi ;[o:Sass::Tree::PropNode;&[I"white-space;	T;o: Sass::Script::Tree::Literal;o: Sass::Script::Value::String	;I"pre;	T;@;
+:identifier:"@deprecated_interp_equivalent0;i…;o;	;o;;i…;i;o;;i…;i;@;@;0i :@prop_syntax:new;[ ;0;@;i…;o;	;o;;i…;i;o;;i…;i;@;@:@name_source_rangeo;	;@6;o;;i…;i;@;@:@value_source_rangeo;	;o;;i…;i;@7;@;@o;1;&[I"font-family;	T;o;2;o;3	;I"monospace;	T;@;
+;4;50;i†;o;	;o;;i†;i;o;;i†;i;@;@;0i ;6;7;[ ;0;@;i†;o;	;o;;i†;i;o;;i†;i;@;@;8o;	;@G;o;;i†;i;@;@;9o;	;o;;i†;i;@H;@;@o;1;&[I"content;	T;o;2;o;3	;I"{"Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss\A \A 188: 				float: right;\A 189: 				position: relative;\A 190: 				height: 476px;\A 191: 				@expend $wrap-min-width;\A 192: 				@extend %recomment-border;\A 193: 				background: #ffffff;\A 194: \A 195: 				dl:first-child{\A 196: 					padding: 56px 20px 20px 20px;\A 197: 					height:172px;\A 198: ";	T;@;
+;4;50;i‡;o;	;o;;i‡;i;o;;i‡;i‡;@;@;0i ;6;7;[ ;0;@;i‡;o;	;o;;i‡;i;o;;i‡;i‡;@;@;8o;	;@X;o;;i‡;i;@;@;9o;	;o;;i‡;i;@Y;@;@;0;@;i„;o;	;@(;o;;i„;i;@;@:@has_childrenT;0;@:@templateI"‹1/*
 Error: Undefined mixin 'common-icons-sprite'.
         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'
         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss
-        from line 5 of E:/mavenspace/Film/WebContent/resources/sass/production.scss
+        from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss
 
-188: 						text-align: center;
-189: 						padding-top: 10px;
-190: 						padding-bottom: 10px;
-191: 						& dt{
-192: 							margin-bottom: 7px;
-193: 							color: #4a4a4a;
-194: 							font: {
-195: 								size: $normal-font-size;
-196: 								weight: 600;
-197: 							}
+188: 				float: right;
+189: 				position: relative;
+190: 				height: 476px;
+191: 				@expend $wrap-min-width;
+192: 				@extend %recomment-border;
+193: 				background: #ffffff;
+194: 
+195: 				dl:first-child{
+196: 					padding: 56px 20px 20px 20px;
+197: 					height:172px;
 198: 
 
 Backtrace:
 E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss:193:in `common-icons-sprite'
 E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss:193
-E:/mavenspace/Film/WebContent/resources/sass/production.scss:5
+E:/mavenspace/Film/WebContent/resources/sass/team.scss:4
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/tree/visitors/perform.rb:349:in `block in visit_mixin'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/stack.rb:115:in `with_frame'
@@ -273,9 +273,8 @@ C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adap
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
 */
-
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 5 of E:/mavenspace/Film/WebContent/resources/sass/production.scss\A \A 188: 						text-align: center;\A 189: 						padding-top: 10px;\A 190: 						padding-bottom: 10px;\A 191: 						& dt{\A 192: 							margin-bottom: 7px;\A 193: 							color: #4a4a4a;\A 194: 							font: {\A 195: 								size: $normal-font-size;\A 196: 								weight: 600;\A 197: 							}\A 198: "; }
-;	T;i;o;	;o;;i;i;o;;i;i;@;@;;T
+  content: "Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss\A \A 188: 				float: right;\A 189: 				position: relative;\A 190: 				height: 476px;\A 191: 				@expend $wrap-min-width;\A 192: 				@extend %recomment-border;\A 193: 				background: #ffffff;\A 194: \A 195: 				dl:first-child{\A 196: 					padding: 56px 20px 20px 20px;\A 197: 					height:172px;\A 198: "; }
+;	T;i;o;	;o;;i;i;o;;i;i;@;@;:T
