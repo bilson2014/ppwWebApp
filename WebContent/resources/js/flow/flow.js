@@ -791,7 +791,7 @@ function loadfiledata(more) {
 			var tab = $(".file-table");
 			tab.html("");
 			if(msg.length==0){
-				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/img/flow/nofile.png\"/></div>");
+				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/images/flow/nofile.png\"/></div>");
 				$(".more-file-btn").hide();
 			}
 			for (var i = 0; i < msg.length; i++) {
@@ -799,7 +799,7 @@ function loadfiledata(more) {
 				var divRoot=$("<div class=\"file-div\"></div>");
 				var fileName=name.lastIndexOf(".");
 				var finalName=name.substring(fileName+1);
-				var src='/resources/img/flow/';
+				var src='/resources/images/flow/';
 				switch (finalName) {
 					case 'doc':
 					case 'docx':
@@ -866,17 +866,17 @@ function loadfiledata(more) {
 				}
 				var lookA=$("<a href='javascript:void(0);' target='_blank' ></a>");
 				var chakan=$("<img class=\"qrcode-img div-table img-look\"" +
-						"src=\"/resources/img/flow/look.png\" data-state='"+msg[i].state+"'  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
+						"src=\"/resources/images/flow/look.png\" data-state='"+msg[i].state+"'  data-url='"+msg[i].irId+"'  id='chakan"+msg[i].irId+"'>");
 				lookA.append(chakan);
 				var fenxiang=$("<img class=\"qrcode-img div-table img-margin img-share \"" +
-						"src=\"/resources/img/flow/share.png\" data-state='"+msg[i].state+"' data-url='"+msg[i].irId+"' />");
-				var xiazai=$("<img src=\"/resources/img/flow/download.png\"/>");
+						"src=\"/resources/images/flow/share.png\" data-state='"+msg[i].state+"' data-url='"+msg[i].irId+"' />");
+				var xiazai=$("<img src=\"/resources/images/flow/download.png\"/>");
 				
 				lookA.on("mouseenter",function(){
-					jQuery(this).find("img").attr("src",'/resources/img/flow/lookbg.png');
+					jQuery(this).find("img").attr("src",'/resources/images/flow/lookbg.png');
 				});
 				lookA.on("mouseleave",function(){
-					jQuery(this).find("img").attr("src",'/resources/img/flow/look.png');
+					jQuery(this).find("img").attr("src",'/resources/images/flow/look.png');
 				});
 				//chakan.unbind('click');
 				chakan.bind('click',function(){
@@ -920,10 +920,10 @@ function loadfiledata(more) {
 				});
 				
 				fenxiang.on("mouseenter",function(){
-					jQuery(this).attr("src",'/resources/img/flow/sharebg.png');
+					jQuery(this).attr("src",'/resources/images/flow/sharebg.png');
 				});
 				fenxiang.on("mouseleave",function(){
-					jQuery(this).attr("src",'/resources/img/flow/share.png');
+					jQuery(this).attr("src",'/resources/images/flow/share.png');
 				});
 				fenxiang.on("click",function(){
 					var self=jQuery(this);
@@ -960,10 +960,10 @@ function loadfiledata(more) {
 					}
 				});
 				xiazai.on("mouseenter",function(){
-					jQuery(this).attr("src",'/resources/img/flow/downloadbg.png');
+					jQuery(this).attr("src",'/resources/images/flow/downloadbg.png');
 				});
 				xiazai.on("mouseleave",function(){
-					jQuery(this).attr("src",'/resources/img/flow/download.png');
+					jQuery(this).attr("src",'/resources/images/flow/download.png');
 				});
 				
 				var div3=$("<div class=\"div-table \"><p class=\"file-user-name\">"+userNameView+
@@ -1029,13 +1029,13 @@ function loadcommentdata(more) {
 					var tab = $(".message-table");
 					tab.html("");
 					if(msg.length==0){
-						tab.html(" <img  class=\"nomessage\" src=\"/resources/img/flow/nomessage.png\"/>");
+						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
 					}
 					for (var i = 0; i < msg.length; i++) {
 						var tr = $("<tr></tr>");
 						var imgx=$("<img class=\"message-portrait-img\""
-								+ " src=\"/resources/img/flow/file.png\">");
+								+ " src=\"/resources/images/flow/file.png\">");
 						var td1 = $("<td class=\"message-portrait\" rowspan=\"2\"></td>");
 
 						var user = msg[i].userViewModel;
@@ -2312,7 +2312,7 @@ function checkHasListForEmFirst(){
 function toCheckListClose(token){
 	
 	$('#close-list').modal({backdrop: 'static', keyboard: false});
-	$('#sureClose').on('click',function(){
+	$('#sureClose').off('click').on('click',function(){
 		
 		loadData(function(msg){
 			if(msg.errorCode == 200){

@@ -3,7 +3,7 @@
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/common.css" var="commonCss"/>
+<spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/css/provider/status.css" var="providerStatusCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -13,7 +13,7 @@
 <spring:url value="/resources/js/provider/status.js" var="providerStatusJs"/>
 
 <!-- imgPath -->
-<spring:url value="/resources/img" var="imgPath"/>
+<spring:url value="/resources/images" var="imgPath"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->

@@ -106,30 +106,28 @@
 		<div class="flex-wrap">
 				<div class="flexslider">
 					<ul class="slides">
-					    <!-- <li>
+					    <li>
 					       <section>
 					        <video preload="auto" loop="" autoplay="" poster="/images/index_img/pic_home_banner.png" class="video-bg">
-				                <source src="http://7xok4u.com2.z0.glb.qiniucdn.com/static/videos/banner_video_df536a45.mp4" type="video/mp4">
+				                <source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
 			                </video>
 			                </section>
-			            </li> -->
-						<li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
+			            </li>
+						<%-- <li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex2.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
-						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
+						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li> --%>
 					</ul>
 				</div>
 				
 				<div class="new-banner" >
 					<div class="title">低预算拍大片 不满意全额退款</div>
 					<div class="search-box" id="banner-search">
-						<form method="get" action="/search" id="s-form">
-							<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+						<form method="get" action="/search" id="s-form" class="bannerOut">
+							<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />
 							<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 							<ul id="shelper" class="shelper-lucency"></ul>
+							<img src="${imgPath }/search.png" class="bannerSearch" id="search"> 
 						</form>
-
-						<img src="${imgPath }/search.png" style="position: absolute;height: 35px;right: 20px;"> 
-
 					</div>
 					<div class="desc">35800+ 导演 / 编剧 / 摄影师 / 影视专家为您服务</div>
 					<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn" id="know-bg-btn">了解拍片网</div></a>

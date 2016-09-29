@@ -4,7 +4,7 @@
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
-<spring:url value="/resources/css/common.css" var="commonCss" />
+<spring:url value="/resources/css/commons.css" var="commonCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
 <spring:url value="/resources/css/provider/login.css"
@@ -139,8 +139,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div class="outSideDiv phoneHeight" id="outSideId">
 			<div class="loginDiv">
 				<h1 style="display: inline-block" id="title">供应商登录</h1>

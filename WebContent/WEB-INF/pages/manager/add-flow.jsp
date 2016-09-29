@@ -6,7 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
 <spring:url value="/resources/lib/h5bp/h5bp.css" var="h5bpCss" />
-<spring:url value="/resources/css/common.css" var="commonCss" />
+<spring:url value="/resources/css/commons.css" var="commonCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <%-- import JS --%>
@@ -334,11 +334,11 @@ var="ajaxfileuploadJs" />
 			</div>	
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border-time-left"></div>
-				<div class="right-border-time right-border-margin"  id="gtstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time"      id="fastarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time"      id="swstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time"      id="zzstarttimeid"><img class="img-size" src="/resources/img/flow/time-img.png"/></div>
-				<div class="right-border-time-end"  id="jfstarttimeid"><img class="img-size-end" src="/resources/img/flow/time-end.png"/></div>
+				<div class="right-border-time right-border-margin"  id="gtstarttimeid"><img class="img-size" src="/resources/images/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="fastarttimeid"><img class="img-size" src="/resources/images/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="swstarttimeid"><img class="img-size" src="/resources/images/flow/time-img.png"/></div>
+				<div class="right-border-time"      id="zzstarttimeid"><img class="img-size" src="/resources/images/flow/time-img.png"/></div>
+				<div class="right-border-time-end"  id="jfstarttimeid"><img class="img-size-end" src="/resources/images/flow/time-end.png"/></div>
 			</div>	
 			<div class="indent-time-table-border-tr-time">
 				<div class="right-border font-weight-title">预计时间</div>

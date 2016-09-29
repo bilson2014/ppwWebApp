@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/common.css" var="commonCss"/>
+<spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/css/about.css" var="aboutCss"/>
 <spring:url value="/resources/css/login.css" var="loginCss"/>
 <%-- import JS --%>
@@ -16,7 +16,7 @@
 <spring:url value="/resources/lib/disk/demo-1.js" var="demoJs"/>
 
 <!-- imgPath -->
-<spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->

@@ -46,22 +46,41 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 	suggest = new suggest.Suggest();
 	suggest.smartSuggest();
 	suggest.prototypeChange();
+	suggest.searchClick();
+	
+	
 	
 	var mta = new bdmta.Bdmta();
 	mta.init();
 	
 	$('.flexslider').flexslider({
 		directionNav: true,
-		pauseOnAction: false
+		pauseOnAction: false,
+		slideshowSpeed: 40000  
 	});
+	
+	
 	
 	// 滚动监听 start
 	$('#know-bg-btn').waypoint(function(direction){
-		var $from = '<form method="get" action="/search" id="s-form">';
-		$from += '<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />';
+		
+		var $fromG = '<form method="get" action="/search" id="s-form" >';
+		$fromG += '<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />';
+		$fromG += '<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>';
+		$fromG += '<ul id="shelper" class="shelper-lucency"></ul>';
+		$fromG += '</form>';
+		
+		//lt update
+		
+		var $from = '<form method="get" action="/search" id="s-form" class="bannerOut" >';
+		$from += '<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />';
 		$from += '<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>';
 		$from += '<ul id="shelper" class="shelper-lucency"></ul>';
+
+		$from += '<img src="/resources/images/search.png" class="bannerSearch" id="search">';
+
 		$from += '</form>';
+
 		
 		if (direction == "up") { // 了解 拍片网之前
 			
@@ -70,16 +89,17 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 			$('#banner-search').empty().append($from);
 			// 隐藏工具栏
 			$('#toolbar-section').css({visibility: 'hidden'});
-		}else {
 			
+		}else {
 			$('#header-search').show();
 			$('#banner-search').empty();
-			$('#header-search').empty().append($from);			
+			$('#header-search').empty().append($fromG);			
 			// 显示工具栏
 			$('#toolbar-section').css({visibility: 'visible'});
 		}
 		suggest.smartSuggest();
 		suggest.prototypeChange();
+		//suggest.searchClick();
 	});
 	// 滚动监听 end
 	

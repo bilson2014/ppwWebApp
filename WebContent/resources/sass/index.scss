@@ -13,6 +13,52 @@
 	@include flexshow; 
 }
 
+
+.bannerOut{
+	 height: 70px !important;
+	 width: 695px !important;
+	 background: image-url("banner/banner_big.png") no-repeat !important;
+	 background-size:695px 70px !important;
+	 margin-left: -38px;
+}
+
+
+
+
+
+input:focus{
+	 	border:none !important;
+	 }
+
+.bannerDiv{
+    
+	 height: 70px !important;
+	 width: 692px !important;
+	 background: none !important;
+	 border:none !important;
+	 line-height: 70px;
+	 border:0 !important;
+	 outline:none !important;
+	 color:$gray-dark !important;
+
+	// background: image-url("banner/banner_big.png") no-repeat !important;
+	 // border: none !important;
+	 // background-size:695px 70px !important;
+
+}
+
+.bannerSearch{
+	position: absolute;
+    height: 60px;
+    width: 84px;
+    right: 5px;
+    top: 5px;
+    background: #fe5453;
+    border-radius: 2px;
+    padding: 10px 22px 10px 22px;
+    cursor: pointer;
+}
+
 .new-banner {
 	position: absolute;
 	left: 0;
@@ -23,18 +69,19 @@
     }
 	bottom: 0;
 	margin: 50px auto 50px;
-	width: $banner-title-width;
+	width: 620px;
 	height: 235px;
 	z-index: 10;
 	.title {
 		width: 100%;
-		font-size: $font-size-lgester;
+		font-size: 4.6rem;
 		line-height: $font-size-lgester;
 		margin: 0 auto 30px;
 		text-align: center;
 		color: $white;
 		top:5px;
 		position: relative;
+		font-weight: bold;
 	} 
 
 	.search-box {
@@ -75,7 +122,7 @@
 		text-align: center;
 		color: $white;
 		font: {
-			size: 20px;
+			size: 22px;
 			weight: 300;
 		}
 		//background: url(../images/common/desc.svg) no-repeat;

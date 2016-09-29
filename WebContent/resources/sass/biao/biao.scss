@@ -1,0 +1,600 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "compass/typography/text/ellipsis";
+$divBlue:#00233a;
+$blockBlue:#00ac9e;
+$divBlack:#07182a;
+$borderLineColor:#4b5763;
+$blackLine: #07182a;
+$green: #00ac9e;
+$treeBlue: #002d4a;
+$titleBlue: #002b48;
+$cardBlue: #08182a;
+$blackLine: #042338;
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+.outSiderDiv {
+    background: $divBlack;
+    border-radius: 4px;
+    width: 100%;
+    margin: 0 auto;
+    height: 1080px;
+    border-bottom: 1px solid none;
+}
+
+.subList {
+    height: 1080px;
+    width: 260px;
+    background: $divBlue;
+    float: left;
+    color: white;
+    font-size: $font-size-lg;
+    .parentLi {
+        height: auto;
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        li {
+            height: 42px;
+            line-height: 42px;
+            background: $treeBlue;
+            width: 90%;
+            margin: 0 auto;
+            padding-left: 10px;
+            font-size: $font-size-base;
+        }
+        .check {
+            color: $green;
+            background: $blockBlue;
+        }
+    }
+    .title {
+        height: 42px;
+        line-height: 42px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .icon {
+        margin-right: 16px;
+        position: relative;
+        top: 7px;
+    }
+    .checkImg {
+        transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        /* Internet Explorer */
+        -moz-transform: rotate(90deg);
+        /* Firefox */
+        -webkit-transform: rotate(90deg);
+        /* Safari 和 Chrome */
+        -o-transform: rotate(90deg);
+        /* Opera */
+    }
+}
+
+.subList .subListTop {
+    height: 82px;
+    width: 100%;
+    border-bottom: 1px solid $borderLineColor;
+    .logo {
+        margin-top: 28px;
+        margin-left: 34px;
+        display: inline-block;
+    }
+    .list {
+        margin-left: 54px;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        margin-top: 28px;
+    }
+}
+
+.subList .showList {
+    display: none;
+    .listOption {
+        background: $divBlack;
+        width: 100%;
+        height: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        cursor: pointer;
+        .optionG {
+            width: 61%;
+            height: 18px;
+            line-height: 18px;
+            margin: 0 auto;
+            color: $green;
+            font-size: $font-size-lg;
+            div {
+                height: 16px;
+                width: 16px;
+                border-radius: 90px;
+                background: $green;
+                display: inline-block;
+                margin-right: 20px;
+                position: relative;
+                top: 1px;
+            }
+        }
+        .option {
+            width: 61%;
+            height: 18px;
+            line-height: 18px;
+            margin: 0 auto;
+            color: white;
+            font-size: $font-size-lg;
+            div {
+                height: 16px;
+                width: 16px;
+                border-radius: 90px;
+                background: white;
+                display: inline-block;
+                margin-right: 20px;
+                position: relative;
+                top: 1px;
+            }
+        }
+    }
+}
+
+.contentList {
+    height: 1000px;
+    width: 1640px;
+    background: $divBlack;
+    float: left;
+}
+
+.contentList .topCard {
+    width: 182px;
+    height: 204px !important;
+    background: #002d4b;
+    position: relative;
+    z-index: 99;
+    top: 0px;
+    left: 92px;
+    border: none !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    display: none;
+    .triangle {
+        position: absolute;
+        top: -14px;
+        left: 137px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 15px solid #002d4b;
+    }
+    ul {
+        margin-top: 7px;
+    }
+    li {
+        background: #002d4b;
+        padding-left: 10px;
+        height: 32px !important;
+        line-height: 32px !important;
+        width: 155px;
+        margin: 0 auto;
+        border-bottom: 1px solid $borderLineColor;
+        color: white;
+        font-size: $font-size-base;
+    }
+    li:nth-child(3) {
+        height: 90px !important;
+        line-height: 32px!important;
+        border: none;
+    }
+    li:nth-child(4) {
+        background: $blackLine;
+        height: 50px !important;
+        width: 100%;
+        line-height: 32px;
+        border: none;
+        color: white;
+        font-size: $font-size-base;
+        padding-left: 23px !important;
+        padding-right: 0px !important;
+    }
+}
+
+.contentList .personInfo {
+    float: right !important;
+    width: 300px;
+    height: 82px;
+    border: none!important;
+    .name {
+        border: none !important;
+        padding: 0px !important;
+        width: 120px;
+        margin-right: 5px;
+        @include ellipsis;
+        text-align: right;
+        color: white;
+        font-size: $font-size-base;
+    }
+    .set {
+        float: right;
+        position: relative;
+        top: 30px;
+    }
+    .personHead {
+        width: 52px;
+        height: 52px;
+        border-radius: 120px;
+        position: relative;
+        top: 14px;
+        float: right;
+        margin-right: 14px;
+    }
+}
+
+.contentList .contentListTop {
+    height: 82px;
+    width: 100%;
+    background: $divBlack;
+    border-bottom: 1px solid $borderLineColor;
+    .step {
+        border: none !important;
+    }
+    .green {
+        color: $green !important;
+        border-right: 1px solid $green;
+        border-bottom: 2px solid $green;
+    }
+    div {
+        float: left;
+        $font-size: $font-size-base;
+        color: gray;
+        height: 82px;
+        line-height: 82px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border-right: 1px solid $gray;
+        span {
+            padding-left: 24px;
+        }
+    }
+}
+
+.contentList .title {
+    margin-top: 22px;
+    div {
+        color: white;
+        font-size: $font-size-sm;
+        display: inline-block;
+    }
+    .examine {
+        background: $titleBlue;
+        margin-left: 24px;
+        border-radius: 4px;
+        .statues {
+            width: 88px;
+            line-height: 30px;
+            border-right: 1px solid $blackLine;
+            text-align: center;
+        }
+        .selectDiv {
+            width: 168px;
+            padding-left: 20px;
+        }
+        .selectImg {
+            width: 26px;
+            float: right;
+            border-left: 1px solid $blackLine;
+            height: 30px;
+            img {
+                width: 10px;
+                height: 7px;
+                position: relative;
+                top: 8px;
+                left: 6px;
+            }
+        }
+    }
+    .coloTitle {
+        margin-left: 24px;
+        vertical-align: top;
+        color: $gray;
+        height: 30px;
+        line-height: 30px;
+    }
+    .colInput {
+        background: $titleBlue;
+        margin-left: 24px;
+        vertical-align: top;
+        height: 30px;
+        line-height: 30px;
+        width: 256px;
+        border-radius: 4px;
+        div {
+            padding-left: 19px;
+            padding-right: 19px;
+            text-align: center;
+            border-right: 1px solid $blackLine;
+        }
+        input {
+            padding-left: 10px;
+            background: none;
+            height: 30px;
+            width: 150px;
+            border: none;
+            border-color: none;
+            outline: none;
+        }
+        input:focus {
+            border: none;
+            border-color: none;
+            outline: none;
+        }
+    }
+    .colSpan {
+        background: $titleBlue;
+        margin-left: 24px;
+        border-radius: 4px;
+        vertical-align: top;
+        .selectImg {
+            width: 45px;
+            float: left;
+            border-right: 1px solid $blackLine;
+            height: 30px;
+            img {
+                width: 10px;
+                height: 7px;
+                position: relative;
+                top: 8px;
+                left: 18px;
+            }
+        }
+        .col {
+            text-align: center;
+            width: 182px;
+            line-height: 30px;
+        }
+    }
+    .colSpanRight {
+        background: $titleBlue;
+        float: right;
+        width: 130px;
+        border-radius: 4px;
+        vertical-align: top;
+        margin-right: 24px;
+        .selectImg {
+            width: 45px;
+            float: left;
+            height: 30px;
+            img {
+                width: 14px;
+                height: 14px;
+                position: relative;
+                top: 8px;
+                left: 24px;
+            }
+        }
+        .col {
+            text-align: center;
+            line-height: 30px;
+        }
+    }
+    .select {
+        background: $divBlue;
+        margin-left: 24px;
+        border-radius: 4px;
+        div {
+            width: 88px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-right: 1px solid $blackLine;
+        }
+        div:last-child {
+            color: $green;
+            height: 30px;
+            line-height: 30px;
+            border: none !important;
+        }
+    }
+}
+
+.contentList .contentTable {
+    height: 800px;
+    width: 1107px;
+    background: $divBlue;
+    position: relative;
+    top: -2px;
+    margin-left: 25px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    border-radius: 4px;
+    display: inline-block;
+    .contentTableInSide {
+        height: 756px;
+        width: 95%;
+        width: calc(100% - 50px);
+        margin: 0 auto;
+        white-space: nowrap;
+        overflow: auto;
+    }
+    .optionCard {
+        width: 100%;
+        height: 42px;
+        border-left: 1px solid $gray-light;
+        font-size: 0;
+        .check {
+            background: #043f64
+        }
+        .checkWhite {
+            background: #08344c;
+        }
+        div {
+            display: inline-block;
+            width: 264px;
+            height: 42px;
+            border: 1px solid $gray-light;
+            border-left: none;
+            font-size: $font-size-base;
+            color: white;
+            line-height: 42px;
+            text-align: center;
+        }
+    }
+}
+
+.contentList .contentTableRight {
+    height: 800px;
+    width: 200px;
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    margin-left: 10px;
+    .contentTableCard {
+        width: 470px;
+        height: 260px;
+        background: $divBlue;
+        margin-bottom: 12px;
+    }
+}
+
+
+
+//第二部分
+.contentList .contentSql {
+    background: $titleBlue;
+    width: 1595px;
+    height: 945px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 32px 0px 16px;
+    .sqlTop {
+        height: 40px;
+        width: auto;
+        div {
+            float: left;
+        }
+    }
+    .sqlInfo {
+        height: 40px;
+        width: 100px;
+        line-height: 40px;
+        color: white;
+        background: black;
+        text-align: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .sqlCard {
+        width: auto;
+        height: 30px !important;
+        line-height: 30px !important;
+        font-size: $font-size-sm;
+        margin-left: 24px;
+        position: relative;
+        top: 7px;
+        .titleCard {
+            color: white;
+        }
+        input {
+            width: 161px;
+            height: 30px !important;
+            background: $divBlue;
+            border-radius: 90px;
+            color: white;
+            border: none;
+            outline: none;
+            padding: 15px;
+        }
+        .circleCard {
+            width: 161px;
+            height: 30px !important;
+            background: $divBlue;
+            border-radius: 90px;
+            color: $gray;
+            div {
+                width: 80px;
+                text-align: center;
+                line-height: 30px;
+            }
+            .checkCard {
+                background: $cardBlue;
+                border-radius: 90px;
+                color: $green;
+            }
+        }
+    }
+    textarea {
+        padding: 15px;
+        width: 1546px;
+        height: 370px;
+        background: black;
+        border-color: $divBlue;
+        margin-top: 1px;
+        outline: none;
+        resize: none;
+    }
+    .doSql {
+        height: 56px;
+        width: auto;
+        line-height: 30px;
+        position: relative;
+        left: 100px;
+        div {
+            float: left;
+            width: 300px;
+            text-align: center;
+            border: white;
+            color: $green;
+            border-radius: 90px;
+            font-size: $font-size-base;
+            background: $divBlue;
+            margin-right: 10px;
+        }
+        .check {}
+    }
+    .sqlSet {
+        width: 100%;
+        height: 36px;
+        border: white;
+        color: $green;
+        font-size: $font-size-base;
+        border: 1px solid $blackLine;
+        .word {
+            height: 32px;
+            line-height: 32px;
+            margin: 0 auto;
+            width:84px;
+        }
+        
+        .control {
+            width: 244px;
+            border-radius: 90px;
+            height: 22px;
+            border: 1px solid $blackLine;
+            float: right;
+            position: relative;
+   			top: -26px;
+   			right: 10px;
+            div{
+            	width:60px;
+            	height:22px;
+            	border-right:1px solid $blackLine;
+            	text-align: center;
+            	float: left;
+            	img{
+            		margin: 4 auto;
+            	}
+            }
+
+            .noBorder{
+            	border:none !important;
+            }
+        }
+    }
+}

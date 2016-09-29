@@ -16,7 +16,7 @@
 <spring:url value="/resources/js/order.js" var="orderJs"/>
 
 <!-- imgPath -->
-<spring:url value="/resources/img" var="imgPath" />
+<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -175,8 +175,8 @@
 			   			 <source  src="/resources/images/video/paipianwang.mp4"  id="source" type="video/mp4">
 			   		  </video>
 						
-						<div class="info">
-							  <div id="closeVideo">文字介绍</div>
+						<div class="info" id="closeVideo">
+							  <div >文字介绍</div>
 							  <div class="triangle-right"></div>
 						</div>
 				</div>

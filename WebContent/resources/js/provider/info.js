@@ -48,15 +48,15 @@ $().ready(function(){
 	$('#insSubmit').on('click',addAccount);
 	// 图片上传 点击事件
 	$('#logoImg').on('click',function(){
-		$('#file').click();
 		// 图片上传 点击事件
 		$('#file').off("change").on("change",function(){
 			$.blockUI({
-				message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
+				message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
 			});
 			// 上传图片
 			uploadImg();
 		});
+		$('#file').click();
 	});
 	
 	infoEcho();

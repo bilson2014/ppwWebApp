@@ -117,6 +117,7 @@ public class LoginController extends BaseController {
 									boolean result = JsonUtil.toBean(str, Boolean.class);
 									info.setKey(result);
 									info.setValue("登录成功");
+									addCookies(request,response);
 									return info;
 								}
 								info.setKey(false);
@@ -155,6 +156,7 @@ public class LoginController extends BaseController {
 					if (ValidateUtil.isValid(str)) {
 						final boolean ret = JsonUtil.toBean(str, Boolean.class);
 						if (ret) {
+							addCookies(request,response);
 							info.setKey(true);
 							info.setValue("登录成功");
 						} else {
@@ -167,7 +169,6 @@ public class LoginController extends BaseController {
 				}
 			}
 		}
-		addCookies(request,response);
 		return info;
 	}
 	/**

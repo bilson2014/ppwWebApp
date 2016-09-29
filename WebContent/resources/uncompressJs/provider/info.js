@@ -23,7 +23,7 @@ $().ready(function(){
 	
 	$('#uploadBt').on('click',function(){
 		$.blockUI({
-			message : '<h1><img src="'+ getContextPath() +'/resources/img/busy.gif"></img>&nbsp;准备上传…</h1>'
+			message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
 		});
 		// 上传图片
 		uploadImg();

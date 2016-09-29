@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Error: Undefined mixin 'common-icons-sprite'.
         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'
@@ -133,3 +134,6 @@ body:before {
   white-space: pre;
   font-family: monospace;
   content: "Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss\A \A 188: 				float: right;\A 189: 				position: relative;\A 190: 				height: 476px;\A 191: 				@expend $wrap-min-width;\A 192: 				@extend %recomment-border;\A 193: 				background: #ffffff;\A 194: \A 195: 				dl:first-child{\A 196: 					padding: 56px 20px 20px 20px;\A 197: 					height:172px;\A 198: "; }
+=======
+body:before{white-space:pre;font-family:monospace;content:"Error: Undefined mixin 'common-icons-sprite'.\A         on line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss, in `common-icons-sprite'\A         from line 193 of E:/mavenspace/Film/WebContent/resources/sass/_common_index.scss\A         from line 4 of E:/mavenspace/Film/WebContent/resources/sass/team.scss\A \A 188: 				float: right;\A 189: 				position: relative;\A 190: 				height: 476px;\A 191: 				@expend $wrap-min-width;\A 192: 				@extend %recomment-border;\A 193: 				background: #ffffff;\A 194: \A 195: 				dl:first-child{\A 196: 					padding: 56px 20px 20px 20px;\A 197: 					height:172px;\A 198: "}
+>>>>>>> 710e80938fb6c9ea1cb60c9e5c604af9997e998a
