@@ -100,7 +100,7 @@
 											<c:if test="${cType == 4 }">
 												<dl class="share-list">
 													<dt >分享:</dt>
-													<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />'></dd>
+													<dd><img alt="分享至微信" class="-mob-share-weixin share" title="分享至微信" src="/resources/img/icons/webcat.png" data-no='<c:out value="${product.productId }" />' data-ori='<c:out value="${product.teamId }" />'></dd>
 													<dd><img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间" src="/resources/img/icons/qqzone.png" data-no='<c:out value="${product.productId }" />'></dd>
 													<dd><img alt="分享至qq" class="-mob-share-qq share" title="分享至qq" src="/resources/img/icons/qq.png" data-no='<c:out value="${product.productId }" />'></dd>
 													<dd><img alt="分享至新浪微博" class="-mob-share-weibo share" title="分享至新浪微博" src="/resources/img/icons/weibo.png" data-no='<c:out value="${product.productId }" />'></dd>
