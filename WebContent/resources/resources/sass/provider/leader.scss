@@ -1,0 +1,274 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+
+.nav .logo { 
+	background: url(../../images/common/logo.svg) no-repeat;
+}
+body {
+	background: $white;
+}
+.step {
+	@include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
+	margin: 0 auto;
+	position: relative;
+	top: 10px;
+}
+.input-group-div {
+	margin: 0 auto;
+	width: 550px;
+	position:relative;
+	left:20px;
+
+	.checkbox {
+		display: inline-block;
+	}
+	.ul-step-two {
+		display: inline-block;
+		width: 89px;
+		position: relative;
+		top: -12px;
+		left: 20px;
+
+		li {
+			line-height: 20px;
+		}
+	}
+	.ul-step-three {
+		width: 160px;
+		margin: 0 auto;
+		position: relative;
+
+		li {
+			text-align: center;
+			line-height: 40px;
+		}
+		.stepThreeLi {
+			text-align: center;
+			line-height: 10px;
+		}
+	}
+	.border-none {
+		border: none;
+		border-radius: 0px;
+		background: none;
+	}
+	.step-one-input {
+		width: 370px;
+		height: 30px;
+		display: inline-block;
+		color: $gray-dark;
+		font-size: $font-size-base;
+	}
+	.step-two-select {
+		width: 370px;
+		height: 35px;
+		display: inline-block;
+		color: $gray-dark;
+		font-size: $font-size-base;
+		border-radius: 5px;
+
+		&:focus {
+			outline: none;
+			border-color: #66afe9;
+		}
+	}
+
+		.step-two-select-city {
+		width: 142px;
+		height: 35px;
+		display: inline-block;
+		color: $gray-dark;
+		font-size: $font-size-base;
+		border-radius: 5px;
+
+		&:focus {
+			outline: none;
+			border-color: #66afe9;
+		}
+	}
+	.title-word {
+		display: inline-block;
+		height: 50px;
+		width: 77px;
+		font-size: $font-size-base;
+		color: black;
+		font-weight: bold;
+	}
+	.title-word-city {
+		display: inline-block;
+		height: 50px;
+		width: 77px;
+		font-size: $font-size-base;
+		color: black;
+		font-weight: bold;
+		position: relative;
+		left:10px;
+	}
+	.error-word {
+		display: inline-block;
+		height: 50px;
+		font-size: $font-size-sm;
+		color: $red-base;
+	}
+	.error-area-word {
+		display: inline-block;
+		height: 50px;
+		font-size: $font-size-sm;
+		color: $red-base;
+		vertical-align: top;
+		position:relative;
+		top:11px;
+	}
+	.title-checkbox-word {
+		display: inline-block;
+		height: 50px;
+		width: 77px;
+		font-size: $font-size-base;
+		color: black;
+		font-weight: bold;
+		vertical-align: top;
+	}
+	.step-area {
+		display: inline-block;
+		width: 370px;
+		resize: none;
+	}
+
+}
+
+
+
+.bot-area{
+	margin-top:20px;
+}
+
+.bottom-div {
+	position: relative;
+	top: 30px;
+	height: 120px;
+	width: 100%;
+	margin: 0 auto;
+	//left: 10px;
+     text-align: center;
+	@media screen and (min-width:1276px) and (max-width:1500px) {
+	//	left: 20px;
+	}
+	@media screen and (min-width:1500px) {
+	//	left: 30px;
+	}
+}
+.red-btn {
+	width: 140px;
+	height: 35px;
+	background-color: $red-base;
+	border-color: $white;
+	border-radius: 5px;
+	border: none;
+	color: $white;
+	font-size: $font-size-base;
+
+	&:hover {
+		background-color: $gray;
+		color: #fff;
+		cursor: pointer;
+	}
+}
+.btn-left {
+	position: relative;
+	left: 0px;
+}
+.btn-right {
+	position: relative;
+	left: 20px;
+}
+.step-three-title {
+	font-size: $font-size-lg;
+	color: black;
+	font-weight: bold;
+}
+.step-three-time {
+	font-size: $font-size-base;
+	color:$red-base;
+	font-weight: bold;
+}
+.step-three-word {
+	font-size: $font-size-base;
+	color: $gray;
+	padding-left:5px;
+}
+
+.step-three-word-top{
+	font-size: $font-size-base;
+	color: $gray;
+	text-decoration:underline;
+
+	&:hover{
+    color:$red-base;
+	cursor:pointer;
+
+	}
+}
+
+
+.step-title {
+	@include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
+	margin: 0 auto;
+	position: relative;
+	top: 0px;
+
+	.fsstep {
+		width: 200px;
+		height: 50px;
+		display: inline-block;
+	}
+	.red {
+		background: $red-base;
+	}
+	.gray {
+		background: $gray;
+	}
+}
+.step-three-div {
+	position: relative;
+	top: 100px;
+	margin-bottom: 50px;
+	height: 560px;
+}
+
+
+.step-bar {
+	height: 40px;
+	@include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
+	margin: 0 auto 30px;
+	background: url('../../images/provder/clice.png');
+	background-size: 100% 120px;
+	line-height: 40px;
+
+	.first {
+		color: #fff;
+		font-size:$font-size;
+		width: ($about-us-width-min)/3;
+
+		@media screen and (min-width:1276px) and (max-width:1500px) {
+			width: ($about-us-width-middle)/3;
+		}
+		@media screen and (min-width:1500px) {
+			width: ($about-us-width-lg)/3;
+		}
+	}
+}
+.step-bar > div {
+	color: #888;
+	font-size: 14px;
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.step-2 {
+	background-position: 0 -40px;
+}
+.step-3 {
+	background-position: 0 -80px;
+}
