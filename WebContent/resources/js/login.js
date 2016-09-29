@@ -362,6 +362,8 @@ $().ready(function(){
 						$('#login_type').val("phone");
 						$('#threeId').removeClass('hide');
 						$('#changeAttr').show();
+						$('#changeAttr').attr('data-event','register');
+						$('#changeAttr').click();
 					}else{
 						$('#threeId').addClass('hide');
 						$('input').val('');
@@ -374,6 +376,7 @@ $().ready(function(){
 						$('#outSideId').addClass('userheight');
 						$('#login_type').val("loginName");
 						$('#changeAttr').hide();
+						$('#submitBtn').text('登录');
 					}
 				});
 			}

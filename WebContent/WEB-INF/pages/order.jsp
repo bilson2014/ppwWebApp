@@ -175,8 +175,8 @@
 			   			 <source  src="/resources/images/video/paipianwang.mp4"  id="source" type="video/mp4">
 			   		  </video>
 						
-						<div class="info">
-							  <div id="closeVideo">文字介绍</div>
+						<div class="info" id="closeVideo">
+							  <div >文字介绍</div>
 							  <div class="triangle-right"></div>
 						</div>
 				</div>
