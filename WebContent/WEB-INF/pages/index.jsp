@@ -113,9 +113,9 @@
 			                </video>
 			                </section>
 			            </li>
-						<li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
+						<%-- <li style="background:url(${imgPath}/banner/flex1.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
 						<li style="background:url(${imgPath }/banner/flex2.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
-						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li>
+						<li style="background:url(${imgPath }/banner/flex3.jpg) no-repeat; background-size: cover;background-position: center 0;"></li> --%>
 					</ul>
 				</div>
 				

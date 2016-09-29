@@ -4,6 +4,8 @@
 @import "bootstrap-grid";
 
 
+
+
 .area-top {
 	  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-middle);
 	margin: auto;

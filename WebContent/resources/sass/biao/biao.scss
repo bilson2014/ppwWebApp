@@ -12,6 +12,7 @@ $treeBlue: #002d4a;
 $titleBlue: #002b48;
 $cardBlue: #08182a;
 $blackLine: #042338;
+
 div {
     margin: 0px;
     padding: 0px;
@@ -49,7 +50,7 @@ div {
         }
         .check {
             color: $green;
-            background: $blackLine;
+            background: $blockBlue;
         }
     }
     .title {
@@ -462,6 +463,9 @@ div {
     }
 }
 
+
+
+//第二部分
 .contentList .contentSql {
     background: $titleBlue;
     width: 1595px;
@@ -567,12 +571,30 @@ div {
             margin: 0 auto;
             width:84px;
         }
+        
         .control {
             width: 244px;
             border-radius: 90px;
             height: 22px;
             border: 1px solid $blackLine;
             float: right;
+            position: relative;
+   			top: -26px;
+   			right: 10px;
+            div{
+            	width:60px;
+            	height:22px;
+            	border-right:1px solid $blackLine;
+            	text-align: center;
+            	float: left;
+            	img{
+            		margin: 4 auto;
+            	}
+            }
+
+            .noBorder{
+            	border:none !important;
+            }
         }
     }
 }

@@ -246,13 +246,12 @@
 						            <div class="sqlSet">						                                                    
 						                  <div class="word">元件数据配置  </div>
 						                  <div class="control">
-						                       <div>
-						                       </div>
+						                       <div><img src="/resources/images/biao/add.png"></div>
+						                       <div><img src="/resources/images/biao/del.png"></div>
+						                       <div><img src="/resources/images/biao/new.png"></div>
+						                       <div class="noBorder"><img src="/resources/images/biao/cancle.png"></div>
 						                  </div>  				                                                                                                 
 						            </div>
-						          
-						            
-						          
 						    </div>
 						    
 						    
