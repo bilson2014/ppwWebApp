@@ -2310,7 +2310,7 @@ function checkHasListForEmFirst(){
 }
 
 function toCheckListClose(token){
-	
+	$('.check-step').html('您确定关闭这个支付记录吗？');
 	$('#close-list').modal({backdrop: 'static', keyboard: false});
 	$('#sureClose').off('click').on('click',function(){
 		
