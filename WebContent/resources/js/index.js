@@ -76,7 +76,9 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		$from += '<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency bannerDiv" />';
 		$from += '<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>';
 		$from += '<ul id="shelper" class="shelper-lucency"></ul>';
+
 		$from += '<img src="/resources/images/search.png" class="bannerSearch" id="search">';
+
 		$from += '</form>';
 
 		

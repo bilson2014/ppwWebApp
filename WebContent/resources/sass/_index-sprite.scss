@@ -4,3 +4,5 @@ $index-spacing: 10px;
 @import "compass/utilities/sprites"; // 加载 compass sprites模块
 @import "index/*.png"; // 导入icon目录下的所有图标
 @include all-index-sprites; // 输出所有的雪碧图css 
+
+
