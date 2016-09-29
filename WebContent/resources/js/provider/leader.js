@@ -159,11 +159,14 @@ function checkStepOne(){
 				return false;
 			}
 			
-			if(qq == '' || qq == null || qq == undefined){
-			    $('#company-qq-error').show();
-                $('#company-qq-error').text('请输入QQ号码!');
-				$('#company-qq').focus();
-				return false;
+			if(qq != '' || qq != null || qq != undefined){
+				var reg = /^[1-9]\d{4,9}$/;
+				if(!qq.match(reg)){
+					 $('#company-qq-error').show();
+		                $('#company-qq-error').text('请输入QQ号码!');
+						$('#company-qq').focus();
+						return false;
+				}
 			}
 			
 			if(email == '' || email == null || email == undefined){
