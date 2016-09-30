@@ -46,8 +46,6 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 	suggest = new suggest.Suggest();
 	suggest.smartSuggest();
 	suggest.prototypeChange();
-	suggest.searchClick();
-	
 	
 	
 	var mta = new bdmta.Bdmta();
@@ -59,6 +57,23 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		slideshowSpeed: 40000  
 	});
 	
+	
+	// 搜索按钮触发事件
+	
+	function searchOnclick() {
+		var q = $('#search-q').val().trim();
+		if(q != null && q != '' && q != undefined){
+			$('#s-form').submit();
+		} else if(q == null || q == ''){
+			$('#search-q').val('*');
+			$('#s-form').submit();
+		}
+	}
+	
+	$('#search').unbind('click');
+	$('#search').bind('click',function() {
+		searchOnclick();
+	});
 	
 	
 	// 滚动监听 start
@@ -97,7 +112,10 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		}
 		suggest.smartSuggest();
 		suggest.prototypeChange();
-		suggest.searchClick();
+		$('#search').unbind('click');
+		$('#search').bind('click',function() {
+			searchOnclick();
+		});
 	});
 	// 滚动监听 end
 	
