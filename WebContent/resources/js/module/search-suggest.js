@@ -9,6 +9,7 @@ define(['common'],function(common){
 			searchClick : function(){
 				
 			 $('#search').off().on('click',function(){
+				
 				var q = $('#search-q').val().trim();
 				if(q != null && q != '' && q != undefined){
 					$('#s-form').submit();
