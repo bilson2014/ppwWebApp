@@ -319,6 +319,12 @@ function phoneInfo(){
 				if(result){
 					window.clearInterval(InterValObj);
 					$(".phone-bind").empty().append(userInfo_tpl.tpl_new_phone);
+					$("#concat_tele_new").off("change").on("change",function(){
+						$('#label-telephone').addClass("hide");
+					})
+					$("#veritifyCode").off("change").on("change",function(){
+						$('#label-code--phone-error').addClass("hide");
+					})
 					getVeritifyCodeValidate();
 					// 注册 个人资料-修改按钮点击事件
 					$('#phone-info-contentBt').unbind('click');
@@ -327,14 +333,18 @@ function phoneInfo(){
 							$(this).attr('disabled','disabled');
 							loadData(function(result){
 								$('.tooltip-show').slideDown('normal');
-								if(result){
+								if(result.code == 3){
 									$("#concat_tele_old").text($('#concat_tele_new').val().trim());
 									$("#user-telephone").text($('#concat_tele_new').val().trim());
 									window.clearInterval(InterValObj); // 停止计时器
 									$("#codeBt").text("获取验证码").removeAttr("disabled");
 									$('.tooltip-message').text('电话修改成功!');
-								}else{
-									$('.tooltip-message').text('电话修改失败!');
+								}else if(result.code == 1){
+									$("#label-code--phone-error").removeClass("hide");
+									//$('.tooltip-message').text('电话修改失败!');
+								}
+								else if(result.code == 2){
+									$('#label-telephone').removeClass("hide").text('您输入的手机号码已被注册');
 								}
 								$('#phone-info-contentBt').removeAttr('disabled');
 								window.setInterval(hideTooltip, 2000);
@@ -466,17 +476,20 @@ function checkData(flag){
 		var verification_code = $('#veritifyCode').val().trim();
 		
 		if(telephone == '' || telephone == null || telephone == undefined){
-			$('#label-telephone').removeClass('hide');
+			$('#label-telephone').removeClass('hide').text('请输出正确的手机号');
 			return false;
 		}else{
 			$('#label-telephone').addClass('hide');
 		}
-		
+		if(!checkMobile(telephone)){
+			$('#label-telephone').removeClass('hide').text('请输出正确的手机号');
+			return false;
+		}
 		if(verification_code == '' || verification_code == null || verification_code == undefined){
-			$('#label-code').removeClass('hide');
+			$('#label-code-phone').removeClass('hide');
 			return false;
 		}else{
-			$('#label-code').addClass('hide');
+			$('#label-code-phone').addClass('hide');
 		}
 		
 		return true;

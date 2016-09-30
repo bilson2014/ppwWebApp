@@ -171,9 +171,9 @@
 				<div class="description-sections hide" id="video">
 						
 				
-						<video autoplay loop title="点击播放" id="openVideo" autoplay name="media">
-			   			 <source  src="/resources/images/video/paipianwang.mp4"  id="source" type="video/mp4">
-			   		  </video>
+						  <video autoplay loop title="点击播放" id="openVideo" autoplay name="media" poster="/resources/images/video/showVideo.jpg">
+				   			 <source  src="/resources/images/video/paipianwang.mp4"   id="source" type="video/mp4">
+				   		  </video>
 						
 						<div class="info" id="closeVideo">
 							  <div >文字介绍</div>
