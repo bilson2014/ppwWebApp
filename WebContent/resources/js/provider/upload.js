@@ -174,18 +174,21 @@ $().ready(function(){
 			$('#video-picLD-div').hide();
 			// 注册 保存 按钮
 			$('#infoBt').on('click',function(){
-				$('#warmModel').modal('show');
-				$('#sureUpdate').off('click').on('click',function(){
-					$('#warmModel').modal('hide');
-				if($('#video-switch').val() == 1){
-					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
-						upload();
+				if(checkData('upload')){ // 检验数据完整性
+					if(checkFileDecriminalization()){
+						$('#warmModel').modal('show');
+						$('#sureUpdate').off('click').on('click',function(){
+							$('#warmModel').modal('hide');
+								if($('#video-switch').val() == 1){
+									if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+										upload();
+									}
+								}else{
+									upload();
+								}
+						});
 					}
-				}else{
-					upload();
 				}
-
-				});
 			});
 			// 开关注册
 			initSwitch(true);
@@ -200,18 +203,22 @@ $().ready(function(){
 		
 		// 修改界面
 		$('#infoBt').on('click',function(){
-			$('#warmModel').modal('show');
-			
-			$('#sureUpdate').off('click').on('click',function(){
-				$('#warmModel').modal('hide');
-				if($('#video-switch').val() == 1){
-				if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
-					modify();
+			if(checkData('modify')){ // 检验数据完整性
+				if(checkFileDecriminalization()){
+					$('#warmModel').modal('show');
+					
+					$('#sureUpdate').off('click').on('click',function(){
+						$('#warmModel').modal('hide');
+						if($('#video-switch').val() == 1){
+						if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+							modify();
+						}
+					}else{
+						modify();
+					}
+					});
 				}
-			}else{
-				modify();
 			}
-			});
 		});
 		
 		// 如果 停止启用，则改变  switch 状态

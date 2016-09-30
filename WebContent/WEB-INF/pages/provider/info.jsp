@@ -544,7 +544,7 @@
 				<label class="tooltip-success-message">信息更新成功</label>
 			</div>
     		  <div class="noband" id="wechat">
-			       <div class="inLine"><img src="${imgPath}/icons/webcat.png"></div>
+			       <div class="inLine"><img src="/resources/images/icons/webcat.png"></div>
 			       <div class="inLine vertical">
 			            <ul>
 			               <li>微信登录</li>
@@ -557,7 +557,7 @@
 			 <div class="line"></div>
 		  
 			    <div class="noBand" id="qq">
-				   <div class="inLine"><img src="${imgPath}/icons/qq.png"></div>
+				   <div class="inLine"><img src="/resources/images//icons/qq.png"></div>
 				       <div class="inLine vertical">
 				            <ul>
 				               <li>QQ账号</li>
@@ -570,7 +570,7 @@
 				  <div class="line"></div>
 				  
 		    <div class="noBand" id="wb">
-			   <div class="inLine"><img src="${imgPath}/icons/weibo.png"></div>
+			   <div class="inLine"><img src="/resources/images//icons/weibo.png"></div>
 			       <div class="inLine vertical">
 			            <ul>
 			               <li>微博账号</li>

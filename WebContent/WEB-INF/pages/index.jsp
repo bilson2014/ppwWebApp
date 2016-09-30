@@ -72,11 +72,11 @@
 			
 			<div class="middle-part">
 				<div class="search-box" style="display:none;" id="header-search">
-					<form method="get" action="/search" id="s-form">
+					<!-- <form method="get" action="/search" id="s-form">
 						<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
 						<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
 						<ul id="shelper" class="shelper-lucency"></ul>
-					</form>
+					</form> -->
 				</div>
 			</div>
 			
