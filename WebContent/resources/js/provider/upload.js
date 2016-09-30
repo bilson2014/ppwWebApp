@@ -203,7 +203,7 @@ $().ready(function(){
 		
 		// 修改界面
 		$('#infoBt').on('click',function(){
-			if(checkData('upload')){ // 检验数据完整性
+			if(checkData('modify')){ // 检验数据完整性
 				if(checkFileDecriminalization()){
 					$('#warmModel').modal('show');
 					

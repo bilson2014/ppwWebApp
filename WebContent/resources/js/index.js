@@ -97,7 +97,7 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		}
 		suggest.smartSuggest();
 		suggest.prototypeChange();
-		//suggest.searchClick();
+		suggest.searchClick();
 	});
 	// 滚动监听 end
 	
