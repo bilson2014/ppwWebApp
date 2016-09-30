@@ -8,8 +8,7 @@
 	position: relative;
 	width: 100%;
 	background: $body-bg;
-
-	@include  media_screen_height(440px,470px,540px);
+	@include  media_screen_height(440px,470px,650px);
 	@include flexshow; 
 }
 
@@ -21,9 +20,6 @@
 	 background-size:695px 70px !important;
 	 margin-left: -38px;
 }
-
-
-
 
 
 input:focus{
@@ -64,9 +60,9 @@ input:focus{
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 95px;
-	 @media screen and (min-width:1276px) and (max-width:1500px) {
-     top: 69px;
+	top: 55px;
+	 @media screen and (min-width:1500px){
+     top: 150px;
     }
 	bottom: 0;
 	margin: 50px auto 50px;

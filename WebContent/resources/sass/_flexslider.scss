@@ -2,7 +2,7 @@
 	.flexslider{
 		position:absolute;
 		width: 100%;
-		@include  media_screen_height(440px,470px,540px); // self-adaption height
+		@include  media_screen_height(440px,470px,650px); // self-adaption height
 		margin:0 auto;
 		overflow:hidden;
 		
@@ -12,12 +12,12 @@
 			
 			li {
 				width: 100%;
-				@include  media_screen_height(440px,470px,540px); // self-adaption height
+				@include  media_screen_height(440px,470px,650px); // self-adaption height
 				overflow: hidden;
 				
 				section{
 					position: relative;
-				    height: 540px;
+				    height: 650px;
 				    overflow: hidden;
 				    //background-image: linear-gradient(rgba(255,193,90,0.6) 60%,rgba(255,166,15,0.6) 100%);
 				}
@@ -30,7 +30,7 @@
                       
                         @media screen and (min-width: 1500px){
                         position: relative;
-                        top: -350px;
+                        top: -100px;
                       }
 				    
 				}
