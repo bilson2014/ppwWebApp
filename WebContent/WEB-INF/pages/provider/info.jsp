@@ -92,6 +92,7 @@
 								<label class="tooltip-message"></label>
 							</div>
 							<!-- 错误提示框  end -->
+							<input type="hidden" id="company-flag" value="${provider.flag }">
 							<div class="form-group">
 								<label for="company-name" class="col-sm-2 control-label">公司名称</label>
 								<div class="col-sm-6">

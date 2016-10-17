@@ -323,7 +323,7 @@ function phoneInfo(){
 						$('#label-telephone').addClass("hide");
 					})
 					$("#veritifyCode").off("change").on("change",function(){
-						$('#label-code--phone-error').addClass("hide");
+						$('#label-code-phone').addClass("hide");
 					})
 					getVeritifyCodeValidate();
 					// 注册 个人资料-修改按钮点击事件
@@ -339,15 +339,14 @@ function phoneInfo(){
 									window.clearInterval(InterValObj); // 停止计时器
 									$("#codeBt").text("获取验证码").removeAttr("disabled");
 									$('.tooltip-message').text('电话修改成功!');
+									//window.setInterval(hideTooltip, 2000);
 								}else if(result.code == 1){
-									$("#label-code--phone-error").removeClass("hide");
-									//$('.tooltip-message').text('电话修改失败!');
+									$("#label-code-phone").removeClass("hide").text("验证码错误");
 								}
 								else if(result.code == 2){
 									$('#label-telephone').removeClass("hide").text('您输入的手机号码已被注册');
 								}
 								$('#phone-info-contentBt').removeAttr('disabled');
-								window.setInterval(hideTooltip, 2000);
 							}, getContextPath() + '/user/modify/phone', $.toJSON({
 								id : $('#user_unique').val(),
 								telephone : $('#concat_tele_new').val().trim(),
@@ -356,40 +355,29 @@ function phoneInfo(){
 						}
 					});
 				}else{
-					$("#label-code-phone-error").removeClass("hide");
+					$("#label-code-phone").removeClass("hide").text("验证码错误");
 				}
 			}, getContextPath() + '/phone/validate', $.toJSON({
 				telephone : $('#concat_tele_old').text().trim(),
 				verification_code : veritifyCode
 			}));
 		}else{
-			$('#label-code-phone').removeClass('hide');
+			$('#label-code-phone').removeClass('hide').text("请输入验证码");
 			return false;
 		}
 	})
 }
-/**
- * 验证手机号码是否已被注册
- */
-//function isPhoneNumExit(teleNum){
-//	if(teleNum != '' && teleNum != null && teleNum != undefined){
-//		loadData(function(flag){
-//			return flag;
-//		}, getContextPath() + '/login/validation/phone', $.toJSON({
-//			telephone : teleNum
-//		}));
-//	}
-//}
 
 function getVeritifyCodeValidate(){
 	$('#codeBt').unbind('click');
 	$('#codeBt').bind('click',function(){
+		$('#label-code-phone').addClass("hide");
 		var phoneNum = $('#concat_tele_old').text().trim();
 		if(checkMobile(phoneNum)){
 			var flag = $("#codeBt").attr("data-flag");
 			if(flag=='new-bind'){//新手机获取验证码
 				var concat_tele_new = $("#concat_tele_new").val().trim();
-				if(concat_tele_new == '' || concat_tele_new == null || concat_tele_new == undefined){
+				if(!checkMobile(concat_tele_new)){
 					$("#label-telephone").removeClass("hide").text("请输入正确的手机号码");
 					return false;
 				}
@@ -1042,8 +1030,7 @@ var userInfo_tpl={
 	'			<button type="button" class="btn btn-default codeBt" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
-	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
-	'			<label id="label-code-phone-error" class="label-message hide" >验证码错误</label>',
+	'			<label id="label-code-phone" class="label-message hide" ></label>',
 	'		</div>',
 	'	</div>',
 	'	<div class="form-group">',
@@ -1073,8 +1060,7 @@ var userInfo_tpl={
 	'			<button type="button" data-flag="new-bind" class="btn btn-default codeBt" id="codeBt">获取验证码</button>',
 	'		</div>',
 	'		<div class="col-sm-4">',
-	'			<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
-	'			<label id="label-code--phone-error" class="label-message hide" >验证码错误</label>',
+	'			<label id="label-code-phone" class="label-message hide" ></label>',
 	'		</div>',
 	'	</div>',
 	'	<div class="form-group">',

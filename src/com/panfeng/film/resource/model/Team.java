@@ -410,4 +410,23 @@ public class Team extends BaseObject {
 		this.thirdLoginType = thirdLoginType;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(this.teamName);
+		stringBuffer.append(this.linkman);
+		stringBuffer.append(this.webchat);
+		stringBuffer.append(this.qq);
+		stringBuffer.append(this.email);
+		stringBuffer.append(this.address);
+		stringBuffer.append(this.teamProvince);
+		stringBuffer.append(this.teamCity);
+		stringBuffer.append(this.priceRange);
+		stringBuffer.append(this.infoResource);
+		stringBuffer.append(this.business);
+		stringBuffer.append(this.teamDescription);
+		stringBuffer.append(this.scale);
+		stringBuffer.append(this.demand);
+		return stringBuffer.toString();
+	}
 }

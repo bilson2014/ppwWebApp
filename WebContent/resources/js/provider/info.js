@@ -937,14 +937,14 @@ var provider_info = {
 								}
 							});
 						}else{
-							$("#label-code-phone-error").removeClass("hide");
+							$("#label-code-phone").removeClass("hide").text("验证码错误");
 						}
 					}, getContextPath() + '/phone/validate', $.toJSON({
 						telephone : $("#provider-phone").text().trim(),
 						verification_code : $("#provider-phoneCode").val().trim()
 					}));
 				}else{
-					$('#label-code-phone').removeClass('hide');
+					$('#label-code-phone').removeClass('hide').text("请输入验证码");
 					return false;
 				}
 			})
@@ -953,12 +953,12 @@ var provider_info = {
 function getVeritifyCodeValidate(){
 	$('#phone-codeBt').unbind('click');
 	$('#phone-codeBt').bind('click',function(){
-	var flag = $("#phone-codeBt").attr("data-flag");
-	var phoneNum = $('#provider-phone').text().trim();
+		$('#label-code-phone').addClass("hide");
 		var flag = $("#phone-codeBt").attr("data-flag");
+		var phoneNum = $('#provider-phone').text().trim();
 		if(flag=='new-bind'){//新手机获取验证码
 			var concat_tele_new = $("#provider-newphone").val().trim();
-			if(concat_tele_new == '' || concat_tele_new == null || concat_tele_new == undefined){
+			if(!checkMobile(concat_tele_new)){
 				$("#label-telephone").removeClass("hide").text("请输入正确的手机号码");
 				return false;
 			}
@@ -991,8 +991,7 @@ var info_tpl = {
 	'		<button type="button" class="btn btn-default phonecodeBt" data-flag="old-bind" id="phone-codeBt">获取验证码</button>',
 	'	</div>',
 	'	<div class="col-sm-3">',
-	'		<label id="label-code-phone" class="label-message hide" >请输入验证码</label>',
-	'		<label id="label-code-phone-error" class="label-message hide" >验证码错误</label>',
+	'		<label id="label-code-phone" class="label-message hide" ></label>',
 	'	</div>',
 	'</div>',
 	'<div class="form-group">',
@@ -1022,7 +1021,6 @@ var info_tpl = {
 	'	</div>',
 	'	<div class="col-sm-4">',
 	'		<label id="upd-label-code-phone" class="label-message hide" >请输入验证码</label>',
-	'		<label id="upd-label-code-phone-error" class="label-message hide" >验证码错误</label>',
 	'	</div>',
 	'</div>',
 	'<div class="form-group">',
