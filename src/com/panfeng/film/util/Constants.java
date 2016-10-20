@@ -3,7 +3,6 @@ package com.panfeng.film.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
 /**
  * 
  * @author dawn 常量类
@@ -16,6 +15,7 @@ public final class Constants {
 	public static String TEMP_DIR;
 	public static String AUTO_TEST;
 	public static String COOKIES_SCOPE;
+	public static String UPLOAD_PATH;
 	public static Constants CONSTANTS = new Constants();
 	
 	
@@ -63,6 +63,7 @@ public final class Constants {
 		TEMP_DIR=properties.getProperty("upload.server.temp");
 		AUTO_TEST=properties.getProperty("auto.test");
 		COOKIES_SCOPE=properties.getProperty("cookies_scope");
+		UPLOAD_PATH = PropertiesUtils.getProp("upload.path");
 	}
 	
 	/**

@@ -5,13 +5,12 @@ $().ready(function(){
 	provider_info.init();
 	
 	// 显示Logo
-	var logoPath = $('#logoPath').val().trim();
+	/*var logoPath = $('#logoPath').val().trim();
 	if(logoPath != null && logoPath != '' && logoPath != undefined){
 		var imgName = getFileName(logoPath);
 		var imgPath = getHostName() + '/team/img/' + imgName;
 		$('#logoImg').attr('src',imgPath);
-	}
-	
+	}*/
 	// 标签页点击策略
 	$('a[data-toggle="tab"]').on('shown.bs.tab',function (e){
 		$('.tooltip-message').text('');
@@ -894,6 +893,8 @@ var provider_info = {
 			this.changePhone();
 			//点击供应商基本信息保存
 			this.updateProvider();
+			//显示供应商图片
+			this.showLogo();
 			
 		},
 		changePhone:function(){
@@ -1060,6 +1061,13 @@ var provider_info = {
 				teamProvince : $("#company-province").val(),
 				teamCity : $("#company-city").val()
 			}));
+		},
+		showLogo:function(){
+			var logoPath = $('#logoPath').val().trim();
+			if(logoPath != null && logoPath != '' && logoPath != undefined){
+				var imgPath = getDfsHostName() + logoPath;
+				$('#logoImg').attr('src',imgPath);
+			}
 		}
 }
 function getVeritifyCodeValidate(){

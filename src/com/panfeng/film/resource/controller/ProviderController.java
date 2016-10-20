@@ -42,6 +42,7 @@ import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
+import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.ProviderThirdLogin;
 import com.panfeng.film.service.SessionInfoService;
@@ -94,6 +95,9 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private SessionInfoService sessionService = null;
+	
+	@Autowired
+	private final FDFSService FDFSservice = null;
 
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
@@ -133,7 +137,7 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/company-info")
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
-
+		
 		//final Team team = getCurrentTeam(request);
 		final Team team = getLatestTeam(request);
 		model.addAttribute("provider", team);
@@ -658,7 +662,7 @@ public class ProviderController extends BaseController {
 	 *            团队信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	@RequestMapping("/update/teamPhotoPath")
+	/*@RequestMapping("/update/teamPhotoPath")
 	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
 			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
@@ -720,17 +724,80 @@ public class ProviderController extends BaseController {
 					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
 					final boolean flag = JsonUtil.toBean(json, Boolean.class);
 					if (flag) {
-						/*
+						
 						 * final Team teamInSession = (Team)
 						 * request.getSession() .getAttribute(PROVIDER_SESSION);
 						 * teamInSession.setTeamPhotoUrl(path);
 						 * request.getSession().setAttribute(PROVIDER_SESSION,
 						 * teamInSession);
-						 */
+						 
 						SessionInfo sessionInfo = getCurrentInfo(request);
 						Log.error("upload provider photo success,photoUrl:" + path, sessionInfo);
 						return path;
 					}
+				} else {
+					// 文件格式不正确
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
+					return "false@error=2";
+				}
+			}
+
+		}
+
+		return null;
+	}*/
+	
+	@RequestMapping("/update/teamPhotoPath")
+	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
+			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		// 如果文件为空，则不更新图片路径;反之亦然
+		if (!file.isEmpty()) {
+
+			final long fileSize = file.getSize(); // 上传文件大小
+			final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
+			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
+
+			if (fileSize > maxSize * 1024) {
+				// 文件大小超出规定范围
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
+				return "false@error=1";
+			} else {
+				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					//修改为DFs上传 begin
+					//2016-10-20 14:25:02
+					final String fileId = FDFSservice.upload(file);
+					//修改为DFs上传 end
+
+					// 删除 原文件
+					/*final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
+					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
+					if (originalJson != null && !"".equals(originalJson)) {
+						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
+						final String originalPath = originalTeam.getTeamPhotoUrl();
+						FileUtils.deleteFile(FILE_PROFIX + originalPath);
+					}*/
+
+					//team.setTeamPhotoUrl(path);
+					// save photo path
+					/*final String updateTeamUrl = URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
+					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
+					final boolean flag = JsonUtil.toBean(json, Boolean.class);
+					if (flag) {
+						
+						 * final Team teamInSession = (Team)
+						 * request.getSession() .getAttribute(PROVIDER_SESSION);
+						 * teamInSession.setTeamPhotoUrl(path);
+						 * request.getSession().setAttribute(PROVIDER_SESSION,
+						 * teamInSession);
+						 
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("upload provider photo success,photoUrl:" + path, sessionInfo);
+						return path;
+					}*/
 				} else {
 					// 文件格式不正确
 					SessionInfo sessionInfo = getCurrentInfo(request);

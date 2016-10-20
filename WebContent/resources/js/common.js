@@ -191,7 +191,13 @@ function getHostName(){
 	
 	return window.location.protocol + '//' + window.location.host;
 }
-
+/**
+ * 获取 dfs的主机名
+ * @returns http://localhost:8080
+ */
+function getDfsHostName(){
+	return "http://123.59.86.252:8000/";
+}
 /**
  * 数据加分隔符
  * @param number
