@@ -41,7 +41,7 @@ $().ready(function(){
 	})
 
 	// 注册基本信息保存按钮
-	$('#infoBt').on('click',infoSave);
+	//$('#infoBt').on('click',infoSave);
 	// 注册安全设置保存按钮
 	$('#passwordBt').on('click',safeInfo);
 	
@@ -141,7 +141,7 @@ function infoEcho(){
 }
 
 // 基本信息保存按钮 点击事件
-function infoSave(){
+/*function infoSave(){
 	
 	if(checkData(1)){ // 检测数据完整性
 		// TODO 如果更改手机号码的话，验证手机号码是否已经注册
@@ -180,7 +180,7 @@ function infoSave(){
 	}
 	
 	
-}
+}*/
 
 // 安全设置保存按钮 点击事件
 function safeInfo(){
@@ -892,6 +892,8 @@ var provider_info = {
 		init:function(){
 			//更换手机获取验证码验证旧手机
 			this.changePhone();
+			//点击供应商基本信息保存
+			this.updateProvider();
 			
 		},
 		changePhone:function(){
@@ -948,6 +950,116 @@ var provider_info = {
 					return false;
 				}
 			})
+		},
+		//点击供应商保存按钮
+		updateProvider:function(){
+			var _this = this;
+			$('#infoBt').off("click").on('click',function(){
+				if(checkData(1)){ // 检测数据完整性
+					if(!hasAuditing()){//审核未通过
+						_this.updateProviderInfo();
+					}else{
+						//验证team是否修改 true存在修改 false 没有修改
+						loadData(function(flag){
+							if(flag){//信息存在修改
+								if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
+									//处理team_tmp记录,更新team备注
+									_this.dealTeamTmpAndUpdateTeamDesc();
+								}
+							}else{
+								_this.updateProviderInfo();
+							}
+						}, getContextPath() + '/provider/validate/change', $.toJSON({
+							teamId : $('#company-id').val().trim(),
+							teamName : $('#company-name').val().trim(),
+							email : $('#company-email').val().trim(),
+							address : $('#company-address').val().trim(),
+							teamDescription : $('#company-teamDesc').val().trim(),
+							linkman : $('#company-linkman').val().trim(),
+							webchat : $('#company-webchat').val().trim(),
+							qq : $('#company-qq').val().trim(),
+							establishDate : $('#company-establishDate').val(),
+							officialSite : $('#company-officialSite').val(),
+							city : $('#company-city option:selected').val(),
+							priceRange : $('#company-priceRange option:selected').val(),
+							infoResource : $('#company-infoResource option:selected').val(),
+							business : getBusinessVal(),
+							scale : $('#company-scale').val().trim(),
+							businessDesc : $('#company-businessDesc').val().trim(),
+							demand : $('#company-demand').val().trim(),
+							phoneNumber : $('#company-phoneNumber').val().trim(),
+							teamProvince : $("#company-province").val(),
+							teamCity : $("#company-city").val()
+						}));
+					}
+				}
+			});
+		},
+		updateProviderInfo:function(){
+			loadData(function(flag){
+				if(flag){
+					// 更新成功
+					successToolTipShow();
+				}else{
+					// 更新失败
+					toolTipShow('请重新保存');
+				}
+			}, getContextPath() + '/provider/update/teamInfomation', $.toJSON({
+				teamId : $('#company-id').val().trim(),
+				teamName : $('#company-name').val().trim(),
+				email : $('#company-email').val().trim(),
+				address : $('#company-address').val().trim(),
+				teamDescription : $('#company-teamDesc').val().trim(),
+				linkman : $('#company-linkman').val().trim(),
+				webchat : $('#company-webchat').val().trim(),
+				qq : $('#company-qq').val().trim(),
+				establishDate : $('#company-establishDate').val(),
+				officialSite : $('#company-officialSite').val(),
+				city : $('#company-city option:selected').val(),
+				priceRange : $('#company-priceRange option:selected').val(),
+				infoResource : $('#company-infoResource option:selected').val(),
+				business : getBusinessVal(),
+				scale : $('#company-scale').val().trim(),
+				businessDesc : $('#company-businessDesc').val().trim(),
+				demand : $('#company-demand').val().trim(),
+				description : $('#company-description').val().trim(),
+				phoneNumber : $('#company-phoneNumber').val().trim(),
+				teamProvince : $("#company-province").val(),
+				teamCity : $("#company-city").val()
+			}));
+		},
+		dealTeamTmpAndUpdateTeamDesc:function(){
+			loadData(function(flag){
+				if(flag){
+					// 更新成功
+					successToolTipShow();
+				}else{
+					// 更新失败
+					toolTipShow('请重新保存');
+				}
+			}, getContextPath() + '/provider/deal/TeamTmpAndTeamDesc', $.toJSON({
+				teamId : $('#company-id').val().trim(),
+				teamName : $('#company-name').val().trim(),
+				email : $('#company-email').val().trim(),
+				address : $('#company-address').val().trim(),
+				teamDescription : $('#company-teamDesc').val().trim(),
+				linkman : $('#company-linkman').val().trim(),
+				webchat : $('#company-webchat').val().trim(),
+				qq : $('#company-qq').val().trim(),
+				establishDate : $('#company-establishDate').val(),
+				officialSite : $('#company-officialSite').val(),
+				city : $('#company-city option:selected').val(),
+				priceRange : $('#company-priceRange option:selected').val(),
+				infoResource : $('#company-infoResource option:selected').val(),
+				business : getBusinessVal(),
+				scale : $('#company-scale').val().trim(),
+				businessDesc : $('#company-businessDesc').val().trim(),
+				demand : $('#company-demand').val().trim(),
+				description : $('#company-description').val().trim(),
+				phoneNumber : $('#company-phoneNumber').val().trim(),
+				teamProvince : $("#company-province").val(),
+				teamCity : $("#company-city").val()
+			}));
 		}
 }
 function getVeritifyCodeValidate(){
@@ -978,6 +1090,10 @@ function getVeritifyCodeValidate(){
 			verification(phoneNum,"phone-codeBt");
 		}
 	});
+}
+function hasAuditing(){
+	var flag = $("#bean-flag").val();
+	return flag == 1?true:false
 }
 var info_tpl = {
 	//旧手机模板

@@ -97,6 +97,8 @@ public class Team extends BaseObject {
 	private String teamProvinceName = null;// 省名
 
 	private String teamCityName = null; // 城市名
+	//是否是要再次审核
+	private Boolean auditing = false;
 
 	public String getTeamProvinceName() {
 		return teamProvinceName;
@@ -105,9 +107,15 @@ public class Team extends BaseObject {
 	public void setTeamProvinceName(String teamProvinceName) {
 		this.teamProvinceName = teamProvinceName;
 	}
-
 	public String getTeamCityName() {
 		return teamCityName;
+	}
+	public Boolean getAuditing() {
+		return auditing;
+	}
+
+	public void setAuditing(Boolean auditing) {
+		this.auditing = auditing;
 	}
 
 	public void setTeamCityName(String teamCityName) {
@@ -408,6 +416,122 @@ public class Team extends BaseObject {
 
 	public void setThirdLoginType(String thirdLoginType) {
 		this.thirdLoginType = thirdLoginType;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((business == null) ? 0 : business.hashCode());
+		result = prime * result + ((businessDesc == null) ? 0 : businessDesc.hashCode());
+		result = prime * result + ((demand == null) ? 0 : demand.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((establishDate == null) ? 0 : establishDate.hashCode());
+		result = prime * result + infoResource;
+		result = prime * result + ((linkman == null) ? 0 : linkman.hashCode());
+		result = prime * result + ((officialSite == null) ? 0 : officialSite.hashCode());
+		result = prime * result + priceRange;
+		result = prime * result + ((qq == null) ? 0 : qq.hashCode());
+		result = prime * result + ((scale == null) ? 0 : scale.hashCode());
+		result = prime * result + ((teamCity == null) ? 0 : teamCity.hashCode());
+		result = prime * result + ((teamDescription == null) ? 0 : teamDescription.hashCode());
+		result = prime * result + ((teamName == null) ? 0 : teamName.hashCode());
+		result = prime * result + ((teamProvince == null) ? 0 : teamProvince.hashCode());
+		result = prime * result + ((webchat == null) ? 0 : webchat.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Team other = (Team) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (business == null) {
+			if (other.business != null)
+				return false;
+		} else if (!business.equals(other.business))
+			return false;
+		if (businessDesc == null) {
+			if (other.businessDesc != null)
+				return false;
+		} else if (!businessDesc.equals(other.businessDesc))
+			return false;
+		if (demand == null) {
+			if (other.demand != null)
+				return false;
+		} else if (!demand.equals(other.demand))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (establishDate == null) {
+			if (other.establishDate != null)
+				return false;
+		} else if (!establishDate.equals(other.establishDate))
+			return false;
+		if (infoResource != other.infoResource)
+			return false;
+		if (linkman == null) {
+			if (other.linkman != null)
+				return false;
+		} else if (!linkman.equals(other.linkman))
+			return false;
+		if (officialSite == null) {
+			if (other.officialSite != null)
+				return false;
+		} else if (!officialSite.equals(other.officialSite))
+			return false;
+		if (priceRange != other.priceRange)
+			return false;
+		if (qq == null) {
+			if (other.qq != null)
+				return false;
+		} else if (!qq.equals(other.qq))
+			return false;
+		if (scale == null) {
+			if (other.scale != null)
+				return false;
+		} else if (!scale.equals(other.scale))
+			return false;
+		if (teamCity == null) {
+			if (other.teamCity != null)
+				return false;
+		} else if (!teamCity.equals(other.teamCity))
+			return false;
+		if (teamDescription == null) {
+			if (other.teamDescription != null)
+				return false;
+		} else if (!teamDescription.equals(other.teamDescription))
+			return false;
+		if (teamName == null) {
+			if (other.teamName != null)
+				return false;
+		} else if (!teamName.equals(other.teamName))
+			return false;
+		if (teamProvince == null) {
+			if (other.teamProvince != null)
+				return false;
+		} else if (!teamProvince.equals(other.teamProvince))
+			return false;
+		if (webchat == null) {
+			if (other.webchat != null)
+				return false;
+		} else if (!webchat.equals(other.webchat))
+			return false;
+		return true;
 	}
 
 	@Override

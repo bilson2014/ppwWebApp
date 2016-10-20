@@ -134,7 +134,8 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/company-info")
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
 
-		final Team team = getCurrentTeam(request);
+		//final Team team = getCurrentTeam(request);
+		final Team team = getLatestTeam(request);
 		model.addAttribute("provider", team);
 		// 第一次填充省
 		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
@@ -1514,7 +1515,22 @@ public class ProviderController extends BaseController {
 
 		return null;
 	}
+	/**
+	 * 获取最新的供应商信息,最新代表,若存在待审核,则待审核是最新消息
+	 * @param request
+	 * @return
+	 */
+	public Team getLatestTeam(final HttpServletRequest request) {
+		final SessionInfo info = getCurrentInfo(request);
+		final String url = GlobalConstant.URL_PREFIX + "portal/team/static/latest/" + info.getReqiureId();
+		final String json = HttpUtil.httpGet(url, request);
+		if (ValidateUtil.isValid(json)) {
+			final Team team = JsonUtil.toBean(json, Team.class);
+			return team;
+		}
 
+		return null;
+	}
 	public boolean updateInfo(final Team team, final HttpServletRequest request) throws UnsupportedEncodingException {
 		// 转码
 		final String teamName = team.getTeamName();
@@ -1863,5 +1879,31 @@ public class ProviderController extends BaseController {
 			Log.error("product is null ...", sessionInfo);
 		}
 		return new ModelAndView("/provider/providerInfo", modelMap);
+	}
+	
+
+	/**
+	 * 验证供应商信息是否存在修改
+	 */
+	@RequestMapping("/validate/change")
+	public boolean validateChange(@RequestBody final Team team, final HttpServletRequest request) {
+		final String url = URL_PREFIX + "portal/team/static/data/"+team.getTeamId();
+		String str = HttpUtil.httpPost(url, team, request);
+		Team oldTeam = JsonUtil.toBean(str, Team.class);
+		if(team.equals(oldTeam)){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	/**
+	 * 处理team临时表，更新team注释
+	 */
+	@RequestMapping("/deal/TeamTmpAndTeamDesc")
+	public boolean dealTeamTmpAndUpdateTeamDesc(@RequestBody final Team team, final HttpServletRequest request) {
+		final String url = URL_PREFIX + "portal/team/deal/teamTmpAndTeamDesc";
+		String str = HttpUtil.httpPost(url, team, request);
+		Boolean bo = JsonUtil.toBean(str, Boolean.class);
+		return bo;
 	}
 }
