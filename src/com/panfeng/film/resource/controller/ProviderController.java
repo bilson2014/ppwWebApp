@@ -79,7 +79,7 @@ public class ProviderController extends BaseController {
 
 	private static String FILE_PROFIX = null; // 文件路径前缀
 
-	private static String TEAM_IMAGE_PATH = null; // 团队logo
+//	private static String TEAM_IMAGE_PATH = null; // 团队logo
 
 	private static String PRODUCT_VIDEO_PATH = null; // video文件路径
 
@@ -97,7 +97,7 @@ public class ProviderController extends BaseController {
 	private SessionInfoService sessionService = null;
 	
 	@Autowired
-	private final FDFSService FDFSservice = null;
+	private final FDFSService DFSservice = null;
 
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
@@ -120,7 +120,7 @@ public class ProviderController extends BaseController {
 				VIDEO_MAX_SIZE = propertis.getProperty("videoMaxSize");
 				ALLOW_VIDEO_TYPE = propertis.getProperty("videoType");
 				FILE_PROFIX = propertis.getProperty("file.prefix");
-				TEAM_IMAGE_PATH = propertis.getProperty("upload.server.team.image");
+//				TEAM_IMAGE_PATH = propertis.getProperty("upload.server.team.image");
 				PRODUCT_VIDEO_PATH = propertis.getProperty("upload.server.product.video");
 				PRODUCT_IMAGE_PATH = propertis.getProperty("upload.server.product.image");
 			} catch (IOException e) {
@@ -769,35 +769,29 @@ public class ProviderController extends BaseController {
 				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
 					//修改为DFs上传 begin
 					//2016-10-20 14:25:02
-					final String fileId = FDFSservice.upload(file);
+					final String fileId = DFSservice.upload(file);
 					//修改为DFs上传 end
 
 					// 删除 原文件
-					/*final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
+					final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
 					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
 					if (originalJson != null && !"".equals(originalJson)) {
 						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
 						final String originalPath = originalTeam.getTeamPhotoUrl();
-						FileUtils.deleteFile(FILE_PROFIX + originalPath);
-					}*/
-
-					//team.setTeamPhotoUrl(path);
+						if(null != originalPath && !originalPath.equals("")){
+							DFSservice.delete(originalPath);// ==0 success
+						}
+					}
+					team.setTeamPhotoUrl(fileId);
 					// save photo path
-					/*final String updateTeamUrl = URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
+					final String updateTeamUrl = URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
 					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
 					final boolean flag = JsonUtil.toBean(json, Boolean.class);
 					if (flag) {
-						
-						 * final Team teamInSession = (Team)
-						 * request.getSession() .getAttribute(PROVIDER_SESSION);
-						 * teamInSession.setTeamPhotoUrl(path);
-						 * request.getSession().setAttribute(PROVIDER_SESSION,
-						 * teamInSession);
-						 
 						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("upload provider photo success,photoUrl:" + path, sessionInfo);
-						return path;
-					}*/
+						Log.error("upload provider photo success,photoUrl:" + fileId, sessionInfo);
+						return fileId;
+					}
 				} else {
 					// 文件格式不正确
 					SessionInfo sessionInfo = getCurrentInfo(request);

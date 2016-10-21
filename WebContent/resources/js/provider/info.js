@@ -45,7 +45,7 @@ $().ready(function(){
 	$('#passwordBt').on('click',safeInfo);
 	
 	$('#insSubmit').on('click',addAccount);
-	// 图片上传 点击事件
+/*	// 图片上传 点击事件
 	$('#logoImg').on('click',function(){
 		// 图片上传 点击事件
 		$('#file').off("change").on("change",function(){
@@ -56,7 +56,7 @@ $().ready(function(){
 			uploadImg();
 		});
 		$('#file').click();
-	});
+	});*/
 	
 	infoEcho();
 	
@@ -317,7 +317,7 @@ function checkData(type){
 			var name = $('#company-name').val().trim(); // 公司名称
 			/*var telephone = $('#company-telephone').val().trim(); // 公司电话 */
 			var email = $('#company-email').val().trim(); // 公司邮箱
-			var description = $('#company-description').val().trim(); // 公司简介
+			var description = $('#company-teamDesc').val().trim(); // 公司简介
 			
 			var linkman = $('#company-linkman').val().trim(); // 联系人
 			var webchat = $('#company-webchat').val().trim(); // 微信
@@ -351,8 +351,8 @@ function checkData(type){
 			}
 			
 			if(description == '' || description == null || description == undefined){
-				popshow('company-description', '请输入公司简介!');
-				$('#company-description').focus();
+				popshow('company-teamDesc', '请输入公司简介!');
+				$('#company-teamDesc').focus();
 				return false;
 			}
 			
@@ -626,7 +626,7 @@ function toolTipShow(info){
 	IntervalObj = window.setInterval(hideTooltip, 3000);
 }
 
-//上传图片
+/*//上传图片
 function uploadImg(){
 	$.ajaxFileUpload({
 		url : getContextPath() + '/provider/update/teamPhotoPath',
@@ -661,7 +661,7 @@ function uploadImg(){
 			alert('信息保存失败...');
 		}
 	});
-}
+}*/
 
 function getBusinessVal(){
 	var busArr;
@@ -895,6 +895,8 @@ var provider_info = {
 			this.updateProvider();
 			//显示供应商图片
 			this.showLogo();
+			//供应商LOGO上传
+			this.uploadLOGO();
 			
 		},
 		changePhone:function(){
@@ -1068,7 +1070,55 @@ var provider_info = {
 				var imgPath = getDfsHostName() + logoPath;
 				$('#logoImg').attr('src',imgPath);
 			}
+		},
+		uploadLOGO:function(){
+			$('#logoImg').off('click').on('click',function(){
+				// 图片上传 点击事件
+				$('#file').off("change").on("change",function(){
+					$.blockUI({
+						message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
+					});
+					// 上传图片
+					uploadImg();
+				});
+				$('#file').click();
+			});
 		}
+}
+//上传图片
+function uploadImg(){
+	$.ajaxFileUpload({
+		url : getContextPath() + '/provider/update/teamPhotoPath',
+		secureuri : true,
+		fileElementId : ['file'],
+		dataType : 'text/html',
+		data : {
+			'teamId' : $('#company-id').val().trim()
+		},
+		success: function(path){
+			$.unblockUI();
+			if(path != '' && path != null){
+				if(path.indexOf('false@error') > -1){
+					if(path.indexOf("error=1") > -1){
+						toolTipShow('文件超过最大限制');
+					} else if(path.indexOf("error=2") > -1){
+						toolTipShow('格式不正确');
+					}
+					
+				}else{
+					// 显示 图片
+					var imgPath = getDfsHostName()+ path;
+					$('#logoImg').attr('src',imgPath);
+					successToolTipShow();
+				}
+			}else{
+				alert('上传失败!');
+			}
+		},
+		error : function(data, status, e){
+			alert('信息保存失败...');
+		}
+	});
 }
 function getVeritifyCodeValidate(){
 	$('#phone-codeBt').unbind('click');

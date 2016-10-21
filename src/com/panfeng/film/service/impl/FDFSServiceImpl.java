@@ -14,7 +14,7 @@ import com.panfeng.film.util.FastDFSClient;
 public class FDFSServiceImpl implements FDFSService {
 
 	@Override
-	public String upload(final File file, final String fileName) {
+	public String upload(File file, String fileName) {
 		
 		final String fileId = FastDFSClient.uploadFile(file, fileName);
 		return fileId;

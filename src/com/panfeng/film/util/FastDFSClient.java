@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient1;
@@ -25,32 +24,31 @@ import org.springframework.web.multipart.MultipartFile;
  * @版本号: V1.0 .
  */
 public class FastDFSClient {
-
+	public static void main(String[] args) {
+		
+	}
 	//private static final String CONF_FILENAME = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "fdfs_client.conf";
-	private static final String CONF_FILENAME = "src/main/resources/fdfs_client.conf";
+	private static final String CONF_FILENAME = FastDFSClient.class.getClassLoader().getResource("").getPath()+"fdfs_client.conf";
 	private static StorageClient1 storageClient1 = null;
-
-	private static Logger logger = Logger.getLogger(FastDFSClient.class);
-
 	/**
 	 * 只加载一次.
 	 */
 	static {
 		try {
-			logger.info("=== CONF_FILENAME:" + CONF_FILENAME);
+			Log.error("=== CONF_FILENAME:", null);
 			ClientGlobal.init(CONF_FILENAME);
 			TrackerClient trackerClient = new TrackerClient(ClientGlobal.g_tracker_group);
 			TrackerServer trackerServer = trackerClient.getConnection();
 			if (trackerServer == null) {
-				logger.error("getConnection return null");
+				Log.error("getConnection return null...", null);
 			}
 			StorageServer storageServer = trackerClient.getStoreStorage(trackerServer);
 			if (storageServer == null) {
-				logger.error("getStoreStorage return null");
+				Log.error("getStoreStorage return null...", null);
 			}
 			storageClient1 = new StorageClient1(trackerServer, storageServer);
 		} catch (Exception e) {
-			logger.error(e);
+			Log.error(e.getMessage(), null);
 		}
 	}
 
@@ -77,24 +75,25 @@ public class FastDFSClient {
 			String fileid = storageClient1.upload_file1(file_buff, getFileExt(fileName), meta_list);
 			return fileid;
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return null;
 		}finally{
 			if (fis != null){
 				try {
 					fis.close();
 				} catch (IOException e) {
-					logger.error(e);
+					Log.error(e.getMessage(), null);
 				}
 			}
 		}
 	}
 
+
 	public static String uploadFile(MultipartFile file) {
-		FileInputStream fis = null;
+		InputStream fis = null;
 		try {
 			NameValuePair[] meta_list = null; // new NameValuePair[0];
-			fis =(FileInputStream) file.getInputStream();
+			fis = file.getInputStream();
 			byte[] file_buff = null;
 			if (fis != null) {
 				int len = fis.available();
@@ -104,14 +103,14 @@ public class FastDFSClient {
 			String fileid = storageClient1.upload_file1(file_buff, getFileExt(file.getOriginalFilename()), meta_list);
 			return fileid;
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return null;
 		}finally{
 			if (fis != null){
 				try {
 					fis.close();
 				} catch (IOException e) {
-					logger.error(e);
+					Log.error(e.getMessage(), null);
 				}
 			}
 		}
@@ -130,7 +129,7 @@ public class FastDFSClient {
 			int result = storageClient1.delete_file(groupName == null ? "group1" : groupName, fileName);
 			return result;
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return 0;
 		}
 	}
@@ -147,7 +146,7 @@ public class FastDFSClient {
 			int result = storageClient1.delete_file1(fileId);
 			return result;
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return 0;
 		}
 	}
@@ -177,7 +176,7 @@ public class FastDFSClient {
 				return null;
 			}
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return null;
 		}
 		return fileid;
@@ -195,7 +194,7 @@ public class FastDFSClient {
 			InputStream inputStream = new ByteArrayInputStream(bytes);
 			return inputStream;
 		} catch (Exception ex) {
-			logger.error(ex);
+			Log.error(ex.getMessage(), null);
 			return null;
 		}
 	}
