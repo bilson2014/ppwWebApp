@@ -170,19 +170,36 @@ li{
     margin: 10px auto;
 }
 
-.tooltip-info-show{
-    height: 46px;
-    background-color: #d9edf7;
-    color: #3C764B;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 36px;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    top: 0;
+.result-info-show {
+ display: hidden;
+ height: 46px;
+ background-color: #d9edf7;
+ color: #3C764B;
+ border-radius: 4px;
+ text-align: center;
+ line-height: 36px;
+ position: relative;
+ width:100%;
+ z-index: 100;
 }
 
-label.tooltip-info-message {
+label.result-info-message {
+    padding-top: 4px;
+}
+
+.result-error-show {
+ display: hidden;
+ height: 46px;
+ background-color: #F2DEDD;
+ color: #3C764B;
+ border-radius: 4px;
+ text-align: center;
+ line-height: 36px;
+ position: relative;
+ width:100%;
+ z-index: 100;
+}
+
+label.result-error-message {
     padding-top: 4px;
 }

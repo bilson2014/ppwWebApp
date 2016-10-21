@@ -79,6 +79,19 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" id="info">
+					<div id="submit-info-show" class="tooltip-info-show hide">
+						<label class="tooltip-info-message">当前的信息正在审核中...</label>
+					</div>
+				<c:if test="${provider.checkStatus == 2}">
+					<div class="tooltip-info-show">
+						<label class="tooltip-info-message">当前审核未通过,${provider.checkDetails}</label>
+					</div>
+				</c:if>
+				<c:if test="${provider.checkStatus == 0}">
+					<div class="tooltip-info-show">
+						<label class="tooltip-info-message">当前的信息正在审核中...</label>
+					</div>
+				</c:if>
 				<div class="form-wrap">
 					<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
 						<fieldset>
@@ -94,16 +107,6 @@
 							<!-- 错误提示框  end -->
 							<input type="hidden" id="bean-flag" value="${provider.flag }">
 							<input type="hidden" id="bean-checkStatus" value="${provider.checkStatus }">
-							<c:if test="${provider.checkStatus == 2}">
-								<div class="tooltip-show">
-									<label class="tooltip-message">当前审核未通过,${provider.checkDetails}</label>
-								</div>
-							</c:if>
-							<c:if test="${provider.checkStatus == 0}">
-								<div class="tooltip-success-show">
-									<label class="tooltip-success-message">当前的信息正在审核中...</label>
-								</div>
-							</c:if>
 							<div class="form-group">
 								<label for="company-name" class="col-sm-2 control-label">公司名称</label>
 								<div class="col-sm-6">
