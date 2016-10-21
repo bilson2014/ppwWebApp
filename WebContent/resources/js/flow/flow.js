@@ -15,10 +15,6 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
-
-
-	
-	
 	$('.bottom-div').show();
 			init();
 			showOrderTime();
@@ -272,6 +268,24 @@ function nextFlow(){
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
+		}));
+	}
+}
+function nextFlow2(){
+	var key = getCurrentProject();
+	if(key != null ){
+		loadData(function(msg) {
+			if(msg.result == "true"){
+				$("#toolbar-check").modal('hide');
+				$("#toolbar-list").modal('hide');
+			}else{
+				$("#toolbar-check").modal('hide');
+				showError(msg.result);
+			}
+			loadprojecctlist();
+		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
+			id : key,
+			skipPay : "true"
 		}));
 	}
 }
@@ -2489,12 +2503,12 @@ function formatterDateTime (date) {
 
 function showError(str){
 	$("#toolbar-list").modal('show');
-	var info = str+"3秒后自动关闭"
+	var info = str+""
 	$('#showErrorList').html(info);
 	$('#closeThis').on('click',function(){
 		$("#toolbar-list").modal('hide');
 	});
-	window.setTimeout(hideSuccessTooltip, 3000);
+	//window.setTimeout(hideSuccessTooltip, 3000);
 }
 
 function hideSuccessTooltip(){

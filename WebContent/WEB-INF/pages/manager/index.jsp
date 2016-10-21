@@ -845,7 +845,7 @@
 		<div class="modal fade upload-window" id="toolbar-list">
 			<div class="modal-dialog">
 				<div class="modal-content"  >
-				    <div id="showErrorList" style="margin-top:20px;margin-bottom:10px;text-align:center;"></div>
+				    <div id="showErrorList" style="margin-top:20px;margin-bottom:10px;"></div>
 					 <div class="pay-bottom-link">
 						     <div  class="pay-redLink-btn" id="closeThis">返回</div>
 					 </div>
