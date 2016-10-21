@@ -152,40 +152,43 @@ public class UserController extends BaseController{
 		map.put("code", 0);
 		map.put("msg", "信息修改失败，请刷新后再试!");
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("code");
-			// 是否是测试程序
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (!"".equals(code) && code != null)) {
-				if (isTest || (code.equals(user.getVerification_code()))) {
-					final long userId = user.getId();
-					if(user.getPassword() != null && !"".equals(user.getPassword())){
-						// AES密码解密
-						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-						// MD5加密
-						user.setPassword(DataUtil.md5(password));
-						
-						// 修改 用户密码
-						final String url = URL_PREFIX + "portal/user/modify/password";
-						final String json = HttpUtil.httpPost(url, user,request);
-						final Boolean result = JsonUtil.toBean(json, Boolean.class);
-						
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
-						if(result){
-							map.put("code", 1);
-							map.put("msg", "修改成功");
-						}
-					}
+			if(judgeTestAndValidateCode(request,user)){
+				final long userId = user.getId();
+				if(user.getPassword() != null && !"".equals(user.getPassword())){
+					// AES密码解密
+					final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+					// MD5加密
+					user.setPassword(DataUtil.md5(password));
+					
+					// 修改 用户密码
+					final String url = URL_PREFIX + "portal/user/modify/password";
+					final String json = HttpUtil.httpPost(url, user,request);
+					final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
-				}else{
-					map.put("msg", "验证码错误");
+					Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
+					if(result){
+						map.put("code", 1);
+						map.put("msg", "修改成功");
+					}
 				}
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
+			
+			}else{
+				map.put("msg", "验证码错误");
 			}
 		}
 		return map;
 	}
 	
+	private boolean judgeTestAndValidateCode(HttpServletRequest request,User user) {
+		final String code = (String) request.getSession().getAttribute("code");
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		return isTest || (!"".equals(code) && code != null && code.equals(user.getVerification_code()));
+	}
+
 	/**
 	 * 发送验证码
 	 */
@@ -212,31 +215,34 @@ public class UserController extends BaseController{
 	public BaseMsg modifyUserPhone(@RequestBody final User user,
 			final HttpServletRequest request){
 		if(user != null){
-			final String code = (String) request.getSession().getAttribute("code");
-			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			// 是否是测试程序
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if(isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))){
-				if(isTest || (code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone()))){
-					
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("User id is " + user.getId() + " update phone number:" + user.getTelephone(),sessionInfo);
-					
-					//验证手机号是否是新的,然后 更新手机
-					final String url = URL_PREFIX + "portal/user/update/newphone";
-					final String json = HttpUtil.httpPost(url, user,request);
-					final BaseMsg result = JsonUtil.toBean(json, BaseMsg.class);
-					
-					Log.error("User id is " + user.getId() + " update phone number -success=" + result,sessionInfo);
-					
-					//updateUserInSession(request);
-					return result;
-				}return new BaseMsg(1,"验证码错误");
+			if(judgeTestAndValidatePhoneCode(request,user)){
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("User id is " + user.getId() + " update phone number:" + user.getTelephone(),sessionInfo);
+				
+				//验证手机号是否是新的,然后 更新手机
+				final String url = URL_PREFIX + "portal/user/update/newphone";
+				final String json = HttpUtil.httpPost(url, user,request);
+				final BaseMsg result = JsonUtil.toBean(json, BaseMsg.class);
+				Log.error("User id is " + user.getId() + " update phone number -success=" + result,sessionInfo);
+				//updateUserInSession(request);
+				return result;
+			
 			}return new BaseMsg(1,"验证码错误");
 		}
 		return new BaseMsg(0,"error");
 	}
 	
+	private boolean judgeTestAndValidatePhoneCode(HttpServletRequest request, User user) {
+		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		// 是否是测试程序
+		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		return isTest || 
+			   (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone)
+			   &&
+			   code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone()));
+	}
+
 	/**
 	 * 用户信息-修改手机号码
 	 * 清除session中的验证码

@@ -92,6 +92,14 @@
 								<label class="tooltip-message"></label>
 							</div>
 							<!-- 错误提示框  end -->
+							<input type="hidden" id="bean-flag" value="${provider.flag }">
+							<c:if test="${provider.auditing == true}">
+							<div class="form-group">
+								<div class="col-sm-6">
+									当前的信息正在审核中...
+								</div>
+							</div>
+							</c:if>
 							<div class="form-group">
 								<label for="company-name" class="col-sm-2 control-label">公司名称</label>
 								<div class="col-sm-6">
@@ -580,8 +588,6 @@
 			       <div class="bandBtn"  data-status="0"  id="wbBtn"></div>
 			  </div>
 			</div>
-			
-			
 		</div>
 	</div>
 </body>
