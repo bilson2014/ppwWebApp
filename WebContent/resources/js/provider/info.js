@@ -1034,6 +1034,7 @@ var provider_info = {
 				if(flag){
 					// 更新成功
 					successToolTipShow();
+					$(".show-check-status").addClass("hide");
 					$("#submit-info-show").removeClass("hide");
 				}else{
 					// 更新失败

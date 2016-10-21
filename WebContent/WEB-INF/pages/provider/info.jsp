@@ -83,12 +83,12 @@
 						<label class="tooltip-info-message">当前的信息正在审核中...</label>
 					</div>
 				<c:if test="${provider.checkStatus == 2}">
-					<div class="tooltip-info-show">
-						<label class="tooltip-info-message">当前审核未通过,${provider.checkDetails}</label>
+					<div class="tooltip-info-show show-check-status" style="background-color: #F2DEDD;">
+						<label class="tooltip-info-message">当前审核未通过,原因:${provider.checkDetails}</label>
 					</div>
 				</c:if>
 				<c:if test="${provider.checkStatus == 0}">
-					<div class="tooltip-info-show">
+					<div class="tooltip-info-show show-check-status">
 						<label class="tooltip-info-message">当前的信息正在审核中...</label>
 					</div>
 				</c:if>
