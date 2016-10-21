@@ -93,12 +93,16 @@
 							</div>
 							<!-- 错误提示框  end -->
 							<input type="hidden" id="bean-flag" value="${provider.flag }">
-							<c:if test="${provider.auditing == true}">
-							<div class="form-group">
-								<div class="col-sm-6">
-									当前的信息正在审核中...
+							<input type="hidden" id="bean-checkStatus" value="${provider.checkStatus }">
+							<c:if test="${provider.checkStatus == 2}">
+								<div class="tooltip-show">
+									<label class="tooltip-message">当前审核未通过,${provider.checkDetails}</label>
 								</div>
-							</div>
+							</c:if>
+							<c:if test="${provider.checkStatus == 0}">
+								<div class="tooltip-success-show">
+									<label class="tooltip-success-message">当前的信息正在审核中...</label>
+								</div>
 							</c:if>
 							<div class="form-group">
 								<label for="company-name" class="col-sm-2 control-label">公司名称</label>

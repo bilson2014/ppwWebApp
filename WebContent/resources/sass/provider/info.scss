@@ -169,3 +169,20 @@ li{
     background: #ccc;
     margin: 10px auto;
 }
+
+.tooltip-info-show{
+    height: 46px;
+    background-color: #d9edf7;
+    color: #3C764B;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 36px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+}
+
+label.tooltip-info-message {
+    padding-top: 4px;
+}

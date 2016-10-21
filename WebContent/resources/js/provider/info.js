@@ -318,7 +318,7 @@ function checkData(type){
 			var name = $('#company-name').val().trim(); // 公司名称
 			/*var telephone = $('#company-telephone').val().trim(); // 公司电话 */
 			var email = $('#company-email').val().trim(); // 公司邮箱
-			var description = $('#company-description').val().trim(); // 公司简介
+			var description = $('#company-teamDesc').val().trim(); // 公司简介
 			
 			var linkman = $('#company-linkman').val().trim(); // 联系人
 			var webchat = $('#company-webchat').val().trim(); // 微信
@@ -352,8 +352,8 @@ function checkData(type){
 			}
 			
 			if(description == '' || description == null || description == undefined){
-				popshow('company-description', '请输入公司简介!');
-				$('#company-description').focus();
+				popshow('company-teamDesc', '请输入公司简介!');
+				$('#company-teamDesc').focus();
 				return false;
 			}
 			
@@ -961,7 +961,8 @@ var provider_info = {
 					}else{
 						//验证team是否修改 true存在修改 false 没有修改
 						loadData(function(flag){
-							if(flag){//信息存在修改
+							var a = $("#bean-checkStatus").val();//是否存在再次审核
+							if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
 								if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
 									//处理team_tmp记录,更新team备注
 									_this.dealTeamTmpAndUpdateTeamDesc();

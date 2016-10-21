@@ -97,8 +97,9 @@ public class Team extends BaseObject {
 	private String teamProvinceName = null;// 省名
 
 	private String teamCityName = null; // 城市名
-	//是否是要再次审核
-	private Boolean auditing = false;
+	//再次审核 状态
+	private Integer checkStatus; //再次审核状态   tmp表冗余字段 0未审核 1审核通过 2审核失败
+	private String checkDetails;//再次审核详情
 
 	public String getTeamProvinceName() {
 		return teamProvinceName;
@@ -110,12 +111,20 @@ public class Team extends BaseObject {
 	public String getTeamCityName() {
 		return teamCityName;
 	}
-	public Boolean getAuditing() {
-		return auditing;
+	public Integer getCheckStatus() {
+		return checkStatus;
 	}
 
-	public void setAuditing(Boolean auditing) {
-		this.auditing = auditing;
+	public void setCheckStatus(Integer checkStatus) {
+		this.checkStatus = checkStatus;
+	}
+
+	public String getCheckDetails() {
+		return checkDetails;
+	}
+
+	public void setCheckDetails(String checkDetails) {
+		this.checkDetails = checkDetails;
 	}
 
 	public void setTeamCityName(String teamCityName) {
