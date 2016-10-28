@@ -1150,13 +1150,14 @@ function setSynergyEvent(){
 			var res = false;
 			if(x.val().trim() != ''){
 				res = removeSynergy($(x).val().trim());
+				
+				if(res){
+					$(this).parent().remove();
+				}else{
+					alert('删除失败！'); //TODO:
+				}
 			}else{
 				$(this).parent().remove();
-			}
-			if(res){
-				$(this).parent().remove();
-			}else{
-				alert('删除失败！'); //TODO:
 			}
 		}	
 		
@@ -1172,7 +1173,6 @@ function setSynergyEvent(){
 	});
 	$.each(deleteSynergys,function(i,item){
 		var x2=$(item).parent();
-		//var x3=x2.find("input#name")
 		initSynergy(x2);
 	});
 }
