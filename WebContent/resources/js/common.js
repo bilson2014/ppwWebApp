@@ -1,3 +1,4 @@
+var uploader;
 $().ready(function(){
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
@@ -320,6 +321,122 @@ function Encrypt(word){
 	var encrypted = CryptoJS.AES.encrypt(srcs, key, { iv: iv,mode:CryptoJS.mode.CBC});  
 	return encrypted.toString();
 }
+//使用方法
+/*
+ webupload({
+	 auto:true,
+	 server: '',//url
+	 pick: '',//点击弹窗
+	 submitBtn:'',//提交按钮
+	 formData : {},//参数
+	 fileQueued:function(file){//选中后执行
+	 },
+	 uploadProgress:function(file, percentage){},//进度显示
+	 uploadSuccess:function( file ,response){//成功回调
+	 },
+	 uploadComplete:function(file){},
+	 uploadError:function(file){}
+});
+*/
+function webupload(param) {
+	uploader && uploader.destroy();
+	var auto = param.auto;
+	var submitBtn = param.submitBtn;
+	var server = param.server;
+	var pick = param.pick;
+	var data = param.formData;
+	var chunked = param.chunked;
+	var resize = param.resize;
+	if (auto != true) {
+		auto = false;
+	}
+	if (chunked == null || chunked == undefined ) {
+		chunked = false;
+	}
+	if (resize == null || resize == undefined) {
+		resize = false;
+	}
+	uploader = WebUploader.create({
+		auto:auto,
+		// swf文件路径
+		swf : '/resources/lib/webuploader/Uploader.swf',
+		// 文件接收服务端。
+		server : server,
+		// 选择文件的按钮。可选。
+		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		pick : pick,
+		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		resize : resize,
+		// 开起分片上传。
+		chunked : chunked,
+		formData : data
+	});
+	// 当有文件被添加进队列的时候
+	uploader.on('fileQueued', function(file) {
+		if(param.fileQueued){
+			param.fileQueued(file);
+		}else{
+			//$('.uploader-list').append('<div id="' + file.id + '" class="item">'
+			//			+ '<h4 class="info">' + file.name + '</h4>'
+			//			+ '<p class="state">等待上传...</p>' + '</div>');
+			//uploader.md5File(file)
+			// 及时显示进度
+			//.progress(function(percentage) {
+			//	console.log('Percentage:', percentage);
+			//})
+			// 完成
+			//.then(function(val) {
+			//	console.log('md5 result:', val);
+			//});
+		}
+	});
+	// 文件上传过程中创建进度条实时显示。
+	uploader.on('uploadProgress',function(file, percentage) {
+		if(param.uploadProgress){
+			param.uploadProgress(file);
+		}else{
+			/*var $li = $('#' + file.id), $percent = $li
+			.find('.progress .progress-bar');
+			// 避免重复创建
+			if (!$percent.length) {
+				$percent = $(
+						'<div class="progress progress-striped active">'
+								+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+								+ '</div>' + '</div>')
+						.appendTo($li).find('.progress-bar');
+			}
+			$li.find('p.state').text('上传中');
+			$percent.css('width', percentage * 100 + '%');*/
+		}
+	});
+	uploader.on('uploadSuccess', function(file,response) {
+		if(param.uploadSuccess){
+			param.uploadSuccess(file,response);
+		}else{
+		}
+	});
+	uploader.on('uploadError', function(file) {
+		if(param.uploadError){
+			param.uploadError(file);
+		}else{
+			//$('#' + file.id).find('p.state').text('上传出错');
+		}
+	});
+
+	uploader.on('uploadComplete', function(file) {
+		if(param.uploadComplete){
+			param.uploadComplete(file);
+		}else{
+			//$( '#'+file.id ).find('p.state').text('已上传');
+			//$('#' + file.id).find('.progress').fadeOut();
+		}
+	});
+	$(submitBtn).on('click', function() {
+		uploader.upload();
+		//uploader.stop();
+	});
+}
+
 
 // 分享
 var share = {
@@ -358,7 +475,6 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();*/
-
 var _vds = _vds || [];
 window._vds = _vds;
 (function(){

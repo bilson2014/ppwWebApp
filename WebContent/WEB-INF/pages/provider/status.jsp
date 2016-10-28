@@ -4,12 +4,14 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/css/provider/status.css" var="providerStatusCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/js/provider/status.js" var="providerStatusJs"/>
 
 <!-- imgPath -->

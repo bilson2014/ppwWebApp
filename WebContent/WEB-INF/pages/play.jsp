@@ -24,6 +24,7 @@
 
 <!-- import resource path -->
 <spring:url value="/resources" var="baseResource" />
+<spring:url value="http://123.59.86.252:8000/" var="DFSurl" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -64,7 +65,8 @@
 	<input type="hidden" id="play-unique" value="${productId }"/>
 	<input type="hidden" id="service-unique" value="${product.serviceId }"/>
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
-	<input type="hidden" id="picPath" value="<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>" />
+	<%-- <input type="hidden" id="picPath" value="<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>" /> --%>
+	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<div class="header">
 		<div class="menu-bar nav">
@@ -137,7 +139,8 @@
 			<div class=" video-play-wrap">
 				<!-- media player start -->
 				<div class="player-wrap" id="player-wrap">
-					<video controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video>
+					<video controls src='<spring:url value="${DFSurl}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="http://123.59.86.252:8000/${product.videoUrl}"/>'></video>
+					<%-- <video controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video> --%>
 				</div>
 				<!-- media player end -->
 
@@ -199,7 +202,8 @@
 								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
 							</c:if>
 							<c:if test="${!empty product.teamPhotoUrl }">
-								<img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
+								<%-- <img src='<spring:url value="${fn:replace(fn:substringAfter(product.teamPhotoUrl,'/portal'),'image','img') }"/>' alt="${product.teamName }照片_拍片网" class="img-rounded"> --%>
+								<img src='<spring:url value="${DFSurl}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 							</c:if>
 						</dt>
 						<dd  class="teamName"  title="${product.teamName }">${product.teamName }</dd>
@@ -233,7 +237,8 @@
 					</div>
 					<div class="video-pic-wrap" id="video-pico-wrap">
 						<!-- 项目介绍 start -->
-							<img alt="${product.productName }_拍片网-官网" src='<spring:url value="${fn:replace(fn:substringAfter(product.picHDUrl,'/portal'),'image','img') }"/>' />
+							<%-- <img alt="${product.productName }_拍片网-官网" src='<spring:url value="${fn:replace(fn:substringAfter(product.picHDUrl,'/portal'),'image','img') }"/>' /> --%>
+						<img alt="${product.productName }_拍片网-官网" src='<spring:url value="${DFSurl}${product.picHDUrl}"/>' />
 						<!-- 项目介绍 end -->
 					</div>
 				</div>

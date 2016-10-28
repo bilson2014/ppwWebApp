@@ -2,8 +2,6 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
-	provider_info.init();
-	
 	// 显示Logo
 	/*var logoPath = $('#logoPath').val().trim();
 	if(logoPath != null && logoPath != '' && logoPath != undefined){
@@ -16,6 +14,7 @@ $().ready(function(){
 		$('.tooltip-message').text('');
 		$('.tooltip-show').hide();
 		$('.tooltip-success-show').hide();
+		provider_info.init();//放在这里的原因是等frame加载完之后,在加载其他
 	})
 	
 
@@ -896,8 +895,42 @@ var provider_info = {
 			//显示供应商图片
 			this.showLogo();
 			//供应商LOGO上传
-			this.uploadLOGO();
+			this.webuploadLOGO();
 			
+		},
+		
+		webuploadLOGO:function(){
+			webupload({
+				 auto:true,
+				 server: '/provider/update/teamPhotoPath',//url
+				 pick: '#picker',//点击弹窗
+				 formData : {'teamId' : $('#company-id').val().trim()},//参数
+				 fileQueued:function(file){//选中后执行
+					 $.blockUI({
+							message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
+					 });
+				 },
+				 uploadSuccess:function( file ,response){//成功回调
+					 $.unblockUI();
+					 var path = response._raw;
+						if(path != '' && path != null){
+							if(path.indexOf('false@error') > -1){
+								if(path.indexOf("error=1") > -1){
+									toolTipShow('文件超过最大限制');
+								} else if(path.indexOf("error=2") > -1){
+									toolTipShow('格式不正确');
+								}
+							}else{
+								// 显示 图片
+								var imgPath = getDfsHostName()+ path;
+								$('#logoImg').attr('src',imgPath);
+								successToolTipShow();
+							}
+						}else{
+							alert('上传失败!');
+						}
+				 },
+			});
 		},
 		changePhone:function(){
 			$("#old-content").empty().append(info_tpl.tpl_old_phone);
@@ -1071,7 +1104,7 @@ var provider_info = {
 				$('#logoImg').attr('src',imgPath);
 			}
 		},
-		uploadLOGO:function(){
+		/*uploadLOGO:function(){
 			$('#logoImg').off('click').on('click',function(){
 				// 图片上传 点击事件
 				$('#file').off("change").on("change",function(){
@@ -1083,9 +1116,9 @@ var provider_info = {
 				});
 				$('#file').click();
 			});
-		}
+		}*/
 }
-//上传图片
+/*//上传图片
 function uploadImg(){
 	$.ajaxFileUpload({
 		url : getContextPath() + '/provider/update/teamPhotoPath',
@@ -1119,7 +1152,7 @@ function uploadImg(){
 			alert('信息保存失败...');
 		}
 	});
-}
+}*/
 function getVeritifyCodeValidate(){
 	$('#phone-codeBt').unbind('click');
 	$('#phone-codeBt').bind('click',function(){

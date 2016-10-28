@@ -5,15 +5,18 @@ $().ready(function(){
 	
 	video.register();
 	
-	video.initUploadify();
+	//video.initUploadify();
+	video.webupload();
 	
 	$('.media-object').on('click',function(){
 		var videoUrl = $(this).next('input').val();
 		var picUrl = $(this).attr('scr');
 		$('#videoModal').modal();
-		
-		var videoName = getFileName(videoUrl);
-		var videoPath = getHostName() + '/product/video/' + videoName;
+		//修改为DFS路径
+		//var videoName = getFileName(videoUrl);
+		//var videoPath = getHostName() + '/product/video/' + videoName;
+		var videoPath = getDfsHostName() + videoUrl;
+		//修改为DFS end
 		// 装配视频
 		$('#videoModal').find('video').attr('src',videoPath);
 		$('#videoModal').find('video').attr('poster',picUrl);
@@ -44,14 +47,48 @@ var video = {
 				var imgUrl = $(this).parent().parent().parent().parent().find('.media-object').attr('src');
 				var imgPath = '';
 				if(imgUrl != undefined && imgUrl != null){
-					var img_Name = getFileName(imgUrl);
-					imgPath = getHostName() + '/product/img/' + img_Name;
+					//var img_Name = getFileName(imgUrl);
+					//imgPath = getHostName() + '/product/img/' + img_Name;
+					var imgPath = imgUrl;
 				}
 				
 				share.init(shareUrl, share_title, imgPath);
 			});
 		},
-		initUploadify : function(){
+		webupload:function(){
+			$('#multipModal').on('shown.bs.modal', function (e) {
+				webupload({
+					 server: '/provider/multipUploadFile',//url
+					 pick: '#picker',//点击弹窗
+					 submitBtn:'#submit-multip',
+					 fileQueued:function(file){//选中后执行
+						$('#thelist').append('<div id="' + file.id + '" class="item">'
+										+ '<h4 class="info">' + file.name + '</h4>'
+										+ '<p class="state">等待上传...</p>' + '</div>');
+					 },
+					 uploadProgress:function(file, percentage){
+						 var $li = $('#' + file.id), $percent = $li
+							.find('.progress .progress-bar');
+							// 避免重复创建
+							if (!$percent.length) {
+								$percent = $(
+										'<div class="progress progress-striped active">'
+												+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+												+ '</div>' + '</div>')
+										.appendTo($li).find('.progress-bar');
+							}
+							$li.find('p.state').text('上传中');
+							$percent.css('width', percentage * 100 + '%');
+					 },//进度显示
+					 uploadSuccess:function( file ,response){//成功回调
+						$( '#'+file.id ).find('p.state').text('已上传');
+						$('#' + file.id).find('.progress').fadeOut();
+					 }
+				});
+			})
+		}
+		
+/*		initUploadify : function(){
 				$('#file_upload').uploadify({
 					'swf' : getContextPath() + '/resources/lib/uploadify/uploadify.swf', // 空间flash文件位置
 					'uploader' : getContextPath() + '/provider/multipUploadFile',
@@ -109,7 +146,21 @@ var video = {
 						alert(msgText);
 					}
 				});
-		}
+		}*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
 
 // 修改

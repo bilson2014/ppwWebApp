@@ -1,15 +1,12 @@
 package com.panfeng.film.resource.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -34,6 +31,7 @@ import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.PhotoCutParam;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.security.AESUtil;
+import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
@@ -48,12 +46,16 @@ public class UserController extends BaseController{
 
 	@Autowired
 	private SmsService smsService = null;
+	@Autowired
+	private final FDFSService DFSservice = null;
 	
 	private static String URL_PREFIX = null;
 	
 	private static String FILE_PROFIX = null; // 文件路径前缀
 	
-	private static String UPLOAD_PATH = null; // 用户头像上传路径
+	//private static String DFS_URL = null; // 文件路径前缀
+	
+	//private static String UPLOAD_PATH = null; // 用户头像上传路径
 	
 	private static String IMAGE_MAX_SIZE = null;
 	
@@ -68,8 +70,9 @@ public class UserController extends BaseController{
 				Properties propertis = new Properties();
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
+			//	DFS_URL = propertis.getProperty("upload.server.dfs.url");
 				FILE_PROFIX = propertis.getProperty("file.prefix");
-				UPLOAD_PATH = propertis.getProperty("upload.server.user.image");
+			//	UPLOAD_PATH = propertis.getProperty("upload.server.user.image");
 				IMAGE_MAX_SIZE = propertis.getProperty("imageMaxSize");
 				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
 			} catch (IOException e) {
@@ -257,11 +260,9 @@ public class UserController extends BaseController{
 	/**
 	 * 自定义上传头像
 	 */
-	@RequestMapping(value = "/preview/photo",method = RequestMethod.POST)
-	public String modifyUserPhoto( @RequestParam("file") final MultipartFile file,
-					final HttpServletRequest request,
-					final HttpServletResponse response,
-					final User user){
+	@RequestMapping(value = "/preview/photo",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+	public String modifyUserPhoto(final HttpServletRequest request,
+			final HttpServletResponse response,@RequestParam("file") final MultipartFile file){
 		try {
 			if(!file.isEmpty()){
 				final long fileSize = file.getSize(); // 上传文件大小
@@ -275,7 +276,7 @@ public class UserController extends BaseController{
 					
 					if(ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1){ // 文件格式正确
 						// save file
-						File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
+						/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
 						if(!imageDir.exists())
 							imageDir.mkdir();
 						
@@ -296,10 +297,11 @@ public class UserController extends BaseController{
 						// get file path
 						final String path = UPLOAD_PATH + "/" + fileName;
 						File imageFile = new File(FILE_PROFIX + path);
-						file.transferTo(imageFile);
-						
+						file.transferTo(imageFile);*/
+						//modify 修改成DFS上传
+						String path = DFSservice.upload(file);
 						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("User id is " + user.getId() + " upload photo by self path is" + path,sessionInfo);
+						Log.error("User id is " + sessionInfo.getReqiureId() + " upload photo by self path is" + path,sessionInfo);
 						
 						return path;
 					}else{
@@ -331,7 +333,7 @@ public class UserController extends BaseController{
 			File original = new File(imgPath);
 			
 			// save file
-			File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
+			/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
 			if(!imageDir.exists())
 				imageDir.mkdir();
 			
@@ -354,10 +356,12 @@ public class UserController extends BaseController{
 			// get file path
 			final String path = UPLOAD_PATH + "/" + fileName;
 			File newFile = new File(FILE_PROFIX + path);
-			FileUtils.copyFile(original, newFile);
-			
+			FileUtils.copyFile(original, newFile);*/
+			//modify by wlc 修改为DFS上传
+			String path = DFSservice.upload(original, user.getImgUrl());
+			//修改为DFS上传结束
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("User id is " + user.getId() + " upload photo by system path is" + newFile,sessionInfo);
+			Log.error("User id is " + user.getId() + " upload photo by system path is" + path,sessionInfo);
 			
 			// 更新数据库
 			if(user != null){
@@ -401,30 +405,34 @@ public class UserController extends BaseController{
 	
 	/**
 	 * 裁剪图片 并更新服务器
+	 * @throws IOException 
 	 */
 	@RequestMapping("/cutPhoto")
 	public User uploadDIYUserImg(@RequestBody final PhotoCutParam param,
-						final HttpServletRequest request) {
+						final HttpServletRequest request) throws IOException {
 		
 		if(param != null && !"".equals(param.getImgUrl())){
 			
 			try {
 				// get original user image
-				final String imgPath = FILE_PROFIX + param.getImgUrl();
-				File original = new File(imgPath);
-				final String extName = FileUtils.getExtName(original.getName(), ".");
+				//final String imgPath = FILE_PROFIX + param.getImgUrl();
+				//modify 2016-10-25 16:48:46
+				//改为从DFS上获取图片 begin
+				final String imgPath = param.getImgUrl();
+				InputStream inputStream = DFSservice.download(imgPath);
+				//modify 改为从DFS上获取图片 end
+				final String extName = FileUtils.getExtName(imgPath, ".");
 				
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("User id is " + param.getUserId() + " cut photo begin",sessionInfo);
 				
 				// cut photo
-				final InputStream original_is = new FileInputStream(original);
-				final boolean ret = PhotoUtil.cutPhoto(original_is,param,original,extName);
-				
-				Log.error("User id is " + param.getUserId() + " cut photo - success = " + ret,sessionInfo);
+				//final InputStream original_is = new FileInputStream(original);
+				inputStream = PhotoUtil.cutPhoto(inputStream,param,extName);
+				Log.error("User id is " + param.getUserId() + " cut photo - success",sessionInfo);
 				
 				// save file
-				File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
+				/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
 				if(!imageDir.exists())
 					imageDir.mkdir();
 				
@@ -449,12 +457,14 @@ public class UserController extends BaseController{
 				FileUtils.copyFile(original, newFile);
 				
 				// delete original file
-				original.delete();
-				
+				original.delete();*/
+				//modify 修改成DFS上传
+				String path = DFSservice.upload(inputStream,imgPath);
+				//modify 修改成DFS上传
 				// 更新数据库
 				final User user = new User();
 				user.setId(param.getUserId());
-				user.setImgFileName(fileName.toString());
+				user.setImgFileName(path);//?这个是做啥的
 				user.setImgUrl(path);
 				
 				final String url = URL_PREFIX + "portal/user/modify/photo";

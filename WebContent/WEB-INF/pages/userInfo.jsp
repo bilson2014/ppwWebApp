@@ -5,6 +5,7 @@
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/userInfo.css" var="userInfoCss"/>
 <%-- import JS --%>
@@ -13,6 +14,7 @@
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
 <spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
@@ -39,6 +41,7 @@
 	<link rel="stylesheet" href="${jcropCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${userInfoCss }">
+	<link rel="stylesheet" href="${webuploaderCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -47,6 +50,7 @@
 	<script src="${pluginJs }"></script>
 	<script src="${bootstrapJs }"></script>
 	<script src="${ajaxfileuploadJs }"></script>
+	<script src="${webuploaderJs }" ></script>
 	<script src="${jsonJs }"></script>
 	<script src="${jcropJs }"></script>
 	<script src="${jcropColorJs }"></script>
@@ -360,9 +364,11 @@
 										<img alt="用户头像" src="${imgPath }/icons/default.png" class="img-circle" id="user-img"/>
 									</div>
 									<div class="upload-btn">
-										<button class="btn btn-primary" id="uploadBt" type="button">上传头像</button>
+										<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
+										<div id="uploadBt">上传头像</div>
 										<input type="file" name="file" id="file" style="display: none;"/> 
 									</div>
+									
 									<div class="upload-info">
 										<label>仅支持JPG、	PNG格式，文件小于2M</label>
 									</div>

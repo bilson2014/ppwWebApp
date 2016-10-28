@@ -25,7 +25,7 @@
 <spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
-
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/js/model.js" var="modelJs" />
 <spring:url value="/resources/css/flow/flow.css" var="index" />
 <spring:url value="/resources/css/flow/step-dc-style1.css"
@@ -39,6 +39,7 @@
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
@@ -60,6 +61,7 @@
 <link rel="stylesheet" href="${h5bpCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${commonCss }">
+<link rel="stylesheet" href="${webuploaderCss }">
 
 <link rel="stylesheet" href="${index }">
 <link rel="stylesheet" href="${stepdcstyle }">
@@ -78,6 +80,7 @@
 <script src="${stepjquery }"></script>
 <script src="${indexjs }"></script>
 <script src="${datepickerJs }"></script>
+<script src="${webuploaderJs }" ></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
@@ -640,6 +643,8 @@
 									id="upload-file-name" placeholder="请选择文件" />
 								<button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button>
 							</dt>
+							<div id="picker">浏览</div>
+							        
 
 							<dt>
 								<h2 id="modal-h3-first">选择分类</h2>

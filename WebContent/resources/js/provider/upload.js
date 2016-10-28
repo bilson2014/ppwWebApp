@@ -14,7 +14,6 @@ var timer;
 oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
-	createEditor('textarea[name="pageDescription"]');
 	
 	$('#creationTime').datepicker({
 		language: 'zh',
@@ -98,43 +97,6 @@ $().ready(function(){
 		$('.menu-content li:eq(1)', parent.document).click();
 	});
 	 
-	//add by wanglc 2016-09-22 22:59:39
-	//上传图片和视频通用方法
-	/*var startUpload = function(){
-		var args = {};
-		var fileId = $(this).attr("id");
-		switch (fileId) {
-		case "uploadHDBt":
-			args.fileId = "picHDFile";
-			args.showName = "HDImgName";
-			args.showImg = "HDImg";
-			args.content = "video-picHD-div";
-			break;
-		case "uploadLDBt":
-			args.fileId = "picLDFile";
-			args.showName = "LDImgName";
-			args.showImg = "LDImg";
-			args.content = "video-picLD-div";
-			break;
-		case "uploadVideoBt":
-			args.fileId = "videoFile";
-			args.showName = "videoName";
-			break;
-		}
-		var fileId = args.fileId;
-		var showName = args.showName;
-		var showImg = args.showImg;
-		var content = args.content;
-		$('#'+fileId).click();
-		timer && clearInterval(timer);
-		timer = setInterval(function(){
-			checkFile(fileId);
-			$("#"+showName).text($('#'+fileId).val().substring($('#'+fileId).val().lastIndexOf("\\")+1));
-			if(fileId!='videoFile')showPic(fileId,showImg,content);
-			//if(fileValue!=$('#'+fileId).val())clearInterval(timer);
-		}, 500);
-	}
-	$('.uploadbtn').off("click").on('click',startUpload);*/
 	
 	$('#uploadLDBt').on('click',function(){
 		$('#picLDFile').unbind('change');
@@ -166,7 +128,6 @@ $().ready(function(){
 	// 注册变更模式
 	
 	if(action == 'upload'){
-		
 		//新增首先获取sessionid
 		loadData(function(pData){
 			sessionId = pData.sessionId;
@@ -233,8 +194,11 @@ $().ready(function(){
 		if(picHDUrl != '' && picHDUrl != null){
 			// 上传过缩略图
 			$('#video-picHD-div').show();
-			var picHDName = getFileName(picHDUrl);
-			var picHDPath = getHostName() + '/product/img/' + picHDName;
+			//修改为DFS路径
+			//var picHDName = getFileName(picHDUrl);
+			//var picHDPath = getHostName() + '/product/img/' + picHDName;
+			var picHDPath = getDfsHostName() + picHDUrl;
+			//修改为DFS end
 			$('#HDImg').attr('src',picHDPath);
 		}else{
 			// 显示请上传图片
@@ -246,8 +210,11 @@ $().ready(function(){
 		if(picLDUrl != '' && picLDUrl != null){
 			// 上传过封面
 			$('#video-picLD-div').show();
-			var picLDName = getFileName(picLDUrl);
-			var picLDPath = getHostName() + '/product/img/' + picLDName;
+			//修改为DFS路径
+			//var picLDName = getFileName(picLDUrl);
+			//var picLDPath = getHostName() + '/product/img/' + picLDName;
+			var picLDPath = getDfsHostName() + picLDUrl;
+			//修改为DFS end
 			$('#LDImg').attr('src',picLDPath);
 		}else{
 			// 显示请上传图片
@@ -259,7 +226,10 @@ $().ready(function(){
 		var name = $(this).data('href');
 		var width = $(this).data('width');
 		var height = $(this).data('height');
-		$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
+		//修改为DFS路径begin 2016年10月25日 12:08:46
+		//$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
+		$('#previewImg').attr('src',getDfsHostName() + name);
+		//修改为DFS路径end
 		$('#previewImg').css({'width':width + 'px','height':height + 'px'});
 		if(name.indexOf('default-thumbnail') > -1){ // 缩略图
 			$('#photoModel-content').css({'width':'1080px','height':'700px','top':'40px','position':'relative','left':'45%',});
@@ -451,15 +421,20 @@ function modify(){
 							loadData(function(product){
 								// 替换图片
 								if(product.picLDUrl != null && product.picLDUrl != '' && product.picLDUrl != undefined){
-									var picLDName = getFileName(product.picLDUrl);
-									var picLDPath = getHostName() + '/product/img/' + picLDName;
+									//修改为DFS路径
+									//var picLDName = getFileName(product.picLDUrl);
+									//var picLDPath = getHostName() + '/product/img/' + picLDName;
+									var picLDPath = getDfsHostName() + product.picLDUrl;
+									//修改为DFS end
 									$('#LDImg').attr('src',picLDPath);
 								}
 								
 								if(product.picHDUrl != null && product.picHDUrl != '' && product.picHDUrl != undefined){
-									
-									var picHDName = getFileName(product.picHDUrl);
-									var picHDPath = getHostName() + '/product/img/' + picHDName;
+									//修改为DFS路径
+									//var picHDName = getFileName(product.picHDUrl);
+									//var picHDPath = getHostName() + '/product/img/' + picHDName;
+									var picHDPath = getDfsHostName() + product.picHDUrl;
+									//修改为DFS end
 									$('#HDImg').attr('src',picHDPath);
 								}
 							}, getContextPath() + '/provider/product/data/' + $('#p-id').val(), null);
@@ -781,7 +756,6 @@ function addTags(tag) {
 			$tag += '<span>x</span>';
 			$tag += '</a>';
 			$('.keyword_input').before($tag);
-			
 			// 激活 x 
 			$('.btn_keyword_del').unbind('click');
 			$('.btn_keyword_del').bind('click',function(){

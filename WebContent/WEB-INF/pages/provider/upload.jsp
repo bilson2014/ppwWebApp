@@ -8,6 +8,7 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap-switch.min.css" var="bootstrapSwitchCss"/>
 <spring:url value="/resources/css/provider/upload.css" var="providerUploadCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/kindeditor/themes/default/default.css" var="defaultCss" />
 <spring:url value="/resources/lib/kindeditor/plugins/code/prettify.css" var="prettifyCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
@@ -24,6 +25,7 @@
 <spring:url value="/resources/lib/kindeditor/plugins/code/prettify.js" var="prettifyJs" />
 <spring:url value="/resources/lib/kindeditor/lang/zh_CN.js" var="kindeditorzhJs" />
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/js/provider/upload.js" var="providerUploadJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
@@ -51,6 +53,7 @@
 	<link rel="stylesheet" href="${prettifyCss }">
 	<link rel="stylesheet" href="${providerUploadCss }">
 	<link rel="stylesheet" href="${datepickerCss }">
+	<link rel="stylesheet" href="${webuploaderCss }">
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -177,13 +180,20 @@
 								<div style="margin:0px 40px;float:left" id="HDImgName"></div>
 								<input type="hidden" value="${model.picHDUrl }" id="video-picHDUrl"/>
 							</div>
+							
 							<div class="upload-btn">
 								<button class="btn btn-primary uploadbtn" id="uploadHDBt" type="button">上传缩略图</button>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<input type="file" id="picHDFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
-							</div>
+							</div> 
+							
+							<!-- <div id="uploader-demo">
+							    用来存放item
+							    <div id="fileList-HD" class="uploader-list"></div>
+							    <div id="filePicker-HD">上传缩略图</div>
+							</div> -->
 						</div>
 						
 						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
@@ -291,6 +301,7 @@
 <script src="${jsonJs }"></script>
 <script src="${bootstrapJs }"></script>
 <script src="${bootstrapSwitchJs }"></script>
+<script src="${webuploaderJs }" ></script>
 <script src="${ajaxfileuploadJs }"></script>
 <script src="${kindeditorJs }"></script>
 <script src="${prettifyJs }"></script>

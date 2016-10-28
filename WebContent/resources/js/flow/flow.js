@@ -228,10 +228,25 @@ function getFileName(o) {
 	var pos = o.lastIndexOf("\\");
 	return o.substring(pos + 1);
 }
-$("#upload-file-btn-id").click(function() {
+$("#upload-file-btn-id").off("click").on("click",function() {
 	$('#toolbar-modal').modal({backdrop: 'static', keyboard: false});
 	//$('#toolbar-modal').modal('show');
 });
+$('#toolbar-modal').on('shown.bs.modal', function (e) {
+	webupload({
+		 server: '',//url
+		 pick: '#picker',//点击弹窗
+		 submitBtn:'',//提交按钮
+		 formData : {},//参数
+		 fileQueued:function(file){//选中后执行
+		 },
+		 uploadProgress:function(file, percentage){},//进度显示
+		 uploadSuccess:function( file ,response){//成功回调
+		 },
+		 uploadComplete:function(file){},
+		 uploadError:function(file){}
+	});
+})
 
 $('#cancle-btn').click(function() {
 	$('#toolbar-modal').modal('hide');

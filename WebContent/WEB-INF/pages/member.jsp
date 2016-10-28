@@ -16,6 +16,7 @@
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="http://123.59.86.252:8000/" var="DFSurl" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -125,7 +126,7 @@
 					</c:if>
 					<li class="nav-member">
 						<div>
-							<img class="member-img" alt="${staff.staffName}_拍片网" src="<spring:url value="/staff/img${staff.staffImageUrl }"/>">
+							<img class="member-img" alt="${staff.staffName}_拍片网" src="<spring:url value="${DFSurl }${staff.staffImageUrl }"/>">
 							<p title="${staff.staffName }">${staff.staffName }</p>
 							<p class="small-p">${staff.staffPosition}</p>
 						</div>

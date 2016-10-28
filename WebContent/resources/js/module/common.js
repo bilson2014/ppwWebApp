@@ -109,6 +109,9 @@ define(['jquery'],function($){
 		},
 		getHostName : function(){ // 获取 主机名
 			return window.location.protocol + '//' + window.location.host;
+		},
+		getDfsHostName:function(){
+			return "http://123.59.86.252:8000/";
 		}
 
 	}

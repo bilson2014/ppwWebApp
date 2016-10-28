@@ -224,8 +224,11 @@ function mergeVideo(begin){
 		if(list != null && list.length > 0){
 			var $body = '';
 			$.each(list,function(i,product){
-				var imgName = getFileName(product.picLDUrl);
-				var imgPath = getHostName() + '/product/img/' + imgName;
+				//修改为DFS路径
+				//var imgName = getFileName(product.picLDUrl);
+				//var imgPath = getHostName() + '/product/img/' + imgName;
+				var imgPath = getDfsHostName() + product.picLDUrl;
+				//修改为DFS end
 				if(i % 4 == 0){
 					$body += '<div class="video-row">';
 				}
