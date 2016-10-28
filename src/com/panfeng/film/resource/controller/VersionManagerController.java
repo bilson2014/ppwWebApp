@@ -81,7 +81,6 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/doLogin")
 	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee,
 			final HttpServletResponse response) {
-
 		final Result result = new Result();
 		if (employee != null) {
 			final String pwd = employee.getEmployeePassword();
@@ -97,8 +96,8 @@ public class VersionManagerController extends BaseController {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (!ret) {
 							result.setMessage("用户名或密码错误!");
-						}else{
-							addCookies(request,response);
+						} else {
+							addCookies(request, response);
 						}
 						result.setRet(ret);
 						return result;
@@ -106,7 +105,7 @@ public class VersionManagerController extends BaseController {
 
 				} catch (Exception e) {
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("VersionManager login error,Becase of decrypt password error ...",sessionInfo);
+					Log.error("VersionManager login error,Becase of decrypt password error ...", sessionInfo);
 					e.printStackTrace();
 				}
 			}
@@ -226,7 +225,7 @@ public class VersionManagerController extends BaseController {
 				}
 			} catch (Exception e) {
 				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("Provider bind error,teamName is " + employee.getEmployeeRealName(),sessionInfo);
+				Log.error("Provider bind error,teamName is " + employee.getEmployeeRealName(), sessionInfo);
 				e.printStackTrace();
 			}
 		}
@@ -317,14 +316,14 @@ public class VersionManagerController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public ModelAndView indexView(ModelMap model,HttpServletRequest request) {
+	public ModelAndView indexView(ModelMap model, HttpServletRequest request) {
 		final ServletContext sc = request.getServletContext();
-		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
+		WebApplicationContext wc = WebApplicationContextUtils.findWebApplicationContext(sc);
 		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
-		
+
 		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
-		if(info != null){
-			model.put("userId",info.getReqiureId() );
+		if (info != null) {
+			model.put("userId", info.getReqiureId());
 		}
 		return new ModelAndView("/manager/index");
 	}
@@ -402,15 +401,15 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/flow-index")
-	public ModelAndView projectsView(final ModelMap model, String key,HttpServletRequest request) {
+	public ModelAndView projectsView(final ModelMap model, String key, HttpServletRequest request) {
 		model.put("key", key);
 		final ServletContext sc = request.getServletContext();
-		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
+		WebApplicationContext wc = WebApplicationContextUtils.findWebApplicationContext(sc);
 		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
-		
+
 		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
-		if(info != null){
-			model.put("userId",info.getReqiureId() );
+		if (info != null) {
+			model.put("userId", info.getReqiureId());
 		}
 		return new ModelAndView("/manager/index", model);
 	}
@@ -603,6 +602,17 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/add-view")
 	public ModelAndView flowView(final ModelMap model) {
 		return new ModelAndView("/manager/add-flow", model);
+	}
+
+	@RequestMapping(value = "/flow/verifyIntegrity", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public BaseMsg verifyIntegrity(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
+		final String url = GlobalConstant.URL_PREFIX + "verifyIntegrity";
+		String str = HttpUtil.httpPost(url, indentProject, request);
+		// User information = null;
+		if (str != null && !"".equals(str)) {
+			return JsonUtil.toBean(str, BaseMsg.class);
+		}
+		return new BaseMsg(BaseMsg.ERROR, "请求失败！", null);
 	}
 
 	@RequestMapping(value = "/flow/getnodes", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
