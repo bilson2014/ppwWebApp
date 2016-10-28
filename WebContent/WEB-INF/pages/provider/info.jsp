@@ -212,7 +212,7 @@
 								</div>	
 								<span style="color:red;">*</span>
 							  </div>  		
-			<%-- 				<div class="form-group">	
+							<div class="form-group">	
 								<label for="company-city" class="col-sm-2 control-label">所在市</label>	
 								  <div class="col-sm-6">
 									<select class="form-control" id="company-city" ><!-- 省市级联 市 -->
@@ -227,7 +227,7 @@
 									</select>
 								</div>	
 								<span style="color:red;">*</span>
-							</div> --%>
+							</div>
 							
 							<div class="form-group">
 								<label for="company-priceRange" class="col-sm-2 control-label">价格区间</label>
@@ -601,6 +601,6 @@
 			  </div>
 			</div>
 		</div>
-	</div>
+	</div> 
 </body>
 </html>

@@ -16,6 +16,8 @@ form {
 
 
 
+
+
 .tooltip-show {
 	height: 46px;
 	background-color: #F2DEDE;
@@ -59,7 +61,7 @@ label.tooltip-success-message {
 
 .upload-btn {
 	margin-left: 20px;
-	margin-top: 20px;
+	margin-top: 8px;
 }
 
 .img-icon img{
@@ -215,6 +217,7 @@ label.tooltip-success-message {
 	 margin:0 auto;
 }
 
+
 .circle{
 	width:10px;
 	height:10px;
@@ -228,4 +231,43 @@ label.tooltip-success-message {
 .bot{
 	margin-top:20px;
 }
+
+.webuploader-pick{
+    height: 35px;
+    width: 96px;
+    padding: 0 !important;
+    background: #fe5453 !important;
+    line-height: 35px !important;
+    color:white !important;
+    text-align: center !important;
+    font-size: 14px;
+}
+
+.webuploader-pick-hover{
+   background: #286090 !important;
+}
+
+.webuploader-container{
+	display: inline-block;
+	
+}
+
+.upload-btn{
+	a{
+		display: inline-block;
+		position: relative;
+		top: -13px;
+	}
+}
+
+.save{
+	position: relative;
+    left: 19px;
+}
+
+#videoName{
+	position: relative;
+    top: -11px;
+}
+
 
