@@ -180,7 +180,7 @@
 								<div style="margin:0px 40px;float:left" id="HDImgName"></div>
 								<input type="hidden" value="${model.picHDUrl }" id="video-picHDUrl"/>
 							</div>
-							<!-- 
+							<!-- TODO：
 							<div class="upload-btn">
 								<button class="btn btn-primary uploadbtn" id="uploadHDBt" type="button">上传缩略图</button>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
@@ -197,7 +197,7 @@
 							</div> 
 							    
 							</div>
-						</div>
+				
 						
 						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
 						<div class="col-sm-3">
@@ -224,14 +224,14 @@
 					<div class="form-group">
 						<label for="video-picLDUrl" class="col-sm-2 control-label">视频</label>
 						<div class="col-sm-6">
-							<div class="upload-btn">
+							<%-- <div class="upload-btn">
 								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
 								<button class="btn btn-primary uploadbtn" id="uploadVideoBt" type="button">上传视频</button>
 								<div style="display:inline;margin:10px" id="videoName"></div>
 								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
-							</div>
+							</div> --%>
 							
 							
 							<div class="upload-btn">
@@ -247,7 +247,7 @@
 					</div>
 				
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-6">
+						<div class="col-sm-offset-2 col-sm-6 save">
 							<button type="button" class="btn btn-default" id="infoBt">保存</button>
 							&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" id="backBt">返回</button>
 						</div>
