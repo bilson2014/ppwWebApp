@@ -342,6 +342,7 @@ function webupload(param) {
 	uploader && uploader.destroy();
 	var auto = param.auto;
 	var submitBtn = param.submitBtn;
+	var fileNumLimit = param.fileNumLimit;
 	var server = param.server;
 	var pick = param.pick;
 	var data = param.formData;
@@ -356,6 +357,9 @@ function webupload(param) {
 	if (resize == null || resize == undefined) {
 		resize = false;
 	}
+	if(fileNumLimit == null && fileNumLimit == undefined){
+		fileNumLimit=9999;
+	}
 	uploader = WebUploader.create({
 		auto:auto,
 		// swf文件路径
@@ -367,9 +371,18 @@ function webupload(param) {
 		pick : pick,
 		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
 		resize : resize,
+		
+		fileNumLimit:fileNumLimit,
 		// 开起分片上传。
 		chunked : chunked,
 		formData : data
+	});
+	// 当有文件被添加进队列的时候
+	uploader.on('beforeFileQueued', function(file) {
+		if(param.beforeFileQueued){
+			param.beforeFileQueued(file);
+		}else{
+		}
 	});
 	// 当有文件被添加进队列的时候
 	uploader.on('fileQueued', function(file) {
