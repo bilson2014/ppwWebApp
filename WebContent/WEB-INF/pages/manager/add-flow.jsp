@@ -73,7 +73,7 @@ var="ajaxfileuploadJs" />
 <body >
 
 <div class="header">
-     
+     <div class="errorDiv"  id="errorDiv" style="display: none;">error</div>
      	<!-- show Modal start -->
 <%-- 		<div class="modal" id="isShow" data-backdrop="static" data-keyboard=true>
 			<div class="modal-dialog">
