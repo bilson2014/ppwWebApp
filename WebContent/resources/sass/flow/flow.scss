@@ -576,11 +576,11 @@
     .upload-btn {
         display: inline-block;
         position: relative;
-        top: 8px;
+        top: 21px;
         left: 140px;
     }
     .upload-btn:hover {
-        background-color: darken($red-base, 10%);
+        //background-color: darken($red-base, 10%);
     }
     .input-select {
         position: relative;
@@ -683,6 +683,24 @@
 
 .red-small-btn:hover {
     background-color: darken($red-base, 10%);
+}
+//自定义浏览
+.webuploader-pick{
+	height: 35px;
+	width: 96px;
+	padding: 0;
+	background: $red-base;
+	line-height: 35px;
+	color:white;
+	text-align: center;
+	font-size: $font-size-base;
+
+
+}
+
+.webuploader-pick-hover{
+	background-color: darken($red-base, 10%);
+	padding: 0;
 }
 
 .gray-btn {

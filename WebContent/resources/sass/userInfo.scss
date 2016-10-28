@@ -19,6 +19,23 @@ label {
 }
 
 
+.webuploader-pick{
+    height: 35px;
+    width: 96px;
+    padding: 0 !important;
+    background: $red-base !important;
+    line-height: 35px !important;
+    color:white !important;
+    text-align: center !important;
+    font-size: $font-size-base;
+}
+
+.webuploader-pick-hover{
+   
+   background: #286090 !important;
+}
+
+
 
 .user-wrap {
     margin: 0 auto;

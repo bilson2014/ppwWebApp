@@ -641,9 +641,10 @@
 								<h1 id="modal-h3-first">选择文件</h1>
 								<input readonly="readonly" class="upload-text"
 									id="upload-file-name" placeholder="请选择文件" />
-								<button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button>
+								<!-- <button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button> -->
+								<div id="picker" class="upload-btn">浏览</div>
 							</dt>
-							<div id="picker">浏览</div>
+						
 							        
 
 							<dt>
