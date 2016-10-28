@@ -14,6 +14,31 @@ var timer;
 oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
+	 webupload({
+		 server: '/provider/save/product/test',//url
+		 pick: '.picker',//点击弹窗
+		 submitBtn:'#ctlBtn',//提交按钮
+		 formData : {videoUrl:'baidu.com'},//参数
+		 accept: {
+		        title: 'Images',
+		        extensions: 'gif,jpg,jpeg,bmp,png',
+		        mimeTypes: 'image/*'
+		    },
+	    fileQueued:function(file){//选中后执行
+	    	var $img = $("#HDImg");
+	        // 创建缩略图
+	        // 如果为非图片文件，可以不用调用此方法。
+	        // thumbnailWidth x thumbnailHeight 为 100 x 100
+	        uploader.makeThumb( file, function( error, src ) {
+	            if ( error ) {
+	            	$("#video-picHD-div").show();
+	                $img.replaceWith('<span>不能预览</span>');
+	                return;
+	            }
+	            $img.attr( 'src', src );
+	        }, 130, 100 );
+		 },
+	});
 	
 	$('#creationTime').datepicker({
 		language: 'zh',
@@ -98,7 +123,7 @@ $().ready(function(){
 	});
 	 
 	
-	$('#uploadLDBt').on('click',function(){
+	/*$('#uploadLDBt').on('click',function(){
 		$('#picLDFile').unbind('change');
 		$('#picLDFile').bind('change',function(){
 			checkFile('picLDFile');
@@ -123,7 +148,7 @@ $().ready(function(){
 			$("#videoName").text($('#videoFile').val().substring($('#videoFile').val().lastIndexOf("\\")+1));
 		});
 		$('#videoFile').click();
-	});
+	});*/
 	
 	// 注册变更模式
 	
@@ -293,7 +318,7 @@ function upload(){
 			$.base64.utf8encode = true;
 			var videoDescription= $.base64.btoa(editor.html());
 			
-			$.ajaxFileUpload({
+			/*$.ajaxFileUpload({
 				url : getContextPath() + '/provider/save/product/info',
 				secureuri : false,
 				fileElementId : ['videoFile','picHDFile','picLDFile'],
@@ -345,7 +370,7 @@ function upload(){
 				error : function(data, status, e){
 					alert('文件上传失败...');
 				}
-			});
+			});*/
 		}
 	}
 }

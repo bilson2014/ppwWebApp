@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/** 操作properties文件类 */
+/**
+ * 操作properties文件类 
+ * 2016-9-28 15:23:29
+ * wanglc
+ */
 public class PropertiesUtils {
-	
-	private PropertiesUtils() {
-		// 构造方法私有化，外部不能实例化该类 
-	}
+
+	private PropertiesUtils() {}
 	private static Properties properties ;
 	static {
 		properties = new Properties();
@@ -25,7 +27,7 @@ public class PropertiesUtils {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * 获取properties文件属性
 	 * 

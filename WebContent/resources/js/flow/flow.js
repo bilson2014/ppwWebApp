@@ -223,7 +223,7 @@ $("#upload-file-btn-id").off("click").on("click",function() {
 //上传文档
 $('#toolbar-modal').on('shown.bs.modal', function (e) {
 	webupload({
-		 server: '/mgr/resource/addResource1',//url
+		 server: '/mgr/resource/addResource',//url
 		 pick: {
 			 id:'#picker'
 			 //multiple :false
