@@ -631,16 +631,16 @@
 				<div class="modal-body">
 					<!-- <div class="common-icons-know-us-close-icon modal-icon"
 							data-dismiss="modal" aria-label="Close"></div> -->
-<<<<<<< HEAD
 							<img class="canclemodal" src="/resources/images/flow/canclemodal.png">
 						<dl>
 							<dt>
 								<h1 id="modal-h3-first">选择文件</h1>
 								<input readonly="readonly" class="upload-text"
 									id="upload-file-name" placeholder="请选择文件" />
-								<button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button>
+								<!-- <button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button> -->
+								<div id="picker" class="upload-btn">浏览</div>
 							</dt>
-							<div id="picker">浏览</div>
+						
 							        
 
 							<dt>
@@ -657,31 +657,6 @@
 							</dt>
 						</dl>
 					</div>
-=======
-					<img class="canclemodal"
-						src="/resources/images/flow/canclemodal.png">
-					<dl>
-						<dt>
-							<h1 id="modal-h3-first">选择文件</h1>
-							<input readonly="readonly" class="upload-text"
-								id="upload-file-name" placeholder="请选择文件" />
-							<button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button>
-						</dt>
-
-						<dt>
-							<h2 id="modal-h3-first">选择分类</h2>
-							<input id="input-value" class="input-select" readonly="readonly"
-								placeholder="未选择"></input> <img class="select-image"
-								src="/resources/images/flow/select.png">
-							<ul class="ul-option" id="ul-select">
-							</ul>
-						</dt>
-						<dt>
-							<button class="select-true-btn red-btn" id="upload-circle-btn">上传</button>
-							<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
-						</dt>
-					</dl>
->>>>>>> 5a926f5cf5b31aea978181c935b77f2755053c02
 				</div>
 			</div>
 		</div>
