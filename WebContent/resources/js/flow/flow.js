@@ -238,7 +238,17 @@ $('#toolbar-modal').on('shown.bs.modal', function (e) {
 			 console.log(uploader.getFiles());
 		 },
 		 uploadProgress:function(file, percentage){
-			 
+			 var $li = $('#' + file.id), $percent = $li
+				.find('.progress .progress-bar');
+				// 避免重复创建
+				if (!$percent.length) {
+					$percent = $(
+							'<div class="progress progress-striped active">'
+									+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+									+ '</div>' + '</div>')
+							.appendTo($li).find('.progress-bar');
+				}
+				$percent.css('width', percentage * 100 + '%');
 		 },//进度显示
 		 uploadSuccess:function( file ,response){
 		 },
