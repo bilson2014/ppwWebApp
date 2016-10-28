@@ -590,12 +590,6 @@ function submitForm(){
 	formBody += '</form>';
 	$('#indent-btn').append(formBody);
 	$('#submitkey').submit().remove();
-	/*var form=$("<form action='"+path+"' method='post' id='submitkey' style='display: none;'></form>");
-	var input=$("<input type=\"text\" name=\"key\" style=\"display: none\">");
-	input.val(key);
-	form.append(input);
-	$('#upload-info-btn-id').append(form);*/
-	form.submit();
 }
 function addProject() {
 	//取消事件防止多次点击
@@ -1153,10 +1147,17 @@ function setSynergyEvent(){
 	deleteSynergys.on('click',function(){
 		if(cout != 0){
 			var x=$(this).parent().find("input#synergy-id");
+			var res = false;
 			if(x.val().trim() != ''){
-				removeSynergy($(x).val().trim());
+				res = removeSynergy($(x).val().trim());
+			}else{
+				$(this).parent().remove();
 			}
-			$(this).parent().remove();
+			if(res){
+				$(this).parent().remove();
+			}else{
+				alert('删除失败！'); //TODO:
+			}
 		}	
 		
 		var deleteSecondSynergys=$("[id^=deleteSynergy]");
@@ -1177,11 +1178,13 @@ function setSynergyEvent(){
 }
 
 function removeSynergy(id){
-	loadData(function(){
-		
+	var res =false;
+	syncLoadData(function(msg){
+		res = msg;
 	}, getContextPath() + '/mgr/projects/remove/synergy', $.toJSON({
 		name:id
 	}));
+	return res;
 }
 
 function createSynergyView(name,ratio,userid,synergyid){

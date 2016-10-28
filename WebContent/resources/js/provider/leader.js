@@ -245,6 +245,7 @@ function getBusinessVal(){
 
 
 function infoSave(){
+	
 	loadData(function(flag){
 		showStepThree();
 		//window.location.href=getContextPath()+ '/provider/portal';
@@ -253,7 +254,7 @@ function infoSave(){
 			email : $('#company-email').val().trim(),
 			address : $('#company-address').val().trim(),
 			teamDescription : $('#company-teamDesc').val().trim(),
-		//		linkman : $('#company-linkman').val().trim(),
+			linkman : $('#company-linkman').val().trim(),
 			webchat : $('#company-webchat').val().trim(),
 			qq : $('#company-qq').val().trim(),
 			business : getBusinessVal(),

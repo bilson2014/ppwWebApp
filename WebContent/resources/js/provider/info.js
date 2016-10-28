@@ -997,7 +997,8 @@ var provider_info = {
 					}else{
 						//验证team是否修改 true存在修改 false 没有修改
 						loadData(function(flag){
-							if(flag){//信息存在修改
+							var a = $("#bean-checkStatus").val();//是否存在再次审核
+							if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
 								if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
 									//处理team_tmp记录,更新team备注
 									_this.dealTeamTmpAndUpdateTeamDesc();
@@ -1069,6 +1070,8 @@ var provider_info = {
 				if(flag){
 					// 更新成功
 					successToolTipShow();
+					$(".show-check-status").addClass("hide");
+					$("#submit-info-show").removeClass("hide");
 				}else{
 					// 更新失败
 					toolTipShow('请重新保存');
