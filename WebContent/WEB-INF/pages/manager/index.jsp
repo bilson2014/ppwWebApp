@@ -890,7 +890,7 @@
 						<ul id="checkListUL">
 						</ul>
 						<label class="" style="display: block; text-align: center; color: red;" id="checkListLabel">加载中.....</label>
-						<button class="gray-btn" id="nextflowbtn" style="margin-left: 30%;margin-top: 20px">确定</button>
+						<button class="gray-btn" id="nextflowbtn" style="margin-left: 27%;margin-top: 20px">确定</button>
 						<button class="gray-btn checkListClose" id="" style="margin-left: 10%">取消</button>
 					</div>
 				</div>

@@ -9,6 +9,7 @@ var referrerList1;
 var isMore = true;
 var angle = 0;
 var kaptcharInterValObj; // timer变量，控制时间
+var successIntervalObj;
 $().ready(function() {
 	setInputErrorStyle();
 	showRecommend();
@@ -1156,7 +1157,7 @@ function setSynergyEvent(){
 			if(res){
 				$(this).parent().remove();
 			}else{
-				alert('删除失败！'); //TODO:
+				successToolTipShow('协同人删除失败！'); //TODO:
 			}
 		}	
 		
@@ -1419,5 +1420,17 @@ function popshow(id,content){
 	}, 2000);
 }
 
+
+//错误信息 提示框弹出方法
+function successToolTipShow(word){
+	window.clearInterval(successIntervalObj);
+	$('#errorDiv').text(word);
+	$('#errorDiv').slideDown('normal');
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}
+
+function hideSuccessTooltip(){
+	$('#errorDiv').hide('normal');
+}
 
 
