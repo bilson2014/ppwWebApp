@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,7 @@ import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.EmployeeThirdLogin;
+import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
@@ -66,6 +68,8 @@ public class VersionManagerController extends BaseController {
 	private ResourceService resourceService;
 	@Autowired
 	private EmployeeThirdLogin employeeThirdLogin;
+	@Autowired
+	private FDFSService fdfsService;
 
 	static String UNIQUE = "unique_e";
 	static String LINKMAN = "username_e";
@@ -776,9 +780,12 @@ public class VersionManagerController extends BaseController {
 
 	// /////////////////////////////Resource////////////////////////////////////////
 
-	@RequestMapping(value = "/resource/addResource", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public String addResource(@RequestParam final MultipartFile addfile, final IndentProject indentProject,
+	@RequestMapping(value = "/resource/addResource", method = RequestMethod.POST)
+	public String addResource(final MultipartFile file, String projectId,String tag,
 			final HttpServletRequest request) {
+		IndentProject indentProject = new IndentProject();
+		indentProject.setId(Long.valueOf(projectId));
+		indentProject.setTag(tag);
 		fillUserInfo(request, indentProject);
 
 		final String url = GlobalConstant.URL_PREFIX + "addResource";
@@ -795,8 +802,8 @@ public class VersionManagerController extends BaseController {
 			multipartEntityBuilder.addTextBody("userId", indentProject.getUserId() + "",
 					ContentType.create("text/plain", Charset.forName("utf-8")));
 
-			multipartEntityBuilder.addBinaryBody("addfile", addfile.getBytes(),
-					ContentType.create(addfile.getContentType()), addfile.getOriginalFilename());
+			multipartEntityBuilder.addBinaryBody("addfile", file.getBytes(),
+					ContentType.create(file.getContentType()), file.getOriginalFilename());
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -850,6 +857,33 @@ public class VersionManagerController extends BaseController {
 				HttpUtil.saveTo(is, ouputStream);
 				inputFile.delete();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping("/getDFSFile/{id}")
+	public void getDFSFile(@PathVariable final long id, final HttpServletResponse response,
+			final HttpServletRequest request) {
+		//fdfsService
+		final String url = GlobalConstant.URL_PREFIX + "getIndentResource/" + id;
+		try {
+			String str = HttpUtil.httpGet(url, request);
+			if (ValidateUtil.isValid(str)) {
+				final IndentResource indentResource = JsonUtil.toBean(str, IndentResource.class);
+				InputStream in = fdfsService.download(indentResource.getIrFormatName());
+				//此处设置文件大小
+				//System.err.println(indentResource.getIrOriginalName() + " 文件大小为: " + in.available());
+				//response.setContentLength(in.available());
+				ServletOutputStream ouputStream = response.getOutputStream();
+				response.setCharacterEncoding("utf-8");
+				response.setContentType("application/octet-stream");
+				String filename=URLEncoder.encode(indentResource.getIrOriginalName(), "UTF-8");
+				response.setHeader("Content-Disposition", "attachment; filename=\""
+						+  filename+ "\"\r\n");
+				// send file
+				HttpUtil.saveTo(in, ouputStream);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

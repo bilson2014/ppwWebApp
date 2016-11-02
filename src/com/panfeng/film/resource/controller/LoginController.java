@@ -339,10 +339,10 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = smsService.smsSend(telephone, code);
+			//final boolean ret = smsService.smsSend(telephone, code);
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
-			return ret;
+			return true;
 		}
 		return true;
 	}
@@ -754,7 +754,6 @@ public class LoginController extends BaseController {
 		if (!"".equals(code) && code != null) {
 			if (code.equals(bind.getVerification_code())) {
 				if (null != codeOfphone && codeOfphone.equals(bind.getTelephone())) {
-
 					final String url = URL_PREFIX + "portal/user/bindthird";
 					String str = HttpUtil.httpPost(url, bind, request);
 					if (str != null && !"".equals(str)) {

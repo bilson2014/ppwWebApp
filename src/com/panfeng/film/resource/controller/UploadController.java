@@ -2,29 +2,20 @@ package com.panfeng.film.resource.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.SessionInfo;
-import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.util.FileUtils;
-import com.panfeng.film.util.HttpUtil;
-import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.PropertiesUtils;
 
 
 /**
@@ -65,11 +56,15 @@ public class UploadController {
 	
 	
 	@RequestMapping("/web/upload")
-	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file) {
+	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file,String oldUrl) {
 		// 检测视频是否大于限制
 		final BaseMsg msg = checkFile(file);
 		if (0 == msg.getCode()) {
 			String fileId = DFSservice.upload(file);
+			//删除旧地址
+			if(StringUtils.isNotBlank(oldUrl)){
+				DFSservice.delete(oldUrl);
+			}
 			msg.setResult(fileId);
 		} 
 		return msg;

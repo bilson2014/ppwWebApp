@@ -339,7 +339,7 @@ function Encrypt(word){
 });
 */
 function webupload(param) {
-	uploader && uploader.destroy();
+	uploader && uploader.destroy();//及时销毁,避免,切换导致按钮增大
 	var auto = param.auto;
 	var submitBtn = param.submitBtn;
 	var fileNumLimit = param.fileNumLimit;

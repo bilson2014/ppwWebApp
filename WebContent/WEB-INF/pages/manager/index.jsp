@@ -639,7 +639,6 @@
 									id="upload-file-name" placeholder="请选择文件" />
 								<!-- <button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button> -->
 								<div id="picker" class="upload-btn">浏览</div>
-								<div style="width:266px;height:1px;margin:0px auto;padding:0px;background-color:red;overflow:hidden;"></div>
 							</dt>
 							<dt>
 								<h2 id="modal-h3-first">选择分类</h2>

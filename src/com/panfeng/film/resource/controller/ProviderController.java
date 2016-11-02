@@ -1125,59 +1125,8 @@ public class ProviderController extends BaseController {
 		return "";
 	}
 	@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
-	public String saveProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestParam final MultipartFile[] uploadFiles, final Product product) {
-
-		response.setContentType("text/html;charset=UTF-8");
-		
-		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRquest.getFileMap();
-		for (final Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			final MultipartFile file = entity.getValue();
-		}
-			
-
-
-		if (uploadFiles != null) {
-			final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
-			final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
-
-			for (MultipartFile multipartFile : uploadFiles) {
-				if (!multipartFile.isEmpty()) {
-					// 检测文件类型
-					final String extName = FileUtils.getExtName(multipartFile.getOriginalFilename(), ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-					final long fileSize = multipartFile.getSize();
-					switch (fileType) {
-					case 0: // video
-						// 检查视频大小
-						if (fileSize > video_MaxSize * 1024 * 1024) {
-
-							// 视频文件超过500M上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Save Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
-							return "false@error=1";
-						}
-						break;
-					case 1: // image
-						// 检查图片大小
-						if (fileSize > img_MaxSize * 1024) {
-
-							// 图片文件超过250K上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Save Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
-							return "false@error=2";
-						}
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-				}
-			}
-		}
-
+	public BaseMsg saveProduct(final HttpServletRequest request, final HttpServletResponse response,
+			@RequestBody final Product product) {
 		try {
 			// 转码
 			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
@@ -1197,29 +1146,7 @@ public class ProviderController extends BaseController {
 			if (json != null && !"".equals(json)) {
 				productId = JsonUtil.toBean(json, Long.class);
 			}
-			// 路径接收
-			final List<String> pathList = new ArrayList<String>();
-
-			for (int i = 0; i < uploadFiles.length; i++) {
-				final MultipartFile multipartFile = uploadFiles[i];
-				if (!multipartFile.isEmpty()) {
-					//修改为DFs上传 begin
-					//2016-10-25 14:25:02
-					final String fileId = DFSservice.upload(multipartFile);
-					//修改为DFs上传 end
-					pathList.add(fileId);
-				} else {
-					pathList.add("");
-				}
-			}
-			product.setVideoUrl(pathList.get(0));
-			product.setPicHDUrl(pathList.get(1));
-			product.setPicLDUrl(pathList.get(2));
-			// 保存路径
-			final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
-			product.setProductId(productId);
-			HttpUtil.httpPost(updateUrl, product, request);
-			// request.getSession().setAttribute(PROVIDER_PRODUCT, productId);
+			
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
 					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
@@ -1230,7 +1157,7 @@ public class ProviderController extends BaseController {
 			e.printStackTrace();
 			throw new RuntimeException("file upload error ...", e);
 		}
-		return "success";
+		return new BaseMsg(0, "success");
 	}
 
 	/**
@@ -1410,79 +1337,10 @@ public class ProviderController extends BaseController {
 	}*/
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
 	public String updateProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestParam final MultipartFile[] uploadFiles, final Product product) {
-		response.setContentType("text/html;charset=UTF-8");
-
-		if (uploadFiles != null) {
-			final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
-			final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
-
-			for (MultipartFile multipartFile : uploadFiles) {
-				if (!multipartFile.isEmpty()) {
-					// 检测文件类型
-					final String extName = FileUtils.getExtName(multipartFile.getOriginalFilename(), ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-					final long fileSize = multipartFile.getSize();
-					switch (fileType) {
-					case 0: // video
-						// 检查视频大小
-						if (fileSize > video_MaxSize * 1024 * 1024) {
-
-							// 视频文件超过500M上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Update Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
-							return "false@error=1";
-						}
-						break;
-					case 1: // image
-						// 检查图片大小
-						if (fileSize > img_MaxSize * 1024) {
-
-							// 图片文件超过250K上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Update Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
-							return "false@error=2";
-						}
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-				}
-			}
-		}
-
+			@RequestBody final Product product) {
 		final long productId = product.getProductId(); // product id
-		Product originalProduct = new Product(); // 获取 未更改前的 product
-													// 对象,用于删除修改过的文件
-		final String url = URL_PREFIX + "portal/product/static/data/" + productId;
-		final String json = HttpUtil.httpGet(url, request);
-		if (ValidateUtil.isValid(json)) {
-			originalProduct = JsonUtil.toBean(json, Product.class);
-		}
-		final List<String> pathList = new ArrayList<String>(); // 路径集合
-
 		try {
-			for (int i = 0; i < uploadFiles.length; i++) {
-				final MultipartFile multipartFile = uploadFiles[i];
-				if (!multipartFile.isEmpty()) {
-					//修改为DFs上传 begin
-					//2016-10-25 14:25:02
-					final String fileId = DFSservice.upload(multipartFile);
-					//修改为DFs上传 end
-					pathList.add(fileId);
-				} else {
-					// file字段 如果为空,说明 未上传新文件
-					pathList.add("");
-				}
-			}
-			product.setVideoUrl(pathList.get(0));
-			product.setPicHDUrl(pathList.get(1));
-			product.setPicLDUrl(pathList.get(2));
-
 			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
-
 			// 转码
 			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
@@ -1497,33 +1355,6 @@ public class ProviderController extends BaseController {
 			long serviceId = 0l;
 			if (sId != null && !"".equals(sId)) {
 				serviceId = JsonUtil.toBean(sId, Long.class);
-			}
-
-			if (originalProduct != null) {
-				// 删除 原文件
-				for (int i = 0; i < pathList.size(); i++) {
-					final String newPath = pathList.get(i);
-					if (newPath != null && !"".equals(newPath)) {
-						// 发生更改，删除原文件
-						String path = "";
-						switch (i) {
-						case 0: // videoFile
-							path = originalProduct.getVideoUrl();
-							break;
-						case 1: // picHDFile
-							path = originalProduct.getPicHDUrl();
-							break;
-						case 2: // picLDFile
-							path = originalProduct.getPicLDUrl();
-							break;
-						default:
-							continue;
-						}
-						if (path != null && !"".equals(path)) {
-							DFSservice.delete(path);// ==0 success
-						}
-					}
-				}
 			}
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"

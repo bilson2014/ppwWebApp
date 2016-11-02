@@ -190,12 +190,11 @@
 							</div> 
 							-->
 							<div class="upload-btn">
-								<div class="picker">上传缩略图</div>
+								<div class="picker" id="uploadHDBt">上传缩略图</div>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
+								<div class="alert alert-danger" id="imageLabel-HD" style="display: none;"></div>
 							</div> 
-							    
 							</div>
 				
 						
@@ -213,7 +212,7 @@
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐650*365分辨率<span style="color:red;">*</span></p>
 							</div> -->
 							<div class="upload-btn">
-								<div class="picker">上传缩略图</div>
+								<div class="picker" id="uploadLDBt">上传缩略图</div>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
@@ -236,8 +235,9 @@
 							
 							<div class="upload-btn">
 								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
-								<div class="picker">上传视频</div>
-								<div style="display:inline;margin:10px" id="videoName">test.mp4</div>
+								<input type="hidden" value="0" id="video-change"/>
+								<div class="picker" id='uploadVideoBt'>上传视频</div>
+								<div style="display:inline;margin:10px" id="videoName"></div>
 								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
