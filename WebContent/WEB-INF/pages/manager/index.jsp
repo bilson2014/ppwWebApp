@@ -544,7 +544,7 @@
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
-						<div class="loadHeight">
+						<div id="loadHeight">
 						 <button class="comment-btn border-btn">提交</button>
 						</div>
 					</r:permission>

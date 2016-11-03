@@ -1162,6 +1162,7 @@ function loadcommentdata(more) {
 	moreComment(false);
 	var tab = $(".message-table");
 	tab.html("");
+	$("#loadHeight").addClass('loadHeight');
 	var key = getCurrentProject();
 	$("#loadmore-CommentGIF").removeClass('hide');
 	if(key != null ){
@@ -1169,6 +1170,7 @@ function loadcommentdata(more) {
 				function(msg) {
 					tab.html("");
 					$("#loadmore-CommentGIF").addClass('hide');
+					$("#loadHeight").removeClass('loadHeight');
 					if(msg.length==0){
 						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
@@ -1732,7 +1734,7 @@ var ControlPay ={
 									 checkHasListForEmFirst();
 								 
 						}else{
-							//alert("出错啦"+msg.errorCode);
+							//alert("出错啦"+msg.errorCode); 
 						}
 						
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
@@ -1794,7 +1796,6 @@ var ControlPay ={
 						  var base_Card = $("div[class^=payCard]");
 					      payList();
 					  }
-						
 					});
 					//管家历史按钮
 					$('#payHistory').on('click',function(){
@@ -1848,8 +1849,6 @@ var ControlPay ={
 						
 					});
 				},
-
-			          
 					closeList:function(){
 						$("#payHistoryList").slideUp();
 						$('#payHistory').removeClass('payBtnPosClick');
@@ -1862,8 +1861,6 @@ var ControlPay ={
 						
 			
 					},
-					
-					
 					openHistory:function(){
 						$('#listLoad').show();
 						$("#payHistoryList").slideDown();
@@ -1874,7 +1871,6 @@ var ControlPay ={
 						$("#circleCusImg").addClass('circle-180');
 	                    
 					},
-					
 					copyLink:function(){
 						$('#copyLink').on('click',function(){
 
@@ -1886,9 +1882,6 @@ var ControlPay ={
 							
 						});
 					},
-
-					
-		
 		initControlPay:function(){
 			ControlPay.clickOnLine();
 			ControlPay.clickOutLine();
@@ -1896,21 +1889,11 @@ var ControlPay ={
 			ControlPay.clickPayOpenHistory();
 			ControlPay.copyLink();
 			ControlPay.closeMore();
-			
-	
 		}
-		
-		
-		
 }
-
-
 var checkPayList = {
-		
 		//支付验证线下
-		
 		checkOutLinePayList:function(){
-			
 			var payTime =$('#payTime-outline'); 
 			var payorder =$('#order-outline'); 
 			var projectName =$('#projectName');
@@ -1929,7 +1912,6 @@ var checkPayList = {
 			var cusNameDiv =$('#cusNameDiv');
 			var payMoneyDiv =$('#payMoneyDiv'); 
 	
-
 			if(payTime.val()==''||payTime.val()==null){
 				payTime.focus();
 				payTimeDiv.addClass('has-error');
@@ -2132,9 +2114,6 @@ var checkPayList = {
 		}
 		
 }
-
-
-
 function payList(){
 	var listnode = $("#payListPage");
 	listnode.html('');
