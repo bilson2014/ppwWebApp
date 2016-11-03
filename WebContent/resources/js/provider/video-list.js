@@ -61,6 +61,11 @@ var video = {
 					 server: '/provider/multipUploadFile',//url
 					 pick: '#picker',//点击弹窗
 					 submitBtn:'#submit-multip',
+					 accept :{
+						    title: 'video',
+						    extensions: 'mp4',
+						    mimeTypes: 'video/mp4'
+						},
 					 fileQueued:function(file){//选中后执行
 						$('#thelist').append('<div id="' + file.id + '" class="item">'
 										+ '<h4 class="info">' + file.name + '</h4>'
