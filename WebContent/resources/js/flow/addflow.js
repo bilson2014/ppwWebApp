@@ -481,12 +481,12 @@ function updateProject_ViewInit() {
 				addSynergy(item.userName,item.ratio,item.userId,item.synergyId);
 			});
 		}
-		if(msg.customerPayment+'' == '0.0')
-			$("#userinput").val('0');
+		if(msg.customerPayment+'' == '')
+			$("#userinput").val('');
 		else
 			$("#userinput").val(msg.customerPayment);
-		if(msg.providerPayment+'' == '0.0')
-			$("#providerInput").val('0');
+		if(msg.providerPayment+'' == '')
+			$("#providerInput").val('');
 		else
 			$("#providerInput").val(msg.providerPayment);
 		
@@ -1386,7 +1386,7 @@ function hasPirce(){
 	var userPrirce =$("#userinput").val().trim();
 	var providerPrice =$('#providerInput').val().trim();
 	
-	if(userPrirce!=0||providerPrice!=0){
+	if(userPrirce!= null || userPrirce!= '' ||providerPrice!=null || providerPrice!= '' ){
 		$("#close-div").slideDown(10);
 		$('#loadWord').text('收起');
 		$('#circleImg').addClass('circle-180');
