@@ -511,6 +511,14 @@
 			<div class="indentfile">
 				<div class="indentfile-title">
 					<label class="indentfile-title-text">项目文件</label>
+				<div class="loadmore-file" id="">
+					<div class="load-word">加载中</div>
+					<div class="spinner">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+				</div>
 					<r:permission uri="/addResource">
 						<button class="upload-file-btn border-btn" id="upload-file-btn-id">上传</button>
 					</r:permission>
@@ -530,14 +538,24 @@
 				<div class="message-title">
 					<label class="message-title-text">留言板</label>
 				</div>
+				
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
 						<button class="comment-btn border-btn">提交</button>
 					</r:permission>
+					<div class="loadmore-Comment" id="">
+					<div class="load-word">加载中</div>
+					<div class="spinner">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+				</div>
 					<r:permission uri="/getAllComment">
 						<table class="message-table">
 						</table>
+				
 					<div class="loadMoreCus more-comment" id="more-comment">
 						<div style="display: inline-block;" id="more-comment-text">展开更多</div>
 						<img id="more-commentImg"
