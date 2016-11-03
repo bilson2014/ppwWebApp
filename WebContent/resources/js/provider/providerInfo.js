@@ -108,14 +108,12 @@ $().ready(function() {
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
 			var photoUrl =infoHead.attr('src');
-			var fileName;
 			if(photoUrl == null || photoUrl == '' || photoUrl == undefined){
-				fileName ="default.png";
+				var fileName ="default.png";
+				infoHead.attr('src','/team/img/'+fileName);
 			}else {
-				fileName = getFileName(photoUrl);
+				infoHead.attr('src',getDfsHostName()+photoUrl);
 			}
-			
-			infoHead.attr('src','/team/img/'+fileName);
 		},
 		getMore:function(){
 			$('#showMore').on('click',function(){
@@ -174,7 +172,11 @@ function drawLeftCard(product,year,month,day) {
 				+ '</div>'
 				+ '<div class="videoCrad">'
 					+ '<div class="title">'+product.productName+'</div>'
-					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+					//modify by wlc 2016-11-1 14:04:29
+					//修改为dfs路径 begin
+					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
+					//修改为dfs路径 end
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
@@ -246,8 +248,10 @@ function drawTags(tags){
 	return $body;
 }
 function getFileName(fileName){
-    var pos=fileName.lastIndexOf("/");
-    return fileName.substring(pos+1,fileName.length); 
+	if(fileName){
+		 var pos=fileName.lastIndexOf("/");
+	     return fileName.substring(pos+1,fileName.length); 
+	}
 }
 var providerInfo = {
 		init : function(){

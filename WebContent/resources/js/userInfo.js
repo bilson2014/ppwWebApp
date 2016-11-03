@@ -99,8 +99,11 @@ function initData(){
 			$('#user-circle-img').attr('src',userImgPath);
 			$('#user-img').attr('src',userImgPath);
 		}else{
-			var imgName = getFileName(userImgPath);
-			var imgPath = getHostName() + '/user/img/' + imgName;
+			//修改为DFS路径
+			//var imgName = getFileName(userImgPath);
+			//var imgPath = getHostName() + '/user/img/' + imgName;
+			var imgPath = getDfsHostName() + userImgPath;
+			//修改为DFS end
 			$('#user-circle-img').attr('src',imgPath);
 			$('#user-img').attr('src',imgPath);
 		}
@@ -111,9 +114,9 @@ function initData(){
 		$('#user-img').attr('src',defaultImgPath);
 	}
 	
-	$('#uploadBt').on('click',function(){
-		$('#file').click();
-	});
+	//$('#uploadBt').on('click',function(){
+	//	$('#file').click();
+	//});
 	
 	$('#passw0rd').val('');
 }
@@ -297,10 +300,88 @@ function userpicInfo(){
 		
 	});
 	
-	// 图片上传 点击事件
+/*	// 图片上传 点击事件
 	$('input[type="file"]').change(function(){
 		// 上传图片
 		uploadImg();
+	});*/
+	
+	webupload({
+		 auto:true,
+		 server: '/user/preview/photo',//url
+		 pick: '#uploadBt',//点击弹窗
+		 uploadSuccess:function( file ,response){//成功回调
+			 	var path = response._raw;
+				if(path != '' && path != null){
+					if(path.indexOf('false@error') > -1){
+						// 开启 modal
+						$('#errorModal').modal('show');
+						
+						if(path.indexOf("error=1") > -1){
+							$('#error-message').text('文件超过最大限制');
+						} else if(path.indexOf("error=2") > -1){
+							$('#error-message').text('格式不正确');
+						}
+						
+						$('#iKnow').unbind('click');
+						$('#iKnow').bind('click',function(){
+							$('#errorModal').modal('hide');
+						});
+					}else{
+						// 打开 图片遮罩
+						$('#mymodal').modal('show');
+						
+						$('#mymodal').on('hidden.bs.modal', function () {
+							jcrop_api.destroy();
+							loadData(function(){
+								// 自定义文件删除成功
+							}, getContextPath() + '/user/delete/photo', $.toJSON({
+								id : $('#user_unique').val().trim(),
+								imgUrl : path
+							}));
+						})
+						// 显示 图片
+						//修改为DFS路径
+						//var imgName = getFileName(path);
+						//var imgPath = getHostName() + '/user/img/' + imgName;
+						var imgPath = getDfsHostName() + path;
+						//修改为DFS end
+						$('#modal-original-img').attr('src',imgPath);
+						$('#modal-preview').attr('src',imgPath);
+						JcropFunction(); // 图片裁剪
+						// 点击确定，裁剪文件，并将该文件转化为正规的文件名称
+						$('#uploadConfirmBt').unbind('click');
+						$('#uploadConfirmBt').bind('click',function(){
+							$('#uploadConfirmBt').attr('disabled','disabled');
+							// 裁剪图片
+							loadData(function(userTarget){
+								jcrop_api.destroy();
+								$('#uploadConfirmBt').attr('disabled',false);
+								$("#mymodal").modal("hide");
+								//var imgPath = getHostName() + '/user/img/' + userTarget.imgFileName;
+								//modify by wlc 修改成DFS
+								var imgPath = getDfsHostName() + userTarget.imgFileName;
+								//modify by wlc 修改成DFS
+								$('#user-img').attr('src',imgPath);
+								$('#user-circle-img').attr('src',imgPath);
+							}, getContextPath() + '/user/cutPhoto', $.toJSON({
+								userId : $('#user_unique').val().trim(),
+								imgUrl : path,
+								x : x,
+								y : y,
+								x2 : x2,
+								y2 : y2,
+								width : w,
+								height : h,
+								originalWidth : $("#modal-original-img").width(),
+								originalHeight : $("#modal-original-img").height()
+							}));
+						});
+					}
+				}else{
+					alert('上传失败!');
+				}
+		 },
 	});
 }
 //更换手机
@@ -672,7 +753,7 @@ function hideTooltip(){
 	$('.tooltip-show').hide('normal');
 }
 
-//上传图片
+/*//上传图片
 function uploadImg(){
 	$.ajaxFileUpload({
 		url : getContextPath() + '/user/preview/photo',
@@ -715,8 +796,11 @@ function uploadImg(){
 					})
 					
 					// 显示 图片
-					var imgName = getFileName(path);
-					var imgPath = getHostName() + '/user/img/' + imgName;
+					//修改为DFS路径
+					//var imgName = getFileName(path);
+					//var imgPath = getHostName() + '/user/img/' + imgName;
+					var imgPath = getDfsHostName() + path;
+					//修改为DFS end
 					
 					$('#modal-original-img').attr('src',imgPath);
 					$('#modal-preview').attr('src',imgPath);
@@ -734,7 +818,10 @@ function uploadImg(){
 							jcrop_api.destroy();
 							$('#uploadConfirmBt').attr('disabled',false);
 							$("#mymodal").modal("hide");
-							var imgPath = getHostName() + '/user/img/' + userTarget.imgFileName;
+							//var imgPath = getHostName() + '/user/img/' + userTarget.imgFileName;
+							//modify by wlc 修改成DFS
+							var imgPath = getDfsHostName() + userTarget.imgFileName;
+							//modify by wlc 修改成DFS
 							$('#user-img').attr('src',imgPath);
 							$('#user-circle-img').attr('src',imgPath);
 						}, getContextPath() + '/user/cutPhoto', $.toJSON({
@@ -759,7 +846,7 @@ function uploadImg(){
 			alert('信息保存失败...');
 		}
 	});
-}
+}*/
 
 // 图片裁剪功能 start
 function JcropFunction(){

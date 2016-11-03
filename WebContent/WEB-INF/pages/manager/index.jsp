@@ -1,8 +1,10 @@
 <%@page import="java.lang.annotation.Target"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -26,7 +28,7 @@
 <spring:url value="/resources/js/flow/left_menu_min.js" var="leftjs" />
 <spring:url value="/resources/lib/My97DatePicker/WdatePicker.js"
 	var="WdatePicker" />
-
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/js/model.js" var="modelJs" />
 <spring:url value="/resources/css/flow/flow.css" var="index" />
 <spring:url value="/resources/css/flow/step-dc-style1.css"
@@ -40,6 +42,7 @@
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
 	var="ajaxfileuploadJs" />
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url
 	value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css"
@@ -67,6 +70,7 @@
 <link rel="stylesheet" href="${h5bpCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${commonCss }">
+<link rel="stylesheet" href="${webuploaderCss }">
 
 <link rel="stylesheet" href="${index }">
 <link rel="stylesheet" href="${stepdcstyle }">
@@ -85,6 +89,7 @@
 <script src="${stepjquery }"></script>
 <script src="${indexjs }"></script>
 <script src="${datepickerJs }"></script>
+<script src="${webuploaderJs }" ></script>
 <script src="${tetherjs }"></script>
 <script src="${dropjs }"></script>
 <script src="${modelJs }"></script>
@@ -96,6 +101,7 @@
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<!-- <div class="circle-div"></div> -->
 
 	<div class="header">
@@ -628,29 +634,29 @@
 				<div class="modal-body">
 					<!-- <div class="common-icons-know-us-close-icon modal-icon"
 							data-dismiss="modal" aria-label="Close"></div> -->
-					<img class="canclemodal"
-						src="/resources/images/flow/canclemodal.png">
-					<dl>
-						<dt>
-							<h1 id="modal-h3-first">选择文件</h1>
-							<input readonly="readonly" class="upload-text"
-								id="upload-file-name" placeholder="请选择文件" />
-							<button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button>
-						</dt>
-
-						<dt>
-							<h2 id="modal-h3-first">选择分类</h2>
-							<input id="input-value" class="input-select" readonly="readonly"
-								placeholder="未选择"></input> <img class="select-image"
-								src="/resources/images/flow/select.png">
-							<ul class="ul-option" id="ul-select">
-							</ul>
-						</dt>
-						<dt>
-							<button class="select-true-btn red-btn" id="upload-circle-btn">上传</button>
-							<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
-						</dt>
-					</dl>
+							<img class="canclemodal" src="/resources/images/flow/canclemodal.png">
+						<dl>
+							<dt>
+								<h1 id="modal-h3-first">选择文件</h1>
+								<input readonly="readonly" class="upload-text"
+									id="upload-file-name" placeholder="请选择文件" />
+								<!-- <button class="upload-btn red-small-btn" id="upload-btn-id">浏览</button> -->
+								<div id="picker" class="upload-btn">浏览</div>
+							</dt>
+							<dt>
+								<h2 id="modal-h3-first">选择分类</h2>
+								<input id="input-value" class="input-select"
+									readonly="readonly" placeholder="未选择"></input> <img
+									class="select-image" src="/resources/images/flow/select.png">
+								<ul class="ul-option" id="ul-select">
+								</ul>
+							</dt>
+							<dt>
+								<button class="select-true-btn red-btn" id="upload-circle-btn">上传</button>
+								<button class="select-cancle-btn gray-btn" id="cancle-btn">取消</button>
+							</dt>
+						</dl>
+					</div>
 				</div>
 			</div>
 		</div>

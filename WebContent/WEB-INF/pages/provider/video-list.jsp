@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -7,17 +8,21 @@
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.panfeng.film.resource.model.Product"%>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/uploadify/uploadify.css" var="uploadifyCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/css/provider/video-list.css" var="providerVideoListCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/uploadify/jquery.uploadify.min.js" var="uploadifyJs"/>
+<%-- <spring:url value="/resources/lib/uploadify/jquery.uploadify.min.js" var="uploadifyJs"/> --%>
+<spring:url value="/resources/lib/jsUUID.js" var="UUIDJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/video-list.js" var="providerVideoListJs"/>
@@ -37,15 +42,38 @@
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
-	<link rel="stylesheet" href="${uploadifyCss }">
+<%-- 	<link rel="stylesheet" href="${uploadifyCss }"> --%>
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${providerVideoListCss }">
+	<link rel="stylesheet" href="${webuploaderCss }">
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
 	
+<style type="text/css">
+.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #00b7ee;
+    padding: 10px 15px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+    height: 34px;
+    line-height: 15px;
+    border-radius: 6px;
+}
+
+.webuploader-container {
+    position: relative;
+    top: 13px;
+}
+</style>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${cKey }" id="company-key"/>
 	<input type="hidden" value="${cType }" id="company-type"/>
 	<div class="content-wrap">
@@ -80,7 +108,8 @@
 												<img class="media-object" src="/resources/images/provider/upload-icon.png" />
 											</c:if>
 											<c:if test="${product.picLDUrl != null}">
-												<img class="media-object" src='/product/img<c:out value="${product.picLDUrl }"/>' />
+												<%-- <img class="media-object" src='/product/img<c:out value="${product.picLDUrl }"/>' /> --%>
+												<img class="media-object" src='${DFSurl }<c:out value="${product.picLDUrl }"/>' />
 											</c:if>
 											<input type="hidden" id="media-video" value='<c:out value="${product.videoUrl }"/>'/>
 										</a>
@@ -144,7 +173,7 @@
 	</div>
 	
 	<!-- Multip Modal start -->
-	<div class="modal fade" id="multipModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+	<!-- <div class="modal fade" id="multipModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -158,6 +187,24 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" onclick="javascript:$('#file_upload').uploadify('upload','*');">开始上传</button>
 					<button type="button" class="btn btn-danger" onclick="javascript:$('#file_upload').uploadify('cancel','*');">取消上传</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:$('.nav-stacked li:nth-child(2)', parent.document).click();">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="modal fade" id="multipModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">视频批量上传</h3>
+				</div>
+				<div class="modal-body">
+					<div id="thelist"></div>
+				</div>
+				<div class="modal-footer">
+					<span id='picker'>选择文件</span>
+					<button type="button" id='submit-multip' class="btn btn-success">开始上传</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:$('.nav-stacked li:nth-child(2)', parent.document).click();">关闭</button>
 				</div>
 			</div>
@@ -186,6 +233,8 @@
 <script src="${pluginJs }"></script>
 <script src="${bootstrapJs }"></script>
 <script src="${uploadifyJs }"></script>
+<script src="${UUIDJs }"></script>
+<script src="${webuploaderJs }" ></script>
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${providerVideoListJs }"></script>

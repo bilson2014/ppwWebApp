@@ -1,13 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap-switch.min.css" var="bootstrapSwitchCss"/>
 <spring:url value="/resources/css/provider/upload.css" var="providerUploadCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/kindeditor/themes/default/default.css" var="defaultCss" />
 <spring:url value="/resources/lib/kindeditor/plugins/code/prettify.css" var="prettifyCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
@@ -24,6 +27,7 @@
 <spring:url value="/resources/lib/kindeditor/plugins/code/prettify.js" var="prettifyJs" />
 <spring:url value="/resources/lib/kindeditor/lang/zh_CN.js" var="kindeditorzhJs" />
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/js/provider/upload.js" var="providerUploadJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
@@ -51,12 +55,13 @@
 	<link rel="stylesheet" href="${prettifyCss }">
 	<link rel="stylesheet" href="${providerUploadCss }">
 	<link rel="stylesheet" href="${datepickerCss }">
+	<link rel="stylesheet" href="${webuploaderCss }">
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
 </head>
 <body>
-
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 			<!-- 成功提示框 start -->
 					<div class="tooltip-success-show" style="display: none;">
 						<label class="tooltip-success-message">信息更新成功</label>
@@ -177,14 +182,23 @@
 								<div style="margin:0px 40px;float:left" id="HDImgName"></div>
 								<input type="hidden" value="${model.picHDUrl }" id="video-picHDUrl"/>
 							</div>
+							<!-- TODO：
 							<div class="upload-btn">
 								<button class="btn btn-primary uploadbtn" id="uploadHDBt" type="button">上传缩略图</button>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<input type="file" id="picHDFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
+							</div> 
+							-->
+							<div class="upload-btn">
+								<div class="picker" id="uploadHDBt">上传缩略图</div>
+								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
+								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
+								<div class="alert alert-danger" id="imageLabel-HD" style="display: none;"></div>
+							</div> 
 							</div>
-						</div>
+				
 						
 						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
 						<div class="col-sm-3">
@@ -193,30 +207,49 @@
 								<div style="margin:0px 40px;float:left" id="LDImgName"></div>
 								<input type="hidden" value="${model.picLDUrl }" id="video-picLDUrl"/>
 							</div>
-							<div class="upload-btn">
+							<!-- <div class="upload-btn">
 								<button class="btn btn-primary uploadbtn" id="uploadLDBt" type="button">上传封面</button>
 								<a href="javascript:void(0);" data-href="default-cover.jpg" class="exampleUrl" data-width="650" data-height="365">查看示例</a>
 								<input type="file" id="picLDFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐650*365分辨率<span style="color:red;">*</span></p>
-							</div>
+							</div> -->
+							<div class="upload-btn">
+								<div class="picker" id="uploadLDBt">上传缩略图</div>
+								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
+								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
+								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
+							</div> 
+							
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="video-picLDUrl" class="col-sm-2 control-label">视频</label>
 						<div class="col-sm-6">
-							<div class="upload-btn">
+							<%-- <div class="upload-btn">
 								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
 								<button class="btn btn-primary uploadbtn" id="uploadVideoBt" type="button">上传视频</button>
 								<div style="display:inline;margin:10px" id="videoName"></div>
 								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
 								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
+							</div> --%>
+							
+							
+							<div class="upload-btn">
+								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
+								<input type="hidden" value="0" id="video-change"/>
+								<div class="picker" id='uploadVideoBt'>上传视频</div>
+								<div style="display:inline;margin:10px" id="videoName"></div>
+								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
+								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
+								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
 							</div>
+							
 						</div>
 					</div>
 				
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-6">
+						<div class="col-sm-offset-2 col-sm-6 save">
 							<button type="button" class="btn btn-default" id="infoBt">保存</button>
 							&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" id="backBt">返回</button>
 						</div>
@@ -291,6 +324,7 @@
 <script src="${jsonJs }"></script>
 <script src="${bootstrapJs }"></script>
 <script src="${bootstrapSwitchJs }"></script>
+<script src="${webuploaderJs }" ></script>
 <script src="${ajaxfileuploadJs }"></script>
 <script src="${kindeditorJs }"></script>
 <script src="${prettifyJs }"></script>

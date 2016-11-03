@@ -11,8 +11,9 @@ define(['jquery','common'],function($,c){
 				$('#' + divId).empty(); // 清空区域
 				var $body = '';
 				$.each(list,function(i,product){
-					var imgName = common.getFileName(product.picLDUrl);
-					var imgPath = common.getHostName() + '/product/img/' + imgName;
+					//var imgName = common.getFileName(product.picLDUrl);
+					//var imgPath = common.getHostName() + '/product/img/' + imgName;
+					var imgPath = common.getDfsHostName() + product.picLDUrl;
 					if(i % 3 == 0){
 						$body += '<div class="video-row">';
 					}
