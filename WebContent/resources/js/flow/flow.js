@@ -113,17 +113,28 @@ $().ready(function() {
 				$("#toolbar-check").modal('hide');
 			});
 			$(".more-file-btn").on("click", function() {
-				loadfiledata(true);
-				//$(".more-file-btn").hide();
-				moreFile();
+				if($('#more-FileImg').hasClass('circle-180')){
+					loadfiledata(false);
+					moreFile(false);
+				}else{
+					loadfiledata(true);
+					moreFile(true);
+				}
+				
+				
 			});
 			$(".comment-btn").on("click", function() {
 				submitcomment();
 			});
 			$(".more-comment").on("click", function() {
-				loadcommentdata(true);
-				moreComment();
-				//$(".more-comment").hide();
+				if($('#more-commentImg').hasClass('circle-180')){
+					loadcommentdata(false);
+					moreComment(false);	
+				}else{
+					loadcommentdata(true);
+					moreComment(true);
+				}
+				
 			});
 
 			$(".newBtn").on("click",function() {
@@ -897,16 +908,17 @@ function resetTime(mode) {
 }*/
 //加载文件模块
 function loadfiledata(more) {
-	$(".more-file-btn").show();
+	moreFile(false);
+	var tab = $(".file-table");
+	tab.html("");
+	$("#more-file-btn").show();
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
-			var tab = $(".file-table");
 			tab.html("");
 			if(msg.length==0){
 				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/images/flow/nofile.png\"/></div>");
-				$(".more-file-btn").hide();
-				
+				$("#more-file-btn").hide();
 			}
 			for (var i = 0; i < msg.length; i++) {
 				var name=msg[i].irOriginalName;
@@ -1104,6 +1116,11 @@ function loadfiledata(more) {
 					break;
 				}
 			}
+			if(msg.length <= 4){
+				$('#more-file-btn').hide();
+			}else{
+				$('#more-file-btn').show();
+			}
 		}, getContextPath() + '/mgr/comment/getResourceList', $.toJSON({
 					id : key
 	}));
@@ -1140,16 +1157,16 @@ function jumpShare(fileId) {
 }
 //加载评论模块
 function loadcommentdata(more) {
+	moreComment(false);
+	var tab = $(".message-table");
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(
 				function(msg) {
-					var tab = $(".message-table");
 					tab.html("");
 					if(msg.length==0){
 						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
-						//moreComment();
 					}
 					for (var i = 0; i < msg.length; i++) {
 						var tr = $("<tr></tr>");
@@ -1179,6 +1196,11 @@ function loadcommentdata(more) {
 
 						if (!more && i == 2)
 							break;
+					}
+					if(msg.length <= 2){
+						$('#more-comment').hide();
+					}else{
+						$('#more-comment').show();
 					}
 				}, getContextPath() + '/mgr/comment/getAllComment', $.toJSON({
 					id : key
@@ -1420,8 +1442,8 @@ function finish() {
 	$("#upload-file-btn-id").hide();
 	$(".comment").hide();
 	$(".comment-btn").hide();
-	$(".more-file-btn").show();
-	$(".more-comment").show();
+	moreFile(false);
+	moreComment(false);
 	$("#Online").addClass('hide');
 	$("#Outline").addClass('hide');
 	//$('#managerId').removeClass('hide');
@@ -2571,9 +2593,8 @@ function hideSuccessTooltip(){
 	$("#toolbar-list").modal('hide');
 }
 
-function moreComment(){
-	
-  if($('#more-commentImg').hasClass('circle-180')){
+function moreComment(open){
+  if(!open){
 	  $('#more-commentImg').removeClass('circle-180');
 	  $('#more-comment-text').text("展开更多");
    }
@@ -2583,9 +2604,8 @@ function moreComment(){
   }
 }
 
-function moreFile(){
-
-	  if($('#more-FileImg').hasClass('circle-180')){
+function moreFile(open){
+	  if(!open){
 		   $('#fileWord').text("展开更多");
 		   $('#more-FileImg').removeClass("circle-180");
 	   }
