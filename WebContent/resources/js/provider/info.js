@@ -2,6 +2,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
+	provider_info.init();
 	// 显示Logo
 	/*var logoPath = $('#logoPath').val().trim();
 	if(logoPath != null && logoPath != '' && logoPath != undefined){
