@@ -911,11 +911,13 @@ function loadfiledata(more) {
 	moreFile(false);
 	var tab = $(".file-table");
 	tab.html("");
+	$("#loadmore-fileGIG").removeClass('hide');
 	$("#more-file-btn").show();
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
 			tab.html("");
+			$("#loadmore-fileGIG").addClass('hide');
 			if(msg.length==0){
 				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/images/flow/nofile.png\"/></div>");
 				$("#more-file-btn").hide();
@@ -1159,11 +1161,14 @@ function jumpShare(fileId) {
 function loadcommentdata(more) {
 	moreComment(false);
 	var tab = $(".message-table");
+	tab.html("");
 	var key = getCurrentProject();
+	$("#loadmore-CommentGIF").removeClass('hide');
 	if(key != null ){
 		loadData(
 				function(msg) {
 					tab.html("");
+					$("#loadmore-CommentGIF").addClass('hide');
 					if(msg.length==0){
 						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
@@ -2041,10 +2046,7 @@ var checkPayList = {
 				payMoneyError.addClass('hide');
 			});
 		},
-		
-
 		checkOnBlur:function(){
-			
 			var projectName =$('#projectName');
 			var cusName =$('#cusName');
 			var payMoney =$('#payMoney');

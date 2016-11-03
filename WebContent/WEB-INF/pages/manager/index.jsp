@@ -511,7 +511,7 @@
 			<div class="indentfile">
 				<div class="indentfile-title">
 					<label class="indentfile-title-text">项目文件</label>
-				<div class="loadmore-file" id="">
+				<div class="loadmore-file hide" id="loadmore-fileGIG">
 					<div class="load-word">加载中</div>
 					<div class="spinner">
 						<div class="bounce1"></div>
@@ -544,7 +544,7 @@
 						<textarea class="comment"></textarea>
 						<button class="comment-btn border-btn">提交</button>
 					</r:permission>
-					<div class="loadmore-Comment" id="">
+					<div class="loadmore-Comment hide" id="loadmore-CommentGIF">
 					<div class="load-word">加载中</div>
 					<div class="spinner">
 						<div class="bounce1"></div>
