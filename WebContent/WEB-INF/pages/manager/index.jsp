@@ -520,7 +520,9 @@
 					</div>
 				</div>
 					<r:permission uri="/addResource">
+					 
 						<button class="upload-file-btn border-btn" id="upload-file-btn-id">上传</button>
+					 	
 					</r:permission>
 					<input type="file" name="addfile" id="addfile">
 				</div>
@@ -542,7 +544,9 @@
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
-						<button class="comment-btn border-btn">提交</button>
+						<div class="loadHeight">
+						 <button class="comment-btn border-btn">提交</button>
+						</div>
 					</r:permission>
 					<div class="loadmore-Comment hide" id="loadmore-CommentGIF">
 					<div class="load-word">加载中</div>
