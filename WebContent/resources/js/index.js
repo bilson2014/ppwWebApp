@@ -149,7 +149,6 @@ require(['jquery','bdmta','waypoints','common','videoLayout','toolbar','search-s
 		});
 		
 		// 填充数据
-		
 		var videoLayout = new vLayout.VideoLayout();
 		
 		$('#video-content').empty();

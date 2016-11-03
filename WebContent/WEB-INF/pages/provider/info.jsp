@@ -1,19 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
 <spring:url value="/resources/css/provider/info.css" var="providerInfoCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.blockui/jquery.blockUI.js" var="blockUIJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/>
+<%-- <spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/> --%>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
@@ -40,7 +44,9 @@
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${datepickerCss }">
+	<link rel="stylesheet" href="${webuploaderCss }">
 	<link rel="stylesheet" href="${providerInfoCss }">
+	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -49,7 +55,8 @@
 	<script src="${blockUIJs }"></script>
 	<script src="${jsonJs }"></script>
 	<script src="${bootstrapJs }"></script>
-	<script src="${ajaxfileuploadJs }" ></script>
+<%-- 	<script src="${ajaxfileuploadJs }" ></script> --%>
+	<script src="${webuploaderJs }" ></script>
 	<script src="${datepickerJs }" ></script>
 	<script src="${datepickerZHJs }" ></script>
 	<script src="${aesJs }"></script>
@@ -65,6 +72,7 @@
 	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
 	<div class="content-wrap">
 		
@@ -207,7 +215,7 @@
 								</div>	
 								<span style="color:red;">*</span>
 							  </div>  		
-			<%-- 				<div class="form-group">	
+							<div class="form-group">	
 								<label for="company-city" class="col-sm-2 control-label">所在市</label>	
 								  <div class="col-sm-6">
 									<select class="form-control" id="company-city" ><!-- 省市级联 市 -->
@@ -222,7 +230,7 @@
 									</select>
 								</div>	
 								<span style="color:red;">*</span>
-							</div> --%>
+							</div>
 							
 							<div class="form-group">
 								<label for="company-priceRange" class="col-sm-2 control-label">价格区间</label>
@@ -517,7 +525,7 @@
 					<input type="hidden" value="${provider.teamPhotoUrl }" id="logoPath"/>
 					<img src="<%=request.getContextPath() %>/team/img/default.png" alt="供应商LOGO" class="img-thumbnail" id="logoImg">
 					<div class="group-form">
-						<p class="help-block" style="color: red;">点击图片打开文件</p>
+						<p class="help-block" id="picker" style="color: red;">上传文件</p>
 						<!-- <button class="btn btn-primary" id="uploadBt" type="button">保存LOGO</button> -->
 						<input type="file" id="file" name="file" style="display: none;"/>
 						<p class="help-block">仅支持小于5M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
@@ -596,6 +604,6 @@
 			  </div>
 			</div>
 		</div>
-	</div>
+	</div> 
 </body>
 </html>

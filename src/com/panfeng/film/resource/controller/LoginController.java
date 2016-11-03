@@ -754,7 +754,6 @@ public class LoginController extends BaseController {
 		if (!"".equals(code) && code != null) {
 			if (code.equals(bind.getVerification_code())) {
 				if (null != codeOfphone && codeOfphone.equals(bind.getTelephone())) {
-
 					final String url = URL_PREFIX + "portal/user/bindthird";
 					String str = HttpUtil.httpPost(url, bind, request);
 					if (str != null && !"".equals(str)) {

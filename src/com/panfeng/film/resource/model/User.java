@@ -36,6 +36,7 @@ public class User extends Customer {
 	private Integer preference = null;//客户意向度
 	private String followTime = null;//再次跟进时间
 	private String updateTime = null;//更新时间
+	private Boolean kindlySend = null;//是否推送
 	
 	public String getWeChat() {
 		return weChat;
@@ -251,6 +252,14 @@ public class User extends Customer {
 
 	public void setClientLevel(Integer clientLevel) {
 		this.clientLevel = clientLevel;
+	}
+
+	public Boolean getKindlySend() {
+		return kindlySend;
+	}
+
+	public void setKindlySend(Boolean kindlySend) {
+		this.kindlySend = kindlySend;
 	}
 
 }

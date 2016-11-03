@@ -109,6 +109,10 @@ define(['jquery'],function($){
 		},
 		getHostName : function(){ // 获取 主机名
 			return window.location.protocol + '//' + window.location.host;
+		},
+		getDfsHostName:function(){
+			var fdfsPath = $('#Fastdfs_path').val();
+			return fdfsPath == undefined ? "http://resources.apaipian.com" : $('#Fastdfs_path').val();
 		}
 
 	}

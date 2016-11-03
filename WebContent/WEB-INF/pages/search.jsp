@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,7 +9,7 @@
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.panfeng.film.resource.model.Solr"%>
-
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/search.css" var="searchCss"/>
 
@@ -42,6 +43,7 @@
 	<![endif]-->
 </head>
 <body>
+	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${q }" id="q"/>
 	<input type="hidden" value="${price }" id="price"/>
 	<input type="hidden" value="${item}" id="item"/>

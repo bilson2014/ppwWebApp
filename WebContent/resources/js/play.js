@@ -68,8 +68,11 @@ $().ready(function(){
 			});
 			
 			$.each(list,function(i,product){
-				var imgName = getFileName(product.picLDUrl);
-				var imgPath = getHostName() + '/product/img/' + imgName;
+				//修改为DFS路径
+				//var imgName = getFileName(product.picLDUrl);
+				//var imgPath = getHostName() + '/product/img/' + imgName;
+				var imgPath = getDfsHostName() + product.picLDUrl;
+				//修改为DFS end
 				if(i % 3 == 0){
 					$body += '<div class="video-row">';
 				}

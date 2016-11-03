@@ -15,6 +15,81 @@ var oTimer;
 //add by guoyang, 2016-04-19 03:17 end
 
 $().ready(function() {
+	
+	
+	var flow = {
+			//方法都在init中
+			init:function(){
+				//初始化文档上传
+				this.initUploadFile();
+			},
+			initUploadFile:function(){
+				var _this = this;
+				$('#toolbar-modal').on('shown.bs.modal', function (e) {
+					uploader = WebUploader.create({
+						auto:false,
+						swf : '/resources/lib/webuploader/Uploader.swf',
+						server : '/mgr/resource/addResource',
+						pick : {
+							id:'#picker',
+							multiple :false
+						},
+						fileNumLimit : 1,
+						chunked : false,
+					});
+					uploader.on('beforeFileQueued', function(file) {
+						 //删除所有文件,只上传一个
+						 var array = uploader.getFiles();
+						 for(var i=0;i<array.length;i++){
+							 uploader.removeFile( array[i] );
+						 }
+					});
+					uploader.on('fileQueued', function(file) {
+						 $("#upload-file-name").val(file.name);
+					});
+					// 文件上传过程中创建进度条实时显示。
+					uploader.on('uploadProgress',function(file, percentage) {
+						if($('.progress-bar-success').text()==''){
+							$('#toolbar-modal').modal('hide');
+							$("#upload-file-name").val("");
+							$('.progress-bar-success').text('0')
+							$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
+							$('#mymodal').modal({backdrop: 'static', keyboard: false});
+						}
+						$('.progress-bar-success').text('已完成' + (percentage*100) + '%')
+						$('.progress-bar-success').attr('aria-valuenow',(percentage*100)).css({"width":percentage*100+'%'});
+						
+					});
+					uploader.on('uploadSuccess', function(file,response) {
+						loadfiledata(false);
+						loadcommentdata(false);
+						$('#mymodal').modal('hide');
+						$("#input-value").val("");
+						$("#upload-file-name").val("");
+					});
+					_this.submit();
+				})
+			},
+			//点击保存按钮
+			submit:function(){
+				var _this = this;
+				$('#upload-circle-btn').off("click").on('click', function() {
+					$('.progress-bar-success').text("");
+					var cat = $("#input-value").val();
+					if(cat==''){
+						showAlert(errorNotNull);
+						return false;
+					}
+					//手动添加参数
+					uploader.option('formData',{
+						projectId : getCurrentProject(),
+						tag : $("#input-value").val()
+					});
+					uploader.upload();
+				});
+			},
+		}
+		flow.init();
 	$('.bottom-div').show();
 			init();
 			showOrderTime();
@@ -177,7 +252,7 @@ function init() {
 		}
 	});
 
-	$("#upload-btn-id").click(function() {
+/*	$("#upload-btn-id").click(function() {
 		//添加文件验证
 		// office doc docx xls xlsx ppt pptx pdf
 		// mp4 avi txt esp jpg mov mp3 png rar wav zip
@@ -191,8 +266,8 @@ function init() {
 			document.getElementById("upload-file-name").value = fileName;
 			// uploadfile();
 		});
-	});
-	$(".select-true-btn").on('click', function() {
+	});*/
+/*	$(".select-true-btn").on('click', function() {
 		var file = $("#addfile").val();
 		var tag = $("#input-value").val();
 		if (file != null&&file!='' && tag != '') {
@@ -210,17 +285,16 @@ function init() {
 		} else {
 			showAlert(errorNotNull);
 		}
-	});
+	});*/
 	
 function getFileName(o) {
 	var pos = o.lastIndexOf("\\");
 	return o.substring(pos + 1);
 }
-$("#upload-file-btn-id").click(function() {
+$("#upload-file-btn-id").off("click").on("click",function() {
 	$('#toolbar-modal').modal({backdrop: 'static', keyboard: false});
 	//$('#toolbar-modal').modal('show');
 });
-
 $('#cancle-btn').click(function() {
 	$('#toolbar-modal').modal('hide');
 	$("#upload-file-name").val("");
@@ -788,7 +862,7 @@ function resetTime(mode) {
 	}
 }
 //上传文件
-function uploadfile() {
+/*function uploadfile() {
 	var key = getCurrentProject();
 	var tag = $("#input-value").val();
 	$.ajaxFileUpload({
@@ -818,7 +892,7 @@ function uploadfile() {
 	});
 	return true;
 
-}
+}*/
 //加载文件模块
 function loadfiledata(more) {
 	var key = getCurrentProject();
@@ -1010,7 +1084,7 @@ function loadfiledata(more) {
 				var div5=$("<div class=\"div-download\"></div>");
 				var downloada=$("<a href=\""
 						+ getContextPath()
-						+ '/mgr/getFile/'
+						+ '/mgr/getDFSFile/'
 						+ msg[i].irId
 						+ "\"></a>");
 				downloada.append(xiazai);
@@ -1032,9 +1106,11 @@ function loadfiledata(more) {
 	}
 }
 function jumpView(fileId,a) {
-	var link= getHostName() + getContextPath();
+	//var link= getHostName() + getContextPath();
+	var link= getDfsHostName();
 	syncLoadData(function(msg) {
-		link+="/portal/project/doc/"+msg.url;
+		//link+="/portal/project/doc/"+msg.url;
+		link+=msg.url;
 		a.attr("href",link);
 	}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({
 		irId : fileId
@@ -1044,12 +1120,14 @@ function jumpShare(fileId) {
 	syncLoadData(function(msg) {
 		var fileName=msg.url;
 		var extName=fileName.substring(fileName.lastIndexOf(".")+1,fileName.length);
-		var link= getHostName() + getContextPath();
-		if(extName=='mp4'){
+		//var link= getHostName() + getContextPath();
+		var link= getDfsHostName();
+		/*if(extName=='mp4'){
 			link+="/mgr/doc/video/"+msg.url;
 		}else{
 			link+="/portal/project/doc/"+msg.url;
-		}
+		}*/
+		link+=msg.url;
 		$('#share-open').click();
 		share.init(link, 'hehe', getContextPath() + '/resources/banner/flex1.jsp');
 	}, getContextPath() + '/mgr/doc/getDocView', $.toJSON({

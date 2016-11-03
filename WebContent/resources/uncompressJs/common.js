@@ -178,7 +178,6 @@ function getHostName(){
 	
 	return window.location.protocol + '//' + window.location.host;
 }
-
 /**
  * 数据加分隔符
  * @param number
