@@ -535,7 +535,7 @@
             .more-comment {
                 margin: auto auto;
                 position: relative;
-                left: 316px;
+                top:-17px;
                 margin-bottom: 30px;
             }
         }
@@ -757,10 +757,7 @@
     width: 690px;
 }
 
-.more-file-btn {
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
+
 //end
 
 
@@ -899,8 +896,7 @@
 }
 
 .more-file-btn {
-    margin-top: 30px;
-    margin-bottom: 20px;
+    top:15px !important;
 }
 
 .noproject {

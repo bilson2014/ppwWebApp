@@ -517,9 +517,13 @@
 					<input type="file" name="addfile" id="addfile">
 				</div>
 				<div class="file-table"></div>
-				<div class="more-file">
-					<button class="more-file-btn border-btn">更多文件</button>
-				</div>
+				
+				<div class="loadMoreCus more-file-btn" id="more-file-btn">
+						<div style="display: inline-block;" id="fileWord">展开更多</div>
+						<img id="more-FileImg" style="display: inline-block; position: relative; left: 10px;"
+							src="${imgPath }/flow/getMore.png" class="open" />
+					</div>
+
 			</div>
 
 			<div class="message-div">
@@ -534,7 +538,12 @@
 					<r:permission uri="/getAllComment">
 						<table class="message-table">
 						</table>
-						<button class="more-comment border-btn">更多评论</button>
+					<div class="loadMoreCus more-comment" id="more-comment">
+						<div style="display: inline-block;" id="more-comment-text">展开更多</div>
+						<img id="more-commentImg"
+							style="display: inline-block; position: relative; left: 10px;"
+							src="${imgPath }/flow/getMore.png" class="open" />
+					</div>
 					</r:permission>
 				</div>
 			</div>
