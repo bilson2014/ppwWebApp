@@ -342,6 +342,7 @@ function webupload(param) {
 	uploader && uploader.destroy();//及时销毁,避免,切换导致按钮增大
 	var auto = param.auto;
 	var submitBtn = param.submitBtn;
+	var accept = param.accept;
 	var fileNumLimit = param.fileNumLimit;
 	var server = param.server;
 	var pick = param.pick;
@@ -369,6 +370,7 @@ function webupload(param) {
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
 		pick : pick,
+		accept:accept,
 		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
 		resize : resize,
 		

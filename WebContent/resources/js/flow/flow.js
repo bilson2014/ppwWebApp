@@ -114,14 +114,16 @@ $().ready(function() {
 			});
 			$(".more-file-btn").on("click", function() {
 				loadfiledata(true);
-				$(".more-file-btn").hide();
+				//$(".more-file-btn").hide();
+				moreFile();
 			});
 			$(".comment-btn").on("click", function() {
 				submitcomment();
 			});
 			$(".more-comment").on("click", function() {
 				loadcommentdata(true);
-				$(".more-comment").hide();
+				moreComment();
+				//$(".more-comment").hide();
 			});
 
 			$(".newBtn").on("click",function() {
@@ -895,6 +897,7 @@ function resetTime(mode) {
 }*/
 //加载文件模块
 function loadfiledata(more) {
+	$(".more-file-btn").show();
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
@@ -903,6 +906,7 @@ function loadfiledata(more) {
 			if(msg.length==0){
 				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/images/flow/nofile.png\"/></div>");
 				$(".more-file-btn").hide();
+				
 			}
 			for (var i = 0; i < msg.length; i++) {
 				var name=msg[i].irOriginalName;
@@ -1145,6 +1149,7 @@ function loadcommentdata(more) {
 					if(msg.length==0){
 						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
+						//moreComment();
 					}
 					for (var i = 0; i < msg.length; i++) {
 						var tr = $("<tr></tr>");
@@ -2565,3 +2570,27 @@ function showError(str){
 function hideSuccessTooltip(){
 	$("#toolbar-list").modal('hide');
 }
+
+function moreComment(){
+	
+  if($('#more-commentImg').hasClass('circle-180')){
+	  $('#more-commentImg').removeClass('circle-180');
+	  $('#more-comment-text').text("展开更多");
+   }
+  else{
+	  $('#more-comment-text').text("收起");
+	  $('#more-commentImg').addClass("circle-180");
+  }
+}
+
+function moreFile(){
+
+	  if($('#more-FileImg').hasClass('circle-180')){
+		   $('#fileWord').text("展开更多");
+		   $('#more-FileImg').removeClass("circle-180");
+	   }
+	  else{
+		  $('#fileWord').text("收起");
+		  $('#more-FileImg').addClass("circle-180");
+	  }
+	}
