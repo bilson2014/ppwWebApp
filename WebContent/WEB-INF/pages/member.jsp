@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/member.css" var="memberCss"/>
 
@@ -16,7 +17,6 @@
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
-<spring:url value="http://123.59.86.252:8000/" var="DFSurl" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -37,6 +37,7 @@
 	
 </head>
 <body>
+	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
 	<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">

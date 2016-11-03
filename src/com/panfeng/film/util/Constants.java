@@ -16,6 +16,7 @@ public final class Constants {
 	public static String AUTO_TEST;
 	public static String COOKIES_SCOPE;
 	public static String UPLOAD_PATH;
+	public static String DFS_PATH;
 	public static Constants CONSTANTS = new Constants();
 	
 	
@@ -64,6 +65,7 @@ public final class Constants {
 		AUTO_TEST=properties.getProperty("auto.test");
 		COOKIES_SCOPE=properties.getProperty("cookies_scope");
 		UPLOAD_PATH = PropertiesUtils.getProp("upload.path");
+		DFS_PATH = PropertiesUtils.getProp("upload.server.dfs.url");
 	}
 	
 	/**

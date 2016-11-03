@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
@@ -19,6 +20,7 @@
 <spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
 
 <spring:url value="/resources/images/user" var="imgPath"/>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -51,7 +53,7 @@
 	<script src="${porviderPortalJs }"></script>
 </head>
 <body>
-
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
 		<div class="header">

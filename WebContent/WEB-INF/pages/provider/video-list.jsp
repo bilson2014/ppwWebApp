@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -7,6 +8,7 @@
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.panfeng.film.resource.model.Product"%>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
@@ -25,7 +27,6 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/video-list.js" var="providerVideoListJs"/>
 <spring:url value="/resources/images" var="imgPath" />
-<spring:url value="http://123.59.86.252:8000/" var="DFSurl" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -72,6 +73,7 @@
 </style>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${cKey }" id="company-key"/>
 	<input type="hidden" value="${cType }" id="company-type"/>
 	<div class="content-wrap">

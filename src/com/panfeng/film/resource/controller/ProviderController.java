@@ -1509,11 +1509,7 @@ public class ProviderController extends BaseController {
 	}*/
 	@RequestMapping(value = "/multipUploadFile", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
-
-		/*
-		 * final Team team = (Team) request.getSession().getAttribute(
-		 * PROVIDER_SESSION);
-		 */
+		response.setContentType("text/html;charset=UTF-8");
 		final SessionInfo info = getCurrentInfo(request);
 		final Long providerId = info.getReqiureId(); // 供应商ID
 		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
@@ -1568,6 +1564,11 @@ public class ProviderController extends BaseController {
 		}
 		return "success";
 	}
+	
+	
+	
+	
+	
 	// 检查文件是否符合规范
 	public String checkFile(final MultipartFile file) {
 		if (file != null && !file.isEmpty()) {

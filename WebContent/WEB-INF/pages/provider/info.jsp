@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -70,6 +72,7 @@
 	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
 	<div class="content-wrap">
 		

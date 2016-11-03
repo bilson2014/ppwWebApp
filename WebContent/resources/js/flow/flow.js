@@ -74,6 +74,7 @@ $().ready(function() {
 			submit:function(){
 				var _this = this;
 				$('#upload-circle-btn').off("click").on('click', function() {
+					$('.progress-bar-success').text("");
 					var cat = $("#input-value").val();
 					if(cat==''){
 						showAlert(errorNotNull);

@@ -194,10 +194,10 @@ function getHostName(){
 }
 /**
  * 获取 dfs的主机名
- * @returns http://localhost:8080
  */
 function getDfsHostName(){
-	return "http://123.59.86.252:8000/";
+	var fdfsPath = $('#Fastdfs_path').val();
+	return fdfsPath == undefined ? "http://resource.apaipian.com/resource" : $('#Fastdfs_path').val();
 }
 /**
  * 数据加分隔符
@@ -406,7 +406,7 @@ function webupload(param) {
 	// 文件上传过程中创建进度条实时显示。
 	uploader.on('uploadProgress',function(file, percentage) {
 		if(param.uploadProgress){
-			param.uploadProgress(file);
+			param.uploadProgress(file,percentage);
 		}else{
 			/*var $li = $('#' + file.id), $percent = $li
 			.find('.progress .progress-bar');

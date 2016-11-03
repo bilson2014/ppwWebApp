@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -54,6 +56,7 @@
 	
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<input type="hidden" id="action" value="${action }"/>
 	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
 	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
@@ -174,8 +177,8 @@
 		        <div class="contentWidth">
 			         <div style="display:inline-block" >
 			         	<input type="hidden" id="ykVideoUrl" value="${product.hret }">
-			         	<input type="hidden" id="localVideoUrl" value="${fn:substringAfter(product.videoUrl,'/portal') }">
-			         	<input type="hidden" id="localVideoImgUrl" value="${product.picLDUrl}">
+			         	<input type="hidden" id="localVideoUrl" value="${DFSurl}${product.videoUrl}">
+			         	<input type="hidden" id="localVideoImgUrl" value="${DFSurl}${product.picLDUrl}">
 			         	<div class="showVideo" id="showVideo" >
 						<!-- <video class="showVideo" controls src='' preload="auto" poster=''></video> -->
 						</div>

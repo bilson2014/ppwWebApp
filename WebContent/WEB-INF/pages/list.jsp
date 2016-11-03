@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/list.css" var="listCss"/>
 
@@ -51,6 +52,7 @@
 	</script>
 </head>
 <body>
+	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
 	<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">

@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -48,6 +50,7 @@
 	<script src="${demoJs }"></script>
 </head>
 <body>
+	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
 	<div class="wrap">
 		<div class="card">
 			<div class="front">

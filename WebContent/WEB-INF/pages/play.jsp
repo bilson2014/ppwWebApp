@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+
 <%-- import CSS --%>
 <spring:url value="/resources/css/play.css" var="playCss"/>
 
@@ -24,7 +26,7 @@
 
 <!-- import resource path -->
 <spring:url value="/resources" var="baseResource" />
-<spring:url value="http://123.59.86.252:8000/" var="DFSurl" />
+<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -61,6 +63,7 @@
 	</script>
 </head>
 <body>
+	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
 	<input type="hidden" id="company-unique" value="${teamId }"/>
 	<input type="hidden" id="play-unique" value="${productId }"/>
 	<input type="hidden" id="service-unique" value="${product.serviceId }"/>
@@ -139,7 +142,7 @@
 			<div class=" video-play-wrap">
 				<!-- media player start -->
 				<div class="player-wrap" id="player-wrap">
-					<video controls src='<spring:url value="${DFSurl}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="http://123.59.86.252:8000/${product.videoUrl}"/>'></video>
+					<video controls src='<spring:url value="${DFSurl}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="${DFSurl}${product.picLDUrl}"/>'></video>
 					<%-- <video controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video> --%>
 				</div>
 				<!-- media player end -->

@@ -111,7 +111,8 @@ define(['jquery'],function($){
 			return window.location.protocol + '//' + window.location.host;
 		},
 		getDfsHostName:function(){
-			return "http://123.59.86.252:8000/";
+			var fdfsPath = $('#Fastdfs_path').val();
+			return fdfsPath == undefined ? "http://resources.apaipian.com" : $('#Fastdfs_path').val();
 		}
 
 	}
