@@ -190,7 +190,11 @@ $().ready(function() {
 				$('#checkListLabel').text('加载中.....');
 				$('#checkListUL').html('');
 			});
-			
+			$("#checkListcancle").on("click",function(){
+				$('#next-modal').modal('hide');
+				$('#checkListLabel').text('加载中.....');
+				$('#checkListUL').html('');
+			});
 			
 			ControlPay.initControlPay();
 			
@@ -333,11 +337,13 @@ $('.modal').on('click', function() {
 loadFileTags();
 getBtnWidth();
 }
-
+var click2 = false;
 function nextFlow(){
 	var key = getCurrentProject();
-	if(key != null ){
+	if(key != null && !click2){
+		click2 = true;
 		loadData(function(msg) {
+			click2 = false;
 			if(msg.result == "true"){
 				$('#next-modal').modal('hide');
 				$('#checkListLabel').text('加载中.....');
@@ -348,6 +354,28 @@ function nextFlow(){
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
+		}));
+	}
+}
+
+var click = false;
+function nextFlow2(){
+	var key = getCurrentProject();
+	if(key != null && !click){
+		click = true;
+		loadData(function(msg) {
+			click = false;
+			if(msg.result == "true"){
+				$('#next-modal').modal('hide');
+				$('#checkListLabel').text('加载中.....');
+				$('#checkListUL').html('')
+			}else{
+				$('#checkListLabel').text(msg.result);
+			}
+			loadprojecctlist();
+		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
+			id : key,
+			skipPay : "true"
 		}));
 	}
 }
@@ -377,27 +405,7 @@ function checkList(){
 		}));
 	}
 }
-var click = false;
-function nextFlow2(){
-	var key = getCurrentProject();
-	if(key != null && !click){
-		click = true;
-		loadData(function(msg) {
-			click = false;
-			if(msg.result == "true"){
-				$('#next-modal').modal('hide');
-				$('#checkListLabel').text('加载中.....');
-				$('#checkListUL').html('')
-			}else{
-				$('#checkListLabel').text(msg.result);
-			}
-			loadprojecctlist();
-		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
-			id : key,
-			skipPay : "true"
-		}));
-	}
-}
+
 function setModalMessageEvent(Confirm){
 	$("#sureControl").off('click');
 	$("#sureControl").on('click',Confirm);
@@ -473,8 +481,6 @@ function cancelBtn() {
 function cancel() {
 	var key = getCurrentProject();
 	var reason = $('#reason').val().trim();
-	
-	
 	if(reason==null||reason==""||reason==undefined){
 		$('#sureControl').removeClass('red-btn');
 		$('#sureControl').addClass('no-red-btn');
@@ -488,6 +494,8 @@ function cancel() {
 		$('#reason').addClass('textareaInfo');
 		$('#reason').removeClass('textareaInfoError');
 		if(key != null ){
+			$(".sure-margin").off('click');
+			$("#sureControl").off('click');
 			loadData(function(msg) {
 				$("#toolbar-pause-re").modal('hide');
 				loadprojecctlist();
@@ -506,7 +514,6 @@ function PrevTaskBtn() {
 	setModalEvent(PrevTask);
 }
 function PrevTask(){
-	console.log('PrevTask click');
 	$(".sure-margin").off('click');
 	var key=getCurrentProject();
 	if(key != null ){
@@ -542,9 +549,10 @@ function resumeBtn() {
 	setModalEvent(resume);
 }
 function pause() {
+	$(".sure-margin").off('click');
+	$("#sureControl").off('click');
 	var key = getCurrentProject();
 	var input = $('#reason').val().trim();
-		
 		if(input==null||input==""||input==undefined){
 			$('#sureControl').removeClass('red-btn');
 			$('#sureControl').addClass('no-red-btn');
@@ -573,6 +581,7 @@ function pause() {
                                                         
 }
 function resume() {
+	$(".sure-margin").off('click');
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
