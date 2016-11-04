@@ -45,7 +45,7 @@ $().ready(function(){
 	// -> 注册 分享按钮 
 	$('.share').click(function(){
 		var title = $('#pName').text();
-		var url = getHostName() + getContextPath() +'/play/' + $('#company-unique').val() + '_' + $('#play-unique').val() + '.html';
+		var url = 'http://m.apaipian.com/play/' + $('#company-unique').val() + '_' + $('#play-unique').val() + '.html';
 		var img_path = getDfsHostName() + $('#picPath').val();
 		share.init(url,title,img_path);
 	});
