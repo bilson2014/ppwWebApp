@@ -2167,8 +2167,12 @@ color: red;
      margin: 0 auto;
      margin-top: 20px;
 
+        #nextflowbtn{
+           margin-right: -20px;
+        }
+
       #checkListcancle{
-           margin-left:60px;
+           margin-left:80px;
       }
  }
 
@@ -2176,3 +2180,5 @@ color: red;
  .loadHeight{
     height: 100px;
  }
+
+
