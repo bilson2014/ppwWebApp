@@ -2161,9 +2161,15 @@ text-align: center;
 color: red;
 }
  
- #nextflowbtn{
-    margin-left: 27%;
-    margin-top: 20px;
+.checkListTrue{
+     font-size: 0;
+     width: 325px;
+     margin: 0 auto;
+     margin-top: 20px;
+
+      #checkListcancle{
+           margin-left:105px;
+      }
  }
 
 
