@@ -544,8 +544,9 @@
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
-						<div class="loadHeight">
-						 	<button class="comment-btn border-btn">提交</button>
+
+						<div id="loadHeight">
+						 <button class="comment-btn border-btn">提交</button>
 						</div>
 					</r:permission>
 					<div class="loadmore-Comment hide" id="loadmore-CommentGIF">
@@ -928,7 +929,7 @@
 						</ul>
 						<label class="closeLoad"  id="checkListLabel">加载中.....</label>
 						<button class="gray-btn" id="nextflowbtn" >确定</button>
-						<button class="gray-btn" id="" style="margin-left: 10%">取消</button>
+						<button class="gray-btn" id="checkListcancle" style="margin-left: 10%">取消</button>
 					</div>
 				</div>
 			</div>
