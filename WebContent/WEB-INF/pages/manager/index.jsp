@@ -928,8 +928,10 @@
 						<ul id="checkListUL">
 						</ul>
 						<label class="closeLoad"  id="checkListLabel">加载中.....</label>
-						<button class="gray-btn" id="nextflowbtn" >确定</button>
-						<button class="gray-btn" id="checkListcancle" style="margin-left: 10%">取消</button>
+						<div class="checkListTrue">
+							<button class="gray-btn" id="nextflowbtn" >确定</button>
+							<button class="gray-btn" id="checkListcancle">取消</button>
+						</div>
 					</div>
 				</div>
 			</div>
