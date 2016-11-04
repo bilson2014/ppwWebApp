@@ -545,7 +545,7 @@
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
 						<div class="loadHeight">
-						 <button class="comment-btn border-btn">提交</button>
+						 	<button class="comment-btn border-btn">提交</button>
 						</div>
 					</r:permission>
 					<div class="loadmore-Comment hide" id="loadmore-CommentGIF">
