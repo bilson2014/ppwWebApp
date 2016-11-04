@@ -2121,7 +2121,7 @@ margin-top: 80px;
 
 .curr{
      
-     width:210px;
+     width:240px;
      margin:0 auto;
      list-style-type:none;
      li{
@@ -2144,6 +2144,13 @@ margin-top: 80px;
     }
        .infoimgG{
          color:$red-base;
+
+         div{
+            background: $red-base;
+            color:white;
+            border-radius: 6px;
+            padding: 5px;
+         }
     }
 
 }
