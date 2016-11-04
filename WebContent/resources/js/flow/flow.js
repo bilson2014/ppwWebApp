@@ -1273,14 +1273,15 @@ function loadprojecctlist() {
 				switch (msg[i].state) {
 				case 0: // --- 正常
 						// 过滤协同项目
-					if (type == "employee" && userId == msg[i].userId) {
-	                    doing.append(liStar);
-	                    show(true);
+					if (type == "employee") {
+						if(userId == msg[i].userId){
+							doing.append(liStar);
+		                    show(true);
+						}
 	                } else {
 	                    doing.append(liStar);
 	                    show(false);
 	                }
-					doing.append(liStar);
 					break;
 				case 1: // --- 完成
 				case 2: // --- 取消
