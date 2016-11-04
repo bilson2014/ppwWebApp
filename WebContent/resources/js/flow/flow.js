@@ -113,17 +113,28 @@ $().ready(function() {
 				$("#toolbar-check").modal('hide');
 			});
 			$(".more-file-btn").on("click", function() {
-				loadfiledata(true);
-				//$(".more-file-btn").hide();
-				moreFile();
+				if($('#more-FileImg').hasClass('circle-180')){
+					loadfiledata(false);
+					moreFile(false);
+				}else{
+					loadfiledata(true);
+					moreFile(true);
+				}
+				
+				
 			});
 			$(".comment-btn").on("click", function() {
 				submitcomment();
 			});
 			$(".more-comment").on("click", function() {
-				loadcommentdata(true);
-				moreComment();
-				//$(".more-comment").hide();
+				if($('#more-commentImg').hasClass('circle-180')){
+					loadcommentdata(false);
+					moreComment(false);	
+				}else{
+					loadcommentdata(true);
+					moreComment(true);
+				}
+				
 			});
 
 			$(".newBtn").on("click",function() {
@@ -179,7 +190,11 @@ $().ready(function() {
 				$('#checkListLabel').text('加载中.....');
 				$('#checkListUL').html('');
 			});
-			
+			$("#checkListcancle").on("click",function(){
+				$('#next-modal').modal('hide');
+				$('#checkListLabel').text('加载中.....');
+				$('#checkListUL').html('');
+			});
 			
 			ControlPay.initControlPay();
 			
@@ -322,11 +337,13 @@ $('.modal').on('click', function() {
 loadFileTags();
 getBtnWidth();
 }
-
+var click2 = false;
 function nextFlow(){
 	var key = getCurrentProject();
-	if(key != null ){
+	if(key != null && !click2){
+		click2 = true;
 		loadData(function(msg) {
+			click2 = false;
 			if(msg.result == "true"){
 				$('#next-modal').modal('hide');
 				$('#checkListLabel').text('加载中.....');
@@ -337,6 +354,28 @@ function nextFlow(){
 			loadprojecctlist();
 		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
 			id : key
+		}));
+	}
+}
+
+var click = false;
+function nextFlow2(){
+	var key = getCurrentProject();
+	if(key != null && !click){
+		click = true;
+		loadData(function(msg) {
+			click = false;
+			if(msg.result == "true"){
+				$('#next-modal').modal('hide');
+				$('#checkListLabel').text('加载中.....');
+				$('#checkListUL').html('')
+			}else{
+				$('#checkListLabel').text(msg.result);
+			}
+			loadprojecctlist();
+		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
+			id : key,
+			skipPay : "true"
 		}));
 	}
 }
@@ -366,27 +405,7 @@ function checkList(){
 		}));
 	}
 }
-var click = false;
-function nextFlow2(){
-	var key = getCurrentProject();
-	if(key != null && !click){
-		click = true;
-		loadData(function(msg) {
-			click = false;
-			if(msg.result == "true"){
-				$('#next-modal').modal('hide');
-				$('#checkListLabel').text('加载中.....');
-				$('#checkListUL').html('')
-			}else{
-				$('#checkListLabel').text(msg.result);
-			}
-			loadprojecctlist();
-		}, getContextPath() + '/mgr/flow/completeTask', $.toJSON({
-			id : key,
-			skipPay : "true"
-		}));
-	}
-}
+
 function setModalMessageEvent(Confirm){
 	$("#sureControl").off('click');
 	$("#sureControl").on('click',Confirm);
@@ -462,8 +481,6 @@ function cancelBtn() {
 function cancel() {
 	var key = getCurrentProject();
 	var reason = $('#reason').val().trim();
-	
-	
 	if(reason==null||reason==""||reason==undefined){
 		$('#sureControl').removeClass('red-btn');
 		$('#sureControl').addClass('no-red-btn');
@@ -477,6 +494,8 @@ function cancel() {
 		$('#reason').addClass('textareaInfo');
 		$('#reason').removeClass('textareaInfoError');
 		if(key != null ){
+			$(".sure-margin").off('click');
+			$("#sureControl").off('click');
 			loadData(function(msg) {
 				$("#toolbar-pause-re").modal('hide');
 				loadprojecctlist();
@@ -495,6 +514,7 @@ function PrevTaskBtn() {
 	setModalEvent(PrevTask);
 }
 function PrevTask(){
+	$(".sure-margin").off('click');
 	var key=getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
@@ -529,9 +549,10 @@ function resumeBtn() {
 	setModalEvent(resume);
 }
 function pause() {
+	$(".sure-margin").off('click');
+	$("#sureControl").off('click');
 	var key = getCurrentProject();
 	var input = $('#reason').val().trim();
-		
 		if(input==null||input==""||input==undefined){
 			$('#sureControl').removeClass('red-btn');
 			$('#sureControl').addClass('no-red-btn');
@@ -560,6 +581,7 @@ function pause() {
                                                         
 }
 function resume() {
+	$(".sure-margin").off('click');
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
@@ -897,16 +919,19 @@ function resetTime(mode) {
 }*/
 //加载文件模块
 function loadfiledata(more) {
-	$(".more-file-btn").show();
+	moreFile(false);
+	var tab = $(".file-table");
+	tab.html("");
+	$("#loadmore-fileGIG").removeClass('hide');
+	$("#more-file-btn").show();
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
-			var tab = $(".file-table");
 			tab.html("");
+			$("#loadmore-fileGIG").addClass('hide');
 			if(msg.length==0){
 				tab.html("<div class=\"file-div\"><img  class=\"nofile\" src=\"/resources/images/flow/nofile.png\"/></div>");
-				$(".more-file-btn").hide();
-				
+				$("#more-file-btn").hide();
 			}
 			for (var i = 0; i < msg.length; i++) {
 				var name=msg[i].irOriginalName;
@@ -1104,6 +1129,11 @@ function loadfiledata(more) {
 					break;
 				}
 			}
+			if(msg.length <= 4){
+				$('#more-file-btn').hide();
+			}else{
+				$('#more-file-btn').show();
+			}
 		}, getContextPath() + '/mgr/comment/getResourceList', $.toJSON({
 					id : key
 	}));
@@ -1140,16 +1170,21 @@ function jumpShare(fileId) {
 }
 //加载评论模块
 function loadcommentdata(more) {
+	moreComment(false);
+	var tab = $(".message-table");
+	tab.html("");
+	$("#loadHeight").addClass('loadHeight');
 	var key = getCurrentProject();
+	$("#loadmore-CommentGIF").removeClass('hide');
 	if(key != null ){
 		loadData(
 				function(msg) {
-					var tab = $(".message-table");
 					tab.html("");
+					$("#loadmore-CommentGIF").addClass('hide');
+					$("#loadHeight").removeClass('loadHeight');
 					if(msg.length==0){
 						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
 						$(".more-comment").hide();
-						//moreComment();
 					}
 					for (var i = 0; i < msg.length; i++) {
 						var tr = $("<tr></tr>");
@@ -1179,6 +1214,11 @@ function loadcommentdata(more) {
 
 						if (!more && i == 2)
 							break;
+					}
+					if(msg.length <= 2){
+						$('#more-comment').hide();
+					}else{
+						$('#more-comment').show();
 					}
 				}, getContextPath() + '/mgr/comment/getAllComment', $.toJSON({
 					id : key
@@ -1420,8 +1460,8 @@ function finish() {
 	$("#upload-file-btn-id").hide();
 	$(".comment").hide();
 	$(".comment-btn").hide();
-	$(".more-file-btn").show();
-	$(".more-comment").show();
+	moreFile(false);
+	moreComment(false);
 	$("#Online").addClass('hide');
 	$("#Outline").addClass('hide');
 	//$('#managerId').removeClass('hide');
@@ -1705,7 +1745,7 @@ var ControlPay ={
 									 checkHasListForEmFirst();
 								 
 						}else{
-							//alert("出错啦"+msg.errorCode);
+							//alert("出错啦"+msg.errorCode); 
 						}
 						
 					},  getContextPath() + '/pay/sendpay',$.toJSON({
@@ -1767,7 +1807,6 @@ var ControlPay ={
 						  var base_Card = $("div[class^=payCard]");
 					      payList();
 					  }
-						
 					});
 					//管家历史按钮
 					$('#payHistory').on('click',function(){
@@ -1821,8 +1860,6 @@ var ControlPay ={
 						
 					});
 				},
-
-			          
 					closeList:function(){
 						$("#payHistoryList").slideUp();
 						$('#payHistory').removeClass('payBtnPosClick');
@@ -1835,8 +1872,6 @@ var ControlPay ={
 						
 			
 					},
-					
-					
 					openHistory:function(){
 						$('#listLoad').show();
 						$("#payHistoryList").slideDown();
@@ -1847,7 +1882,6 @@ var ControlPay ={
 						$("#circleCusImg").addClass('circle-180');
 	                    
 					},
-					
 					copyLink:function(){
 						$('#copyLink').on('click',function(){
 
@@ -1859,9 +1893,6 @@ var ControlPay ={
 							
 						});
 					},
-
-					
-		
 		initControlPay:function(){
 			ControlPay.clickOnLine();
 			ControlPay.clickOutLine();
@@ -1869,21 +1900,11 @@ var ControlPay ={
 			ControlPay.clickPayOpenHistory();
 			ControlPay.copyLink();
 			ControlPay.closeMore();
-			
-	
 		}
-		
-		
-		
 }
-
-
 var checkPayList = {
-		
 		//支付验证线下
-		
 		checkOutLinePayList:function(){
-			
 			var payTime =$('#payTime-outline'); 
 			var payorder =$('#order-outline'); 
 			var projectName =$('#projectName');
@@ -1902,7 +1923,6 @@ var checkPayList = {
 			var cusNameDiv =$('#cusNameDiv');
 			var payMoneyDiv =$('#payMoneyDiv'); 
 	
-
 			if(payTime.val()==''||payTime.val()==null){
 				payTime.focus();
 				payTimeDiv.addClass('has-error');
@@ -2019,10 +2039,7 @@ var checkPayList = {
 				payMoneyError.addClass('hide');
 			});
 		},
-		
-
 		checkOnBlur:function(){
-			
 			var projectName =$('#projectName');
 			var cusName =$('#cusName');
 			var payMoney =$('#payMoney');
@@ -2108,9 +2125,6 @@ var checkPayList = {
 		}
 		
 }
-
-
-
 function payList(){
 	var listnode = $("#payListPage");
 	listnode.html('');
@@ -2571,9 +2585,8 @@ function hideSuccessTooltip(){
 	$("#toolbar-list").modal('hide');
 }
 
-function moreComment(){
-	
-  if($('#more-commentImg').hasClass('circle-180')){
+function moreComment(open){
+  if(!open){
 	  $('#more-commentImg').removeClass('circle-180');
 	  $('#more-comment-text').text("展开更多");
    }
@@ -2583,9 +2596,8 @@ function moreComment(){
   }
 }
 
-function moreFile(){
-
-	  if($('#more-FileImg').hasClass('circle-180')){
+function moreFile(open){
+	  if(!open){
 		   $('#fileWord').text("展开更多");
 		   $('#more-FileImg').removeClass("circle-180");
 	   }

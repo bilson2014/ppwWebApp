@@ -511,8 +511,18 @@
 			<div class="indentfile">
 				<div class="indentfile-title">
 					<label class="indentfile-title-text">项目文件</label>
+				<div class="loadmore-file hide" id="loadmore-fileGIG">
+					<div class="load-word">加载中</div>
+					<div class="spinner">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+				</div>
 					<r:permission uri="/addResource">
+					 
 						<button class="upload-file-btn border-btn" id="upload-file-btn-id">上传</button>
+					 	
 					</r:permission>
 					<input type="file" name="addfile" id="addfile">
 				</div>
@@ -530,14 +540,27 @@
 				<div class="message-title">
 					<label class="message-title-text">留言板</label>
 				</div>
+				
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
-						<button class="comment-btn border-btn">提交</button>
+
+						<div id="loadHeight">
+						 <button class="comment-btn border-btn">提交</button>
+						</div>
 					</r:permission>
+					<div class="loadmore-Comment hide" id="loadmore-CommentGIF">
+					<div class="load-word">加载中</div>
+					<div class="spinner">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+				</div>
 					<r:permission uri="/getAllComment">
 						<table class="message-table">
 						</table>
+				
 					<div class="loadMoreCus more-comment" id="more-comment">
 						<div style="display: inline-block;" id="more-comment-text">展开更多</div>
 						<img id="more-commentImg"
@@ -899,14 +922,14 @@
 				<div class="modal-body">
 					<!-- <div class="common-icons-know-us-close-icon modal-icon"
 							data-dismiss="modal" aria-label="Close"></div> -->
-					<img class="checkListClose" style="position: relative;left: 544px;cursor: pointer;"
+					<img class="checkListClose" 
 						src="/resources/images/flow/canclemodal.png">
 					<div>
 						<ul id="checkListUL">
 						</ul>
-						<label class="" style="display: block; text-align: center; color: red;" id="checkListLabel">加载中.....</label>
-						<button class="gray-btn" id="nextflowbtn" style="margin-left: 27%;margin-top: 20px">确定</button>
-						<button class="gray-btn checkListClose" id="" style="margin-left: 10%">取消</button>
+						<label class="closeLoad"  id="checkListLabel">加载中.....</label>
+						<button class="gray-btn" id="nextflowbtn" >确定</button>
+						<button class="gray-btn" id="checkListcancle" style="margin-left: 10%">取消</button>
 					</div>
 				</div>
 			</div>
