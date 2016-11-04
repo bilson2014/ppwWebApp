@@ -112,7 +112,7 @@ define(['jquery'],function($){
 		},
 		getDfsHostName:function(){
 			var fdfsPath = $('#Fastdfs_path').val();
-			return fdfsPath == undefined ? "http://resources.apaipian.com" : $('#Fastdfs_path').val();
+			return fdfsPath == undefined ? "http://resources.apaipian.com/" : $('#Fastdfs_path').val();
 		}
 
 	}
