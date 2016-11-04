@@ -537,10 +537,10 @@ function updateProjectajax() {
 	var customerPayment=$("#userinput").val().trim();
 	var providerPayment=$("#providerInput").val().trim();
 	if(providerPayment == ''){
-		providerPayment =0;
+		providerPayment =null;
 	}
 	if(customerPayment == ''){
-		customerPayment= 0;
+		customerPayment= null;
 	}
 	
 	loadData(function(msg) {
@@ -1386,7 +1386,7 @@ function hasPirce(){
 	var userPrirce =$("#userinput").val().trim();
 	var providerPrice =$('#providerInput').val().trim();
 	
-	if(userPrirce!= null || userPrirce!= '' ||providerPrice!=null || providerPrice!= '' ){
+	if(userPrirce!= null && userPrirce!= '' && providerPrice!=null && providerPrice!= '' ){
 		$("#close-div").slideDown(10);
 		$('#loadWord').text('收起');
 		$('#circleImg').addClass('circle-180');

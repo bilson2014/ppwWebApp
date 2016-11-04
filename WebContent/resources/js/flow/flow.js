@@ -382,8 +382,7 @@ function nextFlow2(){
 function checkList(){
 	$('#next-modal').modal({backdrop: 'static', keyboard: false});
 	$('#nextflowbtn').off('click');
-	$('#nextflowbtn').removeClass('red-btn');
-	$('#nextflowbtn').addClass('gray-btn');
+	$('#nextflowbtn').addClass('hide');
 	var key = getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
@@ -391,12 +390,10 @@ function checkList(){
 			$('#checkListUL').html(html);
 			if(msg.result.isok){
 				$('#nextflowbtn').on('click',nextFlow);
-				$('#nextflowbtn').removeClass('gray-btn');
-				$('#nextflowbtn').addClass('red-btn');
+				$('#nextflowbtn').removeClass('hide');
 				$('#checkListLabel').text('您确定进入下一步吗？');
 			}else{
-				$('#nextflowbtn').removeClass('red-btn');
-				$('#nextflowbtn').addClass('gray-btn');
+				$('#nextflowbtn').addClass('hide');
 				$('#nextflowbtn').off('click');
 				$('#checkListLabel').text('请先将内容补充完整！');
 			}
@@ -1276,14 +1273,15 @@ function loadprojecctlist() {
 				switch (msg[i].state) {
 				case 0: // --- 正常
 						// 过滤协同项目
-					if (type == "employee" && userId == msg[i].userId) {
-	                    doing.append(liStar);
-	                    show(true);
+					if (type == "employee") {
+						if(userId == msg[i].userId){
+							doing.append(liStar);
+		                    show(true);
+						}
 	                } else {
 	                    doing.append(liStar);
 	                    show(false);
 	                }
-					doing.append(liStar);
 					break;
 				case 1: // --- 完成
 				case 2: // --- 取消
@@ -1433,18 +1431,20 @@ function loadSynerhyList(){
 			var help=$("#helpProjectId");
 			help.html('');
 			for (var i = 0; i < msg.length; i++){
-			var liStar = $('<li></li>')
-			var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
-					+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
-			$(a).on("click", function() {
-				firstClick=true;
-				var key = $(this).attr("data-value");
-				putCurrentProject(key);
-				var state=jQuery(this).attr('data-state');
-				loadprojecctlist();
-			});
-			liStar.append(a);
-			help.append(liStar);
+				if(msg[i].state == 0){
+					var liStar = $('<li></li>')
+					var a = $('<a class="indent-a title-content" data-state=' + msg[i].state
+							+ ' data-value="' + msg[i].id + '">'+msg[i].projectName+'</a>');
+					$(a).on("click", function() {
+						firstClick=true;
+						var key = $(this).attr("data-value");
+						putCurrentProject(key);
+						var state=jQuery(this).attr('data-state');
+						loadprojecctlist();
+					});
+					liStar.append(a);
+					help.append(liStar);
+				}
 			}
 		}
 	}, getContextPath() + '/mgr/projects/get/synergys', $.toJSON({
