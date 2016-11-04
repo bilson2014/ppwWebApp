@@ -348,7 +348,7 @@ label.tooltip-message {
 
 .band {
     .bandBtn {
-        float: right;
+       
         position: relative;
         top: 5px;
         height: 35px;
@@ -359,6 +359,7 @@ label.tooltip-message {
         color: $white;
         cursor: pointer;
         line-height: 35px;
+         float: right;
         &:hover {
             background: #337ab7;
         }
@@ -371,7 +372,7 @@ label.tooltip-message {
 
 .noBand {
     .bandBtn {
-        float: right;
+      
         position: relative;
         top: 5px;
         height: 35px;
@@ -382,6 +383,8 @@ label.tooltip-message {
         color: $white;
         cursor: pointer;
         line-height: 35px;
+        float: right;
+        
         &:hover {
             background: #337ab7;
         }
