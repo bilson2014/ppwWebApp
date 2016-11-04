@@ -506,6 +506,8 @@ function PrevTaskBtn() {
 	setModalEvent(PrevTask);
 }
 function PrevTask(){
+	console.log('PrevTask click');
+	$(".sure-margin").off('click');
 	var key=getCurrentProject();
 	if(key != null ){
 		loadData(function(msg) {
