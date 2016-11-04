@@ -780,6 +780,10 @@ function checkData(type){
 			return false;
 		}
 	}
+	if($("#videoUrl").val() == '' && $("#video-change").val()==0){
+		popshow('uploadVideoBt', '请上传视频!');
+		return false;
+	}
 	return true;
 /*	if(type == 'upload'){ // 新建
 		var hdFile = $('#picHDFile').val(); // 缩略图
