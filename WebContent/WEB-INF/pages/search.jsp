@@ -170,7 +170,7 @@
 						</c:if>
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
-								<img class="img-card-4" src="/product/img/${solr.picLDUrl }" />
+								<img class="img-card-4" src="${solr.picLDUrl }" />
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>

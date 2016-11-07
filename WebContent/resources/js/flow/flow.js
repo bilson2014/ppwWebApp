@@ -1224,9 +1224,11 @@ function loadcommentdata(more) {
 }
 var initClick=true;
 var hasRunPro = false;
+var btnState = -1;
 //加载项目列表
 function loadprojecctlist() {
 	loadData(function(msg) {
+		
 		// 获取页面控件 -----------------------------init--------------------------
 		var doing = $("#myProjectId");
 		var help = $("#helpProjectId");
@@ -1276,19 +1278,26 @@ function loadprojecctlist() {
 					if (type == "employee") {
 						if(userId == msg[i].userId){
 							doing.append(liStar);
-		                    show(true);
 						}
 	                } else {
 	                    doing.append(liStar);
-	                    show(false);
 	                }
+					if(msg[i].id == getCurrentProject()){
+						btnState = 0;
+					}
 					break;
 				case 1: // --- 完成
 				case 2: // --- 取消
 					history.append(liStar);
+					if(msg[i].id == getCurrentProject()){
+						btnState = 2;
+					}
 					break;
 				case 3: // --- 暂停
 					pause.append(liStar);
+					if(msg[i].id == getCurrentProject()){
+						btnState = 1;
+					}
 					break;
 				}
 			}
@@ -1314,12 +1323,15 @@ function loadprojecctlist() {
 			if(doing.children('li').length > 0){
 				hasRunPro = true;
 				$(doing.children('li')[0]).find('a').click();
+				btnState = 0;
 			}else if(pause.children('li').length > 0){
 				hasRunPro = true;
 				$(pause.children('li')[0]).find('a').click();
+				btnState = 1;
 			}else if(help.children('li').length > 0){
 				hasRunPro = true;
 				$(help.children('li')[0]).find('a').click();
+				btnState = 2;
 			}
 		}
 		if (hasRunPro && !initClick) {
@@ -1332,6 +1344,13 @@ function loadprojecctlist() {
             //$(".indentlisthistory").show();
             //$(".indent-more-add").removeClass('circle-180');
         }
+		if(btnState == 0){
+			show(true);
+		}else if(btnState == 1){
+			show(false);
+		}else if(btnState == 2){
+			finish();
+		}
 	 	resetTime('');
         loadflowdata();
         loadfiledata(false);
@@ -1444,6 +1463,9 @@ function loadSynerhyList(){
 					});
 					liStar.append(a);
 					help.append(liStar);
+					if(msg[i].id == getCurrentProject()){
+						show(false);
+					}
 				}
 			}
 		}
