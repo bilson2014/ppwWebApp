@@ -53,10 +53,6 @@ public class UserController extends BaseController{
 	
 	private static String FILE_PROFIX = null; // 文件路径前缀
 	
-	//private static String DFS_URL = null; // 文件路径前缀
-	
-	//private static String UPLOAD_PATH = null; // 用户头像上传路径
-	
 	private static String IMAGE_MAX_SIZE = null;
 	
 	private static String ALLOW_IMAGE_TYPE = null;
@@ -70,9 +66,7 @@ public class UserController extends BaseController{
 				Properties propertis = new Properties();
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
-			//	DFS_URL = propertis.getProperty("upload.server.dfs.url");
 				FILE_PROFIX = propertis.getProperty("file.prefix");
-			//	UPLOAD_PATH = propertis.getProperty("upload.server.user.image");
 				IMAGE_MAX_SIZE = propertis.getProperty("imageMaxSize");
 				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
 			} catch (IOException e) {
@@ -275,30 +269,6 @@ public class UserController extends BaseController{
 				}else{
 					
 					if(ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1){ // 文件格式正确
-						// save file
-						/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
-						if(!imageDir.exists())
-							imageDir.mkdir();
-						
-						StringBuffer fileName = new StringBuffer();
-						fileName.append("user" + (user.getId() < 10 ? "0" + user.getId() : user.getId()));
-						fileName.append("_temp");
-						final Calendar calendar = new GregorianCalendar();
-						fileName.append(calendar.get(Calendar.YEAR));
-						fileName.append((calendar.get(Calendar.MONTH)+1) < 10 ? "0" + (calendar.get(Calendar.MONTH)+1) : (calendar.get(Calendar.MONTH)+1));
-						fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH) : calendar.get(Calendar.DAY_OF_MONTH));
-						fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-						fileName.append(calendar.get(Calendar.MINUTE));
-						fileName.append(calendar.get(Calendar.SECOND));
-						fileName.append(calendar.get(Calendar.MILLISECOND));
-						fileName.append(".");
-						fileName.append(extName);
-						
-						// get file path
-						final String path = UPLOAD_PATH + "/" + fileName;
-						File imageFile = new File(FILE_PROFIX + path);
-						file.transferTo(imageFile);*/
-						//modify 修改成DFS上传
 						String path = DFSservice.upload(file);
 						SessionInfo sessionInfo = getCurrentInfo(request);
 						Log.error("User id is " + sessionInfo.getReqiureId() + " upload photo by self path is" + path,sessionInfo);
@@ -331,38 +301,9 @@ public class UserController extends BaseController{
 			String imgPath = request.getServletContext().getRealPath(user.getImgUrl());
 			
 			File original = new File(imgPath);
-			
-			// save file
-			/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
-			if(!imageDir.exists())
-				imageDir.mkdir();
-			
-			StringBuffer fileName = new StringBuffer();
-			final String extName = FileUtils.getExtName(original.getName(), ".");
-			fileName.append("user" + (user.getId() < 10 ? "0" + user.getId() : user.getId()));
-			fileName.append("_");
-			final Calendar calendar = new GregorianCalendar();
-			fileName.append(calendar.get(Calendar.YEAR));
-			fileName.append((calendar.get(Calendar.MONTH)+1) < 10 ? "0" + (calendar.get(Calendar.MONTH)+1) : (calendar.get(Calendar.MONTH)+1));
-			fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH) : calendar.get(Calendar.DAY_OF_MONTH));
-			fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-			fileName.append(calendar.get(Calendar.MINUTE));
-			fileName.append(calendar.get(Calendar.SECOND));
-			fileName.append("_");
-			fileName.append(calendar.get(Calendar.MILLISECOND));
-			fileName.append(".");
-			fileName.append(extName);
-			
-			// get file path
-			final String path = UPLOAD_PATH + "/" + fileName;
-			File newFile = new File(FILE_PROFIX + path);
-			FileUtils.copyFile(original, newFile);*/
-			//modify by wlc 修改为DFS上传
 			String path = DFSservice.upload(original, user.getImgUrl());
-			//修改为DFS上传结束
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("User id is " + user.getId() + " upload photo by system path is" + path,sessionInfo);
-			
 			// 更新数据库
 			if(user != null){
 				user.setImgUrl(path);
@@ -371,7 +312,6 @@ public class UserController extends BaseController{
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
 				
 				Log.error("User id is " + user.getId() + " update photo by system -success=" + result,sessionInfo);
-				
 				//updateUserInSession(request);
 				return result;
 			}
@@ -414,53 +354,18 @@ public class UserController extends BaseController{
 		if(param != null && !"".equals(param.getImgUrl())){
 			
 			try {
-				// get original user image
-				//final String imgPath = FILE_PROFIX + param.getImgUrl();
-				//modify 2016-10-25 16:48:46
-				//改为从DFS上获取图片 begin
 				final String imgPath = param.getImgUrl();
 				InputStream inputStream = DFSservice.download(imgPath);
-				//modify 改为从DFS上获取图片 end
 				final String extName = FileUtils.getExtName(imgPath, ".");
 				
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("User id is " + param.getUserId() + " cut photo begin",sessionInfo);
 				
 				// cut photo
-				//final InputStream original_is = new FileInputStream(original);
 				inputStream = PhotoUtil.cutPhoto(inputStream,param,extName);
 				Log.error("User id is " + param.getUserId() + " cut photo - success",sessionInfo);
 				
-				// save file
-				/*File imageDir = new File(FILE_PROFIX + UPLOAD_PATH);
-				if(!imageDir.exists())
-					imageDir.mkdir();
-				
-				StringBuffer fileName = new StringBuffer();
-				fileName.append("user" + (param.getUserId() < 10 ? "0" + param.getUserId() : param.getUserId()));
-				fileName.append("_");
-				final Calendar calendar = new GregorianCalendar();
-				fileName.append(calendar.get(Calendar.YEAR));
-				fileName.append((calendar.get(Calendar.MONTH)+1) < 10 ? "0" + (calendar.get(Calendar.MONTH)+1) : (calendar.get(Calendar.MONTH)+1));
-				fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH) : calendar.get(Calendar.DAY_OF_MONTH));
-				fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-				fileName.append(calendar.get(Calendar.MINUTE));
-				fileName.append(calendar.get(Calendar.SECOND));
-				fileName.append("_");
-				fileName.append(calendar.get(Calendar.MILLISECOND));
-				fileName.append(".");
-				fileName.append(extName);
-				
-				// get file path
-				final String path = UPLOAD_PATH + "/" + fileName;
-				File newFile = new File(FILE_PROFIX + path);
-				FileUtils.copyFile(original, newFile);
-				
-				// delete original file
-				original.delete();*/
-				//modify 修改成DFS上传
 				String path = DFSservice.upload(inputStream,imgPath);
-				//modify 修改成DFS上传
 				// 更新数据库
 				final User user = new User();
 				user.setId(param.getUserId());

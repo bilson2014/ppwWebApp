@@ -32,17 +32,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 			stoken = DataUtil.getUuid();
 			session.setAttribute("csrftoken", stoken);
 		}
-
-		// add by Lw,2016-06-21 19:45 begin
-		// to prevent the repeat
-		// String rtoken = (String) session.getAttribute("rtoken");
-		// if (!ValidateUtil.isValid(stoken)) {
-		// // 如果没有，则创建
-		// stoken = DataUtil.getUuid();
-		// //session.setAttribute("rtoken", stoken);
-		//
-		//
-		// }
 		return true;
 	}
 

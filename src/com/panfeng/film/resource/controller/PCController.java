@@ -70,8 +70,6 @@ public class PCController extends BaseController {
 
 	static private String TELEPHONE = null;
 
-	// private static String PROVIDER_SESSION = "provider_session";
-
 	public PCController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
@@ -704,16 +702,6 @@ public class PCController extends BaseController {
 		List<Staff> list = new ArrayList<Staff>();
 		if (ValidateUtil.isValid(json)) {
 			list = JsonUtil.fromJsonArray(json, Staff.class);
-			//modify by wlc 2016年10月25日 11:09:58
-			//修改为DFS路径
-			/*if (ValidateUtil.isValid(list)) {
-				for (final Staff staff : list) {
-					final String path = staff.getStaffImageUrl();
-					if (ValidateUtil.isValid(path)) {
-						staff.setStaffImageUrl(path.split(GlobalConstant.STAFF_IMAGE_PERIX)[1]);
-					}
-				}
-			}*/
 			model.addAttribute("list", list);
 		}
 

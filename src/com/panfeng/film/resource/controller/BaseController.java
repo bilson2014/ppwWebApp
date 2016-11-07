@@ -44,15 +44,6 @@ public abstract class BaseController {
 	}
 	
 	protected SessionInfo getCurrentInfo(final HttpServletRequest request){
-		
-		/*final String url = GlobalConstant.URL_PREFIX + "portal/common/loadCurrentUser";
-		final CurrentCustomer current = new CurrentCustomer();
-		current.setField(field);
-		final String str = HttpUtil.httpPost(url, current, request);
-		if(ValidateUtil.isValid(str)){
-			return JsonUtil.toBean(str, clazz);
-		}*/
-		
 		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		return info;
 	}

@@ -174,23 +174,6 @@ public class LoginController extends BaseController {
 	/**
 	 * 验证手机号码是否注册
 	 */
-//	@RequestMapping("/validation/phone")
-//	public boolean validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
-//		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
-//		String json = HttpUtil.httpGet(url, request);
-//		if ("true".equals(json)) { // 被注册
-//			serLogger.info("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...");
-//			return true;
-//		} else if ("false".equals(json)) { // 未被注册
-//			serLogger.info("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...");
-//			return false;
-//		}
-//		return false;
-//	}
-	
-	/**
-	 * 验证手机号码是否注册
-	 */
 	@RequestMapping("/validation/phone")
 	public BaseMsg validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
 		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
