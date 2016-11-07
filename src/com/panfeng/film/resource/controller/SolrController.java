@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
+import com.panfeng.film.util.Constants;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
@@ -29,8 +30,6 @@ public class SolrController extends BaseController {
 
 	private static String URL_PREFIX = null;
 
-	private static String VIDEO_IMAGE_PERFIX = null;
-
 	public SolrController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader()
@@ -39,8 +38,6 @@ public class SolrController extends BaseController {
 				Properties propertis = new Properties();
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
-				VIDEO_IMAGE_PERFIX = propertis
-						.getProperty("upload.server.product.image");
 			} catch (IOException e) {
 				Log.error("SolrController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
@@ -81,7 +78,7 @@ public class SolrController extends BaseController {
 					}
 					for (final Solr solr : list) {
 						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(solr.getPicLDUrl().split(VIDEO_IMAGE_PERFIX)[1]);
+							solr.setPicLDUrl(Constants.DFS_PATH + solr.getPicLDUrl());
 						}
 					}
 				}
@@ -114,7 +111,7 @@ public class SolrController extends BaseController {
 				if (list != null && list.size() > 0) {
 					for (final Solr solr : list) {
 						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(solr.getPicLDUrl().split(VIDEO_IMAGE_PERFIX)[1]);
+							solr.setPicLDUrl(Constants.DFS_PATH + solr.getPicLDUrl());
 						}
 					}
 				}
