@@ -42,6 +42,7 @@ import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.service.UserService;
+import com.panfeng.film.util.Constants;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
@@ -511,7 +512,7 @@ public class PCController extends BaseController {
 					}
 					for (final Solr solr : list) {
 						if (solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())) {
-							solr.setPicLDUrl(solr.getPicLDUrl().split(GlobalConstant.VIDEO_IMAGE_PERFIX)[1]);
+							solr.setPicLDUrl(Constants.DFS_PATH+solr.getPicLDUrl());
 						}
 					}
 				}

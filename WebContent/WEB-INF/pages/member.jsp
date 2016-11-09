@@ -108,7 +108,7 @@
 		<div class="nav-shadow"></div>
 	
 		<div class="video-div" id="activityPart">
-			<video src="http://www.apaipian.com/product/video/movie.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/video-poster.jpg" ></video>
+			<video src="http://resource.apaipian.com/resource/group1/M00/00/27/Cgpw7FgiySOACsjIARHf7MfQdak085.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/video-poster.jpg" ></video>
 	    </div>
 	        
 	    <div class="introduce" >
