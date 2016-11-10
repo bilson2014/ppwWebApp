@@ -115,9 +115,6 @@ public class ProviderController extends BaseController {
 				VIDEO_MAX_SIZE = propertis.getProperty("videoMaxSize");
 				ALLOW_VIDEO_TYPE = propertis.getProperty("videoType");
 				FILE_PROFIX = propertis.getProperty("file.prefix");
-//				TEAM_IMAGE_PATH = propertis.getProperty("upload.server.team.image");
-//				PRODUCT_VIDEO_PATH = propertis.getProperty("upload.server.product.video");
-	//			PRODUCT_IMAGE_PATH = propertis.getProperty("upload.server.product.image");
 			} catch (IOException e) {
 				Log.error("ProviderController method:constructor load Properties fail ...", null);
 				e.printStackTrace();
@@ -133,7 +130,6 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/company-info")
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
 		
-		//final Team team = getCurrentTeam(request);
 		final Team team = getLatestTeam(request);
 		model.addAttribute("provider", team);
 		// 第一次填充省
@@ -180,15 +176,6 @@ public class ProviderController extends BaseController {
 		if (json != null && !"".equals(json)) {
 			try {
 				list = JsonUtil.fromJsonArray(json, Product.class);
-				//注释 bywlc 修改为DFS路径 
-				/*for (final Product product : list) {
-					String imagePath = product.getPicLDUrl();
-					if (imagePath != null && !"".equals(imagePath)) {
-						imagePath = imagePath.split(PRODUCT_IMAGE_PATH)[1];
-						product.setPicLDUrl(imagePath);
-					}
-					lists.add(product);
-				}*/
 			} catch (Exception e) {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("Json Parse Product error ...", sessionInfo);
@@ -207,8 +194,6 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/company-status")
 	public ModelAndView statusView(final HttpServletRequest request, final ModelMap model) {
 
-		// final Team team = (Team)
-		// request.getSession().getAttribute(PROVIDER_SESSION);
 		final Team team = getCurrentTeam(request);
 		model.addAttribute("status", team.getFlag());
 		model.addAttribute("cKey", team.getTeamId());
@@ -658,92 +643,6 @@ public class ProviderController extends BaseController {
 	 *            团队信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	/*@RequestMapping("/update/teamPhotoPath")
-	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
-			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");
-		// 如果文件为空，则不更新图片路径;反之亦然
-		if (!file.isEmpty()) {
-
-			final long fileSize = file.getSize(); // 上传文件大小
-			final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
-			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
-
-			if (fileSize > maxSize * 1024) {
-				// 文件大小超出规定范围
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
-						+ "...", sessionInfo);
-				return "false@error=1";
-			} else {
-				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
-					// 公司Logo全路径
-					final String imagePath = FILE_PROFIX + TEAM_IMAGE_PATH;
-
-					// save file
-					File imageDir = new File(imagePath);
-					if (!imageDir.exists())
-						imageDir.mkdir();
-
-					StringBuffer fileName = new StringBuffer();
-					fileName.append("team" + team.getTeamId());
-					fileName.append("-");
-					final Calendar calendar = new GregorianCalendar();
-					fileName.append(calendar.get(Calendar.YEAR));
-					fileName.append((calendar.get(Calendar.MONTH) + 1) < 10 ? "0" + (calendar.get(Calendar.MONTH) + 1)
-							: (calendar.get(Calendar.MONTH) + 1));
-					fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH)
-							: calendar.get(Calendar.DAY_OF_MONTH));
-					fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-					fileName.append(calendar.get(Calendar.MINUTE));
-					fileName.append(calendar.get(Calendar.SECOND));
-					fileName.append(calendar.get(Calendar.MILLISECOND));
-					fileName.append(".");
-					fileName.append(extName);
-					// get file path
-					final String path = TEAM_IMAGE_PATH + "/" + fileName;
-					File imageFile = new File(FILE_PROFIX + path);
-					file.transferTo(imageFile);
-
-					// 删除 原文件
-					final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
-					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
-					if (originalJson != null && !"".equals(originalJson)) {
-						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
-						final String originalPath = originalTeam.getTeamPhotoUrl();
-						FileUtils.deleteFile(FILE_PROFIX + originalPath);
-					}
-
-					team.setTeamPhotoUrl(path);
-					// save photo path
-					final String updateTeamUrl = URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
-					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					if (flag) {
-						
-						 * final Team teamInSession = (Team)
-						 * request.getSession() .getAttribute(PROVIDER_SESSION);
-						 * teamInSession.setTeamPhotoUrl(path);
-						 * request.getSession().setAttribute(PROVIDER_SESSION,
-						 * teamInSession);
-						 
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("upload provider photo success,photoUrl:" + path, sessionInfo);
-						return path;
-					}
-				} else {
-					// 文件格式不正确
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
-					return "false@error=2";
-				}
-			}
-
-		}
-
-		return null;
-	}*/
-	
 	@RequestMapping("/update/teamPhotoPath")
 	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
 			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
@@ -813,12 +712,6 @@ public class ProviderController extends BaseController {
 			final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
 			final String json = HttpUtil.httpPost(url, team, request);
 			final boolean flag = JsonUtil.toBean(json, Boolean.class);
-			/*
-			 * final Team sTeam = (Team) request.getSession().getAttribute(
-			 * PROVIDER_SESSION); if (sTeam != null) { if (flag) {
-			 * sTeam.setFlag(0);
-			 * request.getSession().setAttribute(PROVIDER_SESSION, sTeam); } }
-			 */
 			return flag;
 		}
 		return false;
@@ -973,157 +866,6 @@ public class ProviderController extends BaseController {
 		}
 		return list;
 	}
-
-	/**
-	 * 新增视频
-	 */
-	/*@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
-	public String saveProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestParam final MultipartFile[] uploadFiles, final Product product) {
-
-		response.setContentType("text/html;charset=UTF-8");
-		if (uploadFiles != null) {
-			final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
-			final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
-
-			for (MultipartFile multipartFile : uploadFiles) {
-				if (!multipartFile.isEmpty()) {
-					// 检测文件类型
-					final String extName = FileUtils.getExtName(multipartFile.getOriginalFilename(), ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-					final long fileSize = multipartFile.getSize();
-					switch (fileType) {
-					case 0: // video
-						// 检查视频大小
-						if (fileSize > video_MaxSize * 1024 * 1024) {
-
-							// 视频文件超过500M上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Save Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
-							return "false@error=1";
-						}
-						break;
-					case 1: // image
-						// 检查图片大小
-						if (fileSize > img_MaxSize * 1024) {
-
-							// 图片文件超过250K上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Save Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
-							return "false@error=2";
-						}
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-				}
-			}
-		}
-
-		try {
-			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
-			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
-			}
-
-			// 保存 product
-			long productId = 0;
-			product.setFlag(1); // 默认设置 审核通过 状态
-			final String url = URL_PREFIX + "portal/product/static/data/save/info";
-			final String json = HttpUtil.httpPost(url, product, request);
-			if (json != null && !"".equals(json)) {
-				productId = JsonUtil.toBean(json, Long.class);
-			}
-
-			// 作品图片全路径
-			final String imagePath = FILE_PROFIX + PRODUCT_IMAGE_PATH;
-			// 视频全路径
-			final String videoPath = FILE_PROFIX + PRODUCT_VIDEO_PATH;
-
-			File videoDir = new File(videoPath);
-			File imageDir = new File(imagePath);
-			if (!videoDir.exists())
-				videoDir.mkdir();
-			if (!imageDir.exists())
-				imageDir.mkdir();
-
-			// 路径接收
-			final List<String> pathList = new ArrayList<String>();
-
-			for (int i = 0; i < uploadFiles.length; i++) {
-				final MultipartFile multipartFile = uploadFiles[i];
-				if (!multipartFile.isEmpty()) {
-					// 分组保存video、image
-					final String multipartFileName = multipartFile.getOriginalFilename();
-					final String extName = FileUtils.getExtName(multipartFileName, ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-
-					final StringBuffer fileName = new StringBuffer();
-					fileName.append("product" + productId);
-					fileName.append("-");
-					final Calendar calendar = new GregorianCalendar();
-					fileName.append(calendar.get(Calendar.YEAR));
-					fileName.append((calendar.get(Calendar.MONTH) + 1) < 10 ? "0" + (calendar.get(Calendar.MONTH) + 1)
-							: (calendar.get(Calendar.MONTH) + 1));
-					fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH)
-							: calendar.get(Calendar.DAY_OF_MONTH));
-					fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-					fileName.append(calendar.get(Calendar.MINUTE));
-					fileName.append(calendar.get(Calendar.SECOND));
-					fileName.append(calendar.get(Calendar.MILLISECOND));
-					fileName.append(i);
-					fileName.append(".");
-					fileName.append(extName);
-					String path = "";
-					switch (fileType) {
-					case 0: // video
-						path += PRODUCT_VIDEO_PATH + "/" + fileName.toString();
-						break;
-					case 1: // image
-						path += PRODUCT_IMAGE_PATH + "/" + fileName.toString();
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-					File destFile = new File(FILE_PROFIX + path);
-					multipartFile.transferTo(destFile);
-					pathList.add(path);
-				} else {
-					pathList.add("");
-				}
-			}
-			product.setVideoUrl(pathList.get(0));
-			product.setPicHDUrl(pathList.get(1));
-			product.setPicLDUrl(pathList.get(2));
-			// 保存路径
-			final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
-			product.setProductId(productId);
-			HttpUtil.httpPost(updateUrl, product, request);
-			// request.getSession().setAttribute(PROVIDER_PRODUCT, productId);
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-
-		} catch (IOException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("ProviderController method:saveProduct() file upload error ...", sessionInfo);
-			e.printStackTrace();
-			throw new RuntimeException("file upload error ...", e);
-		}
-		return "success";
-	}*/
-	@RequestMapping(value = "/save/product/pic", method = RequestMethod.POST)
-	public String savetestt(final HttpServletRequest request, final HttpServletResponse response,
-			final MultipartFile file, final Product product) {
-		return "";
-	}
 	@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
 	public BaseMsg saveProduct(final HttpServletRequest request, final HttpServletResponse response,
 			@RequestBody final Product product) {
@@ -1163,178 +905,6 @@ public class ProviderController extends BaseController {
 	/**
 	 * 更新 视频 信息
 	 */
-/*	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public String updateProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestParam final MultipartFile[] uploadFiles, final Product product) {
-		response.setContentType("text/html;charset=UTF-8");
-
-		if (uploadFiles != null) {
-			final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
-			final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
-
-			for (MultipartFile multipartFile : uploadFiles) {
-				if (!multipartFile.isEmpty()) {
-					// 检测文件类型
-					final String extName = FileUtils.getExtName(multipartFile.getOriginalFilename(), ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-					final long fileSize = multipartFile.getSize();
-					switch (fileType) {
-					case 0: // video
-						// 检查视频大小
-						if (fileSize > video_MaxSize * 1024 * 1024) {
-
-							// 视频文件超过500M上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Update Upload Video error,becase video size(" + fileSize
-									+ ") more than video Max Size(" + video_MaxSize + ")", sessionInfo);
-							return "false@error=1";
-						}
-						break;
-					case 1: // image
-						// 检查图片大小
-						if (fileSize > img_MaxSize * 1024) {
-
-							// 图片文件超过250K上限
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.error("Update Upload Video error,becase picture size(" + fileSize
-									+ ") more than image Max Size(" + img_MaxSize + ")", sessionInfo);
-							return "false@error=2";
-						}
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-				}
-			}
-		}
-
-		final long productId = product.getProductId(); // product id
-		Product originalProduct = new Product(); // 获取 未更改前的 product
-													// 对象,用于删除修改过的文件
-		final String url = URL_PREFIX + "portal/product/static/data/" + productId;
-		final String json = HttpUtil.httpGet(url, request);
-		if (ValidateUtil.isValid(json)) {
-			originalProduct = JsonUtil.toBean(json, Product.class);
-		}
-		final List<String> pathList = new ArrayList<String>(); // 路径集合
-
-		try {
-
-			// 作品图片全路径
-			final String imagePath = FILE_PROFIX + PRODUCT_IMAGE_PATH;
-			// 视频全路径
-			final String videoPath = FILE_PROFIX + PRODUCT_VIDEO_PATH;
-
-			File videoDir = new File(videoPath);
-			File imageDir = new File(imagePath);
-			if (!videoDir.exists())
-				videoDir.mkdir();
-			if (!imageDir.exists())
-				imageDir.mkdir();
-
-			for (int i = 0; i < uploadFiles.length; i++) {
-				final MultipartFile multipartFile = uploadFiles[i];
-				if (!multipartFile.isEmpty()) {
-					// file字段 如果不为空,说明 更改了上传文件
-					// 分组保存video、image
-					final String multipartFileName = multipartFile.getOriginalFilename();
-					final String extName = FileUtils.getExtName(multipartFileName, ".");
-					final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
-
-					final StringBuffer fileName = new StringBuffer();
-					fileName.append("product" + productId);
-					fileName.append("-");
-					final Calendar calendar = new GregorianCalendar();
-					fileName.append(calendar.get(Calendar.YEAR));
-					fileName.append((calendar.get(Calendar.MONTH) + 1) < 10 ? "0" + (calendar.get(Calendar.MONTH) + 1)
-							: (calendar.get(Calendar.MONTH) + 1));
-					fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH)
-							: calendar.get(Calendar.DAY_OF_MONTH));
-					fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-					fileName.append(calendar.get(Calendar.MINUTE));
-					fileName.append(calendar.get(Calendar.SECOND));
-					fileName.append(calendar.get(Calendar.MILLISECOND));
-					fileName.append(i);
-					fileName.append(".");
-					fileName.append(extName);
-					String path = "";
-					switch (fileType) {
-					case 0: // video
-						path += PRODUCT_VIDEO_PATH + "/" + fileName.toString();
-						break;
-					case 1: // image
-						path += PRODUCT_IMAGE_PATH + "/" + fileName.toString();
-						break;
-					case 2: // other
-						throw new RuntimeException("file type error ...");
-					}
-					File destFile = new File(FILE_PROFIX + path);
-					multipartFile.transferTo(destFile);
-					pathList.add(path);
-				} else {
-					// file字段 如果为空,说明 未上传新文件
-					pathList.add("");
-				}
-			}
-			product.setVideoUrl(pathList.get(0));
-			product.setPicHDUrl(pathList.get(1));
-			product.setPicLDUrl(pathList.get(2));
-
-			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
-
-			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
-			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
-			}
-
-			final String sId = HttpUtil.httpPost(updatePath, product, request);
-			long serviceId = 0l;
-			if (sId != null && !"".equals(sId)) {
-				serviceId = JsonUtil.toBean(sId, Long.class);
-			}
-
-			if (originalProduct != null) {
-				// 删除 原文件
-				for (int i = 0; i < pathList.size(); i++) {
-					final String newPath = pathList.get(i);
-					if (newPath != null && !"".equals(newPath)) {
-						// 发生更改，删除原文件
-						String path = "";
-						switch (i) {
-						case 0: // videoFile
-							path = originalProduct.getVideoUrl();
-							break;
-						case 1: // picHDFile
-							path = originalProduct.getPicHDUrl();
-							break;
-						case 2: // picLDFile
-							path = originalProduct.getPicLDUrl();
-							break;
-						default:
-							continue;
-						}
-						if (path != null && !"".equals(path)) {
-							FileUtils.deleteFile(FILE_PROFIX + path);
-						}
-					}
-				}
-			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-			return String.valueOf(serviceId);
-		} catch (IOException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("ProviderController method:updateProduct() file upload error ...", sessionInfo);
-			e.printStackTrace();
-			throw new RuntimeException("Product update error ...", e);
-		}
-	}*/
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
 	public String updateProduct(final HttpServletRequest request, final HttpServletResponse response,
 			@RequestBody final Product product) {
@@ -1376,11 +946,6 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/product/data/{productId}")
 	public Product loadProductById(final HttpServletRequest request, @PathVariable("productId") long productId) {
-		// 如果 传来的ID值为-1，说明是 保存操作，从session中取值
-		/*
-		 * if (productId == -1) { productId = (Long)
-		 * request.getSession().getAttribute( PROVIDER_PRODUCT); }
-		 */
 		final String url = URL_PREFIX + "portal/product/static/data/" + productId;
 		final String json = HttpUtil.httpGet(url, request);
 		Product product = new Product();
@@ -1410,103 +975,6 @@ public class ProviderController extends BaseController {
 		return productId;
 	}
 
-/*	@RequestMapping(value = "/multipUploadFile", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public String uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
-
-		
-		 * final Team team = (Team) request.getSession().getAttribute(
-		 * PROVIDER_SESSION);
-		 
-		final SessionInfo info = getCurrentInfo(request);
-		final Long providerId = info.getReqiureId(); // 供应商ID
-
-		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRquest.getFileMap();
-		for (final Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			final MultipartFile file = entity.getValue();
-			// 检测视频是否大于限制
-			final String checkResult = checkFile(file);
-			if ("success".equals(checkResult)) {
-				// 插入数据
-				Product product = new Product();
-				product.setFlag(1); // 默认是 审核通过 状态
-				final String name = file.getOriginalFilename();
-				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
-				String productName = name.split("." + extName)[0];
-				// 转码
-				try {
-					productName = URLEncoder.encode(productName, "UTF-8");
-				} catch (UnsupportedEncodingException e1) {
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("ProviderController method:uploadFiles() productName Encoder error, teamId=" + providerId
-							+ "...", sessionInfo);
-					e1.printStackTrace();
-				}
-				product.setProductName(productName);
-				product.setRecommend(0); // 推荐值 为0
-				product.setSupportCount(0); // 赞值 为0
-				product.setTeamId(providerId);
-				product.setVideoLength("0");
-				product.setpDescription("");
-				product.setVisible(1); // 默认可见
-				// 保存数据
-				long productId = 0;
-				final String url = URL_PREFIX + "portal/product/static/data/save/info";
-				final String json = HttpUtil.httpPost(url, product, request);
-
-				if (json != null && !"".equals(json)) {
-					productId = JsonUtil.toBean(json, Long.class);
-					final String videoPath = FILE_PROFIX + PRODUCT_VIDEO_PATH;
-
-					final StringBuffer fileName = new StringBuffer();
-					fileName.append("product" + productId);
-					fileName.append("-");
-					final Calendar calendar = new GregorianCalendar();
-					fileName.append(calendar.get(Calendar.YEAR));
-					fileName.append((calendar.get(Calendar.MONTH) + 1) < 10 ? "0" + (calendar.get(Calendar.MONTH) + 1)
-							: (calendar.get(Calendar.MONTH) + 1));
-					fileName.append(calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH)
-							: calendar.get(Calendar.DAY_OF_MONTH));
-					fileName.append(calendar.get(Calendar.HOUR_OF_DAY));
-					fileName.append(calendar.get(Calendar.MINUTE));
-					fileName.append(calendar.get(Calendar.SECOND));
-					fileName.append(calendar.get(Calendar.MILLISECOND));
-					fileName.append(".");
-					fileName.append(extName);
-					String path = PRODUCT_VIDEO_PATH + "/" + fileName.toString();
-
-					File videoDir = new File(videoPath);
-					if (!videoDir.exists())
-						videoDir.mkdir();
-
-					File destFile = new File(FILE_PROFIX + path);
-					product.setProductId(productId);
-					product.setVideoUrl(path);
-					// 更新文件路径
-					final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
-					HttpUtil.httpPost(updateUrl, product, request);
-
-					try {
-						file.transferTo(destFile);
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("ProviderController method:uploadFiles() file upload success,productId = " + productId
-								+ " ...", sessionInfo);
-						return "success";
-					} catch (IllegalStateException | IOException e) {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("ProviderController method:uploadFiles() file upload error,productId = " + productId
-								+ " ...", sessionInfo);
-						throw new RuntimeException(
-								"ProviderController method:uploadFiles() file upload error,productId = " + productId
-										+ " ...");
-					}
-				}
-			} else {
-				return checkResult;
-			}
-		}
-		return "success";
-	}*/
 	@RequestMapping(value = "/multipUploadFile", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");

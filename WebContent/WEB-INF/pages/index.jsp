@@ -111,7 +111,7 @@
 					    <li>
 					       <section>
 					        <video preload="auto" loop="" autoplay  poster="${imgPath}/banner/flex2.jpg" class="video-bg">
-				                <source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
+				                <source src="http://resource.apaipian.com/resource/group1/M00/00/27/CgpmTlgix8CATEWpAKKW9vRGlus800.mp4" type="video/mp4">
 			                </video>
 			                </section>
 			            </li>

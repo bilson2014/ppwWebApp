@@ -42,6 +42,7 @@ import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SmsService;
 import com.panfeng.film.service.UserService;
+import com.panfeng.film.util.Constants;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
@@ -69,8 +70,6 @@ public class PCController extends BaseController {
 	static String URL_PREFIX = null;
 
 	static private String TELEPHONE = null;
-
-	// private static String PROVIDER_SESSION = "provider_session";
 
 	public PCController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
@@ -513,7 +512,7 @@ public class PCController extends BaseController {
 					}
 					for (final Solr solr : list) {
 						if (solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())) {
-							solr.setPicLDUrl(solr.getPicLDUrl().split(GlobalConstant.VIDEO_IMAGE_PERFIX)[1]);
+							solr.setPicLDUrl(Constants.DFS_PATH+solr.getPicLDUrl());
 						}
 					}
 				}
@@ -704,16 +703,6 @@ public class PCController extends BaseController {
 		List<Staff> list = new ArrayList<Staff>();
 		if (ValidateUtil.isValid(json)) {
 			list = JsonUtil.fromJsonArray(json, Staff.class);
-			//modify by wlc 2016年10月25日 11:09:58
-			//修改为DFS路径
-			/*if (ValidateUtil.isValid(list)) {
-				for (final Staff staff : list) {
-					final String path = staff.getStaffImageUrl();
-					if (ValidateUtil.isValid(path)) {
-						staff.setStaffImageUrl(path.split(GlobalConstant.STAFF_IMAGE_PERIX)[1]);
-					}
-				}
-			}*/
 			model.addAttribute("list", list);
 		}
 

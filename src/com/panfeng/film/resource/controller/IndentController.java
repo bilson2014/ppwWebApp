@@ -38,8 +38,6 @@ public class IndentController extends BaseController {
 	
 	static private String TELEPHONE = null;
 	
-	//final Logger serLogger = LoggerFactory.getLogger("service"); // service log
-	
 	final Logger logger = LoggerFactory.getLogger("error");
 	
 	static private String URL_PREFIX = null;
