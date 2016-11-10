@@ -102,11 +102,13 @@ public class IndentController extends BaseController {
 					final String pName = result.getMessage() == null ? "" : result.getMessage();
 					info.append("下单购买【" + pName + "】,");
 					info.append("请您及时处理！");
-					// 发送短信
-					smsService.smsSend(TELEPHONE, info.toString());
+					// 发送下单提示短信
+					// TODO 将短信发送的业务规则转移至后台，采用MQ的方式发送短信
+					smsService.smsSend(templateId, telephone, content);
+					smsService.smsSend("131844", TELEPHONE, new String[]{indent.getIndent_tele(),currentTime,"【" + pName + "】"});
 					
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("Order submit at PC,Message is " + info.toString(),sessionInfo);
+					Log.info("Order submit at PC,Message is " + info.toString(),sessionInfo);
 					return new ModelAndView("redirect:/success");
 				}
 				

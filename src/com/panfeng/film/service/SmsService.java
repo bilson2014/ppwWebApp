@@ -11,5 +11,5 @@ public interface SmsService {
 	 * @param code 验证码
 	 * @return true : 成功; false : 失败
 	 */
-	public boolean smsSend(final String telephone,final String code);
+	public boolean smsSend(final String templateId , final String telephone, final String[] content);
 }

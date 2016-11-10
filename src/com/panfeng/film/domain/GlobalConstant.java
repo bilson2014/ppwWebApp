@@ -76,6 +76,11 @@ public final class GlobalConstant extends BaseObject {
 
 	public static String KEY_STORE_PASSWORD;
 	
+	// 短信验证码模版
+	public static String SMS_VERIFICATION_CODE;
+	
+	// 短信验证码时长
+	public static String SMS_CODE_DURATION;
 	
 	private static GlobalConstant GLOBALCONSTANT = new GlobalConstant();
 
@@ -102,6 +107,11 @@ public final class GlobalConstant extends BaseObject {
 				KEY_STORE_PASSWORD = propertis.getProperty("key.store.password");
 				
 				URL_HTTPS_PREFIX = propertis.getProperty("url.https.prefix");
+				
+				// sms
+				SMS_VERIFICATION_CODE = propertis.getProperty("sms.verification.code");
+				SMS_CODE_DURATION = propertis.getProperty("sms.code.duration");
+				
 			} catch (Exception e) {
 				
 			} finally{

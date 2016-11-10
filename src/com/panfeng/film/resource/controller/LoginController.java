@@ -283,8 +283,7 @@ public class LoginController extends BaseController {
 						info.setKey(false);
 						info.setValue("密码为空!");
 
-						serLogger
-								.info("Register User " + user.getUserName() + " failure ,Becase password is empty ...");
+						serLogger.info("Register User " + user.getUserName() + " failure ,Becase password is empty ...");
 						return info;
 					}
 				} else {
@@ -322,9 +321,9 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = smsService.smsSend(telephone, code);
+			final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_VERIFICATION_CODE + "分钟"});
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
+			Log.info("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}
 		return true;
