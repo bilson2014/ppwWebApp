@@ -196,7 +196,8 @@ public class UserController extends BaseController{
 		final String code = DataUtil.random(true, 6);
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
-		final boolean ret = smsService.smsSend(telephone, code);
+		// 发送短信验证码
+		final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE, telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
 		
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret,sessionInfo);

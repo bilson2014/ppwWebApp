@@ -653,6 +653,7 @@ public class PCController extends BaseController {
 			info.append("请求致电,");
 			info.append("请您及时处理！");
 			// 发送短信
+			// TODO 将业务规则转移至后端，将信息插入INDENT表，并且采用MQ的方式发送短信
 			final boolean result = smsService.smsSend(TELEPHONE, info.toString());
 
 			SessionInfo sessionInfo = getCurrentInfo(request);

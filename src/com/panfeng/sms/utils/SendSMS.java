@@ -10,7 +10,7 @@ public class SendSMS {
 
 	private static Logger logger = LoggerFactory.getLogger("service");
 	
-	public static boolean sendSms(final String telephone,final String code) {
+	public static boolean sendSms(final String templateId, final String telephone,final String[] content) {
 		HashMap<String, Object> result = null;
 
 		//初始化SDK
@@ -53,7 +53,7 @@ public class SendSMS {
 		//*result = restAPI.sendTemplateSMS("13800000000","1" ,new String[]{"6532","5"});																		  *
 		//*则13800000000手机号收到的短信内容是：【云通讯】您使用的是云通讯短信模板，您的验证码是6532，请于5分钟内正确输入     *
 		//*********************************************************************************************************************
-		result = restAPI.sendTemplateSMS(telephone,"28937" ,new String[]{code,"2"});
+		result = restAPI.sendTemplateSMS(telephone,templateId ,content);
 		
 		logger.info("SMS Send result : " + result);
 		if("000000".equals(result.get("statusCode"))){
