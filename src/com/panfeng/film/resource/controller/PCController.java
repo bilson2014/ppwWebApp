@@ -632,7 +632,7 @@ public class PCController extends BaseController {
 	@RequestMapping("/appointment/{telephone}")
 	public boolean appointment(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		if (telephone != null && !"".equals(telephone)) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/indent/appointment" + telephone;
+			final String url = GlobalConstant.URL_PREFIX + "portal/indent/appointment/" + telephone;
 			final String json = HttpUtil.httpGet(url, request);
 			boolean result = JsonUtil.toBean(json, boolean.class);
 			SessionInfo sessionInfo = getCurrentInfo(request);
