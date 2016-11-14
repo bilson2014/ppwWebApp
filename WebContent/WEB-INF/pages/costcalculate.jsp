@@ -1,0 +1,274 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
+<%-- import CSS --%>
+<spring:url value="/resources/css/index.css" var="indexCss" />
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss" />
+<spring:url value="/resources/lib/swiper/swiper.min.css" var="swiperCss" />
+<%-- import JS --%>
+<spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/requireJs/require.js" var="requireJs" />
+<spring:url value="/resources/lib/swiper/swiper.min.js" var="swiperJs" />
+<spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
+<spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
+<spring:url value="/resources/js/homePage.js" var="homePageJs" />
+<spring:url value="/resources/images" var="imgPath" />
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
+	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
+	 <title>拍片网－成本计算器</title>
+    <link rel="stylesheet" href="../newHomePage/resources/css/costCalculator.css">
+    <link rel="stylesheet" href="../newHomePage/resources/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="../newHomePage/resources/lib/Bootstrap/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	<!--[if lt IE 9]>
+		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
+	<![endif]-->
+	<script type="text/javascript">
+		var _vds = _vds || [];
+		window._vds = _vds;
+		(function(){
+		  _vds.push(['setAccountId', '9f2e33a3d43b5d78']);
+		  (function() {
+		    var vds = document.createElement('script');
+		    vds.type='text/javascript';
+		    vds.async = true;
+		    vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+		    var s = document.getElementsByTagName('script')[0];
+		    s.parentNode.insertBefore(vds, s);
+		  })();
+		})();
+	</script>
+</head>
+<body>
+ 	<div class="header" id="header">
+        <div class="menu-bar nav">
+            <div class="left-part">
+                <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
+                <a href="<spring:url value='/mgr/index'/>" class="header-item">首页</a>
+                <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">我要拍片</a>
+                <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">精品案例</a>
+                <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">服务流程</a>
+                <a class="header-item header-item-last" id="showVideo" target="_parent">
+                    <div class="showVideo">
+                    </div>
+                    拍片网介绍
+                </a>
+                <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">
+                    <div class="tele-h-svg"></div>
+                </a>
+            </div>
+            <div class="middle-part">
+                <div class="search-box">
+                    <form method="get" action="/search" id="s-form">
+                        <div class="bannerSearchFind"></div>
+                        <input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+                        <a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
+                        <ul id="shelper" class="shelper-lucency"></ul>
+                    </form>
+                </div>
+            </div>
+            <div class="right-part">
+                <a class="header-item login-item" target="_self">登录</a>
+                <a class="header-item login-item" target="_self">注册</a>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="costBackguound">
+            <div class="costContent">
+                <div class="info">
+                    <div>拍片价格计算器</div>
+                    <div>COST EVALUATOR</div>
+                    <div>
+                        <label></label>此价格仅限参考</div>
+                    <div>
+                        <label></label>最终价格以视频管家报价为准</div>
+                </div>
+                <div class="calculator">
+                    <div class="bg"></div>
+                    <div class="price">
+                        <label>￥</label>
+                        <label>500000</label>
+                    </div>
+                    <div class="controlWidth">
+                        <div class="youNeed"> 填写您的拍摄需求，计算您的拍片价格</div>
+                        <form method="get" action="/search">
+                            <div class="calItem">
+                                <div class="title">视频类别</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>活动视频</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>活动视频</li>
+                                        <li>产品广告(TVC)</li>
+                                        <li>企业宣传</li>
+                                        <li>微电影</li>
+                                        <li>融资路演</li>
+                                        <li>众筹视频</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="calItem">
+                                <div class="title">时长</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>1 ~ 3 分钟</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>1 ~ 3 分钟</li>
+                                        <li>3 ~ 5 分钟</li>
+                                        <li>5 ~ 10 分钟</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                              <div class="calItem">
+                                <div class="title">导演团队</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>专业级导演团队</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>专业级导演团队(3-5 年)</li>
+                                        <li>广告级导演团队(5-8 年)</li>
+                                        <li>电影级导演团队(8-10年)</li>
+                                    </ul>
+                                </div>
+                                <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
+                            </div>
+
+                              <div class="calItem">
+                                <div class="title">拍摄设备</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>专业级拍摄设备 2K</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>专业级拍摄设备 2K</li>
+                                        <li>广告级拍摄设备 4K</li>
+                                        <li>电影级拍摄设备 4K</li>
+                                    </ul>
+                                </div>
+                                  <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
+                            </div>
+
+                             <div class="calItem">
+                                <div class="title">演员</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>无演员</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>无演员</li>
+                                        <li>自有演员</li>
+                                        <li>普通演员</li>
+                                        <li>一线演员</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                             <div class="calItem">
+                                <div class="title" >动画</div>
+                                <div class="dropdown costSelect" id="type">
+                                    <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
+                                        <span>无动画</span>
+                                        <div class="carets"></div>
+                                    </div>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
+                                        <li>无动画</li>
+                                        <li>三维动画</li>
+                                        <li>二维动画</li>
+                                        <li>MG动画</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                             <div class="calItem inputWidth">
+                                <div class="title" data-content="哼">您的联系方式</div>
+                                <input>
+                            </div>
+
+                            <div class="calItem inputWidth">
+                                <button>开始计算</button>
+                                <button>清楚重填</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--新版底部-->
+        <div class="foot3">
+            <div class="footContent">
+                <div class="contentTop">
+                    <div class="topItem codeWidth">
+                        <div class="Twocode"></div>
+                        <div class="smWord">扫一扫 关注官方微信</div>
+                    </div>
+                    <div class="topItem commonWidth">
+                        <div class="title"><a>登录</a></div>
+                        <div class="cusLogin iconItem"><a>客户登录</a></div>
+                        <div class="proLogin iconItem"><a>供应商登录</a></div>
+                        <div class="manLogin iconItem"><a>管家登录</a></div>
+                        <div class="reg iconItem"><a>注册</a></div>
+                    </div>
+                    <div class="topItem commonWidth">
+                        <div class="title"><a>关于拍片网</a></div>
+                        <div class="noiconItem"><a>了解我们</a></div>
+                        <div class="noiconItem"><a>加入我们</a></div>
+                        <div class="noiconItem"><a>公司活动</a></div>
+                        <div class="noiconItem"><a>团队介绍</a></div>
+                    </div>
+                    <div class="topItem commonWidth">
+                        <div class="title"><a>服务</a></div>
+                        <div class="noiconItem"><a>服务流程</a></div>
+                        <div class="noiconItem"><a>服务协议</a></div>
+                        <div class="noiconItem"><a>找拍摄团队</a></div>
+                        <div class="noiconItem"><a>我要发作品</a></div>
+                    </div>
+                    <div class="topItem onLineWidth">
+                        <div class="title"><a>在线联系我们</a></div>
+                        <div class="cusSer iconItem"><a>客户客服</a></div>
+                        <div class="proSer iconItem"><a>供应商客服</a></div>
+                        <div class="email iconItem"><a>bdmarket@paipianwang.cn</a></div>
+                    </div>
+                    <div class="topItem">
+                        <div class="title"><a>咨询电话</a></div>
+                        <div class="tel"><a>400-660-9728</a></div>
+                        <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
+                    </div>
+                </div>
+                <div class="contentBottom">
+                    <div>版权信息</div>
+                    <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
+                    <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
+                    <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                </div>
+            </div>
+        </div>
+        <!--新版底部-->
+    </div>
+    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/jquery/waypoints.min.js"></script>
+    <script type="text/javascript" defer async="true" src="../newHomePage/resources/js/cost.js"></script>
+</body>
+</html>

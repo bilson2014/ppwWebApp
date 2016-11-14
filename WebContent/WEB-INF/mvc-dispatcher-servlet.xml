@@ -34,6 +34,8 @@
      <!--测试-->
     
     <mvc:view-controller path="/biao/biao" view-name="/biao/biao" />
+     <!--成本计算器-->
+    <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
     
      <!--END-->
     
