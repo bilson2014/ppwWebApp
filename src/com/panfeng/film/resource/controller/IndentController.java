@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +20,6 @@ import com.panfeng.film.domain.Result;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.security.AESUtil;
-import com.panfeng.film.service.SmsService;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
@@ -33,9 +28,6 @@ import com.panfeng.film.util.Log;
 @RequestMapping("/order")
 public class IndentController extends BaseController {
 
-	@Autowired
-	private SmsService smsService = null;
-	
 	static private String TELEPHONE = null;
 	
 	final Logger logger = LoggerFactory.getLogger("error");
@@ -65,7 +57,6 @@ public class IndentController extends BaseController {
 	public ModelAndView successView(final Indent indent,final HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		request.setCharacterEncoding("UTF-8");
-		final String custom = indent.getIndentName().trim();
 		final String url = URL_PREFIX + "portal/indent/order";
 		try {
 			indent.setIndentName(URLEncoder.encode(indent.getIndentName(), "UTF-8"));
@@ -87,10 +78,11 @@ public class IndentController extends BaseController {
 			
 			String str = HttpUtil.httpPost(url, indent,request);
 			if(str != null && !"".equals(str)){
-				
 				final Result result = JsonUtil.toBean(str, Result.class);
 				if(result.isRet()){
-					
+					//modify by wlc 2016年11月10日 14:10:10
+					//给业务人员发送短信挪到后台MQ发送 begin
+					/*
 					// 当前系统时间
 					DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String currentTime = format.format(new Date());
@@ -103,12 +95,12 @@ public class IndentController extends BaseController {
 					info.append("下单购买【" + pName + "】,");
 					info.append("请您及时处理！");
 					// 发送下单提示短信
-					// TODO 将短信发送的业务规则转移至后台，采用MQ的方式发送短信
 					smsService.smsSend(templateId, telephone, content);
 					smsService.smsSend("131844", TELEPHONE, new String[]{indent.getIndent_tele(),currentTime,"【" + pName + "】"});
 					
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.info("Order submit at PC,Message is " + info.toString(),sessionInfo);
+					Log.info("Order submit at PC,Message is " + info.toString(),sessionInfo);*/
+					//给业务人员发送短信挪到后台MQ发送end
 					return new ModelAndView("redirect:/success");
 				}
 				

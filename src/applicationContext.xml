@@ -11,20 +11,16 @@
 		                   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-	<context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties,
-											classpath:mq.properties" />
+	<context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties" />
 
 	<context:annotation-config />
 
 	<tx:annotation-driven />
 	
-	<import resource="spring-mq.xml"/>
-	
 	<!-- 扫描service -->
 	<context:component-scan base-package="com.panfeng.film.service,
 										  com.panfeng.film.listener,
-										  com.panfeng.film.dao,
-										  com.panfeng.film.mq.service" />
+										  com.panfeng.film.dao" />
 
 	<!-- log here -->
 	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />
@@ -53,8 +49,7 @@
 						<prop key="kaptcha.textproducer.font.size">32</prop>  
 						<prop key="kaptcha.textproducer.char.length">4</prop>  
 						<prop key="kaptcha.textproducer.font.names">TimesNewMan</prop>  
-						<!-- <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop> -->
-						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop> 
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
 						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
 						<prop key="kaptcha.background.clear.from">white</prop>
 						<prop key="kaptcha.background.clear.to">white</prop>
