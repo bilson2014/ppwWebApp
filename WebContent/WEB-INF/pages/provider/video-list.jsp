@@ -8,7 +8,6 @@
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.panfeng.film.resource.model.Product"%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
@@ -73,7 +72,7 @@
 </style>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${cKey }" id="company-key"/>
 	<input type="hidden" value="${cType }" id="company-type"/>
 	<div class="content-wrap">
@@ -109,9 +108,9 @@
 											</c:if>
 											<c:if test="${product.picLDUrl != null}">
 												<%-- <img class="media-object" src='/product/img<c:out value="${product.picLDUrl }"/>' /> --%>
-												<img class="media-object" src='${DFSurl }<c:out value="${product.picLDUrl }"/>' />
+												<img class="media-object" src='${file_locate_storage_path }${product.picLDUrl }' />
 											</c:if>
-											<input type="hidden" id="media-video" value='<c:out value="${product.videoUrl }"/>'/>
+											<input type="hidden" id="media-video" value='${product.videoUrl }'/>
 										</a>
 										<div class="media-body">
 											<h4 class="media-heading"><label>标题：</label><c:out value="${product.productName }"/></h4>

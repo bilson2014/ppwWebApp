@@ -1192,7 +1192,7 @@ function loadcommentdata(more) {
 						var user = msg[i].userViewModel;
 						var text = "未知";
 						if (user != null) {
-							imgx.attr("src",user.imgUrl);
+							imgx.attr("src", user.imgUrl);
 							text = user.userName;
 						}
 						td1.append(imgx);
@@ -2460,22 +2460,6 @@ function clickLink(){
 	
 	
 }
-
-
-//function shareSpace(){ // 分享
-//	$('.share').on('click',function(){
-//		var shareUrl = getHostName() + getContextPath() + '/phone/play/' + $(this).data('no');
-//		var share_title = '分享链接';
-//		var imgUrl = '';
-//		var imgPath = '';
-//		if(imgUrl != undefined && imgUrl != null){
-//			var img_Name = getFileName(imgUrl);
-//			imgPath = getHostName() + '/product/img/' + img_Name;
-//		}
-//		share.init(shareUrl, share_title, '');
-//	});
-//}
-
 
 var ControlTree = {
 		CommonDoingProjectTree : function(){

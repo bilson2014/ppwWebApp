@@ -111,8 +111,8 @@ define(['jquery'],function($){
 			return window.location.protocol + '//' + window.location.host;
 		},
 		getDfsHostName:function(){
-			var fdfsPath = $('#Fastdfs_path').val();
-			return fdfsPath == undefined ? "http://resources.apaipian.com/" : $('#Fastdfs_path').val();
+			var rPath = $('#storage_node').val();
+			return rPath == undefined ? "http://resource.apaipian.com/resource/" : rPath;
 		}
 
 	}

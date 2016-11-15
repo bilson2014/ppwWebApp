@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.util.Constants;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
@@ -76,11 +75,6 @@ public class SolrController extends BaseController {
 					if(s != null){
 						total = s.getTotal(); // 设置总数
 					}
-					for (final Solr solr : list) {
-						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(Constants.DFS_PATH + solr.getPicLDUrl());
-						}
-					}
 				}
 				model.addAttribute("list", list);
 				model.addAttribute("total", total);
@@ -108,13 +102,6 @@ public class SolrController extends BaseController {
 			
 			if (json != null && !"".equals(json)) {
 				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list != null && list.size() > 0) {
-					for (final Solr solr : list) {
-						if(solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())){
-							solr.setPicLDUrl(Constants.DFS_PATH + solr.getPicLDUrl());
-						}
-					}
-				}
 				return list;
 			}
 		} catch (UnsupportedEncodingException e) {

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
@@ -45,7 +44,7 @@
 	<script src="${providerStatusJs }"></script>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${status }" id="company-status"/>
 	<input type="hidden" value="${cKey }" id="company-key"/>
 	<div class="content-wrap">

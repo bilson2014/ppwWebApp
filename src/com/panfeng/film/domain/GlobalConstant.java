@@ -47,6 +47,10 @@ public final class GlobalConstant extends BaseObject {
 	
 	public static final String ORDER_TOKEN_UNIQUE_KEY = "Jackyang1100_abc"; // 订单提交token加密 AES key
 	
+	public static final String STORAGE_NODE_RELATIONSHIP = "storage_node_relationship"; // 文件系统存储节点对应关系
+	
+	public static final String FILE_LOCATE_STORAGE_PATH = "file_locate_storage_path"; // 分布式文件系统storage节点地址
+	
 	public static String FILE_PROFIX; // 文件前缀
 	
 	public static String VIDEO_IMAGE_PERFIX; // 视频前缀
@@ -82,6 +86,9 @@ public final class GlobalConstant extends BaseObject {
 	// 短信验证码时长
 	public static String SMS_CODE_DURATION;
 	
+	// 文件系统备用下载服务路径
+	public static String FDFS_BACKUP_SERVER_PATH;
+	
 	private static GlobalConstant GLOBALCONSTANT = new GlobalConstant();
 
 	
@@ -111,7 +118,7 @@ public final class GlobalConstant extends BaseObject {
 				// sms
 				SMS_VERIFICATION_CODE = propertis.getProperty("sms.verification.code");
 				SMS_CODE_DURATION = propertis.getProperty("sms.code.duration");
-				
+				FDFS_BACKUP_SERVER_PATH = propertis.getProperty("backup.server.dfs.url");
 			} catch (Exception e) {
 				
 			} finally{

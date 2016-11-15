@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -61,12 +60,12 @@
 	<![endif]-->
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
-			<!-- 成功提示框 start -->
-					<div class="tooltip-success-show" style="display: none;">
-						<label class="tooltip-success-message">信息更新成功</label>
-					</div>
-					<!-- 成功提示框  end -->
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<!-- 成功提示框 start -->
+	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	<!-- 成功提示框  end -->
 	<input type="hidden" value="${cKey }" id="company-id"/>
 	<input type="hidden" value="${productKey }" id="p-id"/>
 	<input type="hidden" value="${action }" id="action"/>
