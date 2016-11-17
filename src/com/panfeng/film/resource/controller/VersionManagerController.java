@@ -918,3 +918,4 @@ public class VersionManagerController extends BaseController {
 		indentComment.setIcUserType(info.getSessionType());
 	}
 }
+			

@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="/mytaglib"%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/provider/leader.css" var="providerLeaderCss"/>
@@ -43,8 +42,8 @@
 	<script src="${leaderJs}"></script>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
-  <input id="unqiueId" value="${unqiueId}" />
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+  	<input id="unqiueId" value="${unqiueId}" />
  <div class="header">
   		<div class="menu-bar nav">
   			<div class="left-part">
@@ -214,6 +213,9 @@
 											<li>	
 												<input type="checkbox" name="business" value="0" /> 广告
 									    	</li>
+									    	<li>	
+												<input type="checkbox" name="business" value="16" /> TVC
+									    	</li>
 									    	<li>
 												<input type="checkbox" name="business" value="1"/> 宣传片
 									   	 	</li>
@@ -230,6 +232,9 @@
 									  	  	</li>
 									    	<li>
 												<input type="checkbox" name="business" value="5"/> 电视栏目
+									    	</li>
+									    	<li>
+												<input type="checkbox" name="business" value="17"/> MV
 									    	</li>
 									   	 	<li>
 												<input type="checkbox" name="business" value="6"/> 三维动画
@@ -251,11 +256,11 @@
 											<li>
 												<input type="checkbox" name="business" value="11"/> 产品拍摄
 										    </li>
-										</ul>    
-										<ul class="ul-step-two">
-											<li>
+										    <li>
 												<input type="checkbox" name="business" value="12"/> 微电影
 										    </li>
+										</ul>    
+										<ul class="ul-step-two" style="vertical-align:top">
 										    <li>
 												<input type="checkbox" name="business" value="13"/> 航拍
 										    </li>
@@ -264,6 +269,9 @@
 										    </li>
 										    <li>
 												<input type="checkbox" name="business" value="15"/> 后期制作
+										    </li>
+										    <li>
+												<input type="checkbox" name="business" value="18"/> 包装
 										    </li>
 										 </ul>   
 										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>

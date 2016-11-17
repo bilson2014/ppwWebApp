@@ -2,7 +2,6 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -72,33 +71,9 @@ var="ajaxfileuploadJs" />
 
 </head>
 <body >
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
-<div class="header">
-     <div class="errorDiv"  id="errorDiv" style="display: none;">error</div>
-     	<!-- show Modal start -->
-<%-- 		<div class="modal" id="isShow" data-backdrop="static" data-keyboard=true>
-			<div class="modal-dialog">
-				<div class="modal-content model-distance" id="mymodal-content">
-					<div class="modal-body" id="mymodal-body">
-						
-						<div class="alert alert-warning" role="alert">数据处理中请勿关闭页面</div>
-						<img id="circleId" src="${imgPath }/flow/circle.png"/>
-						    <div class="load-word">加载中</div>
-							<div class="spinner">
-							  <div class="bounce1"></div>
-							  <div class="bounce2"></div>
-							  <div class="bounce3"></div>
-							</div>
-					</div>
-					
-				</div>
-			</div>
-		</div> --%>
-		
-		<!-- show Modal end -->
-
-
-
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<div class="header">
+     	<div class="errorDiv"  id="errorDiv" style="display: none;">error</div>
 		<div class="menu-bar nav">
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
@@ -205,10 +180,7 @@ var="ajaxfileuploadJs" />
 							</div>
 							
 						<label id="helpLabel" style="position: relative;left: 273px;font-size: 14px;color: #B8B8B8">无协同人信息</label>
-							
-							
                    </div>
-                   
 
                    <div class="baseinfo-table">
                    		<input type="hidden" class="userId" id="userId">
@@ -315,10 +287,6 @@ var="ajaxfileuploadJs" />
 					</div>
 					<textarea rows="2" cols="90" class="textarea-baseinfo description form-control"></textarea>
 				</div>
-			
-
-				
-  
           	</div>
         </div>	
 	</div>
@@ -364,81 +332,75 @@ var="ajaxfileuploadJs" />
 		<button  class="indent-btn" id="indent-btn"  >确认</button>
 		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
 	</div>  	
-
-	            
 	            <div class="bottom-div">
-	                      <div class="loadmore-div">
-				       			<div class="load-word">加载中</div>
-										<div class="spinner">
-										  <div class="bounce1"></div>
-										  <div class="bounce2"></div>
-										  <div class="bounce3"></div>
-										</div>
-								</div>
-						  </div>	
-				</div>	
-	
-	
-</div>
-
-<div class="footer">
-		<!-- 底栏 start -->
-		<div class="footer-wrap">
-			<div class="footer-content">
-			
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >登录</a>
-					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
-					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
-				</div>
+                      <div class="loadmore-div">
+			       			<div class="load-word">加载中</div>
+									<div class="spinner">
+									  <div class="bounce1"></div>
+									  <div class="bounce2"></div>
+									  <div class="bounce3"></div>
+									</div>
+							</div>
+					  </div>	
+			</div>
+	<div class="footer">
+			<!-- 底栏 start -->
+			<div class="footer-wrap">
+				<div class="footer-content">
 				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >联系我们</a>
-					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
-					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
-					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
-					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >服务</a>
-					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
+					<div class="footer-column">
+						<a href="javascript:void(0);" class="title" >登录</a>
+						<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
+						<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
+					</div>
 					
-					<a href="javascript:void(0);" class="top-margin">工作时间</a>
-					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
+					<div class="footer-column">
+						<a href="javascript:void(0);" class="title" >联系我们</a>
+						<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
+						<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>2640178216</h3></a>
+						<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>3299894058</h3></a>
+						<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
+					</div>
+					
+					<div class="footer-column">
+						<a href="javascript:void(0);" class="title" >服务</a>
+						<a href="<spring:url value='/order-flow.html' />">服务流程</a>
+						
+						<a href="javascript:void(0);" class="top-margin">工作时间</a>
+						<a href="javascript:void(0);">工作日9:00 - 18:00</a>
+					</div>
+					
+					<div class="footer-column">
+						<a href="javascript:void(0);" class="title" >授权 / 条款</a>
+						<a href="<spring:url value='/company-service.html' />">使用协议</a>
+						<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
+					</div>
+					
+					<div class="footer-column">
+						<a href="javascript:void(0);" class="title" >了解拍片网</a>
+						<a href="<spring:url value='/about-us.html' />">了解我们</a>
+						<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
+						<a href="<spring:url value='/company-activity.html' />">公司活动</a>
+						<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
+					</div>
+	
+					<div class="footer-column">
+						<div class="mark-icon"></div>
+						<h4>关注官方微信</h4>
+					</div>
+	
+					<div class="footer-notice">
+						<h2>版权信息</h2>
+						<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
+						<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
+					</div>
 				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >授权 / 条款</a>
-					<a href="<spring:url value='/company-service.html' />">使用协议</a>
-					<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >了解拍片网</a>
-					<a href="<spring:url value='/about-us.html' />">了解我们</a>
-					<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
-					<a href="<spring:url value='/company-activity.html' />">公司活动</a>
-					<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
-				</div>
-
-				<div class="footer-column">
-					<div class="mark-icon"></div>
-					<h4>关注官方微信</h4>
-				</div>
-
-				<div class="footer-notice">
-					<h2>版权信息</h2>
-					<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
-					<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
+				<div class="footer-box">
+					&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
 				</div>
 			</div>
-			<div class="footer-box">
-				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
-			</div>
+			<input type="hidden" id="key" style="display: none;" value="${key}">
+			<label class="state" >${state }</label>
 		</div>
-		<input type="hidden" id="key" style="display: none;" value="${key}">
-		<label class="state" >${state }</label>
-	</div>
 </body>
 </html>

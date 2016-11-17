@@ -9,7 +9,6 @@
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.panfeng.film.resource.model.Solr"%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/search.css" var="searchCss"/>
 
@@ -43,7 +42,7 @@
 	<![endif]-->
 </head>
 <body>
-	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${q }" id="q"/>
 	<input type="hidden" value="${price }" id="price"/>
 	<input type="hidden" value="${item}" id="item"/>
@@ -170,7 +169,7 @@
 						</c:if>
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
-								<img class="img-card-4" src="/product/img/${solr.picLDUrl }" />
+								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" />
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>

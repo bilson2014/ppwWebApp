@@ -260,8 +260,7 @@ function loadProduction(start){
 			if(list != null && list.length > 0){
 				var $body = '';
 				$.each(list,function(i,solr){
-					var imgName = getFileName(solr.picLDUrl);
-					var imgPath = getHostName() + '/product/img/' + imgName;
+					var imgPath = getDfsHostName() + solr.picLDUrl;
 					if(i % 4 == 0){
 						$body += '<div class="video-row">';
 					}
@@ -272,7 +271,6 @@ function loadProduction(start){
 					$body += '</a>';
 					$body += '<div class="video-desc-section">';
 					$body += '<h3>'+ solr.productName +'</h3>';
-					/*$body += '<h4>'+ solr.teamName +'</h4>';*/
 					$body += '<h4></h4>';
 					$body += '<div class="video-desc">';
 					$body += solr.pDescription;

@@ -3,7 +3,6 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/payment/success.css" var="errorCss"/>
 
@@ -32,7 +31,7 @@
 	
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">

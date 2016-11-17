@@ -1096,48 +1096,53 @@ function loadcommentdata(more) {
 	$("#loadHeight").addClass('loadHeight');
 	var key = getCurrentProject();
 	$("#loadmore-CommentGIF").removeClass('hide');
-	if (key != null) {
-		loadData(function(msg) {
-			tab.html("");
-			$("#loadmore-CommentGIF").addClass('hide');
-			$("#loadHeight").removeClass('loadHeight');
-			if (msg.length == 0) {
-				tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
-				$(".more-comment").hide();
-			}
-			for (var i = 0; i < msg.length; i++) {
-				var tr = $("<tr></tr>");
-				var imgx = $("<img class=\"message-portrait-img\""
-						+ " src=\"/resources/images/flow/file.png\">");
-				var td1 = $("<td class=\"message-portrait\" rowspan=\"2\"></td>");
-				var user = msg[i].userViewModel;
-				var text = "未知";
-				if (user != null) {
-					imgx.attr("src", getDfsHostName() + user.imgUrl);
-					text = user.userName;
-				}
-				td1.append(imgx);
-				var td2 = $("<td><label class=\"msg-comm-name\">" + text
-						+ "</label><label class=\"msg-comm-time\">"
-						+ msg[i].icCreateDate.split(' ')[0] + "</label></td>");
-				tr.append(td1);
-				tr.append(td2);
-				tab.append(tr);
-				var tr2 = $("<tr></tr>");
-				var td2_1 = ("<td>" + msg[i].icContent + "</tf>");
-				tr2.append(td2_1);
-				tab.append(tr2);
-				if (!more && i == 2)
-					break;
-			}
-			if (msg.length <= 2) {
-				$('#more-comment').hide();
-			} else {
-				$('#more-comment').show();
-			}
-		}, getContextPath() + '/mgr/comment/getAllComment', $.toJSON({
-			id : key
-		}));
+	if(key != null ){
+		loadData(
+				function(msg) {
+					tab.html("");
+					$("#loadmore-CommentGIF").addClass('hide');
+					$("#loadHeight").removeClass('loadHeight');
+					if(msg.length==0){
+						tab.html(" <img  class=\"nomessage\" src=\"/resources/images/flow/nomessage.png\"/>");
+						$(".more-comment").hide();
+					}
+					for (var i = 0; i < msg.length; i++) {
+						var tr = $("<tr></tr>");
+						var imgx=$("<img class=\"message-portrait-img\""
+								+ " src=\"/resources/images/flow/file.png\">");
+						var td1 = $("<td class=\"message-portrait\" rowspan=\"2\"></td>");
+
+						var user = msg[i].userViewModel;
+						var text = "未知";
+						if (user != null) {
+							imgx.attr("src", user.imgUrl);
+							text = user.userName;
+						}
+						td1.append(imgx);
+						var td2 = $("<td><label class=\"msg-comm-name\">"
+								+ text
+								+ "</label><label class=\"msg-comm-time\">"+msg[i].icCreateDate.split(' ')[0]+"</label></td>");
+						tr.append(td1);
+						tr.append(td2);
+						tab.append(tr);
+
+						var tr2 = $("<tr></tr>");
+						var td2_1 = ("<td>" + msg[i].icContent + "</tf>");
+						tr2.append(td2_1);
+
+						tab.append(tr2);
+
+						if (!more && i == 2)
+							break;
+					}
+					if(msg.length <= 2){
+						$('#more-comment').hide();
+					}else{
+						$('#more-comment').show();
+					}
+				}, getContextPath() + '/mgr/comment/getAllComment', $.toJSON({
+					id : key
+			}));
 	}
 }
 var initClick = true;
@@ -2324,7 +2329,7 @@ function clickLink() {
 			});
 
 }
-
+ 
 var ControlTree = {
 	CommonDoingProjectTree : function() {
 		$('#doingProjectId').slideDown();

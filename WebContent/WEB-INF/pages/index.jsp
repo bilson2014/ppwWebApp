@@ -3,7 +3,6 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/index.css" var="indexCss"/>
 
@@ -46,7 +45,7 @@
 	</script>
 </head>
 <body>
-	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<div class="header">
 		<div class="menu-bar nav">
 			<div class="left-part">
@@ -111,7 +110,7 @@
 					    <li>
 					       <section>
 					        <video preload="auto" loop="" autoplay  poster="${imgPath}/banner/flex2.jpg" class="video-bg">
-				                <source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
+				                <source src="http://resource.apaipian.com/resource/group1/M00/00/27/CgpmTlgix8CATEWpAKKW9vRGlus800.mp4" type="video/mp4">
 			                </video>
 			                </section>
 			            </li>

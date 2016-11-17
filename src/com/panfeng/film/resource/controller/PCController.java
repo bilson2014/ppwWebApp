@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -40,7 +37,6 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.service.SmsService;
 import com.panfeng.film.service.UserService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
@@ -58,8 +54,6 @@ import com.panfeng.film.util.ValidateUtil;
 public class PCController extends BaseController {
 
 	@Autowired
-	private SmsService smsService = null;
-	@Autowired
 	private UserService userService;
 
 	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
@@ -68,10 +62,6 @@ public class PCController extends BaseController {
 
 	static String URL_PREFIX = null;
 
-	static private String TELEPHONE = null;
-
-	// private static String PROVIDER_SESSION = "provider_session";
-
 	public PCController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
@@ -79,7 +69,6 @@ public class PCController extends BaseController {
 				Properties propertis = new Properties();
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
-				TELEPHONE = propertis.getProperty("service_tel");
 			} catch (IOException e) {
 				Log.error("PCController method:constructor load Properties fail ...",null);
 				e.printStackTrace();
@@ -511,11 +500,6 @@ public class PCController extends BaseController {
 					if (s != null) {
 						total = s.getTotal(); // 设置总数
 					}
-					for (final Solr solr : list) {
-						if (solr.getPicLDUrl() != null && !"".equals(solr.getPicLDUrl())) {
-							solr.setPicLDUrl(solr.getPicLDUrl().split(GlobalConstant.VIDEO_IMAGE_PERFIX)[1]);
-						}
-					}
 				}
 				model.addAttribute("list", list);
 				model.addAttribute("total", total);
@@ -641,23 +625,12 @@ public class PCController extends BaseController {
 	// 发送预约提示信息
 	@RequestMapping("/appointment/{telephone}")
 	public boolean appointment(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
-
 		if (telephone != null && !"".equals(telephone)) {
-			// 当前系统时间
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String currentTime = format.format(new Date());
-
-			final StringBuffer info = new StringBuffer();
-			info.append("顾客预约提示信息：手机号码: " + telephone);
-			info.append(" 的客户,");
-			info.append("于" + currentTime);
-			info.append("请求致电,");
-			info.append("请您及时处理！");
-			// 发送短信
-			final boolean result = smsService.smsSend(TELEPHONE, info.toString());
-
+			final String url = GlobalConstant.URL_PREFIX + "portal/indent/appointment/" + telephone;
+			final String json = HttpUtil.httpGet(url, request);
+			boolean result = JsonUtil.toBean(json, boolean.class);
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Appointment Message :" + info.toString() + " ,telephone:" + telephone,sessionInfo);
+			Log.error("send Message to telephone:" + telephone,sessionInfo);
 			return result;
 		}
 		return false;
@@ -704,16 +677,6 @@ public class PCController extends BaseController {
 		List<Staff> list = new ArrayList<Staff>();
 		if (ValidateUtil.isValid(json)) {
 			list = JsonUtil.fromJsonArray(json, Staff.class);
-			//modify by wlc 2016年10月25日 11:09:58
-			//修改为DFS路径
-			/*if (ValidateUtil.isValid(list)) {
-				for (final Staff staff : list) {
-					final String path = staff.getStaffImageUrl();
-					if (ValidateUtil.isValid(path)) {
-						staff.setStaffImageUrl(path.split(GlobalConstant.STAFF_IMAGE_PERIX)[1]);
-					}
-				}
-			}*/
 			model.addAttribute("list", list);
 		}
 

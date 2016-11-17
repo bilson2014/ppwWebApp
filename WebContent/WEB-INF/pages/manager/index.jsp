@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -101,7 +100,7 @@
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<!-- <div class="circle-div"></div> -->
 
 	<div class="header">

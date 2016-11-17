@@ -174,23 +174,6 @@ public class LoginController extends BaseController {
 	/**
 	 * 验证手机号码是否注册
 	 */
-//	@RequestMapping("/validation/phone")
-//	public boolean validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
-//		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
-//		String json = HttpUtil.httpGet(url, request);
-//		if ("true".equals(json)) { // 被注册
-//			serLogger.info("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...");
-//			return true;
-//		} else if ("false".equals(json)) { // 未被注册
-//			serLogger.info("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...");
-//			return false;
-//		}
-//		return false;
-//	}
-	
-	/**
-	 * 验证手机号码是否注册
-	 */
 	@RequestMapping("/validation/phone")
 	public BaseMsg validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
 		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
@@ -300,8 +283,7 @@ public class LoginController extends BaseController {
 						info.setKey(false);
 						info.setValue("密码为空!");
 
-						serLogger
-								.info("Register User " + user.getUserName() + " failure ,Becase password is empty ...");
+						serLogger.info("Register User " + user.getUserName() + " failure ,Becase password is empty ...");
 						return info;
 					}
 				} else {
@@ -339,9 +321,9 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = smsService.smsSend(telephone, code);
+			final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
+			Log.info("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}
 		return true;
