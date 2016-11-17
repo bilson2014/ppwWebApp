@@ -270,6 +270,9 @@
 										<label>
 											<input type="checkbox" name="business" value="0" /> 广告
 									    </label>
+									    <label>
+											<input type="checkbox" name="business" value="16" /> TVC
+									    </label>
 									    
 									    <label>
 											<input type="checkbox" name="business" value="1"/> 宣传片
@@ -289,6 +292,10 @@
 									    
 									    <label>
 											<input type="checkbox" name="business" value="5"/> 电视栏目
+									    </label>
+									    
+									     <label>
+											<input type="checkbox" name="business" value="17"/> MV
 									    </label>
 									    
 									    <label>
@@ -329,6 +336,10 @@
 									    
 									     <label>
 											<input type="checkbox" name="business" value="15"/> 后期制作
+									    </label>
+									    
+									     <label>
+											<input type="checkbox" name="business" value="18"/> 包装
 									    </label>
 									</div>
 									
