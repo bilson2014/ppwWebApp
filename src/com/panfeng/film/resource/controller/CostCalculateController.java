@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.panfeng.film.resource.model.CostCalculate;
@@ -56,7 +57,7 @@ public class CostCalculateController extends BaseController{
 	
 	
 	@RequestMapping(value="cost")
-	public Map<String, Object> costCalculate(CostCalculate calculate,
+	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate,
 			HttpServletRequest request){
 		Map<String, Object> map = new HashMap<>();
 		int cost = calculateService.dealCost(typeAddTeam,calculate);
@@ -64,6 +65,7 @@ public class CostCalculateController extends BaseController{
 		//提交订单
 		Indent indent = new Indent();
 		indent.setIndent_tele(calculate.getPhone());
+		indent.setIndentId(calculate.getIndentId());
 		indent.setIndentName("新订单");
 		indent.setIndentType(1);
 		indent.setServiceId(-1l);

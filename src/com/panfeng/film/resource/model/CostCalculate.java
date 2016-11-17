@@ -20,8 +20,16 @@ public class CostCalculate {
 	
 	private String phone;
 	
+	private long indentId;
+	
 	private String description;//条件组合字符串：活动视频,专业级导演团队。。。。。
 	
+	public long getIndentId() {
+		return indentId;
+	}
+	public void setIndentId(long indentId) {
+		this.indentId = indentId;
+	}
 	public String getDescription() {
 		return description;
 	}
