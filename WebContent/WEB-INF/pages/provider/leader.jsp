@@ -213,6 +213,9 @@
 											<li>	
 												<input type="checkbox" name="business" value="0" /> 广告
 									    	</li>
+									    	<li>	
+												<input type="checkbox" name="business" value="16" /> TVC
+									    	</li>
 									    	<li>
 												<input type="checkbox" name="business" value="1"/> 宣传片
 									   	 	</li>
@@ -229,6 +232,9 @@
 									  	  	</li>
 									    	<li>
 												<input type="checkbox" name="business" value="5"/> 电视栏目
+									    	</li>
+									    	<li>
+												<input type="checkbox" name="business" value="17"/> MV
 									    	</li>
 									   	 	<li>
 												<input type="checkbox" name="business" value="6"/> 三维动画
@@ -250,11 +256,11 @@
 											<li>
 												<input type="checkbox" name="business" value="11"/> 产品拍摄
 										    </li>
-										</ul>    
-										<ul class="ul-step-two">
-											<li>
+										    <li>
 												<input type="checkbox" name="business" value="12"/> 微电影
 										    </li>
+										</ul>    
+										<ul class="ul-step-two" style="vertical-align:top">
 										    <li>
 												<input type="checkbox" name="business" value="13"/> 航拍
 										    </li>
@@ -263,6 +269,9 @@
 										    </li>
 										    <li>
 												<input type="checkbox" name="business" value="15"/> 后期制作
+										    </li>
+										    <li>
+												<input type="checkbox" name="business" value="18"/> 包装
 										    </li>
 										 </ul>   
 										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>
