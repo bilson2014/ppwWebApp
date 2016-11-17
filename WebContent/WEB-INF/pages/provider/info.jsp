@@ -538,7 +538,7 @@
 						<p class="help-block" id="picker" style="color: red;">上传文件</p>
 						<!-- <button class="btn btn-primary" id="uploadBt" type="button">保存LOGO</button> -->
 						<input type="file" id="file" name="file" style="display: none;"/>
-						<p class="help-block">仅支持小于5M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
+						<p class="help-block">仅支持小于2M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
 					</div>
 				</div>
 			</div>
