@@ -1192,7 +1192,12 @@ function loadcommentdata(more) {
 						var user = msg[i].userViewModel;
 						var text = "未知";
 						if (user != null) {
-							imgx.attr("src", user.imgUrl);
+							if(user.imgUrl != undefined && user.imgUrl != '') {
+								if(user.imgUrl.indexOf('resources/images') < 0) {
+									user.imgUrl = getDfsHostName() + user.imgUrl;
+								}
+							}
+							imgx.attr("src", user.imgUrl.indexOf('resources/images') < 0 ?  getDfsHostName() + user.imgUrl : user.imgUrl);
 							text = user.userName;
 						}
 						td1.append(imgx);
