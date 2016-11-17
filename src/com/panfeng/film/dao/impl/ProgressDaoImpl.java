@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Transaction;
-
 import com.panfeng.film.dao.ProgressDao;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.util.DataUtil;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Transaction;
 
 @Repository
 public class ProgressDaoImpl implements ProgressDao {

@@ -81,7 +81,6 @@
 					</form>
 				</div>
 			</div>
-			
 			<div class="right-part">
 				<r:noLogin>
 					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
@@ -118,7 +117,7 @@
 					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
 						<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
 						<input type="hidden" id="token" name="token" value="${token}"/>
-					
+		
 						<div class="form-group">
 						    <div>留下您的姓名</div>
 							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder=""/>

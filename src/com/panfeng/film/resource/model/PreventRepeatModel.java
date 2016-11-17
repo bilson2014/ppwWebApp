@@ -1,7 +1,5 @@
 package com.panfeng.film.resource.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -14,7 +12,7 @@ import com.panfeng.film.domain.BaseObject;
  *
  */
 public class PreventRepeatModel extends BaseObject {
-
+	
 	private static final long serialVersionUID = 8459920504152155274L;
 
 	private Map<String, CurrentTokenVal> runningList;
