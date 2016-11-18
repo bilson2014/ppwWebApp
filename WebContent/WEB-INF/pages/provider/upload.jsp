@@ -183,7 +183,7 @@
 							</div>
 							<div class="upload-btn">
 								<div class="picker" id="uploadHDBt">上传缩略图</div>
-								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
+								<a href="javascript:void(0);" data-href="/resources/provider/images/provider/default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel-HD" style="display: none;"></div>
 							</div> 

@@ -122,6 +122,42 @@ function loadData(Func,url,param){
 		}
 	});
 }
+// ajax submit form
+function submitForm(Func,url,param,checkElement){
+	var processing = $(checkElement).hasClass('X');
+	var rtoken = $('#rtoken').val();
+	
+	// 页面存在rtoken添加在提交的参数内
+	if(rtoken != undefined && rtoken != null && rtoken != ''){
+		var obj = $.evalJSON(param);
+		obj.rtoken = rtoken;
+		param = $.toJSON(obj);
+	}
+	
+	if(!processing){
+		$(checkElement).addClass('X');
+		$.ajax({
+			url : url,
+			type : 'POST',
+			data : param,
+			dataType : 'json',
+			contentType : 'application/json; charset=UTF-8',
+			success : function(data){
+				$(checkElement).removeClass('X');
+				Func(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$(checkElement).removeClass('X');
+				console.error('ajax(' + url + ')[' + jqXHR.status + ']' + jqXHR.statusText);
+				console.error(jqXHR.responseText);
+				console.error('[' + textStatus + ']' + errorThrown);
+			}
+		});
+	}else{
+		console.log('处理中请勿重复点击！');
+	}
+}
+
 //AJAX POST
 function syncLoadData(Func,url,param){
 	$.ajax({
