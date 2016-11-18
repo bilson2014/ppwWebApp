@@ -261,7 +261,7 @@ var="ajaxfileuploadJs" />
 					</div> 
 								
 				</div>
-			<div class="price-inarea" id="close-div">
+			<div class="price-inarea" id="close-div" style="margin-top: -53px !important;">
 					
 					<div class="divtable userPrice">
 						<div class="userPriceTitle pirce-title">客户支付金额</div>

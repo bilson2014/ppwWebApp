@@ -377,7 +377,8 @@ function webupload(param) {
 		fileNumLimit:fileNumLimit,
 		// 开起分片上传。
 		chunked : chunked,
-		formData : data
+		formData : data,
+		duplicate: true//允许重复上传同一个
 	});
 	// 当有文件被添加进队列的时候
 	uploader.on('beforeFileQueued', function(file) {
