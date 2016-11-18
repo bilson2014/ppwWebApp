@@ -12,20 +12,15 @@ import org.csource.common.NameValuePair;
 import org.csource.fastdfs.StorageClient1;
 import org.csource.fastdfs.StorageServer;
 import org.csource.fastdfs.TrackerServer;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 
- * @描述: FastDFS分布式文件系统操作客户端 .
- * @作者: WuShuicheng .
- * @创建时间: 2015-3-29,下午8:13:49 .
- * @版本号: V1.0 .
+ * FastDFS分布式文件系统操作客户端
+ * @author Jack
+ *
  */
 public class FastDFSClient {
-	//private static final String CONF_FILENAME = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "fdfs_client.conf";
-	//private static final String CONF_FILENAME = "src/main/resources/fdfs_client.conf";
-	//private static final String CONF_FILENAME = FastDFSClient.class.getClassLoader().getResource("").getPath()+"fdfs_client.conf";
-	//private static StorageClient1 storageClient1 = null;
 	private ConnectionPool pool = null;
 	private static Logger logger = Logger.getLogger(FastDFSClient.class);
 
@@ -39,7 +34,6 @@ public class FastDFSClient {
     private long waitTimes = 200;
 	
 	public void init() {  
-        //String logId = UUID.randomUUID().toString();
         pool = new ConnectionPool(minPoolSize, maxPoolSize, waitTimes);
     }
 	

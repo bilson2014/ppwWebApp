@@ -42,17 +42,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 			// 如果没有，则创建
 			stoken = DataUtil.getUuid();
 			session.setAttribute("csrftoken", stoken);
-			
 		}
-
-		// add by Lw,2016-06-21 19:45 begin
-		// to prevent the repeat
-//		String rtoken = (String) session.getAttribute("rtoken");
-//		if (!ValidateUtil.isValid(rtoken)) {
-//			// 如果没有，则创建
-//			stoken = DataUtil.getUuid();
-//			session.setAttribute("rtoken", stoken);
-//		}
 		return true;
 	}
 
@@ -83,6 +73,8 @@ public class TokenInterceptor implements HandlerInterceptor {
 				} else {
 					sbf.append(GlobalConstant.FDFS_BACKUP_SERVER_PATH);
 				}
+			} else {
+				sbf.append(GlobalConstant.FDFS_BACKUP_SERVER_PATH);
 			}
 			
 			mv.addObject(GlobalConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
