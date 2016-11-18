@@ -1197,7 +1197,7 @@ function loadcommentdata(more) {
 									user.imgUrl = getDfsHostName() + user.imgUrl;
 								}
 							}
-							imgx.attr("src", user.imgUrl.indexOf('resources/images') < 0 ?  getDfsHostName() + user.imgUrl : user.imgUrl);
+							imgx.attr("src", user.imgUrl);
 							text = user.userName;
 						}
 						td1.append(imgx);
