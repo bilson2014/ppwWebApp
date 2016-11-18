@@ -62,7 +62,8 @@ $().ready(function(){
 					$('.progress-bar-success').text('0')
 					$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
 				}
-				$('.progress-bar-success').text('已完成' + (percentage*100).toFixed(2) + '%')
+				//$('.progress-bar-success').text('已完成' + (percentage*100).toFixed(2) + '%')
+				$('.progress-bar-success').text('已完成' + Math.round((percentage*100)) + '%')
 				$('.progress-bar-success').attr('aria-valuenow',(percentage*100)).css({"width":percentage*100+'%'});
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
@@ -193,8 +194,10 @@ $().ready(function(){
 				}
 			});
 			uploader_HD.on('fileQueued', function(file) {
-				_this.checkFile(file,'uploadHDBt');
-		    	var $img = $("#HDImg");
+				if(!(_this.checkFile(file,'uploadHDBt'))){
+					return false;
+				}
+				var $img = $("#HDImg");
 		        // 创建缩略图
 		        // 如果为非图片文件，可以不用调用此方法。
 		        // thumbnailWidth x thumbnailHeight 为 100 x 100
@@ -206,12 +209,17 @@ $().ready(function(){
 		            }
 		            $img.attr( 'src', src );
 		        }, 130, 100 );
+				
 			});
 			uploader_HD.on('uploadSuccess', function(file,response) {
-				$("#video-picHDUrl").val(response.result);
+				if(response.code==0){//上传成功
+					$("#video-picHDUrl").val(response.result);
+				}
 			});
 			uploader_LD.on('fileQueued', function(file) {
-				_this.checkFile(file,'uploadLDBt');
+				if(!(_this.checkFile(file,'uploadLDBt'))){
+					return false;
+				}
 		    	var $img = $("#LDImg");
 		        // 创建缩略图
 		        // 如果为非图片文件，可以不用调用此方法。
@@ -226,7 +234,9 @@ $().ready(function(){
 		        }, 130, 100 );
 			});
 			uploader_LD.on('uploadSuccess', function(file,response) {
-				$("#video-picLDUrl").val(response.result);
+				if(response.code==0){//上传成功
+					$("#video-picLDUrl").val(response.result);
+				}
 			});
 		},
 		checkFile:function(file,id){
@@ -235,7 +245,16 @@ $().ready(function(){
 				var ext = file.ext;//后缀
 				switch(id){
 				// 检测文件格式
-					case '': //封面
+					case 'uploadLDBt': //封面
+						if(size > image_max_size){
+							$('#imageLabel-LD').show();
+							$('#imageLabel-LD').text(image_err_msg);
+							return false;
+						}else {
+							$('#imageLabel-LD').hide();
+							return true;
+						}
+						break;
 					case 'uploadHDBt': // 缩略图
 						if(size > image_max_size){
 							$('#imageLabel-HD').show();
@@ -714,9 +733,10 @@ function checkData(type){
 	var name = $('#video-name').val().trim(); // 视频名称
 	var videoType = $('#video-type option:selected').val(); // 视频类型
 	var videoLength = $('#video-length').val().trim(); // 视频长度
-	var description = $('#video-description').val().trim(); // 视频描述
-	var price = $('#video-price').val(); //
+	var price = $('#video-price').val(); //价格
 	var creationTime = $('#creationTime').val();//创作时间
+	var length = $(".keyword_item_inner").length;//标签长度
+	var description = $('#video-description').val().trim(); // 视频描述
 	
 	if(name == '' || name == null || name == undefined){
 		popshow('video-name', '请输入视频标题!');
@@ -735,11 +755,22 @@ function checkData(type){
 		$('#video-length').focus();
 		return false;
 	}
+	if(price == '' || price == null || price == undefined){
+		popshow('video-price', '请填写价格!');
+		$('#video-price').focus();
+		return false;
+	}
 	if(creationTime == '' || creationTime == null || creationTime == undefined){
 		popshow('creationTime', '请填写创作时间!');
 		$('#creationTime').focus();
 		return false;
 	}
+	if(length==0){
+		popshow('text_tags', '请填写标签!');
+		$("#text_tags").focus();
+		return false;
+	}
+	
 	
 	if(description == '' || description == null || description == undefined){
 		popshow('video-description', '请填写视频简介!');
@@ -747,11 +778,6 @@ function checkData(type){
 		return false;
 	}
 	
-	if(price == '' || price == null || price == undefined){
-		popshow('video-price', '请填写价格!');
-		$('#video-price').focus();
-		return false;
-	}
 	
 	var numReg = new RegExp("^[0-9]*$");
 	
@@ -785,58 +811,6 @@ function checkData(type){
 		return false;
 	}
 	return true;
-/*	if(type == 'upload'){ // 新建
-		var hdFile = $('#picHDFile').val(); // 缩略图
-		var ldFile = $('#picLDFile').val(); // 封面
-		var videoFile = $('#videoFile').val(); // 视频
-		if(hdFile == '' || hdFile == null || hdFile == undefined){
-			
-			popshow('uploadHDBt', '请上传缩略图!');
-			return false;
-		}
-		
-		if(ldFile == '' || ldFile == null || ldFile == undefined){
-			
-			popshow('uploadLDBt', '请上传封面!');
-			return false;
-		}
-		
-		if(videoFile == '' || videoFile == null || videoFile == undefined){
-			
-			popshow('uploadVideoBt', '请上传视频!');
-			return false;
-		}
-		
-		return true;
-	}else if(type == 'modify'){
-		var HDImg = $('#video-picHDUrl').val(); // 缩略图
-		var LDImg = $('#video-picLDUrl').val(); // 封面图
-		var videoUrl = $('#videoUrl').val(); // 视频
-		if(HDImg == '' || HDImg == null || HDImg == undefined){
-			
-			if($('#picHDFile').val() == null || $('#picHDFile').val() == ''){
-				popshow('uploadHDBt', '请上传缩略图!');
-				return false;
-			}
-		}
-		
-		if(LDImg == '' || LDImg == null || LDImg == undefined){
-			
-			if($('#picLDFile').val() == null || $('#picLDFile').val() == ''){
-				popshow('uploadLDBt', '请上传封面!');
-				return false;
-			}
-		}
-		
-		if(videoUrl == '' || videoUrl == null || videoUrl == undefined){
-			
-			if($('#videoFile').val() == null || $('#videoFile').val() == ''){
-				popshow('uploadVideoBt', '请上传视频!');
-				return false;
-			}
-		}
-		return true;
-	}*/
 }
 
 

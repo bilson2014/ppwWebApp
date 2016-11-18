@@ -16,67 +16,59 @@ var oTimer;
 $().ready(function() {
 
 	var flow = {
-		// 方法都在init中
-		init : function() {
-			// 初始化文档上传
-			this.initUploadFile();
-		},
-		initUploadFile : function() {
-			var _this = this;
-			$('#toolbar-modal').on('shown.bs.modal', function(e) {
-				uploader = WebUploader.create({
-					auto : false,
-					swf : '/resources/lib/webuploader/Uploader.swf',
-					server : '/mgr/resource/addResource',
-					pick : {
-						id : '#picker',
-						multiple : false
-					},
-					fileNumLimit : 1,
-					chunked : false
-				});
-				uploader.on('beforeFileQueued', function(file) {
-					// 删除所有文件,只上传一个
-					var array = uploader.getFiles();
-					for (var i = 0; i < array.length; i++) {
-						uploader.removeFile(array[i]);
-					}
-				});
-				uploader.on('fileQueued', function(file) {
-					$("#upload-file-name").val(file.name);
-				});
-				// 文件上传过程中创建进度条实时显示。
-				uploader.on('uploadProgress', function(file, percentage) {
-							if ($('.progress-bar-success').text() == '') {
-								$('#toolbar-modal').modal('hide');
-								$("#upload-file-name").val("");
-								$('.progress-bar-success').text('0')
-								$('.progress-bar-success').attr(
-									'aria-valuenow', '0').css({
-										"width" : '0%'
-									});
-								$('#mymodal').modal({
-									backdrop : 'static',
-									keyboard : false
-								});
-							}
-							$('.progress-bar-success').text('已完成'
-									+ (percentage * 100) + '%')
-							$('.progress-bar-success').attr('aria-valuenow',
-							(percentage * 100)).css({
-								"width" : percentage * 100 + '%'
-							});
-						});
-				uploader.on('uploadSuccess', function(file, response) {
-					loadfiledata(false);
-					loadcommentdata(false);
-					$('#mymodal').modal('hide');
-					$("#input-value").val("");
-					$("#upload-file-name").val("");
-				});
-				_this.submit();
-			})
-		},
+			//方法都在init中
+			init:function(){
+				//初始化文档上传
+				this.initUploadFile();
+			},
+			initUploadFile:function(){
+				var _this = this;
+				$('#toolbar-modal').on('shown.bs.modal', function (e) {
+					uploader = WebUploader.create({
+						auto:false,
+						swf : '/resources/lib/webuploader/Uploader.swf',
+						server : '/mgr/resource/addResource',
+						pick : {
+							id:'#picker',
+							multiple :false
+						},
+						fileNumLimit : 1,
+						chunked : false,
+					});
+					uploader.on('beforeFileQueued', function(file) {
+						 //删除所有文件,只上传一个
+						 var array = uploader.getFiles();
+						 for(var i=0;i<array.length;i++){
+							 uploader.removeFile( array[i] );
+						 }
+					});
+					uploader.on('fileQueued', function(file) {
+						 $("#upload-file-name").val(file.name);
+					});
+					// 文件上传过程中创建进度条实时显示。
+					uploader.on('uploadProgress',function(file, percentage) {
+						if($('.progress-bar-success').text()==''){
+							$('#toolbar-modal').modal('hide');
+							$("#upload-file-name").val("");
+							$('.progress-bar-success').text('0')
+							$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
+							$('#mymodal').modal({backdrop: 'static', keyboard: false});
+						}
+						//$('.progress-bar-success').text('已完成' + (percentage*100).toFixed(2) + '%')
+						$('.progress-bar-success').text('已完成' + Math.round((percentage*100)) + '%')
+						$('.progress-bar-success').attr('aria-valuenow',(percentage*100)).css({"width":percentage*100+'%'});
+						
+					});
+					uploader.on('uploadSuccess', function(file,response) {
+						loadfiledata(false);
+						loadcommentdata(false);
+						$('#mymodal').modal('hide');
+						$("#input-value").val("");
+						$("#upload-file-name").val("");
+					});
+					_this.submit();
+				})
+			},
 		// 点击保存按钮
 		submit : function() {
 			var _this = this;
