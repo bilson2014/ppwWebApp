@@ -497,7 +497,7 @@ $().ready(function(){
 		var height = $(this).data('height');
 		//修改为DFS路径begin 2016年10月25日 12:08:46
 		//$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
-		$('#previewImg').attr('src',getDfsHostName() + name);
+		$('#previewImg').attr('src', name);
 		//修改为DFS路径end
 		$('#previewImg').css({'width':width + 'px','height':height + 'px'});
 		if(name.indexOf('default-thumbnail') > -1){ // 缩略图
