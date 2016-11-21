@@ -216,10 +216,3 @@ function showDiv(){
 }
 
 
-function showError(id,error){
-	if(error == "" || error == null){
-		id.attr('data-content',"");
-	}else{
-		id.attr('data-content','*'+error);
-	}
-}
