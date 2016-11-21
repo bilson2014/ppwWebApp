@@ -15,6 +15,12 @@ $().ready(function(){
 		// 自定义编辑 解码
 		$.base64.utf8encode = true;
 		var decodeContent = $.trim($.base64.atob(pageDescription,true));
+		//modify 2016-11-17 11:13:53
+		//简介img填充 带有@.@的加上dfs host begin
+		var re2 = 'src="@.@([^"]*)"';
+	    var p = new RegExp(re2,["gm"]);
+	    decodeContent=decodeContent.replace(p, "src='"+getDfsHostName()+"$1"+"'");
+	   // 简介img填充 end
 		$('#video-intro-wrap').html(decodeContent);
 	}
 	

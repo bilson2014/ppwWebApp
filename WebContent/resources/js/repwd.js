@@ -40,7 +40,7 @@ $().ready(function(){
 									error.addClass('hide');
 								}else if(flag.errorCode == 300){
 									error.removeClass('hide');
-									error.html('手机号不存在，请<a>注册</a>');
+									error.html('手机号不存在，请<a href="/login">注册</a>');
 								}else if(flag.errorCode == 500){
 									error.removeClass('hide');
 									error.html(flag.errorMsg);

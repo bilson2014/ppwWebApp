@@ -51,4 +51,9 @@ public class FDFSServiceImpl implements FDFSService {
 		final int result = client.deleteFile(fileId);
 		return result;
 	}
+	@Override
+	public String locateFileStoragePath() {
+		final String result = client.locateSource();
+		return result;
+	}
 }

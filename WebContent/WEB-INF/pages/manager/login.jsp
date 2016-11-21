@@ -2,7 +2,6 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/manager/login.css" var="loginCss"/>
@@ -43,7 +42,7 @@
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<div class="header">
 			<div class="menu-bar nav">
 				<div class="left-part">
@@ -145,61 +144,6 @@
 		         </div>
 		   
 		   </div>
-		
-		
-	
-	<%-- <div class="page page-width">
-		<div class="login-div" >
-       
-          <h1>视频管家登录</h1>
-          <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
-          	<!-- 提示框 -->
-			<div class="tooltip-show-recover" style="display: none;">
-				<label class="tooltip-message-recover"></label>
-			</div>
-	          <input class="use-name" placeholder=" 请输入用户名" id="loginName" />
-	          <input class="use-password" type="password" placeholder=" 请输入密码" id="pwd" />
-          </form>
-          
-          <button  class="loginbtn" id="loginbtn">登录</button>
-
-          <a href="/mgr/recover"><h2 id="forget">忘记密码？</h2></a>
-
-          <footer class="footer-three">
-			<div class="footer-title-three">
-				<h3>第三方账号登录</h3>
-			</div>
-			<div class="footer-content-three">
-				<ul>
-					<li >
-						<!-- <span>微博</span> -->
-						<div id="weiboBt">
-							<a href="javascript:void(0);" >
-								<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
-							</a>
-							<span>微博</span>
-						</div>
-					</li>
-					<li>
-						<a href="javascript:void(0);" id="webcat">
-							<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
-						</a>
-						<span>微信</span>
-					</li>
-					<li>
-						<div id="qqBt">
-							<a href="javascript:void(0);">
-								<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
-							</a>
-							<span>QQ</span>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</footer>
-		</div>
-
-    </div> --%>
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>

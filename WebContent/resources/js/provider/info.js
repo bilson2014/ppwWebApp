@@ -1,5 +1,6 @@
 var count = 120; // 间隔函数，1秒执行 
 var curCount; // 当前剩余秒数 
+var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	provider_info.init();
@@ -901,36 +902,55 @@ var provider_info = {
 		},
 		
 		webuploadLOGO:function(){
-			webupload({
-				 auto:true,
-				 server: '/provider/update/teamPhotoPath',//url
-				 pick: '#picker',//点击弹窗
-				 formData : {'teamId' : $('#company-id').val().trim()},//参数
-				 fileQueued:function(file){//选中后执行
-					 $.blockUI({
-							message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
-					 });
-				 },
-				 uploadSuccess:function( file ,response){//成功回调
-					 $.unblockUI();
-					 var path = response._raw;
-						if(path != '' && path != null){
-							if(path.indexOf('false@error') > -1){
-								if(path.indexOf("error=1") > -1){
-									toolTipShow('文件超过最大限制');
-								} else if(path.indexOf("error=2") > -1){
-									toolTipShow('格式不正确');
-								}
-							}else{
-								// 显示 图片
-								var imgPath = getDfsHostName()+ path;
-								$('#logoImg').attr('src',imgPath);
-								successToolTipShow();
+			uploader && uploader.destroy();
+			uploader = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/provider/update/teamPhotoPath',
+				pick : '#picker',
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png',
+				    mimeTypes: 'image/jpeg,image/png'
+				},
+				resize : true,
+				chunked : false,
+				fileSingleSizeLimit : 1024*2048,
+				formData : {'teamId' : $('#company-id').val().trim()},//参数
+				duplicate: true//允许重复上传同一个
+			});
+			// 当有文件被添加进队列的时候
+			uploader.on('fileQueued', function(file) {
+				 $.blockUI({
+						message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
+				 });
+			});
+			uploader.on('uploadSuccess', function(file,response) {
+				$.unblockUI();
+				 var path = response._raw;
+					if(path != '' && path != null){
+						if(path.indexOf('false@error') > -1){
+							if(path.indexOf("error=1") > -1){
+								toolTipShow('文件超过最大限制');
+							} else if(path.indexOf("error=2") > -1){
+								toolTipShow('格式不正确');
 							}
 						}else{
-							alert('上传失败!');
+							// 显示 图片
+							var imgPath = getDfsHostName()+ path;
+							$('#logoImg').attr('src',imgPath);
+							successToolTipShow();
 						}
-				 },
+					}else{
+						alert('上传失败!');
+					}
+			});
+			uploader.on('error', function(type) {
+				 if (type=="Q_TYPE_DENIED"){
+					 toolTipShow('格式不正确');
+			        }else if(type=="F_EXCEED_SIZE"){
+			        	toolTipShow('文件超过最大限制');
+			        }
 			});
 		},
 		changePhone:function(){

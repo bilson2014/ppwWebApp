@@ -19,4 +19,7 @@ public interface FDFSService {
 	InputStream download(String fileId) throws IOException;
 
 	public String upload(InputStream inputStream, String fileName);
+
+	// 获取最优文件地址服务器
+	public String locateFileStoragePath();
 }

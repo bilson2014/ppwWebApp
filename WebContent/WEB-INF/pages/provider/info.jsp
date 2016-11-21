@@ -2,7 +2,6 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -72,7 +71,7 @@
 	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
 	<div class="content-wrap">
 		
@@ -215,23 +214,6 @@
 								</div>	
 								<span style="color:red;">*</span>
 							  </div>  		
-							<div class="form-group">	
-								<label for="company-city" class="col-sm-2 control-label">所在市</label>	
-								  <div class="col-sm-6">
-									<select class="form-control" id="company-city" ><!-- 省市级联 市 -->
-									<c:if test="${!empty citys}">
-											<c:forEach items="${citys }" var="source" varStatus="status">
-											  <option value ="${source.cityID }"
-											  	<c:if test="${provider.teamCity == source.cityID }">
-											  		selected="selected"
-											  	</c:if> >${source.city }</option>
-											</c:forEach>
-										</c:if>
-									</select>
-								</div>	
-								<span style="color:red;">*</span>
-							</div>
-							
 							<div class="form-group">
 								<label for="company-priceRange" class="col-sm-2 control-label">价格区间</label>
 								<div class="col-sm-6">
@@ -271,6 +253,9 @@
 										<label>
 											<input type="checkbox" name="business" value="0" /> 广告
 									    </label>
+									    <label>
+											<input type="checkbox" name="business" value="16" /> TVC
+									    </label>
 									    
 									    <label>
 											<input type="checkbox" name="business" value="1"/> 宣传片
@@ -290,6 +275,10 @@
 									    
 									    <label>
 											<input type="checkbox" name="business" value="5"/> 电视栏目
+									    </label>
+									    
+									     <label>
+											<input type="checkbox" name="business" value="17"/> MV
 									    </label>
 									    
 									    <label>
@@ -330,6 +319,10 @@
 									    
 									     <label>
 											<input type="checkbox" name="business" value="15"/> 后期制作
+									    </label>
+									    
+									     <label>
+											<input type="checkbox" name="business" value="18"/> 包装
 									    </label>
 									</div>
 									
@@ -528,7 +521,7 @@
 						<p class="help-block" id="picker" style="color: red;">上传文件</p>
 						<!-- <button class="btn btn-primary" id="uploadBt" type="button">保存LOGO</button> -->
 						<input type="file" id="file" name="file" style="display: none;"/>
-						<p class="help-block">仅支持小于5M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
+						<p class="help-block">仅支持小于2M的png/jpg格式，推荐120*120分辨率<span style="color:red;">*</span></p>
 					</div>
 				</div>
 			</div>
