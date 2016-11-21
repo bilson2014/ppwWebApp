@@ -384,7 +384,7 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		product = JsonUtil.toBean(json, Product.class);
 		model.addAttribute("product", product);
-
+		
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
 		return new ModelAndView("play", model);

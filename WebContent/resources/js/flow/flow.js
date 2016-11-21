@@ -56,7 +56,7 @@ $().ready(function() {
 							$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
 							$('#mymodal').modal({backdrop: 'static', keyboard: false});
 						}
-						$('.progress-bar-success').text('已完成' + (percentage*100) + '%')
+						$('.progress-bar-success').text('已完成' + (percentage*100).toFixed(2) + '%')
 						$('.progress-bar-success').attr('aria-valuenow',(percentage*100)).css({"width":percentage*100+'%'});
 						
 					});
