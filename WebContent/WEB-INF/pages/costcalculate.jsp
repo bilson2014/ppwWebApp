@@ -26,10 +26,10 @@
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
 	 <title>拍片网－成本计算器</title>
-    <link rel="stylesheet" href="../newHomePage/resources/css/costCalculator.css">
-    <link rel="stylesheet" href="../newHomePage/resources/lib/swiper/swiper.min.css">
-    <link rel="stylesheet" href="../newHomePage/resources/lib/Bootstrap/css/bootstrap.min.css">
-	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+    <link rel="stylesheet" href="/resources/css/costCalculator.css">
+    <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/resources/lib/Bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -55,7 +55,7 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
                 <a href="<spring:url value='/mgr/index'/>" class="header-item">首页</a>
-                <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">我要拍片</a>
+                <a class="header-item" target="_parent" id="wantOrder">我要拍片</a>
                 <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">精品案例</a>
                 <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">服务流程</a>
                 <a class="header-item header-item-last" id="showVideo" target="_parent">
@@ -98,119 +98,117 @@
                     <div class="bg"></div>
                     <div class="price">
                         <label>￥</label>
-                        <label>500000</label>
+                        <label id="price">- -&nbsp&nbsp&nbsp- -</label>
                     </div>
                     <div class="controlWidth">
                         <div class="youNeed"> 填写您的拍摄需求，计算您的拍片价格</div>
-                        <form method="get" action="/search">
                             <div class="calItem">
-                                <div class="title">视频类别</div>
+                                <div class="title" >视频类别</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>活动视频</span>
+                                        <span data-content="0" id="videoType">活动视频</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>活动视频</li>
-                                        <li>产品广告(TVC)</li>
-                                        <li>企业宣传</li>
-                                        <li>微电影</li>
-                                        <li>融资路演</li>
-                                        <li>众筹视频</li>
+                                        <li data-content="0">活动视频</li>
+                                        <li data-content="1">产品广告(TVC)</li>
+                                        <li data-content="2">企业宣传</li>
+                                        <li data-content="3">微电影</li>
+                                        <li data-content="4">融资路演</li>
+                                        <li data-content="5">众筹视频</li>
                                     </ul>
                                 </div>
                             </div>
 
                             <div class="calItem">
-                                <div class="title">时长</div>
+                                <div class="title" >时长</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>1 ~ 3 分钟</span>
+                                        <span data-content="0" id="time">1 ~ 3 分钟</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>1 ~ 3 分钟</li>
-                                        <li>3 ~ 5 分钟</li>
-                                        <li>5 ~ 10 分钟</li>
+                                        <li data-content="0">1 ~ 3 分钟</li>
+                                        <li data-content="1">3 ~ 5 分钟</li>
+                                        <li data-content="2">5 ~ 10 分钟</li>
                                     </ul>
                                 </div>
                             </div>
 
                               <div class="calItem">
-                                <div class="title">导演团队</div>
+                                <div class="title" >导演团队</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>专业级导演团队</span>
+                                        <span data-content="0" id="team">专业级导演团队</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>专业级导演团队(3-5 年)</li>
-                                        <li>广告级导演团队(5-8 年)</li>
-                                        <li>电影级导演团队(8-10年)</li>
+                                        <li data-content="0">专业级导演团队</li>
+                                        <li data-content="1">广告级导演团队</li>
+                                        <li data-content="2">电影级导演团队</li>
                                     </ul>
                                 </div>
                                 <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
                             </div>
 
                               <div class="calItem">
-                                <div class="title">拍摄设备</div>
+                                <div class="title" >拍摄设备</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>专业级拍摄设备 2K</span>
+                                        <span data-content="0" id="equipment">专业级拍摄设备 2K</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>专业级拍摄设备 2K</li>
-                                        <li>广告级拍摄设备 4K</li>
-                                        <li>电影级拍摄设备 4K</li>
+                                        <li data-content="0">专业级拍摄设备 2K</li>
+                                        <li data-content="1">广告级拍摄设备 4K</li>
+                                        <li data-content="2">电影级拍摄设备 4K</li>
                                     </ul>
                                 </div>
                                   <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
                             </div>
 
                              <div class="calItem">
-                                <div class="title">演员</div>
+                                <div class="title" >演员</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>无演员</span>
+                                        <span data-content="0" id='actor'>无演员</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>无演员</li>
-                                        <li>自有演员</li>
-                                        <li>普通演员</li>
-                                        <li>一线演员</li>
+                                        <li data-content="0">无演员</li>
+                                        <li data-content="1">自有演员</li>
+                                        <li data-content="2">普通演员</li>
+                                        <li data-content="3">一线演员</li>
                                     </ul>
                                 </div>
                             </div>
 
                              <div class="calItem">
-                                <div class="title" >动画</div>
+                                <div class="title"  >动画</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span>无动画</span>
+                                        <span id="animation" data-content="0">无动画</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li>无动画</li>
-                                        <li>三维动画</li>
-                                        <li>二维动画</li>
-                                        <li>MG动画</li>
+                                        <li data-content="0">无动画</li>
+                                        <li data-content="1">三维动画</li>
+                                        <li data-content="2">二维动画</li>
+                                        <li data-content="3">MG动画</li>
                                     </ul>
                                 </div>
                             </div>
 
                              <div class="calItem inputWidth">
-                                <div class="title" data-content="哼">您的联系方式</div>
-                                <input>
+                                <div class="title" data-content="" id="errorPhone">您的联系方式</div>
+                                <input data-content="0" id="phone">
                             </div>
 
                             <div class="calItem inputWidth">
-                                <button>开始计算</button>
-                                <button>清楚重填</button>
+                                <button id="start">开始计算</button>
+                                <button id="clear">清除重填</button>
                             </div>
 
-                        </form>
                     </div>
                 </div>
             </div>
@@ -266,9 +264,11 @@
         </div>
         <!--新版底部-->
     </div>
-    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/jquery/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" defer async="true" src="../newHomePage/resources/lib/jquery/waypoints.min.js"></script>
-    <script type="text/javascript" defer async="true" src="../newHomePage/resources/js/cost.js"></script>
+    
+    <script type="text/javascript" defer async="true" src="/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" defer async="true" src="/resources/lib/jquery/waypoints.min.js"></script>
+    <script type="text/javascript" defer async="true" src="/resources/js/cost.js"></script>
+    <script type="text/javascript" defer async="true" src="/resources/js/common3.js"></script>
+    
 </body>
 </html>

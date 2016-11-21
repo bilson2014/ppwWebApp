@@ -54,3 +54,34 @@
 		width: $width-lg / $num - 4px;
 	}
 }
+
+@mixin media_screen_width_beta3($min-width: $width-min,
+							$middle-width: $width-middle,
+							$large-width: $width-lg) {
+	width: $width-min !important;
+	
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		width: $width-middle !important;
+
+	}
+
+	@media screen and (min-width: 1500px){
+		width: 1300px !important;
+	}
+
+}
+
+
+// @mixin indexScreen($min-width: $width-min,
+// 							$middle-width: $width-middle,
+// 							$large-width: $width-lg) {
+// 	width: 960px;
+// 	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+// 		width: 1080px;
+// 	}
+
+// 	@media screen and (min-width: 1500px){
+// 		width: ($width-lg - 60px) / 4 !important;
+// 		background-size: (($width-lg - 60px) / 4)  180px !important;
+// 	}
+// }

@@ -92,6 +92,7 @@ $price-wrap-max: 460px;
 			height: ($width-middle - $price-wrap) * (9 / 16);
 		}
 	}
+	
 	object {
 		width: $width-min - $price-wrap-min;
 		height: ($width-min - $price-wrap-min) * (9 / 16);

@@ -18,7 +18,6 @@ public class CostCalculateServiceImpl implements CostCalculateService{
 		int actor = calculate.getActor();
 		int animation = calculate.getAnimation();
 		int time = calculate.getTime();
-		
 		int total = 0;
 		total += typeAddTeam[videoType][team];
 		switch (equipment) {
