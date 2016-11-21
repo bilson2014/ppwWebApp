@@ -1,0 +1,171 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "flexslider";
+@import "indexSwiper";
+@import "header3";
+@import "_comHeader3";
+.bgLogo {
+    width: 300px;
+    height: 25px;
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    background: url('../../resources/images/service/logo.png') no-repeat !important;
+}
+
+.titleTag {
+    background: #f0f2f5;
+    height: 70px;
+    border-bottom: 1px solid $border-line;
+    .titleWord {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        font-size: 0;
+        padding-left: 16%;
+        padding-right: 16%;
+        div {
+            color: $gray-light;
+            font-size: $font-size-base;
+            width: 20%;
+            display: inline-block;
+            line-height: 70px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .checkActive {
+            color: $red-base !important;
+            border-bottom: 1px solid $red-base;
+        }
+    }
+}
+
+.tagsWidth {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-bottom: 60px;
+    .RightIcon {
+        width: 100%;
+        height: 206px;
+        position: relative;
+        div:first-child {
+            position: absolute;
+            top: 5px;
+            left: 50px;
+        }
+        label {
+            display: block;
+        }
+        label:nth-child(1) {
+            color: $red-base;
+            font-size: 2.6rem;
+        }
+        label:nth-child(2) {
+            color: $gray-dark;
+            font-size: $font-size;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        label:nth-child(3) {
+            color: $gray-light;
+            font-size: $font-size-base;
+        }
+        div:last-child {
+            background: url('../../resources/images/service/iconbg1.png') no-repeat;
+            width: 350px;
+            height: 214px;
+            position: absolute;
+            right: 50px;
+            top: -30px;
+            background-position-y: -220px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
+    }
+    .LeftIcon {
+        width: 100%;
+        height: 206px;
+        margin-left: 10px;
+        position: relative;
+        div:first-child {
+            position: absolute;
+            top: 5px;
+            right: 50px;
+            text-align: right;
+        }
+        label {
+            display: block;
+        }
+        label:nth-child(1) {
+            color: $red-base;
+            font-size: 2.6rem;
+        }
+        label:nth-child(2) {
+            color: $gray-dark;
+            font-size: $font-size;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        label:nth-child(3) {
+            color: $gray-light;
+            font-size: $font-size-base;
+        }
+        div:last-child {
+            width: 350px;
+            height: 214px;
+            position: absolute;
+            left: 50px;
+            top: -30px;
+            background-position-y: -220px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
+    }
+    .icon {
+        background-size: 100% 206px !important;
+        margin-top: 15px;
+    }
+    .icon1 {
+        background: url('../../resources/images/service/icon1.png') no-repeat;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg1.png') no-repeat;
+        }
+    }
+    .icon2 {
+        background: url('../../resources/images/service/icon2.png') no-repeat;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg2.png') no-repeat;
+        }
+    }
+    .icon3 {
+        background: url('../../resources/images/service/icon3.png') no-repeat;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg3.png') no-repeat;
+        }
+    }
+    .icon4 {
+        background: url('../../resources/images/service/icon4.png') no-repeat;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg4.png') no-repeat;
+        }
+    }
+    .icon5 {
+        background: url('../../resources/images/service/icon5.png') no-repeat;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg5.png') no-repeat;
+        }
+    }
+    .icon6 {
+        background: url('../../resources/images/service/icon6.png') no-repeat;
+        height: 315px;
+        background-size: 100% 315px !important;
+        margin-top: 15px;
+        div:last-child {
+            background: url('../../resources/images/service/iconbg6.png') no-repeat;
+        }
+    }
+}

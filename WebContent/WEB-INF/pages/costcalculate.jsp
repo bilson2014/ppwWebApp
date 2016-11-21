@@ -143,12 +143,12 @@
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0">专业级导演团队</li>
-                                        <li data-content="1">广告级导演团队</li>
-                                        <li data-content="2">电影级导演团队</li>
+                                        <li data-content="0" data-info="0">专业级导演团队</li>
+                                        <li data-content="1" data-info="1">广告级导演团队</li>
+                                        <li data-content="2" data-info="2">电影级导演团队</li>
                                     </ul>
                                 </div>
-                                <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
+                                <div class="infoContent" id="teamInfo">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
                             </div>
 
                               <div class="calItem">
@@ -159,12 +159,12 @@
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0">专业级拍摄设备 2K</li>
-                                        <li data-content="1">广告级拍摄设备 4K</li>
-                                        <li data-content="2">电影级拍摄设备 4K</li>
+                                        <li data-content="0" data-info="3">专业级拍摄设备 2K</li>
+                                        <li data-content="1" data-info="4">广告级拍摄设备 4K</li>
+                                        <li data-content="2" data-info="5">电影级拍摄设备 4K</li>
                                     </ul>
                                 </div>
-                                  <div class="infoContent">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
+                                  <div class="infoContent" id="equipmentInfo">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>
                             </div>
 
                              <div class="calItem">

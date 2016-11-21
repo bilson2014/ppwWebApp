@@ -1,0 +1,90 @@
+    @import "common";
+    @import "buttons";
+    @import "video";
+    @import "flexslider";
+    @import "indexSwiper";
+    @import "header3";
+    @import "_comHeader3";
+    $price-wrap-min: 236px;
+    $price-wrap: 340px;
+    $price-wrap-max: 460px;
+    $order-width: 330px;
+    $rightWidth:320px;
+    .contentWidth {
+        @include media_screen_width_beta3();
+        padding-top: 60px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+        font-size: 0;
+        .leftContent {
+            display: inline-block;
+            vertical-align: top;
+            width: $width-min - $rightWidth;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: $width-middle - $rightWidth;
+            }
+            @media screen and (min-width:1500px) {
+                width: $width-lg3 - $rightWidth;
+            }
+            .title {
+                font-size: 26px;
+                color: $gray-dark;
+                margin-bottom: 30px;
+                overflow: hidden;
+                margin-bottom: 60px;
+            }
+            .setPro {
+                padding-right: 220px;
+                color: $gray-dark;
+                img {
+                    width: $width-min - $rightWidth - 220px;
+                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                        width: $width-middle - $rightWidth - 220px;
+                    }
+                    @media screen and (min-width:1500px) {
+                        width: $width-lg3 - $rightWidth - 220px;
+                    }
+                }
+            }
+        }
+        .rightContent {
+            display: inline-block;
+            vertical-align: top;
+            width: $rightWidth;
+            position: relative;
+            padding-left: 40px;
+            border-left: 1px solid $border-line;
+            .title {
+                font-size: $font-size;
+                color: $gray-dark;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+            .videoModel {
+                margin-bottom: 30px;
+                label {
+                    display: block
+                }
+                label:first-child {
+                    font-size: $font-size;
+                    color: $gray-dark;
+                    &:hover{
+                        color: $red-base;
+                    }
+                }
+                label:nth-child(2) {
+                    font-size: $font-size-sm;
+                    color: $gray-light;
+                    margin-top: 16px;
+                    margin-bottom: 12px;
+                    height: 48px;
+                    overflow: hidden;
+
+                }
+                label:last-child{
+                    font-size: $font-size-sm;
+                    color: $red-base;
+                }
+            }
+        }
+    }
