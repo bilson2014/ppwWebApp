@@ -115,10 +115,10 @@
                 vertical-align: top;
                 transition: all .6s linear 0s;
                 -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
+                /* Firefox 4 */
+                -webkit-transition: all .6s linear 0s;
+                /* Safari 和 Chrome */
+                -o-transition: all .6s linear 0s;
                 border-radius: 6px;
                 &:hover {
                     background-position-y: -29px !important;
@@ -224,6 +224,9 @@
             bottom: 30px !important;
             opacity: 1 !important;
         }
+        .delPrice {
+            bottom: 250px !important;
+        }
         .price {
             position: absolute;
             width: 300px;
@@ -232,23 +235,38 @@
             padding-right: 15px;
             opacity: 0;
             transition: all .6s linear 0s;
-                            -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
+            -moz-transition: all .6s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .6s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .6s linear 0s;
             div:nth-child(1) {
+                color: $gray-light;
+                font-size: $font-size;
+                margin-bottom: 5px;
+                text-decoration: line-through;
+            }
+            div:nth-child(2) {
+                color: $gray-light;
+                font-size: $font-size-base;
+                margin-left: 10px;
+                margin-bottom: 30px;
+            }
+            div:nth-child(3) {
                 color: $red-base;
                 font-size: 3.6rem;
                 margin-bottom: 11px;
+                .small {
+                    font-size: $font-size-base;
+                }
             }
-            div:nth-child(2) {
+            div:nth-child(4) {
                 color: $gray-light;
                 font-size: $font-size-sm;
                 margin-left: 10px;
             }
-            div:nth-child(3) {
-                margin-top: 90px;
+            div:nth-child(5) {
+                margin-top: 60px;
                 color: white;
                 font-size: $font-size-base;
                 width: 100%;
@@ -275,11 +293,11 @@
             border-radius: 4px;
             padding: 30px 20px 30px 20px;
             transition: all .6s linear 0s;
-                            -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
+            -moz-transition: all .6s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .6s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .6s linear 0s;
             opacity: 0;
             .orderTitle {
                 color: white;
@@ -325,7 +343,20 @@
                     right: 0px;
                     top: 0px;
                     line-height: 40px;
+                    &:active {
+                        background: darken($red-base, 20%);
+                    }
                 }
+            }
+            .orderItem::after {
+                content: attr(data-content);
+                position: absolute;
+                color: $red-base;
+                font-size: $font-size-sm;
+                top: 43px;
+                right: 0px;
+                bottom: 0px;
+                left: 15px;
             }
             .orderBtn {
                 height: 40px;

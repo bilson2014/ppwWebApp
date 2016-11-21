@@ -23,7 +23,6 @@ function init() {
 		$(this).find('ul').slideDown();
 	});
 
-
      $('li').on('click',function(){
           $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
           var info=parseInt($(this).attr('data-info'));
@@ -37,8 +36,6 @@ function init() {
           }
           return false;
      });
-
-  
 
      // 滚动监听 start
     $('.calculator').waypoint(function(direction) {

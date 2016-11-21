@@ -126,11 +126,19 @@
                             	${product.pDescription }
                         </div>
                     </div>
+                     
+                    <div class="price delPrice">
+	                     
+                    </div> 
+                    
                     <div class="price showPrice" id="price">
+                     <div>
+                     	<span>￥</span><span>${product.servicePrice }</span></div>
+	                    <div>原价</div>
                         <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
-                        <div>影片时长</div>
+                        <div>影片价格</div>
                         <div id="needOrder">我要下单</div>
-                    </div>
+                     </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
                     		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
@@ -438,7 +446,7 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"></a></div>
+                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
                                             <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">供应商客服</a></div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>

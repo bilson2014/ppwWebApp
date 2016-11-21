@@ -283,3 +283,6 @@ function submitOrder(){
 		$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 	}
 }
+
+
+
