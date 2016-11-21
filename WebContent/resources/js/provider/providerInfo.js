@@ -198,7 +198,7 @@ function drawRightCard(product,year,month,day) {
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
