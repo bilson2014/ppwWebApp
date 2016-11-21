@@ -1,3 +1,10 @@
+var kaptcharInterValObj; // timer变量，控制时间
+var InterValObj; // timer变量，控制时间 - 注册
+var InterValRecoverObj; // timer变量，控制时间 - 密码找回
+var count = 120; // 间隔函数，1秒执行 
+var curCount = 0; // 当前剩余秒数 - 注册
+var recoverCount; // 当前剩余秒数 - 密码找回
+
 var color = new Array(
    '#33D8B5',
    '#F5A623',
@@ -12,20 +19,16 @@ var color = new Array(
    '#FF7600',
    '#FF35C7'
 );
-
-
 $().ready(function() {
     initTab();
     showDiv();
 });
-
-
 function initTab() {
     var product_id = 1;
-    //初始化
+    // 初始化
     handleScreenSlider(initKey(product_id));
     $(window).resize(function() {
-        //window.location.reload();
+        // window.location.reload();
         handleScreenSlider(initKey(product_id));
     });
 
@@ -36,8 +39,7 @@ function initTab() {
     });
 
 }
-
-//获取初始化单品分类下单品在页面中的key值
+// 获取初始化单品分类下单品在页面中的key值
 function initKey(product_id) {
     var obj = $(".second_sort .s_item");
     var _key = '';
@@ -49,8 +51,7 @@ function initKey(product_id) {
     }
     return _key;
 }
-
-//不同屏幕下
+// 不同屏幕下
 function handleScreenSlider(default_val) {
     if (devicesSize() == "md") {
         initSlider(4, default_val);
@@ -62,12 +63,12 @@ function handleScreenSlider(default_val) {
         initSlider(5, default_val);
     }
 }
-//初始化轮播图
+// 初始化轮播图
 function initSlider(number, default_item) {
     var start_at = parseInt(default_item / number);
     var $s_item = $(".second_sort .s_item");
     var s_item_length = $s_item.length;
-    //var s_item_length = 9;
+    // var s_item_length = 9;
     var fSliders = $('.second_sort .f_slider');
     fSliders.each(function() {
         $(this).flexslider({
@@ -89,18 +90,18 @@ function initSlider(number, default_item) {
                 $(".j_choose_style .s_item").fadeIn();
                 slider.flexAnimate(start_at, true);
                 $(".flex-viewport").css("overflow", "visible");
-                //当分类少于number时，左右箭头不显示
+                // 当分类少于number时，左右箭头不显示
                 if (s_item_length < number) {
                     $(".flex-prev").hide();
                     $(".flex-next").hide();
                 }
-                //第一页时，做箭头不显示
+                // 第一页时，做箭头不显示
                 if (start_at == 0) {
                     $(".flex-prev").hide();
                 }
-                //默认项显示
+                // 默认项显示
                 $s_item.eq(default_item).addClass("s_item_cur");
-                //默认蒙层
+                // 默认蒙层
                 handleLayer(start_at * number, $s_item, number);
             },
             before: function(slider) {
@@ -114,9 +115,9 @@ function initSlider(number, default_item) {
             after: function(slider) {
                 var cur_item_index;
                 if (slider.direction == "next") {
-                    if (slider.animatingTo == slider.pagingCount - 1) { //最后一页
+                    if (slider.animatingTo == slider.pagingCount - 1) { // 最后一页
                         $(".flex-next").hide();
-                        if ((slider.animatingTo + 1) * number - s_item_length >= 0) { //5*2-9
+                        if ((slider.animatingTo + 1) * number - s_item_length >= 0) { // 5*2-9
                             cur_item_index = s_item_length - number;
                         }
                     } else {
@@ -124,7 +125,7 @@ function initSlider(number, default_item) {
                     }
                 }
                 if (slider.direction == "prev") {
-                    if (slider.animatingTo == 0) { //第一页
+                    if (slider.animatingTo == 0) { // 第一页
                         $(".flex-prev").hide();
                     }
                     cur_item_index = slider.animatingTo * number;
@@ -147,9 +148,7 @@ function initSlider(number, default_item) {
     });
 }
 
-
-
-//两个数组差集
+// 两个数组差集
 function arrDifference(arr1, arr2) {
     var isNaN = Number.isNaN;
     return arr1.reduce(function(previous, i) {
@@ -159,7 +158,7 @@ function arrDifference(arr1, arr2) {
         return (found < 0 && previous.push(i), previous);
     }, []);
 }
-//蒙层显示
+// 蒙层显示
 function handleLayer(active_index, obj, n) {
     var active_item = [],
         all_item = [],
@@ -178,8 +177,7 @@ function handleLayer(active_index, obj, n) {
         obj.eq(i).find(".layer").fadeOut().css({ "cursor": "pointer" });
     });
 }
-
-//判断屏幕尺寸
+// 判断屏幕尺寸
 function devicesSize() {
     var w = $(window).width();
     var flag = null;
@@ -194,12 +192,7 @@ function devicesSize() {
     }
     return flag;
 }
-
-
-
-//表单特效
-
-
+// 表单特效
 function showDiv(){
     $('#needOrder').on('click',function(){
       $('#price').removeClass('showPrice');
@@ -213,6 +206,85 @@ function showDiv(){
       $('#price').removeClass('noShow');
       $('#order').removeClass('showOrder');
     });
+    
+    // event
+    $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
+    $('#order-btn').off('click').on('click',submitOrder);
 }
+
+
+/////////////////////////////////////////wang//////////////////////////////////////
+// order verificationCode
+function verificationCodeBtn(){
+	if(curCount == 0 && checkData(1)){
+		curCount = count;
+		var telephone = $('#phoneNumber').val().trim();
+		$('#verification_code_recover_btn').text('已发送('+ curCount +')');
+		$('#verification_code_recover_btn').attr('disabled','disabled');
+		InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+		loadData(function(flag){
+			if(!flag){
+				// 发送不成功
+				// 显示重新发送
+				sendCode=true;
+				$('#verification_code_btn').text('重新获取');
+				$('#verification_code_btn').removeAttr('disabled');
+			}
+		}, getContextPath() + '/login/verification/' + telephone, null);
+	}
+}
+function checkData(type){
+	var telephone = $('#phoneNumber').val().trim();
+	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
+	switch (type) {
+	case 1:
+		if(telephone == '' || telephone == null || telephone == undefined){
+			alert("请填写手机号");
+			$('#phoneNumber').focus();
+			return false;
+		}
+		if(!checkMobile(telephone)){
+			alert("手机号输入错误");
+			$('#phoneNumber').focus();
+			return false;
+		}
+		return true;
+	case 2:
+		if(verificationCodeValue == '' || verificationCodeValue == null || verificationCodeValue == undefined){
+			alert("请填写验证码");
+			$('#verificationCodeValue').focus();
+			return false;
+		}
+		return true;
+	}
+}
+//timer 处理函数 - 注册
+function SetRemainTime(){
+	if(curCount == 0){
+		window.clearInterval(InterValObj); // 停止计时器
+		sendCode=true;
+		$('#verification_code_recover_btn').text('重新获取');
+		$('#verification_code_recover_btn').removeAttr('disabled')
+		// 清除session code
+		getData(function(data){
+			// 清除session code
+		}, getContextPath() + '/login/clear/code');
+	}else{
+		curCount--;  
+		$("#verification_code_recover_btn").text('已发送('+ curCount +')');
+	}
+}
+
+function submitOrder(){
+	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
+	var telephone = $('#phoneNumber').val().trim();
+	if(checkData(1) && checkData(2)){
+		var token = $('#token').val();
+		$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
+		$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
+	}
+}
+
+
 
 

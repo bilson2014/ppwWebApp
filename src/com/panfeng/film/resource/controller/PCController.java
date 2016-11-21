@@ -2,8 +2,6 @@ package com.panfeng.film.resource.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
@@ -141,78 +139,6 @@ public class PCController extends BaseController {
 		return new ModelAndView("about", model);
 	}
 
-	// 跳转 订单页
-	@RequestMapping("/order")
-	public ModelAndView orderView(final HttpServletRequest request, final HttpServletResponse response,
-			final ModelMap model) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-
-		final String json = request.getParameter("json");
-		final Indent indent = new Indent().fromString(json, Indent.class);
-		final String productName = URLDecoder.decode(indent.getProduct_name(), "UTF-8");
-		indent.setProduct_name(productName);
-
-		final User user = (User) request.getSession().getAttribute("username");
-		// modify by Jack,2016-06-21 12:06 begin
-		// -> to promote security for order
-		// change hidden input to encrypt token
-		/*
-		 * model.addAttribute("teamId", indent.getTeamId());
-		 * model.addAttribute("productId", indent.getProductId());
-		 * model.addAttribute("serviceId", indent.getServiceId());
-		 * model.addAttribute("indentPrice", indent.getIndentPrice());
-		 * model.addAttribute("second", indent.getSecond());
-		 * model.addAttribute("product_name", productName);
-		 */
-		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-
-		try {
-			final String token = IndentUtil.generateOrderToken(request, indent);
-			model.addAttribute("token", token);
-		} catch (Exception e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("method PCController orderView ,order page has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
-			e.printStackTrace();
-		}
-		// modify by Jack,2016-06-21 12:10 end
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("PCController method:orderView() Redirect order page,product_id:" + indent.getProductId()
-		+ ",product_name:" + indent.getIndentName(),sessionInfo);
-		return new ModelAndView("order", model);
-	}
-
-	// 我要拍片 跳转
-	@RequestMapping("/direct/order")
-	public ModelAndView patView(final HttpServletRequest request, final ModelMap model) {
-		final User user = (User) request.getSession().getAttribute("username");
-		// modify by jack, 2016-06-21 12:00 begin
-		// -> to promote security for order
-		// change hidden input to encrypt token
-		/*
-		 * model.addAttribute("teamId", -1); model.addAttribute("productId",
-		 * -1); model.addAttribute("serviceId", -1);
-		 * model.addAttribute("indentPrice", 0); model.addAttribute("second",
-		 * 0);
-		 */
-		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-
-		final Indent indent = new Indent();
-		indent.setTeamId(-1l);
-		indent.setProductId(-1l);
-		indent.setServiceId(-1l);
-		try {
-			final String token = IndentUtil.generateOrderToken(request, indent);
-			model.addAttribute("token", token);
-		} catch (Exception e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
-			e.printStackTrace();
-		}
-		// modify by Jack,2016-06-21 12:05 end
-
-		return new ModelAndView("order", model);
-	}
 
 	/**
 	 * 分销人下单
@@ -227,15 +153,6 @@ public class PCController extends BaseController {
 			final ModelMap model) {
 
 		final User user = (User) request.getSession().getAttribute("username");
-		// modify by Jack,2016-06-21 12:28 begin
-		// to promote security for order
-		// change hidden input to encrypt token
-		/*
-		 * model.addAttribute("teamId", -1); model.addAttribute("productId",
-		 * -1); model.addAttribute("serviceId", -1);
-		 * model.addAttribute("indentPrice", 0); model.addAttribute("second",
-		 * 0); model.addAttribute("uniqueId", uniqueId);
-		 */
 		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
 
 		final Indent indent = new Indent();
@@ -253,35 +170,6 @@ public class PCController extends BaseController {
 		}
 		// modify by Jack,2016-06-21 12:35 end
 
-		return new ModelAndView("order", model);
-	}
-
-	/**
-	 * 活动页面 下单
-	 */
-	@RequestMapping("/order/{teamId}/{productId}/{serviceId}/{indentPrice}/{productName}")
-	public ModelAndView activeOrderView(final ModelMap model, final HttpServletRequest request,
-			@PathVariable("teamId") final Long teamId, @PathVariable("productId") final Long productId,
-			@PathVariable("serviceId") final Long serviceId, @PathVariable("indentPrice") final Double indentPrice,
-			@PathVariable("productName") final String productName) {
-
-		final User user = (User) request.getSession().getAttribute("username");
-		model.addAttribute("teamId", teamId);
-		model.addAttribute("productId", productId);
-		model.addAttribute("serviceId", serviceId);
-		model.addAttribute("indentPrice", indentPrice);
-		model.addAttribute("second", 0);
-		try {
-			model.addAttribute("product_name", URLDecoder.decode(productName, "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("PCContronller method:activeOrderView() productName URLDecoder error ...",sessionInfo);
-			e.printStackTrace();
-		}
-		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("PCController Redirect Activity order page,product_id:" + productId,sessionInfo);
 		return new ModelAndView("order", model);
 	}
 
@@ -324,29 +212,6 @@ public class PCController extends BaseController {
 		Log.error("List With Condition,productType:",sessionInfo);
 		return list;
 	}
-
-	/**
-	 * 加载 主页 视频列表
-	 * 
-	 * @param view
-	 *            条件
-	 * @return List<Product> 产品列表
-	 */
-	@RequestMapping(value = "/product/loadProduct", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public List<Product> productList(final HttpServletRequest request) {
-
-		List<Product> list = new ArrayList<Product>();
-		final String url = URL_PREFIX + "portal/product/static/pc/list";
-		String str = HttpUtil.httpPost(url, null, request);
-		if (str != null && !"".equals(str)) {
-			list = JsonUtil.toList(str);
-		}
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load portal page products,size:" + list.size(),sessionInfo);
-		return list;
-	}
-
 	/**
 	 * 跳转 作者页，并加载当前产品信息
 	 * 
@@ -375,7 +240,7 @@ public class PCController extends BaseController {
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
-			final HttpServletRequest request) {
+			final HttpServletRequest request)  {
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
 		Product product = new Product();
@@ -383,7 +248,17 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		product = JsonUtil.toBean(json, Product.class);
 		model.addAttribute("product", product);
-		
+		Indent indent = new Indent();
+		indent.setTeamId(product.getTeamId());
+		indent.setProductId(product.getProductId());
+		indent.setServiceId(product.getServiceId());
+		String token;
+		try {
+			token = IndentUtil.generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
 		return new ModelAndView("play", model);
@@ -756,4 +631,23 @@ public class PCController extends BaseController {
 		}return true;
 	}
 
+	/**
+	 * 播放界面获取更多导演作品
+	 */
+	@RequestMapping("/team/product/more")
+	public BaseMsg getMoreProduct(final HttpServletRequest request,final Team team) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
+		final String json = HttpUtil.httpPost(url, team, request);
+		if(null!=json && !"".equals(json)){
+			List<Product> list = JsonUtil.toList(json);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+			return baseMsg;
+		}else{
+			baseMsg.setErrorMsg("list is null");
+		}
+		return baseMsg;
+	}
+	
 }

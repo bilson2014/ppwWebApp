@@ -15,6 +15,7 @@
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/common3.js" var="common3Js"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,6 +34,14 @@
 </head>
 
 <body>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" id="company-unique" value="${teamId }"/>
+	<input type="hidden" id="play-unique" value="${productId }"/>
+	<input type="hidden" id="service-unique" value="${product.serviceId }"/>
+	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
+	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
+	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
+
  <div class="header headerMove" id="header">
         <div class="menu-bar nav">
             <div class="left-part">
@@ -54,7 +63,7 @@
                 <a href="<spring:url value=''/>" class="header-item" target="_parent">服务流程<span></span></a>
                 <a class="header-item header-item-last" id="showVideo" target="_parent">
                     <div class="showVideo"></div>
-                                                                         拍片网介绍
+                    	拍片网介绍
                     <span></span>
                 </a>
             </div>
@@ -87,8 +96,16 @@
             <div class="videoContent">
                 <div class="player-wrap" id="player-wrap">
                     <div class="videoTop">
-                        <div>标题</div>
-                        <div><span><img src="/resources/images/block/tag.png">标签 :</span><span><label>你好吗</label><label>很好</label></span></div>
+                        <div>${product.productName }</div>
+                        <div><span><img src="/resources/images/block/tag.png">标签 :</span>
+                       		<span>
+								<c:if test="${! empty product.tags}">
+									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
+										<label>${tag }</label>
+									</c:forEach>
+								</c:if>
+							</span>
+						</div>
                         <div>
                             <ul>
                                 <li></li>
@@ -105,20 +122,27 @@
                         </video>
                     </div>
                     <div class="videoBottom">
+                    	<a href="/provider/info_${teamId }.html">
                         <div>
-                            <img src="/resources/images/block/test.png">
-                            <span>红烧肉有限责任公司</span>
+                        	<c:if test="${empty product.teamPhotoUrl }">
+								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
+							</c:if>
+							<c:if test="${!empty product.teamPhotoUrl }">
+								<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
+							</c:if>
+                            <span>${product.teamName }</span>
                         </div>
+                         </a>
                         <div>
-                            红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司 红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司
+                        	${product.teamDescription }
                         </div>
                     </div>
                 </div>
                 <div class="videoPrice">
                     <div class="wordContent">
-                        <div class="title">标题</div>
+                        <div class="title">影片描述</div>
                         <div class="content">
-                            红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司 红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司
+                            	${product.pDescription }
                         </div>
                     </div>
                      
@@ -127,25 +151,31 @@
                     </div> 
                     
                     <div class="price showPrice" id="price">
-                        
-                        <div><span>￥</span><span>69,000</span></div>
+                     <div>
+                     	<span>￥</span><span>${product.servicePrice }</span></div>
 	                    <div>原价</div>
-                        <div><span>￥</span><span>69,000</span></div>
+                        <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
                         <div>影片价格</div>
                         <div id="needOrder">我要下单</div>
-                    </div>
+                     </div>
                     <div class="order" id="order">
-                        <div class="closeBtn" id="closeBtn"></div>
-                        <div class="orderTitle">立即下单,对接制作团队</div>
-                        <div class="orderItem" data-content="2">
-                            <input placeholder="您的电话号">
-                        </div>
-                        <div class="orderItem" data-content="3">
-                            <input placeholder="输入手机验证码">
-                            <div>获取验证码</div>
-                        </div>
-                        <div class="orderBtn">确认下单</div>
-                        <div class="orderBotTitle">立即下单,对接制作团队</div>
+                    	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
+                    		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+							<input type="hidden" id="token" name="token" value="${token}"/>
+							<input type="hidden" name="indentName" id="indentName" value="">
+	                        <div class="closeBtn" id="closeBtn"></div>
+	                        <div class="orderTitle">立即下单,对接制作团队</div>
+	                        <div class="orderItem">
+	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
+	                        </div>
+	                        <div class="orderItem">
+	                            <input placeholder="输入手机验证码"  id="verificationCodeValue">
+	                            <div id="verification_code_recover_btn">获取验证码</div>
+	                        </div>
+	                         <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
+	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -415,7 +445,7 @@
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">供应商登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a>注册</a></div>
                                         </div>
@@ -436,7 +466,7 @@
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
                                             <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">供应商客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">

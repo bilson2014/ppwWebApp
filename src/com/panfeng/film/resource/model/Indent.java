@@ -68,6 +68,10 @@ public class Indent extends BaseObject {
 	
 	private String token = null;
 	
+	private Boolean sendToStaff;//订单给业务人员发短信
+	
+	private Boolean sendToUser;//订单给客户发短信
+	
 	public long getIndentId() {
 		return indentId;
 	}
@@ -293,5 +297,20 @@ public class Indent extends BaseObject {
 	public void setIndent_description(String indent_description) {
 		this.indent_description = indent_description;
 	}
-	
+
+	public Boolean getSendToStaff() {
+		return sendToStaff;
+	}
+
+	public void setSendToStaff(Boolean sendToStaff) {
+		this.sendToStaff = sendToStaff;
+	}
+
+	public Boolean getSendToUser() {
+		return sendToUser;
+	}
+
+	public void setSendToUser(Boolean sendToUser) {
+		this.sendToUser = sendToUser;
+	}
 }
