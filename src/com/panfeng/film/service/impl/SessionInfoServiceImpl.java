@@ -22,39 +22,38 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 	@Autowired
 	private final SessionInfoDao dao = null;
 
-	public Map<String, Object> getSessionWithAllFields(
-			final HttpServletRequest request) {
-		
-		final Map<String,String> result = dao.getSessionWithAllFields(request);
-		final Map<String,Object> map = new HashMap<String, Object>();
-		if(ValidateUtil.isValid(result)){
+	public Map<String, Object> getSessionWithAllFields(final HttpServletRequest request) {
+
+		final Map<String, String> result = dao.getSessionWithAllFields(request);
+		final Map<String, Object> map = new HashMap<String, Object>();
+		if (ValidateUtil.isValid(result)) {
 			final String infoStr = result.get(GlobalConstant.SESSION_INFO);
 			final String processStr = result.get(GlobalConstant.PROCESS_STATUS);
-			
-			if(ValidateUtil.isValid(infoStr)){
+
+			if (ValidateUtil.isValid(infoStr)) {
 				final SessionInfo info = RedisUtils.fromJson(infoStr, SessionInfo.class);
 				map.put(GlobalConstant.SESSION_INFO, info);
 			}
-			
-			if(ValidateUtil.isValid(processStr)){
+
+			if (ValidateUtil.isValid(processStr)) {
 				final Progress progress = RedisUtils.fromJson(processStr, Progress.class);
 				map.put(GlobalConstant.PROCESS_STATUS, progress);
 			}
-			
+
 		}
 		return map;
 	}
 
-	public Object getSessionWithField(final HttpServletRequest request,final String field) {
-		
+	public Object getSessionWithField(final HttpServletRequest request, final String field) {
+
 		String str = dao.getSessionWithField(request, field);
-		if(ValidateUtil.isValid(str)){
-			if(GlobalConstant.SESSION_INFO.equals(field)){
+		if (ValidateUtil.isValid(str)) {
+			if (GlobalConstant.SESSION_INFO.equals(field)) {
 				final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
 				return info;
 			}
-			
-			if(GlobalConstant.PROCESS_STATUS.equals(field)){
+
+			if (GlobalConstant.PROCESS_STATUS.equals(field)) {
 				final Progress progress = RedisUtils.fromJson(str, Progress.class);
 				return progress;
 			}
@@ -63,18 +62,19 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 	}
 
 	public void removeSession(final HttpServletRequest request) {
-		
+
 		dao.removeSession(request);
-	}
-	@Override
-	public void removeSessionByToken(HttpServletRequest request, String token) {
-		dao.removeSessionByToken(request,token);
 	}
 
 	@Override
-	public SessionInfo getSessionInfoWithToken(HttpServletRequest request,String token) {
-		final String str = dao.getSessionWithToken(request,token);
-		if(ValidateUtil.isValid(str)){
+	public void removeSessionByToken(HttpServletRequest request, String token) {
+		dao.removeSessionByToken(request, token);
+	}
+
+	@Override
+	public SessionInfo getSessionInfoWithToken(HttpServletRequest request, String token) {
+		final String str = dao.getSessionWithToken(request, token);
+		if (ValidateUtil.isValid(str)) {
 			final SessionInfo info = RedisUtils.fromJson(str, SessionInfo.class);
 			return info;
 		}
@@ -84,13 +84,13 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 	@Override
 	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, Object> map, int time) {
 		// 检验是否存在
-		if(!dao.exitSession(request)) {
-			if(ValidateUtil.isValid(map)){
-				final Map<String,String> destMap = RedisUtils.mapToJson(map);
-				return dao.addSessionSeveralTime(request, destMap,time);
+		if (!dao.exitSession(request)) {
+			if (ValidateUtil.isValid(map)) {
+				final Map<String, String> destMap = RedisUtils.mapToJson(map);
+				return dao.addSessionSeveralTime(request, destMap, time);
 			}
 		}
-		
+
 		return false;
 	}
 }

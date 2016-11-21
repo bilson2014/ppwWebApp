@@ -24,7 +24,6 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		
 		final String contextPath = request.getContextPath();
 		final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		if(info != null){

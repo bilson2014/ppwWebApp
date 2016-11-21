@@ -225,8 +225,6 @@ function mergeVideo(begin){
 			var $body = '';
 			$.each(list,function(i,product){
 				//修改为DFS路径
-				//var imgName = getFileName(product.picLDUrl);
-				//var imgPath = getHostName() + '/product/img/' + imgName;
 				var imgPath = getDfsHostName() + product.picLDUrl;
 				//修改为DFS end
 				if(i % 4 == 0){

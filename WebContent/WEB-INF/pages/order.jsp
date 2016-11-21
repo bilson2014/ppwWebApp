@@ -3,7 +3,6 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/css/order.css" var="orderCss"/>
 
@@ -45,7 +44,7 @@
 	<script src="${orderJs }"></script>
 </head>
 <body>
-	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="telephone" value="${telephone}"/>
 	<div class="header">
 		<div class="menu-bar nav">
@@ -81,7 +80,6 @@
 					</form>
 				</div>
 			</div>
-			
 			<div class="right-part">
 				<r:noLogin>
 					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
@@ -118,7 +116,7 @@
 					<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
 						<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
 						<input type="hidden" id="token" name="token" value="${token}"/>
-					
+		
 						<div class="form-group">
 						    <div>留下您的姓名</div>
 							<input type="text" id="indentName" name="indentName" tabindex="1" autocomplete="off" placeholder=""/>

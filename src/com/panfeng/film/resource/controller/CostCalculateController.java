@@ -67,7 +67,7 @@ public class CostCalculateController extends BaseController{
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setIndentName("新订单");
-		indent.setIndentType(1);
+		indent.setIndentType(0);
 		indent.setServiceId(-1l);
 		indent.setIndentPrice(0d);
 		indent.setProductId(-1);

@@ -2,7 +2,6 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/manager/recover.css" var="recoverCss"/>
@@ -38,7 +37,7 @@
 	<![endif]-->
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<div class="header">
 			<div class="menu-bar nav">
 				<div class="left-part">
@@ -116,42 +115,6 @@
 		         </div>
 		   
 		   </div>
-	
-	<!-- <div class="page-container">
-		<div class="recover-container">
-				<div class="well">
-					<h2>视频管家密码找回</h2>
-					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
-						<fieldset>
-							提示框
-							<div class="tooltip-show-recover" style="display: none;">
-								<label class="tooltip-message-recover" ></label>
-							</div>
-							<div class="form-group">
-								<input type="text" autofocus="autofocus" autocomplete="off" tabindex="1" maxlength="11" size="11" class="form-control" id="recover_phone" placeholder="请输入您的手机号码">
-							</div>
-							<div class="form-group">
-								<input type="password" autofocus="autofocus" autocomplete="off" tabindex="2" maxlength="16" size="16" class="form-control" id="recover_password" placeholder="请输入新密码">
-							</div>
-							<div class="form-group">
-								<input type="text" id="kaptcha_code_recover" class="form-control verfication" tabindex="3" placeholder="图片验证码" autocomplete="off" maxlength="4">
-								<label class="control-label">
-									<img alt="图片验证码" src='' id="kaptcha_pic_recover" class="btn-validation">
-								</label>
-							</div>
-							<div class="form-group">
-								<input type="text" id="verification_code_recover" class="form-control verfication" tabindex="4" placeholder="短信验证码" autocomplete="off" maxlength="6">
-								<button type="button" id="verification_code_recover_btn" class=" btn-default btn-get-validation">点击获取</button>
-							</div>
-							
-						</fieldset>
-						<div class="actions">
-							<input class="btn btn-danger btn-login" id="recoverBt" type="button" value="密码找回">
-						</div>
-					</form>
-				</div>
-			</div>
-    </div> -->
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>

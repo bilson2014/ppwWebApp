@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -61,12 +60,12 @@
 	<![endif]-->
 </head>
 <body>
-	<input id="Fastdfs_path"  type="hidden" value="${DFSurl}"/>
-			<!-- 成功提示框 start -->
-					<div class="tooltip-success-show" style="display: none;">
-						<label class="tooltip-success-message">信息更新成功</label>
-					</div>
-					<!-- 成功提示框  end -->
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<!-- 成功提示框 start -->
+	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	<!-- 成功提示框  end -->
 	<input type="hidden" value="${cKey }" id="company-id"/>
 	<input type="hidden" value="${productKey }" id="p-id"/>
 	<input type="hidden" value="${action }" id="action"/>
@@ -182,18 +181,9 @@
 								<div style="margin:0px 40px;float:left" id="HDImgName"></div>
 								<input type="hidden" value="${model.picHDUrl }" id="video-picHDUrl"/>
 							</div>
-							<!-- TODO：
-							<div class="upload-btn">
-								<button class="btn btn-primary uploadbtn" id="uploadHDBt" type="button">上传缩略图</button>
-								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
-								<input type="file" id="picHDFile" name="uploadFiles" style="display: none;">
-								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
-							</div> 
-							-->
 							<div class="upload-btn">
 								<div class="picker" id="uploadHDBt">上传缩略图</div>
-								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
+								<a href="javascript:void(0);" data-href="/resources/images/provider/default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel-HD" style="display: none;"></div>
 							</div> 
@@ -207,17 +197,11 @@
 								<div style="margin:0px 40px;float:left" id="LDImgName"></div>
 								<input type="hidden" value="${model.picLDUrl }" id="video-picLDUrl"/>
 							</div>
-							<!-- <div class="upload-btn">
-								<button class="btn btn-primary uploadbtn" id="uploadLDBt" type="button">上传封面</button>
-								<a href="javascript:void(0);" data-href="default-cover.jpg" class="exampleUrl" data-width="650" data-height="365">查看示例</a>
-								<input type="file" id="picLDFile" name="uploadFiles" style="display: none;">
-								<p class="help-block">仅支持小于250K的png/jpg格式，推荐650*365分辨率<span style="color:red;">*</span></p>
-							</div> -->
 							<div class="upload-btn">
-								<div class="picker" id="uploadLDBt">上传缩略图</div>
+								<div class="picker" id="uploadLDBt">上传封面</div>
 								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="imageLabel" style="display: none;"></div>
+								<div class="alert alert-danger" id="imageLabel-LD" style="display: none;"></div>
 							</div> 
 							
 						</div>
@@ -225,16 +209,6 @@
 					<div class="form-group">
 						<label for="video-picLDUrl" class="col-sm-2 control-label">视频</label>
 						<div class="col-sm-6">
-							<%-- <div class="upload-btn">
-								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
-								<button class="btn btn-primary uploadbtn" id="uploadVideoBt" type="button">上传视频</button>
-								<div style="display:inline;margin:10px" id="videoName"></div>
-								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
-								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
-							</div> --%>
-							
-							
 							<div class="upload-btn">
 								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
 								<input type="hidden" value="0" id="video-change"/>

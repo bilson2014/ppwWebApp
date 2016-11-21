@@ -16,7 +16,8 @@ import com.panfeng.film.util.ValidateUtil;
 
 @Service
 public class PreventRepeatImpl implements PreventRepeat {
-	static final long timeout = 1000 * 60 * 60 * 24; // ms
+	private static final long TIMEOUT = 1000 * 60 * 60 * 24; // ms
+
 
 	/**
 	 * 新的session 第一次访问
@@ -34,6 +35,7 @@ public class PreventRepeatImpl implements PreventRepeat {
 	 * 旧的session 新的页面访问 添加新的token
 	 * 
 	 * @param preventRepeatModel
+	 * @param oldTokenKey
 	 * @return
 	 */
 	public PreventRepeatModel addCurrentTokenVal(PreventRepeatModel preventRepeatModel, String oldTokenKey) {
@@ -54,7 +56,7 @@ public class PreventRepeatImpl implements PreventRepeat {
 					long d = System.currentTimeMillis() - currentTokenVal.getSt();
 					ConcurrentLinkedQueue<String> urlList = currentTokenVal.getUrlList();
 					if (urlList != null && urlList.size() == 0 && !currentTokenVal.getToken().equals(oldTokenKey)) {
-						if (d > timeout) {
+						if (d > TIMEOUT) {
 							timeoutKey.add(key);
 						}
 					}
@@ -79,9 +81,9 @@ public class PreventRepeatImpl implements PreventRepeat {
 		}
 	}
 
-	public boolean checkRul(PreventRepeatModel preventRepeatModel, String tokenKey) {
-
+	public boolean checkUrl(PreventRepeatModel preventRepeatModel, String tokenKey) {
+		
 		return false;
 	}
-
+	
 }

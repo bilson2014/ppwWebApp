@@ -4,7 +4,6 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
-<spring:url value="<%=Constants.DFS_PATH %>" var="DFSurl" />
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
@@ -71,7 +70,7 @@
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body>
-	<input id="Fastdfs_path" type="hidden" value="${DFSurl}"/>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="user_sex" value="${user.sex }"/>
 	<input type="hidden" id="user_unique" value="${user.id }"/>
 	<input type="hidden" id="user_img" value="${user.imgUrl }"/>
