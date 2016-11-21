@@ -240,7 +240,7 @@ public class PCController extends BaseController {
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
-			final HttpServletRequest request) {
+			final HttpServletRequest request)  {
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
 		Product product = new Product();
@@ -248,7 +248,17 @@ public class PCController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		product = JsonUtil.toBean(json, Product.class);
 		model.addAttribute("product", product);
-		
+		Indent indent = new Indent();
+		indent.setTeamId(product.getTeamId());
+		indent.setProductId(product.getProductId());
+		indent.setServiceId(product.getServiceId());
+		String token;
+		try {
+			token = IndentUtil.generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
 		return new ModelAndView("play", model);

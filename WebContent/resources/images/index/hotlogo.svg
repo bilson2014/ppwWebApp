@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="110px" height="24px" viewBox="0 0 110 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>热门爆款 标签 copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="热门爆款-标签-copy" transform="translate(-1.000000, -1.000000)">
+            <text id="热门" font-family="STHeitiSC-Medium, Heiti SC" font-size="26" font-weight="bold" fill="#FFFFFF">
+                <tspan x="0" y="22">热门</tspan>
+            </text>
+            <text id="爆款" font-family="STHeitiSC-Medium, Heiti SC" font-size="14" font-weight="bold" fill="#FFFFFF">
+                <tspan x="52" y="13">爆款</tspan>
+            </text>
+            <path d="M82,6.90197047 C82,6.90197047 82.7855614,8.02028941 85.4841706,7.00658449 C88.1827798,5.99287957 90.2741478,3 92.6550698,3 C95.0359919,3 98,5.46946148 98,5.46946148 L93.6765161,6.28792867 L95.5899966,9.64114539 C95.5899966,9.64114539 93.1941424,7.79901998 91.3921121,9.23152898 C89.5900817,10.664038 86.4000097,13 84.4432476,13 C82.4864854,13 82.115372,12.6448205 82.115372,12.6448205 L82,6.90197047 Z" id="Path-2" fill="#FE5453"></path>
+            <text id="HOT-PRODUCTS" font-family="STHeitiSC-Medium, Heiti SC" font-size="8" font-weight="bold" fill="#FFFFFF">
+                <tspan x="52" y="24">HOT PRODUCTS</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

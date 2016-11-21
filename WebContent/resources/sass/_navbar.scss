@@ -3,14 +3,19 @@
 */
 @import "compass/typography/text/ellipsis";
 
+
+a:link{text-decoration:none;}
+a:visited{text-decoration:none;}
+a:active{text-decoration:none;}
+
 .nav a {
 	text-decoration: none;
 	outline: none;
 	@include border-radius($border-radius);
 
 	&:hover {
-		color: $red-base;
-		background-color: lighten($gray-light,33%);
+		//color: $red-base;
+		//background-color: lighten($gray-light,33%);
 	}
 }
 
@@ -43,7 +48,7 @@
 	overflow: hidden;
     @include ellipsis;
 	cursor: pointer;
-
+	transition: all .8s ease-in-out 0s;	
 }
 
 .login-item {

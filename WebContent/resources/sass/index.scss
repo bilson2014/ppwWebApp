@@ -2,6 +2,7 @@
 @import "buttons";
 @import "video";
 @import "flexslider";
+@import "indexSwiper";
 @import "index-sprite";
 
 .flex-wrap { 
@@ -11,6 +12,7 @@
 	@include  media_screen_height(440px,470px,650px);
 	@include flexshow; 
 }
+
 
 
 .bannerOut{
@@ -178,7 +180,7 @@ input:focus{
 		top:20px;
 	}
 
-		.changeMidPosition{
+    .changeMidPosition{
 		position: relative;
 		top:15px;
 	}
@@ -190,8 +192,6 @@ input:focus{
 	margin: auto;
 	@include media_screen_width();
 
-
-
 	dt {
 		width: 48px;
 		height: 48px;
@@ -201,6 +201,11 @@ input:focus{
 	.first-desc {
 		width:45px;
 		@include index-sprite(first-desc);
+		clip:rect(0px 10px 10px 0px);
+		&:hover{
+			clip: rect(0px,156px,-10px,78px);
+		}
+		
 	} 
 
 	.second-desc {
@@ -351,4 +356,24 @@ input:focus{
 		margin-right: 0;
 	}
 }
+
+
+.slowShow{
+	background: red;
+	transition: background-color 3000ms ease-out,border-color 3000ms ease-out;
+}
+
+.showLeft{
+     left:300px;
+     transition: all .8s ease-in-out 0s;
+	&:hover{
+		position: relative;
+		left:0px;
+		transition: all .8s ease-in-out 0s;
+	}
+	
+}
+
+
+
 

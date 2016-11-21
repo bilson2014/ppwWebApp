@@ -1,6 +1,7 @@
 @mixin flexshow(){
 	.flexslider{
 		position:absolute;
+		top:0px;
 		width: 100%;
 		@include  media_screen_height(440px,470px,650px); // self-adaption height
 		margin:0 auto;
@@ -23,6 +24,7 @@
 				}
 				.video-bg {
 				    position: absolute;
+				    height: 100%;
 				    width: 120%;
 				    z-index: -1;
 				    min-width: 960px;
@@ -39,6 +41,8 @@
 
 		}
 	}
+
+
 	
 	.flex-control-nav{position:absolute;bottom:10px;z-index:2;width:100%;text-align:center;}
 	.flex-control-nav li{display:inline-block;width:14px;height:14px;margin:0 5px;*display:inline;zoom:1;}
@@ -47,6 +51,29 @@
 	
 	.flex-direction-nav{position:absolute;z-index:3;width:100%;top:42%;}
 	.flex-direction-nav li a{display:block;width:30px;height:70px;overflow:hidden;cursor:pointer;position:absolute;}
-	.flex-direction-nav li a.flex-prev{left:0;background:url(../images/icons/prev.png) center center no-repeat;display: none}
-	.flex-direction-nav li a.flex-next{right:0;background:url(../images/icons/next.png) center center no-repeat;display: none }
+	.flex-direction-nav li a.flex-prev{left:0;background:url(../images/icons/prev.png) center center no-repeat;}
+	.flex-direction-nav li a.flex-next{right:0;background:url(../images/icons/next.png) center center no-repeat;}
+}
+
+//
+.flexVideo {
+    position: absolute;
+    width: 100%;
+    @include media_screen_height(500px, 540px, 660px); // self-adaption height
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    section {
+        position: relative;
+        @include media_screen_height(500px, 540px, 660px); // self-adaption height
+        overflow: hidden;
+    }
+    .video-bg {
+        position: absolute;
+        width: 120%;
+        @media screen and (min-width: 1500px) {
+            position: relative;
+            top: -350px;
+        }
+    }
 }

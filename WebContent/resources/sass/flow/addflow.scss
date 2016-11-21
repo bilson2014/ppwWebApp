@@ -35,23 +35,6 @@
 	}
 }
 
-//弹出框
-
-.errorDiv {
-    position: fixed;
-    top: 65px;
-    height: 48px;
-    width: 100%;
-    background: $red-base;
-    text-align: center;
-    line-height: 48px;
-    color: white;
-    font-size: $font-size;
-    z-index: 99;
-}
-
-
-
 
 //项目信息整体模块
 .infobody {

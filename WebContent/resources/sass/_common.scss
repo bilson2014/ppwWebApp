@@ -8,6 +8,16 @@
 @import "video";
 @import "icons-sprite"; 
 
+body{
+	 font-family:"PingFang Regular", "Microsoft YaHei","微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;
+	 background: #FDFFFF;
+}
+
+a:focus, a:hover {
+    color:white !important;
+    text-decoration:none !important;
+}
+
 .header {
 	position: fixed;
 	left: 0;
@@ -27,7 +37,7 @@
 	right: 0;
 	//padding: 20px 0;
 	margin: 0 auto;
-	@include media_screen_width(); // self-adaption width
+	@include  media_screen_width_beta3(); // self-adaption width
 }
 
 .menu-bar > .left-part {

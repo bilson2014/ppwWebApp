@@ -37,6 +37,8 @@
      <!--成本计算器-->
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
     
+    <!-- 新首页 -->
+    <mvc:view-controller path="/home" view-name="/homePage" />
      <!--END-->
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
