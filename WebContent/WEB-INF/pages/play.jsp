@@ -102,18 +102,26 @@
                             红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司 红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司红烧肉有限责任公司
                         </div>
                     </div>
+                     
+                    <div class="price delPrice">
+	                     
+                    </div> 
+                    
                     <div class="price showPrice" id="price">
+                        
                         <div><span>￥</span><span>69,000</span></div>
-                        <div>影片时长</div>
+	                    <div>原价</div>
+                        <div><span>￥</span><span>69,000</span></div>
+                        <div>影片价格</div>
                         <div id="needOrder">我要下单</div>
                     </div>
                     <div class="order" id="order">
                         <div class="closeBtn" id="closeBtn"></div>
                         <div class="orderTitle">立即下单,对接制作团队</div>
-                        <div class="orderItem">
+                        <div class="orderItem" data-content="2">
                             <input placeholder="您的电话号">
                         </div>
-                        <div class="orderItem">
+                        <div class="orderItem" data-content="3">
                             <input placeholder="输入手机验证码">
                             <div>获取验证码</div>
                         </div>
@@ -408,7 +416,7 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"></a></div>
+                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
                                             <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">供应商客服</a></div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
