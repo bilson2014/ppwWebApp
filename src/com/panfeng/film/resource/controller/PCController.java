@@ -140,7 +140,26 @@ public class PCController extends BaseController {
 
 		return new ModelAndView("about", model);
 	}
-
+	// 我要拍片 跳转
+		@RequestMapping("/direct/order")
+		public ModelAndView patView(final HttpServletRequest request, final ModelMap model) {
+			
+			final User user = (User) request.getSession().getAttribute("username");
+			model.addAttribute("telephone", user != null ? user.getTelephone() : "");
+			final Indent indent = new Indent();
+			indent.setTeamId(-1l);
+			indent.setProductId(-1l);
+			indent.setServiceId(-1l);
+			try {
+				final String token = IndentUtil.generateOrderToken(request, indent);
+				model.addAttribute("token", token);
+			} catch (Exception e) {
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
+				e.printStackTrace();
+			}
+			return new ModelAndView("order", model);
+		}
 	/**
 	 * 分销人下单
 	 * 

@@ -213,7 +213,7 @@ var homePage = {
 						csrftoken:$("#csrftoken").val(),
 						indent_tele:$("#help-phone").val(),
 						phoneCode:'-1',
-						indent_recomment:$("#indent_recomment").val(),
+						indent_recomment:$("#indent_recomment").text(),
 						indentName:'新订单',
 						productId:-1,
 						teamId:-1,
@@ -221,7 +221,7 @@ var homePage = {
 					},
 					dataType : 'json',
 					success : function(data){
-						//TODO 执行搜索
+						window.location.href='/search?q='+$("#indent_recomment").text();
 					}
 				});
 			}
