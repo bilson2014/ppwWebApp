@@ -38,20 +38,17 @@ function initClose() {
     });
 }
 
-
 function chickShowOrder() {
     $('#wantOrder').on('click', function() {
         showOrder('宣传片');
     });
 }
 
-
 function showOrder(typeName) {
    
     if ($('body').hasClass('comOrder')) {
         $('.comOrder').show();
     } else {
-
         var $body = '<div class="comOrder">' +
             '<div class="cOrder" id="cOrder">' +
             '<div class="cCloseBtn" id="closeBtn">' +
@@ -106,14 +103,12 @@ function initOrderClick(){
 	
 	$('#order-btn').click(function(){
 		if(checkData(1)){ // 检查数据完整性
-			
-				showError($('#indent_tele_error'),'');
-				showError($('#indent_code_error'),'');
-				// 提交表单
-				var token = $('#commonToken').val();
-				$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-				$('#cOrder-form').attr('action',getContextPath() + '/order/submit').submit().remove();
-			
+			showError($('#indent_tele_error'),'');
+			showError($('#indent_code_error'),'');
+			// 提交表单
+			var token = $('#commonToken').val();
+			$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
+			$('#cOrder-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 		}
 	});
 	
