@@ -263,7 +263,7 @@
                 <div class="leftContent">
                       <div class="title">影片故事简述</div>
                       <div class="setPro" id="videoValue">
-                      		${product.videoDescription }
+                      		${product.videoDescription}
                       </div>
                 </div>
                 <div class="rightContent">

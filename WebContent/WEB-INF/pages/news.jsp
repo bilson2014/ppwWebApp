@@ -6,12 +6,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
+
+
 <spring:url value="/resources/css/news/news.css" var="newsCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
-<spring:url value="/resources/js/news/news.js" var="newsJS"/>
+<spring:url value="/resources/js/news.js" var="newsJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/common3.js" var="common3Js"/>
 <!DOCTYPE html>
@@ -67,8 +69,8 @@
             <div class="contentWidth">
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
-                    <div class="setPro">
-                        ${news.content}
+                    <div class="setPro" id="newsValue">
+                        ${news.discription}
                     </div>
                 </div>
                 <div class="rightContent">

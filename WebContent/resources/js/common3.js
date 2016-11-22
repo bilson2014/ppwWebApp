@@ -61,7 +61,7 @@ function showOrder(typeName) {
             '<form id="cOrder-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">'+
             ' <div class="cOrderItem">' +
             '<div class="dropdown dropdowns" id="selectType">' +
-            '<div class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">' +
+            '<div class="btn btn-default dropdown-toggle" type="button" id="commonOrderUlTogle" data-toggle="dropdown">' +
             '<span data-content="0">' + typeName + '</span>' +
             '<div class="carets"></div>' +
             '</div>' +
@@ -135,10 +135,12 @@ function initOrderClick(){
 			}, getContextPath() + '/login/verification/' + telephone, null);
 		}
 	});
-	 
-	$('#commonOrderUl').on('click',function(){
-		$(this).slideDown();
+	
+	
+	$('#commonOrderUlTogle').on('click',function(){
+		$('#commonOrderUl').slideDown();
 	});
+	 
     $('#commonOrderUl li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());        var info=parseInt($(this).attr('data-info'));
         $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-content",($(this).attr('data-content')));
