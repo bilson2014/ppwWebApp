@@ -2,7 +2,6 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
-    @import "indexSwiper";
     @import "header3";
     @import "_comHeader3";
     $price-wrap-min: 236px;
@@ -10,6 +9,8 @@
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
+
+
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 60px;
@@ -36,6 +37,7 @@
             .setPro {
                 padding-right: 220px;
                 color: $gray-dark;
+                font-size: $font-size-base;
                 img {
                     width: $width-min - $rightWidth - 220px;
                     @media screen and (min-width: 1276px) and (max-width: 1500px) {

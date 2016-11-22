@@ -237,22 +237,24 @@ function verificationCodeBtn(){
 function checkData(type){
 	var telephone = $('#phoneNumber').val().trim();
 	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
+	showError($('#phoneError'),'');
+	showError($('#phoneCodeError'),'');
 	switch (type) {
 	case 1:
 		if(telephone == '' || telephone == null || telephone == undefined){
-			alert("请填写手机号");
+			showError($('#phoneError'),'请填写手机号');
 			$('#phoneNumber').focus();
 			return false;
 		}
 		if(!checkMobile(telephone)){
-			alert("手机号输入错误");
+			showError($('#phoneError'),'手机号输入错误');
 			$('#phoneNumber').focus();
 			return false;
 		}
 		return true;
 	case 2:
 		if(verificationCodeValue == '' || verificationCodeValue == null || verificationCodeValue == undefined){
-			alert("请填写验证码");
+			showError($('#phoneCodeError'),'请填写验证码');
 			$('#verificationCodeValue').focus();
 			return false;
 		}
@@ -282,7 +284,7 @@ function submitOrder(){
 	if(checkData(1) && checkData(2)){
 		loadData2(function(msg){
 			alert(msg.ret);
-		}, getContextPath() + '/order/submit', 
+		}, getContextPath() + '/order/deliver', 
 			{indentName : $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),

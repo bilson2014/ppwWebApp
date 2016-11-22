@@ -69,8 +69,6 @@ public class IndentController extends BaseController {
 			indent.setTeamId(nIndent.getTeamId());
 			indent.setProductId(nIndent.getProductId());
 			indent.setServiceId(nIndent.getServiceId());
-			indent.setSendToStaff(true);
-			indent.setSendToUser(true);
 			String str = HttpUtil.httpPost(url, indent,request);
 			if(str != null && !"".equals(str)){
 				final Result result = JsonUtil.toBean(str, Result.class);

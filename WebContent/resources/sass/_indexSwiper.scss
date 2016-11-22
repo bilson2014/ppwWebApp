@@ -15,14 +15,14 @@
 }
 
 .swiper-button-prev {
-    background: url(../images/index/prev.png) no-repeat !important;
+    background: url(/resources/images/index/prev.png) no-repeat !important;
     &:hover {
         background-position-x: -26px !important;
     }
 }
 
 .swiper-button-next {
-    background: url(../images/index/next.png) no-repeat !important;
+    background: url(/resources/images/index/next.png) no-repeat !important;
     &:hover {
         background-position-x: -26px !important;
     }
@@ -189,7 +189,7 @@
 }
 
 .backgroundCover {
-    background: url(../images/index/hotback.png) !important;
+    background: url(/resources/images/index/hotback.png) !important;
     background-size:cover;
     position: relative;
     
@@ -212,14 +212,16 @@
                 }
 }
 
+    
+
 .swiperCover {
     @include media_screen_width_beta3();
     padding-top: 126px;
     height: 521px;
-    .hotlogo {
+    .hotLogo {
         width: 300px;
         height: 50px;
-        background: url(../images/index/hotlogo.png) no-repeat !important;
+        background: url(/resources/images/index/hotlogo.png) no-repeat !important;
         position: absolute;
         top: 80px;
     }
@@ -391,7 +393,7 @@
     .directorLogo {
         width: 300px;
         height: 30px;
-        background: url(../images/index/directorLogo.png) no-repeat !important;
+        background: url(/resources/images/index/directorLogo.png) no-repeat !important;
         position: absolute;
         top: 80px;
     }
@@ -438,7 +440,7 @@
 // }
 
 .director .swiper-button-next {
-    background: url(../images/index/dright.png) no-repeat !important;
+    background: url(/resources/images/index/dright.png) no-repeat !important;
       right: 20px !important;
      @media screen and (min-width: 1500px) {
                     right: 200px !important;
@@ -450,7 +452,7 @@
 }
 
 .director .swiper-button-prev {
-    background: url(../images/index/dleft.png) no-repeat !important;
+    background: url(/resources/images/index/dleft.png) no-repeat !important;
      left: 20px !important;
       @media screen and (min-width: 1500px) {
                     left: 200px !important;
@@ -607,3 +609,5 @@
     //     width: 20%;
     // }
 }
+
+

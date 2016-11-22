@@ -54,14 +54,16 @@
 	</script>
 </head>
 
+
+
 <body>
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
-	<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
  <div class="header headerMove" id="header">
+ <input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
@@ -78,8 +80,8 @@
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
-                <a href="<spring:url value=''/>" class="header-item" target="_parent">精品案例<span></span></a>
-                <a href="<spring:url value=''/>" class="header-item" target="_parent">服务流程<span></span></a>
+                <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
+                <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
                 <a class="header-item header-item-last" id="showVideo" target="_parent">
                     <div class="showVideo"></div>
                     	拍片网介绍
@@ -190,14 +192,14 @@
 												
 	                        <div class="closeBtn" id="closeBtn"></div>
 	                        <div class="orderTitle">立即下单,对接制作团队</div>
-	                        <div class="orderItem">
+	                        <div class="orderItem" id="phoneError">
 	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
 	                        </div>
-	                        <div class="orderItem">
+	                        <div class="orderItem" id="phoneCodeError">
 	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
 	                            <div id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
 	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
                         </form>
@@ -278,6 +280,8 @@
             </div>
         </div>
 </c:if>
+
+<!-- foot -->
          <div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
@@ -303,8 +307,8 @@
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem"><a>服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-                                            <div class="noiconItem"><a>找拍摄团队</a></div>
-                                            <div class="noiconItem"><a>我要发作品</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
