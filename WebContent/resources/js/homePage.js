@@ -194,6 +194,8 @@ var homePage = {
 		this.getRecommendTeam();
 		//获取推荐新闻
 		this.getRecommendNews();
+		//跳转成本计算器
+		this.toCostCalculate();
 	},
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
@@ -372,6 +374,11 @@ var homePage = {
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
 			window.location.href="home/news/info/"+id;
+		})
+	},
+	toCostCalculate:function(){
+		$("#toCalculate").off("click").on("click",function(){
+			window.location.href="/cost/cal";
 		})
 	}
 }

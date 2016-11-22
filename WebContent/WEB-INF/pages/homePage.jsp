@@ -150,7 +150,7 @@
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
-							<div class="bannerWord">
+							<div class="bannerWord" id="toCalculate">
 								<img
 									src=" /resources/images/index/bannerOnline.png">在线估价<span>>></span>
 							</div>

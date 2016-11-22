@@ -117,7 +117,7 @@ function initOrderClick(){
 		}
 	});
 	
-	$('#getPhoneCode').on('click',function(){
+	$('#getPhoneCode').off("click").on('click',function(){
 		if(curCounts == 0 && checkData(2)){
 			curCounts = counts;
 			var telephone = $('#indent_tele').val().trim();
