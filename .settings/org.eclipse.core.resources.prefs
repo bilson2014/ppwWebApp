@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/pages/homePage.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/news.jsp=UTF-8
+encoding//WebContent/WEB-INF/pages/order-flow.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/play.jsp=UTF-8
 encoding//WebContent/resources/css/provider/info.css=UTF-8
 encoding//WebContent/resources/js/homePage.js=UTF-8

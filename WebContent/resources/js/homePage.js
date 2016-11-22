@@ -108,17 +108,28 @@ function originTool() {
     });
 
     //下拉监听
+    
+	$(".dropdown").on('click',function(){
+		$(this).find('ul').slideDown();
+		return false;
+	});
 
-    $("#selectType").hover(function() {
-        $('#selectUl').slideDown();
-    }, function() {
-        //   $('#selectUl').slideUp();
-    });
+     $('li').on('click',function(){
+          $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+          $(this).parent().slideUp();
+          return false;
+     });
 
-    $("#selectType").find('ul').find('li').on('click', function() {
-        $(this).parent().parent().find('span').text($(this).text());
-        $('#selectUl').slideUp();
-    });
+//    $("#selectType").hover(function() {
+//        $('#selectUl').slideDown();
+//    }, function() {
+//        //   $('#selectUl').slideUp();
+//    });
+
+//    $("#selectType").find('ul').find('li').on('click', function() {
+//        $(this).parent().parent().find('span').text($(this).text());
+//        $('#selectUl').slideUp();
+//    });
     // $('.dropdown').hover(function() {
     //     function() {
     //         alert(1);
