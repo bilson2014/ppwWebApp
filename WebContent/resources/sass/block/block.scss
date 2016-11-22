@@ -9,6 +9,10 @@
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
+
+
+
+
     .videoArea {
         height: 780px;
         background: url(../../images/index/hotback.png) no-repeat;
@@ -48,7 +52,6 @@
             }
         }
         video {
-            background: red;
             width: $width-min - $order-width;
             height: ($width-min - $price-wrap-min) * (9 / 16);
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
@@ -284,6 +287,22 @@
             bottom: 0px !important;
             opacity: 1 !important;
         }
+
+         .order-btn{
+                height: 40px;
+                width: 100%;
+                color: white;
+                font-size: $font-size-base;
+                line-height: 40px;
+                background: $red-base;
+                margin-bottom: 20px;
+                text-align: center;
+                border-radius: 4px;
+                cursor: pointer;
+                &:active {
+                    background: darken($red-base, 20%);
+                }
+            }
         .order {
             position: absolute;
             width: 300px;
@@ -314,6 +333,7 @@
                     background-position-y: -24px;
                 }
             }
+           
             .orderItem {
                 position: relative;
                 margin-bottom: 20px;
@@ -356,20 +376,6 @@
                 right: 0px;
                 bottom: 0px;
                 left: 15px;
-            }
-            .orderBtn {
-                height: 40px;
-                color: white;
-                font-size: $font-size-base;
-                line-height: 40px;
-                background: $red-base;
-                margin-bottom: 20px;
-                text-align: center;
-                border-radius: 4px;
-                cursor: pointer;
-                &:active {
-                    background: darken($red-base, 20%);
-                }
             }
             .orderBotTitle {
                 color: #d1d1d1;

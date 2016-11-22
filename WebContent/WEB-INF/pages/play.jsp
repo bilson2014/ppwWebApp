@@ -192,14 +192,14 @@
 												
 	                        <div class="closeBtn" id="closeBtn"></div>
 	                        <div class="orderTitle">立即下单,对接制作团队</div>
-	                        <div class="orderItem">
+	                        <div class="orderItem" id="phoneError">
 	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
 	                        </div>
-	                        <div class="orderItem">
+	                        <div class="orderItem" id="phoneCodeError">
 	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
 	                            <div id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
+	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
 	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
                         </form>
