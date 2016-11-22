@@ -212,6 +212,7 @@ function showDiv(){
     $('#order-btn').off('click').on('click',submitOrder);
 }
 
+
 /////////////////////////////////////////wang//////////////////////////////////////
 // order verificationCode
 function verificationCodeBtn(){
@@ -283,6 +284,7 @@ function submitOrder(){
 		$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
 	}
 }
+
 
 
 

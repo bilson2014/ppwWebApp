@@ -13,6 +13,7 @@
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/common3.js" var="common3Js"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 
@@ -45,17 +46,28 @@
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
-                <a href="<spring:url value='/mgr/index'/>" class="header-item">首页<span></span></a>
-                <a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
-                <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">精品案例<span></span></a>
-                <a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">服务流程<span></span></a>
+                <a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+                <r:identity role="customer">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
+				</r:identity>
+				<r:identity role="employee">
+				<a href="<spring:url value='/mgr/index'/>"  class="header-item" target="_parent">我的项目<span></span></a>
+				</r:identity>
+				<r:noLogin>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+				</r:noLogin>
+                <a href="<spring:url value=''/>" class="header-item" target="_parent">精品案例<span></span></a>
+                <a href="<spring:url value=''/>" class="header-item" target="_parent">服务流程<span></span></a>
                 <a class="header-item header-item-last" id="showVideo" target="_parent">
-                    <div class="showVideo">
-                    </div>
+                    <div class="showVideo"></div>
                     	拍片网介绍
                     <span></span>
                 </a>
             </div>
+            <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
                 <div class="search-box">
                     <form method="get" action="/search" id="s-form">
@@ -73,6 +85,13 @@
         </div>
     </div>
     <div class="page">
+    <!-- <div class="showSuccess">
+       <div class="successModal">
+          <div class="show-zero2 zeromodal-icon zeromodal-success"><span class="line tip"></span><span class="line long"></span><div class="placeholder"></div></div>
+          <div class="successWord">绑定成功</div>
+          <div class="successInfo">欢迎加入拍片网!  自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒</div>
+       </div>   
+    </div> -->
         <div class="videoArea">
             <div class="videoContent">
                 <div class="player-wrap" id="player-wrap">
@@ -425,29 +444,29 @@
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
-                                            <div class="cusLogin iconItem"><a>客户登录</a></div>
-                                            <div class="proLogin iconItem"><a>供应商登录</a></div>
-                                            <div class="manLogin iconItem"><a>管家登录</a></div>
+                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
+                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a>注册</a></div>
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>关于拍片网</a></div>
-                                            <div class="noiconItem"><a>了解我们</a></div>
-                                            <div class="noiconItem"><a>加入我们</a></div>
-                                            <div class="noiconItem"><a>公司活动</a></div>
-                                            <div class="noiconItem"><a>团队介绍</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/about-us.html' />">了解我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#join-us' />">加入我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-activity.html' />">公司活动</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#activityPart' />">团队介绍</a></div>
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem"><a>服务流程</a></div>
-                                            <div class="noiconItem"><a>服务协议</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
                                             <div class="noiconItem"><a>找拍摄团队</a></div>
                                             <div class="noiconItem"><a>我要发作品</a></div>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
                                             <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">供应商客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
