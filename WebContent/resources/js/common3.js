@@ -9,7 +9,6 @@ $().ready(function() {
 	playVideo();
 	chickShowOrder();
 	
-	
 	$('body').on('click',function(){
 		$('.dropdown').find('ul').css('displaye');
 		var ulArray = $('.dropdown').find('ul');
@@ -120,12 +119,12 @@ function showOrder(typeName) {
 function initOrderClick(){
 	var flag = true;
 	$('#order-btn').off("click").on("click",function(){
-		if(checkData(1)){ // 检查数据完整性
+		if(checkDatas(1)){ // 检查数据完整性
 				showError($('#indent_tele_error'),'');
 				showError($('#indent_code_error'),'');
-				flag = false;
 				// 提交表单
 				if(flag){
+					flag = false;
 					loadData2(function(msg){
 						$('.comOrder').hide();
 						showSuccess();
@@ -146,7 +145,7 @@ function initOrderClick(){
 		}
 	});
 	$('#getPhoneCode').off("click").on('click',function(){
-		if(curCounts == 0 && checkData(2)){
+		if(curCounts == 0 && checkDatas(2)){
 			curCounts = counts;
 			var telephone = $('#indent_tele').val().trim();
 			$('#getPhoneCode').text('已发送(' + curCounts + ')');
@@ -261,13 +260,16 @@ function showSuccess() {
 
 		var $body = '<div class="showSuccess">'
 				+ '<div class="successModal">'
+	            +'<div class="cCloseBtn" id="closeSuccess">'
+	            +' 	<div></div>'
+	            +'</div>'
 				+ ' 	<div class="show-zero2 zeromodal-icon zeromodal-success">'
 				+ ' 		<span class="line tip"></span>'
 				+ '   	<span class="line long"></span>'
 				+ '   	<div class="placeholder"></div>'
 				+ '	</div>'
-				+ '   <div class="successWord">下单成功</div>'
-				+ '   <div class="successInfo">欢迎加入拍片网!  自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒</div>'
+				+ '   <div class="successWord" id="handClsoe">手动关闭</div>'
+				+ '   <div class="successInfo">下单成功!<span id="toPortal"></span><span id="last3">3</span>秒后关闭</div>'
 				+ '</div>';
 		$body += '</div>';
 		$("body").append($body);
@@ -277,7 +279,16 @@ function showSuccess() {
 
 function successToolTipShow() {
 	$('#toPortal').on('click', function() {
-		window.location.href = getContextPath() + '/';
+		//window.location.href = getContextPath() + '/';
+		$('.showSuccess').hide();
+	});
+	$('#handClsoe').on('click', function() {
+		//window.location.href = getContextPath() + '/';
+		$('.showSuccess').hide();
+	});
+	$('#closeSuccess').on('click', function() {
+		//window.location.href = getContextPath() + '/';
+		$('.showSuccess').hide();
 	});
 	window.clearInterval(successIntervalObj);
 	successIntervalObj = window.setInterval(firstSuccessTooltip, 1000);
@@ -285,9 +296,9 @@ function successToolTipShow() {
 function firstSuccessTooltip() {
 	if (initM < 0) {
 		$('#last3').text('0');
-		window.location.href = getContextPath() + '/';
+		//window.location.href = getContextPath() + '/';
 		clearInterval(successIntervalObj);
-		$('#showSuccess').hide();
+		$('.showSuccess').hide();
 	} else {
 		$('#last3').text(initM--);
 	}

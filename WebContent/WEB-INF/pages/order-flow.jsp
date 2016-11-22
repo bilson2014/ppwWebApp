@@ -72,8 +72,8 @@
                 </div>
             </div>
             <div class="right-part">
-                <a class="header-item login-item" target="_self">登录</a>
-                <a class="header-item login-item" target="_self">注册</a>
+                 <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
+               <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
             </div>
         </div>
     </div>
