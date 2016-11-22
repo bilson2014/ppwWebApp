@@ -126,6 +126,7 @@ body{
 
 .inputWidth {
     width: 100% !important;
+    padding-top: 42px !important;
     .title:after,
     .title after {
         content: attr(data-content);

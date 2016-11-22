@@ -12,6 +12,7 @@
 <spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
 <spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
 <spring:url value="/resources/js/homePage.js" var="homePageJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -265,10 +266,13 @@
         <!--新版底部-->
     </div>
     
-    <script type="text/javascript" defer async="true" src="/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" defer async="true" src="/resources/lib/jquery/waypoints.min.js"></script>
-    <script type="text/javascript" defer async="true" src="/resources/js/cost.js"></script>
-    <script type="text/javascript" defer async="true" src="/resources/js/common3.js"></script>
+    <script type="text/javascript"  src="/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"  src="/resources/lib/jquery/waypoints.min.js"></script>
+    <script type="text/javascript"  src="/resources/js/cost.js"></script>
+     <script type="text/javascript"  src="/resources/js/common.js"></script>
+    <script type="text/javascript"   src="/resources/js/common3.js"></script>
+    
+    
     
 </body>
 </html>

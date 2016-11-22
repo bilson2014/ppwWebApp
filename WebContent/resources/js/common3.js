@@ -2,6 +2,9 @@ var hasVideo = false;
 var kaptcharInterValObj; // timer变量，控制时间
 var successIntervalObj;
 var initM = 3;
+var counts = 120; // 间隔函数，1秒执行 
+var curCounts = 0; // 当前剩余秒数 - 注册
+var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function() {
     playVideo();
     chickShowOrder();
@@ -79,9 +82,9 @@ function showOrder(typeName) {
             '<div class="cOrderItem" data-content="" id="indent_tele_error" >' +
             ' <input id="indent_tele" placeholder="您的电话号">' +
             '</div>' +
-            '<div class="cOrderItem" data-content="">' +
-            ' <input placeholder="输入手机验证码">' +
-            '<div>获取验证码</div>' +
+            '<div class="cOrderItem" data-content="" id="indent_code_error">' +
+            ' <input id="phoneCode" placeholder="输入手机验证码">' +
+            '<div id="getPhoneCode">获取验证码</div>' +
             ' </div>' +
             ' <div class="cOrderBtn" id="order-btn">确认下单</div>' +
             ' </form>' +
@@ -97,12 +100,15 @@ function showOrder(typeName) {
     });
 }
 
+
+
 function initOrderClick(){
 	
 	$('#order-btn').click(function(){
 		if(checkData()){ // 检查数据完整性
 			if(checkMobile($('#indent_tele').val())){ // 检查 是否 是手机号码
 				showError($('#indent_tele_error'),'');
+				showError($('#indent_code_error'),'');
 				// 提交表单
 				var token = $('#commonToken').val();
 				$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
@@ -113,8 +119,29 @@ function initOrderClick(){
 			}
 		}
 	});
-	 
 	
+	$('#getPhoneCode').on('click',function(){
+		if(curCounts == 0 && checkData()){
+			curCounts = counts;
+			var telephone = $('#indent_tele').val().trim();
+			$('#getPhoneCode').text('已发送('+ curCounts +')');
+			$('#getPhoneCode').attr('disabled','disabled');
+			InterValObj = window.setInterval(SetRemainTimes, 1000); // 启动计时器，1秒钟执行一次
+			loadData(function(flag){
+				if(!flag){
+					// 发送不成功
+					// 显示重新发送
+					sendCode=true;
+					$('#getPhoneCode').text('重新获取');
+					$('#getPhoneCode').removeAttr('disabled');
+				}
+			}, getContextPath() + '/login/verification/' + telephone, null);
+		}
+	});
+	 
+	$('#commonOrderUl').on('click',function(){
+		$(this).slideDown();
+	});
     $('#commonOrderUl li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());        var info=parseInt($(this).attr('data-info'));
         $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-content",($(this).attr('data-content')));
@@ -123,17 +150,42 @@ function initOrderClick(){
    });
 }
 
+function SetRemainTimes(){
+	if(curCounts == 0){
+		window.clearInterval(InterValObj); // 停止计时器
+		sendCode=true;
+		$('#getPhoneCode').text('重新获取');
+		$('#getPhoneCode').removeAttr('disabled')
+		// 清除session code
+		getData(function(data){
+			// 清除session code
+		}, getContextPath() + '/login/clear/code');
+	}else{
+		curCounts--;  
+		$("#getPhoneCode").text('已发送('+ curCounts +')');
+	}
+}
+
 
 //检查数据完整性
 function checkData(){
 	// 检查数据
     
 	showError($('#indent_tele_error'),'');
+	showError($('#indent_code_error'),'');
 	var contactTele = $('#indent_tele').val().trim();
+	var phoneCode = $('#phoneCode').val().trim();
 	var flag = true;	
 	if(contactTele == '' || contactTele == null || contactTele == undefined){
 		showError($('#indent_tele_error'),'请输入手机号码');
 		flag = false;
+		return flag;
+	}
+	
+	if(phoneCode == '' || phoneCode == null || phoneCode == undefined){
+		showError($('#indent_code_error'),'请输入手机验证码');
+		flag = false;
+		return flag;
 	}
 	return flag;
 }
