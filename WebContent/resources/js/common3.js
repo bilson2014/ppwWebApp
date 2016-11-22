@@ -105,23 +105,20 @@ function showOrder(typeName) {
 function initOrderClick(){
 	
 	$('#order-btn').click(function(){
-		if(checkData()){ // 检查数据完整性
-			if(checkMobile($('#indent_tele').val())){ // 检查 是否 是手机号码
+		if(checkData(1)){ // 检查数据完整性
+			
 				showError($('#indent_tele_error'),'');
 				showError($('#indent_code_error'),'');
 				// 提交表单
 				var token = $('#commonToken').val();
 				$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
 				$('#cOrder-form').attr('action',getContextPath() + '/order/submit').submit().remove();
-			}else{
-				showError($('#indent_tele_error'),'请输入正确的手机格式');
-				return false;
-			}
+			
 		}
 	});
 	
 	$('#getPhoneCode').on('click',function(){
-		if(curCounts == 0 && checkData()){
+		if(curCounts == 0 && checkData(2)){
 			curCounts = counts;
 			var telephone = $('#indent_tele').val().trim();
 			$('#getPhoneCode').text('已发送('+ curCounts +')');
@@ -168,7 +165,7 @@ function SetRemainTimes(){
 
 
 //检查数据完整性
-function checkData(){
+function checkData(type){
 	// 检查数据
     
 	showError($('#indent_tele_error'),'');
@@ -176,13 +173,21 @@ function checkData(){
 	var contactTele = $('#indent_tele').val().trim();
 	var phoneCode = $('#phoneCode').val().trim();
 	var flag = true;	
+	
+	
 	if(contactTele == '' || contactTele == null || contactTele == undefined){
 		showError($('#indent_tele_error'),'请输入手机号码');
 		flag = false;
 		return flag;
 	}
 	
-	if(phoneCode == '' || phoneCode == null || phoneCode == undefined){
+	if(!checkMobile(contactTele)){
+		showError($('#indent_tele_error'),'手机格式不正确');
+		flag = false;
+		return flag;
+	}
+	
+	if((phoneCode == '' || phoneCode == null || phoneCode == undefined) && type == 1){
 		showError($('#indent_code_error'),'请输入手机验证码');
 		flag = false;
 		return flag;

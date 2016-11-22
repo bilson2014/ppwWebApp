@@ -1,3 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.util.Constants"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
+
+<spring:url value="/resources/css/news/news.css" var="newsCss"/>
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
+<spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
+<spring:url value="/resources/js/news/news.js" var="newsJS"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/common3.js" var="common3Js"/>
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -9,8 +25,9 @@
     <meta name="description" content="">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>拍片网－广告－宣传片－微电影－视频营销</title>
-    <link rel="stylesheet" href="resources/css/news/news.css">
-    <link rel="stylesheet" href="resources/lib/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${newsCss }">
+    <link rel="stylesheet" href="${bootstrapCss }">
+
 </head>
 
 <body>
@@ -49,11 +66,9 @@
         <div class="bottomContent">
             <div class="contentWidth">
                 <div class="leftContent">
-                    <div class="title">影片故事简述</div>
+                    <div class="title">${news.title}</div>
                     <div class="setPro">
-                        <img src="resources/images/block/test.png">
-                        <img src="resources/images/block/test.png">
-                        <img src="resources/images/block/test.png">
+                        ${news.content}
                     </div>
                 </div>
                 <div class="rightContent">
@@ -138,9 +153,12 @@
                             </div>
                             <!--新版底部-->
     </div>
-    <script type="text/javascript" src="resources/lib/jquery/jquery-2.0.3.js"></script>
-    <script type="text/javascript" src="resources/lib/Bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" defer async="true" src="resources/js/common3.js"></script>
+     <script type="text/javascript" src="${jqueryJs }"></script>
+    <script type="text/javascript" src="${bootstrapJs }"></script>
+    <script type="text/javascript" src="${flexsliderJS }"></script>
+    <script type="text/javascript" src="${newsJS }"></script>
+    <script type="text/javascript" src="${commonJs }"></script>
+    <script type="text/javascript" defer async="true" src="${common3Js }"></script>
 </body>
 
 </html>
