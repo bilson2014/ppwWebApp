@@ -68,9 +68,9 @@ public class Indent extends BaseObject {
 	
 	private String token = null;
 	
-	private Boolean sendToStaff;//订单给业务人员发短信
+	private Boolean sendToStaff = false;//订单给业务人员发短信
 	
-	private Boolean sendToUser;//订单给客户发短信
+	private Boolean sendToUser = false;//订单给客户发短信
 	
 	public long getIndentId() {
 		return indentId;
