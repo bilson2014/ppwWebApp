@@ -140,26 +140,30 @@ public class PCController extends BaseController {
 
 		return new ModelAndView("about", model);
 	}
+
 	// 我要拍片 跳转
-		@RequestMapping("/direct/order")
-		public ModelAndView patView(final HttpServletRequest request, final ModelMap model) {
-			
-			final User user = (User) request.getSession().getAttribute("username");
-			model.addAttribute("telephone", user != null ? user.getTelephone() : "");
-			final Indent indent = new Indent();
-			indent.setTeamId(-1l);
-			indent.setProductId(-1l);
-			indent.setServiceId(-1l);
-			try {
-				final String token = IndentUtil.generateOrderToken(request, indent);
-				model.addAttribute("token", token);
-			} catch (Exception e) {
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
-				e.printStackTrace();
-			}
-			return new ModelAndView("order", model);
+	@RequestMapping("/direct/order")
+	public ModelAndView patView(final HttpServletRequest request, final ModelMap model) {
+
+		final User user = (User) request.getSession().getAttribute("username");
+		model.addAttribute("telephone", user != null ? user.getTelephone() : "");
+		final Indent indent = new Indent();
+		indent.setTeamId(-1l);
+		indent.setProductId(-1l);
+		indent.setServiceId(-1l);
+		try {
+			final String token = IndentUtil.generateOrderToken(request, indent);
+			model.addAttribute("token", token);
+		} catch (Exception e) {
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error(
+					"method PCController patView ,direct order has error,bacase generate order use AES Decrypt token error ...",
+					sessionInfo);
+			e.printStackTrace();
 		}
+		return new ModelAndView("order", model);
+	}
+
 	/**
 	 * 分销人下单
 	 * 
@@ -294,7 +298,7 @@ public class PCController extends BaseController {
 			url = URL_PREFIX + "portal/team/info/" + teamId;
 			String json3 = HttpUtil.httpGet(url, request);
 			if (ValidateUtil.isValid(json3)) {
-				Team team = JsonUtil.toBean(json3,Team.class);
+				Team team = JsonUtil.toBean(json3, Team.class);
 				model.addAttribute("teamFlag", team.getFlag());
 			}
 		}
@@ -671,19 +675,19 @@ public class PCController extends BaseController {
 	 * 播放界面获取更多导演作品
 	 */
 	@RequestMapping("/team/product/more")
-	public BaseMsg getMoreProduct(final HttpServletRequest request, final Team team) {
+	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
 		final String json = HttpUtil.httpPost(url, team, request);
-		if(null!=json && !"".equals(json)){
+		if (null != json && !"".equals(json)) {
 			List<Solr> list = JsonUtil.toList(json);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
 			return baseMsg;
 		} else {
+			baseMsg.setErrorCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("list is null");
 		}
 		return baseMsg;
 	}
-
 }

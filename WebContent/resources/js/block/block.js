@@ -323,6 +323,15 @@ function initView(){
 		$('#videoDescription').addClass('hide');
 		$('#videoValue').text('');
 	}
+	loadMoreProduct();
+}
+function loadMoreProduct(){
+	var teamId=$('#company-unique').val();
+	loadData(function(msg){
+		
+	}, getContextPath() + '/team/product/more', $.toJSON({
+		teamId : teamId
+	}));
 }
 
 
