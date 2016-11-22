@@ -443,8 +443,8 @@
 		<div class="news">
 			<div class="newsContent">
 				<div class="newsLogo"></div>
-				<ul>
-					<li>
+				<ul id='news-container'>
+					<!-- <li>
 						<div class="newsTitle">新闻标题</div>
 						<div class="newsLine"></div>
 						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
@@ -452,52 +452,7 @@
 							<span>了解更多</span><img
 								src="/resources/images/index/newsMore.png">
 						</div>
-					</li>
-					<li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li>
-					<li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li>
-					<li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li>
-					<li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li>
-					<li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
