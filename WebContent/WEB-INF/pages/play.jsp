@@ -100,8 +100,8 @@
                 </div>
             </div>
             <div class="right-part">
-                <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-               <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
+                 <a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
+                <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
             </div>
         </div>
     </div>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
-                        <div class="title">影片描述</div>
+                        <div class="title">影片故事简述</div>
                         <div class="content">
                             	${product.pDescription }
                         </div>
@@ -209,7 +209,7 @@
         </div>
 		<c:if test="${!empty productModules}">
 		        <div class="videoStar">
-		            <div>本片制作服务星 指数</div>
+		            <div>本片导演更多影片推荐</div>
 		        </div>
 		        <div class="container-fluid" style="overflow: hidden">
 		            <div class="row">

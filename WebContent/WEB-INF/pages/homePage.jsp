@@ -91,8 +91,8 @@
                 </div>
             </div>
             <div class="right-part">
-                 <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-               <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
+                 <a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
+                <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
             </div>
         </div>
     </div>
