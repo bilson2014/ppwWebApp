@@ -223,7 +223,7 @@
 													<li>
 												        <div class="s_item s_item_cur" style="display: block;">
 												            <div class="con">
-												                <div class="conTop">
+												                <div class="conTop" data-id="${source.id }">
 												                    <div>${source.moduleName }</div>
 												                    <div>
 												                        <center>
@@ -269,28 +269,12 @@
                       </div>
                 </div>
                 <div class="rightContent">
-                      <div class="title">更多最新资讯</div>
-                      <div class="setVideo">
-                             <div class="videoModel">
-                                 <img src="/resources/images/block/test.png">
-                                 <label>宣传片</label>
-                             </div>
-                               <div class="videoModel">
-                                 <img src="/resources/images/block/test.png">
-                                 <label>宣传片</label>
-                             </div>
-                               <div class="videoModel">
-                                 <img src="/resources/images/block/test.png">
-                                 <label>宣传片</label>
-                             </div>
-                               <div class="videoModel">
-                                 <img src="/resources/images/block/test.png">
-                                 <label>宣传片</label>
-                             </div>
-                               <div class="videoModel">
-                                 <img src="/resources/images/block/test.png">
-                                 <label>宣传片</label>
-                             </div>
+                      <div class="title">本片导演更多影片推荐</div>
+                      <div class="setVideo" id="moreProduct">
+                          <div class="videoModel">
+                              <img src="/resources/images/block/test.png">
+                              <label>宣传片</label>
+                          </div>
                       </div>
                 </div>
             </div>
