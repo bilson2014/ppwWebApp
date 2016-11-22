@@ -123,9 +123,9 @@ function initOrderClick(){
 		if(checkData(1)){ // 检查数据完整性
 				showError($('#indent_tele_error'),'');
 				showError($('#indent_code_error'),'');
-				flag = false;
 				// 提交表单
 				if(flag){
+					flag = false;
 					loadData2(function(msg){
 						$('.comOrder').hide();
 						showSuccess();
