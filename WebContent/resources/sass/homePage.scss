@@ -432,6 +432,7 @@ input:focus {
                 color: white;
                 font-size: $font-size-base;
                 border: none;
+                outline: none;
             }
             .wordPosition {
                 width: 100%;
@@ -1330,6 +1331,7 @@ input:focus {
             div:nth-child(1) {
                 color: $gray-dark;
                 font-size: $font-size-lg;
+                cursor: pointer;
             }
             div:nth-child(2) {
                 height: 2px;
