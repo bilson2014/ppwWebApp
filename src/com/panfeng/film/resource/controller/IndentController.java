@@ -57,10 +57,10 @@ public class IndentController extends BaseController {
 		String code = (String) request.getSession().getAttribute("code");
 		String codeOfPhone = (String) request.getSession().getAttribute("codeOfPhone");
 		boolean flag = false;
-		if(phoneCode.equals("-1")){
+		if(null!=phoneCode && phoneCode.equals("-1")){
 			flag = true;
 		}else{
-			if(null != code && null!=codeOfPhone && code.equals(phoneCode) &&
+			if(null != code && null!=codeOfPhone && null!=phoneCode && code.equals(phoneCode) &&
 					codeOfPhone.equals(indent.getIndent_tele()) ){
 				flag = true;
 			}
@@ -86,5 +86,4 @@ public class IndentController extends BaseController {
 		}
 		return new Result(false,"参数错误");
 	}
-	
 }

@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.SessionInfo;
-import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.util.HttpUtil;
@@ -48,6 +49,15 @@ public class HomePageController extends BaseController{
 			}
 		}
 	}
+	
+	/**
+	 * 跳转到home页
+	 */
+	/*@RequestMapping("/index")
+	public ModelAndView home(final HttpServletRequest request) {
+		return new ModelAndView("/homePage");
+	}*/
+	
 	/**
 	 * 加载 主页 视频列表
 	 * @return List<Solr> 产品列表
@@ -70,31 +80,6 @@ public class HomePageController extends BaseController{
 		Log.error("Load portal page products",sessionInfo);
 		return baseMsg;
 	}
-	
-	/**
-	 * 首页我要下单
-	 * 1.轮播页下单
-	 * 2.我要拍片下单
-	 * 3.首页推荐案例下单
-	 */
-	@RequestMapping(value = "/order/film", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public BaseMsg orderFilm(final HttpServletRequest request,
-			Indent indent) {
-		BaseMsg baseMsg = new BaseMsg();
-		final String url = URL_PREFIX + "portal/indent/order/film";
-		String str = HttpUtil.httpPost(url, indent, request);
-		if (str != null && !"".equals(str)) {
-			boolean flag = JsonUtil.toBean(str, boolean.class);
-			if(flag){
-				baseMsg.setCode(1);
-			}
-		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage user order film",sessionInfo);
-		return baseMsg;
-	}
-	
-	
 	
 	/**
 	 * 首页获取导演推荐
@@ -141,20 +126,19 @@ public class HomePageController extends BaseController{
 	 * 跳转新闻详情
 	 */
 	@RequestMapping(value = "/news/info/{newId}")
-	public BaseMsg getRecommendNews(@PathVariable("newId") final Integer newId,
-			final HttpServletRequest request) {
-		BaseMsg baseMsg = new BaseMsg();
+	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId,
+			final HttpServletRequest request,final ModelMap model) {
 		final String url = URL_PREFIX + "portal/news/info/"+newId;
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			News news = JsonUtil.toBean(str, News.class);
-			baseMsg.setCode(1);
-			baseMsg.setResult(news);
+			model.addAttribute("news", news);
 		}else{
-			baseMsg.setErrorMsg("news is null");
+			//请求不存在的新闻
+			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news error",sessionInfo);
-		return baseMsg;
+		return new ModelAndView("/news");
 	}
 }

@@ -1,9 +1,7 @@
 
 $().ready(function() {
-    cover();
     originTool();
     banner();
-    director();
     client();
     initVideo();
     scrollBack();
@@ -17,8 +15,6 @@ function scrollBack() {
     var top = $('#advan').position().top;
     //$('.advanBack').css('top',top);
     //var endPos = top + 822;
-
-
     // $(window).scroll(function(event) {
     //     var scrollTop = $(document).scrollTop() + 500;
     //     var pos = scrollTop - top - 500;
@@ -123,8 +119,6 @@ function originTool() {
         $(this).parent().parent().find('span').text($(this).text());
         $('#selectUl').slideUp();
     });
-
-
     // $('.dropdown').hover(function() {
     //     function() {
     //         alert(1);
@@ -190,110 +184,229 @@ function initVideo() {
 
 }
 
+var homePage = {
+	init:function(){
+		//点击帮我推荐提交订单
+		this.clickHelpYou();
+		//获取热门爆款和经典案例
+		this.getRecommendProduct();
+		//获取首页推荐导演
+		this.getRecommendTeam();
+		//获取推荐新闻
+		this.getRecommendTeam();
+	},
+	clickHelpYou:function(){
+		$(".helpYou").off("click").on("click",function(){
+			var phone = $("#help-phone").val();
+			if(phone==''){
+				alert("请输入手机号")
+				return false;
+			}
+			if(!checkMobile(phone)){
+				alert("请输入正确格式的手机号")
+				return false;
+			}else{
+				$.ajax({
+					url : '/order/submit',
+					type : 'POST',
+					data : {
+						csrftoken:$("#csrftoken").val(),
+						indent_tele:$("#help-phone").val(),
+						phoneCode:'-1',
+						indent_recomment:$("#indent_recomment").val(),
+						indentName:'新订单',
+						productId:-1,
+						teamId:-1,
+						serviceId:-1
+					},
+					dataType : 'json',
+					success : function(data){
+						//TODO 执行搜索
+					}
+				});
+			}
+		})
+	},
+	getRecommendProduct:function(){
+		var _this = this;
+		loadData(function(data){
+			if(data.code==1){
+				var result = data.result;
+				var hot_section = new Array(); // 第一区域
+				var classical_section = new Array(); // 第二区域
+				$.each(result,function(i,solr){
+					if(solr.recommend == 1){
+						hot_section.push(solr);
+					}
+					if(solr.recommend == 2){
+						classical_section.push(solr);
+					}
+				});
+				$("#product-container").empty().html(juicer(homePage_tpl.hot_recommend,{list:hot_section}));
+				//初始化爆款加载
+				_this.cover();
+				$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend,{list:classical_section}));
+			}else{
+				alert("数据加载错误")
+			}
+		}, getContextPath() + '/home/product/loadProduct/',null);
+	},
+	cover:function(){
+		 var statues = true;
+	    var nowIndex = 0;
+	    var cover = new Swiper('.swiperCover', {
+	        pagination: '.swiper-pagination-cover',
+	        paginationClickable: true,
+	        effect: 'coverflow',
+	        grabCursor: true,
+	        centeredSlides: true,
+	        slidesPerView: 'auto',
+	        loop: true,
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        coverflow: {
+	            rotate: 0,
+	            stretch: 100,
+	            depth: 00,
+	            modifier: 1,
+	            slideShadows: true
+	        },
+	        // onSlideChangeEnd: function(swiper) {
+	        //     nowIndex = swiper.activeIndex;
+	        //     console.info(nowIndex);
+	        //     statues = true;
+	        // },
+	    });
+	    $('.leftClick').on('click', function() {
+
+	        // if (nowIndex == 0) {
+	        //     cover.slideTo(6, 1000, false);
+	        //     nowIndex = 6;
+	        // } else {
+	        //     //cover.slidePrev();
+	        //     $('.backgroundCover .swiper-button-prev').click();
+	        // }
+	        //  cover.detachEvents();
+	        cover.slidePrev();
+	    });
+	    $('.rightClick').on('click', function(e) {
+	        //  cover.detachEvents();
+	        cover.slideNext();
+	    });
+	},
+	getRecommendTeam:function(){
+		var _this = this;
+		loadData(function(data){
+			if(data.code==1){
+				$("#directorContent").empty().html(juicer(homePage_tpl.team_recommend,data));
+				//渲染team效果
+				_this.director();
+			}else{
+				//TODO
+				console.log("数据加载错误")
+			}
+		}, getContextPath() + '/home/team/recommend',null);
+	},
+	director:function(){
+
+	    var director = new Swiper('.swiper-director', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 5,
+	        centeredSlides: true,
+	        paginationClickable: true,
+	        spaceBetween: 12,
+	        grabCursor: true,
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        loop: true
+	    });
+
+	    var images = new Array(
+	        'url(/resources/images/index/db1.png) no-repeat',
+	        'url(/resources/images/index/db2.png) no-repeat',
+	        'url(/resources/images/index/db3.png) no-repeat',
+	        'url(/resources/images/index/db4.png) no-repeat',
+	        'url(/resources/images/index/db5.png) no-repeat',
+	        'url(/resources/images/index/db6.png) no-repeat',
+	        'url(/resources/images/index/db7.png) no-repeat',
+	        'url(/resources/images/index/db8.png) no-repeat',
+	        'url(/resources/images/index/db9.png) no-repeat',
+	        'url(/resources/images/index/db10.png) no-repeat',
+	        'url(/resources/images/index/db11.png) no-repeat',
+	        'url(/resources/images/index/db12.png) no-repeat',
+	        'url(/resources/images/index/db13.png) no-repeat',
+	        'url(/resources/images/index/db14.png) no-repeat',
+	        'url(/resources/images/index/db15.png) no-repeat',
+	        'url(/resources/images/index/db16.png) no-repeat'
+	    );
 
 
+	    var initM = $('#directorContent .swiper-slide .m');
+	    $.each(initM, function(i, item) {
+	        //   var num = parseInt(Math.random() * 15) + 0;
+	        $(this).css('background', images[i]);
+	    });
+
+	    var dirSwi = $('#directorContent .swiper-slide');
+
+	    // dirSwi.hover(function() {
+
+	    // }, function() {
+	    //     var num = parseInt(Math.random() * 15) + 0;
+	    //     $(this).find('.m').css('background', images[num]);
+	    // });
+	}
+}
+homePage.init();
 
 
-
-
-function cover() {
-    var statues = true;
-    var nowIndex = 0;
-    var cover = new Swiper('.swiperCover', {
-        pagination: '.swiper-pagination-cover',
-        paginationClickable: true,
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        loop: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        coverflow: {
-            rotate: 0,
-            stretch: 100,
-            depth: 00,
-            modifier: 1,
-            slideShadows: true
-        },
-        // onSlideChangeEnd: function(swiper) {
-        //     nowIndex = swiper.activeIndex;
-        //     console.info(nowIndex);
-        //     statues = true;
-        // },
-    });
-
-
-    $('.leftClick').on('click', function() {
-
-        // if (nowIndex == 0) {
-        //     cover.slideTo(6, 1000, false);
-        //     nowIndex = 6;
-        // } else {
-        //     //cover.slidePrev();
-        //     $('.backgroundCover .swiper-button-prev').click();
-        // }
-        //  cover.detachEvents();
-        cover.slidePrev();
-
-    });
-
-    $('.rightClick').on('click', function(e) {
-        //  cover.detachEvents();
-        cover.slideNext();
-    });
-
-
+var homePage_tpl = {
+	hot_recommend:[
+	        '{@each list as item}',
+			'<div class="swiper-slide coverSlide">',
+			'	<div class="scaleDiv">',
+			'		<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'		<div class="coverContent">',
+			'			<div class="">${item.productName}</div>',
+			'			<div>￥${item.price}</div>',
+			'		</div>',
+			'	</div>',
+			'</div>',
+			'{@/each}'
+       	 ].join(""),
+    classical_recommend:[
+            '{@each list as item}',
+			'<li class="topAnimaltion">',
+			'	<div class="videoCard">',
+			'		<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'		<div class="videoContet">',
+			'			<div class="title">${item.productName}</div>',
+			'			<div class="type">${item.tags}</div>',
+		    '			<div class="price">￥${item.price}</div>',
+		    '			{@if item.orignalPrice != null && item.orignalPrice != 0}',
+		    '				<div class="realPrice">原价￥${item.orignalPrice}</div>',
+			'			{@/if}',
+			'		</div>',
+			'	</div>',
+			'</li>',
+			'{@/each}'
+         ].join(""),
+     team_recommend:[
+            '{@each result as item}',      
+			'<div class="swiper-slide">',
+			'	<div class="m"></div>',
+			'	<div class="b"></div>',
+			'	<div class="directorContent">',
+			'		<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+			'		<div class="title">${item.teamName}</div>',
+			'		<div class="line"></div>',
+			'		<div class="content">${item.description}</div>',
+			'		<div class="toProduct">作品集</div>',
+			'	</div>',
+			'</div>',  
+			'{@/each}'
+         ].join("")    
+		
 }
 
 
-
-function director() {
-
-    var director = new Swiper('.swiper-director', {
-        pagination: '.swiper-pagination',
-        slidesPerView: 5,
-        centeredSlides: true,
-        paginationClickable: true,
-        spaceBetween: 12,
-        grabCursor: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        loop: true
-    });
-
-    var images = new Array(
-        'url(../newHomePage/resources/images/index/db1.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db2.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db3.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db4.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db5.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db6.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db7.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db8.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db9.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db10.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db11.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db12.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db13.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db14.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db15.png) no-repeat',
-        'url(../newHomePage/resources/images/index/db16.png) no-repeat'
-    );
-
-
-    var initM = $('#directorContent .swiper-slide .m');
-    $.each(initM, function(i, item) {
-        //   var num = parseInt(Math.random() * 15) + 0;
-        $(this).css('background', images[i]);
-    });
-
-    var dirSwi = $('#directorContent .swiper-slide');
-
-    // dirSwi.hover(function() {
-
-    // }, function() {
-    //     var num = parseInt(Math.random() * 15) + 0;
-    //     $(this).find('.m').css('background', images[num]);
-    // });
-}
