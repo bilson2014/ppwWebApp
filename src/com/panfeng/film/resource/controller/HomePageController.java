@@ -49,15 +49,6 @@ public class HomePageController extends BaseController{
 			}
 		}
 	}
-	
-	/**
-	 * 跳转到home页
-	 */
-	/*@RequestMapping("/index")
-	public ModelAndView home(final HttpServletRequest request) {
-		return new ModelAndView("/homePage");
-	}*/
-	
 	/**
 	 * 加载 主页 视频列表
 	 * @return List<Solr> 产品列表
