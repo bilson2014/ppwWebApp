@@ -193,7 +193,7 @@ var homePage = {
 		//获取首页推荐导演
 		this.getRecommendTeam();
 		//获取推荐新闻
-		this.getRecommendTeam();
+		this.getRecommendNews();
 	},
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
@@ -355,6 +355,24 @@ var homePage = {
 	    //     var num = parseInt(Math.random() * 15) + 0;
 	    //     $(this).find('.m').css('background', images[num]);
 	    // });
+	},
+	getRecommendNews:function(){
+		var _this = this;
+		loadData(function(data){
+			if(data.code==1){
+				$("#news-container").empty().html(juicer(homePage_tpl.news_resommend,data));
+				_this.getNewsDetail();
+			}else{
+				//TODO
+				console.log("数据加载错误")
+			}
+		}, getContextPath() + '/home/news/recommend',null);
+	},
+	getNewsDetail:function(){
+		$(".get-new-detail").off("click").on("click",function(){
+			var id = $(this).parent("li").attr("data-id");
+			window.location.href="home/news/info/"+id;
+		})
 	}
 }
 homePage.init();
@@ -405,7 +423,20 @@ var homePage_tpl = {
 			'	</div>',
 			'</div>',  
 			'{@/each}'
-         ].join("")    
+         ].join(""),
+     news_resommend:[
+            '{@each result as item}',        
+			'<li data-id=${item.id}>',
+			'	<div class="get-new-detail newsTitle">${item.title}</div>',
+			'	<div class="newsLine"></div>',
+			'	<div class="Content">${item.discription}</div>',
+			'	<div class="get-new-detail newsMore">',
+			'		<span>了解更多</span>',
+			'		<img src="/resources/images/index/newsMore.png">',
+			'	</div>',
+			'</li>',
+			'{@/each}'
+         ].join("")
 		
 }
 
