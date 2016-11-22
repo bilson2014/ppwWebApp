@@ -46,7 +46,7 @@ function chickShowOrder() {
 
 function showOrder(typeName) {
    
-    if ($('body').hasClass('comOrder')) {
+    if ($('div').hasClass('comOrder')) {
         $('.comOrder').show();
     } else {
         var $body = '<div class="comOrder">' +
@@ -215,7 +215,7 @@ function showError(id,error){
 //成功 提示框弹出方法
 
 function showSuccess(){
-	 if ($('body').hasClass('showSuccess')) {
+	 if ($('div').hasClass('showSuccess')) {
 	        
 	    } else {
 
