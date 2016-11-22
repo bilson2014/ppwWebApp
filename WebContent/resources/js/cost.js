@@ -23,6 +23,7 @@ function init() {
 //    });
 	$(".dropdown").on('click',function(){
 		$(this).find('ul').slideDown();
+		return false;
 	});
 
      $('li').on('click',function(){

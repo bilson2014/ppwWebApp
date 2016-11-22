@@ -16,4 +16,31 @@ function initContent() {
 	} else {
 		$('#newsValue').text('');
 	}
+	
+	
+	
+	loadData(function(data){
+		
+        
+		var newsId =$('#newsId').val();
+		
+	    $.each(data.result, function(i,item) {
+	    	if(item.id != newsId)
+	    		addMoreNews(item);  
+	    });
+		
+		
+	}, getContextPath() + '/home/news/recommend',null);
 }
+
+function addMoreNews(item){
+	  var $body = '<div class="videoModel">' +
+      '<label>' + item.title + '</label>' +
+      '<label>' + item.discription + '</label>'+
+      ' <label>了解更多</label>' +
+      '</div>';
+	  $body += '</div>';
+      $("#moreNews").append($body);
+}
+
+

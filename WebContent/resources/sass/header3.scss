@@ -25,6 +25,9 @@
         color: black;
         &:hover {
             color: $red-base !important;
+            .showVideo {
+                background-position: 0px -15px !important;
+            }
         }
         span {
             bottom: 10px;
@@ -144,6 +147,9 @@
     &:hover {
         background: none !important;
         color: $red-base !important;
+        .showVideo {
+            background-position: 0px -15px !important;
+        }
     }
     line-height: 80px;
     width: auto;
@@ -187,7 +193,6 @@
         position: absolute;
         top: 32px;
         left: 74px;
-        transition: all .8s ease-in-out 0s;
     }
     .tele-h-svg {
         transition: all .8s ease-in-out 0s;
