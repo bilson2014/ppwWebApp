@@ -55,7 +55,7 @@ public class IndentController extends BaseController {
 	public Result successView(final Indent indent,final HttpServletRequest request,@RequestParam(required=false)String phoneCode) throws UnsupportedEncodingException {
 		
 		String code = (String) request.getSession().getAttribute("code");
-		String codeOfPhone = (String) request.getSession().getAttribute("codeOfPhone");
+		String codeOfPhone = (String) request.getSession().getAttribute("codeOfphone");
 		boolean flag = false;
 		if(null!=phoneCode && phoneCode.equals("-1")){
 			flag = true;
