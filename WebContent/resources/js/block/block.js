@@ -22,6 +22,7 @@ var color = new Array(
 $().ready(function() {
     initTab();
     showDiv();
+    initView();
 });
 function initTab() {
     var product_id = 1;
@@ -278,11 +279,49 @@ function submitOrder(){
 	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
 	var telephone = $('#phoneNumber').val().trim();
 	if(checkData(1) && checkData(2)){
-		var token = $('#token').val();
-		$('#token').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-		$('#order-form').attr('action',getContextPath() + '/order/submit').submit().remove();
-	}
+		loadData2(function(msg){
+			alert(msg.ret);
+		}, getContextPath() + '/order/submit', 
+			{indentName : $("#indentName").val(),
+			productId :$("#play-unique").val() ,
+			teamId : $('#company-unique').val(),
+			serviceId : $('#service-unique').val(),
+			csrftoken : $('#csrftoken').val(),
+			phoneCode : $('#verificationCodeValue').val(),
+			indent_tele : telephone
+			});
+		// ret
+	}	
 }
 
+function initView(){
+	// -> 如果视频有优酷地址，那么使用UK播放器
+	var hret = $('#yk-play').val();
+	if(hret != '' && hret != null && hret != undefined){
+		makePlayer('player-wrap', hret); // 创建视频浏览器
+	}
+	
+	// -> 注册 分享按钮 
+	$('.share').click(function(){
+		var title = $('#pName').text();
+		var url = 'http://m.apaipian.com/play/' + $('#company-unique').val() + '_' + $('#play-unique').val() + '.html';
+		var img_path = getDfsHostName() + $('#picPath').val();
+		share.init(url,title,img_path);
+	});
+	
+	var html = $('#videoValue').text().trim();
+	if(html != ''){
+		$.base64.utf8encode = true;
+		var decodeContent = $.trim($.base64.atob(html,true));
+		var re2 = 'src="@.@([^"]*)"';
+	    var p = new RegExp(re2,["gm"]);
+	    decodeContent=decodeContent.replace(p, "src='"+getDfsHostName()+"$1"+"'");
+		$('#videoValue').html(decodeContent);
+		$('#videoDescription').removeClass('hide');
+	}else{
+		$('#videoDescription').addClass('hide');
+		$('#videoValue').text('');
+	}
+}
 
 

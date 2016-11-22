@@ -70,8 +70,16 @@ public class Product extends BaseObject {
 	
 	private Integer masterWork = null; // 推荐作品，0为正常 1 为推荐 
 	
+	private String priceDetail = null;
 	
-	
+	public String getPriceDetail() {
+		return priceDetail;
+	}
+
+	public void setPriceDetail(String priceDetail) {
+		this.priceDetail = priceDetail;
+	}
+
 	public String getCreationTime() {
 		return creationTime;
 	}

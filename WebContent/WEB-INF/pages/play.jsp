@@ -15,7 +15,9 @@
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
 <spring:url value="/resources/js/common3.js" var="common3Js"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
+<spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
+<spring:url value="/resources/js/youku-player.js" var="ykJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -30,17 +32,34 @@
 	<title>${product.productName }_拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
+    <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+	<!--[if lt IE 9]>
+		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
+	<![endif]-->
+	<script type="text/javascript">
+		var _vds = _vds || [];
+		window._vds = _vds;
+		(function(){
+		  _vds.push(['setAccountId', '9f2e33a3d43b5d78']);
+		  (function() {
+		    var vds = document.createElement('script');
+		    vds.type='text/javascript';
+		    vds.async = true;
+		    vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+		    var s = document.getElementsByTagName('script')[0];
+		    s.parentNode.insertBefore(vds, s);
+		  })();
+		})();
+	</script>
 </head>
 
 <body>
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" id="company-unique" value="${teamId }"/>
-	<input type="hidden" id="play-unique" value="${productId }"/>
-	<input type="hidden" id="service-unique" value="${product.serviceId }"/>
-	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
-
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
+	<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
  <div class="header headerMove" id="header">
         <div class="menu-bar nav">
             <div class="left-part">
@@ -75,9 +94,9 @@
     <div class="page">
         <div class="videoArea">
             <div class="videoContent">
-                <div class="player-wrap" id="player-wrap">
+                <div class="player-wrap">
                     <div class="videoTop">
-                        <div>${product.productName }</div>
+                        <div id="pName">${product.productName }</div>
                         <div><span><img src="/resources/images/block/tag.png">标签 :</span>
                        		<span>
 								<c:if test="${! empty product.tags}">
@@ -91,35 +110,39 @@
                             <ul>
                                 <li></li>
                                 <li>分享到 : </li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li class="-mob-share-qq share"></li>
+                                <li class="-mob-share-qzone share"></li>
+                                <li class="-mob-share-weibo share"></li>
+                                <li class="-mob-share-weixin share"></li>
                             </ul>
                         </div>
                     </div>
                     <div class="controlVideo">
-                        <video controls>
-                        </video>
+                        <div class="player-wrap" id="player-wrap">
+							<video controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="${file_locate_storage_path}${product.picLDUrl}"/>'></video>
+							<%-- <video controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video> --%>
+						</div>
                     </div>
-                    <div class="videoBottom">
-                    	<a href="/provider/info_${teamId }.html">
-                        <div>
-                        	<c:if test="${empty product.teamPhotoUrl }">
-								<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
-							</c:if>
-							<c:if test="${!empty product.teamPhotoUrl }">
-								<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
-							</c:if>
-                            <span>${product.teamName }</span>
-                        </div>
-                         </a>
-                        <div>
-                        	${product.teamDescription }
-                        </div>
-                    </div>
+                    <c:if test="${teamFlag !=null && teamFlag == 1 }">
+	                    <div class="videoBottom">
+	                    	<a href="/provider/info_${teamId }.html">
+	                        <div>
+	                        	<c:if test="${empty product.teamPhotoUrl }">
+									<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
+								</c:if>
+								<c:if test="${!empty product.teamPhotoUrl }">
+									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
+								</c:if>
+	                            <span>${product.teamName }</span>
+	                        </div>
+	                         </a>
+	                        <div>
+	                        	${product.teamDescription }
+	                        </div>
+	                    </div>
+                    </c:if>
                 </div>
-                <div class="videoPrice">
+                <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
                         <div class="title">影片描述</div>
                         <div class="content">
@@ -141,16 +164,18 @@
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-                    		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
-							<input type="hidden" id="token" name="token" value="${token}"/>
-							<input type="hidden" name="indentName" id="indentName" value="">
+							<input type="hidden" id="indentName" name="indentName" value="">
+							<input type="hidden" id="company-unique" name="teamId" value="${teamId }"/>
+							<input type="hidden" id="play-unique" name="productId" value="${productId }"/>
+							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
+												
 	                        <div class="closeBtn" id="closeBtn"></div>
 	                        <div class="orderTitle">立即下单,对接制作团队</div>
 	                        <div class="orderItem">
 	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
 	                        </div>
 	                        <div class="orderItem">
-	                            <input placeholder="输入手机验证码"  id="verificationCodeValue">
+	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
 	                            <div id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
 	                         <a href="javascript:void(0);" id="order-btn" class="order-btn">确认提交</a>
@@ -161,231 +186,65 @@
                 </div>
             </div>
         </div>
-        <div class="videoStar">
-            <div>本片制作服务星 指数</div>
-        </div>
-        <div class="container-fluid" style="overflow: hidden">
-            <div class="row">
-                <div class="container second_sort" style="padding: 20px 0;">
-                    <div class="row">
-                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
-                            <div class="f_slider">
-                                <div class="flex-viewport" style="overflow: visible; position: relative;">
-                                    <ul class="slides">
-                                        <li>
-                                            <div class="s_item s_item_cur" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="cursor: pointer;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="cursor: pointer;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="cursor: pointer;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="cursor: pointer;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="cursor: pointer;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="display: block; cursor: auto;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="display: block; cursor: auto;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="display: block; cursor: auto;"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="s_item" style="display: block;">
-                                                <div class="con">
-                                                    <div class="conTop">
-                                                        <div>入门级拍摄</div>
-                                                        <div>
-                                                            <center>
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                                <img src="/resources/images/block/star.png">
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="conBottom">
-                                                        大叔大叔大所打算打打 打算打打大大
-                                                    </div>
-                                                </div>
-                                                <div class="layer" style="display: block; cursor: auto;"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <ul class="flex-direction-nav">
-                                    <li>
-                                        <a class="flex-prev" href="#" style="display: none;"></a>
-                                    </li>
-                                    <li>
-                                        <a class="flex-next" href="#"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottomTab"></div>
-        <div class="bottomContent">
+		<c:if test="${!empty productModules}">
+		        <div class="videoStar">
+		            <div>本片制作服务星 指数</div>
+		        </div>
+		        <div class="container-fluid" style="overflow: hidden">
+		            <div class="row">
+		                <div class="container second_sort" style="padding: 20px 0;">
+		                    <div class="row">
+		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
+		                            <div class="f_slider">
+		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
+		                                    <ul class="slides">
+		                                       <c:forEach items="${productModules }" var="source" varStatus="status">
+													<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+												                        	<c:forEach var="i" begin="1" end="${source.moduleLevel }" step="1">   
+													                        	<img src="/resources/images/block/star.png">
+																			</c:forEach>  
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												</c:forEach> 
+		                                    </ul>
+		                                </div>
+		                                <ul class="flex-direction-nav">
+		                                    <li>
+		                                        <a class="flex-prev" href="#" style="display: none;"></a>
+		                                    </li>
+		                                    <li>
+		                                        <a class="flex-next" href="#"></a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="bottomTab"></div>
+		</c:if>
+<c:if test="${product.videoDescription != null && product.videoDescription!= ''}">
+        <div class="bottomContent hide" id="videoDescription">
             <div class="contentWidth">
                 <div class="leftContent">
                       <div class="title">影片故事简述</div>
-                      <div class="setPro">
-                        <img src="/resources/images/block/test.png">
-                        <img src="/resources/images/block/test.png">
-                        <img src="/resources/images/block/test.png">
+                      <div class="setPro" id="videoValue">
+                      		${product.videoDescription }
                       </div>
                 </div>
                 <div class="rightContent">
@@ -415,7 +274,7 @@
                 </div>
             </div>
         </div>
-
+</c:if>
          <div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
@@ -469,9 +328,16 @@
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>
+    <script type="text/javascript" src="${jsonJs }"></script>
+    <script type="text/javascript" src="${jquerybase64Js }"></script>
+    <script type="text/javascript" src="${ykJs }"></script>
     <script type="text/javascript" src="${blockJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
     <script type="text/javascript" defer async="true" src="${common3Js }"></script>
+    
+    <!-- 加载Mob share 控件 -->
+	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 </body>
 
 </html>

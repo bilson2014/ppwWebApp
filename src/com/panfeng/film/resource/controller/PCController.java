@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -28,6 +29,7 @@ import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Job;
 import com.panfeng.film.resource.model.Product;
+import com.panfeng.film.resource.model.ProductModule;
 import com.panfeng.film.resource.model.Service;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Staff;
@@ -68,7 +70,7 @@ public class PCController extends BaseController {
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
 			} catch (IOException e) {
-				Log.error("PCController method:constructor load Properties fail ...",null);
+				Log.error("PCController method:constructor load Properties fail ...", null);
 				e.printStackTrace();
 			}
 		}
@@ -89,7 +91,7 @@ public class PCController extends BaseController {
 		Product product = new Product();
 		product.setPicHDUrl(localUrl.toString());
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("PCController method:getAddress() Get address success:" + localUrl.toString(),sessionInfo);
+		Log.error("PCController method:getAddress() Get address success:" + localUrl.toString(), sessionInfo);
 		return product;
 	}
 
@@ -139,7 +141,6 @@ public class PCController extends BaseController {
 		return new ModelAndView("about", model);
 	}
 
-
 	/**
 	 * 分销人下单
 	 * 
@@ -165,7 +166,9 @@ public class PCController extends BaseController {
 			model.addAttribute("token", token);
 		} catch (Exception e) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("method PCController order ,salesman order page has error,bacase generate order use AES Decrypt token error ...",sessionInfo);
+			Log.error(
+					"method PCController order ,salesman order page has error,bacase generate order use AES Decrypt token error ...",
+					sessionInfo);
 			e.printStackTrace();
 		}
 		// modify by Jack,2016-06-21 12:35 end
@@ -187,7 +190,8 @@ public class PCController extends BaseController {
 		}
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load product size,productType:" + view.getProductType() + " total number is " + pageSize,sessionInfo);
+		Log.error("Load product size,productType:" + view.getProductType() + " total number is " + pageSize,
+				sessionInfo);
 		return pageSize;
 	}
 
@@ -209,9 +213,10 @@ public class PCController extends BaseController {
 		}
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("List With Condition,productType:",sessionInfo);
+		Log.error("List With Condition,productType:", sessionInfo);
 		return list;
 	}
+
 	/**
 	 * 跳转 作者页，并加载当前产品信息
 	 * 
@@ -233,34 +238,49 @@ public class PCController extends BaseController {
 		model.addAttribute("product", product);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
+		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("team", model);
 	}
 
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
-			final HttpServletRequest request)  {
+			final HttpServletRequest request) {
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
 		Product product = new Product();
-		final String url = URL_PREFIX + "portal/product/static/information/" + productId;
+		String url = URL_PREFIX + "portal/product/static/information/" + productId;
 		String json = HttpUtil.httpGet(url, request);
-		product = JsonUtil.toBean(json, Product.class);
-		model.addAttribute("product", product);
-		Indent indent = new Indent();
-		indent.setTeamId(product.getTeamId());
-		indent.setProductId(product.getProductId());
-		indent.setServiceId(product.getServiceId());
-		String token;
-		try {
-			token = IndentUtil.generateOrderToken(request, indent);
-			model.addAttribute("token", token);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (ValidateUtil.isValid(json)) {
+			product = JsonUtil.toBean(json, Product.class);
+			model.addAttribute("product", product);
+			url = URL_PREFIX + "portal/get/productModules";
+			String priceDetail = product.getPriceDetail();
+			if (ValidateUtil.isValid(priceDetail)) {
+				Map<String, String[]> ids = new HashMap<>();
+				String[] priceDetails = priceDetail.split("\\,");
+				ids.put("ids", priceDetails);
+				String json2 = HttpUtil.httpPost(url, ids, request);
+				if (ValidateUtil.isValid(json2)) {
+					try {
+						List<ProductModule> productModules = JsonUtil.fromJsonArray(json2, ProductModule.class);
+						model.addAttribute("productModules", productModules);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		if (teamId != null) {
+			url = URL_PREFIX + "portal/team/info/" + teamId;
+			String json3 = HttpUtil.httpGet(url, request);
+			if (ValidateUtil.isValid(json3)) {
+				Team team = JsonUtil.toBean(json3,Team.class);
+				model.addAttribute("teamFlag", team.getFlag());
+			}
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId,sessionInfo);
+		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("play", model);
 	}
 
@@ -280,11 +300,10 @@ public class PCController extends BaseController {
 		list = JsonUtil.toList(json);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(),sessionInfo);
+		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
 	}
-	
-	
+
 	/**
 	 * 根据 团队编号 加载 产品列表
 	 * 
@@ -301,10 +320,9 @@ public class PCController extends BaseController {
 		list = JsonUtil.toList(json);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(),sessionInfo);
+		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
 	}
-
 
 	/**
 	 * 根据 产品编号 获取 产品信息
@@ -322,7 +340,7 @@ public class PCController extends BaseController {
 		product = JsonUtil.toBean(json, Product.class);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load product information,productId:" + productId,sessionInfo);
+		Log.error("Load product information,productId:" + productId, sessionInfo);
 		return product;
 	}
 
@@ -342,7 +360,7 @@ public class PCController extends BaseController {
 		list = JsonUtil.toList(json);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load All Service By Product,productId:" + productId,sessionInfo);
+		Log.error("Load All Service By Product,productId:" + productId, sessionInfo);
 		return list;
 	}
 
@@ -382,7 +400,7 @@ public class PCController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("PCController method:listView() encode failue,q=*",sessionInfo);
+			Log.error("PCController method:listView() encode failue,q=*", sessionInfo);
 		}
 		return new ModelAndView("search", model);
 		// modify by jack,2016-07-06 18:13 end
@@ -400,7 +418,7 @@ public class PCController extends BaseController {
 		list = JsonUtil.toList(json);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load Video Item, total number is " + list.size(),sessionInfo);
+		Log.error("Load Video Item, total number is " + list.size(), sessionInfo);
 		return list;
 	}
 
@@ -423,7 +441,7 @@ public class PCController extends BaseController {
 				model.addAttribute("userSource", sourecs);
 			}
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(),sessionInfo);
+			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(), sessionInfo);
 		}
 
 		return new ModelAndView("userInfo", model);
@@ -492,8 +510,8 @@ public class PCController extends BaseController {
 		model.addAttribute("flag", flag);
 
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : "
-				+ team.getTeamName() + "flag is " + flag,sessionInfo);
+		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
+				+ "flag is " + flag, sessionInfo);
 		return new ModelAndView("provider/portal", model);
 	}
 
@@ -505,7 +523,7 @@ public class PCController extends BaseController {
 			final String json = HttpUtil.httpGet(url, request);
 			boolean result = JsonUtil.toBean(json, boolean.class);
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("send Message to telephone:" + telephone,sessionInfo);
+			Log.error("send Message to telephone:" + telephone, sessionInfo);
 			return result;
 		}
 		return false;
@@ -595,59 +613,58 @@ public class PCController extends BaseController {
 
 		return null;
 	}
-	
+
 	/**
 	 * 验证手机验证码是否正确
 	 */
 	@RequestMapping("/phone/validate")
-	public boolean phoneValidate(@RequestBody final User user,
-			final HttpServletRequest request) {
+	public boolean phoneValidate(@RequestBody final User user, final HttpServletRequest request) {
 
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
 		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if(isTest){
+		if (isTest) {
 			return true;
 		}
 		if (ValidateUtil.isValid(code) && ValidateUtil.isValid(codeOfphone)) {
-			return	code.equals(user.getVerification_code())&&codeOfphone.equals(user.getTelephone());	
-		}else return false;
+			return code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone());
+		} else
+			return false;
 	}
-	
-	
+
 	/**
-	 * 验证登录者是否完善登录名,密码
-	 * 	 ROLE_EMPLOYEE = "role_employee"; // 用户身份 -- 内部员工
-	 *	 ROLE_CUSTOMER = "role_customer"; // 用户身份 -- 客户
-     *   ROLE_PROVIDER = "role_provider"; // 用户身份 -- 供应商
+	 * 验证登录者是否完善登录名,密码 ROLE_EMPLOYEE = "role_employee"; // 用户身份 -- 内部员工
+	 * ROLE_CUSTOMER = "role_customer"; // 用户身份 -- 客户 ROLE_PROVIDER =
+	 * "role_provider"; // 用户身份 -- 供应商
 	 */
 	@RequestMapping("/loginName/validate")
 	public boolean loginNameValidate(final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "portal/loginName/validate";
-		final String json = HttpUtil.httpGet(url,request);
-		if(null!=json && !"".equals(json)){
+		final String json = HttpUtil.httpGet(url, request);
+		if (null != json && !"".equals(json)) {
 			return JsonUtil.toBean(json, Boolean.class);
-		}return true;
+		}
+		return true;
 	}
 
 	/**
 	 * 播放界面获取更多导演作品
 	 */
 	@RequestMapping("/team/product/more")
-	public BaseMsg getMoreProduct(final HttpServletRequest request,final Team team) {
+	public BaseMsg getMoreProduct(final HttpServletRequest request, final Team team) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
 		final String json = HttpUtil.httpPost(url, team, request);
-		if(null!=json && !"".equals(json)){
+		if (null != json && !"".equals(json)) {
 			List<Product> list = JsonUtil.toList(json);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
 			return baseMsg;
-		}else{
+		} else {
 			baseMsg.setErrorMsg("list is null");
 		}
 		return baseMsg;
 	}
-	
+
 }

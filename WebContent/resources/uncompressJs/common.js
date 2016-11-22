@@ -109,6 +109,23 @@ function loadData(Func,url,param){
 	});
 }
 //AJAX POST
+function loadData2(Func,url,param){
+	$.ajax({
+		url : url,
+		type : 'POST',
+		data : param,
+		dataType : 'json',
+		success : function(data){
+			Func(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.error('ajax(' + url + ')[' + jqXHR.status + ']' + jqXHR.statusText);
+			console.error(jqXHR.responseText);
+			console.error('[' + textStatus + ']' + errorThrown);
+		}
+	});
+}
+//AJAX POST
 function syncLoadData(Func,url,param){
 	$.ajax({
 		url : url,
