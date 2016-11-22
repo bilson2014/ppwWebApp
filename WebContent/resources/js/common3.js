@@ -62,56 +62,54 @@ function chickShowOrder() {
 }
 
 function showOrder(typeName) {
-   
+
     if ($('div').hasClass('comOrder')) {
+    	$("#submit-indent-recomment").text(typeName);
         $('.comOrder').show();
     } else {
-  
 
-		var $body = '<div class="comOrder">'
-				+ '<div class="cOrder" id="cOrder">'
-				+ '<div class="cCloseBtn" id="closeBtn">'
-				+ ' 	<div></div>'
-				+ '</div>'
-				+ '<div class="cOrderTitle">立即下单,对接制作团队</div>'
-				+ '<form id="cOrder-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">'
-				+ ' <div class="cOrderItem">'
-				+ '<div class="dropdown dropdowns" id="selectType">'
-				+ '<div class="btn btn-default dropdown-toggle" type="button" id="commonOrderUlTogle" data-toggle="dropdown">'
-				+ '<span data-content="0">'
-				+ typeName
-				+ '</span>'
-				+ '<div class="carets"></div>'
-				+ '</div>'
-				+ '<ul class="dropdown-menu" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">'
-				+ '<li data-content="0">宣传片</li>'
-				+ '<li data-content="1">广告片</li>'
-				+ '<li data-content="2">动画片</li>'
-				+ '<li data-content="3">病毒视频</li>'
-				+ '<li data-content="4">微电影</li>'
-				+ '<li data-content="5">证言影片</li>'
-				+ '<li data-content="6">公益片</li>'
-				+ '<li data-content="7">MV</li>'
-				+ '<li data-content="8">预告片</li>'
-				+ '<li data-content="9">纪录片</li>'
-				+ '</ul>'
-				+ '</div>'
-				+ '</div>'
-				+ '<div class="cOrderItem" data-content="" id="indent_tele_error" >'
-				+ ' <input id="indent_tele" placeholder="您的电话号">'
-				+ '</div>'
-				+ '<div class="cOrderItem" data-content="" id="indent_code_error">'
-				+ ' <input id="phoneCode" placeholder="输入手机验证码">'
-				+ '<div id="getPhoneCode">获取验证码</div>'
-				+ ' </div>'
-				+ ' <div class="cOrderBtn" id="order-btn">确认下单</div>'
-				+ ' </form>'
-				+ '  <div class="cOrderBotTitle">下单后,专业顾问将在2小时之内与您致电确认具体需求</div>'
-				+ '</div>';
-		$body += '</div>';
-		$("body").append($body);
-		initOrderClick();
-	}
+        var $body = '<div class="comOrder">' +
+            '<div class="cOrder" id="cOrder">' +
+            '<div class="cCloseBtn" id="closeBtn">' +
+            ' 	<div></div>' +
+            '</div>' +
+            '<div class="cOrderTitle">立即下单,对接制作团队</div>' +
+            '<form id="cOrder-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">'+
+            ' <div class="cOrderItem">' +
+            '<div class="dropdown dropdowns" id="selectType">' +
+            '<div class="btn btn-default dropdown-toggle" type="button" id="commonOrderUlTogle" data-toggle="dropdown">' +
+            '<span data-content="0" id="submit-indent-recomment">' + typeName + '</span>' +
+            '<div class="carets"></div>' +
+            '</div>' +
+            '<ul class="dropdown-menu" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">' +
+            '<li data-content="0">宣传片</li>' +
+            '<li data-content="1">广告片</li>' +
+            '<li data-content="2">动画片</li>' +
+            '<li data-content="3">病毒视频</li>' +
+            '<li data-content="4">微电影</li>' +
+            '<li data-content="5">证言影片</li>' +
+            '<li data-content="6">公益片</li>' +
+            '<li data-content="7">MV</li>' +
+            '<li data-content="8">预告片</li>' +
+            '<li data-content="9">纪录片</li>' +
+            '</ul>' +
+            '</div>' +
+            '</div>' +
+            '<div class="cOrderItem" data-content="" id="indent_tele_error" >' +
+            ' <input id="indent_tele" placeholder="您的电话号">' +
+            '</div>' +
+            '<div class="cOrderItem" data-content="" id="indent_code_error">' +
+            ' <input id="phoneCode" placeholder="输入手机验证码">' +
+            '<div id="getPhoneCode">获取验证码</div>' +
+            ' </div>' +
+            ' <div class="cOrderBtn" id="order-btn">确认下单</div>' +
+            ' </form>' +
+            '  <div class="cOrderBotTitle">下单后,专业顾问将在2小时之内与您致电确认具体需求</div>' +
+            '</div>';
+        $body += '</div>';
+        $("body").append($body);
+        initOrderClick();
+    }
 
 	$('.cCloseBtn').on('click', function() {
 		$('.comOrder').hide();
@@ -120,20 +118,35 @@ function showOrder(typeName) {
 
 
 function initOrderClick(){
-	
-	$('#order-btn').click(function(){
-		if(checkDatas(1)){ // 检查数据完整性
-			showError($('#indent_tele_error'),'');
-			showError($('#indent_code_error'),'');
-			// 提交表单
-			var token = $('#commonToken').val();
-			$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-			$('#cOrder-form').attr('action',getContextPath() + '/order/submit').submit().remove();
+	var flag = true;
+	$('#order-btn').off("click").on("click",function(){
+		if(checkData(1)){ // 检查数据完整性
+				showError($('#indent_tele_error'),'');
+				showError($('#indent_code_error'),'');
+				flag = false;
+				// 提交表单
+				if(flag){
+					loadData2(function(msg){
+						$('.comOrder').hide();
+						showSuccess();
+						flag = true;
+					}, getContextPath() + '/order/deliver', 
+						{	
+						csrftoken:$("#csrftoken").val(),
+						indent_tele:$("#indent_tele").val(),
+						phoneCode:'-1',
+						indent_recomment:$("#submit-indent-recomment").text(),
+						indentName:'新订单',
+						productId:-1,
+						teamId:-1,
+						serviceId:-1,
+						phoneCode : $('#phoneCode').val(),
+					});	
+				}
 		}
 	});
-	
-	$('#getPhoneCode').on('click',function(){
-		if(curCounts == 0 && checkDatas(2)){
+	$('#getPhoneCode').off("click").on('click',function(){
+		if(curCounts == 0 && checkData(2)){
 			curCounts = counts;
 			var telephone = $('#indent_tele').val().trim();
 			$('#getPhoneCode').text('已发送(' + curCounts + ')');
@@ -244,7 +257,6 @@ function showError(id, error) {
 
 function showSuccess() {
 	if ($('div').hasClass('showSuccess')) {
-
 	} else {
 
 		var $body = '<div class="showSuccess">'

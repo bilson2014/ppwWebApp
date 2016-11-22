@@ -160,7 +160,7 @@
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
-							<div class="bannerWord">
+							<div class="bannerWord" id="toCalculate">
 								<img
 									src=" /resources/images/index/bannerOnline.png">在线估价<span>>></span>
 							</div>
@@ -185,11 +185,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four1"></div>
-							<div>宣传片</div>
-							<div>ADVERTISEMENTS</div>
+							<div class="home-search" data-text="宣传片">宣传片</div>
+							<div class="home-search" data-text="宣传片">ADVERTISEMENTS</div>
 						</div>
 						<div class="typeBottom">
-							<span>通过案例找创意>></span> <span>立即下单</span>
+							<span class="home-search" data-text="宣传片">通过案例找创意>></span>
+							 <span class="home-order" data-text="宣传片">立即下单</span>
 						</div>
 					</div>
 				</div>
@@ -199,11 +200,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four2"></div>
-							<div>微电影</div>
-							<div>MICRO FILMS</div>
+							<div class="home-search" data-text="微电影">微电影</div>
+							<div class="home-search" data-text="微电影">MICRO FILMS</div>
 						</div>
 						<div class="typeBottom">
-							<span>通过案例找创意>></span> <span>立即下单</span>
+							<span class="home-search" data-text="微电影">通过案例找创意>></span>
+							 <span class="home-order" data-text="微电影">立即下单</span>
 						</div>
 					</div>
 				</div>
@@ -213,11 +215,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four3"></div>
-							<div>广告片</div>
-							<div>TV COMMERCIALS</div>
+							<div class="home-search" data-text="广告片">广告片</div>
+							<div class="home-search" data-text="广告片">TV COMMERCIALS</div>
 						</div>
 						<div class="typeBottom">
-							<span>通过案例找创意>></span> <span>立即下单</span>
+							<span class="home-search" data-text="广告片">通过案例找创意>></span> 
+							<span class="home-order" data-text="广告片">立即下单</span>
 						</div>
 					</div>
 				</div>
@@ -227,11 +230,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four4"></div>
-							<div>病毒视频</div>
-							<div>VIRAL VIDEOS</div>
+							<div class="home-search" data-text="病毒视频">病毒视频</div>
+							<div class="home-search" data-text="病毒视频">VIRAL VIDEOS</div>
 						</div>
 						<div class="typeBottom">
-							<span>通过案例找创意>></span> <span>立即下单</span>
+							<span class="home-search" data-text="病毒视频">通过案例找创意>></span>
+							 <span class="home-order" data-text="病毒视频">立即下单</span>
 						</div>
 					</div>
 				</div>
@@ -283,7 +287,9 @@
 		<div class="director">
 			<div class="swiper-container  swiper-director">
 				<div class="directorLogo"></div>
-				<div class="directorWant">我要入驻</div>
+				<a href="/provider/login">
+					<div class="directorWant">我要入驻</div>
+				</a>
 				<div class="swiper-wrapper" id="directorContent">
 					<!-- <div class="swiper-slide">
 						<div class="m"></div>
@@ -492,8 +498,8 @@
 					</li>
 				</ul>
 				<div class="joinBtn">
-					<div>我要拍片</div>
-					<div>入驻拍片网</div>
+					<div onclick="showOrder('宣传片');">我要拍片</div>
+					<div onclick="window.location.href='/provider/login'">入驻拍片网</div>
 				</div>
 			</div>
 		</div>

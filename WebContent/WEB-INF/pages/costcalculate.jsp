@@ -275,11 +275,11 @@
                             </div>
                             <!--新版底部-->
     </div>
-    
     <script type="text/javascript"  src="/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript"  src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
     <script type="text/javascript"  src="/resources/lib/jquery/waypoints.min.js"></script>
     <script type="text/javascript"  src="/resources/js/cost.js"></script>
-     <script type="text/javascript"  src="/resources/js/common.js"></script>
+    <script type="text/javascript"  src="/resources/js/common.js"></script>
     <script type="text/javascript"   src="/resources/js/common3.js"></script>
     
     

@@ -284,7 +284,7 @@ function submitOrder(){
 	if(checkData(1) && checkData(2)){
 		loadData2(function(msg){
 			alert(msg.ret);
-		}, getContextPath() + '/order/submit', 
+		}, getContextPath() + '/order/deliver', 
 			{indentName : $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),
