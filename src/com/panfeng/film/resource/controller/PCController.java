@@ -656,8 +656,8 @@ public class PCController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
 		final String json = HttpUtil.httpPost(url, team, request);
-		if (null != json && !"".equals(json)) {
-			List<Product> list = JsonUtil.toList(json);
+		if(null!=json && !"".equals(json)){
+			List<Solr> list = JsonUtil.toList(json);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
 			return baseMsg;

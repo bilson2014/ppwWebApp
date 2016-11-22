@@ -39,6 +39,7 @@
     
     <!-- 新首页 -->
     <mvc:view-controller path="/home" view-name="/homePage" />
+    <mvc:view-controller path="/news" view-name="/news" />
      <!--END-->
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />

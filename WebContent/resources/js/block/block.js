@@ -213,6 +213,7 @@ function showDiv(){
     $('#order-btn').off('click').on('click',submitOrder);
 }
 
+
 /////////////////////////////////////////wang//////////////////////////////////////
 // order verificationCode
 function verificationCodeBtn(){
@@ -323,5 +324,6 @@ function initView(){
 		$('#videoValue').text('');
 	}
 }
+
 
 
