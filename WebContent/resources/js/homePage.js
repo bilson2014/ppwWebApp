@@ -3,15 +3,12 @@ $().ready(function() {
     originTool();
     banner();
     client();
-    initVideo();
     scrollBack();
     ourYouDian();
 
 });
 
 function scrollBack() {
-
-
     var top = $('#advan').position().top;
     //$('.advanBack').css('top',top);
     //var endPos = top + 822;
@@ -26,12 +23,10 @@ function scrollBack() {
     //         $('#advan').css('background-position-y', '-500');
     //     }
     // });
-
     //     $(window).scroll(function(event) {
     //     var scrollTop = $(document).scrollTop();
     //      $('.advanBack').css('top',scrollTop);
     // });
-
 }
 
 
@@ -51,11 +46,8 @@ function client() {
         $('.noLi').css('display', 'none');
     });
 }
-
 //特效优势
 function ourYouDian() {
-
-
     $("#caLogo1").hover(function() {
         $('#caLogo1w').removeClass('oro');
         $('#caLogo1w').addClass('hoverLogo');
@@ -63,7 +55,6 @@ function ourYouDian() {
         $('#caLogo1w').removeClass('hoverLogo');
         $('#caLogo1w').addClass('oro');
     });
-
     $("#caLogo2").hover(function() {
         $('#caLogo2w').removeClass('oro');
         $('#caLogo2w').addClass('hoverLogo');
@@ -71,7 +62,6 @@ function ourYouDian() {
         $('#caLogo2w').removeClass('hoverLogo');
         $('#caLogo2w').addClass('oro');
     });
-
     $("#caLogo3").hover(function() {
         $('#caLogo3w').removeClass('oro');
         $('#caLogo3w').addClass('hoverLogo');
@@ -79,10 +69,7 @@ function ourYouDian() {
         $('#caLogo3w').removeClass('hoverLogo');
         $('#caLogo3w').addClass('oro');
     });
-
 }
-
-
 function originTool() {
 
     // $('.flexslider').flexslider({
@@ -90,8 +77,6 @@ function originTool() {
     //     pauseOnAction: false,
     //     slideshowSpeed: 40000
     // });
-
-
     // 滚动监听 start
     $('.dropdown').waypoint(function(direction) {
         if (direction == "up") { // 了解 拍片网之前
@@ -99,22 +84,17 @@ function originTool() {
         } else {
             $('#header').addClass('headerMove');
         }
-
     $('#search').unbind('click');
         $('#search').bind('click', function() {
             searchOnclick();
         });
-
     });
-
     //下拉监听
-
     $("#selectType").hover(function() {
         $('#selectUl').slideDown();
     }, function() {
         //   $('#selectUl').slideUp();
     });
-
     $("#selectType").find('ul').find('li').on('click', function() {
         $(this).parent().parent().find('span').text($(this).text());
         $('#selectUl').slideUp();
@@ -128,21 +108,16 @@ function originTool() {
     //         $('.dropdown-menu').sliderUp()
     //     }
     // })
-
     $('#classical').waypoint(function() {
         $('.cardUl').find('li').addClass('topAnimaltion');
     }, { offset: 500 });
-
     $('.hereClients').waypoint(function() {
         $('#Clients').find('.up').css('top', '0');
         $('#Clients').find('.up').css('opacity', '1');
         $('#Clients').find('.down').css('top', '0');
         $('#Clients').find('.down').css('opacity', '1');
     }, { offset: 255 });
-
 }
-
-
 function banner() {
     $('#bannerTitleAn1').addClass('showTitle');
     $('#DescAn1').addClass('showTitle');
@@ -173,17 +148,11 @@ function banner() {
             // }
         },
     });
-
 }
 
-
-function initVideo() {
-    $('#showVideoS').on('click', function() {
-        $('#showVideo').click();
-    });
-
-}
-
+/**
+ * 主页业务处理部分
+ */
 var homePage = {
 	init:function(){
 		//点击帮我推荐提交订单
@@ -194,8 +163,26 @@ var homePage = {
 		this.getRecommendTeam();
 		//获取推荐新闻
 		this.getRecommendNews();
+		//案例找创意
+		this.search();
+		//立即下单
+		this.deliverOrder();
 		//跳转成本计算器
 		this.toCostCalculate();
+		//初始化视频加载
+		this.initVideo();
+	},
+	search:function(){
+		$(".home-search").off("click").on("click",function(){
+			var flag = $(this).attr("data-text");
+			window.location.href='/search?q='+flag;
+		})
+	},
+	deliverOrder:function(){
+		$(".home-order").off("click").on("click",function(){
+			var flag = $(this).attr("data-text");
+			showOrder(flag);
+		})
 	},
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
@@ -209,7 +196,7 @@ var homePage = {
 				return false;
 			}else{
 				$.ajax({
-					url : '/order/submit',
+					url : '/order/deliver',
 					type : 'POST',
 					data : {
 						csrftoken:$("#csrftoken").val(),
@@ -219,7 +206,9 @@ var homePage = {
 						indentName:'新订单',
 						productId:-1,
 						teamId:-1,
-						serviceId:-1
+						serviceId:-1,
+						sendToStaff:false,
+						sendToUser:false
 					},
 					dataType : 'json',
 					success : function(data){
@@ -254,7 +243,7 @@ var homePage = {
 		}, getContextPath() + '/home/product/loadProduct/',null);
 	},
 	cover:function(){
-		 var statues = true;
+		var statues = true;
 	    var nowIndex = 0;
 	    var cover = new Swiper('.swiperCover', {
 	        pagination: '.swiper-pagination-cover',
@@ -380,6 +369,11 @@ var homePage = {
 		$("#toCalculate").off("click").on("click",function(){
 			window.location.href="/cost/cal";
 		})
+	},
+	initVideo:function(){
+		$('#showVideoS').off("click").on('click', function() {
+	        $('#showVideo').click();
+	    });
 	}
 }
 homePage.init();
@@ -390,11 +384,13 @@ var homePage_tpl = {
 	        '{@each list as item}',
 			'<div class="swiper-slide coverSlide">',
 			'	<div class="scaleDiv">',
-			'		<img src="'+getDfsHostName()+'${item.picLDUrl}">',
-			'		<div class="coverContent">',
-			'			<div class="">${item.productName}</div>',
-			'			<div>￥${item.price}</div>',
-			'		</div>',
+			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'			<div class="coverContent">',
+			'				<div class="">${item.productName}</div>',
+			'				<div>￥${item.price}</div>',
+			'			</div>',
+			'		</a>',
 			'	</div>',
 			'</div>',
 			'{@/each}'
@@ -403,15 +399,17 @@ var homePage_tpl = {
             '{@each list as item}',
 			'<li class="topAnimaltion">',
 			'	<div class="videoCard">',
-			'		<img src="'+getDfsHostName()+'${item.picLDUrl}">',
-			'		<div class="videoContet">',
-			'			<div class="title">${item.productName}</div>',
-			'			<div class="type">${item.tags}</div>',
-		    '			<div class="price">￥${item.price}</div>',
-		    '			{@if item.orignalPrice != null && item.orignalPrice != 0}',
-		    '				<div class="realPrice">原价￥${item.orignalPrice}</div>',
-			'			{@/if}',
-			'		</div>',
+			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'			<div class="videoContet">',
+			'				<div class="title">${item.productName}</div>',
+			'				<div class="type">${item.tags}</div>',
+		    '				<div class="price">￥${item.price}</div>',
+		    '				{@if item.orignalPrice != null && item.orignalPrice != 0}',
+		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
+			'				{@/if}',
+			'			</div>',
+			'		</a>',
 			'	</div>',
 			'</li>',
 			'{@/each}'
@@ -422,11 +420,13 @@ var homePage_tpl = {
 			'	<div class="m"></div>',
 			'	<div class="b"></div>',
 			'	<div class="directorContent">',
-			'		<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
-			'		<div class="title">${item.teamName}</div>',
-			'		<div class="line"></div>',
-			'		<div class="content">${item.description}</div>',
-			'		<div class="toProduct">作品集</div>',
+			'		<a href="/provider/info_${item.teamId}.html" target="_blank">',
+			'			<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+			'			<div class="title">${item.teamName}</div>',
+			'			<div class="line"></div>',
+			'			<div class="content">${item.description}</div>',
+			'			<div class="toProduct">作品集</div>',
+			'		</a>',
 			'	</div>',
 			'</div>',  
 			'{@/each}'

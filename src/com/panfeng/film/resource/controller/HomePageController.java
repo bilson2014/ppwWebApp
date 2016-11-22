@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
@@ -59,12 +60,30 @@ public class HomePageController extends BaseController{
 		final String url = URL_PREFIX + "portal/product/static/pc/list";
 		String str = HttpUtil.httpPost(url, null, request);
 		if (str != null && !"".equals(str)) {
-			List<Solr> list = JsonUtil.toList(str);
-			if(null!=list){
-				baseMsg.setCode(1);
-				baseMsg.setResult(list);
-			}else{
-				baseMsg.setErrorMsg("null list");
+			try {
+				List<Solr> list = JsonUtil.fromJsonArray(str, Solr.class);
+				if(null!=list){
+					//处理标签
+					for(Solr s : list){
+						String tags = s.getTags();
+						if(StringUtils.isNotBlank(tags)){
+							String[] tagsArr = tags.split(" ");
+							int maxLength = tagsArr.length>3?3:tagsArr.length;
+							tags = "";
+							for(int i=0;i<maxLength;i++){
+								tags += tagsArr[i]+"/";
+							}
+							tags = tags.substring(0, tags.length()-1);
+							s.setTags(tags);
+						}
+					}
+					baseMsg.setCode(1);
+					baseMsg.setResult(list);
+				}else{
+					baseMsg.setErrorMsg("null list");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);

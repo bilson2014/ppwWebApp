@@ -7,7 +7,8 @@
 		                   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<mvc:view-controller path="/" view-name="/index" />
+	<!-- <mvc:view-controller path="/" view-name="/index" /> -->
+	<mvc:view-controller path="/" view-name="/homePage" />
 	
 	<mvc:view-controller path="/about-us.html" view-name="/about-us" />
 	
@@ -38,7 +39,7 @@
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
     
     <!-- 新首页 -->
-    <mvc:view-controller path="/home" view-name="/homePage" />
+    <!-- <mvc:view-controller path="/home" view-name="/homePage" /> -->
     <mvc:view-controller path="/news" view-name="/news" />
      <!--END-->
     

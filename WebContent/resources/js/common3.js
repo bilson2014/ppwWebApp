@@ -48,6 +48,7 @@ function chickShowOrder() {
 function showOrder(typeName) {
    
     if ($('div').hasClass('comOrder')) {
+    	$("#submit-indent-recomment").text(typeName);
         $('.comOrder').show();
     } else {
 
@@ -61,7 +62,7 @@ function showOrder(typeName) {
             ' <div class="cOrderItem">' +
             '<div class="dropdown dropdowns" id="selectType">' +
             '<div class="btn btn-default dropdown-toggle" type="button" id="commonOrderUlTogle" data-toggle="dropdown">' +
-            '<span data-content="0">' + typeName + '</span>' +
+            '<span data-content="0" id="submit-indent-recomment">' + typeName + '</span>' +
             '<div class="carets"></div>' +
             '</div>' +
             '<ul class="dropdown-menu" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">' +
@@ -102,20 +103,33 @@ function showOrder(typeName) {
 
 
 function initOrderClick(){
-	
-	$('#order-btn').click(function(){
+	var flag = true;
+	$('#order-btn').off("click").on("click",function(){
 		if(checkData(1)){ // 检查数据完整性
-			
 				showError($('#indent_tele_error'),'');
 				showError($('#indent_code_error'),'');
+				flag = false;
 				// 提交表单
-				var token = $('#commonToken').val();
-				$('#commonToken').val(htmlSpecialCharsEntityEncode(decodeURIComponent(token)));
-				$('#cOrder-form').attr('action',getContextPath() + '/order/submit').submit().remove();
-			
+				if(flag){
+					loadData2(function(msg){
+						$('.comOrder').hide();
+						showSuccess();
+						flag = true;
+					}, getContextPath() + '/order/deliver', 
+						{	
+						csrftoken:$("#csrftoken").val(),
+						indent_tele:$("#indent_tele").val(),
+						phoneCode:'-1',
+						indent_recomment:$("#submit-indent-recomment").text(),
+						indentName:'新订单',
+						productId:-1,
+						teamId:-1,
+						serviceId:-1,
+						phoneCode : $('#phoneCode').val(),
+					});	
+				}
 		}
 	});
-	
 	$('#getPhoneCode').off("click").on('click',function(){
 		if(curCounts == 0 && checkData(2)){
 			curCounts = counts;
@@ -214,6 +228,7 @@ function showError(id,error){
 		id.attr('data-content','*'+error);
 	}
 }
+
 
 
 //成功 提示框弹出方法
