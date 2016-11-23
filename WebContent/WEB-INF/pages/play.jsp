@@ -100,8 +100,22 @@
                 </div>
             </div>
             <div class="right-part">
-                 <a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
+                  <r:noLogin>
+				<a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
                 <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
+				</r:noLogin>
+				<r:identity role="customer">
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
             </div>
         </div>
     </div>
@@ -176,11 +190,11 @@
                     </div> 
                     
                     <div class="price showPrice" id="price">
-                     <div>
-                     	<span>￥</span><span>${product.servicePrice }</span></div>
-	                    <div>原价</div>
-                        <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
-                        <div>影片价格</div>
+                     
+                     	<div class="orPrice"><span >￥</span><span>${product.servicePrice }</span></div>
+	                    <div class="orPriceTitle">原价</div>
+                        <div class="afterPrice"><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
+                        <div class="afterPriceTitle">影片价格</div>
                         <div id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
@@ -270,6 +284,14 @@
                 </div>
                 <div class="rightContent">
                       <div class="title">本片导演更多影片推荐</div>
+                      <div class="setVideo" id="moreProduct">
+                          <div class="videoModel">
+                              <img src="/resources/images/block/test.png">
+                              <label>宣传片</label>
+                          </div>
+                      </div>
+                      
+                       <div class="title">更多相关影片推荐</div>
                       <div class="setVideo" id="moreProduct">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
