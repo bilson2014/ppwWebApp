@@ -62,6 +62,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
+	<input type="hidden" id="tags" value="${product.tags }">
  <div class="header headerMove" id="header">
  <input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -198,7 +199,7 @@
 		                    <div class="afterPrice" ><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
 	                    </c:if>
 	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
-	                    	 <div class="afterPrice" ><span>￥</span><span class="small">暂无报价</span></div>
+	                    	 <div class="afterPrice" ><span>￥</span><span>暂无报价</span></div>
 	                    </c:if>
 	                    <div class="afterPriceTitle">影片价格</div>
                         <div id="needOrder">我要下单</div>
@@ -289,16 +290,16 @@
                       </div>
                 </div>
                 <div class="rightContent">
-                      <div class="title">本片导演更多影片推荐</div>
-                      <div class="setVideo" id="moreProduct">
+                      <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
+                      <div class="setVideo" id="moreTeamProductDiv">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
                               <label>宣传片</label>
                           </div>
                       </div>
                       
-                       <div class="title">更多相关影片推荐</div>
-                      <div class="setVideo" id="moreProduct">
+                      <div class="title" id="recommendProductTitle">更多相关影片推荐</div>
+                      <div class="setVideo" id="recommendProductTitleDiv">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
                               <label>宣传片</label>
