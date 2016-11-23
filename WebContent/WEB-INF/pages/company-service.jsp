@@ -93,15 +93,25 @@
 	</div>
 
    <div class="page">
-       <div class="contain nav-title-wrap" >
-			<ul class="ul-wrap" id="selects">
-				<a href="<spring:url value='/about-us.html' />" class ="nav-title"><li >了解我们</li></a>
-				<a href="<spring:url value='/order-flow.html' />" class ="nav-title"><li >服务流程</li></a>
-				<a href="<spring:url value='/member.html' />" class ="nav-title"><li>加入我们</li></a>
-				<a href="<spring:url value='/company-activity.html' />" class ="nav-title"><li >公司活动</li></a>
-				<a href="<spring:url value='/company-service.html' />" class ="nav-title"><li id="first-title">服务协议</li></a>
-			</ul>
-		</div>
+             <div class="titleTag">
+            <div class="titleWord">
+                <a href="/about-us.html">
+                    <div>了解我们</div>
+                </a>
+                <a href="/order-flow.html">
+                    <div>服务流程</div>
+                </a>
+                <a >
+                    <div class="checkActive">服务协议</div>
+                </a>
+                <a href="/company-activity.html">
+                    <div>公司活动</div>
+                </a>
+                <a href="/member.html">
+                    <div>加入我们</div>
+                </a>
+            </div>
+        </div>
 
 	<div class="nav-shadow"></div>
 		 <div class="agreemen">
