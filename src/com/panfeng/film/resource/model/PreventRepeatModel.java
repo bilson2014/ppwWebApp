@@ -12,7 +12,7 @@ import com.panfeng.film.domain.BaseObject;
  *
  */
 public class PreventRepeatModel extends BaseObject {
-
+	
 	private static final long serialVersionUID = 8459920504152155274L;
 
 	private Map<String, CurrentTokenVal> runningList;
