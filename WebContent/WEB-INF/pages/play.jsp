@@ -289,23 +289,15 @@
                       		${product.videoDescription}
                       </div>
                 </div>
-                <div class="rightContent">
+                <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
                       <div class="setVideo" id="moreTeamProductDiv">
-                          <div class="videoModel">
-                              <img src="/resources/images/block/test.png">
-                              <label>宣传片</label>
-                          </div>
                       </div>
-                      
                       <div class="title" id="recommendProductTitle">更多相关影片推荐</div>
                       <div class="setVideo" id="recommendProductTitleDiv">
-                          <div class="videoModel">
-                              <img src="/resources/images/block/test.png">
-                              <label>宣传片</label>
-                          </div>
                       </div>
                 </div>
+                
             </div>
         </div>
 </c:if>
