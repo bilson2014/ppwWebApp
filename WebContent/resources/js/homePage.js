@@ -200,13 +200,13 @@ var homePage = {
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
 			var phone = $("#help-phone").val();
-			showError($('.search-box'),'');
+			showError($('.bannerOut'),'');
 			if(phone==''){
-				showError($('.search-box'),'请填写手机号');
+				showError($('.bannerOut'),'请填写手机号');
 				return false;
 			}
 			if(!checkMobile(phone)){
-				showError($('.search-box'),'手机格式不正确');
+				showError($('.bannerOut'),'手机格式不正确');
 				return false;
 			}else{
 				$.ajax({
