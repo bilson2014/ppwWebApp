@@ -59,6 +59,7 @@
 	<input type="hidden" id="action" value="${action }"/>
 	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
 	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
+	
 	<div class="index-content-wrap">
 	
 		<div class="header">
