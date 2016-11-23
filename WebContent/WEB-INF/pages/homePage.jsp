@@ -161,11 +161,12 @@
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
 							<div class="bannerWord" id="toCalculate">
-								<img
-									src=" /resources/images/index/bannerOnline.png">在线估价<span>>></span>
+								<a href="/cost/cal" target="_blank">
+									<img src="/resources/images/index/bannerOnline.png">在线估价<span>>></span>
+								</a>
 							</div>
 							<div class="bannerWord" id="showVideoS">
-								<img src=" /resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
+								<img src="/resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
 							</div>
 						</div>
 					</form>

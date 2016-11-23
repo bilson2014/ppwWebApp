@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
@@ -669,25 +668,5 @@ public class PCController extends BaseController {
 			return JsonUtil.toBean(json, Boolean.class);
 		}
 		return true;
-	}
-
-	/**
-	 * 播放界面获取更多导演作品
-	 */
-	@RequestMapping("/team/product/more")
-	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
-		BaseMsg baseMsg = new BaseMsg();
-		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
-		final String json = HttpUtil.httpPost(url, team, request);
-		if (null != json && !"".equals(json)) {
-			List<Solr> list = JsonUtil.toList(json);
-			baseMsg.setCode(1);
-			baseMsg.setResult(list);
-			return baseMsg;
-		} else {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("list is null");
-		}
-		return baseMsg;
 	}
 }

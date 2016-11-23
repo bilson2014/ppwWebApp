@@ -66,7 +66,7 @@ public class CostCalculateController extends BaseController{
 		Indent indent = new Indent();
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
-		indent.setIndentName("新订单");
+		indent.setIndentName("成本计算器下单");
 		indent.setIndentType(0);
 		indent.setServiceId(-1l);
 		indent.setIndentPrice(0d);
@@ -75,7 +75,7 @@ public class CostCalculateController extends BaseController{
 		indent.setSecond(0l);
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
-		indent.setIndent_description(calculate.getDescription()+","+cost);
+		indent.setIndent_recomment(calculate.getDescription()+",预期价格:"+cost);
 		
 		final String url = URL_PREFIX + "portal/indent/cost/save";
 		String str = HttpUtil.httpPost(url, indent,request);
