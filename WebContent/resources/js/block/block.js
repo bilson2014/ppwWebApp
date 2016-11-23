@@ -359,6 +359,9 @@ function loadMoreTeamProduct(){
 				}
 				loadRecommendProduct();
 			}
+		}else{
+			$('#moreTeamProductTitle').addClass('hide');
+			$('#moreTeamProductDiv').addClass('hide');
 		}
 			
 	}, getContextPath() + '/team/product/more', $.toJSON({
@@ -392,11 +395,14 @@ function loadRecommendProduct(){
 					$('#recommendProductTitle').addClass('hide');
 					$('#recommendProductTitleDiv').addClass('hide');
 				}
-				var item = $('#Xflag');
+				var item = $('.Xflag');
 				if(item.length == 0){
 					$('#rightContent').html('暂无推荐作品');
 				}
 			}
+		}else{
+			$('#recommendProductTitle').addClass('hide');
+			$('#recommendProductTitleDiv').addClass('hide');
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
 		tags : tags
