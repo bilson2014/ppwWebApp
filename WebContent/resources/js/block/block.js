@@ -329,9 +329,10 @@ function initView(){
 		$('#videoDescription').addClass('hide');
 		$('#videoValue').text('');
 	}
-	
-	loadMoreTeamProduct();
-	loadRecommendProduct();
+	var x = $('#videoDescription').length;
+	if(x > 0){
+		loadMoreTeamProduct();
+	}
 }
 function loadMoreTeamProduct(){
 	var teamId=$('#company-unique').val();
@@ -339,21 +340,24 @@ function loadMoreTeamProduct(){
 		if(msg.code == 1){
 			var res = msg.result;
 			if(res != null && res!=undefined){
-				var hasItem = false;
+				var hasCount = 0;
 				var productId = $('#play-unique').val();
 				var v1 = $('#moreTeamProductDiv');
 				v1.html('');
 				for (var i = 0; i < res.length; i++) {
 					if(res[i].productId == productId)
 						continue;
-					hasItem =true;
+					hasCount ++;
 					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
 					v1.append(card);
+					if(hasCount == 3)
+						break;
 				}
-				if(!hasItem){
+				if(hasCount == 0){
 					$('#moreTeamProductTitle').addClass('hide');
-					
+					$('#moreTeamProductDiv').addClass('hide');
 				}
+				loadRecommendProduct();
 			}
 		}
 			
@@ -363,26 +367,39 @@ function loadMoreTeamProduct(){
 }
 
 function loadRecommendProduct(){
-	var teamId=$('#company-unique').val();
+	var tags=$('#tags').val();
+	if(tags == null || tags == undefined || tags == ''){
+		return;
+	}
 	loadData(function(msg){
 		if(msg.code == 1){
 			var res = msg.result;
 			if(res != null && res!=undefined){
-				var hasItem = false;
+				var hasCount = 0;
 				var productId = $('#play-unique').val();
-				var v1 = $('#moreProduct');
+				var v1 = $('#recommendProductTitleDiv');
 				v1.html('');
 				for (var i = 0; i < res.length; i++) {
 					if(res[i].productId == productId)
 						continue;
-					hasItem =true;
+					hasCount ++;
 					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
 					v1.append(card);
+					if(hasCount == 3)
+						break;
+				}
+				if(hasCount == 0){
+					$('#recommendProductTitle').addClass('hide');
+					$('#recommendProductTitleDiv').addClass('hide');
+				}
+				var item = $('#Xflag');
+				if(item.length == 0){
+					$('#rightContent').html('暂无推荐作品');
 				}
 			}
 		}
-	}, getContextPath() + '/team/product/more', $.toJSON({
-		teamId : teamId
+	}, getContextPath() + '/tags/product/search', $.toJSON({
+		tags : tags
 	}));
 }
 
@@ -392,7 +409,7 @@ function createCard(productName,productId,teamId,imageUrl){
 	var imageUrl = getDfsHostName() + imageUrl;
 	var html = [
 		'<a href="',url,'">',
-			'<div class="videoModel">',
+			'<div class="videoModel Xflag">',
 				'<img src="',imageUrl,'">',
 				'<label>',productName,'</label>',
 			'</div>',

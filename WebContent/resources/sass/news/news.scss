@@ -61,6 +61,7 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
+                cursor: pointer;
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -70,6 +71,7 @@
                 label:first-child {
                     font-size: $font-size;
                     color: $gray-dark;
+                    cursor: pointer;
                     &:hover{
                         color: $red-base;
                     }
@@ -86,6 +88,7 @@
                 label:last-child{
                     font-size: $font-size-sm;
                     color: $red-base;
+                     cursor: pointer;
                 }
             }
         }

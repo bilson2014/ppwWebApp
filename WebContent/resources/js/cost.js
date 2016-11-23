@@ -62,12 +62,14 @@ function init() {
 
 function InitGetPrice(){
 	  $('#start').on('click',function(){
+		  $('#phone').removeClass('errorPhone');
 	    	var phone = $('#phone').val();
 	    	if(checkMobile(phone)){
 	    	getPrice(phone);
 	    	showError($('#errorPhone'),'');
 	    	}else{
-	    		showError($('#errorPhone'),'手机号填写错误');
+	    		$('#phone').addClass('errorPhone');
+	    		showError($('#errorPhone'),'请输入正确手机号');
 	    	}
 	    });
 	  
@@ -89,6 +91,7 @@ function InitGetPrice(){
 			$('#phone').val('');
 			$('#price').html('- -&nbsp&nbsp&nbsp- -');
 			showError($('#errorPhone'),'');
+			$('#phone').removeClass('errorPhone');
 	  });
 }
 

@@ -14,13 +14,13 @@
 
 
     .videoArea {
-        height: 780px;
+        height: 830px;
         background: url(../../images/index/hotback.png) no-repeat;
         background-size: 100% 100%;
         position: relative;
         padding-top: 60px;
         @media screen and (min-width: 1276px) {
-            height: 850px;
+            height: 900px;
         }
         .videoContent {
             @include media_screen_width_beta3();
@@ -527,6 +527,7 @@
                 overflow: hidden;
                 margin-bottom: 60px;
             }
+            .videoArea
             .setPro {
                 padding-right: 220px;
                 color: $gray-dark;
@@ -550,14 +551,21 @@
             padding-left: 40px;
             border-left: 1px solid $border-line;
             padding-bottom: 80px;
+
+            .border{
+                border-top:1px solid #f0f2f5;
+                line-height: 70px;
+                margin-bottom: 5px !important;
+            }
+
             .title {
-                font-size: $font-size-base;
+                font-size: $font-size;
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
             }
             .videoModel {
-                margin-bottom: 20px;
+                margin-bottom:30px;
                 img {
                     width: 280px;
                     height: 180px;
@@ -567,6 +575,7 @@
                     font-size: $font-size-sm;
                     color: $gray-dark;
                     margin-top: 12px;
+                    font-weight: 500px;
                 }
             }
         }

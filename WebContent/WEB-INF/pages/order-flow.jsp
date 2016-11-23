@@ -130,7 +130,7 @@
                     <label>606 名脑洞超大的创 意人员随时抢单,创 意策划完全免费!
 <br>根据预算,视频管家 会从世界各地 5208 名 导演中,挑出最适合 您的一位. </label>
                     <label>606 creative writers are ready to draft ideas. And it is all free! 
-<br>Within your budget, the specialist will find the best match from 5208 experienced directors all over the world. 
+Within your budget, the specialist<br> will find the best match from 5208 experienced directors all over the world. 
                     </label>
                 </div>
                 <div></div>
@@ -169,8 +169,8 @@
                     <label>影片交付</label>
                     <label>如果您非常满意,确 认收片，我们会将托管的制作 费支付给导演团队.
 <br>不满意,可全额退款 或重新拍摄制作.</label>
-                    <label>If you satisfy the video, the fee will be transferred to the directors,  the fee will be transferred to the directors. 
-                           <br>Otherwise, you will be fully refunded or your video will be reproduced. 
+                    <label>If you satisfy the video, the fee will  be transferred to the directors. <br>
+                          Otherwise, you will be fully refunded or your video will be reproduced. 
                     </label>
                 </div>
                 <div></div>
@@ -202,8 +202,8 @@
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem"><a>服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div>
+       <%--                                      <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>

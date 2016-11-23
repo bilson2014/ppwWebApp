@@ -78,7 +78,7 @@ function originTool() {
     //     slideshowSpeed: 40000
     // });
     // 滚动监听 start
-    $('.dropdown').waypoint(function(direction) {
+    $('.changeHideHeader').waypoint(function(direction) {
         if (direction == "up") { // 了解 拍片网之前
             $('#header').removeClass('headerMove');
         } else {
@@ -95,7 +95,9 @@ function originTool() {
 		return false;
 	});
 
-     $('li').on('click',function(){
+	
+	
+     $('.dropdown li').on('click',function(){
           $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
           $(this).parent().slideUp();
           return false;
@@ -128,7 +130,7 @@ function originTool() {
         $('#Clients').find('.up').css('opacity', '1');
         $('#Clients').find('.down').css('top', '0');
         $('#Clients').find('.down').css('opacity', '1');
-    }, { offset: 300 });
+    }, { offset: 600 });
 }
 function banner() {
     $('#bannerTitleAn1').addClass('showTitle');

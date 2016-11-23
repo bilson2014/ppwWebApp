@@ -224,14 +224,14 @@
                                 </div>
                             </div>
 
-                             <div class="calItem inputWidth">
-                                <div class="title" data-content="" id="errorPhone">您的联系方式</div>
-                                <input data-content="0" id="phone">
+                             <div class="calItem inputWidthPhone">
+                                <div class="title" data-content=""  id="errorPhone">您的联系方式</div>
+                                <input data-content="0" placeholder="您的手机号" id="phone">
                             </div>
 
                             <div class="calItem inputWidth">
                                 <button id="start">开始计算</button>
-                                <button id="clear">清除重填</button>
+                                <button id="clear">重置</button>
                             </div>
 
                     </div>

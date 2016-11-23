@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
@@ -164,10 +165,10 @@ public class SolrController extends BaseController {
 	 * 根据tags来搜索
 	 */
 	@RequestMapping("/tags/product/search")
-	public BaseMsg getMoreProductByTags(final HttpServletRequest request, @RequestBody final Team team) {
+	public BaseMsg getMoreProductByTags(final HttpServletRequest request, @RequestBody final Product product) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
-		final String json = HttpUtil.httpPost(url, team, request);
+		final String json = HttpUtil.httpPost(url, product, request);
 		if (null != json && !"".equals(json)) {
 			List<Solr> list = JsonUtil.toList(json);
 			baseMsg.setCode(1);
