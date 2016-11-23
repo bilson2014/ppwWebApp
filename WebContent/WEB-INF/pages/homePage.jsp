@@ -250,7 +250,7 @@
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
 				<div id='product-container' class="swiper-wrapper">
-					<div class="swiper-slide coverSlide">
+				<!-- 	<div class="swiper-slide coverSlide">
                         <div class="scaleDiv">
                             <img src=" /resources/images/index/test1.png">
                             <div class="coverContent">
@@ -258,8 +258,7 @@
                                 <div>￥598,00</div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div> -->
 				</div>
 			</div>
 			<div class="swiper-button-next"></div>
