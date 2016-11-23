@@ -8,9 +8,7 @@
 @import "header3";
 @import "compass/typography/text/ellipsis";
 //头部 start
-body {
-    font-family: "微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-}
+
 
 .hotLogo {
     width: 300px;
@@ -289,7 +287,7 @@ body {
 
 //头部 end
 .tele-svg {
-    background: url(../images/index/tele.svg) no-repeat !important;
+    background: url(/resources/images/index/tele.svg) no-repeat !important;
 }
 
 .flex-wrap {
@@ -325,7 +323,7 @@ body {
     .carets {
         height: 15px;
         width: 15px;
-        background: url("../images/index/selectIcon.png") no-repeat !important;
+        background: url("/resources/images/index/selectIcon.png") no-repeat !important;
         position: absolute;
         right: 20px;
         top: 10px;
@@ -344,7 +342,7 @@ body {
 .bannerOut {
     height: 90px !important;
     width: 620px !important;
-    background: url("../images/index/setInput.png") no-repeat !important;
+    background: url("/resources/images/index/setInput.png") no-repeat !important;
     background-size: 620px 90px !important;
     background: white;
     color: $gray-dark;
@@ -1088,8 +1086,8 @@ input:focus {
 .advanBack {
     height: 100%;
     width: 100%;
-    background: url(../images/index/advanBack.png);
-    background-size: cover;
+    background: url(/resources/images/index/advanBack.png) no-repeat;
+    background-size: 100% 100% !important;
     position: fixed;
     left: 0;
     bottom: 0px;
@@ -1364,8 +1362,8 @@ input:focus {
 }
 
 .join {
-    background: url(../images/index/join.png)!important;
-    background-size: cover;
+    background: url(/resources/images/index/join.png) no-repeat !important;
+    background-size: 100% 100% !important;
     height: 307px;
     min-width: 960px;
     position: relative;
