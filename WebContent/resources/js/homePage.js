@@ -220,7 +220,7 @@ var homePage = {
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,
-						sendToStaff:false,
+						sendToStaff:true,
 						sendToUser:false
 					},
 					dataType : 'json',
