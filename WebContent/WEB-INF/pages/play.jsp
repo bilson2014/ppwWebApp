@@ -177,15 +177,22 @@
                     
                     <div class="price showPrice" id="price">
                      <div>
-                     	<span>￥</span><span>${product.servicePrice }</span></div>
-	                    <div>原价</div>
-                        <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
-                        <div>影片价格</div>
+                     	<c:if test="${product.servicePrice != 0 || product.serviceRealPrice != 0}">
+	                     	<c:if test="${product.servicePrice > product.serviceRealPrice}">
+		                     	<span>￥</span><span>${product.servicePrice }</span></div>
+			                    <div>原价</div>
+		                    </c:if>
+		                    <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
+	                    </c:if>
+	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
+	                    	 <div><span>￥</span><span class="small">暂无报价</span></div>
+	                    </c:if>
+	                    <div>影片价格</div>
                         <div id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-							<input type="hidden" id="indentName" name="indentName" value="">
+							<input type="hidden" id="indentName" name="indentName" value="${product.productName }">
 							<input type="hidden" id="company-unique" name="teamId" value="${teamId }"/>
 							<input type="hidden" id="play-unique" name="productId" value="${productId }"/>
 							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
@@ -223,7 +230,7 @@
 													<li>
 												        <div class="s_item s_item_cur" style="display: block;">
 												            <div class="con">
-												                <div class="conTop" data-id="${source.id }">
+												                <div class="conTop" data-id="${source.pid }">
 												                    <div>${source.moduleName }</div>
 												                    <div>
 												                        <center>

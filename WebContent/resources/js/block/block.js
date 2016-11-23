@@ -35,8 +35,8 @@ function initTab() {
 
     var initColor = $('.conTop');
     $.each(initColor, function(i, item) {
-        var num = i % 12;
-        $(this).css('background', color[num]);
+    	var index = $(this).attr('data-id') - 1;
+        $(this).css('background', color[index]);
     });
 
 }
