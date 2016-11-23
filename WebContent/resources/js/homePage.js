@@ -130,7 +130,8 @@ function originTool() {
         $('#Clients').find('.up').css('opacity', '1');
         $('#Clients').find('.down').css('top', '0');
         $('#Clients').find('.down').css('opacity', '1');
-    }, { offset: 600 });
+    }, { offset: 1500 });
+    
 }
 function banner() {
     $('#bannerTitleAn1').addClass('showTitle');
@@ -199,13 +200,13 @@ var homePage = {
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
 			var phone = $("#help-phone").val();
-			showError($('.search-box'),'');
+			showError($('.bannerOut'),'');
 			if(phone==''){
-				showError($('.search-box'),'请填写手机号');
+				showError($('.bannerOut'),'请填写手机号');
 				return false;
 			}
 			if(!checkMobile(phone)){
-				showError($('.search-box'),'手机格式不正确');
+				showError($('.bannerOut'),'手机格式不正确');
 				return false;
 			}else{
 				$.ajax({
@@ -409,7 +410,7 @@ var homePage_tpl = {
        	 ].join(""),
     classical_recommend:[
             '{@each list as item}',
-			'<li class="">',
+			'<li class="topAnimaltion">',
 			'	<div class="videoCard">',
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',

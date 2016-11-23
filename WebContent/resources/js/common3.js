@@ -298,7 +298,7 @@ function firstSuccessTooltip() {
 		$('#last3').text('0');
 		//window.location.href = getContextPath() + '/';
 		clearInterval(successIntervalObj);
-		$('.showSuccess').remove();
+	//	$('.showSuccess').remove();
 	} else {
 		$('#last3').text(initM--);
 	}

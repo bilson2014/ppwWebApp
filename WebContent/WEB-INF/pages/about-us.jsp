@@ -35,43 +35,49 @@
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<div class="header">
-		<div class="menu-bar nav">
-			<div class="left-part">
-				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
+	 <div class="header headerMove" id="header">
+ 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+        <div class="menu-bar nav">
+            <div class="left-part">
+                <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片<span></span></a>
 				</r:noLogin>
-			</div>
-			
-			<div class="middle-part">
-				<div class="search-box" id="header-search">
-					<form method="get" action="/search" id="s-form">
-						<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
-						<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
-						<ul id="shelper" class="shelper-lucency"></ul>
-					</form>
-				</div>
-			</div>
-			
-			<div class="right-part">
-				<r:noLogin>
+                <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
+                <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
+                <a class="header-item header-item-last" id="showVideo" target="_parent">
+                    <div class="showVideo"></div>
+                    	拍片网介绍
+                    <span></span>
+                </a>
+            </div>
+            <input type="hidden" id="commonToken" name="token" value="${token}"/>
+            <div class="middle-part">
+                <div class="search-box">
+                    <form method="get" action="/search" id="s-form">
+                        <div class="bannerSearchFind"></div>
+                        <input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+                        <a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
+                        <ul id="shelper" class="shelper-lucency"></ul>
+                    </form>
+                </div>
+            </div>
+            <div class="right-part">
+            	<r:noLogin>
 					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
@@ -87,20 +93,30 @@
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 
 	<div class="page">
-		<div class="contain nav-title-wrap" >
-			<ul class="ul-wrap" id="selects">
-				<a href="<spring:url value='/about-us.html' />" class ="nav-title"><li id="first-title">了解我们</li></a>
-				<a href="<spring:url value='/order-flow.html' />" class ="nav-title"><li >服务流程</li></a>
-				<a href="<spring:url value='/member.html' />" class ="nav-title"><li>加入我们</li></a>
-				<a href="<spring:url value='/company-activity.html' />" class ="nav-title"><li >公司活动</li></a>
-				<a href="<spring:url value='/company-service.html' />" class ="nav-title"><li >服务协议</li></a>
-			</ul>
-		</div>
+		       <div class="titleTag">
+            <div class="titleWord">
+                <a >
+                    <div class="checkActive">了解我们</div>
+                </a>
+                <a href="/order-flow.html">
+                    <div>服务流程</div>
+                </a>
+                <a href="/company-service.html">
+                    <div>服务协议</div>
+                </a>
+                <a href="/company-activity.html">
+                    <div>公司活动</div>
+                </a>
+                <a href="/member.html">
+                    <div>加入我们</div>
+                </a>
+            </div>
+        </div>
 
 		<div class="nav-shadow"></div>
 		

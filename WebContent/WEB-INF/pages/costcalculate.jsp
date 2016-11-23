@@ -52,22 +52,27 @@
 </head>
 <body>
  	 <div class="header headerMove" id="header">
- <input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+  <div class="header headerMove" id="header">
+ 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
-                <a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
-                <r:identity role="customer">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
+				<r:identity role="customer">
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
+					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-				<a href="<spring:url value='/mgr/index'/>"  class="header-item" target="_parent">我的项目<span></span></a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
+				
 				<r:noLogin>
-					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
@@ -89,21 +94,21 @@
                 </div>
             </div>
             <div class="right-part">
-                 <r:noLogin>
-				<a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
-                <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
+            	<r:noLogin>
+					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
             </div>
         </div>
