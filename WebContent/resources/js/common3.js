@@ -8,6 +8,7 @@ var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function() {
 	playVideo();
 	chickShowOrder();
+	showSuccess();
 	
 	$('body').on('click',function(){
 		$('.dropdown').find('ul').css('display');
@@ -298,7 +299,7 @@ function firstSuccessTooltip() {
 		$('#last3').text('0');
 		//window.location.href = getContextPath() + '/';
 		clearInterval(successIntervalObj);
-		$('.showSuccess').remove();
+	//	$('.showSuccess').remove();
 	} else {
 		$('#last3').text(initM--);
 	}
