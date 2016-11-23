@@ -291,7 +291,7 @@
                           </div>
                       </div>
                       
-                       <div class="title">更多相关影片推荐</div>
+                       <div class="title border">更多相关影片推荐</div>
                       <div class="setVideo" id="moreProduct">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
@@ -329,8 +329,8 @@
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem"><a>服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div>
+<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>

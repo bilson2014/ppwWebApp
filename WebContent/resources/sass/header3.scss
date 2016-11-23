@@ -155,12 +155,12 @@
     width: auto;
     margin-right: 30px;
     color: white;
-    transition: line-height .8s ease-in-out 0s;
-    -moz-transition: all .8s ease-out 0s;
+    transition: line-height .6s ease-in-out 0s;
+    -moz-transition: all .6s ease-out 0s;
     /* Firefox 4 */
-    -webkit-transition: all .8s ease-out 0s;
+    -webkit-transition: all .6s ease-out 0s;
     /* Safari 和 Chrome */
-    -o-transition: all .8s ease-out 0s;
+    -o-transition: all .6s ease-out 0s;
     /* Opera */
     &:hover {
         background: none !important;
@@ -178,12 +178,12 @@
         position: absolute;
         left: 50%;
         bottom: 21px;
-        transition: all .8s ease-in-out 0s;
-        -moz-transition: all .8s ease-in-out 0s;
+        transition: all .6s ease-in-out 0s;
+        -moz-transition: all .6s ease-in-out 0s;
         /* Firefox 4 */
-        -webkit-transition: all .8s ease-in-out 0s;
+        -webkit-transition: all .6s ease-in-out 0s;
         /* Safari 和 Chrome */
-        -o-transition: all .8s ease-in-out 0s;
+        -o-transition: all .6s ease-in-out 0s;
         /* Opera */
     }
     .showVideo {

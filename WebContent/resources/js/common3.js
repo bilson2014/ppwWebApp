@@ -10,7 +10,7 @@ $().ready(function() {
 	chickShowOrder();
 	
 	$('body').on('click',function(){
-		$('.dropdown').find('ul').css('displaye');
+		$('.dropdown').find('ul').css('display');
 		var ulArray = $('.dropdown').find('ul');
 		for (var int = 0; int < ulArray.length; int++) {
 			if($(ulArray[int]).css("display")!="none"){
@@ -280,15 +280,15 @@ function showSuccess() {
 function successToolTipShow() {
 	$('#toPortal').on('click', function() {
 		//window.location.href = getContextPath() + '/';
-		$('.showSuccess').hide();
+		$('.showSuccess').remove();
 	});
 	$('#handClsoe').on('click', function() {
 		//window.location.href = getContextPath() + '/';
-		$('.showSuccess').hide();
+		$('.showSuccess').remove();
 	});
 	$('#closeSuccess').on('click', function() {
 		//window.location.href = getContextPath() + '/';
-		$('.showSuccess').hide();
+		$('.showSuccess').remove();
 	});
 	window.clearInterval(successIntervalObj);
 	successIntervalObj = window.setInterval(firstSuccessTooltip, 1000);
@@ -298,7 +298,7 @@ function firstSuccessTooltip() {
 		$('#last3').text('0');
 		//window.location.href = getContextPath() + '/';
 		clearInterval(successIntervalObj);
-		$('.showSuccess').hide();
+		$('.showSuccess').remove();
 	} else {
 		$('#last3').text(initM--);
 	}
