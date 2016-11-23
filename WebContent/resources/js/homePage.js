@@ -179,8 +179,6 @@ var homePage = {
 		this.search();
 		//立即下单
 		this.deliverOrder();
-		//跳转成本计算器
-		this.toCostCalculate();
 		//初始化视频加载
 		this.initVideo();
 	},
@@ -374,12 +372,7 @@ var homePage = {
 	getNewsDetail:function(){
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
-			window.location.href="home/news/info/"+id;
-		})
-	},
-	toCostCalculate:function(){
-		$("#toCalculate").off("click").on("click",function(){
-			window.location.href="/cost/cal";
+			window.location.href="/home/news/info/"+id;
 		})
 	},
 	initVideo:function(){

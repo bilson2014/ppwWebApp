@@ -104,7 +104,15 @@ function getPrice(relP){
 	var time = $('#time').text();
 	var phone   = relP;
 	var indentId = $('#phone').attr('data-content');
-	var description = videoType+","+team+","+equipment+","+actor+","+animation+","+time+","+indentId+","+phone;
+	var description = [
+	                   "视频类别:"+videoType,
+	                   ",导演团队:"+team,
+	                   ",时长:"+time,
+	                   ",拍摄设备:"+equipment,
+	                   ",演员:"+actor,
+	                   ",动画:"+animation
+	                   ].join("");
+	//var description = videoType+","+team+","+equipment+","+actor+","+animation+","+time+","+indentId+","+phone;
 	var text = $('#time').attr('data-content');
 	loadData(function(job){
 	  $('#price').text(thousandCount(job.cost));
