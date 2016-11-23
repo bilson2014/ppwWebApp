@@ -161,11 +161,11 @@
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
+						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">
-								<a href="/cost/cal" target="_blank">
 									<img src="/resources/images/index/bannerOnline.png">在线估价<span>>></span>
-								</a>
 							</div>
+					    </a>		
 							<div class="bannerWord" id="showVideoS">
 								<img src="/resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
 							</div>

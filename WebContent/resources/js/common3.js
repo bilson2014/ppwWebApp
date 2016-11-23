@@ -111,7 +111,7 @@ function showOrder(typeName) {
     }
 
 	$('.cCloseBtn').on('click', function() {
-		$('.comOrder').hide();
+		$('.comOrder').remove();
 	});
 }
 
