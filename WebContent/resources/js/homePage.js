@@ -78,7 +78,7 @@ function originTool() {
     //     slideshowSpeed: 40000
     // });
     // 滚动监听 start
-    $('.dropdown').waypoint(function(direction) {
+    $('.changeHideHeader').waypoint(function(direction) {
         if (direction == "up") { // 了解 拍片网之前
             $('#header').removeClass('headerMove');
         } else {
@@ -95,7 +95,9 @@ function originTool() {
 		return false;
 	});
 
-     $('li').on('click',function(){
+	
+	
+     $('.dropdown li').on('click',function(){
           $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
           $(this).parent().slideUp();
           return false;
@@ -128,7 +130,7 @@ function originTool() {
         $('#Clients').find('.up').css('opacity', '1');
         $('#Clients').find('.down').css('top', '0');
         $('#Clients').find('.down').css('opacity', '1');
-    }, { offset: 300 });
+    }, { offset: 600 });
 }
 function banner() {
     $('#bannerTitleAn1').addClass('showTitle');
@@ -394,7 +396,11 @@ var homePage_tpl = {
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
 			'			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',
-			'				<div>￥${item.price}</div>',
+			'				{@if item.price == 0}',
+			'					<div>￥暂无报价</div>',
+			'				{@else}',
+			'					<div>￥${item.price}</div>',
+			'				{@/if}',
 			'			</div>',
 			'		</a>',
 			'	</div>',
@@ -410,8 +416,12 @@ var homePage_tpl = {
 			'			<div class="videoContet">',
 			'				<div class="title">${item.productName}</div>',
 			'				<div class="type">${item.tags}</div>',
-		    '				<div class="price">￥${item.price}</div>',
-		    '				{@if item.orignalPrice != null && item.orignalPrice != 0}',
+			'				{@if item.price == 0}',
+			'					<div  class="price">￥暂无报价</div>',
+			'				{@else}',
+			'					<div  class="price">￥${item.price}</div>',
+			'				{@/if}',
+		    '				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
 		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
 			'				{@/if}',
 			'			</div>',

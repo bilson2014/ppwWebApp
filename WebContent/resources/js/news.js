@@ -23,14 +23,16 @@ function initContent() {
 		
         
 		var newsId =$('#newsId').val();
-		
+		var k=0;
 	    $.each(data.result, function(i,item) {
-	    	if(item.id != newsId)
-	    		addMoreNews(item);  
+	    	if(k<6 && item.id != newsId){
+	    		addMoreNews(item);//排除自己
+	    		k++;
+	    	}
 	    });
 		
 		
-	}, getContextPath() + '/home/news/recommend',null);
+	}, getContextPath() + '/news/info/recommend',null);
 }
 
 function addMoreNews(item){

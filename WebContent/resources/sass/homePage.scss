@@ -5,6 +5,7 @@
 @import "indexSwiper";
 @import "mixins/indexScreen";
 @import "_comHeader3";
+@import "header3";
 @import "compass/typography/text/ellipsis";
 //头部 start
 body {
@@ -28,247 +29,248 @@ body {
     border: none !important;
 }
 
-.header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: $header-height;
-    z-index: 9998;
-    background: transparent;
-    @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);
-    height: 80px;
-    transition: all .8s ease-in-out 0s;
-    -moz-transition: all .8s ease-out 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .8s ease-out 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .8s ease-out 0s;
-    /* Opera */
-    box-shadow: none;
+.changeHideHeader {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    opacity: 1;
+    top: 80px;
 }
 
-//切换后
-.headerMove {
-    height: 60px !important;
-    background: white;
-    -moz-box-shadow: 10px 10px 5px #d1d1d1;
-    /* 老的 Firefox */
-    box-shadow: 0px 0px 10px #d1d1d1;
-    .header-item {
-        line-height: 60px !important;
-        color: black;
-        &:hover {
-            color: $red-base !important;
-            span {
-                width: 100%;
-            }
-        }
-        span {
-            bottom: 10px !important;
-        }
-    }
-    .showVideo {
-        width: 15px;
-        height: 15px;
-        background: url(/resources/images/index/showVideoB.png) no-repeat 0 0px !important;
-        position: absolute;
-        top: 23px !important;
-        left: 75px !important;
-    }
-    .tele-h-svg {
-        transition: all .8s ease-in-out 0s;
-        -moz-transition: all .8s ease-out 0s;
-        /* Firefox 4 */
-        -webkit-transition: all .8s ease-out 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .8s ease-out 0s;
-        /* Opera */
-        position: relative;
-        top: 22px !important;
-        width: 145px;
-        height: 60px;
-        background: url(/resources/images/index/bannerPhoneR.svg) no-repeat !important;
-    }
-    .nav .logo {
-        background: url(/resources/images/index/bannerLogoR.png) no-repeat;
-        //margin-top: -4px;
-        width: 96px !important;
-        height: 30px !important;
-        background-size: 96px 30px !important;
-        top: 14px !important;
-        border-radius: 0px !important;
-    }
-    .menu-bar .middle-part {
-        top: 15px;
-        input {
-            color: $gray !important;
-            border: 1px solid $gray !important;
-        }
-        .bannerSearchFind {
-            background: url(../images/index/bannnerSearch.png) no-repeat;
-            background-position: 0px -16px;
-        }
-    }
-}
-
-//切换后 end
-//切换前
-.nav .logo {
-    position: relative;
-    float: left;
-    top: 22px;
-    background: url(../images/index/bannerLogoW.png) no-repeat;
-    //margin-top: -4px;
-    width: 110px;
-    height: 36px;
-    background-size: 110px 36px;
-    transition: all .8s ease-in-out 0s;
-    -moz-transition: all .8s ease-out 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .8s ease-out 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .8s ease-out 0s;
-    /* Opera */
-    border-radius: 0px;
-    margin-right: 26px;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        margin-right: 76px;
-    }
-    @media screen and (min-width: 1500px) {
-        margin-right: 76px;
-    }
-    h1 {
-        text-indent: -119988px;
-        overflow: hidden;
-        text-align: left;
-    }
-}
-
-.menu-bar>.right-part {
-    right: 50px !important;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        right: -20px !important;
-    }
-    @media screen and (min-width: 1500px) {
-        right: -20px !important;
-    }
-}
-
-.menu-bar .middle-part {
-    top: 24px;
-    width: 300px;
-    height: 30px;
-    transition: all .8s ease-in-out 0s;
-    -moz-transition: all .8s ease-out 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .8s ease-out 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .8s ease-out 0s;
-    /* Opera */
-    width: 200px !important;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 350px !important;
-    }
-    @media screen and (min-width: 1500px) {
-        width: 450px !important;
-    }
-    input {
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: 350px !important;
-        }
-        @media screen and (min-width: 1500px) {
-            width: 450px !important;
-        }
-        width: 200px !important;
-        min-width: 100px;
-        height: 30px !important;
-        color: white;
-        border: 1px solid white;
-        outline: none;
-        padding-right: 40px;
-    }
-    .bannerSearchFind {
-        position: absolute;
-        right: 15px;
-        top: 7px;
-        width: 15px;
-        height: 15px;
-        background: url(../images/index/bannnerSearch.png) no-repeat;
-    }
-}
-
-.header-item-last {
-    padding-right: 18px;
-}
-
-.header-item {
-    line-height: 80px;
-    width: auto;
-    margin-right: 30px;
-    color: white;
-    transition: line-height .8s ease-in-out 0s;
-    -moz-transition: all .8s ease-out 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .8s ease-out 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .8s ease-out 0s;
-    /* Opera */
-    &:hover {
-        background: none !important;
-        color: $red-base !important;
-        span {
-            left: 0%;
-            width: 100%;
-        }
-    }
-    span {
-        display: inline-block;
-        width: 0%;
-        height: 2px;
-        background-color: $red-base;
-        position: absolute;
-        bottom: 21px;
-        left: 50%;
-        transition: all .8s ease-in-out 0s;
-        -moz-transition: all .8s ease-in-out 0s;
-        /* Firefox 4 */
-        -webkit-transition: all .8s ease-in-out 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .8s ease-in-out 0s;
-        /* Opera */
-    }
-    .showVideo {
-        width: 15px;
-        height: 15px;
-        background: url(../images/index/showVideoW.png) no-repeat;
-        position: absolute;
-        top: 32px;
-        left: 74px;
-        transition: all .8s ease-in-out 0s;
-        -moz-transition: all .8s ease-in-out 0s;
-        /* Firefox 4 */
-        -webkit-transition: all .8s ease-in-out 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .8s ease-in-out 0s;
-        /* Opera */
-    }
-    .tele-h-svg {
-        transition: all .8s ease-in-out 0s;
-        -moz-transition: all .8s ease-in-out 0s;
-        /* Firefox 4 */
-        -webkit-transition: all .8s ease-in-out 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .8s ease-in-out 0s;
-        /* Opera */
-        position: relative;
-        top: 31px;
-        width: 145px;
-        height: 60px;
-        background: url(../images/index/bannerPhoneW.svg) no-repeat;
-    }
-}
-
+// .header {
+//     position: fixed;
+//     left: 0;
+//     right: 0;
+//     top: 0;
+//     height: $header-height;
+//     z-index: 9998;
+//     background: transparent;
+//     @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);
+//     height: 80px;
+//     transition: all .8s ease-in-out 0s;
+//     -moz-transition: all .8s ease-out 0s;
+//     /* Firefox 4 */
+//     -webkit-transition: all .8s ease-out 0s;
+//     /* Safari 和 Chrome */
+//     -o-transition: all .8s ease-out 0s;
+//     /* Opera */
+//     box-shadow: none;
+// }
+// //切换后
+// .headerMove {
+//     height: 60px !important;
+//     background: white;
+//     -moz-box-shadow: 10px 10px 5px #d1d1d1;
+//     /* 老的 Firefox */
+//     box-shadow: 0px 0px 10px #d1d1d1;
+//     .header-item {
+//         line-height: 60px !important;
+//         color: black;
+//         &:hover {
+//             color: $red-base !important;
+//             span {
+//                 width: 100%;
+//             }
+//         }
+//         span {
+//             bottom: 10px !important;
+//         }
+//     }
+//     .showVideo {
+//         width: 15px;
+//         height: 15px;
+//         background: url(/resources/images/index/showVideoB.png) no-repeat 0 0px !important;
+//         position: absolute;
+//         top: 23px !important;
+//         left: 75px !important;
+//     }
+//     .tele-h-svg {
+//         transition: all .8s ease-in-out 0s;
+//         -moz-transition: all .8s ease-out 0s;
+//         /* Firefox 4 */
+//         -webkit-transition: all .8s ease-out 0s;
+//         /* Safari 和 Chrome */
+//         -o-transition: all .8s ease-out 0s;
+//         /* Opera */
+//         position: relative;
+//         top: 22px !important;
+//         width: 145px;
+//         height: 60px;
+//         background: url(/resources/images/index/bannerPhoneR.svg) no-repeat !important;
+//     }
+//     .nav .logo {
+//         background: url(/resources/images/index/bannerLogoR.png) no-repeat;
+//         //margin-top: -4px;
+//         width: 96px !important;
+//         height: 30px !important;
+//         background-size: 96px 30px !important;
+//         top: 14px !important;
+//         border-radius: 0px !important;
+//     }
+//     .menu-bar .middle-part {
+//         top: 15px;
+//         input {
+//             color: $gray !important;
+//             border: 1px solid $gray !important;
+//         }
+//         .bannerSearchFind {
+//             background: url(../images/index/bannnerSearch.png) no-repeat;
+//             background-position: 0px -16px;
+//         }
+//     }
+// }
+// //切换后 end
+// //切换前
+// .nav .logo {
+//     position: relative;
+//     float: left;
+//     top: 22px;
+//     background: url(../images/index/bannerLogoW.png) no-repeat;
+//     //margin-top: -4px;
+//     width: 110px;
+//     height: 36px;
+//     background-size: 110px 36px;
+//     transition: all .8s ease-in-out 0s;
+//     -moz-transition: all .8s ease-out 0s;
+//     /* Firefox 4 */
+//     -webkit-transition: all .8s ease-out 0s;
+//     /* Safari 和 Chrome */
+//     -o-transition: all .8s ease-out 0s;
+//     /* Opera */
+//     border-radius: 0px;
+//     margin-right: 26px;
+//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+//         margin-right: 76px;
+//     }
+//     @media screen and (min-width: 1500px) {
+//         margin-right: 76px;
+//     }
+//     h1 {
+//         text-indent: -119988px;
+//         overflow: hidden;
+//         text-align: left;
+//     }
+// }
+// .menu-bar>.right-part {
+//     right: 50px !important;
+//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+//         right: -20px !important;
+//     }
+//     @media screen and (min-width: 1500px) {
+//         right: -20px !important;
+//     }
+// }
+// .menu-bar .middle-part {
+//     top: 24px;
+//     width: 300px;
+//     height: 30px;
+//     transition: all .8s ease-in-out 0s;
+//     -moz-transition: all .8s ease-out 0s;
+//     /* Firefox 4 */
+//     -webkit-transition: all .8s ease-out 0s;
+//     /* Safari 和 Chrome */
+//     -o-transition: all .8s ease-out 0s;
+//     /* Opera */
+//     width: 200px !important;
+//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+//         width: 350px !important;
+//     }
+//     @media screen and (min-width: 1500px) {
+//         width: 450px !important;
+//     }
+//     input {
+//         @media screen and (min-width: 1276px) and (max-width: 1500px) {
+//             width: 350px !important;
+//         }
+//         @media screen and (min-width: 1500px) {
+//             width: 450px !important;
+//         }
+//         width: 200px !important;
+//         min-width: 100px;
+//         height: 30px !important;
+//         color: white;
+//         border: 1px solid white;
+//         outline: none;
+//         padding-right: 40px;
+//     }
+//     .bannerSearchFind {
+//         position: absolute;
+//         right: 15px;
+//         top: 7px;
+//         width: 15px;
+//         height: 15px;
+//         background: url(../images/index/bannnerSearch.png) no-repeat;
+//     }
+// }
+// .header-item-last {
+//     padding-right: 18px;
+// }
+// .header-item {
+//     line-height: 80px;
+//     width: auto;
+//     margin-right: 30px;
+//     color: white;
+//     transition: line-height .8s ease-in-out 0s;
+//     -moz-transition: all .8s ease-out 0s;
+//     /* Firefox 4 */
+//     -webkit-transition: all .8s ease-out 0s;
+//     /* Safari 和 Chrome */
+//     -o-transition: all .8s ease-out 0s;
+//     /* Opera */
+//     &:hover {
+//         background: none !important;
+//         color: $red-base !important;
+//         span {
+//             left: 0%;
+//             width: 100%;
+//         }
+//     }
+//     span {
+//         display: inline-block;
+//         width: 0%;
+//         height: 2px;
+//         background-color: $red-base;
+//         position: absolute;
+//         bottom: 21px;
+//         left: 50%;
+//         transition: all .8s ease-in-out 0s;
+//         -moz-transition: all .8s ease-in-out 0s;
+//         /* Firefox 4 */
+//         -webkit-transition: all .8s ease-in-out 0s;
+//         /* Safari 和 Chrome */
+//         -o-transition: all .8s ease-in-out 0s;
+//         /* Opera */
+//     }
+//     .showVideo {
+//         width: 15px;
+//         height: 15px;
+//         background: url(../images/index/showVideoW.png) no-repeat;
+//         position: absolute;
+//         top: 32px;
+//         left: 74px;
+//         transition: all .8s ease-in-out 0s;
+//         -moz-transition: all .8s ease-in-out 0s;
+//         /* Firefox 4 */
+//         -webkit-transition: all .8s ease-in-out 0s;
+//         /* Safari 和 Chrome */
+//         -o-transition: all .8s ease-in-out 0s;
+//         /* Opera */
+//     }
+//     .tele-h-svg {
+//         transition: all .8s ease-in-out 0s;
+//         -moz-transition: all .8s ease-in-out 0s;
+//         /* Firefox 4 */
+//         -webkit-transition: all .8s ease-in-out 0s;
+//         /* Safari 和 Chrome */
+//         -o-transition: all .8s ease-in-out 0s;
+//         /* Opera */
+//         position: relative;
+//         top: 31px;
+//         width: 145px;
+//         height: 60px;
+//         background: url(../images/index/bannerPhoneW.svg) no-repeat;
+//     }
+// }
 //切换后 end
 .tel {
     text-align: center;
@@ -303,7 +305,7 @@ body {
     height: 36px;
     display: inline-block;
     position: relative;
-    top:-1px;
+    top: -1px;
     .dropdown-menu {
         width: 222px;
         top: 29px;
@@ -311,12 +313,12 @@ body {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         li {
-            width: 220px !important;
+            width: 220px;
             padding-left: 20px;
             color: $gray-dark;
             cursor: pointer;
             &:hover {
-                background: $gray-light;
+                background: #f0f2f5;
             }
         }
     }
@@ -392,8 +394,6 @@ input:focus {
     font-size: $font-size-sm !important;
 }
 
-
-
 .new-banner {
     position: absolute;
     left: 0;
@@ -407,18 +407,16 @@ input:focus {
     width: 620px;
     height: 90px;
     z-index: 10;
-
-
     .search-box::after {
-    content: attr(data-content);
-    position: absolute;
-    color: $red-base;
-    font-size: $font-size-sm;
-    top: 60px;
-    right: 0px;
-    bottom: 0px;
-    left: 15px;
-}
+        content: attr(data-content);
+        position: absolute;
+        color: $red-base;
+        font-size: $font-size-sm;
+        top: 60px;
+        right: 0px;
+        bottom: 0px;
+        left: 15px;
+    }
     .search-box {
         text-align: center;
         & > form {
@@ -439,6 +437,8 @@ input:focus {
                 text-align: left !important;
                 padding-left: 34px;
                 padding-top: 6px;
+                position: relative;
+                z-index: 5;
             }
             .bannerWord {
                 display: inline-block;
@@ -450,10 +450,12 @@ input:focus {
                     margin-right: 5px;
                     position: relative;
                     bottom: 1px;
+                    cursor: pointer;
                 }
                 span {
                     position: relative;
                     bottom: 1px;
+                    cursor: pointer;
                 }
             }
             input {
@@ -818,9 +820,9 @@ input:focus {
             text-align: right;
             font-size: $font-size-sm;
             text-decoration: line-through;
-            color:$gray-dark;
-            &:hover{
-                 color:$gray-dark !important;
+            color: $gray-dark;
+            &:hover {
+                color: $gray-dark !important;
             }
         }
     }
@@ -1371,7 +1373,8 @@ input:focus {
         @include media_screen_width_beta3();
         margin: 0 auto;
         ul {
-            padding-top: 80px
+            padding-top: 80px;
+            display: block !important;
         }
         li {
             position: relative;
@@ -1415,6 +1418,7 @@ input:focus {
                 border-radius: 4px;
                 font-size: $font-size-base;
                 text-align: center;
+                cursor: pointer;
             }
             // div:first-child {
             //     background: $red-base;

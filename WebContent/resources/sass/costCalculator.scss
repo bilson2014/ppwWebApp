@@ -21,14 +21,14 @@ body{
 
 .costBackguound {
     width: 100%;
-    height: 900px;
-    background: url(/resources/images/cost/costBg.jpg)!important;
-    background-size:100% 100%;
+    height: 960px;
+    background: url(/resources/images/cost/costBg.jpg) no-repeat!important;
+    background-size: 100% 100% !important;
 }
 
 .costContent {
     @include media_screen_width_beta3();
-    height: 900px;
+    height: 960px;
     margin: 0 auto;
     padding-top: 120px;
     position: relative;
@@ -123,9 +123,10 @@ body{
     line-height: 20px;
 }
 
-.inputWidth {
+
+.inputWidthPhone {
     width: 100% !important;
-    padding-top: 42px !important;
+    padding-top: 22px !important;
     .title:after,
     .title after {
         content: attr(data-content);
@@ -133,7 +134,8 @@ body{
         font-size: $font-size-sm;
         padding-left: 15px;
     }
-    input {
+
+        input {
         width: 100%;
         color: $gray-light;
         font-size: $font-size-sm;
@@ -144,7 +146,14 @@ body{
         outline: none !important;
     }
 
-    .error{
+}
+
+.inputWidth {
+    width: 100% !important;
+    padding-top: 42px !important;
+
+
+    .errorPhone{
     	border: 2px solid $red-base;
     }
 
@@ -154,24 +163,29 @@ body{
         color: white;
         border: none;
         border-radius: 4px;
+        outline: none;
     }
     button:first-child {
         left: 0px;
-        width: 296px;
+        width: 295px;
         height: 50px;
         background: $red-base;
     }
     button:last-child {
         right: 0px;
-        width: 110px;
+        width: 109px;
         height: 50px;
         background: $gray-light;
     }
 }
 
+.error{
+    border:1px solid $red-base;
+}
+
 .calItem {
     display: inline-block;
-    width: 203px;
+    width: 202px;
     padding-top: 22px;
     vertical-align: top;
     .title {

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
@@ -42,6 +43,7 @@ import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
+import com.panfeng.film.util.News;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
@@ -668,5 +670,26 @@ public class PCController extends BaseController {
 			return JsonUtil.toBean(json, Boolean.class);
 		}
 		return true;
+	}
+	
+	/**
+	 * 新闻详情页推荐
+	 * 
+	 */
+	@RequestMapping(value = "/news/info/recommend")
+	public BaseMsg newsInfoRecommend(final HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = URL_PREFIX + "portal/news/info/recommend";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			List<News> list = JsonUtil.toList(str);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+		}else{
+			baseMsg.setErrorMsg("list is null");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("get news info recommend",sessionInfo);
+		return baseMsg;
 	}
 }

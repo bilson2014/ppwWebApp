@@ -100,6 +100,7 @@
 		<div class="advanBack"></div>
 		<!-- 轮播 start -->
 		<div class="flex-wrap">
+		<div class="changeHideHeader"></div>
 			<div class="flexVideo">
 				<video preload="auto" loop="" autoplay
 					poster="../resources/images/banner/flex2.jpg" class="video-bg">
@@ -160,11 +161,11 @@
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
+						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">
-								<a href="/cost/cal" target="_blank">
 									<img src="/resources/images/index/bannerOnline.png">在线估价<span>>></span>
-								</a>
 							</div>
+					    </a>		
 							<div class="bannerWord" id="showVideoS">
 								<img src="/resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
 							</div>
@@ -206,7 +207,7 @@
 						</div>
 						<div class="typeBottom">
 							<span class="home-search" data-text="微电影">通过案例找创意>></span>
-							 <span class="home-order" data-text="微电影">立即下单</span>
+							<span class="home-order" data-text="微电影">立即下单</span>
 						</div>
 					</div>
 				</div>
@@ -250,7 +251,7 @@
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
 				<div id='product-container' class="swiper-wrapper">
-					<div class="swiper-slide coverSlide">
+				<!-- 	<div class="swiper-slide coverSlide">
                         <div class="scaleDiv">
                             <img src=" /resources/images/index/test1.png">
                             <div class="coverContent">
@@ -258,8 +259,7 @@
                                 <div>￥598,00</div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div> -->
 				</div>
 			</div>
 			<div class="swiper-button-next"></div>
@@ -531,8 +531,8 @@
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem"><a>服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div>
+<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
