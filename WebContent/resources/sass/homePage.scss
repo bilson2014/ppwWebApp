@@ -6,23 +6,18 @@
 @import "mixins/indexScreen";
 @import "_comHeader3";
 @import "compass/typography/text/ellipsis";
-
 //头部 start
-
 body {
-    font-family:"微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-
- .hotLogo {
-        width: 300px;
-        height: 50px;
-        background: url(/resources/images/index/hotlogo.png) no-repeat !important;
-        position: absolute;
-        top: 80px;
-  }
-
-
+.hotLogo {
+    width: 300px;
+    height: 50px;
+    background: url(/resources/images/index/hotlogo.png) no-repeat !important;
+    position: absolute;
+    top: 80px;
+}
 
 .page {
     top: 0 !important;
@@ -112,7 +107,7 @@ body {
         }
         .bannerSearchFind {
             background: url(../images/index/bannnerSearch.png) no-repeat;
-            background-position:0px -16px;
+            background-position: 0px -16px;
         }
     }
 }
@@ -307,6 +302,8 @@ body {
     width: 220px;
     height: 36px;
     display: inline-block;
+    position: relative;
+    top:-1px;
     .dropdown-menu {
         width: 222px;
         top: 29px;
@@ -395,6 +392,8 @@ input:focus {
     font-size: $font-size-sm !important;
 }
 
+
+
 .new-banner {
     position: absolute;
     left: 0;
@@ -408,6 +407,18 @@ input:focus {
     width: 620px;
     height: 90px;
     z-index: 10;
+
+
+    .search-box::after {
+    content: attr(data-content);
+    position: absolute;
+    color: $red-base;
+    font-size: $font-size-sm;
+    top: 60px;
+    right: 0px;
+    bottom: 0px;
+    left: 15px;
+}
     .search-box {
         text-align: center;
         & > form {
@@ -421,6 +432,7 @@ input:focus {
                 color: white;
                 font-size: $font-size-base;
                 border: none;
+                outline: none;
             }
             .wordPosition {
                 width: 100%;
@@ -459,6 +471,7 @@ input:focus {
                 color: $gray-dark;
                 font-size: $font-size-base;
                 padding-right: 40px;
+                outline: none;
                 &:focus,
                 &:hover {
                     border: none;
@@ -512,13 +525,13 @@ input:focus {
 }
 
 //四大类型 start
-
-.FourModelColor{
-    background:#FDFFFF;
+.FourModelColor {
+    background: #FDFFFF;
     width: 100%;
     height: auto;
     position: relative;
 }
+
 .FourModel {
     @include media_screen_width_beta3();
     height: 340px;
@@ -651,28 +664,28 @@ input:focus {
                         height: 26px;
                         background: url("../images/index/four1.png") no-repeat;
                         position: absolute;
-                        background-position:0px -26px;
+                        background-position: 0px -26px;
                     }
                     .four2 {
                         width: 26px;
                         height: 26px;
                         background: url("../images/index/four2.png") no-repeat;
                         position: absolute;
-                        background-position:0px -26px;
+                        background-position: 0px -26px;
                     }
                     .four3 {
                         width: 26px;
                         height: 26px;
                         background: url("../images/index/four3.png") no-repeat;
                         position: absolute;
-                        background-position:0px -26px;
+                        background-position: 0px -26px;
                     }
                     .four4 {
                         width: 26px;
                         height: 26px;
                         background: url("../images/index/four4.png") no-repeat;
                         position: absolute;
-                        background-position:0px -26px;
+                        background-position: 0px -26px;
                     }
                 }
             }
@@ -791,7 +804,6 @@ input:focus {
             color: $gray-light;
             height: 25px;
             @include ellipsis;
-
         }
         .price {
             padding-top: 28px;
@@ -806,6 +818,10 @@ input:focus {
             text-align: right;
             font-size: $font-size-sm;
             text-decoration: line-through;
+            color:$gray-dark;
+            &:hover{
+                 color:$gray-dark !important;
+            }
         }
     }
 }
@@ -1192,7 +1208,7 @@ input:focus {
             div:nth-child(1) {
                 background: url(../images/index/free.png) no-repeat;
                 &:hover {
-                    background-position:0px -80px;
+                    background-position: 0px -80px;
                 }
             }
         }
@@ -1200,7 +1216,7 @@ input:focus {
             div:nth-child(1) {
                 background: url(../images/index/low.png) no-repeat;
                 &:hover {
-                    background-position:0px -80px;
+                    background-position: 0px -80px;
                 }
             }
         }
@@ -1208,7 +1224,7 @@ input:focus {
             div:nth-child(1) {
                 background: url(../images/index/72.png) no-repeat;
                 &:hover {
-                    background-position:0px -80px;
+                    background-position: 0px -80px;
                 }
             }
         }
@@ -1315,6 +1331,7 @@ input:focus {
             div:nth-child(1) {
                 color: $gray-dark;
                 font-size: $font-size-lg;
+                cursor: pointer;
             }
             div:nth-child(2) {
                 height: 2px;
@@ -1527,7 +1544,7 @@ input:focus {
                         left: 8px;
                     }
                     &:hover {
-                        background-position:0px -12px;
+                        background-position: 0px -12px;
                     }
                 }
                 .cusLogin {

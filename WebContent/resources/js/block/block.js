@@ -35,8 +35,8 @@ function initTab() {
 
     var initColor = $('.conTop');
     $.each(initColor, function(i, item) {
-        var num = i % 12;
-        $(this).css('background', color[num]);
+    	var index = $(this).attr('data-id') - 1;
+        $(this).css('background', color[index]);
     });
 
 }
@@ -283,7 +283,11 @@ function submitOrder(){
 	var telephone = $('#phoneNumber').val().trim();
 	if(checkData(1) && checkData(2)){
 		loadData2(function(msg){
-			alert(msg.ret);
+			if(msg.ret){
+				showSuccess();
+			}else{
+				alert(msg.ret);
+			}
 		}, getContextPath() + '/order/deliver', 
 			{indentName : $("#indentName").val(),
 			productId :$("#play-unique").val() ,

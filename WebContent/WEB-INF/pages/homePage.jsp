@@ -91,8 +91,8 @@
                 </div>
             </div>
             <div class="right-part">
-                <a class="header-item login-item" target="_self">登录</a>
-                <a class="header-item login-item" target="_self">注册</a>
+                 <a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
+                <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
             </div>
         </div>
     </div>

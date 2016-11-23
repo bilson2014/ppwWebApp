@@ -100,8 +100,22 @@
                 </div>
             </div>
             <div class="right-part">
-                <a class="header-item login-item" target="_self">登录</a>
-                <a class="header-item login-item" target="_self">注册</a>
+                  <r:noLogin>
+				<a href="<spring:url value="/login" />"><div class="header-item login-item">客户登录</div></a>
+                <a href="<spring:url value="/provider/login" />"><div class="header-item login-item">导演登录</div></a>
+				</r:noLogin>
+				<r:identity role="customer">
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><div class="header-item login-item"><r:outName /></div></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self"><div class="header-item login-item">登出</div></a>
+				</r:identity>
             </div>
         </div>
     </div>
@@ -165,7 +179,7 @@
                 </div>
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
-                        <div class="title">影片描述</div>
+                        <div class="title">影片故事简述</div>
                         <div class="content">
                             	${product.pDescription }
                         </div>
@@ -176,16 +190,22 @@
                     </div> 
                     
                     <div class="price showPrice" id="price">
-                     <div>
-                     	<span>￥</span><span>${product.servicePrice }</span></div>
-	                    <div>原价</div>
-                        <div><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
-                        <div>影片价格</div>
+                     	<c:if test="${product.servicePrice != 0 || product.serviceRealPrice != 0}">
+	                     	<c:if test="${product.servicePrice > product.serviceRealPrice}">
+		                      <div class="orPrice" ><span>￥</span><span>${product.servicePrice }</span></div>
+			                    <div class="orPriceTitle" >原价</div>
+		                    </c:if>
+		                    <div class="afterPrice" ><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
+	                    </c:if>
+	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
+	                    	 <div class="afterPrice" ><span>￥</span><span class="small">暂无报价</span></div>
+	                    </c:if>
+	                    <div class="afterPriceTitle">影片价格</div>
                         <div id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-							<input type="hidden" id="indentName" name="indentName" value="">
+							<input type="hidden" id="indentName" name="indentName" value="${product.productName }">
 							<input type="hidden" id="company-unique" name="teamId" value="${teamId }"/>
 							<input type="hidden" id="play-unique" name="productId" value="${productId }"/>
 							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
@@ -209,7 +229,7 @@
         </div>
 		<c:if test="${!empty productModules}">
 		        <div class="videoStar">
-		            <div>本片制作服务星 指数</div>
+		            <div>本片导演更多影片推荐</div>
 		        </div>
 		        <div class="container-fluid" style="overflow: hidden">
 		            <div class="row">
@@ -223,7 +243,7 @@
 													<li>
 												        <div class="s_item s_item_cur" style="display: block;">
 												            <div class="con">
-												                <div class="conTop" data-id="${source.id }">
+												                <div class="conTop" data-id="${source.pid }">
 												                    <div>${source.moduleName }</div>
 												                    <div>
 												                        <center>
@@ -270,6 +290,14 @@
                 </div>
                 <div class="rightContent">
                       <div class="title">本片导演更多影片推荐</div>
+                      <div class="setVideo" id="moreProduct">
+                          <div class="videoModel">
+                              <img src="/resources/images/block/test.png">
+                              <label>宣传片</label>
+                          </div>
+                      </div>
+                      
+                       <div class="title">更多相关影片推荐</div>
                       <div class="setVideo" id="moreProduct">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">

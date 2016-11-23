@@ -122,13 +122,13 @@ function originTool() {
     // })
     $('#classical').waypoint(function() {
         $('.cardUl').find('li').addClass('topAnimaltion');
-    }, { offset: 500 });
+    }, { offset: 600 });
     $('.hereClients').waypoint(function() {
         $('#Clients').find('.up').css('top', '0');
         $('#Clients').find('.up').css('opacity', '1');
         $('#Clients').find('.down').css('top', '0');
         $('#Clients').find('.down').css('opacity', '1');
-    }, { offset: 255 });
+    }, { offset: 300 });
 }
 function banner() {
     $('#bannerTitleAn1').addClass('showTitle');
@@ -197,12 +197,13 @@ var homePage = {
 	clickHelpYou:function(){
 		$(".helpYou").off("click").on("click",function(){
 			var phone = $("#help-phone").val();
+			showError($('.search-box'),'');
 			if(phone==''){
-				alert("请输入手机号")
+				showError($('.search-box'),'请填写手机号');
 				return false;
 			}
 			if(!checkMobile(phone)){
-				alert("请输入正确格式的手机号")
+				showError($('.search-box'),'手机格式不正确');
 				return false;
 			}else{
 				$.ajax({
@@ -402,7 +403,7 @@ var homePage_tpl = {
        	 ].join(""),
     classical_recommend:[
             '{@each list as item}',
-			'<li class="topAnimaltion">',
+			'<li class="">',
 			'	<div class="videoCard">',
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',

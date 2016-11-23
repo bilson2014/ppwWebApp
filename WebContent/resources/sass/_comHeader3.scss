@@ -1,3 +1,5 @@
+
+
 .comOrder {
     position: fixed;
     z-index: 97;
@@ -72,6 +74,7 @@
             right: 0px;
             top: 0px;
             line-height: 35px;
+            cursor: pointer;
             &:active {
                 background: darken($red-base, 20%);
             }
@@ -172,6 +175,27 @@
     top: 0px;
     left: 0px;
     z-index: 45;
+
+    .cCloseBtn {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: #ccc;
+        border-radius: 90px;
+        div {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: relative;
+            top: 6px;
+            left: 6px;
+            &:hover {
+                background-position-y: -12px;
+            }
+        }
+    }
 }
 
 .successModal {
@@ -192,6 +216,7 @@
     font-size: $font-size;
     text-align: center;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .successInfo {
