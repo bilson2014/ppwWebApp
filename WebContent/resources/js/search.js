@@ -1,16 +1,19 @@
 var pageSize = 20;
 var currentSize = 0;
 $().ready(function(){
+	search.showTitle(); // 在标题栏显示搜索内容
 	search.loadItem(); // 装配视频类型
 	search.itemToggle(); // 注册 行业分类 点击事件
 	search.loadPrice(); // 装配价格
 	search.loadLength(); // 装配时长
 	search.pagination(); // 分页
-
-	
 });
 
 var search = {
+	showTitle : function() {
+		var q = $('#q').val();
+		$('#search-q').val(q == '*' ? '' : q);
+	},
 	loadItem : function(){
 		loadData(function(itemList){
 			// 清除数据
@@ -39,6 +42,17 @@ var search = {
 			
 			$('#item-list').append($ul);
 			
+			if(q != '' && q != undefined) {
+				// 将搜索内容写入面包屑布局
+				var tagBody ='<div class="tag" id="tagType">';
+				tagBody +='<div class="controlCard">';
+				tagBody +='<span>'+ (q == '*' ? '全部' : q) +'</span><span class="tagX" id="tagContentX">x</span></div>';
+				$("#videoTag").append(tagBody);
+				$('#tagContentX').click(function() {
+					location.href = getContextPath() + '/search?q=*';
+				});
+			}
+			
 			// 标注选中状态
 			var item = $('#item').val();
 			if(item != null && item != undefined && item != '') {
@@ -46,7 +60,7 @@ var search = {
 				$.each($('.itemAll'),function(){
 					if($(this).data('id') == item){
 						$(this).addClass('active');
-						//TODO行业
+						
 						searchVideo.addType($(this).text());
 					}
 				});
@@ -131,7 +145,7 @@ var search = {
 			$('.priceAll').each(function(){
 				if($(this).data('price') == price){
 					$(this).addClass('active');
-					//TODO
+					
 					searchVideo.addPrice($(this).text());
 					
 				}

@@ -1,5 +1,4 @@
 <%@page import="java.lang.annotation.Target"%>
-<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
@@ -802,7 +801,7 @@
 								data-no='<c:out value="${product.productId }" />'>
 						</dd>
 						<dd>
-							<img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间"
+								<img alt="分享至qq空间" class="-mob-share-qzone share" title="分享至qq空间"
 								src="/resources/images/icons/qqzone.png"
 								data-no='<c:out value="${product.productId }" />'>
 						</dd>
