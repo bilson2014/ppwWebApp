@@ -75,7 +75,7 @@ public class CostCalculateController extends BaseController{
 		indent.setSecond(0l);
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
-		indent.setIndent_recomment(calculate.getDescription()+",预期价格:"+cost);
+		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
 		
 		final String url = URL_PREFIX + "portal/indent/cost/save";
 		String str = HttpUtil.httpPost(url, indent,request);

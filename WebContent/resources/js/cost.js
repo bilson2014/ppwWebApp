@@ -109,8 +109,8 @@ function getPrice(relP){
 	var indentId = $('#phone').attr('data-content');
 	var description = [
 	                   "视频类别:"+videoType,
-	                   ",导演团队:"+team,
 	                   ",时长:"+time,
+	                   ",导演团队:"+team,
 	                   ",拍摄设备:"+equipment,
 	                   ",演员:"+actor,
 	                   ",动画:"+animation
