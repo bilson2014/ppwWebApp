@@ -153,6 +153,7 @@ $().ready(function(){
 						}
 					}, getContextPath() + '/provider/product/data/' + $('#p-id').val(), null);
 				}
+				$("#s-id").val(data);
 			}, getContextPath() + url ,$.toJSON({
 				'productId' : $('#p-id').val().trim(),
 				'teamId' : $('#company-id').val(),
@@ -163,6 +164,7 @@ $().ready(function(){
 				'servicePrice' : $('#video-price').val(),
 				'visible' : $('#video-switch').val(),
 				'tags' : mergeTag(),
+				'serviceId' : $('#s-id').val(),
 				'videoDescription' : videoDescription.trim(),
 				'creationTime' : $('#creationTime').val(),
 				'picHDUrl' : $("#video-picHDUrl").val(),
