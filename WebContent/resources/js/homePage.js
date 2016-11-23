@@ -181,8 +181,6 @@ var homePage = {
 		this.search();
 		//立即下单
 		this.deliverOrder();
-		//跳转成本计算器
-		this.toCostCalculate();
 		//初始化视频加载
 		this.initVideo();
 	},
@@ -377,12 +375,7 @@ var homePage = {
 	getNewsDetail:function(){
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
-			window.location.href="home/news/info/"+id;
-		})
-	},
-	toCostCalculate:function(){
-		$("#toCalculate").off("click").on("click",function(){
-			window.location.href="/cost/cal";
+			window.location.href="/home/news/info/"+id;
 		})
 	},
 	initVideo:function(){
@@ -403,7 +396,11 @@ var homePage_tpl = {
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
 			'			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',
-			'				<div>￥${item.price}</div>',
+			'				{@if item.price == 0}',
+			'					<div>￥暂无报价</div>',
+			'				{@else}',
+			'					<div>￥${item.price}</div>',
+			'				{@/if}',
 			'			</div>',
 			'		</a>',
 			'	</div>',
@@ -419,8 +416,12 @@ var homePage_tpl = {
 			'			<div class="videoContet">',
 			'				<div class="title">${item.productName}</div>',
 			'				<div class="type">${item.tags}</div>',
-		    '				<div class="price">￥${item.price}</div>',
-		    '				{@if item.orignalPrice != null && item.orignalPrice != 0}',
+			'				{@if item.price == 0}',
+			'					<div  class="price">￥暂无报价</div>',
+			'				{@else}',
+			'					<div  class="price">￥${item.price}</div>',
+			'				{@/if}',
+		    '				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
 		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
 			'				{@/if}',
 			'			</div>',

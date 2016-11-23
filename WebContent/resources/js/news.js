@@ -23,19 +23,23 @@ function initContent() {
 		
         
 		var newsId =$('#newsId').val();
-		
+		var k=0;
 	    $.each(data.result, function(i,item) {
-	    	if(item.id != newsId)
-	    		addMoreNews(item);  
+	    	if(k<6 && item.id != newsId){
+	    		addMoreNews(item);//排除自己
+	    		k++;
+	    	}
 	    });
 		
 		
-	}, getContextPath() + '/home/news/recommend',null);
+	}, getContextPath() + '/news/info/recommend',null);
 }
 
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
-      '<label>' + item.title + '</label>' +
+	  '<a href="/home/news/info/'+item.id+'" target="_blank">'+
+      	'<label>' + item.title + '</label>' +
+      '</a>'+
       '<label>' + item.discription + '</label>'+
       ' <label>了解更多</label>' +
       '</div>';

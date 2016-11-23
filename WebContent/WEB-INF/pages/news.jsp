@@ -110,26 +110,7 @@
                             </label>
                             <label>了解更多</label>
                         </div>
-                        <div class="videoModel">
-                            <label>标题</label>
-                            <label>宣传片</label>
-                            <label>了解更多</label>
-                        </div>
-                        <div class="videoModel">
-                            <label>标题</label>
-                            <label>宣传片</label>
-                            <label>了解更多</label>
-                        </div>
-                        <div class="videoModel">
-                            <label>标题</label>
-                            <label>宣传片</label>
-                            <label>了解更多</label>
-                        </div>
-                        <div class="videoModel">
-                            <label>标题</label>
-                            <label>宣传片</label>
-                            <label>了解更多</label>
-                        </div> -->
+                       -->
                     </div>
                 </div>
             </div>

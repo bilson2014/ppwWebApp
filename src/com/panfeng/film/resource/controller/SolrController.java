@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
+import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -134,5 +137,46 @@ public class SolrController extends BaseController {
 			}
 		}
 		return null;
+	}
+	
+
+	/**
+	 * 播放界面获取更多导演作品
+	 */
+	@RequestMapping("/team/product/more")
+	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
+		final String json = HttpUtil.httpPost(url, team, request);
+		if (null != json && !"".equals(json)) {
+			List<Solr> list = JsonUtil.toList(json);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+			return baseMsg;
+		} else {
+			baseMsg.setErrorCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("list is null");
+		}
+		return baseMsg;
+	}
+	/**
+	 * 播放界面获取更多推荐作品
+	 * 根据tags来搜索
+	 */
+	@RequestMapping("/tags/product/search")
+	public BaseMsg getMoreProductByTags(final HttpServletRequest request, @RequestBody final Team team) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
+		final String json = HttpUtil.httpPost(url, team, request);
+		if (null != json && !"".equals(json)) {
+			List<Solr> list = JsonUtil.toList(json);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+			return baseMsg;
+		} else {
+			baseMsg.setErrorCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("list is null");
+		}
+		return baseMsg;
 	}
 }

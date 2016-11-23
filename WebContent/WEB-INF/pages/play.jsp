@@ -62,6 +62,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
+	<input type="hidden" id="tags" value="${product.tags }">
  <div class="header headerMove" id="header">
  <input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -190,16 +191,22 @@
                     </div> 
                     
                     <div class="price showPrice" id="price">
-                     
-                     	<div class="orPrice"><span >￥</span><span>${product.servicePrice }</span></div>
-	                    <div class="orPriceTitle">原价</div>
-                        <div class="afterPrice"><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
-                        <div class="afterPriceTitle">影片价格</div>
+                     	<c:if test="${product.servicePrice != 0 || product.serviceRealPrice != 0}">
+	                     	<c:if test="${product.servicePrice > product.serviceRealPrice}">
+		                      <div class="orPrice" ><span>￥</span><span>${product.servicePrice }</span></div>
+			                    <div class="orPriceTitle" >原价</div>
+		                    </c:if>
+		                    <div class="afterPrice" ><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
+	                    </c:if>
+	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
+	                    	 <div class="afterPrice" ><span>￥</span><span>暂无报价</span></div>
+	                    </c:if>
+	                    <div class="afterPriceTitle">影片价格</div>
                         <div id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-							<input type="hidden" id="indentName" name="indentName" value="">
+							<input type="hidden" id="indentName" name="indentName" value="${product.productName }">
 							<input type="hidden" id="company-unique" name="teamId" value="${teamId }"/>
 							<input type="hidden" id="play-unique" name="productId" value="${productId }"/>
 							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
@@ -237,7 +244,7 @@
 													<li>
 												        <div class="s_item s_item_cur" style="display: block;">
 												            <div class="con">
-												                <div class="conTop" data-id="${source.id }">
+												                <div class="conTop" data-id="${source.pid }">
 												                    <div>${source.moduleName }</div>
 												                    <div>
 												                        <center>
@@ -283,16 +290,18 @@
                       </div>
                 </div>
                 <div class="rightContent">
-                      <div class="title">本片导演更多影片推荐</div>
-                      <div class="setVideo" id="moreProduct">
+                      <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
+                      <div class="setVideo" id="moreTeamProductDiv">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
                               <label>宣传片</label>
                           </div>
                       </div>
                       
-                       <div class="title border">更多相关影片推荐</div>
-                      <div class="setVideo" id="moreProduct">
+
+
+                      <div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
+                      <div class="setVideo" id="recommendProductTitleDiv">
                           <div class="videoModel">
                               <img src="/resources/images/block/test.png">
                               <label>宣传片</label>

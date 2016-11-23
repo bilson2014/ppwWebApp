@@ -162,11 +162,12 @@
 						<button class="helpYou" type="button">帮我推荐</button>
 						<div class="wordPosition">
 							<div class="bannerWord" id="toCalculate">
-								<img
-									src=" /resources/images/index/bannerOnline.png">在线估价<span>>></span>
+								<a href="/cost/cal" target="_blank">
+									<img src="/resources/images/index/bannerOnline.png">在线估价<span>>></span>
+								</a>
 							</div>
 							<div class="bannerWord" id="showVideoS">
-								<img src=" /resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
+								<img src="/resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
 							</div>
 						</div>
 					</form>
@@ -250,7 +251,7 @@
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
 				<div id='product-container' class="swiper-wrapper">
-					<div class="swiper-slide coverSlide">
+				<!-- 	<div class="swiper-slide coverSlide">
                         <div class="scaleDiv">
                             <img src=" /resources/images/index/test1.png">
                             <div class="coverContent">
@@ -258,8 +259,7 @@
                                 <div>￥598,00</div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div> -->
 				</div>
 			</div>
 			<div class="swiper-button-next"></div>

@@ -43,6 +43,7 @@ import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
+import com.panfeng.film.util.News;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
@@ -670,24 +671,25 @@ public class PCController extends BaseController {
 		}
 		return true;
 	}
-
+	
 	/**
-	 * 播放界面获取更多导演作品
+	 * 新闻详情页推荐
+	 * 
 	 */
-	@RequestMapping("/team/product/more")
-	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
+	@RequestMapping(value = "/news/info/recommend")
+	public BaseMsg newsInfoRecommend(final HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
-		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
-		final String json = HttpUtil.httpPost(url, team, request);
-		if (null != json && !"".equals(json)) {
-			List<Solr> list = JsonUtil.toList(json);
+		final String url = URL_PREFIX + "portal/news/info/recommend";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			List<News> list = JsonUtil.toList(str);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
-			return baseMsg;
-		} else {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
+		}else{
 			baseMsg.setErrorMsg("list is null");
 		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("get news info recommend",sessionInfo);
 		return baseMsg;
 	}
 }
