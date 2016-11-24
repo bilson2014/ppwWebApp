@@ -202,76 +202,56 @@
 		<!-- pagination end -->
 	</div>
 
-	<div class="footer">
-		<!-- 拍片网介绍区域 start -->
-		<div class="footer-desc-wrap">
-			<div class="footer-desc">
-				<h2>中国领先的视频内容制作平台</h2>
-				<!-- <p>平台汇聚导演、工作室、创作机构100余家，影视行业人才20000余名</p>
-				<p>为客户提供创意、制作、传播一站式服务</p> -->
-				<p>汇聚30000+编剧、摄影师、演员等行业人才</p>
-				<p>覆盖北京、上海、广州</p>
-				<a href="<spring:url value="/about-us.html"/>"><div class="btn btn-primary known-btn">了解拍片网</div></a>
-			</div>
-		</div>
-		<!-- 拍片网介绍区域 end -->
-		
-		<!-- 底栏 start -->
-		<div class="footer-wrap">
-			<div class="footer-content">
-			
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >登录</a>
-					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
-					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >联系我们</a>
-					<a href="tel:4006609728" class="qqClient"><label class="tel-icon"></label><h3>4006609728</h3></a>
-					<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>客户客服发发</h3></a>
-					<a href="tencent://message/?uin=3299894058&Site=qq&Menu=no" class="qqClient"><label class="qq-icon"></label><h3>供应商客服美美</h3></a>
-					<a href="mailto:bdmarket@paipianwang.cn" class="mailClient"><label class="mail-icon"></label><h3>bdmarket@paipianwang.cn</h3></a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >服务</a>
-					<a href="<spring:url value='/order-flow.html' />">服务流程</a>
-					
-					<a href="javascript:void(0);" class="top-margin">工作时间</a>
-					<a href="javascript:void(0);">工作日9:00 - 18:00</a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >授权 / 条款</a>
-					<a href="<spring:url value='/company-service.html' />">使用协议</a>
-					<a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a>
-				</div>
-				
-				<div class="footer-column">
-					<a href="javascript:void(0);" class="title" >了解拍片网</a>
-					<a href="<spring:url value='/about-us.html' />">了解我们</a>
-					<a href="<spring:url value='/member.html#join-us' />">加入我们</a>
-					<a href="<spring:url value='/company-activity.html' />">公司活动</a>
-					<a href="<spring:url value='/member.html#activityPart' />">团队简介</a>
-				</div>
-
-				<div class="footer-column">
-					<div class="mark-icon"></div>
-					<h4>关注官方微信</h4>
-				</div>
-
-				<div class="footer-notice">
-					<h2>版权信息</h2>
-					<p>本站视频作品采用知识共享署名-非商业性使用。本站不提供任何视听上传</p>
-					<p>服务，所有内容均来自视频分享站点所提供的公开引用资源。</p>
-				</div>
-			</div>
-			<div class="footer-box">
-				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
-			</div>
-		</div>
-		<!-- 底栏 end -->
+	<!-- foot -->
+         					<div class="foot3">
+                                <div class="footContent">
+                                    <div class="contentTop">
+                                        <div class="topItem codeWidth">
+                                            <div class="Twocode"></div>
+                                            <div class="smWord">扫一扫 关注官方微信</div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>登录</a></div>
+                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">供应商登录</a></div>
+                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
+                                            <div class="reg iconItem"><a>注册</a></div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>关于拍片网</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/about-us.html' />">了解我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#join-us' />">加入我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-activity.html' />">公司活动</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#activityPart' />">团队介绍</a></div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>服务</a></div>
+                                            <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
+<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
+                                        </div>
+                                        <div class="topItem onLineWidth">
+                                            <div class="title"><a>在线联系我们</a></div>
+                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
+                                        </div>
+                                        <div class="topItem">
+                                            <div class="title"><a>咨询电话</a></div>
+                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
+                                            <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="contentBottom">
+                                        <div>版权信息</div>
+                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
+                                        <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
+                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--新版底部-->
 	</div>
 	
 	<!-- 代码部分begin -->
