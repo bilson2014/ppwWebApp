@@ -289,17 +289,18 @@
             <div class="contentWidth">
                 <div class="leftContent">
                       <div class="title">影片故事简述</div>
+                      
                       <div class="setPro" id="videoValue">
                       		${product.videoDescription}
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-	                <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
-	                <div class="setVideo" id="moreTeamProductDiv"></div>
-                	<div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
-	                <div class="setVideo" id="recommendProductTitleDiv"></div>
+                      <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
+                      <div class="get-new-detail newsMore">  <span>了解更多</span>  <img src="/resources/images/index/newsMore.png"> </div>
+                      <div class="setVideo" id="moreTeamProductDiv">
+                      </div>
                 </div>
-                
+             
             </div>
         </div>
 </c:if>
