@@ -174,12 +174,17 @@ public class SolrController extends BaseController {
 		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
 		final String json = HttpUtil.httpPost(url, slorView, request);
 		if (null != json && !"".equals(json)) {
-			List<Solr> list = JsonUtil.toList(json);
-			if(list.size()>0){
-				total = list.get(0).getTotal();
+			List<Solr> list;
+			try {
+				list = JsonUtil.fromJsonArray(json, Solr.class);
+				if(list.size()>0){
+					total = list.get(0).getTotal();
+				}
+				map.put("total", total);
+				map.put("result", list);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			map.put("total", total);
-			map.put("result", list);
 			baseMsg.setCode(1);
 			baseMsg.setResult(map);
 			return baseMsg;

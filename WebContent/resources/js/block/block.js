@@ -331,43 +331,43 @@ function initView(){
 	}
 	var x = $('#videoDescription').length;
 	if(x > 0){
-		loadMoreTeamProduct();
+		loadRecommendProduct();
 	}
 }
-function loadMoreTeamProduct(){
-	var teamId=$('#company-unique').val();
-	loadData(function(msg){
-		if(msg.code == 1){
-			var res = msg.result;
-			if(res != null && res!=undefined){
-				var hasCount = 0;
-				var productId = $('#play-unique').val();
-				var v1 = $('#moreTeamProductDiv');
-				v1.html('');
-				for (var i = 0; i < res.length; i++) {
-					if(res[i].productId == productId)
-						continue;
-					hasCount ++;
-					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
-					v1.append(card);
-					if(hasCount == 3)
-						break;
-				}
-				if(hasCount == 0){
-					$('#moreTeamProductTitle').addClass('hide');
-					$('#moreTeamProductDiv').addClass('hide');
-				}
-				loadRecommendProduct();
-			}
-		}else{
-			$('#moreTeamProductTitle').addClass('hide');
-			$('#moreTeamProductDiv').addClass('hide');
-		}
-			
-	}, getContextPath() + '/team/product/more', $.toJSON({
-		teamId : teamId
-	}));
-}
+//function loadMoreTeamProduct(){
+//	var teamId=$('#company-unique').val();
+//	loadData(function(msg){
+//		if(msg.code == 1){
+//			var res = msg.result;
+//			if(res != null && res!=undefined){
+//				var hasCount = 0;
+//				var productId = $('#play-unique').val();
+//				var v1 = $('#moreTeamProductDiv');
+//				v1.html('');
+//				for (var i = 0; i < res.length; i++) {
+//					if(res[i].productId == productId)
+//						continue;
+//					hasCount ++;
+//					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
+//					v1.append(card);
+//					if(hasCount == 3)
+//						break;
+//				}
+//				if(hasCount == 0){
+//					$('#moreTeamProductTitle').addClass('hide');
+//					$('#moreTeamProductDiv').addClass('hide');
+//				}
+//				loadRecommendProduct();
+//			}
+//		}else{
+//			$('#moreTeamProductTitle').addClass('hide');
+//			$('#moreTeamProductDiv').addClass('hide');
+//		}
+//			
+//	}, getContextPath() + '/team/product/more', $.toJSON({
+//		teamId : teamId
+//	}));
+//}
 
 function loadRecommendProduct(){
 	var tags=$('#tags').val();
@@ -376,28 +376,35 @@ function loadRecommendProduct(){
 	}
 	loadData(function(msg){
 		if(msg.code == 1){
-			var res = msg.result;
-			if(res != null && res!=undefined){
-				var hasCount = 0;
-				var productId = $('#play-unique').val();
-				var v1 = $('#recommendProductTitleDiv');
-				v1.html('');
-				for (var i = 0; i < res.length; i++) {
-					if(res[i].productId == productId)
-						continue;
-					hasCount ++;
-					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
-					v1.append(card);
-					if(hasCount == 3)
-						break;
+			var count = msg.result.total
+			var res = msg.result.result;
+			if(count > 0){
+				if(res != null && res!=undefined){
+					var hasCount = 0;
+					var productId = $('#play-unique').val();
+					var v1 = $('#moreTeamProductDiv');
+					v1.html('');
+					for (var i = 0; i < res.length; i++) {
+						if(res[i].productId == productId)
+							continue;
+						hasCount ++;
+						var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
+						v1.append(card);
+						if(hasCount == 6)
+							break;
+					}
+					if(hasCount == 0){
+						$('#recommendProductTitle').addClass('hide');
+						$('#recommendProductTitleDiv').addClass('hide');
+					}
+					var item = $('.Xflag');
+					if(item.length == 0){
+						$('.noMore').removeClass('hide');
+					}
 				}
-				if(hasCount == 0){
-					$('#recommendProductTitle').addClass('hide');
-					$('#recommendProductTitleDiv').addClass('hide');
-				}
-				var item = $('.Xflag');
-				if(item.length == 0){
-					$('#rightContent').html('暂无推荐作品');
+				if(count > 6){
+					$('#moreProductInfo').removeClass('hide');
+					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
 				}
 			}
 		}else{
@@ -405,10 +412,11 @@ function loadRecommendProduct(){
 			$('#recommendProductTitleDiv').addClass('hide');
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
-		tags : tags
+		condition : tags,
+		begin : 0,
+		limit : 7
 	}));
 }
-
 
 function createCard(productName,productId,teamId,imageUrl){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';

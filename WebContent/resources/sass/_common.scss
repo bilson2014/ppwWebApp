@@ -892,6 +892,9 @@ a:hover {
                 font-size: $font-size !important;
                 margin-bottom: 16px;
             }
+               div:nth-child(3) {
+                  margin-top: 5px;
+            }
             div:last-child {
                 margin-top: 20px;
             }
