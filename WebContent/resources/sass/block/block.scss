@@ -506,6 +506,7 @@
             display: inline-block;
             vertical-align: top;
             width: $width-min - $rightWidth;
+            font-size: $font-size-base;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -542,6 +543,7 @@
             padding-left: 40px;
             border-left: 1px solid $border-line;
             padding-bottom: 80px;
+            font-size: $font-size-base;
             .border {
                 border-top: 1px solid #f0f2f5;
                 line-height: 70px;
@@ -585,4 +587,10 @@
             position: relative;
             left: 10px;
         }
+    }
+
+    .noMore{
+        position: relative;
+        color:$gray-dark;
+        font-size: $font-size-base;
     }

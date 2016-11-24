@@ -180,8 +180,8 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
                 <div></div>
             </div>
         </div>
- <!-- foot -->
-         <div class="foot3">
+<!-- foot -->
+         					<div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">
@@ -191,7 +191,7 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">导演登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">供应商登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a>注册</a></div>
                                         </div>
@@ -204,9 +204,9 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>服务</a></div>
-                                            <div class="noiconItem"><a>服务流程</a></div>
+                                            <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-       <%--                                      <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
                                             <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
                                         </div>
                                         <div class="topItem onLineWidth">

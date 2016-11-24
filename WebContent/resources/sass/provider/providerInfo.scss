@@ -5,7 +5,7 @@
 @import "fontSize";
 @import "compass/typography/text/ellipsis";
 .page {
-    background: #f2f2f2;
+    background: #f2f2f2 !important;
 }
 a:link,a:visited{
  text-decoration:none;  /*超链接无下划线*/
