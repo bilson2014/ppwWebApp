@@ -170,6 +170,7 @@ function banner() {
  */
 var homePage = {
 	init:function(){
+		
 		//点击帮我推荐提交订单
 		this.clickHelpYou();
 		//获取热门爆款和经典案例

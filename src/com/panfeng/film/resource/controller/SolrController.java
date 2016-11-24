@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
-import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
@@ -163,16 +164,24 @@ public class SolrController extends BaseController {
 	/**
 	 * 播放界面获取更多推荐作品
 	 * 根据tags来搜索
+	 * 参数：condition  表示tag标签
 	 */
 	@RequestMapping("/tags/product/search")
-	public BaseMsg getMoreProductByTags(final HttpServletRequest request, @RequestBody final Product product) {
+	public BaseMsg getMoreProductByTags(final HttpServletRequest request,@RequestBody final SolrView slorView) {
 		BaseMsg baseMsg = new BaseMsg();
+		Map<String, Object> map = new HashMap<>();
+		long total = 0l;
 		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
-		final String json = HttpUtil.httpPost(url, product, request);
+		final String json = HttpUtil.httpPost(url, slorView, request);
 		if (null != json && !"".equals(json)) {
 			List<Solr> list = JsonUtil.toList(json);
+			if(list.size()>0){
+				total = list.get(0).getTotal();
+			}
+			map.put("total", total);
+			map.put("result", list);
 			baseMsg.setCode(1);
-			baseMsg.setResult(list);
+			baseMsg.setResult(map);
 			return baseMsg;
 		} else {
 			baseMsg.setErrorCode(BaseMsg.ERROR);
