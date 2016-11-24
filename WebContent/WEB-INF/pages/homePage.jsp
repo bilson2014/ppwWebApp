@@ -26,6 +26,8 @@
 <script type="text/javascript"
 	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
+	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+<script type="text/javascript"
 	src="resources/lib/jquery/waypoints.min.js"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
 <!--[if lt IE 9]>
