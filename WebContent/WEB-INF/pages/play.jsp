@@ -300,7 +300,6 @@
                       <div class="setVideo" id="moreTeamProductDiv">
                       </div>
                 </div>
-             
             </div>
         </div>
 </c:if>
