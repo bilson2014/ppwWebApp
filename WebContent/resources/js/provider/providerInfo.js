@@ -304,11 +304,11 @@ var providerInfo = {
         	  var localImg = $('#localVideoImgUrl').val();
         	 
         	  if(yk!=undefined&&yk!=null&&yk!=""){
-        		  makePlayer('showVideo', yk);
+        		  makePlayer('showVideos', yk);
         	  }
         	  else{
         		  var formBody =' <video class="showVideo" controls src="'+local+'" preload="auto" poster="'+localImg+'"></video>';
-        		  $("#showVideo").append(formBody);
+        		  $("#showVideos").append(formBody);
         		//  <video class="showVideo" controls src="'+local+'" preload="auto" poster=''></video>
         	  }
           }
