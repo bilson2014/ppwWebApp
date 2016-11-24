@@ -295,12 +295,13 @@
                 </div>
                 <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
-                      <div class="get-new-detail newsMore hide" id="moreProductInfo">
-                      	<span>了解更多</span>
-                      	<img src="/resources/images/index/newsMore.png">
-                      </div>
+                      <a id="moreProductInfo" class="hide">
+	                      <div class="get-new-detail newsMore ">
+	                      	<span>了解更多</span>
+	                      	<img src="/resources/images/index/newsMore.png">
+	                      </div>
+                      </a>
                       <div class="setVideo" id="moreTeamProductDiv">
-                      11
                       </div>
                 </div>
             </div>

@@ -376,28 +376,35 @@ function loadRecommendProduct(){
 	}
 	loadData(function(msg){
 		if(msg.code == 1){
-			var res = msg.result;
-			if(res != null && res!=undefined){
-				var hasCount = 0;
-				var productId = $('#play-unique').val();
-				var v1 = $('#moreTeamProductDiv');
-				v1.html('');
-				for (var i = 0; i < res.length; i++) {
-					//if(res[i].productId == productId)
-						continue;
-					hasCount ++;
-					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
-					v1.append(card);
-					if(hasCount == 6)
-						break;
+			var count = msg.result.total
+			var res = msg.result.result;
+			if(count > 0){
+				if(res != null && res!=undefined){
+					var hasCount = 0;
+					var productId = $('#play-unique').val();
+					var v1 = $('#moreTeamProductDiv');
+					v1.html('');
+					for (var i = 0; i < res.length; i++) {
+						if(res[i].productId == productId)
+							continue;
+						hasCount ++;
+						var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
+						v1.append(card);
+						if(hasCount == 6)
+							break;
+					}
+					if(hasCount == 0){
+						$('#recommendProductTitle').addClass('hide');
+						$('#recommendProductTitleDiv').addClass('hide');
+					}
+					var item = $('.Xflag');
+					if(item.length == 0){
+						$('#moreTeamProductDiv').html('暂无推荐作品');
+					}
 				}
-				if(hasCount == 0){
-					$('#recommendProductTitle').addClass('hide');
-					$('#recommendProductTitleDiv').addClass('hide');
-				}
-				var item = $('.Xflag');
-				if(item.length == 0){
-					$('#moreTeamProductDiv').html('暂无推荐作品');
+				if(count > 6){
+					$('#moreProductInfo').removeClass('hide');
+					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
 				}
 			}
 		}else{
@@ -405,7 +412,9 @@ function loadRecommendProduct(){
 			$('#recommendProductTitleDiv').addClass('hide');
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
-		tags : tags
+		condition : tags,
+		begin : 0,
+		limit : 7
 	}));
 }
 
