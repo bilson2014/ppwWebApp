@@ -60,7 +60,7 @@
 	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
 	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
 	
-	<div class="index-content-wrap">
+	<%-- <div class="index-content-wrap">
 	
 		<div class="header">
 		<div class="menu-bar nav">
@@ -69,7 +69,7 @@
 				<r:identity role="customer">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
@@ -83,10 +83,10 @@
 				
 				<r:noLogin>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
 			</div>
-			
+			 --%>
 			<div class="middle-part">
 				<div class="search-box" id="header-search">
 					<form method="get" action="/search" id="s-form">

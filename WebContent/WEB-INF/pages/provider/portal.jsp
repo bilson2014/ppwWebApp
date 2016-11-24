@@ -75,7 +75,7 @@
 				
 				<r:noLogin>
 					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片<span></span></a>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>

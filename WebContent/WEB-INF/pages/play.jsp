@@ -83,7 +83,7 @@
 				
 				<r:noLogin>
 					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片<span></span></a>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
@@ -289,19 +289,21 @@
             <div class="contentWidth">
                 <div class="leftContent">
                       <div class="title">影片故事简述</div>
+                      
                       <div class="setPro" id="videoValue">
                       		${product.videoDescription}
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-                      <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
+                      <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
+                      <div class="get-new-detail newsMore">  <span>了解更多</span>  <img src="/resources/images/index/newsMore.png"> </div>
                       <div class="setVideo" id="moreTeamProductDiv">
                       </div>
-                      <div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
+                     <!--  <div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
                       <div class="setVideo" id="recommendProductTitleDiv">
-                      </div>
+                      </div> -->
                 </div>
-                
+             
             </div>
         </div>
 </c:if>
