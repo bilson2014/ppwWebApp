@@ -399,7 +399,7 @@ function loadRecommendProduct(){
 					}
 					var item = $('.Xflag');
 					if(item.length == 0){
-						$('#moreTeamProductDiv').html('暂无推荐作品');
+						$('.noMore').removeClass('hide');
 					}
 				}
 				if(count > 6){
