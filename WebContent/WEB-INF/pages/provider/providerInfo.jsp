@@ -60,7 +60,7 @@
 	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
 	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
 	
-	<div class="index-content-wrap">
+	<%-- <div class="index-content-wrap">
 	
 		<div class="header">
 		<div class="menu-bar nav">
@@ -86,7 +86,7 @@
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
 			</div>
-			
+			 --%>
 			<div class="middle-part">
 				<div class="search-box" id="header-search">
 					<form method="get" action="/search" id="s-form">
