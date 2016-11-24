@@ -35,6 +35,8 @@ public class Solr extends BaseObject{
 	private long total = 0l; // 总数
 	
 	private Integer recommend;//推荐值
+	
+	private Integer supportCount;//推荐值
 
 	public String getProductId() {
 		return productId;
@@ -154,5 +156,13 @@ public class Solr extends BaseObject{
 
 	public void setRecommend(Integer recommend) {
 		this.recommend = recommend;
+	}
+
+	public Integer getSupportCount() {
+		return supportCount;
+	}
+
+	public void setSupportCount(Integer supportCount) {
+		this.supportCount = supportCount;
 	}
 }

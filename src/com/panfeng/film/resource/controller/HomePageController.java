@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
@@ -55,10 +57,11 @@ public class HomePageController extends BaseController{
 	 * @return List<Solr> 产品列表
 	 */
 	@RequestMapping(value = "/product/loadProduct", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public BaseMsg productList(final HttpServletRequest request) {
+	public BaseMsg productList(final HttpServletRequest request,
+			@RequestBody SolrView solrView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/product/static/pc/list";
-		String str = HttpUtil.httpPost(url, null, request);
+		String str = HttpUtil.httpPost(url, solrView, request);
 		if (str != null && !"".equals(str)) {
 			try {
 				List<Solr> list = JsonUtil.fromJsonArray(str, Solr.class);
