@@ -1,4 +1,7 @@
 var type; // 供应商类型
+var upload_Video;
+var video_max_size = 200*1024*1024; // 200MB
+var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function(){
 	// 注册分享
 	video.share();
@@ -57,38 +60,52 @@ var video = {
 		},
 		webupload:function(){
 			$('#multipModal').on('shown.bs.modal', function (e) {
-				webupload({
-					 server: '/provider/multipUploadFile',//url
-					 pick: '#picker',//点击弹窗
-					 submitBtn:'#submit-multip',
-					 accept :{
-						    title: 'video',
-						    extensions: 'mp4',
-						    mimeTypes: 'video/mp4'
-						},
-					 fileQueued:function(file){//选中后执行
-						$('#thelist').append('<div id="' + file.id + '" class="item">'
-										+ '<h4 class="info">' + file.name + '</h4>'
-										+ '<p class="state">等待上传...</p>' + '</div>');
-					 },
-					 uploadProgress:function(file, percentage){
-						 var $li = $('#' + file.id), $percent = $li
-							.find('.progress .progress-bar');
-							// 避免重复创建
-							if (!$percent.length) {
-								$percent = $(
-										'<div class="progress progress-striped active">'
-												+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
-												+ '</div>' + '</div>')
-										.appendTo($li).find('.progress-bar');
-							}
-							$li.find('p.state').text('上传中');
-							$percent.css('width', percentage * 100 + '%');
-					 },//进度显示
-					 uploadSuccess:function( file ,response){//成功回调
-						$( '#'+file.id ).find('p.state').text('已上传');
-						$('#' + file.id).find('.progress').fadeOut();
-					 }
+				upload_Video && upload_Video.destroy();
+				upload_Video = WebUploader.create({
+					auto:false,
+					swf : '/resources/lib/webuploader/Uploader.swf',
+					server : '/provider/multipUploadFile',
+					pick : '#picker',
+					fileSingleSizeLimit : video_max_size,
+					accept :{
+					    title: 'video',
+					    extensions: 'mp4',
+					    mimeTypes: 'video/mp4'
+					}
+				});
+				upload_Video.on('fileQueued', function(file) {
+					$('#thelist').append('<div id="' + file.id + '" class="item">'
+							+ '<h4 class="info">' + file.name + '</h4>'
+							+ '<p class="state">等待上传...</p>' + '</div>');
+				});
+				// 文件上传过程中创建进度条实时显示。
+				upload_Video.on('uploadProgress',function(file, percentage) {
+					var $li = $('#' + file.id), $percent = $li
+					.find('.progress .progress-bar');
+					// 避免重复创建
+					if (!$percent.length) {
+						$percent = $(
+								'<div class="progress progress-striped active">'
+										+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+										+ '</div>' + '</div>')
+								.appendTo($li).find('.progress-bar');
+					}
+					$li.find('p.state').text('上传中');
+					$percent.css('width', percentage * 100 + '%');
+				});
+				upload_Video.on('uploadSuccess', function(file,response) {
+					$( '#'+file.id ).find('p.state').text('已上传');
+					$('#' + file.id).find('.progress').fadeOut();
+				});
+				upload_Video.on('error', function(type) {
+					 if (type=="Q_TYPE_DENIED"){
+						 alert('格式不正确');
+				        }else if(type=="F_EXCEED_SIZE"){
+							alert(video_err_msg);
+				        }
+				});
+				$("#submit-multip").on('click', function() {
+					upload_Video.upload();
 				});
 			})
 		}
