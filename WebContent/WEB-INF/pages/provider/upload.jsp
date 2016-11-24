@@ -215,7 +215,7 @@
 								<div class="picker" id='uploadVideoBt'>上传视频</div>
 								<div style="display:inline;margin:10px" id="videoName"></div>
 								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
-								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于500M的视频文件<span style="color:red;">*</span></p>
+								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于200M的视频文件,推荐720P分辨率,25帧<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
 							</div>
 							

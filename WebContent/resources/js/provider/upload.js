@@ -2,9 +2,9 @@ var PopInterValObj,oTimer,successIntervalObj; // timer变量，控制时间
 var imageType = ['png','jpg'];
 var videoType = ['mp4'];
 var image_max_size = 1024*250; // 250KB
-var video_max_size = 500*1024*1024; // 500MB
+var video_max_size = 200*1024*1024; // 200MB
 var image_err_msg = '图片大小超出250KB上限,请重新上传!';
-var video_err_msg = '视频大小超出500M上限,请重新上传!';
+var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var tipMsg = "您的浏览器暂不支持计算上传文件的大小，为保证操作体验，建议使用IE、FireFox、Chrome浏览器";
 var browserCfg = {};
 var localAddress;
@@ -34,7 +34,7 @@ $().ready(function(){
 					multiple :false
 				},
 				fileNumLimit : 1,
-				fileSingleSizeLimit : 1024*1024*500,
+				fileSingleSizeLimit : video_max_size,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
 				formData : {oldUrl:$("#videoUrl").val()},
@@ -74,7 +74,7 @@ $().ready(function(){
 					 toolTipShow('格式不正确');
 			        }else if(type=="F_EXCEED_SIZE"){
 			        	$('#videoLabel').show();
-						$('#videoLabel').text('视频大小超出500M上限,请重新上传!');
+						$('#videoLabel').text(video_err_msg);
 			        }
 			});
 			_this.submit();
@@ -183,7 +183,7 @@ $().ready(function(){
 				resize : false,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
-				fileSingleSizeLimit : 1024*250,
+				fileSingleSizeLimit : image_max_size,
 				formData : {oldUrl:$("#video-picHDUrl").val()},//参数
 				accept :{
 				    title: 'Images',
@@ -199,7 +199,7 @@ $().ready(function(){
 				resize : false,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
-				fileSingleSizeLimit : 1024*250,
+				fileSingleSizeLimit : image_max_size,
 				formData : {oldUrl:$("#video-picLDUrl").val()},//参数
 				accept :{
 				    title: 'Images',
