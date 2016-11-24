@@ -294,12 +294,10 @@
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-                      <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
-                      <div class="setVideo" id="moreTeamProductDiv">
-                      </div>
-                      <div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
-                      <div class="setVideo" id="recommendProductTitleDiv">
-                      </div>
+	                <div class="title" id="moreTeamProductTitle" >本片导演更多影片推荐</div>
+	                <div class="setVideo" id="moreTeamProductDiv"></div>
+                	<div class="title border" id="recommendProductTitle">更多相关影片推荐</div>
+	                <div class="setVideo" id="recommendProductTitleDiv"></div>
                 </div>
                 
             </div>
