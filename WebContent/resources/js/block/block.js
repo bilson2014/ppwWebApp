@@ -406,10 +406,15 @@ function loadRecommendProduct(){
 					$('#moreProductInfo').removeClass('hide');
 					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
 				}
+			}else{
+				$('#recommendProductTitle').addClass('hide');
+				$('#recommendProductTitleDiv').addClass('hide');
+				$('.noMore').removeClass('hide');
 			}
 		}else{
 			$('#recommendProductTitle').addClass('hide');
 			$('#recommendProductTitleDiv').addClass('hide');
+			$('.noMore').removeClass('hide');
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
 		condition : tags,

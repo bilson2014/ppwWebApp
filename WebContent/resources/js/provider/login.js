@@ -110,14 +110,14 @@ $().ready(function(){
 									$('#submitBtn').text("注册");
 									$('#title').text("供应商注册");
 									$("#submitBtn").attr('data-id','register'); // 标记register
-									$('#user_phoneNumberId').hide();
+									$('#user_phoneNumberId').addClass('hide');
 									$('#changeAttr').text('供应商登陆');
 									$('#changeAttr').attr('data-event','register');
 								}else if(flag.errorCode == 300){
 									$('#submitBtn').text("登录");
 									$('#title').text("供应商登录");
 									$('#submitBtn').attr('data-id','login'); // 标记login
-									$('#user_phoneNumberId').hide();
+									$('#user_phoneNumberId').addClass('hide');
 									$('#changeAttr').text('新用户注册');
 									$('#changeAttr').attr('data-event','login');
 								}else if(flag.errorCode == 500){
