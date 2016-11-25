@@ -297,7 +297,7 @@
                 </div>
                 <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
-	                      <div class="get-new-detail newsMore">  <span>了解更多</span>  <img src="/resources/images/index/newsMore.png"> </div>
+	                      <div class="get-new-detail newsMore">  <span>更多视频</span>  <img src="/resources/images/index/newsMore.png"> </div>
 	                      <div class="setVideo" id="moreTeamProductDiv">
                       </div>
                       

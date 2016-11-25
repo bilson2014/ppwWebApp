@@ -286,7 +286,7 @@ function submitOrder(){
 			if(msg.ret){
 				showSuccess();
 			}else{
-				alert(msg.ret);
+				showError($('#phoneCodeError'),'验证码错误');
 			}
 		}, getContextPath() + '/order/deliver', 
 			{indentName : $("#indentName").val(),

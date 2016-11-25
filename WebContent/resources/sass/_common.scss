@@ -658,6 +658,11 @@ a:hover {
 }
 
 //切换后
+
+.login-item{
+    color:$red-base !important;
+}
+
 .headerMove {
     height: 60px !important;
     background: white;
@@ -756,6 +761,9 @@ a:hover {
 
 .menu-bar>.right-part {
     right: -20px !important;
+     @media screen and (max-width: 1276px)  {
+        margin-right: 25px;
+    }
 }
 
 .menu-bar .middle-part {
@@ -763,7 +771,7 @@ a:hover {
     width: 300px;
     height: 30px;
     transition: all .8s ease-in-out 0s;
-    width: 100px !important;
+    width: 160px !important;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 350px !important;
     }
@@ -777,8 +785,8 @@ a:hover {
         @media screen and (min-width: 1500px) {
             width: 450px !important;
         }
-        width: 100px !important;
-        min-width: 100px;
+        width: 160px !important;
+        min-width: 160px;
         height: 30px !important;
         color: white;
         border: 1px solid white;
@@ -865,6 +873,13 @@ a:hover {
     background: black;
     height: 440px;
     position: relative;
+    border-top: 1px solid white;
+    .title{
+        a{
+            cursor: none !important;
+        }
+    }
+
     a:hover {
         color: white;
     }
@@ -949,6 +964,9 @@ a:hover {
                 .noiconItem {
                     height: 12px;
                     margin-bottom: 11px;
+                     &:hover{
+                        a{ color:$red-base;}
+                    }
                     a {
                         position: relative;
                         top: -2px;
@@ -958,6 +976,9 @@ a:hover {
                     height: 12px;
                     padding-left: 14px;
                     margin-bottom: 11px;
+                    &:hover{
+                       a{ color:$red-base;}
+                    }
                     a {
                         position: relative;
                         top: -2px;
@@ -992,6 +1013,7 @@ a:hover {
                     font-size: 34px !important;
                     position: relative;
                     top: -10px;
+                    background:black;
                     a {
                         color: $red-base !important;
                     }
@@ -999,6 +1021,7 @@ a:hover {
                 .workTime {
                     position: relative;
                     top: -3px;
+                    cursor: none;
                 }
             }
         }
@@ -1058,7 +1081,7 @@ a:hover {
     margin-left: -190px;
     border: 1px solid $gray-light;
     border-radius: 4px;
-    padding: 60px 50px 50px 60px;
+    padding: 50px 50px 50px 50px;
     background: white;
     .cOrderTitle {
         color: $red-base;
@@ -1072,7 +1095,7 @@ a:hover {
         position: absolute;
         top: -12px;
         right: -12px;
-        background: #f0f2f5;
+        background: #f0f2f5 !important;
         border: 1px solid #d1d1d1;
         border-radius: 90px;
         div {
@@ -1080,8 +1103,8 @@ a:hover {
             height: 12px;
             background: url(/resources/images/common/close.png) no-repeat;
             position: relative;
-            top: 6px;
-            left: 6px;
+            top: 5px !important;
+            left: 5px !important;
             &:hover {
                 background-position-y: -12px;
             }
@@ -1095,7 +1118,7 @@ a:hover {
             border: 1px solid $gray-light !important;
             border-radius: 4px;
             color: $gray;
-            font-size: $font-size;
+            font-size: $font-size-base;
             outline: none;
             padding-right: 110px;
             padding-left: 10px;
@@ -1153,6 +1176,9 @@ a:hover {
     }
 }
 
+.dropdowns .dropdown-menu{
+    left:0px !important;
+}
 .dropdowns {
     width: 100% !important;
     height: 35px !important;
@@ -1180,6 +1206,7 @@ a:hover {
         border-top-right-radius: 0px;
         padding: 0px;
         margin: 0px;
+        left:0px !important;
         li {
             width: 100% !important;
             padding-left: 10px;
@@ -1226,15 +1253,16 @@ a:hover {
         position: absolute;
         top: -12px;
         right: -12px;
-        background: #ccc;
+        background: #f0f2f5;
         border-radius: 90px;
+        border:1px solid #d1d1d1;
         div {
             width: 12px;
             height: 12px;
             background: url(/resources/images/common/close.png) no-repeat;
             position: relative;
-            top: 6px;
-            left: 6px;
+            top: 5px;
+            left: 5px;
             &:hover {
                 background-position-y: -12px;
             }
