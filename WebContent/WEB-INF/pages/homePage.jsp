@@ -289,6 +289,9 @@
 		<div class="classical" id="classical">
 			<div class="classicalArea">
 				<div class="classicalLogo"></div>
+				<a href="<spring:url value='/list.html'/>">
+					<div class="directorWants">更多案例</div>
+				</a>
 				<ul class="cardUl">
 					<!-- <li>
                         <div class="videoCard">

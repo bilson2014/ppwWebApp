@@ -2,7 +2,8 @@
 @import "buttons";
 @import "video";
 @import "flexslider";
-@import "_comHeader3";
+@import "compass/typography/text/ellipsis";
+
 body {
     background: #FDFFFF;
 }
@@ -94,6 +95,7 @@ body {
         text-align: center;
         color: white;
         padding-top: 40px;
+        @include ellipsis;
         label:nth-child(1) {
             font-size: 5.0rem;
         }

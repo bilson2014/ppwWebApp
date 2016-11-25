@@ -429,6 +429,7 @@ function createCard(productName,productId,teamId,imageUrl){
 	var html = [
 		'<a href="',url,'">',
 			'<div class="videoModel Xflag">',
+			    '<div class="videoIcon"></div>',
 				'<img src="',imageUrl,'">',
 				'<label>',productName,'</label>',
 			'</div>',

@@ -2,8 +2,6 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
-    @import "header3";
-    @import "_comHeader3";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -29,7 +27,6 @@
         position: relative;
         height: 100%;
         width: $width-min - $order-width;
-
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: $width-middle - $order-width;
         }
@@ -228,8 +225,8 @@
             margin-top: 40px;
             padding-left: 15px;
             padding-right: 15px;
-             @media screen and (max-width: 1275px){
-                 margin-top:10px;
+            @media screen and (max-width: 1275px) {
+                margin-top: 10px;
             }
             .content {
                 color: white !important;
@@ -245,9 +242,9 @@
                 height: 60px;
                 overflow: hidden;
                 font-size: $font-size-base;
-                @media screen and (max-width: 1275px){
-                  height: 40px;
-            }
+                @media screen and (max-width: 1275px) {
+                    height: 40px;
+                }
             }
         }
         .noshow {
@@ -274,9 +271,6 @@
             -webkit-transition: all .6s linear 0s;
             /* Safari 和 Chrome */
             -o-transition: all .6s linear 0s;
-            
-
-
             .orPrice {
                 color: $gray-light;
                 font-size: $font-size-base;
@@ -288,9 +282,9 @@
                 font-size: $font-size-sm;
                 margin-left: 10px;
                 margin-bottom: 30px;
-                 @media screen and (max-width: 1275px){
-                 margin-bottom: 10px;
-            }
+                @media screen and (max-width: 1275px) {
+                    margin-bottom: 10px;
+                }
             }
             .afterPrice {
                 color: $red-base;
@@ -316,9 +310,9 @@
                 text-align: center;
                 border-radius: 4px;
                 cursor: pointer;
-                @media screen and (max-width: 1275px){
-                  margin-top:40px;
-            }
+                @media screen and (max-width: 1275px) {
+                    margin-top: 40px;
+                }
                 &:active {
                     background: darken($red-base, 20%);
                 }
@@ -365,7 +359,7 @@
             .closeBtn {
                 width: 24px;
                 height: 24px;
-                background: url(../../images/block/close.png) no-repeat;
+                background: url(/resources/images/block/close.png) no-repeat;
                 position: absolute;
                 top: -12px;
                 right: -12px;
@@ -451,7 +445,7 @@
         height: 45px;
         z-index: 99;
         right: 20px;
-        background: url("../../images/block/btnNext.png") no-repeat center;
+        background: url("/resources/images/block/btnNext.png") no-repeat center;
         &:hover {
             transform: scale(1.2);
         }
@@ -465,7 +459,7 @@
         height: 45px;
         z-index: 99;
         left: 20px;
-        background: url("../../images/block/btnPrev.png") no-repeat center;
+        background: url("/resources/images/block/btnPrev.png") no-repeat center;
         &:hover {
             transform: scale(1.2);
         }
@@ -547,10 +541,10 @@
             vertical-align: top;
             width: $width-min - $rightWidth;
             font-size: $font-size-base;
-            img,video{
+            img,
+            video {
                 width: 100%;
             }
-
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -601,14 +595,32 @@
             }
             .videoModel {
                 margin-bottom: 30px;
-                 &:hover {
-                    -moz-transform: scale(1.1);
-                    /* Firefox 4 */
-                    -webkit-transform: scale(1.1);
-                    /* Safari 和 Chrome */
-                    -o-transform: scale(1.1);
-                    transform: scale(1.1);
+                overflow: hidden;
+                position: relative;
+                .videoIcon {
+                    position: absolute;
+                    width: 65px;
+                    height: 65px;
+                    background: url(/resources/images/index/play-icon.png);
+                    left: 107px;
+                    top: -70px;
+                     transition: all .3s linear .3s;
+                     -moz-transition: all .3s linear .3s;
+                /* Firefox 4 */
+                   -webkit-transition: all .3s linear .3s;
+                /* Safari 和 Chrome */
+                    -o-transition: all .3s linear .3s;
+                }
+                &:hover {
                     border-radius: 4px;
+                    .videoIcon{
+                    position: absolute;
+                    width: 65px;
+                    height: 65px;
+                    background: url(/resources/images/index/play-icon.png);
+                    left: 107px;
+                    top: 50px;
+                    }
                 }
                 img {
                     width: 280px;
@@ -632,13 +644,14 @@
         cursor: pointer;
         position: absolute;
         top: -8px;
-        right: 50px;
+        right: 30px;
         &:active {
             color: $red-base !important;
         }
         img {
             position: relative;
             left: 10px;
+            top: -1;
         }
     }
     
