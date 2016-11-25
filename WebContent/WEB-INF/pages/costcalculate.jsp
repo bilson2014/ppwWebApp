@@ -301,7 +301,7 @@
     <script type="text/javascript"  src="/resources/lib/jquery/waypoints.min.js"></script>
     <script type="text/javascript"  src="/resources/js/cost.js"></script>
     <script type="text/javascript"  src="/resources/js/common.js"></script>
-    <script type="text/javascript"   src="/resources/js/common3.js"></script>
+
     
     
     
