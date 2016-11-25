@@ -1172,7 +1172,7 @@ a:hover {
 
 .comOrder {
     position: fixed;
-    z-index: 97;
+    z-index: 120;
     top: 0px;
     height: 100%;
     width: 100%;
@@ -1305,7 +1305,7 @@ a:hover {
         font-size: $font-size;
         position: absolute;
         left: 13px;
-        bottom: -2px;
+        bottom: -1px;
     }
     .dropdown-menu {
         width: 100% !important;
