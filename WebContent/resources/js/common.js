@@ -600,28 +600,52 @@ function playVideo() {
 					function() {
 						$('#playVideo').removeClass('hide');
 						if (!hasVideo) {
-							var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo"><div></div>'
-									+ '<video autoplay controls loop  name="media" id="header3Video">'
+							var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
+								    +   '<div class="openVideoCommon"></div>'
+									+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop  name="media" id="header3Video"> '
 									+
 									// '<source
 									// src="/product/video/paipianwangMovie.mp4"
 									// id="source" type="video/mp4">' +
 									'<source  src="http://www.apaipian.com/product/video/paipianwangMovie.mp4"  id="source" type="video/mp4">'
-									+ '</video>';
+									+ '</video></div>';
 							$body += '</div>';
 							$("body").append($body);
 							hasVideo = true;
 							initClose();
+							
+							setTimeout(function(){
+								 $('#header3Video').addClass('active');
+								},100);
+							
 						} else {
 							document.getElementById('header3Video').play();
+							setTimeout(function(){
+								 $('#header3Video').addClass('active');
+								},100);
 						}
 					});
 
 }
 
 function initClose() {
+	
+	$('#commonCloseVideo').on('click',function(){
+		
+		setTimeout(function(){
+			$('#playVideo').addClass('hide');
+			},800);
+		document.getElementById("header3Video").pause();
+	    $('#header3Video').removeClass('active');
+		
+	});
+	
 	$('#playVideo').on('dblclick', function() {
-		$('#playVideo').addClass('hide');
+		
+		setTimeout(function(){
+			$('#playVideo').addClass('hide');
+			},800);
+		$('#header3Video').removeClass('active');
 		document.getElementById("header3Video").pause();
 	});
 }

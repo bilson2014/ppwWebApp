@@ -4,7 +4,6 @@
 @import "flexslider";
 @import "indexSwiper";
 @import "mixins/indexScreen";
-@import "_comHeader3";
 @import "compass/typography/text/ellipsis";
 //头部 start
 .hotLogo {
@@ -678,7 +677,7 @@ input:focus {
                 padding-top: 27px;
                 padding-left: 45px;
             }
-            @media screen and  (min-width: 1275px) and (max-width: 1500px) {
+            @media screen and (min-width: 1275px) and (max-width: 1500px) {
                 padding-left: 58px;
             }
             .typeBottom {
@@ -860,6 +859,7 @@ input:focus {
     .classicalArea {
         @include media_screen_width_beta3();
         margin: 0 auto;
+        position: relative;
     }
 }
 
@@ -872,9 +872,11 @@ input:focus {
 .cardUl {
     font-size: 0;
     padding-top: 20px;
+    margin-left: -10px;
     .topAnimaltion {
         opacity: 1 !important;
     }
+    
     li {
         opacity: 0;
         transition: opacity 1.5s ease-in-out .2s;
@@ -885,10 +887,11 @@ input:focus {
         -o-transition: opacity 1.5s ease-in-out .2s;
         display: inline-block;
         width: 25%;
-        padding: 10px;
+        padding-left: 10px;
         border-radius: 4px;
         margin-top: 20px;
         background: transparent;
+        vertical-align: top;
         &:hover {
             // -moz-box-shadow: 10px 10px 5px #d1d1d1;
             // /* 老的 Firefox */
@@ -900,15 +903,11 @@ input:focus {
             -o-transform: scale(1.1);
             transform: scale(1.1);
             .videoContet {
-            -moz-box-shadow: 10px 10px 5px #d1d1d1;
-            /* 老的 Firefox */
-            box-shadow: 0px 0px 10px #d1d1d1;
+                -moz-box-shadow: 10px 10px 5px #d1d1d1;
+                /* 老的 Firefox */
+                box-shadow: 0px 0px 10px #d1d1d1;
             }
         }
-
-
-
-        
         img {
             width: 100%;
             border-top-right-radius: 4px;
@@ -1722,35 +1721,54 @@ input:focus {
     }
 }
 
-.openVideo {
-    background: black;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
+.directorWants {
+    width: 130px;
+    height: 28px;
+    line-height: 27px;
+    position: absolute;
     top: 0px;
-    overflow: hidden;
-    z-index: 10;
-    background: transparent;
-    div {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        background: black;
-        opacity: 0.5;
-        z-index: 11;
-    }
-    video {
-        object-fit: contain;
-        position: fixed;
-        z-index: 12;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-height: 100%;
-        max-width: 100%;
-        margin: auto;
+    right: 0px;
+    text-align: center;
+    border: 1px solid $red-base;
+    border-radius: 4px;
+    font-size: $font-size-base;
+    color: $red-base;
+    &:hover {
+        background: $red-base;
+        color: white;
+        border: none;
     }
 }
+
+// .openVideo {
+//     background: black;
+//     text-align: center;
+//     width: 100%;
+//     height: 100%;
+//     position: fixed;
+//     top: 0px;
+//     overflow: hidden;
+//     z-index: 10;
+//     background: transparent;
+//     div {
+//         width: 100%;
+//         height: 100%;
+//         position: absolute;
+//         top: 0px;
+//         background: black;
+//         opacity: 0.5;
+//         z-index: 11;
+//     }
+//     video {
+//         object-fit: contain;
+//         position: fixed;
+//         z-index: 12;
+//         top: 0;
+//         bottom: 0;
+//         left: 0;
+//         right: 0;
+//         max-height: 100%;
+//         max-width: 100%;
+//         margin: auto;
+//     }
+// }
