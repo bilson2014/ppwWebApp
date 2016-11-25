@@ -3,10 +3,18 @@
 @import "video";
 @import "model";
 @import "compass/typography/text/ellipsis";
+
+  .foot3{
+    top:75px;
+  }
+
+
 .page {
     margin: auto;
     width: $width-min;
     top: 75px;
+
+
 
 
     @media screen and (min-width:1500px) {

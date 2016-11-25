@@ -29,7 +29,7 @@
         position: relative;
         height: 100%;
         width: $width-min - $order-width;
-        background: black;
+
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: $width-middle - $order-width;
         }
@@ -51,6 +51,7 @@
         video {
             width: $width-min - $order-width;
             height: ($width-min - $price-wrap-min) * (9 / 16);
+            background: black;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $order-width;
                 height: ($width-middle - $price-wrap) * (9 / 16);
@@ -63,6 +64,7 @@
         object {
             width: $width-min - $order-width;
             height: ($width-min - $price-wrap-min) * (9 / 16);
+            background: black;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $order-width;
                 height: ($width-middle - $price-wrap) * (9 / 16);
@@ -125,7 +127,7 @@
                 }
             }
             li:nth-child(1) {
-                background: url(../../images/block/share.png) no-repeat;
+                background: url(/resources/images/block/share.png) no-repeat;
                 background-position-y: 7px;
                 &:hover {
                     background-position-y: 7px !important;
@@ -139,19 +141,19 @@
                 line-height: 26px;
             }
             li:nth-child(3) {
-                background: url(../../images/block/qq.png) no-repeat;
+                background: url(/resources/images/block/qq.png) no-repeat;
                 margin-left: 16px;
             }
             li:nth-child(4) {
-                background: url(../../images/block/zoom.png) no-repeat;
+                background: url(/resources/images/block/zoom.png) no-repeat;
                 margin-left: 14px;
             }
             li:nth-child(5) {
-                background: url(../../images/block/wb.png) no-repeat;
+                background: url(/resources/images/block/wb.png) no-repeat;
                 margin-left: 14px;
             }
             li:nth-child(6) {
-                background: url(../../images/block/wechat.png) no-repeat;
+                background: url(/resources/images/block/wechat.png) no-repeat;
                 margin-left: 14px;
             }
         }
@@ -167,6 +169,10 @@
                 font-size: $font-size;
                 color: white;
                 display: inline-block;
+                &:hover {
+                    color: $red-base;
+                    border-color: transparent;
+                }
             }
             img {
                 width: 40px;
@@ -222,6 +228,9 @@
             margin-top: 40px;
             padding-left: 15px;
             padding-right: 15px;
+             @media screen and (max-width: 1275px){
+                 margin-top:10px;
+            }
             .content {
                 color: white !important;
             }
@@ -236,6 +245,9 @@
                 height: 60px;
                 overflow: hidden;
                 font-size: $font-size-base;
+                @media screen and (max-width: 1275px){
+                  height: 40px;
+            }
             }
         }
         .noshow {
@@ -262,6 +274,9 @@
             -webkit-transition: all .6s linear 0s;
             /* Safari 和 Chrome */
             -o-transition: all .6s linear 0s;
+            
+
+
             .orPrice {
                 color: $gray-light;
                 font-size: $font-size-base;
@@ -273,6 +288,9 @@
                 font-size: $font-size-sm;
                 margin-left: 10px;
                 margin-bottom: 30px;
+                 @media screen and (max-width: 1275px){
+                 margin-bottom: 10px;
+            }
             }
             .afterPrice {
                 color: $red-base;
@@ -298,6 +316,9 @@
                 text-align: center;
                 border-radius: 4px;
                 cursor: pointer;
+                @media screen and (max-width: 1275px){
+                  margin-top:40px;
+            }
                 &:active {
                     background: darken($red-base, 20%);
                 }
@@ -308,11 +329,11 @@
             opacity: 1 !important;
         }
         .order-btn {
-            height: 40px;
+            height: 35px;
             width: 100%;
             color: white;
             font-size: $font-size-base;
-            line-height: 40px;
+            line-height: 35px;
             background: $red-base;
             margin-bottom: 20px;
             text-align: center;
@@ -356,7 +377,7 @@
                 position: relative;
                 margin-bottom: 20px;
                 input {
-                    height: 40px;
+                    height: 35px;
                     background: rgba(51, 51, 51, 0.8);
                     border: 1px solid white;
                     border-radius: 4px;
@@ -368,7 +389,8 @@
                     width: 100%;
                 }
                 div {
-                    height: 40px;
+                    height: 35px;
+                    line-height: 35px;
                     width: 106px;
                     background: $red-base;
                     color: white;
@@ -379,7 +401,6 @@
                     position: absolute;
                     right: 0px;
                     top: 0px;
-                    line-height: 40px;
                     &:active {
                         background: darken($red-base, 20%);
                     }
@@ -526,6 +547,10 @@
             vertical-align: top;
             width: $width-min - $rightWidth;
             font-size: $font-size-base;
+            img,video{
+                width: 100%;
+            }
+
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -576,6 +601,15 @@
             }
             .videoModel {
                 margin-bottom: 30px;
+                 &:hover {
+                    -moz-transform: scale(1.1);
+                    /* Firefox 4 */
+                    -webkit-transform: scale(1.1);
+                    /* Safari 和 Chrome */
+                    -o-transform: scale(1.1);
+                    transform: scale(1.1);
+                    border-radius: 4px;
+                }
                 img {
                     width: 280px;
                     height: 180px;

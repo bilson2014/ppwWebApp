@@ -382,13 +382,13 @@ var homePage = {
 }
 homePage.init();
 
-
 var homePage_tpl = {
 	hot_recommend:[
 	        '{@each list as item}',
 			'<div class="swiper-slide coverSlide">',
 			'	<div class="scaleDiv">',
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+ 			'            <div class="bg"></div>' ,
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
 			'			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',

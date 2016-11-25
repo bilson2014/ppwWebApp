@@ -14,8 +14,6 @@
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/common3.js" var="common3Js"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
@@ -296,9 +294,10 @@
                 </div>
                 <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
+
                       <a id="moreProductInfo" class="hide">
 	                      <div class="get-new-detail newsMore ">
-	                      	<span>了解更多</span>
+	                      	<span>更多视频</span>
 	                      	<img src="/resources/images/index/newsMore.png">
 	                      </div>
                       </a>
@@ -367,7 +366,7 @@
     <script type="text/javascript" src="${ykJs }"></script>
     <script type="text/javascript" src="${blockJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
-    <script type="text/javascript" defer async="true" src="${common3Js }"></script>
+
     
     <!-- 加载Mob share 控件 -->
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>

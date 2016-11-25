@@ -15,7 +15,6 @@
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/news.js" var="newsJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/common3.js" var="common3Js"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <!DOCTYPE html>
 <html class="no-js">
@@ -176,7 +175,6 @@
     <script type="text/javascript" src="${flexsliderJS }"></script>
     <script type="text/javascript" src="${newsJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
-    <script type="text/javascript" defer async="true" src="${common3Js }"></script>
 </body>
 
 </html>

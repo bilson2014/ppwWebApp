@@ -5,15 +5,12 @@
 @import "indexSwiper";
 @import "mixins/indexScreen";
 @import "_comHeader3";
-@import "header3";
 @import "compass/typography/text/ellipsis";
 //头部 start
-
-
 .hotLogo {
     width: 300px;
     height: 50px;
-    background: url(/resources/images/index/hotlogo.png) no-repeat !important;
+    background: url(/resources/images/index/hotlogo.svg) no-repeat !important;
     position: absolute;
     top: 80px;
 }
@@ -535,6 +532,9 @@ input:focus {
 .FourModel {
     @include media_screen_width_beta3();
     height: 340px;
+    @media screen and (max-width: 1275px) {
+        height: 300px;
+    }
     margin: 0 auto;
     font-size: 0;
     position: relative;
@@ -545,18 +545,41 @@ input:focus {
     .FourBorder {
         // width: 310px;
         //  @include index-Screen();
-        @include index-Screen-width();
+        width: 310px;
         height: 180px;
+        background-size: 310px 180px !important;
+        @media screen and (max-width: 1275px) {
+            width: 240px;
+            background-size: 240px 142px !important;
+        }
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 280px;
+            height: 180px;
+            background-size: 280px 180px !important;
+        }
         display: inline-block;
         margin-right: 9px;
         margin-top: 80px;
+        @media screen and (min-width: 960px) and (max-width: 1275px) {
+            margin-right: 0px;
+        }
         &:hover {
             .fb1,
             .fb2,
             .fb3,
             .fb4 {
                 //clip: rect(0px 310px 180px 180px);
-                @include cardBgHover();
+                //  @include cardBgHover();
+                width: 310px;
+                clip: rect(0px 310px 180px 180px);
+                @media screen and (max-width: 1275px) {
+                    width: 240px;
+                    clip: rect(0px 240px 142px 142px);
+                }
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    width: 280px;
+                    clip: rect(0px 280px 180px 180px);
+                }
             }
             .fb1b,
             .fb2b,
@@ -564,6 +587,12 @@ input:focus {
             .fb4b,
             {
                 clip: rect(0px 180px 180px 0px);
+                @media screen and (max-width: 1275px) {
+                    clip: rect(0px 142px 142px 0px);
+                }
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    clip: rect(0px 180px 180px 0px);
+                }
             }
         }
         .fb1,
@@ -584,16 +613,36 @@ input:focus {
             -o-transition: all .3s ease-in-out .2s;
             /* Opera */
             opacity: 1;
-            @include index-Screen-width();
+            //@include index-Screen-width();
             // width: 310px;
             // background-size: 310px 180px !important;
+            width: 310px;
+            background-size: 310px 180px !important;
+            @media screen and (max-width: 1275px) {
+                width: 240px;
+                background-size: 240px 142px !important;
+            }
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: 280px;
+                background-size: 280px 180px !important;
+            }
         }
         .fb1,
         .fb2,
         .fb3,
         .fb4 {
-            @include cardBgOrigin();
+            //  @include cardBgOrigin();
             //  clip: rect(180px 310px 180px 300px);
+            width: 310px;
+            clip: rect(180px 310px 180px 310px);
+            @media screen and (max-width: 1275px) {
+                width: 240px;
+                clip: rect(142px 240px 142px 240px);
+            }
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: 280px;
+                clip: rect(180px 280px 180px 280px);
+            }
         }
         .fb1b,
         .fb2b,
@@ -603,19 +652,19 @@ input:focus {
         }
         .fb1,
         .fb1b {
-            background: url("../images/index/fourBorder1.png") no-repeat;
+            background: url("/resources/images/index/fourBorder1.png") no-repeat;
         }
         .fb2,
         .fb2b {
-            background: url("../images/index/fourBorder2.png") no-repeat;
+            background: url("/resources/images/index/fourBorder2.png") no-repeat;
         }
         .fb3,
         .fb3b {
-            background: url("../images/index/fourBorder3.png") no-repeat;
+            background: url("/resources/images/index/fourBorder3.png") no-repeat;
         }
         .fb4,
         .fb4b {
-            background: url("../images/index/fourBorder4.png") no-repeat;
+            background: url("/resources/images/index/fourBorder4.png") no-repeat;
         }
         .FourContent {
             height: 100%;
@@ -625,6 +674,13 @@ input:focus {
             z-index: 3;
             padding-top: 45px;
             padding-left: 78px;
+            @media screen and (max-width: 1275px) {
+                padding-top: 27px;
+                padding-left: 45px;
+            }
+            @media screen and  (min-width: 1275px) and (max-width: 1500px) {
+                padding-left: 58px;
+            }
             .typeBottom {
                 margin-top: 9px;
                 cursor: pointer;
@@ -632,6 +688,10 @@ input:focus {
                     font-size: $font-size-base;
                     color: $gray-light;
                     margin-right: 30px;
+                    @media screen and (max-width: 1275px) {
+                        margin-right: 20px;
+                        font-size: $font-size-sm;
+                    }
                     &:hover {
                         color: $red-base;
                     }
@@ -639,6 +699,9 @@ input:focus {
                 span:nth-child(2) {
                     font-size: $font-size-base;
                     color: $gray-light;
+                    @media screen and (max-width: 1275px) {
+                        font-size: $font-size-sm;
+                    }
                     &:hover {
                         color: $red-base;
                     }
@@ -649,9 +712,15 @@ input:focus {
                 div:nth-child(2) {
                     font-size: 3.0rem;
                     color: $gray-dark;
+                    @media screen and (max-width: 1275px) {
+                        font-size: 2.6rem;
+                    }
                 }
                 div:nth-child(3) {
                     font-size: $font-size-base;
+                    @media screen and (max-width: 1275px) {
+                        font-size: $font-size-sm;
+                    }
                     color: $gray-dark;
                     margin-top: 5px;
                 }
@@ -662,30 +731,54 @@ input:focus {
                     .four1 {
                         width: 26px;
                         height: 26px;
-                        background: url("../images/index/four1.png") no-repeat;
+                        background: url("/resources/images/index/four1.png") no-repeat;
                         position: absolute;
                         background-position: 0px -26px;
+                        @media screen and (max-width: 1275px) {
+                            width: 20px;
+                            height: 20px;
+                            background: url("/resources/images/index/four1s.png") no-repeat;
+                            background-position: 0px -20px;
+                        }
                     }
                     .four2 {
                         width: 26px;
                         height: 26px;
-                        background: url("../images/index/four2.png") no-repeat;
+                        background: url("/resources/images/index/four2.png") no-repeat;
                         position: absolute;
                         background-position: 0px -26px;
+                        @media screen and (max-width: 1275px) {
+                            width: 20px;
+                            height: 20px;
+                            background: url("/resources/images/index/four2s.png") no-repeat;
+                            background-position: 0px -20px;
+                        }
                     }
                     .four3 {
                         width: 26px;
                         height: 26px;
-                        background: url("../images/index/four3.png") no-repeat;
+                        background: url("/resources/images/index/four3.png") no-repeat;
                         position: absolute;
                         background-position: 0px -26px;
+                        @media screen and (max-width: 1275px) {
+                            width: 20px;
+                            height: 20px;
+                            background: url("/resources/images/index/four3s.png") no-repeat;
+                            background-position: 0px -20px;
+                        }
                     }
                     .four4 {
                         width: 26px;
                         height: 26px;
-                        background: url("../images/index/four4.png") no-repeat;
+                        background: url("/resources/images/index/four4.png") no-repeat;
                         position: absolute;
                         background-position: 0px -26px;
+                        @media screen and (max-width: 1275px) {
+                            width: 20px;
+                            height: 20px;
+                            background: url("/resources/images/index/four4s.png") no-repeat;
+                            background-position: 0px -20px;
+                        }
                     }
                 }
             }
@@ -693,37 +786,65 @@ input:focus {
                 margin-left: 30px;
                 cursor: pointer;
             }
+            @mixin changeSize {
+                top: 56px;
+                left: 35px;
+                @media screen and (max-width: 1275px) {
+                    top: 37px;
+                    left: 16px;
+                }
+                @media screen and (min-width: 1275px) and (max-width: 1500px) {
+                    top: 56px;
+                    left: 23px;
+                }
+            }
             .four1 {
                 width: 26px;
                 height: 26px;
-                background: url("../images/index/four1.png") no-repeat;
+                background: url("/resources/images/index/four1.png") no-repeat;
+                @media screen and (max-width: 1275px) {
+                    width: 20px;
+                    height: 20px;
+                    background: url("/resources/images/index/four1s.png") no-repeat;
+                }
                 position: absolute;
-                top: 56px;
-                left: 35px;
+                @include changeSize;
             }
             .four2 {
                 width: 26px;
                 height: 26px;
-                background: url("../images/index/four2.png") no-repeat;
+                background: url("/resources/images/index/four2.png") no-repeat;
+                @media screen and (max-width: 1275px) {
+                    width: 20px;
+                    height: 20px;
+                    background: url("/resources/images/index/four2s.png") no-repeat;
+                }
                 position: absolute;
-                top: 56px;
-                left: 35px;
+                @include changeSize;
             }
             .four3 {
                 width: 26px;
                 height: 26px;
-                background: url("../images/index/four3.png") no-repeat;
+                background: url("/resources/images/index/four3.png") no-repeat;
+                @media screen and (max-width: 1275px) {
+                    width: 20px;
+                    height: 20px;
+                    background: url("/resources/images/index/four3s.png") no-repeat;
+                }
                 position: absolute;
-                top: 56px;
-                left: 35px;
+                @include changeSize;
             }
             .four4 {
                 width: 26px;
                 height: 26px;
-                background: url("../images/index/four4.png") no-repeat;
+                background: url("/resources/images/index/four4.png") no-repeat;
+                @media screen and (max-width: 1275px) {
+                    width: 20px;
+                    height: 20px;
+                    background: url("/resources/images/index/four4s.png") no-repeat;
+                }
                 position: absolute;
-                top: 56px;
-                left: 35px;
+                @include changeSize;
             }
         }
     }
@@ -734,7 +855,7 @@ input:focus {
 .classical {
     padding-top: 80px;
     padding-bottom: 80px;
-    background: white;
+    background: #FDFFFF;
     position: relative;
     .classicalArea {
         @include media_screen_width_beta3();
@@ -745,7 +866,7 @@ input:focus {
 .classicalLogo {
     width: 300px;
     height: 25px;
-    background: url(../images/index/classicalLogo.png) no-repeat !important;
+    background: url(/resources/images/index/classicalLogo.svg) no-repeat !important;
 }
 
 .cardUl {
@@ -767,16 +888,27 @@ input:focus {
         padding: 10px;
         border-radius: 4px;
         margin-top: 20px;
+        background: transparent;
         &:hover {
+            // -moz-box-shadow: 10px 10px 5px #d1d1d1;
+            // /* 老的 Firefox */
+            // box-shadow: 0px 0px 10px #d1d1d1;
+            -moz-transform: scale(1.1);
+            /* Firefox 4 */
+            -webkit-transform: scale(1.1);
+            /* Safari 和 Chrome */
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+            .videoContet {
             -moz-box-shadow: 10px 10px 5px #d1d1d1;
             /* 老的 Firefox */
             box-shadow: 0px 0px 10px #d1d1d1;
-            .videoContet {
-                -moz-box-shadow: 0px 0px 0px #d1d1d1;
-                /* 老的 Firefox */
-                box-shadow: 0px 0px 0px #d1d1d1;
             }
         }
+
+
+
+        
         img {
             width: 100%;
             border-top-right-radius: 4px;
@@ -850,7 +982,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 80px;
-            background: url(../images/index/ClientsLogo.png) no-repeat !important;
+            background: url(/resources/images/index/ClientsLogo.svg) no-repeat !important;
         }
         .r {
             border-right: 1px dotted #ddd;
@@ -898,12 +1030,17 @@ input:focus {
                 -webkit-transition: all .2s linear .2s;
                 /* Safari 和 Chrome */
                 -o-transition: all .2s linear .2s;
-                background: url(../images/index/ourFriendsSS.png) no-repeat;
+                background: url(/resources/images/index/ourFriendsSS.jpg) no-repeat;
                 @media screen and (min-width: 1276px) {
-                    background: url(../images/index/ourFriends.png) no-repeat;
+                    background: url(/resources/images/index/ourFriends.jpg) no-repeat;
                 }
                 &:hover {
                     // background-position-y: -140px !important;
+                    -moz-transform: scale(1.2);
+                    /* Firefox 4 */
+                    -webkit-transform: scale(1.2);
+                    /* Safari 和 Chrome */
+                    -o-transform: scale(1.2);
                     transform: scale(1.2);
                 }
             }
@@ -1122,7 +1259,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 80px;
-            background: url(../images/index/advanLogo.png) no-repeat !important;
+            background: url(../images/index/advanLogo.svg) no-repeat !important;
         }
     }
     .advanContent .ca {
@@ -1237,7 +1374,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 50px;
-            background: url(../images/index/serviceLogo.png) no-repeat !important;
+            background: url(../images/index/serviceLogo.svg) no-repeat !important;
         }
         li {
             position: relative;
@@ -1296,7 +1433,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 80px;
-            background: url(../images/index/newsLogo.png) no-repeat !important;
+            background: url(../images/index/newsLogo.svg) no-repeat !important;
         }
         ul {
             padding-top: 80px;

@@ -7,11 +7,11 @@
 
 .swiper-slide {
     -webkit-transition: all .8s ease-in-out 0s;
-                    -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
+    -moz-transition: all .6s linear 0s;
+    /* Firefox 4 */
+    -webkit-transition: all .6s linear 0s;
+    /* Safari 和 Chrome */
+    -o-transition: all .6s linear 0s;
 }
 
 .swiper-button-prev {
@@ -29,17 +29,17 @@
 }
 
 .swiper-banner .swiper-button-prev {
-     left: 150px !important;
-     @media screen and (min-width: 1500px) {
-                    left: 300px !important;
-                }
+    left: 150px !important;
+    @media screen and (min-width: 1500px) {
+        left: 300px !important;
+    }
 }
 
 .swiper-banner .swiper-button-next {
     right: 150px !important;
-     @media screen and (min-width: 1500px) {
-                    right: 300px !important;
-                }
+    @media screen and (min-width: 1500px) {
+        right: 300px !important;
+    }
 }
 
 .swiper-banner-slide {
@@ -190,29 +190,24 @@
 
 .backgroundCover {
     background: url(/resources/images/index/hotback.png) !important;
-    background-size:cover;
+    background-size: cover;
     position: relative;
-    
-   // background: -webkit-radial-gradient(50% 50%, farthest-corner, white ,#999,#666,#333,black ); 
+    // background: -webkit-radial-gradient(50% 50%, farthest-corner, white ,#999,#666,#333,black ); 
 }
 
 .backgroundCover .swiper-button-prev {
-     left: 20px !important;
-
-     @media screen and (min-width: 1500px) {
-                    left: 150px !important;
-                }
+    left: 20px !important;
+    @media screen and (min-width: 1500px) {
+        left: 150px !important;
+    }
 }
 
 .backgroundCover .swiper-button-next {
-     right: 20px !important;
-
-     @media screen and (min-width: 1500px) {
-                    right: 150px !important;
-                }
+    right: 20px !important;
+    @media screen and (min-width: 1500px) {
+        right: 150px !important;
+    }
 }
-
-    
 
 .swiperCover {
     @include media_screen_width_beta3();
@@ -221,32 +216,30 @@
     .hotLogo {
         width: 300px;
         height: 50px;
-        background: url(/resources/images/index/hotlogo.png) no-repeat !important;
+        background: url(/resources/images/index/hotlogo.svg) no-repeat !important;
         position: absolute;
         top: 80px;
     }
-
-    .leftClick{
+    .leftClick {
         position: absolute;
         top: 80px;
-        width:33%;
-        height:400px;
-        left:0;
+        width: 33%;
+        height: 400px;
+        left: 0;
         background: red;
-        z-index:5;
+        z-index: 5;
         opacity: 0;
     }
-    .rightClick{
+    .rightClick {
         position: absolute;
         top: 80px;
-        width:33%;
-        height:400px;
-        right:0px;
+        width: 33%;
+        height: 400px;
+        right: 0px;
         background: blue;
-        z-index:5;
+        z-index: 5;
         opacity: 0;
     }
-
     .swiper-slide {
         height: 0px;
     }
@@ -255,19 +248,27 @@
         // transform:scale(0.6,0.6) !important;
         .scaleDiv {
             transform: scale(0.8, 0.8) !important;
+            // -webkit-filter: grayscale(90%);
+            // -moz-filter: grayscale(90%);
+            // -ms-filter: grayscale(90%);
+            // -o-filter: grayscale(90%);
+            // filter: grayscale(90%);
+            // filter: gray;
+            
             img {
-                -webkit-filter: grayscale(90%);
-                -moz-filter: grayscale(90%);
-                -ms-filter: grayscale(90%);
-                -o-filter: grayscale(90%);
-                filter: grayscale(90%);
-                filter: gray;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
+
+            .bg{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+            }
         }
         .coverContent {
-            background: transparent;
+            background: white;
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
             div {
@@ -300,16 +301,27 @@
         // transform: scale(0.8,0.8) !important;
         .scaleDiv {
             transform: scale(0.9, 0.9) !important;
+            // -webkit-filter: grayscale(60%);
+            // -moz-filter: grayscale(60%);
+            // -ms-filter: grayscale(60%);
+            // -o-filter: grayscale(60%);
+            // filter: grayscale(60%);
+            // filter: gray;
+           
             img {
-                -webkit-filter: grayscale(60%);
-                -moz-filter: grayscale(60%);
-                -ms-filter: grayscale(60%);
-                -o-filter: grayscale(60%);
-                filter: grayscale(60%);
-                filter: gray;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
+
+            .bg{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+        .coverContent {
+            background: white;
         }
         .swiper-slide-shadow-left {
             opacity: 1 !important;
@@ -320,18 +332,30 @@
     }
     .swiper-slide-next {
         //transform: scale(0.8, 0.8) !important;
+        
         .scaleDiv {
             transform: scale(0.9, 0.9) !important;
+            -webkit-filter: grayscale(60%);
+            -moz-filter: grayscale(60%);
+            -ms-filter: grayscale(60%);
+            -o-filter: grayscale(60%);
+            filter: grayscale(60%);
+            filter: gray;
+           // background: rgba(0, 0, 0, 0.7);
             img {
-                -webkit-filter: grayscale(60%);
-                -moz-filter: grayscale(60%);
-                -ms-filter: grayscale(60%);
-                -o-filter: grayscale(60%);
-                filter: grayscale(60%);
-                filter: gray;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
+
+            .bg{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+        .coverContent {
+            background: white;
         }
         .swiper-slide-shadow-left {
             opacity: 0 !important;
@@ -340,19 +364,30 @@
             opacity: 1 !important;
         }
     }
+
     .swiper-slide-active {
         //  transform:scale(1, 1) !important;
+
         .scaleDiv {
             transform: scale(1, 1) !important;
             img {
-                -webkit-filter: grayscale(0%);
-                -moz-filter: grayscale(0%);
-                -ms-filter: grayscale(0%);
-                -o-filter: grayscale(0%);
-                filter: grayscale(0%);
-                filter: gray;
+                // -webkit-filter: grayscale(0%);
+                // -moz-filter: grayscale(0%);
+                // -ms-filter: grayscale(0%);
+                // -o-filter: grayscale(0%);
+                // filter: grayscale(0%);
+                // filter: gray;
+                background: transparent !important;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
+            }
+
+            .bg{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                display: none;
             }
         }
         .coverContent {
@@ -367,16 +402,6 @@
     }
 }
 
-.director .swiper-button-prev {
-    top: 280px;
-    left: 150px !important;
-}
-
-.director .swiper-button-next {
-    top: 280px;
-    right: 150px !important;
-}
-
 .swiper-director {
     @include media_screen_width_beta3();
     margin: 0 auto;
@@ -384,16 +409,16 @@
     height: 434px;
     padding-top: 150px;
     transition: all .6s ease-in-out 0s;
-                    -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
+    -moz-transition: all .6s linear 0s;
+    /* Firefox 4 */
+    -webkit-transition: all .6s linear 0s;
+    /* Safari 和 Chrome */
+    -o-transition: all .6s linear 0s;
     position: relative;
     .directorLogo {
         width: 300px;
         height: 30px;
-        background: url(/resources/images/index/directorLogo.png) no-repeat !important;
+        background: url(/resources/images/index/directorLogo.svg) no-repeat !important;
         position: absolute;
         top: 80px;
     }
@@ -403,7 +428,7 @@
         line-height: 27px;
         position: absolute;
         top: 80px;
-        left: 160px;
+        left: 200px;
         text-align: center;
         border: 1px solid $red-base;
         border-radius: 4px;
@@ -438,14 +463,12 @@
 //         margin-top: 30px !important;
 //     }
 // }
-
 .director .swiper-button-next {
     background: url(/resources/images/index/dright.png) no-repeat !important;
-      right: 20px !important;
-     @media screen and (min-width: 1500px) {
-                    right: 200px !important;
-                }
-
+    right: 20px !important;
+    @media screen and (min-width: 1500px) {
+        right: 5% !important;
+    }
     &:hover {
         background-position-x: -26px !important;
     }
@@ -453,10 +476,10 @@
 
 .director .swiper-button-prev {
     background: url(/resources/images/index/dleft.png) no-repeat !important;
-     left: 20px !important;
-      @media screen and (min-width: 1500px) {
-                    left: 200px !important;
-                }
+    left: 20px !important;
+    @media screen and (min-width: 1500px) {
+        left: 5% !important;
+    }
     &:hover {
         background-position-x: -26px !important;
     }
@@ -464,6 +487,7 @@
 
 .swiper-director .swiper-slide {
     text-align: center;
+    overflow: hidden;
     font-size: 18px;
     width: 60%;
     background: white;
@@ -515,9 +539,9 @@
         width: 100%;
         opacity: 0;
         transition: all .6s ease-in-out 0s;
-                        -moz-transition: all .6s linear 0s;
+        -moz-transition: all .6s linear 0s;
         /* Firefox 4 */
-        -webkit-transition:all .6s linear 0s;
+        -webkit-transition: all .6s linear 0s;
         /* Safari 和 Chrome */
         -o-transition: all .6s linear 0s;
         background-size: 100% 100% !important;
@@ -531,9 +555,9 @@
         height: 206px;
         width: 100%;
         transition: all .2s ease-in-out 0s;
-                        -moz-transition: all .6s linear 0s;
+        -moz-transition: all .6s linear 0s;
         /* Firefox 4 */
-        -webkit-transition:all .2s linear 0s;
+        -webkit-transition: all .2s linear 0s;
         /* Safari 和 Chrome */
         -o-transition: all .2s linear 0s;
         border-bottom-left-radius: 4px;
@@ -545,9 +569,9 @@
         width: 100%;
         height: 100%;
         text-align: center;
-           -moz-box-shadow: 10px 10px 5px #d1d1d1;
-            /* 老的 Firefox */
-            box-shadow: 0px 0px 10px #d1d1d1;
+        -moz-box-shadow: 10px 10px 5px #d1d1d1;
+        /* 老的 Firefox */
+        box-shadow: 0px 0px 10px #d1d1d1;
         img {
             width: 80px;
             height: 80px;
@@ -556,10 +580,9 @@
             border-radius: 90px;
             -moz-box-shadow: 0px 1px 1px 2px #d1d1d1;
             box-shadow: 0px 1px 1px 2px #d1d1d1;
-            border:1px solid white;
-            background:white;
-            padding:1px;
-
+            border: 1px solid white;
+            background: white;
+            padding: 1px;
         }
         .title {
             font-size: $font-size;
@@ -609,5 +632,3 @@
     //     width: 20%;
     // }
 }
-
-

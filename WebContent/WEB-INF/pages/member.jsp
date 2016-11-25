@@ -99,7 +99,7 @@
         </div>
     </div>
 
-	<div class="page">
+ 	<div class="page">
 
 		       <div class="titleTag">
             <div class="titleWord">
@@ -191,11 +191,10 @@
 	              <br></p>	
 	             </div>
 	     	</div>
-	     </c:if> 
-	     
+	     </c:if> 	     
 	</div>
 
-	<!-- foot -->
+   	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
@@ -245,7 +244,9 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-	</div>
+	
+	
+	
 	
 	<!-- 代码部分begin -->
 	<div class="toolbar " id="toolbar-section" >

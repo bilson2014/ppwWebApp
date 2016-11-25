@@ -51,7 +51,7 @@
 	</script>
 </head>
 <body>
- 	 <div class="header headerMove" id="header">
+
   <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -231,7 +231,9 @@
 
                              <div class="calItem inputWidthPhone">
                                 <div class="title" data-content=""  id="errorPhone">您的联系方式</div>
+                                <div>
                                 <input data-content="0" placeholder="您的手机号" id="phone">
+                                </div>
                             </div>
 
                             <div class="calItem inputWidth">
@@ -299,7 +301,7 @@
     <script type="text/javascript"  src="/resources/lib/jquery/waypoints.min.js"></script>
     <script type="text/javascript"  src="/resources/js/cost.js"></script>
     <script type="text/javascript"  src="/resources/js/common.js"></script>
-    <script type="text/javascript"   src="/resources/js/common3.js"></script>
+
     
     
     

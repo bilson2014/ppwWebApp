@@ -205,6 +205,7 @@
 
 .hold-work {
    @include media_screen_width($about-us-width-middle,$about-us-width-middle,$about-us-width-lg);
+   height: 600px;
   margin: 0 auto;
   //margin-bottom: 80px;
 

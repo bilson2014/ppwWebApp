@@ -2,15 +2,12 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
-    @import "header3";
     @import "_comHeader3";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
-
-
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 60px;
@@ -26,6 +23,10 @@
             }
             @media screen and (min-width:1500px) {
                 width: $width-lg3 - $rightWidth;
+            }
+            img,
+            video {
+                width: 100%;
             }
             .title {
                 font-size: 26px;
@@ -65,14 +66,15 @@
             }
             .videoModel {
                 margin-bottom: 30px;
+
                 label {
                     display: block
                 }
                 label:first-child {
-                    font-size: $font-size;
+                    font-size: $font-size !important;
                     color: $gray-dark;
                     cursor: pointer;
-                    &:hover{
+                    &:hover {
                         color: $red-base;
                     }
                 }
@@ -83,12 +85,11 @@
                     margin-bottom: 12px;
                     height: 48px;
                     overflow: hidden;
-
                 }
-                label:last-child{
+                label:last-child {
                     font-size: $font-size-sm;
                     color: $red-base;
-                     cursor: pointer;
+                    cursor: pointer;
                 }
             }
         }

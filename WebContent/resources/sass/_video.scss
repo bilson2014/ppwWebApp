@@ -5,6 +5,8 @@
 
 @import "mixins/video";
 
+@import "compass/typography/text/ellipsis";
+
 .video-content {
 	position: relative;
 	width: 100%;
@@ -65,6 +67,7 @@
 	h3 {
 		color: $gray-dark;
 		line-height: 12px;
+		@include ellipsis;
 		font: {
 			size: $font-size-base;
 		}
@@ -84,6 +87,7 @@
 	.video-desc {
 		height: 52px;
 		color: $gray;
+		overflow: hidden;
 		font: {
 			size: $font-size-sm;
 			weight: normal;
