@@ -318,6 +318,8 @@ function checkData(type){
 			var name = $('#company-name').val().trim(); // 公司名称
 			/*var telephone = $('#company-telephone').val().trim(); // 公司电话 */
 			var email = $('#company-email').val().trim(); // 公司邮箱
+			var company_address = $('#company-address').val();
+			
 			var description = $('#company-teamDesc').val().trim(); // 公司简介
 			
 			var linkman = $('#company-linkman').val().trim(); // 联系人
@@ -332,10 +334,17 @@ function checkData(type){
 			var business = getBusinessVal(); // 业务范围
 			var scale = $('#company-scale').val().trim(); // 公司规模
 			var phoneNumber = $('#company-phoneNumber').val().trim();
+			var company_demand = $('#company-demand').val();
 			
 			if(name == '' || name == null || name == undefined){
 				popshow('company-name', '请输入公司名称!');
 				$('#company-name').focus();
+				return false;
+			}
+			
+			if(company_address == '' || company_address == null || company_address == undefined){
+				popshow('company-address', '请输入公司地址！');
+				$('#company-address').focus();
 				return false;
 			}
 			
@@ -409,6 +418,12 @@ function checkData(type){
 			if(scale == '' || scale == null || scale == undefined){
 				popshow('company-scale', '请填写公司规模信息!');
 				$('#company-scale').focus();
+				return false;
+			}
+			
+			if(company_demand == '' || company_demand == null || company_demand == undefined){
+				popshow('company-demand', '必须填写对客户的要求!');
+				$('#company-demand').focus();
 				return false;
 			}
 			

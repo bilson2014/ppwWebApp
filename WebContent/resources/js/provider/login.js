@@ -252,6 +252,11 @@ $().ready(function(){
 							$('#user_phoneNumber').focus();
 							return false;
 						}
+						if(!checkMobile(phone_code)){
+							$("#user_phoneNumberId").text("手机号输入错误").removeClass("hide");
+							$('#user_phoneNumber').focus();
+							return false;
+						}
 						if(kap_code == null || kap_code == '' || kap_code == undefined){
 							$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
 							$('#kaptcha_code').focus();
@@ -346,7 +351,7 @@ $().ready(function(){
 				}));
 			},
 			changeLogin:function(){
-				$('#changeLoginId').on('click',function(){
+				$('#changeLoginId').off('click').on('click',function(){
 					if($('#showLogin').hasClass('hide')){//手机登录
 						$('input').val('');
 						$('#loginWord').text('使用账号登录');

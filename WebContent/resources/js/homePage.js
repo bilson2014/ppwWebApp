@@ -89,14 +89,6 @@ function originTool() {
             searchOnclick();
         });
     });
-    //下拉监听
-	$(".dropdown").on('click',function(){
-		$(this).find('ul').slideDown();
-		return false;
-	});
-
-	
-	
      $('.dropdown li').on('click',function(){
           $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
           $(this).parent().slideUp();

@@ -76,7 +76,6 @@ $().ready(function(){
 	chickShowOrder();
 	
 	$('body').on('click',function(){
-		$('.dropdown').find('ul').css('display');
 		var ulArray = $('.dropdown').find('ul');
 		for (var int = 0; int < ulArray.length; int++) {
 			if($(ulArray[int]).css("display")!="none"){
@@ -86,7 +85,16 @@ $().ready(function(){
 		return;
 	});
 	
-	
+	  //下拉监听
+	$(".dropdown").off('click').on('click',function(){
+		var ul = $(this).find('ul');
+		if(ul.css("display")!="none"){
+			ul.slideUp();
+		}else{
+			$(this).find('ul').slideDown();
+		}
+		return false;
+	});
 	
 });
 
@@ -763,8 +771,14 @@ function initOrderClick(){
 		// $('#commonOrderUl').slideUp();
 	});
 
-	$('#commonOrderUlTogle').on('click', function() {
-		$('#commonOrderUl').slideDown();
+	  //下拉监听
+	$(".dropdown").off('click').on('click',function(){
+		var ul = $(this).find('ul');
+		if(ul.css("display")!="none"){
+			ul.slideUp();
+		}else{
+			$(this).find('ul').slideDown();
+		}
 		return false;
 	});
 

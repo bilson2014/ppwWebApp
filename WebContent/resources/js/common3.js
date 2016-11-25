@@ -19,6 +19,18 @@ $().ready(function() {
 		}
 		return;
 	});
+	
+    //下拉监听
+	$(".dropdown").off('click').on('click',function(){
+		var ul = $(this).find('ul');
+		if(ul.css("display")!="none"){
+			ul.slideUp();
+		}else{
+			$(this).find('ul').slideDown();
+		}
+		return false;
+	});
+	
 });
 
 function playVideo() {

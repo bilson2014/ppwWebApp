@@ -21,10 +21,10 @@ function init() {
 //    }, function() {
 //        $(this).find('ul').slideUp();
 //    });
-	$(".dropdown").on('click',function(){
-		$(this).find('ul').slideDown();
-		return false;
-	});
+//	$(".dropdown").on('click',function(){
+//		$(this).find('ul').slideDown();
+//		return false;
+//	});
 
      $('li').on('click',function(){
           $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
