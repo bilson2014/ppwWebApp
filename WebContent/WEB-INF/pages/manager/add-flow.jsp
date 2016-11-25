@@ -138,6 +138,8 @@ var="ajaxfileuploadJs" />
 	<div class="page-title">
 		<label class="page-title-title">项目信息添加</label>
 	</div>
+	<input type="hidden" id="key" style="display: none;" value="${key}">
+	<label class="state" >${state }</label>
     <div class="infobody">
 		<div class="baseinfo">
 			<div class="baseinfo-right">

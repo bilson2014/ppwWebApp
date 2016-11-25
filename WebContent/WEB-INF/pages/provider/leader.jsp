@@ -312,7 +312,7 @@
                 	 <div class="input-group-div">
                 	 	 <ul class="ul-step-three">
                 	 	 	 <li>
-                	 	 	 	<img src="/resources/images/provder/check.png "/>
+                	 	 	 	<img src="/resources/images/provder/check.png"/>
                 	 	 	 </li>
                 	 	 	  <li>
                 	 	 	  	<span class="step-three-title">提交完成等待审核</span>

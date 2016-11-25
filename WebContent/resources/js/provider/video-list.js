@@ -99,7 +99,7 @@ var video = {
 				});
 				upload_Video.on('error', function(type) {
 					 if (type=="Q_TYPE_DENIED"){
-						 alert('格式不正确');
+						 	alert('请上传mp4格式');
 				        }else if(type=="F_EXCEED_SIZE"){
 							alert(video_err_msg);
 				        }

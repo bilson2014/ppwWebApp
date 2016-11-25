@@ -71,7 +71,8 @@ $().ready(function(){
 			});
 			upload_Video.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
-					 toolTipShow('格式不正确');
+					 	$('#videoLabel').show();
+						$('#videoLabel').text('请上传mp4格式');
 			        }else if(type=="F_EXCEED_SIZE"){
 			        	$('#videoLabel').show();
 						$('#videoLabel').text(video_err_msg);
@@ -230,7 +231,8 @@ $().ready(function(){
 			});
 			uploader_HD.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
-					 toolTipShow('格式不正确');
+					 	$('#imageLabel-HD').show();
+						$('#imageLabel-HD').text('请上传图片格式');
 			        }else if(type=="F_EXCEED_SIZE"){
 			        	$('#imageLabel-HD').show();
 						$('#imageLabel-HD').text(image_err_msg);
@@ -258,7 +260,8 @@ $().ready(function(){
 			});
 			uploader_LD.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
-					 toolTipShow('格式不正确');
+					 	$('#imageLabel-LD').show();
+						$('#imageLabel-LD').text('请上传图片格式');
 			        }else if(type=="F_EXCEED_SIZE"){
 			        	$('#imageLabel-LD').show();
 						$('#imageLabel-LD').text(image_err_msg);
