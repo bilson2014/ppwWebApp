@@ -31,8 +31,8 @@
 	}
 
 	dd {
-		-webkit-transition: all .8s;
-		transition: all .8s;
+		// -webkit-transition: all .8s;
+		// transition: all .8s;
 		margin-left: 180px;
 
 		li {
@@ -144,7 +144,7 @@
 }
 
 .price-section,.length-section {
-	width: 200px;
+	width: 220px;
 	color: $gray-dark;
 	font-size: $font-size-sm;
  
@@ -225,4 +225,24 @@
     	}
     }
 
+}
+
+.dropdowns .dropdown-menu{
+	position: absolute;
+	background: white;
+	border:1px solid $gray-dark;
+	border: 1px solid #999;
+    z-index: 9;
+    display: none;
+    top:35px !important;
+	li{
+		&:hover{
+			background: #f0f2f5;
+		}
+	}
+}
+
+
+.video-card .video-desc-section h3{
+	line-height: 16px !important;
 }

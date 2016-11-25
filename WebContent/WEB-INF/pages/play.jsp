@@ -135,7 +135,7 @@
                 <div class="player-wrap">
                     <div class="videoTop">
                         <div id="pName">${product.productName }</div>
-                        <div><span><img src="/resources/images/block/tag.png">标签 :</span>
+                        <div><span><img src="/resources/images/block/tag.png"></span>
                        		<span>
 								<c:if test="${! empty product.tags}">
 									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">

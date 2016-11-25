@@ -32,8 +32,8 @@
 
 
 	dd {
-		-webkit-transition: all .8s;
-		transition: all .8s;
+		// -webkit-transition: all .8s;
+		// transition: all .8s;
 		margin-left: 180px;
 
 		li {
@@ -145,10 +145,10 @@
 }
 
 .price-section,.length-section {
-	width: 200px;
+	width: 220px;
 	color: $gray-dark;
 	font-size: $font-size-sm;
- 
+
 	button {
 		padding: 4px 6px;
 		font-size: $font-size-sm;
