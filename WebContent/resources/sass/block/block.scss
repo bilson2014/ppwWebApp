@@ -88,7 +88,7 @@
             img {
                 margin-left: 20px;
                 margin-right: 20px;
-                width: 20px;
+                width: 18px;
                 position: relative;
                 top: -2px;
             }
@@ -125,13 +125,16 @@
                 /* Safari 和 Chrome */
                 -o-transition: all .4s linear 0s;
                 border-radius: 6px;
+     
                 &:hover {
                     background-position-y: -29px !important;
+                    border:none;
                 }
             }
             li:nth-child(1) {
                 background: url(/resources/images/block/share.png) no-repeat;
                 background-position-y: 7px;
+                background-size:18px 18px;
                 &:hover {
                     background-position-y: 7px !important;
                 }
@@ -146,18 +149,26 @@
             li:nth-child(3) {
                 background: url(/resources/images/block/qq.png) no-repeat;
                 margin-left: 16px;
+                border:1px solid $gray;
+                background-position: -2px -1px;
             }
             li:nth-child(4) {
                 background: url(/resources/images/block/zoom.png) no-repeat;
                 margin-left: 14px;
+                                border:1px solid $gray;
+                                background-position: -2px -1px;
             }
             li:nth-child(5) {
                 background: url(/resources/images/block/wb.png) no-repeat;
                 margin-left: 14px;
+                                border:1px solid $gray;
+                                background-position: -2px -1px;
             }
             li:nth-child(6) {
                 background: url(/resources/images/block/wechat.png) no-repeat;
                 margin-left: 14px;
+                                border:1px solid $gray;
+                                background-position: -2px -1px;
             }
         }
     }
@@ -250,7 +261,7 @@
 
             }
             div:nth-child(2) {
-                height: 60px;
+                height: 58px;
                 overflow: hidden;
                 font-size: $font-size-base;
                 @media screen and (max-width: 1275px) {
@@ -556,6 +567,10 @@
             video {
                 width: 100%;
             }
+            p{
+                margin: 0;
+                padding: 0;
+            }
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -569,19 +584,19 @@
                 overflow: hidden;
                 margin-bottom: 60px;
             }
-            .videoArea .setPro {
+            .setPro {
                 padding-right: 220px;
                 color: $gray-dark;
                 font-size: $font-size-base;
-                img {
-                    width: $width-min - $rightWidth - 220px;
-                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                        width: $width-middle - $rightWidth - 220px;
-                    }
-                    @media screen and (min-width:1500px) {
-                        width: $width-lg3 - $rightWidth - 220px;
-                    }
-                }
+                // img {
+                //     width: $width-min - $rightWidth - 220px;
+                //     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                //         width: $width-middle - $rightWidth - 220px;
+                //     }
+                //     @media screen and (min-width:1500px) {
+                //         width: $width-lg3 - $rightWidth - 220px;
+                //     }
+                //}
             }
         }
         .rightContent {

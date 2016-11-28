@@ -903,12 +903,12 @@ input:focus {
             // -moz-box-shadow: 10px 10px 5px #d1d1d1;
             // /* 老的 Firefox */
             // box-shadow: 0px 0px 10px #d1d1d1;
-            -moz-transform: scale(1.1);
+            -moz-transform: scale(1.05);
             /* Firefox 4 */
-            -webkit-transform: scale(1.1);
+            -webkit-transform: scale(1.05);
             /* Safari 和 Chrome */
-            -o-transform: scale(1.1);
-            transform: scale(1.1);
+            -o-transform: scale(1.05);
+            transform: scale(1.05);
             .videoContet {
                 -moz-box-shadow: 10px 10px 5px #d1d1d1;
                 /* 老的 Firefox */
@@ -1051,12 +1051,12 @@ input:focus {
                 }
                 &:hover {
                     // background-position-y: -140px !important;
-                    -moz-transform: scale(1.2);
+                    -moz-transform: scale(1.1);
                     /* Firefox 4 */
-                    -webkit-transform: scale(1.2);
+                    -webkit-transform: scale(1.1);
                     /* Safari 和 Chrome */
-                    -o-transform: scale(1.2);
-                    transform: scale(1.2);
+                    -o-transform: scale(1.1);
+                    transform: scale(1.1);
                 }
             }
         }
@@ -1488,6 +1488,7 @@ input:focus {
                 font-size: $font-size-lg;
                 cursor: pointer;
                 @include ellipsis;
+                padding-right: 60px;
             }
             div:nth-child(2) {
                 height: 2px;
@@ -1499,8 +1500,8 @@ input:focus {
             div:nth-child(3) {
                 color: $gray-light !important;
                 font-size: $font-size-sm;
-                padding-right: 24%;
-                height: 52px;
+                padding-right: 15%;
+                height: 54px;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -1518,7 +1519,7 @@ input:focus {
 }
 
 .join {
-    background: url(/resources/images/index/join.png) no-repeat !important;
+    background: url(/resources/images/index/join.jpg) no-repeat !important;
     background-size: 100% 100% !important;
     height: 307px;
     min-width: 960px;

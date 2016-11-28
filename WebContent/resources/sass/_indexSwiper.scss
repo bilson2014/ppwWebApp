@@ -464,9 +464,9 @@
 // }
 .director .swiper-button-next {
     background: url(/resources/images/index/dright.png) no-repeat !important;
-     position: relative;
+    position: absolute;
     right: 20px !important;
-    top:-155px;
+    top:300px;
     @media screen and (min-width: 1500px) {
         right: 5% !important;
     }
@@ -477,9 +477,9 @@
 
 .director .swiper-button-prev {
     background: url(/resources/images/index/dleft.png) no-repeat !important;
-     position: relative;
+    position: absolute;
     left: 20px !important;
-    top:-155px;
+    top:300px;
     @media screen and (min-width: 1500px) {
         left: 5% !important;
     }
@@ -603,7 +603,7 @@
         .content {
             font-size: $font-size-sm;
             color: $gray-light;
-            height: 45px;
+            height: 43px;
             padding-left: 12.5%;
             padding-right: 12.5%;
             line-height: 15px;
