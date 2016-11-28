@@ -6,8 +6,6 @@
 @import "mixins/indexScreen";
 @import "compass/typography/text/ellipsis";
 //头部 start
-
-
 .hotLogo {
     width: 300px;
     height: 50px;
@@ -304,7 +302,7 @@
     top: -1px;
     .dropdown-menu {
         width: 222px;
-        top: 29px;
+        top: 31px;
         left: -1px;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
@@ -1482,6 +1480,14 @@ input:focus {
             img {
                 position: relative;
                 margin-left: 10px;
+            }
+            .Contentp::after {
+                content: "...";
+                font-weight: bold;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 0 20px 1px 45px;
             }
             div:nth-child(1) {
                 color: $gray-dark;

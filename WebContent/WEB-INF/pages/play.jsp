@@ -10,6 +10,7 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
@@ -175,7 +176,7 @@
 	                            <div>作品集</div>
 	                        </div>
 	                         </a>
-	                        <div>
+	                        <div class="teamDescription">
 	                        	${product.teamDescription }
 	                        </div>
 	                    </div>
@@ -184,7 +185,7 @@
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
                         <div class="title">影片故事简述</div>
-                        <div class="content">
+                        <div class="content playContent">
                             	${product.pDescription }
                         </div>
                     </div>
@@ -358,6 +359,7 @@
 	             </div>
                             <!--新版底部-->
     </div>
+      <script type="text/javascript" src="${clampJs }"></script>
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>

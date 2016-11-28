@@ -13,7 +13,6 @@ $().ready(function() {
     InitGetPrice();
     $('#equipmentInfo').text(setInfoContent[3]);
 	$('#teamInfo').text(setInfoContent[0]);
-	
 });
 function init() {
 

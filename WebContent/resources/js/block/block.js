@@ -23,6 +23,10 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
+    var node=document.getElementsByClassName('playContent')[0];  
+    $clamp(node,{clamp:3});   
+    var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
+    $clamp(teamDescripti,{clamp:2});   
 });
 function initTab() {
     var product_id = 1;

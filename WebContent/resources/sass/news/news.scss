@@ -2,6 +2,7 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
+    @import "compass/typography/text/ellipsis";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -37,6 +38,7 @@
                 margin-bottom: 30px;
                 overflow: hidden;
                 margin-bottom: 60px;
+                @include ellipsis;
             }
             .setPro {
                 padding-right: 220px;
@@ -66,6 +68,7 @@
                 margin-bottom: 30px;
                 overflow: hidden;
                 cursor: pointer;
+
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -80,6 +83,7 @@
                     cursor: pointer;
                     height: 40px;
                     overflow: hidden;
+                    @include ellipsis;
                     &:hover {
                         color: $red-base !important;
                     }

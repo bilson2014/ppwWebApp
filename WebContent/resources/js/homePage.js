@@ -301,6 +301,10 @@ var homePage = {
 				$("#directorContent").empty().html(juicer(homePage_tpl.team_recommend,data));
 				//渲染team效果
 				_this.director();
+				 $('.dContent').each(function(i){ 
+               	  var node=document.getElementsByClassName('dContent')[i];  
+    			      $clamp(node,{clamp:3});     
+               	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -365,6 +369,14 @@ var homePage = {
 			if(data.code==1){
 				$("#news-container").empty().html(juicer(homePage_tpl.news_resommend,data));
 				_this.getNewsDetail();
+				
+                  var hasNum = $('.Content').length;
+                  $('.Content').each(function(i){ 
+                	  var node=document.getElementsByClassName('Content')[i];  
+     			      $clamp(node,{clamp:3});     
+                	  }); 
+				
+				
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -439,7 +451,7 @@ var homePage_tpl = {
 			'			<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
 			'			<div class="title">${item.teamName}</div>',
 			'			<div class="line"></div>',
-			'			<div class="content">${item.description}</div>',
+			'			<div class="content dContent">${item.description}</div>',
 			'			<div class="toProduct">作品集</div>',
 			'		</a>',
 			'	</div>',
@@ -458,8 +470,8 @@ var homePage_tpl = {
 			'	</div>',
 			'</li>',
 			'{@/each}'
-         ].join("")
-		
+         ].join("")         
+    
 }
 
 

@@ -30,6 +30,7 @@
 <script type="text/javascript"
 	src="resources/lib/jquery/waypoints.min.js"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
+<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->

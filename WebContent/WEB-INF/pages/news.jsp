@@ -16,6 +16,7 @@
 <spring:url value="/resources/js/news.js" var="newsJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
+<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -169,6 +170,8 @@
                             </div>
                             <!--新版底部-->
     </div>
+    
+     <script type="text/javascript" src="${clampJs }"></script>
      <script type="text/javascript" src="${jqueryJs }"></script>
       <script type="text/javascript" src="${jquerybase64Js }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
