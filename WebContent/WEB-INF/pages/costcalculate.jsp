@@ -237,7 +237,7 @@
                             </div>
 
                             <div class="calItem inputWidth">
-                                <button id="start">开始计算</button>
+                                <button class="btn-c-r" id="start">开始计算</button>
                                 <button id="clear">重置</button>
                             </div>
 

@@ -634,7 +634,7 @@ function initClose() {
 		
 		setTimeout(function(){
 			$('#playVideo').addClass('hide');
-			},800);
+			},300);
 		document.getElementById("header3Video").pause();
 	    $('#header3Video').removeClass('active');
 		
@@ -644,7 +644,7 @@ function initClose() {
 		
 		setTimeout(function(){
 			$('#playVideo').addClass('hide');
-			},800);
+			},300);
 		$('#header3Video').removeClass('active');
 		document.getElementById("header3Video").pause();
 	});
@@ -695,9 +695,9 @@ function showOrder(typeName) {
             '</div>' +
             '<div class="cOrderItem" data-content="" id="indent_code_error">' +
             ' <input id="phoneCode" placeholder="输入手机验证码">' +
-            '<div id="getPhoneCode">获取验证码</div>' +
+            '<div class="btn-c-r" id="getPhoneCode">获取验证码</div>' +
             ' </div>' +
-            ' <div class="cOrderBtn" id="order-btn">确认下单</div>' +
+            ' <div class="cOrderBtn btn-c-r" id="order-btn">确认下单</div>' +
             ' </form>' +
             '  <div class="cOrderBotTitle">下单后,专业顾问将在2小时之内与您致电确认具体需求</div>' +
             '</div>';
