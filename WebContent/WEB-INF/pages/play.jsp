@@ -166,7 +166,7 @@
 	                    	<a href="/provider/info_${teamId }.html">
 	                        <div>
 	                        	<c:if test="${empty product.teamPhotoUrl }">
-									<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
+									<img src='/resources/images/play/default_team_photo.svg' class="img-rounded" >
 								</c:if>
 								<c:if test="${!empty product.teamPhotoUrl }">
 									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
