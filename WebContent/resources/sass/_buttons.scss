@@ -148,4 +148,13 @@ input[type="button"] {
     }
 }
 
+
+
 //end
+
+.btn-c-r {
+    &:hover {
+        background-color: $gray !important;
+        color: #fff !important;
+    }
+}

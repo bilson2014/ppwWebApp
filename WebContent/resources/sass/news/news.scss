@@ -67,14 +67,15 @@
                 margin-bottom: 30px;
 
                 label {
-                    display: block
+                    display: block;
+                    font-weight: 500;
                 }
                 label:first-child {
                     font-size: $font-size !important;
-                    color: $gray-dark;
+                    color: $gray-dark !important;
                     cursor: pointer;
                     &:hover {
-                        color: $red-base;
+                        color: $red-base !important;
                     }
                 }
                 label:nth-child(2) {

@@ -198,6 +198,7 @@
 .backgroundCover .swiper-button-prev {
     left: 20px !important;
     @media screen and (min-width: 1500px) {
+        top: 295px;
         left: 150px !important;
     }
 }
@@ -205,6 +206,7 @@
 .backgroundCover .swiper-button-next {
     right: 20px !important;
     @media screen and (min-width: 1500px) {
+        top: 295px;
         right: 150px !important;
     }
 }
@@ -254,19 +256,17 @@
             // -o-filter: grayscale(90%);
             // filter: grayscale(90%);
             // filter: gray;
-            
             img {
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
-                 @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 240px;
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    height: 240px;
+                }
+                @media screen and (min-width: 1500px) {
+                    height: 260px;
+                }
             }
-            @media screen and (min-width: 1500px) {
-                height: 260px;
-            }
-            }
-
-            .bg{
+            .bg {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -313,13 +313,11 @@
             // -o-filter: grayscale(60%);
             // filter: grayscale(60%);
             // filter: gray;
-           
             img {
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
-
-            .bg{
+            .bg {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -338,7 +336,6 @@
     }
     .swiper-slide-next {
         //transform: scale(0.8, 0.8) !important;
-        
         .scaleDiv {
             transform: scale(0.9, 0.9) !important;
             -webkit-filter: grayscale(60%);
@@ -347,13 +344,12 @@
             -o-filter: grayscale(60%);
             filter: grayscale(60%);
             filter: gray;
-           // background: rgba(0, 0, 0, 0.7);
+            // background: rgba(0, 0, 0, 0.7);
             img {
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
-
-            .bg{
+            .bg {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -370,10 +366,8 @@
             opacity: 1 !important;
         }
     }
-
     .swiper-slide-active {
         //  transform:scale(1, 1) !important;
-
         .scaleDiv {
             transform: scale(1, 1) !important;
             img {
@@ -387,8 +381,7 @@
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
             }
-
-            .bg{
+            .bg {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -471,7 +464,9 @@
 // }
 .director .swiper-button-next {
     background: url(/resources/images/index/dright.png) no-repeat !important;
+     position: relative;
     right: 20px !important;
+    top:-155px;
     @media screen and (min-width: 1500px) {
         right: 5% !important;
     }
@@ -482,7 +477,9 @@
 
 .director .swiper-button-prev {
     background: url(/resources/images/index/dleft.png) no-repeat !important;
+     position: relative;
     left: 20px !important;
+    top:-155px;
     @media screen and (min-width: 1500px) {
         left: 5% !important;
     }
@@ -552,7 +549,7 @@
         -o-transition: all .6s linear 0s;
         background-size: 100% 100% !important;
         border-radius: 4px;
-        top:0px;
+        top: 0px;
     }
     .b {
         position: absolute;

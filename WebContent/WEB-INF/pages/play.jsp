@@ -166,7 +166,7 @@
 	                    	<a href="/provider/info_${teamId }.html">
 	                        <div>
 	                        	<c:if test="${empty product.teamPhotoUrl }">
-									<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
+									<img src='/resources/images/play/default_team_photo.svg' class="img-rounded" >
 								</c:if>
 								<c:if test="${!empty product.teamPhotoUrl }">
 									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
@@ -205,7 +205,7 @@
 	                    	 <div class="afterPrice" ><span>￥</span><span>暂无报价</span></div>
 	                    </c:if>
 	                    <div class="afterPriceTitle">影片价格</div>
-                        <div id="needOrder">我要下单</div>
+                        <div class="btn-c-r" id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
@@ -221,9 +221,9 @@
 	                        </div>
 	                        <div class="orderItem" id="phoneCodeError">
 	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
-	                            <div id="verification_code_recover_btn">获取验证码</div>
+	                            <div class="btn-c-r" id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn">确认提交</div></a>
+	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn btn-c-r">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
 	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
                         </form>

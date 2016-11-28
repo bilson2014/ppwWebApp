@@ -133,20 +133,19 @@
 					<div class="swiper-slide">
 						<ul>
 							<li class="title" id="bannerTitleAn1">专业的商业视频服务平台</li>
-							<li class="desc" id="DescAn1">35800+ 导演 / 编剧 / 摄影师 /
-								影视专家为您服务</li>
+							<li class="desc" id="DescAn1">35800+ 导演 / 编剧 / 摄影师 /影视专家为您服务</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
 							<li class="title" id="bannerTitleAn2">免费创意策划 72小时极速出片</li>
-							<li class="desc" id="DescAn2">免费创意策划 72小时极速出片</li>
+							<li class="desc" id="DescAn2">专业视频管家 一站式视频服务 全流程质量监管</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
 							<li class="title" id="bannerLast">低预算拍大片 不满意全额退款</li>
-							<li class="desc" id="DescLast">低预算拍大片 不满意全额退款</li>
+							<li class="desc" id="DescLast">低于行业均价30%以上 平台托管制作费</li>
 						</ul>
 					</div>
 				</div>
@@ -179,7 +178,7 @@
 						<input id="csrftoken" type="hidden"
 							value="${sessionScope.csrftoken }"> <input
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
-						<button class="helpYou" type="button">帮我推荐</button>
+						<button class="helpYou btn-c-r" type="button">帮我推荐</button>
 						<div class="wordPosition">
 						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">
