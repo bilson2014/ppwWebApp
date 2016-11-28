@@ -322,22 +322,25 @@ var homePage = {
 	    });
 
 	    var images = new Array(
-	        'url(/resources/images/index/db1.png) no-repeat',
-	        'url(/resources/images/index/db2.png) no-repeat',
-	        'url(/resources/images/index/db3.png) no-repeat',
-	        'url(/resources/images/index/db4.png) no-repeat',
-	        'url(/resources/images/index/db5.png) no-repeat',
-	        'url(/resources/images/index/db6.png) no-repeat',
-	        'url(/resources/images/index/db7.png) no-repeat',
-	        'url(/resources/images/index/db8.png) no-repeat',
-	        'url(/resources/images/index/db9.png) no-repeat',
-	        'url(/resources/images/index/db10.png) no-repeat',
-	        'url(/resources/images/index/db11.png) no-repeat',
-	        'url(/resources/images/index/db12.png) no-repeat',
-	        'url(/resources/images/index/db13.png) no-repeat',
-	        'url(/resources/images/index/db14.png) no-repeat',
-	        'url(/resources/images/index/db15.png) no-repeat',
-	        'url(/resources/images/index/db16.png) no-repeat'
+	        'url(/resources/images/index/db1.jpg) no-repeat',
+	        'url(/resources/images/index/db2.jpg) no-repeat',
+	        'url(/resources/images/index/db3.jpg) no-repeat',
+	        'url(/resources/images/index/db4.jpg) no-repeat',
+	        'url(/resources/images/index/db5.jpg) no-repeat',
+	        'url(/resources/images/index/db6.jpg) no-repeat',
+	        'url(/resources/images/index/db7.jpg) no-repeat',
+	        'url(/resources/images/index/db8.jpg) no-repeat',
+	        'url(/resources/images/index/db9.jpg) no-repeat',
+	        'url(/resources/images/index/db10.jpg) no-repeat',
+	        'url(/resources/images/index/db11.jpg) no-repeat',
+	        'url(/resources/images/index/db12.jpg) no-repeat',
+	        'url(/resources/images/index/db13.jpg) no-repeat',
+	        'url(/resources/images/index/db14.jpg) no-repeat',
+	        'url(/resources/images/index/db15.jpg) no-repeat',
+	        'url(/resources/images/index/db16.jpg) no-repeat',
+	        'url(/resources/images/index/db17.jpg) no-repeat',
+	        'url(/resources/images/index/db18.jpg) no-repeat',
+	        'url(/resources/images/index/db19.jpg) no-repeat'
 	    );
 
 

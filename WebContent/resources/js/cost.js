@@ -13,6 +13,7 @@ $().ready(function() {
     InitGetPrice();
     $('#equipmentInfo').text(setInfoContent[3]);
 	$('#teamInfo').text(setInfoContent[0]);
+	
 });
 function init() {
 
@@ -21,7 +22,9 @@ function init() {
 //    }, function() {
 //        $(this).find('ul').slideUp();
 //    });
-//	$(".dropdown").on('click',function(){
+//	$(".costSelect").on('click',function(){
+//		alert(1);
+//		$(".dropdown").find('ul').slideUp();
 //		$(this).find('ul').slideDown();
 //		return false;
 //	});

@@ -186,4 +186,27 @@
 }
 
 
+
+//冲突我要拍片
+.dropdowns .dropdown-menu{
+  position: absolute;
+  background: white;
+  border:1px solid $gray-dark;
+  border: 1px solid #999;
+    z-index: 9;
+    display: none;
+    top:32px !important;
+  li{
+    &:hover{
+      background: #f0f2f5;
+    }
+  }
+}
+
+
+.video-card .video-desc-section h3{
+  line-height: 16px !important;
+}
+
+
  
