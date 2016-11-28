@@ -39,10 +39,8 @@ function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
 	  '<a href="/home/news/info/'+item.id+'" target="_blank">'+
       	'<label>' + item.title + '</label>' +
-      '</a>'+
       '<label>' + item.discription + '</label>'+
-      '<a href="/home/news/info/'+item.id+'" target="_blank">'+
-      '  <label>了解更多</label>' +
+      '<label>了解更多</label>' +
       '</a>'+
       '</div>';
 	  $body += '</div>';
