@@ -174,22 +174,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="video-picHDUrl" class="col-sm-2 control-label">缩略图</label>
-						<div class="col-sm-3">
-							<div class="img-icon" id="video-picHD-div">
-								<img src="" alt="拍片网" class="img-thumbnail" id="HDImg">
-								<div style="margin:0px 40px;float:left" id="HDImgName"></div>
-								<input type="hidden" value="${model.picHDUrl }" id="video-picHDUrl"/>
-							</div>
-							<div class="upload-btn">
-								<div class="picker" id="uploadHDBt">上传缩略图</div>
-								<a href="javascript:void(0);" data-href="/resources/images/provider/default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
-								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="imageLabel-HD" style="display: none;"></div>
-							</div> 
-							</div>
-				
-						
 						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
 						<div class="col-sm-3">
 							<div class="img-icon" id="video-picLD-div">
@@ -199,11 +183,10 @@
 							</div>
 							<div class="upload-btn">
 								<div class="picker" id="uploadLDBt">上传封面</div>
-								<a href="javascript:void(0);" data-href="default-thumbnail.jpg" class="exampleUrl" data-width="1000" data-height="600">查看示例</a>
+								<a href="javascript:void(0);" data-href="/resources/images/provider/default-cover.jpg" class="exampleUrl" data-width="650" data-height="358">查看示例</a>
 								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="imageLabel-LD" style="display: none;"></div>
 							</div> 
-							
 						</div>
 					</div>
 					<div class="form-group">
@@ -218,7 +201,6 @@
 								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于200M的视频文件,推荐720P分辨率,25帧<span style="color:red;">*</span></p>
 								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
 							</div>
-							
 						</div>
 					</div>
 				
