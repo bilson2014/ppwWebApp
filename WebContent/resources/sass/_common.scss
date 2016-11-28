@@ -1,15 +1,23 @@
 /*!
-	common css style
-	define the wrap of header/footer/page
+    common css style
+    define the wrap of header/footer/page
 */
 
 @import "reboot";
 @import "navbar";
 @import "media_screen";
 @import "video";
+@import "buttons";
 //@import "icons-sprite"; 
 body {
     font-family: "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+div {
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
 }
 
 .page {
@@ -19,6 +27,11 @@ body {
 a:focus,
 a:hover {
     text-decoration: none !important;
+    outline: none !important;
+}
+
+a {
+    outline: none !important;
 }
 
 .header {
@@ -207,7 +220,7 @@ a:hover {
     }
     .qq-icon {
         display: inline-block;
-        //	@include icons-sprite(qq-icon);
+        //  @include icons-sprite(qq-icon);
         width: 16px;
         height: 16px;
         vertical-align: bottom;
@@ -215,7 +228,7 @@ a:hover {
     }
     .tel-icon {
         display: inline-block;
-        //	@include icons-sprite(tel-icon);
+        //  @include icons-sprite(tel-icon);
         width: 16px;
         height: 16px;
         vertical-align: middle;
@@ -223,7 +236,7 @@ a:hover {
     }
     .mail-icon {
         display: inline-block;
-        //	@include icons-sprite(mail-icon);
+        //  @include icons-sprite(mail-icon);
         width: 16px;
         height: 16px;
         vertical-align: middle;
@@ -295,7 +308,7 @@ a:hover {
 
 .toolbar-item-weixin:hover {
     //background: image-url('../images/icons/tele-desc.png') no-repeat;
-    //	@include icons-sprite(tele-desc);
+    //  @include icons-sprite(tele-desc);
 }
 
 .toolbar-item-qq {
@@ -305,17 +318,17 @@ a:hover {
 
 .toolbar-item-qq:hover {
     //background: image-url('../images/icons/qq-desc.png') no-repeat;
-    //	@include icons-sprite(qq-desc);
+    //  @include icons-sprite(qq-desc);
 }
 
 .toolbar-item-top {
     //background: image-url('../images/icons/top-client.png') no-repeat;
-    //	@include icons-sprite(top-client);
+    //  @include icons-sprite(top-client);
 }
 
 .toolbar-item-top:hover {
     //background: image-url('../images/icons/top-desc.png') no-repeat;
-    //	@include icons-sprite(top-desc);
+    //  @include icons-sprite(top-desc);
 }
 
 .modal-open {
@@ -527,7 +540,7 @@ a:hover {
         top: -34px;
         width: 40px;
         height: 40px;
-        //	@include icons-sprite(close-icon);
+        //  @include icons-sprite(close-icon);
         cursor: pointer;
     }
     dl {
@@ -569,7 +582,7 @@ a:hover {
                     line-height: 34px;
                     width: 14px;
                     height: 14px;
-                    //	@include icons-sprite(telephone);
+                    //  @include icons-sprite(telephone);
                 }
             }
             .modal-message {
@@ -658,9 +671,14 @@ a:hover {
 }
 
 //切换后
+.login-item {
+    color: white !important;
+}
 
-.login-item{
-    color:$red-base !important;
+.headerMove {
+    .login-item {
+        color: $red-base !important;
+    }
 }
 
 .headerMove {
@@ -761,7 +779,7 @@ a:hover {
 
 .menu-bar>.right-part {
     right: -20px !important;
-     @media screen and (max-width: 1276px)  {
+    @media screen and (max-width: 1276px) {
         margin-right: 25px;
     }
 }
@@ -875,12 +893,11 @@ a:hover {
     position: relative;
     border-top: 1px solid white;
     font-weight: 500;
-    .title{
-        a{
+    .title {
+        a {
             cursor: none !important;
         }
     }
-
     a:hover {
         color: white;
     }
@@ -908,8 +925,8 @@ a:hover {
                 font-size: $font-size !important;
                 margin-bottom: 16px;
             }
-               div:nth-child(3) {
-                  margin-top: 5px;
+            div:nth-child(3) {
+                margin-top: 5px;
             }
             div:last-child {
                 margin-top: 20px;
@@ -965,8 +982,10 @@ a:hover {
                 .noiconItem {
                     height: 12px;
                     margin-bottom: 11px;
-                     &:hover{
-                        a{ color:$red-base;}
+                    &:hover {
+                        a {
+                            color: $red-base;
+                        }
                     }
                     a {
                         position: relative;
@@ -977,8 +996,10 @@ a:hover {
                     height: 12px;
                     padding-left: 14px;
                     margin-bottom: 11px;
-                    &:hover{
-                       a{ color:$red-base;}
+                    &:hover {
+                        a {
+                            color: $red-base;
+                        }
                     }
                     a {
                         position: relative;
@@ -1014,7 +1035,7 @@ a:hover {
                     font-size: 34px !important;
                     position: relative;
                     top: -10px;
-                    background:black;
+                    background: black;
                     a {
                         color: $red-base !important;
                     }
@@ -1022,16 +1043,14 @@ a:hover {
                 .workTime {
                     position: relative;
                     top: -3px;
-                    a{
+                    a {
                         cursor: none;
                     }
-                    
                 }
             }
         }
     }
 }
-
 
 //视频
 .openVideo {
@@ -1049,7 +1068,7 @@ a:hover {
         height: 24px;
         width: 24px;
         z-index: 15;
-        right: -355px;
+        right: -349px;
         top: -10px;
         background: url(/resources/images/block/close.png) no-repeat;
         cursor: pointer;
@@ -1063,7 +1082,7 @@ a:hover {
         position: absolute;
         top: 0px;
         background: black;
-        opacity: 0.3;
+        opacity: 0.8;
         z-index: 10;
     }
     video {
@@ -1080,7 +1099,7 @@ a:hover {
         position: fixed;
         z-index: 12;
         width: 679px;
-        height: 389px;
+        height: 386px;
         -moz-transition: perspective(1000px) rotatex(-61deg);
         ;
         /* Firefox 4 */
@@ -1100,6 +1119,7 @@ a:hover {
         transform-style: preserve-3d;
         border: 5px solid rgba(255, 255, 255, 0.3);
         border-radius: 6px;
+        opacity: 0;
     }
     #videoRoata {
         position: fixed;
@@ -1118,6 +1138,7 @@ a:hover {
         /* Safari 和 Chrome */
         -o-transition: rotateX(0);
         transform: rotateX(0);
+        opacity: 1;
     }
 }
 
@@ -1156,20 +1177,15 @@ a:hover {
 //         transform: rotateX(-90);
 //         opacity: 0;
 //         background: black;
-
 //     }
-
 //     .videoRoata{
-
 //     }
-
 //     .active{
 //         -webkit-transform: rotateX(0);
 //         transform: rotateX(0);
 //         opacity: 1;
 //     }
 // }
-
 .comOrder {
     position: fixed;
     z-index: 120;
@@ -1284,9 +1300,14 @@ a:hover {
     }
 }
 
-.dropdowns .dropdown-menu{
-    left:0px !important;
+.dropdown-toggle {
+    padding: 6px 12px;
 }
+
+.dropdowns .dropdown-menu {
+    left: 0px !important;
+}
+
 .dropdowns {
     width: 100% !important;
     height: 35px !important;
@@ -1314,7 +1335,7 @@ a:hover {
         border-top-right-radius: 0px;
         padding: 0px;
         margin: 0px;
-        left:0px !important;
+        left: 0px !important;
         li {
             width: 100% !important;
             padding-left: 10px;
@@ -1363,7 +1384,7 @@ a:hover {
         right: -12px;
         background: #f0f2f5;
         border-radius: 90px;
-        border:1px solid #d1d1d1;
+        border: 1px solid #d1d1d1;
         div {
             width: 12px;
             height: 12px;

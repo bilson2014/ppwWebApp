@@ -2,6 +2,7 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
+    @import "compass/typography/text/ellipsis";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -9,7 +10,7 @@
     $rightWidth:320px;
     .videoArea {
         height: 830px;
-        background: url(../../images/index/hotback.png) no-repeat;
+        background: url(/resources/images/index/hotback.png) no-repeat;
         background-size: 100% 100%;
         position: relative;
         padding-top: 60px;
@@ -117,12 +118,12 @@
                 width: 26px;
                 height: 26px;
                 vertical-align: top;
-                transition: all .6s linear 0s;
-                -moz-transition: all .6s linear 0s;
+                transition: all .4s linear 0s;
+                -moz-transition: all .4s linear 0s;
                 /* Firefox 4 */
-                -webkit-transition: all .6s linear 0s;
+                -webkit-transition: all .4s linear 0s;
                 /* Safari 和 Chrome */
-                -o-transition: all .6s linear 0s;
+                -o-transition: all .4s linear 0s;
                 border-radius: 6px;
                 &:hover {
                     background-position-y: -29px !important;
@@ -171,6 +172,10 @@
                 font-size: $font-size;
                 color: white;
                 display: inline-block;
+                max-width: 250px;
+                height: 30px;
+                @include ellipsis;
+                vertical-align: top;
                 &:hover {
                     color: $red-base;
                     border-color: transparent;
@@ -233,7 +238,7 @@
             @media screen and (max-width: 1275px) {
                 margin-top: 10px;
             }
-            .content {
+            .content,.title {
                 color: white !important;
             }
             div {
@@ -242,6 +247,7 @@
             div:nth-child(1) {
                 margin-bottom: 29px;
                 font-size: $font-size;
+
             }
             div:nth-child(2) {
                 height: 60px;
