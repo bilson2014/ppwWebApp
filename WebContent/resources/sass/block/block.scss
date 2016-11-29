@@ -133,9 +133,10 @@
                 background-position-y: 4px;
                 background-size: 18px 18px;
                 &:hover {
-                    background-position-y: 7px !important;
+                    background-position-y: 4px !important;
                 }
             }
+            
             li:nth-child(2) {
                 color: $gray-light;
                 font-size: $font-size-base;
@@ -261,7 +262,7 @@
             div:nth-child(2) {
                 height: 75px;
                 overflow: hidden;
-                font-size: $font-size-sm;
+                font-size: $font-size-base;
                 @media screen and (max-width: 1275px) {
                     height: 40px;
                 }
