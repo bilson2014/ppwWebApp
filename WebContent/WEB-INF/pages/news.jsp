@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%-- <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="r" uri="/mytaglib" %> --%>
 
 
 
@@ -30,7 +30,6 @@
     <title>拍片网－广告－宣传片－微电影－视频营销</title>
     <link rel="stylesheet" href="${newsCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
-
 </head>
 
 <body>
@@ -106,7 +105,7 @@
                     <input type="hidden" id="newsId" value="${news.id}">
                 </div>
                 <div class="rightContent">
-                    <div class="title">更多最新资讯</div>
+                    <div class="title">更多资讯</div>
                     <div class="setVideo" id="moreNews">
                        <!--  <div class="videoModel">
                             <label>标题</label>

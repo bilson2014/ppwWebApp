@@ -24,7 +24,7 @@ $().ready(function() {
     showDiv();
     initView();
     var node=document.getElementsByClassName('playContent')[0];  
-    $clamp(node,{clamp:3});   
+    $clamp(node,{clamp:4});   
     var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
     $clamp(teamDescripti,{clamp:2});   
 });

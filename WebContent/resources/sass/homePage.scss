@@ -1473,8 +1473,12 @@ input:focus {
                 div:nth-child(2) {
                     background: $red-base;
                 }
+                 div:nth-child(3) {
+                    color: $red-base !important;
+                    cursor: pointer;
+                }
                 div:nth-child(4) {
-                    color: $gray !important;
+                    color: $red-base !important;
                 }
             }
             img {

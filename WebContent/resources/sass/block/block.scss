@@ -130,7 +130,7 @@
             }
             li:nth-child(1) {
                 background: url(/resources/images/block/share.png) no-repeat;
-                background-position-y: 7px;
+                background-position-y: 4px;
                 background-size: 18px 18px;
                 &:hover {
                     background-position-y: 7px !important;
@@ -208,6 +208,7 @@
                 line-height: 18px;
                 text-align: center;
                 border-radius: 4px;
+                font-size: $font-size-sm;
                 &:hover {
                     color: white;
                     background: $red-base;
@@ -216,9 +217,9 @@
             }
         }
         div:nth-child(2) {
-            font-size: $font-size;
+            font-size: $font-size-sm;
             color: $gray-light;
-            height: 45px;
+            height: 40px;
             overflow: hidden;
             width: 70%;
         }
@@ -248,19 +249,19 @@
             }
             .content,
             .title {
-                color: white !important;
+                color: $border-line !important;
             }
             div {
-                color: $red-base;
+                color: $border-line !important;
             }
             div:nth-child(1) {
                 margin-bottom: 29px;
                 font-size: $font-size;
             }
             div:nth-child(2) {
-                height: 58px;
+                height: 75px;
                 overflow: hidden;
-                font-size: $font-size-base;
+                font-size: $font-size-sm;
                 @media screen and (max-width: 1275px) {
                     height: 40px;
                 }
@@ -315,7 +316,7 @@
             }
             .afterPriceTitle {
                 color: $gray-light;
-                font-size: $font-size-base;
+                font-size: $font-size-sm;
                 margin-left: 10px;
             }
             #needOrder {
@@ -643,9 +644,14 @@
                         height: 65px;
                         background: url(/resources/images/index/play-icon.png) no-repeat;
                         background-size: 55px 55px;
-                        left: 107px;
-                        top: 50px;
+                        left: 115px;
+                        top: 56px;
                     }
+
+                    label{
+                        color:$red-base;
+                    }
+
                 }
                 img {
                     width: 280px;
@@ -673,7 +679,7 @@
         cursor: pointer;
         position: absolute;
         top: -8px;
-        right: 30px;
+        right: 5px;
         &:active {
             color: $red-base !important;
         }

@@ -154,7 +154,9 @@ input[type="button"] {
 
 .btn-c-r {
     &:hover {
-        background-color: $gray !important;
+          background-color: darken($red-base,10%)!important;
         color: #fff !important;
     }
 }
+
+
