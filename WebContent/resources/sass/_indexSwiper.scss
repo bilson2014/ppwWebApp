@@ -414,6 +414,13 @@
     /* Safari 和 Chrome */
     -o-transition: all .6s linear 0s;
     position: relative;
+
+         div {
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    }
     .directorLogo {
         width: 300px;
         height: 30px;

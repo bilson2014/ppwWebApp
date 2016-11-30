@@ -115,7 +115,7 @@ function originTool() {
     //     }
     // })
     $('#classical').waypoint(function() {
-        $('.cardUl').find('li').addClass('topAnimaltion');
+        //$('.cardUl').find('li').addClass('topAnimaltion');
     }, { offset: 600 });
     $('.hereClients').waypoint(function() {
         $('#Clients').find('.up').css('top', '0');
@@ -135,7 +135,7 @@ function banner() {
         grabCursor: true,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
-        autoplay: 3000,
+        autoplay: 5000,
         onSlideChangeEnd: function(swiper) {
             var number = swiper.activeIndex; //每次切换时，提示现在是第几个slide
             // switch (number) {
@@ -419,27 +419,52 @@ var homePage_tpl = {
 			'{@/each}'
        	 ].join(""),
     classical_recommend:[
-            '{@each list as item}',
-			'<li class="topAnimaltion">',
-			'	<div class="videoCard">',
-			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
-			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
-			'			<div class="videoContet">',
-			'				<div class="title">${item.productName}</div>',
-			'				<div class="type">${item.tags}</div>',
-			'				{@if item.price == 0}',
-			'					<div  class="price">￥暂无报价</div>',
-			'				{@else}',
-			'					<div  class="price">￥${item.price}</div>',
-			'				{@/if}',
-		    '				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
-		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
-			'				{@/if}',
-			'			</div>',
-			'		</a>',
-			'	</div>',
-			'</li>',
-			'{@/each}'
+//            '{@each list as item}',
+//            '<div class="flow-div">',
+//			' <div class="topAnimaltion">',
+//			'	<div class="videoCard">',
+//			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+//			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+//			'			<div class="videoContet">',
+//			'				<div class="title">${item.productName}</div>',
+//			'				<div class="type">${item.tags}</div>',
+//			'				{@if item.price == 0}',
+//			'					<div  class="price">￥暂无报价</div>',
+//			'				{@else}',
+//			'					<div  class="price">￥${item.price}</div>',
+//			'				{@/if}',
+//		    '				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
+//		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
+//			'				{@/if}',
+//			'			</div>',
+//			'		</a>',
+//			'	</div>',
+//			'  </div>',
+//			'</div>',
+//			'{@/each}'
+'{@each list as item}',
+'<div class="flow-div">',
+' <div class="topAnimaltion oneFlow">',
+'	<div class="videoCard">',
+'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+'			<div class="videoContet">',
+'				<div class="title">${item.productName}</div>',
+'				<div class="type">${item.tags}</div>',
+'				{@if item.price == 0}',
+'					<div  class="price">￥暂无报价</div>',
+'				{@else}',
+'					<div  class="price">￥${item.price}</div>',
+'				{@/if}',
+'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
+'					<div class="realPrice">原价￥${item.orignalPrice}</div>',
+'				{@/if}',
+'			</div>',
+'		</a>',
+'	</div>',
+'  </div>',
+'</div>',
+'{@/each}'
          ].join(""),
      team_recommend:[
             '{@each result as item}',      

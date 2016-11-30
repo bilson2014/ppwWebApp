@@ -21,7 +21,6 @@ function initContent() {
 	
 	loadData(function(data){
 		
-        
 		var newsId =$('#newsId').val();
 		var k=0;
 	    $.each(data.result, function(i,item) {

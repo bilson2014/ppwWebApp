@@ -184,7 +184,7 @@
                 </div>
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
-                        <div class="title">影片故事简述</div>
+                        <div class="title">影片简介  Project summary </div>
                         <div class="content playContent">
                             	${product.pDescription }
                         </div>
@@ -288,13 +288,13 @@
         <div class="bottomContent hide" id="videoDescription">
             <div class="contentWidth">
                 <div class="leftContent">
-                      <div class="title">影片故事简述</div>
+                      <div class="title">影片介绍  <span>About this project</span></div>
                       <div class="setPro" id="videoValue">
                       		${product.videoDescription}
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-                      <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
+                      <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span> Recommended for you</span></div>
 
                       <a id="moreProductInfo" class="hide">
 	                      <div class="get-new-detail newsMore ">
@@ -309,6 +309,12 @@
             </div>
         </div>
 </c:if>
+
+<c:if test="${product.videoDescription == null && product.videoDescription!= ''}">
+   <div>dsda</div>
+</c:if>
+
+
 
 <!-- foot -->
 				<div class="foot3">

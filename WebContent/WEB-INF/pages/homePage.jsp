@@ -292,7 +292,7 @@
 				<a href="<spring:url value='/list.html'/>">
 					<div class="directorWants">更多案例</div>
 				</a>
-				<ul class="cardUl">
+				<div class="cardUl">
 					<!-- <li>
                         <div class="videoCard">
                             <img src=" /resources/images/index/test2.png">
