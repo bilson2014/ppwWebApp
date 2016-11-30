@@ -116,7 +116,9 @@ public class UserController extends BaseController{
 					final HttpServletRequest request) throws Exception{
 		
 		if(user != null){
-			final long userId = user.getId();
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			long userId = sessionInfo.getReqiureId();
+			user.setId(userId);
 			if(user.getPassword() != null && !"".equals(user.getPassword())){
 				// AES密码解密
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
@@ -127,13 +129,9 @@ public class UserController extends BaseController{
 				final String url = URL_PREFIX + "portal/user/modify/password";
 				final String json = HttpUtil.httpPost(url, user,request);
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
-				
-				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
-				//updateUserInSession(request);
 				return result;
 			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
 		}
 		return false;

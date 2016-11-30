@@ -98,51 +98,29 @@ public class LoginController extends BaseController {
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
 		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		Info info = new Info();
-
 		if (user.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
-			try {
-				if (isTest || (!"".equals(code) && code != null)) {
-					if (isTest || code.equals(user.getVerification_code())) {
-						if (isTest || (null != codeOfphone && codeOfphone.equals(user.getTelephone()))) {
-							if (user != null && user.getPassword() != null && !"".equals(user.getPassword())) {
-								// AES密码解密
-								final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-								// MD5
-								user.setPassword(DataUtil.md5(password));
-								// 登录远程服务器进行比对
-								final String url = URL_PREFIX + "portal/user/encipherment";
-								String str = HttpUtil.httpPost(url, user, request);
-								if (str != null && !"".equals(str)) {
-									boolean result = JsonUtil.toBean(str, Boolean.class);
-									info.setKey(result);
-									info.setValue("登录成功");
-									addCookies(request,response);
-									return info;
-								}
-								info.setKey(false);
-								info.setValue("登录失败");
-								return info;
-							}
-						} else {
-							// 手机号错误
-							info.setKey(false);
-							info.setValue("和验证手机不符!");
-						}
+			if (isTest || (!"".equals(code) && code != null)) {
+				if (isTest || code.equals(user.getVerification_code())) {
+					if (isTest || (null != codeOfphone && codeOfphone.equals(user.getTelephone()))) {
+						// 登录远程服务器进行比对
+						final String url = URL_PREFIX + "portal/user/encipherment";
+						String str = HttpUtil.httpPost(url, user, request);
+						if (str != null && !"".equals(str)) {
+							boolean result = JsonUtil.toBean(str, Boolean.class);
+							addCookies(request,response);
+							return new Info(result, "登录成功");
+						}return new Info(false, "登录失败");
 					} else {
-						// 验证码过期
-						info.setKey(false);
-						info.setValue("验证码输入错误!");
+						// 手机号错误
+						return new Info(false, "和验证手机不符!");
 					}
 				} else {
-					// session 过期
-					info.setKey(false);
-					info.setValue("请重新获取验证码!");
+					// 验证码过期
+					return new Info(false, "验证码输入错误!");
 				}
-			} catch (Exception e) {
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("LoginController method:login() User Password Decrypt Error ...",sessionInfo);
-				e.printStackTrace();
+			} else {
+				// session 过期
+				return new Info(false, "请重新获取验证码!");
 			}
 		} else {// 用户名登录
 			final String pwd = user.getPassword();
@@ -157,11 +135,9 @@ public class LoginController extends BaseController {
 						final boolean ret = JsonUtil.toBean(str, Boolean.class);
 						if (ret) {
 							addCookies(request,response);
-							info.setKey(true);
-							info.setValue("登录成功");
+							return new Info(true, "登录成功");
 						} else {
-							info.setKey(false);
-							info.setValue("帐户名或密码错误");
+							return new Info(false, "帐户名或密码错误");
 						}
 					}
 				} catch (Exception e) {
@@ -169,7 +145,7 @@ public class LoginController extends BaseController {
 				}
 			}
 		}
-		return info;
+		return new Info(false,"数据错误");
 	}
 	/**
 	 * 验证用户手机号码是否注册
@@ -461,6 +437,8 @@ public class LoginController extends BaseController {
 		if (user != null && ValidateUtil.isValid(user.getPassword())
 				&& ValidateUtil.isValid(user.getLoginName())) {
 			try {
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				user.setId(sessionInfo.getReqiureId());
 				// AES 密码解密
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 				// MD5 加密

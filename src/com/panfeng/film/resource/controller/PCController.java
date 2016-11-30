@@ -126,6 +126,12 @@ public class PCController extends BaseController {
 		model.addAttribute("isLogin", "login");
 		return new ModelAndView("login", model);
 	}
+	
+	// 跳转注册页面
+	@RequestMapping("/register")
+	public ModelAndView register(final ModelMap model) {
+		return new ModelAndView("register", model);
+	}
 
 	// 跳转 密码找回
 	@RequestMapping("/recover")
@@ -486,13 +492,13 @@ public class PCController extends BaseController {
 	/**
 	 * 跳转至 供应商 注册页面
 	 */
-	@RequestMapping("/provider/register")
+	/*@RequestMapping("/provider/register")
 	public ModelAndView providerRegisterView(final ModelMap model) {
 
 		model.addAttribute("action", "register");
 		model.addAttribute("pageName", "供应商注册");
 		return new ModelAndView("provider/login", model);
-	}
+	}*/
 
 	/**
 	 * 跳转至 供应商 密码找回页面

@@ -17,7 +17,6 @@ $().ready(function(){
 				getEnter();
 				//图片验证
 				this.checkImageCode();
-				
 				this.login();
 				
 			},

@@ -29,9 +29,6 @@ $().ready(function(){
 				this.changeLogin();
 				//回车
 				getEnter();
-				
-				//this.checkImageCode();
-				
 			},
 			phoneNumberChange:function(){
 				$('#user_phoneNumber').on('change',function(){
@@ -290,18 +287,14 @@ $().ready(function(){
 			},
 			qq :function(){
 				$('#qqBt').on('click',function(){
-					
 						QC.Login.showPopup();
-						
 						var paras = {};
-						
 						//用JS SDK调用OpenAPI
 						QC.api("get_user_info", paras)
 						//指定接口访问成功的接收函数，s为成功返回Response对象
 						.success(function(s){
 							// 成功回掉，通过 s.data 获取OpenAPI的返回数据
 							QC.Login.getMe(function(openId, accessToken){
-								
 								// 存入session
 								var condition = $.toJSON({
 									userName : s.data.nickname,

@@ -391,7 +391,6 @@ public class ProviderController extends BaseController {
 						Gson gson = new Gson();
 						String json = gson.toJson(original);
 						httpSession.setAttribute(ORIGINAL, json); // session
-																	// 内不能存储对象，存储json字符串
 						httpSession.setAttribute(TYPE, REGISTER_KET);
 						info.setKey(true);
 						return info;

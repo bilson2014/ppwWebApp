@@ -6,7 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
-<spring:url value="/resources/css/bind.css" var="bindCss"/>
+<spring:url value="/resources/css/login.css" var="loginCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -14,7 +14,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/threeLogin.js" var="loginJs"/>
+<spring:url value="/resources/js/login.js" var="loginJs"/>
 
 <spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
 <spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
@@ -39,7 +39,7 @@
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${commonCss }">
-	<link rel="stylesheet" href="${bindCss }">
+	<link rel="stylesheet" href="${loginCss }">
 	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -127,26 +127,18 @@
         </div>
     </div>
 	
-	 <div class="outSideDiv">
+	
+	 <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
-		          	<img class="loginImg" src="${imgUrl}">
-		            <h1><span>Hi,</span>&nbsp${userName}</h1>
-		            <!-- 第三方用户状态 不存在or存在却无手机号 -->
-		            <input type="hidden" id="code" value="${code}"></input>
-		            <input type="hidden" id="userId" value="${userId}"></input>
-		             <input type="hidden" id="unique" value="${unique}"></input>
-		            <input type="hidden" id="userName" value="${userName}"></input>
-		            <input type="hidden" id="imgUrl" value="${imgUrl}"></input>
-		            <!-- qq or wechat or wb -->
-		            <input type="hidden" id="type" value="${type}"></input>
-		            <input type="hidden" id="qq"></input>
-		            <input type="hidden" id="wechat"></input>
-		            <input type="hidden" id="wb"></input>
-		            <h2>请绑定拍片网账号</h2>
+		         <input id="login_type" value="phone" type="hidden"></input>
+		            <h1 style="display: inline-block" id="title">客户登录</h1>
+					<div id="changeAttr" data-event="login"
+					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
+		            <div class="" id="showLogin">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
 		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="user_phoneNumberId"">*手机号错误</div>
+		                 <div class="errorDiv hide" id="user_phoneNumberId">*手机号错误</div>
 		            </div>
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
@@ -157,11 +149,65 @@
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
-		                
+		                  <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>
-		            <div class="redBtn" id="bindBtn">立即绑定</div> 
-		            <div class="Ihave">已有账号?&nbsp&nbsp&nbsp请<span onclick="window.location.href='/login'">登录</span></div> 
+		           </div>
+		           
+		                  <div class="hide" id="nameLogin">
+			            <div class="loginContent input-group">
+			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName" ></input>
+			                 <div class="otherDiv"></div>
+			                 <div class="errorDiv hide" id="loginName_error"></div>
+			            </div>
+			            <div class="loginContent input-group" id="pwdId" >
+			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
+			                 <div class="otherDiv"></div>
+			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
+			                  <div class="errorMidDiv hide" id="login_error_info_user">登录错误</div>
+			                   <a href="<spring:url value='/user/repwd'/>"><div class="forget" id="forget">忘记密码</div></a>
+			            </div>  
+		         </div> 
+		            
+		            <div class="redBtn" id="submitBtn">登录</div> 
+		            
+		      
+		             <div id="threeId">
+		            <div class="infoWord fontSizeBaseLight" >第三方登录</div>
+		            <div class="footer-content-three ">
+							<ul>
+								<li >
+									<a href="javascript:void(0);" id="webcat">
+										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
+									</a>
+									<span></span>
+								</li>
+								<li>
+								<div id="qqBt">
+										<a href="javascript:void(0);">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+										</a>
+										<span></span>
+									</div>
+								</li>
+								<li>
+										<!-- <span>微博</span> -->
+									<div id="weiboBt">
+										<a href="javascript:void(0);" >
+											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
+										</a>
+										<span></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+						</div>
+					<div class="changeDiv" id="changeLoginId">
+		                  <div class="changeImg hide" id="changeId"></div>
+		                  <div class="changeLogin" id="loginWord">使用账号登录</div> 
+		             </div> 
+		            
 		         </div>
+		   
 		   </div>
 	
 </body>
