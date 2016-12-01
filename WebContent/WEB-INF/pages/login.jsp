@@ -1,71 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.util.Constants"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
-<spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
-<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/commons.css" var="commonCss"/>
-<spring:url value="/resources/css/login.css" var="loginCss"/>
 <%-- import JS --%>
-<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
-<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
+	var="jqueryJs" />
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
+	var="jsonJs" />
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
-<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/login.js" var="loginJs"/>
-
-<spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
-<spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
-<spring:url value="/resources/lib/disk/rAF.js" var="rAFJs"/>
-<spring:url value="/resources/lib/disk/demo-1.js" var="demoJs"/>
-
+<spring:url value="/resources/js/common.js" var="commonJs" />
+<spring:url value="/resources/js/login.js" var="loginJs" />
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网登陆,视频制作登陆,拍片登陆,拍广告登陆,找导演登陆">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_登录页面</title>
-	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
-	<link rel="stylesheet" href="${normalizeCss }">
-	<link rel="stylesheet" href="${bootstrapCss }">
-	<link rel="stylesheet" href="${commonCss }">
-	<link rel="stylesheet" href="${loginCss }">
-	
-	<!--[if lt IE 9]>
-		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
-	<![endif]-->
-	<script src="${jqueryJs }"></script>
-	<script src="${pluginJs }"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="拍片网登录">
+    <meta name="description" content="">
+    <meta name="baidu-site-verification" content="dMz6jZpIwd" />
+    <title>拍片网－广告－宣传片－微电影－视频营销</title>
+    <link rel="stylesheet" href="/resources/css/login.css">
+    <script src="${jqueryJs }"></script>
 	<script src="${jsonJs }"></script>
-	<script src="${commonJs }"></script>
 	<script src="${aesJs }"></script>
-	<script src="${padJs }"></script>
+	<script src="${commonJs }"></script>
 	<script src="${loginJs }"></script>
-	<script src="${EasePackJs }"></script>
-	<script src="${TweenLiteJs }"></script>
-	<script src="${rAFJs }"></script>
-	<script src="${demoJs }"></script>
-	<!-- sina weibo -->
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
-	<!-- webcat -->
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-	<!-- qq -->
-	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
-<body >
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${isLogin}" id="loginAllRigster"/>
-	 <div class="header headerMove" id="header">
+
+<body>
+
+
+  	 <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -126,89 +93,232 @@
             </div>
         </div>
     </div>
-	
-	
-	 <div class="outSideDiv phoneHeight" id="outSideId">
-		         <div class="loginDiv">
-		         <input id="login_type" value="phone" type="hidden"></input>
-		            <h1 style="display: inline-block" id="title">客户登录</h1>
-					<div id="changeAttr" data-event="login"
-					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
-		            <div class="" id="showLogin">
-		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="手机号" id="user_phoneNumber"></input>
-		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="user_phoneNumberId">*手机号错误</div>
-		            </div>
-		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="图片验证码" id="kaptcha_code"></input>
-		                 <div class="otherDiv"><img alt="图片验证码" src="/login/kaptcha.png?41" id="kaptcha_pic" class="btn-validation"></div>
-		                 <div class="errorDiv hide" id="kapt_error_info" >*验证码错误</div>
-		            </div>  
-		                <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
-		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
-		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
-		                  <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
-		            </div>
-		           </div>
-		           
-		                  <div class="hide" id="nameLogin">
-			            <div class="loginContent input-group">
-			                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName" ></input>
-			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="loginName_error"></div>
-			            </div>
-			            <div class="loginContent input-group" id="pwdId" >
-			                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
-			                 <div class="otherDiv"></div>
-			                 <div class="errorDiv hide" id="pwd_error" >用户名或密码错误</div>
-			                  <div class="errorMidDiv hide" id="login_error_info_user">登录错误</div>
-			                   <a href="<spring:url value='/user/repwd'/>"><div class="forget" id="forget">忘记密码</div></a>
-			            </div>  
-		         </div> 
-		            
-		            <div class="redBtn" id="submitBtn">登录</div> 
-		            
-		      
-		             <div id="threeId">
-		            <div class="infoWord fontSizeBaseLight" >第三方登录</div>
-		            <div class="footer-content-three ">
-							<ul>
-								<li >
-									<a href="javascript:void(0);" id="webcat">
-										<img alt="微信" title="使用微信账号登录" src="${imgPath}/login/webcat.png">
-									</a>
-									<span></span>
-								</li>
-								<li>
-								<div id="qqBt">
-										<a href="javascript:void(0);">
-											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
-										</a>
-										<span></span>
-									</div>
-								</li>
-								<li>
-										<!-- <span>微博</span> -->
-									<div id="weiboBt">
-										<a href="javascript:void(0);" >
-											<img alt="微博" title="使用微博账号登录" src="${imgPath}/login/weibo.png" >
-										</a>
-										<span></span>
-									</div>
-								</li>
-							</ul>
-						</div>
-						</div>
-					<div class="changeDiv" id="changeLoginId">
-		                  <div class="changeImg hide" id="changeId"></div>
-		                  <div class="changeLogin" id="loginWord">使用账号登录</div> 
-		             </div> 
-		            
-		         </div>
-		   
-		   </div>
-	
+
+
+    <div class="page">
+
+
+          <div class="loginLeftArea">
+
+              <div id="showCus" >
+                <div class="setImageCus"></div>
+                <div class="setInfo">
+                       <div class="infoTop">
+                               <label>让所有企业都能够</label>
+                               <label>享受高品质的视频服务!</label>
+                       </div>
+                         <div class="infoItem">
+                               <label>600+脑洞超大的创意人员</label>
+                               <label>为您提供服务</label>
+                               <div class="cIcon1"></div>
+                         </div>
+                          <div class="infoItem">
+                               <label>5000+导演随时抢单,</label>
+                               <label>甄选出最适合您的一位</label>
+                               <div class="cIcon2"></div>
+                         </div>
+                          <div class="infoItem">
+                               <label>视频管家一对一服务,</label>
+                               <label>性价比高,质量保障</label>
+                               <div class="cIcon3"></div>
+                         </div>
+                         <div class="infoItem">
+                               <label>全新的线上管理系统,</label>
+                               <label>随时随地了解状态</label>
+                               <div class="cIcon4"></div>
+                         </div>
+                </div>
+              </div>
+
+               <div id="showPro" style="display:none">
+                <div class="setImagePro"></div>
+                <div class="setInfo">
+                       <div class="infoTop">
+                               <label>让每个导演都能</label>
+                               <label>拍出优秀作品!</label>
+                       </div>
+                         <div class="infoItem">
+                               <label>35000+影视行业资源</label>
+                               <label>免费对接</label>
+                               <div class="cIcon5"></div>
+                         </div>
+                          <div class="infoItem">
+                               <label>每月500+真实可靠,</label>
+                               <label>类型多元的项目</label>
+                               <div class="cIcon6"></div>
+                         </div>
+                          <div class="infoItem">
+                               <label>确认交片即收的全额制作费,</label>
+                               <label>无拖欠尾款</label>
+                               <div class="cIcon7"></div>
+                         </div>
+                         <div class="infoItem">
+                               <label>免费的经济服务,</label>
+                               <label>免费的线上线下推广服务</label>
+                               <div class="cIcon4"></div>
+                         </div>
+                </div>
+              </div>    
+
+          </div>
+
+
+
+
+
+        <div class="loginModel">
+            <div class="showArea">
+                <div class="title">
+                    <div id="toDir">客户登录</div>
+                    <div id="toCus">导演登录</div>
+                    <div id="moveLine"></div>
+                </div>
+
+                <div id="hideCus">
+                <div class="loginDiv right" id="cusPhoneLogin">
+                              <div class="loginContent input-group">
+                                  <input class="fontSizeBaseLight" placeholder="手机号" id="user_phoneNumber"></input>
+                                  <div class="otherDiv"></div>
+                                  <div class="errorDiv hide" id="phone_error_user">*手机号错误</div>
+                              </div>
+                              <div class="loginContent input-group">
+                                   <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_user"></input>
+                                   <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41 " id="kaptcha_pic_user" class="btn-validation"></div>
+                                   <div class="errorDiv hide " id="kapt_error_info_user" >*验证码错误</div>
+                              </div>  
+                              <div class="loginContent input-group">
+                                   <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_user"></input>
+                                   <div class="otherDiv "><button type="button" id="get_code_user" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
+                                   <div class="errorDiv hide " id="code_error_info_user">*验证码错误</div>
+                              </div>
+                              <div class="changeLogin" id="toNoPhone">使用账号登录</div>
+                              <div class="redBtn btn-c-r" id="submitBtn-user">登录</div>
+                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
+                              <div class="bindLogin ">
+                                        <div>第三方登录</div>
+                                        <ul>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+                              </div> 
+                    </div>
+                  
+                  <div class="loginDiv" id="cusNoPhoneLogin" style="display:none" >
+                              <div class="loginContent input-group">
+                                    <input class="fontSizeBaseLight" placeholder="用户名" id="user_name"></input>
+                                    <div class="otherDiv"></div>
+                                    <div class="errorDiv hide" id="user_name_error">*请输入用户名</div>
+                             </div>
+                              <div class="loginContent input-group">
+                                   <input class="fontSizeBaseLight"  placeholder="密码" id="user_pwd"></input>
+                                   <div class="errorDiv hide" id="user_pwd_error">*请输入密码</div>
+                              </div>  
+                              <div class="changeLogin"><span id="toUsePhone">使用手机号登录</span><span onclick="window.location.href='/user/repwd'">忘记了密码?</span></div>
+                              <div class="redBtn btn-c-r" id="submitBtn_user_name">登录</div>
+                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
+                  </div>
+                 </div>
+
+
+                   <div id="hideProvider" style="display:none">
+                          <div class="loginDiv right" id="providePhoneLogin" style="display:none">
+                                    <div class="loginContent input-group">
+                                        <input class="fontSizeBaseLight" placeholder="手机号" id="team_phoneNumber"></input>
+                                        <div class="otherDiv"></div>
+                                        <div class="errorDiv hide" id="phone_error_team">*手机号错误</div>
+                                    </div>
+                                    <div class="loginContent input-group ">
+                                         <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_team"></input>
+                                         <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_team" class="btn-validation"></div>
+                                         <div class="errorDiv hide " id="kapt_error_info_team" >*验证码错误</div>
+                                    </div>  
+                                    <div class="loginContent input-group ">
+                                         <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_team"></input>
+                                         <div class="otherDiv "><button type="button" id="get_code_team" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
+                                         <div class="errorDiv hide" id="code_error_info_team">*验证码错误</div>
+                                    </div>
+                                    <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
+                                    <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
+                                    <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
+                          </div>
+                  
+                          <div class="loginDiv" id="providerNoPhoneLogin"  style="display:none">
+                                      <div class="loginContent input-group">
+                                            <input class="fontSizeBaseLight" placeholder="用户名" id="team_name"></input>
+                                            <div class="otherDiv"></div>
+                                            <div class="errorDiv hide" id="team_name_error">*用户名错误</div>
+                                     </div>
+                                      <div class="loginContent input-group">
+                                           <input class="fontSizeBaseLight "  placeholder="密码" id="team_pwd"></input>
+                                           <div class="errorDiv hide" id="team_pwd_error">*密码错误</div>
+                                      </div>  
+                                      <div class="changeLogin"><span id="toProPhone">使用手机号登录</span><span onclick="window.location.href='/provider/repwd'">忘记了密码?</span></div>
+                                      <div class="redBtn btn-c-r" id="submitBtn_team_name">登录</div>
+                                      <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
+                          </div>
+                 </div>
+
+               </div>
+        </div>
+        
+    </div>
+    
+           <!-- foot -->
+         					<div class="foot3">
+                                <div class="footContent">
+                                    <div class="contentTop">
+                                        <div class="topItem codeWidth">
+                                            <div class="Twocode"></div>
+                                            <div class="smWord">扫一扫 关注官方微信</div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>登录</a></div>
+                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">供应商登录</a></div>
+                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
+                                            <div class="reg iconItem"><a>注册</a></div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>关于拍片网</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/about-us.html' />">了解我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#join-us' />">加入我们</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-activity.html' />">公司活动</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/member.html#activityPart' />">团队介绍</a></div>
+                                        </div>
+                                        <div class="topItem commonWidth">
+                                            <div class="title"><a>服务</a></div>
+                                            <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
+<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
+                                        </div>
+                                        <div class="topItem onLineWidth">
+                                            <div class="title"><a>在线联系我们</a></div>
+                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
+                                        </div>
+                                        <div class="topItem">
+                                            <div class="title"><a>咨询电话</a></div>
+                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
+                                            <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="contentBottom">
+                                        <div>版权信息</div>
+                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
+                                        <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
+                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--新版底部-->
+    
+    
+    
+    
+    
 </body>
+
 </html>

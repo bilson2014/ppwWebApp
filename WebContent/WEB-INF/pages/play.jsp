@@ -290,6 +290,7 @@
 		        </div>
 		        <div class="bottomTab"></div>
 		</c:if>
+		
 <c:if test="${product.videoDescription != null && product.videoDescription!= '' && product.showType == 1}">
         <div class="bottomContent hide" id="videoDescription">
             <div class="contentWidth">
@@ -301,33 +302,19 @@
                 </div>
                 <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
-
                       <a id="moreProductInfo" class="hide">
 	                      <div class="get-new-detail newsMore ">
-	                      	<span>更多视频</span>
-	                      	<img src="/resources/images/index/newsMore.png">
+		                      	<span>更多视频</span>
+		                      	<img src="/resources/images/index/newsMore.png">
 	                      </div>
                       </a>
                       <div class="setVideo" id="moreTeamProductDiv">
-                            <div class="swiper-container swiper-more rightContentSwiper">
-									<div class="swiper-wrapper" id="newMoreTeamProductDiv" >
-											<!-- <div class="swiper-slide">
-											     <a>
-													<div class="videoModel Xflag">
-													    <div class="videoIcon"></div>
-														<img src="',imageUrl,'">
-														<div class="word">
-														  <span>dasdadsa</span>
-														  <span>13123122</span>
-														</div>
-											       </div>
-											      </a> 
-									         </div>
-									          -->
-								   </div>
-							</div>
-							<div class="swiper-button-next rightNext"></div>
-							<div class="swiper-button-prev rightPrev"></div>
+                      <div class="swiper-container  swiper-more">
+                            <div class="swiper-wrapper  rightContentSwiper" id="newMoreTeamProductDiv">
+                            </div>
+                        </div>    
+	                        <div class="swiper-button-next rightNext"></div>
+				            <div class="swiper-button-prev rightPrev"></div>
                       </div>
                       <div class="noMore hide" id="noMore">暂无作品</div>
                 </div>
@@ -335,7 +322,61 @@
         </div>
 </c:if>
 
-	
+		<div class="noInfo" id="noInfo">
+			<div class="swiper-container  swiper-noInfo">
+			    <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
+			    <a class="hide" id="moreNoInfo">
+				    <div class="searchMore">
+		                      	<span>更多影片</span>
+		                      	<img src="/resources/images/index/newsMore.png">
+		            </div>
+	            </a>
+				<div class="swiper-wrapper" id="swiper-noInfoId">
+					
+				 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+					
+					 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+					
+					 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+</div>
+
+
+
 <!-- foot -->
 				<div class="foot3">
 	                  <div class="footContent">
@@ -384,7 +425,6 @@
 	                 </div>
 	             </div>
                             <!--新版底部-->
-    </div>
     <script type="text/javascript" src="${clampJs }"></script>
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${swiperJs }"></script>

@@ -438,7 +438,7 @@ function loadRecommendProduct(){
 		}
 		loadData(function(msg){
 			if(msg.code == 1){
-				var count = msg.result.total
+				var count = msg.result.total;
 				var res = msg.result.result;
 				if(count > 0){
 					if(res != null && res!=undefined){
@@ -447,8 +447,11 @@ function loadRecommendProduct(){
 						var v1 = $('#newMoreTeamProductDiv');
 						v1.html('');
 						for (var i = 0; i < res.length; i++) {
-							if(res[i].productId == productId)
+							if(res[i].productId == productId){
+								count --;
 								continue;
+							}
+								
 							hasCount ++;
 							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
 							v1.append(card);
@@ -574,6 +577,22 @@ function initMoreInfo(num){
         prevButton: '.rightPrev',
         direction: 'vertical'
     });
+    
+    var director = new Swiper('.swiper-noInfo', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 20,
+        grabCursor: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    });
+ 
+ var maxCard = $('.noInfoCard').length;
+ if(maxCard<=4){
+	 $('.noInfo .swiper-button-next').hide();
+	 $('.noInfo .swiper-button-prev').hide();
+ }	 
 }
 
 
@@ -628,8 +647,8 @@ var productPrice ="￥"+thousandCount(price);
 }
 var html = [
             '<div class="swiper-slide">',
-    		'	<a href="',url,'">',
     		'     <div class="videoModel Xflag">',
+    		'	<a href="',url,'">',
     		'     <div class="videoIcon"></div>',			
     		'     <img src="',imageUrl,'">',
     		'     <div class="word">',

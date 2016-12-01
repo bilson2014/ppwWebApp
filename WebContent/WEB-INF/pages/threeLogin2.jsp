@@ -6,7 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
-<spring:url value="/resources/css/bind.css" var="bindCss"/>
+<spring:url value="/resources/css/threeLogin.css" var="loginCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -39,7 +39,7 @@
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${commonCss }">
-	<link rel="stylesheet" href="${bindCss }">
+	<link rel="stylesheet" href="${loginCss }">
 	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -129,7 +129,6 @@
 	
 	 <div class="outSideDiv">
 		         <div class="loginDiv">
-		          	<img class="loginImg" src="${imgUrl}">
 		            <h1><span>Hi,</span>&nbsp${userName}</h1>
 		            <!-- 第三方用户状态 不存在or存在却无手机号 -->
 		            <input type="hidden" id="code" value="${code}"></input>
@@ -159,9 +158,13 @@
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
 		                
 		            </div>
+		            <h3>初次见面,欢迎加入拍片网</h3> 
 		            <div class="redBtn" id="bindBtn">立即绑定</div> 
-		            <div class="Ihave">已有账号?&nbsp&nbsp&nbsp请<span onclick="window.location.href='/login'">登录</span></div> 
+		            
+		           
+		            
 		         </div>
+		   
 		   </div>
 	
 </body>
