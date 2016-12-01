@@ -70,7 +70,8 @@ public class HomePageController extends BaseController{
 					for(Solr s : list){
 						String tags = s.getTags();
 						if(StringUtils.isNotBlank(tags)){
-							String[] tagsArr = tags.split(" ");
+							//匹配标签分割 空格，多个空格 中文逗号，英文逗号
+							String[] tagsArr = tags.split("(\\s+)|(,)|(，)");
 							int maxLength = tagsArr.length>3?3:tagsArr.length;
 							tags = "";
 							for(int i=0;i<maxLength;i++){

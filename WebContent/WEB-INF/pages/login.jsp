@@ -27,6 +27,12 @@
 	<script src="${aesJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${loginJs }"></script>
+	<!-- sina weibo -->
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
+	<!-- webcat -->
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<!-- qq -->
+	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 
 <body>
@@ -199,9 +205,9 @@
                               <div class="bindLogin ">
                                         <div>第三方登录</div>
                                         <ul>
-                                            <li>威信</li>
-                                            <li>qq</li>
-                                            <li>weibo</li>
+                                            <li id="webcat"	>威信</li>
+                                            <li id="qqBt">qq</li>
+                                            <li id="weiboBt">weibo</li>
                                         </ul>
                               </div> 
                     </div>
