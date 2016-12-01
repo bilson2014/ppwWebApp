@@ -4,6 +4,7 @@ var InterValRecoverObj; // timer变量，控制时间 - 密码找回
 var count = 120; // 间隔函数，1秒执行 
 var curCount = 0; // 当前剩余秒数 - 注册
 var recoverCount; // 当前剩余秒数 - 密码找回
+var noCardIndex = 0;
 
 var color = new Array(
    '#33D8B5',
@@ -27,6 +28,9 @@ $().ready(function() {
     $clamp(node,{clamp:4});   
     var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
     $clamp(teamDescripti,{clamp:2});   
+    
+    loadRecommendProductIfNo();
+    
 });
 function initTab() {
     var product_id = 1;
@@ -373,10 +377,129 @@ function initView(){
 //	}));
 //}
 
+//function loadRecommendProduct(){
+//	var tags=$('#tags').val();
+//	if(tags == null || tags == undefined || tags == ''){
+//		return;
+//	}
+//	loadData(function(msg){
+//		if(msg.code == 1){
+//			var count = msg.result.total
+//			var res = msg.result.result;
+//			if(count > 0){
+//				if(res != null && res!=undefined){
+//					var hasCount = 0;
+//					var productId = $('#play-unique').val();
+//					var v1 = $('#moreTeamProductDiv');
+//					v1.html('');
+//					for (var i = 0; i < res.length; i++) {
+//						if(res[i].productId == productId)
+//							continue;
+//						hasCount ++;
+//						var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
+//						v1.append(card);
+//						if(hasCount == 8)
+//							break;
+//					}
+//					if(hasCount == 0){
+//						$('#recommendProductTitle').addClass('hide');
+//						$('#recommendProductTitleDiv').addClass('hide');
+//					}
+//					var item = $('.Xflag');
+//					if(item.length == 0){
+//						$('.noMore').removeClass('hide');
+//					}
+//				}
+//				if(count > 8){
+//					$('#moreProductInfo').removeClass('hide');
+//					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
+//				}
+//			}else{
+//				$('#recommendProductTitle').addClass('hide');
+//				$('#recommendProductTitleDiv').addClass('hide');
+//				$('.noMore').removeClass('hide');
+//			}
+//		}else{
+//			$('#recommendProductTitle').addClass('hide');
+//			$('#recommendProductTitleDiv').addClass('hide');
+//			$('.noMore').removeClass('hide');
+//		}
+//	}, getContextPath() + '/tags/product/search', $.toJSON({
+//		condition : tags,
+//		begin : 0,
+//		limit : 7
+//	}));
+//}
+
 function loadRecommendProduct(){
+		var tags=$('#tags').val();
+		if(tags == null || tags == undefined || tags == ''){
+			return;
+		}
+		loadData(function(msg){
+			if(msg.code == 1){
+				var count = msg.result.total;
+				var res = msg.result.result;
+				if(count > 0){
+					if(res != null && res!=undefined){
+						var hasCount = 0;
+						var productId = $('#play-unique').val();
+						var v1 = $('#newMoreTeamProductDiv');
+						v1.html('');
+						for (var i = 0; i < res.length; i++) {
+							if(res[i].productId == productId){
+								count --;
+								continue;
+							}
+								
+							hasCount ++;
+							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
+							v1.append(card);
+							if(hasCount == 8)
+								break;
+						}
+						initMoreInfo(count);
+						if(hasCount == 0){
+							$('#recommendProductTitle').addClass('hide');
+							$('#recommendProductTitleDiv').addClass('hide');
+						}
+						var item = $('.Xflag');
+						if(item.length == 0){
+							$('.noMore').removeClass('hide');
+						}
+					}
+					if(count > 8){
+						$('#moreProductInfo').removeClass('hide');
+						$('#moreProductInfo').attr('href','/search?q=tags='+tags);
+					}
+				}else{
+					$('#recommendProductTitle').addClass('hide');
+					$('#recommendProductTitleDiv').addClass('hide');
+					$('.noMore').removeClass('hide');
+				}
+			}else{
+				$('#recommendProductTitle').addClass('hide');
+				$('#recommendProductTitleDiv').addClass('hide');
+				$('.noMore').removeClass('hide');
+			}
+		}, getContextPath() + '/tags/product/search', $.toJSON({
+			condition : tags,
+			begin : 0,
+			limit : 9
+		}));
+		}
+
+
+function loadRecommendProductIfNo(){
 	var tags=$('#tags').val();
 	if(tags == null || tags == undefined || tags == ''){
 		return;
+	}
+	
+	if($('div').hasClass('bottomContent')){
+		return;
+	}else{
+		$('#noInfo').removeClass('hide');
 	}
 	loadData(function(msg){
 		if(msg.code == 1){
@@ -386,61 +509,162 @@ function loadRecommendProduct(){
 				if(res != null && res!=undefined){
 					var hasCount = 0;
 					var productId = $('#play-unique').val();
-					var v1 = $('#moreTeamProductDiv');
+					var v1 = $('#swiper-noInfoId');
 					v1.html('');
 					for (var i = 0; i < res.length; i++) {
 						if(res[i].productId == productId)
 							continue;
 						hasCount ++;
-						var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
+						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
 						v1.append(card);
-						if(hasCount == 6)
+						if(hasCount == 8)
 							break;
 					}
-					if(hasCount == 0){
-						$('#recommendProductTitle').addClass('hide');
-						$('#recommendProductTitleDiv').addClass('hide');
-					}
-					var item = $('.Xflag');
-					if(item.length == 0){
-						$('.noMore').removeClass('hide');
-					}
+					initNoInfo();
 				}
-				if(count > 6){
-					$('#moreProductInfo').removeClass('hide');
-					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
+				
+				if(count > 8){
+					 $('#moreNoInfo').removeClass('hide');
+					 $('#moreNoInfo').attr('href','/search?q=tags='+tags);
 				}
-			}else{
-				$('#recommendProductTitle').addClass('hide');
-				$('#recommendProductTitleDiv').addClass('hide');
-				$('.noMore').removeClass('hide');
+				
 			}
-		}else{
-			$('#recommendProductTitle').addClass('hide');
-			$('#recommendProductTitleDiv').addClass('hide');
-			$('.noMore').removeClass('hide');
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
 		condition : tags,
 		begin : 0,
-		limit : 7
+		limit : 9
 	}));
 }
 
-function createCard(productName,productId,teamId,imageUrl){
+
+function initNoInfo(){
+	
+	 var director = new Swiper('.swiper-noInfo', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 4,
+	        paginationClickable: true,
+	        spaceBetween: 20,
+	        grabCursor: true,
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	    });
+	 
+	 var maxCard = $('.noInfoCard').length;
+	 if(maxCard<=4){
+		 $('.noInfo .swiper-button-next').hide();
+		 $('.noInfo .swiper-button-prev').hide();
+	 }	 
+}
+
+function initMoreInfo(num){
+	
+	var initNum = 0;
+	 if(num > 6){
+		 initNum = 6;
+	 }else{
+		 initNum = num;
+		 $('.rightNext').hide();
+		 $('.rightPrev').hide();
+	 }
+	
+    var moreInfo = new Swiper('.swiper-more', {
+        pagination: '.swiper-pagination',
+        slidesPerView:initNum,
+        paginationClickable: true,
+        grabCursor: true,
+        nextButton: '.rightNext',
+        prevButton: '.rightPrev',
+        direction: 'vertical'
+    });
+    
+    var director = new Swiper('.swiper-noInfo', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 20,
+        grabCursor: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    });
+ 
+ var maxCard = $('.noInfoCard').length;
+ if(maxCard<=4){
+	 $('.noInfo .swiper-button-next').hide();
+	 $('.noInfo .swiper-button-prev').hide();
+ }	 
+}
+
+
+//function createCard(productName,productId,teamId,imageUrl){
+//	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
+//	var imageUrl = getDfsHostName() + imageUrl;
+//	var html = [
+//	    '<div>',
+//		'<a href="',url,'">',
+//			'<div class="videoModel Xflag">',
+//			    '<div class="videoIcon"></div>',
+//				'<img src="',imageUrl,'">',
+//				'<label>',productName,'</label>',
+//			'</div>',
+//		'</a>'
+//	].join('');
+//	return html;
+//}
+
+
+function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 	var imageUrl = getDfsHostName() + imageUrl;
+	
+	if(price<=0){
+		var productPrice = "";	
+	}else{
+	var productPrice ="￥"+thousandCount(price);
+	}
 	var html = [
-		'<a href="',url,'">',
-			'<div class="videoModel Xflag">',
-			    '<div class="videoIcon"></div>',
-				'<img src="',imageUrl,'">',
-				'<label>',productName,'</label>',
-			'</div>',
-		'</a>'
+	    '<div class="swiper-slide">',
+		'	<a href="',url,'">',
+		'     <img src="',imageUrl,'">',
+		'     <div class="margin-top">',
+		'     	<span>',productName,'</span>',
+		'     	<span>',productPrice,'</span>',
+		'     </div>',
+		'	</a>',
+		'</div>'
 	].join('');
 	return html;
 }
+
+
+function createCard(productName,productId,teamId,imageUrl,price){
+var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
+var imageUrl = getDfsHostName() + imageUrl;
+if(price<=0){
+	var productPrice = "";	
+}else{
+var productPrice ="￥"+thousandCount(price);
+}
+var html = [
+            '<div class="swiper-slide">',
+    		'     <div class="videoModel Xflag">',
+    		'	<a href="',url,'">',
+    		'     <div class="videoIcon"></div>',			
+    		'     <img src="',imageUrl,'">',
+    		'     <div class="word">',
+    		'     	 <span>',productName,'</span>',
+    		'     	 <span>',price,'</span>',
+    		'     </div>',
+    		'	</a>',
+    		'</div>'
+].join('');
+return html;
+}
+
+
+
+ 	
+
 
 
 

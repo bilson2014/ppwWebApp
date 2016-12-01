@@ -7,8 +7,8 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
 <spring:url value="/resources/css/block/block.css" var="playCss"/>
+<spring:url value="/resources/lib/swiper/swiper.min.css" var="swiperCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
@@ -18,6 +18,10 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
+<spring:url value="/resources/lib/swiper/swiper.js" var="swiperJs" />
+
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -32,6 +36,7 @@
 	<title>${product.productName }_拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
+    <link rel="stylesheet" href="${swiperCss }">
     <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -131,6 +136,7 @@
           <div class="successInfo">欢迎加入拍片网!  自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒</div>
        </div>   
     </div> -->
+
         <div class="videoArea">
             <div class="videoContent">
                 <div class="player-wrap">
@@ -284,7 +290,8 @@
 		        </div>
 		        <div class="bottomTab"></div>
 		</c:if>
-<c:if test="${product.videoDescription != null && product.videoDescription!= ''}">
+		
+<c:if test="${product.videoDescription != null && product.videoDescription!= '' && product.showType == 1}">
         <div class="bottomContent hide" id="videoDescription">
             <div class="contentWidth">
                 <div class="leftContent">
@@ -294,15 +301,20 @@
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-                      <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span> Recommended for you</span></div>
-
+                      <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
                       <a id="moreProductInfo" class="hide">
 	                      <div class="get-new-detail newsMore ">
-	                      	<span>更多视频</span>
-	                      	<img src="/resources/images/index/newsMore.png">
+		                      	<span>更多视频</span>
+		                      	<img src="/resources/images/index/newsMore.png">
 	                      </div>
                       </a>
                       <div class="setVideo" id="moreTeamProductDiv">
+                      <div class="swiper-container  swiper-more">
+                            <div class="swiper-wrapper  rightContentSwiper" id="newMoreTeamProductDiv">
+                            </div>
+                        </div>    
+	                        <div class="swiper-button-next rightNext"></div>
+				            <div class="swiper-button-prev rightPrev"></div>
                       </div>
                       <div class="noMore hide" id="noMore">暂无作品</div>
                 </div>
@@ -310,9 +322,58 @@
         </div>
 </c:if>
 
-<c:if test="${product.videoDescription == null && product.videoDescription!= ''}">
-   <div>dsda</div>
-</c:if>
+		<div class="noInfo" id="noInfo">
+			<div class="swiper-container  swiper-noInfo">
+			    <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
+			    <a class="hide" id="moreNoInfo">
+				    <div class="searchMore">
+		                      	<span>更多影片</span>
+		                      	<img src="/resources/images/index/newsMore.png">
+		            </div>
+	            </a>
+				<div class="swiper-wrapper" id="swiper-noInfoId">
+					
+				 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+					
+					 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+					
+					 <div class="swiper-slide">
+					  <a>
+					    <div class="noInfoCard">
+							 <img src="/resources/images/index/test.png">
+					         <div class="margin-top">
+							    <span>adasda</span>
+							    <span>123</span>
+							 </div>
+					 	</div>
+					  </a>	
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+</div>
 
 
 
@@ -364,9 +425,9 @@
 	                 </div>
 	             </div>
                             <!--新版底部-->
-    </div>
-      <script type="text/javascript" src="${clampJs }"></script>
+    <script type="text/javascript" src="${clampJs }"></script>
     <script type="text/javascript" src="${jqueryJs }"></script>
+    <script type="text/javascript" src="${swiperJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>
     <script type="text/javascript" src="${jsonJs }"></script>

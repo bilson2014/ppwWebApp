@@ -3,6 +3,8 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var sendCode =true;
 $().ready(function() {
+	
+
 	var register = {
 		    //方法都在init中
 		    init_user: function() {
@@ -179,10 +181,9 @@ $().ready(function() {
 		            $('#toCusRe').fadeOut();
 		            $('#kaptcha_pic_user').val('');
 					$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
-					$('#kaptcha_code_user').focus();
 		            setTimeout(function() {
 		                $('#cusToInit').fadeIn();
-		            }, 200);
+		            }, 300);
 		        });
 
 		        $('#cusToInit').on('click', function() {
@@ -190,7 +191,7 @@ $().ready(function() {
 		            $('#cusToInit').fadeOut();
 		            setTimeout(function() {
 		               $('#toCusRe').fadeIn();
-		            }, 200);
+		            }, 300);
 		        });
 		        
 		        $('#toProRe').on('click', function() {
@@ -198,10 +199,10 @@ $().ready(function() {
 		            $('#toProRe').fadeOut();
 		            $('#kaptcha_pic_team').val('');// 重置图片验证码
 					$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
-					$('#kaptcha_code_team').focus();
+					
 		            setTimeout(function() {
 		                $('#proToInit').fadeIn();
-		            }, 200);
+		            }, 300);
 		        }); 
 
 		         $('#proToInit').on('click', function() {
@@ -209,7 +210,7 @@ $().ready(function() {
 		            $('#proToInit').fadeOut();
 		            setTimeout(function() {
 		               $('#toProRe').fadeIn();
-		            }, 200);
+		            }, 300);
 		        });   
 		    },
 		    

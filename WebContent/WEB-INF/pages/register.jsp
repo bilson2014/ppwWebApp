@@ -118,7 +118,7 @@
 			<div class="showArea">
 				<div class="controlWidth" id="controlWidth"
 					style="position: relative">
-					<div class="loginDiv right">
+					<div class="loginDiv right borderRight">
 						<div class="loginContent input-group">
 							<input class="fontSizeBaseLight" placeholder="手机号"
 								id="user_phoneNumber"></input>
@@ -157,22 +157,22 @@
 						</div>
 					</div>
 
-					<div class="loginDiv right borderLeft">
+					<div class="loginDiv right borderRight">
 						<h1>客户</h1>
 						<h2>作品如人品,享受的不止是低价</h2>
 						<div class="setImg cusImg"></div>
 						<div class="toIwant" id="toCusRe">我要拍片</div>
 						<label class="returnInit rightLabel" id="cusToInit">不是客户？</label>
 					</div>
-					<div class="loginDiv right borderRight">
-						<h1>客户</h1>
-						<h2>作品如人品,享受的不止是低价</h2>
-						<div class="setImgPro proImg"></div>
-						<div class="toIwant" id="toProRe">我要拍片</div>
-						<label class="returnInit leftLabel" id="proToInit">不是客户？</label>
+					<div class="loginDiv right">
+						   <h1>导演</h1>
+                           <h2>成为拍片网导演,赚钱更容易</h2>
+                           <div class="setImgPro proImg"></div>
+                           <div class="toIwant" id="toProRe">我要拍片</div>
+                           <label class="returnInit leftLabel" id="proToInit">不是导演？</label>
 					</div>
 
-					<div class="loginDiv right">
+					<div class="loginDiv right borderLeft">
 						<div class="loginContent input-group">
 							<input class="fontSizeBaseLight" placeholder="手机号"
 								id="team_phoneNumber"></input>
@@ -210,11 +210,14 @@
 							</ul>
 						</div>
 					</div>
-
+                              <div class="ourUser">已有账号?<a href="<spring:url value="/login" />"><span>请登录</span></a></div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+
+    
 </body>
 
 </html>

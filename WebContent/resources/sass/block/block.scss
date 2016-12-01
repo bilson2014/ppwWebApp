@@ -3,6 +3,8 @@
     @import "video";
     @import "flexslider";
     @import "compass/typography/text/ellipsis";
+    @import "mixins/indexScreen";
+    @import "compass/typography/text/ellipsis";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -136,7 +138,6 @@
                     background-position-y: 4px !important;
                 }
             }
-            
             li:nth-child(2) {
                 color: $gray-light;
                 font-size: $font-size-base;
@@ -582,6 +583,9 @@
                 margin-bottom: 30px;
                 overflow: hidden;
                 margin-bottom: 60px;
+                span {
+                    font-size: $font-size-sm;
+                }
             }
             .setPro {
                 padding-right: 220px;
@@ -617,6 +621,28 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
+                span {
+                    font-size: $font-size-sm;
+                }
+            }
+            .rightContentSwiper {
+                @include cardAreaHeight();
+            }
+            .rightPrev {
+                height: 45px;
+                width: 45px;
+                left: 190px !important;
+                top:100% !important;
+                margin-top: -10px;
+                background: url(/resources/images/block/topPrev.png) no-repeat !important;
+            }
+            .rightNext {
+                height: 45px;
+                width: 45px;
+                right: 0px;
+                top:100% !important;
+                margin-top: -10px;
+                background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -648,25 +674,29 @@
                         left: 115px;
                         top: 56px;
                     }
-
-                    label{
-                        color:$red-base;
+                    .word {
+                        color: $red-base;
                     }
-
                 }
                 img {
                     width: 280px;
-                    height: 180px;
+                    @include cardUlImgHeightAuto();
                     border-radius: 4px;
                 }
-                label {
+                .word {
                     font-size: $font-size-sm;
                     color: $gray-dark;
                     margin-top: 12px;
                     font-weight: 500px;
                     cursor: pointer;
-                    &:hover {
-                        color: $red-base;
+                    span:nth-child(1) {
+                        position: relative;
+                        width: 50%;
+                        @include ellipsis;
+                    }
+                    span:nth-child(2) {
+                        position: absolute;
+                        right: 0;
                     }
                 }
             }
@@ -679,7 +709,7 @@
         margin-top: 10px;
         cursor: pointer;
         position: absolute;
-        top: -8px;
+        top: 16px;
         right: 5px;
         &:active {
             color: $red-base !important;
@@ -696,3 +726,123 @@
         color: $gray-dark;
         font-size: $font-size-base;
     }
+    
+    .noInfo {
+        position: relative;
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        .title {
+            color: $gray-dark;
+            font-size: $font-size;
+            margin-bottom: 30px;
+            span {
+                font-size: $font-size-sm;
+            }
+        }
+        .searchMore {
+            color: $gray;
+            font-size: $font-size-sm;
+            margin-top: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            &:active {
+                color: $red-base !important;
+            }
+            img {
+                position: relative;
+                left: 10px;
+                top: -1;
+            }
+        }
+        .swiper-button-prev {
+            height: 45px;
+            width: 45px;
+            left: -90px;
+            background: url(/resources/images/block/btnPrev.png) no-repeat !important;
+            @media screen and (max-width: 1000px) {
+                left: -45px;
+            }
+        }
+        .swiper-button-next {
+            height: 45px;
+            width: 45px;
+            right: -90px;
+            background: url(/resources/images/block/btnNext.png) no-repeat !important;
+            @media screen and (max-width: 1000px) {
+                right: -45px;
+            }
+        }
+    }
+    
+    .swiper-containers {
+        width: 100%;
+    }
+    
+    .swiper-slide {
+        -webkit-transition: all .8s ease-in-out 0s;
+        -moz-transition: all .6s linear 0s;
+        /* Firefox 4 */
+        -webkit-transition: all .6s linear 0s;
+        /* Safari 和 Chrome */
+        -o-transition: all .6s linear 0s;
+    }
+    
+    .swiper-noInfo .swiper-slide {
+        overflow: hidden;
+        font-size: 18px;
+        width: 60%;
+        background: white;
+        border-radius: 4px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        a {
+            width: 100%;
+        }
+        img {
+            width: 100%;
+            @include cardUlImgHeight();
+            display: block;
+            position: relative;
+            border-radius: 4px;
+        }
+        .margin-top {
+            margin-top: 10px;
+        }
+        div {
+            position: relative;
+            width: 100%;
+            font-size: 0;
+            span:nth-child(1) {
+                margin-top: 10px;
+                position: relative;
+                width: 40%;
+                left: 0;
+                @include ellipsis;
+                color: black;
+                font-size: $font-size-base;
+            }
+            span:nth-child(2) {
+                position: absolute;
+                color: $red-base;
+                font-size: $font-size-sm;
+                right: 0;
+                top: 2px;
+            }
+        }
+    }
+    
+
