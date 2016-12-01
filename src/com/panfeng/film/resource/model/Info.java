@@ -25,5 +25,10 @@ public class Info extends BaseObject {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	public Info(){}
+	public Info(boolean key,String value){
+		this.key = key;
+		this.value = value;
+	}
 	
 }

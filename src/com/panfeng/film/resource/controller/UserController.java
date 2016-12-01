@@ -116,7 +116,9 @@ public class UserController extends BaseController{
 					final HttpServletRequest request) throws Exception{
 		
 		if(user != null){
-			final long userId = user.getId();
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			long userId = sessionInfo.getReqiureId();
+			user.setId(userId);
 			if(user.getPassword() != null && !"".equals(user.getPassword())){
 				// AES密码解密
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
@@ -127,13 +129,9 @@ public class UserController extends BaseController{
 				final String url = URL_PREFIX + "portal/user/modify/password";
 				final String json = HttpUtil.httpPost(url, user,request);
 				final Boolean result = JsonUtil.toBean(json, Boolean.class);
-				
-				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("User id is " + userId + " update password -success=" + result,sessionInfo);
-				//updateUserInSession(request);
 				return result;
 			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("UserController method:modifiedUserPassword() User id is " + userId + " update password -success=false,info=password is null ...",sessionInfo);
 		}
 		return false;
@@ -397,17 +395,34 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
-		return new ModelAndView("/repwd", modelMap);
+		//modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		return new ModelAndView("/rePwdCus", modelMap);
 	}
 
-	@RequestMapping("/updatePwd")
+	/*@RequestMapping("/updatePwd")
 	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
 		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
 		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
 		return new ModelAndView("/updatePwd", modelMap);
+	}*/
+	
+	/**
+	 * 获取user信息
+	 */
+	@RequestMapping("/getcurrentUser")
+	public BaseMsg updatePwd(HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			User user = new User();
+			user.setId(sessionInfo.getReqiureId());
+			user.setLoginName(sessionInfo.getLoginName());
+			baseMsg.setCode(1);
+			baseMsg.setResult(user);
+		}
+		return baseMsg;
 	}
 	
 	/**

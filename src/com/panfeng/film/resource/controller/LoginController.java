@@ -96,53 +96,29 @@ public class LoginController extends BaseController {
 			final HttpServletResponse response) {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		Info info = new Info();
-
 		if (user.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
-			try {
-				if (isTest || (!"".equals(code) && code != null)) {
-					if (isTest || code.equals(user.getVerification_code())) {
-						if (isTest || (null != codeOfphone && codeOfphone.equals(user.getTelephone()))) {
-							if (user != null && user.getPassword() != null && !"".equals(user.getPassword())) {
-								// AES密码解密
-								final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-								// MD5
-								user.setPassword(DataUtil.md5(password));
-								// 登录远程服务器进行比对
-								final String url = URL_PREFIX + "portal/user/encipherment";
-								String str = HttpUtil.httpPost(url, user, request);
-								if (str != null && !"".equals(str)) {
-									boolean result = JsonUtil.toBean(str, Boolean.class);
-									info.setKey(result);
-									info.setValue("登录成功");
-									addCookies(request,response);
-									return info;
-								}
-								info.setKey(false);
-								info.setValue("登录失败");
-								return info;
-							}
-						} else {
-							// 手机号错误
-							info.setKey(false);
-							info.setValue("和验证手机不符!");
+			if ((!"".equals(code) && code != null)) {
+				if (code.equals(user.getVerification_code())) {
+					if (null != codeOfphone && codeOfphone.equals(user.getTelephone())) {
+						final String url = URL_PREFIX + "portal/user/encipherment";
+						String str = HttpUtil.httpPost(url, user, request);
+						if (str != null && !"".equals(str)) {
+							boolean result = JsonUtil.toBean(str, Boolean.class);
+							if(result){
+								addCookies(request,response);
+								return new Info(true, "登录成功");
+							}return new Info(false,"手机号或密码错误");
+						}else{
+							return new Info(false, "登录失败");
 						}
 					} else {
-						// 验证码过期
-						info.setKey(false);
-						info.setValue("验证码输入错误!");
+						return new Info(false, "和验证手机不符!");
 					}
 				} else {
-					// session 过期
-					info.setKey(false);
-					info.setValue("请重新获取验证码!");
+					return new Info(false, "验证码输入错误!");
 				}
-			} catch (Exception e) {
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("LoginController method:login() User Password Decrypt Error ...",sessionInfo);
-				e.printStackTrace();
+			} else {
+				return new Info(false, "请重新获取验证码!");
 			}
 		} else {// 用户名登录
 			final String pwd = user.getPassword();
@@ -157,11 +133,9 @@ public class LoginController extends BaseController {
 						final boolean ret = JsonUtil.toBean(str, Boolean.class);
 						if (ret) {
 							addCookies(request,response);
-							info.setKey(true);
-							info.setValue("登录成功");
+							return new Info(true, "登录成功");
 						} else {
-							info.setKey(false);
-							info.setValue("帐户名或密码错误");
+							return new Info(false, "帐户名或密码错误");
 						}
 					}
 				} catch (Exception e) {
@@ -169,7 +143,7 @@ public class LoginController extends BaseController {
 				}
 			}
 		}
-		return info;
+		return new Info(false,"数据错误");
 	}
 	/**
 	 * 验证用户手机号码是否注册
@@ -241,33 +215,35 @@ public class LoginController extends BaseController {
 	@RequestMapping("/register")
 	public Info register(final HttpServletRequest request, @RequestBody final User user, final ModelMap model)
 			throws Exception {
-
+		//先验证手机号是否可以注册
+		String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
+		String json = HttpUtil.httpGet(url, request);
+		if ("true".equals(json)) { // 被注册
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...",sessionInfo);
+			return new Info(false, "该手机号已经注册");
+		}
 		final HttpSession session = request.getSession();
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		Info info = new Info(); // 信息载体
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		// 判断验证码
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || code.equals(user.getVerification_code())) {
-				if (isTest || (null != codeOfphone && codeOfphone.equals(user.getTelephone()))) {
+		if ((!"".equals(code) && code != null)) {
+			if (code.equals(user.getVerification_code())) {
+				if (null != codeOfphone && codeOfphone.equals(user.getTelephone())) {
 					if (user.getPassword() != null && !"".equals(user.getPassword())) {
 						// AES 密码解密
 						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 						// MD5加密
 						user.setPassword(DataUtil.md5(password));
-						final String url = URL_PREFIX + "portal/user/register";
+						url = URL_PREFIX + "portal/user/register";
 						String str = HttpUtil.httpPost(url, user, request);
-						// User information = null;
 						if (str != null && !"".equals(str)) {
 							boolean ret = JsonUtil.toBean(str, Boolean.class);
 							session.removeAttribute("code"); // 移除验证码
 							info.setKey(ret);
-
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName(),sessionInfo);
-							return info;
 						} else {
 							// 注册失败
 							info.setKey(false);
@@ -276,30 +252,19 @@ public class LoginController extends BaseController {
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName()
 							+ " failure ,Becase HttpClient Connect error... ",sessionInfo);
-							return info;
 						}
-					} else {
-						// 验证码不匹配
-						info.setKey(false);
-						info.setValue("密码为空!");
-
-						serLogger.info("Register User " + user.getUserName() + " failure ,Becase password is empty ...");
-						return info;
 					}
 				} else {
 					// 手机号错误
 					info.setKey(false);
 					info.setValue("手机号不正确!");
-					return info;
 				}
 			} else {
 				// 验证码不匹配
 				info.setKey(false);
 				info.setValue("短信验证码不正确!");
-
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("Register User " + user.getUserName() + " failure ,Becase sms code not equal ...",sessionInfo);
-				return info;
 			}
 		} else {
 			// 验证码为空
@@ -307,8 +272,8 @@ public class LoginController extends BaseController {
 			info.setValue("点击获取验证码!");
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Register User " + user.getUserName() + " failure ,Becase sms code is null ...",sessionInfo);
-			return info;
 		}
+		return info;
 	}
 
 	/**
@@ -322,8 +287,8 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
-			Log.info("Send sms code " + code + " to telephone " + telephone,sessionInfo);
+			final boolean ret = true;//smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
+			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}else{
 			System.out.println("Send sms code " + code + " to telephone " + telephone);
@@ -461,6 +426,8 @@ public class LoginController extends BaseController {
 		if (user != null && ValidateUtil.isValid(user.getPassword())
 				&& ValidateUtil.isValid(user.getLoginName())) {
 			try {
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				user.setId(sessionInfo.getReqiureId());
 				// AES 密码解密
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 				// MD5 加密
