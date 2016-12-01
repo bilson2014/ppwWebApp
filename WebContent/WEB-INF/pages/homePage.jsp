@@ -19,8 +19,8 @@
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>拍片网－首页</title>
-<link rel="stylesheet" href="resources/css/homePage.css">
-<link rel="stylesheet" href="resources/lib/swiper/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/homePage.css">
+<link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <link rel="stylesheet"
 	href="resources/lib/Bootstrap/css/bootstrap.min.css">
 <script type="text/javascript"
@@ -582,8 +582,7 @@
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
-	<script type="text/javascript"
-		src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/homePage.js"></script>
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 

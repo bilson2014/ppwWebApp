@@ -56,3 +56,12 @@
         height: ($width-lg3 - 60px) / 4 / 16 * 9;
     }
 }
+
+@mixin cardUlImgHeightAuto($width:280px) {
+    height: $width / 16 * 9;
+}
+
+@mixin cardAreaHeight($width:280px) {
+    max-height:($width /16 * 9 + 30px + 30px ) * 6 - 30px;
+    min-height: 200px;   
+}
