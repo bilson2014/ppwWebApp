@@ -16,6 +16,12 @@ $().ready(function() {
 			this.user_phoneLogin();
 			//用户密码登录
 			this.user_nameLogin();
+			//qq登陆
+			this.qq();
+			//微信登陆
+			this.wechat();
+			//微博登陆
+			this.wb();
 			//初始化页面
 			this.movePage();
 		},
@@ -202,6 +208,67 @@ $().ready(function() {
 				}))
 			});
 		},
+		qq :function(){
+			$('#qqBt').on('click',function(){
+					QC.Login.showPopup();
+					var paras = {};
+					//用JS SDK调用OpenAPI
+					QC.api("get_user_info", paras)
+					//指定接口访问成功的接收函数，s为成功返回Response对象
+					.success(function(s){
+						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+						QC.Login.getMe(function(openId, accessToken){
+							
+							// 存入session
+							var condition = $.toJSON({
+								userName : s.data.nickname,
+								imgUrl : s.data.figureurl,
+								uniqueId : openId,
+								lType : 'qq',
+								qqUnique : openId
+							});
+							OAuthor(condition);
+						});
+					})
+					.error(function(e){
+						// 回掉失败
+						alert('获取用户信息失败');
+					})
+					.complete(function(c){
+						// 完成请求回掉
+					})
+				});
+		},
+		wechat:function(){
+			$('#webcat').on('click',function(){
+				var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+				window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+			})
+		},
+		wb:function(){
+			$('#weiboBt').on('click',function(){
+				alert(1)
+				WB2.login(function() {
+						// 获取 用户信息
+					getWBUserData(function(o){
+						// 保存至session中，并跳转
+						var condition = $.toJSON({
+							userName : o.screen_name,
+							imgUrl : o.profile_image_url,
+							uniqueId : wb_uniqueId,
+							lType : 'weibo',
+							wbUnique : wb_uniqueId
+						});
+						OAuthor(condition);
+					});
+				});
+			});
+		},
+		/*  
+		 * ==============================================================================
+		 * ==============================user 忧伤的分割线  team==============================
+		 * ==============================================================================
+		 */	    
 		teamPhoneChange:function(){
 			$('#team_phoneNumber').off("change").on('change',function(){
 				var telephone = $('#team_phoneNumber').val().trim();
@@ -463,6 +530,37 @@ $().ready(function() {
 		}else{
 			curCount--;  
 			$("#get_code_team").text('已发送('+ curCount +')');
+		}
+	}
+	function OAuthor(condition){
+		var url = getContextPath() + '/login/OAuthor';
+		var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
+		$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+	}
+	////获取微博用户信息
+	function getWBUserData(callback){
+		WB2.anyWhere(function(W){
+			W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+				if(bStatus){
+					getWBUserInfo(W, oResult);
+					wb_uniqueId = oResult.uid;
+				}else{
+					alert('授权失败或错误!');
+				}
+			},{},{
+				method : 'GET'
+			});
+		});
+		function getWBUserInfo(W,result){
+			W.parseCMD('/users/show.json', function(sResult, bStatus) {
+				if(bStatus) {
+					callback.call(this,sResult);
+				}
+			}, {
+				'uid' : result.uid
+			}, {
+				method : 'GET'
+			});
 		}
 	}
 });
