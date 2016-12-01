@@ -579,21 +579,7 @@ function initMoreInfo(num){
         direction: 'vertical'
     });
     
-    var director = new Swiper('.swiper-noInfo', {
-        pagination: '.swiper-pagination',
-        slidesPerView: 4,
-        paginationClickable: true,
-        spaceBetween: 20,
-        grabCursor: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-    });
- 
- var maxCard = $('.noInfoCard').length;
- if(maxCard<=4){
-	 $('.noInfo .swiper-button-next').hide();
-	 $('.noInfo .swiper-button-prev').hide();
- }	 
+  
 }
 
 
@@ -624,7 +610,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var productPrice ="￥"+thousandCount(price);
 	}
 	var html = [
-	    '<div class="swiper-slide">',
+	    '<div class="swiper-slide noInfoCard">',
 		'	<a href="',url,'">',
 		'     <img src="',imageUrl,'">',
 		'     <div class="margin-top">',
