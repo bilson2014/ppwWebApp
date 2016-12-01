@@ -7,6 +7,7 @@
 	var="jqueryJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
+<spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/register.js" var="registerJs" />
 <!-- imgPath -->
@@ -24,6 +25,7 @@
 
 <script src="${jqueryJs }"></script>
 <script src="${jsonJs }"></script>
+<script src="${aesJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${registerJs }"></script>
 </head>
@@ -121,25 +123,25 @@
 							<input class="fontSizeBaseLight" placeholder="手机号"
 								id="user_phoneNumber"></input>
 							<div class="otherDiv"></div>
-							<div class="errorDiv hide" id="user_phoneNumberId_user">*手机号错误</div>
+							<div class="errorDiv hide" id="phone_error_user">*手机号错误</div>
 						</div>
 						<div class="loginContent input-group">
 							<input class="fontSizeBaseLight" placeholder="图片验证码 "
 								id="kaptcha_code_user"></input>
 							<div class="otherDiv">
-								<img alt="图片验证码 " src="/login/kaptcha.png?41"
-									class="btn-validation kaptcha_pic">
+								<img alt="图片验证码 " src="/login/kaptcha.png?41" id='kaptcha_pic_user'
+									class="btn-validation">
 							</div>
 							<div class="errorDiv hide" id="kapt_error_info_user">*验证码错误</div>
 						</div>
 						<div class="loginContent input-group ">
 							<input class="fontSizeBaseLight " placeholder="短信验证码 "
-								id="verification_code"></input>
+								id="verification_code_user"></input>
 							<div class="otherDiv ">
-								<button type="button " id="get_code_user"
+								<button type="button" id="get_code_user"
 									class="btn-get-validation fontSizeBaseLight ">点击获取</button>
 							</div>
-							<div class="errorDiv hide " id="code_error_info_user ">*验证码错误</div>
+							<div class="errorDiv hide " id="code_error_info_user">*验证码错误</div>
 						</div>
 						<div class="redBtn btn-c-r" id="submitBtn-user">注册</div>
 						<div class="Ihave ">
@@ -162,7 +164,7 @@
 						<div class="toIwant" id="toCusRe">我要拍片</div>
 						<label class="returnInit rightLabel" id="cusToInit">不是客户？</label>
 					</div>
-					<div class="loginDiv right borderRight" id="cusPhoneLogin">
+					<div class="loginDiv right borderRight">
 						<h1>客户</h1>
 						<h2>作品如人品,享受的不止是低价</h2>
 						<div class="setImgPro proImg"></div>
@@ -170,33 +172,33 @@
 						<label class="returnInit leftLabel" id="proToInit">不是客户？</label>
 					</div>
 
-					<div class="loginDiv right" id="cusPhoneLogin">
+					<div class="loginDiv right">
 						<div class="loginContent input-group">
 							<input class="fontSizeBaseLight" placeholder="手机号"
-								id="user_phoneNumber"></input>
+								id="team_phoneNumber"></input>
 							<div class="otherDiv"></div>
-							<div class="errorDiv hide" id="user_phoneNumberId"">*手机号错误</div>
+							<div class="errorDiv hide" id="phone_error_team">*手机号错误</div>
 						</div>
 						<div class="loginContent input-group ">
 							<input class="fontSizeBaseLight " placeholder="图片验证码 "
-								id="kaptcha_code "></input>
+								id="kaptcha_code_team"></input>
 							<div class="otherDiv ">
-								<img alt="图片验证码 " src="/login/kaptcha.png?41 " id="kaptcha_pic "
+								<img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_team"
 									class="btn-validation ">
 							</div>
-							<div class="errorDiv hide " id="kapt_error_info ">*验证码错误</div>
+							<div class="errorDiv hide" id="kapt_error_info_team">*验证码错误</div>
 						</div>
 						<div class="loginContent input-group ">
 							<input class="fontSizeBaseLight " placeholder="短信验证码 "
-								id="verification_code"></input>
+								id="verification_code_team"></input>
 							<div class="otherDiv ">
-								<button type="button " id="verification_code_recover_btn "
+								<button type="button " id="get_code_team"
 									class="btn-get-validation fontSizeBaseLight ">点击获取</button>
 							</div>
-							<div class="errorDiv hide " id="code_error_info ">*验证码错误</div>
+							<div class="errorDiv hide " id="code_error_info_team">*验证码错误</div>
 						</div>
-						<div class="redBtn btn-c-r" id="bindBtn ">立即绑定</div>
-						<div class="Ihave ">
+						<div class="redBtn btn-c-r" id="submitBtn-team">注册</div>
+						<div class="Ihave">
 							还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a>
 						</div>
 						<div class="bindLogin ">

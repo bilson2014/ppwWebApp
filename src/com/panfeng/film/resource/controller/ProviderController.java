@@ -35,6 +35,7 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
@@ -71,12 +72,11 @@ public class ProviderController extends BaseController {
 
 	private static String ALLOW_VIDEO_TYPE = null;
 
+	// private static String TEAM_IMAGE_PATH = null; // 团队logo
 
-//	private static String TEAM_IMAGE_PATH = null; // 团队logo
+	// private static String PRODUCT_VIDEO_PATH = null; // video文件路径
 
-//	private static String PRODUCT_VIDEO_PATH = null; // video文件路径
-
-//	private static String PRODUCT_IMAGE_PATH = null; // 产品图片路径
+	// private static String PRODUCT_IMAGE_PATH = null; // 产品图片路径
 
 	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
 
@@ -85,7 +85,7 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private SessionInfoService sessionService = null;
-	
+
 	@Autowired
 	private final FDFSService DFSservice = null;
 
@@ -96,7 +96,7 @@ public class ProviderController extends BaseController {
 	static String LTYPE = "ltype_s"; // 三方登录类型
 
 	static String REGISTER_KET = "register";
-	
+
 	public ProviderController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
@@ -123,7 +123,7 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/company-info")
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
-		
+
 		final Team team = getLatestTeam(request);
 		model.addAttribute("provider", team);
 		// 第一次填充省
@@ -166,7 +166,7 @@ public class ProviderController extends BaseController {
 		final String url = URL_PREFIX + "portal/product/static/data/loadProducts/" + team.getTeamId();
 		final String json = HttpUtil.httpGet(url, request);
 		List<Product> list = new ArrayList<Product>();
-		//List<Product> lists = new ArrayList<Product>();
+		// List<Product> lists = new ArrayList<Product>();
 		if (json != null && !"".equals(json)) {
 			try {
 				list = JsonUtil.fromJsonArray(json, Product.class);
@@ -211,30 +211,34 @@ public class ProviderController extends BaseController {
 		if (original.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			// 是否是测试程序
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (original.getVerification_code() != null && code !=null && code.equals(original.getVerification_code()))) {
-				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
-					final String url = URL_PREFIX + "portal/team/static/data/doLogin";
-					String json = HttpUtil.httpPost(url, original, request);
-					if (json != null && !"".equals(json)) {
-						boolean ret = JsonUtil.toBean(json, Boolean.class);
-						if (ret) {
-							addCookies(request,response);
-							return new BaseMsg(BaseMsg.NORMAL, "", true);
-						} else {
-							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
+			if ((original.getVerification_code() != null && code != null)) {
+				if(code.equals(original.getVerification_code())){
+					if ((null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
+						final String url = URL_PREFIX + "portal/team/static/data/doLogin";
+						String json = HttpUtil.httpPost(url, original, request);
+						if (json != null && !"".equals(json)) {
+							boolean ret = JsonUtil.toBean(json, Boolean.class);
+							if (ret) {
+								addCookies(request, response);
+								return new BaseMsg(BaseMsg.NORMAL, "", true);
+							} else {
+								return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
+							}
 						}
+					} else {
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("手机号错误", sessionInfo);
+						return new BaseMsg(BaseMsg.ERROR, "和验证手机不符", false);
 					}
-				} else {
+				}else{
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("手机号错误", sessionInfo);
-					return new BaseMsg(BaseMsg.ERROR, "手机号错误", false);
+					Log.error("Provider Verification_code error ...", sessionInfo);
+					return new BaseMsg(BaseMsg.ERROR, "验证码错误", false);
 				}
 			} else {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("Provider Verification_code timeout ...", sessionInfo);
-				return new BaseMsg(BaseMsg.ERROR, "短信验证码已过期", false);
+				return new BaseMsg(BaseMsg.ERROR, "请重新获取验证码", false);
 			}
 		} else {// 用户名登录
 			final String pwd = original.getPassword();
@@ -248,7 +252,7 @@ public class ProviderController extends BaseController {
 					if (ValidateUtil.isValid(json)) {
 						final boolean ret = JsonUtil.toBean(json, Boolean.class);
 						if (ret) {
-							addCookies(request,response);
+							addCookies(request, response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
@@ -376,16 +380,23 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/info/register")
 	public Info register(@RequestBody final Team original, final HttpServletRequest request) {
-		// TODO：
+
+		// 判断手机号是否能注册
+		final String url = URL_PREFIX + "portal/team/static/checkIsExist";
+		final String result = HttpUtil.httpPost(url, original, request);
+		if (ValidateUtil.isValid(result)) {
+			final boolean flag = JsonUtil.toBean(result, Boolean.class);
+			if (!flag) {
+				return new Info(false, "手机号已经注册");
+			}
+		}
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || code.equals(original.getVerification_code())) {
-				if (isTest || (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
+		if ((!"".equals(code) && code != null)) {
+			if (code.equals(original.getVerification_code())) {
+				if (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber())) {
 					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
 						HttpSession httpSession = request.getSession();
 						Gson gson = new Gson();
@@ -393,7 +404,6 @@ public class ProviderController extends BaseController {
 						httpSession.setAttribute(ORIGINAL, json); // session
 						httpSession.setAttribute(TYPE, REGISTER_KET);
 						info.setKey(true);
-						return info;
 					}
 				} else {
 					// 手机号错误
@@ -410,7 +420,6 @@ public class ProviderController extends BaseController {
 			info.setKey(false);
 			info.setValue("请重新获取验证码!");
 		}
-
 		return info;
 	}
 
@@ -655,10 +664,10 @@ public class ProviderController extends BaseController {
 				return "false@error=1";
 			} else {
 				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
-					//修改为DFs上传 begin
-					//2016-10-20 14:25:02
+					// 修改为DFs上传 begin
+					// 2016-10-20 14:25:02
 					final String fileId = DFSservice.upload(file);
-					//修改为DFs上传 end
+					// 修改为DFs上传 end
 
 					// 删除 原文件
 					final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
@@ -666,7 +675,7 @@ public class ProviderController extends BaseController {
 					if (originalJson != null && !"".equals(originalJson)) {
 						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
 						final String originalPath = originalTeam.getTeamPhotoUrl();
-						if(null != originalPath && !originalPath.equals("")){
+						if (null != originalPath && !originalPath.equals("")) {
 							DFSservice.delete(originalPath);// ==0 success
 						}
 					}
@@ -748,10 +757,6 @@ public class ProviderController extends BaseController {
 
 	/**
 	 * 不带有短信验证的供应商用户名密码注册
-	 * 
-	 * @param request
-	 * @param team
-	 * @return
 	 */
 	@RequestMapping("/add/account2")
 	public BaseMsg addAccountNoMsgAuth(final HttpServletRequest request, @RequestBody final Team team) {
@@ -799,11 +804,11 @@ public class ProviderController extends BaseController {
 			// 删除 视频
 			final String videoUrl = original.getVideoUrl();
 			DFSservice.delete(videoUrl);
-			//TODO 待修改成分解富文本，删除图片
+			// TODO 待修改成分解富文本，删除图片
 			// 删除产品编辑页图片
-			//String sessionId = original.getSessionId();
-			//if (sessionId != null && !"".equals(sessionId))
-			//	kindService.deleteImageDir(original.getSessionId());
+			// String sessionId = original.getSessionId();
+			// if (sessionId != null && !"".equals(sessionId))
+			// kindService.deleteImageDir(original.getSessionId());
 
 		}
 		final String url = URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;
@@ -857,6 +862,7 @@ public class ProviderController extends BaseController {
 		}
 		return list;
 	}
+
 	@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
 	public BaseMsg saveProduct(final HttpServletRequest request, final HttpServletResponse response,
 			@RequestBody final Product product) {
@@ -879,7 +885,7 @@ public class ProviderController extends BaseController {
 			if (json != null && !"".equals(json)) {
 				productId = JsonUtil.toBean(json, Long.class);
 			}
-			
+
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
 					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
@@ -928,6 +934,7 @@ public class ProviderController extends BaseController {
 			throw new RuntimeException("Product update error ...", e);
 		}
 	}
+
 	/**
 	 * 根据ID获取产品
 	 * 
@@ -1023,11 +1030,7 @@ public class ProviderController extends BaseController {
 		}
 		return "success";
 	}
-	
-	
-	
-	
-	
+
 	// 检查文件是否符合规范
 	public String checkFile(final MultipartFile file) {
 		if (file != null && !file.isEmpty()) {
@@ -1163,8 +1166,10 @@ public class ProviderController extends BaseController {
 
 		return null;
 	}
+
 	/**
 	 * 获取最新的供应商信息,最新代表,若存在待审核,则待审核是最新消息
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -1179,6 +1184,7 @@ public class ProviderController extends BaseController {
 
 		return null;
 	}
+
 	public boolean updateInfo(final Team team, final HttpServletRequest request) throws UnsupportedEncodingException {
 		// 转码
 		final String teamName = team.getTeamName();
@@ -1382,18 +1388,18 @@ public class ProviderController extends BaseController {
 
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
-		return new ModelAndView("/repwd", modelMap);
+		//modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		return new ModelAndView("/rePwdPro", modelMap);
 	}
 
-	@RequestMapping("/updatePwd")
+/*	@RequestMapping("/updatePwd")
 	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
 		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
 		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
 		return new ModelAndView("/updatePwd", modelMap);
-	}
+	}*/
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public boolean setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
@@ -1465,16 +1471,20 @@ public class ProviderController extends BaseController {
 			if (isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))) {
 				if (isTest || (code.equals(team.getVerification_code()) && codeOfphone.equals(team.getPhoneNumber()))) {
 					// 修改 用户密码
-					//final String url = URL_PREFIX + "portal/team/modify/phone";update/newphone
+					// final String url = URL_PREFIX +
+					// "portal/team/modify/phone";update/newphone
 					final String url = URL_PREFIX + "portal/team/update/newphone";
 					final String json = HttpUtil.httpPost(url, team, request);
-					//final Boolean result = JsonUtil.toBean(json, Boolean.class);
+					// final Boolean result = JsonUtil.toBean(json,
+					// Boolean.class);
 					final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
 					return baseMsg;
-				}return new BaseMsg(1,"验证码错误");
-			}return new BaseMsg(1,"验证码错误");
+				}
+				return new BaseMsg(1, "验证码错误");
+			}
+			return new BaseMsg(1, "验证码错误");
 		}
-		return new BaseMsg(0,"error");
+		return new BaseMsg(0, "error");
 	}
 
 	@RequestMapping("/info_{teamId}.html")
@@ -1528,22 +1538,22 @@ public class ProviderController extends BaseController {
 		}
 		return new ModelAndView("/provider/providerInfo", modelMap);
 	}
-	
 
 	/**
 	 * 验证供应商信息是否存在修改
 	 */
 	@RequestMapping("/validate/change")
 	public boolean validateChange(@RequestBody final Team team, final HttpServletRequest request) {
-		final String url = URL_PREFIX + "portal/team/static/data/"+team.getTeamId();
+		final String url = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
 		String str = HttpUtil.httpPost(url, team, request);
 		Team oldTeam = JsonUtil.toBean(str, Team.class);
-		if(team.equals(oldTeam)){
+		if (team.equals(oldTeam)) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 	}
+
 	/**
 	 * 处理team临时表，更新team注释
 	 */
@@ -1553,5 +1563,21 @@ public class ProviderController extends BaseController {
 		String str = HttpUtil.httpPost(url, team, request);
 		Boolean bo = JsonUtil.toBean(str, Boolean.class);
 		return bo;
+	}
+	/**
+	 * 获取user信息
+	 */
+	@RequestMapping("/getcurrentTeam")
+	public BaseMsg updatePwd(HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			Team t = new Team();
+			t.setTeamId(sessionInfo.getReqiureId());
+			t.setLoginName(sessionInfo.getLoginName());
+			baseMsg.setCode(1);
+			baseMsg.setResult(t);
+		}
+		return baseMsg;
 	}
 }

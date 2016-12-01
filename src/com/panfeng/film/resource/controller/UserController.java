@@ -395,17 +395,34 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
-		return new ModelAndView("/repwd", modelMap);
+		//modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
+		return new ModelAndView("/rePwdCus", modelMap);
 	}
 
-	@RequestMapping("/updatePwd")
+	/*@RequestMapping("/updatePwd")
 	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
 		modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
 		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
 		return new ModelAndView("/updatePwd", modelMap);
+	}*/
+	
+	/**
+	 * 获取user信息
+	 */
+	@RequestMapping("/getcurrentUser")
+	public BaseMsg updatePwd(HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			User user = new User();
+			user.setId(sessionInfo.getReqiureId());
+			user.setLoginName(sessionInfo.getLoginName());
+			baseMsg.setCode(1);
+			baseMsg.setResult(user);
+		}
+		return baseMsg;
 	}
 	
 	/**
