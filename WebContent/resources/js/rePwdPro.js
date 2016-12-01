@@ -285,7 +285,7 @@ function successToolTipShow() {
    window.clearInterval(successIntervalObj);
    successIntervalObj = window.setInterval(firstSuccessTooltip, 1000);
    $('#toPortal').on('click',function(){
-	   window.location.href='/'; 
+	   window.location.href=getContextPath()+ '/mgr/index';
    });
 }
 function firstSuccessTooltip() {
@@ -293,7 +293,7 @@ function firstSuccessTooltip() {
        $('#last3').text('0');
        clearInterval(successIntervalObj);
        $('.showSuccessModal').remove();
-       window.location.href='/';
+       window.location.href=getContextPath()+ '/mgr/index';
    } else {
        $('#last3').text(initM--);
    }

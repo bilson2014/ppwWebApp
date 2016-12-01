@@ -5,6 +5,7 @@ var isLogin;
 var wb_uniqueId;
 var qq_uniqueId;
 $().ready(function(){
+
 	var user_login = {
 			init:function(){
 				//手机号码失去焦点
@@ -147,7 +148,8 @@ $().ready(function(){
 				var unique = $("#unique").val();
 				loadData(function(info){
 					if(info.key){
-						window.location.href=getContextPath()+ '/mgr/index';
+						
+						showFinish();
 					}else{
 						$('#user_phoneNumberId').removeClass('hide');
 						$('#user_phoneNumberId').text(info.value);
@@ -187,3 +189,40 @@ $().ready(function(){
 	}
 	
 });	
+
+function showFinish(){
+	 var $body = '<div class="showSuccessModal ">'
+        + '<div class="successModals">'
+        + '     <div class="show-zero2 zeromodal-icon zeromodal-success">'
+        + '     <span class="line tip"></span>'
+        + '     <span class="line long"></span>'
+        + '     <div class="placeholder"></div>'
+        + ' </div>'
+        + '   <div class="successWords">绑定成功!</div>'
+        + '   <div class="successInfos">欢迎加入拍片网！自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒后关闭</div>'
+        + '</div>';
+$body += '</div>';
+$("body").append($body);
+successToolTipShow();
+
+
+}
+
+function successToolTipShow() {
+	   window.clearInterval(successIntervalObj);
+	   successIntervalObj = window.setInterval(firstSuccessTooltip, 1000);
+	   $('#toPortal').on('click',function(){
+		   window.location.href=getContextPath()+ '/mgr/index';
+	});
+
+	}
+	function firstSuccessTooltip() {
+	   if (initM < 0) {
+	       $('#last3').text('0');
+	       clearInterval(successIntervalObj);
+	       $('.showSuccessModal').remove();
+	       window.location.href=getContextPath()+ '/mgr/index';
+	   } else {
+	       $('#last3').text(initM--);
+	   }
+	}
