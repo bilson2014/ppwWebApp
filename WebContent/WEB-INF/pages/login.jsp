@@ -128,13 +128,13 @@
                               </div>
                               <div class="changeLogin" id="toNoPhone">使用账号登录</div>
                               <div class="redBtn btn-c-r" id="submitBtn-user">登录</div>
-                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a></div>
+                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
                               <div class="bindLogin ">
                                         <div>第三方登录</div>
                                         <ul>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                            <li>威信</li>
+                                            <li>qq</li>
+                                            <li>weibo</li>
                                         </ul>
                               </div> 
                     </div>
@@ -151,31 +151,31 @@
                               </div>  
                               <div class="changeLogin"><span id="toUsePhone">使用手机号登录</span><span onclick="window.location.href='/user/repwd'">忘记了密码?</span></div>
                               <div class="redBtn btn-c-r" id="submitBtn_user_name">登录</div>
-                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a></div>
+                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
                   </div>
                  </div>
 
 
                    <div id="hideProvider" style="display:none">
                           <div class="loginDiv right" id="providePhoneLogin" style="display:none">
-                                    <div class="loginContent input-group">
-                                        <input class="fontSizeBaseLight" placeholder="手机号" id="team_phoneNumber"></input>
-                                        <div class="otherDiv"></div>
-                                        <div class="errorDiv hide" id="phone_error_team">*手机号错误</div>
-                                    </div>
-                                    <div class="loginContent input-group ">
-                                         <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_team"></input>
-                                         <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_team" class="btn-validation"></div>
-                                         <div class="errorDiv hide " id="kapt_error_info_team" >*验证码错误</div>
-                                    </div>  
-                                    <div class="loginContent input-group ">
-                                         <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_team"></input>
-                                         <div class="otherDiv "><button type="button" id="get_code_team" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
-                                         <div class="errorDiv hide" id="code_error_info_team">*验证码错误</div>
-                                    </div>
-                                    <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
-                                    <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
-                                    <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a></div>
+                              <div class="loginContent input-group">
+                                  <input class="fontSizeBaseLight" placeholder="手机号" id="team_phoneNumber"></input>
+                                  <div class="otherDiv"></div>
+                                  <div class="errorDiv hide" id="phone_error_team">*手机号错误</div>
+                              </div>
+                              <div class="loginContent input-group">
+                                   <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_team"></input>
+                                   <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_team" class="btn-validation"></div>
+                                   <div class="errorDiv hide " id="kapt_error_info_team" >*验证码错误</div>
+                              </div>  
+                              <div class="loginContent input-group ">
+                                   <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_team"></input>
+                                   <div class="otherDiv "><button type="button" id="get_code_team" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
+                                   <div class="errorDiv hide" id="code_error_info_team">*验证码错误</div>
+                              </div>
+                              <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
+                              <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
+                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
                           </div>
                   
                           <div class="loginDiv" id="providerNoPhoneLogin"  style="display:none">
@@ -190,7 +190,7 @@
                                       </div>  
                                       <div class="changeLogin"><span id="toProPhone">使用手机号登录</span><span onclick="window.location.href='/provider/repwd'">忘记了密码?</span></div>
                                       <div class="redBtn btn-c-r" id="submitBtn_team_name">登录</div>
-                                      <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a></div>
+                                      <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
                           </div>
                  </div>
 
