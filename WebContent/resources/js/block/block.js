@@ -28,8 +28,7 @@ $().ready(function() {
     $clamp(node,{clamp:4});   
     var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
     $clamp(teamDescripti,{clamp:2});   
-    
-    loadRecommendProductIfNo();
+	 loadRecommendProductIfNo();
     
 });
 function initTab() {
@@ -487,6 +486,8 @@ function loadRecommendProduct(){
 			begin : 0,
 			limit : 9
 		}));
+		
+	
 		}
 
 

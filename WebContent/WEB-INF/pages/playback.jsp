@@ -107,8 +107,8 @@
 			
 			<div class="right-part">
 				<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>

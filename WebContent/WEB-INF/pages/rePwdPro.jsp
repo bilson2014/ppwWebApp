@@ -21,7 +21,7 @@
     <meta name="keywords" content="拍片网登录">
     <meta name="description" content="">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>拍片网－广告－宣传片－微电影－视频营销</title>
+    <title>拍片网－密码找回</title>
     <link rel="stylesheet" href="/resources/css/rePwdPro.css">
     <script src="${jqueryJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -52,8 +52,8 @@
 				</r:identity>
 
 				<r:noLogin>
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
-					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<a href="<spring:url value='/list.html'/>" class="header-item"
 					target="_parent">精品案例<span></span></a> <a href="/order-flow.html"

@@ -633,7 +633,7 @@
                 width: 45px;
                 left: 190px !important;
                 top:100% !important;
-                margin-top: -10px;
+                margin-top: -45px;
                 background: url(/resources/images/block/topPrev.png) no-repeat !important;
             }
             .rightNext {
@@ -641,7 +641,7 @@
                 width: 45px;
                 right: 0px;
                 top:100% !important;
-                margin-top: -10px;
+                margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
             .videoModel {
@@ -843,6 +843,10 @@
                 top: 2px;
             }
         }
+    }
+
+    .paddingBottom{
+        padding-bottom: 60px;
     }
     
 

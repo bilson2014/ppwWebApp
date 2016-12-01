@@ -2,7 +2,10 @@ var InterValObj; // timer变量，控制时间
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
 var sendCode =true;
+var initM = 3;
+var successIntervalObj;
 $().ready(function() {
+	showFinish();
 	var rePwdCus = {
 	    //方法都在init中
 	    init: function() {
@@ -248,7 +251,7 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
-							alert("修改成功")
+				            showFinish();
 						}else{
 							$("#newpwd-info").text("修改失败").removeClass("hide");
 							return false;
@@ -279,4 +282,43 @@ $().ready(function() {
 		}
 	}
 });
+
+
+function showFinish(){
+	 var $body = '<div class="showSuccessModal ">'
+         + '<div class="successModals">'
+         + '     <div class="show-zero2 zeromodal-icon zeromodal-success">'
+         + '     <span class="line tip"></span>'
+         + '     <span class="line long"></span>'
+         + '     <div class="placeholder"></div>'
+         + ' </div>'
+         + '   <div class="successWords">重置成功!</div>'
+         + '   <div class="successInfos">欢迎加入拍片网！自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒后关闭</div>'
+         + '</div>';
+ $body += '</div>';
+ $("body").append($body);
+ successToolTipShow();
+
+
+}
+
+function successToolTipShow() {
+	   window.clearInterval(successIntervalObj);
+	   successIntervalObj = window.setInterval(firstSuccessTooltip, 1000);
+	   $('#toPortal').on('click',function(){
+		   window.location.href='/'; 
+	});
+
+	}
+	function firstSuccessTooltip() {
+	   if (initM < 0) {
+	       $('#last3').text('0');
+	       clearInterval(successIntervalObj);
+	       $('.showSuccessModal').remove();
+	      // window.location.href='/';
+	   } else {
+	       $('#last3').text(initM--);
+	   }
+	}
+
 

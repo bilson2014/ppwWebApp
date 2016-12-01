@@ -20,7 +20,7 @@
 <meta name="keywords" content="拍片网登陆,视频制作登陆,拍片登陆,拍广告登陆,找导演登陆">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>拍片网－广告－宣传片－微电影－视频营销_登录页面</title>
+<title>拍片网－注册</title>
 <link rel="stylesheet" href="/resources/css/register.css">
 
 <script src="${jqueryJs }"></script>
@@ -81,10 +81,8 @@
 			</div>
 			<div class="right-part">
 				<r:noLogin>
-					<a href="<spring:url value="/provider/login" />"
-						class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />"
-						class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />"
@@ -114,6 +112,7 @@
 
 
 	<div class="page">
+	
 		<div class="loginModel">
 			<div class="showArea">
 				<div class="controlWidth" id="controlWidth"
@@ -144,9 +143,7 @@
 							<div class="errorDiv hide " id="code_error_info_user">*验证码错误</div>
 						</div>
 						<div class="redBtn btn-c-r" id="submitBtn-user">注册</div>
-						<div class="Ihave ">
-							还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a>
-						</div>
+						
 						<div class="bindLogin ">
 							<div>第三方登录</div>
 							<ul>
@@ -198,9 +195,7 @@
 							<div class="errorDiv hide " id="code_error_info_team">*验证码错误</div>
 						</div>
 						<div class="redBtn btn-c-r" id="submitBtn-team">注册</div>
-						<div class="Ihave">
-							还没有账号?&nbsp&nbsp&nbsp请<a><span>注册</span></a>
-						</div>
+						
 						<div class="bindLogin ">
 							<div>第三方登录</div>
 							<ul>
@@ -210,10 +205,11 @@
 							</ul>
 						</div>
 					</div>
-                              <div class="ourUser">已有账号?<a href="<spring:url value="/login" />"><span>请登录</span></a></div>
+                             
 				</div>
 			</div>
 		</div>
+		 <div class="ourUser">已有账号?&nbsp&nbsp&nbsp&nbsp请<a href="<spring:url value="/login" />"><span>登录</span></a></div>
 	</div>
 	
 

@@ -20,7 +20,7 @@
     <meta name="keywords" content="拍片网登录">
     <meta name="description" content="">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>拍片网－广告－宣传片－微电影－视频营销</title>
+    <title>拍片网－登录</title>
     <link rel="stylesheet" href="/resources/css/login.css">
     <script src="${jqueryJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -75,8 +75,8 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -193,11 +193,9 @@
                               </div>
                               <div class="changeLogin" id="toNoPhone">使用账号登录</div>
                               <div class="redBtn btn-c-r" id="submitBtn-user">登录</div>
-<<<<<<< HEAD
-                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
-=======
+
                               <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
->>>>>>> dc4bd1ce17cfd630bc15ceb1e4c9ba9fc89ddc5b
+
                               <div class="bindLogin ">
                                         <div>第三方登录</div>
                                         <ul>
@@ -215,42 +213,21 @@
                                     <div class="errorDiv hide" id="user_name_error">*请输入用户名</div>
                              </div>
                               <div class="loginContent input-group">
-                                   <input class="fontSizeBaseLight"  placeholder="密码" id="user_pwd"></input>
+                                   <input class="fontSizeBaseLight" type="password" placeholder="密码" id="user_pwd"></input>
                                    <div class="errorDiv hide" id="user_pwd_error">*请输入密码</div>
                               </div>  
                               <div class="changeLogin"><span id="toUsePhone">使用手机号登录</span><span onclick="window.location.href='/user/repwd'">忘记了密码?</span></div>
                               <div class="redBtn btn-c-r" id="submitBtn_user_name">登录</div>
-<<<<<<< HEAD
-                              <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
-=======
+
                               <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
->>>>>>> dc4bd1ce17cfd630bc15ceb1e4c9ba9fc89ddc5b
+
                   </div>
                  </div>
 
 
                    <div id="hideProvider" style="display:none">
                           <div class="loginDiv right" id="providePhoneLogin" style="display:none">
-<<<<<<< HEAD
-                                    <div class="loginContent input-group">
-                                        <input class="fontSizeBaseLight" placeholder="手机号" id="team_phoneNumber"></input>
-                                        <div class="otherDiv"></div>
-                                        <div class="errorDiv hide" id="phone_error_team">*手机号错误</div>
-                                    </div>
-                                    <div class="loginContent input-group ">
-                                         <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_team"></input>
-                                         <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_team" class="btn-validation"></div>
-                                         <div class="errorDiv hide " id="kapt_error_info_team" >*验证码错误</div>
-                                    </div>  
-                                    <div class="loginContent input-group ">
-                                         <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_team"></input>
-                                         <div class="otherDiv "><button type="button" id="get_code_team" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
-                                         <div class="errorDiv hide" id="code_error_info_team">*验证码错误</div>
-                                    </div>
-                                    <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
-                                    <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
-                                    <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
-=======
+
                               <div class="loginContent input-group">
                                   <input class="fontSizeBaseLight" placeholder="手机号" id="team_phoneNumber"></input>
                                   <div class="otherDiv"></div>
@@ -269,7 +246,7 @@
                               <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
                               <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
                               <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
->>>>>>> dc4bd1ce17cfd630bc15ceb1e4c9ba9fc89ddc5b
+
                           </div>
                   
                           <div class="loginDiv" id="providerNoPhoneLogin"  style="display:none">
@@ -279,16 +256,14 @@
                                             <div class="errorDiv hide" id="team_name_error">*用户名错误</div>
                                      </div>
                                       <div class="loginContent input-group">
-                                           <input class="fontSizeBaseLight "  placeholder="密码" id="team_pwd"></input>
+                                           <input class="fontSizeBaseLight " type="password" placeholder="密码" id="team_pwd"></input>
                                            <div class="errorDiv hide" id="team_pwd_error">*密码错误</div>
                                       </div>  
                                       <div class="changeLogin"><span id="toProPhone">使用手机号登录</span><span onclick="window.location.href='/provider/repwd'">忘记了密码?</span></div>
                                       <div class="redBtn btn-c-r" id="submitBtn_team_name">登录</div>
-<<<<<<< HEAD
-                                      <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a href="<spring:url value="/register" />"><span>注册</span></a></div>
-=======
+
                                       <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
->>>>>>> dc4bd1ce17cfd630bc15ceb1e4c9ba9fc89ddc5b
+
                           </div>
                  </div>
 

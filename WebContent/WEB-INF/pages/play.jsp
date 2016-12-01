@@ -110,8 +110,8 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -322,7 +322,7 @@
         </div>
 </c:if>
 
-		<div class="noInfo" id="noInfo">
+		<div class="noInfo hide" id="noInfo">
 			<div class="swiper-container  swiper-noInfo">
 			    <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
 			    <a class="hide" id="moreNoInfo">
@@ -331,7 +331,7 @@
 		                      	<img src="/resources/images/index/newsMore.png">
 		            </div>
 	            </a>
-				<div class="swiper-wrapper" id="swiper-noInfoId">
+				<div class="swiper-wrapper paddingBottom" id="swiper-noInfoId">
 					
 				 <div class="swiper-slide">
 					  <a>
