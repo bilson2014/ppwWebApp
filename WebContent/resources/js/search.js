@@ -24,7 +24,11 @@ var search = {
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
 			// 将搜索内容写入面包屑布局
 			// TODO 去除空格以及,
-			var qArray = q.split(' ');
+			/*var qArray = q.split(/\s+|,/);*/
+			var re2='(\\s*)(,)(\\s*)';	
+		    var p = new RegExp(re2,["gm"]);
+		    q = q.replace(p, ' ');
+		    var qArray = q.split(/\s+/);
 			if(qArray != '') {
 				$.each(qArray,function(i,tag){
 					if(tag.trim() == '*'){
@@ -155,15 +159,10 @@ var search = {
 		var item = $('#item').val();
 		
 		var param = '?q=' + q;
-		if(item != null && item != undefined && item != ''){
-			param += '&item=' + item;
-		}
 		
 		if(length != null && length != undefined && length != '') {
 			param += '&length=' + length;
 		}
-		
-		$('#price-all').attr('href',getContextPath() + '/search/' + param + '&price=[0 TO *]');
 		
 		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[0 TO 30000]' +'" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>';
 		$priceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[30000 TO 60000]' +'" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>';
@@ -213,21 +212,6 @@ var search = {
 			}
 		});
 		
-		// 标注选中状态
-		/*var price = $('#price').val();
-		
-		if(price != null && price != undefined && price != '') {
-			$('.priceAll').removeClass('active');
-			
-			$('.priceAll').each(function(){
-				if($(this).data('price') == price){
-					$(this).addClass('active');
-					//TODO
-					searchVideo.addPrice($(this).text());
-					
-				}
-			});
-		}*/
 	},
 	loadLength : function(){ // 装配时长
 		$('#length-list').empty();
@@ -237,9 +221,6 @@ var search = {
 		var item = $('#item').val();
 		
 		var param = '?q=' + q;
-		if(item != null && item != undefined && item != ''){
-			param += '&item=' + item;
-		}
 		
 		if(price != null && price != undefined && price != '') {
 			param += '&price=' + price;
@@ -495,7 +476,7 @@ function loadProduction(start){
 				$('#video-content').append($body); // 填充数据
 			}else {
 				// 如果没有数据，则显示 "对不起，没有查询到您想要的数据"
-				$('#video-content').append('<div class="prompt-word">对不起，没有查询到您想要的数据!</div>');
+				$('#video-content').append('<div class="prompt-word">您找的影片遗落在外星球了！快 登录 拍片网飞船吧！</div>');
 			}
 		}
 	}, getContextPath() + '/search/pagination', $.toJSON({
