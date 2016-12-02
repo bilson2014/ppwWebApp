@@ -172,7 +172,7 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
                 <div>
                     <label>影片交付</label>
                     <label>如果您非常满意,确 认收片，我们会将托管的制作 费支付给导演团队.
-<br>不满意,可全额退款或重新拍摄制作.</label>
+                    <br>不满意,可全额退款或重新拍摄制作.</label>
                     <label>If you satisfy the video, the fee will  be transferred to the directors. <br>
                           Otherwise, you will be fully refunded or your video will be reproduced. 
                     </label>
