@@ -213,7 +213,7 @@
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">供应商登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>

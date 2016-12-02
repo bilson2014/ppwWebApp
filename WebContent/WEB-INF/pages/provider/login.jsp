@@ -39,7 +39,7 @@
 <meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>拍片网 | ${pageName }_供应商登录页面</title>
+<title>拍片网 | ${pageName }_导演登录页面</title>
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${commonCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
@@ -120,7 +120,7 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
+					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">导演登录</a>
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
 				<r:identity role="customer">
@@ -140,7 +140,7 @@
     </div>
 		<div class="outSideDiv phoneHeight" id="outSideId">
 			<div class="loginDiv">
-				<h1 style="display: inline-block" id="title">供应商登录</h1>
+				<h1 style="display: inline-block" id="title">导演登录</h1>
 				<div id="changeAttr" data-event="login"
 					style="cursor: pointer; display: inline-block; position: relative; width: 170px; text-align: right; left: 10px; top: 5px; color: #fe5453;">新用户注册</div>
 				<input type="hidden" id="login_type" value="phone">
@@ -230,7 +230,7 @@
 			
 			<div class="login-container ">
 				<div class="well">
-					<h2 class="loginh2">供应商登录</h2>
+					<h2 class="loginh2">导演登录</h2>
 					<form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
 						<fieldset>
 							<!-- 提示框 -->

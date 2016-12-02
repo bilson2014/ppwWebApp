@@ -79,7 +79,7 @@
 			<div class="right-part">
 				<r:noLogin>
 					<a href="<spring:url value="/provider/login" />"
-						class="header-item login-item" target="_self">供应商登录</a>
+						class="header-item login-item" target="_self">导演登录</a>
 					<a href="<spring:url value="/login" />"
 						class="header-item login-item" target="_self">客户登录</a>
 				</r:noLogin>
