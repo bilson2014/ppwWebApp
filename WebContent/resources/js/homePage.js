@@ -353,7 +353,7 @@ var homePage_tpl = {
 			'				{@if item.price == 0}',
 			'					<div  class="price">￥暂无报价</div>',
 			'				{@else}',
-			'					<div  class="price">￥${item.price}</div>',
+			'					<div  class="price">￥'+thousandCount('${item.price}')+'</div>',
 			'				{@/if}',
 			'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
 			'					<div class="realPrice">原价￥${item.orignalPrice}</div>',

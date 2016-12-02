@@ -22,7 +22,7 @@
 //! item style
 %classify-item {
 	dt {
-		font-size: $font-size;
+		font-size: $font-size-base;
 		width: 120px;
 		float: left;
 		clear: both;
@@ -30,6 +30,7 @@
 		overflow: hidden;
 		@include ellipsis;
 		color: $gray-dark;
+		padding-top: 2px;
 	}
 
 	dd {
