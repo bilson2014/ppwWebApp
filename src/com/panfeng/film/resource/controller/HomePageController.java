@@ -10,14 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Solr;
@@ -134,25 +130,5 @@ public class HomePageController extends BaseController{
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage recommend news list",sessionInfo);
 		return baseMsg;
-	}
-	
-	/**
-	 * 跳转新闻详情
-	 */
-	@RequestMapping(value = "/news/info/{newId}")
-	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId,
-			final HttpServletRequest request,final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/"+newId;
-		String str = HttpUtil.httpGet(url, request);
-		if (str != null && !"".equals(str)) {
-			News news = JsonUtil.toBean(str, News.class);
-			model.addAttribute("news", news);
-		}else{
-			//请求不存在的新闻
-			return new ModelAndView("/error");
-		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news error",sessionInfo);
-		return new ModelAndView("/news");
 	}
 }
