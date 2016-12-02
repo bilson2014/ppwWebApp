@@ -107,7 +107,7 @@
 			
 			<div class="right-part">
 				<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
@@ -306,7 +306,7 @@
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >登录</a>
 					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>
-					<a href="<spring:url value="/provider/login" />" target="_self">供应商登录</a>
+					<a href="<spring:url value="/provider/login" />" target="_self">导演登录</a>
 				</div>
 				
 				<div class="footer-column">

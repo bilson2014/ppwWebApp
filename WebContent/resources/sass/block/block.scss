@@ -650,10 +650,12 @@
                 margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
+            
             .videoModel {
                 margin-bottom: 30px;
                 overflow: hidden;
                 position: relative;
+                border-radius: 4px;
                 .videoIcon {
                     position: absolute;
                     width: 65px;

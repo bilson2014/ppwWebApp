@@ -235,7 +235,7 @@ $().ready(function() {
 			},
 		    movePage: function() {
 		        $('#toCusRe').on('click', function() {
-		            $('#controlWidth').css('left', '0px');
+		            $('#controlWidth').css('left', '1px');
 		            $('#toCusRe').fadeOut();
 		            $('#kaptcha_pic_user').val('');
 					$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
@@ -266,7 +266,7 @@ $().ready(function() {
 		        }); 
 
 		         $('#proToInit').on('click', function() {
-		            $('#controlWidth').css('left', '0px');
+		            $('#controlWidth').css('left', '1px');
 		            $('#proToInit').fadeOut();
 		            $('#toCusRe').fadeOut();
 		            setTimeout(function() {
