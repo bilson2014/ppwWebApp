@@ -637,7 +637,7 @@
             .rightPrev {
                 height: 45px;
                 width: 45px;
-                left: 224px !important;
+                left: 40px !important;
                 top:100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/topPrev.png) no-repeat !important;
@@ -645,11 +645,12 @@
             .rightNext {
                 height: 45px;
                 width: 45px;
-                right: 0px;
+                left: 80px;
                 top:100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
+
             
             .videoModel {
                 margin-bottom: 30px;

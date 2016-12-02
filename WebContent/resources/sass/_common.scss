@@ -2,7 +2,6 @@
     common css style
     define the wrap of header/footer/page
 */
-
 @import "reboot";
 @import "navbar";
 @import "media_screen";
@@ -88,7 +87,7 @@ a {
             background-color: lighten(rgba(230, 230, 222, .3), 5%);
         }
     }
-}
+} 
 
 .menu-bar > .right-part {
     position: relative;
