@@ -113,7 +113,7 @@
 		display: inline-block;
 		position: relative;
 		color: $red-base;
-		font-size: $font-size-lg;
+		font-size: $font-size;
 		line-height: 16px;
 	}
 
@@ -141,7 +141,7 @@
 
 .prompt-level-word {
 	margin: auto;
-	margin-top: 10px;
+	margin-top: 60px;
 	margin-bottom: 20px;
 	@include media_screen_width();
 	text-align: center;

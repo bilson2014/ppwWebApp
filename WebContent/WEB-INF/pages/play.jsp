@@ -20,8 +20,6 @@
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
 <spring:url value="/resources/lib/swiper/swiper.js" var="swiperJs" />
 
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -31,8 +29,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网,团队制作,拍片团队,导演介绍,广告制作">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<meta name="keywords" content="${product.pDescription }">
+	<meta name="description" content="${product.tags }">
 	<title>${product.productName }_拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">

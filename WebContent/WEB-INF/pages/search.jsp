@@ -31,9 +31,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网下单,视频营销,购买广告,导演,拍片下单">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>作品分类_拍片网－广告－宣传片－微电影－视频营销</title>
+	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
+	<meta name="description" content="拍片网汇聚了入驻导演原创精品视频案例，覆盖了宣传片、广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片等各种类型，创意免费，价格透明，不满意可退款">
+	<title>精品案例-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${searchCss }">
 	

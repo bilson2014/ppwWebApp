@@ -15,10 +15,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="服务流程">
-    <meta name="description" content="">
+    <meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
+    <meta name="description" content="拍片网跟客户对接的整个服务流程简介">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>拍片网-服务流程</title>
+    <title>服务流程-拍片网</title>
     <spring:url value="/resources/css/serviceTo.css" var="serviceToCss"/>
     <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
