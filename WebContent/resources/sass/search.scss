@@ -4,11 +4,13 @@
 @import "pagination";
 @import "compass/typography/text/ellipsis";
 
+.page {
+	background: #fbfff;
+}
+
 .classify-section {
 	position: relative;
 	width: 100%;
-	background: $body-bg;
-	padding-top: 16px;
 }
 
 .classify-section > .classify-wrap {
@@ -21,7 +23,7 @@
 %classify-item {
 	dt {
 		font-size: $font-size;
-		width: 140px;
+		width: 120px;
 		float: left;
 		clear: both;
 		text-align: center;
@@ -33,7 +35,7 @@
 	dd {
 		// -webkit-transition: all .8s;
 		// transition: all .8s;
-		margin-left: 180px;
+		margin-left: 80px;
 
 		li {
 			width: 92px;
@@ -54,10 +56,8 @@
 	}
 
 	a {
-		padding: 2px 6px;
 		line-height: 20px;
 		@include border-radius(4px);
-		margin: 3px 0;
 		display: inline-block;
 		color: $gray-light;
 		cursor: pointer;
@@ -87,8 +87,6 @@
 
 		> li {
 			display: inline-block;
-			padding-left: 5px;
-			padding-right: 5px;
 		}
 
 		input {
@@ -128,8 +126,8 @@
 	}
 }
 
-.classify-wrap > .classify-type,.classify-price,.classify-length{
-	padding: 30px 14.67% 20px 6.35%;
+.classify-wrap > .classify-type,.classify-business,.classify-price,.classify-length{
+	padding: 30px 10px 20px 10px;
 	border-bottom: dashed $width-border $gray-border;
 	margin: auto;
 	@extend %classify-item;
@@ -181,24 +179,30 @@
 } 
 
 .video-row>.video-card {
-	margin-right: 38px;
+	margin-right: 20px;
 	&:last-child {
 		margin-right: 0;
 	}
-}
+} 
 
 .prompt-word{
+	color: $gray-dark;
 	span{
 		font-weight: bold;
 		text-decoration:underline;
 	}
 }
 
+.prompt-background{
+	width: 900px;
+    margin: 0 auto;
+}
+
 .videoTag {
     @include media_screen_width();
     margin: 0 auto;
     position: relative;
-    margin-top: 20px;
+    padding: 30px 0;
     div {
         display: inline-block;
         color: $gray;
@@ -225,7 +229,7 @@
     	}
     }
 
-}
+} 
 
 .dropdowns .dropdown-menu{
 	position: absolute;

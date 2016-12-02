@@ -1,10 +1,9 @@
-<%-- <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.util.Constants"%>
+ <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="r" uri="/mytaglib" %> --%>
+<%@ taglib prefix="r" uri="/mytaglib" %> 
 
 
 

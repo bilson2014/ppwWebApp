@@ -25,7 +25,7 @@
                 width: $width-lg3 - $rightWidth;
             }
             img,
-            video {
+            video { 
                 width: 100%;
             }
             p{
@@ -67,8 +67,6 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                cursor: pointer;
-
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -81,7 +79,6 @@
                     font-size: $font-size !important;
                     color: $gray-dark !important;
                     cursor: pointer;
-                    height: 40px;
                     overflow: hidden;
                     @include ellipsis;
                     &:hover {
@@ -95,6 +92,10 @@
                     margin-bottom: 12px;
                     height: 54px;
                     overflow: hidden;
+                    cursor: pointer;
+                    &:hover {
+                        color: $red-base !important;
+                    }
                 }
                 label:last-child {
                     font-size: $font-size-sm;

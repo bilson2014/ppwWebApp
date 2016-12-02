@@ -111,11 +111,19 @@
     </div>
 
 	<div class="page">
+		<!-- 面包屑导航start -->
+		<div class="videoTag" >
+           <div>所有分类    ></div>
+            <!-- </div><div class="tag"><span  name="tagName">战争</span><span>x</span></div> -->
+            <div id="videoTag"></div>
+		</div>
+		<!-- 面包屑导航end -->
+		
 		<!-- 搜索条件模块 start -->
 		<div class="classify-section">
 			<div class="classify-wrap ">
 				<div class="classify-type ">
-					<dt>行业：<a class="active itemAll" href="javascript:void(0);" id="item-all">全部</a></dt>
+					<dt>类型：</dt>
 					<dd id="classify-item">
 						<ul class="list-inline" id="item-list">
 							<!-- 行业分类 -->
@@ -123,14 +131,28 @@
 						
 					</dd>
 
-					<div class="more-link" id="more-link">
+					<!-- <div class="more-link" id="more-link">
 						<span>更多</span>
-					</div>
+					</div> -->
+				</div>
+				
+				<div class="classify-business ">
+					<dt>行业：</dt>
+					<dd id="classify-item">
+						<ul class="list-inline" id="bus-item-list">
+							<!-- 行业分类 -->
+						</ul>
+						
+					</dd>
+
+					<!-- <div class="more-link" id="more-link">
+						<span>更多</span>
+					</div> -->
 				</div>
 				
 				
 				<div class="classify-price ">
-					<dt>价格：<a href="javascript:void(0)" data-price="[0 TO *]" class="priceAll active" id="price-all">全部</a></dt>
+					<dt>价格：</dt>
 					<dd id="price-item">
 						<ul class="list-inline" id="price-list">
 							<li><a href="javascript:void(0)" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>
@@ -143,7 +165,7 @@
 				</div>
 				
 				<div class="classify-length">
-					<dt>时长：<a class="active lengthAll" href="javascript:void(0);" data-length="[0 TO *]" id="length-all">全部</a></dt>
+					<dt>时长：</dt>
 					<dd id="length-item">
 						<ul class="list-inline" id="length-list">
 							<li><a href="javascript:void(0)" data-length="[0 TO 60]" class="lengthAll">0~60秒</a></li>
@@ -156,12 +178,8 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- 搜索条件模块 end -->
-		<div class="videoTag" id="videoTag">
-		           <div>所有分类    ></div>
-		            <!-- </div><div class="tag"><span  name="tagName">战争</span><span>x</span></div> -->
-		</div>
+		
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">
@@ -175,23 +193,34 @@
 						</c:if>
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
-								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" />
+								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" />
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
-								<h4></h4>
-								<div class="video-desc">
-									${solr.pDescription }
+								<div class="video-tags">
+									<c:if test="${not empty fn:trim(solr.tags) }">
+										<c:forEach items="${fn:split(solr.tags,' ') }" var="tag" end="2" varStatus="stat">
+											${tag} <c:if test="${!stat.last }">/</c:if>
+										</c:forEach>
+									</c:if>
 								</div>
 							</div>
 							<div class="video-price-section">
 								<div class="video-price">
-									<h2>￥<fmt:formatNumber value="${solr.price }" pattern="#,#00"/></h2>&nbsp;&nbsp;
+									<h2>￥
+										<c:choose>
+											<c:when test="${solr.price > 0}">
+												<fmt:formatNumber value="${solr.price }" pattern="#,#00"/>
+											</c:when>
+											<c:when test="${solr.price <= 0}">
+												暂无报价
+											</c:when>
+										</c:choose>
+									</h2>&nbsp;&nbsp;
 									<c:if test="${solr.price < solr.orignalPrice }">
-										<h3><fmt:formatNumber value="${solr.orignalPrice }" pattern="#,#00"/></h3>
+										<h3>原价&nbsp;￥&nbsp;<fmt:formatNumber value="${solr.orignalPrice }" pattern="#,#00"/></h3>
 									</c:if>
 								</div>
-								<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">了解详情</a>
 							</div>
 						</div>
 						
@@ -202,7 +231,11 @@
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty list}">
-					<div class="prompt-word">对不起，没有找到您想要的作品!</div>
+					<div class="prompt-background">
+						<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
+					</div>
+					<!-- <div class="prompt-word">对不起，没有找到您想要的作品!</div> -->
+					<div class="prompt-word">您找的影片遗落在外星球了！</div>
 				</c:if>
 				
 			</div>
@@ -211,11 +244,11 @@
 			</r:noLogin>
 			
 			<r:noLevel>
-				<div class="prompt-level-word">如需观看更多作品，请拨打 400 660 9728 与我们取得联系!</div>
+				<div class="prompt-level-word">如需观看更多案例，请拨打 400 660 9728！</div>
 			</r:noLevel>
 			
 			<r:noIdentification>
-				<div class="prompt-level-word">待审核通过，可观看更多作品!</div>
+				<div class="prompt-level-word">待您成为认证供应商，可免费观看更多样片!</div>
 			</r:noIdentification>
 		</div>
 		<!-- video list end -->

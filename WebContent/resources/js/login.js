@@ -469,10 +469,14 @@ $().ready(function() {
 				
 				$('#moveLine').css('left', '0px');
 				$('#hideProvider').slideUp();
-				$('#showPro').fadeOut();
-				setTimeout(function() {
-					$('#showCus').fadeIn();
-				}, 500);
+				$('#showPro').hide();
+				$('#showCus').show();
+//				$('#showPro').fadeOut();
+//				$('#showCus').fadeIn();
+//				$('#showPro').fadeOut("fast",function(){
+//					alert(1);
+//					
+//				});
 				setTimeout(function() {
 					$('#cusPhoneLogin').css('display', 'block');
 					$('#cusNoPhoneLogin').css('display', 'none');
@@ -485,13 +489,13 @@ $().ready(function() {
 				
 				$('#kaptcha_pic_team').val('');// 重置图片验证码
 				$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
-				
 				$('#moveLine').css('left', '50%');
-				$('#hideCus').slideUp();
-				$('#showCus').fadeOut();
-				setTimeout(function() {
-					$('#showPro').fadeIn();
-				}, 500);
+				$('#showCus').hide();
+				$('#showPro').show();
+//				$('#hideCus').slideUp();
+//				$('#showCus').fadeOut("fast",function(){
+//					$('#showPro').fadeIn();
+//				});
 				setTimeout(function() {
 					$('#cusPhoneLogin').css('display', 'none');
 					$('#cusNoPhoneLogin').css('display', 'none');

@@ -30,10 +30,10 @@ function initContent() {
 	    	}
 	    });
 	    
-	    $('.discription').each(function(i){ 
-	    	 var teamDescripti=document.getElementsByClassName('discription')[0];  
-	 	    $clamp(teamDescripti,{clamp:3}); 
-         	  }); 
+//	    $('.discription').each(function(i){ 
+//	    	 var teamDescripti=document.getElementsByClassName('discription')[0];  
+//	 	    $clamp(teamDescripti,{clamp:3}); 
+//         	  }); 
 		
 		
 	}, getContextPath() + '/news/info/recommend',null);

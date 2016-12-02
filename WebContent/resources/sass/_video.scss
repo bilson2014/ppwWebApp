@@ -14,7 +14,7 @@
 }
 
 .video-content > .video-row {
-	margin: 0 auto 52px;
+	margin: 0 auto 30px;
 	@include media_screen_width();
 
 }
@@ -30,11 +30,11 @@
 	margin-right: $video-margin;
 	border: solid $width-border $gray-border;
 	overflow: hidden;
-	
+	 
 	&:hover {
 		border: solid $width-border lighten($gray-light,12%);
 	}
-	@include border-radius(6px);
+	@include border-radius(4px);
 }
 
 .video-col-3 {
@@ -59,50 +59,39 @@
 
 .video-card .video-desc-section{
 	width: $video-card-width;
-	padding: 20px 0;
-	padding-bottom: 55px;
+	padding-top: 20px;
 	margin: auto;
-	border-bottom: solid 1px $gray-border;
 
 	h3 {
 		color: $gray-dark;
+        &:hover {
+            color: $red-base;
+        }
 		line-height: 12px;
 		@include ellipsis;
 		font: {
 			size: $font-size-base;
 		}
-		margin-bottom: 10px;
+		margin-bottom: 12px;
 	}
 
-	h4 {
-		color: $gray;
-		font: {
-			size: $font-size-sm;
-			weight: normal;
-		}
-		line-height: 12px;
-		margin-bottom: 22px;
-	}
-
-	.video-desc {
-		height: 52px;
-		color: $gray;
-		overflow: hidden;
+	.video-tags {
+		width: 100%;
+		height: 56px;
+        color: $gray-light;
 		font: {
 			size: $font-size-sm;
 			weight: normal;
 		}
 
-		line-height: 17px;
+		line-height: 16px;
 		overflow: hidden;
-		letter-spacing: 1px;
 	}
 	
 }
 
 .video-card .video-price-section {
 	width: $video-card-width;
-	padding: 12px 0;
 	margin: auto;
 
 	a {
@@ -116,41 +105,32 @@
 		}
 	}
 
-	@media screen and (min-width: 1276px) and (max-width: 1500px) {
-		padding: 16px 0;
-	}
-
-	@media screen and (min-width: 1500px){
-		padding: 18px 0;
-	}
 }
 
 .video-card .video-price {
 	
 	h2 {
 		display: inline-block;
+		position: relative;
 		color: $red-base;
 		font-size: $font-size-lg;
+		line-height: 16px;
 	}
 
 	h3 {
 		display: inline-block;
+		position: relative;
 		color: $gray;
 		font-size: $font-size-base;
+		line-height: 16px;
+		text-decoration: line-through;
 	}
-	margin-bottom: 10px;
-
-	@media screen and (min-width: 1276px) and (max-width: 1500px) {
-		margin-bottom: 16px;
-	}
-
-	@media screen and (min-width: 1500px){
-		margin-bottom: 18px;
-	}
+	margin-bottom: 12px;
 }
 
 .prompt-word {
-	margin: 20px auto;
+	margin: 0 auto;
+	margin-top: 30px;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
@@ -160,8 +140,8 @@
 
 .prompt-level-word {
 	margin: auto;
-	margin-top: 35px;
-
+	margin-top: 10px;
+	margin-bottom: 20px;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
@@ -169,8 +149,7 @@
 	line-height: $font-size-lger;
 
 	a {
-		    
-		    color:blue;
-		    font-weight: 600;
+	    color:blue;
+	    font-weight: 600;
 	}
 }

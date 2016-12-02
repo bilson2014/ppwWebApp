@@ -245,10 +245,12 @@ $().ready(function() {
 		        });
 
 		        $('#cusToInit').on('click', function() {
-		            $('#controlWidth').css('left', '-429px');
+		            $('#controlWidth').css('left', '-858px');
 		            $('#cusToInit').fadeOut();
+		            $('#toProRe').fadeOut();
 		            setTimeout(function() {
 		               $('#toCusRe').fadeIn();
+		               $('#proToInit').fadeIn();
 		            }, 300);
 		        });
 		        
@@ -264,10 +266,12 @@ $().ready(function() {
 		        }); 
 
 		         $('#proToInit').on('click', function() {
-		            $('#controlWidth').css('left', '-429px');
+		            $('#controlWidth').css('left', '0px');
 		            $('#proToInit').fadeOut();
+		            $('#toCusRe').fadeOut();
 		            setTimeout(function() {
 		               $('#toProRe').fadeIn();
+		               $('#cusToInit').fadeIn();
 		            }, 300);
 		        });   
 		    },

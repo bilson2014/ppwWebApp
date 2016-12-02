@@ -68,6 +68,7 @@ a {
     input {
         min-width: $header-search-box-min;
         height: 32px;
+        font-size: $font-size-sm !important;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             min-width: $header-search-box;
         }
