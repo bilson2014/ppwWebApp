@@ -466,6 +466,10 @@ $().ready(function() {
 				$('#providerNoPhoneLogin').removeClass('leftFrom');
 			});
 			$('#toDir').on('click', function() {
+				
+				$('#kaptcha_pic_user').val('');// 重置图片验证码
+				$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+				
 				$('#moveLine').css('left', '0px');
 				$('#hideProvider').slideUp();
 				$('#showPro').fadeOut();
@@ -481,6 +485,10 @@ $().ready(function() {
 				}, 300);
 			});
 			$('#toCus').on('click', function() {
+				
+				$('#kaptcha_pic_team').val('');// 重置图片验证码
+				$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+				
 				$('#moveLine').css('left', '50%');
 				$('#hideCus').slideUp();
 				$('#showCus').fadeOut();

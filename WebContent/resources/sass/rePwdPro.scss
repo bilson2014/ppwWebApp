@@ -38,11 +38,12 @@ body {
         height: 524px;
         width: 385px;
         background: url('../images/login/proLogin.png') no-repeat;
-        background-position: -370px 0px;
+        background-position: 0px 0px;
         &:hover {
-            background-position: 0px 0px;
+            background-position: -370px 0px;
         }
     }
+    
     .setInfo {
         display: inline-block;
         vertical-align: top;
@@ -52,7 +53,7 @@ body {
         }
         .infoTop {
             margin-top: 34px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
             label {
                 font-size: 26px;
                 @media screen and (max-width: 1276px) {
@@ -267,7 +268,7 @@ body {
         border-radius: 5px;
         text-align: center;
         line-height: 38px;
-        font-size: $font-size;
+        font-size: $font-size-base;
         color: #fff;
         margin-top: 54px;
         position: relative;
@@ -311,6 +312,11 @@ body {
             color: $red-base;
             font-size: $font-size-sm;
             width: 100%;
+        }
+        .newImg{
+            position: absolute;
+            right:0px;
+            top: 39px;
         }
     }
 }
@@ -526,5 +532,74 @@ body {
     }
     to {
         left: 0px
+    }
+}
+
+
+//成功提示
+.showSuccessModal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 45;
+    .cCloseBtnModal {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: #f0f2f5;
+        border-radius: 90px;
+        border: 1px solid #d1d1d1;
+        div {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: relative;
+            top: 5px;
+            left: 5px;
+            &:hover {
+                background-position-y: -12px;
+            }
+        }
+    }
+}
+
+.successModals {
+    position: relative;
+    background: white;
+    width: 402px;
+    height: 286px;
+    padding-top: 40px;
+    border-radius: 6px;
+    top: 50%;
+    left: 50%;
+    margin-top: -143px;
+    margin-left: -201px;
+}
+
+.successWords {
+    color: $gray-dark;
+    font-size: $font-size;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 80px;
+    margin: 0 auto;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.successInfos {
+    color: $gray-light;
+    font-size: $font-size-sm;
+    text-align: center;
+    span:nth-child(1) {
+        color: $red-base;
+        margin-right: 16px;
+        cursor: pointer;
     }
 }

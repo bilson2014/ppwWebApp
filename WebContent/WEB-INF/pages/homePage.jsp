@@ -124,7 +124,7 @@
 		<div class="changeHideHeader"></div>
 			<div class="flexVideo">
 				<video preload="auto" loop="" autoplay
-					poster="../resources/images/banner/flex2.jpg" class="video-bg">
+					poster="/resources/images/banner/host.JPG" class="video-bg">
 					<source src="http://www.apaipian.com/product/video/flexvideo.mp4"
 						type="video/mp4">
 				</video>
@@ -162,7 +162,7 @@
 								<span id='indent_recomment'>宣传片</span>
 								<div class="carets"></div>
 							</button>
-							<ul class="dropdown-menu" id="selectUl" role="menu"
+							<ul class="dropdown-menu dropdown-menuHost" id="selectUl" role="menu"
 								aria-labelledby="dropdownMenu1">
 								<li>宣传片</li>
 								<li>广告片</li>
@@ -287,26 +287,27 @@
 		</div>
 		<!-- 经典-->
 		<div class="classical" id="classical">
-			<div class="classicalArea">
-				<div class="classicalLogo"></div>
-				<a href="<spring:url value='/list.html'/>">
-					<div class="directorWants">更多案例</div>
-				</a>
-				<div class="cardUl">
-					<!-- <li>
-                        <div class="videoCard">
-                            <img src=" /resources/images/index/test2.png">
-                            <div class="videoContet">
-                                <div class="title">标题</div>
-                                <div class="type">类型</div>
-                                <div class="price">￥500</div>
-                                <div class="realPrice">原价￥400</div>
-                            </div>
-                        </div>
-                    </li> -->
-				</ul>
+				<div class="classicalArea">
+					<div class="classicalLogo"></div>
+					<a href="<spring:url value='/list.html'/>">
+						<div class="directorWants">更多案例</div>
+					</a>
+					<div class="cardUl">
+						<!-- <li>
+	                        <div class="videoCard">
+	                            <img src=" /resources/images/index/test2.png">
+	                            <div class="videoContet">
+	                                <div class="title">标题</div>
+	                                <div class="type">类型</div>
+	                                <div class="price">￥500</div>
+	                                <div class="realPrice">原价￥400</div>
+	                            </div>
+	                        </div>
+	                    </li> -->
+					</ul>
+				</div>
 			</div>
-		</div>
+		</div>	
 		<!-- 导演工作室-->
 		<div class="director">
 			<div class="swiper-container  swiper-director">

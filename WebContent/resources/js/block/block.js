@@ -28,7 +28,10 @@ $().ready(function() {
     $clamp(node,{clamp:4});   
     var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
     $clamp(teamDescripti,{clamp:2});   
-	 loadRecommendProductIfNo();
+	 
+     loadRecommendProductIfNo();
+
+    
     
 });
 function initTab() {
@@ -568,6 +571,9 @@ function initMoreInfo(num){
 		 $('.rightNext').hide();
 		 $('.rightPrev').hide();
 	 }
+	 
+	 var realHeight = (280/16*9 + 30)*initNum + (initNum-1)*30;
+	 $('.rightContentSwiper').css('height',realHeight+"px");
 	
     var moreInfo = new Swiper('.swiper-more', {
         pagination: '.swiper-pagination',
