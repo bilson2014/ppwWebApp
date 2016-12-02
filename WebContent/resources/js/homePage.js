@@ -184,7 +184,7 @@ var homePage = {
 				_this.cover();
 				$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend,{list:classical_section}));
 			}else{
-				alert("数据加载错误")
+				//alert("数据加载错误")
 			}
 		}, getContextPath() + '/home/product/loadProduct/',$.toJSON({
 			sort:"supportCount"
@@ -302,12 +302,14 @@ var homePage = {
 	getNewsDetail:function(){
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
-			window.location.href="/home/news/info/"+id;
+			//window.location.href="/home/news/info/"+id;
+			window.location.href="/news/article-"+id+".html";
 		})
 		
 	    $(".get-new-detail").parent().off("click").on("click",function(){
 			var id = $(this).attr("data-id");
-			window.location.href="/home/news/info/"+id;
+			//window.location.href="/home/news/info/"+id;
+			window.location.href="/news/article-"+id+".html";
 		})
 	},
 	initVideo:function(){

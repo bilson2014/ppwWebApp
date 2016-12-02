@@ -698,4 +698,24 @@ public class PCController extends BaseController {
 		Log.error("get news info recommend",sessionInfo);
 		return baseMsg;
 	}
+	
+	/**
+	 * 跳转新闻详情
+	 */
+	@RequestMapping(value = "/news/article-{newId}.html")
+	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId,
+			final HttpServletRequest request,final ModelMap model) {
+		final String url = URL_PREFIX + "portal/news/info/"+newId;
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			News news = JsonUtil.toBean(str, News.class);
+			model.addAttribute("news", news);
+		}else{
+			//请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info",sessionInfo);
+		return new ModelAndView("/news");
+	}
 }

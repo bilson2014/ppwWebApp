@@ -16,8 +16,8 @@ body {
     position: relative;
     margin-top: 20px;
     height: 800px;
-     @media screen and (min-width:1500px) {
-       margin-top: 60px;
+    @media screen and (min-width: 1500px) {
+        margin-top: 60px;
     }
 }
 
@@ -51,17 +51,21 @@ body {
         display: inline-block;
         vertical-align: top;
         position: relative;
-        @media screen and (max-width: 1276px) {
-            left: -93px;
+        left: -93px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            left: -50px;
+        }
+        @media screen and (min-width:1500px) {
+            left: 0px;
         }
         .infoTop {
             margin-top: 34px;
             padding-bottom: 20px;
             label {
                 font-size: 26px;
-                 @media screen and (max-width: 1276px) {
+                @media screen and (max-width: 1276px) {
                     font-size: 20px;
-                 }
+                }
                 color: $gray-light;
                 display: block;
             }
@@ -70,6 +74,8 @@ body {
                 margin-left: 52px;
             }
         }
+
+
         .infoItem {
             position: relative;
             margin-left: 83px;
@@ -79,7 +85,7 @@ body {
                 font-size: 16px;
                 @media screen and (max-width: 1276px) {
                     font-size: $font-size-base;
-                 }
+                }
                 color: $gray-light;
             }
             label:nth-child(2) {
@@ -119,12 +125,12 @@ body {
 
 .showArea {
     background: #fff;
-    width: 480px; 
+    width: 480px;
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
     padding: 60px 64px 60px 64px;
-     @media screen and (max-width: 1276px) {
+    @media screen and (max-width: 1276px) {
         width: 400px;
         padding: 30px 34px 30px 34px;
     }
@@ -148,11 +154,9 @@ body {
     font-size: 0;
     margin: 0 auto;
     margin-bottom: 18px;
-
-    .redColor{
-        color:$red-base;
+    .redColor {
+        color: $red-base;
     }
-
     div {
         color: $gray-light;
         font-size: $font-size-lg;
@@ -166,8 +170,8 @@ body {
         display: inline-block;
         border-bottom: 4px solid $e;
         cursor: pointer;
-        &:hover{
-           color:$red-base;
+        &:hover {
+            color: $red-base;
         }
     }
     div:nth-child(2) {
@@ -177,8 +181,8 @@ body {
         display: inline-block;
         border-bottom: 4px solid $e;
         cursor: pointer;
-        &:hover{
-            color:$red-base;
+        &:hover {
+            color: $red-base;
         }
     }
     div:nth-child(3) {
@@ -268,6 +272,7 @@ body {
             top: 63px;
             color: $red-base;
             font-size: $font-size-sm;
+            left: 5px;
         }
         .errorMidDiv {
             position: absolute;
@@ -495,12 +500,6 @@ body {
     }
 }
 
-
-
-
-
-
-
 //成功提示
 .showSuccessModal {
     width: 100%;
@@ -568,7 +567,3 @@ body {
         cursor: pointer;
     }
 }
-
-
-
-

@@ -256,6 +256,9 @@
             .content,
             .title {
                 color: $border-line !important;
+                span{
+                    font-size: $font-size-sm;
+                }
             }
             div {
                 color: $border-line !important;
@@ -637,7 +640,7 @@
             .rightPrev {
                 height: 45px;
                 width: 45px;
-                left: 224px !important;
+                left: 40px !important;
                 top:100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/topPrev.png) no-repeat !important;
@@ -645,12 +648,13 @@
             .rightNext {
                 height: 45px;
                 width: 45px;
-                right: 0px;
+                left: 90px;
                 top:100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
-            
+
+
             .videoModel {
                 margin-bottom: 30px;
                 overflow: hidden;
@@ -716,7 +720,7 @@
         font-size: $font-size-sm;
         cursor: pointer;
         position: absolute;
-        bottom: 55px;
+        bottom: 20px;
         right: 20px;
         width: auto;
         &:hover {

@@ -13,6 +13,10 @@ body {
     background: $f0!important;
     
     margin-top: 20px;
+
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-top: 40px;
+    }
  
     @media screen and (min-width:1500px) {
        margin-top: 60px;
@@ -49,7 +53,7 @@ body {
     border-radius: 4px;
     position: relative;
     white-space: nowrap;
-    top: 80px;
+    margin-top: 0px;
     transition: all .4s linear .4s;
     -moz-transition: all .4s linear .4s;
     /* Firefox 4 */
@@ -57,11 +61,13 @@ body {
     /* Safari 和 Chrome */
     -o-transition: all .4s linear .4s;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        top: 100px;
+        margin-top: 20px;
     }
     @media screen and (min-width:1500px) {
-        top: 0px;
+        margin-top: 0px;
     }
+
+
     border-radius: 5px;
 }
 
@@ -198,6 +204,7 @@ body {
             top: 67px;
             color: $red-base;
             font-size: $font-size-sm;
+            left:5px;
         }
         .errorMidDiv {
             position: absolute;

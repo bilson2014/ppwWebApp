@@ -188,7 +188,7 @@
                 </div>
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
-                        <div class="title">影片简介  Project summary </div>
+                        <div class="title">影片简介 <span>Project summary</span></div>
                         <div class="content playContent">
                             	${product.pDescription }
                         </div>
