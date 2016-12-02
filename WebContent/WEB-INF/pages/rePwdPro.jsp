@@ -196,7 +196,6 @@
                                    <img class="newImg" id="pwd-info-wrong" src="/resources/images/login/false.png">
                               </div>  
                               <div class="loginContent input-group ">
-
                                    <input type="password" class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
                                    <img class="newImg" id="newpwd-info-right" src="/resources/images/login/true.png">

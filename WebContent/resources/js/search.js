@@ -24,7 +24,6 @@ var search = {
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
 			// 将搜索内容写入面包屑布局
 			// TODO 去除空格以及,
-			/*var qArray = q.split(/\s+|,/);*/
 			var re2='(\\s*)(,)(\\s*)';	
 		    var p = new RegExp(re2,["gm"]);
 		    q = q.replace(p, ' ');
@@ -148,9 +147,6 @@ var search = {
 			$('#item-list').append($ul);
 			$('#bus-item-list').append($ulBus);
 			
-			// 注册标签点击事件
-			$('.BusItemAll').unbind('click');
-			$('.BusItemAll').bind('click',itemClick);
 	},
 	loadPrice : function(){ // 装配价格
 		$('#price-list').empty();
@@ -304,11 +300,6 @@ var search = {
 	}
 }
 
-// 标签项点击事件
-function itemClick() {
-	
-}
-
 // 面包布局项目点击事件
 function crumbsClick() {
 	// 类型
@@ -455,12 +446,26 @@ function loadProduction(start){
 					$body += '<div class="video-desc-section">';
 					$body += '<h3>'+ solr.productName +'</h3>';
 					$body += '<div class="video-tags">';
-					$body += solr.tags;
+					
+					var tags = solr.tags;
+					if(tags != '' && tags != null) {
+						var re2='(\\s*)(,|，)(\\s*)';	
+					    var p = new RegExp(re2,["gm"]);
+					    tags = tags.replace(p, ' ');
+					    var tagsArray = tags.split(/\s+/);
+						$.each(tagsArray,function(i,tag) {
+							if(i <= 2)
+								$body += tag;
+							if (i < 2 && i != tagsArray.length - 1)
+								$body += ' / ';
+						})
+					}
+					
 					$body += '</div>';
 					$body += '</div>';
 					$body += '<div class="video-price-section">';
 					$body += '<div class="video-price">';
-					$body += '<h2>￥'+ solr.price == 0 ? '暂无报价' : thousandCount(solr.price) +'</h2>&nbsp;&nbsp;';
+					$body += '<h2>￥'+ ((solr.price == 0) ? '暂无报价' : thousandCount(solr.price)) +'</h2>&nbsp;&nbsp;';
 					if(solr.price < solr.orignalPrice){
 						$body += '<h3>原价&nbsp;￥&nbsp;'+ thousandCount(solr.orignalPrice) +'</h3>';
 					}
