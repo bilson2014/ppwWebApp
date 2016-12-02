@@ -463,7 +463,8 @@ $().ready(function() {
 				$('#providerNoPhoneLogin').removeClass('leftFrom');
 			});
 			$('#toDir').on('click', function() {
-				
+				$('#toCus').removeClass('redColor');
+				$('#toDir').addClass('redColor');
 				$('#kaptcha_pic_user').val('');// 重置图片验证码
 				$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
 				$('#moveLine').css('left', '0px');
@@ -485,7 +486,8 @@ $().ready(function() {
 				}, 500);
 			});
 			$('#toCus').on('click', function() {
-				
+				$('#toCus').addClass('redColor');
+				$('#toDir').removeClass('redColor');
 				$('#kaptcha_pic_team').val('');// 重置图片验证码
 				$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
 				$('#moveLine').css('left', '50%');

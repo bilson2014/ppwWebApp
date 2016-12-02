@@ -467,6 +467,8 @@ function loadRecommendProduct(){
 						var item = $('.Xflag');
 						if(item.length == 0){
 							$('.noMore').removeClass('hide');
+							 $('.rightNext').hide();
+							 $('.rightPrev').hide();
 						}
 					}
 					if(count > 8){
@@ -477,11 +479,15 @@ function loadRecommendProduct(){
 					$('#recommendProductTitle').addClass('hide');
 					$('#recommendProductTitleDiv').addClass('hide');
 					$('.noMore').removeClass('hide');
+					 $('.rightNext').hide();
+					 $('.rightPrev').hide();
 				}
 			}else{
 				$('#recommendProductTitle').addClass('hide');
 				$('#recommendProductTitleDiv').addClass('hide');
 				$('.noMore').removeClass('hide');
+				 $('.rightNext').hide();
+				 $('.rightPrev').hide();
 			}
 		}, getContextPath() + '/tags/product/search', $.toJSON({
 			condition : tags,
