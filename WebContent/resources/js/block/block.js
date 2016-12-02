@@ -29,6 +29,7 @@ $().ready(function() {
 //    
 //    var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
 //    $clamp(teamDescripti,{clamp:2});   
+
     
     loadRecommendProductIfNo();
 
