@@ -37,7 +37,7 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                margin-bottom: 60px;
+                margin-bottom: 20px;
                 @include ellipsis;
             }
             .setPro {
@@ -67,10 +67,19 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
+                position: relative;
+                top: 10px;
             }
             .videoModel {
                 margin-bottom: 30px;
                 cursor: pointer;
+
+                 &:hover{
+                    label:first-child,label:nth-child(2){
+                        color:$red-base !important;
+                    }
+                 }
+
                 label {
                     display: block;
                     font-weight: 500;

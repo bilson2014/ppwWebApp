@@ -138,7 +138,7 @@
 								<li>
 								<div id="qqBt">
 										<a href="javascript:void(0);">
-											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qqs.png">
 										</a>
 										<span></span>
 									</div>
