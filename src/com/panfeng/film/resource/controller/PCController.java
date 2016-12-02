@@ -480,14 +480,14 @@ public class PCController extends BaseController {
 	/**
 	 * 跳转至 供应商 登录界面
 	 */
-	@RequestMapping("/provider/login")
+	/*@RequestMapping("/provider/login")
 	public ModelAndView providerLoginView(final ModelMap model) {
 
 		model.addAttribute("action", "login");
 		model.addAttribute("pageName", "供应商登录");
 
 		return new ModelAndView("provider/login", model);
-	}
+	}*/
 
 	/**
 	 * 跳转至 供应商 注册页面
@@ -503,14 +503,14 @@ public class PCController extends BaseController {
 	/**
 	 * 跳转至 供应商 密码找回页面
 	 */
-	@RequestMapping("/provider/recover")
+	/*@RequestMapping("/provider/recover")
 	public ModelAndView providerRecover(final ModelMap model) {
 
 		model.addAttribute("action", "recover");
 		model.addAttribute("pageName", "供应商密码找回");
 
 		return new ModelAndView("provider/login", model);
-	}
+	}*/
 
 	/**
 	 * 供应商 头部信息

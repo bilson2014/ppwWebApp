@@ -1,11 +1,9 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-var sendCode =true;
 var initM = 3;
 var successIntervalObj;
 $().ready(function() {
-	showFinish();
 	var rePwdCus = {
 	    //方法都在init中
 	    init: function() {
@@ -100,7 +98,7 @@ $().ready(function() {
 						InterValObj = window.setInterval(SetUsrRemainTime, 1000); // 启动计时器，1秒钟执行一次
 						loadData(function(flag){
 							if(!flag){
-								sendCode=true;
+								window.clearInterval(InterValObj);
 								$('#get_code_user').text('重新获取');
 								$('#get_code_user').removeAttr('disabled');
 							}
@@ -121,7 +119,6 @@ $().ready(function() {
 				var veri_code = $('#verification_code_user').val();
 				var kap_code = $('#kaptcha_code_user').val();
 				$("#code_error_info_user").addClass("hide");
-				$("#user_phoneNumberId").addClass("hide");
 				$("#kapt_error_info_user").addClass("hide");
 				if(phoneNumber == null || phoneNumber == '' || phoneNumber == undefined){
 					$("#phone_error_user").text("请输入手机号").removeClass("hide");
@@ -236,7 +233,7 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
-							alert("修改成功")
+				            showFinish();
 						}else{
 							$("#newpwd-info").text('修改失败').removeClass("hide");
 							return false;
@@ -269,7 +266,6 @@ $().ready(function() {
 	function SetUsrRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_user').text('重新获取');
 			$('#get_code_user').removeAttr('disabled')
 			// 清除session code

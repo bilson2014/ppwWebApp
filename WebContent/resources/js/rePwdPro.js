@@ -1,7 +1,6 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-var sendCode =true;
 var initM = 3;
 var successIntervalObj;
 $().ready(function() {
@@ -99,7 +98,7 @@ $().ready(function() {
 						InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
 						loadData(function(flag){
 							if(!flag){
-								sendCode=true;
+								window.clearInterval(InterValObj);
 								$('#get_code_team').text('重新获取');
 								$('#get_code_team').removeAttr('disabled');
 							}
@@ -251,7 +250,6 @@ $().ready(function() {
 	function SetRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_user').text('重新获取');
 			$('#get_code_user').removeAttr('disabled')
 			// 清除session code

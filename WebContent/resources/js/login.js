@@ -1,7 +1,6 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-var sendCode =true;
 $().ready(function() {
 	var login = {
 		// 方法都在init中
@@ -117,7 +116,7 @@ $().ready(function() {
 						InterValObj = window.setInterval(SetUsrRemainTime, 1000); // 启动计时器，1秒钟执行一次
 						loadData(function(flag){
 							if(!flag){
-								sendCode=true;
+								window.clearInterval(InterValObj);
 								$('#get_code_user').text('重新获取');
 								$('#get_code_user').removeAttr('disabled');
 							}
@@ -137,7 +136,6 @@ $().ready(function() {
 				var veri_code = $('#verification_code_user').val();
 				var kap_code = $('#kaptcha_code_user').val();
 				$("#code_error_info_user").addClass("hide");
-				$("#user_phoneNumberId").addClass("hide");
 				$("#kapt_error_info_user").addClass("hide");
 				if(phoneNumber == null || phoneNumber == '' || phoneNumber == undefined){
 					$("#phone_error_user").text("请输入手机号").removeClass("hide");
@@ -240,14 +238,13 @@ $().ready(function() {
 				});
 		},
 		wechat:function(){
-			$('#webcat').on('click',function(){
+			$('#wechat').on('click',function(){
 				var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
 				window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
 			})
 		},
 		wb:function(){
 			$('#weiboBt').on('click',function(){
-				alert(1)
 				WB2.login(function() {
 						// 获取 用户信息
 					getWBUserData(function(o){
@@ -349,7 +346,7 @@ $().ready(function() {
 						InterValObj = window.setInterval(SetTeamRemainTime, 1000); // 启动计时器，1秒钟执行一次
 						loadData(function(flag){
 							if(!flag){
-								sendCode=true;
+								window.clearInterval(InterValObj);
 								$('#get_code_team').text('重新获取');
 								$('#get_code_team').removeAttr('disabled');
 							}
@@ -512,7 +509,6 @@ $().ready(function() {
 	function SetUsrRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_user').text('重新获取');
 			$('#get_code_user').removeAttr('disabled')
 			// 清除session code
@@ -528,7 +524,6 @@ $().ready(function() {
 	function SetTeamRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_team').text('重新获取');
 			$('#get_code_team').removeAttr('disabled')
 			// 清除session code
