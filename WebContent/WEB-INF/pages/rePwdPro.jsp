@@ -52,8 +52,8 @@
 				</r:identity>
 
 				<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
-					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
+					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 				</r:noLogin>
 				<a href="<spring:url value='/list.html'/>" class="header-item"
 					target="_parent">精品案例<span></span></a> <a href="/order-flow.html"
@@ -78,10 +78,8 @@
 			</div>
 			<div class="right-part">
 				<r:noLogin>
-					<a href="<spring:url value="/provider/login" />"
-						class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />"
-						class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />"
@@ -191,13 +189,21 @@
                             <div class="errorDiv hide" id="loginName-info">*用户名</div>
                               </div>
                               <div class="loginContent input-group ">
+<<<<<<< HEAD
+                                   <input  type="password" class="fontSizeBaseLight "  placeholder="新密码" id="pwd"></input>
+=======
                                    <input class="fontSizeBaseLight " type="password"  placeholder="新密码" id="pwd"></input>
+>>>>>>> 429ab892f975496a55bdea548822be5bd5d2ffdc
                                    <div class="errorDiv hide " id="pwd-info" >*密码错误</div>
                                    <img class="newImg" id="pwd-info-right" src="/resources/images/login/true.png">
                                    <img class="newImg" id="pwd-info-wrong" src="/resources/images/login/false.png">
                               </div>  
                               <div class="loginContent input-group ">
+<<<<<<< HEAD
+                                   <input type="password" class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
+=======
                                    <input class="fontSizeBaseLight " type="password"  placeholder="确认新密码" id="newpwd"></input>
+>>>>>>> 429ab892f975496a55bdea548822be5bd5d2ffdc
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
                                    <img class="newImg" id="newpwd-info-right" src="/resources/images/login/true.png">
                                    <img class="newImg" id="newpwd-info-wrong" src="/resources/images/login/false.png">
@@ -207,7 +213,7 @@
                </div>
         </div>
     </div>
-    
+    </div>
     <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
