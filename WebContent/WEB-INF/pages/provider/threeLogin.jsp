@@ -149,7 +149,7 @@
 		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
 		            </div>
 		            <h3>初次见面,欢迎加入拍片网</h3> 
-		            <div class="redBtn" id="submitBtn">立即绑定</div>
+		            <div class="redBtn red-c-r" id="submitBtn">立即绑定</div>
 		            <input type="hidden" value="${LType}" id = "LType">
 		         </div>
 		   </div>

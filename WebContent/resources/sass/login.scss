@@ -39,9 +39,9 @@ body {
         height: 524px;
         width: 385px;
         background: url('/resources/images/login/proLogin.png') no-repeat;
-        background-position: -370px 0px;
+        background-position: -0px 0px;
         &:hover {
-            background-position: 0px 0px;
+            background-position: -370px 0px;
         }
     }
     .setInfo {
@@ -53,7 +53,7 @@ body {
         }
         .infoTop {
             margin-top: 34px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
             label {
                 font-size: 26px;
                  @media screen and (max-width: 1276px) {
@@ -158,6 +158,9 @@ body {
         display: inline-block;
         border-bottom: 4px solid $e;
         cursor: pointer;
+        &:hover{
+           color:$red-base;
+        }
     }
     div:nth-child(2) {
         width: 50%;
@@ -166,6 +169,9 @@ body {
         display: inline-block;
         border-bottom: 4px solid $e;
         cursor: pointer;
+        &:hover{
+            color:$red-base;
+        }
     }
     div:nth-child(3) {
         width: 50%;
@@ -216,7 +222,7 @@ body {
         border-radius: 5px;
         text-align: center;
         line-height: 38px;
-        font-size: $font-size;
+        font-size: $font-size-base;
         color: #fff;
         margin-top: 54px;
         margin-bottom: 30px;

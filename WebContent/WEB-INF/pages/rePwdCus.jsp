@@ -189,13 +189,14 @@
                               </div>
                               <div class="loginContent input-group ">
                                    <input class="fontSizeBaseLight "  placeholder="新密码" id="pwd"></input>
-                                  
                                    <div class="errorDiv hide " id="pwd-info" >*密码错误</div>
+                                   <img id="myPwd" src="/resources/images/login/true.png">
                               </div>  
                               <div class="loginContent input-group ">
                                    <input class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
-                
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
+                                   <img id="myPwdTrue" src="/resources/images/login/true.png">
+                                   <img id="myPwdFalse" src="/resources/images/login/false.png">
                               </div>
                               <div class="redBtn btn-c-r " id="stepFinishBtn">下一步</div>
                     </div>

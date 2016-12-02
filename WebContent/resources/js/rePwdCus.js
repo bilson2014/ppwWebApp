@@ -224,6 +224,7 @@ $().ready(function() {
 				if(newpwd!=pwd){
 					$("#newpwd-info").text("两次密码不一致").removeClass("hide");
 					$('#newpwd').focus();
+					$('#myPwdFalse').show();
 					return false;
 				}
 				if(loginInputStatus){//禁用状态
@@ -233,6 +234,9 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
+				            $('#myPwdFalse').hide();
+				            $('#myPwdTure').show();
+				            $('#myPwd').show();
 				            showFinish();
 						}else{
 							$("#newpwd-info").text('修改失败').removeClass("hide");
@@ -248,6 +252,9 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
+				            $('#myPwdFalse').hide();
+				            $('#myPwdTure').show();
+				            $('#myPwd').show();
 				            showFinish();
 						}else{
 							$("#newpwd-info").text("修改失败").removeClass("hide");

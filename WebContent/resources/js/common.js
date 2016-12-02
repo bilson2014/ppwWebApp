@@ -603,7 +603,7 @@ function playVideo() {
 						if (!hasVideo) {
 							var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
 								    +   '<div class="openVideoCommon"></div>'
-									+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop  name="media" id="header3Video"> '
+									+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="/resources/images/banner/moreInfo.JPG"  name="media" id="header3Video"> '
 									+
 									// '<source
 									// src="/product/video/paipianwangMovie.mp4"
@@ -677,7 +677,7 @@ function showOrder(typeName) {
             '<span data-content="0" id="submit-indent-recomment">' + typeName + '</span>' +
             '<div class="carets"></div>' +
             '</div>' +
-            '<ul class="dropdown-menu" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">' +
+            '<ul class="dropdown-menu dropdown-menus" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">' +
             '<li data-content="0">宣传片</li>' +
             '<li data-content="1">广告片</li>' +
             '<li data-content="2">动画片</li>' +

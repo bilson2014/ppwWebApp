@@ -80,7 +80,7 @@ body {
         border-radius: 5px;
         text-align: center;
         line-height: 38px;
-        font-size: $font-size;
+        font-size: $font-size-base;
         color: #fff;
         margin-top: 60px;
         margin-bottom: 30px;
@@ -103,23 +103,27 @@ body {
         width: 116px;
         height: 223px;
         margin: 0 auto;
-        &:hover {
-            background-position: 0px -230px;
-        }
     }
     .setImgPro {
         width: 230px;
         height: 222px;
         margin: 0 auto;
+    }
+    .hoverAll {
         &:hover {
-            background-position: 0px -230px;
+            .setImg {
+                background-position: 0px -230px;
+            }
+            .setImgPro {
+                background-position: 0px -230px;
+            }
         }
     }
     .cusImg {
-        background: url('../images/login/cusRe.png') no-repeat;
+        background: url('/resources/images/login/cusRe.png') no-repeat;
     }
     .proImg {
-        background: url('../images/login/proRe.png') no-repeat;
+        background: url('/resources/images/login/proRe.png') no-repeat;
     }
     .toIwant {
         width: 240px;
@@ -147,11 +151,17 @@ body {
     }
     .rightLabel {
         position: absolute;
-        right: 70;
+        left: 70;
+        &:hover {
+            color: $red-base;
+        }
     }
     .leftLabel {
         position: absolute;
-        left: 70;
+        right: 70;
+        &:hover {
+            color: $red-base;
+        }
     }
     .loginContent {
         width: 100%;
@@ -403,13 +413,80 @@ body {
     }
 }
 
-
-.ourUser{
+.ourUser {
     margin-top: 60px;
-    color:$gray-light;
+    color: $gray-light;
     font-size: $font-size-base;
     text-align: center;
-    span{
-        color:$red-base;
+    span {
+        color: $red-base;
+    }
+}
+
+//成功提示
+.showSuccessModal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 45;
+    .cCloseBtnModal {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: #f0f2f5;
+        border-radius: 90px;
+        border: 1px solid #d1d1d1;
+        div {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: relative;
+            top: 5px;
+            left: 5px;
+            &:hover {
+                background-position-y: -12px;
+            }
+        }
+    }
+}
+
+.successModals {
+    position: relative;
+    background: white;
+    width: 402px;
+    height: 286px;
+    padding-top: 40px;
+    border-radius: 6px;
+    top: 50%;
+    left: 50%;
+    margin-top: -143px;
+    margin-left: -201px;
+}
+
+.successWords {
+    color: $gray-dark;
+    font-size: $font-size;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 80px;
+    margin: 0 auto;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.successInfos {
+    color: $gray-light;
+    font-size: $font-size-sm;
+    text-align: center;
+    span:nth-child(1) {
+        color: $red-base;
+        margin-right: 16px;
+        cursor: pointer;
     }
 }
