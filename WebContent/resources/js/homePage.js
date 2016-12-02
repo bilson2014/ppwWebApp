@@ -184,7 +184,7 @@ var homePage = {
 				_this.cover();
 				$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend,{list:classical_section}));
 			}else{
-				alert("数据加载错误")
+				//alert("数据加载错误")
 			}
 		}, getContextPath() + '/home/product/loadProduct/',$.toJSON({
 			sort:"supportCount"
