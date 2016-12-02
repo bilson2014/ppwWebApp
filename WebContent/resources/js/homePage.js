@@ -69,7 +69,7 @@ function originTool() {
      });
 
     $('#classical').waypoint(function() {
-        $('.cardUl').find('li').addClass('topAnimaltion');
+        //$('.cardUl').find('li').addClass('topAnimaltion');
     }, { offset: 600 });
     $('.hereClients').waypoint(function() {
         $('#Clients').find('.up').css('top', '0');
@@ -89,7 +89,7 @@ function banner() {
         grabCursor: true,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
-        autoplay: 3000,
+        autoplay: 5000,
         onSlideChangeEnd: function(swiper) {
             var number = swiper.activeIndex; //每次切换时，提示现在是第几个slide
         },
@@ -226,6 +226,10 @@ var homePage = {
 				$("#directorContent").empty().html(juicer(homePage_tpl.team_recommend,data));
 				//渲染team效果
 				_this.director();
+				 $('.dContent').each(function(i){ 
+               	  var node=document.getElementsByClassName('dContent')[i];  
+    			      $clamp(node,{clamp:3});     
+               	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -237,7 +241,7 @@ var homePage = {
 	    var director = new Swiper('.swiper-director', {
 	        pagination: '.swiper-pagination',
 	        slidesPerView: 5,
-	        centeredSlides: true,
+	       // centeredSlides: true,
 	        paginationClickable: true,
 	        spaceBetween: 12,
 	        grabCursor: true,
@@ -247,22 +251,25 @@ var homePage = {
 	    });
 
 	    var images = new Array(
-	        'url(/resources/images/index/db1.png) no-repeat',
-	        'url(/resources/images/index/db2.png) no-repeat',
-	        'url(/resources/images/index/db3.png) no-repeat',
-	        'url(/resources/images/index/db4.png) no-repeat',
-	        'url(/resources/images/index/db5.png) no-repeat',
-	        'url(/resources/images/index/db6.png) no-repeat',
-	        'url(/resources/images/index/db7.png) no-repeat',
-	        'url(/resources/images/index/db8.png) no-repeat',
-	        'url(/resources/images/index/db9.png) no-repeat',
-	        'url(/resources/images/index/db10.png) no-repeat',
-	        'url(/resources/images/index/db11.png) no-repeat',
-	        'url(/resources/images/index/db12.png) no-repeat',
-	        'url(/resources/images/index/db13.png) no-repeat',
-	        'url(/resources/images/index/db14.png) no-repeat',
-	        'url(/resources/images/index/db15.png) no-repeat',
-	        'url(/resources/images/index/db16.png) no-repeat'
+	        'url(/resources/images/index/db1.jpg) no-repeat',
+	        'url(/resources/images/index/db2.jpg) no-repeat',
+	        'url(/resources/images/index/db3.jpg) no-repeat',
+	        'url(/resources/images/index/db4.jpg) no-repeat',
+	        'url(/resources/images/index/db5.jpg) no-repeat',
+	        'url(/resources/images/index/db6.jpg) no-repeat',
+	        'url(/resources/images/index/db7.jpg) no-repeat',
+	        'url(/resources/images/index/db8.jpg) no-repeat',
+	        'url(/resources/images/index/db9.jpg) no-repeat',
+	        'url(/resources/images/index/db10.jpg) no-repeat',
+	        'url(/resources/images/index/db11.jpg) no-repeat',
+	        'url(/resources/images/index/db12.jpg) no-repeat',
+	        'url(/resources/images/index/db13.jpg) no-repeat',
+	        'url(/resources/images/index/db14.jpg) no-repeat',
+	        'url(/resources/images/index/db15.jpg) no-repeat',
+	        'url(/resources/images/index/db16.jpg) no-repeat',
+	        'url(/resources/images/index/db17.jpg) no-repeat',
+	        'url(/resources/images/index/db18.jpg) no-repeat',
+	        'url(/resources/images/index/db19.jpg) no-repeat'
 	    );
 
 
@@ -280,6 +287,14 @@ var homePage = {
 			if(data.code==1){
 				$("#news-container").empty().html(juicer(homePage_tpl.news_resommend,data));
 				_this.getNewsDetail();
+				
+                  var hasNum = $('.Content').length;
+                  $('.Content').each(function(i){ 
+                	  var node=document.getElementsByClassName('Content')[i];  
+     			      $clamp(node,{clamp:3});     
+                	  }); 
+				
+				
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -322,8 +337,11 @@ var homePage_tpl = {
 			'{@/each}'
        	 ].join(""),
     classical_recommend:[
-            '{@each list as item}',
-			'<li class="topAnimaltion">',
+			'{@each list as item, index}',
+			'{@if index % 4 == 0}',
+			'<div class="flow-div">',
+			'{@/if}',
+			' <div class="topAnimaltion oneFlow">',
 			'	<div class="videoCard">',
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
 			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
@@ -335,13 +353,16 @@ var homePage_tpl = {
 			'				{@else}',
 			'					<div  class="price">￥${item.price}</div>',
 			'				{@/if}',
-		    '				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
-		    '					<div class="realPrice">原价￥${item.orignalPrice}</div>',
+			'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
+			'					<div class="realPrice">原价￥${item.orignalPrice}</div>',
 			'				{@/if}',
 			'			</div>',
 			'		</a>',
 			'	</div>',
-			'</li>',
+			'  </div>',
+			'{@if index % 4 == 3}',
+			'</div>',
+			'{@/if}',
 			'{@/each}'
          ].join(""),
      team_recommend:[
@@ -354,7 +375,7 @@ var homePage_tpl = {
 			'			<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
 			'			<div class="title">${item.teamName}</div>',
 			'			<div class="line"></div>',
-			'			<div class="content">${item.description}</div>',
+			'			<div class="content dContent">${item.description}</div>',
 			'			<div class="toProduct">作品集</div>',
 			'		</a>',
 			'	</div>',
@@ -373,8 +394,8 @@ var homePage_tpl = {
 			'	</div>',
 			'</li>',
 			'{@/each}'
-         ].join("")
-		
+         ].join("")         
+    
 }
 
 

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%-- <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="r" uri="/mytaglib" %> --%>
 
 
 
@@ -16,6 +16,7 @@
 <spring:url value="/resources/js/news.js" var="newsJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
+<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -29,7 +30,6 @@
     <title>拍片网－广告－宣传片－微电影－视频营销</title>
     <link rel="stylesheet" href="${newsCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
-
 </head>
 
 <body>
@@ -105,7 +105,7 @@
                     <input type="hidden" id="newsId" value="${news.id}">
                 </div>
                 <div class="rightContent">
-                    <div class="title">更多最新资讯</div>
+                    <div class="title">更多资讯</div>
                     <div class="setVideo" id="moreNews">
                        <!--  <div class="videoModel">
                             <label>标题</label>
@@ -169,6 +169,8 @@
                             </div>
                             <!--新版底部-->
     </div>
+    
+     <script type="text/javascript" src="${clampJs }"></script>
      <script type="text/javascript" src="${jqueryJs }"></script>
       <script type="text/javascript" src="${jquerybase64Js }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>

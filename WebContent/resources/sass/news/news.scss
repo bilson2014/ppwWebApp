@@ -2,6 +2,7 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
+    @import "compass/typography/text/ellipsis";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -27,12 +28,17 @@
             video {
                 width: 100%;
             }
+            p{
+                margin: 0;
+                padding: 0;
+            }
             .title {
                 font-size: 26px;
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
                 margin-bottom: 60px;
+                @include ellipsis;
             }
             .setPro {
                 padding-right: 220px;
@@ -62,19 +68,24 @@
                 margin-bottom: 30px;
                 overflow: hidden;
                 cursor: pointer;
+
             }
             .videoModel {
                 margin-bottom: 30px;
-
+                cursor: pointer;
                 label {
-                    display: block
+                    display: block;
+                    font-weight: 500;
                 }
                 label:first-child {
                     font-size: $font-size !important;
-                    color: $gray-dark;
+                    color: $gray-dark !important;
                     cursor: pointer;
+                    height: 40px;
+                    overflow: hidden;
+                    @include ellipsis;
                     &:hover {
-                        color: $red-base;
+                        color: $red-base !important;
                     }
                 }
                 label:nth-child(2) {
@@ -82,7 +93,7 @@
                     color: $gray-light;
                     margin-top: 16px;
                     margin-bottom: 12px;
-                    height: 48px;
+                    height: 54px;
                     overflow: hidden;
                 }
                 label:last-child {

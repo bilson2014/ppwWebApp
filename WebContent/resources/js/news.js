@@ -21,7 +21,6 @@ function initContent() {
 	
 	loadData(function(data){
 		
-        
 		var newsId =$('#newsId').val();
 		var k=0;
 	    $.each(data.result, function(i,item) {
@@ -30,6 +29,11 @@ function initContent() {
 	    		k++;
 	    	}
 	    });
+	    
+	    $('.discription').each(function(i){ 
+	    	 var teamDescripti=document.getElementsByClassName('discription')[0];  
+	 	    $clamp(teamDescripti,{clamp:3}); 
+         	  }); 
 		
 		
 	}, getContextPath() + '/news/info/recommend',null);
@@ -39,10 +43,8 @@ function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
 	  '<a href="/home/news/info/'+item.id+'" target="_blank">'+
       	'<label>' + item.title + '</label>' +
-      '</a>'+
-      '<label>' + item.discription + '</label>'+
-      '<a href="/home/news/info/'+item.id+'" target="_blank">'+
-      '  <label>了解更多</label>' +
+      '<label class="discription">' + item.discription + '</label>'+
+      '<label>了解更多</label>' +
       '</a>'+
       '</div>';
 	  $body += '</div>';

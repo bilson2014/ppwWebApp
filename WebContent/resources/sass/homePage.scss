@@ -16,7 +16,7 @@
 
 .page {
     top: 0 !important;
-    background: white;
+    background: transparent !important;
 }
 
 .btn-default {
@@ -300,9 +300,9 @@
     display: inline-block;
     position: relative;
     top: -1px;
-    .dropdown-menu {
+    .dropdown-menuHost {
         width: 222px;
-        top: 29px;
+        top: 31px;
         left: -1px;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
@@ -310,7 +310,7 @@
         padding: 0;
         li {
             width: 220px;
-            padding-left: 20px;
+            padding-left: 20px !important;
             color: $gray-dark;
             cursor: pointer;
             line-height: 35px;
@@ -428,6 +428,9 @@ input:focus {
                 font-size: $font-size-base;
                 border: none;
                 outline: none;
+                &:active {
+                    background: darken($red-base, 10%);
+                }
             }
             .wordPosition {
                 width: 100%;
@@ -856,7 +859,6 @@ input:focus {
 //经典
 .classical {
     padding-top: 80px;
-    padding-bottom: 80px;
     background: #FDFFFF;
     position: relative;
     .classicalArea {
@@ -875,11 +877,16 @@ input:focus {
 .cardUl {
     font-size: 0;
     padding-top: 20px;
-    // margin-left: -10px;
+    padding-bottom: 80px;
     .topAnimaltion {
         opacity: 1 !important;
     }
-    li {
+
+    .oneFlow:nth-child(4){
+    	margin-right:0px !important;
+    }
+
+    .oneFlow {
         opacity: 0;
         transition: opacity 1.5s ease-in-out .2s;
         -moz-transition: opacity 1.5s ease-in-out .2s;
@@ -888,37 +895,40 @@ input:focus {
         /* Safari 和 Chrome */
         -o-transition: opacity 1.5s ease-in-out .2s;
         display: inline-block;
-        width: 25%;
-        // padding-left: 10px;
+        margin-right:20px;
         border-radius: 4px;
-        margin-top: 20px;
+        margin-top: 40px;
         background: transparent;
         vertical-align: top;
+        @include cardUlWidth();
         &:hover {
             // -moz-box-shadow: 10px 10px 5px #d1d1d1;
             // /* 老的 Firefox */
             // box-shadow: 0px 0px 10px #d1d1d1;
-            -moz-transform: scale(1.1);
+            -moz-transform: scale(1.05);
             /* Firefox 4 */
-            -webkit-transform: scale(1.1);
+            -webkit-transform: scale(1.05);
             /* Safari 和 Chrome */
-            -o-transform: scale(1.1);
-            transform: scale(1.1);
+            -o-transform: scale(1.05);
+            transform: scale(1.05);
             .videoContet {
                 -moz-box-shadow: 10px 10px 5px #d1d1d1;
                 /* 老的 Firefox */
                 box-shadow: 0px 0px 10px #d1d1d1;
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
             }
         }
         img {
             width: 100%;
-            height: 132px;
-            @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 168px;
-            }
-            @media screen and (min-width: 1500px) {
-                height: 180px;
-            }
+            // height: 132px;
+            // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            //     height: 168px;
+            // }
+            // @media screen and (min-width: 1500px) {
+            //     height: 180px;
+            // }
+            @include cardUlImgHeight();
             border-top-right-radius: 4px;
             border-top-left-radius: 4px;
         }
@@ -1013,7 +1023,7 @@ input:focus {
             width: 960px;
             min-width: 960px;
             margin: 0 auto;
-            padding-top: 40px;
+            padding-top: 20px;
             @media screen and (min-width: 1276px) {
                 width: 1090px;
             }
@@ -1044,12 +1054,12 @@ input:focus {
                 }
                 &:hover {
                     // background-position-y: -140px !important;
-                    -moz-transform: scale(1.2);
+                    -moz-transform: scale(1.1);
                     /* Firefox 4 */
-                    -webkit-transform: scale(1.2);
+                    -webkit-transform: scale(1.1);
                     /* Safari 和 Chrome */
-                    -o-transform: scale(1.2);
-                    transform: scale(1.2);
+                    -o-transform: scale(1.1);
+                    transform: scale(1.1);
                 }
             }
         }
@@ -1121,9 +1131,11 @@ input:focus {
         }
         li:nth-child(9) {
             //   background: url(../images/index/client9.png) no-repeat;
-            background-position: -1200px 0px !important;
-            @media screen and (min-width: 1276px) {
-                background-position: -1440px 0px !important;
+            div {
+                background-position: -1200px !important;
+                @media screen and (min-width: 1276px) {
+                    background-position: -1440px !important;
+                }
             }
         }
         li:nth-child(10) {
@@ -1395,6 +1407,7 @@ input:focus {
             margin-top: 70px;
             left: 23px;
             top: 50px;
+            vertical-align: top;
             transition: all .4s ease-out 0s;
             -moz-transition: all .4s ease-out 0s;
             /* Firefox 4 */
@@ -1409,7 +1422,7 @@ input:focus {
                 }
             }
             div {
-                width: 216px;
+                width: 250px;
                 margin: 0 auto;
                 text-align: left;
             }
@@ -1465,19 +1478,32 @@ input:focus {
                 div:nth-child(2) {
                     background: $red-base;
                 }
+                 div:nth-child(3) {
+                    color: $red-base !important;
+                    cursor: pointer;
+                }
                 div:nth-child(4) {
-                    color: $gray !important;
+                    color: $red-base !important;
                 }
             }
             img {
                 position: relative;
                 margin-left: 10px;
             }
+            .Contentp::after {
+                content: "...";
+                font-weight: bold;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 0 20px 1px 45px;
+            }
             div:nth-child(1) {
                 color: $gray-dark;
                 font-size: $font-size-lg;
                 cursor: pointer;
                 @include ellipsis;
+                padding-right: 60px;
             }
             div:nth-child(2) {
                 height: 2px;
@@ -1489,8 +1515,8 @@ input:focus {
             div:nth-child(3) {
                 color: $gray-light !important;
                 font-size: $font-size-sm;
-                padding-right: 24%;
-                height: 52px;
+                padding-right: 15%;
+                height: 54px;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -1508,7 +1534,7 @@ input:focus {
 }
 
 .join {
-    background: url(/resources/images/index/join.png) no-repeat !important;
+    background: url(/resources/images/index/join.jpg) no-repeat !important;
     background-size: 100% 100% !important;
     height: 307px;
     min-width: 960px;
@@ -1557,7 +1583,7 @@ input:focus {
             div {
                 height: 40px;
                 width: 200px;
-                line-height: 40px;
+                line-height: 38px;
                 display: inline-block;
                 border-radius: 4px;
                 font-size: $font-size-base;

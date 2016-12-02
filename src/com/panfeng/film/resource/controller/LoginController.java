@@ -172,7 +172,7 @@ public class LoginController extends BaseController {
 		return info;
 	}
 	/**
-	 * 验证手机号码是否注册
+	 * 验证用户手机号码是否注册
 	 */
 	@RequestMapping("/validation/phone")
 	public BaseMsg validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {

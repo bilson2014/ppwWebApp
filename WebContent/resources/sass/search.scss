@@ -4,11 +4,13 @@
 @import "pagination";
 @import "compass/typography/text/ellipsis";
 
+.page {
+	background: #fbfff;
+}
+
 .classify-section {
 	position: relative;
 	width: 100%;
-	background: $body-bg;
-	padding-top: 16px;
 }
 
 .classify-section > .classify-wrap {
@@ -128,7 +130,7 @@
 	}
 }
 
-.classify-wrap > .classify-type,.classify-price,.classify-length{
+.classify-wrap > .classify-type,.classify-business,.classify-price,.classify-length{
 	padding: 30px 14.67% 20px 6.35%;
 	border-bottom: dashed $width-border $gray-border;
 	margin: auto;
@@ -181,11 +183,11 @@
 } 
 
 .video-row>.video-card {
-	margin-right: 38px;
+	margin-right: 20px;
 	&:last-child {
 		margin-right: 0;
 	}
-}
+} 
 
 .prompt-word{
 	span{
@@ -198,7 +200,7 @@
     @include media_screen_width();
     margin: 0 auto;
     position: relative;
-    margin-top: 20px;
+    padding: 30px 0;
     div {
         display: inline-block;
         color: $gray;
@@ -225,7 +227,7 @@
     	}
     }
 
-}
+} 
 
 .dropdowns .dropdown-menu{
 	position: absolute;
@@ -234,7 +236,7 @@
 	border: 1px solid #999;
     z-index: 9;
     display: none;
-    top:35px !important;
+    top:32px !important;
 	li{
 		&:hover{
 			background: #f0f2f5;

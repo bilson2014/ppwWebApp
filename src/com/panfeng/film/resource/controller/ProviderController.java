@@ -38,7 +38,6 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
-import com.panfeng.film.service.KindeditorService;
 import com.panfeng.film.service.ProviderThirdLogin;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.Constants.loginType;
@@ -72,7 +71,6 @@ public class ProviderController extends BaseController {
 
 	private static String ALLOW_VIDEO_TYPE = null;
 
-	private static String FILE_PROFIX = null; // 文件路径前缀
 
 //	private static String TEAM_IMAGE_PATH = null; // 团队logo
 
@@ -84,9 +82,6 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private ProviderThirdLogin providerThirdLogin;
-
-	@Autowired
-	private KindeditorService kindService;
 
 	@Autowired
 	private SessionInfoService sessionService = null;
@@ -114,7 +109,6 @@ public class ProviderController extends BaseController {
 				PRODUCT_IMAGE_MAX_SIZE = propertis.getProperty("productMaxSize");
 				VIDEO_MAX_SIZE = propertis.getProperty("videoMaxSize");
 				ALLOW_VIDEO_TYPE = propertis.getProperty("videoType");
-				FILE_PROFIX = propertis.getProperty("file.prefix");
 			} catch (IOException e) {
 				Log.error("ProviderController method:constructor load Properties fail ...", null);
 				e.printStackTrace();
@@ -799,20 +793,18 @@ public class ProviderController extends BaseController {
 			original = JsonUtil.toBean(result, Product.class);
 			// 删除 缩略图
 			final String picLDUrl = original.getPicLDUrl();
-			FileUtils.deleteFile(FILE_PROFIX + picLDUrl);
-
+			DFSservice.delete(picLDUrl);
 			// 删除 高清图
 			final String picHDUrl = original.getPicHDUrl();
-			FileUtils.deleteFile(FILE_PROFIX + picHDUrl);
-
+			DFSservice.delete(picHDUrl);
 			// 删除 视频
 			final String videoUrl = original.getVideoUrl();
-			FileUtils.deleteFile(FILE_PROFIX + videoUrl);
-
+			DFSservice.delete(videoUrl);
+			//TODO 待修改成分解富文本，删除图片
 			// 删除产品编辑页图片
-			String sessionId = original.getSessionId();
-			if (sessionId != null && !"".equals(sessionId))
-				kindService.deleteImageDir(original.getSessionId());
+			//String sessionId = original.getSessionId();
+			//if (sessionId != null && !"".equals(sessionId))
+			//	kindService.deleteImageDir(original.getSessionId());
 
 		}
 		final String url = URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;

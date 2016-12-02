@@ -1,17 +1,10 @@
 var PopInterValObj,oTimer,successIntervalObj; // timer变量，控制时间
-var imageType = ['png','jpg'];
-var videoType = ['mp4'];
 var image_max_size = 1024*250; // 250KB
 var video_max_size = 200*1024*1024; // 200MB
 var image_err_msg = '图片大小超出250KB上限,请重新上传!';
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
-var tipMsg = "您的浏览器暂不支持计算上传文件的大小，为保证操作体验，建议使用IE、FireFox、Chrome浏览器";
 var browserCfg = {};
-var localAddress;
-var sessionId;
 var editor;
-var timer;
-oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 $.base64.utf8encode = true;
 $().ready(function(){
 	var upload = {
@@ -176,22 +169,6 @@ $().ready(function(){
 		
 		uploaderPic:function(){
 			var _this = this;
-			uploader_HD = WebUploader.create({
-				auto:true,
-				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/web/upload',
-				pick : '#uploadHDBt',
-				resize : false,
-				chunked : false,
-				duplicate: true,//允许重复上传同一个
-				fileSingleSizeLimit : image_max_size,
-				formData : {oldUrl:$("#video-picHDUrl").val()},//参数
-				accept :{
-				    title: 'Images',
-				    extensions: 'jpg,png',
-				    mimeTypes: 'image/jpeg,image/png'
-				}
-			});
 			uploader_LD = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
@@ -207,36 +184,6 @@ $().ready(function(){
 				    extensions: 'jpg,png',
 				    mimeTypes: 'image/jpeg,image/png'
 				}
-			});
-			uploader_HD.on('fileQueued', function(file) {
-				$('#imageLabel-HD').hide();
-				var $img = $("#HDImg");
-		        // 创建缩略图
-		        // 如果为非图片文件，可以不用调用此方法。
-		        // thumbnailWidth x thumbnailHeight 为 100 x 100
-		    	$("#video-picHD-div").show();
-		    	uploader_HD.makeThumb( file, function( error, src ) {
-		            if ( error ) {
-		                $img.replaceWith('<span>不能预览</span>');
-		                return;
-		            }
-		            $img.attr( 'src', src );
-		        }, 130, 100 );
-				
-			});
-			uploader_HD.on('uploadSuccess', function(file,response) {
-				if(response.code==0){//上传成功
-					$("#video-picHDUrl").val(response.result);
-				}
-			});
-			uploader_HD.on('error', function(type) {
-				 if (type=="Q_TYPE_DENIED"){
-					 	$('#imageLabel-HD').show();
-						$('#imageLabel-HD').text('请上传图片格式');
-			        }else if(type=="F_EXCEED_SIZE"){
-			        	$('#imageLabel-HD').show();
-						$('#imageLabel-HD').text(image_err_msg);
-			        }
 			});
 			uploader_LD.on('fileQueued', function(file) {
 				$('#imageLabel-LD').hide();
@@ -342,30 +289,14 @@ $().ready(function(){
 		$('.input_inner').focus();
 	});
 	
-	// 注册 返回 按钮点击事件
-	$('#backBt').on('click',function(){
-		if(action == 'upload'){
-			loadData(function(){
-				
-			}, getContextPath()+'/kindeditor/delete/' + sessionId, null);
-		}
-		$('.menu-content li:eq(1)', parent.document).click();
-	});
-	 
-	
 	// 注册变更模式
 	
 	if(action == 'upload'){
-		//新增首先获取sessionid
-		loadData(function(pData){
-			sessionId = pData.sessionId;
-			$('#video-picHD-div').hide();
-			$('#video-picLD-div').hide();
-			// 开关注册
-			initSwitch(true);
-		}, getContextPath()+'/product/sessionId', null);
+		$('#video-picHD-div').hide();
+		$('#video-picLD-div').hide();
+		// 开关注册
+		initSwitch(true);
 	}else if(action == 'modify'){
-		sessionId=$("#sessionId").val();
 		// 加载Editor
 		var pageDescription = $('#page-description').val().trim();
 		$.base64.utf8encode = true;
@@ -378,33 +309,12 @@ $().ready(function(){
 		}else{
 			initSwitch(true);
 		}
-		
-		// 显示缩略图
-		var picHDUrl = $('#video-picHDUrl').val();
-		if(picHDUrl != '' && picHDUrl != null){
-			// 上传过缩略图
-			$('#video-picHD-div').show();
-			//修改为DFS路径
-			//var picHDName = getFileName(picHDUrl);
-			//var picHDPath = getHostName() + '/product/img/' + picHDName;
-			var picHDPath = getDfsHostName() + picHDUrl;
-			//修改为DFS end
-			$('#HDImg').attr('src',picHDPath);
-		}else{
-			// 显示请上传图片
-			$('#video-picHD-div').hide();
-		}
-		
 		// 显示封面
 		var picLDUrl = $('#video-picLDUrl').val();
 		if(picLDUrl != '' && picLDUrl != null){
 			// 上传过封面
 			$('#video-picLD-div').show();
-			//修改为DFS路径
-			//var picLDName = getFileName(picLDUrl);
-			//var picLDPath = getHostName() + '/product/img/' + picLDName;
 			var picLDPath = getDfsHostName() + picLDUrl;
-			//修改为DFS end
 			$('#LDImg').attr('src',picLDPath);
 		}else{
 			// 显示请上传图片
@@ -416,21 +326,10 @@ $().ready(function(){
 		var name = $(this).data('href');
 		var width = $(this).data('width');
 		var height = $(this).data('height');
-		//修改为DFS路径begin 2016年10月25日 12:08:46
-		//$('#previewImg').attr('src',getContextPath() + '/product/img/' + name);
 		$('#previewImg').attr('src', name);
-		//修改为DFS路径end
 		$('#previewImg').css({'width':width + 'px','height':height + 'px'});
-		if(name.indexOf('default-thumbnail') > -1){ // 缩略图
-			$('#photoModel-content').css({'width':'1080px','height':'700px','top':'40px','position':'relative','left':'45%',});
-			$('#photoModel-dialog').css({'margin':0});
-			$('#previewImg').css({'left':'24px','top':'15px','position':'relative'});
-		}else{ // 封面
-		    //TODO:我改了它我是卢涛就是这么吊
-			//$('#photoModel-content').css({'width':'680px','height':'420px','top':'40px'});
-			$('#photoModel-content').css({'width':'680px','height':'420px'});
-			$('#photoModel-dialog').css({'margin':'30px auto'});
-		}
+		$('#photoModel-content').css({'width':'680px','height':'420px'});
+		$('#photoModel-dialog').css({'margin':'30px auto'});
 		$('#photoModel').modal('show');
 	});
 });
@@ -463,124 +362,6 @@ function loadVideoType(){
 			});
 		}
 	}, getContextPath() + '/provider/load/videoType', null);
-}
-
-// 新增上传
-function upload(){
-	
-	$('#imageLabel').hide();
-	$('#videoLabel').hide();
-	if(checkData('upload')){ // 检验数据完整性
-		
-		if(checkFileDecriminalization()){
-			
-			oTimer = setInterval("getProgress()", 500);
-			$('.progress-bar-success').text('0')
-			$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
-			$('#mymodal').modal('show');
-			
-			// 获取 videoDescription 值
-			$.base64.utf8encode = true;
-			var videoDescription= $.base64.btoa(editor.html());
-		}
-	}
-}
-
-// 修改
-function modify(){
-	
-	$('#imageLabel').hide();
-	$('#videoLabel').hide();
-	if(checkData('modify')){ // 检验数据完整性
-		
-		if(checkFileDecriminalization()){
-			// 文件验证成功，则隐藏错误提示
-			$('#imageLabel').hide();
-			$('#videoLabel').hide();
-				if($('#videoFile').val() != ''){
-					oTimer = setInterval("getProgress()", 500);
-					$('.progress-bar-success').text('0')
-					$('.progress-bar-success').attr('aria-valuenow','0').css({"width":'0%'});
-					$('#mymodal').modal('show');
-				}
-				// 获取 videoDescription 值
-				$.base64.utf8encode = true;
-				var videoDescription= $.base64.btoa(editor.html());
-				
-				$.ajaxFileUpload({
-					url : getContextPath() + '/provider/update/product/info',
-					secureuri : false,
-					fileElementId : ['videoFile','picHDFile','picLDFile'],
-					dataType : 'text/html',
-					data : {
-						'productId' : $('#p-id').val().trim(),
-						'teamId' : $('#company-id').val(),
-						'productName' : $('#video-name').val().trim(),
-						'productType' : $('#video-type option:selected').val(),
-						'videoLength' : $('#video-length').val().trim(),
-						'pDescription' : $('#video-description').val().trim(),
-						'serviceId' : $('#s-id').val(),
-						'servicePrice' : $('#video-price').val(),
-						'visible' : $('#video-switch').val(),
-						'tags' : mergeTag(),
-						'videoDescription' : videoDescription.trim(),
-						'sessionId' : sessionId,
-						'creationTime' : $('#creationTime').val()
-					},
-					success: function(data){
-						window.clearInterval(oTimer); // 停止计时器
-						
-						if(data.indexOf('error=1') > -1){
-							$('#videoLabel').show();
-							$('#videoLabel').text('视频大小超出500M上限,请重新上传!');
-							$('#mymodal').modal('hide');
-						}else if(data.indexOf('error=2') > -1){
-							$('#imageLabel').show();
-							$('#imageLabel').text('图片大小超出250KB上限,请重新上传!');
-							$('#mymodal').modal('hide');
-						}else {
-							// 成功
-							
-							if($('#s-id').val() == '' || $('#s-id').val() == null){
-								$('#s-id').val(serviceId);
-							}
-							
-							$('#mymodal').modal('hide');
-							
-							// 显示保存成功
-							successToolTipShow();
-							
-							loadData(function(product){
-								// 替换图片
-								if(product.picLDUrl != null && product.picLDUrl != '' && product.picLDUrl != undefined){
-									var picLDPath = getDfsHostName() + product.picLDUrl;
-									$('#LDImg').attr('src',picLDPath);
-								}
-								
-								if(product.picHDUrl != null && product.picHDUrl != '' && product.picHDUrl != undefined){
-									var picHDPath = getDfsHostName() + product.picHDUrl;
-									$('#HDImg').attr('src',picHDPath);
-								}
-							}, getContextPath() + '/provider/product/data/' + $('#p-id').val(), null);
-						}
-						
-						},
-						error : function(data, status, e){
-							alert('文件上传失败...');
-						}
-					});
-		}
-	}
-}
-
-// 进度条显示进程
-function getProgress() {
-	var now = new Date();
-	loadData(function(data){
-		var progress = Number((data.pBytesRead / data.pContentLength) * 100).toFixed(0) + '%';
-		$('.progress-bar-success').text('已完成' + progress)
-		$('.progress-bar-success').attr('aria-valuenow',progress).css({"width":progress});
-	}, getContextPath() + '/upfile/progress', now.getTime());
 }
 
 // 检测数据的完整性
@@ -647,14 +428,7 @@ function checkData(type){
 		$('#video-price').focus();
 		return false;
 	}
-	var HDImg = $('#video-picHDUrl').val(); // 缩略图
 	var LDImg = $('#video-picLDUrl').val(); // 封面图
-	if(HDImg == '' || HDImg == null || HDImg == undefined){
-		if($('#picHDFile').val() == null || $('#picHDFile').val() == ''){
-			popshow('uploadHDBt', '请上传缩略图!');
-			return false;
-		}
-	}
 	if(LDImg == '' || LDImg == null || LDImg == undefined){
 		if($('#picLDFile').val() == null || $('#picLDFile').val() == ''){
 			popshow('uploadLDBt', '请上传封面!');
@@ -695,51 +469,6 @@ function hideSuccessTooltip(){
 	$('.tooltip-success-show').hide('normal');
 }
 
-// 检验 文件格式
-function checkFileDecriminalization(){
-	var picHDFile = $('#picHDFile').val();
-	var picLDFile = $('#picLDFile').val();
-	var videoFile = $('#videoFile').val();
-	
-	if(picHDFile != null && picHDFile != '' && picHDFile!= undefined){
-		picHDFile = transformLower(picHDFile);
-		
-		if(picHDFile.indexOf('.' + imageType[0]) < 0 && picHDFile.indexOf('.' + imageType[1]) < 0){
-			
-			$('#imageLabel').show();
-			$('#imageLabel').text('缩略图请上传png、jpg格式的图片!');
-			return false;
-		}
-		
-	}
-	
-	if(picLDFile != null && picLDFile != '' && picLDFile!= undefined){
-		picLDFile = transformLower(picLDFile);
-		
-		if(picLDFile.indexOf('.' + imageType[0]) < 0 && picLDFile.indexOf('.' + imageType[1]) < 0){
-			$('#imageLabel').show();
-			$('#imageLabel').text('封面请上传png、jpg格式的图片!');
-			return false;
-		}
-		
-	}
-	
-	if(videoFile != null && videoFile != '' && videoFile!= undefined){
-		videoFile = transformLower(videoFile);
-		
-		if(videoFile.indexOf('.' + videoType[0]) < 0){
-			
-			$('#videoLabel').show();
-			$('#videoLabel').text('请上传mp4格式的视频!');
-			return false;
-		}
-		
-	}
-	
-	return true;
-}
-
-
 //启用switch开关
 function initSwitch(type){
 	$("#video-switch").bootstrapSwitch({
@@ -757,12 +486,6 @@ function initSwitch(type){
 			}
 		}
 	});
-}
-function transformLower(value){
-	if(value != null && value != '' && value != undefined){
-		return value.toLowerCase();
-	}
-	return null;
 }
 
 // 提取标签
@@ -842,16 +565,7 @@ function cancleUpdate(){
 	});
 
 }
-
-
-function showPic(inputFile,imgID,container){
-	 if (document.getElementById(inputFile).files.length === 0) { return; }
-	  var oFile = document.getElementById(inputFile).files[0];
-	  if (!rFilter.test(oFile.type)) { alert("只能选择图片文件!"); return; }
-	  oFReader.readAsDataURL(oFile);
-	  oFReader.onload = function (oFREvent) {
-	  	$("#"+container).show();
-	    document.getElementById(imgID).src = oFREvent.target.result;
-	  };
-}	
-
+$('#backBt').on('click',function(){
+	$('.menu-content li:eq(1)', parent.document).click();
+});
+ 

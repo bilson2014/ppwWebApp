@@ -10,6 +10,7 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/block/block.js" var="blockJS"/>
@@ -166,7 +167,7 @@
 	                    	<a href="/provider/info_${teamId }.html">
 	                        <div>
 	                        	<c:if test="${empty product.teamPhotoUrl }">
-									<img src='${imgPath }/play/default_team_photo.svg' alt="公司照片_拍片网" class="img-rounded" >
+									<img src='/resources/images/play/default_team_photo.svg' class="img-rounded" >
 								</c:if>
 								<c:if test="${!empty product.teamPhotoUrl }">
 									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
@@ -175,7 +176,7 @@
 	                            <div>作品集</div>
 	                        </div>
 	                         </a>
-	                        <div>
+	                        <div class="teamDescription">
 	                        	${product.teamDescription }
 	                        </div>
 	                    </div>
@@ -183,8 +184,8 @@
                 </div>
                 <div class="videoPrice" id="info-wrap">
                     <div class="wordContent">
-                        <div class="title">影片故事简述</div>
-                        <div class="content">
+                        <div class="title">影片简介  Project summary </div>
+                        <div class="content playContent">
                             	${product.pDescription }
                         </div>
                     </div>
@@ -205,7 +206,7 @@
 	                    	 <div class="afterPrice" ><span>￥</span><span>暂无报价</span></div>
 	                    </c:if>
 	                    <div class="afterPriceTitle">影片价格</div>
-                        <div id="needOrder">我要下单</div>
+                        <div class="btn-c-r" id="needOrder">我要下单</div>
                      </div>
                     <div class="order" id="order">
                     	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
@@ -221,9 +222,9 @@
 	                        </div>
 	                        <div class="orderItem" id="phoneCodeError">
 	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
-	                            <div id="verification_code_recover_btn">获取验证码</div>
+	                            <div class="btn-c-r" id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn">确认提交</div></a>
+	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn btn-c-r">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
 	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
                         </form>
@@ -287,13 +288,13 @@
         <div class="bottomContent hide" id="videoDescription">
             <div class="contentWidth">
                 <div class="leftContent">
-                      <div class="title">影片故事简述</div>
+                      <div class="title">影片介绍  <span>About this project</span></div>
                       <div class="setPro" id="videoValue">
                       		${product.videoDescription}
                       </div>
                 </div>
                 <div class="rightContent" id="rightContent">
-                      <div class="title" id="moreTeamProductTitle" >相关影片推荐</div>
+                      <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span> Recommended for you</span></div>
 
                       <a id="moreProductInfo" class="hide">
 	                      <div class="get-new-detail newsMore ">
@@ -308,6 +309,12 @@
             </div>
         </div>
 </c:if>
+
+<c:if test="${product.videoDescription == null && product.videoDescription!= ''}">
+   <div>dsda</div>
+</c:if>
+
+
 
 <!-- foot -->
 				<div class="foot3">
@@ -358,6 +365,7 @@
 	             </div>
                             <!--新版底部-->
     </div>
+      <script type="text/javascript" src="${clampJs }"></script>
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>

@@ -111,11 +111,19 @@
     </div>
 
 	<div class="page">
+		<!-- 面包屑导航start -->
+		<div class="videoTag" >
+           <div>所有分类    ></div>
+            <!-- </div><div class="tag"><span  name="tagName">战争</span><span>x</span></div> -->
+            <div id="videoTag"></div>
+		</div>
+		<!-- 面包屑导航end -->
+		
 		<!-- 搜索条件模块 start -->
 		<div class="classify-section">
 			<div class="classify-wrap ">
 				<div class="classify-type ">
-					<dt>行业：<a class="active itemAll" href="javascript:void(0);" id="item-all">全部</a></dt>
+					<dt>类型：</dt>
 					<dd id="classify-item">
 						<ul class="list-inline" id="item-list">
 							<!-- 行业分类 -->
@@ -123,9 +131,23 @@
 						
 					</dd>
 
-					<div class="more-link" id="more-link">
+					<!-- <div class="more-link" id="more-link">
 						<span>更多</span>
-					</div>
+					</div> -->
+				</div>
+				
+				<div class="classify-business ">
+					<dt>行业：</dt>
+					<dd id="classify-item">
+						<ul class="list-inline" id="bus-item-list">
+							<!-- 行业分类 -->
+						</ul>
+						
+					</dd>
+
+					<!-- <div class="more-link" id="more-link">
+						<span>更多</span>
+					</div> -->
 				</div>
 				
 				
@@ -158,10 +180,7 @@
 		</div>
 
 		<!-- 搜索条件模块 end -->
-		<div class="videoTag" id="videoTag">
-		           <div>所有分类    ></div>
-		            <!-- </div><div class="tag"><span  name="tagName">战争</span><span>x</span></div> -->
-		</div>
+		
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">
@@ -175,23 +194,34 @@
 						</c:if>
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
-								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" />
+								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="${solr.productName }_拍片网" />
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
-								<h4></h4>
-								<div class="video-desc">
-									${solr.pDescription }
+								<div class="video-tags">
+									<c:if test="not empty ${fn:trim(solr.tags) }">
+										<c:forEach items="${fn:split(solr.tags,' ') }" var="tag" end="2">
+											${tag} /
+										</c:forEach>
+									</c:if>
 								</div>
 							</div>
 							<div class="video-price-section">
 								<div class="video-price">
-									<h2>￥<fmt:formatNumber value="${solr.price }" pattern="#,#00"/></h2>&nbsp;&nbsp;
+									<h2>￥
+										<c:choose>
+											<c:when test="${solr.price > 0}">
+												<fmt:formatNumber value="${solr.price }" pattern="#,#00"/>
+											</c:when>
+											<c:when test="${solr.price <= 0}">
+												暂无报价
+											</c:when>
+										</c:choose>
+									</h2>&nbsp;&nbsp;
 									<c:if test="${solr.price < solr.orignalPrice }">
-										<h3><fmt:formatNumber value="${solr.orignalPrice }" pattern="#,#00"/></h3>
+										<h3>原价&nbsp;￥&nbsp;<fmt:formatNumber value="${solr.orignalPrice }" pattern="#,#00"/></h3>
 									</c:if>
 								</div>
-								<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">了解详情</a>
 							</div>
 						</div>
 						

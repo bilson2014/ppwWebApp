@@ -21,7 +21,9 @@ function init() {
 //    }, function() {
 //        $(this).find('ul').slideUp();
 //    });
-//	$(".dropdown").on('click',function(){
+//	$(".costSelect").on('click',function(){
+//		alert(1);
+//		$(".dropdown").find('ul').slideUp();
 //		$(this).find('ul').slideDown();
 //		return false;
 //	});

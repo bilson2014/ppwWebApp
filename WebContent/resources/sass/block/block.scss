@@ -2,6 +2,7 @@
     @import "buttons";
     @import "video";
     @import "flexslider";
+    @import "compass/typography/text/ellipsis";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -9,7 +10,7 @@
     $rightWidth:320px;
     .videoArea {
         height: 830px;
-        background: url(../../images/index/hotback.png) no-repeat;
+        background: url(/resources/images/index/hotback.png) no-repeat;
         background-size: 100% 100%;
         position: relative;
         padding-top: 60px;
@@ -72,8 +73,6 @@
             }
         }
     }
-
-    
     
     .videoContent .player-wrap .videoTop {
         position: relative;
@@ -87,7 +86,7 @@
             img {
                 margin-left: 20px;
                 margin-right: 20px;
-                width: 20px;
+                width: 18px;
                 position: relative;
                 top: -2px;
             }
@@ -117,24 +116,27 @@
                 width: 26px;
                 height: 26px;
                 vertical-align: top;
-                transition: all .6s linear 0s;
-                -moz-transition: all .6s linear 0s;
+                transition: all .4s linear 0s;
+                -moz-transition: all .4s linear 0s;
                 /* Firefox 4 */
-                -webkit-transition: all .6s linear 0s;
+                -webkit-transition: all .4s linear 0s;
                 /* Safari 和 Chrome */
-                -o-transition: all .6s linear 0s;
+                -o-transition: all .4s linear 0s;
                 border-radius: 6px;
                 &:hover {
                     background-position-y: -29px !important;
+                    border: none;
                 }
             }
             li:nth-child(1) {
                 background: url(/resources/images/block/share.png) no-repeat;
-                background-position-y: 7px;
+                background-position-y: 4px;
+                background-size: 18px 18px;
                 &:hover {
-                    background-position-y: 7px !important;
+                    background-position-y: 4px !important;
                 }
             }
+            
             li:nth-child(2) {
                 color: $gray-light;
                 font-size: $font-size-base;
@@ -145,18 +147,26 @@
             li:nth-child(3) {
                 background: url(/resources/images/block/qq.png) no-repeat;
                 margin-left: 16px;
+                border: 1px solid $gray;
+                background-position: -2px -1px;
             }
             li:nth-child(4) {
                 background: url(/resources/images/block/zoom.png) no-repeat;
                 margin-left: 14px;
+                border: 1px solid $gray;
+                background-position: -2px -1px;
             }
             li:nth-child(5) {
                 background: url(/resources/images/block/wb.png) no-repeat;
                 margin-left: 14px;
+                border: 1px solid $gray;
+                background-position: -2px -1px;
             }
             li:nth-child(6) {
                 background: url(/resources/images/block/wechat.png) no-repeat;
                 margin-left: 14px;
+                border: 1px solid $gray;
+                background-position: -2px -1px;
             }
         }
     }
@@ -171,6 +181,10 @@
                 font-size: $font-size;
                 color: white;
                 display: inline-block;
+                max-width: 250px;
+                height: 30px;
+                @include ellipsis;
+                vertical-align: top;
                 &:hover {
                     color: $red-base;
                     border-color: transparent;
@@ -195,6 +209,7 @@
                 line-height: 18px;
                 text-align: center;
                 border-radius: 4px;
+                font-size: $font-size-sm;
                 &:hover {
                     color: white;
                     background: $red-base;
@@ -203,9 +218,9 @@
             }
         }
         div:nth-child(2) {
-            font-size: $font-size;
+            font-size: $font-size-sm;
             color: $gray-light;
-            height: 45px;
+            height: 37px;
             overflow: hidden;
             width: 70%;
         }
@@ -233,18 +248,19 @@
             @media screen and (max-width: 1275px) {
                 margin-top: 10px;
             }
-            .content {
-                color: white !important;
+            .content,
+            .title {
+                color: $border-line !important;
             }
             div {
-                color: $red-base;
+                color: $border-line !important;
             }
             div:nth-child(1) {
                 margin-bottom: 29px;
                 font-size: $font-size;
             }
             div:nth-child(2) {
-                height: 60px;
+                height: 75px;
                 overflow: hidden;
                 font-size: $font-size-base;
                 @media screen and (max-width: 1275px) {
@@ -301,7 +317,7 @@
             }
             .afterPriceTitle {
                 color: $gray-light;
-                font-size: $font-size-base;
+                font-size: $font-size-sm;
                 margin-left: 10px;
             }
             #needOrder {
@@ -550,6 +566,10 @@
             video {
                 width: 100%;
             }
+            p {
+                margin: 0;
+                padding: 0;
+            }
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -558,24 +578,24 @@
             }
             .title {
                 font-size: $font-size;
-                color: $red-base;
+                color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
                 margin-bottom: 60px;
             }
-            .videoArea .setPro {
+            .setPro {
                 padding-right: 220px;
                 color: $gray-dark;
                 font-size: $font-size-base;
-                img {
-                    width: $width-min - $rightWidth - 220px;
-                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                        width: $width-middle - $rightWidth - 220px;
-                    }
-                    @media screen and (min-width:1500px) {
-                        width: $width-lg3 - $rightWidth - 220px;
-                    }
-                }
+                // img {
+                //     width: $width-min - $rightWidth - 220px;
+                //     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                //         width: $width-middle - $rightWidth - 220px;
+                //     }
+                //     @media screen and (min-width:1500px) {
+                //         width: $width-lg3 - $rightWidth - 220px;
+                //     }
+                //}
             }
         }
         .rightContent {
@@ -606,7 +626,8 @@
                     position: absolute;
                     width: 65px;
                     height: 65px;
-                    background: url(/resources/images/index/play-icon.png);
+                    background: url(/resources/images/index/play-icon.png) no-repeat;
+                    background-size: 55px 55px;
                     left: 107px;
                     top: -70px;
                     transition: all .3s linear .3s;
@@ -622,10 +643,16 @@
                         position: absolute;
                         width: 65px;
                         height: 65px;
-                        background: url(/resources/images/index/play-icon.png);
-                        left: 107px;
-                        top: 50px;
+                        background: url(/resources/images/index/play-icon.png) no-repeat;
+                        background-size: 55px 55px;
+                        left: 115px;
+                        top: 56px;
                     }
+
+                    label{
+                        color:$red-base;
+                    }
+
                 }
                 img {
                     width: 280px;
@@ -637,6 +664,10 @@
                     color: $gray-dark;
                     margin-top: 12px;
                     font-weight: 500px;
+                    cursor: pointer;
+                    &:hover {
+                        color: $red-base;
+                    }
                 }
             }
         }
@@ -649,7 +680,7 @@
         cursor: pointer;
         position: absolute;
         top: -8px;
-        right: 30px;
+        right: 5px;
         &:active {
             color: $red-base !important;
         }
