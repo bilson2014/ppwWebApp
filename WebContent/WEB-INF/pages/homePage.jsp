@@ -162,7 +162,7 @@
 								<span id='indent_recomment'>宣传片</span>
 								<div class="carets"></div>
 							</button>
-							<ul class="dropdown-menu" id="selectUl" role="menu"
+							<ul class="dropdown-menu dropdown-menuHost" id="selectUl" role="menu"
 								aria-labelledby="dropdownMenu1">
 								<li>宣传片</li>
 								<li>广告片</li>
