@@ -5,7 +5,6 @@ $().ready(function() {
     client();
     scrollBack();
     ourYouDian();
-
 });
 
 function scrollBack() {

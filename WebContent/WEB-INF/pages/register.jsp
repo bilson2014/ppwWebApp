@@ -156,16 +156,20 @@
 
 					<div class="loginDiv right borderRight">
 						<h1>客户</h1>
-						<h2>作品如人品,享受的不止是低价</h2>
-						<div class="setImg cusImg"></div>
-						<div class="toIwant" id="toCusRe">我要拍片</div>
+						<h2>作品如人品，享受的不止是低价</h2>
+						<div class="hoverAll">
+						 	<div class="setImg cusImg"></div>
+							<div class="toIwant" id="toCusRe">我要拍片</div>
+						</div>	
 						<label class="returnInit rightLabel" id="cusToInit">不是客户？</label>
 					</div>
 					<div class="loginDiv right">
 						   <h1>导演</h1>
-                           <h2>成为拍片网导演,赚钱更容易</h2>
-                           <div class="setImgPro proImg"></div>
-                           <div class="toIwant" id="toProRe">我要拍片</div>
+                           <h2>成为拍片网导演，赚钱更容易</h2>
+                           <div class="hoverAll">
+	                           <div class="setImgPro proImg"></div>
+	                           <div class="toIwant" id="toProRe">入驻拍片网</div>
+	                       </div>    
                            <label class="returnInit leftLabel" id="proToInit">不是导演？</label>
 					</div>
 

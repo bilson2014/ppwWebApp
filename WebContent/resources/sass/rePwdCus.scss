@@ -33,15 +33,16 @@ body {
             background-position: 0px 0px;
         }
     }
+    
     .setImagePro {
         display: inline-block;
         vertical-align: top;
         height: 524px;
         width: 385px;
         background: url('../images/login/proLogin.png') no-repeat;
-        background-position: -370px 0px;
+        background-position: 0px 0px;
         &:hover {
-            background-position: 0px 0px;
+            background-position: -370px 0px;
         }
     }
     .setInfo {
@@ -53,7 +54,7 @@ body {
         }
         .infoTop {
             margin-top: 34px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
             label {
                 font-size: 26px;
                 @media screen and (max-width: 1276px) {
@@ -268,7 +269,7 @@ body {
         border-radius: 5px;
         text-align: center;
         line-height: 38px;
-        font-size: $font-size;
+        font-size: $font-size-base;
         color: #fff;
         margin-top: 54px;
         position: relative;
@@ -312,6 +313,13 @@ body {
             color: $red-base;
             font-size: $font-size-sm;
             width: 100%;
+        }
+
+        img{
+            position: absolute;
+            right:0px;
+            top: 39px;
+            display: none;
         }
     }
 }
