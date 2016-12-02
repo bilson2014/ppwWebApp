@@ -189,21 +189,13 @@
                             <div class="errorDiv hide" id="loginName-info">*用户名</div>
                               </div>
                               <div class="loginContent input-group ">
-<<<<<<< HEAD
                                    <input  type="password" class="fontSizeBaseLight "  placeholder="新密码" id="pwd"></input>
-=======
-                                   <input class="fontSizeBaseLight " type="password"  placeholder="新密码" id="pwd"></input>
->>>>>>> 429ab892f975496a55bdea548822be5bd5d2ffdc
                                    <div class="errorDiv hide " id="pwd-info" >*密码错误</div>
                                    <img class="newImg" id="pwd-info-right" src="/resources/images/login/true.png">
                                    <img class="newImg" id="pwd-info-wrong" src="/resources/images/login/false.png">
                               </div>  
                               <div class="loginContent input-group ">
-<<<<<<< HEAD
-                                   <input type="password" class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
-=======
                                    <input class="fontSizeBaseLight " type="password"  placeholder="确认新密码" id="newpwd"></input>
->>>>>>> 429ab892f975496a55bdea548822be5bd5d2ffdc
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
                                    <img class="newImg" id="newpwd-info-right" src="/resources/images/login/true.png">
                                    <img class="newImg" id="newpwd-info-wrong" src="/resources/images/login/false.png">
