@@ -203,12 +203,10 @@ $().ready(function() {
 				if(pwd == null || pwd == '' || pwd == undefined){
 					$("#pwd-info").text("请输入密码").removeClass("hide");
 					$("#pwd-info-wrong").show();
-					$('#pwd').focus();
 					return false;
 				}else if(pwd.length<6){
 					$("#pwd-info").text("密码不能少于6位").removeClass("hide");
 					$("#pwd-info-wrong").show();
-					$('#pwd').focus();
 					return false;
 				}else{
 					$("#pwd-info").addClass("hide");
