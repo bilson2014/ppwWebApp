@@ -715,7 +715,7 @@ public class PCController extends BaseController {
 			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news error",sessionInfo);
+		Log.error("homepage news info",sessionInfo);
 		return new ModelAndView("/news");
 	}
 }
