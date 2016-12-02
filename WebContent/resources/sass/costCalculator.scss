@@ -95,6 +95,9 @@ body {
         color: white;
         padding-top: 30px;
         @include ellipsis;
+        label{
+            font-weight: 500;
+        }
         label:nth-child(1) {
             font-size: 5.0rem;
         }
@@ -177,6 +180,9 @@ body {
         width: 109px;
         height: 50px;
         background: $gray-light;
+         &:hover {
+             background: darken($gray, 10%);
+        }
     }
 }
 

@@ -121,7 +121,7 @@
                 <div>
                     <label>需求沟通</label>
                     <label>您只需要填写电话号 码,点击下单.
-                            <br>视频管家就会上门, 一对一服务,了解您 的需求.</label>
+                            <br>视频管家就会上门,一对一服务,了解您 的需求.</label>
                     <label>You only need a phone number to make order. 
                           <br>A video specialist will then collect your requirements. 
                     </label>
@@ -131,8 +131,8 @@
             <div class="icon icon2 LeftIcon">
                 <div>
                     <label>创意策划</label>
-                    <label>606 名脑洞超大的创 意人员随时抢单,创 意策划完全免费!
-<br>根据预算,视频管家 会从世界各地 5208 名 导演中,挑出最适合 您的一位. </label>
+                    <label>606 名脑洞超大的创 意人员随时抢单,创意策划完全免费!
+<br>根据预算,视频管家会从世界各地 5208 名 导演中,挑出最适合您的一位. </label>
                     <label>606 creative writers are ready to draft ideas. And it is all free! 
 Within your budget, the specialist<br> will find the best match from 5208 experienced directors all over the world. 
                     </label>
@@ -142,7 +142,7 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
             <div class="icon icon3 RightIcon">
                 <div>
                     <label>商务流程</label>
-                    <label>您将制作费托管到拍 片网平台,导演团队 就开始干活了! </label>
+                    <label>您将制作费托管到拍片网平台,导演团队就开始干活了! </label>
                     <label>Once the deposit is settled, the project is on! 
                     </label>
                 </div>
@@ -151,7 +151,7 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
             <div class="icon icon4 LeftIcon">
                 <div>
                     <label>执行文案</label>
-                    <label>选演员、选场地、前 期拍摄、后期制作、 配音配乐,视频管家 会替您全程监管. </label>
+                    <label>选演员、选场地、前 期拍摄、后期制作、 配音配乐,视频管家会替您全程监管. </label>
                     <label>Casting, locations, shooting, production, dubbing... The specialist cares all of them. 
                     </label>
                 </div>
@@ -172,7 +172,7 @@ Within your budget, the specialist<br> will find the best match from 5208 experi
                 <div>
                     <label>影片交付</label>
                     <label>如果您非常满意,确 认收片，我们会将托管的制作 费支付给导演团队.
-<br>不满意,可全额退款 或重新拍摄制作.</label>
+<br>不满意,可全额退款或重新拍摄制作.</label>
                     <label>If you satisfy the video, the fee will  be transferred to the directors. <br>
                           Otherwise, you will be fully refunded or your video will be reproduced. 
                     </label>

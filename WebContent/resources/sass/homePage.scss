@@ -1485,10 +1485,21 @@ input:focus {
                 div:nth-child(4) {
                     color: $red-base !important;
                 }
+                .moreIcon{
+                    background-position: 0px -13px !important;
+                }
             }
-            img {
+            .moreIcon {
                 position: relative;
-                margin-left: 10px;
+                width: 13px !important;
+                height: 13px !important;
+                background: url('/resources/images/index/newsMore.png')no-repeat !important;
+                background-position: 0px 0px;
+                margin-left: 10px !important;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+                left: 50px;
+                top: -14px;
             }
             .Contentp::after {
                 content: "...";

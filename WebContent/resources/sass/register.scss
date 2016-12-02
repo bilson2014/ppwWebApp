@@ -11,7 +11,17 @@ body {
 
 .page {
     background: $f0!important;
-    margin-top: 60px;
+    
+    margin-top: 20px;
+ 
+    @media screen and (min-width:1500px) {
+       margin-top: 60px;
+    }
+
+}
+
+.foot3{
+    margin-top:110px;
 }
 
 .controlWidth {
@@ -151,14 +161,14 @@ body {
     }
     .rightLabel {
         position: absolute;
-        left: 70;
+        right: 70px;
         &:hover {
             color: $red-base;
         }
     }
     .leftLabel {
         position: absolute;
-        right: 70;
+        left: 70px;
         &:hover {
             color: $red-base;
         }
@@ -258,24 +268,7 @@ body {
         margin-top: 30px;
         margin-bottom: 20px;
     }
-    div::before {
-        content: '';
-        width: 140px;
-        height: 1px;
-        background: rgba(238, 238, 238, 0.5);
-        position: absolute;
-        left: -64px;
-        top: 9px;
-    }
-    div::after {
-        content: '';
-        width: 140px;
-        height: 1px;
-        background: rgba(238, 238, 238, 0.5);
-        position: absolute;
-        right: -64px;
-        top: 9px;
-    }
+
     li {
         width: 33.33%;
         height: 45px;
@@ -298,9 +291,9 @@ body {
     }
     li:nth-child(3) {
         background: url('../images/login/wb.png') no-repeat;
-        background-position: 58px 0px;
+        background-position: 56px 0px;
         &:hover {
-            background-position: 58px -45px;
+            background-position: 56px -45px;
         }
     }
 }

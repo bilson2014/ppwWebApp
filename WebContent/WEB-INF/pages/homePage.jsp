@@ -312,7 +312,7 @@
 		<div class="director">
 			<div class="swiper-container  swiper-director">
 				<div class="directorLogo"></div>
-				<a href="/provider/login">
+				<a href="/register">
 					<div class="directorWant">我要入驻</div>
 				</a>
 				<div class="swiper-wrapper" id="directorContent">
@@ -524,7 +524,7 @@
 				</ul>
 				<div class="joinBtn">
 					<div onclick="showOrder('宣传片');">我要拍片</div>
-					<div onclick="window.location.href='/provider/login'">入驻拍片网</div>
+					<div onclick="window.location.href='/register'">入驻拍片网</div>
 				</div>
 			</div>
 		</div>
@@ -585,7 +585,6 @@
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/homePage.js"></script>
-	<script type="text/javascript" src="/resources/js/common.js"></script>
 
 
 </body>

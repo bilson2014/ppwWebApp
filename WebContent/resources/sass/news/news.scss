@@ -25,7 +25,7 @@
                 width: $width-lg3 - $rightWidth;
             }
             img,
-            video {
+            video { 
                 width: 100%;
             }
             p{
@@ -37,7 +37,7 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                margin-bottom: 60px;
+                margin-bottom: 20px;
                 @include ellipsis;
             }
             .setPro {
@@ -67,12 +67,19 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                cursor: pointer;
-
+                position: relative;
+                top: 10px;
             }
             .videoModel {
                 margin-bottom: 30px;
                 cursor: pointer;
+
+                 &:hover{
+                    label:first-child,label:nth-child(2){
+                        color:$red-base !important;
+                    }
+                 }
+
                 label {
                     display: block;
                     font-weight: 500;
@@ -95,6 +102,9 @@
                     height: 54px;
                     overflow: hidden;
                     cursor: pointer;
+                    &:hover {
+                        color: $red-base !important;
+                    }
                 }
                 label:last-child {
                     font-size: $font-size-sm;

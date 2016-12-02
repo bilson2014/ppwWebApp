@@ -14,8 +14,11 @@ body {
     @include media_screen_width_beta3();
     margin: 0 auto;
     position: relative;
-    margin-top: 60px;
+    margin-top: 20px;
     height: 800px;
+     @media screen and (min-width:1500px) {
+       margin-top: 60px;
+    }
 }
 
 .loginLeftArea {
@@ -145,6 +148,11 @@ body {
     font-size: 0;
     margin: 0 auto;
     margin-bottom: 18px;
+
+    .redColor{
+        color:$red-base;
+    }
+
     div {
         color: $gray-light;
         font-size: $font-size-lg;
@@ -273,10 +281,12 @@ body {
 
 .changeLogin {
     color: $red-base;
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
     position: relative;
     margin-top: 16px;
     cursor: pointer;
+    margin-left: 6px;
+    top: 22px;
     span:nth-child(1) {}
     span:nth-child(2) {
         position: absolute;
@@ -372,7 +382,7 @@ body {
         background: url('/resources/images/login/wb.png') no-repeat;
         background-position: 72px 0px;
         &:hover {
-            background-position: 72px -45px;
+            background-position: 66px -45px;
         }
     }
 }

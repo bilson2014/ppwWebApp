@@ -24,15 +24,15 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
-    var node=document.getElementsByClassName('playContent')[0];  
-    $clamp(node,{clamp:4});   
-   // var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
-   // $clamp(teamDescripti,{clamp:2});   
-	 
-     loadRecommendProductIfNo();
+//    var node=document.getElementsByClassName('playContent')[0];  
+//    $clamp(node,{clamp:4});   
+//    
+//    var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
+//    $clamp(teamDescripti,{clamp:2});   
 
     
-    
+    loadRecommendProductIfNo();
+
 });
 function initTab() {
     var product_id = 1;
@@ -468,6 +468,8 @@ function loadRecommendProduct(){
 						var item = $('.Xflag');
 						if(item.length == 0){
 							$('.noMore').removeClass('hide');
+							 $('.rightNext').hide();
+							 $('.rightPrev').hide();
 						}
 					}
 					if(count > 8){
@@ -478,11 +480,15 @@ function loadRecommendProduct(){
 					$('#recommendProductTitle').addClass('hide');
 					$('#recommendProductTitleDiv').addClass('hide');
 					$('.noMore').removeClass('hide');
+					 $('.rightNext').hide();
+					 $('.rightPrev').hide();
 				}
 			}else{
 				$('#recommendProductTitle').addClass('hide');
 				$('#recommendProductTitleDiv').addClass('hide');
 				$('.noMore').removeClass('hide');
+				 $('.rightNext').hide();
+				 $('.rightPrev').hide();
 			}
 		}, getContextPath() + '/tags/product/search', $.toJSON({
 			condition : tags,
