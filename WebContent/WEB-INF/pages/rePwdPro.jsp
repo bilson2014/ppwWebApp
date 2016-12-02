@@ -52,7 +52,7 @@
 				</r:identity>
 
 				<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<a href="<spring:url value='/list.html'/>" class="header-item"
