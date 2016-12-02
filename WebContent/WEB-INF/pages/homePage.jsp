@@ -585,7 +585,6 @@
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/homePage.js"></script>
-	<script type="text/javascript" src="/resources/js/common.js"></script>
 
 
 </body>

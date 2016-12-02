@@ -178,6 +178,7 @@ var homePage = {
 						classical_section.push(solr);
 					}
 				});
+				juicer.register('thousandCount', thousandCount);
 				$("#product-container").empty().html(juicer(homePage_tpl.hot_recommend,{list:hot_section}));
 				//初始化爆款加载
 				_this.cover();
@@ -330,7 +331,7 @@ var homePage_tpl = {
 			'				{@if item.price == 0}',
 			'					<div>￥暂无报价</div>',
 			'				{@else}',
-			'					<div>￥${item.price}</div>',
+			'					<div>￥${item.price|thousandCount}</div>',
 			'				{@/if}',
 			'			</div>',
 			'		</a>',
@@ -353,10 +354,10 @@ var homePage_tpl = {
 			'				{@if item.price == 0}',
 			'					<div  class="price">￥暂无报价</div>',
 			'				{@else}',
-			'					<div  class="price">￥${item.price}</div>',
+			'					<div  class="price">￥${item.price|thousandCount}</div>',
 			'				{@/if}',
 			'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
-			'					<div class="realPrice">原价￥${item.orignalPrice}</div>',
+			'					<div class="realPrice">原价￥${item.orignalPrice|thousandCount}</div>',
 			'				{@/if}',
 			'			</div>',
 			'		</a>',
