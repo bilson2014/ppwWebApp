@@ -287,7 +287,7 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = true;//smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
+			final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
 			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}else{

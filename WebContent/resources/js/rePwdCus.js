@@ -63,7 +63,7 @@ $().ready(function() {
 				var telephone = $('#user_phoneNumber').val().trim();
 				if(telephone == '' || telephone == null || telephone == undefined){
 					$('#phone_error_user').removeClass('hide');
-					$('#phone_error_user').text('请填写手机号');
+					$('#phone_error_user').text('请输入手机号');
 					$('#user_phoneNumber').focus();
 					return false;
 				}
@@ -151,6 +151,7 @@ $().ready(function() {
 				            $('#step2').slideDown();
 				        }, 300);
 			            _this.dealLoginNameStatus();
+			            _this.checkPWD();
 					}else{
 						$("#code_error_info_user").text(info.value).removeClass("hide");
 						return false;
@@ -194,6 +195,26 @@ $().ready(function() {
 				}));
 			});
 		},
+		checkPWD:function(){
+			$("#pwd").off("blur").on("blur",function(){
+				var pwd = $('#pwd').val();
+				if(pwd == null || pwd == '' || pwd == undefined){
+					$("#pwd-info").text("请输入密码").removeClass("hide");
+					$("#pwd-info-wrong").show();
+					$('#pwd').focus();
+					return false;
+				}else if(pwd.length<6){
+					$("#pwd-info").text("密码不能少于6位").removeClass("hide");
+					$("#pwd-info-wrong").show();
+					$('#pwd').focus();
+					return false;
+				}else{
+					$("#pwd-info").addClass("hide");
+					$("#pwd-info-wrong").hide();
+					$("#pwd-info-right").show();
+				}
+			});
+		},
 		finishModify:function(){
 			$("#stepFinishBtn").off("click").on("click",function(){
 				$('.errorDiv').addClass("hide");
@@ -208,24 +229,32 @@ $().ready(function() {
 				}
 				if(pwd == null || pwd == '' || pwd == undefined){
 					$("#pwd-info").text("请输入密码").removeClass("hide");
+					$("#pwd-info-wrong").show();
 					$('#pwd').focus();
 					return false;
-				}
-				if(pwd.length<6){
+				}else if(pwd.length<6){
 					$("#pwd-info").text("密码不能少于6位").removeClass("hide");
+					$("#pwd-info-wrong").show();
 					$('#pwd').focus();
 					return false;
+				}else{
+					$("#pwd-info-wrong").hide();
+					$("#pwd-info-right").show();
 				}
 				if(newpwd == null || newpwd == '' || newpwd == undefined){
 					$("#newpwd-info").text("请再次输入密码").removeClass("hide");
+					$("#newpwd-info-wrong").show();
 					$('#newpwd').focus();
 					return false;
 				}
 				if(newpwd!=pwd){
 					$("#newpwd-info").text("两次密码不一致").removeClass("hide");
+					$("#newpwd-info-wrong").show();
 					$('#newpwd').focus();
-					$('#myPwdFalse').show();
 					return false;
+				}else{
+					$("#newpwd-info-wrong").hide();
+					$("#newpwd-info-right").show();
 				}
 				if(loginInputStatus){//禁用状态
 					loadData(function(info){
@@ -234,9 +263,6 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
-				            $('#myPwdFalse').hide();
-				            $('#myPwdTure').show();
-				            $('#myPwd').show();
 				            showFinish();
 						}else{
 							$("#newpwd-info").text('修改失败').removeClass("hide");
@@ -252,9 +278,6 @@ $().ready(function() {
 							$('#topStep2').removeClass('red');
 				            $('#topStep2').addClass('gray');
 				            $('#topStep3').addClass('red');
-				            $('#myPwdFalse').hide();
-				            $('#myPwdTure').show();
-				            $('#myPwd').show();
 				            showFinish();
 						}else{
 							$("#newpwd-info").text("修改失败").removeClass("hide");

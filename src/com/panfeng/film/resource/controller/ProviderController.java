@@ -39,7 +39,6 @@ import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ProviderThirdLogin;
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
@@ -81,9 +80,6 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private ProviderThirdLogin providerThirdLogin;
-
-	@Autowired
-	private SessionInfoService sessionService = null;
 
 	@Autowired
 	private final FDFSService DFSservice = null;

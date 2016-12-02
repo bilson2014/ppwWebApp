@@ -191,15 +191,16 @@
                             <div class="errorDiv hide" id="loginName-info">*用户名</div>
                               </div>
                               <div class="loginContent input-group ">
-                                   <input class="fontSizeBaseLight "  placeholder="新密码" id="pwd"></input>
+                                   <input class="fontSizeBaseLight " type="password"  placeholder="新密码" id="pwd"></input>
                                    <div class="errorDiv hide " id="pwd-info" >*密码错误</div>
-                                   <img class="newImg" id="myPwd" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="pwd-info-right" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="pwd-info-wrong" src="/resources/images/login/false.png">
                               </div>  
                               <div class="loginContent input-group ">
-                                   <input class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
+                                   <input class="fontSizeBaseLight " type="password"  placeholder="确认新密码" id="newpwd"></input>
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
-                                   <img class="newImg" id="myPwdTrue" src="/resources/images/login/true.png">
-                                   <img class="newImg" id="myPwdFalse" src="/resources/images/login/false.png">
+                                   <img class="newImg" id="newpwd-info-right" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="newpwd-info-wrong" src="/resources/images/login/false.png">
                               </div>
                               <div class="redBtn btn-c-r " id="stepFinishBtn">下一步</div>
                     </div>

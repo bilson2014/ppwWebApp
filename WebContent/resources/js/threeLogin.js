@@ -157,11 +157,10 @@ $().ready(function(){
 				var unique = $("#unique").val();
 				loadData(function(info){
 					if(info.key){
-						
 						showFinish();
 					}else{
-						$('#user_phoneNumberId').removeClass('hide');
-						$('#user_phoneNumberId').text(info.value);
+						$('#code_error_info').removeClass('hide');
+						$('#code_error_info').text(info.value);
 					}
 				}, getContextPath() + '/login/third/bind', $.toJSON({
 					code:code,

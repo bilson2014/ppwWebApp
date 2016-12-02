@@ -77,7 +77,7 @@
 			</div>
 			<div class="right-part">
 				<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
@@ -168,15 +168,15 @@
                               </div>
                               <div class="loginContent input-group">
                                    <input class="fontSizeBaseLight"  placeholder="图片验证码 " id="kaptcha_code_user"></input>
-                                   <div class="otherDiv "><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_user" class="btn-validation"></div>
-                                   <div class="errorDiv hide " id="kapt_error_info_user" >*验证码错误</div>
+                                   <div class="otherDiv"><img alt="图片验证码 " src="/login/kaptcha.png?41" id="kaptcha_pic_user" class="btn-validation"></div>
+                                   <div class="errorDiv hide" id="kapt_error_info_user" >*验证码错误</div>
                               </div>  
                               <div class="loginContent input-group ">
-                                   <input class="fontSizeBaseLight "  placeholder="短信验证码 " id="verification_code_user"></input>
-                                   <div class="otherDiv "><button type="button " id="get_code_user" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
-                                   <div class="errorDiv hide " id="code_error_info_user">*验证码错误</div>
+                                   <input class="fontSizeBaseLight"  placeholder="短信验证码 " id="verification_code_user"></input>
+                                   <div class="otherDiv"><button type="button" id="get_code_user" class="btn-get-validation fontSizeBaseLight " >点击获取</button></div>
+                                   <div class="errorDiv hide" id="code_error_info_user">*验证码错误</div>
                               </div>
-                              <div class="redBtn btn-c-r " id="stepBtn">下一步</div>
+                              <div class="redBtn btn-c-r" id="stepBtn">下一步</div>
                     </div>
                </div>
 
@@ -188,15 +188,16 @@
                             <div class="errorDiv hide" id="loginName-info">*用户名</div>
                               </div>
                               <div class="loginContent input-group ">
-                                   <input class="fontSizeBaseLight "  placeholder="新密码" id="pwd"></input>
+                                   <input class="fontSizeBaseLight " type="password" placeholder="新密码" id="pwd"></input>
                                    <div class="errorDiv hide " id="pwd-info" >*密码错误</div>
-                                   <img class="newImg" id="myPwd" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="pwd-info-right" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="pwd-info-wrong" src="/resources/images/login/false.png">
                               </div>  
                               <div class="loginContent input-group ">
-                                   <input class="fontSizeBaseLight "  placeholder="确认新密码" id="newpwd"></input>
+                                   <input class="fontSizeBaseLight " type="password" placeholder="确认新密码" id="newpwd"></input>
                                    <div class="errorDiv hide " id="newpwd-info">*密码错误</div>
-                                   <img class="newImg" id="myPwdTrue" src="/resources/images/login/true.png">
-                                   <img class="newImg" id="myPwdFalse" src="/resources/images/login/false.png">
+                                   <img class="newImg" id="newpwd-info-right" src="/resources/images/login/true.png">
+                                   <img class="newImg" id="newpwd-info-wrong" src="/resources/images/login/false.png">
                               </div>
                               <div class="redBtn btn-c-r " id="stepFinishBtn">下一步</div>
                     </div>
