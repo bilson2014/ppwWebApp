@@ -19,8 +19,8 @@
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>拍片网－首页</title>
-<link rel="stylesheet" href="resources/css/homePage.css">
-<link rel="stylesheet" href="resources/lib/swiper/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/homePage.css">
+<link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <link rel="stylesheet"
 	href="resources/lib/Bootstrap/css/bootstrap.min.css">
 <script type="text/javascript"
@@ -99,8 +99,8 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
+					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -124,7 +124,7 @@
 		<div class="changeHideHeader"></div>
 			<div class="flexVideo">
 				<video preload="auto" loop="" autoplay
-					poster="../resources/images/banner/flex2.jpg" class="video-bg">
+					poster="/resources/images/banner/host.JPG" class="video-bg">
 					<source src="http://www.apaipian.com/product/video/flexvideo.mp4"
 						type="video/mp4">
 				</video>
@@ -162,7 +162,7 @@
 								<span id='indent_recomment'>宣传片</span>
 								<div class="carets"></div>
 							</button>
-							<ul class="dropdown-menu" id="selectUl" role="menu"
+							<ul class="dropdown-menu dropdown-menuHost" id="selectUl" role="menu"
 								aria-labelledby="dropdownMenu1">
 								<li>宣传片</li>
 								<li>广告片</li>
@@ -287,26 +287,27 @@
 		</div>
 		<!-- 经典-->
 		<div class="classical" id="classical">
-			<div class="classicalArea">
-				<div class="classicalLogo"></div>
-				<a href="<spring:url value='/list.html'/>">
-					<div class="directorWants">更多案例</div>
-				</a>
-				<div class="cardUl">
-					<!-- <li>
-                        <div class="videoCard">
-                            <img src=" /resources/images/index/test2.png">
-                            <div class="videoContet">
-                                <div class="title">标题</div>
-                                <div class="type">类型</div>
-                                <div class="price">￥500</div>
-                                <div class="realPrice">原价￥400</div>
-                            </div>
-                        </div>
-                    </li> -->
-				</ul>
+				<div class="classicalArea">
+					<div class="classicalLogo"></div>
+					<a href="<spring:url value='/list.html'/>">
+						<div class="directorWants">更多案例</div>
+					</a>
+					<div class="cardUl">
+						<!-- <li>
+	                        <div class="videoCard">
+	                            <img src=" /resources/images/index/test2.png">
+	                            <div class="videoContet">
+	                                <div class="title">标题</div>
+	                                <div class="type">类型</div>
+	                                <div class="price">￥500</div>
+	                                <div class="realPrice">原价￥400</div>
+	                            </div>
+	                        </div>
+	                    </li> -->
+					</ul>
+				</div>
 			</div>
-		</div>
+		</div>	
 		<!-- 导演工作室-->
 		<div class="director">
 			<div class="swiper-container  swiper-director">
@@ -539,9 +540,9 @@
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/provider/login" />">供应商登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">供应商登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
-                                            <div class="reg iconItem"><a>注册</a></div>
+                                            <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>关于拍片网</a></div>
@@ -582,8 +583,7 @@
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
-	<script type="text/javascript"
-		src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/homePage.js"></script>
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 

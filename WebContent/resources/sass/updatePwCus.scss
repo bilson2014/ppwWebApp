@@ -1,0 +1,531 @@
+@import "common";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+@CHARSET "UTF-8";
+body {
+    width: 100%;
+    height: 100%;
+    background: $f0;
+
+}
+
+.page {
+    background: $f0!important;
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
+}
+
+.loginLeftArea {
+    position: absolute;
+    left: 0;
+    padding-top: 24px;
+    .setImageCus {
+        display: inline-block;
+        vertical-align: top;
+        height: 524px;
+        width: 385px;
+        background: url('../images/login/cusLogin.png') no-repeat;
+        background-position: -370px 0px;
+        &:hover {
+            background-position: 0px 0px;
+        }
+    }
+    .setImagePro {
+        display: inline-block;
+        vertical-align: top;
+        height: 524px;
+        width: 385px;
+        background: url('../images/login/proLogin.png') no-repeat;
+        background-position: -370px 0px;
+        &:hover {
+            background-position: 0px 0px;
+        }
+    }
+    .setInfo {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        @media screen and (max-width: 1276px) {
+            left: -93px;
+        }
+        .infoTop {
+            margin-top: 34px;
+            margin-bottom: 20px;
+            label {
+                font-size: 26px;
+                @media screen and (max-width: 1276px) {
+                    font-size: 20px;
+                }
+                color: $gray-light;
+                display: block;
+            }
+            label:nth-child(2) {
+                margin-top: 12px;
+                margin-left: 52px;
+            }
+        }
+        .infoItem {
+            position: relative;
+            margin-left: 83px;
+            margin-top: 30px;
+            label {
+                display: block;
+                font-size: 16px;
+                @media screen and (max-width: 1276px) {
+                    font-size: $font-size-base;
+                }
+                color: $gray-light;
+            }
+            label:nth-child(2) {
+                margin-top: 5px;
+            }
+            div {
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                top: -2px;
+                left: -29px;
+            }
+            .cIcon1 {
+                background: url('../images/login/icon1.png') no-repeat;
+            }
+            .cIcon2 {
+                background: url('../images/login/icon2.png') no-repeat;
+            }
+            .cIcon3 {
+                background: url('../images/login/icon3.png') no-repeat;
+            }
+            .cIcon4 {
+                background: url('../images/login/icon4.png') no-repeat;
+            }
+            .cIcon5 {
+                background: url('../images/login/icon5.png') no-repeat;
+            }
+            .cIcon6 {
+                background: url('../images/login/icon6.png') no-repeat;
+            }
+            .cIcon7 {
+                background: url('../images/login/icon7.png') no-repeat;
+            }
+        }
+    }
+}
+
+.showArea {
+    background: #fff;
+    width: 480px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    padding: 60px 64px 60px 64px;
+    @media screen and (max-width: 1276px) {
+        width: 400px;
+        padding: 30px 34px 30px 34px;
+    }
+    font-size: 0;
+    border-radius: 4px;
+    position: absolute;
+    right: 0px;
+    white-space: nowrap;
+    height: auto;
+    transition: all .4s linear .4s;
+    -moz-transition: all .4s linear .4s;
+    /* Firefox 4 */
+    -webkit-transition: all .4s linear .4s;
+    /* Safari 和 Chrome */
+    -o-transition: all .4s linear .4s;
+    border-radius: 4px;
+}
+.getBack{
+    margin-bottom: 32px;
+    text-align: center;
+    color:$gray;
+    font-size: $font-size-lg;
+}
+
+.title {
+    position: relative;
+    font-size: 0;
+    margin-bottom: 40px;
+    div {
+        width: 33.33%;
+        display: inline-block;
+        position: relative;
+       
+    }
+
+    .finish{
+        span{
+            margin-left: -11px !important;
+        }
+    }
+
+    .gray {
+        width: 33.33%;
+        display: inline-block;
+        position: relative;
+         div {
+            position: relative;
+            height: 16px;
+            width: 16px !important;
+            color: white;
+            font-size: $font-size-sm;
+            text-align: center;
+            line-height: 16px;
+            border-radius: 90px;
+            background: $gray-light;
+            z-index: 5;
+        }
+
+        span{
+            color:$gray-light;
+            font-size:$font-size-sm;
+            position: absolute;
+            left:50%;
+            margin-left: -22px;
+            top: 20px;
+        }
+    }
+    .red {
+        width: 33.33%;
+        display: inline-block;
+        position: relative;
+         div {
+            position: relative;
+            height: 16px;
+            width: 16px !important;
+            color: white;
+            font-size: $font-size-sm;
+            text-align: center;
+            line-height: 16px;
+            border-radius: 90px;
+            background: $red-base;
+            z-index: 5;
+        }
+
+        span{
+            color:$red-base;
+            font-size:$font-size-sm;
+            position: absolute;
+            left:50%;
+            margin-left: -22px;
+            top: 20px;
+        }
+    }
+    .gray:after {
+        content: '';
+        background: $gray-light;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        z-index: 4;
+        top: 7px;
+    }
+    .red:after {
+        content: '';
+        background: $red-base;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        z-index: 4;
+        top: 7px;
+    }
+}
+
+.toLeft {
+    right: 480px !important;
+}
+
+.toRight {
+    left: 480px !important;
+}
+
+.left {
+    left: 0px;
+}
+
+.right {
+    right: 0px;
+}
+
+.loginDiv {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all .4s linear .4s;
+    -moz-transition: all .4s linear .4s;
+    /* Firefox 4 */
+    -webkit-transition: all .4s linear .4s;
+    /* Safari 和 Chrome */
+    -o-transition: all .4s linear .4s;
+    .redBtn {
+        background: $red-base;
+        width: 100%;
+        height: 38px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 38px;
+        font-size: $font-size;
+        color: #fff;
+        margin-top: 54px;
+        position: relative;
+        top: 8px;
+        cursor: pointer;
+    }
+    h1 {
+        margin: 40px 0px 40px 0px;
+        position: relative;
+        top: 4px;
+    }
+    .loginContent {
+        width: 100%;
+        height: 60px;
+        position: relative;
+        input {
+            background: none;
+            height: 35px;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #eee;
+            position: absolute;
+            bottom: 0;
+            padding-left: 5px;
+        }
+        .otherDiv {
+            position: absolute;
+            right: 0px;
+            top: 24px;
+        }
+        .errorDiv {
+            position: relative;
+            top: 5px;
+            color: $red-base;
+            font-size: $font-size-sm;
+        }
+        .errorMidDiv {
+            position: absolute;
+            top: 65px;
+            color: $red-base;
+            font-size: $font-size-sm;
+            width: 100%;
+        }
+    }
+}
+
+.changeLogin {
+    color: $red-base;
+    font-size: $font-size-base;
+    position: relative;
+    margin-top: 16px;
+    cursor: pointer;
+    span:nth-child(1) {}
+    span:nth-child(2) {
+        position: absolute;
+        right: 0;
+        color: $gray-light !important;
+        font-size: $font-size-sm !important;
+    }
+}
+
+.Ihave {
+    text-align: center;
+    color: $gray-light;
+    font-size: $font-size-base;
+    span {
+        color: $red-base;
+        cursor: pointer;
+    }
+}
+
+.btn-validation {
+    display: inline;
+    height: 34px;
+    width: 90px;
+    position: relative;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-get-validation {
+    display: inline;
+    height: 34px;
+    width: 90px;
+    position: relative;
+    line-height: 3px;
+    background: none;
+    border: none;
+    color: $gray;
+    cursor: pointer;
+    &:hover {
+        color: $gray-dark;
+    }
+}
+
+.bindLogin {
+    font-size: 0;
+    div {
+        color: $gray-light;
+        font-size: $font-size;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    div::before {
+        content: '';
+        width: 140px;
+        height: 1px;
+        background: rgba(238, 238, 238, 0.5);
+        position: absolute;
+        left: -64px;
+        top: 9px;
+    }
+    div::after {
+        content: '';
+        width: 140px;
+        height: 1px;
+        background: rgba(238, 238, 238, 0.5);
+        position: absolute;
+        right: -64px;
+        top: 9px;
+    }
+    li {
+        width: 33.33%;
+        height: 45px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    li:nth-child(1) {
+        background: url('../images/login/weChat.png') no-repeat;
+        background-position: 0px 0px;
+        &:hover {
+            background-position: 0px -45px;
+        }
+    }
+    li:nth-child(2) {
+        background: url('../images/login/qq.png') no-repeat;
+        background-position: 35px 0px;
+        &:hover {
+            background-position: 35px -45px;
+        }
+    }
+    li:nth-child(3) {
+        background: url('../images/login/wb.png') no-repeat;
+        background-position: 72px 0px;
+        &:hover {
+            background-position: 72px -45px;
+        }
+    }
+}
+
+.rightFrom {
+    animation: toRight 1s;
+    -moz-animation: toRight 1s;
+    /* Firefox */
+    -webkit-animation: toRight 1s;
+    /* Safari 和 Chrome */
+    -o-animation: toRight 1s;
+}
+
+@keyframes toRight {
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-moz-keyframes toRight
+/* Firefox */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-webkit-keyframes toRight
+/* Safari 和 Chrome */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-o-keyframes toRight
+/* Opera */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+.leftFrom {
+    animation: toLeft 1s;
+    -moz-animation: toLeft 1s;
+    /* Firefox */
+    -webkit-animation: toLeft 1s;
+    /* Safari 和 Chrome */
+    -o-animation: toLeft 1s;
+}
+
+@keyframes toLeft {
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-moz-keyframes toLeft
+/* Firefox */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-webkit-keyframes toLeft
+/* Safari 和 Chrome */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-o-keyframes toLeft
+/* Opera */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}

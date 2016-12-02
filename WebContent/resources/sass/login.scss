@@ -1,224 +1,564 @@
 @import "common";
-
 @import "video";
 @import "bootstrap-grid";
 @import "fontSize";
-
 @CHARSET "UTF-8";
-
 body {
-  width: 100%;
-  height: 100%;
-  background: url(/resources/images/login/user-login.jpg) no-repeat;
-  background-size: cover;background-position: center 0;
+    width: 100%;
+    height: 100%;
+    background: $f0;
 }
 
-.outSideDiv{
-  margin: 0 auto;
-  background: #fff;
-  width: 400px;
-  padding: 0;
-  overflow: hidden;
-  position:relative;
-  top:80px;
-   @media screen and (min-width:1276px) and (max-width:1500px) {
-      top:100px;
-    }
-    @media screen and (min-width:1500px) {
-      top:180px;
-    }
-    border-radius: 5px;
+.page {
+    background: $f0!important;
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
+    height: 800px;
 }
 
-.loginDiv{
-  margin: 0 auto;
-  width: 280px;
-  height:100%;
-    .redBtn{
+.loginLeftArea {
+    position: absolute;
+    left: 0;
+    padding-top: 24px;
+    .setImageCus {
+        display: inline-block;
+        vertical-align: top;
+        height: 524px;
+        width: 385px;
+        background: url('/resources/images/login/cusLogin.png') no-repeat;
+        background-position: -370px 0px;
+        &:hover {
+            background-position: 0px 0px;
+        }
+    }
+    .setImagePro {
+        display: inline-block;
+        vertical-align: top;
+        height: 524px;
+        width: 385px;
+        background: url('/resources/images/login/proLogin.png') no-repeat;
+        background-position: -0px 0px;
+        &:hover {
+            background-position: -370px 0px;
+        }
+    }
+    .setInfo {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        @media screen and (max-width: 1276px) {
+            left: -93px;
+        }
+        .infoTop {
+            margin-top: 34px;
+            padding-bottom: 20px;
+            label {
+                font-size: 26px;
+                 @media screen and (max-width: 1276px) {
+                    font-size: 20px;
+                 }
+                color: $gray-light;
+                display: block;
+            }
+            label:nth-child(2) {
+                margin-top: 12px;
+                margin-left: 52px;
+            }
+        }
+        .infoItem {
+            position: relative;
+            margin-left: 83px;
+            margin-top: 30px;
+            label {
+                display: block;
+                font-size: 16px;
+                @media screen and (max-width: 1276px) {
+                    font-size: $font-size-base;
+                 }
+                color: $gray-light;
+            }
+            label:nth-child(2) {
+                margin-top: 5px;
+            }
+            div {
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                top: -2px;
+                left: -29px;
+            }
+            .cIcon1 {
+                background: url('/resources/images/login/icon1.png') no-repeat;
+            }
+            .cIcon2 {
+                background: url('/resources/images/login/icon2.png') no-repeat;
+            }
+            .cIcon3 {
+                background: url('/resources/images/login/icon3.png') no-repeat;
+            }
+            .cIcon4 {
+                background: url('/resources/images/login/icon4.png') no-repeat;
+            }
+            .cIcon5 {
+                background: url('/resources/images/login/icon5.png') no-repeat;
+            }
+            .cIcon6 {
+                background: url('/resources/images/login/icon6.png') no-repeat;
+            }
+            .cIcon7 {
+                background: url('/resources/images/login/icon7.png') no-repeat;
+            }
+        }
+    }
+}
+
+.showArea {
+    background: #fff;
+    width: 480px; 
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    padding: 60px 64px 60px 64px;
+     @media screen and (max-width: 1276px) {
+        width: 400px;
+        padding: 30px 34px 30px 34px;
+    }
+    font-size: 0;
+    border-radius: 4px;
+    position: absolute;
+    right: 0px;
+    white-space: nowrap;
+    height: auto;
+    transition: all .4s linear .4s;
+    -moz-transition: all .4s linear .4s;
+    /* Firefox 4 */
+    -webkit-transition: all .4s linear .4s;
+    /* Safari 和 Chrome */
+    -o-transition: all .4s linear .4s;
+    border-radius: 4px;
+}
+
+.title {
+    position: relative;
+    font-size: 0;
+    margin: 0 auto;
+    margin-bottom: 18px;
+    div {
+        color: $gray-light;
+        font-size: $font-size-lg;
+        text-align: center;
+        vertical-align: top;
+    }
+    div:nth-child(1) {
+        width: 50%;
+        height: 74px;
+        line-height: 74px;
+        display: inline-block;
+        border-bottom: 4px solid $e;
+        cursor: pointer;
+        &:hover{
+           color:$red-base;
+        }
+    }
+    div:nth-child(2) {
+        width: 50%;
+        height: 74px;
+        line-height: 70px;
+        display: inline-block;
+        border-bottom: 4px solid $e;
+        cursor: pointer;
+        &:hover{
+            color:$red-base;
+        }
+    }
+    div:nth-child(3) {
+        width: 50%;
+        height: 4px;
         background: $red-base;
-        width:100%;
-        height:38px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        transition: all .2s linear .2s;
+        -moz-transition: all .2s linear .2s;
+        /* Firefox 4 */
+        -webkit-transition: all .2s linear .2s;
+        /* Safari 和 Chrome */
+        -o-transition: all .2s linear .2s;
+    }
+}
+
+.toLeft {
+    right: 480px !important;
+}
+
+.toRight {
+    left: 480px !important;
+}
+
+.left {
+    left: 0px;
+}
+
+.right {
+    right: 0px;
+}
+
+.loginDiv {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all .4s linear .4s;
+    -moz-transition: all .4s linear .4s;
+    /* Firefox 4 */
+    -webkit-transition: all .4s linear .4s;
+    /* Safari 和 Chrome */
+    -o-transition: all .4s linear .4s;
+    .redBtn {
+        background: $red-base;
+        width: 100%;
+        height: 38px;
         border-radius: 5px;
         text-align: center;
         line-height: 38px;
-        font-size: $font-size;
-        color:#fff;
-        margin-top: 10px;
+        font-size: $font-size-base;
+        color: #fff;
+        margin-top: 54px;
+        margin-bottom: 30px;
         position: relative;
         top: 8px;
         cursor: pointer;
-
-       }
-
-  h1{
-   margin: 40px 0px 40px 0px;
-   position: relative;
-     top: 4px;
-   }
-
-   .loginContent{
-    width: 100%;
-    height:60px;
-       input{
-        background: none;
-        height:35px;
+    }
+    h1 {
+        margin: 40px 0px 40px 0px;
+        position: relative;
+        top: 4px;
+    }
+    .loginContent {
         width: 100%;
-        border:none;
-        outline: none;
-        border-bottom: 1px solid #d9d9df;
-         -webkit-box-shadow: 0 0 0px 1000px white inset;
-       }
-
-       .otherDiv{
-        position: absolute;
-       }
-
-       .errorDiv{
-        position:relative;
-        top:5px;
-        color:$red-base;
-        font-size: $font-size-sm;
-       }
-
-      .errorMidDiv{
-        position:absolute;
-        top: 50px;
-        color:$red-base;
-        font-size: $font-size-sm;
-        width: 100%;
-        text-align: center;
-       }
-
- 
-
-
-
-   }
- 
+        height: 60px;
+        position: relative;
+        input {
+            background: none;
+            height: 35px;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #eee;
+            position: absolute;
+            bottom: 0;
+            padding-left: 5px;
+        }
+        .otherDiv {
+            position: absolute;
+            right: 0px;
+            top: 24px;
+        }
+        .errorDiv {
+            position: relative;
+            top: 63px;
+            color: $red-base;
+            font-size: $font-size-sm;
+        }
+        .errorMidDiv {
+            position: absolute;
+            top: 65px;
+            color: $red-base;
+            font-size: $font-size-sm;
+            width: 100%;
+        }
+    }
 }
 
+.changeLogin {
+    color: $red-base;
+    font-size: $font-size-base;
+    position: relative;
+    margin-top: 16px;
+    cursor: pointer;
+    span:nth-child(1) {}
+    span:nth-child(2) {
+        position: absolute;
+        right: 0;
+        color: $gray-light !important;
+        font-size: $font-size-sm !important;
+    }
+}
 
-
-.infoWord{
-  margin:38px 0px 26px 0px;
-  width:100%;
-  text-align: center;
+.Ihave {
+    text-align: center;
+    color: $gray-light;
+    font-size: $font-size-base;
+    span {
+        color: $red-base;
+        cursor: pointer;
+    }
 }
 
 .btn-validation {
-  display: inline;
-  height: 34px;
-  width: 90px;
-  position: relative;
-    top: -35px;
-    left: 190px;
+    display: inline;
+    height: 34px;
+    width: 90px;
+    position: relative;
     cursor: pointer;
+    border: none;
 }
 
 .btn-get-validation {
-  display: inline;
-  height: 34px;
-  width: 90px;
-  position: relative;
-  line-height:3px;
-    top: -36px;
-    left: 195px;
+    display: inline;
+    height: 34px;
+    width: 90px;
+    position: relative;
+    line-height: 3px;
     background: none;
     border: none;
-    color:$gray;
+    color: $gray;
     cursor: pointer;
-    &:hover{
-      color:$gray-dark;
+    &:hover {
+        color: $gray-dark;
+    }
+}
+
+.bindLogin {
+    font-size: 0;
+    div {
+        color: $gray-light;
+        font-size: $font-size;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    div::before {
+        content: '';
+        width: 140px;
+        height: 1px;
+        background: rgba(238, 238, 238, 0.5);
+        position: absolute;
+        left: -64px;
+        top: 9px;
+    }
+    div::after {
+        content: '';
+        width: 140px;
+        height: 1px;
+        background: rgba(238, 238, 238, 0.5);
+        position: absolute;
+        right: -64px;
+        top: 9px;
+    }
+    li {
+        width: 33.33%;
+        height: 45px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    li:nth-child(1) {
+        background: url('/resources/images/login/weChat.png') no-repeat;
+        background-position: 0px 0px;
+        &:hover {
+            background-position: 0px -45px;
+        }
+    }
+    li:nth-child(2) {
+        background: url('/resources/images/login/qq.png') no-repeat;
+        background-position: 35px 0px;
+        &:hover {
+            background-position: 35px -45px;
+        }
+    }
+    li:nth-child(3) {
+        background: url('/resources/images/login/wb.png') no-repeat;
+        background-position: 72px 0px;
+        &:hover {
+            background-position: 72px -45px;
+        }
+    }
+}
+
+.rightFrom {
+    animation: toRight 1s;
+    -moz-animation: toRight 1s;
+    /* Firefox */
+    -webkit-animation: toRight 1s;
+    /* Safari 和 Chrome */
+    -o-animation: toRight 1s;
+}
+
+@keyframes toRight {
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-moz-keyframes toRight
+/* Firefox */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-webkit-keyframes toRight
+/* Safari 和 Chrome */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+@-o-keyframes toRight
+/* Opera */
+
+{
+    from {
+        right: 480px;
+    }
+    to {
+        right: 0px
+    }
+}
+
+.leftFrom {
+    animation: toLeft 1s;
+    -moz-animation: toLeft 1s;
+    /* Firefox */
+    -webkit-animation: toLeft 1s;
+    /* Safari 和 Chrome */
+    -o-animation: toLeft 1s;
+}
+
+@keyframes toLeft {
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-moz-keyframes toLeft
+/* Firefox */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-webkit-keyframes toLeft
+/* Safari 和 Chrome */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
+    }
+}
+
+@-o-keyframes toLeft
+/* Opera */
+
+{
+    from {
+        left: 480px;
+    }
+    to {
+        left: 0px
     }
 }
 
 
-.footer-content-three{
-  height: 60px;
+
+
+
+
+
+//成功提示
+.showSuccessModal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 45;
+    .cCloseBtnModal {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: #f0f2f5;
+        border-radius: 90px;
+        border: 1px solid #d1d1d1;
+        div {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: relative;
+            top: 5px;
+            left: 5px;
+            &:hover {
+                background-position-y: -12px;
+            }
+        }
+    }
 }
 
-.footer-content-three ul{
-  width: 280px;
-  margin:0 auto;
+.successModals {
+    position: relative;
+    background: white;
+    width: 402px;
+    height: 286px;
+    padding-top: 40px;
+    border-radius: 6px;
+    top: 50%;
+    left: 50%;
+    margin-top: -143px;
+    margin-left: -201px;
 }
 
-.footer-content-three li{
-  width: 93px;
-}
-
-.footer-content-three img{
-  width: 50px;
-  height:50px;
-}
-
-.footer-content-three span {
-  margin-top: 5px;
-  display: block;
-  color: #999;
-  
-}
-
-li {
-  float: left;
-  text-align: center;
-}
-
-.changeDiv{
-   margin-top:15px;
-   margin-bottom:20px;
-   height:30px;
-    width:100%;
+.successWords {
+    color: $gray-dark;
+    font-size: $font-size;
+    text-align: center;
+    margin-bottom: 10px;
     cursor: pointer;
-  div{
-    display: inline-block;
-  }
-
-  .changeImg{
-    height:30px;
-    width:30px;
-    background: url(/resources/images/login/user.png) no-repeat;
-    background-size: 30px 30px;
-  }
-
-
-  .changeImgPhone{
-    height:30px;
-    width:30px;
-    background: url(/resources/images/login/phone.png) no-repeat;
-    background-size: 30px 30px;
-  }
-
-  .changeLogin{
-  position: relative;
-  color:$gold-yellow;
-  font-size: $font-size-sm;
-  width:150px;
-  top:20px;
-   }
-
+    width: 80px;
+    margin: 0 auto;
+    line-height: 25px;
+    margin-bottom: 10px;
 }
 
-.phoneHeight{
-
-  height:auto;
-}
-
-.userheight{
-  height:auto;
-  top:130px;
-   @media screen and (min-width:1276px) and (max-width:1500px) {
-      top:150px;
-    }
-    @media screen and (min-width:1500px) {
-      top:230px;
+.successInfos {
+    color: $gray-light;
+    font-size: $font-size-sm;
+    text-align: center;
+    span:nth-child(1) {
+        color: $red-base;
+        margin-right: 16px;
+        cursor: pointer;
     }
 }
 
-.forget{
-   position: relative;
-  color:$gold-yellow;
-  font-size: $font-size-sm;
-  float: right;
-  top:5px;
 
-}
+
+

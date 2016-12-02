@@ -211,6 +211,7 @@
     }
 }
 
+
 .swiperCover {
     @include media_screen_width_beta3();
     padding-top: 126px;
@@ -596,7 +597,7 @@
             padding: 1px;
         }
         .title {
-            font-size: $font-size;
+            font-size: $font-size-base;
             color: $gray-dark;
         }
         .line {
@@ -610,7 +611,7 @@
         .content {
             font-size: $font-size-sm;
             color: $gray-light;
-            height: 43px;
+            height: 44px;
             padding-left: 12.5%;
             padding-right: 12.5%;
             line-height: 15px;
