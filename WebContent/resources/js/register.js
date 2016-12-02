@@ -1,7 +1,6 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-var sendCode =true;
 $().ready(function() {
 	
 
@@ -16,6 +15,12 @@ $().ready(function() {
 				this.userVerificationCode();
 				//用户点击注册
 				this.userRegister();
+				//qq登陆
+				this.qq();
+				//微信登陆
+				this.wechat();
+				//微博登陆
+				this.wb();
 				 //初始化页面
 		        this.movePage();
 		    },
@@ -109,7 +114,7 @@ $().ready(function() {
 							InterValObj = window.setInterval(SetUsrRemainTime, 1000); // 启动计时器，1秒钟执行一次
 							loadData(function(flag){
 								if(!flag){
-									sendCode=true;
+									window.clearInterval(InterValObj);
 									$('#get_code_user').text('重新获取');
 									$('#get_code_user').removeAttr('disabled');
 								}
@@ -132,7 +137,6 @@ $().ready(function() {
 						var veri_code = $('#verification_code_user').val();
 						var kap_code = $('#kaptcha_code_user').val();
 						$("#code_error_info_user").addClass("hide");
-						$("#user_phoneNumberId").addClass("hide");
 						$("#kapt_error_info_user").addClass("hide");
 						if(phoneNumber == null || phoneNumber == '' || phoneNumber == undefined){
 							$("#phone_error_user").text("请输入手机号").removeClass("hide");
@@ -175,9 +179,63 @@ $().ready(function() {
 					}
 				})
 			},
+			qq :function(){
+				$('#qqBt').on('click',function(){
+						QC.Login.showPopup();
+						var paras = {};
+						//用JS SDK调用OpenAPI
+						QC.api("get_user_info", paras)
+						//指定接口访问成功的接收函数，s为成功返回Response对象
+						.success(function(s){
+							// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+							QC.Login.getMe(function(openId, accessToken){
+								// 存入session
+								var condition = $.toJSON({
+									userName : s.data.nickname,
+									imgUrl : s.data.figureurl,
+									uniqueId : openId,
+									lType : 'qq',
+									qqUnique : openId
+								});
+								OAuthor(condition);
+							});
+						})
+						.error(function(e){
+							// 回掉失败
+							alert('获取用户信息失败');
+						})
+						.complete(function(c){
+							// 完成请求回掉
+						})
+					});
+			},
+			wechat:function(){
+				$('#wechat').on('click',function(){
+					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+				})
+			},
+			wb:function(){
+				$('#weiboBt').on('click',function(){
+					WB2.login(function() {
+							// 获取 用户信息
+						getWBUserData(function(o){
+							// 保存至session中，并跳转
+							var condition = $.toJSON({
+								userName : o.screen_name,
+								imgUrl : o.profile_image_url,
+								uniqueId : wb_uniqueId,
+								lType : 'weibo',
+								wbUnique : wb_uniqueId
+							});
+							OAuthor(condition);
+						});
+					});
+				});
+			},
 		    movePage: function() {
 		        $('#toCusRe').on('click', function() {
-		            $('#controlWidth').css('left', '0px');
+		            $('#controlWidth').css('left', '1px');
 		            $('#toCusRe').fadeOut();
 		            $('#kaptcha_pic_user').val('');
 					$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
@@ -208,7 +266,7 @@ $().ready(function() {
 		        }); 
 
 		         $('#proToInit').on('click', function() {
-		            $('#controlWidth').css('left', '0px');
+		            $('#controlWidth').css('left', '1px');
 		            $('#proToInit').fadeOut();
 		            $('#toCusRe').fadeOut();
 		            setTimeout(function() {
@@ -303,7 +361,7 @@ $().ready(function() {
 							InterValObj = window.setInterval(SetTeamRemainTime, 1000); // 启动计时器，1秒钟执行一次
 							loadData(function(flag){
 								if(!flag){
-									sendCode=true;
+									window.clearInterval(InterValObj);
 									$('#get_code_team').text('重新获取');
 									$('#get_code_team').removeAttr('disabled');
 								}
@@ -326,17 +384,16 @@ $().ready(function() {
 						var veri_code = $('#verification_code_team').val();
 						var kap_code = $('#kaptcha_code_team').val();
 						$("#code_error_info_team").addClass("hide");
-						$("#user_phoneNumberId").addClass("hide");
 						$("#kapt_error_info_team").addClass("hide");
 						if(phoneNumber == null || phoneNumber == '' || phoneNumber == undefined){
 							$("#phone_error_team").text("请输入手机号").removeClass("hide");
-							$('#user_phoneNumber').focus();
+							$('#team_phoneNumber').focus();
 							add = true;
 							return false;
 						}
 						if(!checkMobile(phoneNumber.trim())){
 							$('#phone_error_team').removeClass('hide').text('手机号不正确');
-							$('#user_phoneNumber').focus();
+							$('#team_phoneNumber').focus();
 							add = true;
 							return false;
 						}
@@ -383,7 +440,6 @@ $().ready(function() {
 	function SetUsrRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_user').text('重新获取');
 			$('#get_code_user').removeAttr('disabled')
 			// 清除session code
@@ -399,7 +455,6 @@ $().ready(function() {
 	function SetTeamRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_team').text('重新获取');
 			$('#get_code_team').removeAttr('disabled')
 			// 清除session code
@@ -411,11 +466,37 @@ $().ready(function() {
 			$("#get_code_team").text('已发送('+ curCount +')');
 		}
 	}
-	
-	
-	
-	
-	
+	function OAuthor(condition){
+		var url = getContextPath() + '/login/OAuthor';
+		var inputHtml = '<input type="hidden" name="json" value="' + htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) + '" />';
+		$('<form action="' + url + '" method = "POST" autocomplete="off" accept-charset="UTF-8">' + inputHtml + '</form>').appendTo('body').submit().remove();
+	}
+	////获取微博用户信息
+	function getWBUserData(callback){
+		WB2.anyWhere(function(W){
+			W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+				if(bStatus){
+					getWBUserInfo(W, oResult);
+					wb_uniqueId = oResult.uid;
+				}else{
+					alert('授权失败或错误!');
+				}
+			},{},{
+				method : 'GET'
+			});
+		});
+		function getWBUserInfo(W,result){
+			W.parseCMD('/users/show.json', function(sResult, bStatus) {
+				if(bStatus) {
+					callback.call(this,sResult);
+				}
+			}, {
+				'uid' : result.uid
+			}, {
+				method : 'GET'
+			});
+		}
+	}
 	
 	
 });

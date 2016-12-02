@@ -25,6 +25,11 @@
             position: relative;
         }
     }
+
+
+    .bottomContent{
+        margin-bottom:140px;
+    }
     
     .videoContent .player-wrap {
         position: relative;
@@ -86,7 +91,6 @@
         }
         div:nth-child(2) {
             img {
-                margin-left: 20px;
                 margin-right: 20px;
                 width: 18px;
                 position: relative;
@@ -223,7 +227,7 @@
             color: $gray-light;
             height: 67px;
             overflow: hidden;
-            width: 70%;
+            width: 95%;
         }
     }
     
@@ -257,7 +261,7 @@
                 color: $border-line !important;
             }
             div:nth-child(1) {
-                margin-bottom: 29px;
+                margin-bottom: 20px;
                 font-size: $font-size-base;
             }
             div:nth-child(2) {
@@ -551,12 +555,14 @@
         height: 60px;
         width: 100%;
     }
+
+
     
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 60px;
+        margin-bottom: 80px;
         margin: 0 auto;
-        margin-bottom: 90px !important;
         font-size: 0;
         .leftContent {
             display: inline-block;
@@ -644,10 +650,12 @@
                 margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
+            
             .videoModel {
                 margin-bottom: 30px;
                 overflow: hidden;
                 position: relative;
+                border-radius: 4px;
                 .videoIcon {
                     position: absolute;
                     width: 65px;
@@ -775,8 +783,11 @@
             width: 45px;
             left: -90px;
             background: url(/resources/images/block/btnPrev.png) no-repeat !important;
-            @media screen and (max-width: 1000px) {
+            @media screen and (max-width: 1360px) {
                 left: -45px;
+            }
+             @media screen and (max-width: 1100px) {
+                left: -30px;
             }
         }
         .swiper-button-next {
@@ -784,8 +795,11 @@
             width: 45px;
             right: -90px;
             background: url(/resources/images/block/btnNext.png) no-repeat !important;
-            @media screen and (max-width: 1000px) {
-                right: -45px;
+            @media screen and (max-width: 1360px) {
+                right: -25px;
+            }
+              @media screen and (max-width: 1100px) {
+                right: -30px;
             }
         }
     }

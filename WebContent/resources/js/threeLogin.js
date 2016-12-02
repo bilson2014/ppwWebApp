@@ -116,19 +116,28 @@ $().ready(function(){
 			bind:function(){
 				var _this = this;
 				$("#bindBtn").off("click").on("click",function(){
+					$(".errorDiv").addClass("hide");
 					var user_phoneNumber = $("#user_phoneNumber").val();
 					var veri_code = $('#verification_code').val();
 					var kap_code = $('#kaptcha_code').val();
 					if(user_phoneNumber == null || user_phoneNumber == '' || user_phoneNumber == undefined){
 						$("#user_phoneNumberId").text("请输入手机号").removeClass("hide");
+						$('#user_phoneNumber').focus();
+						return false;
+					}
+					if(!checkMobile(user_phoneNumber.trim())){
+						$('#user_phoneNumberId').removeClass('hide').text('手机号不正确');
+						$('#user_phoneNumber').focus();
 						return false;
 					}
 					if(kap_code == null || kap_code == '' || kap_code == undefined){
 						$("#kapt_error_info").text("请输入图形验证码").removeClass("hide");
+						$('#kaptcha_code').focus();
 						return false;
 					}
 					if(veri_code == null || veri_code == '' || veri_code == undefined){
 						$("#code_error_info").text("请输入验证码").removeClass("hide");
+						$('#verification_code').focus();
 						return false;
 					}
 					
@@ -148,11 +157,10 @@ $().ready(function(){
 				var unique = $("#unique").val();
 				loadData(function(info){
 					if(info.key){
-						
 						showFinish();
 					}else{
-						$('#user_phoneNumberId').removeClass('hide');
-						$('#user_phoneNumberId').text(info.value);
+						$('#code_error_info').removeClass('hide');
+						$('#code_error_info').text(info.value);
 					}
 				}, getContextPath() + '/login/third/bind', $.toJSON({
 					code:code,

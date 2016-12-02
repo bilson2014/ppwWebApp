@@ -306,6 +306,7 @@ function thousandCount(number) {
 	return tableData;
 }
 
+
 /**
  * 去掉千分位显示
  */

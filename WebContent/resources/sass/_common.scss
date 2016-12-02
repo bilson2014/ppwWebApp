@@ -88,7 +88,7 @@ a {
             background-color: lighten(rgba(230, 230, 222, .3), 5%);
         }
     }
-}
+} 
 
 .menu-bar > .right-part {
     position: relative;
@@ -787,7 +787,7 @@ a {
     width: 300px;
     height: 30px;
     transition: all .8s ease-in-out 0s;
-    width: 160px !important;
+    width: 200px !important;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 350px !important;
     }
@@ -801,7 +801,7 @@ a {
         @media screen and (min-width: 1500px) {
             width: 450px !important;
         }
-        width: 160px !important;
+        width: 200px !important;
         min-width: 160px;
         height: 30px !important;
         color: white;

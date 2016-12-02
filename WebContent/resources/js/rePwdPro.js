@@ -1,10 +1,10 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-var sendCode =true;
 var initM = 3;
 var successIntervalObj;
 $().ready(function() {
+	
 	var rePwdPro = {
 	    //方法都在init中
 	    init: function() {
@@ -99,7 +99,7 @@ $().ready(function() {
 						InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
 						loadData(function(flag){
 							if(!flag){
-								sendCode=true;
+								window.clearInterval(InterValObj);
 								$('#get_code_team').text('重新获取');
 								$('#get_code_team').removeAttr('disabled');
 							}
@@ -153,6 +153,7 @@ $().ready(function() {
 				            $('#step2').slideDown();
 				        }, 300);
 			            _this.dealLoginNameStatus();
+			            _this.checkPWD();
 					}else{
 						$("#code_error_info_team").text(info.errorMsg).removeClass("hide");
 						return false;
@@ -196,6 +197,26 @@ $().ready(function() {
 				}));
 			});
 		},
+		checkPWD:function(){
+			$("#pwd").off("blur").on("blur",function(){
+				var pwd = $('#pwd').val();
+				if(pwd == null || pwd == '' || pwd == undefined){
+					$("#pwd-info").text("请输入密码").removeClass("hide");
+					$("#pwd-info-wrong").show();
+					$('#pwd').focus();
+					return false;
+				}else if(pwd.length<6){
+					$("#pwd-info").text("密码不能少于6位").removeClass("hide");
+					$("#pwd-info-wrong").show();
+					$('#pwd').focus();
+					return false;
+				}else{
+					$("#pwd-info").addClass("hide");
+					$("#pwd-info-wrong").hide();
+					$("#pwd-info-right").show();
+				}
+			});
+		},
 		finishModify:function(){
 			$("#stepFinishBtn").off("click").on("click",function(){
 				$('.errorDiv').addClass("hide");
@@ -210,24 +231,32 @@ $().ready(function() {
 				}
 				if(pwd == null || pwd == '' || pwd == undefined){
 					$("#pwd-info").text("请输入密码").removeClass("hide");
+					$("#pwd-info-wrong").show();
 					$('#pwd').focus();
 					return false;
-				}
-				if(pwd.length<6){
+				}else if(pwd.length<6){
 					$("#pwd-info").text("密码不能少于6位").removeClass("hide");
+					$("#pwd-info-wrong").show();
 					$('#pwd').focus();
 					return false;
+				}else{
+					$("#pwd-info-wrong").hide();
+					$("#pwd-info-right").show();
 				}
 				if(newpwd == null || newpwd == '' || newpwd == undefined){
 					$("#newpwd-info").text("请再次输入密码").removeClass("hide");
+					$("#newpwd-info-wrong").show();
 					$('#newpwd').focus();
 					return false;
 				}
 				if(newpwd!=pwd){
 					$("#newpwd-info").text("两次密码不一致").removeClass("hide");
+					$("#newpwd-info-wrong").show();
 					$('#newpwd').focus();
-				    $('#myPwdFalse').show();
 					return false;
+				}else{
+					$("#newpwd-info-wrong").hide();
+					$("#newpwd-info-right").show();
 				}
 				loadData(function(info){
 					$(".errorDiv").addClass("hide");
@@ -255,7 +284,6 @@ $().ready(function() {
 	function SetRemainTime(){
 		if(curCount == 0){
 			window.clearInterval(InterValObj); // 停止计时器
-			sendCode=true;
 			$('#get_code_user').text('重新获取');
 			$('#get_code_user').removeAttr('disabled')
 			// 清除session code

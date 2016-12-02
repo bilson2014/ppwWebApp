@@ -98,7 +98,7 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
@@ -311,7 +311,7 @@
 		<div class="director">
 			<div class="swiper-container  swiper-director">
 				<div class="directorLogo"></div>
-				<a href="/provider/login">
+				<a href="/register">
 					<div class="directorWant">我要入驻</div>
 				</a>
 				<div class="swiper-wrapper" id="directorContent">
@@ -523,7 +523,7 @@
 				</ul>
 				<div class="joinBtn">
 					<div onclick="showOrder('宣传片');">我要拍片</div>
-					<div onclick="window.location.href='/provider/login'">入驻拍片网</div>
+					<div onclick="window.location.href='/register'">入驻拍片网</div>
 				</div>
 			</div>
 		</div>
@@ -539,7 +539,7 @@
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">供应商登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>

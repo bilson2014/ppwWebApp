@@ -86,7 +86,7 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-					<a href="<spring:url value="login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
@@ -138,7 +138,7 @@
 								<li>
 								<div id="qqBt">
 										<a href="javascript:void(0);">
-											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qq.png">
+											<img alt="QQ" title="使用QQ账号登录" src="${imgPath}/login/qqs.png">
 										</a>
 										<span></span>
 									</div>

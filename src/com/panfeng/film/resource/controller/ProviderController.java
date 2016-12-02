@@ -35,12 +35,10 @@ import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Province;
 import com.panfeng.film.resource.model.Team;
-import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ProviderThirdLogin;
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
@@ -82,9 +80,6 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private ProviderThirdLogin providerThirdLogin;
-
-	@Autowired
-	private SessionInfoService sessionService = null;
 
 	@Autowired
 	private final FDFSService DFSservice = null;
@@ -269,7 +264,7 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/thirdLogin")
 	public ModelAndView thirdLogin(String json, final HttpServletRequest request, ModelMap modelMap) {
 		if (!ValidateUtil.isValid(json))
-			return new ModelAndView("/provider/login");
+			return new ModelAndView("/register");
 		Team original = JsonUtil.toBean(json, Team.class);
 		// TODO:
 		boolean isBind = providerThirdLogin.login(original, request);
@@ -303,12 +298,12 @@ public class ProviderController extends BaseController {
 	 * 
 	 * @return 供应商系统登录页面
 	 */
-	@RequestMapping("/loginout")
+/*	@RequestMapping("/loginout")
 	public ModelAndView loginOut(final HttpServletRequest request) {
 
 		sessionService.removeSession(request);
 		return new ModelAndView("redirect:/provider/login");
-	}
+	}*/
 
 	/**
 	 * 检测登录名是否可用
