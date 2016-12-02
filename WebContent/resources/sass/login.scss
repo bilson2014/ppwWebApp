@@ -14,8 +14,11 @@ body {
     @include media_screen_width_beta3();
     margin: 0 auto;
     position: relative;
-    margin-top: 60px;
+    margin-top: 20px;
     height: 800px;
+     @media screen and (min-width:1500px) {
+       margin-top: 60px;
+    }
 }
 
 .loginLeftArea {
@@ -273,7 +276,7 @@ body {
 
 .changeLogin {
     color: $red-base;
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
     position: relative;
     margin-top: 16px;
     cursor: pointer;

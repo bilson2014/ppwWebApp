@@ -183,7 +183,7 @@
 	                        </div>
 	                         </a>
 	                        <div class="teamDescription">
-	                        	${product.teamDescription }
+	                        	${product.teamDescription}
 	                        </div>
 	                    </div>
                     </c:if>
@@ -302,17 +302,17 @@
                 </div>
                 <div class="rightContent" id="rightContent">
                       <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
-                      <a id="moreProductInfo" class="hide">
-	                      <div class="get-new-detail newsMore ">
-		                      	<span>更多视频</span>
-		                      	<img src="/resources/images/index/newsMore.png">
-	                      </div>
-                      </a>
                       <div class="setVideo" id="moreTeamProductDiv">
                       <div class="swiper-container  swiper-more">
                             <div class="swiper-wrapper  rightContentSwiper" id="newMoreTeamProductDiv">
                             </div>
-                        </div>    
+                        </div>
+	                        <a id="moreProductInfo" class="hide">
+		                      <div class="get-new-detail newsMore ">
+			                      	<span>更多视频</span>
+			                      	<div></div>
+		                      </div>
+	                       </a>    
 	                        <div class="swiper-button-next rightNext"></div>
 				            <div class="swiper-button-prev rightPrev"></div>
                       </div>
@@ -328,7 +328,7 @@
 			    <a class="hide" id="moreNoInfo">
 				    <div class="searchMore">
 		                      	<span>更多影片</span>
-		                      	<img src="/resources/images/index/newsMore.png">
+		                      	<div></div>
 		            </div>
 	            </a>
 				<div class="swiper-wrapper paddingBottom" id="swiper-noInfoId">
