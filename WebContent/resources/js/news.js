@@ -41,7 +41,8 @@ function initContent() {
 
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
-	  '<a href="/home/news/info/'+item.id+'" target="_blank">'+
+	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
+	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
       	'<label>' + item.title + '</label>' +
       '<label class="discription">' + item.discription + '</label>'+
       '<label>了解更多</label>' +
