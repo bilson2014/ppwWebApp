@@ -205,9 +205,9 @@
                               <div class="bindLogin ">
                                         <div>第三方登录</div>
                                         <ul>
-                                            <li id="webcat"	>威信</li>
-                                            <li id="qqBt">qq</li>
-                                            <li id="weiboBt">weibo</li>
+                                            <li id="wechat"	></li>
+                                            <li id="qqBt"></li>
+                                            <li id="weiboBt"></li>
                                         </ul>
                               </div> 
                     </div>

@@ -129,7 +129,8 @@
 }
 
 .prompt-word {
-	margin: 20px auto;
+	margin: 0 auto;
+	margin-top: 30px;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
@@ -139,8 +140,8 @@
 
 .prompt-level-word {
 	margin: auto;
-	margin-top: 35px;
-
+	margin-top: 10px;
+	margin-bottom: 20px;
 	@include media_screen_width();
 	text-align: center;
 	font-size: $font-size-lger;
@@ -148,8 +149,7 @@
 	line-height: $font-size-lger;
 
 	a {
-		    
-		    color:blue;
-		    font-weight: 600;
+	    color:blue;
+	    font-weight: 600;
 	}
 }
