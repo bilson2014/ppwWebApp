@@ -225,10 +225,10 @@ var homePage = {
 				$("#directorContent").empty().html(juicer(homePage_tpl.team_recommend,data));
 				//渲染team效果
 				_this.director();
-				 $('.dContent').each(function(i){ 
-               	  var node=document.getElementsByClassName('dContent')[i];  
-    			      $clamp(node,{clamp:3});     
-               	  }); 
+//				 $('.dContent').each(function(i){ 
+//               	  var node=document.getElementsByClassName('dContent')[i];  
+//    			      $clamp(node,{clamp:3});     
+//               	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -288,12 +288,10 @@ var homePage = {
 				_this.getNewsDetail();
 				
                   var hasNum = $('.Content').length;
-                  $('.Content').each(function(i){ 
-                	  var node=document.getElementsByClassName('Content')[i];  
-     			      $clamp(node,{clamp:3});     
-                	  }); 
-				
-				
+//                  $('.Content').each(function(i){ 
+//                	  var node=document.getElementsByClassName('Content')[i];  
+//     			      $clamp(node,{clamp:3});     
+//                	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -303,6 +301,11 @@ var homePage = {
 	getNewsDetail:function(){
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
+			window.location.href="/home/news/info/"+id;
+		})
+		
+	    $(".get-new-detail").parent().off("click").on("click",function(){
+			var id = $(this).attr("data-id");
 			window.location.href="/home/news/info/"+id;
 		})
 	},
@@ -389,7 +392,7 @@ var homePage_tpl = {
 			'	<div class="Content">${item.discription}</div>',
 			'	<div class="get-new-detail newsMore">',
 			'		<span>了解更多</span>',
-			'		<img src="/resources/images/index/newsMore.png">',
+			'		<div class="moreIcon"></div>',
 			'	</div>',
 			'</li>',
 			'{@/each}'

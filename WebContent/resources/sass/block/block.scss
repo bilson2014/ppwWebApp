@@ -221,7 +221,7 @@
         div:nth-child(2) {
             font-size: $font-size-sm;
             color: $gray-light;
-            height: 37px;
+            height: 67px;
             overflow: hidden;
             width: 70%;
         }
@@ -258,12 +258,12 @@
             }
             div:nth-child(1) {
                 margin-bottom: 29px;
-                font-size: $font-size;
+                font-size: $font-size-base;
             }
             div:nth-child(2) {
                 height: 75px;
                 overflow: hidden;
-                font-size: $font-size-base;
+                font-size: $font-size-sm;
                 @media screen and (max-width: 1275px) {
                     height: 40px;
                 }
@@ -582,7 +582,7 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                margin-bottom: 60px;
+                margin-bottom: 35px;
                 span {
                     font-size: $font-size-sm;
                 }
@@ -631,7 +631,7 @@
             .rightPrev {
                 height: 45px;
                 width: 45px;
-                left: 190px !important;
+                left: 224px !important;
                 top:100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/topPrev.png) no-repeat !important;
@@ -706,18 +706,24 @@
     .newsMore {
         color: $gray;
         font-size: $font-size-sm;
-        margin-top: 10px;
         cursor: pointer;
         position: absolute;
-        top: 16px;
-        right: 5px;
-        &:active {
+        bottom: 55px;
+        right: 20px;
+        width: auto;
+        &:hover {
             color: $red-base !important;
+            div{
+                background-position: 0px -13px !important;
+            }
         }
-        img {
-            position: relative;
-            left: 10px;
-            top: -1;
+        div {
+            position: absolute;
+            right: -30px;
+            top: 3px;
+            height: 13px;
+            width: 13px;
+            background: url('/resources/images/index/newsMore.png')no-repeat !important;
         }
     }
     
@@ -748,15 +754,21 @@
             cursor: pointer;
             position: absolute;
             top: -8px;
-            right: 10px;
-            &:active {
-                color: $red-base !important;
+            right: 32px;
+             &:hover {
+            color: $red-base !important;
+            div{
+                background-position: 0px -13px !important;
             }
-            img {
-                position: relative;
-                left: 10px;
-                top: -1;
-            }
+        }
+        div {
+            position: absolute;
+            right: -30px;
+            top: 3px;
+            height: 13px;
+            width: 13px;
+            background: url('/resources/images/index/newsMore.png')no-repeat !important;
+        }
         }
         .swiper-button-prev {
             height: 45px;

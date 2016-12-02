@@ -67,8 +67,6 @@
                 color: $gray-dark;
                 margin-bottom: 30px;
                 overflow: hidden;
-                cursor: pointer;
-
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -95,6 +93,9 @@
                     height: 54px;
                     overflow: hidden;
                     cursor: pointer;
+                    &:hover {
+                        color: $red-base !important;
+                    }
                 }
                 label:last-child {
                     font-size: $font-size-sm;
