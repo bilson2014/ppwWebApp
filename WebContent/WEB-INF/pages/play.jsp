@@ -20,8 +20,6 @@
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
 <spring:url value="/resources/lib/swiper/swiper.js" var="swiperJs" />
 
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -31,8 +29,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网,团队制作,拍片团队,导演介绍,广告制作">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<meta name="keywords" content="${product.pDescription }">
+	<meta name="description" content="${product.tags }">
 	<title>${product.productName }_拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
@@ -73,21 +71,21 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
