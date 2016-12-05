@@ -652,7 +652,7 @@ var html = [
     		'     <img src="',imageUrl,'">',
     		'     <div class="word">',
     		'     	 <span>',productName,'</span>',
-    		'     	 <span>',price,'</span>',
+    		'     	 <span>',productPrice,'</span>',
     		'     </div>',
     		'	</a>',
     		'</div>'
