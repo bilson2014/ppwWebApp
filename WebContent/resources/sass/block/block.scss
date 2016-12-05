@@ -787,11 +787,11 @@
             width: 45px;
             left: -90px;
             background: url(/resources/images/block/btnPrev.png) no-repeat !important;
-            @media screen and (max-width: 1360px) {
+            @media screen and (max-width: 1400px) {
                 left: -45px;
             }
              @media screen and (max-width: 1100px) {
-                left: -30px;
+                left: -4px;
             }
         }
         .swiper-button-next {
@@ -799,11 +799,11 @@
             width: 45px;
             right: -90px;
             background: url(/resources/images/block/btnNext.png) no-repeat !important;
-            @media screen and (max-width: 1360px) {
-                right: -25px;
+            @media screen and (max-width: 1400px) {
+                right: -45px;
             }
               @media screen and (max-width: 1100px) {
-                right: -30px;
+                right: 2px;
             }
         }
     }

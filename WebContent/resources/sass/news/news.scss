@@ -3,11 +3,13 @@
     @import "video";
     @import "flexslider";
     @import "compass/typography/text/ellipsis";
-    $price-wrap-min: 236px;
-    $price-wrap: 340px;
-    $price-wrap-max: 460px;
-    $order-width: 330px;
-    $rightWidth:320px;
+
+
+
+    .page{
+        background: transparent !important;
+    }
+
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 60px;
@@ -38,7 +40,7 @@
                 margin-bottom: 30px;
                 overflow: hidden;
                 margin-bottom: 20px;
-                @include ellipsis;
+                padding-right: 220px;
             }
             .setPro {
                 padding-right: 220px;

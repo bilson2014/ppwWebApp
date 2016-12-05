@@ -109,21 +109,21 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>

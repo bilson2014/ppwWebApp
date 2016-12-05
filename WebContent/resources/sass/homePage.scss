@@ -1545,11 +1545,16 @@ input:focus {
 }
 
 .join {
+
+    width: 100%;
     background: url(/resources/images/index/join.jpg) no-repeat !important;
-    background-size: 100% 100% !important;
+    background-size: cover !important;
+    background-position: center 0;
     height: 307px;
     min-width: 960px;
     position: relative;
+      
+
     .joinContent {
         @include media_screen_width_beta3();
         margin: 0 auto;

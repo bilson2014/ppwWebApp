@@ -499,7 +499,7 @@
 		</div>
 		<!-- 新闻end-->
 		<!-- 入驻-->
-		<div class="join">
+		<div class="join" style="background-size: cover !important; background-position: center 0;" >
 			<div class="joinContent">
 				<ul>
 					<li>

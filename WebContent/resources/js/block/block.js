@@ -538,6 +538,8 @@ function loadRecommendProductIfNo(){
 					 $('#moreNoInfo').attr('href','/search?q=tags='+tags);
 				}
 				
+			}else{
+				$('#noInfo').addClass('hide');
 			}
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({
@@ -652,7 +654,7 @@ var html = [
     		'     <img src="',imageUrl,'">',
     		'     <div class="word">',
     		'     	 <span>',productName,'</span>',
-    		'     	 <span>',price,'</span>',
+    		'     	 <span>',productPrice,'</span>',
     		'     </div>',
     		'	</a>',
     		'</div>'
