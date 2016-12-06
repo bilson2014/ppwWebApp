@@ -538,6 +538,8 @@ function loadRecommendProductIfNo(){
 					 $('#moreNoInfo').attr('href','/search?q=tags='+tags);
 				}
 				
+			}else{
+				$('#noInfo').addClass('hide');
 			}
 		}
 	}, getContextPath() + '/tags/product/search', $.toJSON({

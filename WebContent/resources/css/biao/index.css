@@ -1,7 +1,7 @@
 /*
 Error: Undefined mixin 'flexshow'.
-        on line 12 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss, in `flexshow'
-        from line 12 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss
+        on line 12 of D:/Film/WebContent/resources/sass/biao/index.scss, in `flexshow'
+        from line 12 of D:/Film/WebContent/resources/sass/biao/index.scss
 
 7: 	position: relative;
 8: 	width: 100%;
@@ -16,8 +16,8 @@ Error: Undefined mixin 'flexshow'.
 17: 	 height: 70px !important;
 
 Backtrace:
-D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss:12:in `flexshow'
-D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss:12
+D:/Film/WebContent/resources/sass/biao/index.scss:12:in `flexshow'
+D:/Film/WebContent/resources/sass/biao/index.scss:12
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:351:in `block in visit_mixin'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
@@ -61,19 +61,14 @@ C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:4
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:294:in `watch'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/sass_compiler.rb:46:in `watch!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/watch_project.rb:41:in `perform'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
-C:/Ruby23-x64/bin/compass:23:in `load'
-C:/Ruby23-x64/bin/compass:23:in `<main>'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:331:in `block in watch'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:252:in `on_change'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'flexshow'.\A         on line 12 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss, in `flexshow'\A         from line 12 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/biao/index.scss\A \A 7: 	position: relative;\A 8: 	width: 100%;\A 9: 	background: $body-bg;\A 10: \A 11: 	@include  media_screen_height(440px,470px,540px);\A 12: 	@include flexshow; \A 13: }\A 14: \A 15: \A 16: .bannerOut{\A 17: 	 height: 70px !important;"; }
+  content: "Error: Undefined mixin 'flexshow'.\A         on line 12 of D:/Film/WebContent/resources/sass/biao/index.scss, in `flexshow'\A         from line 12 of D:/Film/WebContent/resources/sass/biao/index.scss\A \A 7: 	position: relative;\A 8: 	width: 100%;\A 9: 	background: $body-bg;\A 10: \A 11: 	@include  media_screen_height(440px,470px,540px);\A 12: 	@include flexshow; \A 13: }\A 14: \A 15: \A 16: .bannerOut{\A 17: 	 height: 70px !important;"; }
