@@ -23,10 +23,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="拍片网登录">
-    <meta name="description" content="">
+    <meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
+    <meta name="description" content="${news.discription}">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>拍片网－广告－宣传片－微电影－视频营销</title>
+    <title>${news.title}-拍片网</title>
     <link rel="stylesheet" href="${newsCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
 </head>
@@ -38,21 +38,21 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>

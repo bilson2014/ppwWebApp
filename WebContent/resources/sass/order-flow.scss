@@ -1,84 +1,178 @@
 @import "common";
 @import "buttons";
 @import "video";
-@import "bootstrap-grid";
+@import "flexslider";
 
 
-
-
-.area-top {
-	  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-middle);
-	margin: auto;
-
-
-	.image-top {
-		@include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-middle);
-		height: auto;
-    margin-top:60px;
-    margin-bottom:80px;
-
-	}
+.bgLogo {
+    width: 300px;
+    height: 25px;
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    background: url('/resources/images/service/logo.svg') no-repeat !important;
 }
 
-.nav-shadow {
-  width: 100%;
-  height: 1px;
-  box-shadow: 1px 1px 1px #888888;
-  position:relative;
-  top:1px;
+.titleTag {
+    background: #f0f2f5;
+    height: 70px;
+    border-bottom: 1px solid $border-line;
+    .titleWord {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        font-size: 0;
+        padding-left: 16%;
+        padding-right: 16%;
+        div {
+            color: $gray-light;
+            font-size: $font-size-base;
+            width: 20%;
+            display: inline-block;
+            line-height: 69px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .checkActive {
+            color: $red-base !important;
+            border-bottom: 1px solid $red-base;
+        }
+    }
 }
 
-.nav-title-wrap {
-  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
-  height: 70px;
-  margin: 0 auto;
-
-  a {
-    color: $gray-dark;
-    text-decoration: none;
-    &:link,&:visited,&:active {
-      color: $gray-dark;
-      text-decoration: none;
+.tagsWidth {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    margin-bottom: 120px;
+    @media screen and (min-width: 1276px) {
+        padding-left: 150px;
+        padding-right: 150px;
     }
-
-    &:hover {
-      color: $gray-light;
-      text-decoration: none;
+    .RightIcon {
+        width: 100%;
+        height: 206px;
+        position: relative;
+        div:first-child {
+            position: absolute;
+            top: 5px;
+            left: 50px;
+        }
+        label {
+            display: block;
+        }
+        label:nth-child(1) {
+            color: $red-base;
+            font-size: 2.6rem;
+        }
+        label:nth-child(2) {
+            color: $gray-dark;
+            font-size: $font-size-base;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        label:nth-child(3) {
+            color: $gray-light;
+            font-size: $font-size-sm;
+            font-weight: 500;
+        }
+        div:last-child {
+            background: url('/resources/images/service/iconbg1.png') no-repeat;
+            width: 350px;
+            height: 214px;
+            position: absolute;
+            right: 40px;
+            top: -30px;
+            background-position-y: -220px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
     }
-  }
-
-  p {
-    display: inline;
-    font-size: $font-size;
-    color: $gray;
-    margin-left: -2px;
-  }
-  .ul-wrap {
-    height: 40px;
-  }
-
-  #first-title{
-    border-bottom:2px solid #fe5453;
-    font-color:$gray;
-    font-weight:bold
-  }
-
-  .nav-title {
-    margin:0 auto;
-    display: inline-block;
-    width: 80px;
-    text-align: center;
-    line-height: 70px;
-    cursor: pointer;
-    margin-right: ($about-us-width-min - (80*5)) / 5 - 10px;
-    @media screen and (min-width:1276px) and (max-width:1500px) {
-      margin-right: ($about-us-width-middle - (80*5)) / 5 - 10px;
+    .LeftIcon {
+        width: 100%;
+        height: 206px;
+        margin-left: 10px;
+        position: relative;
+        div:first-child {
+            position: absolute;
+            top: 5px;
+            right: 50px;
+            text-align: right;
+        }
+        label {
+            display: block;
+        }
+        label:nth-child(1) {
+            color: $red-base;
+            font-size: 2.6rem;
+        }
+        label:nth-child(2) {
+            color: $gray-dark;
+            font-size: $font-size-base;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        label:nth-child(3) {
+            color: $gray-light;
+            font-size: $font-size-sm;
+            font-weight: 500;
+        }
+        div:last-child {
+            width: 350px;
+            height: 214px;
+            position: absolute;
+            left: 40px;
+            top: -30px;
+            background-position-y: -220px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
     }
-    @media screen and (min-width:1500px) {
-      margin-right: ($about-us-width-lg - (80*5)) / 5 - 10px;
+    .icon {
+        background-size: 100% 206px !important;
+        margin-top: 15px;
     }
-    &:last-child {
-      margin-right: 0;
+    .icon1 {
+        background: url('/resources/images/service/icon1.png') no-repeat;
+        div:last-child {
+            background: url('/resources/images/service/iconbg1.png') no-repeat;
+        }
     }
-  }
+    .icon2 {
+        background: url('/resources/images/service/icon2.png') no-repeat;
+        div:last-child {
+            background: url('/resources/images/service/iconbg2.png') no-repeat;
+        }
+    }
+    .icon3 {
+        background: url('/resources/images/service/icon3.png') no-repeat;
+        div:last-child {
+            background: url('/resources/images/service/iconbg3.png') no-repeat;
+        }
+    }
+    .icon4 {
+        background: url('/resources/images/service/icon4.png') no-repeat;
+        div:last-child {
+            background: url('/resources/images/service/iconbg4.png') no-repeat;
+        }
+    }
+    .icon5 {
+        background: url('/resources/images/service/icon5.png') no-repeat;
+        div:last-child {
+            background: url('/resources/images/service/iconbg5.png') no-repeat;
+        }
+    }
+    .icon6 {
+        background: url('/resources/images/service/icon6.png') no-repeat;
+        height: 206px;
+        background-size: 100% 206px !important;
+        margin-top: 15px;
+        div:last-child {
+            background: url('/resources/images/service/iconbg6.png') no-repeat;
+        }
+    }
 }
+
+

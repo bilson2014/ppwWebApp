@@ -6,7 +6,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
-<spring:url value="/resources/css/bind.css" var="bindCss"/>
+<spring:url value="/resources/css/threeLogin.css" var="bindCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -63,6 +63,7 @@
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
 <body >
+
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${isLogin}" id="loginAllRigster"/>
 	 <div class="header headerMove" id="header">
@@ -71,21 +72,21 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
-					<a href="<spring:url value='/'/>" class="header-item">首页<span></span></a>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>

@@ -2,8 +2,16 @@
 @import "compass/typography/text/ellipsis";
 
 
+.codeBt{
+    height: 37px !important;
+}
 
-
+.btn-default{
+  background:$red-base !important;
+  color:white !important;
+ height: 20px !important;
+ line-height: 0px;
+}
 
 label {
     font-weight: 500;
@@ -218,6 +226,14 @@ li {
 
 label.tooltip-error-message {
     padding-top: 4px
+}
+
+
+.label-message{
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    color:$red-base;
 }
 
 

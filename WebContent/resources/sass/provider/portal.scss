@@ -23,8 +23,6 @@ body{
   width: 208px;
   bottom: 0;
   background-color: #ffffff;
-  
-  
 }
 
 .content-title {
@@ -44,4 +42,15 @@ body{
   bottom: 0px;
   padding: 5px;
 }
+
+
+.btn-default{
+  background:$red-base !important;
+  color:white !important;
+ height: 20px !important;
+ line-height: 0px;
+}
+
+
+
 
