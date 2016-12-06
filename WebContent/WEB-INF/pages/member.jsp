@@ -124,7 +124,7 @@
 		<div class="nav-shadow"></div>
 	
 		<div class="video-div" id="activityPart">
-			<video src="${file_locate_storage_path }/group1/M00/00/27/Cgpw7FgiySOACsjIARHf7MfQdak085.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/video-poster.jpg" ></video>
+			<video src="${file_locate_storage_path }group1/M00/00/27/Cgpw7FgiySOACsjIARHf7MfQdak085.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/about-us/about-us-3.jpg" ></video>
 	    </div>
 	        
 	    <div class="introduce" >
