@@ -248,6 +248,8 @@ $().ready(function() {
 		            $('#controlWidth').css('left', '-858px');
 		            $('#cusToInit').fadeOut();
 		            $('#toProRe').fadeOut();
+		            $('#kaptcha_pic_team').val('');// 重置图片验证码
+					$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
 		            setTimeout(function() {
 		               $('#toCusRe').fadeIn();
 		               $('#proToInit').fadeIn();
@@ -269,6 +271,8 @@ $().ready(function() {
 		            $('#controlWidth').css('left', '1px');
 		            $('#proToInit').fadeOut();
 		            $('#toCusRe').fadeOut();
+		            $('#kaptcha_pic_user').val('');
+					$('#kaptcha_pic_user').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
 		            setTimeout(function() {
 		               $('#toProRe').fadeIn();
 		               $('#cusToInit').fadeIn();
