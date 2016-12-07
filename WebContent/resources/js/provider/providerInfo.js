@@ -108,7 +108,7 @@ $().ready(function() {
 					$body = '';
 				}
 			}, getContextPath() + '/product/order/loadWithTeamName' ,$.toJSON({
-				condition:"teamName:"+$("#teamName").val()
+				condition:"teamName:"+ '"' + $("#teamName").val() + '"'
 			}));
 		},
 		initInfoHead:function(){
@@ -190,7 +190,7 @@ function drawLeftCard(product,year,month,day) {
 					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
 					//修改为dfs路径 end
-					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
+					+ '<div class="videoContentInfo"></div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 						+ '<div class="videoBtn btn-red-common">了解详情</div>' 
@@ -219,7 +219,7 @@ function drawRightCard(product,year,month,day) {
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
-				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
+				+ '<div class="videoContentInfo"></div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 					+ '<div class="videoBtn btn-red-common">了解详情</div>' 

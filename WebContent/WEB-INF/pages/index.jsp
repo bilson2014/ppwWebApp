@@ -13,9 +13,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="宣传片制作、广告片制作、企业微电影、企业宣传片制作、三维动画制作、病毒视频">
-<meta name="description"
-	content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、广告片拍摄、企业微电影、病毒视频以及玩味动画制作等。拍片就上拍片网！">
+<meta name="keywords" content="宣传片制作,广告片制作,企业微电影,企业宣传片制作,三维动画制作,病毒视频">
+<meta name="description" content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、广告片拍摄、企业微电影、病毒视频以及玩味动画制作等。拍片就上拍片网！">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>拍片网－最大的互联网影视内容制作服务平台</title>
 <link rel="stylesheet" href="/resources/css/index.css">
