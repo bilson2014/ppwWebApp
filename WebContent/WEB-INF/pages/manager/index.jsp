@@ -102,7 +102,16 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<!-- <div class="circle-div"></div> -->
-
+	<r:identity role="customer">
+		<input type="hidden" value="customer" id="type">
+	</r:identity>
+	<r:identity role="provider">
+		<input type="hidden" value="provider" id="type">
+	</r:identity>
+	<r:identity role="employee">
+		<input type="hidden" value="employee" id="type">
+	</r:identity>
+	<input type="hidden" value="${userId }" id="userId">
 	<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
