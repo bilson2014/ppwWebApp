@@ -5,6 +5,12 @@
     @import "compass/typography/text/ellipsis";
 
 
+    $price-wrap-min: 236px;
+    $price-wrap: 340px;
+    $price-wrap-max: 460px;
+    $order-width: 330px;
+    $rightWidth:320px;
+
 
     .page{
         background: transparent !important;

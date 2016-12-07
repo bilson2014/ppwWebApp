@@ -4,7 +4,7 @@ $().ready(function() {
 	var ProductTree = {
 		loadDatas : function(num) {
 			var teamId = $("#teamId").val();
-			getData(function(msg) {
+			loadData(function(msg) {
 				var timeLine = $('#timeLine');
 				var $body = '';
 				var int = 0;
@@ -16,7 +16,11 @@ $().ready(function() {
 				for (int; int < msg.length; int++) {
 				    
 					var numInt = int;
-					var date = convert(msg[int].creationTime);
+					var creationTime = msg[int].creationTime;
+					if(creationTime == '' || creationTime == undefined || creationTime == null){
+						creationTime =  msg[int].updateDate;
+					}
+					var date = convert(creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
@@ -103,7 +107,9 @@ $().ready(function() {
 					timeLine.append($body);
 					$body = '';
 				}
-			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
+			}, getContextPath() + '/product/order/loadWithTeamName' ,$.toJSON({
+				condition:"teamName:"+$("#teamName").val()
+			}));
 		},
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
@@ -163,6 +169,13 @@ function drawYearView(year) {
 }
 // 创建叶子节点 --》 左
 function drawLeftCard(product,year,month,day) {
+	
+	var imgPath = '/resources/images/index/noImg.jpg';
+	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
+		imgPath = getDfsHostName() + product.picLDUrl;
+	}
+	
+	
 	var $body = ''
 			+ '<div class="leftCard">'
 				+ '<div class="leftDian">'
@@ -175,7 +188,7 @@ function drawLeftCard(product,year,month,day) {
 					//modify by wlc 2016-11-1 14:04:29
 					//修改为dfs路径 begin
 					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
-					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
+					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
 					//修改为dfs路径 end
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
@@ -189,6 +202,13 @@ function drawLeftCard(product,year,month,day) {
 
 // 创建叶子节点 --》 右
 function drawRightCard(product,year,month,day) {
+	
+	
+	var imgPath = '/resources/images/index/noImg.jpg';
+	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
+		imgPath = getDfsHostName() + product.picLDUrl;
+	}
+	
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
@@ -198,7 +218,7 @@ function drawRightCard(product,year,month,day) {
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'

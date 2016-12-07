@@ -32,7 +32,7 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 		}
-		response.sendRedirect(contextPath + "/provider/login");
+		response.sendRedirect(contextPath + "/login");
 		return false;
 	}
 	

@@ -344,94 +344,7 @@ function initView(){
 		loadRecommendProduct();
 	}
 }
-//function loadMoreTeamProduct(){
-//	var teamId=$('#company-unique').val();
-//	loadData(function(msg){
-//		if(msg.code == 1){
-//			var res = msg.result;
-//			if(res != null && res!=undefined){
-//				var hasCount = 0;
-//				var productId = $('#play-unique').val();
-//				var v1 = $('#moreTeamProductDiv');
-//				v1.html('');
-//				for (var i = 0; i < res.length; i++) {
-//					if(res[i].productId == productId)
-//						continue;
-//					hasCount ++;
-//					var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
-//					v1.append(card);
-//					if(hasCount == 3)
-//						break;
-//				}
-//				if(hasCount == 0){
-//					$('#moreTeamProductTitle').addClass('hide');
-//					$('#moreTeamProductDiv').addClass('hide');
-//				}
-//				loadRecommendProduct();
-//			}
-//		}else{
-//			$('#moreTeamProductTitle').addClass('hide');
-//			$('#moreTeamProductDiv').addClass('hide');
-//		}
-//			
-//	}, getContextPath() + '/team/product/more', $.toJSON({
-//		teamId : teamId
-//	}));
-//}
 
-//function loadRecommendProduct(){
-//	var tags=$('#tags').val();
-//	if(tags == null || tags == undefined || tags == ''){
-//		return;
-//	}
-//	loadData(function(msg){
-//		if(msg.code == 1){
-//			var count = msg.result.total
-//			var res = msg.result.result;
-//			if(count > 0){
-//				if(res != null && res!=undefined){
-//					var hasCount = 0;
-//					var productId = $('#play-unique').val();
-//					var v1 = $('#moreTeamProductDiv');
-//					v1.html('');
-//					for (var i = 0; i < res.length; i++) {
-//						if(res[i].productId == productId)
-//							continue;
-//						hasCount ++;
-//						var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl);
-//						v1.append(card);
-//						if(hasCount == 8)
-//							break;
-//					}
-//					if(hasCount == 0){
-//						$('#recommendProductTitle').addClass('hide');
-//						$('#recommendProductTitleDiv').addClass('hide');
-//					}
-//					var item = $('.Xflag');
-//					if(item.length == 0){
-//						$('.noMore').removeClass('hide');
-//					}
-//				}
-//				if(count > 8){
-//					$('#moreProductInfo').removeClass('hide');
-//					$('#moreProductInfo').attr('href','/search?q=tags='+tags);
-//				}
-//			}else{
-//				$('#recommendProductTitle').addClass('hide');
-//				$('#recommendProductTitleDiv').addClass('hide');
-//				$('.noMore').removeClass('hide');
-//			}
-//		}else{
-//			$('#recommendProductTitle').addClass('hide');
-//			$('#recommendProductTitleDiv').addClass('hide');
-//			$('.noMore').removeClass('hide');
-//		}
-//	}, getContextPath() + '/tags/product/search', $.toJSON({
-//		condition : tags,
-//		begin : 0,
-//		limit : 7
-//	}));
-//}
 
 function loadRecommendProduct(){
 		var tags=$('#tags').val();
@@ -515,6 +428,11 @@ function loadRecommendProductIfNo(){
 		if(msg.code == 1){
 			var count = msg.result.total
 			var res = msg.result.result;
+			
+			if(count ==1){			
+			  $('#noInfo').addClass('hide');
+			}
+			
 			if(count > 0){
 				if(res != null && res!=undefined){
 					var hasCount = 0;
@@ -597,27 +515,17 @@ function initMoreInfo(num){
 }
 
 
-//function createCard(productName,productId,teamId,imageUrl){
-//	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-//	var imageUrl = getDfsHostName() + imageUrl;
-//	var html = [
-//	    '<div>',
-//		'<a href="',url,'">',
-//			'<div class="videoModel Xflag">',
-//			    '<div class="videoIcon"></div>',
-//				'<img src="',imageUrl,'">',
-//				'<label>',productName,'</label>',
-//			'</div>',
-//		'</a>'
-//	].join('');
-//	return html;
-//}
+
 
 
 function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-	var imageUrl = getDfsHostName() + imageUrl;
 	
+	var ImageUrl = '/resources/images/index/noImg.jpg';
+
+	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
+		ImageUrl = getDfsHostName() + imageUrl;
+	}
 	if(price<=0){
 		var productPrice = "";	
 	}else{
@@ -626,7 +534,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var html = [
 	    '<div class="swiper-slide noInfoCard">',
 		'	<a href="',url,'">',
-		'     <img src="',imageUrl,'">',
+		'     <img src="',ImageUrl,'">',
 		'     <div class="margin-top">',
 		'     	<span>',productName,'</span>',
 		'     	<span>',productPrice,'</span>',
@@ -640,7 +548,13 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 
 function createCard(productName,productId,teamId,imageUrl,price){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-var imageUrl = getDfsHostName() + imageUrl;
+
+var ImageUrl = '/resources/images/index/noImg.jpg';
+
+if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
+	ImageUrl = getDfsHostName() + imageUrl;
+}
+
 if(price<=0){
 	var productPrice = "";	
 }else{
@@ -651,7 +565,7 @@ var html = [
     		'     <div class="videoModel Xflag">',
     		'	<a href="',url,'">',
     		'     <div class="videoIcon"></div>',			
-    		'     <img src="',imageUrl,'">',
+    		'     <img src="',ImageUrl,'">',
     		'     <div class="word">',
     		'     	 <span>',productName,'</span>',
     		'     	 <span>',productPrice,'</span>',

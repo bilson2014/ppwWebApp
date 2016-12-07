@@ -353,6 +353,22 @@ public class PCController extends BaseController {
 		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
 	}
+	
+	/**
+	 * 根据 团队名称 去solr中 加载 产品列表
+	 * @param teamName
+	 */
+	@RequestMapping("/product/order/loadWithTeamName")
+	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,final HttpServletRequest request) {
+
+		List<Solr> list = new ArrayList<Solr>();
+		final String url = URL_PREFIX + "/portal/product/more";
+		String json = HttpUtil.httpPost(url, solrView, request);
+		list = JsonUtil.toList(json);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:" + list.size(), sessionInfo);
+		return list;
+	}
 
 	/**
 	 * 根据 产品编号 获取 产品信息
