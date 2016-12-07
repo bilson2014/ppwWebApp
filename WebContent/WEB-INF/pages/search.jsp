@@ -193,7 +193,12 @@
 						</c:if>
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
-								<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" />
+								<c:if test="${not empty solr.picLDUrl }">
+									<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" />
+								</c:if>
+								<c:if test="${empty solr.picLDUrl }">
+									<img class="img-card-4" src="${imgPath}/index/noImg.jpg" alt="拍片网" />
+								</c:if>
 							</a>
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
