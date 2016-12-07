@@ -231,7 +231,7 @@
                                               来自全球56个城市,1562名导演已加入,汇聚世界作品100000+
                  <br/>2000+客户在这里发布拍片需求
 		   </div>
-		   <a href="<spring:url value="/provider/login" />"><div class="bottomBtn btn-red-common ">立即加入</div>
+		   <a href="<spring:url value="/login" />"><div class="bottomBtn btn-red-common ">立即加入</div></a>
 		</div>
 		
 		</div>

@@ -240,7 +240,7 @@
 				
 			</div>
 			<r:noLogin>
-				<div class="prompt-level-word">请<a href="<spring:url value='/login' />" > 登陆 </a>拍片网，观看更多作品!</div>
+				<div class="prompt-level-word">请<a href="<spring:url value='/login' />" > 登录 </a>拍片网，观看更多作品!</div>
 			</r:noLogin>
 			
 			<r:noLevel>
