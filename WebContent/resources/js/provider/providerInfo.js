@@ -169,6 +169,13 @@ function drawYearView(year) {
 }
 // 创建叶子节点 --》 左
 function drawLeftCard(product,year,month,day) {
+	
+	var imgPath = '/resources/images/index/noImg.jpg';
+	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
+		imgPath = getDfsHostName() + product.picLDUrl;
+	}
+	
+	
 	var $body = ''
 			+ '<div class="leftCard">'
 				+ '<div class="leftDian">'
@@ -181,7 +188,7 @@ function drawLeftCard(product,year,month,day) {
 					//modify by wlc 2016-11-1 14:04:29
 					//修改为dfs路径 begin
 					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
-					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
+					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
 					//修改为dfs路径 end
 					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
@@ -195,6 +202,13 @@ function drawLeftCard(product,year,month,day) {
 
 // 创建叶子节点 --》 右
 function drawRightCard(product,year,month,day) {
+	
+	
+	var imgPath = '/resources/images/index/noImg.jpg';
+	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
+		imgPath = getDfsHostName() + product.picLDUrl;
+	}
+	
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
@@ -204,7 +218,7 @@ function drawRightCard(product,year,month,day) {
 			+ '</div>'
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
-				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+getDfsHostName()+ product.picLDUrl +'"></a>'
+				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
 				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'

@@ -434,7 +434,13 @@ function loadProduction(start){
 			if(list != null && list.length > 0){
 				var $body = '';
 				$.each(list,function(i,solr){
-					var imgPath = getDfsHostName() + solr.picLDUrl;
+					
+					var imgPath = '/resources/images/index/noImg.jpg';
+
+					if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					
 					if(i % 4 == 0){
 						$body += '<div class="video-row">';
 					}

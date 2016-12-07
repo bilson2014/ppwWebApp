@@ -450,27 +450,6 @@
     }
 }
 
-// .swiper-director .swiper-slide-active {
-//     .m {
-//         opacity: 1 !important;
-//     }
-//     .b {
-//         top: 76px !important;
-//     }
-//     .title,
-//     .content {
-//         color: white !important;
-//     }
-//     .line {
-//         background: white !important;
-//     }
-//     .toProduct {
-//         display: block !important;
-//     }
-//     img {
-//         margin-top: 30px !important;
-//     }
-// }
 .director .swiper-button-next {
     background: url(/resources/images/index/dright.png) no-repeat !important;
     position: absolute;
@@ -610,10 +589,11 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .content {
             font-size: $font-size-sm;
             color: $gray-light;
-            height: 44px;
+            height: 47px;
             padding-left: 12.5%;
             padding-right: 12.5%;
             line-height: 15px;
@@ -639,6 +619,7 @@
             }
         }
     }
+    
     // .swiper-slide:nth-child(2n) {
     //     width: 40%;
     // }

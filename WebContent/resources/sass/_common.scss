@@ -10,7 +10,7 @@
 @import "compass/typography/text/ellipsis";
 //@import "icons-sprite"; 
 body {
-    font-family: "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family:"PingFang SC","Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-weight: 500;
 } 
 
@@ -894,6 +894,7 @@ a {
     }
 }
 
+
 //底部
 .foot3 {
     background: black;
@@ -903,7 +904,7 @@ a {
     font-weight: 500;
     .title {
         a {
-            cursor: none !important;
+            cursor: default !important;
         }
     }
     a:hover {
