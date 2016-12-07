@@ -144,7 +144,7 @@
                        		<span>
 								<c:if test="${! empty product.tags}">
 									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
-										<label>${tag }</label>
+										<label style="cursor:pointer;" onclick='window.open("/search?q=${tag}")'>${tag }</label>
 									</c:forEach>
 								</c:if>
 							</span>

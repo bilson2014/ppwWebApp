@@ -90,7 +90,7 @@
 						</div>
 						<span style="color:red;">*</span>
 					</div>
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<label for="video-type" class="col-sm-2 control-label">类型</label>
 						<div class="col-sm-6">
 							<input type="hidden" id="vType" value="${model.productType }"/>
@@ -99,20 +99,20 @@
 							</select>
 						</div>
 						<span style="color:red;">*</span>
-					</div>
+					</div> --%>
 					<div class="form-group">
 						<label for="video-length" class="col-sm-2 control-label">视频长度</label>
 						<div class="col-sm-3">
 							<input type="number" class="form-control" id="video-length" placeholder="请填写数字" value="${model.videoLength }">
 						</div>
-						秒<span style="color:red;">*</span>
+						秒
 					</div>
 					<div class="form-group">
 						<label for="video-price" class="col-sm-2 control-label">价格</label>
 						<div class="col-sm-3">
 							<input type="number" class="form-control" id="video-price" placeholder="请填写数组" value="${model.servicePrice }">
 						</div>
-						元<span style="color:red;">*</span>
+						元
 					</div>
 					<div class="form-group">
 						<label for="video-switch" class="col-sm-2 control-label">是否可见</label>
@@ -156,7 +156,7 @@
 							<p style="color:#999;font-size: 12px;">敲击空格键添加标签</p>
 							<div class="alert alert-danger" id="tagLabel" style="display: none;">每个标签最多8个汉字或16个字母！</div>
 						</div>
-						<span style="color:red;">*</span>
+						
 					</div>
 					
 					<div class="form-group">
@@ -164,7 +164,6 @@
 						<div class="col-sm-6">
 							<textarea class="form-control" id="video-description" rows="4" maxlength="150" placeholder="公司简介为必填字段">${model.pDescription }</textarea>
 						</div>
-						<span style="color:red;">*</span>
 					</div>
 					<div class="form-group">
 						<label for="pageDescription" class="col-sm-2 control-label">作品页简介</label>
