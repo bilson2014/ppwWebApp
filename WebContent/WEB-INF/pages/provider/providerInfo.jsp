@@ -124,6 +124,7 @@
 		
 		<div class="page">
 			<input type="hidden" id="teamId" value="${product.teamId }">
+			<input type="hidden" id="teamName" value="${provider.teamName }">
 			<input type="hidden" id="masterWorkProductId" value="${product.productId }">	
 		     <div class="infoTop">
 		        <div  class="image-video"></div>

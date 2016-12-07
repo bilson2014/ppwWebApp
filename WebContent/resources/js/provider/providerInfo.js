@@ -4,7 +4,7 @@ $().ready(function() {
 	var ProductTree = {
 		loadDatas : function(num) {
 			var teamId = $("#teamId").val();
-			getData(function(msg) {
+			loadData(function(msg) {
 				var timeLine = $('#timeLine');
 				var $body = '';
 				var int = 0;
@@ -16,7 +16,11 @@ $().ready(function() {
 				for (int; int < msg.length; int++) {
 				    
 					var numInt = int;
-					var date = convert(msg[int].creationTime);
+					var creationTime = msg[int].creationTime;
+					if(creationTime == '' || creationTime == undefined || creationTime == null){
+						creationTime =  msg[int].updateDate;
+					}
+					var date = convert(creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
@@ -103,7 +107,9 @@ $().ready(function() {
 					timeLine.append($body);
 					$body = '';
 				}
-			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
+			}, getContextPath() + '/product/order/loadWithTeamName' ,$.toJSON({
+				condition:"teamName:"+$("#teamName").val()
+			}));
 		},
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
