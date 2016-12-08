@@ -17,9 +17,9 @@ $().ready(function() {
 				    
 					var numInt = int;
 					var creationTime = msg[int].creationTime;
-					if(creationTime == '' || creationTime == undefined || creationTime == null){
-						creationTime =  msg[int].updateDate;
-					}
+					//if(creationTime == '' || creationTime == undefined || creationTime == null){
+					//	creationTime =  msg[int].updateDate;
+					//}
 					var date = convert(creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
