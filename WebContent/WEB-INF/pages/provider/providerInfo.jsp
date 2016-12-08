@@ -32,8 +32,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>${provider.teamName }_拍片网</title>
+	<meta name="description" content="${provider.teamDescription }">
+	<title>${provider.teamName }-拍片网</title>
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
