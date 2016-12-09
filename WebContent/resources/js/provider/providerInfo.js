@@ -4,7 +4,7 @@ $().ready(function() {
 	var ProductTree = {
 		loadDatas : function(num) {
 			var teamId = $("#teamId").val();
-			getData(function(msg) {
+			loadData(function(msg) {
 				var timeLine = $('#timeLine');
 				var $body = '';
 				var int = 0;
@@ -16,7 +16,11 @@ $().ready(function() {
 				for (int; int < msg.length; int++) {
 				    
 					var numInt = int;
-					var date = convert(msg[int].creationTime);
+					var creationTime = msg[int].creationTime;
+					//if(creationTime == '' || creationTime == undefined || creationTime == null){
+					//	creationTime =  msg[int].updateDate;
+					//}
+					var date = convert(creationTime);
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
@@ -39,6 +43,7 @@ $().ready(function() {
 						if(num==0&&int>5){
 							nowInt = int;
 							index ++;
+                            $body = '';
 							break;
 						   }
 
@@ -71,6 +76,7 @@ $().ready(function() {
 							if(num==0&&int>5){
 								nowInt = int;
 								index ++;
+                                $body = '';
 								break;
 							   }
 							continue;
@@ -83,6 +89,7 @@ $().ready(function() {
 						if(num==0&&int>5){
 							nowInt = int+1;
 							index ++;
+                            $body = '';
 							break;
 						   }
 						$body = '';
@@ -96,14 +103,17 @@ $().ready(function() {
 				var $body = drawMore();
 				timeLine.append($body);
 				ProductTree.getMore();
+                $body = '';
 				}
-				if(msg.length == 1){
+				if(msg.length == 1 || $body != ''){
 					$body+=drawMidTimeLine();
 					$body+=drawVideoAreaEnd();
 					timeLine.append($body);
 					$body = '';
 				}
-			}, getContextPath() + '/product/order/loadWithTeam/' + teamId);
+			}, getContextPath() + '/product/order/loadWithTeamName' ,$.toJSON({
+				condition:"teamName:"+ '"' + $("#teamName").val() + '"'
+			}));
 		},
 		initInfoHead:function(){
 			var infoHead = $('#infoHead');
@@ -184,7 +194,7 @@ function drawLeftCard(product,year,month,day) {
 					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
 					//修改为dfs路径 end
-					+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
+					+ '<div class="videoContentInfo"></div>'
 					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 						+ '<div class="videoBtn btn-red-common">了解详情</div>' 
@@ -213,7 +223,7 @@ function drawRightCard(product,year,month,day) {
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
-				+ '<div class="videoContentInfo">'+product.pDescription+'</div>'
+				+ '<div class="videoContentInfo"></div>'
 				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 					+ '<div class="videoBtn btn-red-common">了解详情</div>' 

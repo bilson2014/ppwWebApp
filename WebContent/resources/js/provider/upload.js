@@ -152,7 +152,7 @@ $().ready(function(){
 				'productId' : $('#p-id').val().trim(),
 				'teamId' : $('#company-id').val(),
 				'productName' : $('#video-name').val().trim(),
-				'productType' : $('#video-type option:selected').val(),
+				//'productType' : $('#video-type option:selected').val(),
 				'videoLength' : $('#video-length').val().trim(),
 				'pDescription' : $('#video-description').val().trim(),
 				'servicePrice' : $('#video-price').val(),
@@ -238,8 +238,6 @@ $().ready(function(){
 	var companyKey = $('#company-id').val();
 	var pKey = $('#p-id').val();
 	var action = $('#action').val();
-	
-	initData(); // 初始化数据
 	
 	// 注册 标签输入 监听
 	$('.input_inner').bind('keypress',function(event){
@@ -334,87 +332,29 @@ $().ready(function(){
 	});
 });
 
-// 初始化数据
-function initData(){
-	loadVideoType(); // 初始化 视频类型
-}
-
-// 加载视频类型
-function loadVideoType(){
-	loadData(function(tList){
-		$('#video-type').empty(); // 清空原始数据
-		$option = '<option value="-1"> -- 请选择类型 -- </option>';
-		if(tList.length > 0){
-			for(var i = 0;i < tList.length; i++){
-				$option += '<option value="'+ tList[i].itemId +'">';
-				$option += tList[i].itemName;
-				$option += '</option>';
-			}
-		}
-		$('#video-type').append($option);
-		
-		var videoType = $('#vType').val();
-		if(videoType != '' && videoType != undefined){
-			$.each($('#video-type option'),function(i,n){
-				if($(this).val() == videoType){
-					$(this).attr('selected','selected');
-				}
-			});
-		}
-	}, getContextPath() + '/provider/load/videoType', null);
-}
-
 // 检测数据的完整性
-function checkData(type){
+function checkData(){
 	var name = $('#video-name').val().trim(); // 视频名称
-	var videoType = $('#video-type option:selected').val(); // 视频类型
 	var videoLength = $('#video-length').val().trim(); // 视频长度
 	var price = $('#video-price').val(); //价格
 	var creationTime = $('#creationTime').val();//创作时间
-	var length = $(".keyword_item_inner").length;//标签长度
-	var description = $('#video-description').val().trim(); // 视频描述
 	
 	if(name == '' || name == null || name == undefined){
 		popshow('video-name', '请输入视频标题!');
 		$('#video-name').focus();
 		return false;
 	}
-	
-	if(videoType == -1){
-		popshow('video-type', '请选择视频类型!');
-		$('#video-type').focus();
-		return false;
-	}
-	
 	if(videoLength == '' || videoLength == null || videoLength == undefined){
-		popshow('video-length', '请填写视频长度!');
-		$('#video-length').focus();
-		return false;
+		$('#video-length').val(0);
 	}
 	if(price == '' || price == null || price == undefined){
-		popshow('video-price', '请填写价格!');
-		$('#video-price').focus();
-		return false;
+		$('#video-price').val(0);
 	}
 	if(creationTime == '' || creationTime == null || creationTime == undefined){
 		popshow('creationTime', '请填写创作时间!');
 		$('#creationTime').focus();
 		return false;
 	}
-	if(length==0){
-		popshow('text_tags', '请填写标签!');
-		$("#text_tags").focus();
-		return false;
-	}
-	
-	
-	if(description == '' || description == null || description == undefined){
-		popshow('video-description', '请填写视频简介!');
-		$('#video-description').focus();
-		return false;
-	}
-	
-	
 	var numReg = new RegExp("^[0-9]*$");
 	
 	if(!numReg.test(videoLength)){

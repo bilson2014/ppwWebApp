@@ -143,7 +143,7 @@ var homePage = {
 	search:function(){
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
-			window.location.href='/search?q='+flag;
+			window.location.href='/search?q=tags:'+flag;
 		})
 	},
 	deliverOrder:function(){

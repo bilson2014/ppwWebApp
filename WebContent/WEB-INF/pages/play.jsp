@@ -29,8 +29,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="${product.pDescription }">
-	<meta name="description" content="${product.tags }">
+	<meta name="keywords" content="${fn:replace(product.tags, '  ', ',') }">
+	<meta name="description" content="${product.pDescription }">
 	<title>${product.productName }_拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
@@ -144,7 +144,7 @@
                        		<span>
 								<c:if test="${! empty product.tags}">
 									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
-										<label>${tag }</label>
+										<label style="cursor:pointer;" onclick='window.open("/search?q=${tag}")'>${tag }</label>
 									</c:forEach>
 								</c:if>
 							</span>
