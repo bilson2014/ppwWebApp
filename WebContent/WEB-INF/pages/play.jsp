@@ -163,10 +163,10 @@
                     <div class="controlVideo">
                         <div class="player-wrap" id="player-wrap">
                         	<c:if test="${empty product.picLDUrl }">
-                        		<video controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="/resources/images/index/noImg.jpg"/>' ></video>
+                        		<video id="playId" controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="/resources/images/index/noImg.jpg"/>' ></video>
                         	</c:if>
                         	<c:if test="${not empty product.picLDUrl }">
-								<video controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="${file_locate_storage_path}${product.picLDUrl}"/>' ></video>
+								<video id="playId" controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="${file_locate_storage_path}${product.picLDUrl}"/>' ></video>
 							</c:if>
 						</div>
                     </div>
@@ -205,7 +205,7 @@
                     <div class="price showPrice" id="price">
                      	<c:if test="${product.servicePrice != 0 || product.serviceRealPrice != 0}">
 	                     	<c:if test="${product.servicePrice > product.serviceRealPrice}">
-		                      <div class="orPrice" ><span>￥</span><span>${product.servicePrice }</span></div>
+		                      <div class="orPrice" ><span>￥</span><span id="servicePrice">${product.servicePrice }</span></div>
 			                    <div class="orPriceTitle" >原价</div>
 		                    </c:if>
 		                    <div class="afterPrice" ><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>

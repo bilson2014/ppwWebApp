@@ -1,10 +1,11 @@
 var setInfoContent = new Array(
+		'两到三年创作经验,拥有十部以上成功作品案例',
+	    '三到五年创作经验,拥有二十部以上知名品牌的成功案例',
+	    '五年以上经验,拥有多部世界五百强知名品牌的成功案例',
         '1920*1080 高清分辨率,清晰色彩表现和画面锐度',
         '2560x1440 超高清分辨率,品牌广告级设备呈现超细腻,生动画质',
-        '3840X2160 4K分辨率,科技领先设备缔造电影级视觉冲击力的震撼画质',
-        '两到三年创作经验,拥有十部以上成功作品案例',
-        '三到五年创作经验,拥有二十部以上知名品牌的成功案例',
-        '五年以上经验,拥有多部世界五百强知名品牌的成功案例'
+        '3840X2160 4K分辨率,科技领先设备缔造电影级视觉冲击力的震撼画质'
+      
     );
 
 
@@ -34,7 +35,7 @@ function init() {
           $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-content",($(this).attr('data-content')));
           $(this).parent().slideUp();
           if(info>2){
-        	$('#equipmentInfo').text(setInfoContent[info]);
+        	  $('#equipmentInfo').text(setInfoContent[info]);
           }
           else if(info>=0){
         	  $('#teamInfo').text(setInfoContent[info]);
@@ -76,8 +77,8 @@ function InitGetPrice(){
 	    });
 	  
 	  $('#clear').on('click',function(){
-			  $('#equipmentInfo').text(setInfoContent[3]);
-			  $('#teamInfo').text(setInfoContent[0]);
+		    $('#equipmentInfo').text(setInfoContent[0]);
+			$('#teamInfo').text(setInfoContent[3]);
 			$('#videoType').text('活动视频');
 			$('#videoType').attr('data-content','0');
 			$('#team').text('专业级导演团队');

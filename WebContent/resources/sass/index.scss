@@ -5,6 +5,7 @@
 @import "indexSwiper";
 @import "mixins/indexScreen";
 @import "compass/typography/text/ellipsis";
+@import "normalize";
 //头部 start
 .hotLogo {
     width: 300px;
@@ -31,241 +32,6 @@
     top: 80px;
 }
 
-// .header {
-//     position: fixed;
-//     left: 0;
-//     right: 0;
-//     top: 0;
-//     height: $header-height;
-//     z-index: 9998;
-//     background: transparent;
-//     @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);
-//     height: 80px;
-//     transition: all .8s ease-in-out 0s;
-//     -moz-transition: all .8s ease-out 0s;
-//     /* Firefox 4 */
-//     -webkit-transition: all .8s ease-out 0s;
-//     /* Safari 和 Chrome */
-//     -o-transition: all .8s ease-out 0s;
-//     /* Opera */
-//     box-shadow: none;
-// }
-// //切换后
-// .headerMove {
-//     height: 60px !important;
-//     background: white;
-//     -moz-box-shadow: 10px 10px 5px #d1d1d1;
-//     /* 老的 Firefox */
-//     box-shadow: 0px 0px 10px #d1d1d1;
-//     .header-item {
-//         line-height: 60px !important;
-//         color: black;
-//         &:hover {
-//             color: $red-base !important;
-//             span {
-//                 width: 100%;
-//             }
-//         }
-//         span {
-//             bottom: 10px !important;
-//         }
-//     }
-//     .showVideo {
-//         width: 15px;
-//         height: 15px;
-//         background: url(/resources/images/index/showVideoB.png) no-repeat 0 0px !important;
-//         position: absolute;
-//         top: 23px !important;
-//         left: 75px !important;
-//     }
-//     .tele-h-svg {
-//         transition: all .8s ease-in-out 0s;
-//         -moz-transition: all .8s ease-out 0s;
-//         /* Firefox 4 */
-//         -webkit-transition: all .8s ease-out 0s;
-//         /* Safari 和 Chrome */
-//         -o-transition: all .8s ease-out 0s;
-//         /* Opera */
-//         position: relative;
-//         top: 22px !important;
-//         width: 145px;
-//         height: 60px;
-//         background: url(/resources/images/index/bannerPhoneR.svg) no-repeat !important;
-//     }
-//     .nav .logo {
-//         background: url(/resources/images/index/bannerLogoR.png) no-repeat;
-//         //margin-top: -4px;
-//         width: 96px !important;
-//         height: 30px !important;
-//         background-size: 96px 30px !important;
-//         top: 14px !important;
-//         border-radius: 0px !important;
-//     }
-//     .menu-bar .middle-part {
-//         top: 15px;
-//         input {
-//             color: $gray !important;
-//             border: 1px solid $gray !important;
-//         }
-//         .bannerSearchFind {
-//             background: url(../images/index/bannnerSearch.png) no-repeat;
-//             background-position: 0px -16px;
-//         }
-//     }
-// }
-// //切换后 end
-// //切换前
-// .nav .logo {
-//     position: relative;
-//     float: left;
-//     top: 22px;
-//     background: url(../images/index/bannerLogoW.png) no-repeat;
-//     //margin-top: -4px;
-//     width: 110px;
-//     height: 36px;
-//     background-size: 110px 36px;
-//     transition: all .8s ease-in-out 0s;
-//     -moz-transition: all .8s ease-out 0s;
-//     /* Firefox 4 */
-//     -webkit-transition: all .8s ease-out 0s;
-//     /* Safari 和 Chrome */
-//     -o-transition: all .8s ease-out 0s;
-//     /* Opera */
-//     border-radius: 0px;
-//     margin-right: 26px;
-//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-//         margin-right: 76px;
-//     }
-//     @media screen and (min-width: 1500px) {
-//         margin-right: 76px;
-//     }
-//     h1 {
-//         text-indent: -119988px;
-//         overflow: hidden;
-//         text-align: left;
-//     }
-// }
-// .menu-bar>.right-part {
-//     right: 50px !important;
-//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-//         right: -20px !important;
-//     }
-//     @media screen and (min-width: 1500px) {
-//         right: -20px !important;
-//     }
-// }
-// .menu-bar .middle-part {
-//     top: 24px;
-//     width: 300px;
-//     height: 30px;
-//     transition: all .8s ease-in-out 0s;
-//     -moz-transition: all .8s ease-out 0s;
-//     /* Firefox 4 */
-//     -webkit-transition: all .8s ease-out 0s;
-//     /* Safari 和 Chrome */
-//     -o-transition: all .8s ease-out 0s;
-//     /* Opera */
-//     width: 200px !important;
-//     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-//         width: 350px !important;
-//     }
-//     @media screen and (min-width: 1500px) {
-//         width: 450px !important;
-//     }
-//     input {
-//         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-//             width: 350px !important;
-//         }
-//         @media screen and (min-width: 1500px) {
-//             width: 450px !important;
-//         }
-//         width: 200px !important;
-//         min-width: 100px;
-//         height: 30px !important;
-//         color: white;
-//         border: 1px solid white;
-//         outline: none;
-//         padding-right: 40px;
-//     }
-//     .bannerSearchFind {
-//         position: absolute;
-//         right: 15px;
-//         top: 7px;
-//         width: 15px;
-//         height: 15px;
-//         background: url(../images/index/bannnerSearch.png) no-repeat;
-//     }
-// }
-// .header-item-last {
-//     padding-right: 18px;
-// }
-// .header-item {
-//     line-height: 80px;
-//     width: auto;
-//     margin-right: 30px;
-//     color: white;
-//     transition: line-height .8s ease-in-out 0s;
-//     -moz-transition: all .8s ease-out 0s;
-//     /* Firefox 4 */
-//     -webkit-transition: all .8s ease-out 0s;
-//     /* Safari 和 Chrome */
-//     -o-transition: all .8s ease-out 0s;
-//     /* Opera */
-//     &:hover {
-//         background: none !important;
-//         color: $red-base !important;
-//         span {
-//             left: 0%;
-//             width: 100%;
-//         }
-//     }
-//     span {
-//         display: inline-block;
-//         width: 0%;
-//         height: 2px;
-//         background-color: $red-base;
-//         position: absolute;
-//         bottom: 21px;
-//         left: 50%;
-//         transition: all .8s ease-in-out 0s;
-//         -moz-transition: all .8s ease-in-out 0s;
-//         /* Firefox 4 */
-//         -webkit-transition: all .8s ease-in-out 0s;
-//         /* Safari 和 Chrome */
-//         -o-transition: all .8s ease-in-out 0s;
-//         /* Opera */
-//     }
-//     .showVideo {
-//         width: 15px;
-//         height: 15px;
-//         background: url(../images/index/showVideoW.png) no-repeat;
-//         position: absolute;
-//         top: 32px;
-//         left: 74px;
-//         transition: all .8s ease-in-out 0s;
-//         -moz-transition: all .8s ease-in-out 0s;
-//         /* Firefox 4 */
-//         -webkit-transition: all .8s ease-in-out 0s;
-//         /* Safari 和 Chrome */
-//         -o-transition: all .8s ease-in-out 0s;
-//         /* Opera */
-//     }
-//     .tele-h-svg {
-//         transition: all .8s ease-in-out 0s;
-//         -moz-transition: all .8s ease-in-out 0s;
-//         /* Firefox 4 */
-//         -webkit-transition: all .8s ease-in-out 0s;
-//         /* Safari 和 Chrome */
-//         -o-transition: all .8s ease-in-out 0s;
-//         /* Opera */
-//         position: relative;
-//         top: 31px;
-//         width: 145px;
-//         height: 60px;
-//         background: url(../images/index/bannerPhoneW.svg) no-repeat;
-//     }
-// }
-//切换后 end
 .tel {
     text-align: center;
     background: #101112;
@@ -290,8 +56,10 @@
     position: relative;
     width: 100%;
     background: $body-bg;
-    @include media_screen_height(500px, 540px, 660px);
+    // @include media_screen_height(500px, 540px, 660px);
     @include flexshow;
+    min-width: 960px;
+    min-height: 320px;
 }
 
 .dropdown {
@@ -395,11 +163,13 @@ input:focus {
     position: absolute;
     left: 0;
     right: 0;
-    top: 55px;
+    top: 0px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        top: 55px;
+    }
     @media screen and (min-width: 1500px) {
         top: 326px;
     }
-    bottom: 0;
     margin: 50px auto 50px;
     width: 620px;
     height: 90px;
@@ -881,11 +651,9 @@ input:focus {
     .topAnimaltion {
         opacity: 1 !important;
     }
-
-    .oneFlow:nth-child(4){
-    	margin-right:0px !important;
+    .oneFlow:nth-child(4) {
+        margin-right: 0px !important;
     }
-
     .oneFlow {
         opacity: 0;
         transition: opacity 1.5s ease-in-out .2s;
@@ -895,7 +663,7 @@ input:focus {
         /* Safari 和 Chrome */
         -o-transition: opacity 1.5s ease-in-out .2s;
         display: inline-block;
-        margin-right:20px;
+        margin-right: 20px;
         border-radius: 4px;
         margin-top: 40px;
         background: transparent;
@@ -1478,14 +1246,14 @@ input:focus {
                 div:nth-child(2) {
                     background: $red-base;
                 }
-                 div:nth-child(3) {
+                div:nth-child(3) {
                     color: $red-base !important;
                     cursor: pointer;
                 }
                 div:nth-child(4) {
                     color: $red-base !important;
                 }
-                .moreIcon{
+                .moreIcon {
                     background-position: 0px -13px !important;
                 }
             }
@@ -1545,16 +1313,18 @@ input:focus {
 }
 
 .join {
-    background: url(/resources/images/index/join.jpg) no-repeat !important;
+    background: url(/resources/images/index/joinS.jpg) no-repeat !important;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        background: url(/resources/images/index/joinM.jpg) no-repeat !important;
+    }
+    @media screen and (min-width: 1500px) {
+        background: url(/resources/images/index/joinL.jpg) no-repeat !important;
+    }
     background-size: cover !important;
     background-position: center 0;
     height: 307px;
     min-width: 960px;
     position: relative;
-
-   
-
-
     .joinContent {
         @include media_screen_width_beta3();
         margin: 0 auto;
