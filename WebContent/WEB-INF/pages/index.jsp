@@ -124,8 +124,8 @@
 			<div class="flexVideo">
 				<video preload="auto" loop="" autoplay
 					poster="/resources/images/banner/host.JPG" class="video-bg">
-					<source src="http://www.apaipian.com/product/video/flexvideo.mp4"
-						type="video/mp4">
+					<source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
+					<!-- <source src="/resources/out.mp4" type="video/mp4"> -->
 				</video>
 			</div>
 			<div class="swiper-container swiper-banner flexslider">

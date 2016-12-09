@@ -5,7 +5,31 @@ $().ready(function() {
     client();
     scrollBack();
     ourYouDian();
+    
+  
+    getVideoHeight();
+    
+    window.onresize = function(){
+    	getVideoHeight();
+    };
+    
+
+        
 });
+
+function getVideoHeight(){
+	    var screenWidth = document.documentElement.clientWidth;
+	    var videoHeight = screenWidth/16*9*0.6;
+	    if(screenWidth<=960){
+	    	videoHeight = 320;
+	    	$('.video-bg').css('width','949');
+	    }
+	    
+	    $('.flex-wrap').css('height',videoHeight);
+	    $('.flexVideo').css('height',videoHeight);
+	    $('.flexVideo video').css('height',videoHeight);
+}
+
 
 function scrollBack() {
     var top = $('#advan').position().top;

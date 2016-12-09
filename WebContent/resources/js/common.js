@@ -56,6 +56,11 @@ $().ready(function(){
 		}
 	});
 	
+	//点击搜索图标时搜索lt 20161208
+	   $('.bannerSearchFind').on('click',function(){
+	    	$('#s-btn').click();
+	    });
+	//end
 	
 	//检测用户是否完善登录名和密码 wanglc
 	loadData(function(flag){
