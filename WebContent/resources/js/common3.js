@@ -248,7 +248,7 @@ function checkDatas(type) {
 
 // 验证 手机号
 function checkMobile(str) {
-	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
+	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$/;
 	if (str.match(reg)) {
 		return true;
 	} else {

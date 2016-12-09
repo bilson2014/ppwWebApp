@@ -436,8 +436,8 @@ function loadProduction(start){
 				$.each(list,function(i,solr){
 					
 					var imgPath = '/resources/images/index/noImg.jpg';
-
-					if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
+					var imageUrl = solr.picLDUrl;
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
 					

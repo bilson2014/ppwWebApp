@@ -67,7 +67,16 @@ var="ajaxfileuploadJs" />
 <script type="text/javascript" src="${datepickerZhJs }"></script>
 <script type="text/javascript" src="${bootstrapJs }"></script>
 
-
+<script type="text/javascript">
+function checkMobile(str) {
+	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$/;
+	if(str.match(reg)){
+		return true;
+	} else{
+		return false;
+	}
+}
+</script>
 
 </head>
 <body >
