@@ -245,10 +245,8 @@ function getBusinessVal(){
 
 
 function infoSave(){
-	
-	loadData(function(flag){
+	submitForm(function(flag){
 		showStepThree();
-		//window.location.href=getContextPath()+ '/provider/portal';
 	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
@@ -265,8 +263,8 @@ function infoSave(){
 			infoResource : $('#company-infoResource option:selected').val(),
 			teamProvince : $("#company-province").val(),
 			teamCity : $("#company-city").val()
-		}));
-	}
+	}),	$('#surebtn'));
+}
 
 	      
 		
