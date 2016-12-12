@@ -872,9 +872,7 @@
 											class="input-group-addon getLinkBtn" id="copyLink"
 											data-clipboard-target="shareLink">复制链接</span>
 									</div>
-
 								</li>
-
 							</ul>
 						</div>
 					</div>

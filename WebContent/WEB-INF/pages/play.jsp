@@ -162,9 +162,12 @@
                     </div>
                     <div class="controlVideo">
                         <div class="player-wrap" id="player-wrap">
-                            
-							<video id="playId" controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" data-value="${product.picLDUrl}" poster='<spring:url value="${file_locate_storage_path}${product.picLDUrl}" />'></video>
-							<%-- <video controls src='<spring:url value="${fn:substringAfter(product.videoUrl,'/portal') }"/>' preload="auto" poster='<spring:url value="${fn:replace(fn:substringAfter(product.picLDUrl,'/portal'),'image','img') }"/>'></video> --%>
+                        	<c:if test="${empty product.picLDUrl }">
+                        		<video id="playId" controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="/resources/images/index/noImg.jpg"/>' ></video>
+                        	</c:if>
+                        	<c:if test="${not empty product.picLDUrl }">
+								<video id="playId" controls src='<spring:url value="${file_locate_storage_path}${product.videoUrl }"/>' preload="auto" poster='<spring:url value="${file_locate_storage_path}${product.picLDUrl}"/>' ></video>
+							</c:if>
 						</div>
                     </div>
                     <c:if test="${teamFlag !=null && teamFlag == 1 }">
@@ -332,7 +335,7 @@
 	            </a>
 				<div class="swiper-wrapper paddingBottom" id="swiper-noInfoId">
 					
-				 <div class="swiper-slide">
+				<!--  <div class="swiper-slide">
 					  <a>
 					    <div class="noInfoCard">
 							 <img src="/resources/images/index/test.png">
@@ -342,31 +345,8 @@
 							 </div>
 					 	</div>
 					  </a>	
-					</div>
+					</div> -->
 					
-					 <div class="swiper-slide">
-					  <a>
-					    <div class="noInfoCard">
-							 <img src="/resources/images/index/test.png">
-					         <div class="margin-top">
-							    <span>adasda</span>
-							    <span>123</span>
-							 </div>
-					 	</div>
-					  </a>	
-					</div>
-					
-					 <div class="swiper-slide">
-					  <a>
-					    <div class="noInfoCard">
-							 <img src="/resources/images/index/test.png">
-					         <div class="margin-top">
-							    <span>adasda</span>
-							    <span>123</span>
-							 </div>
-					 	</div>
-					  </a>	
-					</div>
 				</div>
 			</div>
 			<div class="swiper-button-next"></div>
