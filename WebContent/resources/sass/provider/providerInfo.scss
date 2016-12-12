@@ -4,74 +4,94 @@
 @import "bootstrap-grid";
 @import "fontSize";
 @import "compass/typography/text/ellipsis";
+@import "normalize";
 .page {
     background: #f2f2f2 !important;
 }
-a:link,a:visited{
- text-decoration:none;  /*超链接无下划线*/
+
+a:link,
+a:visited {
+    text-decoration: none;
+    /*超链接无下划线*/
 }
 
 .infoTop {
     position: relative;
     width: 100%;
     border: none;
-    @include media_screen_height(440px, 470px, 540px);
+    @include media_screen_height(440px, 470px, 400px);
     .image-video {
         width: 100%;
-        @include media_screen_height(440px, 470px, 540px);
-        background: url('../../images/provder/banner.jpg') no-repeat;
+        @include media_screen_height(440px, 470px, 400px);
+        background: url('/resources/images/provder/banner.jpg') no-repeat;
         background-size: cover;
         background-position: center 0;
         position: absolute;
         z-index: 50;
         border: none;
     }
-    .image-video-model {
-        width: 100%;
-        @include media_screen_height(440px,
-        470px,
-        540px);
-        background: url('../../images/provder/banner.jpg') no-repeat;
-        background-size: 100% 100%;
-        background-position: center 0;
-        position: absolute;
-        z-index: 100;
-        border: none;
-    }
     .providerName {
-        font-size: $font-size-lg24;
+        font-size: $font-size-lg;
         color: $white;
-        padding-top: 20px;
+        padding-top: 30px;
     }
     ul {
         width: auto;
         height: auto;
         position: relative;
         z-index: 100;
-        top:50px;
-                     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        top:100px;
-    }
-    @media screen and (min-width:1500px) {
-       top: 150px;
-    }
+        top: 50px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            top: 100px;
+        }
+        @media screen and (min-width:1500px) {
+            top: 65px;
+        }
         margin: 0 auto;
         .infoHead {
-            height: 170px;
-            width: 170px;
-            border-radius: 170px;
-            margin-top: 17px;
+            height: 130px;
+            width: 130px;
+            border-radius: 180px;
+            border: 5px solid white;
+        }
+        .isPass {
+            position: absolute;
+            right: -37px;
+            bottom: 2px;
+            div {
+                height: 22px;
+                line-height: 21px;
+                width: 60px;
+                border: 4px;
+                font-size: $font-size-sm;
+                color: $gray-dark !important;
+                text-align: center;
+                background: white;
+                border: 1px solid $f0;
+                position: relative;
+                top: -5px;
+                left: 20px;
+                border-radius: 4px;
+            }
         }
         .infoHeadSide {
-            height: 200px;
-            width: 200px;
-            background: url('../../images/provder/providerHeadSide.png') no-repeat;
-            background-size: 200px 200px;
+            height: 130px;
+            width: 130px;
+            position: relative;
         }
         .place {
-            height: 18px;
-            width: 13px;
-            margin-top: 8px;
+            margin-top: 20px;
+        }
+        .withIt {
+            height: 34px;
+            line-height: 33px;
+            width: 200px;
+            border: 4px;
+            font-size: $font-size-base;
+            text-align: center;
+            background: $red-base;
+            border-radius: 4px;
+            margin-top: 15px;
         }
         .provinceCity {
             color: $white;
@@ -85,12 +105,13 @@ a:link,a:visited{
                 height: 20px;
             }
             .circle {
-                height: 8px;
-                width: 8px;
+                height: 4px;
+                width: 4px;
                 margin-left: 5px;
                 margin-right: 5px;
                 border-radius: 10px;
                 background: $white;
+                vertical-align: middle;
             }
         }
     }
@@ -100,27 +121,26 @@ a:link,a:visited{
     position: relative;
     width: 100%;
     height: auto;
-    background: $white;
     .content {
-        background: $white;
-        width: 78%;
+        @include media_screen_width_beta3();
         height: auto;
         margin: 0 auto;
-        padding-top: 10px;
-        margin-bottom: 42px;
+        padding-top: 60px;
+        margin-bottom: 50px;
     }
     .textTxt {
-        margin-top: 42px;
+        margin-top: 11px;
         line-height: 24px;
         width: 100%;
-        height: 200px;
-        margin-bottom: 42px;
-        overflow: hidden;
+        height: auto;
+        color: $gray;
+        font-size: $font-size-base;
+        text-indent: 28px;
     }
     .tag {
-        width: 100%;
-        height: 70px;
-        text-align: center;
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        padding-bottom: 38px;
         div {
             display: inline-block;
         }
@@ -130,96 +150,66 @@ a:link,a:visited{
 .content .name {
     height: 20px;
     width: 100%;
-    img {
-        height: 24px;
-        width: 16px;
-    }
+    margin-bottom: 20px;
     div {
         height: 20px;
         width: auto;
         display: inline-block;
-        margin-right: 8px;
+        margin-right: 6px;
     }
     .cn {
-        font-size: $font-size-lg24;
+        font-size: $font-size-base;
         color: $red-base;
     }
     .en {
-        font-size: $font-size;
-        color: $gray;
+        font-size: $font-size-sm;
+        color: $gray-light;
+    }
+}
+
+.tag .name {
+    height: 20px;
+    width: 100%;
+    margin-bottom: 27px;
+    div {
+        height: 20px;
+        width: auto;
+        display: inline-block;
+        margin-right: 6px;
+    }
+    .cn {
+        font-size: $font-size-base;
+        color: $red-base;
+    }
+    .en {
+        font-size: $font-size-sm;
+        color: $gray-light;
     }
 }
 
 .tag {
     .midLine {
-        width: 800px;
-        height: 20px;
-        background: $white;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 38px;
         margin: 0 auto;
         .card {
             width: auto;
             height: 30px;
-            border: 1px solid $gray-light;
-            color: $gray-light;
-            font-size: $font-size;
+            padding-left: 20px;
+            padding-right: 20px;
+            line-height: 28px;
+            border: 1px solid $border-line;
+            color: $gray;
+            font-size: $font-size-base;
             border-radius: 6px;
             display: inline-block;
-            margin-right: 20px;
-            margin-top:10px;
+            margin-right: 10px;
             position: relative;
-            top:-10px;
-            .controlCard {
-                line-height: 30px;
-            }
-            .cardWord {
-                margin-right: 16px;
-            }
-                  .pencil {
-                margin-left: 8px;
-                margin-right: 8px;
-                height: 16px;
-                width: 16px;
-                position: relative;
-                top: 1px;
-                background: url('../../images/provder/pencil.png') no-repeat;
-                background-size: 16px 16px;
-            }
-
+            margin-bottom: 12px;
+            top: -10px;
         }
-    }
-    .leftLine {
-        float: left;
-        position: relative;
-        width: 5%;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: 10%;
-        }
-        @media screen and (min-width:1500px) {
-            width: 20%;
-        }
-        height: 30px;
-        .circleTag {
-            position: relative;
-            left: -4px;
-        }
-        @extend .sameLine;
-    }
-    .rightLine {
-        float: right;
-        width: 5%;
-        position: relative;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: 10%;
-        }
-        @media screen and (min-width:1500px) {
-            width: 20%;
-        }
-        height: 30px;
-        .circleTag {
-            position: relative;
-            left: 4px;
-        }
-        @extend .sameLine;
     }
     .sameLine {
         .line {
@@ -241,31 +231,29 @@ a:link,a:visited{
 .videoContent {
     height: auto;
     width: 100%;
-    background: black;
+    background: transparent !important;
     .contentWidth {
-        width: 78%;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        @include media_screen_width_beta3();
         margin: 0 auto;
+        font-size: 0px;
     }
     .showVideo {
         height: 315px;
-        width: 420px;
+        width: 520px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             height: 420px;
-            width: 560px;
+            width: 695px;
         }
         @media screen and (min-width:1500px) {
             height: 520px;
             width: 860px;
         }
-       
         .videoSection {
             height: 315px;
-            width: 420px;
+            width: 520px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 height: 420px;
-                width: 560px;
+                width: 695px;
             }
             @media screen and (min-width:1500px) {
                 height: 520px;
@@ -274,30 +262,19 @@ a:link,a:visited{
         }
     }
     .videoInfo {
-        margin-left: 52px;
+        padding-left: 30px;
+        padding-right: 30px;
         height: 315px;
-        width: 30%;
+        width: 420px;
+        background: black;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             height: 420px;
-            width: 30%;
+            width: 515px;
         }
-        @media screen and (min-width:1500px) and (max-width: 1600px) {
+        @media screen and (min-width:1500px) {
             height: 520px;
-            width: 20%;
+            width: 430px;
         }
-
-         @media screen and (min-width:1600px) and (max-width: 1700px) {
-            height: 520px;
-            width: 25%;
-        }
-
-
-            @media screen and (min-width:1700px) {
-            height: 520px;
-            width: 30%;
-        }
-        
-
         display: inline-block;
         vertical-align: top;
         overflow: hidden;
@@ -315,12 +292,12 @@ a:link,a:visited{
         }
         .NameContent {
             width: 100%;
-            height: 120px;
+            height: 105px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 220px;
+                height: 212px;
             }
             @media screen and (min-width:1500px) {
-                height: 320px;
+                height: 312px;
             }
             color: white;
             font-size: $font-size-base;
@@ -355,25 +332,31 @@ a:link,a:visited{
 .videoSpace {
     width: 100%;
     height: auto;
-    margin-top: 58px;
+    margin-top: 60px;
     .productOutSide {
-        width: 143px;
-        height: 143px;
+        width: 90px;
+        height: 90px;
         border-radius: 120px;
-        border: 1px solid $gray-dark;
         text-align: center;
         margin: 0 auto;
-        padding: 6px;
-    }
-    .productInSide {
-        width: 130px;
-        height: 130px;
-        border-radius: 120px;
         background: $gray-dark;
-        text-align: center;
-        color: $white;
-        line-height: 133px;
-        font-size: $font-size;
+        color: white;
+        font-size: $font-size-base;
+        position: relative;
+        padding-top: 31px;
+        span {
+            font-size: $font-size-sm;
+        }
+        &:after {
+            content: '';
+            border: 1px solid $border-line;
+            width: 98px;
+            height: 98px;
+            position: absolute;
+            border-radius: 90px;
+            left: -4px;
+            top: -4px;
+        }
     }
 }
 
@@ -385,7 +368,6 @@ a:link,a:visited{
 .topMore {
     position: relative;
     top: 35px;
-
 }
 
 .videoSpace .videoArea {
@@ -411,12 +393,9 @@ a:link,a:visited{
         font-size: $font-size-base;
         cursor: pointer;
     }
-
-
     .year {
         height: 76px;
         width: 100%;
-
         div {
             height: 76px;
             width: 76px;
@@ -436,21 +415,20 @@ a:link,a:visited{
                 line-height: 70px;
                 text-align: center;
             }
-
-            .color1{
-                  background:#f1b059;
+            .color1 {
+                background: #f1b059;
             }
-            .color2{
-                 background:#4cdbf8;
+            .color2 {
+                background: #4cdbf8;
             }
-            .color3{
-                    background: #d339c6;
+            .color3 {
+                background: #d339c6;
             }
-            .color4{
-                 background:#929292;
+            .color4 {
+                background: #929292;
             }
-            .color5{
-                 background:#2c71a8;
+            .color5 {
+                background: #2c71a8;
             }
         }
     }
@@ -460,36 +438,30 @@ a:link,a:visited{
         background: $gray-light;
         margin: 0 auto;
     }
-    
-      .yearTimeUlLine {
+    .yearTimeUlLine {
         height: 30px;
         width: 1px;
-        background:none;
+        background: none;
         margin: 0 auto;
-        
-        li{
+        li {
             margin-top: 5px;
         }
-         
-        li:nth-child(1){
-        height: 5px;
-        width: 1px;
-        background: $gray-light;
+        li:nth-child(1) {
+            height: 5px;
+            width: 1px;
+            background: $gray-light;
         }
-
-         li:nth-child(2){
-        height: 7px;
-        width: 1px;
-        background: $gray-light;
+        li:nth-child(2) {
+            height: 7px;
+            width: 1px;
+            background: $gray-light;
         }
-
-         li:nth-child(3){
-        height: 9px;
-        width: 1px;
-        background: $gray-light;
+        li:nth-child(3) {
+            height: 9px;
+            width: 1px;
+            background: $gray-light;
         }
     }
-
     .midTimeLine {
         height: 450px;
         width: 1px;
@@ -560,7 +532,7 @@ a:link,a:visited{
     float: right;
     width: 348px;
     height: 364px;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 408px;
         height: 404px;
@@ -575,13 +547,13 @@ a:link,a:visited{
         width: 220px;
         float: left;
         position: relative;
-         right: 157px;
-                @media screen and (min-width: 1276px) and (max-width: 1500px) {
-         right: 218px;
-    }
-    @media screen and (min-width:1500px) {
-       right: 218px;
-    }
+        right: 157px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            right: 218px;
+        }
+        @media screen and (min-width:1500px) {
+            right: 218px;
+        }
         top: 32px;
         @extend .commonImg;
     }
@@ -591,7 +563,7 @@ a:link,a:visited{
     float: left;
     width: 348px;
     height: 364px;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 408px;
         height: 404px;
@@ -621,13 +593,14 @@ a:link,a:visited{
     .day {
         font-size: $font-size-base;
         color: $gray-light;
-         width: 59px;;
-          @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 119px;
-    }
-    @media screen and (min-width:1500px) {
-       width: 119px;
-    }
+        width: 59px;
+        ;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 119px;
+        }
+        @media screen and (min-width:1500px) {
+            width: 119px;
+        }
         vertical-align: bottom;
         text-align: center;
         line-height: 50px;
@@ -638,35 +611,27 @@ a:link,a:visited{
         background: url('../../images/provder/timeImg.png') no-repeat;
         background-position: center;
     }
-        .leftJiaoImg {
+    .leftJiaoImg {
         height: 50px;
         width: 50px;
         background: url('../../images/provder/leftSanJiao.png') no-repeat;
         background-position: center;
-
-
     }
-
-       .rightJiaoImg {
+    .rightJiaoImg {
         height: 50px;
         width: 50px;
         background: url('../../images/provder/rightJiao.png') no-repeat;
         background-position: center;
-
     }
 }
 
 .infoBottom {
     width: 100%;
     margin: 0 auto;
-    background: white;
-
-    .buChong{
+    .buChong {
         width: 100%;
-        height:20px;
-        background: #f2f2f2;
+        height: 20px;
     }
-
     .bottomWord {
         padding-top: 70px;
         color: $gray-dark;
@@ -679,21 +644,21 @@ a:link,a:visited{
         margin: 0 auto;
     }
     .bottomBtn {
-        width: 192px;
-        height: 32px;
+        width: 270px;
+        height: 35px;
         color: white;
         font-size: $font-size-base;
-        line-height: 32px;
+        line-height: 35px;
         text-align: center;
         margin: 0 auto;
         margin-top: 30px;
         position: relative;
-        top:-45px;
+        top: -45px;
     }
 }
 
 .videoTag {
-    margin: 10px 0 10px 0;
+    margin: 10px 0 16px 0;
     div {
         display: inline-block;
         color: $gray-light;
@@ -702,14 +667,10 @@ a:link,a:visited{
     img {
         margin-right: 10px;
         position: relative;
-        top:2px;
+        top: 2px;
     }
 }
 
-
-
-    .nav .logo { 
+.nav .logo {
     background: url(../../images/common/logo.svg) no-repeat;
-
 }
-

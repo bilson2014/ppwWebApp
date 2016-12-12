@@ -128,16 +128,27 @@
 			<input type="hidden" id="masterWorkProductId" value="${product.productId }">	
 		     <div class="infoTop">
 		        <div  class="image-video"></div>
-		        <div  class="image-video-model"></div>
 		        <ul>
 		           <li>
 		                  <div class="infoHeadSide">
 			                 <img class="infoHead" id="infoHead" src="${provider.teamPhotoUrl }">
+			                 <div class="isPass">
+			                     <c:if test="${provider.flag == 2}">
+										<img src="/resources/images/provder/noPass.png"><div class="noPass">未审核</div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 0}">
+										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 1}">
+										<img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
+								 </c:if>
+			                 </div>
 			              </div>  
 		           </li>
 		           <li class="providerName">${provider.teamName }</li>
 		           <li class="providerPlace"><img class="place" src="${imgPath}/provder/place.png"></li>
 		           <li class="provinceCity"><div id="province">${provider.teamProvinceName }</div><div class="circle"></div><div id="city">${provider.teamCityName }</div></li>
+		           <li><div class="withIt">与TA沟通</div></li>
 		        </ul>
 		     </div>
 		     
@@ -152,12 +163,9 @@
 		         </div>
 		         
 		         <div class="tag" id="tagId">
-		         	
-		         
-		           <div class="leftLine" id="leftLineId">
-			            <div class="line"></div>
-			            <div class="circleTag"></div>
-		           </div>
+		          <div class="name">
+		                <div><img src="${imgPath}/provder/gWork.png" ></div><div class="cn">擅长类型</div><div class="en">Capabilities</div>
+		             </div>
 		           <div class="midLine" id="provderTagId">
 		           		<div class="hide" id="provderTags" >${providerTags}</div>
 		            <!--      <div class="card">
@@ -167,10 +175,6 @@
 		                     </div>
 		                 </div> -->
 		        
-		         </div>
-		            <div class="rightLine" id="rightLineId">
-			            <div class="circleTag"></div>
-			            <div class="line"></div>
 		           </div>
 		         </div>
 		     </div>
@@ -212,13 +216,11 @@
 			    </div>     
 		     </div>
 		     
-		     <div class="triangle">
-		         <img src="${imgPath}/provder/blackJiao.png">
-		     </div>
 		     
 		     <div class="videoSpace">
 	          <div class="productOutSide">
-	             <div class="productInSide">影视作品</div>
+	                                       影视作品
+	               <span>Work Demo</span>
 	          </div>
 	          <div class="timeLine" id ="timeLine">
 	     		<!-- 时间树  -->
@@ -229,8 +231,8 @@
 		<div class="infoBottom ">
 		  <div class="buChong"></div>
 		   <div class="bottomWord ">
-                                              来自全球56个城市,1562名导演已加入,汇聚世界作品100000+
-                 <br/>2000+客户在这里发布拍片需求
+                                             35800+导演/编剧/摄影师/影视服务专家为您服务,
+                 <br/>专业一站式视频服务/全流程质量监管
 		   </div>
 		   <a href="<spring:url value="/login" />"><div class="bottomBtn btn-red-common ">立即加入</div></a>
 		</div>

@@ -689,13 +689,6 @@ input:focus {
         }
         img {
             width: 100%;
-            // height: 132px;
-            // @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            //     height: 168px;
-            // }
-            // @media screen and (min-width: 1500px) {
-            //     height: 180px;
-            // }
             @include cardUlImgHeight();
             border-top-right-radius: 4px;
             border-top-left-radius: 4px;
@@ -844,7 +837,7 @@ input:focus {
             }
         }
         li:nth-child(3) {
-            //   background: url(../images/index/client3.png) no-repeat;
+
             div {
                 background-position: -300px !important;
                 @media screen and (min-width: 1276px) {
@@ -853,7 +846,6 @@ input:focus {
             }
         }
         li:nth-child(4) {
-            //  background: url(../images/index/client4.png) no-repeat;
             div {
                 background-position: -450px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -862,7 +854,6 @@ input:focus {
             }
         }
         li:nth-child(5) {
-            //  background: url(../images/index/client5.png) no-repeat;
             div {
                 background-position: -600px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -871,7 +862,6 @@ input:focus {
             }
         }
         li:nth-child(6) {
-            //   background: url(../images/index/client6.png) no-repeat;
             div {
                 background-position: -750px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -880,7 +870,6 @@ input:focus {
             }
         }
         li:nth-child(7) {
-            //   background: url(../images/index/client7.png) no-repeat;
             div {
                 background-position: -900px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -889,7 +878,6 @@ input:focus {
             }
         }
         li:nth-child(8) {
-            //    background: url(../images/index/client8.png) no-repeat;
             div {
                 background-position: -1050px !important;
                 @media screen and (min-width: 1276px) {
@@ -898,7 +886,6 @@ input:focus {
             }
         }
         li:nth-child(9) {
-            //   background: url(../images/index/client9.png) no-repeat;
             div {
                 background-position: -1200px !important;
                 @media screen and (min-width: 1276px) {
@@ -907,7 +894,6 @@ input:focus {
             }
         }
         li:nth-child(10) {
-            //    background: url(../images/index/client10.png) no-repeat;
             div {
                 background-position: -1350px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -917,7 +903,6 @@ input:focus {
             z-index:10;
         }
         li:nth-child(11) {
-            //   background: url(../images/index/client11.png) no-repeat;
             div {
                 background-position: -1500px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -926,7 +911,6 @@ input:focus {
             }
         }
         li:nth-child(12) {
-            //     background: url(../images/index/client12.png) no-repeat;
             div {
                 background-position: -1650px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -935,7 +919,6 @@ input:focus {
             }
         }
         li:nth-child(13) {
-            //    background: url(../images/index/client13.png) no-repeat;
             div {
                 background-position: -1800px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -944,7 +927,6 @@ input:focus {
             }
         }
         li:nth-child(14) {
-            //    background: url(../images/index/client14.png) no-repeat;
             div {
                 background-position: -1950px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -953,7 +935,6 @@ input:focus {
             }
         }
         li:nth-child(15) {
-            //    background: url(../images/index/client15.png) no-repeat;
             div {
                 background-position: -2100px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -963,7 +944,6 @@ input:focus {
         }
         @media screen and (min-width: 1276px) {}
         li:nth-child(16) {
-            //     background: url(../images/index/client16.png) no-repeat;
             div {
                 background-position: -2250px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -972,7 +952,6 @@ input:focus {
             }
         }
         li:nth-child(17) {
-            //     background: url(../images/index/client17.png) no-repeat;
             div {
                 background-position: -2400px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -981,7 +960,6 @@ input:focus {
             }
         }
         li:nth-child(18) {
-            //    background: url(../images/index/client18.png) no-repeat;
             div {
                 background-position: -2550px 0px !important;
                 @media screen and (min-width: 1276px) {
@@ -1020,9 +998,6 @@ input:focus {
 
 .advan {
     height: 822px;
-    //background: url(../images/index/advanBack.png) no-repeat;
-    //background-size: 100% 150% !important;
-    //background-position-y: -500px;
     transition: all .1s linear 0s !important;
     -moz-transition: all .1s linear 0s !important;
     /* Firefox 4 */
@@ -1047,7 +1022,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 80px;
-            background: url(../images/index/advanLogo.svg) no-repeat !important;
+            background: url(/resources/images/index/advanLogo.svg) no-repeat !important;
         }
     }
     .advanContent .ca {
@@ -1131,7 +1106,7 @@ input:focus {
         }
         li:nth-child(1) {
             div:nth-child(1) {
-                background: url(../images/index/free.png) no-repeat;
+                background: url(/resources/images/index/free.png) no-repeat;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1139,7 +1114,7 @@ input:focus {
         }
         li:nth-child(2) {
             div:nth-child(1) {
-                background: url(../images/index/low.png) no-repeat;
+                background: url(/resources/images/index/low.png) no-repeat;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1147,7 +1122,7 @@ input:focus {
         }
         li:nth-child(3) {
             div:nth-child(1) {
-                background: url(../images/index/72.png) no-repeat;
+                background: url(/resources/images/index/72.png) no-repeat;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1162,7 +1137,7 @@ input:focus {
             height: 25px;
             position: absolute;
             top: 50px;
-            background: url(../images/index/serviceLogo.svg) no-repeat !important;
+            background: url(/resources/images/index/serviceLogo.svg) no-repeat !important;
         }
         li {
             position: relative;
