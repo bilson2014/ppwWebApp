@@ -292,35 +292,30 @@ var providerInfo = {
 			
 			for(i=0;i<tagLength;i++){
 				var formBody ='<div class="card">';
-				formBody +='<div class="controlCard">';
-				formBody +='<div class="pencil"></div>';
-				formBody +='<div class="cardWord">'+tagList[i]+'</div>';
+//				formBody +='<div class="controlCard">';
+//				formBody +='<div class="pencil"></div>';
+//				formBody +='<div class="cardWord">'+tagList[i]+'</div>';
+				formBody += ''+tagList[i]+'';
 				formBody += '</div>';
 				formBody += '</div>';
 				$("#provderTagId").append(formBody);
 			}
-//			if(tagLength==1){
-//				provderTagWidth = 150;
+
+//			if(tagLength>6){
+//                var multiple = tagLength/6;
+//                var intMultiple = parseInt((Number(multiple)+1));
+//                var provderTagHeight = intMultiple*30+30;
+//                var topLine = provderTagHeight/2-15;
+//				 
+//				
+//				$("#provderTagId").css("height",provderTagHeight);
+//				$("#tagId").css("height",provderTagHeight);
+//				$("#leftLineId").css("top",topLine);
+//				$("#rightLineId").css("top",topLine);
+//				
 //			}
-//			else 
-			if(tagLength>6){
-                var multiple = tagLength/6;
-                var intMultiple = parseInt((Number(multiple)+1));
-                var provderTagHeight = intMultiple*30+30;
-                var topLine = provderTagHeight/2-15;
-				 
-				
-				$("#provderTagId").css("height",provderTagHeight);
-				$("#tagId").css("height",provderTagHeight);
-				$("#leftLineId").css("top",topLine);
-				$("#rightLineId").css("top",topLine);
-				
-			}
 			
-//			else if(tagLength>1){
-//				provderTagWidth=(125*tagList.length)+17*(tagLength-1);
-//			}
-//			$("#provderTagId").css("width",provderTagWidth);
+
 			},
           controlSpecialVideo : function(){
         	  var yk =  $('#ykVideoUrl').val();

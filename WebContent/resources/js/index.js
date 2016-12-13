@@ -1,21 +1,20 @@
 
 $().ready(function() {
+    
     originTool();
     banner();
     client();
     scrollBack();
     ourYouDian();
-    
-  
     getVideoHeight();
-    
     window.onresize = function(){
     	getVideoHeight();
     };
-    
-
-        
+     
 });
+
+
+
 
 function getVideoHeight(){
 	    var screenWidth = document.documentElement.clientWidth;

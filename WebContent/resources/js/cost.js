@@ -77,8 +77,8 @@ function InitGetPrice(){
 	    });
 	  
 	  $('#clear').on('click',function(){
-		    $('#equipmentInfo').text(setInfoContent[0]);
-			$('#teamInfo').text(setInfoContent[3]);
+		    $('#equipmentInfo').text(setInfoContent[3]);
+			$('#teamInfo').text(setInfoContent[0]);
 			$('#videoType').text('活动视频');
 			$('#videoType').attr('data-content','0');
 			$('#team').text('专业级导演团队');
