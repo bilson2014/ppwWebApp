@@ -1,7 +1,16 @@
  var step = 1;
  var curCount = 3;
  var InterValObj;
+ 
 $().ready(function(){
+	
+	$('.dropdown li').on('click',function(){
+        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+        var info=parseInt($(this).attr('data-info'));
+        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
+        $(this).parent().slideUp();
+        return false;
+   });
   
     resumeError();
 	$('#checkbtn').on('click',function(){
@@ -20,6 +29,14 @@ $().ready(function(){
 	 $('#to-top').on('click',function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
+	});
+	 
+	 $('.getTag').on('click',function(){
+        if($(this).hasClass('redTag')){
+        	$(this).removeClass('redTag');
+        }else{
+        	$(this).addClass('redTag');
+        }
 	});
 	 
 	// 添加省下拉框监听

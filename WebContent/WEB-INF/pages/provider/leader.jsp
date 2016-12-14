@@ -109,14 +109,32 @@
 	<div class="page" >
 
 	      <div class="step">
-
+               
+               <div class="title">注册/填写导演信息</div>
+               
 			  <div class="step-bar" id="step-bar">
-			      <div class="first">1.基本信息</div>
-			      <div class="first">2.详细信息</div>
-			      <div class="first">3.注册完成</div>
+			      <div class="first step-1" data-content="填写基本信息">1</div>
+			      <div class="line"></div>
+			      <div class="first" data-content="填写详细信息">2</div>
+			      <div class="line"></div>
+			      <div class="first" data-content="资质审核">3</div>
 			  </div>
 
 	      		 <div class="step-one-div" id="step1" data-step="1">
+	      		 <div class="user-img-content">
+									<div class="user-icon">
+										<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+									</div>
+									<div class="upload-btn">
+										<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
+										<div id="uploadBt">上传头像</div>
+										<input type="file" name="file" id="file" style="display: none;"/> 
+									</div>
+									
+									<div class="upload-info">
+										<label>仅支持JPG、	PNG格式，文件小于2M</label>
+									</div>
+								</div>
   	 				      <div class="input-group-div">
   	      		       	 	  <span class="title-word">公司名称</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-name" placeholder="请填写公司名称" aria-describedby="basic-addon2">
@@ -162,7 +180,7 @@
 
                 <div class="input-group-div">
   	      			<span for="company-city" class="title-word">所在省</span>	
-							<select class="step-two-select-city form-control" id="company-province"   >
+<%-- 							<select class="step-two-select-city form-control" id="company-province"   >
 								<c:if test="${!empty provinces}">
 									<c:forEach items="${provinces }" var="source" varStatus="status">
 									  <option value ="${source.provinceID }"
@@ -171,10 +189,31 @@
 									  	</c:if> >${source.provinceName }</option>
 									</c:forEach>
 								</c:if>
-							</select>
+							</select> --%>
+							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<c:if test="${!empty provinces}">
+												<c:forEach items="${provinces }" var="source" varStatus="status">
+													<c:if test="${ status.index == 0}">
+															<span data-value ="${source.provinceID }" id='getProvince'>${source.provinceName }</span>
+																<div class="carets"></div>
+															</button>
+															<ul class="dropdown-menu id="selectUl" role="menu"
+																aria-labelledby="dropdownMenu1">
+													</c:if>
+												
+													  <li data-value ="${source.provinceID }"
+													  	<c:if test="${provider.teamProvince == source.provinceID }">
+													  		selected="selected"
+													  	</c:if> >${source.provinceName }</li>
+													</c:forEach>
+												</c:if>									
+										</ul>
+									</div>
 									
 					<span for="company-city" class="title-word-city">所在城市</span>	
-							<select class="step-two-select-city form-control"  id="company-city">
+<%-- 							<select class="step-two-select-city form-control"  id="company-city">
 								<c:if test="${!empty citys}">
 									<c:forEach items="${citys }" var="source" varStatus="status">
 									  <option value ="${source.cityID }"
@@ -183,32 +222,84 @@
 									  	</c:if> >${source.city }</option>
 									</c:forEach>
 								</c:if>
-							</select>
+							</select> --%>
+							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<c:if test="${!empty citys}">
+													<c:forEach items="${citys }" var="source" varStatus="status">
+													  <c:if test="${ status.index == 0}">
+																<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
+																<div class="carets"></div>
+															</button>
+															<ul class="dropdown-menu id="selectUl" role="menu"
+																aria-labelledby="dropdownMenu1">
+												      </c:if>
+												      
+													  <li data-value ="${source.cityID }"
+													  	<c:if test="${provider.teamCity == source.cityID }">
+													  		selected="selected"
+										  				</c:if> >${source.city }</li>
+													</c:forEach>
+												</c:if>										
+										</ul>
+									</div>
   	      		</div>
 
   	      			 <div class="input-group-div">
   	      		       	 	  <span for="company-priceRange" class="title-word">价格区间</span>	
   	      					  <input type="hidden" id="company-priceRange-value" value="${provider.priceRange }"/>
-									<select class="step-two-select form-control" id="company-priceRange" >
+									<!-- <select class="step-two-select form-control" id="company-priceRange" >
 										<option value="0" >看情况</option>
 			            				<option value="1" >1万元及以上</option>
 			            				<option value="2" >2万元及以上</option>
 			            				<option value="3" >3万元及以上</option>
 			            				<option value="4" >5万元及以上</option>
 			            				<option value="5" >10万元及以上</option>
-									</select>
+									</select> -->
+									<div class="dropdown leaderSelect" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<span id='indent_recomment'>看情况</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu id="selectUl" role="menu"
+											aria-labelledby="dropdownMenu1">
+											<li data-value="0">看情况</li>
+											<li data-value="1">1万元及以上</li>
+											<li data-value="2">2万元及以上</li>
+											<li data-value="3">3万元及以上</li>
+											<li data-value="4">5万元及以上</li>
+											<li data-value="5">10万元及以上</li>
+										</ul>
+									</div>
   	      				  </div>
 
   	      				 <div class="input-group-div">
   	      		       	 	  <span for="company-infoResource" class="title-word">获知渠道</span>	
   	      						 <input type="hidden" id="company-infoResource-value" value="${provider.infoResource }"/>
-									<select class="step-two-select form-control" id="company-infoResource" >
+									<!-- <select class="step-two-select form-control" id="company-infoResource" >
 										<option value="0" >友情推荐</option>
 			            				<option value="1" >网络搜索</option>
 			            				<option value="2" >拍片帮</option>
 			            				<option value="3" >拍片网</option>
 			            				<option value="4" >电销</option>
-									</select>
+												</select> -->
+									<div class="dropdown leaderSelect" id="company-infoResource">
+										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<span id='indent_recomment'>友情推荐</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu id="selectUl" role="menu"
+											aria-labelledby="dropdownMenu1">
+											<li data-value="0">友情推荐</li>
+											<li data-value="1">网络搜索</li>
+											<li data-value="2">拍片帮</li>
+											<li data-value="3">拍片网</li>
+											<li data-value="4">电销</li>
+										</ul>
+									</div>
   	      				  </div> 
 
 
@@ -217,67 +308,64 @@
   	      					      <div class="checkbox" id="business-checkbox">
 										<ul class="ul-step-two">
 											<li>	
-												<input type="checkbox" name="business" value="0" /> 广告
+												<div class="getTag" name="business" data-value="0"> 广告</div>
 									    	</li>
 									    	<li>	
-												<input type="checkbox" name="business" value="16" /> TVC
+												<div class="getTag" name="business" data-value="16" /> TVC</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="1"/> 宣传片
+												<div class="getTag" name="business" data-value="1"/> 宣传片</div>
 									   	 	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="2"/> 真人秀
+												<div class="getTag" name="business" data-value="2"/> 真人秀</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="3"/> 纪录片
+												<div class="getTag" name="business" data-value="3"/> 纪录片</div>
 									    	</li>
-									    </ul>
-									    <ul class="ul-step-two">
+									    
 											<li>
-												<input type="checkbox" name="business" value="4"/> 病毒视频
+												<div class="getTag" name="business" data-value="4"/> 病毒视频</div>
 									  	  	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="5"/> 电视栏目
+												<div class="getTag" name="business" data-value="5"/> 电视栏目</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="17"/> MV
+												<div class="getTag" name="business" data-value="17"/> MV</div>
 									    	</li>
 									   	 	<li>
-												<input type="checkbox" name="business" value="6"/> 三维动画
+												<div class="getTag" name="business" data-value="6"/> 三维动画</div>
 									   		</li>
 									   		<li>
-												<input type="checkbox" name="business" value="7"/> MG动画
+												<div class="getTag" name="business" data-value="7"/> MG动画</div>
 									  		</li>
-									    </ul>
-									    <ul class="ul-step-two">
+									   
 									    	<li>
-												<input type="checkbox" name="business" value="8"/> 体育赛事
+												<div class="getTag" name="business" data-value="8"/> 体育赛事</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="9"/> 专题片
+												<div class="getTag" name="business" data-value="9"/> 专题片</div>
 											</li>
                                              <li> 
-												<input type="checkbox" name="business" value="10"/> VR拍摄
+												<div class="getTag" name="business" data-value="10"/> VR拍摄</div>
 											</li>
 											<li>
-												<input type="checkbox" name="business" value="11"/> 产品拍摄
+												<div class="getTag" name="business" data-value="11"/> 产品拍摄</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="12"/> 微电影
+												<div class="getTag" name="business" data-value="12"/> 微电影</div>
 										    </li>
-										</ul>    
-										<ul class="ul-step-two" style="vertical-align:top">
+										
 										    <li>
-												<input type="checkbox" name="business" value="13"/> 航拍
-										    </li>
-										    <li>
-												<input type="checkbox" name="business" value="14"/> 活动视频
+												<div class="getTag" name="business" data-value="13"/> 航拍</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="15"/> 后期制作
+												<div class="getTag" name="business" data-value="14"/> 活动视频</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="18"/> 包装
+												<div class="getTag" name="business" data-value="15"/> 后期制作</div>
+										    </li>
+										    <li>
+												<div class="getTag" name="business" data-value="18"/> 包装</div>
 										    </li>
 										 </ul>   
 										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>

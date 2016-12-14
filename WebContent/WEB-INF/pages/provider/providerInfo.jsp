@@ -148,7 +148,7 @@
 		           <li class="providerName">${provider.teamName }</li>
 		           <li class="providerPlace"><img class="place" src="${imgPath}/provder/place.png"></li>
 		           <li class="provinceCity"><div id="province">${provider.teamProvinceName }</div><div class="circle"></div><div id="city">${provider.teamCityName }</div></li>
-		           <li><div class="withIt">与TA沟通</div></li>
+		           <li><div class="withIt btn-c-r" id="withIt">与TA沟通</div></li>
 		        </ul>
 		     </div>
 		     
@@ -193,39 +193,56 @@
 			         <div class="videoInfo">
 			             <div class="NameInfo">${product.productName }</div>
 			             <div class="InfoLine"></div>
+			             <div class="title">影片简介<span> Porject summary</span></div>
 			             <div class="NameContent" title="${product.pDescription }">
 			             	${product.pDescription }
 			             </div>
-			              <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'>
-			              </div>
-			              	<c:if test="${!empty tags}">
-								<c:forEach items="${tags }" var="source" varStatus="status">
-								<div>
-									<c:if test="${status.index >0 }">
-									/
-									</c:if>
-									${source }
-								</div>
-								</c:forEach>
-							</c:if>
-			              </div>
-			             <a href="/play/${product.teamId }_${product.productId }.html">
-			             	<div class="specialVideoInfo btn-red-common">了解详情</div>
-			             </a>
+			             
+			             <div class="bottom">
+				              <div class="videoTag"><div><img src='${imgPath}/provder/videoTag.png'>
+				              </div>
+				              	<c:if test="${!empty tags}">
+									<c:forEach items="${tags }" var="source" varStatus="status">
+									<div>
+										<c:if test="${status.index >0 }">
+										 &nbsp&nbsp
+										</c:if>
+										${source }
+									</div>
+									</c:forEach>
+								</c:if>
+				              </div>
+				             <a href="/play/${product.teamId }_${product.productId }.html">
+				             	<div class="specialVideoInfo btn-red-common btn-c-r">了解更多</div>
+				             </a>
+			             </div>
 			         </div>
 			    </div>     
 		     </div>
 		     
 		     
-		     <div class="videoSpace">
+	  <div class="videoSpace">
 	          <div class="productOutSide">
 	                                       影视作品
 	               <span>Work Demo</span>
 	          </div>
+	          <div class="prodectLine"></div>
 	          <div class="timeLine" id ="timeLine">
 	     		<!-- 时间树  -->
 	     		           
 	   		  </div>
+	   		  <div id="end" class="end hide">
+	   		      <ul>
+	   		           <li></li>
+	   		           <li></li>
+	   		           <li></li>
+	   		      </ul>
+	   		  </div>
+		</div>
+		
+		<div class="noWorkDemo">
+		   <img src="/resources/images/provder/noWorkDemo.png"/>
+		   <div>很抱歉!导演还未上传更多作品</div>
 		</div>
 		
 		<div class="infoBottom ">
@@ -234,7 +251,7 @@
                                              35800+导演/编剧/摄影师/影视服务专家为您服务,
                  <br/>专业一站式视频服务/全流程质量监管
 		   </div>
-		   <a href="<spring:url value="/login" />"><div class="bottomBtn btn-red-common ">立即加入</div></a>
+		   <a href="<spring:url value="/login" />"><div class="bottomBtn btn-red-common btn-c-r">立即加入</div></a>
 		</div>
 		
 		</div>

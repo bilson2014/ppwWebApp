@@ -5,10 +5,6 @@
 @import "fontSize";
 @import "compass/typography/text/ellipsis";
 @import "normalize";
-.page {
-    background: #f2f2f2 !important;
-}
-
 a:link,
 a:visited {
     text-decoration: none;
@@ -19,10 +15,10 @@ a:visited {
     position: relative;
     width: 100%;
     border: none;
-    @include media_screen_height(440px, 470px, 400px);
+    @include media_screen_height(350px, 350px, 400px);
     .image-video {
         width: 100%;
-        @include media_screen_height(440px, 470px, 400px);
+        @include media_screen_height(350px, 350px, 400px);
         background: url('/resources/images/provder/banner.jpg') no-repeat;
         background-size: cover;
         background-position: center 0;
@@ -40,9 +36,9 @@ a:visited {
         height: auto;
         position: relative;
         z-index: 100;
-        top: 50px;
+        top: 33px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            top: 100px;
+            top: 33px;
         }
         @media screen and (min-width:1500px) {
             top: 65px;
@@ -92,6 +88,7 @@ a:visited {
             background: $red-base;
             border-radius: 4px;
             margin-top: 15px;
+            cursor: pointer;
         }
         .provinceCity {
             color: $white;
@@ -135,7 +132,7 @@ a:visited {
         height: auto;
         color: $gray;
         font-size: $font-size-base;
-        text-indent: 28px;
+        text-indent: 19px;
     }
     .tag {
         @include media_screen_width_beta3();
@@ -190,7 +187,7 @@ a:visited {
 .tag {
     .midLine {
         width: 100%;
-        padding-left: 30px;
+        padding-left: 19px;
         padding-right: 30px;
         margin-bottom: 38px;
         margin: 0 auto;
@@ -238,70 +235,92 @@ a:visited {
         font-size: 0px;
     }
     .showVideo {
-        height: 315px;
-        width: 520px;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            height: 420px;
-            width: 695px;
+        height: 400px;
+        width: 710px;
+        @media screen and (min-width: 1212px) and (max-width: 1500px) {
+            height: 500px;
+            width: 895px;
         }
         @media screen and (min-width:1500px) {
-            height: 520px;
-            width: 860px;
+            height: 545px;
+            width: 970px;
         }
         .videoSection {
-            height: 315px;
-            width: 520px;
-            @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 420px;
-                width: 695px;
+            // height: 315px;
+            // width: 520px;
+            // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            //     height: 420px;
+            //     width: 695px;
+            // }
+            // @media screen and (min-width:1500px) {
+            //     height: 520px;
+            //     width: 860px;
+            // }
+            height: 400px;
+            width: 710px;
+            @media screen and (min-width: 1212px) and (max-width: 1500px) {
+                height: 500px;
+                width: 895px;
             }
             @media screen and (min-width:1500px) {
-                height: 520px;
-                width: 860px;
+                height: 545px;
+                width: 970px;
             }
         }
     }
     .videoInfo {
+        position: relative;
         padding-left: 30px;
         padding-right: 30px;
-        height: 315px;
-        width: 420px;
         background: black;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            height: 420px;
-            width: 515px;
+        height: 400px;
+        width: 250px;
+        @media screen and (min-width: 1212px) and (max-width: 1500px) {
+            height: 500px;
+            width: 317px;
         }
         @media screen and (min-width:1500px) {
-            height: 520px;
-            width: 430px;
+            height: 545px;
+            width: 330px;
         }
         display: inline-block;
         vertical-align: top;
         overflow: hidden;
         .NameInfo {
             color: white;
-            font-size: $font-size-lg24;
+            font-size: $font-size-lg;
             margin-top: 30px;
         }
         .InfoLine {
             width: 100%;
             height: 1px;
-            background: white;
-            margin-top: 16px;
+            margin-top: 26px;
             margin-bottom: 14px;
+        }
+        .title {
+            color: $border-line;
+            font-size: $font-size-base;
+            margin-bottom: 14px;
+            span {
+                font-size: $font-size-sm;
+            }
+        }
+        .bottom {
+            position: absolute;
+            bottom: 40px;
         }
         .NameContent {
             width: 100%;
-            height: 105px;
+            height: 90px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 212px;
+                height: 180px;
             }
             @media screen and (min-width:1500px) {
-                height: 312px;
+                height: 250px;
             }
-            color: white;
-            font-size: $font-size-base;
-            line-height: 26px;
+            color: $border-line;
+            font-size: $font-size-sm;
+            line-height: 18px;
             overflow: hidden;
             cursor: pointer;
         }
@@ -333,6 +352,13 @@ a:visited {
     width: 100%;
     height: auto;
     margin-top: 60px;
+    min-width: 960px;
+    .prodectLine {
+        width: 1px;
+        height: 30px;
+        background: $gray-light;
+        margin: 0 auto;
+    }
     .productOutSide {
         width: 90px;
         height: 90px;
@@ -344,6 +370,7 @@ a:visited {
         font-size: $font-size-base;
         position: relative;
         padding-top: 31px;
+        margin-bottom: 4px;
         span {
             font-size: $font-size-sm;
         }
@@ -367,7 +394,9 @@ a:visited {
 
 .topMore {
     position: relative;
-    top: 35px;
+    // top: 35px;
+    top: -5px;
+    padding-bottom: 50px;
 }
 
 .videoSpace .videoArea {
@@ -381,59 +410,80 @@ a:visited {
     height: auto;
     margin: 0 auto;
     .more {
-        height: 30px;
-        width: 106px;
+        height: 24px;
+        width: 120px;
         margin: 0 auto;
         text-align: center;
-        line-height: 30px;
+        line-height: 24px;
         background: white;
         color: $gray;
         border: 1px solid $gray;
-        border-radius: 6px;
-        font-size: $font-size-base;
+        border-radius: 4px;
+        font-size: $font-size-sm;
         cursor: pointer;
+        position: relative;
+        &:hover {
+            color: $red-base;
+            border: 1px solid $red-base;
+            .getMore {
+                background-position: 0px -14px;
+            }
+        }
+        .getMore {
+            position: absolute;
+            background: url(/resources/images/provder/getMore.png) no-repeat;
+            top: 30px;
+            left: 52px;
+            width: 14px;
+            height: 14px;
+        }
     }
     .year {
-        height: 76px;
+        height: 46px;
         width: 100%;
         div {
-            height: 76px;
-            width: 76px;
-            background: white;
+            height: 46px;
+            width: 46px;
             margin: 0 auto;
             border-radius: 120px;
-            div {
-                height: 70px;
-                width: 70px;
-                //background: $gold-yellow;
-                margin: 0 auto;
-                border-radius: 120px;
-                position: relative;
-                top: 3px;
-                color: white;
-                font-size: $font-size;
-                line-height: 70px;
-                text-align: center;
-            }
-            .color1 {
-                background: #f1b059;
-            }
-            .color2 {
-                background: #4cdbf8;
-            }
-            .color3 {
-                background: #d339c6;
-            }
-            .color4 {
-                background: #929292;
-            }
-            .color5 {
-                background: #2c71a8;
-            }
+            position: relative;
+            color: white;
+            font-size: $font-size-sm;
+            line-height: 40px;
+            text-align: center;
+            border: 3px solid $f0;
+            // div {
+            //     height: 70px;
+            //     width: 70px;
+            //     //background: $gold-yellow;
+            //     margin: 0 auto;
+            //     border-radius: 120px;
+            //     position: relative;
+            //     top: 3px;
+            //     color: white;
+            //     font-size: $font-size;
+            //     line-height: 70px;
+            //     text-align: center;
+            // }
+        }
+        .color1 {
+            background: #aa4cfc;
+        }
+        .color2 {
+            background: #79d01b;
+        }
+        .color3 {
+            background: #33d8b5;
+        }
+        .color4 {
+            background: #f5a623;
+        }
+        .color5 {
+            background: $red-base;
         }
     }
     .yearTimeLine {
-        height: 50px;
+        height: 5px;
         width: 1px;
         background: $gray-light;
         margin: 0 auto;
@@ -444,63 +494,80 @@ a:visited {
         background: none;
         margin: 0 auto;
         li {
-            margin-top: 5px;
-        }
-        li:nth-child(1) {
-            height: 5px;
+            height: 100%;
             width: 1px;
             background: $gray-light;
         }
-        li:nth-child(2) {
-            height: 7px;
-            width: 1px;
-            background: $gray-light;
-        }
-        li:nth-child(3) {
-            height: 9px;
-            width: 1px;
-            background: $gray-light;
-        }
+        // li:nth-child(1) {
+        //     height: 5px;
+        //     width: 1px;
+        //     background: $gray-light;
+        // }
+        // li:nth-child(2) {
+        //     height: 7px;
+        //     width: 1px;
+        //     background: $gray-light;
+        // }
+        // li:nth-child(3) {
+        //     height: 9px;
+        //     width: 1px;
+        //     background: $gray-light;
+        // }
     }
     .midTimeLine {
-        height: 450px;
+        height: 395px;
         width: 1px;
         background: $gray-light;
         margin: 0 auto;
     }
 }
 
+.end {
+    ul {
+        height: 30px;
+        width: 1px;
+        margin: 0 auto;
+    }
+    li {
+        background: $gray-light;
+        margin-top: 5px;
+    }
+    li:nth-child(1) {
+        height: 5px;
+        width: 1px;
+    }
+    li:nth-child(2) {
+        height: 7px;
+        width: 1px;
+    }
+    li:nth-child(3) {
+        height: 10px;
+        width: 1px;
+    }
+}
+
 .videoSpace .videoArea .videoCrad {
-    width: 300px;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 364px;
-    }
-    @media screen and (min-width:1500px) {
-        width: 364px;
-    }
     height: auto;
-    margin-top: 32px;
-    position: absolute;
-    margin-left: 24px;
+    position: relative;
     .title {
         height: 24px;
         width: 100%;
         color: $gray-dark;
-        font-size: $font-size-lg24;
+        font-size: $font-size-base;
         @include ellipsis;
-        margin-bottom: 10px;
     }
     a {
         img {
-            width: 300px;
-            height: 158px;
+            width: 314px;
+            height: 176px;
+            border-radius: 6px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                width: 364px;
-                height: 186px;
+                width: 314px;
+                height: 176px;
             }
             @media screen and (min-width:1500px) {
-                width: 364px;
-                height: 186px;
+                width: 314px;
+                height: 176px;
             }
         }
     }
@@ -518,68 +585,116 @@ a:visited {
     .videoBtn {
         width: 98px;
         height: 26px;
-        color: white;
-        font-size: $font-size-sm10;
+        color: $red-base;
+        font-size: $font-size-sm;
         line-height: 26px;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50px;
+        margin-left: 210px;
+        position: relative;
+        &:after {
+            content: "";
+            background: url(/resources/images/index/newsMore.png) no-repeat;
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            background-position: 0 -13px;
+            top: 8px;
+            left: 80px;
+        }
     }
 }
 
 .videoSpace .videoArea .rightCard {
-    position: relative;
-    top: 50px;
+    // position: relative;
+    // top: 50px;
+    // float: right;
+    // width: 348px;
+    // height: 364px;
+    // border: 1px solid $border-line;
+    // border-radius: 6px;
+    // padding: 18px 10px 18px 10px;
+    // position: relative;
+    // margin-right: 60px;
+    // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    //     width: 408px;
+    //     height: 404px;
+    // }
+    // @media screen and (min-width:1500px) {
+    //     width: 408px;
+    //     height: 404px;
+    // }    float: left;
     float: right;
-    width: 348px;
-    height: 364px;
-    border: 1px solid #ccc;
+    width: 334px;
+    top: 50px;
+    border: 1px solid $border-line;
+    -moz-box-shadow: 10px 10px 5px $border-line;
+    -webkit-box-shadow: 0px 0px 10px $border-line;
+    -o-box-shadow: 0px 0px 10px $border-line;
+    border-radius: 6px;
+    padding: 18px 10px 18px 10px;
+    position: relative;
+    margin-right: 0px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 408px;
-        height: 404px;
+        width: 334px;
+        margin-right: 100px;
+        //height: 404px;
     }
     @media screen and (min-width:1500px) {
-        width: 408px;
-        height: 404px;
+        width: 334px;
+        margin-right: 100px;
+        // height: 404px;
     }
     background: white;
     .rightDian {
         height: 50px;
         width: 220px;
         float: left;
-        position: relative;
-        right: 157px;
+        position: absolute;
+        right: 268px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            right: 218px;
+            right: 287px;
         }
         @media screen and (min-width:1500px) {
-            right: 218px;
+            right: 287px;
         }
-        top: 32px;
+        top: 80px;
         @extend .commonImg;
     }
 }
 
 .videoSpace .videoArea .leftCard {
     float: left;
-    width: 348px;
-    height: 364px;
-    border: 1px solid #ccc;
+    width: 334px;
+    //height: 364px;
+    border: 1px solid $border-line;
+    -moz-box-shadow: 10px 10px 5px $border-line;
+    -webkit-box-shadow: 0px 0px 10px $border-line;
+    -o-box-shadow: 0px 0px 10px $border-line;
+    /* 老的 Firefox */
+    box-shadow: 0px 0px 10px $border-line;
+    border-radius: 6px;
+    padding: 18px 10px 18px 10px;
+    position: relative;
+    margin-left: 0px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: 408px;
-        height: 404px;
+        width: 334px;
+        margin-left: 100px;
+        //height: 404px;
     }
     @media screen and (min-width:1500px) {
-        width: 408px;
-        height: 404px;
+        width: 334px;
+        margin-left: 100px;
+        // height: 404px;
     }
     background: white;
     .leftDian {
         height: 50px;
         width: 221px;
         float: right;
-        position: relative;
-        left: 220px;
-        top: 32px;
+        position: absolute;
+        left: 317px;
+        top: 80px;
         background-position: center;
         @extend .commonImg;
     }
@@ -593,23 +708,27 @@ a:visited {
     .day {
         font-size: $font-size-base;
         color: $gray-light;
-        width: 59px;
-        ;
+        width: 103px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: 119px;
+            width: 124px;
+            padding-right: 20px;
         }
         @media screen and (min-width:1500px) {
-            width: 119px;
+            width: 124px;
+            padding-right: 20px;
         }
         vertical-align: bottom;
         text-align: center;
         line-height: 50px;
     }
     .dianImg {
-        height: 50px;
-        width: 50px;
-        background: url('../../images/provder/timeImg.png') no-repeat;
-        background-position: center;
+        height: 18px;
+        width: 18px;
+        background: $border-line;
+        border-radius: 90px;
+        position: relative;
+        top: -15px;
+        border: 1px solid $f0;
     }
     .leftJiaoImg {
         height: 50px;
@@ -628,12 +747,13 @@ a:visited {
 .infoBottom {
     width: 100%;
     margin: 0 auto;
+    background: #f8f8f8;
     .buChong {
         width: 100%;
         height: 20px;
     }
     .bottomWord {
-        padding-top: 70px;
+        padding-top: 50px;
         color: $gray-dark;
         font-size: $font-size-lg;
         text-align: center;
@@ -653,12 +773,13 @@ a:visited {
         margin: 0 auto;
         margin-top: 30px;
         position: relative;
-        top: -45px;
+        top: -50px;
     }
 }
 
 .videoTag {
-    margin: 10px 0 16px 0;
+    margin: 10px 0 40px 0;
+    color: $gray-light;
     div {
         display: inline-block;
         color: $gray-light;
@@ -673,4 +794,19 @@ a:visited {
 
 .nav .logo {
     background: url(../../images/common/logo.svg) no-repeat;
+}
+
+.noWorkDemo {
+    width: 675px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 86px;
+    margin-bottom: 80px;
+    display: none;
+    div {
+        margin-top: 20px;
+        color: $gray;
+        font-size: $font-size-base;
+        text-align: center;
+    }
 }
