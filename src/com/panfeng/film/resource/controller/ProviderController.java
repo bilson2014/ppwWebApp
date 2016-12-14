@@ -147,7 +147,6 @@ public class ProviderController extends BaseController {
 				}
 			}
 		}
-
 		return new ModelAndView("provider/info", model);
 	}
 
@@ -874,7 +873,7 @@ public class ProviderController extends BaseController {
 
 			// 保存 product
 			long productId = 0;
-			product.setFlag(1); // 默认设置 审核通过 状态
+			product.setFlag(0); // 默认设置 未审核 状态
 			final String url = URL_PREFIX + "portal/product/static/data/save/info";
 			final String json = HttpUtil.httpPost(url, product, request);
 			if (json != null && !"".equals(json)) {
