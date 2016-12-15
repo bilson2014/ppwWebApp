@@ -4,6 +4,9 @@
  
 $().ready(function(){
 	
+	
+	
+	
 	$('.dropdown li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
         var info=parseInt($(this).attr('data-info'));
@@ -97,40 +100,49 @@ function checkStepTwoData(){
 
 function resumeError(){
 
-		$('#company-name-error').hide();
-		$('#company-email-error').hide();
-		$('#company-linkman-error').hide();
-		$('#company-pwd-error').hide();
-		$('#company-webchat-error').hide();
-		$('#company-address-error').hide();
-		$('#company-qq-error').hide();
-	    $('#business-checkbox-error').hide();
-	    $('#company-teamDesc-error').hide();
-		$('#company-scale-error').hide();
-        $('#company-demand-error').hide();
+//		$('#company-name-error').hide();
+//		$('#company-email-error').hide();
+//		$('#company-linkman-error').hide();
+//		$('#company-pwd-error').hide();
+//		$('#company-webchat-error').hide();
+//		$('#company-address-error').hide();
+//		$('#company-qq-error').hide();
+//	    $('#business-checkbox-error').hide();
+//	    $('#company-teamDesc-error').hide();
+//		$('#company-scale-error').hide();
+//        $('#company-demand-error').hide();
+        
+        showError($('.input-group-div'),'');
+        $('input').removeClass('errorL');
 }
 
 function showStepOne(){
-	 $('.step-one-div').removeClass('hide');
-     $('.step-two-div').addClass('hide');
-     $('#step-bar').removeClass('step-2');
 
-
-    
+	 $('.step-two-div').slideUp();
+		setTimeout(function() {
+			$('.step-one-div').slideDown();
+		}, 500);
+     $('#step-1').addClass('step-1');
+     $('#step-2').removeClass('step-1');
 }
 
 function showStepTwo(){
-  $('.step-one-div').addClass('hide');
-  $('.step-two-div').removeClass('hide');
-  $('#step-bar').addClass('step-2');
+	$('.step-one-div').slideUp();
+	setTimeout(function() {
+		$('.step-two-div').slideDown();
+	}, 500);
+ $('#step-2').removeClass('step-1');
+ $('#step-1').addClass('step-1');
 }
 
 function showStepThree(){
 
- $('.step-two-div').addClass('hide');
- $('.step-three-div').removeClass('hide');
- $('#step-bar').removeClass('step-2');
- $('#step-bar').addClass('step-3');
+	$('.step-two-div').slideUp();
+	setTimeout(function() {
+		$('.step-three-div').slideDown();
+	}, 500);
+ $('#step-2').removeClass('step-2');
+ $('#step-3').addClass('step-3');
  SetLastTime();
 }
 
@@ -147,31 +159,19 @@ function checkStepOne(){
 
 			
 			if(name == '' || name == null || name == undefined){
-				$('#company-name-error').show();
-                $('#company-name-error').text('请输入公司名称!');
+				showErrorLeader($('#company-name-error'),'请输入公司名称!');
 				$('#company-name').focus();
 				return false;
 			}
 
 			if(linkman == '' || linkman == null || linkman == undefined){
-				$('#company-linkman-error').show();
-                $('#company-linkman-error').text('请输入联系人!');
+				showErrorLeader($('#company-linkman-error'),'请输入联系人!');
 				$('#company-linkman').focus();
 				return false;
 			}
-//			
-//			if(pwd == '' || pwd == null || pwd == undefined){
-//				$('#company-pwd-error').show();
-//                $('#company-pwd-error').text('请输入密码!');
-//				$('#company-pwd').focus();
-//				return false;
-//			}
-			
-	
 
-				if(webchat == '' || webchat == null || webchat == undefined){
-				$('#company-webchat-error').show();
-                $('#company-webchat-error').text('请输入微信号!');
+			if(webchat == '' || webchat == null || webchat == undefined){
+				showErrorLeader($('#company-webchat-error'),'请输入微信号!');
 				$('#company-webchat').focus();
 				return false;
 			}
@@ -179,31 +179,27 @@ function checkStepOne(){
 			if(qq != '' || qq != null || qq != undefined){
 				var reg = /^[1-9]\d{4,9}$/;
 				if(!qq.match(reg)){
-					 $('#company-qq-error').show();
-		                $('#company-qq-error').text('请输入QQ号码!');
+					showErrorLeader($('#company-qq-error'),'请输入QQ号码!');
 						$('#company-qq').focus();
 						return false;
 				}
 			}
 			
 			if(email == '' || email == null || email == undefined){
-			    $('#company-email-error').show();
-                $('#company-email-error').text('请输入公司邮箱!');
+				showErrorLeader($('#company-email-error'),'请输入公司邮箱!');
 				$('#company-email').focus();
 				return false;
 			}
 			
 			// 验证邮箱正确性
 			if(!checkEmail(email)){
-				$('#company-email-error').show();
-                $('#company-email-error').text('邮箱格式不正确!');
+				showErrorLeader($('#company-email-error'),'邮箱格式不正确!');
 				$('#company-email').focus();
 				return false;
 			}
 
 			if(address == '' || address == null || address == undefined){
-			    $('#company-address-error').show();
-                $('#company-address-error').text('请输入公司地址!');
+				showErrorLeader($('#company-address-errors'),'请输入公司地址!');
 				$('#company-address').focus();
 				return false;
 			}
@@ -217,31 +213,25 @@ function checkStepTwo(){
 			var scale = $('#company-scale').val().trim(); // 公司规模
             var demand = $('#company-demand').val().trim();
 
-
-
             	if(business == '' || business == null || business == undefined){
-			    $('#business-checkbox-error').show();
-                $('#business-checkbox-error').text('请输入业务需求!');
+			    showErrorLeader($('#business-checkbox-error'),'请输入业务需求!');
 				return false;
 			}
 
 				if(teamDesc == '' || teamDesc == null || teamDesc == undefined){
-			    $('#company-teamDesc-error').show();
-                $('#company-teamDesc-error').text('请输入公司简介!');
+                showErrorLeader($('#company-teamDesc-error'),'请输入公司简介!');
 				$('#company-teamDesc').focus();
 				return false;
 			}
 
 				if(scale == '' || scale == null || scale == undefined){
-			    $('#company-scale-error').show();
-                $('#company-scale-error').text('请输入公司规模!');
+                showErrorLeader($('#company-scale'),'请输入公司规模!');
 				$('#company-scale').focus();
 				return false;
 			}
 
 				if(demand == '' || demand == null || demand == undefined){
-			    $('#company-demand-error').show();
-                $('#company-demand-error').text('请输入需求!');
+                showErrorLeader($('#company-demand-error'),'请输入需求!');
 				$('#company-demand').focus();
 				return false;
 			}
@@ -250,13 +240,22 @@ function checkStepTwo(){
 
 function getBusinessVal(){
 	var busArr;
-	$('input[name="business"]:checked').each(function(i){
-		if(0 == i){
-			busArr = this.value;
-		}else {
-			busArr += ',' + this.value;
-		}
-	});
+//	$('input[name="business"]:checked').each(function(i){
+//		if(0 == i){
+//			busArr = this.value;
+//		}else {
+//			busArr += ',' + this.value;
+//		}
+//	});
+	
+	$('.redTag').each(function(i){
+	if(0 == i){
+		busArr = $(this).value;
+	}else {
+		busArr += ',' + $(this).value;
+	}
+   });
+	
 	return busArr;
 }
 
@@ -284,6 +283,16 @@ function infoSave(){
 			teamCity : $("#company-city").val()
 		}));
 	}
+
+
+function showErrorLeader(id, error) {
+	if (error == "" || error == null) {
+		id.attr('data-content', "");
+	} else {
+		id.attr('data-content', '*' + error);
+		id.find('input').addClass('errorL');
+	}
+}
 
 	      
 		

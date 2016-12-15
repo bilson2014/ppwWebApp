@@ -161,22 +161,23 @@
 		             	${provider.teamDescription }
 		             </div>
 		         </div>
-		         
-		         <div class="tag" id="tagId">
-		          <div class="name">
-		                <div><img src="${imgPath}/provder/gWork.png" ></div><div class="cn">擅长类型</div><div class="en">Capabilities</div>
-		             </div>
-		           <div class="midLine" id="provderTagId">
-		           		<div class="hide" id="provderTags" >${providerTags}</div>
-		            <!--      <div class="card">
-		                     <div class="controlCard"> 
-		                     		<div class="pencil"></div>
-		                     		<div class="cardWord">电影</div>
-		                     </div>
-		                 </div> -->
-		        
-		           </div>
-		         </div>
+		        <c:if test="${!empty providerTags}">
+			         <div class="tag" id="tagId">
+			          <div class="name">
+			                <div><img src="${imgPath}/provder/gWork.png" ></div><div class="cn">擅长类型</div><div class="en">Capabilities</div>
+			             </div>
+			           <div class="midLine" id="provderTagId">
+			           		<div class="hide" id="provderTags" >${providerTags}</div>
+			            <!--      <div class="card">
+			                     <div class="controlCard"> 
+			                     		<div class="pencil"></div>
+			                     		<div class="cardWord">电影</div>
+			                     </div>
+			                 </div> -->
+			        
+			           </div>
+			         </div>
+		         </c:if>
 		     </div>
 		     
 		     <div class="videoContent">

@@ -105,78 +105,72 @@
             </div>
         </div>
     </div>
+    
+    
 
 	<div class="page" >
 
 	      <div class="step">
                
-               <div class="title">注册/填写导演信息</div>
-               
 			  <div class="step-bar" id="step-bar">
-			      <div class="first step-1" data-content="填写基本信息">1</div>
+			      <div class="first step-1" id="step-1" data-content="填写基本信息">1</div>
 			      <div class="line"></div>
-			      <div class="first" data-content="填写详细信息">2</div>
+			      <div class="first" id="step-2" data-content="填写详细信息">2</div>
 			      <div class="line"></div>
-			      <div class="first" data-content="资质审核">3</div>
+			      <div class="first" id="step-3" data-content="资质审核">3</div>
 			  </div>
 
 	      		 <div class="step-one-div" id="step1" data-step="1">
-	      		 <div class="user-img-content">
-									<div class="user-icon">
-										<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+	      		                
+	      		             <div class="updateLogo">   
+	      		                    <div class="title">公司LOGO</div>
+		      		                <div class="user-img-content">
+										<div class="user-icon">
+											<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+										</div>
+										<div class="upload-info">
+											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>
+										</div>
+										<div class="upload-btn">
+											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
+											<div id="uploadBt">上传头像</div>
+											<input type="file" name="file" id="file" style="display: none;"/> 
+										</div>
 									</div>
-									<div class="upload-btn">
-										<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
-										<div id="uploadBt">上传头像</div>
-										<input type="file" name="file" id="file" style="display: none;"/> 
-									</div>
-									
-									<div class="upload-info">
-										<label>仅支持JPG、	PNG格式，文件小于2M</label>
-									</div>
-								</div>
-  	 				      <div class="input-group-div">
+							</div>	
+  	 				      <div class="input-group-div" id="company-name-error">
   	      		       	 	  <span class="title-word">公司名称</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-name" placeholder="请填写公司名称" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-name-error">公司名称未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-linkman-error">
   	      		       	 	  <span class="title-word">联系人</span>	
   	      					  <input type="text"  class="form-control step-one-input" id="company-linkman" placeholder="请填写联系人" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-linkman-error">联系人未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div hide">
-  	      		       	 	  <span class="title-word">密码</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-pwd" placeholder="请填写密码" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-pwd-error">密码未填写</span>
-  	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-webchat-error">
   	      		       	 	  <span class="title-word">微信号</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-webchat" placeholder="请填写微信号" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-webchat-error">微信号未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-qq-error">
   	      		       	 	  <span class="title-word">QQ</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-qq" placeholder="请填写QQ" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-qq-error">QQ未填写</span>
   	      				  </div>
-  	      				  <div class="input-group-div">
+  	      				  <div class="input-group-div" id="company-email-error">
   	      		       	 	  <span class="title-word">公司邮箱</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-email-error">公司邮箱未填写</span>
+  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-address-errors">
   	      		       	 	  <span class="title-word">公司地址</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-address" placeholder="请填写公司地址" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-address-error">公司地址未填写</span>
   	      				  </div>
 
   	      				  <div class="bottom-div">
-				  	      	  	<Button class="red-btn" id="checkbtn">下一步</Button>
+				  	      	  	<Button class="red-btn margin-left btn-c-r" id="checkbtn">下一步</Button>
 				  	      </div>
   	      		  </div>
 
-                <div class="step-two-div hide" id="step2" data-step="2">
+
+
+                <div class="step-two-div" id="step2" data-step="2">
 
                 <div class="input-group-div">
   	      			<span for="company-city" class="title-word">所在省</span>	
@@ -302,8 +296,8 @@
 									</div>
   	      				  </div> 
 
-
-  	      				  	 <div class="input-group-div">
+                             <div class="borderLine"></div>
+  	      				  	 <div class="input-group-div"  id="business-checkbox-error">
   	      		       	 	  <span for="company-business" class="title-checkbox-word">业务范围</span>	
   	      					      <div class="checkbox" id="business-checkbox">
 										<ul class="ul-step-two">
@@ -368,45 +362,47 @@
 												<div class="getTag" name="business" data-value="18"/> 包装</div>
 										    </li>
 										 </ul>   
-										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>
+										  
 									</div>
                 </div>
+                
+                <div class="borderLine"></div>
 
-                    <div class="input-group-div">
+                    <div class="input-group-div" id="company-teamDesc-error">
   	      		       	 	  <span class="title-checkbox-word" for="company-teamDesc">公司简介</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-teamDesc" rows="4" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-teamDesc-error">公司简介未填写</span>
   	      				  </div>
 
-  	      				   <div class="input-group-div bot-area">
+  	      				   <div class="input-group-div bot-area" id="company-scale-error">
   	      		       	 	  <span class="title-checkbox-word" for="company-scale">公司规模</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-scale" rows="4" maxlength="200" placeholder="公司规模为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-scale-error">公司规模未填写</span>
   	      				  </div>
 
   	      				   <div class="input-group-div bot-area">
   	      		       	 	  <span class="title-checkbox-word" for="company-demand">对客户要求</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-demand" rows="4" maxlength="200" placeholder="客户要求为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-demand-error">对客户要求未填写</span>
   	      				  </div>
      
                            <div class="bottom-div">
-                           	 <Button class="red-btn btn-left"  id="surebtn">确定</Button>        <Button class="red-btn btn-right" id="backbtn">上一步</Button>
+                           	 <Button class="gy-btn"  id="backbtn">上一步</Button>     <Button class="red-btn btn-c-r" id="surebtn">确定</Button>
                            </div>
-                </div>
-	      </div>	
+               
+	                   </div>	
 
-	       	  <div class="step-three-div hide" id="step3" data-step="3">
-                	 <div class="input-group-div">
+	       	  <div class="step-three-div" id="step3" data-step="3">
+                	 <div class="success">
                 	 	 <ul class="ul-step-three">
-                	 	 	 <li>
-                	 	 	 	<img src="/resources/images/provder/check.png"/>
-                	 	 	 </li>
-                	 	 	  <li>
-                	 	 	  	<span class="step-three-title">提交完成等待审核</span>
-                	 	 	 </li>
+                               <li>
+					                  <div class="show-zero2 zeromodal-icon zeromodal-success">
+									 	<span class="line tip"></span>
+									   	<span class="line long"></span>
+									  	<div class="placeholder"></div>
+									  </div>	
+                               </li> 
+                               <li class="title">资质调提交完成</li>
+                               <li class="info">官方将在3个工作日内完成您的资质审核，敬请等候...</li>
                 	 	 	  <li class="stepThreeLi">
-                	 	 	 	<span  class="step-three-time" id="lasttime">0</span><span class="step-three-word">秒后自动到</span><span class="step-three-word-top" id="to-top">供应商主页</span>
+                	 	 	 	<span class="step-three-word">自动跳转进</span><span class="step-three-word-top" id="to-top">个人信息</span><span class="step-three-word">页面</span><span  class="step-three-time" id="lasttime">0</span><span class="step-three-word">秒</span>
                 	 	 	 </li>
 
                 	 	  </ul>	
