@@ -21,7 +21,13 @@
 .input-group-div {
     width: 650px;
     position: relative;
-    margin-left: 230px;
+        margin-left: 64px;
+     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+         margin-left: 190px;
+    }
+    @media screen and (min-width:1500px) {
+        margin-left: 230px;
+    }
     &:after {
         content: "*";
         position: absolute;
@@ -98,7 +104,7 @@
             padding: 0px;
             margin: 0px;
             top: 30px;
-            height: 400px;
+            max-height: 400px;
             overflow: auto;
         }
         li {
@@ -337,12 +343,12 @@
         -o-transition: all .8s ease-in-out .8s;
         &:after {
             content: attr(data-content);
-            color: $f8;
+            color: $gray;
             font-size: $font-size-base;
             position: absolute;
             width: 100px;
-            bottom: -28px;
-            left: -39px;
+            bottom: -38px;
+            left: -28px;
         }
     }
 }
@@ -383,10 +389,16 @@
 }
 
 .updateLogo {
-    margin-left: 230px;
     width: 650px;
     padding-top: 60px;
     margin-bottom: 60px;
+     margin-left: 64px;
+     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+         margin-left: 190px;
+    }
+    @media screen and (min-width:1500px) {
+        margin-left: 230px;
+    }
     .title {
         display: inline-block;
         vertical-align: top;
@@ -427,11 +439,17 @@
 
 .borderLine {
     width: 650px;
-    margin-left: 230px;
     height: 1px;
     margin-top: 15px;
     margin-bottom: 40px;
     background: #eee;
+     margin-left: 64px;
+     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+         margin-left: 190px;
+    }
+    @media screen and (min-width:1500px) {
+        margin-left: 230px;
+    }
 }
 
 .ul-step-three {

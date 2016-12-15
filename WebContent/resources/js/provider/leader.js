@@ -112,8 +112,8 @@ function showStepTwo(){
 	setTimeout(function() {
 		$('.step-two-div').slideDown();
 	}, 500);
- $('#step-2').removeClass('step-1');
- $('#step-1').addClass('step-1');
+ $('#step-2').addClass('step-1');
+ $('#step-1').removeClass('step-1');
 }
 
 function showStepThree(){
