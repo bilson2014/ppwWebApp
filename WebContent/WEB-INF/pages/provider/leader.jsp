@@ -9,6 +9,7 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/provider/leader.css" var="providerLeaderCss"/>
 <spring:url value="/resources/css/provider/step-dc-style2.css" var="providerStepCss2"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -17,6 +18,7 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/leader.js" var="leaderJs"/>
 <spring:url value="/resources/images" var="path" />
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,13 +35,14 @@
 	<link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 	<link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 	<link rel="stylesheet" type="text/css" href="${providerStepCss2}">
-
+	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
 	<script src="${commonJs}"></script>
 	<script src="${leaderJs}"></script>
+	<script src="${webuploaderJs}"></script>
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
@@ -119,14 +122,13 @@
 			      <div class="line"></div>
 			      <div class="first" id="step-3" data-content="资质审核">3</div>
 			  </div>
-
 	      		 <div class="step-one-div" id="step1" data-step="1">
-	      		                
 	      		             <div class="updateLogo">   
 	      		                    <div class="title">公司LOGO</div>
 		      		                <div class="user-img-content">
 										<div class="user-icon">
 											<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+											<input type="hidden" id="user_img_url" value="/resources/images/index/db13.jpg">
 										</div>
 										<div class="upload-info">
 											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>
@@ -190,14 +192,14 @@
 											<c:if test="${!empty provinces}">
 												<c:forEach items="${provinces }" var="source" varStatus="status">
 													<c:if test="${ status.index == 0}">
-															<span data-value ="${source.provinceID }" id='getProvince'>${source.provinceName }</span>
+															<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
 																<div class="carets"></div>
 															</button>
 															<ul class="dropdown-menu id="selectUl" role="menu"
 																aria-labelledby="dropdownMenu1">
 													</c:if>
 												
-													  <li data-value ="${source.provinceID }"
+													  <li class="Province" data-value ="${source.provinceID }"
 													  	<c:if test="${provider.teamProvince == source.provinceID }">
 													  		selected="selected"
 													  	</c:if> >${source.provinceName }</li>
@@ -282,7 +284,7 @@
 									<div class="dropdown leaderSelect" id="company-infoResource">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='indent_recomment'>友情推荐</span>
+											<span id='indent_qwe'>友情推荐</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu id="selectUl" role="menu"
@@ -411,7 +413,20 @@
 
 	   </div>
 
-
+		<!-- photo Modal start -->
+	<div class="modal" id="errorModal">
+		<div class="modal-dialog">
+			<div class="modal-content model-distance">
+				<div class="modal-body">
+					<label id="error-message"></label>
+					<button type="button" class="btn btn-warning" id="iKnow">知道了</button>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	<!-- photo Modal start -->
 	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
