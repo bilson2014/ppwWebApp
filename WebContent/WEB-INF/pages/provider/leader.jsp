@@ -156,7 +156,7 @@
   	      				  </div>
   	      				  <div class="input-group-div" id="company-email-error">
   	      		       	 	  <span class="title-word">公司邮箱</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">>
+  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">
   	      				  </div>
   	      				   <div class="input-group-div" id="company-address-errors">
   	      		       	 	  <span class="title-word">公司地址</span>	
