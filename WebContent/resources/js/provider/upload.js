@@ -508,4 +508,9 @@ function cancleUpdate(){
 $('#backBt').on('click',function(){
 	$('.menu-content li:eq(1)', parent.document).click();
 });
+
+function hasAuditing(){
+	var flag = $("#bean-flag").val();
+	return flag == 1?true:false
+}
  

@@ -105,64 +105,76 @@
             </div>
         </div>
     </div>
+    
+    
 
 	<div class="page" >
 
 	      <div class="step">
-
+               
 			  <div class="step-bar" id="step-bar">
-			      <div class="first">1.基本信息</div>
-			      <div class="first">2.详细信息</div>
-			      <div class="first">3.注册完成</div>
+			      <div class="first step-1" id="step-1" data-content="填写基本信息">1</div>
+			      <div class="line"></div>
+			      <div class="first" id="step-2" data-content="填写详细信息">2</div>
+			      <div class="line"></div>
+			      <div class="first" id="step-3" data-content="资质审核">3</div>
 			  </div>
 
 	      		 <div class="step-one-div" id="step1" data-step="1">
-  	 				      <div class="input-group-div">
+	      		                
+	      		             <div class="updateLogo">   
+	      		                    <div class="title">公司LOGO</div>
+		      		                <div class="user-img-content">
+										<div class="user-icon">
+											<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+										</div>
+										<div class="upload-info">
+											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>
+										</div>
+										<div class="upload-btn">
+											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
+											<div id="uploadBt">上传头像</div>
+											<input type="file" name="file" id="file" style="display: none;"/> 
+										</div>
+									</div>
+							</div>	
+  	 				      <div class="input-group-div" id="company-name-error">
   	      		       	 	  <span class="title-word">公司名称</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-name" placeholder="请填写公司名称" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-name-error">公司名称未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-linkman-error">
   	      		       	 	  <span class="title-word">联系人</span>	
   	      					  <input type="text"  class="form-control step-one-input" id="company-linkman" placeholder="请填写联系人" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-linkman-error">联系人未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div hide">
-  	      		       	 	  <span class="title-word">密码</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-pwd" placeholder="请填写密码" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-pwd-error">密码未填写</span>
-  	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-webchat-error">
   	      		       	 	  <span class="title-word">微信号</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-webchat" placeholder="请填写微信号" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-webchat-error">微信号未填写</span>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-qq-error">
   	      		       	 	  <span class="title-word">QQ</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-qq" placeholder="请填写QQ" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-qq-error">QQ未填写</span>
   	      				  </div>
-  	      				  <div class="input-group-div">
+  	      				  <div class="input-group-div" id="company-email-error">
   	      		       	 	  <span class="title-word">公司邮箱</span>	
-  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-email-error">公司邮箱未填写</span>
+  	      					  <input type="text" class="form-control step-one-input" id="company-email" placeholder="请填写公司邮箱" aria-describedby="basic-addon2">>
   	      				  </div>
-  	      				   <div class="input-group-div">
+  	      				   <div class="input-group-div" id="company-address-errors">
   	      		       	 	  <span class="title-word">公司地址</span>	
   	      					  <input type="text" class="form-control step-one-input" id="company-address" placeholder="请填写公司地址" aria-describedby="basic-addon2">
-  	      					  <span class="error-word" id="company-address-error">公司地址未填写</span>
   	      				  </div>
 
   	      				  <div class="bottom-div">
-				  	      	  	<Button class="red-btn" id="checkbtn">下一步</Button>
+				  	      	  	<Button class="red-btn margin-left btn-c-r" id="checkbtn">下一步</Button>
 				  	      </div>
   	      		  </div>
 
-                <div class="step-two-div hide" id="step2" data-step="2">
+
+
+                <div class="step-two-div" id="step2" data-step="2">
 
                 <div class="input-group-div">
   	      			<span for="company-city" class="title-word">所在省</span>	
-							<select class="step-two-select-city form-control" id="company-province"   >
+<%-- 							<select class="step-two-select-city form-control" id="company-province"   >
 								<c:if test="${!empty provinces}">
 									<c:forEach items="${provinces }" var="source" varStatus="status">
 									  <option value ="${source.provinceID }"
@@ -171,10 +183,31 @@
 									  	</c:if> >${source.provinceName }</option>
 									</c:forEach>
 								</c:if>
-							</select>
+							</select> --%>
+							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<c:if test="${!empty provinces}">
+												<c:forEach items="${provinces }" var="source" varStatus="status">
+													<c:if test="${ status.index == 0}">
+															<span data-value ="${source.provinceID }" id='getProvince'>${source.provinceName }</span>
+																<div class="carets"></div>
+															</button>
+															<ul class="dropdown-menu id="selectUl" role="menu"
+																aria-labelledby="dropdownMenu1">
+													</c:if>
+												
+													  <li data-value ="${source.provinceID }"
+													  	<c:if test="${provider.teamProvince == source.provinceID }">
+													  		selected="selected"
+													  	</c:if> >${source.provinceName }</li>
+													</c:forEach>
+												</c:if>									
+										</ul>
+									</div>
 									
 					<span for="company-city" class="title-word-city">所在城市</span>	
-							<select class="step-two-select-city form-control"  id="company-city">
+<%-- 							<select class="step-two-select-city form-control"  id="company-city">
 								<c:if test="${!empty citys}">
 									<c:forEach items="${citys }" var="source" varStatus="status">
 									  <option value ="${source.cityID }"
@@ -183,142 +216,193 @@
 									  	</c:if> >${source.city }</option>
 									</c:forEach>
 								</c:if>
-							</select>
+							</select> --%>
+							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<c:if test="${!empty citys}">
+													<c:forEach items="${citys }" var="source" varStatus="status">
+													  <c:if test="${ status.index == 0}">
+																<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
+																<div class="carets"></div>
+															</button>
+															<ul class="dropdown-menu id="selectUl" role="menu"
+																aria-labelledby="dropdownMenu1">
+												      </c:if>
+												      
+													  <li data-value ="${source.cityID }"
+													  	<c:if test="${provider.teamCity == source.cityID }">
+													  		selected="selected"
+										  				</c:if> >${source.city }</li>
+													</c:forEach>
+												</c:if>										
+										</ul>
+									</div>
   	      		</div>
 
   	      			 <div class="input-group-div">
   	      		       	 	  <span for="company-priceRange" class="title-word">价格区间</span>	
   	      					  <input type="hidden" id="company-priceRange-value" value="${provider.priceRange }"/>
-									<select class="step-two-select form-control" id="company-priceRange" >
+									<!-- <select class="step-two-select form-control" id="company-priceRange" >
 										<option value="0" >看情况</option>
 			            				<option value="1" >1万元及以上</option>
 			            				<option value="2" >2万元及以上</option>
 			            				<option value="3" >3万元及以上</option>
 			            				<option value="4" >5万元及以上</option>
 			            				<option value="5" >10万元及以上</option>
-									</select>
+									</select> -->
+									<div class="dropdown leaderSelect" id="company-priceRange-value">
+										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<span id='indent_recomment'>看情况</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu id="selectUl" role="menu"
+											aria-labelledby="dropdownMenu1">
+											<li data-value="0">看情况</li>
+											<li data-value="1">1万元及以上</li>
+											<li data-value="2">2万元及以上</li>
+											<li data-value="3">3万元及以上</li>
+											<li data-value="4">5万元及以上</li>
+											<li data-value="5">10万元及以上</li>
+										</ul>
+									</div>
   	      				  </div>
 
   	      				 <div class="input-group-div">
   	      		       	 	  <span for="company-infoResource" class="title-word">获知渠道</span>	
   	      						 <input type="hidden" id="company-infoResource-value" value="${provider.infoResource }"/>
-									<select class="step-two-select form-control" id="company-infoResource" >
+									<!-- <select class="step-two-select form-control" id="company-infoResource" >
 										<option value="0" >友情推荐</option>
 			            				<option value="1" >网络搜索</option>
 			            				<option value="2" >拍片帮</option>
 			            				<option value="3" >拍片网</option>
 			            				<option value="4" >电销</option>
-									</select>
+												</select> -->
+									<div class="dropdown leaderSelect" id="company-infoResource">
+										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<span id='indent_recomment'>友情推荐</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu id="selectUl" role="menu"
+											aria-labelledby="dropdownMenu1">
+											<li data-value="0">友情推荐</li>
+											<li data-value="1">网络搜索</li>
+											<li data-value="2">拍片帮</li>
+											<li data-value="3">拍片网</li>
+											<li data-value="4">电销</li>
+										</ul>
+									</div>
   	      				  </div> 
 
-
-  	      				  	 <div class="input-group-div">
+                             <div class="borderLine"></div>
+  	      				  	 <div class="input-group-div"  id="business-checkbox-error">
   	      		       	 	  <span for="company-business" class="title-checkbox-word">业务范围</span>	
   	      					      <div class="checkbox" id="business-checkbox">
 										<ul class="ul-step-two">
 											<li>	
-												<input type="checkbox" name="business" value="0" /> 广告
+												<div class="getTag" name="business" data-value="0"> 广告</div>
 									    	</li>
 									    	<li>	
-												<input type="checkbox" name="business" value="16" /> TVC
+												<div class="getTag" name="business" data-value="16" /> TVC</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="1"/> 宣传片
+												<div class="getTag" name="business" data-value="1"/> 宣传片</div>
 									   	 	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="2"/> 真人秀
+												<div class="getTag" name="business" data-value="2"/> 真人秀</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="3"/> 纪录片
+												<div class="getTag" name="business" data-value="3"/> 纪录片</div>
 									    	</li>
-									    </ul>
-									    <ul class="ul-step-two">
+									    
 											<li>
-												<input type="checkbox" name="business" value="4"/> 病毒视频
+												<div class="getTag" name="business" data-value="4"/> 病毒视频</div>
 									  	  	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="5"/> 电视栏目
+												<div class="getTag" name="business" data-value="5"/> 电视栏目</div>
 									    	</li>
 									    	<li>
-												<input type="checkbox" name="business" value="17"/> MV
+												<div class="getTag" name="business" data-value="17"/> MV</div>
 									    	</li>
 									   	 	<li>
-												<input type="checkbox" name="business" value="6"/> 三维动画
+												<div class="getTag" name="business" data-value="6"/> 三维动画</div>
 									   		</li>
 									   		<li>
-												<input type="checkbox" name="business" value="7"/> MG动画
+												<div class="getTag" name="business" data-value="7"/> MG动画</div>
 									  		</li>
-									    </ul>
-									    <ul class="ul-step-two">
+									   
 									    	<li>
-												<input type="checkbox" name="business" value="8"/> 体育赛事
+												<div class="getTag" name="business" data-value="8"/> 体育赛事</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="9"/> 专题片
+												<div class="getTag" name="business" data-value="9"/> 专题片</div>
 											</li>
                                              <li> 
-												<input type="checkbox" name="business" value="10"/> VR拍摄
+												<div class="getTag" name="business" data-value="10"/> VR拍摄</div>
 											</li>
 											<li>
-												<input type="checkbox" name="business" value="11"/> 产品拍摄
+												<div class="getTag" name="business" data-value="11"/> 产品拍摄</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="12"/> 微电影
+												<div class="getTag" name="business" data-value="12"/> 微电影</div>
 										    </li>
-										</ul>    
-										<ul class="ul-step-two" style="vertical-align:top">
+										
 										    <li>
-												<input type="checkbox" name="business" value="13"/> 航拍
-										    </li>
-										    <li>
-												<input type="checkbox" name="business" value="14"/> 活动视频
+												<div class="getTag" name="business" data-value="13"/> 航拍</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="15"/> 后期制作
+												<div class="getTag" name="business" data-value="14"/> 活动视频</div>
 										    </li>
 										    <li>
-												<input type="checkbox" name="business" value="18"/> 包装
+												<div class="getTag" name="business" data-value="15"/> 后期制作</div>
+										    </li>
+										    <li>
+												<div class="getTag" name="business" data-value="18"/> 包装</div>
 										    </li>
 										 </ul>   
-										  <span class="error-area-word" id="business-checkbox-error">业务未填写</span>
+										  
 									</div>
                 </div>
+                
+                <div class="borderLine"></div>
 
-                    <div class="input-group-div">
+                    <div class="input-group-div" id="company-teamDesc-error">
   	      		       	 	  <span class="title-checkbox-word" for="company-teamDesc">公司简介</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-teamDesc" rows="4" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-teamDesc-error">公司简介未填写</span>
   	      				  </div>
 
-  	      				   <div class="input-group-div bot-area">
+  	      				   <div class="input-group-div bot-area" id="company-scale-error">
   	      		       	 	  <span class="title-checkbox-word" for="company-scale">公司规模</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-scale" rows="4" maxlength="200" placeholder="公司规模为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-scale-error">公司规模未填写</span>
   	      				  </div>
 
   	      				   <div class="input-group-div bot-area">
   	      		       	 	  <span class="title-checkbox-word" for="company-demand">对客户要求</span>
   	      		       	 	  <textarea class="form-control step-area" id="company-demand" rows="4" maxlength="200" placeholder="客户要求为必填字段">${provider.teamDescription }</textarea>	
-  	      					  <span class="error-area-word" id="company-demand-error">对客户要求未填写</span>
   	      				  </div>
      
                            <div class="bottom-div">
-                           	 <Button class="red-btn btn-left"  id="surebtn">确定</Button>        <Button class="red-btn btn-right" id="backbtn">上一步</Button>
+                           	 <Button class="gy-btn"  id="backbtn">上一步</Button>     <Button class="red-btn btn-c-r" id="surebtn">确定</Button>
                            </div>
-                </div>
-	      </div>	
+               
+	                   </div>	
 
-	       	  <div class="step-three-div hide" id="step3" data-step="3">
-                	 <div class="input-group-div">
+	       	  <div class="step-three-div" id="step3" data-step="3">
+                	 <div class="success">
                 	 	 <ul class="ul-step-three">
-                	 	 	 <li>
-                	 	 	 	<img src="/resources/images/provder/check.png"/>
-                	 	 	 </li>
-                	 	 	  <li>
-                	 	 	  	<span class="step-three-title">提交完成等待审核</span>
-                	 	 	 </li>
+                               <li>
+					                  <div class="show-zero2 zeromodal-icon zeromodal-success">
+									 	<span class="line tip"></span>
+									   	<span class="line long"></span>
+									  	<div class="placeholder"></div>
+									  </div>	
+                               </li> 
+                               <li class="title">资质调提交完成</li>
+                               <li class="info">官方将在3个工作日内完成您的资质审核，敬请等候...</li>
                 	 	 	  <li class="stepThreeLi">
-                	 	 	 	<span  class="step-three-time" id="lasttime">0</span><span class="step-three-word">秒后自动到</span><span class="step-three-word-top" id="to-top">供应商主页</span>
+                	 	 	 	<span class="step-three-word">自动跳转进</span><span class="step-three-word-top" id="to-top">个人信息</span><span class="step-three-word">页面</span><span  class="step-three-time" id="lasttime">0</span><span class="step-three-word">秒</span>
                 	 	 	 </li>
 
                 	 	  </ul>	

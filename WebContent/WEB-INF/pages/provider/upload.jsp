@@ -72,6 +72,7 @@
 	<input type="hidden" value="${sId }" id="s-id"/>
 	<input type="hidden" value="${model.videoDescription }" id="page-description"/>
 	<input type="hidden" value="${model.sessionId }" id="sessionId"/>
+	<input type="hidden" value="${model.flag }" id="bean-flag"/>
 	<img id="tempImg" dynsrc="" src="" style="display:none" />
 	<div class="content-wrap">
 		<div class="form-wrap">

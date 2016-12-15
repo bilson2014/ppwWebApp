@@ -58,7 +58,7 @@ var="ajaxfileuploadJs" />
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
 <script src="${jsonJs }"></script>
-<script src="${commonJs }"></script>
+<%-- <script src="${commonJs }"></script> --%>
 <script src="${cookiejs }"></script>
 <script src="${modelJs }"></script>
 <script type="text/javascript" src="${addflowjs }"></script>
