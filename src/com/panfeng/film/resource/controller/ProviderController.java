@@ -630,6 +630,7 @@ public class ProviderController extends BaseController {
 		}
 		return msg;
 	}
+
 	@RequestMapping("/upload/teamPhoto")
 	public String uploadLogo(final HttpServletRequest request, final HttpServletResponse response,
 			@PathParam("file") final MultipartFile file) {
