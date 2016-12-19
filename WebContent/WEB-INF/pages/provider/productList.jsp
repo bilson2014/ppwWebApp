@@ -70,6 +70,24 @@
                   <li>不可见</li>
                 </ul>
             </div>
+            <div class="state red">
+                                             审核通过
+            </div>
+            <div class="lastContent">
+                <div class="setDef">
+                     <div>设为代表作</div>
+                     <div class="star"></div>
+                </div>
+                <div class="edit btn-c-r">
+                   <div></div>
+                   <div>编辑</div>
+                </div>
+                <div class="del btn-c-g">
+                   <div></div>
+                   <div>删除</div>
+                </div>
+                 
+            </div>
         </div>
     </div>
     
