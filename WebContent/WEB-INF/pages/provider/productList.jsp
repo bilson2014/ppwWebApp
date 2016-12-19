@@ -56,13 +56,37 @@
         <div class="productCard">
             <img src="/resources/images/index/noImg.jpg"/>
             <div class="mid">
-                <div class="title"><span></span></div>
-                <div class="content"><></div>
+                <div class="title">
+                       <span>标题：</span>
+                       <span>测试用</span>
+                </div>
+                <div class="content">
+                    <div class="cTitle">建议：</div>
+                    <div class="cContent">打算打打打</div>
+                </div>
                 <ul>
                   <li>可见</li>
                   <li></li>
                   <li>不可见</li>
                 </ul>
+            </div>
+            <div class="state red">
+                                             审核通过
+            </div>
+            <div class="lastContent">
+                <div class="setDef">
+                     <div>设为代表作</div>
+                     <div class="star"></div>
+                </div>
+                <div class="edit btn-c-r">
+                   <div></div>
+                   <div>编辑</div>
+                </div>
+                <div class="del btn-c-g">
+                   <div></div>
+                   <div>删除</div>
+                </div>
+                 
             </div>
         </div>
     </div>
