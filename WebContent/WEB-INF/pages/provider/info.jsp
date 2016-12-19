@@ -303,9 +303,6 @@
                             <div class="infoBottom">
 	                            <div class="infoSubmit btn-c-r" id="submitCheck">提交审核</div>
                             </div>
-
                        </div>
-		
-		
 </body>
 </html>
