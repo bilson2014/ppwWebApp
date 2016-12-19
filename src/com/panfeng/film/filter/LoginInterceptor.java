@@ -35,12 +35,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 			// 新客户端 ,获取cookie，检测客户端是否存在七天内登陆
-			return checkAutoLogin(request);
+			return checkAutoLogin(request,response);
 		}
 		return true;
 	}
 
-	private boolean checkAutoLogin(HttpServletRequest request) {
+	private boolean checkAutoLogin(HttpServletRequest request,HttpServletResponse response) {
 		String token = null;
 		Cookie[] cookie = request.getCookies();
 		if (cookie != null) {
@@ -58,7 +58,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 						Map<String, Object> map = new HashMap<String, Object>();
 						map.put(GlobalConstant.SESSION_INFO, info);
 						service.addSessionSeveralTime(request, map, 60 * 60 * 24 * 7);// 登陆用户存放七天
-						// service.removeSessionByToken(request,token);
+						
+						Cookie cookieUsername = new Cookie("token", request.getSession().getId());
+						cookieUsername.setPath("/");
+						cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);
+						cookieUsername.setMaxAge(60 * 60 * 24 * 7); /* 设置cookie的有效期为 7 天 */
+						response.addCookie(cookieUsername);
+						service.removeSessionByToken(request,token);
 					}
 				}
 			}

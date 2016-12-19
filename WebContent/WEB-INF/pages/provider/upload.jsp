@@ -7,7 +7,6 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/lib/Bootstrap/css/bootstrap-switch.min.css" var="bootstrapSwitchCss"/>
 <spring:url value="/resources/css/provider/upload.css" var="providerUploadCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/kindeditor/themes/default/default.css" var="defaultCss" />
@@ -15,16 +14,10 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.blockui/jquery.blockUI.js" var="blockUIJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/Bootstrap/js/bootstrap-switch.min.js" var="bootstrapSwitchJs"/>
-<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
-<spring:url value="/resources/lib/kindeditor/kindeditor-all-min.js" var="kindeditorJs" />
-<spring:url value="/resources/lib/kindeditor/plugins/code/prettify.js" var="prettifyJs" />
-<spring:url value="/resources/lib/kindeditor/lang/zh_CN.js" var="kindeditorzhJs" />
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
 <spring:url value="/resources/js/provider/upload.js" var="providerUploadJs"/>
@@ -49,7 +42,6 @@
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
-	<link rel="stylesheet" href="${bootstrapSwitchCss }">
 	<link rel="stylesheet" href="${defaultCss }">
 	<link rel="stylesheet" href="${prettifyCss }">
 	<link rel="stylesheet" href="${providerUploadCss }">
@@ -69,11 +61,6 @@
 	<input type="hidden" value="${cKey }" id="company-id"/>
 	<input type="hidden" value="${productKey }" id="p-id"/>
 	<input type="hidden" value="${action }" id="action"/>
-	<input type="hidden" value="${sId }" id="s-id"/>
-	<input type="hidden" value="${model.videoDescription }" id="page-description"/>
-	<input type="hidden" value="${model.sessionId }" id="sessionId"/>
-	<input type="hidden" value="${model.flag }" id="bean-flag"/>
-	<img id="tempImg" dynsrc="" src="" style="display:none" />
 	<div class="content-wrap">
 		<div class="form-wrap">
 			<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
@@ -91,36 +78,6 @@
 						</div>
 						<span style="color:red;">*</span>
 					</div>
-					<%-- <div class="form-group">
-						<label for="video-type" class="col-sm-2 control-label">类型</label>
-						<div class="col-sm-6">
-							<input type="hidden" id="vType" value="${model.productType }"/>
-							<select class="form-control" id="video-type">
-								
-							</select>
-						</div>
-						<span style="color:red;">*</span>
-					</div> --%>
-					<div class="form-group">
-						<label for="video-length" class="col-sm-2 control-label">视频长度</label>
-						<div class="col-sm-3">
-							<input type="number" class="form-control" id="video-length" placeholder="请填写数字" value="${model.videoLength }">
-						</div>
-						秒
-					</div>
-					<div class="form-group">
-						<label for="video-price" class="col-sm-2 control-label">价格</label>
-						<div class="col-sm-3">
-							<input type="number" class="form-control" id="video-price" placeholder="请填写数组" value="${model.servicePrice }">
-						</div>
-						元
-					</div>
-					<div class="form-group">
-						<label for="video-switch" class="col-sm-2 control-label">是否可见</label>
-						<div class="col-sm-3">
-							<input type="checkbox" id="video-switch" name="video-switch" value="${model.visible }">
-						</div>
-					</div>
 					
 					<div class="form-group">
 						<label for="video-switch" class="col-sm-2 control-label">创作时间</label>
@@ -128,50 +85,6 @@
 							<input type="text" class="form-control" id="creationTime" placeholder="请选择作品创作时间" readonly="readonly" value="${model.creationTime }">
 						</div>
 						<span style="color:red;">*</span>
-					</div>
-					
-					<div class="form-group">
-						<label for="video-tag" class="col-sm-2 control-label">标签</label>
-						<div class="col-sm-6">
-							<div class="upload_filed_area">
-								<div class="mod_keyword">
-									<c:if test="${not empty model.tags }">
-										<span class="keyword_placeholder" style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-										<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-											<span class="keyword_item">
-												<b class="keyword_item_inner">${tag }</b>
-												<a href="javascript:void(0);" class="btn_keyword_del">
-													<span>x</span>
-												</a>
-											</span> 
-										</c:forEach>
-									</c:if>
-									<c:if test="${empty model.tags }" >
-										<span class="keyword_placeholder" style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-									</c:if>
-									<span class="keyword_input">
-										<input type="text" class="input_inner" id="text_tags"/>
-									</span>
-								</div>
-							</div>
-							<p style="color:#999;font-size: 12px;">敲击空格键添加标签</p>
-							<div class="alert alert-danger" id="tagLabel" style="display: none;">每个标签最多8个汉字或16个字母！</div>
-						</div>
-						
-					</div>
-					
-					<div class="form-group">
-						<label for="video-description" class="col-sm-2 control-label">视频简介</label>
-						<div class="col-sm-6">
-							<textarea class="form-control" id="video-description" rows="4" maxlength="150" placeholder="公司简介为必填字段">${model.pDescription }</textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="pageDescription" class="col-sm-2 control-label">作品页简介</label>
-						<div class="col-sm-6">
-							<textarea class="form-control" id="pageDescription" name="pageDescription" ></textarea>
-							<p style="color:#999;font-size: 12px;">图片宽度900显示效果最佳，每张图片大小不得大于250KB</p>
-						</div>
 					</div>
 					<div class="form-group">
 						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
@@ -206,7 +119,9 @@
 				
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-6 save">
-							<button type="button" class="btn btn-default" id="infoBt">保存</button>
+						<button type="button" class="btn btn-default" id="submitBt">提交审核</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-default" id="saveBt">保存</button>
 							&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" id="backBt">返回</button>
 						</div>
 					</div>

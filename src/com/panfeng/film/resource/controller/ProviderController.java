@@ -160,7 +160,6 @@ public class ProviderController extends BaseController {
 		final String url = URL_PREFIX + "portal/product/static/data/loadProducts/" + team.getTeamId();
 		final String json = HttpUtil.httpGet(url, request);
 		List<Product> list = new ArrayList<Product>();
-		// List<Product> lists = new ArrayList<Product>();
 		if (json != null && !"".equals(json)) {
 			try {
 				list = JsonUtil.fromJsonArray(json, Product.class);
@@ -782,29 +781,6 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/delete/product/{productId}")
 	public boolean deleteProviderProduct(@PathVariable("productId") final long productId,
 			final HttpServletRequest request) {
-
-		// 先删除文件，后删除数据
-		Product original = new Product();
-		final String originalUrl = URL_PREFIX + "portal/product/static/data/" + productId;
-		final String result = HttpUtil.httpGet(originalUrl, request);
-		if (result != null && !"".equals(result)) {
-			original = JsonUtil.toBean(result, Product.class);
-			// 删除 缩略图
-			final String picLDUrl = original.getPicLDUrl();
-			DFSservice.delete(picLDUrl);
-			// 删除 高清图
-			final String picHDUrl = original.getPicHDUrl();
-			DFSservice.delete(picHDUrl);
-			// 删除 视频
-			final String videoUrl = original.getVideoUrl();
-			DFSservice.delete(videoUrl);
-			// TODO 待修改成分解富文本，删除图片
-			// 删除产品编辑页图片
-			// String sessionId = original.getSessionId();
-			// if (sessionId != null && !"".equals(sessionId))
-			// kindService.deleteImageDir(original.getSessionId());
-
-		}
 		final String url = URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;
 		final String json = HttpUtil.httpGet(url, request);
 		boolean flag = true;
@@ -829,15 +805,11 @@ public class ProviderController extends BaseController {
 			final String json = HttpUtil.httpGet(url, request);
 			if (json != null && !"".equals(json)) {
 				product = JsonUtil.toBean(json, Product.class);
-				String sid = product.getSessionId();
-				if (sid == null || "".equals(sid))
-					product.setSessionId(DataUtil.getUuid());
 			}
 		}
 		model.addAttribute("cKey", providerId);
 		model.addAttribute("productKey", productId);
 		model.addAttribute("action", action);
-		model.addAttribute("sId", product.getServiceId());
 		model.addAttribute("model", product);
 		return new ModelAndView("provider/upload", model);
 	}
@@ -862,18 +834,19 @@ public class ProviderController extends BaseController {
 			@RequestBody final Product product) {
 		try {
 			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
-			}
-
-			// 保存 product
 			long productId = 0;
-			product.setFlag(0); // 默认设置 未审核 状态
+			// flag 0未审核状态  3.保存状态。保存后还是要提交审核
+			int flag = product.getFlag();
+			if(flag != 0 && flag != 3){
+				product.setFlag(3);//非法字段设置为保存状态
+			}
+			product.setRecommend(0); // 推荐值 为0
+			product.setSupportCount(0); // 赞值 为0
+			product.setVideoLength("0");
+			product.setpDescription("");
+			product.setVideoDescription("");
+			product.setVisible(0); // 默认可见
 			final String url = URL_PREFIX + "portal/product/static/data/save/info";
 			final String json = HttpUtil.httpPost(url, product, request);
 			if (json != null && !"".equals(json)) {
@@ -890,37 +863,35 @@ public class ProviderController extends BaseController {
 			e.printStackTrace();
 			throw new RuntimeException("file upload error ...", e);
 		}
-		return new BaseMsg(0, "success");
+		return new BaseMsg(1, "success");
 	}
 
 	/**
 	 * 更新 视频 信息
 	 */
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public String updateProduct(final HttpServletRequest request, final HttpServletResponse response,
+	public BaseMsg updateProduct(final HttpServletRequest request, final HttpServletResponse response,
 			@RequestBody final Product product) {
-		final long productId = product.getProductId(); // product id
 		try {
-			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
-			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
-			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
+			final long productId = product.getProductId();
+			// flag 0未审核状态  3.保存状态。保存后还是要提交审核
+			int flag = product.getFlag();
+			if(flag != 0 && flag != 3){
+				product.setFlag(3);//非法字段设置为保存状态
 			}
-
-			final String sId = HttpUtil.httpPost(updatePath, product, request);
-			long serviceId = 0l;
-			if (sId != null && !"".equals(sId)) {
-				serviceId = JsonUtil.toBean(sId, Long.class);
+			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
+			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
+			final String result = HttpUtil.httpPost(updatePath, product, request);
+			if (result != null && !"".equals(result)) {
+				Boolean b  = JsonUtil.toBean(result, Boolean.class);
+				if(b){
+					return new BaseMsg(1,"success");
+				}return new BaseMsg(0,"保存失败");
 			}
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
 					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-			return String.valueOf(serviceId);
+			return new BaseMsg(0,"保存失败");
 		} catch (IOException e) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("ProviderController method:updateProduct() file upload error ...", sessionInfo);
@@ -981,7 +952,7 @@ public class ProviderController extends BaseController {
 			if ("success".equals(checkResult)) {
 				// 插入数据
 				Product product = new Product();
-				product.setFlag(1); // 默认是 审核通过 状态
+				product.setFlag(0); // 默认是 审核中 状态
 				final String name = file.getOriginalFilename();
 				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
 				String productName = name.split("." + extName)[0];
