@@ -195,3 +195,60 @@
             }
         }
     }
+
+    .updateLogo {
+    width: 650px;
+    padding-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 100px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-left: 190px;
+    }
+    @media screen and (min-width:1500px) {
+        margin-left: 230px;
+    }
+    .title {
+        display: inline-block;
+        vertical-align: top;
+        width: 90px;
+        font-size: $font-size-base;
+        color: $gray-dark;
+    }
+}
+
+.user-img-content {
+    width: 500px;
+    display: inline-block;
+    vertical-align: top;
+    img {
+        width: 120px;
+        height: 120px;
+        border-radius: 4px !important;
+    }
+}
+
+.upload-info {
+    width: 100%;
+    color: $gray-light;
+    font-size: $font-size-sm;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#uploadBt {
+    cursor: pointer;
+    .webuploader-pick {
+        width: 120px;
+        height: 36px;
+        border: 1px solid $gray-light;
+        line-height: 16px;
+        color: $gray-dark;
+        border-radius: 4px;
+        text-align: center;
+        background: transparent !important;
+        &:hover {
+            color: white;
+            border: 1px solid $red-base;
+        }
+    }
+}

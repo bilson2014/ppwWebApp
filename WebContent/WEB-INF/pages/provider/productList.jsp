@@ -56,8 +56,8 @@
         <div class="productCard">
             <img src="/resources/images/index/noImg.jpg"/>
             <div class="mid">
-                <div class="title"></div>
-                <div class="content"></div>
+                <div class="title"><span></span></div>
+                <div class="content"><></div>
                 <ul>
                   <li>可见</li>
                   <li></li>
