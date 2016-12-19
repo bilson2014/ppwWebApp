@@ -253,16 +253,17 @@
 									<div class="dropdown leaderSelect" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='indent_recomment' data-value="0">友情推荐</span>
+											<span id='indent_recomment' data-value="0">看情况</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu id="selectUl" role="menu"
 											aria-labelledby="dropdownMenu1">
-											<li data-value="0" >友情推荐</li>
-				            				<li data-value="1" >网络搜索</li>
-				            				<li data-value="2" >拍片帮</li>
-				            				<li data-value="3" >拍片网</li>
-				            				<li data-value="4" >电销</li>
+											<li data-value="0" >看情况</li>
+											<li data-value="1" >1万元及以上</li>
+				            				<li data-value="2" >2万元及以上</li>
+				            				<li data-value="3" >3万元及以上</li>
+				            				<li data-value="4" >5万元及以上</li>
+				            				<li data-value="5" >10万元及以</li>
 										</ul>
 									</div>
   	      				  </div>

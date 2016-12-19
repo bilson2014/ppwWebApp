@@ -75,6 +75,24 @@
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
     
      <div class="proInfo">
+     					  <div class="updateLogo">   
+	      		                    <div class="title">公司LOGO</div>
+		      		                <div class="user-img-content">
+										<div class="user-icon">
+											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img"/>
+											<input type="hidden" id="user_img_url" value="/resources/images/index/db13.jpg">
+										</div>
+										<div class="upload-info">
+											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>
+										</div>
+										<div class="upload-btn">
+											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
+											<div id="uploadBt">上传头像</div>
+											<input type="file" name="file" id="file" style="display: none;"/> 
+										</div>
+									</div>
+							</div>	
+     
                             <div class="infoItem">
                                 <div class="title">公司名称</div>
                                 <input placeholder="公司名称">
