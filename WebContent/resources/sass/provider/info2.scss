@@ -22,7 +22,8 @@
             font-size: $font-size-sm;
         }
         &:before {
-            content: "";
+            
+            content: attr(data-content);
             position: absolute;
             color: $red-base;
             left: 96px;

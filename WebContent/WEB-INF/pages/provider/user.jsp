@@ -103,7 +103,7 @@
     </div>
     
 
-    <div class="page" style="height: 2303px;">
+    <div class="page" style="height:100%">
 
        <div class="user-wrap">
                 <div class="left-wrap">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop">个人信息</div>
-                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/product'/>"></iframe>
+                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/product'/>"></iframe>
                 </div>
                 
        </div>

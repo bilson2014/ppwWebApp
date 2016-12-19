@@ -1,1 +1,18 @@
-eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$().i(9(){$("#8-0").c("6",5()+"/b/8");h a=$("#g-e").f();4==a&&$(".1-0 3:k-l").s(),$(".1-0 3").q("7",9(){$("#0-p").c("6",5()+"/b/"+$(d).r("o")),$(".1-0").n("3").m("2"),$(d).j("2")}),$(".2").7()});',29,29,'content|menu|active|li||getContextPath|src|click|header|function||provider|prop|this|flag|val|portal|var|ready|addClass|last|child|removeClass|find|action|frame|on|data|remove'.split('|'),0,{}))
+$().ready(function(){
+	
+	// 加载头部
+	$('#header-content').prop('src',getContextPath() + '/provider/header');
+	var flag = $('#portal-flag').val();
+	if(flag == 4){
+		// 幽灵模式，删除审核状态菜单
+		$('.menu-content li:last-child').remove();
+	}
+	// 实例化menu
+	$('.menu-content li').on('click',function(){
+		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
+		$('.menu-content').find('li').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	$('.active').click();
+});

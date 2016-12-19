@@ -197,7 +197,7 @@
 		</div>
 		<!-- 轮播 end -->
 		<div class="tel">
-			<a href="tel:4406609728"> <span>服务热线 </span><span>440-660-9728</span></a>
+			<a href="tel:4006609728"> <span>服务热线 </span><span>400-660-9728</span></a>
 		</div>
 		<!-- 宣传片 start -->
 		<div class="FourModelColor">
