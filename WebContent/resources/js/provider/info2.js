@@ -140,7 +140,26 @@ function saveInfo() {
 	$("#submitCheck").on('click', function() {
 		var res = verifyData();
 		if (res) {
-			alert("ok")
+			submitForm(function(flag){
+				showStepThree();
+			}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
+					teamName : $('#company-name').val().trim(),
+					email : $('#company-email').val().trim(),
+					address : $('#company-address').val().trim(),
+					teamDescription : $('#company-teamDesc').val().trim(),
+					linkman : $('#company-linkman').val().trim(),
+					webchat : $('#company-webchat').val().trim(),
+					qq : $('#company-qq').val().trim(),
+					business : getBusinessVal(),
+					scale : $('#company-scale').val().trim(),
+					demand : $('#company-demand').val().trim(),
+					city : $('#company-city option:selected').val(),
+					priceRange : $('#indent_recomment').attr('data-value'),
+					infoResource :  $('#indent_qwe').attr('data-value'),
+					teamProvince : $("#getProvince").attr('data-value'),
+					teamCity : $("#getCity").attr('data-value'),
+					teamPhotoUrl : $('#user_img_url').val()
+			}),	$('#submitCheck'));
 		}
 	});
 }
