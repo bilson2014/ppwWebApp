@@ -1,0 +1,197 @@
+@import "common";
+@import "compass/typography/text/ellipsis";
+@import "normalize";
+
+.proInfo {
+    border-top: 1px solid #eee;
+    padding-top: 60px;
+    background: white;
+    padding-bottom: 80px;
+    .infoItem {
+        font-size: 0;
+        margin-bottom: 30px;
+        margin-left: 100px;
+        width: 650px;
+        position: relative;
+        &:after {
+            content: "*";
+            position: absolute;
+            color: $red-base;
+            right: -8px;
+            top: 9px;
+            font-size: $font-size-sm;
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            color: $red-base;
+            left: 96px;
+            bottom: -20px;
+            font-size: $font-size-sm;
+        }
+        .title {
+            display: inline-block;
+            vertical-align: top;
+            width: 90px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+            position: relative;
+            top: 11px;
+        }
+        input {
+            display: inline-block;
+            vertical-align: top;
+            width: 540px;
+            height: 36px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+            padding-left: 20px;
+            border-radius: 6px;
+            border: 1px solid $border-line;
+            outline: none;
+        }
+        textarea {
+            display: inline-block;
+            vertical-align: top;
+            width: 540px;
+            height: 130px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+            padding: 20px;
+            border-radius: 4px;
+            resize: none;
+            border-radius: 1px solid $border-line;
+        }
+        .ul-step-two {
+            display: inline-block;
+            width: 555px;
+            position: relative;
+            top: 4px;
+            left: -9px;
+            cursor: pointer;
+            font-size: 0;
+            li {
+                line-height: 20px;
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: 10px;
+                div {
+                    width: 100px;
+                    height: 30px;
+                    line-height: 28px;
+                    color: $gray;
+                    border-radius: 4px;
+                    border: 1px solid $border-line;
+                    font-size: $font-size-base;
+                    margin-left: 10px;
+                    text-align: center;
+                }
+            }
+            .redTag {
+                background: $red-base;
+                color: white;
+            }
+        }
+    }
+}
+
+.infoSubmit {
+    background: $red-base;
+    font-size: $font-size-base;
+    border-radius: 6px;
+    width: 120px;
+    height: 36px;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 190px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.infoReSet {
+    margin-left: 30px;
+    background: $gray-light;
+    font-size: $font-size-base;
+    border-radius: 6px;
+    width: 120px;
+    height: 36px;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    line-height: 36px;
+}
+
+.infoSelect {
+        display: inline-block;
+        width: 540px;
+        display: inline-block;
+        vertical-align: top;
+        border: 1px solid $border-line;
+        border-radius: 4px;
+        height: 36px;
+        line-height: 34px;
+        position: relative;
+
+        .btn{
+           background: none;
+           outline:none;
+           border:none;
+           box-shadow:none;
+           &:hover{
+             outline: none;
+            border: none !important;
+            box-shadow:none;
+           }
+           &:focus{
+            outline: none;
+            border: none !important;
+            box-shadow:none;
+           }
+           &:active{
+            outline: none;
+            border: none !important;
+            box-shadow:none;
+           }
+        }
+
+         span{
+            color:$gray;
+            font-size: $font-size-base;
+            &:hover{
+                background: transparent !important;
+                border:none !important;
+            }
+         }
+
+        .carets {
+            height: 15px;
+            width: 15px;
+            background: url("/resources/images/index/selectIcon.png") no-repeat !important;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+        ul {
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            top: 30px;
+            max-height: 400px;
+            overflow: auto;
+            border-top-right-radius: 0px !important;
+            border-top-left-radius: 0px !important;
+        }
+        li {
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            padding: 0px;
+            margin: 0px;
+            padding-left: 12px;
+            &:hover {
+                background: $f0;
+            }
+        }
+    }

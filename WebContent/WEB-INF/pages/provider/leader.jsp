@@ -127,7 +127,7 @@
 	      		                    <div class="title">公司LOGO</div>
 		      		                <div class="user-img-content">
 										<div class="user-icon">
-											<img alt="用户头像" src="/resources/images/index/db13.jpg" class="img-circle" id="user-img"/>
+											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img"/>
 											<input type="hidden" id="user_img_url" value="/resources/images/index/db13.jpg">
 										</div>
 										<div class="upload-info">
@@ -228,7 +228,7 @@
 																<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
 																<div class="carets"></div>
 															</button>
-															<ul class="dropdown-menu id="selectUl" role="menu"
+															<ul class="dropdown-menu" id="selectUlCity" role="menu"
 																aria-labelledby="dropdownMenu1">
 												      </c:if>
 												      
@@ -256,17 +256,16 @@
 									<div class="dropdown leaderSelect" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='indent_recomment'>看情况</span>
+											<span id='indent_recomment' data-value="0">友情推荐</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu id="selectUl" role="menu"
 											aria-labelledby="dropdownMenu1">
-											<li data-value="0">看情况</li>
-											<li data-value="1">1万元及以上</li>
-											<li data-value="2">2万元及以上</li>
-											<li data-value="3">3万元及以上</li>
-											<li data-value="4">5万元及以上</li>
-											<li data-value="5">10万元及以上</li>
+											<li data-value="0" >友情推荐</li>
+				            				<li data-value="1" >网络搜索</li>
+				            				<li data-value="2" >拍片帮</li>
+				            				<li data-value="3" >拍片网</li>
+				            				<li data-value="4" >电销</li>
 										</ul>
 									</div>
   	      				  </div>
@@ -386,7 +385,7 @@
   	      				  </div>
      
                            <div class="bottom-div">
-                           	 <Button class="gy-btn"  id="backbtn">上一步</Button>     <Button class="red-btn btn-c-r" id="surebtn">确定</Button>
+                           	  <Button class="red-btn btn-c-r" id="surebtn">确定</Button> <Button class="gy-btn"  id="backbtn">上一步</Button>    
                            </div>
                
 	                   </div>	
@@ -401,7 +400,7 @@
 									  	<div class="placeholder"></div>
 									  </div>	
                                </li> 
-                               <li class="title">资质调提交完成</li>
+                               <li class="title">资质审核提交完成</li>
                                <li class="info">官方将在3个工作日内完成您的资质审核，敬请等候...</li>
                 	 	 	  <li class="stepThreeLi">
                 	 	 	 	<span class="step-three-word">自动跳转进</span><span class="step-three-word-top" id="to-top">个人信息</span><span class="step-three-word">页面</span><span  class="step-three-time" id="lasttime">0</span><span class="step-three-word">秒</span>

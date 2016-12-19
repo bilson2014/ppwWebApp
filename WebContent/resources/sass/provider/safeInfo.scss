@@ -1,0 +1,200 @@
+@import "common";
+@import "compass/typography/text/ellipsis";
+@import "normalize";
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.proInfo {
+    border-top: 1px solid #eee;
+    background: white;
+    height: 546px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    .safeInfo {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .safeItem {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 70px;
+        position: relative;
+        position: relative;
+        width: 680px;
+    }
+    .content:first-child {
+        margin-bottom: 30px;
+    }
+    .content {
+        font-size: $font-size-base;
+        div {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .loginTitle {
+            color: $red-base;
+            width: 100px;
+        }
+        .infoName {
+            color: $gray-dark;
+            width: 100px;
+        }
+        div:nth-child(2) {
+            color: $gray-light;
+        }
+    }
+    .setInfo {
+        width: 80px;
+        height: 36px;
+        line-height: 36px;
+        background: $red-base;
+        color: white;
+        font-size: $font-size-base;
+        position: absolute;
+        border-radius: 4px;
+        left: 700px;
+        top: 54px;
+        text-align: center;
+    }
+    .line {
+        width: 100%;
+        height: 1px;
+        background: $border-line;
+    }
+}
+
+.change{
+    margin-bottom: 40px !important;
+    div:nth-child(2){
+        padding-left: 20px;
+    }
+}
+
+//安全设置
+.setUserContent {
+    padding-left: 100px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.top {
+    margin-bottom: 53px;
+    div {
+        display: inline-block;
+        vertical-align: top;
+        font-size: $font-size-base;
+        color: $gray-light;
+    }
+    div:first-child {
+        color: $red-base !important;
+        width: 100px;
+    }
+}
+
+.errorIcon {
+    &:after {
+        content: "*";
+        position: absolute;
+        background: url(/resources/images/provider/error.png);
+        width: 16px;
+        height: 16px;
+        right: -8px;
+        top: 9px;
+    }
+}
+
+.sureIcon {
+    &:after {
+        content: "*";
+        position: absolute;
+        background: url();
+        background: url(/resources/images/provider/sure.png);
+        width: 16px;
+        height: 16px;
+        right: -8px;
+        top: 9px;
+    }
+}
+
+.setItem {
+    margin-bottom: 30px;
+    font-size: 0;
+    &:before {
+        content: "错误";
+        position: absolute;
+        color: $red-base;
+        left: 96px;
+        bottom: -20px;
+        font-size: $font-size-sm;
+    }
+    div {
+        display: inline-block;
+        vertical-align: top;
+    }
+    input {
+        display: inline-block;
+        vertical-align: top;
+        width: 540px;
+        height: 36px;
+        padding-left: 20px;
+        text-align: center;
+        line-height: 34px;
+        border-radius: 4px;
+        border: 1px solid $border-line;
+        font-size: $font-size-base;
+        color: $gray-dark;
+    }
+    .title {
+        color: $gray-dark;
+        font-size: $font-size-base;
+        width: 100px;
+        position: relative;
+        top: 11px;
+    }
+    .setInput {
+        width: 410px !important;
+    }
+    .setCode {
+        width: 120px;
+        height: 36px;
+        line-height: 34px;
+        font-size: $font-size-base;
+        color: $gray-dark;
+        margin-left: 10px;
+        text-align: center;
+        border: 1px solid $border-line;
+    }
+}
+
+.infoSubmit {
+    background: $red-base;
+    font-size: $font-size-base;
+    border-radius: 6px;
+    width: 120px;
+    height: 36px;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 100px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.bottom{
+    margin-top: 30px;
+}
+
+.infoReSet {
+    margin-left: 30px;
+    background: $gray-light;
+    font-size: $font-size-base;
+    border-radius: 6px;
+    width: 120px;
+    height: 36px;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    line-height: 36px;
+}
