@@ -7,8 +7,143 @@ $().ready(function() {
 			$(this).addClass('redTag');
 		}
 	});
+
+	$('#company-establishDate').datepicker({
+		language : 'zh',
+		dateFormat : 'yyyy-MM-dd',
+		maxDate : new Date()
+	});
+
 	userpicInfo();
+	saveInfo();
 });
+
+function verifyData() {
+	var name = $('#company-name').val().trim(); // 公司名称
+	if (name == '' || name == null || name == undefined) {
+		popshow('company-name', '请输入公司名称!');
+		$('#company-name').focus();
+		return false;
+	}
+
+	/* var telephone = $('#company-telephone').val().trim(); // 公司电话 */
+	var email = $('#company-email').val().trim(); // 公司邮箱
+	if (email == '' || email == null || email == undefined) {
+		popshow('company-email', '请输入公司邮箱!');
+		$('#company-email').focus();
+		return false;
+	}
+	// 验证邮箱正确性
+	if (!checkEmail(email)) {
+		popshow('company-email', '邮箱格式不正确!');
+		$('#company-email').focus();
+		return false;
+	}
+
+	var company_address = $('#company-address').val();
+	if (company_address == '' || company_address == null
+			|| company_address == undefined) {
+		popshow('company-address', '请输入公司地址！');
+		$('#company-address').focus();
+		return false;
+	}
+
+	var linkman = $('#company-linkman').val().trim(); // 联系人
+	if (linkman == '' || linkman == null || linkman == undefined) {
+		popshow('company-linkman', '请输入联系人!');
+		$('#company-linkman').focus();
+		return false;
+	}
+
+	var phoneNumber = $('#company-phoneNumber').val().trim();
+	if (phoneNumber == '' || phoneNumber == null || phoneNumber == undefined) {
+		popshow('company-phoneNumber', '请输入手机号码!');
+		$('#company-phoneNumber').focus();
+		return false;
+	}
+	// 验证电话号码正确性
+	if (!checkMobile(phoneNumber)) {
+		popshow('company-phoneNumber', '手机号码格式不正确');
+		$('#company-phoneNumber').focus();
+		return false;
+	}
+
+	var webchat = $('#company-webchat').val().trim(); // 微信
+	if (webchat == '' || webchat == null || webchat == undefined) {
+		popshow('company-webchat', '请输入微信号码!');
+		$('#company-webchat').focus();
+		return false;
+	}
+
+	var qq = $('#company-qq').val().trim(); // QQ
+	if (qq == '' || qq == null || qq == undefined) {
+		popshow('company-qq', '请输入QQ号码!');
+		$('#company-qq').focus();
+		return false;
+	}
+
+	var province = $('#getProvince').attr('data-value'); // 所在城市
+	if (province == '' || province == null || province == undefined) {
+		popshow('company-province', '请选择所在省!');
+		$('#company-province').focus();
+		return false;
+	}
+
+	var city = $('#getCity').attr('data-value'); // 所在城市
+	if (city == '' || city == null || city == undefined) {
+		popshow('company-city', '请选择所在城市!');
+		$('#company-city').focus();
+		return false;
+	}
+
+	var business = getBusinessVal(); // 业务范围
+	if (business == '' || business == null || business == undefined) {
+		popshow('business-checkbox', '请选择业务范围!');
+		$('#business-checkbox').focus();
+		return false;
+	}
+
+	var description = $('#company-teamDesc').val().trim(); // 公司简介
+	if (description == '' || description == null || description == undefined) {
+		popshow('company-teamDesc', '请输入公司简介!');
+		$('#company-teamDesc').focus();
+		return false;
+	}
+
+	var scale = $('#company-scale').val().trim(); // 公司规模
+	if (scale == '' || scale == null || scale == undefined) {
+		popshow('company-scale', '请填写公司规模信息!');
+		$('#company-scale').focus();
+		return false;
+	}
+
+	var company_demand = $('#company-demand').val();
+	if (company_demand == '' || company_demand == null
+			|| company_demand == undefined) {
+		popshow('company-demand', '必须填写对客户的要求!');
+		$('#company-demand').focus();
+		return false;
+	}
+
+}
+
+function popshow(id, error) {
+	var xxx = $('#'+id);
+	if (error == "" || error == null) {
+		xxx.attr('data-content', "");
+	} else {
+		xxx.attr('data-content', '*' + error);
+	}
+}
+
+function saveInfo() {
+	$("#submitCheck").on('click', function() {
+		var res = verifyData();
+		if (res) {
+			alert("ok")
+		}
+	});
+}
 
 function getBusinessVal() {
 	var busArr = '';
