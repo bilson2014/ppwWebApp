@@ -160,20 +160,18 @@
 									<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
+										<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu" id="selectUlCity" role="menu" aria-labelledby="dropdownMenu1">
 											<c:if test="${!empty citys}">
 													<c:forEach items="${citys }" var="source" varStatus="status">
-													  <c:if test="${ status.index == 0}">
-																<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
-																<div class="carets"></div>
-															</button>
-															<ul class="dropdown-menu" id="selectUlCity" role="menu"
-																aria-labelledby="dropdownMenu1">
-												      </c:if>
-												      
 													  <li data-value ="${source.cityID }"
 													  	<c:if test="${provider.teamCity == source.cityID }">
 													  		selected="selected"
-										  				</c:if> >${source.city }</li>
+										  				</c:if> >
+										  					${source.city }
+										  				</li>
 													</c:forEach>
 											</c:if>										
 										</ul>
