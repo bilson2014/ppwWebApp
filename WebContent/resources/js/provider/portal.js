@@ -3,14 +3,7 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
-	
-	
-	$('.infoItem').on('click',function(){
-		alert(1);
-	});
-	
 	$('.infoItem div').on('click',function(){
-		alert($(this).data('action'));
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');
 		$(this).addClass('active');
@@ -43,5 +36,5 @@ function successErrorTipShow(){
 }
 
 
-
+});
 
