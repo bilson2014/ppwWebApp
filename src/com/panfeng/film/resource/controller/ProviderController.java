@@ -205,7 +205,7 @@ public class ProviderController extends BaseController {
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			if ((original.getVerification_code() != null && code != null)) {
-				if(code.equals(original.getVerification_code())){
+				if (code.equals(original.getVerification_code())) {
 					if ((null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 						final String url = URL_PREFIX + "portal/team/static/data/doLogin";
 						String json = HttpUtil.httpPost(url, original, request);
@@ -223,7 +223,7 @@ public class ProviderController extends BaseController {
 						Log.error("手机号错误", sessionInfo);
 						return new BaseMsg(BaseMsg.ERROR, "和验证手机不符", false);
 					}
-				}else{
+				} else {
 					SessionInfo sessionInfo = getCurrentInfo(request);
 					Log.error("Provider Verification_code error ...", sessionInfo);
 					return new BaseMsg(BaseMsg.ERROR, "验证码错误", false);
@@ -296,12 +296,13 @@ public class ProviderController extends BaseController {
 	 * 
 	 * @return 供应商系统登录页面
 	 */
-/*	@RequestMapping("/loginout")
-	public ModelAndView loginOut(final HttpServletRequest request) {
-
-		sessionService.removeSession(request);
-		return new ModelAndView("redirect:/provider/login");
-	}*/
+	/*
+	 * @RequestMapping("/loginout") public ModelAndView loginOut(final
+	 * HttpServletRequest request) {
+	 * 
+	 * sessionService.removeSession(request); return new
+	 * ModelAndView("redirect:/provider/login"); }
+	 */
 
 	/**
 	 * 检测登录名是否可用
@@ -627,6 +628,39 @@ public class ProviderController extends BaseController {
 			}
 		}
 		return msg;
+	}
+
+	@RequestMapping("/upload/teamPhoto")
+	public String uploadLogo(final HttpServletRequest request, final HttpServletResponse response,
+			@PathParam("file") final MultipartFile file) {
+		response.setContentType("text/html;charset=UTF-8");
+		// 如果文件为空，则不更新图片路径;反之亦然
+		if (!file.isEmpty()) {
+			final long fileSize = file.getSize(); // 上传文件大小
+			final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
+			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
+
+			if (fileSize > maxSize * 1024) {
+				// 文件大小超出规定范围
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
+				return "false@error=1";
+			} else {
+				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					final String fileId = DFSservice.upload(file);
+					return fileId;
+				} else {
+					// 文件格式不正确
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
+					return "false@error=2";
+				}
+			}
+
+		}
+
+		return null;
 	}
 
 	/**
@@ -1353,18 +1387,19 @@ public class ProviderController extends BaseController {
 
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		//modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		// modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
 		return new ModelAndView("/rePwdPro", modelMap);
 	}
 
-/*	@RequestMapping("/updatePwd")
-	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
-		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
-		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
-		return new ModelAndView("/updatePwd", modelMap);
-	}*/
+	/*
+	 * @RequestMapping("/updatePwd") public ModelAndView updatePwd(ModelMap
+	 * modelMap, HttpServletRequest request) { modelMap.addAttribute("userType",
+	 * GlobalConstant.ROLE_PROVIDER); SessionInfo sessionInfo =
+	 * getCurrentInfo(request); modelMap.addAttribute("userLoginName",
+	 * sessionInfo.getLoginName()); modelMap.addAttribute("userId",
+	 * sessionInfo.getReqiureId()); return new ModelAndView("/updatePwd",
+	 * modelMap); }
+	 */
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public boolean setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
@@ -1529,6 +1564,7 @@ public class ProviderController extends BaseController {
 		Boolean bo = JsonUtil.toBean(str, Boolean.class);
 		return bo;
 	}
+
 	/**
 	 * 获取user信息
 	 */
@@ -1536,7 +1572,7 @@ public class ProviderController extends BaseController {
 	public BaseMsg updatePwd(HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(null!=sessionInfo){
+		if (null != sessionInfo) {
 			Team t = new Team();
 			t.setTeamId(sessionInfo.getReqiureId());
 			t.setLoginName(sessionInfo.getLoginName());

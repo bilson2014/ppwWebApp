@@ -1,9 +1,10 @@
  var step = 1;
  var curCount = 3;
  var InterValObj;
+ var uploader;
 $().ready(function(){
-  
-    resumeError();
+	    resumeError();
+	    initUl();
 	$('#checkbtn').on('click',function(){
 		 resumeError();
 		 checkStepOneData();
@@ -16,31 +17,51 @@ $().ready(function(){
          step=1;
          showStepOne();
 	});
-
 	 $('#to-top').on('click',function(){
          step=1;
          window.location.href=getContextPath() + '/provider/portal';
 	});
-	 
-	// 添加省下拉框监听
-	$("#company-province").on('change',function(){
-		var ProvinceId = $(this).val();
-		loadData(function(msg){
-			if(msg != null && msg.length >0 ){
-				var select = $("#company-city");
-				select.empty();
-				msg.forEach(function(city){
-					var html = '<option value = "' + city.cityID + '" >'+city.city+'</option>'  ;
-					select.append(html);
-				});
-			}
-		}, getContextPath() + '/get/citys', $.toJSON({
-			provinceId : ProvinceId
-		}))
+	 $('.getTag').on('click',function(){
+        if($(this).hasClass('redTag')){
+        	$(this).removeClass('redTag');
+        }else{
+        	$(this).addClass('redTag');
+        }
 	});
+	userpicInfo();
 });
 
+function initUl(){
+	$('.dropdown li').on('click',function(){
+        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+        var info=parseInt($(this).attr('data-info'));
+        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
+        $(this).parent().slideUp();
+        if($(this).hasClass('Province'))
+        	Province($(this));
+        return false;
+   });
 
+}
+
+function Province(self){
+	var ProvinceId = self.attr('data-value')
+	loadData(function(msg){
+		if(msg != null && msg.length >0 ){
+			var select = $("#selectUlCity");
+		    $('#getCity').text('');
+		    $('#getCity').attr('data-value','');
+			select.empty();
+			msg.forEach(function(city){
+				var html = '<li data-value = "' + city.cityID + '" >'+city.city+'</li>';
+				select.append(html);
+			});
+			initUl();
+		}
+	}, getContextPath() + '/get/citys', $.toJSON({
+		provinceId : ProvinceId
+	}))
+}
 function SetLastTime(){
         $('#lasttime').text(curCount); 
         $('#lasttime').attr('disabled','disabled');
@@ -48,13 +69,13 @@ function SetLastTime(){
 }
 function SetRemainTime(){
 	if(curCount == 0){
-			window.clearInterval(InterValObj); // 停止计时器
-			window.location.href=getContextPath() + '/provider/portal';
-		}
-		else{
-			  curCount--;
-			 $('#lasttime').text(curCount); 
-		}
+		window.clearInterval(InterValObj); // 停止计时器
+		window.location.href=getContextPath() + '/provider/portal';
+	}
+	else{
+		  curCount--;
+		 $('#lasttime').text(curCount); 
+	}
 }
 
 
@@ -72,125 +93,99 @@ function checkStepTwoData(){
  if(step==2){
       if(checkStepTwo()){
       	infoSave();
-      //	showStepThree();
       }
-	 }
+ }
 }
 
 
 function resumeError(){
-
-		$('#company-name-error').hide();
-		$('#company-email-error').hide();
-		$('#company-linkman-error').hide();
-		$('#company-pwd-error').hide();
-		$('#company-webchat-error').hide();
-		$('#company-address-error').hide();
-		$('#company-qq-error').hide();
-	    $('#business-checkbox-error').hide();
-	    $('#company-teamDesc-error').hide();
-		$('#company-scale-error').hide();
-        $('#company-demand-error').hide();
+    showError($('.input-group-div'),'');
+    $('input').removeClass('errorL');
 }
 
 function showStepOne(){
-	 $('.step-one-div').removeClass('hide');
-     $('.step-two-div').addClass('hide');
-     $('#step-bar').removeClass('step-2');
+	 //$('.step-two-div').slideUp();
+	 $('.step-two-div').hide();
+	 $('.step-one-div').show();
 
 
-    
+//		setTimeout(function() {
+//			$('.step-one-div').slideDown();
+//		}, 500);
+     $('#step-1').addClass('step-1');
+     $('#step-2').removeClass('step-1');
 }
 
 function showStepTwo(){
-  $('.step-one-div').addClass('hide');
-  $('.step-two-div').removeClass('hide');
-  $('#step-bar').addClass('step-2');
+	$('.step-one-div').hide();
+//	setTimeout(function() {
+	$('.step-two-div').show();
+//	}, 500);
+ $('#step-2').addClass('step-1');
+ $('#step-1').removeClass('step-1');
 }
 
 function showStepThree(){
 
- $('.step-two-div').addClass('hide');
- $('.step-three-div').removeClass('hide');
- $('#step-bar').removeClass('step-2');
- $('#step-bar').addClass('step-3');
+	    $('.step-two-div').hide();
+	//setTimeout(function() {
+		$('.step-three-div').show();
+	//}, 500);
+ $('#step-2').removeClass('step-1');
+ $('#step-3').addClass('step-1');
  SetLastTime();
 }
 
 
 
 function checkStepOne(){
-   		    var name = $('#company-name').val().trim(); // 公司名称
-			var email = $('#company-email').val().trim(); // 公司邮箱
-			var linkman = $('#company-linkman').val().trim(); // 联系人
-		//	var pwd = $('#company-pwd').val().trim();
-			var webchat = $('#company-webchat').val().trim(); // 微信
-			var qq = $('#company-qq').val().trim(); // QQ
-			var address = $('#company-address').val().trim();
-
-			
-			if(name == '' || name == null || name == undefined){
-				$('#company-name-error').show();
-                $('#company-name-error').text('请输入公司名称!');
-				$('#company-name').focus();
+    var name = $('#company-name').val().trim(); // 公司名称
+	var email = $('#company-email').val().trim(); // 公司邮箱
+	var linkman = $('#company-linkman').val().trim(); // 联系人
+//	var pwd = $('#company-pwd').val().trim();
+	var webchat = $('#company-webchat').val().trim(); // 微信
+	var qq = $('#company-qq').val().trim(); // QQ
+	var address = $('#company-address').val().trim();
+	if(name == '' || name == null || name == undefined){
+		showErrorLeader($('#company-name-error'),'请输入公司名称!');
+		$('#company-name').focus();
+		return false;
+	}
+	if(linkman == '' || linkman == null || linkman == undefined){
+		showErrorLeader($('#company-linkman-error'),'请输入联系人!');
+		$('#company-linkman').focus();
+		return false;
+	}
+	if(webchat == '' || webchat == null || webchat == undefined){
+		showErrorLeader($('#company-webchat-error'),'请输入微信号!');
+		$('#company-webchat').focus();
+		return false;
+	}
+	if(qq != '' || qq != null || qq != undefined){
+		var reg = /^[1-9]\d{4,9}$/;
+		if(!qq.match(reg)){
+			showErrorLeader($('#company-qq-error'),'请输入QQ号码!');
+				$('#company-qq').focus();
 				return false;
-			}
-
-			if(linkman == '' || linkman == null || linkman == undefined){
-				$('#company-linkman-error').show();
-                $('#company-linkman-error').text('请输入联系人!');
-				$('#company-linkman').focus();
-				return false;
-			}
-//			
-//			if(pwd == '' || pwd == null || pwd == undefined){
-//				$('#company-pwd-error').show();
-//                $('#company-pwd-error').text('请输入密码!');
-//				$('#company-pwd').focus();
-//				return false;
-//			}
-			
-	
-
-				if(webchat == '' || webchat == null || webchat == undefined){
-				$('#company-webchat-error').show();
-                $('#company-webchat-error').text('请输入微信号!');
-				$('#company-webchat').focus();
-				return false;
-			}
-			
-			if(qq != '' || qq != null || qq != undefined){
-				var reg = /^[1-9]\d{4,9}$/;
-				if(!qq.match(reg)){
-					 $('#company-qq-error').show();
-		                $('#company-qq-error').text('请输入QQ号码!');
-						$('#company-qq').focus();
-						return false;
-				}
-			}
-			
-			if(email == '' || email == null || email == undefined){
-			    $('#company-email-error').show();
-                $('#company-email-error').text('请输入公司邮箱!');
-				$('#company-email').focus();
-				return false;
-			}
-			
-			// 验证邮箱正确性
-			if(!checkEmail(email)){
-				$('#company-email-error').show();
-                $('#company-email-error').text('邮箱格式不正确!');
-				$('#company-email').focus();
-				return false;
-			}
-
-			if(address == '' || address == null || address == undefined){
-			    $('#company-address-error').show();
-                $('#company-address-error').text('请输入公司地址!');
-				$('#company-address').focus();
-				return false;
-			}
-			return true;
+		}
+	}
+	if(email == '' || email == null || email == undefined){
+		showErrorLeader($('#company-email-error'),'请输入公司邮箱!');
+		$('#company-email').focus();
+		return false;
+	}
+	// 验证邮箱正确性
+	if(!checkEmail(email)){
+		showErrorLeader($('#company-email-error'),'邮箱格式不正确!');
+		$('#company-email').focus();
+		return false;
+	}
+	if(address == '' || address == null || address == undefined){
+		showErrorLeader($('#company-address-errors'),'请输入公司地址!');
+		$('#company-address').focus();
+		return false;
+	}
+	return true;
 }
 
 function checkStepTwo(){
@@ -200,31 +195,25 @@ function checkStepTwo(){
 			var scale = $('#company-scale').val().trim(); // 公司规模
             var demand = $('#company-demand').val().trim();
 
-
-
             	if(business == '' || business == null || business == undefined){
-			    $('#business-checkbox-error').show();
-                $('#business-checkbox-error').text('请输入业务需求!');
+			    showErrorLeader($('#business-checkbox-error'),'请输入业务需求!');
 				return false;
 			}
 
 				if(teamDesc == '' || teamDesc == null || teamDesc == undefined){
-			    $('#company-teamDesc-error').show();
-                $('#company-teamDesc-error').text('请输入公司简介!');
+                showErrorLeader($('#company-teamDesc-error'),'请输入公司简介!');
 				$('#company-teamDesc').focus();
 				return false;
 			}
 
 				if(scale == '' || scale == null || scale == undefined){
-			    $('#company-scale-error').show();
-                $('#company-scale-error').text('请输入公司规模!');
+                showErrorLeader($('#company-scale'),'请输入公司规模!');
 				$('#company-scale').focus();
 				return false;
 			}
 
 				if(demand == '' || demand == null || demand == undefined){
-			    $('#company-demand-error').show();
-                $('#company-demand-error').text('请输入需求!');
+                showErrorLeader($('#company-demand-error'),'请输入需求!');
 				$('#company-demand').focus();
 				return false;
 			}
@@ -233,22 +222,20 @@ function checkStepTwo(){
 
 function getBusinessVal(){
 	var busArr;
-	$('input[name="business"]:checked').each(function(i){
-		if(0 == i){
-			busArr = this.value;
-		}else {
-			busArr += ',' + this.value;
-		}
-	});
+	var tags = $('.redTag');
+	for (var int = 0; int < tags.length; int++) {
+		if(int == 0)
+			busArr = $(tags[int]).attr('data-value');
+		else
+			busArr += ',' + $(tags[int]).attr('data-value');
+	}
 	return busArr;
 }
 
 
 function infoSave(){
-	
-	loadData(function(flag){
+	submitForm(function(flag){
 		showStepThree();
-		//window.location.href=getContextPath()+ '/provider/portal';
 	}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
 			teamName : $('#company-name').val().trim(),
 			email : $('#company-email').val().trim(),
@@ -261,14 +248,67 @@ function infoSave(){
 			scale : $('#company-scale').val().trim(),
 			demand : $('#company-demand').val().trim(),
 			city : $('#company-city option:selected').val(),
-			priceRange : $('#company-priceRange option:selected').val(),
-			infoResource : $('#company-infoResource option:selected').val(),
-			teamProvince : $("#company-province").val(),
-			teamCity : $("#company-city").val()
-		}));
-	}
+			priceRange : $('#indent_recomment').attr('data-value'),
+			infoResource :  $('#indent_qwe').attr('data-value'),
+			teamProvince : $("#getProvince").attr('data-value'),
+			teamCity : $("#getCity").attr('data-value'),
+			teamPhotoUrl : $('#user_img_url').val()
+	}),	$('#surebtn'));
+}
 
-	      
+function showErrorLeader(id, error) {
+	if (error == "" || error == null) {
+		id.attr('data-content', "");
+	} else {
+		id.attr('data-content', '*' + error);
+		id.find('input').addClass('errorL');
+	}
+}
+
+//头像修改
+function userpicInfo(){
+	uploader && uploader.destroy();
+	uploader = WebUploader.create({
+		auto:true,
+		swf : '/resources/lib/webuploader/Uploader.swf',
+		server : '/provider/upload/teamPhoto',
+		pick : '#uploadBt',
+		accept :{
+		    title: 'Images',
+		    extensions: 'jpg,png',
+		    mimeTypes: 'image/jpeg,image/png'
+		},
+		resize : true,
+		chunked : false,
+		fileSingleSizeLimit : 1024*2048,
+		duplicate: true//允许重复上传同一个
+	});
+	uploader.on('uploadSuccess', function(file,response) {
+		var path = response._raw;
+		if(path != '' && path != null){
+			if(path.indexOf('false@error') > -1){
+				if(path.indexOf("error=1") > -1){
+					alert("文件超过最大限制");
+				} else if(path.indexOf("error=2") > -1){
+					alert('格式不正确');
+				}
+			}else{
+				$('#user_img_url').val(path);
+				var img = getDfsHostName()+path;
+				$('#user-img').attr('src',img);
+			}
+		}else{
+			alert('上传失败!');
+		}
+	});
+	uploader.on('error', function(type) {
+		 if (type=="Q_TYPE_DENIED"){
+			 alert("文件超过最大限制");
+        }else if(type=="F_EXCEED_SIZE"){
+        	alert('格式不正确');
+        }
+	});
+}   
 		
 		
 			
