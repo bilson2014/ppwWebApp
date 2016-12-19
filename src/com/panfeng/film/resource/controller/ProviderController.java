@@ -1581,4 +1581,33 @@ public class ProviderController extends BaseController {
 		}
 		return baseMsg;
 	}
+	/**
+	 * 设置作品可见性
+	 */
+	@RequestMapping("/product/visibility")
+	public BaseMsg setProductVisibility(HttpServletRequest request,@RequestBody final Product product) {
+		BaseMsg baseMsg = new BaseMsg();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if (null != sessionInfo) {
+			if(sessionInfo.getReqiureId() == product.getTeamId()){
+				final String url = URL_PREFIX + "portal/product/visibility";
+				String str = HttpUtil.httpPost(url, product, request);
+				Boolean bo = JsonUtil.toBean(str, Boolean.class);
+				if(bo){
+					baseMsg.setCode(1);
+					baseMsg.setResult("修改成功");
+				}else{
+					baseMsg.setCode(0);
+					baseMsg.setResult("修改失败");
+				}
+			}else{
+				baseMsg.setCode(0);
+				baseMsg.setResult("无权限修改此功能");
+			}
+		}else{
+			baseMsg.setCode(0);
+			baseMsg.setResult("供应商未登录");
+		}
+		return baseMsg;
+	}
 }
