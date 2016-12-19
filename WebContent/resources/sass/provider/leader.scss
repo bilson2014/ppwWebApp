@@ -2,9 +2,6 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
-
-
-
 .nav .logo {
     background: url(../../images/common/logo.svg) no-repeat;
 }
@@ -44,6 +41,7 @@
         color: $red-base;
         left: 96px;
         bottom: 9px;
+        font-size: $font-size-sm;
     }
     .checkbox {
         display: inline-block;
@@ -236,7 +234,7 @@
     border-radius: 5px;
     border: none;
     color: $white;
-    line-height: 36px;
+    line-height: 34px;
     font-size: $font-size-base;
     margin-left: 323px;
     margin-top: 30px;
@@ -351,7 +349,7 @@
         &:after {
             content: attr(data-content);
             color: $gray;
-            font-size: $font-size-base;
+            font-size: $font-size-sm;
             position: absolute;
             width: 100px;
             bottom: -38px;
@@ -444,18 +442,12 @@
         border-radius: 4px;
         text-align: center;
         background: transparent !important;
-        &:hover {
-            color: white;
-            border: 1px solid $red-base;
-        }
     }
-    //     width: 120px;
-    //     height: 36px;
-    //     border: 1px solid $gray-light;
-    //     line-height: 34px;
-    //     color: $gray-dark;
-    //     border-radius: 4px;
-    //     text-align: center;
+    .webuploader-pick-hover {
+        color: white;
+        border: 1px solid $red-base;
+        background: $red-base !important;
+    }
 }
 
 .borderLine {

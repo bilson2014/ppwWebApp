@@ -102,6 +102,22 @@ $().ready(function(){
 		return false;
 	});
 	
+	// 初始化默认选择
+	var dropdown = $('.dropdown');
+	if(dropdown!=null && dropdown.length >0){
+		for (var int = 0; int < dropdown.length; int++) {
+			var li = $(dropdown[int]).find('ul li');
+			if(li != null && li.length >0){
+				for (var int2 = 0; int2 < li.length; int2++) {
+					if($(li[int2]).attr('selected') == 'selected'){
+						var span = $(dropdown[int]).find('span');
+						span.attr('data-value',$(li[int2]).attr('data-value'));
+						span.text($(li[int2]).text());
+					}
+				}
+			}
+		}
+	}
 });
 
 function debug(obj) {

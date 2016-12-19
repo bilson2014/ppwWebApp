@@ -2,6 +2,7 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
@@ -117,7 +118,7 @@
         </div>
     </div>
 	</div>
-	<div class="menu-content panel">
+<!-- 	<div class="menu-content panel">
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active" data-action="company-info"><a href="javascript:void(0);">基本信息</a></li>
 			<li role="presentation" data-action="video-list"><a href="javascript:void(0);">作品列表</a></li>
@@ -127,7 +128,64 @@
 
 	<div class="content panel">
 		<iframe id="content-frame" class="iframe"></iframe>
+	</div> -->
+	
+	<div class="infomation">
+	        <label>*您的资质提交已经成功提交,审核中...</label>
+	        <label>官方将在3个工作日内完成您的资质审核,敬请等候...</label>
 	</div>
+	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	
+	
+	
+	 <div class="page" style="height:100%">
+
+       <div class="user-wrap">
+                <div class="left-wrap">
+                    <div class="left-header">
+                          <img class="proLogo" src="/resources/images/provider/initLogo.png"/>
+                          <div class="isPass">
+                          <img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
+			                     <c:if test="${provider.flag == 2}">
+										<img src="/resources/images/provder/noPass.png"><div class="noPass">未通过</div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 0}">
+										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 1}">
+										<img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
+								 </c:if>
+			                 </div>
+                    </div>
+                    <div class="userName">客户NAME</div>
+                    <div class="userProduct">公司主页</div>
+                    <div class="left-content">
+                              <div class="infoItem">
+                                     <div class="product" data-action="video-list">作品列表</div>
+                              </div>  
+                               <div class="infoItem">
+                                     <div class="info" data-action="company-info">公司信息</div>
+                              </div>
+                               <div class="infoItem">
+                                      <div class="safeInfo" data-action="safe-info">安全设置</div>
+                              </div> 
+                    </div>
+                </div>
+                <div class="right-wrap">
+                       <div class="titleTop">个人信息</div>
+                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/company-info'/>"></iframe>
+                </div>
+                
+       </div>
+
+    </div>
+    
 
 </body>
 </html>

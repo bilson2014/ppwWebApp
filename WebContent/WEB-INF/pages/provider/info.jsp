@@ -7,7 +7,7 @@
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
-<spring:url value="/resources/css/provider/info2.css" var="providerInfoCss"/>
+<spring:url value="/resources/css/provider/info.css" var="providerInfoCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <%-- import JS --%>
@@ -99,55 +99,52 @@
      
                             <div class="infoItem">
                                 <div class="title">公司名称</div>
-                                <input placeholder="公司名称">
+                                <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
                             </div>
                              <div class="infoItem">
                                 <div class="title">公司邮件</div>
-                                <input placeholder="公司邮件">
+                                <input type="email" class=" " id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
                             </div>
                              <div class="infoItem">
                                 <div class="title">公司地址</div>
-                                <input placeholder="公司地址">
+                                <input type="text" class=" " id="company-address" placeholder="请填写公司地址" value="${provider.address }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">联系人</div>
-                                <input placeholder="联系人">
+                                <input type="text" class=" " id="company-linkman" placeholder="联系人是必填项" value="${provider.linkman }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">手机号</div>
-                                <input placeholder="手机号">
+                                <input type="text" readonly class=" " id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">微信号</div>
-                                <input placeholder="微信号">
+                                <input type="text" class=" " id="company-webchat" placeholder="微信号是必填项" value="${provider.webchat }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">QQ</div>
-                                <input placeholder="QQ">
+                               <input type="text" class=" " id="company-qq" placeholder="QQ号码是必填项" value="${provider.qq }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">成立时间</div>
-                                <input placeholder="成立时间">
+                                <input type="text" class=" " id="company-establishDate" placeholder="请选择公司成立时间" readonly="readonly" value="${provider.establishDate }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">公司官网</div>
-                                <input placeholder="公司官网">
+                               <input type="text" class=" " id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem inline">
                             <div class="title">所在省</div>	
 								<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
+											<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu id="selectUl" role="menu"
+											aria-labelledby="dropdownMenu1">
 											<c:if test="${!empty provinces}">
 												<c:forEach items="${provinces }" var="source" varStatus="status">
-													<c:if test="${ status.index == 0}">
-															<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
-																<div class="carets"></div>
-															</button>
-															<ul class="dropdown-menu id="selectUl" role="menu"
-																aria-labelledby="dropdownMenu1">
-													</c:if>
-												
 													  <li class="Province" data-value ="${source.provinceID }"
 													  	<c:if test="${provider.teamProvince == source.provinceID }">
 													  		selected="selected"
@@ -158,27 +155,25 @@
 							</div>
                             </div>
                             
-                            	  <div class="infoItem">
+                           <div class="infoItem inline-noLeft">
 	                            <div class="title">所在市</div>	
 									<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
+										<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu" id="selectUlCity" role="menu" aria-labelledby="dropdownMenu1">
 											<c:if test="${!empty citys}">
 													<c:forEach items="${citys }" var="source" varStatus="status">
-													  <c:if test="${ status.index == 0}">
-																<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
-																<div class="carets"></div>
-															</button>
-															<ul class="dropdown-menu" id="selectUlCity" role="menu"
-																aria-labelledby="dropdownMenu1">
-												      </c:if>
-												      
 													  <li data-value ="${source.cityID }"
 													  	<c:if test="${provider.teamCity == source.cityID }">
 													  		selected="selected"
-										  				</c:if> >${source.city }</li>
+										  				</c:if> >
+										  					${source.city }
+										  				</li>
 													</c:forEach>
-												</c:if>										
+											</c:if>										
 										</ul>
 									</div>
 	                            </div>
@@ -192,6 +187,7 @@
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
 											aria-labelledby="dropdownMenu1">
+											<li data-value="0">看情况</li>
 											<li data-value="0">1万元及以上</li>
 											<li data-value="1">2万元及以上</li>
 											<li data-value="2">3万元及以上</li>
@@ -284,30 +280,27 @@
                             </div>
                             <div class="infoItem">
                                 <div class="title">公司简介</div>
-                                <textarea></textarea>
+                                <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
                             <div class="infoItem">
                                 <div class="title">公司规模</div>
-                                <textarea></textarea>
+                                <textarea class=" " id="company-scale" rows="5" maxlength="200" placeholder="请填写坐班人数及坐班导演或合作导演，坐班后期等信息">${provider.scale }</textarea>
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">主要客户</div>
-                                <textarea></textarea>
+                                <textarea class=" " id="company-businessDesc" rows="5" maxlength="200" placeholder="请填写主要客户/作品及价格">${provider.businessDesc }</textarea>
                             </div>
                              <div class="infoItem">
                                 <div class="title">对客户要求</div>
-                                <textarea></textarea>
+                               <textarea class=" " id="company-demand" rows="5" maxlength="200" placeholder="请填写对客户的要求">${provider.demand }</textarea>
                             </div>
-                             <div class="infoItem">
+                             <div class="infoItem noImportant">
                                 <div class="title">备注</div>
-                                <textarea></textarea>
+                               <textarea class=" " id="company-description" rows="5" maxlength="200" placeholder="再次填写备注信息">${provider.description }</textarea>
                             </div>
                             <div class="infoBottom">
-	                            <div class="infoSubmit btn-c-r">提交审核</div>
+	                            <div class="infoSubmit btn-c-r" id="submitCheck">提交审核</div>
                             </div>
-
                        </div>
-		
-		
 </body>
 </html>

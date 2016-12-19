@@ -174,11 +174,22 @@ public class ProviderController extends BaseController {
 		model.addAttribute("cType", team.getFlag());
 		return new ModelAndView("provider/video-list", model);
 	}
-
+	
+	/**
+	 * 跳转至 视频列表页
+	 */
+	@RequestMapping("/safe-info")
+	public ModelAndView safeView(final HttpServletRequest request, final ModelMap model) {
+		final Team team = getCurrentTeam(request);
+		model.addAttribute("status", team.getFlag());
+		model.addAttribute("cKey", team.getTeamId());
+		model.addAttribute("recomment", team.getRecommendation());
+		return new ModelAndView("provider/safeInfo", model);
+	}
 	/**
 	 * 跳转至 审核状态页
 	 */
-	@RequestMapping("/company-status")
+/*	@RequestMapping("/company-status")
 	public ModelAndView statusView(final HttpServletRequest request, final ModelMap model) {
 
 		final Team team = getCurrentTeam(request);
@@ -186,7 +197,7 @@ public class ProviderController extends BaseController {
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("recomment", team.getRecommendation());
 		return new ModelAndView("provider/status", model);
-	}
+	}*/
 
 	/**
 	 * 登录

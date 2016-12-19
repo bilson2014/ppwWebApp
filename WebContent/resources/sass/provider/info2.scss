@@ -3,10 +3,20 @@
 @import "normalize";
 
 .proInfo {
-    border-top: 1px solid #eee;
     padding-top: 60px;
     background: white;
     padding-bottom: 80px;
+
+    .noImportant{
+         &:after {
+            content: "" !important;
+            position: absolute;
+            color: $red-base;
+            right: -8px;
+            top: 9px;
+            font-size: $font-size-sm;
+        }
+    }
     .infoItem {
         font-size: 0;
         margin-bottom: 30px;
@@ -22,7 +32,8 @@
             font-size: $font-size-sm;
         }
         &:before {
-            content: "";
+
+            content: attr(data-content);
             position: absolute;
             color: $red-base;
             left: 96px;
@@ -198,7 +209,6 @@
 
     .updateLogo {
     width: 650px;
-    padding-top: 60px;
     margin-bottom: 60px;
     margin-left: 100px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
