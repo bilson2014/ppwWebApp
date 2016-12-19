@@ -138,7 +138,7 @@
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop">个人信息</div>
-                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/product'/>"></iframe>
+                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/info2'/>"></iframe>
                 </div>
                 
        </div>
