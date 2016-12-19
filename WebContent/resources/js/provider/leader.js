@@ -3,16 +3,8 @@
  var InterValObj;
  var uploader;
 $().ready(function(){
-	$('.dropdown li').on('click',function(){
-        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
-        var info=parseInt($(this).attr('data-info'));
-        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
-        $(this).parent().slideUp();
-        if($(this).hasClass('Province'))
-        	Province($(this));
-        return false;
-   });
-    resumeError();
+	    resumeError();
+	    initUl();
 	$('#checkbtn').on('click',function(){
 		 resumeError();
 		 checkStepOneData();
@@ -38,20 +30,33 @@ $().ready(function(){
 	});
 	userpicInfo();
 });
+
+function initUl(){
+	$('.dropdown li').on('click',function(){
+        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+        var info=parseInt($(this).attr('data-info'));
+        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
+        $(this).parent().slideUp();
+        if($(this).hasClass('Province'))
+        	Province($(this));
+        return false;
+   });
+
+}
+
 function Province(self){
 	var ProvinceId = self.attr('data-value')
 	loadData(function(msg){
 		if(msg != null && msg.length >0 ){
-			var select = $("#company-city");
+			var select = $("#selectUlCity");
+		    $('#getCity').text('');
+		    $('#getCity').attr('data-value','');
 			select.empty();
 			msg.forEach(function(city){
-				
-				
-				var html = '<option value = "' + city.cityID + '" >'+city.city+'</option>'  ;
+				var html = '<li data-value = "' + city.cityID + '" >'+city.city+'</li>';
 				select.append(html);
-				
-				
 			});
+			initUl();
 		}
 	}, getContextPath() + '/get/citys', $.toJSON({
 		provinceId : ProvinceId
@@ -99,31 +104,35 @@ function resumeError(){
 }
 
 function showStepOne(){
-	 $('.step-two-div').slideUp();
-		setTimeout(function() {
-			$('.step-one-div').slideDown();
-		}, 500);
+	 //$('.step-two-div').slideUp();
+	 $('.step-two-div').hide();
+	 $('.step-one-div').show();
+
+
+//		setTimeout(function() {
+//			$('.step-one-div').slideDown();
+//		}, 500);
      $('#step-1').addClass('step-1');
      $('#step-2').removeClass('step-1');
 }
 
 function showStepTwo(){
-	$('.step-one-div').slideUp();
-	setTimeout(function() {
-		$('.step-two-div').slideDown();
-	}, 500);
+	$('.step-one-div').hide();
+//	setTimeout(function() {
+	$('.step-two-div').show();
+//	}, 500);
  $('#step-2').addClass('step-1');
  $('#step-1').removeClass('step-1');
 }
 
 function showStepThree(){
 
-	$('.step-two-div').slideUp();
-	setTimeout(function() {
-		$('.step-three-div').slideDown();
-	}, 500);
- $('#step-2').removeClass('step-2');
- $('#step-3').addClass('step-3');
+	    $('.step-two-div').hide();
+	//setTimeout(function() {
+		$('.step-three-div').show();
+	//}, 500);
+ $('#step-2').removeClass('step-1');
+ $('#step-3').addClass('step-1');
  SetLastTime();
 }
 
@@ -256,9 +265,9 @@ function infoSave(){
 			city : $('#company-city option:selected').val(),
 			priceRange : $('#indent_recomment').attr('data-value'),
 			infoResource :  $('#indent_qwe').attr('data-value'),
-			teamProvince : $("#company-province").val(),
-			teamCity : $("#getProvince").attr('data-value'),
-			teamPhotoUrl : $('#getCity').attr('data-value')
+			teamProvince : $("#getProvince").attr('data-value'),
+			teamCity : $("#getCity").attr('data-value'),
+			teamPhotoUrl : $('#user_img_url').val()
 	}),	$('#surebtn'));
 }
 

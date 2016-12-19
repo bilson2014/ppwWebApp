@@ -2,6 +2,9 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
+
+
+
 .nav .logo {
     background: url(../../images/common/logo.svg) no-repeat;
 }
@@ -21,9 +24,9 @@
 .input-group-div {
     width: 650px;
     position: relative;
-        margin-left: 64px;
-     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-         margin-left: 190px;
+    margin-left: 64px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-left: 190px;
     }
     @media screen and (min-width:1500px) {
         margin-left: 230px;
@@ -59,6 +62,8 @@
             display: inline-block;
             vertical-align: top;
             margin-bottom: 10px;
+            border-left-top: 0px !important;
+            border-right-top: 0px !important;
             div {
                 width: 100px;
                 height: 30px;
@@ -106,6 +111,8 @@
             top: 30px;
             max-height: 400px;
             overflow: auto;
+            border-top-right-radius: 0px !important;
+            border-top-left-radius: 0px !important;
         }
         li {
             width: 100%;
@@ -202,7 +209,7 @@
 }
 
 .bot-area {
-    margin-top:0px;
+    margin-top: 0px;
 }
 
 .bottom-div {
@@ -210,10 +217,10 @@
     width: 100%;
     //left: 10px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        //	left: 20px;
+        //  left: 20px;
     }
     @media screen and (min-width:1500px) {
-        //	left: 30px;
+        //  left: 30px;
     }
 }
 
@@ -231,7 +238,7 @@
     color: $white;
     line-height: 36px;
     font-size: $font-size-base;
-    margin-left: 30px;
+    margin-left: 323px;
     margin-top: 30px;
     margin-bottom: 80px;
     &:hover {
@@ -251,7 +258,7 @@
     color: $white;
     line-height: 36px;
     font-size: $font-size-base;
-    margin-left: 323px;
+    margin-left: 30px;
     margin-top: 30px;
     margin-bottom: 80px;
     &:hover {
@@ -392,9 +399,9 @@
     width: 650px;
     padding-top: 60px;
     margin-bottom: 60px;
-     margin-left: 64px;
-     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-         margin-left: 190px;
+    margin-left: 64px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-left: 190px;
     }
     @media screen and (min-width:1500px) {
         margin-left: 230px;
@@ -428,13 +435,27 @@
 }
 
 #uploadBt {
-    width: 120px;
-    height: 36px;
-    border: 1px solid $gray-light;
-    line-height: 34px;
-    color: $gray-dark;
-    border-radius: 4px;
-    text-align: center;
+    .webuploader-pick {
+        width: 120px;
+        height: 36px;
+        border: 1px solid $gray-light;
+        line-height: 16px;
+        color: $gray-dark;
+        border-radius: 4px;
+        text-align: center;
+        background: transparent !important;
+        &:hover {
+            color: white;
+            border: 1px solid $red-base;
+        }
+    }
+    //     width: 120px;
+    //     height: 36px;
+    //     border: 1px solid $gray-light;
+    //     line-height: 34px;
+    //     color: $gray-dark;
+    //     border-radius: 4px;
+    //     text-align: center;
 }
 
 .borderLine {
@@ -443,9 +464,9 @@
     margin-top: 15px;
     margin-bottom: 40px;
     background: #eee;
-     margin-left: 64px;
-     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-         margin-left: 190px;
+    margin-left: 64px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-left: 190px;
     }
     @media screen and (min-width:1500px) {
         margin-left: 230px;
@@ -466,9 +487,7 @@
     }
 }
 
-.stepThreeLi{
-
-}
+.stepThreeLi {}
 
 .errorL {
     border: 1px solid $red-base !important;
