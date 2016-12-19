@@ -145,56 +145,7 @@
 
     </div>
     
-    	<!-- foot -->
-         					<div class="foot3">
-                                <div class="footContent">
-                                    <div class="contentTop">
-                                        <div class="topItem codeWidth">
-                                            <div class="Twocode"></div>
-                                            <div class="smWord">扫一扫 关注官方微信</div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>登录</a></div>
-                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">导演登录</a></div>
-                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
-                                            <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>关于拍片网</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/about-us.html' />">了解我们</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/member.html#join-us' />">加入我们</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/company-activity.html' />">公司活动</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/member.html#activityPart' />">团队介绍</a></div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>服务</a></div>
-                                            <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
-                                        </div>
-                                        <div class="topItem onLineWidth">
-                                            <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
-                                            <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
-                                        </div>
-                                        <div class="topItem">
-                                            <div class="title"><a>咨询电话</a></div>
-                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
-                                            <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="contentBottom">
-                                        <div>版权信息</div>
-                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
-                                        <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--新版底部-->
+
 
 </body>
 

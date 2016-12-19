@@ -27,6 +27,8 @@
 <html class="no-js">
 <!--<![endif]-->
 
+
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
@@ -35,16 +37,39 @@
     <meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>拍片网－用户信息页</title>
-     <link rel="stylesheet" type="text/css" href="${userCss}">   
+     <link rel="stylesheet" type="text/css" href="${productListCss}">   
 </head>
 
 <body>
 
  <div class="proInfo">
     <div class="control">
-       <div>新建作品</div>
-       <div>批量上传作品</div>
+       <div class="newProduct"><div></div><span>新建作品</span></div>
+       <div class="moreUp"><div></div><span>批量上传作品</span></div>
     </div>
+    
+    <div class="noProduct">
+        <div>暂无作品</div>
+    </div>
+    
+     <div class="ProductContent">
+        <div class="productCard">
+            <img src="/resources/images/index/noImg.jpg"/>
+            <div class="mid">
+                <div class="title"></div>
+                <div class="content"></div>
+                <ul>
+                  <li>可见</li>
+                  <li></li>
+                  <li>不可见</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
  </div>
 
 </body>
