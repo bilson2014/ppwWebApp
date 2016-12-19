@@ -114,6 +114,7 @@ input:-webkit-autofill {
     padding: 30px 30px 80px 30px;
     .productCard {
         position: relative;
+        margin-left: 20px;
         img {
             width: 200px;
             height: 115px;
@@ -124,6 +125,86 @@ input:-webkit-autofill {
         .mid {
             display: inline-block;
             vertical-align: top;
+        }
+    }
+}
+
+.mid {
+    .title {
+        font-size: 0;
+        span {
+            display: inline-block;
+            vertical-align: top;
+        }
+        span:nth-child(1) {
+            font-size: $font-size-base;
+            color: $gray-light;
+            margin-right: 8px;
+        }
+        span:nth-child(2) {
+            font-size: $font-size-sm;
+            color: $gray-dark;
+        }
+    }
+    .content {
+        margin-top: 8px;
+        div {
+            display: inline-block;
+            vertical-align: top;
+            font-size: $font-size-sm;
+            color: $gray-dark;
+        }
+        div:nth-child(2) {
+            display: inline-block;
+            margin-left: 8px;
+            height: 40px;
+        }
+    }
+    .noneUse {
+        li {
+            left: 90px !important;
+        }
+    }
+    ul {
+        margin-top: 10px;
+        width: 90px;
+        height: 20px;
+        border: 6px;
+        overflow: hidden;
+        font-size: 0;
+        border-radius: 4px;
+        position: relative;
+        white-space: nowrap;
+        margin-top: 10px;
+        transition: all .4s linear .4s;
+        -moz-transition: all .4s linear .4s;
+        /* Firefox 4 */
+        -webkit-transition: all .4s linear .4s;
+        /* Safari 和 Chrome */
+        -o-transition: all .4s linear .4s;
+        border: 1px solid $border-line;
+        li {
+            width: 45px;
+            height: 100%;
+            font-size: 12px;
+            color: white;
+            text-align: center;
+            line-height: 18px;
+            display: inline-block;
+            vertical-align: top;
+            left: 0px;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear .4s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear .4s;
+        }
+        li:nth-child(1) {
+            background: #33d8b5;
+        }
+        li:nth-child(3) {
+            background: $red-base;
         }
     }
 }

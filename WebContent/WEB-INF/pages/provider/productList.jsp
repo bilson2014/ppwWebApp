@@ -56,8 +56,14 @@
         <div class="productCard">
             <img src="/resources/images/index/noImg.jpg"/>
             <div class="mid">
-                <div class="title"><span></span></div>
-                <div class="content"><></div>
+                <div class="title">
+                       <span>标题：</span>
+                       <span>测试用</span>
+                </div>
+                <div class="content">
+                    <div class="cTitle">建议：</div>
+                    <div class="cContent">打算打打打</div>
+                </div>
                 <ul>
                   <li>可见</li>
                   <li></li>
