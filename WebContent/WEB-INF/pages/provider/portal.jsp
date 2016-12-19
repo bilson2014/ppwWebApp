@@ -130,6 +130,18 @@
 		<iframe id="content-frame" class="iframe"></iframe>
 	</div> -->
 	
+	<div class="infomation">
+	        <label>*您的资质提交已经成功提交,审核中...</label>
+	        <label>官方将在3个工作日内完成您的资质审核,敬请等候...</label>
+	</div>
+	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	
 	
 	
 	 <div class="page" style="height:100%">
@@ -161,7 +173,7 @@
                                      <div class="info" data-action="company-info">公司信息</div>
                               </div>
                                <div class="infoItem">
-                                      <div class="safeInfo" data-action="safe">安全设置</div>
+                                      <div class="safeInfo" data-action="safeInfo">安全设置</div>
                               </div> 
                     </div>
                 </div>

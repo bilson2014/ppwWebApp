@@ -16,6 +16,7 @@ $().ready(function() {
 
 	userpicInfo();
 	saveInfo();
+	initUl();
 });
 
 function verifyData() {
@@ -219,4 +220,37 @@ function userpicInfo() {
 			alert('格式不正确');
 		}
 	});
+}
+
+
+function initUl(){
+	$('.dropdown li').on('click',function(){
+        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+        var info=parseInt($(this).attr('data-info'));
+        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
+        $(this).parent().slideUp();
+        if($(this).hasClass('Province'))
+        	Province($(this));
+        return false;
+   });
+
+}
+
+function Province(self){
+	var ProvinceId = self.attr('data-value')
+	loadData(function(msg){
+		if(msg != null && msg.length >0 ){
+			var select = $("#selectUlCity");
+		    $('#getCity').text('');
+		    $('#getCity').attr('data-value','');
+			select.empty();
+			msg.forEach(function(city){
+				var html = '<li data-value = "' + city.cityID + '" >'+city.city+'</li>';
+				select.append(html);
+			});
+			initUl();
+		}
+	}, getContextPath() + '/get/citys', $.toJSON({
+		provinceId : ProvinceId
+	}))
 }

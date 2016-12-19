@@ -7,7 +7,7 @@
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 
-<spring:url value="/resources/css/provider/productList.css" var="productListCss"/>
+<spring:url value="/resources/css/provider/video-list.css" var="videoListCss"/>
 <spring:url value="/resources/css/provider/step-dc-style2.css" var="providerStepCss2"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 
@@ -37,7 +37,7 @@
     <meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>拍片网－用户信息页</title>
-     <link rel="stylesheet" type="text/css" href="${productListCss}">   
+     <link rel="stylesheet" type="text/css" href="${videoListCss}">   
 </head>
 
 <body>
