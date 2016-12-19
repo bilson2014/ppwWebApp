@@ -7,7 +7,7 @@
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss"/>
-<spring:url value="/resources/css/provider/info2.css" var="providerInfoCss"/>
+<spring:url value="/resources/css/provider/info.css" var="providerInfoCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <%-- import JS --%>
@@ -99,41 +99,41 @@
      
                             <div class="infoItem">
                                 <div class="title">公司名称</div>
-                                <input type="text" class="form-control" id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
+                                <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
                             </div>
                              <div class="infoItem">
                                 <div class="title">公司邮件</div>
-                                <input type="email" class="form-control" id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
+                                <input type="email" class=" " id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
                             </div>
                              <div class="infoItem">
                                 <div class="title">公司地址</div>
-                                <input type="text" class="form-control" id="company-address" placeholder="请填写公司地址" value="${provider.address }">
+                                <input type="text" class=" " id="company-address" placeholder="请填写公司地址" value="${provider.address }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">联系人</div>
-                                <input type="text" class="form-control" id="company-linkman" placeholder="联系人是必填项" value="${provider.linkman }">
+                                <input type="text" class=" " id="company-linkman" placeholder="联系人是必填项" value="${provider.linkman }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">手机号</div>
-                                <input type="text" readonly class="form-control" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
+                                <input type="text" readonly class=" " id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">微信号</div>
-                                <input type="text" class="form-control" id="company-webchat" placeholder="微信号是必填项" value="${provider.webchat }">
+                                <input type="text" class=" " id="company-webchat" placeholder="微信号是必填项" value="${provider.webchat }">
                             </div>
                             <div class="infoItem">
                                 <div class="title">QQ</div>
-                               <input type="text" class="form-control" id="company-qq" placeholder="QQ号码是必填项" value="${provider.qq }">
+                               <input type="text" class=" " id="company-qq" placeholder="QQ号码是必填项" value="${provider.qq }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">成立时间</div>
-                                <input type="text" class="form-control" id="company-establishDate" placeholder="请选择公司成立时间" readonly="readonly" value="${provider.establishDate }">
+                                <input type="text" class=" " id="company-establishDate" placeholder="请选择公司成立时间" readonly="readonly" value="${provider.establishDate }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">公司官网</div>
-                               <input type="text" class="form-control" id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
+                               <input type="text" class=" " id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem inline">
                             <div class="title">所在省</div>	
 								<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
@@ -155,7 +155,7 @@
 							</div>
                             </div>
                             
-                           <div class="infoItem">
+                           <div class="infoItem inline-noLeft">
 	                            <div class="title">所在市</div>	
 									<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
@@ -282,23 +282,23 @@
                             </div>
                             <div class="infoItem">
                                 <div class="title">公司简介</div>
-                                <textarea class="form-control" id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
+                                <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
                             <div class="infoItem">
                                 <div class="title">公司规模</div>
-                                <textarea class="form-control" id="company-scale" rows="5" maxlength="200" placeholder="请填写坐班人数及坐班导演或合作导演，坐班后期等信息">${provider.scale }</textarea>
+                                <textarea class=" " id="company-scale" rows="5" maxlength="200" placeholder="请填写坐班人数及坐班导演或合作导演，坐班后期等信息">${provider.scale }</textarea>
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem noImportant">
                                 <div class="title">主要客户</div>
-                                <textarea class="form-control" id="company-businessDesc" rows="5" maxlength="200" placeholder="请填写主要客户/作品及价格">${provider.businessDesc }</textarea>
+                                <textarea class=" " id="company-businessDesc" rows="5" maxlength="200" placeholder="请填写主要客户/作品及价格">${provider.businessDesc }</textarea>
                             </div>
                              <div class="infoItem">
                                 <div class="title">对客户要求</div>
-                               <textarea class="form-control" id="company-demand" rows="5" maxlength="200" placeholder="请填写对客户的要求">${provider.demand }</textarea>
+                               <textarea class=" " id="company-demand" rows="5" maxlength="200" placeholder="请填写对客户的要求">${provider.demand }</textarea>
                             </div>
-                             <div class="infoItem">
+                             <div class="infoItem noImportant">
                                 <div class="title">备注</div>
-                               <textarea class="form-control" id="company-description" rows="5" maxlength="200" placeholder="再次填写备注信息">${provider.description }</textarea>
+                               <textarea class=" " id="company-description" rows="5" maxlength="200" placeholder="再次填写备注信息">${provider.description }</textarea>
                             </div>
                             <div class="infoBottom">
 	                            <div class="infoSubmit btn-c-r" id="submitCheck">提交审核</div>
