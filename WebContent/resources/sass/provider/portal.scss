@@ -140,6 +140,7 @@ $leftWidth:320px;
             border-left: 4px solid transparent;
             padding-top: 11px;
             padding-left: 63px;
+            cursor: pointer;
         }
         .safeInfo {
             color: $gray;
@@ -202,6 +203,7 @@ $leftWidth:320px;
         color: $gray;
         font-size: $font-size;
         padding-left: 30px;
+        border-bottom: 1px solid $e;
     }
 }
 
