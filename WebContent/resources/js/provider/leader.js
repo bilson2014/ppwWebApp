@@ -222,21 +222,6 @@ function checkStepTwo(){
 
 function getBusinessVal(){
 	var busArr;
-//	$('input[name="business"]:checked').each(function(i){
-//		if(0 == i){
-//			busArr = this.value;
-//		}else {
-//			busArr += ',' + this.value;
-//		}
-//	});
-	
-//	$('.redTag').each(function(i){
-//	if(0 == i){
-//		busArr = $(this).value;
-//	}else {
-//		busArr += ',' + $(this).value;
-//	}
-//   });
 	var tags = $('.redTag');
 	for (var int = 0; int < tags.length; int++) {
 		if(int == 0)

@@ -173,16 +173,6 @@
 
                 <div class="input-group-div">
   	      			<span for="company-city" class="title-word">所在省</span>	
-<%-- 							<select class="step-two-select-city form-control" id="company-province"   >
-								<c:if test="${!empty provinces}">
-									<c:forEach items="${provinces }" var="source" varStatus="status">
-									  <option value ="${source.provinceID }"
-									  	<c:if test="${provider.teamProvince == source.provinceID }">
-									  		selected="selected"
-									  	</c:if> >${source.provinceName }</option>
-									</c:forEach>
-								</c:if>
-							</select> --%>
 							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
@@ -203,7 +193,7 @@
 													</c:forEach>
 												</c:if>									
 										</ul>
-									</div>
+							</div>
 									
 					<span for="company-city" class="title-word-city">所在城市</span>	
 <%-- 							<select class="step-two-select-city form-control"  id="company-city">
