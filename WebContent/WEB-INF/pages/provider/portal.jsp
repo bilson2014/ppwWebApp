@@ -52,7 +52,7 @@
 	<script src="${suggestJs }"></script>
 	<script src="${porviderPortalJs }"></script>
 </head>
-<body>
+<body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
@@ -140,6 +140,12 @@
 	
 	<div class="tooltip-error-show" style="">
 		<label class="tooltip-success-message">信息更新成功</label>
+	</div>
+	
+	<div class="tooltip-warn-up" >
+		 <div class="infoCard">
+		 
+		 </div>
 	</div>
 	
 	
