@@ -21,7 +21,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
+<spring:url value="/resources/js/provider/safeInfo.js" var="safeInfoJs"/>
 
 <spring:url value="/resources/images" var="path" />
 
@@ -58,7 +58,7 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
-	<script src="${providerInfoJs }"></script>
+	<script src="${safeInfoJs }"></script>
 	<!-- sina weibo -->
 	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
 	<!-- webcat -->
@@ -72,7 +72,7 @@
     
      <div class="proInfo">
           
-          <div class="safeInfo hide">
+          <div class="safeInfo" id="normal">
                 <div class="safeItem">
                       <div class="leftItem">
                            <div class="content">
@@ -83,7 +83,7 @@
                                <div class="infoName">用户名</div>
                                <div>未设置</div>
                            </div>
-                           <div class="setInfo">设置</div>
+                           <div class="setInfo btn-c-r" id="toUserName">设置</div>
                       </div>
                 </div>
                 <div class="line"></div>
@@ -97,13 +97,13 @@
                                <div class="infoName">原机绑定</div>
                                <div>未设置</div>
                            </div>
-                           <div class="setInfo">设置</div>
+                           <div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
                       </div>
                 </div>
           </div>
           
           
-           <div class="setUserContent">
+           <div class="setUserContent" id="userName">
                    <div class="top">
                       <div>手机绑定</div>
                       <div>确保账号登录时的安全性，同时作为密码更改，密码找回，支付时验证身份用</div>
@@ -128,13 +128,13 @@
                    </div>
                    <div class="bottom">
                        <div class="btn-c-r infoSubmit">保存</div>
-                       <div class="btn-c-g infoReSet">取消</div>
+                       <div class="btn-c-g infoReSet" id="nameReturn">取消</div>
                    </div>
            
            </div>
           
            
-           <div class="setUserContent hide">
+           <div class="setUserContent" id="userPassWord">
                    <div class="top">
                       <div>登录密码</div>
                       <div>使用账号登录时需要输入密码</div>
@@ -158,7 +158,7 @@
                    </div>
                    <div class="bottom">
                        <div class="btn-c-r infoSubmit">保存</div>
-                       <div class="btn-c-g infoReSet">取消</div>
+                       <div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
                    </div>
            
            </div>
