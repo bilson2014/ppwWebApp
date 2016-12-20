@@ -3,15 +3,12 @@
 @import "normalize";
 
 body{
-    overflow: hidden;
-    height: auto;
+    overflow: auto;
 }
 .proInfo {
     padding-top: 60px;
     background: white;
     padding-bottom: 80px;
-    height: 100%;
-    overflow: auto;
     .noImportant {
         &:after {
             content: "";

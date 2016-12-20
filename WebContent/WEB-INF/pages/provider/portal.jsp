@@ -52,7 +52,7 @@
 	<script src="${suggestJs }"></script>
 	<script src="${porviderPortalJs }"></script>
 </head>
-<body>
+<body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">

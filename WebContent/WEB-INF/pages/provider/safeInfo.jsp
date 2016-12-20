@@ -140,11 +140,11 @@
                       <div>使用账号登录时需要输入密码</div>
                    </div>
                     <div class="setItem">
-                      <div class="title">登录密码</div>
+                      <div class="title">用户名</div>
                       <input>
                    </div>
                    <div class="setItem sureIcon">
-                      <div class="title">登录密码</div>
+                      <div class="title">新密码</div>
                       <input type="password">
                    </div>
                     <div class="setItem errorIcon">

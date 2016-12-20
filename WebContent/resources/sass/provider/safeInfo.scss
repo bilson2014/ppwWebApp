@@ -126,6 +126,8 @@ input:-webkit-autofill {
 .setItem {
     margin-bottom: 30px;
     font-size: 0;
+    position: relative;
+    width: 655px;
     &:before {
         content: "错误";
         position: absolute;

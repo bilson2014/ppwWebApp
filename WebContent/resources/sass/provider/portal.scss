@@ -47,6 +47,7 @@ $leftWidth:320px;
 // }
 body{
 //overflow: hidden;
+ background: $f0 !important;
 }
 
 .infomation {
@@ -220,13 +221,11 @@ body{
     vertical-align: top;
     display: inline-block;
     width: 1300px - $leftWidth;
-    //  height: 2300px;
     margin-left: 20px;
     background: white;
     position: absolute;
-    overflow: hidden;
+    overflow: auto;
     top: 0px;
-    /* left: 234px; */
     bottom: 0px;
     margin-bottom: 5px;
     border-radius: 6px;

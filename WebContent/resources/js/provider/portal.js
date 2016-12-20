@@ -4,12 +4,12 @@ var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 
 $(function(){ 
-    $("#content-frame").load(function(){ 
-         var height = $(this).contents().find("body").height(); 
-         //这样给以一个最小高度 
-         alert(height);
-         $(this).height( height < 900 ? 1024 : height ); 
-    }); 
+//    $("#content-frame").load(function(){ 
+//         var height = $(this).contents().find("body").height(); 
+//         //这样给以一个最小高度 
+//         alert(height);
+//         $(this).height( height < 900 ? 1024 : height ); 
+//    }); 
 });
 
 $().ready(function(){
@@ -20,9 +20,29 @@ $().ready(function(){
 		$('.infoItem').removeClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
+		if($(this).data('action')=='safe-info'){
+			getHeight(1);
+		}else{
+			getHeight(2);
+		}
+		
 	});
 	successErrorTipShow();
+	
+	
+
+	
 });
+
+function getHeight(num){
+	var screen = document.body.clientHeight - 180;
+	var safe = 546;
+	if(num == 1){
+	$("#content-frame").css('height',safe);
+	}else{
+		$("#content-frame").css('height',screen);
+	}
+}
 
 
 
