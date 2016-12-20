@@ -308,11 +308,4 @@ function userpicInfo(){
         	alert('格式不正确');
         }
 	});
-}   
-		
-		
-			
-
-
-
-
+}
