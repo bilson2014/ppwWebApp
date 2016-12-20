@@ -105,8 +105,14 @@
 									<li>不可见</li>
 								</ul>
 							</c:if>
+							<div class="shareVideo">
+							    <div>分享：</div>
+							    <div class="wechat"></div>
+							    <div class="qq"></div>
+							    <div class="wb"></div>
+							    <div class="zone"></div>
+							</div>
 						</div>
-
 						<c:if test="${product.flag==0}">
 							<div class="state yellow">审核中</div>
 						</c:if>

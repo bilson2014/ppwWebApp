@@ -17,6 +17,7 @@ $().ready(function() {
 	userpicInfo();
 	saveInfo();
 	initUl();
+	setBusinessVal($('#Tags').val());
 });
 
 function verifyData() {
@@ -176,6 +177,23 @@ function getBusinessVal() {
 	}
 	return busArr;
 }
+function setBusinessVal(ids) {
+	if(ids != null && ids!= undefined){
+		var idsArray = ids.split(',');
+		if(idsArray!=null && idsArray.length >0){
+			var tags = $('.getTag');
+			for (var int = 0; int < idsArray.length; int++) {
+				var id = idsArray[int];
+				for (var int2 = 0; int2 < tags.length; int2++) {
+					var id2 = $(tags[int2]).attr('data-value');
+					if(id == id2)
+						$(tags[int2]).addClass('redTag');
+				}
+			}
+		}
+	}
+}
+
 // 头像修改
 function userpicInfo() {
 	uploader && uploader.destroy();
