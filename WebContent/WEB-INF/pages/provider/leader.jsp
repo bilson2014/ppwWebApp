@@ -373,7 +373,7 @@
   	      				  </div>
      
                            <div class="bottom-div">
-                           	  <Button class="red-btn btn-c-r" id="surebtn">确定</Button> <Button class="gy-btn"  id="backbtn">上一步</Button>    
+                           	  <Button class="red-btn btn-c-r" id="surebtn">提交</Button> <Button class="gy-btn"  id="backbtn">上一步</Button>    
                            </div>
                
 	                   </div>	

@@ -34,24 +34,24 @@ public class CostCalculateController extends BaseController{
 	 */
 	public static int[][] typeAddTeam = new int[6][3];//初始化6行3列的 视频+导演价格表
 	static{
-		typeAddTeam[0][0] = 3000;
-		typeAddTeam[0][1] = 6000;
-		typeAddTeam[0][2] = 10000;
-		typeAddTeam[1][0] = 6000;
-		typeAddTeam[1][1] = 10000;
-		typeAddTeam[1][2] = 20000;
-		typeAddTeam[2][0] = 3000;
-		typeAddTeam[2][1] = 6000;
-		typeAddTeam[2][2] = 10000;
-		typeAddTeam[3][0] = 6000;
-		typeAddTeam[3][1] = 10000;
-		typeAddTeam[3][2] = 20000;
-		typeAddTeam[4][0] = 3000;
-		typeAddTeam[4][1] = 6000;
-		typeAddTeam[4][2] = 10000;
-		typeAddTeam[5][0] = 3000;
-		typeAddTeam[5][1] = 6000;
-		typeAddTeam[5][2] = 10000;
+		typeAddTeam[0][0] = 30000;
+		typeAddTeam[0][1] = 60000;
+		typeAddTeam[0][2] = 100000;
+		typeAddTeam[1][0] = 60000;
+		typeAddTeam[1][1] = 100000;
+		typeAddTeam[1][2] = 200000;
+		typeAddTeam[2][0] = 30000;
+		typeAddTeam[2][1] = 60000;
+		typeAddTeam[2][2] = 100000;
+		typeAddTeam[3][0] = 60000;
+		typeAddTeam[3][1] = 100000;
+		typeAddTeam[3][2] = 200000;
+		typeAddTeam[4][0] = 30000;
+		typeAddTeam[4][1] = 60000;
+		typeAddTeam[4][2] = 100000;
+		typeAddTeam[5][0] = 30000;
+		typeAddTeam[5][1] = 60000;
+		typeAddTeam[5][2] = 100000;
 		URL_PREFIX = PropertiesUtils.getProp("urlPrefix");
 	}
 	

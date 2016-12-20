@@ -3,9 +3,8 @@ var image_max_size = 1024*250; // 250KB
 var video_max_size = 200*1024*1024; // 200MB
 var image_err_msg = '图片大小超出250KB上限,请重新上传!';
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
-var browserCfg = {};
 var editor;
-$.base64.utf8encode = true;
+var flag = 3;//作品状态
 $().ready(function(){
 	var upload = {
 		init:function(){
@@ -13,9 +12,8 @@ $().ready(function(){
 			this.uploaderPic();
 			//初始化视频上传
 			this.uploaderVideo();
-			
 		},
-		uploaderVideo:function(){
+		uploaderVideo:function(){    
 			var _this = this;
 			var action = $('#action').val();
 			upload_Video = WebUploader.create({
@@ -76,33 +74,30 @@ $().ready(function(){
 		//点击保存按钮
 		submit:function(){
 			var _this = this;
-			$('#infoBt').off("click").on('click', function() {
+			$('#saveBt').off("click").on('click', function() {
+				flag = 3;//保存状态
+				dealProduct();
+			});
+			$('#submitBt').off("click").on('click', function() {
+				flag = 0;//审核中状态
+				dealProduct();
+			});
+			function dealProduct(){
 				var action = $('#action').val();
 				var change = $("#video-change").val();
 				if(checkData()){ // 检验数据完整性
 					$('#warmModel').modal('show');
 					$('#sureUpdate').off('click').on('click',function(){
 						$('#warmModel').modal('hide');
-						if($('#video-switch').val() == 1){
-							if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
-								if(action == 'modify' && change == 0){//修改状态,且视频无修改,此时不需要上传视频
-									_this.saveOrModify();
-								}else{
-									//webupload启动提交
-									upload_Video.upload();
-								}
-							}
+						if(action == 'modify' && change == 0){//修改状态,且视频无修改,此时不需要上传视频
+							_this.saveOrModify();
 						}else{
-							if(action == 'modify' && change == 0){
-								_this.saveOrModify();
-							}else{
-								//webupload启动提交
-								upload_Video.upload();
-							}
+							//webupload启动提交
+							upload_Video.upload();
 						}
 					});
 				}
-			});
+			}
 		},
 		saveOrModify:function(videoUrl){
 			var url;
@@ -113,9 +108,6 @@ $().ready(function(){
 			if(action == 'modify'){
 				url = '/provider/update/product/info';
 			}
-			// 获取 videoDescription 值
-			$.base64.utf8encode = true;
-			var videoDescription= $.base64.btoa(editor.html());
 			loadData(function(data){
 				if(videoUrl){//说明是dfs返回值,此时代表有视频上传
 					// 文件验证通过，则隐藏提示信息
@@ -135,33 +127,13 @@ $().ready(function(){
 				}else{//没有修改视频
 					// 显示保存成功
 					successToolTipShow();
-					loadData(function(product){
-						// 替换图片
-						if(product.picLDUrl != null && product.picLDUrl != '' && product.picLDUrl != undefined){
-							var picLDPath = getDfsHostName() + product.picLDUrl;
-							$('#LDImg').attr('src',picLDPath);
-						}
-						if(product.picHDUrl != null && product.picHDUrl != '' && product.picHDUrl != undefined){
-							var picHDPath = getDfsHostName() + product.picHDUrl;
-							$('#HDImg').attr('src',picHDPath);
-						}
-					}, getContextPath() + '/provider/product/data/' + $('#p-id').val(), null);
 				}
-				$("#s-id").val(data);
 			}, getContextPath() + url ,$.toJSON({
 				'productId' : $('#p-id').val().trim(),
+				'flag':flag,
 				'teamId' : $('#company-id').val(),
 				'productName' : $('#video-name').val().trim(),
-				//'productType' : $('#video-type option:selected').val(),
-				'videoLength' : $('#video-length').val().trim(),
-				'pDescription' : $('#video-description').val().trim(),
-				'servicePrice' : $('#video-price').val(),
-				'visible' : $('#video-switch').val(),
-				'tags' : mergeTag(),
-				'serviceId' : $('#s-id').val(),
-				'videoDescription' : videoDescription.trim(),
 				'creationTime' : $('#creationTime').val(),
-				'picHDUrl' : $("#video-picHDUrl").val(),
 				'picLDUrl' : $("#video-picLDUrl").val(),
 				'videoUrl' : videoUrl
 			}));
@@ -222,91 +194,12 @@ $().ready(function(){
 		dateFormat:'yyyy-MM-dd',
 		maxDate: new Date() 
 	});
-	
-	createEditor('textarea[name="pageDescription"]');
 	cancleUpdate();
-	// 判断浏览器格式
-	var ua = window.navigator.userAgent;
-	if (ua.indexOf("MSIE")>=1){
-		browserCfg.ie = true;
-	}else if(ua.indexOf("Firefox")>=1){
-		browserCfg.firefox = true;
-	}else if(ua.indexOf("Chrome")>=1){
-		browserCfg.chrome = true;
-	}
-	
-	var companyKey = $('#company-id').val();
-	var pKey = $('#p-id').val();
 	var action = $('#action').val();
-	
-	// 注册 标签输入 监听
-	$('.input_inner').bind('keypress',function(event){
-		// 如果含有, 或者 空格 ，则添加标签，然后清空input
-		e = event ? event :(window.event ? window.event : null);
-		var code = e.keyCode||e.which||e.charCode;
-		if(code == 32 || code == 44){
-			var tag = $(this).val().replace (/,/g,'').trim();
-			
-			// 检查是否 汉字或是 全角
-			if(tag != null && tag != '' && tag != undefined){
-				var count = tag.replace(/[^\x00-\xff]/g,"**").length;
-				if(count > 16){
-					// 提示错误信息
-					$('#tagLabel').show();
-				}else {
-					$('#tagLabel').hide();
-					addTags(tag); // 增加标签
-				}
-			}
-		}
-		
-	});
-	
-	// 注册 标签输入框 的失去焦点事件
-	$('.input_inner').blur(function(){
-		var tag = $(this).val().replace (/,/g,'').trim();
-		if(tag == null || tag == '' || tag == undefined){
-			// 为空时，查看是否有标签，如果没有，则显示 placeholder 提示
-			var tagName = mergeTag();
-			if(tagName == null || tagName == '' || tagName == undefined){
-				$('.keyword_placeholder').show('fast');
-			}
-		}else {
-			addTags(tag); // 增加标签
-		}
-	});
-	
-	// 注册 标签关闭 按钮
-	$('.btn_keyword_del').on('click',function(){
-		removeTags($(this));
-	});
-	
-	// 注册 placeholder 的focus 事件
-	$('.keyword_placeholder').click(function(){
-		$(this).hide('fast');
-		$('.input_inner').focus();
-	});
-	
 	// 注册变更模式
-	
 	if(action == 'upload'){
-		$('#video-picHD-div').hide();
 		$('#video-picLD-div').hide();
-		// 开关注册
-		initSwitch(true);
 	}else if(action == 'modify'){
-		// 加载Editor
-		var pageDescription = $('#page-description').val().trim();
-		$.base64.utf8encode = true;
-		var pageContent =$.trim($.base64.atob(pageDescription,true));
-		editor.html(pageContent);
-		
-		// 如果 停止启用，则改变  switch 状态
-		if($('#video-switch').val() == 1){
-			initSwitch(false);
-		}else{
-			initSwitch(true);
-		}
 		// 显示封面
 		var picLDUrl = $('#video-picLDUrl').val();
 		if(picLDUrl != '' && picLDUrl != null){
@@ -335,37 +228,15 @@ $().ready(function(){
 // 检测数据的完整性
 function checkData(){
 	var name = $('#video-name').val().trim(); // 视频名称
-	var videoLength = $('#video-length').val().trim(); // 视频长度
-	var price = $('#video-price').val(); //价格
 	var creationTime = $('#creationTime').val();//创作时间
-	
 	if(name == '' || name == null || name == undefined){
 		popshow('video-name', '请输入视频标题!');
 		$('#video-name').focus();
 		return false;
 	}
-	if(videoLength == '' || videoLength == null || videoLength == undefined){
-		$('#video-length').val(0);
-	}
-	if(price == '' || price == null || price == undefined){
-		$('#video-price').val(0);
-	}
 	if(creationTime == '' || creationTime == null || creationTime == undefined){
 		popshow('creationTime', '请填写创作时间!');
 		$('#creationTime').focus();
-		return false;
-	}
-	var numReg = new RegExp("^[0-9]*$");
-	
-	if(!numReg.test(videoLength)){
-		popshow('video-length', '请填写整数!');
-		$('#video-length').focus();
-		return false;
-	}
-	
-	if(isNaN(price)){
-		popshow('video-price', '请输入数字!');
-		$('#video-price').focus();
 		return false;
 	}
 	var LDImg = $('#video-picLDUrl').val(); // 封面图
@@ -408,109 +279,11 @@ function successToolTipShow(){
 function hideSuccessTooltip(){
 	$('.tooltip-success-show').hide('normal');
 }
-
-//启用switch开关
-function initSwitch(type){
-	$("#video-switch").bootstrapSwitch({
-		animate : true,
-		state : type,
-		onColor : 'success',
-		offColor : 'danger',
-		onText : '可见',
-		offText : '关闭',
-		onSwitchChange : function(event,state){
-			if(state){
-				$(this).val(0);
-			}else {
-				$(this).val(1);
-			}
-		}
-	});
-}
-
-// 提取标签
-function mergeTag(){
-	
-	var tagName = '';
-	$.each($('.keyword_item_inner'),function(i,obj){
-		var tag = $(obj).text().replace (/,/g,'').trim();
-		if(tag !=null && tag != '' && tag != undefined){
-			tagName += tag;
-			if (i != $('.keyword_item_inner').length - 1)
-				tagName += ' ';
-		}
-	});
-	return tagName;
-}
-
-// 增加标签
-function addTags(tag) {
-	
-	if(tag != null && tag != undefined && tag != ''){
-		
-		// 增加标签时 ,看其是否超过5条
-		var num = $('.keyword_item').length;
-		if(num < 5){ // 当前没有超过5条，则增加
-			var $tag = '<span class="keyword_item">';
-			$tag += '<b class="keyword_item_inner">'+ tag +'</b>';
-			$tag += '<a href="javascript:void(0);" class="btn_keyword_del">';
-			$tag += '<span>x</span>';
-			$tag += '</a>';
-			$('.keyword_input').before($tag);
-			// 激活 x 
-			$('.btn_keyword_del').unbind('click');
-			$('.btn_keyword_del').bind('click',function(){
-				removeTags($(this));
-			});
-			
-		}
-		// 清空input
-		$('.input_inner').val('');
-	}else {
-		// 清空input
-		$('.input_inner').val('');
-	}
-}
-
-// 删除 标签
-function removeTags(obj) {
-	obj.parent().remove();
-	var num = $('.keyword_item').length;
-	if(num == 0){
-		$('.keyword_placeholder').show('fast');
-	}
-}
-
-function createEditor(name){
-	editor = KindEditor.create(name, {
-		cssPath : getContextPath() + '/resources/lib/kindeditor/plugins/code/prettify.css',
-		uploadJson : getContextPath() + '/kindeditor/uploadImage',
-		zIndex : 888888,
-		width : '600px',
-		height : '350px',
-		resizeType:0,
-		allowImageUpload : true,
-		items : [ 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
-					'bold', 'italic', 'underline', 'removeformat', '|',
-					'justifyleft', 'justifycenter', 'justifyright',
-					'insertorderedlist', 'insertunorderedlist', '|',
-					'emoticons', 'image', 'link', 'unlink', 'fullscreen',
-					'table', 'formatblock', 'preview' ]
-	});
-}
-
 function cancleUpdate(){
 	$('#cancleUpdate').on('click',function(){
 		$('#warmModel').modal('hide');
 	});
-
 }
 $('#backBt').on('click',function(){
 	$('.menu-content li:eq(1)', parent.document).click();
 });
-
-function hasAuditing(){
-	var flag = $("#bean-flag").val();
-	return flag == 1?true:false
-}
- 
