@@ -80,8 +80,9 @@
                                <div>使用账号登录时需要输入的密码</div>
                            </div>
                            <div class="content">
-                               <div class="infoName">用户名</div>
-                               <div>未设置</div>
+                               <div class="infoName">登录名</div>
+                               <c:if test="${empty team.loginName }"><div>未设置</div></c:if>
+                               <c:if test="${not empty team.loginName }"><div>${team.loginName}</div></c:if>
                            </div>
                            <div class="setInfo btn-c-r" id="toUserName">设置</div>
                       </div>
@@ -95,7 +96,8 @@
                            </div>
                            <div class="content">
                                <div class="infoName">原机绑定</div>
-                               <div>未设置</div>
+                               <c:if test="${empty team.phoneNumber }"><div>未设置</div></c:if>
+                               <c:if test="${not empty team.phoneNumber }"><div>${team.phoneNumber}</div></c:if>
                            </div>
                            <div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
                       </div>

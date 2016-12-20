@@ -176,14 +176,14 @@ public class ProviderController extends BaseController {
 	}
 	
 	/**
-	 * 跳转至 视频列表页
+	 * 跳转至 安全设置页面
 	 */
 	@RequestMapping("/safe-info")
 	public ModelAndView safeView(final HttpServletRequest request, final ModelMap model) {
 		final Team team = getCurrentTeam(request);
 		model.addAttribute("status", team.getFlag());
 		model.addAttribute("cKey", team.getTeamId());
-		model.addAttribute("recomment", team.getRecommendation());
+		model.addAttribute("team", team);
 		return new ModelAndView("provider/safeInfo", model);
 	}
 	/**
