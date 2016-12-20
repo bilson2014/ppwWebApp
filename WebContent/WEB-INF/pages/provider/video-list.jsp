@@ -57,7 +57,7 @@
 		<div class="control">
 			<div class="newProduct">
 				<div></div>
-				<span>新建作品</span>
+				<a href="/"><span>新建作品</span></a>
 			</div>
 			<div class="moreUp">
 				<div></div>
@@ -74,44 +74,48 @@
 		</c:if>
 
 		<c:if test="${!empty list}">
-			<c:forEach items="${list }" var="product" varStatus="status">
-				<div class="ProductContent">
+			<div class="ProductContent">
+				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
-						<c:if test="${product.picLDUrl == null}">
-							<img src="/resources/images/index/noImg.jpg" />
+						<c:if test="${empty product.picLDUrl}">
+							<img class='media-object' src="/resources/images/index/noImg.jpg" />
 						</c:if>
-						<c:if test="${product.picLDUrl != null}">
-							<img src='${file_locate_storage_path }${product.picLDUrl }' />
+						<c:if test="${not empty product.picLDUrl}">
+							<img class='media-object' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
-							class="mid <c:if test="${not empty product.checkDetails}"> nc</c:if>">
+							class="mid <c:if test="${empty product.checkDetails}"> nC</c:if>">
 							<div class="title">
-								<span>标题：</span> <span><c:out value="${product.productName }" /></span>
+								<span>标题：</span> <span><c:out
+										value="${product.productName }" /></span>
 							</div>
-							<c:if test="${empty product.checkDetails}">
-								<div class="content">
-									<div class="cTitle">建议：</div>
-									<div class="cContent">
+							<div class="content">
+								<div class="cTitle">建议：</div>
+								<div class="cContent">
+									<c:if test="${not empty product.checkDetails}">
 										<c:out value="${product.checkDetails }" />
-									</div>
+									</c:if>
+								</div>
+							</div>
+							<c:if test="${product.flag==1}">
+								<ul data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visibleProduct <c:if test="${product.visible==0}">noneUse</c:if>">
+									<li>可见</li>
+									<li></li>
+									<li>不可见</li>
+								</ul>
+							</c:if>
+							
+							<c:if test="${cType == 4 }">
+								<div class="shareVideo">
+								    <div>分享：</div>
+								    <div class="wechat -mob-share-weixin share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="qq -mob-share-qq share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="wb -mob-share-weibo share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="zone -mob-share-qzone share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
 								</div>
 							</c:if>
-							<ul class="<c:if test="${product.visible==0}"> nc</c:if>">
-								<li>可见</li>
-								<li></li>
-								<li>不可见</li>
-							</ul>
-							<div class="shareVideo">
-							    <div>分享：</div>
-							    <div class="wechat"></div>
-							    <div class="qq"></div>
-							    <div class="wb"></div>
-							    <div class="zone"></div>
-							</div>
-							
 						</div>
-
 						<c:if test="${product.flag==0}">
 							<div class="state yellow">审核中</div>
 						</c:if>
@@ -126,28 +130,41 @@
 						</c:if>
 
 						<div class="lastContent">
-						
-							<div class="setDef">
-								<div>设为代表作</div>
-								<div class="star"></div>
-							</div>
-							
-							<c:if test="${product.flag==3 || product.flag==2}">
-								<div class="edit btn-c-r" data-id='<c:out value="${product.productId }" />'>
+							<c:if test="${product.flag==1}">
+								<c:if test="${product.masterWork==1}">
+									<div class="master-flag setMaster">
+										<div class="master-title">取消代表作</div>
+										<div class="star"
+										 data-id='<c:out value="${product.productId }"/>'
+										 data-master='<c:out value="${product.masterWork }" />'></div>
+									</div>
+								</c:if>
+								<c:if test="${product.masterWork==0}">
+									<div class="master-flag noMaster">
+										<div class="master-title">设为代表作</div>
+										<div class="star" 
+										data-id='<c:out value="${product.productId }" />'
+										data-master='<c:out value="${product.masterWork }" />'></div>
+									</div>
+								</c:if>
+							</c:if>
+							<c:if test="${product.flag==3}">
+								<div class="edit btn-c-r"
+									data-id='<c:out value="${product.productId }" />'>
 									<div></div>
 									<div>编辑</div>
 								</div>
 							</c:if>
-							<div class="del btn-c-g" data-id='<c:out value="${product.productId }" />'>
+							<div class="del btn-c-g"
+								data-id='<c:out value="${product.productId }"/>'>
 								<div></div>
 								<div>删除</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</c:if>
-
 	</div>
 
 </body>
@@ -158,4 +175,7 @@
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${productListJs }"></script>
+<!-- 加载Mob share 控件 -->
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+<!-- script here -->
 </html>

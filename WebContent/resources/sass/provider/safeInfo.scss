@@ -3,6 +3,7 @@
 @import "normalize";
 body{
 	height: auto !important;
+	overflow: hidden;
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -125,6 +126,8 @@ input:-webkit-autofill {
 .setItem {
     margin-bottom: 30px;
     font-size: 0;
+    position: relative;
+    width: 655px;
     &:before {
         content: "错误";
         position: absolute;

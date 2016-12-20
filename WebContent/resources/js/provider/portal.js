@@ -2,8 +2,6 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
-
-
 $().ready(function(){
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
@@ -12,8 +10,24 @@ $().ready(function(){
 		$('.infoItem').removeClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
+		if($(this).data('action')=='safe-info'){
+			getHeight(1);
+		}else{
+			getHeight(2);
+		}
+		
 	});
 });
+
+function getHeight(num){
+	var screen = document.body.clientHeight - 180;
+	var safe = 546;
+	if(num == 1){
+	$("#content-frame").css('height',safe);
+	}else{
+		$("#content-frame").css('height',screen);
+	}
+}
 
 
 
