@@ -283,7 +283,7 @@ input:-webkit-autofill {
         }
     }
 
-    .noDef {
+    .noMaster {
         font-size: $font-size-sm;
         color: $gray-dark;
         width: 88px;
@@ -323,7 +323,7 @@ input:-webkit-autofill {
     }
 
 
-    .setDef {
+    .setMaster {
         font-size: $font-size-sm;
         color: $gray-dark;
         width: 88px;
