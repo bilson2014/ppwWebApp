@@ -216,7 +216,7 @@
                             </div>
                             <div class="infoItem">
                                 <div class="title">业务范围</div>
-                                
+                                <input type="hidden" id="Tags" value="${provider.business }">
                                  <ul class="ul-step-two">
                                       <li>  
                                         <div class="getTag" name="business" data-value="0"> 广告</div>

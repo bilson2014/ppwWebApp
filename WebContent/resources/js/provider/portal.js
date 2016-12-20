@@ -2,6 +2,16 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
+
+$(function(){ 
+    $("#content-frame").load(function(){ 
+         var height = $(this).contents().find("body").height(); 
+         //这样给以一个最小高度 
+         alert(height);
+         $(this).height( height < 900 ? 1024 : height ); 
+    }); 
+});
+
 $().ready(function(){
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));

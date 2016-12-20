@@ -138,7 +138,7 @@
 		<label class="tooltip-success-message">信息更新成功</label>
 	</div>
 	
-	<div class="tooltip-error-show" style="display: none;">
+	<div class="tooltip-error-show" style="">
 		<label class="tooltip-success-message">信息更新成功</label>
 	</div>
 	
@@ -177,8 +177,8 @@
                               </div> 
                     </div>
                 </div>
-                <div class="right-wrap">
-                       <div class="titleTop">个人信息</div>
+                <div class="right-wrap" style="height: auto;    position: relative !important;">
+                       <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
                 
