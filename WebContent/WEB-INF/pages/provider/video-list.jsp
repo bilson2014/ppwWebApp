@@ -87,7 +87,7 @@
 						<div
 							class="mid <c:if test="${empty product.checkDetails}"> nC</c:if>">
 							<div class="title">
-								<span>标题：${product.flag}</span> <span><c:out
+								<span>标题：</span> <span><c:out
 										value="${product.productName }" /></span>
 							</div>
 							<div class="content">
@@ -105,13 +105,16 @@
 									<li>不可见</li>
 								</ul>
 							</c:if>
-							<div class="shareVideo">
-							    <div>分享：</div>
-							    <div class="wechat"></div>
-							    <div class="qq"></div>
-							    <div class="wb"></div>
-							    <div class="zone"></div>
-							</div>
+							
+							<c:if test="${cType == 4 }">
+								<div class="shareVideo">
+								    <div>分享：</div>
+								    <div class="wechat -mob-share-weixin share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="qq -mob-share-qq share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="wb -mob-share-weibo share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								    <div class="zone -mob-share-qzone share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
+								</div>
+							</c:if>
 						</div>
 						<c:if test="${product.flag==0}">
 							<div class="state yellow">审核中</div>
@@ -172,4 +175,7 @@
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${productListJs }"></script>
+<!-- 加载Mob share 控件 -->
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+<!-- script here -->
 </html>
