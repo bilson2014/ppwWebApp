@@ -179,7 +179,7 @@
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop">个人信息</div>
-                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/company-info'/>"></iframe>
+                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
                 
        </div>
