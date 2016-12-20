@@ -4,6 +4,10 @@
 $green:#79d018;
 $yellow:#f5a623;
 $blue:#30CBFB;
+body {
+    overflow: hidden;
+}
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
@@ -211,6 +215,8 @@ input:-webkit-autofill {
         -o-transition: all .4s linear .4s;
         border: 1px solid $border-line;
         cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
         li {
             width: 45px;
             height: 100%;
@@ -239,33 +245,43 @@ input:-webkit-autofill {
     .shareVideo {
         display: inline-block;
         vertical-align: top;
+        position: relative;
+        top: 10px;
+        left: 10px;
         div {
             display: inline-block;
-            vertical-align: top;
+            vertical-align: middle;
             background-position: 0px -20px;
-            color:$gray;
+            color: $gray;
             font-size: $font-size-sm;
             margin-right: 10px;
+            &:hover {
+                background-position: 0px 0px;
+            }
         }
         .wechat {
             background: url(/resources/images/provider/wechat.png);
             height: 20px;
             width: 20px;
+            cursor: pointer;
         }
         .qq {
             background: url(/resources/images/provider/qq.png);
             height: 20px;
             width: 20px;
+            cursor: pointer;
         }
         .zone {
             background: url(/resources/images/provider/qzone.png);
             height: 20px;
             width: 20px;
+            cursor: pointer;
         }
         .wb {
             background: url(/resources/images/provider/wb.png);
             height: 20px;
             width: 20px;
+            cursor: pointer;
         }
     }
 }

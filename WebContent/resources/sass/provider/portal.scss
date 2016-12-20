@@ -46,7 +46,7 @@ $leftWidth:320px;
 //  line-height: 0px;
 // }
 body{
-
+overflow: hidden;
 }
 
 .infomation {
@@ -160,8 +160,12 @@ body{
             padding-top: 11px;
             padding-left: 63px;
             cursor: pointer;
+            &:hover{
+               border-left: 4px solid $red-base;
+            }
         }
         .activeThis{
+          border-left: 4px solid $red-base;
           div{
              color: $red-base;
             &:before {
