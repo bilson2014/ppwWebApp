@@ -3,14 +3,6 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 
-$(function(){ 
-    $("#content-frame").load(function(){ 
-         var height = $(this).contents().find("body").height(); 
-         //这样给以一个最小高度 
-         alert(height);
-         $(this).height( height < 900 ? 1024 : height ); 
-    }); 
-});
 
 $().ready(function(){
 	$('.infoItem div').on('click',function(){
@@ -21,7 +13,6 @@ $().ready(function(){
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
 	});
-	successErrorTipShow();
 });
 
 

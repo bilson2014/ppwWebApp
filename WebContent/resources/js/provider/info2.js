@@ -1,5 +1,5 @@
+var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
-
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
@@ -15,9 +15,9 @@ $().ready(function() {
 	});
 
 	userpicInfo();
-	saveInfo();
 	initUl();
 	setBusinessVal($('#Tags').val());
+	updateProvider();
 });
 
 function verifyData() {
@@ -126,7 +126,7 @@ function verifyData() {
 		$('#company-demand').focus();
 		return false;
 	}
-
+	return true;
 }
 
 function popshow(id, error) {
@@ -138,33 +138,7 @@ function popshow(id, error) {
 	}
 }
 
-function saveInfo() {
-	$("#submitCheck").on('click', function() {
-		var res = verifyData();
-		if (res) {
-			submitForm(function(flag){
-				showStepThree();
-			}, getContextPath() + '/provider/update/leaderInfomation', $.toJSON({
-					teamName : $('#company-name').val().trim(),
-					email : $('#company-email').val().trim(),
-					address : $('#company-address').val().trim(),
-					teamDescription : $('#company-teamDesc').val().trim(),
-					linkman : $('#company-linkman').val().trim(),
-					webchat : $('#company-webchat').val().trim(),
-					qq : $('#company-qq').val().trim(),
-					business : getBusinessVal(),
-					scale : $('#company-scale').val().trim(),
-					demand : $('#company-demand').val().trim(),
-					city : $('#company-city option:selected').val(),
-					priceRange : $('#indent_recomment').attr('data-value'),
-					infoResource :  $('#indent_qwe').attr('data-value'),
-					teamProvince : $("#getProvince").attr('data-value'),
-					teamCity : $("#getCity").attr('data-value'),
-					teamPhotoUrl : $('#user_img_url').val()
-			}),	$('#submitCheck'));
-		}
-	});
-}
+
 
 function getBusinessVal() {
 	var busArr = '';
@@ -240,7 +214,6 @@ function userpicInfo() {
 	});
 }
 
-
 function initUl(){
 	$('.dropdown li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
@@ -251,7 +224,32 @@ function initUl(){
         	Province($(this));
         return false;
    });
-
+	
+	var url = $('#user-img').attr('data-value');
+	if(url!=null && url !='' && url.indexOf("resources/images/index/") == -1){
+		$('#user-img').attr('src',getDfsHostName()+url);
+		$('#user_img_url').val(url);
+	}
+	
+	var msg = $('#recommendation').val();
+	var flag = $("#bean-flag").val();
+	if(flag != null && flag !='' && flag == '0'){
+		//var msg = $('#recommendation').val();
+		showInfomation('您提交的资料正在审核中','官方将在3个工作日内完成您的资质审核');
+	}else if(flag != null && flag !='' && flag == '2'){
+		showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
+	}else{
+		var a = $("#bean-checkStatus").val();//是否存在再次审核
+		if(a != null && a !='' && a == '0'){
+			//var msg = $('#recommendation').val();
+			showInfomation('您提交的资料正在审核中','官方将在3个工作日内完成您的资质审核');
+		}else if(a != null && a !='' && a == '2'){
+			var msg = $('#checkDetails').val();
+			showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
+		}else{
+			hideInfomation();
+		}
+	}
 }
 
 function Province(self){
@@ -271,4 +269,152 @@ function Province(self){
 	}, getContextPath() + '/get/citys', $.toJSON({
 		provinceId : ProvinceId
 	}))
+}
+function hasAuditing() {
+	var flag = $("#bean-flag").val();
+	return flag == 1 ? true : false
+}
+function updateProviderInfo() {
+	loadData(function(flag) {
+		if (flag) {
+			// 更新成功
+			successToolTipShow("更新成功");
+		} else {
+			// 更新失败
+			successErrorTipShow('请重新保存');
+		}
+	}, getContextPath() + '/provider/update/teamInfomation', $.toJSON({
+		teamId : $('#company-id').val().trim(),
+		teamName : $('#company-name').val().trim(),
+		email : $('#company-email').val().trim(),
+		address : $('#company-address').val().trim(),
+		teamDescription : $('#company-teamDesc').val().trim(),
+		linkman : $('#company-linkman').val().trim(),
+		webchat : $('#company-webchat').val().trim(),
+		qq : $('#company-qq').val().trim(),
+		establishDate : $('#company-establishDate').val(),
+		officialSite : $('#company-officialSite').val(),
+		city : $('#company-city option:selected').val(),
+		priceRange : $('#priceRange').attr('data-value'),
+		infoResource : $('#infoResource').attr('data-value'),
+		business : getBusinessVal(),
+		scale : $('#company-scale').val().trim(),
+		businessDesc : $('#company-businessDesc').val().trim(),
+		demand : $('#company-demand').val().trim(),
+		description : $('#company-description').val().trim(),
+		phoneNumber : $('#company-phoneNumber').val().trim(),
+		teamProvince : $('#getProvince').attr('data-value'),
+		teamCity : $("#getCity").attr('data-value'),
+		teamPhotoUrl : $('#user_img_url').val()
+	}));
+}
+function dealTeamTmpAndUpdateTeamDesc(){
+	loadData(function(flag){
+		if(flag){
+			// 
+			successToolTipShow("更新成功");
+		}else{
+			// 更新失败
+			successErrorTipShow('请重新保存');
+		}
+	}, getContextPath() + '/provider/deal/TeamTmpAndTeamDesc', $.toJSON({
+		teamId : $('#company-id').val().trim(),
+		teamName : $('#company-name').val().trim(),
+		email : $('#company-email').val().trim(),
+		address : $('#company-address').val().trim(),
+		teamDescription : $('#company-teamDesc').val().trim(),
+		linkman : $('#company-linkman').val().trim(),
+		webchat : $('#company-webchat').val().trim(),
+		qq : $('#company-qq').val().trim(),
+		establishDate : $('#company-establishDate').val(),
+		officialSite : $('#company-officialSite').val(),
+		city : $('#company-city option:selected').val(),
+		priceRange : $('#priceRange').attr('data-value'),
+		infoResource : $('#infoResource').attr('data-value'),
+		business : getBusinessVal(),
+		scale : $('#company-scale').val().trim(),
+		businessDesc : $('#company-businessDesc').val().trim(),
+		demand : $('#company-demand').val().trim(),
+		description : $('#company-description').val().trim(),
+		phoneNumber : $('#company-phoneNumber').val().trim(),
+		teamProvince : $('#getProvince').attr('data-value'),
+		teamCity : $("#getCity").attr('data-value'),
+		teamPhotoUrl : $('#user_img_url').val()
+	}));
+}
+function updateProvider(){
+	$('#infoBt').off("click").on('click',function(){
+		if(verifyData()){ // 检测数据完整性
+			if(!hasAuditing()){//审核未通过
+				updateProviderInfo();
+			}else{
+				//验证team是否修改 true存在修改 false 没有修改
+				loadData(function(flag){
+					var a = $("#bean-checkStatus").val();//是否存在再次审核
+					if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
+						if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
+							//处理team_tmp记录,更新team备注
+							dealTeamTmpAndUpdateTeamDesc();
+						}
+					}else{
+						updateProviderInfo();
+					}
+				}, getContextPath() + '/provider/validate/change', $.toJSON({
+					teamId : $('#company-id').val().trim(),
+					teamName : $('#company-name').val().trim(),
+					email : $('#company-email').val().trim(),
+					address : $('#company-address').val().trim(),
+					teamDescription : $('#company-teamDesc').val().trim(),
+					linkman : $('#company-linkman').val().trim(),
+					webchat : $('#company-webchat').val().trim(),
+					qq : $('#company-qq').val().trim(),
+					establishDate : $('#company-establishDate').val(),
+					officialSite : $('#company-officialSite').val(),
+					city : $('#company-city option:selected').val(),
+					priceRange : $('#priceRange').attr('data-value'),
+					infoResource : $('#infoResource').attr('data-value'),
+					business : getBusinessVal(),
+					scale : $('#company-scale').val().trim(),
+					businessDesc : $('#company-businessDesc').val().trim(),
+					demand : $('#company-demand').val().trim(),
+					description : $('#company-description').val().trim(),
+					phoneNumber : $('#company-phoneNumber').val().trim(),
+					teamProvince : $('#getProvince').attr('data-value'),
+					teamCity : $("#getCity").attr('data-value')
+				}));
+			}
+		}
+	});
+}
+//成功信息 提示框弹出方法
+function successToolTipShow(msg){
+	window.clearInterval(successIntervalObj);
+	$(window.parent.document).find('.tooltip-success-show').slideDown('normal');
+	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}
+function hideSuccessTooltip(){
+	$(window.parent.document).find('.tooltip-success-show').hide('normal');
+	location.reload();
+}
+
+function hideError(){
+	$(window.parent.document).find('.tooltip-error-show').hide('normal');
+	location.reload();
+}
+
+// 成功信息 提示框弹出方法
+function successErrorTipShow(msg){
+	window.clearInterval(successIntervalObj);
+	$(window.parent.document).find('.tooltip-error-show').slideDown('normal');
+	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
+	successIntervalObj = window.setInterval(hideError(), 3000);
+}
+function showInfomation(title,body){
+	$(window.parent.document).find('#infomation').slideDown('normal');
+	$(window.parent.document).find('#infomation_title').text(title);
+	$(window.parent.document).find('#infomation_body').text(body);
+}
+function hideInfomation(){
+	$(window.parent.document).find('#infomation').hide('normal');
 }
