@@ -7,7 +7,7 @@
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 
-<spring:url value="/resources/css/provider/productList.css"
+<spring:url value="/resources/css/provider/video-list.css"
 	var="productListCss" />
 <spring:url value="/resources/css/provider/step-dc-style2.css"
 	var="providerStepCss2" />
