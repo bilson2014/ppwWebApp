@@ -837,8 +837,23 @@ public class ProviderController extends BaseController {
 		return flag;
 	}
 
-	// 跳转至 上传页面
-	@RequestMapping("/product/{action}/{providerId}/{productId}")
+	
+	// 跳转至 上传页面 新
+	@RequestMapping("/product/upload")
+	public ModelAndView toProductUpload(final ModelMap model, final HttpServletRequest request) {
+
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			model.addAttribute("cKey", sessionInfo.getReqiureId());
+			return new ModelAndView("provider/upload", model);
+		}else{
+			return new ModelAndView("redirect:/error");
+		}
+	}
+	
+	
+	// 跳转至 上传页面 旧
+	//@RequestMapping("/product/{action}/{providerId}/{productId}")
 	public ModelAndView productView(@PathVariable("action") final String action,
 			@PathVariable("providerId") final long providerId, @PathVariable("productId") final long productId,
 			final ModelMap model, final HttpServletRequest request) {

@@ -87,7 +87,7 @@
 						<div
 							class="mid <c:if test="${empty product.checkDetails}"> nC</c:if>">
 							<div class="title">
-								<span>标题：</span> <span><c:out
+								<span>标题：${product.flag}</span> <span><c:out
 										value="${product.productName }" /></span>
 							</div>
 							<div class="content">

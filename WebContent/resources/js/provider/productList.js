@@ -2,6 +2,8 @@ var hasVideo = false;
 $().ready(function() {
 	var productList = {
 		init : function() {
+			//新建作品
+			this.addProduct();
 			//修改作品
 			this.modifyProduct();
 			//删除作品
@@ -14,6 +16,11 @@ $().ready(function() {
 			this.visibleProduct();
 			//设置代表作
 			this.setMaster();
+		},
+		addProduct:function(){
+			$('.newProduct').off("click").on('click',function(){
+			    top.location=''+getContextPath()+'/provider/product/upload/';
+			});
 		},
 		modifyProduct:function(){
 			$('.btn-update').off("click").on('click',function(){
