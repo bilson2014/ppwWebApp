@@ -166,7 +166,7 @@
                     <div class="userName">客户NAME</div>
                     <div class="userProduct">公司主页</div>
                     <div class="left-content">
-                              <div class="infoItem">
+                              <div class="infoItem activeThis">
                                      <div class="product" data-action="video-list">作品列表</div>
                               </div>  
                                <div class="infoItem">
@@ -177,7 +177,7 @@
                               </div> 
                     </div>
                 </div>
-                <div class="right-wrap" style="height: auto;    position: relative !important;">
+                <div class="right-wrap">
                        <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>

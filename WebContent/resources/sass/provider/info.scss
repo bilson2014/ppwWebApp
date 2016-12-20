@@ -1,10 +1,15 @@
 @import "common";
 @import "compass/typography/text/ellipsis";
 @import "normalize";
+
+body{
+    overflow: hidden;
+}
 .proInfo {
     padding-top: 60px;
     background: white;
     padding-bottom: 80px;
+    height: 100%;
     .noImportant {
         &:after {
             content: "";

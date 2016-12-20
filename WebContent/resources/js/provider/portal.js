@@ -17,6 +17,9 @@ $().ready(function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');
 		$(this).addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($(this).text());
 	});
 	successErrorTipShow();
 });
