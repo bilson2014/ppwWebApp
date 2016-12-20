@@ -77,10 +77,10 @@
 			<c:forEach items="${list }" var="product" varStatus="status">
 				<div class="ProductContent">
 					<div class="productCard">
-						<c:if test="${product.picLDUrl == null}">
+						<c:if test="${empty product.picLDUrl}">
 							<img src="/resources/images/index/noImg.jpg" />
 						</c:if>
-						<c:if test="${product.picLDUrl != null}">
+						<c:if test="${not empty product.picLDUrl}">
 							<img src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
