@@ -1413,10 +1413,19 @@ public class ProviderController extends BaseController {
 	 */
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public boolean setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+	public BaseMsg setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
 		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
-		HttpUtil.httpPost(updateUrl, product, request);
-		return true;
+		String result = HttpUtil.httpPost(updateUrl, product, request);
+		boolean b = JsonUtil.toBean(result, Boolean.class);
+		if(b){
+			baseMsg.setCode(1);
+			baseMsg.setResult("设置成功");
+		}else{
+			baseMsg.setCode(0);
+			baseMsg.setResult("设置失败");
+		}
+		return baseMsg;
 	}
 
 	/**
@@ -1600,7 +1609,7 @@ public class ProviderController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (null != sessionInfo) {
-			if(sessionInfo.getReqiureId() == product.getTeamId()){
+			if(sessionInfo.getReqiureId().equals(product.getTeamId())){
 				final String url = URL_PREFIX + "portal/product/visibility";
 				String str = HttpUtil.httpPost(url, product, request);
 				Boolean bo = JsonUtil.toBean(str, Boolean.class);

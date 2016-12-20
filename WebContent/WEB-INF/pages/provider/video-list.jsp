@@ -78,10 +78,10 @@
 				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
 						<c:if test="${empty product.picLDUrl}">
-							<img src="/resources/images/index/noImg.jpg" />
+							<img class='media-object' src="/resources/images/index/noImg.jpg" />
 						</c:if>
 						<c:if test="${not empty product.picLDUrl}">
-							<img src='${file_locate_storage_path }${product.picLDUrl }' />
+							<img class='media-object' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
@@ -91,15 +91,15 @@
 										value="${product.productName }" /></span>
 							</div>
 							<div class="content">
-									<div class="cTitle">建议：</div>
-									<div class="cContent">
+								<div class="cTitle">建议：</div>
+								<div class="cContent">
 									<c:if test="${not empty product.checkDetails}">
 										<c:out value="${product.checkDetails }" />
 									</c:if>
-									</div>
+								</div>
 							</div>
 							<c:if test="${product.flag==1}">
-								<ul class="<c:if test="${product.visible==0}">noneUse</c:if>">
+								<ul data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visibleProduct <c:if test="${product.visible==0}">noneUse</c:if>">
 									<li>可见</li>
 									<li></li>
 									<li>不可见</li>
@@ -121,19 +121,24 @@
 						</c:if>
 
 						<div class="lastContent">
-
-
 							<c:if test="${product.flag==1}">
-								<div class="setDef">
-									<div>设为代表作</div>
-									<div class="star"></div>
-								</div>
+								<c:if test="${product.masterWork==1}">
+									<div class="master-flag setMaster">
+										<div class="master-title">取消代表作</div>
+										<div class="star"
+										 data-id='<c:out value="${product.productId }"/>'
+										 data-master='<c:out value="${product.masterWork }" />'></div>
+									</div>
+								</c:if>
+								<c:if test="${product.masterWork==0}">
+									<div class="master-flag noMaster">
+										<div class="master-title">设为代表作</div>
+										<div class="star" 
+										data-id='<c:out value="${product.productId }" />'
+										data-master='<c:out value="${product.masterWork }" />'></div>
+									</div>
+								</c:if>
 							</c:if>
-							
-							
-							
-							
-
 							<c:if test="${product.flag==3}">
 								<div class="edit btn-c-r"
 									data-id='<c:out value="${product.productId }" />'>
@@ -151,7 +156,6 @@
 				</c:forEach>
 			</div>
 		</c:if>
-
 	</div>
 
 </body>
