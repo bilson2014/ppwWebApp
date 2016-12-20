@@ -102,6 +102,14 @@
 								<li></li>
 								<li>不可见</li>
 							</ul>
+							<div class="shareVideo">
+							    <div>分享：</div>
+							    <div class="wechat"></div>
+							    <div class="qq"></div>
+							    <div class="wb"></div>
+							    <div class="zone"></div>
+							</div>
+							
 						</div>
 
 						<c:if test="${product.flag==0}">
