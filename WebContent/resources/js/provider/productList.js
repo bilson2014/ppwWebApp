@@ -17,12 +17,15 @@ $().ready(function() {
 			});
 		},
 		delProduct:function(){
-			if(confirm('确定要删除此条记录吗？')){
-				var pKey = $(this).data('id');
-				loadData(function(){
-					$('.nav-stacked li:nth-child(2)', parent.document).click();
-				}, getContextPath() + '/provider/delete/product/' + pKey, null);
-			}
+			$('.btn-danger').on('click',function(){
+				if(confirm('确定要删除此条记录吗？')){
+					var pKey = $(this).data('id');
+					loadData(function(){
+						$('.nav-stacked li:nth-child(2)', parent.document).click();
+					}, getContextPath() + '/provider/delete/product/' + pKey, null);
+				}
+			}); 
+			
 		},
 		shareProduct:function(){
 			$('.share').on('click',function(){

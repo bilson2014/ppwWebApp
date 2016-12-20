@@ -85,15 +85,15 @@
 						</c:if>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
-							class="mid <c:if test="${not empty product.check_details}"> nc</c:if>">
+							class="mid <c:if test="${not empty product.checkDetails}"> nc</c:if>">
 							<div class="title">
 								<span>标题：</span> <span><c:out value="${product.productName }" /></span>
 							</div>
-							<c:if test="${empty product.check_details}">
+							<c:if test="${empty product.checkDetails}">
 								<div class="content">
 									<div class="cTitle">建议：</div>
 									<div class="cContent">
-										<c:out value="${product.check_details }" />
+										<c:out value="${product.checkDetails }" />
 									</div>
 								</div>
 							</c:if>
