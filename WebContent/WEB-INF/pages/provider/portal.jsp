@@ -142,6 +142,12 @@
 		<label class="tooltip-success-message">信息更新成功</label>
 	</div>
 	
+	<div class="tooltip-warn-up" >
+		 <div class="infoCard">
+		 
+		 </div>
+	</div>
+	
 	
 	
 	 <div class="page" style="height:100%">

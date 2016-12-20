@@ -28,10 +28,7 @@ $().ready(function(){
 		
 	});
 	successErrorTipShow();
-	
-	
-
-	
+		
 });
 
 function getHeight(num){

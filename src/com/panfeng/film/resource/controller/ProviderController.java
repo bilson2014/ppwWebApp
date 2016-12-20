@@ -837,8 +837,23 @@ public class ProviderController extends BaseController {
 		return flag;
 	}
 
-	// 跳转至 上传页面
-	@RequestMapping("/product/{action}/{providerId}/{productId}")
+	
+	// 跳转至 上传页面 新
+	@RequestMapping("/product/upload")
+	public ModelAndView toProductUpload(final ModelMap model, final HttpServletRequest request) {
+
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			model.addAttribute("cKey", sessionInfo.getReqiureId());
+			return new ModelAndView("provider/upload", model);
+		}else{
+			return new ModelAndView("redirect:/error");
+		}
+	}
+	
+	
+	// 跳转至 上传页面 旧
+	//@RequestMapping("/product/{action}/{providerId}/{productId}")
 	public ModelAndView productView(@PathVariable("action") final String action,
 			@PathVariable("providerId") final long providerId, @PathVariable("productId") final long productId,
 			final ModelMap model, final HttpServletRequest request) {
@@ -1413,10 +1428,19 @@ public class ProviderController extends BaseController {
 	 */
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public boolean setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+	public BaseMsg setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
 		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
-		HttpUtil.httpPost(updateUrl, product, request);
-		return true;
+		String result = HttpUtil.httpPost(updateUrl, product, request);
+		boolean b = JsonUtil.toBean(result, Boolean.class);
+		if(b){
+			baseMsg.setCode(1);
+			baseMsg.setResult("设置成功");
+		}else{
+			baseMsg.setCode(0);
+			baseMsg.setResult("设置失败");
+		}
+		return baseMsg;
 	}
 
 	/**
@@ -1600,7 +1624,7 @@ public class ProviderController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (null != sessionInfo) {
-			if(sessionInfo.getReqiureId() == product.getTeamId()){
+			if(sessionInfo.getReqiureId().equals(product.getTeamId())){
 				final String url = URL_PREFIX + "portal/product/visibility";
 				String str = HttpUtil.httpPost(url, product, request);
 				Boolean bo = JsonUtil.toBean(str, Boolean.class);
