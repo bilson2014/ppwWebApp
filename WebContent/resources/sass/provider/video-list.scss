@@ -4,8 +4,6 @@
 $green:#79d018;
 $yellow:#f5a623;
 $blue:blue;
-
-
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
@@ -119,15 +117,13 @@ input:-webkit-autofill {
 
 .ProductContent {
     padding: 30px 30px 80px 30px;
-
-    .productCard:last-child{
-        border:none;
+    .productCard:last-child {
+        border: none;
     }
-
     .productCard {
         position: relative;
         margin-left: 20px;
-        border:1px solid $border-line;
+        border: 1px solid $border-line;
         padding-top: 11px;
         padding-bottom: 11px;
         img {
@@ -180,7 +176,7 @@ input:-webkit-autofill {
             display: inline-block;
             vertical-align: top;
             font-size: $font-size-sm;
-            color: $gray-dark;
+            color: $red-base;
         }
         div:nth-child(2) {
             display: inline-block;
@@ -188,11 +184,13 @@ input:-webkit-autofill {
             height: 64px;
             width: 300px;
             overflow: hidden;
+            font-size: $font-size-sm;
+            color: $red-base;
         }
     }
     .noneUse {
         li {
-            left: 90px !important;
+            left: -45px !important;
         }
     }
     ul {
@@ -213,6 +211,7 @@ input:-webkit-autofill {
         /* Safari 和 Chrome */
         -o-transition: all .4s linear .4s;
         border: 1px solid $border-line;
+        cursor: pointer;
         li {
             width: 45px;
             height: 100%;
@@ -275,24 +274,90 @@ input:-webkit-autofill {
     position: absolute;
     right: 0px;
     top: 0px;
-
-     .noDef{
-           div:nth-child(1){
+    .noDef {
+        div:nth-child(1) {
             opacity: 0;
-           }
-           .star{
-            background-opacity:-25px;
-           }
-     }
+        }
+        .star {
+            background-opacity: -25px;
+        }
+    }
 
-    .setDef {
+    .noDef {
         font-size: $font-size-sm;
         color: $gray-dark;
+        width: 88px;
+        text-align: center;
+        position: relative;
+        right: 70px;
+        top: 11px;
+        cursor: pointer;
+        &:hover {
+            div:nth-child(1) {
+                opacity: 1!important;
+            }
+        }
+        div:nth-child(1) {
+            background: url(/resources/images/provider/pao.png);
+            width: 88px;
+            height: 38px;
+            text-align: center;
+            line-height: 28px;
+            opacity: 0;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear .4s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear .4s;
+        }
         .star {
             margin-top: 10px;
             background: url(/resources/images/provider/star.png);
             width: 25px;
             height: 25px;
+            margin: 0 auto;
+            margin-top: 5px;
+            background-position: 0px -25px;
+        }
+    }
+
+
+    .setDef {
+        font-size: $font-size-sm;
+        color: $gray-dark;
+        width: 88px;
+        text-align: center;
+        position: relative;
+        right: 70px;
+        top: 11px;
+        cursor: pointer;
+        &:hover {
+            div:nth-child(1) {
+                opacity: 1!important;
+            }
+        }
+        div:nth-child(1) {
+            background: url(/resources/images/provider/pao.png);
+            width: 88px;
+            height: 38px;
+            text-align: center;
+            line-height: 28px;
+            opacity: 0;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear .4s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear .4s;
+        }
+        .star {
+            margin-top: 10px;
+            background: url(/resources/images/provider/star.png);
+            width: 25px;
+            height: 25px;
+            margin: 0 auto;
+            margin-top: 5px;
         }
     }
     .edit {
