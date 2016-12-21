@@ -3,7 +3,7 @@ var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function() {
-	var productList = {
+	var videoList = {
 		init : function() {
 			//新建作品
 			this.addProduct();
@@ -173,7 +173,7 @@ $().ready(function() {
 				}
 			});
 			upload_Video.on('fileQueued', function(file) {
-				$(window.parent.document).find("#video-container").append(juicer(productList_tpl.upload_Tpl,{file:file}));
+				$(window.parent.document).find("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
 			});
 			// 文件上传过程中创建进度条实时显示。
 			upload_Video.on('uploadProgress',function(file, percentage) {
@@ -207,8 +207,8 @@ $().ready(function() {
 			});
 		}
 	}	
-	productList.init();
-	var productList_tpl = {
+	videoList.init();
+	var videoList_tpl = {
 			upload_Tpl:[
 			" <div class='videoCard'>                            "+
 			"	<div class='videoContent'>                       "+
