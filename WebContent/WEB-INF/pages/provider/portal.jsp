@@ -130,19 +130,23 @@
 		<iframe id="content-frame" class="iframe"></iframe>
 	</div> -->
 	
-	<div class="infomation">
-	        <label>*您的资质提交已经成功提交,审核中...</label>
-	        <label>官方将在3个工作日内完成您的资质审核,敬请等候...</label>
+	<div class="infomation" id="infomation" style="display: none;">
+	        <label id="infomation_title">*您的资质提交已经成功提交,审核中...</label>
+	        <label id="infomation_body">官方将在3个工作日内完成您的资质审核,敬请等候...</label>
 	</div>
 	<div class="tooltip-success-show" style="display: none;">
-		<label class="tooltip-success-message">信息更新成功</label>
+		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
 	</div>
 	
-	<div class="tooltip-error-show" style="">
-		<label class="tooltip-success-message">信息更新成功</label>
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
+<<<<<<< HEAD
 	
 	 <div class="tooltip-warn-up" >
+=======
+	<div class="tooltip-warn-up" >
+>>>>>>> 346e5e5ce9dbfec5bbabf468a95a830fd67c1b53
 		 <div class="infoCard">
 			   <div class="closeX">x</div>
 			   <div class="title">拍片网郑重提醒您：</div>
@@ -189,11 +193,15 @@
 		        <div>关闭</div>
 		     </div>
 		 </div>
+<<<<<<< HEAD
 		 
 	</div> 
 	
 	
 	
+=======
+	</div>
+>>>>>>> 346e5e5ce9dbfec5bbabf468a95a830fd67c1b53
 	 <div class="page" style="height:100%">
 
        <div class="user-wrap">
