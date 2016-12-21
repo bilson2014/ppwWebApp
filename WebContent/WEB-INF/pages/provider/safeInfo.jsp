@@ -212,8 +212,5 @@
 
 
 	</div>
-
-
->>>>>>> 1a499cfa0e7ccfbec8df94a335105cd60a2c6c06
 </body>
 </html>
