@@ -141,12 +141,10 @@
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
-<<<<<<< HEAD
+
 	
 	 <div class="tooltip-warn-up" >
-=======
-	<div class="tooltip-warn-up" >
->>>>>>> 346e5e5ce9dbfec5bbabf468a95a830fd67c1b53
+
 		 <div class="infoCard">
 			   <div class="closeX">x</div>
 			   <div class="title">拍片网郑重提醒您：</div>
@@ -193,15 +191,8 @@
 		        <div>关闭</div>
 		     </div>
 		 </div>
-<<<<<<< HEAD
-		 
 	</div> 
-	
-	
-	
-=======
-	</div>
->>>>>>> 346e5e5ce9dbfec5bbabf468a95a830fd67c1b53
+
 	 <div class="page" style="height:100%">
 
        <div class="user-wrap">
