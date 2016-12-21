@@ -3,6 +3,7 @@
 @import "compass/typography/text/ellipsis";
 @import "normalize";
 $leftWidth:320px;
+$green:#2ad2ae;
 // .nav .logo {
 //   position: relative;
 //   float: left;
@@ -45,9 +46,9 @@ $leftWidth:320px;
 //  height: 20px !important;
 //  line-height: 0px;
 // }
-body{
-//overflow: hidden;
- background: $f0 !important;
+body {
+    //overflow: hidden;
+    background: $f0 !important;
 }
 
 .infomation {
@@ -154,25 +155,24 @@ body{
                 background-position: 0px 0px;
             }
         }
-
         .infoItem {
             height: 40px;
             border-left: 4px solid transparent;
             padding-top: 11px;
             padding-left: 63px;
             cursor: pointer;
-            &:hover{
-               border-left: 4px solid $red-base;
+            &:hover {
+                border-left: 4px solid $red-base;
             }
         }
-        .activeThis{
-          border-left: 4px solid $red-base;
-          div{
-             color: $red-base;
-            &:before {
-                background-position: 0px -14px !important;
+        .activeThis {
+            border-left: 4px solid $red-base;
+            div {
+                color: $red-base;
+                &:before {
+                    background-position: 0px -14px !important;
+                }
             }
-          }
         }
         .safeInfo {
             color: $gray;
@@ -269,7 +269,6 @@ body{
     }
 }
 
-
 .tooltip-success-show {
     height: 60px;
     background-color: #DFF0D8;
@@ -281,7 +280,7 @@ body{
     width: 100%;
     z-index: 100;
     top: 60px;
-    color:white;
+    color: white;
 }
 
 .tooltip-error-show {
@@ -295,31 +294,262 @@ body{
     width: 100%;
     z-index: 100;
     top: 60px;
-    color:white;
+    color: white;
 }
 
 
-
-
-
-.tooltip-warn-up{
-    background:rgba(0,0,0,0.8);
+.tooltip-warn-up {
+    background: rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0px;
     overflow: hidden;
-    z-index: 99;
-    background: transparent;
-
-    .infoCard{
-      height: 430px;
-      width: 600px;
-      background: white;
-      border-radius: 4px;
-      top:100px;
-      left:50px;
-      margin-left: 215px;
+    z-index: 80;
+    display: none;
+    .infoCard {
+        height: 430px;
+        width: 600px;
+        position: absolute;
+        background: white;
+        border-radius: 4px;
+        top: 220px;
+        left: 50%;
+        margin-left: -300px;
+        text-align: left;
+        padding-left: 30px;
+        padding-right: 30px;
+        .closeX {
+            position: absolute;
+            right: 26px;
+            color: $gray-light;
+            font-size: $font-size-lg;
+            text-align: left;
+            top: 10px;
+            cursor: pointer;
+            &:hover {
+                color: $gray-dark;
+            }
+        }
+        .title {
+            color: $red-base;
+            font-size: $font-size-base;
+            font-weight: bold;
+            margin-top: 44px;
+            margin-bottom: 16px;
+        }
+        .redWord {
+            color: $red-base;
+            font-size: $font-size-sm;
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+            &:after {
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: $red-base;
+                border-radius: 90px;
+                top: 3px;
+                left: 2px;
+            }
+        }
+        .grayWord {
+            color: $gray;
+            font-size: $font-size-sm;
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+            &:after {
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: $gray;
+                border-radius: 90px;
+                top: 3px;
+                left: 2px;
+            }
+        }
+        .botWord {
+            color: $red-base;
+            font-size: $font-size-sm;
+            margin-top: 14px;
+            margin-bottom: 20px;
+        }
+        .midWord {
+            color: $gray;
+            font-size: $font-size-sm;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            line-height: 18px;
+        }
+        .bottom{
+          text-align: center;
+          width: 170px;
+          margin: 0 auto;
+          div{
+            border-radius: 4px;
+            border:1px solid $gray-light;
+            color:$gray-dark;
+            text-align: center;
+            width: 70px;
+            height: 36px;
+            line-height: 34px;
+            font-size: $font-size-base;
+            margin-left: 10px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            &:hover{
+              color:white;
+              background: $red-base;
+              border:1px solid $red-base;
+            }
+          }
+        }
     }
+}
+
+.tooltip-warn-up .selectVideo {
+    width: 600px;
+    background: white;
+    border-radius: 4px;
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    margin-left: -300px;
+    display: none;
+    .top {
+        position: relative;
+        padding-left: 20px;
+        padding-right: 20px;
+        .closeX {
+            position: absolute;
+            right: 26px;
+            color: $gray-light;
+            font-size: $font-size-lg;
+            &:hover {
+                color: $gray-dark;
+            }
+        }
+        .title {
+            color: $gray-dark;
+            font-size: $font-size-base;
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .titleInfo {
+            color: $gray-dark;
+            font-size: $font-size-sm;
+            text-align: left;
+            margin-bottom: 20px;
+            span {
+                color: $red-base;
+                margin-left: 5px;
+            }
+        }
+    }
+    .mid {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid $border-line;
+        border-bottom: 1px solid $border-line;
+        font-size: 0px;
+        .videoCard:first-child {
+            margin-top: 0px;
+        }
+        .videoCard {
+            margin-top: 20px;
+            padding-right: 20px;
+            padding-left: 20px;
+            .videoContent {
+                position: relative;
+                .showUpSuccess {
+                    right: 40px !important;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        background: url(/resources/images/provider/sure.png);
+                        height: 16px;
+                        width: 16px;
+                        top: -1px;
+                        right: -40px;
+                    }
+                }
+                .videoName {
+                    color: $gray-dark;
+                    font-size: $font-size-base;
+                    width: 300px;
+                    @include ellipsis;
+                    text-align: left;
+                }
+                .videoState {
+                    color: $gray;
+                    font-size: $font-size-sm;
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+    .bottom {
+        font-size: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        div {
+            display: inline-block;
+            vertical-align: top;
+            font-size: $font-size-base;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        div:nth-child(1) {
+            width: 120px;
+            height: 40px;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+            background: $green;
+            &:hover {
+                background: darken($green, 10%);
+            }
+        }
+        div:nth-child(2) {
+            width: 120px;
+            height: 40px;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+            background: $red-base;
+        }
+        div:nth-child(3) {
+            width: 70px;
+            height: 40px;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid $gray-light;
+            color: $gray-dark;
+            &:hover {
+                background: #f9fafb;
+            }
+        }
+    }
+}
+
+.progress {
+    height: 10px;
+    border-radius: 90px;
+    margin-top: 8px;
+    margin-bottom: 0px !important;
+}
+
+.progress-bar {
+    background-color: #337ab7;
 }
