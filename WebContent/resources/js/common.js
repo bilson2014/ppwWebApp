@@ -943,14 +943,15 @@ function firstSuccessTooltip() {
 function showCommonError(id, error) {
 	if (error == "" || error == null) {
 		id.attr('data-content', "");
+		id.find('input').removeClass('errorLCommon');
 	} else {
 		id.attr('data-content', '*' + error);
 		id.find('input').addClass('errorLCommon');
 	}
 }
 
-function resumeCommonError(){
-    showError($('.input-group-div'),'');
+function resumeCommonError(document){
+	showCommonError($(document),'');
     $('input').removeClass('errorLCommon');
 }
 

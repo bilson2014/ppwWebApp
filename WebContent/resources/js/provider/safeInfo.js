@@ -3,8 +3,6 @@ var curCount; // 当前剩余秒数
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
 $().ready(function() {
-
-	showCommonError($('#error'),"错误");
 	var safeInfo = {
 			init:function(){
 				//****登录密码设置******
@@ -57,11 +55,10 @@ $().ready(function() {
 				$("#loginName").off("change").on("change",function(){
 					loadData(function(flag){
 						if(!flag){
-							alert('用户名已经重复');
+							showCommonError($('#loginName-error'),"用户名已经重复");
 							$("#loginName").focus();
 						}else{
-							//TODO
-							//错误隐藏
+							resumeCommonError($(".setItem"),'');
 						}
 					}, getContextPath() + '/provider/checkExisting', $.toJSON({
 						loginName : $("#loginName").val().trim()
@@ -71,14 +68,10 @@ $().ready(function() {
 			pwdValidate:function(){
 				$("#newpwd").off("change").on("change",function(){
 					var pwd = $("#newpwd").val().trim();
-					if(checkData(1)){
-						$("#newpwd").parent().removeClass("errorIcon").addClass("sureIcon");
-					}
+					checkData(1);
 				});
 				$("#repwd").off("change").on("change",function(){
-					if(checkData(2)){
-						$("#repwd").parent().removeClass("errorIcon").addClass("sureIcon");
-					}
+					checkData(2);
 				});
 			},
 			sendCodeForPwd:function(){
@@ -106,7 +99,7 @@ $().ready(function() {
 						if(data.code==1){
 							window.location.reload();
 						}else{
-							alert("错误")
+							showCommonError($('#veritifyCode-error'),data.result);
 						}
 					}, getContextPath() + url, $.toJSON({
 						loginName : $("#loginName").val().trim(),
@@ -126,7 +119,7 @@ $().ready(function() {
 				$("#validate-oldPhonecode").off("click").on("click",function(){
 					var oldCode = $("#old-code").val().trim();
 					if(oldCode == null || oldCode == '' || oldCode == undefined){
-						alert("请填写验证码")
+						showCommonError($('#old-code-error'),'请填写验证码');
 						return false;
 					}
 					loadData(function(result){
@@ -135,7 +128,7 @@ $().ready(function() {
 							$(".new-phone").removeClass("hide")
 							
 						}else{
-							alert("验证码错误")
+							showCommonError($('#old-code-error'),'验证码错误');
 						}
 					}, getContextPath() + '/phone/validate', $.toJSON({
 						telephone : $("#phoneNumber").val().trim(),
@@ -147,14 +140,14 @@ $().ready(function() {
 				$("#code-fornewphone").off("click").on("click",function(){
 					var concat_tele_new = $("#new-phoneNumber").val().trim();
 					if(!checkMobile(concat_tele_new)){
-						alert("请输入正确的手机号码");
+						showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
 						$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
 						return false;
 					}
 					loadData(function(flag){
 						if(!flag){
 							// 注册过
-							alert('您输入的手机号码已被注册');
+							showCommonError($('#new-phoneNumber-error'),'您输入的手机号码已被注册');
 							$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
 						}else{ // 未注册
 							$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
@@ -173,7 +166,7 @@ $().ready(function() {
 							if(data.code == 1){
 								window.location.reload();
 							}else {
-								alert(data.result)
+								showCommonError($('#new-code-error'),data.result);
 							}
 						}, getContextPath() + '/provider/modify/phone', $.toJSON({
 							phoneNumber : $("#new-phoneNumber").val().trim(),
@@ -238,87 +231,91 @@ function checkData(type){
 	switch (type) {
 	case 1:
 		if(null==pwd || ''==pwd || undefined==pwd){
-			alert("密码不能为空")
+			showCommonError($('#newpwd-error'),"密码不能为空");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(pwd.length<6 || pwd.length>16){
-			alert("密码长度6~16位")
+			showCommonError($('#newpwd-error'),"密码长度6~16位");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
+		resumeCommonError($(".setItem"),'');
 		return true
 		break;
 
 	case 2:
 		if(repwd != pwd){
-			alert("两次密码不一致")
+			showCommonError($('#repwd-error'),"两次密码不一致");
 			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
+		resumeCommonError($(".setItem"),'');
 		return true
 		break;
 	case 3:
 		if(null==LoginName || ''==LoginName || undefined==LoginName){
-			alert("登录名不能为空")
+			showCommonError($('#loginName-error'),"登录名不能为空");
 			$("#loginName").focus();
 			return false;
 		}
 		if(null==pwd || ''==pwd || undefined==pwd){
-			alert("密码不能为空")
+			showCommonError($('#newpwd-error'),"密码不能为空");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(pwd.length<6 || pwd.length>16){
-			alert("密码长度6~16位")
+			showCommonError($('#newpwd-error'),"密码长度6~16位");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(repwd != pwd){
-			alert("两次密码不一致")
+			showCommonError($('#repwd-error'),"两次密码不一致");
 			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
+		resumeCommonError($(".setItem"),'');
 		return true
 	case 4:
 		if(null==LoginName || ''==LoginName || undefined==LoginName){
-			alert("登录名不能为空")
+			showCommonError($('#loginName-error'),"登录名不能为空");
 			$("#loginName").focus();
 			return false;
 		}
 		if(null==pwd || ''==pwd || undefined==pwd){
-			alert("密码不能为空")
+			showCommonError($('#newpwd-error'),"密码不能为空");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(pwd.length<6 || pwd.length>16){
-			alert("密码长度6~16位")
+			showCommonError($('#newpwd-error'),"密码长度6~16位");
 			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(repwd != pwd){
-			alert("两次密码不一致")
+			showCommonError($('#repwd-error'),"两次密码不一致");
 			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
 		if(null==veritifyCode || ''==veritifyCode || undefined==veritifyCode){
-			alert("请输入验证码")
+			showCommonError($('#veritifyCode-error'),"请输入验证码");
 			$("#veritifyCode").focus();
 			return false;
 		}
+		resumeCommonError($(".setItem"),'');
 		return true
 	case 5:
 		if(null==newTelPhone || ''==newTelPhone || undefined==newTelPhone){
-			alert("手机号不能为空")
+			showCommonError($('#new-phoneNumber-error'),"手机号不能为空");
 			$("#new-phoneNumber").focus();
 			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
-		
 		if(null==newcode || ''==newcode || undefined==newcode){
-			alert("请输入验证码")
+			showCommonError($('#new-code-error'),"请输入验证码");
 			return false;
 		}
+		resumeCommonError($(".setItem"),'');
 		return true
 	default:
 		break;

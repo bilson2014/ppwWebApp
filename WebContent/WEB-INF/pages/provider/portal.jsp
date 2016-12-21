@@ -181,8 +181,8 @@
 		     </div>
 		     
 		     <div class="bottom">
-		        <div id='picker'>选择文件</div>
-		        <div class="btn-c-r" id='submit-multip'>开始上传</div>
+		        <div class="picker" id='picker'>选择文件</div>
+		        <div class="btn-c-r begin" id='submit-multip'>开始上传</div>
 		        <div class='closewarn-refresh'>关闭</div>
 		     </div>
 		 </div>

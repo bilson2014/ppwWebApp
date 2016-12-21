@@ -11,7 +11,7 @@ body{
     padding-bottom: 80px;
     .noImportant {
         &:after {
-            content: "";
+            content: "" !important;
             position: absolute;
             color: $red-base;
             right: -8px;
