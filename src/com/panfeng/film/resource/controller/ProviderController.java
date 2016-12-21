@@ -1034,7 +1034,7 @@ public class ProviderController extends BaseController {
 			if ("success".equals(checkResult)) {
 				// 插入数据
 				Product product = new Product();
-				product.setFlag(0); // 默认是 审核中 状态
+				product.setFlag(3); // 默认是 保存状态
 				final String name = file.getOriginalFilename();
 				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
 				String productName = name.split("." + extName)[0];
