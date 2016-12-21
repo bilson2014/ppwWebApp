@@ -119,7 +119,7 @@
 	<div class="page">
 	     <div class="upVideoCard">
 	         <div class="titleInfo">作品上传</div>
-	         <div class="step1">
+	         <div class="step1 hide">
 			         <div class="upImg">
 			            <img  src="/resources/images/provider/upLoad.png" />
 			         </div>
@@ -142,13 +142,17 @@
 			          </div>       
 		   </div>
 		   
-		   <div class="step2 hide">
+		   <div class="step2">
 		             <div class="upProgress"> 
 		                    <div class="proTitle">上传进度</div>
 					        <div class="progress progress-striped active">
 									<div class="progress-bar progress-bar-success" role="progressbar" 
 									aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
 							</div>
+							<div class="upIng">上传中...</div>
+							<div class="upSuccess"><img src="/resources/images/provider/sure.png">上传成功</div>
+							<div class="upError"><img src="/resources/images/provider/error.png">上传失败请重新上传</div>
+					</div>		
 							<div class="proItem">
 							       <div class="itemTitle">作品名称</div>
 							       <input type="text" class="form-control" id="video-name" maxlength="12" placeholder="视频标题为必填字段" value="${model.productName }">
@@ -164,25 +168,16 @@
 							          		<div class="upBanner">上传封面</div>
 							          		<div class="findEx">查看示例</div>
 							          </li>
-							          <li><img src="/resources/images/index/"></li>
+							          <li><img src="/resources/images/index/noImg.jpg"></li>
 							          <li>
 							            <span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span>
 							            <label>*</label>
 							          </li>
 							       </ul>
 							</div>
-							<div class="bottomUp">
-							    <div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
-							    <div class="btn-c-r submit">提交审核</div>
-							    <div class="btn-c-g cancle">取消</div>
-							</div>
-							
-					</div>
-					
-
-					                 <div class="proItem">
-											<label for="video-tag" class="col-sm-2 control-label">标签</label>
-											<div class="col-sm-6">
+							<div class="proItem">
+											<div for="video-tag" class="control-label itemTitle">标签</div>
+											<div class="tagArea">
 												<div class="upload_filed_area">
 													<div class="mod_keyword">
 														<c:if test="${not empty model.tags }">
@@ -192,7 +187,7 @@
 																	<b class="keyword_item_inner">${tag }</b>
 																	< a href=" " class="btn_keyword_del">
 																		<span>x</span>
-																	</ a>
+																	</a>
 																</span> 
 															</c:forEach>
 														</c:if>
@@ -204,12 +199,17 @@
 														</span>
 													</div>
 												</div>
-												<p style="color:#999;font-size: 12px;">敲击空格键添加标签</p >
+												<p style="color:#999;font-size: 12px;position:relative;top:40px;">敲击空格键添加标签</p >
 												<div class="alert alert-danger" id="tagLabel" style="display: none;">每个标签最多8个汉字或16个字母！</div>
 											</div>
 											<span style="color:red;">*</span>
-										</div>
-							   </div>
+							</div>
+							<div class="bottomUp">
+							    <div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
+							    <div class="btn-c-r submit">提交审核</div>
+							    <div class="btn-c-g cancle">取消</div>
+							</div>
+				</div>
 	     </div>
 	</div>
 <script src="${jqueryJs }"></script>

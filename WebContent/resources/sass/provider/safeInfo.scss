@@ -129,7 +129,7 @@ input:-webkit-autofill {
     position: relative;
     width: 655px;
     &:before {
-        content:attr(data-value);
+        content:attr(data-content);
         position: absolute;
         color: $red-base;
         left: 96px;

@@ -1,5 +1,6 @@
 $().ready(function() {
 	init();
+	showCommonError($('#error'),"错误");
 });
 
 function init(){
@@ -25,11 +26,5 @@ function init(){
 		noraml.show();
 		userPassWord.hide();
 	});
-	
-	
-	
-	
-	
-	
-	
+
 };

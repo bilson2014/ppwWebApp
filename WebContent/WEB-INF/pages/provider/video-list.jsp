@@ -57,7 +57,7 @@
 		<div class="control">
 			<div class="newProduct">
 				<div></div>
-				<a href="/"><span>新建作品</span></a>
+				<span>新建作品</span>
 			</div>
 			<div class="moreUp">
 				<div></div>

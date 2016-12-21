@@ -13,7 +13,7 @@
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
-<spring:url value="/resources/js/block/block.js" var="blockJS"/>
+<spring:url value="/resources/js/play.js" var="blockJS"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
@@ -177,7 +177,7 @@
 	                        	<c:if test="${empty product.teamPhotoUrl }">
 									<img src='/resources/images/play/default_team_photo.svg' class="img-rounded" >
 								</c:if>
-								<c:if test="${!empty product.teamPhotoUrl }">
+								<c:if test="${not empty product.teamPhotoUrl }">
 									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 								</c:if>
 	                            <span>${product.teamName }</span>

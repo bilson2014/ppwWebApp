@@ -112,7 +112,7 @@
                       <div class="title">原手机号</div>
                       <div class="title">18210367466</div>
                    </div>
-                   <div class="setItem sureIcon">
+                   <div class="setItem sureIcon" id="error">
                       <div class="title">验证手机</div>
                       <input class="setInput">
                       <div class="setCode">发送验证码</div>
