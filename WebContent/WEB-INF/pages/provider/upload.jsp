@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
@@ -20,10 +21,10 @@
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
-<spring:url value="/resources/js/provider/upload.js" var="providerUploadJs"/>
+<spring:url value="/resources/js/provider/uploads.js" var="providerUploadJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
-
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap-switch.min.js" var="bootstrapSwitchJs"/>
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath"/>
 <!DOCTYPE html>
@@ -52,141 +53,164 @@
 	<![endif]-->
 </head>
 <body>
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<!-- 成功提示框 start -->
-	<div class="tooltip-success-show" style="display: none;">
-		<label class="tooltip-success-message">信息更新成功</label>
-	</div>
-	<!-- 成功提示框  end -->
-	<input type="hidden" value="${cKey }" id="company-id"/>
-	<input type="hidden" value="${productKey }" id="p-id"/>
-	<input type="hidden" value="${action }" id="action"/>
-	<div class="content-wrap">
-		<div class="form-wrap">
-			<form class="form-horizontal" autocomplete="off" accept-charset="UTF-8">
-				<fieldset >
-					<!-- 错误提示框 start -->
-					<div class="tooltip-show" style="display: none;">
-						<label class="tooltip-message"></label>
-					</div>
-					<!-- 错误提示框  end -->
-			
-					<div class="form-group">
-						<label for="video-name" class="col-sm-2 control-label">视频标题</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="video-name" maxlength="12" placeholder="视频标题为必填字段" value="${model.productName }">
-						</div>
-						<span style="color:red;">*</span>
+<div class="header headerMove" id="header">
+ 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+        <div class="menu-bar nav">
+            <div class="left-part">
+                <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
+				<r:identity role="customer">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+				</r:identity>
+				
+				<r:noLogin>
+					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+				</r:noLogin>
+                <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
+                <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
+                <a class="header-item header-item-last" id="showVideo" target="_parent">
+                    <div class="showVideo"></div>
+                    	拍片网介绍
+                    <span></span>
+                </a>
+            </div>
+            <input type="hidden" id="commonToken" name="token" value="${token}"/>
+            <div class="middle-part">
+                <div class="search-box">
+                    <form method="get" action="/search" id="s-form">
+                        <div class="bannerSearchFind"></div>
+                        <input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
+                        <a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
+                        <ul id="shelper" class="shelper-lucency"></ul>
+                    </form>
+                </div>
+            </div>
+            <div class="right-part">
+            	<r:noLogin>
+					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
+					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
+				</r:noLogin>
+				<r:identity role="customer">
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+				<r:identity role="provider">
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+				<r:identity role="employee">
+					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+				</r:identity>
+            </div>
+        </div>
+    </div>
+    
+    
+	<div class="page">
+	     <div class="upVideoCard">
+	         <div class="titleInfo">作品上传</div>
+	         <div class="step1">
+			         <div class="upImg">
+			            <img  src="/resources/images/provider/upLoad.png" />
+			         </div>
+			         <div class="upBtn">上传视频</div>
+			          <div class="infoCard">
+								   <div class="title">拍片网郑重提醒您：</div>
+								   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
+								   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
+								   <div class="redWord">作品必须填写创作完成日期。</div>
+								   <div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
+						健康文明的网络环境，给大家一个和谐积极的家园。</div>
+						           <div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
+						           <div class="grayWord">不得上传具有色情内容的视频</div>
+						           <div class="grayWord">不得上传内容低俗，格调不高的视频。</div>
+						           <div class="grayWord">  不得上传具有色情诱导性内容的视频。</div>
+						           <div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
+						           <div class="grayWord">不含有涉及版权问题的影视片段。</div>
+						           <div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+
+			          </div>       
+		   </div>
+		   
+		   <div class="step2 hide">
+		             <div class="upProgress"> 
+		                    <div class="proTitle">上传进度</div>
+					        <div class="progress progress-striped active">
+									<div class="progress-bar progress-bar-success" role="progressbar" 
+									aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
+							</div>
+							<div class="proItem">
+							       <div class="itemTitle">作品名称</div>
+							       <input type="text" class="form-control" id="video-name" maxlength="12" placeholder="视频标题为必填字段" value="${model.productName }">
+							</div>
+							<div class="proItem">
+							       <div class="itemTitle">创作时间</div>
+							       <input type="text" class="form-control" id="creationTime" placeholder="请选择作品创作时间" readonly="readonly" value="${model.creationTime }">
+							</div>
+							<div class="proItem">
+							       <div class="itemTitle">视频封面</div>
+							       <ul>
+							          <li>
+							          		<div class="upBanner">上传封面</div>
+							          		<div class="findEx">查看示例</div>
+							          </li>
+							          <li><img src="/resources/images/index/"></li>
+							          <li>
+							            <span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span>
+							            <label>*</label>
+							          </li>
+							       </ul>
+							</div>
+							<div class="bottomUp">
+							    <div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
+							    <div class="btn-c-r submit">提交审核</div>
+							    <div class="btn-c-g cancle">取消</div>
+							</div>
+							
 					</div>
 					
-					<div class="form-group">
-						<label for="video-switch" class="col-sm-2 control-label">创作时间</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" id="creationTime" placeholder="请选择作品创作时间" readonly="readonly" value="${model.creationTime }">
-						</div>
-						<span style="color:red;">*</span>
-					</div>
-					<div class="form-group">
-						<label for="video-picLDUrl" class="col-sm-2 control-label">封面</label>
-						<div class="col-sm-3">
-							<div class="img-icon" id="video-picLD-div">
-								<img src="" alt="拍片网" class="img-thumbnail" id="LDImg">
-								<div style="margin:0px 40px;float:left" id="LDImgName"></div>
-								<input type="hidden" value="${model.picLDUrl }" id="video-picLDUrl"/>
-							</div>
-							<div class="upload-btn">
-								<div class="picker" id="uploadLDBt">上传封面</div>
-								<a href="javascript:void(0);" data-href="/resources/images/provider/default-cover.jpg" class="exampleUrl" data-width="650" data-height="358">查看示例</a>
-								<p class="help-block">仅支持小于250K的png/jpg格式，推荐1110*600分辨率<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="imageLabel-LD" style="display: none;"></div>
-							</div> 
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="video-picLDUrl" class="col-sm-2 control-label">视频</label>
-						<div class="col-sm-6">
-							<div class="upload-btn">
-								<input type="hidden" value="${model.videoUrl }" id="videoUrl"/>
-								<input type="hidden" value="0" id="video-change"/>
-								<div class="picker" id='uploadVideoBt'>上传视频</div>
-								<div style="display:inline;margin:10px" id="videoName"></div>
-								<input type="file" id="videoFile" name="uploadFiles" style="display: none;">
-								<p class="help-block">视频上传仅支持H264编码，MP4格式且不大于200M的视频文件,推荐720P分辨率,25帧<span style="color:red;">*</span></p>
-								<div class="alert alert-danger" id="videoLabel" style="display: none;"></div>
-							</div>
-						</div>
-					</div>
-				
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-6 save">
-						<button type="button" class="btn btn-default" id="submitBt">提交审核</button>
-							&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-default" id="saveBt">保存</button>
-							&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" id="backBt">返回</button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
-		
-		<!-- photo Modal start -->
-		<div class="modal" id="mymodal" data-backdrop="static" data-keyboard=true>
-			<div class="modal-dialog">
-				<div class="modal-content model-distance" id="mymodal-content">
-					<div class="modal-body" id="mymodal-body">
-						<div class="progress progress-striped active">
-							<div class="progress-bar progress-bar-success" role="progressbar" 
-							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
-						</div>
-						<div class="alert alert-warning" role="alert">完成上传之前请勿关闭页面</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- photo Modal end -->
-		
-		<!-- photo Modal start -->
-		<div class="modal" id="photoModel" >
-			<div class="modal-dialog" id="photoModel-dialog">
-				<div class="modal-content model-distance" id="photoModel-content">
-					<div class="modal-header model-no-border">
-						<button type="button" class="close" data-dismiss="modal"><span class="closeBtn" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					</div>
-					<div class="modal-body">
-						<img src="" alt="" id="previewImg" class="previewImg"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- photo Modal end -->
-		
-			<!-- photo Modal start -->
-		<div class="modal" id="warmModel" >
-			<div class="modal-dialog" id="photoModel-dialog">
-				<div class="modal-content model-distance-warm" id="photoModel-content">
-					<div class="modal-header model-no-border">
-						<button type="button" class="close" data-dismiss="modal"><span class="closeBtn" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					</div>
-					<div class="modal-body">
-					    <div>
-                             <ul>
-                                <li><span>拍片网郑重提醒您:</span></li>
-                                <li class="top"> 为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个健康文明的网络环境，给大家一个和谐积极的家园。</li>
-                                <li><label class="circle"></label>不得上传任何有违国家法律法规的视频。</li>
-                                <li><label class="circle"></label>不得上传具有色情内容的视频。</li>
-                                <li><label class="circle"></label>不得上传内容低俗，格调不高的视频。</li>
-                                <li><label class="circle"></label>不得上传具有色情诱导性内容的视频。</li>
-                                <li><label class="circle"></label>不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</li>
-                                <li><label class="circle"></label>不含有涉及版权问题的影视片段。</li>
-                                <li class="bot">如果您上传了这些内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</li>
-                                <li><div class="checkInfo"><button type="button" class="btn btn-default" id="sureUpdate" style="margin-right:10px;">确认</button><button type="button" class="btn btn-default" id="cancleUpdate">取消</button></div></li>
-                             </ul>
-					    </div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- photo Modal end -->
+
+					                 <div class="proItem">
+											<label for="video-tag" class="col-sm-2 control-label">标签</label>
+											<div class="col-sm-6">
+												<div class="upload_filed_area">
+													<div class="mod_keyword">
+														<c:if test="${not empty model.tags }">
+															<span class="keyword_placeholder" style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+															<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
+																<span class="keyword_item">
+																	<b class="keyword_item_inner">${tag }</b>
+																	< a href=" " class="btn_keyword_del">
+																		<span>x</span>
+																	</ a>
+																</span> 
+															</c:forEach>
+														</c:if>
+														<c:if test="${empty model.tags }" >
+															<span class="keyword_placeholder" style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+														</c:if>
+														<span class="keyword_input">
+															<input type="text" class="input_inner" id="text_tags"/>
+														</span>
+													</div>
+												</div>
+												<p style="color:#999;font-size: 12px;">敲击空格键添加标签</p >
+												<div class="alert alert-danger" id="tagLabel" style="display: none;">每个标签最多8个汉字或16个字母！</div>
+											</div>
+											<span style="color:red;">*</span>
+										</div>
+							   </div>
+	     </div>
 	</div>
 <script src="${jqueryJs }"></script>
 <script src="${jquerybase64Js }"></script>
