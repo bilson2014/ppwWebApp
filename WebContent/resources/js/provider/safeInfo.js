@@ -68,10 +68,14 @@ $().ready(function() {
 			pwdValidate:function(){
 				$("#newpwd").off("change").on("change",function(){
 					var pwd = $("#newpwd").val().trim();
-					checkData(1);
+					if(checkData(1)){
+						$("#newpwd").parent().removeClass("errorIcon").addClass("sureIcon");
+					}
 				});
 				$("#repwd").off("change").on("change",function(){
-					checkData(2);
+					if(checkData(2)){
+						$("#repwd").parent().removeClass("errorIcon").addClass("sureIcon");
+					}
 				});
 			},
 			sendCodeForPwd:function(){
@@ -321,8 +325,3 @@ function checkData(type){
 		break;
 	}
 }
-
-
-
-
-
