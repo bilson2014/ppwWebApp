@@ -149,7 +149,7 @@
 					<input class="setInput" id='old-code'>
 					<button class="setCode" id='code-foroldphone'>发送验证码</button>
 				</div>
-				<div class="btn-c-r infoSubmit" id="validate-oldPhonecode">保存</div>
+				<div class="btn-c-r infoSubmit" id="validate-oldPhonecode">验证</div>
 			</div>
 
 
