@@ -1,4 +1,7 @@
 var hasVideo = false;
+var upload_Video;
+var video_max_size = 200*1024*1024; // 200MB
+var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function() {
 	var productList = {
 		init : function() {
@@ -16,6 +19,8 @@ $().ready(function() {
 			this.visibleProduct();
 			//设置代表作
 			this.setMaster();
+			//批量上传
+			this.multipUploadFile();
 		},
 		addProduct:function(){
 			$('.newProduct').off("click").on('click',function(){
@@ -134,8 +139,85 @@ $().ready(function() {
 					teamId:$("#company-key").val()
 				}));
 			})
+		},
+		multipUploadFile:function(){
+			$(".moreUp").off("click").on("click",function(){
+				$(window.parent.document).find('.tooltip-warn-up').show(); 
+				$(window.parent.document).find('.selectVideo').hide(); 
+				$(window.parent.document).find('.showwarn').show(); 
+			})
+			$(window.parent.document).find('.closewarn').off("click").on("click",function(){
+				$(window.parent.document).find('.tooltip-warn-up').hide();
+			})
+			$(window.parent.document).find('.showmultipUpload').off("click").on("click",function(){
+				$(window.parent.document).find('.showwarn').hide(); 
+				$(window.parent.document).find('#video-container').empty(); 
+				$(window.parent.document).find('.selectVideo').show(); 
+			})
+			$(window.parent.document).find('.closewarn-refresh').off("click").on("click",function(){
+				$(window.parent.document).find('.tooltip-warn-up').hide();
+				window.location.reload();
+			})
+			upload_Video && upload_Video.destroy();
+			var picker =$(window.parent.document).find('#picker'); 
+			upload_Video = WebUploader.create({
+				auto:false,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/provider/multipUploadFile',
+				pick : picker,
+				fileSingleSizeLimit : video_max_size,
+				accept :{
+				    title: 'video',
+				    extensions: 'mp4',
+				    mimeTypes: 'video/mp4'
+				}
+			});
+			upload_Video.on('fileQueued', function(file) {
+				$(window.parent.document).find("#video-container").append(juicer(productList_tpl.upload_Tpl,{file:file}));
+			});
+			// 文件上传过程中创建进度条实时显示。
+			upload_Video.on('uploadProgress',function(file, percentage) {
+				var $li = $(window.parent.document).find('#' + file.id), $percent = $li
+				.find('.progress .progress-bar');
+				// 避免重复创建
+				if (!$percent.length) {
+					$percent = $(
+							'<div class="progress progress-striped active">'
+									+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+									+ '</div>' + '</div>')
+							.appendTo($li).find('.progress-bar');
+				}
+				$li.find('.videoState').text('上传中');
+				$percent.css('width', percentage * 100 + '%');
+			});
+			upload_Video.on('uploadSuccess', function(file,response) {
+				$(window.parent.document).find( '#'+file.id ).find('.videoState').text('已上传');
+				$(window.parent.document).find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
+				$(window.parent.document).find('#' + file.id).find('.progress').fadeOut();
+			});
+			upload_Video.on('error', function(type) {
+				 if (type=="Q_TYPE_DENIED"){
+					 	alert('请上传mp4格式');
+			        }else if(type=="F_EXCEED_SIZE"){
+						alert(video_err_msg);
+			        }
+			});
+			$(window.parent.document).find("#submit-multip").on('click', function() {
+				upload_Video.upload();
+			});
 		}
 	}	
 	productList.init();
+	var productList_tpl = {
+			upload_Tpl:[
+			" <div class='videoCard'>                            "+
+			"	<div class='videoContent'>                       "+
+			"   	<div id='${file.id}' class='item'>			 "+
+			"	    <div class='videoName'>${file.name}</div>    "+
+			"	    <div class='videoState'>等待上传</div>          "+
+			"	</div>                                            "+
+			" </div>                                              "      
+			].join("")
+	}
 });
 
