@@ -199,7 +199,7 @@
 														</span>
 													</div>
 												</div>
-												<p style="color:#999;font-size: 12px;position:relative;top:40px;">敲击空格键添加标签</p >
+												<p style="color:#999;font-size: 12px;position:absolute;bottom:0px;">敲击空格键添加标签</p >
 												<div class="alert alert-danger" id="tagLabel" style="display: none;">每个标签最多8个汉字或16个字母！</div>
 											</div>
 											<span style="color:red;">*</span>
@@ -210,6 +210,19 @@
 							    <div class="btn-c-g cancle">取消</div>
 							</div>
 				</div>
+				
+				<div class="step3 hide">
+				     <div class="show-zero2 zeromodal-icon zeromodal-success">
+					 	<span class="line tip"></span>
+					   	<span class="line long"></span>
+					   	<div class="placeholder"></div>
+					</div>
+					<div class="title">作品上传成功!</div>
+					<div class="info">您的作品已成功上传,正在审核中...</div>
+					<div class="autoJoin">自动跳转进入<a><span>作品列表页</span></a><span>3</span>秒</div>
+				</div>
+				
+				
 	     </div>
 	</div>
 <script src="${jqueryJs }"></script>

@@ -12,7 +12,7 @@ body,
 }
 
 .upVideoCard {
-    margin-top: 120px;
+    margin-top: 180px;
     @include media_screen_width_beta3();
     background: white;
     border-bottom: 1px solid $e;
@@ -194,7 +194,7 @@ body,
     color: $red-base;
     right: 0px;
     img {
-        position:relative; 
+        position: relative;
         top: 2px;
         margin-right: 10px;
     }
@@ -291,7 +291,6 @@ body,
 .bottomUp {
     position: relative;
     left: 90px;
-    top: 30px;
     .stateInfo {
         font-size: $font-size-sm;
         color: $red-base;
@@ -329,6 +328,13 @@ body,
     position: relative;
     width: 540px;
     position: relative;
+    height: 95px;
+}
+
+.input_inner {
+    height: 50px;
+    padding-left: 10px;
+    padding-top: 25px;
 }
 
 .keyword_input {
@@ -350,6 +356,8 @@ body,
 
 .alert {
     width: 540px !important;
+    position: absolute;
+    bottom: -28px;
 }
 
 .keyword_item {
@@ -375,4 +383,30 @@ body,
     zoom: 1;
     line-height: 0;
     text-shadow: 0 1px 0 #fff;
+}
+
+.step3 {
+    padding-top: 80px;
+    .title {
+        text-align: center;
+        font-size: $font-size;
+        color: $gray-dark;
+        margin-top: 20px;
+        margin-bottom: 6px;
+    }
+    .info {
+        text-align: center;
+        font-size: $font-size-sm;
+        color: $gray-light;
+    }
+    .autoJoin {
+        text-align: center;
+        font-size: $font-size-sm;
+        color: $gray-light;
+        margin-top: 16px;
+        span:nth-child(1) {
+            color: $red-base;
+            margin-left: 20px;
+        }
+    }
 }
