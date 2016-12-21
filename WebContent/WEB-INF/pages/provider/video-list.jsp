@@ -26,6 +26,7 @@
 <spring:url value="/resources/images" var="path" />
 <spring:url value="/resources/lib/webuploader/webuploader.js"
 	var="webuploaderJs" />
+	<spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -46,6 +47,7 @@
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>拍片网－用户信息页</title>
 <link rel="stylesheet" type="text/css" href="${productListCss}">
+<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 </head>
 
 <body>
@@ -57,7 +59,7 @@
 		<div class="control">
 			<div class="newProduct">
 				<div></div>
-				<a href="/"><span>新建作品</span></a>
+				<span>新建作品</span>
 			</div>
 			<div class="moreUp">
 				<div></div>
@@ -175,6 +177,7 @@
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${productListJs }"></script>
+<script src="${juicerJs }"></script>
 <!-- 加载Mob share 控件 -->
 <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <!-- script here -->

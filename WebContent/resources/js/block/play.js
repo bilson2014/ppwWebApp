@@ -320,10 +320,6 @@ function initView(){
 	
 	if(hret != '' && hret != null && hret != undefined){
 		makePlayer('player-wrap', hret); // 创建视频浏览器
-	}else{
-		if($('#payId').attr('data-value')!=""){
-			$('#playId').attr('poster','/resources/images/index/noImg.jpg');
-		}
 	}
 	
 	// -> 注册 分享按钮 

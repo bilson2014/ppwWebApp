@@ -8,6 +8,8 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
 <spring:url value="/resources/css/provider/portal.css" var="providerPortalCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css"
+	var="webuploaderCss" />
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -19,6 +21,8 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
+<spring:url value="/resources/js/juicer.js" var="juicerJs" />
 
 <spring:url value="/resources/images/user" var="imgPath"/>
 <!DOCTYPE html>
@@ -37,6 +41,7 @@
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${providerPortalCss }">
+	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 	<link rel="shortcut icon" href="${imgPath }/../favicon.ico" >
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -51,6 +56,8 @@
 	<script src="${commonJs }"></script>
 	<script src="${suggestJs }"></script>
 	<script src="${porviderPortalJs }"></script>
+	<script src="${webuploaderJs }"></script>
+	<script src="${juicerJs }"></script>
 </head>
 <body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
@@ -141,9 +148,10 @@
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
+
 	 <div class="tooltip-warn-up" >
-		 <div class="infoCard">
-			   <div class="closeX">x</div>
+		 <div class="infoCard showwarn">
+			   <div class="closeX closewarn">x</div>
 			   <div class="title">拍片网郑重提醒您：</div>
 			   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
 			   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
@@ -158,33 +166,24 @@
 	           <div class="grayWord">不含有涉及版权问题的影视片段。</div>
 	           <div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
 	           <div class="bottom">
-	             	   <div>确定</div>
-	                   <div>取消</div>
+	             	   <div class='showmultipUpload'>确定</div>
+	                   <div class='closewarn'>取消</div>
 	           </div>
-
 		 </div>
 		 <div class="selectVideo">
 		     <div class="top">
-		       <div class="closeX">x</div>
+		       <div class="closeX closewarn">x</div>
 		       <div class="title">批量上传作品</div>
 		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
 		     </div>
-		     <div class="mid">
-		         <div class="videoCard">
-		            <div class="videoContent">
-		               <div class="videoName">视频名字</div>
-		               <div class="videoState showUpSuccess">等待</div>
-		            </div>
-		            <div class="progress progress-striped active">
-							<div class="progress-bar progress-bar-success" role="progressbar" 
-							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
-						</div>
-		         </div>
+		     <div class="mid" id='video-container'>
+		        
 		     </div>
+		     
 		     <div class="bottom">
-		        <div>选择文件</div>
-		        <div class="btn-c-r">开始上传</div>
-		        <div>关闭</div>
+		        <div id='picker'>选择文件</div>
+		        <div class="btn-c-r" id='submit-multip'>开始上传</div>
+		        <div class='closewarn-refresh'>关闭</div>
 		     </div>
 		 </div>
 	</div> 
@@ -229,11 +228,7 @@
                        <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
-                
        </div>
-
     </div>
-    
-
 </body>
 </html>

@@ -26,10 +26,9 @@
             position: relative;
         }
     }
-
-
-    .bottomContent{
-        margin-bottom:140px;
+    
+    .bottomContent {
+        margin-bottom: 140px;
     }
     
     .videoContent .player-wrap {
@@ -44,27 +43,27 @@
         }
         .controlVideo {
             width: $width-min - $order-width;
-            height: ($width-min - $price-wrap-min) * (9 / 16);
+            height: ($width-min - $order-width) * (9 / 16);
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-middle - $order-width) * (9 / 16);
             }
             @media screen and (min-width:1500px) {
                 width: $width-lg3 - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-lg3 - $order-width) * (9 / 16);
             }
         }
         video {
             width: $width-min - $order-width;
-            height: ($width-min - $price-wrap-min) * (9 / 16);
+            height: ($width-min - $order-width) * (9 / 16);
             background: black;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-middle - $order-width) * (9 / 16);
             }
             @media screen and (min-width:1500px) {
                 width: $width-lg3 - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-lg3 - $order-width) * (9 / 16);
             }
         }
         object {
@@ -73,11 +72,11 @@
             background: black;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-middle - $order-width) * (9 / 16);
             }
             @media screen and (min-width:1500px) {
                 width: $width-lg3 - $order-width;
-                height: ($width-middle - $price-wrap) * (9 / 16);
+                height: ($width-lg3 - $order-width) * (9 / 16);
             }
         }
     }
@@ -232,6 +231,7 @@
         }
     }
     
+
     .videoContent .videoPrice {
         position: absolute;
         top: 118px;
@@ -240,12 +240,12 @@
         padding-left: 15px;
         padding-right: 15px;
         width: $order-width;
-        height: ($width-min - $price-wrap-min) * (9 / 16);
+        height: ($width-min - $order-width) * (9 / 16);
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            height: ($width-middle - $price-wrap) * (9 / 16);
+            height: ($width-middle - $order-width) * (9 / 16);
         }
         @media screen and (min-width:1500px) {
-            height: ($width-middle - $price-wrap) * (9 / 16);
+            height: ($width-lg3 - $order-width) * (9 / 16);
         }
         .wordContent {
             margin-top: 40px;
@@ -257,7 +257,7 @@
             .content,
             .title {
                 color: $border-line !important;
-                span{
+                span {
                     font-size: $font-size-sm;
                 }
             }
@@ -272,9 +272,9 @@
                 height: 75px;
                 overflow: hidden;
                 font-size: $font-size-sm;
-                line-height:15px;
+                line-height: 15px;
                 @media screen and (max-width: 1275px) {
-                height: 45px;
+                    height: 45px;
                 }
             }
         }
@@ -560,8 +560,6 @@
         height: 60px;
         width: 100%;
     }
-
-
     
     .contentWidth {
         @include media_screen_width_beta3();
@@ -643,7 +641,7 @@
                 height: 45px;
                 width: 45px;
                 left: 40px !important;
-                top:100% !important;
+                top: 100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/topPrev.png) no-repeat !important;
             }
@@ -651,12 +649,10 @@
                 height: 45px;
                 width: 45px;
                 left: 90px;
-                top:100% !important;
+                top: 100% !important;
                 margin-top: -45px;
                 background: url(/resources/images/block/botNext.png) no-repeat !important;
             }
-
-
             .videoModel {
                 margin-bottom: 30px;
                 overflow: hidden;
@@ -727,7 +723,7 @@
         width: auto;
         &:hover {
             color: $red-base !important;
-            div{
+            div {
                 background-position: 0px -13px !important;
             }
         }
@@ -769,20 +765,20 @@
             position: absolute;
             top: -8px;
             right: 32px;
-             &:hover {
-            color: $red-base !important;
-            div{
-                background-position: 0px -13px !important;
+            &:hover {
+                color: $red-base !important;
+                div {
+                    background-position: 0px -13px !important;
+                }
             }
-        }
-        div {
-            position: absolute;
-            right: -30px;
-            top: 3px;
-            height: 13px;
-            width: 13px;
-            background: url('/resources/images/index/newsMore.png')no-repeat !important;
-        }
+            div {
+                position: absolute;
+                right: -30px;
+                top: 3px;
+                height: 13px;
+                width: 13px;
+                background: url('/resources/images/index/newsMore.png')no-repeat !important;
+            }
         }
         .swiper-button-prev {
             height: 45px;
@@ -792,7 +788,7 @@
             @media screen and (max-width: 1400px) {
                 left: -45px;
             }
-             @media screen and (max-width: 1100px) {
+            @media screen and (max-width: 1100px) {
                 left: -4px;
             }
         }
@@ -804,7 +800,7 @@
             @media screen and (max-width: 1400px) {
                 right: -45px;
             }
-              @media screen and (max-width: 1100px) {
+            @media screen and (max-width: 1100px) {
                 right: 2px;
             }
         }
@@ -822,7 +818,6 @@
         /* Safari 和 Chrome */
         -o-transition: all .6s linear 0s;
     }
-    
     
     .swiper-noInfo .swiper-slide {
         overflow: hidden;
@@ -877,9 +872,7 @@
             }
         }
     }
-
-    .paddingBottom{
+    
+    .paddingBottom {
         padding-bottom: 60px;
     }
-    
-

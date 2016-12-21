@@ -3,6 +3,12 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
+	
+	
+	
+
+	
+	
 	provider_info.init();
 	// 显示Logo
 	/*var logoPath = $('#logoPath').val().trim();
@@ -46,18 +52,6 @@ $().ready(function(){
 	$('#passwordBt').on('click',safeInfo);
 	
 	$('#insSubmit').on('click',addAccount);
-/*	// 图片上传 点击事件
-	$('#logoImg').on('click',function(){
-		// 图片上传 点击事件
-		$('#file').off("change").on("change",function(){
-			$.blockUI({
-				message : '<h1><img src="'+ getContextPath() +'/resources/images/busy.gif"></img>&nbsp;准备上传…</h1>'
-			});
-			// 上传图片
-			uploadImg();
-		});
-		$('#file').click();
-	});*/
 	
 	infoEcho();
 	

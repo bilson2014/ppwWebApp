@@ -937,3 +937,20 @@ function firstSuccessTooltip() {
 	}
 }
 
+
+
+//通用错误提示
+function showCommonError(id, error) {
+	if (error == "" || error == null) {
+		id.attr('data-content', "");
+	} else {
+		id.attr('data-content', '*' + error);
+		id.find('input').addClass('errorLCommon');
+	}
+}
+
+function resumeCommonError(){
+    showError($('.input-group-div'),'');
+    $('input').removeClass('errorLCommon');
+}
+

@@ -1,6 +1,7 @@
 @import "common";
 @import "compass/typography/text/ellipsis";
 @import "normalize";
+body,
 .page {
     background: $f0 !important;
 }
@@ -153,6 +154,8 @@
 .upProgress {
     font-size: $font-size-sm;
     color: $gray;
+    margin-bottom: 60px;
+    position: relative;
 }
 
 .progress {
@@ -166,13 +169,59 @@
     background-color: #337ab7;
 }
 
+.upIng {
+    position: absolute;
+    font-size: $font-size-sm;
+    color: $red-base;
+    right: 0px;
+}
+
+.upSuccess {
+    position: absolute;
+    font-size: $font-size-sm;
+    color: $red-base;
+    right: 0px;
+    img {
+        position: relative;
+        top: 2px;
+        margin-right: 10px;
+    }
+}
+
+.upError {
+    position: absolute;
+    font-size: $font-size-sm;
+    color: $red-base;
+    right: 0px;
+    img {
+        position:relative; 
+        top: 2px;
+        margin-right: 10px;
+    }
+}
+
 .proItem {
     width: 650px;
     font-size: 0;
+    margin-bottom: 30px;
+    position: relative;
+    &:after {
+        content: "*";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
     .itemTitle {
         font-size: $font-size-base;
         color: $gray-dark;
         margin-right: 30px;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        top: 10px;
+        width: 60px;
+    }
+    .upload_filed_area {
         display: inline-block;
         vertical-align: top;
     }
@@ -186,6 +235,7 @@
         border: 1px solid $border-line;
         border-radius: 4px;
         line-height: 34px;
+        outline: none;
     }
     ul {
         display: inline-block;
@@ -199,6 +249,10 @@
         .findEx {
             display: inline-block;
             vertical-align: top;
+            position: relative;
+            top: 10px;
+            font-size: $font-size-base;
+            color: $red-base;
         }
         .upBanner {
             width: 120px;
@@ -235,9 +289,14 @@
 }
 
 .bottomUp {
+    position: relative;
+    left: 90px;
+    top: 30px;
     .stateInfo {
         font-size: $font-size-sm;
         color: $red-base;
+        margin-top: 20px;
+        margin-bottom: 30px;
     }
     .submit {
         width: 120px;
@@ -247,6 +306,8 @@
         font-size: $font-size-base;
         display: inline-block;
         vertical-align: top;
+        text-align: center;
+        border-radius: 4px;
     }
     .cancle {
         width: 120px;
@@ -256,5 +317,62 @@
         font-size: $font-size-base;
         display: inline-block;
         vertical-align: top;
+        border-radius: 4px;
+        text-align: center;
     }
+}
+
+//标签
+.tagArea {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 540px;
+    position: relative;
+}
+
+.keyword_input {
+    position: absolute;
+    left: 0px;
+}
+
+.keyword_placeholder {
+    display: block !important;
+    margin-bottom: 10px;
+}
+
+.keyword_item {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    z-index: 5;
+}
+
+.alert {
+    width: 540px !important;
+}
+
+.keyword_item {
+    display: inline-block;
+    zoom: 1;
+    height: 20px;
+    line-height: 0;
+    padding: 0 6px;
+    padding-top: 6px;
+    margin-top: 4px;
+    margin-right: 4px;
+    background: #f0f0f0;
+    text-shadow: 0 1px 0 #fff;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.keyword_item_inner {
+    font-weight: 500;
+    padding-right: 5px;
+    vertical-align: middle;
+    font-size: 12px;
+    zoom: 1;
+    line-height: 0;
+    text-shadow: 0 1px 0 #fff;
 }
