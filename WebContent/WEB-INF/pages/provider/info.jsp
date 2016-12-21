@@ -100,7 +100,7 @@
 									</div>
 							</div>	
      
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-name-error">
                                 <div class="title">公司名称</div>
                                 <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
                             </div>

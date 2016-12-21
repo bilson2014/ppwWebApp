@@ -3,6 +3,8 @@ var curCount; // 当前剩余秒数
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
 $().ready(function() {
+
+	showCommonError($('#error'),"错误");
 	var safeInfo = {
 			init:function(){
 				//****登录密码设置******
@@ -182,10 +184,10 @@ $().ready(function() {
 			}
 	}
 	safeInfo.init();
+
+
+
 });
-
-
-
 
 
 function verification(phone,ID){
@@ -322,6 +324,7 @@ function checkData(type){
 		break;
 	}
 }
+
 
 
 

@@ -92,6 +92,106 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+    
+     <div class="proInfo">
+          
+          <div class="safeInfo" id="normal">
+                <div class="safeItem">
+                      <div class="leftItem">
+                           <div class="content">
+                               <div class="loginTitle">登录密码</div>
+                               <div>使用账号登录时需要输入的密码</div>
+                           </div>
+                           <div class="content">
+                               <div class="infoName">用户名</div>
+                               <div>未设置</div>
+                           </div>
+                           <div class="setInfo btn-c-r" id="toUserName">设置</div>
+                      </div>
+                </div>
+                <div class="line"></div>
+                 <div class="safeItem">
+                      <div class="leftItem">
+                           <div class="content">
+                               <div class="loginTitle">手机绑定</div>
+                               <div>确保账号登录时的安全性，同时作为密码找回身份验证使用</div>
+                           </div>
+                           <div class="content">
+                               <div class="infoName">原机绑定</div>
+                               <div>未设置</div>
+                           </div>
+                           <div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
+                      </div>
+                </div>
+          </div>
+          
+          
+           <div class="setUserContent" id="userName">
+                   <div class="top">
+                      <div>手机绑定</div>
+                      <div>确保账号登录时的安全性，同时作为密码更改，密码找回，支付时验证身份用</div>
+                   </div>
+                    <div class="setItem change">
+                      <div class="title">原手机号</div>
+                      <div class="title">18210367466</div>
+                   </div>
+                   <div class="setItem sureIcon" id="error">
+                      <div class="title">验证手机</div>
+                      <input class="setInput">
+                      <div class="setCode">发送验证码</div>
+                   </div>
+                    <div class="setItem errorIcon">
+                      <div class="title">新手机号</div>
+                      <input >
+                   </div>
+                    <div class="setItem">
+                      <div class="title">验证手机</div>
+                      <input class="setInput">
+                      <div class="setCode">发送验证码</div>
+                   </div>
+                   <div class="bottom">
+                       <div class="btn-c-r infoSubmit">保存</div>
+                       <div class="btn-c-g infoReSet" id="nameReturn">取消</div>
+                   </div>
+           
+           </div>
+          
+           
+           <div class="setUserContent" id="userPassWord">
+                   <div class="top">
+                      <div>登录密码</div>
+                      <div>使用账号登录时需要输入密码</div>
+                   </div>
+                    <div class="setItem">
+                      <div class="title">用户名</div>
+                      <input>
+                   </div>
+                   <div class="setItem sureIcon">
+                      <div class="title">新密码</div>
+                      <input type="password">
+                   </div>
+                    <div class="setItem errorIcon">
+                      <div class="title">确认密码</div>
+                      <input type="password">
+                   </div>
+                    <div class="setItem">
+                      <div class="title">验证码</div>
+                      <input class="setInput">
+                      <div class="setCode">发送验证码</div>
+                   </div>
+                   <div class="bottom">
+                       <div class="btn-c-r infoSubmit">保存</div>
+                       <div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
+                   </div>
+           
+           </div>
+          
+                           
+     </div>
+		
+		
+=======
 	<input type="hidden" value="${team.phoneNumber }" id="phoneNumber">
 	<input type="hidden" value="${team.teamId }" id="teamId">
 	<input type="hidden" value="${team.loginName }" id="loginName">
@@ -215,5 +315,6 @@
 	</div>
 
 
+>>>>>>> 1a499cfa0e7ccfbec8df94a335105cd60a2c6c06
 </body>
 </html>

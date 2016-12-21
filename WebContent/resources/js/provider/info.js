@@ -3,6 +3,12 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
+	
+	
+	
+
+	
+	
 	provider_info.init();
 	// 显示Logo
 	/*var logoPath = $('#logoPath').val().trim();
