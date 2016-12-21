@@ -551,10 +551,8 @@ public class PCController extends BaseController {
 			team = JsonUtil.toBean(json, Team.class);
 		}
 		if (team != null) {
-			flag = team.getFlag();
+			model.addAttribute("provider", team);
 		}
-		model.addAttribute("flag", flag);
-
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
 				+ "flag is " + flag, sessionInfo);

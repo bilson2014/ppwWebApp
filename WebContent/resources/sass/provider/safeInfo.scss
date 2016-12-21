@@ -129,7 +129,7 @@ input:-webkit-autofill {
     position: relative;
     width: 655px;
     &:before {
-        content: "错误";
+        content:attr(data-value);
         position: absolute;
         color: $red-base;
         left: 96px;

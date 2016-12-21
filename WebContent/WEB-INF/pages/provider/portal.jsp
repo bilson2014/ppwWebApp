@@ -130,37 +130,77 @@
 		<iframe id="content-frame" class="iframe"></iframe>
 	</div> -->
 	
-	<div class="infomation">
-	        <label>*您的资质提交已经成功提交,审核中...</label>
-	        <label>官方将在3个工作日内完成您的资质审核,敬请等候...</label>
+	<div class="infomation" id="infomation" style="display: none;">
+	        <label id="infomation_title">*您的资质提交已经成功提交,审核中...</label>
+	        <label id="infomation_body">官方将在3个工作日内完成您的资质审核,敬请等候...</label>
 	</div>
 	<div class="tooltip-success-show" style="display: none;">
-		<label class="tooltip-success-message">信息更新成功</label>
+		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
 	</div>
 	
-	<div class="tooltip-error-show" style="">
-		<label class="tooltip-success-message">信息更新成功</label>
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
-	
-	<div class="tooltip-warn-up hide" >
+
+	 <div class="tooltip-warn-up">
 		 <div class="infoCard">
-		 
+			   <div class="closeX">x</div>
+			   <div class="title">拍片网郑重提醒您：</div>
+			   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
+			   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
+			   <div class="redWord">作品必须填写创作完成日期。</div>
+			   <div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
+	健康文明的网络环境，给大家一个和谐积极的家园。</div>
+	           <div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
+	           <div class="grayWord">不得上传具有色情内容的视频</div>
+	           <div class="grayWord">不得上传内容低俗，格调不高的视频。</div>
+	           <div class="grayWord">  不得上传具有色情诱导性内容的视频。</div>
+	           <div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
+	           <div class="grayWord">不含有涉及版权问题的影视片段。</div>
+	           <div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+	           <div class="bottom">
+	             	   <div>确定</div>
+	                   <div>取消</div>
+	           </div>
 		 </div>
-	</div>
-	
-	
-	
+		 <div class="selectVideo">
+		     <div class="top">
+		       <div class="closeX">x</div>
+		       <div class="title">批量上传作品</div>
+		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
+		     </div>
+		     <div class="mid">
+		         <div class="videoCard">
+		            <div class="videoContent">
+		               <div class="videoName">视频名字</div>
+		               <div class="videoState showUpSuccess">等待</div>
+		            </div>
+		            <div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-success" role="progressbar" 
+							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
+						</div>
+		         </div>
+		     </div>
+		     <div class="bottom">
+		        <div>选择文件</div>
+		        <div class="btn-c-r">开始上传</div>
+		        <div>关闭</div>
+		     </div>
+		 </div>
+	</div> 
+
 	 <div class="page" style="height:100%">
 
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">
-                          <img class="proLogo" src="/resources/images/provider/initLogo.png"/>
+                    	<a href="/provider/info_${provider.teamId }.html">
+                          <img class="proLogo" id="proLogo" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"/>
+                          </a>
                           <div class="isPass">
-                          <img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
 			                     <c:if test="${provider.flag == 2}">
 										<img src="/resources/images/provder/noPass.png"><div class="noPass">未通过</div>
-								 </c:if> 
+								 </c:if>
 								 <c:if test="${provider.flag == 0}">
 										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
 								 </c:if> 
@@ -169,29 +209,27 @@
 								 </c:if>
 			                 </div>
                     </div>
-                    <div class="userName">客户NAME</div>
-                    <div class="userProduct">公司主页</div>
+                    <div class="userName">${provider.teamName }</div>
+                    <a href="/provider/info_${provider.teamId }.html">
+                    	<div class="userProduct">公司主页</div>
+                    </a>
                     <div class="left-content">
-                              <div class="infoItem activeThis">
-                                     <div class="product" data-action="video-list">作品列表</div>
-                              </div>  
-                               <div class="infoItem">
-                                     <div class="info" data-action="company-info">公司信息</div>
-                              </div>
-                               <div class="infoItem">
-                                      <div class="safeInfo" data-action="safe-info">安全设置</div>
-                              </div> 
+                         <div class="infoItem activeThis">
+                                <div class="product" data-action="video-list">作品列表</div>
+                         </div>  
+                          <div class="infoItem">
+                                <div class="info" data-action="company-info">公司信息</div>
+                         </div>
+                          <div class="infoItem">
+                                 <div class="safeInfo" data-action="safe-info">安全设置</div>
+                         </div> 
                     </div>
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
-                
        </div>
-
     </div>
-    
-
 </body>
 </html>
