@@ -551,10 +551,8 @@ public class PCController extends BaseController {
 			team = JsonUtil.toBean(json, Team.class);
 		}
 		if (team != null) {
-			flag = team.getFlag();
+			model.addAttribute("provider", team);
 		}
-		model.addAttribute("flag", flag);
-
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
 				+ "flag is " + flag, sessionInfo);
@@ -668,11 +666,6 @@ public class PCController extends BaseController {
 
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if (isTest) {
-			return true;
-		}
 		if (ValidateUtil.isValid(code) && ValidateUtil.isValid(codeOfphone)) {
 			return code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone());
 		} else

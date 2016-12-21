@@ -142,9 +142,7 @@
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
 
-	
-	 <div class="tooltip-warn-up" >
-
+	 <div class="tooltip-warn-up">
 		 <div class="infoCard">
 			   <div class="closeX">x</div>
 			   <div class="title">拍片网郑重提醒您：</div>
@@ -164,9 +162,7 @@
 	             	   <div>确定</div>
 	                   <div>取消</div>
 	           </div>
-
 		 </div>
-		 
 		 <div class="selectVideo">
 		     <div class="top">
 		       <div class="closeX">x</div>
@@ -198,12 +194,13 @@
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">
-                          <img class="proLogo" src="/resources/images/provider/initLogo.png"/>
+                    	<a href="/provider/info_${provider.teamId }.html">
+                          <img class="proLogo" id="proLogo" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"/>
+                          </a>
                           <div class="isPass">
-                          <img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
 			                     <c:if test="${provider.flag == 2}">
 										<img src="/resources/images/provder/noPass.png"><div class="noPass">未通过</div>
-								 </c:if> 
+								 </c:if>
 								 <c:if test="${provider.flag == 0}">
 										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
 								 </c:if> 
@@ -212,29 +209,27 @@
 								 </c:if>
 			                 </div>
                     </div>
-                    <div class="userName">客户NAME</div>
-                    <div class="userProduct">公司主页</div>
+                    <div class="userName">${provider.teamName }</div>
+                    <a href="/provider/info_${provider.teamId }.html">
+                    	<div class="userProduct">公司主页</div>
+                    </a>
                     <div class="left-content">
-                              <div class="infoItem activeThis">
-                                     <div class="product" data-action="video-list">作品列表</div>
-                              </div>  
-                               <div class="infoItem">
-                                     <div class="info" data-action="company-info">公司信息</div>
-                              </div>
-                               <div class="infoItem">
-                                      <div class="safeInfo" data-action="safe-info">安全设置</div>
-                              </div> 
+                         <div class="infoItem activeThis">
+                                <div class="product" data-action="video-list">作品列表</div>
+                         </div>  
+                          <div class="infoItem">
+                                <div class="info" data-action="company-info">公司信息</div>
+                         </div>
+                          <div class="infoItem">
+                                 <div class="safeInfo" data-action="safe-info">安全设置</div>
+                         </div> 
                     </div>
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
-                
        </div>
-
     </div>
-    
-
 </body>
 </html>

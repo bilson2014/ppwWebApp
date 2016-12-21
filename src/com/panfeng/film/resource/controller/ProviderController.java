@@ -176,14 +176,14 @@ public class ProviderController extends BaseController {
 	}
 	
 	/**
-	 * 跳转至 视频列表页
+	 * 跳转至 安全设置页面
 	 */
 	@RequestMapping("/safe-info")
 	public ModelAndView safeView(final HttpServletRequest request, final ModelMap model) {
 		final Team team = getCurrentTeam(request);
 		model.addAttribute("status", team.getFlag());
 		model.addAttribute("cKey", team.getTeamId());
-		model.addAttribute("recomment", team.getRecommendation());
+		model.addAttribute("team", team);
 		return new ModelAndView("provider/safeInfo", model);
 	}
 	/**
@@ -324,7 +324,6 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/checkExisting")
 	public boolean isExisting(@RequestBody final Team team, final HttpServletRequest request) {
-
 		try {
 			// 转码
 			if (team.getLoginName() != null && !"".equals(team.getLoginName())) {
@@ -599,44 +598,44 @@ public class ProviderController extends BaseController {
 	public BaseMsg updatePasswordByLoginName(@RequestBody final Team team, final HttpServletRequest request) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		final String code = (String) request.getSession().getAttribute("code");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || (code.equals(team.getVerification_code()))) {
-				if (team != null && team.getPassword() != null && !"".equals(team.getPassword())
-						&& team.getLoginName() != null && !"".equals(team.getLoginName())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
-
-						// MD5 加密
-						team.setPassword(DataUtil.md5(password));
-
-						// 转码
-						team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
-						team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
-
-						// 连接远程服务器，传输数据
-						final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
-						final String json = HttpUtil.httpPost(url, team, request);
-						if (ValidateUtil.isValid(json)) {
-							final boolean flag = JsonUtil.toBean(json, Boolean.class);
-							if (flag) {
-								msg.setCode(1);
-								msg.setResult("修改成功");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null != sessionInfo){
+			if (!"".equals(code) && code != null) {
+				if (code.equals(team.getVerification_code())) {
+					if (team.getPassword() != null && !"".equals(team.getPassword())) {
+						try {
+							// AES 解密
+							final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
+							// MD5 加密
+							team.setPassword(DataUtil.md5(password));
+							// 转码
+							team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
+							team.setLoginName(URLEncoder.encode(sessionInfo.getLoginName(), "UTF-8"));
+							// 连接远程服务器，传输数据
+							final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
+							final String json = HttpUtil.httpPost(url, team, request);
+							if (ValidateUtil.isValid(json)) {
+								final boolean flag = JsonUtil.toBean(json, Boolean.class);
+								if (flag) {
+									msg.setCode(1);
+									msg.setResult("修改成功");
+								}
 							}
+						} catch (Exception e) {
+							Log.error(
+									"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...",
+									sessionInfo);
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error(
-								"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...",
-								sessionInfo);
-						e.printStackTrace();
 					}
+				} else {
+					msg.setResult("验证码错误");
 				}
-			} else {
-				msg.setResult("验证码错误");
+			}else{
+				msg.setResult("验证码无效");
 			}
+		}else{
+			msg.setResult("供应商未登录");
 		}
 		return msg;
 	}
@@ -767,28 +766,40 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/add/account")
 	public BaseMsg addAccount(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
-		final String code = (String) request.getSession().getAttribute("code");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || (code.equals(team.getVerification_code()))) {
-				if (team != null) {
-					try {
-						String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
-						team.setPassword(DataUtil.md5(password));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					final String url = URL_PREFIX + "portal/team/static/data/add/account";
-					final String json = HttpUtil.httpPost(url, team, request);
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					if (flag) {
-						msg.setCode(1);
-						msg.setResult("修改成功");
-					}
+		//验证登录名是否在数据库中已经存在
+		String url = URL_PREFIX + "portal/team/static/checkIsExist";
+		String json = HttpUtil.httpPost(url, team, request);
+		boolean flag = JsonUtil.toBean(json, Boolean.class);
+		if(flag){
+			final String code = (String) request.getSession().getAttribute("code");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			if(null != sessionInfo){
+				if (!"".equals(code) && code != null) {
+					if (code.equals(team.getVerification_code())) {
+						try {
+							String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
+							team.setPassword(DataUtil.md5(password));
+							team.setTeamId(sessionInfo.getReqiureId());
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						url = URL_PREFIX + "portal/team/static/data/add/account";
+						json = HttpUtil.httpPost(url, team, request);
+						flag = JsonUtil.toBean(json, Boolean.class);
+						if (flag) {
+							msg.setCode(1);
+							msg.setResult("修改成功");
+						}
+					} else
+						msg.setResult("验证码错误");
+				}else{
+					msg.setResult("验证码无效");
 				}
-			} else
-				msg.setResult("验证码错误");
+			}else{
+				msg.setResult("供应商未登录");
+			}
+		}else{
+			msg.setResult("用户名已经存在");
 		}
 		return msg;
 	}
@@ -895,12 +906,18 @@ public class ProviderController extends BaseController {
 		try {
 			// 转码
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			long productId = 0;
-			// flag 0未审核状态  3.保存状态。保存后还是要提交审核
-			int flag = product.getFlag();
-			if(flag != 0 && flag != 3){
-				product.setFlag(3);//非法字段设置为保存状态
+			Team team = getCurrentTeam(request);
+			if(team.getFlag()==4){//ghost账户
+				final String tag = product.getTags();
+				if (tag != null && !"".equals(tag)) {
+					product.setTags(URLEncoder.encode(tag, "UTF-8"));
+				}
+				product.setFlag(1);//设置审核通过
+			}else{
+				product.setTags("");
+				product.setFlag(0);//设置审核中状态
 			}
+			long productId = 0;
 			product.setRecommend(0); // 推荐值 为0
 			product.setSupportCount(0); // 赞值 为0
 			product.setVideoLength("0");
@@ -912,7 +929,6 @@ public class ProviderController extends BaseController {
 			if (json != null && !"".equals(json)) {
 				productId = JsonUtil.toBean(json, Long.class);
 			}
-
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
 					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
@@ -934,10 +950,16 @@ public class ProviderController extends BaseController {
 			@RequestBody final Product product) {
 		try {
 			final long productId = product.getProductId();
-			// flag 0未审核状态  3.保存状态。保存后还是要提交审核
-			int flag = product.getFlag();
-			if(flag != 0 && flag != 3){
-				product.setFlag(3);//非法字段设置为保存状态
+			Team team = getCurrentTeam(request);
+			if(team.getFlag()==4){//ghost账户
+				final String tag = product.getTags();
+				if (tag != null && !"".equals(tag)) {
+					product.setTags(URLEncoder.encode(tag, "UTF-8"));
+				}
+				product.setFlag(1);//设置审核通过
+			}else{
+				product.setTags("");
+				product.setFlag(0);//设置审核中状态
 			}
 			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
@@ -1498,26 +1520,21 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/modify/phone")
 	public BaseMsg modifyUserPhone(@RequestBody final Team team, final HttpServletRequest request) {
-		if (team != null) {
+		SessionInfo info = getCurrentInfo(request);
+		if(null != info){
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			// 是否是测试程序
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))) {
-				if (isTest || (code.equals(team.getVerification_code()) && codeOfphone.equals(team.getPhoneNumber()))) {
-					// 修改 用户密码
-					// final String url = URL_PREFIX +
-					// "portal/team/modify/phone";update/newphone
-					final String url = URL_PREFIX + "portal/team/update/newphone";
-					final String json = HttpUtil.httpPost(url, team, request);
-					// final Boolean result = JsonUtil.toBean(json,
-					// Boolean.class);
-					final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
-					return baseMsg;
-				}
-				return new BaseMsg(1, "验证码错误");
-			}
-			return new BaseMsg(1, "验证码错误");
+			if (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone)) {
+				if (code.equals(team.getVerification_code())) {
+					if(codeOfphone.equals(team.getPhoneNumber())){
+						team.setTeamId(info.getReqiureId());
+						final String url = URL_PREFIX + "portal/team/update/newphone";
+						final String json = HttpUtil.httpPost(url, team, request);
+						final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
+						return baseMsg;
+					}return new BaseMsg(0, "手机号不匹配");
+				}return new BaseMsg(0, "验证码错误");
+			}return new BaseMsg(0, "参数无效");
 		}
 		return new BaseMsg(0, "error");
 	}

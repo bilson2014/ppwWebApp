@@ -15,8 +15,11 @@ $().ready(function(){
 		}else{
 			getHeight(2);
 		}
-		
 	});
+	var p = $('#proLogo').attr('data-value');
+	if(p!=null && p!=''){
+		$('#proLogo').attr('src',getDfsHostName() + p);
+	}
 });
 
 function getHeight(num){

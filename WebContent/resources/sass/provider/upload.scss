@@ -182,7 +182,8 @@ body,
     color: $red-base;
     right: 0px;
     img {
-        position: top: 2px;
+        position: relative;
+        top: 2px;
         margin-right: 10px;
     }
 }
@@ -193,7 +194,8 @@ body,
     color: $red-base;
     right: 0px;
     img {
-        position: top: 2px;
+        position:relative; 
+        top: 2px;
         margin-right: 10px;
     }
 }
