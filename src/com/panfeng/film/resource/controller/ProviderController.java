@@ -937,7 +937,7 @@ public class ProviderController extends BaseController {
 				product.setVideoLength("0");
 				product.setpDescription("");
 				product.setVideoDescription("");
-				product.setVisible(1); // 默认可见
+				product.setVisible(0); // 默认可见
 				final String url = URL_PREFIX + "portal/product/static/data/save/info";
 				final String json = HttpUtil.httpPost(url, product, request);
 				if (json != null && !"".equals(json)) {
@@ -959,7 +959,8 @@ public class ProviderController extends BaseController {
 	 * 更新 视频 信息
 	 */
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public BaseMsg updateProduct(final HttpServletRequest request,final MultipartFile file,
+	public BaseMsg updateProduct(final HttpServletRequest request,
+			@RequestParam(value="file",required=false, defaultValue="") MultipartFile file,
 			final HttpServletResponse response,final Product product) {
 		try {
 			final long productId = product.getProductId();
@@ -1070,7 +1071,7 @@ public class ProviderController extends BaseController {
 				product.setTeamId(providerId);
 				product.setVideoLength("0");
 				product.setpDescription("");
-				product.setVisible(1); // 默认可见
+				product.setVisible(0); // 默认可见
 				// 保存数据
 				long productId = 0;
 				final String url = URL_PREFIX + "portal/product/static/data/save/info";

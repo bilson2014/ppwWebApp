@@ -109,6 +109,11 @@ $().ready(function(){
 					addTags(tag); // 增加标签
 				}
 			});
+			// 激活 x 
+			$('.btn_keyword_del').unbind('click');
+			$('.btn_keyword_del').bind('click',function(){
+				removeTags($(this));
+			});
 		},
 		uploaderPic:function(){
 			var _this = this;
@@ -177,7 +182,7 @@ $().ready(function(){
 				var picLDChange = $("#pic-LD-url").data("change");
 				var picImgUrl = $("#pic-LD-url").val();
 				if(checkData()){ // 检验数据完整性
-					if(picImgUrl != ''){//修改状态下存在路径，可以不上传
+					if(picImgUrl != '' && picLDChange == 0){//修改作品，作品有图片且无更换时
 						_this.modifyProduct();//ghost用户在有图片的情况下修改作品且没有更换图片
 					}else{
 						//webupload启动提交
@@ -193,7 +198,25 @@ $().ready(function(){
 			});
 		},
 		modifyProduct:function(){
-			
+			$.ajax({
+				url : '/provider/update/product/info',
+				type : 'POST',
+				data : {
+					productId:$("#productId").val(),
+					productName:$("#video-name").val(),
+					creationTime:$("#creationTime").val(),
+					tags:mergeTag()
+				},
+				dataType : 'json',
+				success : function(data){
+					$(".step2").addClass("hide");
+					$(".step3").removeClass("hide");
+					SetLastTime();
+					$('#toPortal').off('click').on('click',function(){
+						window.location.href=getContextPath() + '/provider/portal';
+					});
+				}
+			});
 		},
 		backToList:function(){
 			
@@ -226,11 +249,6 @@ function addTags(tag) {
 			$tag += '<span>x</span>';
 			$tag += '</a>';
 			$('.keyword_input').before($tag);
-			// 激活 x 
-			$('.btn_keyword_del').unbind('click');
-			$('.btn_keyword_del').bind('click',function(){
-				removeTags($(this));
-			});
 		}
 		// 清空input
 		$('.input_inner').val('');
@@ -256,9 +274,6 @@ function checkData(){
 	var picImgUrl = $("#pic-LD-url").val();
 	var tagsinput = mergeTag();
 	resumeCommonError($(".proItem"),'');
-	if(productId == null || productId == undefined || productId == ''){
-		return false;
-	}
 	if(productName == null || productName == undefined || productName == ''){
 		showCommonError($('#video-name-error'),"请输入作品名称");
 		return false;
@@ -275,6 +290,9 @@ function checkData(){
 	}
 	if(picImgUrl == '' && picLDChange != 1){//ghost用户可以修改各种状态下的作品
 		$("#img-error").text("请上传视频封面");
+		return false;
+	}
+	if(productId == null || productId == undefined || productId == ''){
 		return false;
 	}
 	return true;

@@ -101,7 +101,7 @@
 								</div>
 							</div>
 							<c:if test="${product.flag==1}">
-								<ul data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visibleProduct <c:if test="${product.visible==0}">noneUse</c:if>">
+								<ul data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visibleProduct <c:if test="${product.visible==1}">noneUse</c:if>">
 									<li>可见</li>
 									<li></li>
 									<li>不可见</li>

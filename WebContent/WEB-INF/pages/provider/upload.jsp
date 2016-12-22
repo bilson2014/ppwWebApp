@@ -226,9 +226,9 @@
 								<div class="mod_keyword">
 									<c:if test="${not empty product.tags }">
 										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
-											<span class="keyword_item"> <b
-												class="keyword_item_inner">${tag }</b> < a href=" "
-												class="btn_keyword_del"> <span>x</span> </a>
+											<span class="keyword_item">
+											 	<b class="keyword_item_inner">${tag }</b>
+											 	<a href="javascript:void(0);" class="btn_keyword_del"> <span>x</span></a>
 											</span>
 										</c:forEach>
 									</c:if>
@@ -257,9 +257,20 @@
 							<div class="upBanner" id='upBtn-pic'>上传封面</div>
 							<div class="findEx" id="findEx">查看示例</div>
 						</li>
-						<li><img id="LDimg" src="/resources/images/index/noImg.jpg">
-							<input type="hidden" id='pic-LD-url' data-change="0"></li>
-						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
+						<li>
+							<c:if test="${not empty product.picLDUrl}">
+								<img id="LDimg" src="${file_locate_storage_path }${product.picLDUrl}">
+								<input type="hidden" value="${product.picLDUrl}" id='pic-LD-url' data-change="0">
+							</c:if>
+							<c:if test="${empty product.picLDUrl}">
+								<img id="LDimg" src="/resources/images/index/noImg.jpg">
+								<input type="hidden" id='pic-LD-url' data-change="0">
+							</c:if>
+							
+						</li>
+						<li>
+							<span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span>
+							<label>*</label>
 						</li>
 					</ul>
 					<div id="img-error"></div>
