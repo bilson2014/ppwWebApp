@@ -96,6 +96,7 @@
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
 											<div id="uploadBt">上传头像</div>
 											<input type="file" name="file" id="file" style="display: none;"/> 
+											<div class="errorImg">错误</div>
 										</div>
 									</div>
 							</div>	

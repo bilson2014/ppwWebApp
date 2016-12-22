@@ -6,6 +6,11 @@ body{
     overflow: hidden;
     height: auto;
 }
+.errorImg{
+    height: 20px;
+    color:$red-base;
+    font-size: $font-size-base;
+}
 .proInfo {
     padding-top: 60px;
     background: white;
@@ -259,7 +264,7 @@ body{
 #uploadBt {
     cursor: pointer;
     .webuploader-pick-hover {
-        color: white !important;
+        color: $red-base !important;
         border: 1px solid $red-base !important;
 
     }

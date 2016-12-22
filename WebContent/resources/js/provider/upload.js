@@ -2,6 +2,8 @@ var image_max_size = 1024*250; // 250KB
 var video_max_size = 200*1024*1024; // 200MB
 var image_err_msg = '图片大小超出250KB上限,请重新上传!';
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
+var curCount = 3;
+var InterValObj;
 $().ready(function(){
 	var upload = {
 		init:function(){
@@ -152,6 +154,10 @@ $().ready(function(){
 			uploader_Pic.on('uploadSuccess', function(file,response) {
 				$(".step2").addClass("hide");
 				$(".step3").removeClass("hide");
+				SetLastTime();
+				$('#toPortal').off('click').on('click',function(){
+					window.location.href=getContextPath() + '/provider/portal';
+				});
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -266,4 +272,20 @@ function checkData(){
 		}
 	}
 	return true;
+}
+
+function SetLastTime(){
+    $('#lasttime').text(curCount); 
+    $('#lasttime').attr('disabled','disabled');
+    InterValObj = window.setInterval(SetRemainTime, 1000);  
+}
+function SetRemainTime(){
+if(curCount == 0){
+	window.clearInterval(InterValObj); // 停止计时器
+	window.location.href=getContextPath() + '/provider/portal';
+}
+else{
+	  curCount--;
+	 $('#lasttime').text(curCount); 
+}
 }
