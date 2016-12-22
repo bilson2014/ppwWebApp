@@ -208,13 +208,13 @@
 						<img src="/resources/images/provider/error.png">上传失败请重新上传
 					</div>
 				</div>
-				<div class="proItem">
+				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="form-control" id="video-name"
 						maxlength="12" placeholder="视频标题为必填字段"
 						value="${model.productName }">
 				</div>
-				<div class="proItem">
+				<div class="proItem" id="creationTime-error">
 					<div class="itemTitle">创作时间</div>
 					<input type="text" class="form-control" id="creationTime"
 						placeholder="请选择作品创作时间" readonly="readonly"
@@ -222,20 +222,24 @@
 				</div>
 				<div class="proItem">
 					<div class="itemTitle">视频封面</div>
+					
 					<ul>
 						<li>
 							<div class="upBanner" id='upBtn-pic'>上传封面</div>
 							<div class="findEx" id="findEx">查看示例</div>
 						</li>
-						<li><img src="/resources/images/index/noImg.jpg"></li>
+						<li>
+							<img id="LDimg" src="/resources/images/index/noImg.jpg">
+							<input type="hidden" id='pic-LD-url' data-change="0">
+						</li>
 						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
 						</li>
 					</ul>
-					<div id="img-error">123</div>
+					<div id="img-error"></div>
 				</div>
 				
 				
-				<div class="proItem">
+				<div class="proItem" id="text_tags_error">
 					<div for="video-tag" class="control-label itemTitle">标签</div>
 					<div class="tagArea">
 						<div class="upload_filed_area">

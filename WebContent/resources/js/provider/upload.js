@@ -42,6 +42,7 @@ $().ready(function(){
 				$('.upSuccess').removeClass("hide");
 				$('.upError').addClass("hide");
 				$("#productId").val(response.result);
+				$(".stateInfo").addClass("hide");
 			});
 			upload_Video.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -115,6 +116,12 @@ $().ready(function(){
 					id:'#upBtn-pic',
 					multiple :false//弹窗选文件时，不允许多选
 				},
+				formData : {
+					productId:$("#productId").val(),
+					productName:$("#video-name").val(),
+					creationTime:$("#creationTime").val(),
+					tags:mergeTag()
+					},
 				resize : false,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
@@ -129,13 +136,13 @@ $().ready(function(){
 			uploader_Pic.on('beforeFileQueued', function(file) {
 				  //选中前触发，移除了所有的文件
 				 //删除所有文件,值上传一个
-				 var array = upload_Video.getFiles();
+				 var array = uploader_Pic.getFiles();
 				 for(var i=0;i<array.length;i++){
-					 upload_Video.removeFile( array[i] );
+					 uploader_Pic.removeFile( array[i] );
 				 }
 			});
 			uploader_Pic.on('fileQueued', function(file) {
-				var $img = $("#LDImg");
+				var $img = $("#LDimg");
 				// 创建缩略图
 				// 如果为非图片文件，可以不用调用此方法。
 				// thumbnailWidth x thumbnailHeight 为 100 x 100
@@ -146,10 +153,10 @@ $().ready(function(){
 					}
 					$img.attr( 'src', src );
 				}, 130, 100 );
-				
+				$("#pic-LD-url").attr("data-change","1");//添加图片更换状态
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
-				_this.ModifyProduct(response.result);
+				alert("保存成功")
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -163,12 +170,14 @@ $().ready(function(){
 		submit:function(){
 			var _this = this;
 			$('#infoBt').off("click").on('click', function() {
+				var picLDChange = $("#pic-LD-url").data("change");
+				var picImgUrl = $("#pic-LD-url").val();
 				if(checkData()){ // 检验数据完整性
-					if(action == 'modify' && change == 0){
-						_this.modify();
+					if(picImgUrl != ''){//修改状态下存在路径，可以不上传
+						_this.modifyProduct('');
 					}else{
 						//webupload启动提交
-						upload_Video.upload();
+						uploader_Pic.upload();
 					}
 				}
 			});
@@ -221,4 +230,34 @@ function removeTags(obj) {
 	if(num == 0){
 		$('.keyword_placeholder').show('fast');
 	}
+}
+
+function checkData(){
+	var productId = $("#productId").val();
+	var productName = $("#video-name").val();
+	var creationTime = $("#creationTime").val();
+	var picLDChange = $("#pic-LD-url").data("change");
+	var picImgUrl = $("#pic-LD-url").val();
+	var tags = mergeTag();
+	if(productId == null || productId == undefined || productId == ''){
+		return false;
+	}
+	if(productName == null || productName == undefined || productName == ''){
+		showCommonError($('#video-name-error'),"请输入作品名称");
+		return false;
+	}
+	if(creationTime == null || creationTime == undefined || creationTime == ''){
+		showCommonError($('#creationTime-error'),"请输入创作时间");
+		return false;
+	}
+	if(picImgUrl == '' && picLDChange != 1){//ghost用户可以修改各种状态下的作品
+		$("#img-error").text("请上传视频封面");
+		return false;
+	}
+	if(tags == null || tags == undefined || tags == ''){
+		showCommonError($('#text_tags_error'),"请填写作品标签");
+		return false;
+	}
+	resumeCommonError($(".setItem"),'');
+	return true;
 }

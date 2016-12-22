@@ -947,8 +947,8 @@ public class ProviderController extends BaseController {
 	 * 更新 视频 信息
 	 */
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public BaseMsg updateProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final Product product) {
+	public BaseMsg updateProduct(final HttpServletRequest request,final MultipartFile file,
+			final HttpServletResponse response,@RequestBody final Product product) {
 		try {
 			final long productId = product.getProductId();
 			Team team = getCurrentTeam(request);
@@ -962,8 +962,12 @@ public class ProviderController extends BaseController {
 				product.setTags("");
 				product.setFlag(0);//设置审核中状态
 			}
-			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
+			if(null != file){
+				String fileId = DFSservice.upload(file);
+				product.setPicLDUrl(fileId);
+			}
+			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			final String result = HttpUtil.httpPost(updatePath, product, request);
 			if (result != null && !"".equals(result)) {
 				Boolean b  = JsonUtil.toBean(result, Boolean.class);
