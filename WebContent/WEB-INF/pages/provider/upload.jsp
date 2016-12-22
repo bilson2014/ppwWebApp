@@ -214,6 +214,32 @@
 						maxlength="12" placeholder="视频标题为必填字段"
 						value="${model.productName }">
 				</div>
+				<div class="proItem noItem">
+					<div for="video-tag" class="control-label itemTitle">标签</div>
+					<div class="tagArea">
+						<div class="upload_filed_area">
+						<span class="keyword_placeholder"
+										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
+							<div class="mod_keyword">
+								<c:if test="${not empty model.tags }">
+									<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
+										<span class="keyword_item"> <b
+											class="keyword_item_inner">${tag }</b> < a href=" "
+											class="btn_keyword_del"> <span>x</span> </a>
+										</span>
+									</c:forEach>
+								</c:if>
+								<span class="keyword_input"> <input type="text"
+									class="input_inner" id="text_tags" />
+								</span>
+							</div>
+						</div>
+
+						<div class="alert alert-danger" id="tagLabel"
+							style="display: none;">每个标签最多8个汉字或16个字母！</div>
+					</div>
+					<span style="color: red;">*</span>
+				</div>
 				<div class="proItem">
 					<div class="itemTitle">创作时间</div>
 					<input type="text" class="form-control" id="creationTime"
@@ -235,37 +261,7 @@
 				</div>
 				
 				
-				<div class="proItem noItem">
-					<div for="video-tag" class="control-label itemTitle">标签</div>
-					<div class="tagArea">
-						<div class="upload_filed_area">
-							<div class="mod_keyword">
-								<c:if test="${not empty model.tags }">
-									<span class="keyword_placeholder"
-										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-									<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-										<span class="keyword_item"> <b
-											class="keyword_item_inner">${tag }</b> < a href=" "
-											class="btn_keyword_del"> <span>x</span> </a>
-										</span>
-									</c:forEach>
-								</c:if>
-								<c:if test="${empty model.tags }">
-									<span class="keyword_placeholder"
-										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-								</c:if>
-								<span class="keyword_input"> <input type="text"
-									class="input_inner" id="text_tags" />
-								</span>
-							</div>
-						</div>
-						<p
-							style="color: #999; font-size: 12px; position: absolute; bottom: 0px;">敲击空格键添加标签</p>
-						<div class="alert alert-danger" id="tagLabel"
-							style="display: none;">每个标签最多8个汉字或16个字母！</div>
-					</div>
-					<span style="color: red;">*</span>
-				</div>
+				
 				<div class="bottomUp">
 					<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					<div class="btn-c-r submit" id="infoBt">提交审核</div>

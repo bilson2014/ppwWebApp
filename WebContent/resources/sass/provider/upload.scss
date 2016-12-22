@@ -404,18 +404,32 @@ body,
     position: relative;
     width: 540px;
     position: relative;
-    height: 95px;
+    height: 60px;
+}
+
+.mod_keyword {
+    width: 540px;
+    display: inline-block;
+    vertical-align: top;
+    height: 36px;
+    border: 1px solid $border-line;
+    border-radius: 4px;
 }
 
 .input_inner {
-    height: 50px !important;
+    height: 36px !important;
     padding-left: 10px;
-    padding-top: 25px;
 }
 
 .keyword_input {
-    position: absolute;
-    left: 0px;
+    display: inline-block;
+    vertical-align: top;
+    input {
+        width: 200px !important;
+        border: none;
+        color: black;
+        background: transparent;
+    }
 }
 
 .keyword_placeholder {
@@ -434,9 +448,11 @@ body,
 .alert {
     width: 540px !important;
     position: absolute;
-    bottom: -40px;
-    color: white;
-    font-size: 12px;
+    bottom: -50px;
+    color: $red-base;
+    font-size: $font-size-sm;
+    background: transparent;
+    border:none;
 }
 
 .keyword_item {
