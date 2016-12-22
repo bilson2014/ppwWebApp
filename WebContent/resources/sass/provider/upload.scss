@@ -25,7 +25,7 @@ body,
     border-bottom: 1px solid $e;
     margin: 0 auto;
     position: relative;
-    top:60px;
+    top: 60px;
     height: 740px;
     border-radius: 6px;
 }
@@ -36,7 +36,7 @@ body,
     line-height: 52px;
     color: $gray;
     font-size: $font-size;
-        border-bottom: 1px solid $e;
+    border-bottom: 1px solid $e;
 }
 
 .upImg {
@@ -59,16 +59,19 @@ body,
     cursor: pointer;
 }
 
- .webuploader-pick {
-            height: 35px;
-            width: 120px;
-            line-height: 20px;
-            background: transparent !important;
-            cursor: pointer;
-        }
-        .webuploader-pick-hover{
-            background: transparent !important;
-        }
+.webuploader-pick {
+    height: 35px;
+    width: 120px;
+    line-height: 1px;
+    text-align: center;
+    padding-right: 38px;
+    background: transparent !important;
+    cursor: pointer;
+}
+
+.webuploader-pick-hover {
+    background: transparent !important;
+}
 
 .infoCard {
     height: auto;
@@ -173,7 +176,7 @@ body,
 
 //step2
 .upProgress {
-	margin-top: 25px;
+    margin-top: 25px;
     font-size: $font-size-sm;
     color: $gray;
     margin-bottom: 25px;
@@ -195,7 +198,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-        right: -50px;
+    right: -50px;
     top: 20px;
 }
 
@@ -203,7 +206,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-        right: -50px;
+    right: -50px;
     top: 20px;
     img {
         position: relative;
@@ -216,7 +219,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-       right: -50px;
+    right: -50px;
     top: 20px;
     img {
         position: relative;
@@ -235,6 +238,13 @@ body,
         position: absolute;
         top: 0px;
         right: 0px;
+    }
+    .img-error {
+        color: $red-base;
+        font-size: $font-size-base;
+        position: absolute;
+        position: absolute;
+        left: 90px;
     }
     .itemTitle {
         font-size: $font-size-base;
@@ -352,7 +362,7 @@ body,
 }
 
 .input_inner {
-    height: 50px;
+    height: 50px !important;
     padding-left: 10px;
     padding-top: 25px;
 }
@@ -441,32 +451,31 @@ body,
     overflow: hidden;
     z-index: 80;
     display: none;
-  .card{
-  	width: 680px;
-  	height: 420px;
-  	position: absolute;
-  	top:50%;
-  	left:50%;
-  	margin-top: -210px;
-  	margin-left: -340px;
-    background: #f0f2f5;
-    border-radius: 4px;
-  }
-   .topBanner{
-   	height: 31px;
-   	line-height: 30px;
-   	text-align: right;
-   	padding-right: 15px;
-   	color:$gray;
-   	font-size: $font-size-base;
-   	cursor: pointer;
-   	border-bottom: 1px solid $border-line;
-   	&:hover{
-   		color:$gray-dark;
-   	}
-   }
-
-    .imgContent{
-    	padding: 15px;
+    .card {
+        width: 680px;
+        height: 420px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -210px;
+        margin-left: -340px;
+        background: #f0f2f5;
+        border-radius: 4px;
+    }
+    .topBanner {
+        height: 31px;
+        line-height: 30px;
+        text-align: right;
+        padding-right: 15px;
+        color: $gray;
+        font-size: $font-size-base;
+        cursor: pointer;
+        border-bottom: 1px solid $border-line;
+        &:hover {
+            color: $gray-dark;
+        }
+    }
+    .imgContent {
+        padding: 15px;
     }
 }

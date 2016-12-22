@@ -192,7 +192,7 @@
 				</div>
 			</div>
 
-			<div class="step2">
+			<div class="step2 hide">
 				<div class="upProgress">
 					<div class="proTitle">上传进度</div>
 					<div class="progress progress-striped active">
@@ -231,7 +231,7 @@
 						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
 						</li>
 					</ul>
-					<div id="img-error"></div>
+					<div id="img-error">123</div>
 				</div>
 				
 				
