@@ -266,8 +266,6 @@ body,
     }
 }
 
-
-
 .proItem {
     width: 650px;
     font-size: 0;
@@ -383,6 +381,7 @@ body,
         vertical-align: top;
         text-align: center;
         border-radius: 4px;
+        background: $red-base;
     }
     .cancle {
         width: 120px;
@@ -394,6 +393,7 @@ body,
         vertical-align: top;
         border-radius: 4px;
         text-align: center;
+        background: $gray-light;
     }
 }
 
@@ -434,7 +434,9 @@ body,
 .alert {
     width: 540px !important;
     position: absolute;
-    bottom: -28px;
+    bottom: -40px;
+    color: white;
+    font-size: 12px;
 }
 
 .keyword_item {
@@ -527,8 +529,7 @@ body,
     }
 }
 
-
-#img-error{
+#img-error {
     color: $red-base;
     font-size: $font-size-base;
     position: absolute;
