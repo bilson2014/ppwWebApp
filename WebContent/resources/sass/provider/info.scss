@@ -268,12 +268,12 @@ body{
         height: 36px;
         border: 1px solid $gray-light;
         line-height: 16px;
-        color: $gray-dark;
+        color: $gray;
         border-radius: 4px;
         text-align: center;
         background: transparent !important;
         &:hover{
-        color: white;
+        color: $red-base;
         border: 1px solid $red-base;
         background: $red-base !important;
         }

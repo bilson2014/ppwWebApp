@@ -156,12 +156,13 @@ input:-webkit-autofill {
         width: 540px;
         height: 36px;
         padding-left: 20px;
-        text-align: center;
+        text-align: left;
         line-height: 34px;
         border-radius: 4px;
         border: 1px solid $border-line;
         font-size: $font-size-base;
         color: $gray-dark;
+        outline: none;
     }
     .title {
         color: $gray-dark;

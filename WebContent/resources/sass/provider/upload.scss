@@ -8,10 +8,10 @@ body,
 
 .error_upload {
     font-size: $font-size-base;
-    color: $gray-dark;
+    color: $red-base;
     text-align: center;
     position: relative;
-    top: -60px;
+    top: 10px;
 }
 
 .step2 {
@@ -58,7 +58,6 @@ body,
     width: 160px;
     margin: 0 auto;
     margin-top: 60px;
-    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -214,7 +213,7 @@ body,
 .upIng {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
 }
@@ -222,7 +221,7 @@ body,
 .upSuccess {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
     img {
@@ -235,7 +234,7 @@ body,
 .upError {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
     img {
@@ -435,6 +434,7 @@ body,
 .keyword_placeholder {
     display: block !important;
     margin-bottom: 10px;
+    color:$red-base;
 }
 
 .keyword_item {

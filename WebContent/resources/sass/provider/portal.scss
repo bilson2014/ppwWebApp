@@ -158,7 +158,7 @@ body {
         .infoItem {
             height: 40px;
             border-left: 4px solid transparent;
-            padding-top: 11px;
+            padding-top: 14px;
             padding-left: 63px;
             cursor: pointer;
             &:hover {
@@ -603,8 +603,9 @@ body {
         .webuploader-pick {
             height: 36px;
             width: 120px;
-            line-height: 24px;
+            line-height: 39px;
             background: transparent !important;
+            padding: 0px;
         }
         .webuploader-pick-hover {
             background: transparent !important;

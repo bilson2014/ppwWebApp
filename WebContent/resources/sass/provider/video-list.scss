@@ -6,7 +6,7 @@ $yellow:#f5a623;
 $blue:#30CBFB;
 body{
     overflow: auto;
-    
+    background: transparent;
 }
 
 input:-webkit-autofill {
@@ -417,8 +417,10 @@ input:-webkit-autofill {
         position: absolute;
         right: 80px;
         top: 50px;
-        background: transparent !important; 
+        background: transparent !important;
         &:hover {
+            background: $red-base !important;
+            border: 1px solid $red-base;
             div:nth-child(1) {
                 background-position: 0px -14px;
             }
@@ -457,14 +459,15 @@ input:-webkit-autofill {
         right: 0px;
         top: 50px;
         background: transparent !important;
+        color:$gray;
         &:hover{
-            background: $gray !important;
+            background: $gray-light !important;
         }
         div:nth-child(1) {
             background-position: 0px -14px;
         }
         div:nth-child(2) {
-            color: white;
+            color: white !important;
         }
         div {
             display: inline-block;
