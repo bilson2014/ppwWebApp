@@ -6,6 +6,7 @@ $().ready(function(){
 	
 	
 	
+	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');

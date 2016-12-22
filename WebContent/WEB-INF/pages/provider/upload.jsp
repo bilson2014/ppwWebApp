@@ -154,6 +154,8 @@
 
 	<input type="hidden" value="${cKey}" id="teamId">
 	<input type="hidden" value="" id="productId">
+	<input type="hidden" value="${product.productId}" id="modifyId">
+	<input type="hidden" value="${flag}" id="flag">
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
 			<div class="topBanner" id="closeBanner">x</div>
@@ -164,50 +166,51 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="page">
 		<div class="upVideoCard">
 			<div class="titleInfo">作品上传</div>
-			<div class="step1">
-				<div class="upImg">
-					<img src="/resources/images/provider/upLoad.png" />
-				</div>
-				<div class="upBtn" id="upBtn">上传视频</div>
-				<div class="error_upload"></div>
-				<div class="infoCard">
-					<div class="title">拍片网郑重提醒您：</div>
-					<div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
-					<div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
-					<div class="redWord">作品必须填写创作完成日期。</div>
-					<div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
-						健康文明的网络环境，给大家一个和谐积极的家园。</div>
-					<div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
-					<div class="grayWord">不得上传具有色情内容的视频</div>
-					<div class="grayWord">不得上传内容低俗，格调不高的视频。</div>
-					<div class="grayWord">不得上传具有色情诱导性内容的视频。</div>
-					<div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
-					<div class="grayWord">不含有涉及版权问题的影视片段。</div>
-					<div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
-
-				</div>
-			</div>
-
-			<div class="step2 hide">
-				<div class="upProgress">
-					<div class="proTitle">上传进度</div>
-					<div class="progress progress-striped active">
-						<div class="progress-bar progress-bar-success" role="progressbar"
-							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-							style="width: 0;"></div>
+			<c:if test="${product.productId == 0}">
+				<div class="step1">
+					<div class="upImg">
+						<img src="/resources/images/provider/upLoad.png" />
 					</div>
-					<div class="upIng">上传中...</div>
-					<div class="upSuccess hide">
-						<img src="/resources/images/provider/sure.png">上传成功
-					</div>
-					<div class="upError hide">
-						<img src="/resources/images/provider/error.png">上传失败请重新上传
+					<div class="upBtn btn-c-r" id="upBtn">上传视频</div>
+					<div class="error_upload"></div>
+					<div class="infoCard">
+						<div class="title">拍片网郑重提醒您：</div>
+						<div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
+						<div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
+						<div class="redWord">作品必须填写创作完成日期。</div>
+						<div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
+							健康文明的网络环境，给大家一个和谐积极的家园。</div>
+						<div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
+						<div class="grayWord">不得上传具有色情内容的视频</div>
+						<div class="grayWord">不得上传内容低俗，格调不高的视频。</div>
+						<div class="grayWord">不得上传具有色情诱导性内容的视频。</div>
+						<div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
+						<div class="grayWord">不含有涉及版权问题的影视片段。</div>
+						<div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
 					</div>
 				</div>
+			</c:if>
+			<div class="step2 <c:if test='${product.productId == 0}'>hide</c:if>">
+				<c:if test="${product.productId == 0}">
+					<div class="upProgress">
+						<div class="proTitle">上传进度</div>
+						<div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-success" role="progressbar"
+								aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+								style="width: 0;"></div>
+						</div>
+						<div class="upIng">上传中...</div>
+						<div class="upSuccess hide">
+							<img src="/resources/images/provider/sure.png">上传成功
+						</div>
+						<div class="upError hide">
+							<img src="/resources/images/provider/error.png">上传失败请重新上传
+						</div>
+					</div>
+				</c:if>
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="form-control" id="video-name"
@@ -220,7 +223,7 @@
 						placeholder="请选择作品创作时间" readonly="readonly"
 						value="${model.creationTime }">
 				</div>
-				<div class="proItem">
+				<div class="proItem noItem">
 					<div class="itemTitle">视频封面</div>
 					
 					<ul>
@@ -238,38 +241,39 @@
 					<div id="img-error"></div>
 				</div>
 				
-				
-				<div class="proItem" id="text_tags_error">
-					<div for="video-tag" class="control-label itemTitle">标签</div>
-					<div class="tagArea">
-						<div class="upload_filed_area">
-							<div class="mod_keyword">
-								<c:if test="${not empty model.tags }">
-									<span class="keyword_placeholder"
-										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-									<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-										<span class="keyword_item"> <b
-											class="keyword_item_inner">${tag }</b> < a href=" "
-											class="btn_keyword_del"> <span>x</span> </a>
-										</span>
-									</c:forEach>
-								</c:if>
-								<c:if test="${empty model.tags }">
-									<span class="keyword_placeholder"
-										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-								</c:if>
-								<span class="keyword_input"> <input type="text"
-									class="input_inner" id="text_tags" />
-								</span>
+				<c:if test="${flag == 4}">
+					<div class="proItem" id="text_tags_error">
+						<div for="video-tag" class="control-label itemTitle">标签</div>
+						<div class="tagArea">
+							<div class="upload_filed_area">
+								<div class="mod_keyword">
+									<c:if test="${not empty model.tags }">
+										<span class="keyword_placeholder"
+											style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+										<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
+											<span class="keyword_item"> <b
+												class="keyword_item_inner">${tag }</b> < a href=" "
+												class="btn_keyword_del"> <span>x</span> </a>
+											</span>
+										</c:forEach>
+									</c:if>
+									<c:if test="${empty model.tags }">
+										<span class="keyword_placeholder"
+											style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+									</c:if>
+									<span class="keyword_input"> <input type="text"
+										class="input_inner" id="text_tags" />
+									</span>
+								</div>
 							</div>
+							<p
+								style="color: #999; font-size: 12px; position: absolute; bottom: 0px;">敲击空格键添加标签</p>
+							<div class="alert alert-danger" id="tagLabel"
+								style="display: none;">每个标签最多8个汉字或16个字母！</div>
 						</div>
-						<p
-							style="color: #999; font-size: 12px; position: absolute; bottom: 0px;">敲击空格键添加标签</p>
-						<div class="alert alert-danger" id="tagLabel"
-							style="display: none;">每个标签最多8个汉字或16个字母！</div>
+						<span style="color: red;">*</span>
 					</div>
-					<span style="color: red;">*</span>
-				</div>
+				</c:if>
 				<div class="bottomUp">
 					<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					<div class="btn-c-r submit" id="infoBt">提交审核</div>

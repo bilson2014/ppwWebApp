@@ -28,8 +28,11 @@ $().ready(function() {
 			});
 		},
 		modifyProduct:function(){
-			$('.btn-update').off("click").on('click',function(){
-				$('#content-frame', parent.document).prop('src',getContextPath() + '/provider/product/modify/' + $('#company-key').val() + '/' + $(this).data('id'));
+			$('#product-edit').off("click").on('click',function(){
+				var productId = $(this).attr("data-id");
+				var html = "<form id='edit' action='/provider/product/upload' method='post' name='edit' style='display:none'><input type='hidden' name='productId' value='"+productId+"' /></form>";
+				$(window.parent.document).find('body').append(html);
+				$(window.parent.document).find('body #edit').submit().remove();
 			});
 		},
 		delProduct:function(){

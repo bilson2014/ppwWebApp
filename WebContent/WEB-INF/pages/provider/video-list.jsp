@@ -150,8 +150,8 @@
 									</div>
 								</c:if>
 							</c:if>
-							<c:if test="${product.flag==3}">
-								<div class="edit btn-c-r"
+							<c:if test="${product.flag==3 || cType == 4}">
+								<div class="edit btn-c-r" id='product-edit'
 									data-id='<c:out value="${product.productId }" />'>
 									<div></div>
 									<div>编辑</div>

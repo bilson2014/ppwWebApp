@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -851,11 +853,21 @@ public class ProviderController extends BaseController {
 	
 	// 跳转至 上传页面 新
 	@RequestMapping("/product/upload")
-	public ModelAndView toProductUpload(final ModelMap model, final HttpServletRequest request) {
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(null!=sessionInfo){
-			model.addAttribute("cKey", sessionInfo.getReqiureId());
+	public ModelAndView toProductUpload(final ModelMap model, final HttpServletRequest request,
+			String productId) {
+		Team team = getCurrentTeam(request);
+		Product product = new Product();
+		if(null!=team){
+			if(StringUtils.isNotBlank(productId)){
+				final String url = URL_PREFIX + "portal/product/static/data/" + productId;
+				final String json = HttpUtil.httpGet(url, request);
+				if (json != null && !"".equals(json)) {
+					product = JsonUtil.toBean(json, Product.class);
+				}
+			}
+			model.addAttribute("flag", team.getFlag());
+			model.addAttribute("cKey", team.getTeamId());
+			model.addAttribute("product", product);
 			return new ModelAndView("provider/upload", model);
 		}else{
 			return new ModelAndView("redirect:/error");
@@ -948,7 +960,7 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
 	public BaseMsg updateProduct(final HttpServletRequest request,final MultipartFile file,
-			final HttpServletResponse response,@RequestBody final Product product) {
+			final HttpServletResponse response,final Product product) {
 		try {
 			final long productId = product.getProductId();
 			Team team = getCurrentTeam(request);

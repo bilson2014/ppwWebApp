@@ -84,7 +84,7 @@ $().ready(function(){
 						var count = tag.replace(/[^\x00-\xff]/g,"**").length;
 						if(count > 16){
 							// 提示错误信息
-							$('#tagLabel').show();
+							$('#tagLabel').show().text("每个标签最多8个汉字或16个字母！");
 						}else {
 							$('#tagLabel').hide();
 							addTags(tag); // 增加标签
@@ -116,12 +116,6 @@ $().ready(function(){
 					id:'#upBtn-pic',
 					multiple :false//弹窗选文件时，不允许多选
 				},
-				formData : {
-					productId:$("#productId").val(),
-					productName:$("#video-name").val(),
-					creationTime:$("#creationTime").val(),
-					tags:mergeTag()
-					},
 				resize : false,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
@@ -156,7 +150,8 @@ $().ready(function(){
 				$("#pic-LD-url").attr("data-change","1");//添加图片更换状态
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
-				alert("保存成功")
+				$(".step2").addClass("hide");
+				$(".step3").removeClass("hide");
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -174,14 +169,23 @@ $().ready(function(){
 				var picImgUrl = $("#pic-LD-url").val();
 				if(checkData()){ // 检验数据完整性
 					if(picImgUrl != ''){//修改状态下存在路径，可以不上传
-						_this.modifyProduct('');
+						_this.modifyProduct();//ghost用户在有图片的情况下修改作品且没有更换图片
 					}else{
 						//webupload启动提交
+						uploader_Pic.option('formData',{
+							productId:$("#productId").val(),
+							productName:$("#video-name").val(),
+							creationTime:$("#creationTime").val(),
+							tags:mergeTag()
+						});
 						uploader_Pic.upload();
 					}
 				}
 			});
 		},
+		modifyProduct:function(){
+			
+		}
 	}
 	upload.init();
 });
@@ -236,9 +240,10 @@ function checkData(){
 	var productId = $("#productId").val();
 	var productName = $("#video-name").val();
 	var creationTime = $("#creationTime").val();
-	var picLDChange = $("#pic-LD-url").data("change");
+	var picLDChange = $("#pic-LD-url").attr("data-change");
 	var picImgUrl = $("#pic-LD-url").val();
-	var tags = mergeTag();
+	var tagsinput = mergeTag();
+	resumeCommonError($(".setItem"),'');
 	if(productId == null || productId == undefined || productId == ''){
 		return false;
 	}
@@ -254,10 +259,11 @@ function checkData(){
 		$("#img-error").text("请上传视频封面");
 		return false;
 	}
-	if(tags == null || tags == undefined || tags == ''){
-		showCommonError($('#text_tags_error'),"请填写作品标签");
-		return false;
+	if($("#flag") == 4){//ghost账户需要填写标签
+		if(tagsinput == null || tagsinput == undefined || tagsinput == ''){
+			$('#tagLabel').show().text("请填写作品标签！");
+			return false;
+		}
 	}
-	resumeCommonError($(".setItem"),'');
 	return true;
 }
