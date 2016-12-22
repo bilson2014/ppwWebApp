@@ -205,9 +205,9 @@
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">
-                    	<a href="/provider/info_${provider.teamId }.html">
+                    	<a <c:if test="${provider.flag == 1 || provider.flag == 4}">href="/provider/info_${provider.teamId }.html"</c:if>>
                           <img class="proLogo" id="proLogo" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"/>
-                          </a>
+                         </a>
                           <div class="isPass">
 			                     <c:if test="${provider.flag == 2}">
 										<img src="/resources/images/provder/noPass.png"><div class="noPass">未通过</div>
@@ -215,7 +215,7 @@
 								 <c:if test="${provider.flag == 0}">
 										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
 								 </c:if> 
-								 <c:if test="${provider.flag == 1}">
+								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
 										<img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
 								 </c:if>
 			                 </div>

@@ -134,15 +134,15 @@
 						<div class="lastContent">
 							<c:if test="${product.flag==1}">
 								<c:if test="${product.masterWork==1}">
-									<div class="master-flag setMaster">
+									<div class="master-flag setMaster <c:if test="${cType==4}">gStar</c:if>">
 										<div class="master-title">取消代表作</div>
 										<div class="star"
 										 data-id='<c:out value="${product.productId }"/>'
 										 data-master='<c:out value="${product.masterWork }" />'></div>
 									</div>
 								</c:if>
-								<c:if test="${product.masterWork==0}">
-									<div class="master-flag noMaster">
+							<c:if test="${product.masterWork==0}">
+									<div class="master-flag noMaster <c:if test="${cType==4}">gStar</c:if>">
 										<div class="master-title">设为代表作</div>
 										<div class="star" 
 										data-id='<c:out value="${product.productId }" />'
@@ -151,7 +151,7 @@
 								</c:if>
 							</c:if>
 							<c:if test="${product.flag==3 || cType == 4}">
-								<div class="edit btn-c-r" id='product-edit'
+								<div class="edit btn-c-r product-edit" 
 									data-id='<c:out value="${product.productId }" />'>
 									<div></div>
 									<div>编辑</div>

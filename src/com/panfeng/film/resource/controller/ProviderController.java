@@ -937,7 +937,7 @@ public class ProviderController extends BaseController {
 				product.setVideoLength("0");
 				product.setpDescription("");
 				product.setVideoDescription("");
-				product.setVisible(0); // 默认可见
+				product.setVisible(1); // 默认可见
 				final String url = URL_PREFIX + "portal/product/static/data/save/info";
 				final String json = HttpUtil.httpPost(url, product, request);
 				if (json != null && !"".equals(json)) {

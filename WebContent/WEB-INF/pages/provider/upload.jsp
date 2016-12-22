@@ -153,8 +153,7 @@
 	</div>
 
 	<input type="hidden" value="${cKey}" id="teamId">
-	<input type="hidden" value="" id="productId">
-	<input type="hidden" value="${product.productId}" id="modifyId">
+	<input type="hidden" value="${product.productId}" id="productId">
 	<input type="hidden" value="${flag}" id="flag">
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
@@ -215,7 +214,7 @@
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="form-control" id="video-name"
 						maxlength="12" placeholder="视频标题为必填字段"
-						value="${model.productName }">
+						value="${product.productName }">
 				</div>
 				<c:if test="${flag == 4}">
 					<div class="proItem">
@@ -225,8 +224,8 @@
 								<span class="keyword_placeholder"
 									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
 								<div class="mod_keyword">
-									<c:if test="${not empty model.tags }">
-										<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
+									<c:if test="${not empty product.tags }">
+										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
 											<span class="keyword_item"> <b
 												class="keyword_item_inner">${tag }</b> < a href=" "
 												class="btn_keyword_del"> <span>x</span> </a>
@@ -248,7 +247,7 @@
 					<div class="itemTitle">创作时间</div>
 					<input type="text" class="form-control" id="creationTime"
 						placeholder="请选择作品创作时间" readonly="readonly"
-						value="${model.creationTime }">
+						value="${product.creationTime }">
 				</div>
 				<div class="proItem noItem">
 					<div class="itemTitle">视频封面</div>
@@ -266,7 +265,9 @@
 					<div id="img-error"></div>
 				</div>
 				<div class="bottomUp">
-					<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
+					<c:if test='${product.productId == 0}'>
+						<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
+					</c:if>
 					<div class="btn-c-r submit" id="infoBt">提交审核</div>
 					<div class="btn-c-g cancle">取消</div>
 				</div>
