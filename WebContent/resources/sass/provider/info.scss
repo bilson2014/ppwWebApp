@@ -271,6 +271,11 @@ body{
         border-radius: 4px;
         text-align: center;
         background: transparent !important;
+        &:hover{
+        color: white;
+        border: 1px solid $red-base;
+        background: $red-base !important;
+        }
     }
 }
 
