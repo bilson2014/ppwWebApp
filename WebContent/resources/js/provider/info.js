@@ -357,14 +357,29 @@ function updateProvider(){
 				//验证team是否修改 true存在修改 false 没有修改
 				loadData(function(flag){
 					var a = $("#bean-checkStatus").val();//是否存在再次审核
-					if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
-						if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
-							//处理team_tmp记录,更新team备注
+					
+				
+					
+					if(flag || a !=""){
+						$(window.parent.document).find('#tooltip-check').show();
+						$(window.parent.document).find('#checkInfo').text('您修改了贵公司资料,需要再次进行审核,是否确定?');
+						$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
 							dealTeamTmpAndUpdateTeamDesc();
-						}
+							$(window.parent.document).find('#tooltip-check').hide();
+						});
+						
 					}else{
 						updateProviderInfo();
 					}
+							
+//					if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
+//						if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
+//							//处理team_tmp记录,更新team备注
+//							dealTeamTmpAndUpdateTeamDesc();
+//						}
+//					}else{
+//						updateProviderInfo();
+//					}
 				}, getContextPath() + '/provider/validate/change', $.toJSON({
 					teamId : $('#company-id').val().trim(),
 					teamName : $('#company-name').val().trim(),

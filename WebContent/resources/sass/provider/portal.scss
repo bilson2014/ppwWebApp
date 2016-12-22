@@ -224,7 +224,7 @@ body {
     margin-left: 20px;
     background: transparent;
     position: absolute;
-    overflow: auto;
+    overflow: hidden;
     top: 0px;
     bottom: 0px;
     margin-bottom: 5px;
@@ -297,6 +297,82 @@ body {
     color: white;
 }
 
+.tooltip-check .checkCard {
+    height: 330px;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -165px;
+    position: relative;
+    background: white;
+    border-radius: 6px;
+    .closeCheck {
+        width: 26px;
+        height: 26px;
+        font-size: $font-size-base;
+        color: $gray;
+        text-align: center;
+        line-height: 26px;
+        background: rgba(0, 0, 0, 0);
+        border-radius: 90px;
+        position: absolute;
+        top:20px;
+        right: 30px;
+        cursor: pointer;
+        transition: all .2s linear .2s;
+        -moz-transition: all .2s linear .2s;
+        /* Firefox 4 */
+        -webkit-transition: all .2s linear .2s;
+        /* Safari 和 Chrome */
+        -o-transition: all .2s linear .2s;
+        &:hover {
+            background: rgba(0, 0, 0, 80);
+        }
+    }
+    .checkInfo {
+        font-size: $font-size-base;
+        color: $red-base;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-top: 100px;
+        height: 200px;
+        width: 350px;
+        margin: 0 auto;
+    }
+    .checkBottom {
+        width: 160px;
+        margin: 0 auto;
+        .sureCheck {
+            width: 70px;
+            height: 30px;
+            color: white;
+            background: $red-base;
+            font-size: $font-size-base;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 10px;
+            line-height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .falseCheck {
+            width: 70px;
+            height: 30px;
+            color: white;
+            background: $gray;
+            font-size: $font-size-base;
+            display: inline-block;
+            vertical-align: top;
+            line-height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
+.tooltip-check,
 .tooltip-warn-up {
     background: rgba(0, 0, 0, 0.8);
     text-align: center;
@@ -515,7 +591,7 @@ body {
             line-height: 24px;
             background: transparent !important;
         }
-        .webuploader-pick-hover{
+        .webuploader-pick-hover {
             background: transparent !important;
         }
         .picker {

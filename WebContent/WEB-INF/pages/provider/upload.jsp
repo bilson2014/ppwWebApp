@@ -152,21 +152,30 @@
 		</div>
 	</div>
 
-
+    <div class="tooltip-warn-banner" id="tooltip-warn-banner">
+       <div class="card">
+	        <div class="topBanner" id="closeBanner">x</div>
+	        <div class="imgContent">
+	           <img src="/resources/images/provider/default-cover.jpg" id="previewImg" class="previewImg" style="width: 650px; height: 358px;">
+	        </div>
+       </div> 
+    </div>
+    
 	<div class="page">
-	     <div class="upVideoCard">
-	         <div class="titleInfo">作品上传</div>
-	         <div class="step1 hide">
-			         <div class="upImg">
-			            <img  src="/resources/images/provider/upLoad.png" />
-			         </div>
-			         <div class="upBtn">上传视频</div>
-			          <div class="infoCard">
-								   <div class="title">拍片网郑重提醒您：</div>
-								   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
-								   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
-								   <div class="redWord">作品必须填写创作完成日期。</div>
-								   <div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
+		<div class="upVideoCard">
+			<div class="titleInfo">作品上传</div>
+			<div class="step1">
+				<div class="upImg">
+					<img src="/resources/images/provider/upLoad.png" />
+				</div>
+				<div class="upBtn" id="upBtn">上传视频</div>
+				<div class="error_upload"></div>
+				<div class="infoCard">
+					<div class="title">拍片网郑重提醒您：</div>
+					<div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
+					<div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
+					<div class="redWord">作品必须填写创作完成日期。</div>
+					<div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
 						健康文明的网络环境，给大家一个和谐积极的家园。</div>
 					<div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
 					<div class="grayWord">不得上传具有色情内容的视频</div>
@@ -175,10 +184,11 @@
 					<div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
 					<div class="grayWord">不含有涉及版权问题的影视片段。</div>
 					<div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+
 			          </div>       
 		   </div>
 		   
-		   <div class="step2">
+		   <div class="step2 hide">
 		             <div class="upProgress"> 
 		                    <div class="proTitle">上传进度</div>
 					        <div class="progress progress-striped active">
@@ -186,8 +196,8 @@
 									aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
 							</div>
 							<div class="upIng">上传中...</div>
-							<div class="upSuccess"><img src="/resources/images/provider/sure.png">上传成功</div>
-							<div class="upError"><img src="/resources/images/provider/error.png">上传失败请重新上传</div>
+							<div class="upSuccess hide"><img src="/resources/images/provider/sure.png">上传成功</div>
+							<div class="upError hide"><img src="/resources/images/provider/error.png">上传失败请重新上传</div>
 					</div>		
 							<div class="proItem">
 							       <div class="itemTitle">作品名称</div>
@@ -202,7 +212,7 @@
 							       <ul>
 							          <li>
 							          		<div class="upBanner">上传封面</div>
-							          		<div class="findEx">查看示例</div>
+							          		<div class="findEx" id="findEx">查看示例</div>
 							          </li>
 							          <li><img src="/resources/images/index/noImg.jpg"></li>
 							          <li>
@@ -244,8 +254,10 @@
 							    <div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 							    <div class="btn-c-r submit">提交审核</div>
 							    <div class="btn-c-g cancle">取消</div>
-							</div>
+
 				</div>
+			</div>
+
 				
 				<div class="step3 hide">
 				     <div class="show-zero2 zeromodal-icon zeromodal-success">
@@ -257,8 +269,10 @@
 					<div class="info">您的作品已成功上传,正在审核中...</div>
 					<div class="autoJoin">自动跳转进入<a><span>作品列表页</span></a><span>3</span>秒</div>
 				</div>
-	     </div>
-	</div>
+
+
+			</div>
+		</div>
 	<script src="${jqueryJs }"></script>
 	<script src="${jquerybase64Js }"></script>
 	<script src="${pluginJs }"></script>
