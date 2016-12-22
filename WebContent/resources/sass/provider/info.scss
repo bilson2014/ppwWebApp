@@ -258,9 +258,9 @@ body{
 #uploadBt {
     cursor: pointer;
     .webuploader-pick-hover {
-        color: white;
-        border: 1px solid $red-base;
-        background: $red-base !important;
+        color: white !important;
+        border: 1px solid $red-base !important;
+
     }
     .webuploader-pick {
         width: 120px;

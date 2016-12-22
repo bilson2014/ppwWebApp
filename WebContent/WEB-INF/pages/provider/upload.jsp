@@ -172,7 +172,7 @@
 				<div class="upImg">
 					<img src="/resources/images/provider/upLoad.png" />
 				</div>
-				<div class="upBtn" id="upBtn">上传视频</div>
+				<div class="upBtn btn-c-r" id="upBtn">上传视频</div>
 				<div class="error_upload"></div>
 				<div class="infoCard">
 					<div class="title">拍片网郑重提醒您：</div>
@@ -220,7 +220,7 @@
 						placeholder="请选择作品创作时间" readonly="readonly"
 						value="${model.creationTime }">
 				</div>
-				<div class="proItem">
+				<div class="proItem noItem">
 					<div class="itemTitle">视频封面</div>
 					<ul>
 						<li>
@@ -235,7 +235,7 @@
 				</div>
 				
 				
-				<div class="proItem">
+				<div class="proItem noItem">
 					<div for="video-tag" class="control-label itemTitle">标签</div>
 					<div class="tagArea">
 						<div class="upload_filed_area">

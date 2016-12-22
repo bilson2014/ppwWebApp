@@ -17,6 +17,21 @@ body,
 .step2 {
     width: 700px;
     margin: 0 auto;
+    .webuploader-pick {
+        height: 35px;
+        width: 120px;
+        line-height: 35px;
+        text-align: center;
+        padding-right: 38px;
+        background: transparent !important;
+        cursor: pointer;
+        color: $gray-dark;
+        padding: 0px !important;
+    }
+    .webuploader-pick-hover {
+        background: transparent !important;
+        color: $red-base !important;
+    }
 }
 
 .upVideoCard {
@@ -59,18 +74,20 @@ body,
     cursor: pointer;
 }
 
-.webuploader-pick {
-    height: 35px;
-    width: 120px;
-    line-height: 1px;
-    text-align: center;
-    padding-right: 38px;
-    background: transparent !important;
-    cursor: pointer;
-}
-
-.webuploader-pick-hover {
-    background: transparent !important;
+.step1 {
+    .webuploader-pick {
+        height: 35px;
+        width: 120px;
+        line-height: 35px;
+        text-align: center;
+        padding-right: 38px;
+        background: transparent !important;
+        cursor: pointer;
+        padding: 0px !important;
+    }
+    .webuploader-pick-hover {
+        background: transparent !important;
+    }
 }
 
 .infoCard {
@@ -198,7 +215,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: -50px;
+    right: -80px;
     top: 20px;
 }
 
@@ -206,7 +223,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: -50px;
+    right: -80px;
     top: 20px;
     img {
         position: relative;
@@ -219,13 +236,41 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: -50px;
+    right: -80px;
     top: 20px;
     img {
         position: relative;
         top: 2px;
         margin-right: 10px;
     }
+}
+
+.noItem {
+    &:after {
+        content: "*";
+        position: absolute;
+        color: $red-base;
+        font-size: $font-size-base;
+        top: 0px;
+        right: 0px;
+        display: none !important;
+    }
+    &:before {
+        content: "错误";
+        position: absolute;
+        color: $red-base;
+        font-size: $font-size-base;
+        top: 0px;
+        right: 0px;
+        display: none !important;
+    }
+}
+
+.img-error {
+    color: $red-base;
+    font-size: $font-size-base;
+    position: absolute;
+    left: 90px;
 }
 
 .proItem {
@@ -236,15 +281,18 @@ body,
     &:after {
         content: "*";
         position: absolute;
-        top: 0px;
-        right: 0px;
-    }
-    .img-error {
         color: $red-base;
         font-size: $font-size-base;
+        top: 14px;
+        right: 0px;
+    }
+    &:before {
+        content: attr(data-content);
         position: absolute;
-        position: absolute;
-        left: 90px;
+        color: $red-base;
+        font-size: $font-size-base;
+        top: 45px;
+        left: 100px;
     }
     .itemTitle {
         font-size: $font-size-base;
@@ -301,6 +349,9 @@ body,
             display: inline-block;
             vertical-align: top;
             border-radius: 4px;
+            &:hover {
+                border: 1px solid $red-base;
+            }
         }
         img {
             height: 115px;
@@ -382,6 +433,7 @@ body,
     top: 5px;
     left: 5px;
     z-index: 5;
+    border-radius: 4px;
 }
 
 .alert {
