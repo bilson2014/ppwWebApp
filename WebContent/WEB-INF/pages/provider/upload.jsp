@@ -268,7 +268,7 @@
 				</div>
 				<div class="bottomUp">
 					<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
-					<div class="btn-c-r submit">提交审核</div>
+					<div class="btn-c-r submit" id="infoBt">提交审核</div>
 					<div class="btn-c-g cancle">取消</div>
 				</div>
 			</div>
