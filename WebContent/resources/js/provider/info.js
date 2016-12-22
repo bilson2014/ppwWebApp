@@ -198,24 +198,25 @@ function userpicInfo() {
 		if (path != '' && path != null) {
 			if (path.indexOf('false@error') > -1) {
 				if (path.indexOf("error=1") > -1) {
-					alert("文件超过最大限制");
+					$('#.errorImg').text("文件超过最大限制");
 				} else if (path.indexOf("error=2") > -1) {
-					alert('格式不正确');
+					$('#.errorImg').text("格式不正确");
 				}
 			} else {
 				$('#user_img_url').val(path);
 				var img = getDfsHostName() + path;
 				$('#user-img').attr('src', img);
+				$('#.errorImg').text("");
 			}
 		} else {
-			alert('上传失败!');
+		    $('#.errorImg').text("上传失败!");
 		}
 	});
 	uploader.on('error', function(type) {
 		if (type == "Q_TYPE_DENIED") {
-			alert("文件超过最大限制");
+			$('#.errorImg').text("文件超过最大限制");
 		} else if (type == "F_EXCEED_SIZE") {
-			alert('格式不正确');
+			$('#.errorImg').text("格式不正确");
 		}
 	});
 }

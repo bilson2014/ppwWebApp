@@ -280,7 +280,7 @@
 				<div class="title">作品上传成功!</div>
 				<div class="info">您的作品已成功上传,正在审核中...</div>
 				<div class="autoJoin">
-					自动跳转进入<a><span>作品列表页</span></a><span>3</span>秒
+					自动跳转进入<a><span id="toPortal">作品列表页</span></a><span id="lasttime">3</span>秒
 				</div>
 			</div>
 		</div>

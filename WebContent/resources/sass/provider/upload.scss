@@ -17,6 +17,7 @@ body,
 .step2 {
     width: 700px;
     margin: 0 auto;
+    padding-top: 25px;
     .webuploader-pick {
         height: 35px;
         width: 120px;
@@ -192,7 +193,6 @@ body,
 
 //step2
 .upProgress {
-    margin-top: 25px;
     font-size: $font-size-sm;
     color: $gray;
     margin-bottom: 25px;
@@ -223,10 +223,10 @@ body,
     font-size: $font-size-sm;
     color: $gray;
     right: -80px;
-    top: 20px;
+    top: 13px;
     img {
         position: relative;
-        top: 2px;
+        top: 3px;
         margin-right: 10px;
     }
 }

@@ -108,6 +108,7 @@ $().ready(function() {
 					$(window.parent.document).find('#checkInfo').text('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？');
 					$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
 						_this.visibleAction(0,id,ul);
+						$(window.parent.document).find('#tooltip-check').hide();
 					});
 					
 					
