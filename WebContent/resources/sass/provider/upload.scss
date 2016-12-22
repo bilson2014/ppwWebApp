@@ -266,12 +266,7 @@ body,
     }
 }
 
-.img-error {
-    color: $red-base;
-    font-size: $font-size-base;
-    position: absolute;
-    left: 90px;
-}
+
 
 .proItem {
     width: 650px;
@@ -530,4 +525,12 @@ body,
     .imgContent {
         padding: 15px;
     }
+}
+
+
+#img-error{
+    color: $red-base;
+    font-size: $font-size-base;
+    position: absolute;
+    left: 90px;
 }
