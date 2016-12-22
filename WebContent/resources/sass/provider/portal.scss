@@ -3,6 +3,7 @@
 @import "compass/typography/text/ellipsis";
 @import "normalize";
 $leftWidth:320px;
+$leftWidthS:200px;
 $green:#2ad2ae;
 // .nav .logo {
 //   position: relative;
@@ -69,6 +70,18 @@ body {
         color: white;
         display: block;
     }
+    .closeInfo {
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        cursor: pointer;
+        top: 25px;
+        right: 30px;
+        background: url(/resources/images/icons/close.png);
+        &:hover{
+            background-position: 0px -14px;
+        }
+    }
 }
 
 .page {
@@ -84,12 +97,15 @@ body {
 }
 
 .left-wrap {
-    width: 300px;
+    width: 200px;
     vertical-align: top;
     display: inline-block;
     background: white;
     padding-top: 60px;
     padding-bottom: 60px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    width: 300px;
+    }
     .left-header {
         width: 130px;
         margin: 0 auto;
@@ -162,8 +178,8 @@ body {
             padding-left: 63px;
             cursor: pointer;
             &:hover {
-                border-left: 4px solid $red-base;
-                background: $e;
+                border-left: 4px solid transparent;
+                background: $f8;
                 div {
                     color: $red-base;
                     &:before {
@@ -174,7 +190,7 @@ body {
         }
         .activeThis {
             border-left: 4px solid $red-base;
-            background: $e;
+            background: $f8;
             div {
                 color: $red-base;
                 &:before {
@@ -225,10 +241,18 @@ body {
     }
 }
 
+
+
 .right-wrap {
     vertical-align: top;
     display: inline-block;
-    width: 1300px - $leftWidth;
+         width: $width-min - $leftWidthS;
+     @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: $width-middle -  $leftWidth;
+    }
+    @media screen and (min-width: 1500px) {
+        width: 1300px - $leftWidth;
+    }
     margin-left: 20px;
     background: transparent;
     position: absolute;
@@ -316,26 +340,18 @@ body {
     background: white;
     border-radius: 6px;
     .closeCheck {
-        width: 26px;
-        height: 26px;
+        width: 14px;
+        height: 14px;
         font-size: $font-size-base;
         color: $gray;
         text-align: center;
-        line-height: 26px;
-        background: rgba(0, 0, 0, 0);
-        border-radius: 90px;
         position: absolute;
         top: 20px;
         right: 30px;
         cursor: pointer;
-        transition: all .2s linear .2s;
-        -moz-transition: all .2s linear .2s;
-        /* Firefox 4 */
-        -webkit-transition: all .2s linear .2s;
-        /* Safari 和 Chrome */
-        -o-transition: all .2s linear .2s;
+        background: url(/resources/images/icons/close.png);
         &:hover {
-            background: rgba(0, 0, 0, 80);
+            background-position: 0 -14px;
         }
     }
     .checkInfo {
@@ -411,8 +427,11 @@ body {
             text-align: left;
             top: 10px;
             cursor: pointer;
+            height: 14px;
+            width: 14px;
+            background: url(/resources/images/icons/close.png);
             &:hover {
-                color: $gray-dark;
+                background-position: 0px -14px;
             }
         }
         .title {

@@ -436,6 +436,9 @@ function showInfomation(title,body){
 	$(window.parent.document).find('#infomation').slideDown('normal');
 	$(window.parent.document).find('#infomation_title').text(title);
 	$(window.parent.document).find('#infomation_body').text(body);
+	$(window.parent.document).find('#closeInfo').on('click',function(){
+		hideInfomation();
+	});
 }
 function hideInfomation(){
 	$(window.parent.document).find('#infomation').hide('normal');
