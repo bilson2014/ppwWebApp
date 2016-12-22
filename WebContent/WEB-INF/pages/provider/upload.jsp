@@ -192,7 +192,7 @@
 				</div>
 			</div>
 
-			<div class="step2 hide">
+			<div class="step2">
 				<div class="upProgress">
 					<div class="proTitle">上传进度</div>
 					<div class="progress progress-striped active">
@@ -224,14 +224,17 @@
 					<div class="itemTitle">视频封面</div>
 					<ul>
 						<li>
-							<div class="upBanner">上传封面</div>
+							<div class="upBanner" id='upBtn-pic'>上传封面</div>
 							<div class="findEx" id="findEx">查看示例</div>
 						</li>
 						<li><img src="/resources/images/index/noImg.jpg"></li>
 						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
 						</li>
 					</ul>
+					<div id="img-error"></div>
 				</div>
+				
+				
 				<div class="proItem">
 					<div for="video-tag" class="control-label itemTitle">标签</div>
 					<div class="tagArea">
@@ -279,69 +282,6 @@
 				<div class="autoJoin">
 					自动跳转进入<a><span>作品列表页</span></a><span>3</span>秒
 				</div>
-			</div>
-			<div class="proItem">
-				<div class="itemTitle">作品名称</div>
-				<input type="text" class="form-control" id="video-name"
-					maxlength="12" placeholder="视频标题为必填字段"
-					value="${model.productName }">
-			</div>
-			<div class="proItem">
-				<div class="itemTitle">创作时间</div>
-				<input type="text" class="form-control" id="creationTime"
-					placeholder="请选择作品创作时间" readonly="readonly"
-					value="${model.creationTime }">
-			</div>
-			<div class="proItem">
-				<div class="itemTitle">视频封面</div>
-				<input id='video-picHDUrl' value="${model.picLDUrl}" type="hidden">
-				<ul>
-					<li>
-						<div class="upBanner" id="upBtn-pic">上传封面</div>
-						<div class="findEx">查看示例</div>
-					</li>
-					<li><img id='LDImg' src="/resources/images/index/noImg.jpg"></li>
-					<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
-					</li>
-				</ul>
-				<div id="img-error"></div>
-			</div>
-			<div class="proItem">
-				<div for="video-tag" class="control-label itemTitle">标签</div>
-				<div class="tagArea">
-					<div class="upload_filed_area">
-						<div class="mod_keyword">
-							<c:if test="${not empty model.tags }">
-								<span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-								<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-									<span class="keyword_item"> <b
-										class="keyword_item_inner">${tag }</b> <a href=" "
-										class="btn_keyword_del"> <span>x</span>
-									</a>
-									</span>
-								</c:forEach>
-							</c:if>
-							<c:if test="${empty model.tags }">
-								<span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
-							</c:if>
-							<span class="keyword_input"> <input type="text"
-								class="input_inner" id="text_tags" />
-							</span>
-						</div>
-					</div>
-					<p
-						style="color: #999; font-size: 12px; position: relative; top: 40px;">敲击空格键添加标签</p>
-					<div class="alert alert-danger" id="tagLabel"
-						style="display: none;">每个标签最多8个汉字或16个字母！</div>
-				</div>
-				<span style="color: red;">*</span>
-			</div>
-			<div class="bottomUp">
-				<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
-				<div class="btn-c-r submit">提交审核</div>
-				<div class="btn-c-g cancle">取消</div>
 			</div>
 		</div>
 	</div>
