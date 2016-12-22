@@ -106,6 +106,7 @@ $().ready(function(){
 			});
 		},
 		uploaderPic:function(){
+			var _this = this;
 			uploader_Pic = WebUploader.create({
 				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
