@@ -158,15 +158,23 @@ body {
         .infoItem {
             height: 40px;
             border-left: 4px solid transparent;
-            padding-top: 11px;
+            padding-top: 14px;
             padding-left: 63px;
             cursor: pointer;
             &:hover {
                 border-left: 4px solid $red-base;
+                background: $e;
+                div {
+                    color: $red-base;
+                    &:before {
+                        background-position: 0px -14px !important;
+                    }
+                }
             }
         }
         .activeThis {
             border-left: 4px solid $red-base;
+            background: $e;
             div {
                 color: $red-base;
                 &:before {
@@ -317,7 +325,7 @@ body {
         background: rgba(0, 0, 0, 0);
         border-radius: 90px;
         position: absolute;
-        top:20px;
+        top: 20px;
         right: 30px;
         cursor: pointer;
         transition: all .2s linear .2s;
@@ -384,7 +392,7 @@ body {
     z-index: 80;
     display: none;
     .infoCard {
-        height: 430px;
+        height: 424px;
         width: 600px;
         position: absolute;
         background: white;
@@ -452,7 +460,7 @@ body {
             color: $red-base;
             font-size: $font-size-sm;
             margin-top: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 34px;
         }
         .midWord {
             color: $gray;
@@ -482,6 +490,13 @@ body {
                     color: white;
                     background: $red-base;
                     border: 1px solid $red-base;
+                }
+            }
+            div:nth-child(2) {
+                &:hover {
+                    color: white;
+                    background: $gray-light;
+                    border: 1px solid $gray-light;
                 }
             }
         }
@@ -588,8 +603,9 @@ body {
         .webuploader-pick {
             height: 36px;
             width: 120px;
-            line-height: 24px;
+            line-height: 39px;
             background: transparent !important;
+            padding: 0px;
         }
         .webuploader-pick-hover {
             background: transparent !important;

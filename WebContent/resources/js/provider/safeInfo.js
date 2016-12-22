@@ -43,8 +43,7 @@ $().ready(function() {
 					noraml.hide();
 					userName.show();
 					$(".new-phone").addClass("hide");
-					$(".old-phone").removeClass("hide")
-					
+					$(".old-phone").removeClass("hide");
 				});
 				$('#pwdReturn').on('click',function(){
 					noraml.show();

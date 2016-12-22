@@ -8,10 +8,10 @@ body,
 
 .error_upload {
     font-size: $font-size-base;
-    color: $gray-dark;
+    color: $red-base;
     text-align: center;
     position: relative;
-    top: -60px;
+    top: 10px;
 }
 
 .step2 {
@@ -58,7 +58,6 @@ body,
     width: 160px;
     margin: 0 auto;
     margin-top: 60px;
-    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -214,7 +213,7 @@ body,
 .upIng {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
 }
@@ -222,7 +221,7 @@ body,
 .upSuccess {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
     img {
@@ -235,7 +234,7 @@ body,
 .upError {
     position: absolute;
     font-size: $font-size-sm;
-    color: $red-base;
+    color: $gray;
     right: -80px;
     top: 20px;
     img {
@@ -264,13 +263,6 @@ body,
         right: 0px;
         display: none !important;
     }
-}
-
-.img-error {
-    color: $red-base;
-    font-size: $font-size-base;
-    position: absolute;
-    left: 90px;
 }
 
 .proItem {
@@ -388,6 +380,7 @@ body,
         vertical-align: top;
         text-align: center;
         border-radius: 4px;
+        background: $red-base;
     }
     .cancle {
         width: 120px;
@@ -399,6 +392,7 @@ body,
         vertical-align: top;
         border-radius: 4px;
         text-align: center;
+        background: $gray-light;
     }
 }
 
@@ -409,23 +403,38 @@ body,
     position: relative;
     width: 540px;
     position: relative;
-    height: 95px;
+    height: 60px;
+}
+
+.mod_keyword {
+    width: 540px;
+    display: inline-block;
+    vertical-align: top;
+    height: 36px;
+    border: 1px solid $border-line;
+    border-radius: 4px;
 }
 
 .input_inner {
-    height: 50px !important;
+    height: 36px !important;
     padding-left: 10px;
-    padding-top: 25px;
 }
 
 .keyword_input {
-    position: absolute;
-    left: 0px;
+    display: inline-block;
+    vertical-align: top;
+    input {
+        width: 200px !important;
+        border: none;
+        color: black;
+        background: transparent;
+    }
 }
 
 .keyword_placeholder {
     display: block !important;
     margin-bottom: 10px;
+    color:$red-base;
 }
 
 .keyword_item {
@@ -439,7 +448,11 @@ body,
 .alert {
     width: 540px !important;
     position: absolute;
-    bottom: -28px;
+    bottom: -50px;
+    color: $red-base;
+    font-size: $font-size-sm;
+    background: transparent;
+    border:none;
 }
 
 .keyword_item {
@@ -530,4 +543,11 @@ body,
     .imgContent {
         padding: 15px;
     }
+}
+
+#img-error {
+    color: $red-base;
+    font-size: $font-size-base;
+    position: absolute;
+    left: 90px;
 }

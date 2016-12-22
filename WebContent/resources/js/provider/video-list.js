@@ -101,9 +101,16 @@ $().ready(function() {
 				var visible = $(ul).data('visible');
 				var id = $(this).parent().data('id');
 				if(visible==1){//可见状态下关闭
-					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+//					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
+//						_this.visibleAction(0,id,ul);
+//					}
+					$(window.parent.document).find('#tooltip-check').show();
+					$(window.parent.document).find('#checkInfo').text('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？');
+					$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
 						_this.visibleAction(0,id,ul);
-					}
+					});
+					
+					
 				}else{
 					_this.visibleAction(1,id,ul);
 				}
