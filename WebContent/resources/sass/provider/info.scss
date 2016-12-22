@@ -4,6 +4,7 @@
 
 body{
     overflow: hidden;
+    height: auto;
 }
 .proInfo {
     padding-top: 60px;
@@ -11,7 +12,7 @@ body{
     padding-bottom: 80px;
     .noImportant {
         &:after {
-            content: "";
+            content: "" !important;
             position: absolute;
             color: $red-base;
             right: -8px;

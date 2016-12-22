@@ -60,6 +60,12 @@ $().ready(function(){
 			$(".step2").removeClass("hide");
 		},
 		initPage:function(){
+			$('#findEx').on('click',function(){
+				$('#tooltip-warn-banner').show();
+			});
+			$('#closeBanner').on('click',function(){
+				$('#tooltip-warn-banner').hide();
+			});
 			$('#creationTime').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd',

@@ -179,7 +179,7 @@
 			<div class="setItem" id="loginName-error">
 				<div class="title">登录名</div>
 				<c:if test="${not empty team.loginName }">
-					<div>${team.loginName }</div>
+					<div class="loginDivName">${team.loginName }</div>
 				</c:if>
 				<c:if test="${empty team.loginName }">
 					<input id="loginName">

@@ -148,6 +148,18 @@
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
+	
+	
+	<div class="tooltip-check" id="tooltip-check" >
+	     <div class="checkCard">
+	          <div class="closeCheck" id='closeCheck'>x</div>
+	          <div class="checkInfo" id="checkInfo">dasda</div>
+	          <div class="checkBottom">
+	                 <div class="sureCheck" id="sureCheck">确认</div>
+	                 <div class="falseCheck" id="falseCheck">取消</div>
+	          </div>
+	     </div>
+	</div>
 
 	 <div class="tooltip-warn-up" >
 		 <div class="infoCard showwarn">
@@ -181,8 +193,8 @@
 		     </div>
 		     
 		     <div class="bottom">
-		        <div id='picker'>选择文件</div>
-		        <div class="btn-c-r" id='submit-multip'>开始上传</div>
+		        <div class="picker" id='picker'>选择文件</div>
+		        <div class="btn-c-r begin" id='submit-multip'>开始上传</div>
 		        <div class='closewarn-refresh'>关闭</div>
 		     </div>
 		 </div>

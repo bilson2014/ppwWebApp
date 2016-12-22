@@ -154,6 +154,17 @@
 
 	<input type="hidden" value="${cKey}" id="teamId">
 	<input type="hidden" value="" id="productId">
+	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
+		<div class="card">
+			<div class="topBanner" id="closeBanner">x</div>
+			<div class="imgContent">
+				<img src="/resources/images/provider/default-cover.jpg"
+					id="previewImg" class="previewImg"
+					style="width: 650px; height: 358px;">
+			</div>
+		</div>
+	</div>
+
 	<div class="page">
 		<div class="upVideoCard">
 			<div class="titleInfo">作品上传</div>
@@ -177,13 +188,14 @@
 					<div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
 					<div class="grayWord">不含有涉及版权问题的影视片段。</div>
 					<div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+
 				</div>
 			</div>
 
-			<div class="step2">
+			<div class="step2 hide">
 				<div class="upProgress">
 					<div class="proTitle">上传进度</div>
-					<div id="progress" class="progress progress-striped active">
+					<div class="progress progress-striped active">
 						<div class="progress-bar progress-bar-success" role="progressbar"
 							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
 							style="width: 0;"></div>
@@ -210,17 +222,15 @@
 				</div>
 				<div class="proItem">
 					<div class="itemTitle">视频封面</div>
-					<input id='video-picHDUrl' value="${model.picLDUrl}" type="hidden">
 					<ul>
 						<li>
-							<div class="upBanner" id="upBtn-pic">上传封面</div>
-							<div class="findEx">查看示例</div>
+							<div class="upBanner">上传封面</div>
+							<div class="findEx" id="findEx">查看示例</div>
 						</li>
-						<li><img id='LDImg' src="/resources/images/index/noImg.jpg"></li>
+						<li><img src="/resources/images/index/noImg.jpg"></li>
 						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
 						</li>
 					</ul>
-					<div id="img-error"></div>
 				</div>
 				<div class="proItem">
 					<div for="video-tag" class="control-label itemTitle">标签</div>
@@ -231,9 +241,9 @@
 									<span class="keyword_placeholder"
 										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
 									<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-										<span class="keyword_item"> 
-										<b class="keyword_item_inner">${tag }</b> 
-										<a href=" " class="btn_keyword_del"> <span>x</span> </a>
+										<span class="keyword_item"> <b
+											class="keyword_item_inner">${tag }</b> < a href=" "
+											class="btn_keyword_del"> <span>x</span> </a>
 										</span>
 									</c:forEach>
 								</c:if>
@@ -247,7 +257,7 @@
 							</div>
 						</div>
 						<p
-							style="color: #999; font-size: 12px; position: relative; top: 40px;">敲击空格键添加标签</p>
+							style="color: #999; font-size: 12px; position: absolute; bottom: 0px;">敲击空格键添加标签</p>
 						<div class="alert alert-danger" id="tagLabel"
 							style="display: none;">每个标签最多8个汉字或16个字母！</div>
 					</div>
@@ -258,6 +268,80 @@
 					<div class="btn-c-r submit">提交审核</div>
 					<div class="btn-c-g cancle">取消</div>
 				</div>
+			</div>
+			<div class="step3 hide">
+				<div class="show-zero2 zeromodal-icon zeromodal-success">
+					<span class="line tip"></span> <span class="line long"></span>
+					<div class="placeholder"></div>
+				</div>
+				<div class="title">作品上传成功!</div>
+				<div class="info">您的作品已成功上传,正在审核中...</div>
+				<div class="autoJoin">
+					自动跳转进入<a><span>作品列表页</span></a><span>3</span>秒
+				</div>
+			</div>
+			<div class="proItem">
+				<div class="itemTitle">作品名称</div>
+				<input type="text" class="form-control" id="video-name"
+					maxlength="12" placeholder="视频标题为必填字段"
+					value="${model.productName }">
+			</div>
+			<div class="proItem">
+				<div class="itemTitle">创作时间</div>
+				<input type="text" class="form-control" id="creationTime"
+					placeholder="请选择作品创作时间" readonly="readonly"
+					value="${model.creationTime }">
+			</div>
+			<div class="proItem">
+				<div class="itemTitle">视频封面</div>
+				<input id='video-picHDUrl' value="${model.picLDUrl}" type="hidden">
+				<ul>
+					<li>
+						<div class="upBanner" id="upBtn-pic">上传封面</div>
+						<div class="findEx">查看示例</div>
+					</li>
+					<li><img id='LDImg' src="/resources/images/index/noImg.jpg"></li>
+					<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
+					</li>
+				</ul>
+				<div id="img-error"></div>
+			</div>
+			<div class="proItem">
+				<div for="video-tag" class="control-label itemTitle">标签</div>
+				<div class="tagArea">
+					<div class="upload_filed_area">
+						<div class="mod_keyword">
+							<c:if test="${not empty model.tags }">
+								<span class="keyword_placeholder"
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+								<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
+									<span class="keyword_item"> <b
+										class="keyword_item_inner">${tag }</b> <a href=" "
+										class="btn_keyword_del"> <span>x</span>
+									</a>
+									</span>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty model.tags }">
+								<span class="keyword_placeholder"
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: inline;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
+							</c:if>
+							<span class="keyword_input"> <input type="text"
+								class="input_inner" id="text_tags" />
+							</span>
+						</div>
+					</div>
+					<p
+						style="color: #999; font-size: 12px; position: relative; top: 40px;">敲击空格键添加标签</p>
+					<div class="alert alert-danger" id="tagLabel"
+						style="display: none;">每个标签最多8个汉字或16个字母！</div>
+				</div>
+				<span style="color: red;">*</span>
+			</div>
+			<div class="bottomUp">
+				<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
+				<div class="btn-c-r submit">提交审核</div>
+				<div class="btn-c-g cancle">取消</div>
 			</div>
 		</div>
 	</div>

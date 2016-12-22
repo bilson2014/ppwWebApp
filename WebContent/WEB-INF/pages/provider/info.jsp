@@ -24,7 +24,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/provider/info2.js" var="providerInfoJs"/>
+<spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
 
 <spring:url value="/resources/images" var="path" />
 
@@ -74,7 +74,7 @@
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 	<spring:url value="/resources/images/provder" var="imgPath"/>
 </head>
-<body style="overflow: scroll !important; height: auto !important;">
+<body style="height: auto;">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${provider.teamId }" id="company-id"/>
     <input type="hidden" id="bean-flag" value="${provider.flag }">
@@ -104,27 +104,27 @@
                                 <div class="title">公司名称</div>
                                 <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
                             </div>
-                             <div class="infoItem">
+                             <div class="infoItem" id="company-email-error">
                                 <div class="title">公司邮件</div>
                                 <input type="email" class=" " id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
                             </div>
-                             <div class="infoItem">
+                             <div class="infoItem" id="company-address-error">
                                 <div class="title">公司地址</div>
                                 <input type="text" class=" " id="company-address" placeholder="请填写公司地址" value="${provider.address }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-linkman-error">
                                 <div class="title">联系人</div>
                                 <input type="text" class=" " id="company-linkman" placeholder="联系人是必填项" value="${provider.linkman }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-phoneNumber-error">
                                 <div class="title">手机号</div>
                                 <input type="text" readonly class=" " id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-webchat-error">
                                 <div class="title">微信号</div>
                                 <input type="text" class=" " id="company-webchat" placeholder="微信号是必填项" value="${provider.webchat }">
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-qq-error">
                                 <div class="title">QQ</div>
                                <input type="text" class=" " id="company-qq" placeholder="QQ号码是必填项" value="${provider.qq }">
                             </div>
@@ -136,7 +136,7 @@
                                 <div class="title">公司官网</div>
                                <input type="text" class=" " id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
                             </div>
-                            <div class="infoItem inline">
+                            <div class="infoItem inline" id='getProvince-error'>
                             <div class="title">所在省</div>	
 								<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
@@ -158,7 +158,7 @@
 							</div>
                             </div>
                             
-                           <div class="infoItem inline-noLeft">
+                           <div class="infoItem inline-noLeft" id='getCity-error'>
 	                            <div class="title">所在市</div>	
 									<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
@@ -217,7 +217,7 @@
 										</ul>
 									</div>
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="Tags-error">
                                 <div class="title">业务范围</div>
                                 <input type="hidden" id="Tags" value="${provider.business }">
                                  <ul class="ul-step-two">
@@ -281,11 +281,11 @@
                                       </li>
                                    </ul>   
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-teamDesc-error">
                                 <div class="title">公司简介</div>
                                 <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="company-scale-error">
                                 <div class="title">公司规模</div>
                                 <textarea class=" " id="company-scale" rows="5" maxlength="200" placeholder="请填写坐班人数及坐班导演或合作导演，坐班后期等信息">${provider.scale }</textarea>
                             </div>
@@ -293,7 +293,7 @@
                                 <div class="title">主要客户</div>
                                 <textarea class=" " id="company-businessDesc" rows="5" maxlength="200" placeholder="请填写主要客户/作品及价格">${provider.businessDesc }</textarea>
                             </div>
-                             <div class="infoItem">
+                             <div class="infoItem" id="company-demand-error">
                                 <div class="title">对客户要求</div>
                                <textarea class=" " id="company-demand" rows="5" maxlength="200" placeholder="请填写对客户的要求">${provider.demand }</textarea>
                             </div>

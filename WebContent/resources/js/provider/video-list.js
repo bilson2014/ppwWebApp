@@ -34,12 +34,22 @@ $().ready(function() {
 		},
 		delProduct:function(){
 			$('.del').off("click").on('click',function(){
-				if(confirm('确定要删除此条记录吗？')){
+				
+				$(window.parent.document).find('#tooltip-check').show();
+				$(window.parent.document).find('#checkInfo').text('确定要删除此条记录吗？');
+				$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
 					var pKey = $(this).data('id');
 					loadData(function(){
 						window.location.reload();
 					}, getContextPath() + '/provider/delete/product/' + pKey, null);
-				}
+					$(window.parent.document).find('#tooltip-check').hide();
+				});
+//				if(confirm('确定要删除此条记录吗？')){
+//					var pKey = $(this).data('id');
+//					loadData(function(){
+//						window.location.reload();
+//					}, getContextPath() + '/provider/delete/product/' + pKey, null);
+//				}
 			}); 
 			
 		},

@@ -3,6 +3,9 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
+	
+	
+	
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');
@@ -20,6 +23,14 @@ $().ready(function(){
 	if(p!=null && p!=''){
 		$('#proLogo').attr('src',getDfsHostName() + p);
 	}
+	
+	$('#falseCheck').on('click',function(){
+		$(window.parent.document).find('#tooltip-check').hide();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        							
+	});
+	$('#closeCheck').on('click',function(){
+		$(window.parent.document).find('#tooltip-check').hide();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        							
+	});
+	
 });
 
 function getHeight(num){

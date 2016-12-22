@@ -6,19 +6,28 @@ body,
     background: $f0 !important;
 }
 
+.error_upload {
+    font-size: $font-size-base;
+    color: $gray-dark;
+    text-align: center;
+    position: relative;
+    top: -60px;
+}
+
 .step2 {
     width: 700px;
     margin: 0 auto;
 }
 
 .upVideoCard {
-    margin-top: 120px;
     @include media_screen_width_beta3();
     background: white;
     border-bottom: 1px solid $e;
     margin: 0 auto;
     position: relative;
+    top:60px;
     height: 740px;
+    border-radius: 6px;
 }
 
 .titleInfo {
@@ -27,6 +36,7 @@ body,
     line-height: 52px;
     color: $gray;
     font-size: $font-size;
+        border-bottom: 1px solid $e;
 }
 
 .upImg {
@@ -34,10 +44,10 @@ body,
     margin: 0 auto;
     margin-top: 60px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .upBtn {
-    width: 160px;
     margin: 0 auto;
     width: 120px;
     height: 35px;
@@ -49,8 +59,19 @@ body,
     cursor: pointer;
 }
 
+ .webuploader-pick {
+            height: 35px;
+            width: 120px;
+            line-height: 20px;
+            background: transparent !important;
+            cursor: pointer;
+        }
+        .webuploader-pick-hover{
+            background: transparent !important;
+        }
+
 .infoCard {
-    height: 430px;
+    height: auto;
     width: 600px;
     background: white;
     border-radius: 4px;
@@ -152,9 +173,10 @@ body,
 
 //step2
 .upProgress {
+	margin-top: 25px;
     font-size: $font-size-sm;
     color: $gray;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     position: relative;
 }
 
@@ -173,14 +195,16 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: 0px;
+        right: -50px;
+    top: 20px;
 }
 
 .upSuccess {
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: 0px;
+        right: -50px;
+    top: 20px;
     img {
         position: relative;
         top: 2px;
@@ -192,9 +216,10 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $red-base;
-    right: 0px;
+       right: -50px;
+    top: 20px;
     img {
-        position:relative; 
+        position: relative;
         top: 2px;
         margin-right: 10px;
     }
@@ -253,6 +278,7 @@ body,
             top: 10px;
             font-size: $font-size-base;
             color: $red-base;
+            cursor: pointer;
         }
         .upBanner {
             width: 120px;
@@ -265,12 +291,6 @@ body,
             display: inline-block;
             vertical-align: top;
             border-radius: 4px;
-        }
-        .findEx {
-            display: inline-block;
-            vertical-align: top;
-            color: $gray;
-            font-size: $font-size-base;
         }
         img {
             height: 115px;
@@ -291,7 +311,6 @@ body,
 .bottomUp {
     position: relative;
     left: 90px;
-    top: 30px;
     .stateInfo {
         font-size: $font-size-sm;
         color: $red-base;
@@ -329,6 +348,13 @@ body,
     position: relative;
     width: 540px;
     position: relative;
+    height: 95px;
+}
+
+.input_inner {
+    height: 50px;
+    padding-left: 10px;
+    padding-top: 25px;
 }
 
 .keyword_input {
@@ -350,6 +376,8 @@ body,
 
 .alert {
     width: 540px !important;
+    position: absolute;
+    bottom: -28px;
 }
 
 .keyword_item {
@@ -375,4 +403,70 @@ body,
     zoom: 1;
     line-height: 0;
     text-shadow: 0 1px 0 #fff;
+}
+
+.step3 {
+    padding-top: 80px;
+    .title {
+        text-align: center;
+        font-size: $font-size;
+        color: $gray-dark;
+        margin-top: 20px;
+        margin-bottom: 6px;
+    }
+    .info {
+        text-align: center;
+        font-size: $font-size-sm;
+        color: $gray-light;
+    }
+    .autoJoin {
+        text-align: center;
+        font-size: $font-size-sm;
+        color: $gray-light;
+        margin-top: 16px;
+        span:nth-child(1) {
+            color: $red-base;
+            margin-left: 20px;
+        }
+    }
+}
+
+.tooltip-warn-banner {
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    overflow: hidden;
+    z-index: 80;
+    display: none;
+  .card{
+  	width: 680px;
+  	height: 420px;
+  	position: absolute;
+  	top:50%;
+  	left:50%;
+  	margin-top: -210px;
+  	margin-left: -340px;
+    background: #f0f2f5;
+    border-radius: 4px;
+  }
+   .topBanner{
+   	height: 31px;
+   	line-height: 30px;
+   	text-align: right;
+   	padding-right: 15px;
+   	color:$gray;
+   	font-size: $font-size-base;
+   	cursor: pointer;
+   	border-bottom: 1px solid $border-line;
+   	&:hover{
+   		color:$gray-dark;
+   	}
+   }
+
+    .imgContent{
+    	padding: 15px;
+    }
 }

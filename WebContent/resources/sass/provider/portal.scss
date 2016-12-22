@@ -224,7 +224,7 @@ body {
     margin-left: 20px;
     background: transparent;
     position: absolute;
-    overflow: auto;
+    overflow: hidden;
     top: 0px;
     bottom: 0px;
     margin-bottom: 5px;
@@ -297,7 +297,82 @@ body {
     color: white;
 }
 
+.tooltip-check .checkCard {
+    height: 330px;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -165px;
+    position: relative;
+    background: white;
+    border-radius: 6px;
+    .closeCheck {
+        width: 26px;
+        height: 26px;
+        font-size: $font-size-base;
+        color: $gray;
+        text-align: center;
+        line-height: 26px;
+        background: rgba(0, 0, 0, 0);
+        border-radius: 90px;
+        position: absolute;
+        top:20px;
+        right: 30px;
+        cursor: pointer;
+        transition: all .2s linear .2s;
+        -moz-transition: all .2s linear .2s;
+        /* Firefox 4 */
+        -webkit-transition: all .2s linear .2s;
+        /* Safari 和 Chrome */
+        -o-transition: all .2s linear .2s;
+        &:hover {
+            background: rgba(0, 0, 0, 80);
+        }
+    }
+    .checkInfo {
+        font-size: $font-size-base;
+        color: $red-base;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-top: 100px;
+        height: 200px;
+        width: 350px;
+        margin: 0 auto;
+    }
+    .checkBottom {
+        width: 160px;
+        margin: 0 auto;
+        .sureCheck {
+            width: 70px;
+            height: 30px;
+            color: white;
+            background: $red-base;
+            font-size: $font-size-base;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 10px;
+            line-height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .falseCheck {
+            width: 70px;
+            height: 30px;
+            color: white;
+            background: $gray;
+            font-size: $font-size-base;
+            display: inline-block;
+            vertical-align: top;
+            line-height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}
 
+.tooltip-check,
 .tooltip-warn-up {
     background: rgba(0, 0, 0, 0.8);
     text-align: center;
@@ -386,29 +461,29 @@ body {
             margin-bottom: 12px;
             line-height: 18px;
         }
-        .bottom{
-          text-align: center;
-          width: 170px;
-          margin: 0 auto;
-          div{
-            border-radius: 4px;
-            border:1px solid $gray-light;
-            color:$gray-dark;
+        .bottom {
             text-align: center;
-            width: 70px;
-            height: 36px;
-            line-height: 34px;
-            font-size: $font-size-base;
-            margin-left: 10px;
-            cursor: pointer;
-            display: inline-block;
-            vertical-align: top;
-            &:hover{
-              color:white;
-              background: $red-base;
-              border:1px solid $red-base;
+            width: 170px;
+            margin: 0 auto;
+            div {
+                border-radius: 4px;
+                border: 1px solid $gray-light;
+                color: $gray-dark;
+                text-align: center;
+                width: 70px;
+                height: 36px;
+                line-height: 34px;
+                font-size: $font-size-base;
+                margin-left: 10px;
+                cursor: pointer;
+                display: inline-block;
+                vertical-align: top;
+                &:hover {
+                    color: white;
+                    background: $red-base;
+                    border: 1px solid $red-base;
+                }
             }
-          }
         }
     }
 }
@@ -431,6 +506,7 @@ body {
             right: 26px;
             color: $gray-light;
             font-size: $font-size-lg;
+            cursor: pointer;
             &:hover {
                 color: $gray-dark;
             }
@@ -509,7 +585,16 @@ body {
             border-radius: 4px;
             cursor: pointer;
         }
-        div:nth-child(1) {
+        .webuploader-pick {
+            height: 36px;
+            width: 120px;
+            line-height: 24px;
+            background: transparent !important;
+        }
+        .webuploader-pick-hover {
+            background: transparent !important;
+        }
+        .picker {
             width: 120px;
             height: 40px;
             color: white;
@@ -520,7 +605,7 @@ body {
                 background: darken($green, 10%);
             }
         }
-        div:nth-child(2) {
+        .begin {
             width: 120px;
             height: 40px;
             color: white;
@@ -528,7 +613,7 @@ body {
             text-align: center;
             background: $red-base;
         }
-        div:nth-child(3) {
+        .closewarn-refresh {
             width: 70px;
             height: 40px;
             color: white;

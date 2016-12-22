@@ -5,7 +5,8 @@ $green:#79d018;
 $yellow:#f5a623;
 $blue:#30CBFB;
 body{
-    overflow: hidden;
+    overflow: auto;
+    
 }
 
 input:-webkit-autofill {
@@ -454,6 +455,10 @@ input:-webkit-autofill {
         text-align: center;
         right: 0px;
         top: 50px;
+        background: transparent !important;
+        &:hover{
+            background: $gray !important;
+        }
         div:nth-child(1) {
             background-position: 0px -14px;
         }
@@ -475,6 +480,7 @@ input:-webkit-autofill {
         div:nth-child(2) {
             font-size: $font-size-base;
             color: $gray-dark;
+            background: transparent !important;
         }
     }
 }
