@@ -140,6 +140,7 @@
 	<div class="infomation" id="infomation" style="display: none;">
 	        <label id="infomation_title">*您的资质提交已经成功提交,审核中...</label>
 	        <label id="infomation_body">官方将在3个工作日内完成您的资质审核,敬请等候...</label>
+	        <div class="closeInfo" id="closeInfo"></div>
 	</div>
 	<div class="tooltip-success-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
@@ -152,7 +153,7 @@
 	
 	<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
-	          <div class="closeCheck" id='closeCheck'>x</div>
+	          <div class="closeCheck" id='closeCheck'></div>
 	          <div class="checkInfo" id="checkInfo">dasda</div>
 	          <div class="checkBottom">
 	                 <div class="sureCheck" id="sureCheck">确认</div>
@@ -163,7 +164,7 @@
 
 	 <div class="tooltip-warn-up" >
 		 <div class="infoCard showwarn">
-			   <div class="closeX closewarn">x</div>
+			   <div class="closeX closewarn"></div>
 			   <div class="title">拍片网郑重提醒您：</div>
 			   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
 			   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>

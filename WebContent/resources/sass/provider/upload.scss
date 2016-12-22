@@ -433,8 +433,9 @@ body,
 
 .keyword_placeholder {
     display: block !important;
-    margin-bottom: 10px;
-    color:$red-base;
+    position: relative;
+    top: 16px;
+    left: 15px;
 }
 
 .keyword_item {
@@ -448,11 +449,11 @@ body,
 .alert {
     width: 540px !important;
     position: absolute;
-    bottom: -50px;
+    bottom: -25px;
     color: $red-base;
     font-size: $font-size-sm;
     background: transparent;
-    border:none;
+    border: none;
 }
 
 .keyword_item {
@@ -528,16 +529,14 @@ body,
         border-radius: 4px;
     }
     .topBanner {
-        height: 31px;
-        line-height: 30px;
-        text-align: right;
-        padding-right: 15px;
+        height: 14px;
+        width: 14px;
         color: $gray;
         font-size: $font-size-base;
         cursor: pointer;
-        border-bottom: 1px solid $border-line;
+        background: url(/resources/images/icons/close.png);
         &:hover {
-            color: $gray-dark;
+            background-position: 0px -14px;
         }
     }
     .imgContent {

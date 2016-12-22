@@ -32,6 +32,7 @@ $().ready(function(){
 		$(window.parent.document).find('#tooltip-check').hide();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        							
 	});
 	
+	
 });
 
 function getHeight(num){

@@ -157,7 +157,7 @@
 	<input type="hidden" value="${flag}" id="flag">
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
-			<div class="topBanner" id="closeBanner">x</div>
+			<div class="topBanner" id="closeBanner"></div>
 			<div class="imgContent">
 				<img src="/resources/images/provider/default-cover.jpg"
 					id="previewImg" class="previewImg"
@@ -221,8 +221,7 @@
 						<div for="video-tag" class="control-label itemTitle">标签</div>
 						<div class="tagArea">
 							<div class="upload_filed_area">
-								<span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
+								
 								<div class="mod_keyword">
 									<c:if test="${not empty product.tags }">
 										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
@@ -238,7 +237,9 @@
 								</div>
 								<div class="alert alert-danger" id="tagLabel"
 									style="display: none;">每个标签最多8个汉字或16个字母！</div>
-							</div>
+							     </div>
+							     <span class="keyword_placeholder"
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
 							<span style="color: red;">*</span>
 						</div>
 					</div>

@@ -4,7 +4,7 @@
 $green:#79d018;
 $yellow:#f5a623;
 $blue:#30CBFB;
-body{
+body {
     overflow: auto;
     background: transparent;
 }
@@ -156,6 +156,7 @@ input:-webkit-autofill {
 
 .mid {
     margin-left: 18px;
+    position: relative;
     .title {
         font-size: 0;
         span {
@@ -186,10 +187,16 @@ input:-webkit-autofill {
             display: inline-block;
             margin-left: 8px;
             height: 64px;
-            width: 300px;
+            width: 100px;
             overflow: hidden;
             font-size: $font-size-sm;
             color: $red-base;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: 200px;
+            }
+            @media screen and (min-width: 1500px) {
+                width: 300px;
+            }
         }
     }
     .noneUse {
@@ -246,13 +253,12 @@ input:-webkit-autofill {
     .shareVideo {
         display: inline-block;
         vertical-align: top;
-        position: relative;
-        top: 10px;
-        left: 10px;
+        position: absolute;
+        top: 96px;
+        left: 100px;
         div {
             display: inline-block;
             vertical-align: middle;
-
             color: $gray;
             font-size: $font-size-sm;
             margin-right: 10px;
@@ -297,9 +303,15 @@ input:-webkit-autofill {
     text-align: center;
     line-height: 20px;
     position: relative;
-    left: 55px;
+    left: 0px;
     top: 50px;
     border-radius: 4px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        left: -40px;
+    }
+    @media screen and (min-width: 1500px) {
+        left: 55px;
+    }
 }
 
 .red {
@@ -322,8 +334,8 @@ input:-webkit-autofill {
     position: absolute;
     right: 0px;
     top: 0px;
-    .gStar{
-        left:128px !important;
+    .gStar {
+        right: 128px !important;
     }
     .noDef {
         div:nth-child(1) {
@@ -462,8 +474,8 @@ input:-webkit-autofill {
         right: 0px;
         top: 50px;
         background: transparent !important;
-        color:$gray;
-        &:hover{
+        color: $gray;
+        &:hover {
             background: $gray-light !important;
         }
         div:nth-child(1) {
