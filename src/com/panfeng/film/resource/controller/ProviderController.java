@@ -900,46 +900,47 @@ public class ProviderController extends BaseController {
 		return list;
 	}
 
+	/**
+	 * 添加一个作品，该作品只有video信息
+	 */
 	@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
-	public BaseMsg saveProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final Product product) {
-		try {
-			// 转码
-			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			Team team = getCurrentTeam(request);
-			if(team.getFlag()==4){//ghost账户
-				final String tag = product.getTags();
-				if (tag != null && !"".equals(tag)) {
-					product.setTags(URLEncoder.encode(tag, "UTF-8"));
-				}
-				product.setFlag(1);//设置审核通过
-			}else{
+	public BaseMsg saveProduct(HttpServletRequest request,MultipartFile file,
+			final HttpServletResponse response) {
+			BaseMsg baseMsg = new BaseMsg(0,"error");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			if(null != sessionInfo){
+				//上传video
+				String fileId = DFSservice.upload(file);
+				Product product = new Product();
+				product.setVideoUrl(fileId);
+				product.setTeamId(sessionInfo.getReqiureId());
+				final String name = file.getOriginalFilename();
+				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
+				String productName = name.split("." + extName)[0];
+				product.setProductName(productName);
 				product.setTags("");
-				product.setFlag(0);//设置审核中状态
+				product.setFlag(3);//设置保存中状态
+				product.setRecommend(0); // 推荐值 为0
+				product.setSupportCount(0); // 赞值 为0
+				product.setVideoLength("0");
+				product.setpDescription("");
+				product.setVideoDescription("");
+				product.setVisible(0); // 默认可见
+				final String url = URL_PREFIX + "portal/product/static/data/save/info";
+				final String json = HttpUtil.httpPost(url, product, request);
+				if (json != null && !"".equals(json)) {
+					long productId = JsonUtil.toBean(json, Long.class);
+					Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
+							+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
+					baseMsg.setCode(1);
+					baseMsg.setResult(productId);
+				}
+			}else{
+				Log.error("Provider Save Product error,noLogin", sessionInfo);
+				baseMsg.setCode(0);
+				baseMsg.setResult("供应商未登录");
 			}
-			long productId = 0;
-			product.setRecommend(0); // 推荐值 为0
-			product.setSupportCount(0); // 赞值 为0
-			product.setVideoLength("0");
-			product.setpDescription("");
-			product.setVideoDescription("");
-			product.setVisible(0); // 默认可见
-			final String url = URL_PREFIX + "portal/product/static/data/save/info";
-			final String json = HttpUtil.httpPost(url, product, request);
-			if (json != null && !"".equals(json)) {
-				productId = JsonUtil.toBean(json, Long.class);
-			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-
-		} catch (IOException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("ProviderController method:saveProduct() file upload error ...", sessionInfo);
-			e.printStackTrace();
-			throw new RuntimeException("file upload error ...", e);
-		}
-		return new BaseMsg(1, "success");
+			return baseMsg;
 	}
 
 	/**

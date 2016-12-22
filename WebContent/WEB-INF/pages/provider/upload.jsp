@@ -152,7 +152,8 @@
 		</div>
 	</div>
 
-
+	<input type="hidden" value="${cKey}" id="teamId">
+	<input type="hidden" value="" id="productId">
 	<div class="page">
 		<div class="upVideoCard">
 			<div class="titleInfo">作品上传</div>
@@ -179,7 +180,7 @@
 				</div>
 			</div>
 
-			<div class="step2 hide">
+			<div class="step2">
 				<div class="upProgress">
 					<div class="proTitle">上传进度</div>
 					<div id="progress" class="progress progress-striped active">
@@ -209,15 +210,17 @@
 				</div>
 				<div class="proItem">
 					<div class="itemTitle">视频封面</div>
+					<input id='video-picHDUrl' value="${model.picLDUrl}" type="hidden">
 					<ul>
 						<li>
-							<div class="upBanner">上传封面</div>
+							<div class="upBanner" id="upBtn-pic">上传封面</div>
 							<div class="findEx">查看示例</div>
 						</li>
-						<li><img src="/resources/images/index/noImg.jpg"></li>
+						<li><img id='LDImg' src="/resources/images/index/noImg.jpg"></li>
 						<li><span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span> <label>*</label>
 						</li>
 					</ul>
+					<div id="img-error"></div>
 				</div>
 				<div class="proItem">
 					<div for="video-tag" class="control-label itemTitle">标签</div>
@@ -228,9 +231,9 @@
 									<span class="keyword_placeholder"
 										style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~</span>
 									<c:forEach items="${fn:split(model.tags,' ') }" var="tag">
-										<span class="keyword_item"> <b
-											class="keyword_item_inner">${tag }</b> < a href=" "
-											class="btn_keyword_del"> <span>x</span> </a>
+										<span class="keyword_item"> 
+										<b class="keyword_item_inner">${tag }</b> 
+										<a href=" " class="btn_keyword_del"> <span>x</span> </a>
 										</span>
 									</c:forEach>
 								</c:if>
