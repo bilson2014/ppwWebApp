@@ -78,7 +78,7 @@ body {
         top: 25px;
         right: 30px;
         background: url(/resources/images/icons/close.png);
-        &:hover{
+        &:hover {
             background-position: 0px -14px;
         }
     }
@@ -103,8 +103,8 @@ body {
     background: white;
     padding-top: 60px;
     padding-bottom: 60px;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-    width: 300px;
+    @media screen and (min-width: 1276px) {
+        width: 300px;
     }
     .left-header {
         width: 130px;
@@ -241,14 +241,12 @@ body {
     }
 }
 
-
-
 .right-wrap {
     vertical-align: top;
     display: inline-block;
-         width: $width-min - $leftWidthS;
-     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: $width-middle -  $leftWidth;
+    width: $width-min - $leftWidthS;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: $width-middle - $leftWidth;
     }
     @media screen and (min-width: 1500px) {
         width: 1300px - $leftWidth;
@@ -280,9 +278,13 @@ body {
 
 .isPass {
     position: absolute;
-    right: -47px;
-    bottom: 2px;
+    right: -30px;
+    bottom: -10px;
     display: inline-block;
+    @media screen and (min-width: 1276px) {
+        right: -47px;
+        bottom: 2px;
+    }
     div {
         height: 22px;
         line-height: 21px;

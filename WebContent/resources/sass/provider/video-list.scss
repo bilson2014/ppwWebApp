@@ -191,10 +191,11 @@ input:-webkit-autofill {
             overflow: hidden;
             font-size: $font-size-sm;
             color: $red-base;
-            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            line-height: 13px;
+            @media screen and (min-width: 761px) and (max-width: 893px) {
                 width: 200px;
             }
-            @media screen and (min-width: 1500px) {
+            @media screen and (min-width: 970px) {
                 width: 300px;
             }
         }
@@ -302,16 +303,10 @@ input:-webkit-autofill {
     vertical-align: top;
     text-align: center;
     line-height: 20px;
-    position: relative;
-    left: 0px;
-    top: 50px;
+    position: absolute;
+    right: 200px;
+    top: 57px;
     border-radius: 4px;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        left: -40px;
-    }
-    @media screen and (min-width: 1500px) {
-        left: 55px;
-    }
 }
 
 .red {

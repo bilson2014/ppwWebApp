@@ -1,16 +1,17 @@
 @import "common";
 @import "compass/typography/text/ellipsis";
 @import "normalize";
-
-body{
+body {
     overflow: hidden;
     height: auto;
 }
-.errorImg{
+
+.errorImg {
     height: 20px;
-    color:$red-base;
+    color: $red-base;
     font-size: $font-size-base;
 }
+
 .proInfo {
     padding-top: 60px;
     background: white;
@@ -28,7 +29,11 @@ body{
     .inline {
         display: inline-block;
         vertical-align: top;
-        width: 300px !important;
+        width: 305px !important;
+        margin-right: -9px;
+        @media screen and (min-width: 1500px) {
+            margin-right: 0px;
+        }
     }
     .inline-noLeft {
         display: inline-block;
@@ -266,7 +271,6 @@ body{
     .webuploader-pick-hover {
         color: $red-base !important;
         border: 1px solid $red-base !important;
-
     }
     .webuploader-pick {
         width: 120px;
@@ -277,10 +281,10 @@ body{
         border-radius: 4px;
         text-align: center;
         background: transparent !important;
-        &:hover{
-        color: $red-base;
-        border: 1px solid $red-base;
-        background: $red-base !important;
+        &:hover {
+            color: $red-base;
+            border: 1px solid $red-base;
+            background: $red-base !important;
         }
     }
 }
