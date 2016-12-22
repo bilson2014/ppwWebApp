@@ -107,20 +107,31 @@ $().ready(function(){
 		},
 		uploaderPic:function(){
 			uploader_Pic = WebUploader.create({
-				auto:true,
+				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/web/upload',
-				pick : '#upBtn-pic',
+				server : '/provider/update/product/info',
+				pick : {
+					id:'#upBtn-pic',
+					multiple :false//弹窗选文件时，不允许多选
+				},
 				resize : false,
 				chunked : false,
 				duplicate: true,//允许重复上传同一个
+				fileNumLimit : 1,//最多上传一个文件
 				fileSingleSizeLimit : image_max_size,
-				formData : {oldUrl:$("#video-picHDUrl").val()},//参数
 				accept :{
 					title: 'Images',
 					extensions: 'jpg,png',
 					mimeTypes: 'image/jpeg,image/png'
 				}
+			});
+			uploader_Pic.on('beforeFileQueued', function(file) {
+				  //选中前触发，移除了所有的文件
+				 //删除所有文件,值上传一个
+				 var array = upload_Video.getFiles();
+				 for(var i=0;i<array.length;i++){
+					 upload_Video.removeFile( array[i] );
+				 }
 			});
 			uploader_Pic.on('fileQueued', function(file) {
 				var $img = $("#LDImg");
@@ -137,9 +148,7 @@ $().ready(function(){
 				
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
-				if(response.code==0){//上传成功
-					$("#video-picHDUrl").val(response.result);
-				}
+				_this.ModifyProduct(response.result);
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -148,7 +157,21 @@ $().ready(function(){
 					$("#img-error").text(image_err_msg);
 				}
 			});
-		}
+			_this.submit();
+		},
+		submit:function(){
+			var _this = this;
+			$('#infoBt').off("click").on('click', function() {
+				if(checkData()){ // 检验数据完整性
+					if(action == 'modify' && change == 0){
+						_this.modify();
+					}else{
+						//webupload启动提交
+						upload_Video.upload();
+					}
+				}
+			});
+		},
 	}
 	upload.init();
 });
