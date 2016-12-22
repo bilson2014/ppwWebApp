@@ -28,7 +28,7 @@ $().ready(function() {
 			});
 		},
 		modifyProduct:function(){
-			$('#product-edit').off("click").on('click',function(){
+			$('.product-edit').off("click").on('click',function(){
 				var productId = $(this).attr("data-id");
 				var html = "<form id='edit' action='/provider/product/upload' method='post' name='edit' style='display:none'><input type='hidden' name='productId' value='"+productId+"' /></form>";
 				$(window.parent.document).find('body').append(html);

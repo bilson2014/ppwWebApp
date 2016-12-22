@@ -13,6 +13,8 @@ $().ready(function(){
 			this.initPage();
 			//初始化上传图片
 			this.uploaderPic();
+			//取消上传视频，返回视频列表
+			this.backToList();
 		},
 		uploaderVideo:function(){
 			var _this = this;
@@ -150,6 +152,7 @@ $().ready(function(){
 					$img.attr( 'src', src );
 				}, 130, 100 );
 				$("#pic-LD-url").attr("data-change","1");//添加图片更换状态
+				$("#img-error").text("");
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
 				$(".step2").addClass("hide");
@@ -190,6 +193,9 @@ $().ready(function(){
 			});
 		},
 		modifyProduct:function(){
+			
+		},
+		backToList:function(){
 			
 		}
 	}
@@ -249,13 +255,19 @@ function checkData(){
 	var picLDChange = $("#pic-LD-url").attr("data-change");
 	var picImgUrl = $("#pic-LD-url").val();
 	var tagsinput = mergeTag();
-	resumeCommonError($(".setItem"),'');
+	resumeCommonError($(".proItem"),'');
 	if(productId == null || productId == undefined || productId == ''){
 		return false;
 	}
 	if(productName == null || productName == undefined || productName == ''){
 		showCommonError($('#video-name-error'),"请输入作品名称");
 		return false;
+	}
+	if($("#flag").val() == 4){//ghost账户需要填写标签
+		if(tagsinput == null || tagsinput == undefined || tagsinput == ''){
+			$('#tagLabel').show().text("请填写作品标签！");
+			return false;
+		}
 	}
 	if(creationTime == null || creationTime == undefined || creationTime == ''){
 		showCommonError($('#creationTime-error'),"请输入创作时间");
@@ -264,12 +276,6 @@ function checkData(){
 	if(picImgUrl == '' && picLDChange != 1){//ghost用户可以修改各种状态下的作品
 		$("#img-error").text("请上传视频封面");
 		return false;
-	}
-	if($("#flag") == 4){//ghost账户需要填写标签
-		if(tagsinput == null || tagsinput == undefined || tagsinput == ''){
-			$('#tagLabel').show().text("请填写作品标签！");
-			return false;
-		}
 	}
 	return true;
 }
