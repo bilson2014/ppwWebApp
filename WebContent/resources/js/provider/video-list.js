@@ -43,15 +43,9 @@ $().ready(function() {
 				$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
 					loadData(function(){
 						window.location.reload();
-					}, getContextPath() + '/provider/delete/product/' + pKey, null);
+					}, '/provider/delete/product/' + pKey, null);
 					$(window.parent.document).find('#tooltip-check').hide();
 				});
-//				if(confirm('确定要删除此条记录吗？')){
-//					var pKey = $(this).data('id');
-//					loadData(function(){
-//						window.location.reload();
-//					}, getContextPath() + '/provider/delete/product/' + pKey, null);
-//				}
 			}); 
 			
 		},
@@ -100,20 +94,20 @@ $().ready(function() {
 				var ul = $(this).parent();
 				var visible = $(ul).data('visible');
 				var id = $(this).parent().data('id');
-				if(visible==1){//可见状态下关闭
+				if(visible==0){//可见状态下关闭
 //					if(confirm('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？')){
 //						_this.visibleAction(0,id,ul);
 //					}
 					$(window.parent.document).find('#tooltip-check').show();
 					$(window.parent.document).find('#checkInfo').text('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？');
 					$(window.parent.document).find('#sureCheck').off('click').on('click',function(){
-						_this.visibleAction(0,id,ul);
+						_this.visibleAction(1,id,ul);
 						$(window.parent.document).find('#tooltip-check').hide();
 					});
 					
 					
 				}else{
-					_this.visibleAction(1,id,ul);
+					_this.visibleAction(0,id,ul);
 				}
 			})
 		},
@@ -121,9 +115,10 @@ $().ready(function() {
 			loadData(function(data){
 				if(data.code==1){
 					if(visible==1){
-						$(doc).removeClass("noneUse");
-					}else{
 						$(doc).addClass("noneUse");
+						
+					}else{
+						$(doc).removeClass("noneUse");
 					}
 					$(doc).data('visible',visible);
 				}
