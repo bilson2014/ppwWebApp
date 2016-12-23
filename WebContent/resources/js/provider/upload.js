@@ -13,8 +13,6 @@ $().ready(function(){
 			this.initPage();
 			//初始化上传图片
 			this.uploaderPic();
-			//取消上传视频，返回视频列表
-			this.backToList();
 		},
 		uploaderVideo:function(){
 			var _this = this;
@@ -160,12 +158,17 @@ $().ready(function(){
 				$("#img-error").text("");
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
-				$(".step2").addClass("hide");
-				$(".step3").removeClass("hide");
-				SetLastTime();
-				$('#toPortal').off('click').on('click',function(){
-					window.location.href=getContextPath() + '/provider/portal';
-				});
+				if(response.code==1){
+					$(".step2").addClass("hide");
+					$(".step3").removeClass("hide");
+					SetLastTime();
+					$('#toPortal').off('click').on('click',function(){
+						window.location.href=getContextPath() + '/provider/portal';
+					});
+				}else{
+					$("#img-error").text(response.result);
+				}
+				
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -217,9 +220,6 @@ $().ready(function(){
 					});
 				}
 			});
-		},
-		backToList:function(){
-			
 		}
 	}
 	upload.init();

@@ -281,7 +281,7 @@
 						<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					</c:if>
 					<div class="btn-c-r submit" id="infoBt">提交审核</div>
-					<div class="btn-c-g cancle">取消</div>
+					<div class="btn-c-g cancle" onclick="window.location.href='/provider/portal'">取消</div>
 				</div>
 			</div>
 			<div class="step3 hide">
