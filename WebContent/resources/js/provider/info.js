@@ -1,7 +1,5 @@
 var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
-	
-	
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
@@ -20,6 +18,26 @@ $().ready(function() {
 	initUl();
 	setBusinessVal($('#Tags').val());
 	updateProvider();
+	
+	var index = $('.priceRangeSelect').find('span').attr('data-value');
+	var lis = $('.priceRangeSelect').find('ul li');
+	for ( var li in lis) {
+		var liid = $(lis[li]).attr('data-value');
+		if(index == liid){
+			$('.priceRangeSelect').find('span').text($(lis[li]).text());
+			break;
+		}
+	}
+	
+	var index = $('.infoResourceSelect').find('span').attr('data-value');
+	var lis = $('.infoResourceSelect').find('ul li');
+	for ( var li in lis) {
+		var liid = $(lis[li]).attr('data-value');
+		if(index == liid){
+			$('.infoResourceSelect').find('span').text($(lis[li]).text());
+			break;
+		}
+	}
 });
 
 function verifyData() {
