@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -958,9 +960,8 @@ public class ProviderController extends BaseController {
 	/**
 	 * 更新 视频 信息
 	 */
-	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public BaseMsg updateProduct(final HttpServletRequest request,
-			@RequestParam(value="file",required=false, defaultValue="") MultipartFile file,
+/*	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
+	public BaseMsg updateProduct(final HttpServletRequest request,final MultipartFile file,
 			final HttpServletResponse response,final Product product) {
 		try {
 			final long productId = product.getProductId();
@@ -980,6 +981,51 @@ public class ProviderController extends BaseController {
 				String fileId = DFSservice.upload(file);
 				product.setPicLDUrl(fileId);
 			}
+			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
+			final String result = HttpUtil.httpPost(updatePath, product, request);
+			if (result != null && !"".equals(result)) {
+				Boolean b  = JsonUtil.toBean(result, Boolean.class);
+				if(b){
+					return new BaseMsg(1,"success");
+				}return new BaseMsg(0,"保存失败");
+			}
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
+					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
+			return new BaseMsg(0,"保存失败");
+		} catch (IOException e) {
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("ProviderController method:updateProduct() file upload error ...", sessionInfo);
+			e.printStackTrace();
+			throw new RuntimeException("Product update error ...", e);
+		}
+	}*/
+	/**
+	 * 更新 视频 信息
+	 */
+	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
+	public BaseMsg updateProduct(final HttpServletRequest request,
+			final HttpServletResponse response,final Product product) {
+		if(request instanceof MultipartRequest){//指出对象是否是特定类的一个实例
+			MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
+			MultipartFile file = multipartRquest.getFiles("file").get(0);
+			String fileId = DFSservice.upload(file);
+			product.setPicLDUrl(fileId);
+		}
+		try {
+			final long productId = product.getProductId();
+			Team team = getCurrentTeam(request);
+			if(team.getFlag()==4){//ghost账户
+				final String tag = product.getTags();
+				if (tag != null && !"".equals(tag)) {
+					product.setTags(URLEncoder.encode(tag, "UTF-8"));
+				}
+				product.setFlag(1);//设置审核通过
+			}else{
+				product.setTags("");
+				product.setFlag(0);//设置审核中状态
+			}
+			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
 			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			final String result = HttpUtil.httpPost(updatePath, product, request);
 			if (result != null && !"".equals(result)) {
