@@ -62,8 +62,8 @@ input:-webkit-autofill {
         top: 54px;
         text-align: center;
         cursor: pointer;
-        @media screen and (min-width: 1276px) {
-            right: 50px;
+        @media screen and (min-width: 891px) {
+            right: -50px;
         }
     }
     .line {
@@ -229,3 +229,26 @@ input:-webkit-autofill {
     line-height: 36px;
     margin-top: 30px;
 }
+
+progress {
+    width: 160px;
+    border: 1px solid $gray;
+    background-color: $gray;
+    color: $gray;
+    border-radius: 90px;
+    /*IE10*/
+}
+
+progress::-moz-progress-bar {
+    background: $gray;
+    border-radius: 90px;
+}
+
+progress::-webkit-progress-bar {
+    background: $gray;
+    border-radius: 90px;
+}
+
+progress::-webkit-progress-value {
+    background: $gray;
+    }

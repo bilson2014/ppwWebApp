@@ -154,7 +154,7 @@
 	<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
 	          <div class="closeCheck" id='closeCheck'></div>
-	          <div class="checkInfo" id="checkInfo">dasda</div>
+	          <div class="checkInfo" id="checkInfo">error</div>
 	          <div class="checkBottom">
 	                 <div class="sureCheck" id="sureCheck">确认</div>
 	                 <div class="falseCheck" id="falseCheck">取消</div>

@@ -163,6 +163,7 @@ $().ready(function() {
 			})
 			$(window.parent.document).find('.closewarn').off("click").on("click",function(){
 				$(window.parent.document).find('.tooltip-warn-up').hide();
+				window.location.reload();
 			})
 			$(window.parent.document).find('.showmultipUpload').off("click").on("click",function(){
 				$(window.parent.document).find('.showwarn').hide(); 
