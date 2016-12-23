@@ -540,6 +540,11 @@ public class Team extends BaseObject {
 				return false;
 		} else if (!webchat.equals(other.webchat))
 			return false;
+		if (teamPhotoUrl == null) {
+			if (other.teamPhotoUrl != null)
+				return false;
+		} else if (!teamPhotoUrl.equals(other.teamPhotoUrl))
+			return false;
 		return true;
 	}
 

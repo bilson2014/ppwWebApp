@@ -123,6 +123,7 @@
 		<div class="flex-wrap">
 		<div class="changeHideHeader"></div>
 			<div class="flexVideo">
+			    <div class="oVideo"></div>
 				<video preload="auto" loop="" autoplay
 					poster="/resources/images/banner/host.JPG" class="video-bg">
 					<source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
@@ -196,7 +197,7 @@
 		</div>
 		<!-- 轮播 end -->
 		<div class="tel">
-			<a href="tel:4406609728"> <span>服务热线 </span><span>440-660-9728</span></a>
+			<a href="tel:4006609728"> <span>服务热线 </span><span>400-660-9728</span></a>
 		</div>
 		<!-- 宣传片 start -->
 		<div class="FourModelColor">
@@ -539,8 +540,8 @@
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
-                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">导演登录</a></div>
+                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>

@@ -153,9 +153,20 @@ input[type="button"] {
 //end
 
 .btn-c-r {
+    cursor: pointer;
+    background: $red-base;
     &:hover {
           background-color: darken($red-base,10%)!important;
         color: #fff !important;
+    }
+}
+
+.btn-c-g {
+     cursor: pointer;
+     background: $gray-light;
+    &:hover {
+          background-color: darken($gray-light,10%)!important;
+          color: #fff !important;
     }
 }
 

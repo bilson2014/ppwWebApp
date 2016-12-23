@@ -2,6 +2,9 @@ var InterValObj; // timer变量，控制时间
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
 $().ready(function() {
+	
+	checkState();
+
 	var login = {
 		// 方法都在init中
 		init_user : function() {
@@ -572,3 +575,28 @@ $().ready(function() {
 		}
 	}
 });
+
+function checkState(){
+	var href = window.location.href;
+    var state = href.substr(href.lastIndexOf("?")+1,href.length);
+    if(state.trim() == "role=director"){
+    	toProvider();
+    }
+}
+
+function toProvider(){
+	$('#toCus').addClass('redColor');
+	$('#toDir').removeClass('redColor');
+	$('#kaptcha_pic_team').val('');// 重置图片验证码
+	$('#kaptcha_pic_team').attr('src',getContextPath() + '/login/kaptcha.png?' + Math.floor(Math.random()*100));
+	$('#moveLine').css('left', '50%');
+	$('#showCus').hide();
+	$('#showPro').show();
+	$('#hideCus').hide();
+	
+		$('#cusPhoneLogin').css('display', 'none');
+		$('#cusNoPhoneLogin').css('display', 'none');
+		$('#providePhoneLogin').css('display', 'block');
+		$('#providerNoPhoneLogin').css('display', 'none');
+		$('#hideProvider').show();
+}

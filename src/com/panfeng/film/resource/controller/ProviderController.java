@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -147,7 +151,6 @@ public class ProviderController extends BaseController {
 				}
 			}
 		}
-
 		return new ModelAndView("provider/info", model);
 	}
 
@@ -161,7 +164,6 @@ public class ProviderController extends BaseController {
 		final String url = URL_PREFIX + "portal/product/static/data/loadProducts/" + team.getTeamId();
 		final String json = HttpUtil.httpGet(url, request);
 		List<Product> list = new ArrayList<Product>();
-		// List<Product> lists = new ArrayList<Product>();
 		if (json != null && !"".equals(json)) {
 			try {
 				list = JsonUtil.fromJsonArray(json, Product.class);
@@ -176,11 +178,22 @@ public class ProviderController extends BaseController {
 		model.addAttribute("cType", team.getFlag());
 		return new ModelAndView("provider/video-list", model);
 	}
-
+	
+	/**
+	 * 跳转至 安全设置页面
+	 */
+	@RequestMapping("/safe-info")
+	public ModelAndView safeView(final HttpServletRequest request, final ModelMap model) {
+		final Team team = getCurrentTeam(request);
+		model.addAttribute("status", team.getFlag());
+		model.addAttribute("cKey", team.getTeamId());
+		model.addAttribute("team", team);
+		return new ModelAndView("provider/safeInfo", model);
+	}
 	/**
 	 * 跳转至 审核状态页
 	 */
-	@RequestMapping("/company-status")
+/*	@RequestMapping("/company-status")
 	public ModelAndView statusView(final HttpServletRequest request, final ModelMap model) {
 
 		final Team team = getCurrentTeam(request);
@@ -188,7 +201,7 @@ public class ProviderController extends BaseController {
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("recomment", team.getRecommendation());
 		return new ModelAndView("provider/status", model);
-	}
+	}*/
 
 	/**
 	 * 登录
@@ -207,7 +220,7 @@ public class ProviderController extends BaseController {
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			if ((original.getVerification_code() != null && code != null)) {
-				if(code.equals(original.getVerification_code())){
+				if (code.equals(original.getVerification_code())) {
 					if ((null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
 						final String url = URL_PREFIX + "portal/team/static/data/doLogin";
 						String json = HttpUtil.httpPost(url, original, request);
@@ -225,7 +238,7 @@ public class ProviderController extends BaseController {
 						Log.error("手机号错误", sessionInfo);
 						return new BaseMsg(BaseMsg.ERROR, "和验证手机不符", false);
 					}
-				}else{
+				} else {
 					SessionInfo sessionInfo = getCurrentInfo(request);
 					Log.error("Provider Verification_code error ...", sessionInfo);
 					return new BaseMsg(BaseMsg.ERROR, "验证码错误", false);
@@ -298,12 +311,13 @@ public class ProviderController extends BaseController {
 	 * 
 	 * @return 供应商系统登录页面
 	 */
-/*	@RequestMapping("/loginout")
-	public ModelAndView loginOut(final HttpServletRequest request) {
-
-		sessionService.removeSession(request);
-		return new ModelAndView("redirect:/provider/login");
-	}*/
+	/*
+	 * @RequestMapping("/loginout") public ModelAndView loginOut(final
+	 * HttpServletRequest request) {
+	 * 
+	 * sessionService.removeSession(request); return new
+	 * ModelAndView("redirect:/provider/login"); }
+	 */
 
 	/**
 	 * 检测登录名是否可用
@@ -314,7 +328,6 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/checkExisting")
 	public boolean isExisting(@RequestBody final Team team, final HttpServletRequest request) {
-
 		try {
 			// 转码
 			if (team.getLoginName() != null && !"".equals(team.getLoginName())) {
@@ -589,46 +602,79 @@ public class ProviderController extends BaseController {
 	public BaseMsg updatePasswordByLoginName(@RequestBody final Team team, final HttpServletRequest request) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		final String code = (String) request.getSession().getAttribute("code");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || (code.equals(team.getVerification_code()))) {
-				if (team != null && team.getPassword() != null && !"".equals(team.getPassword())
-						&& team.getLoginName() != null && !"".equals(team.getLoginName())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
-
-						// MD5 加密
-						team.setPassword(DataUtil.md5(password));
-
-						// 转码
-						team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
-						team.setLoginName(URLEncoder.encode(team.getLoginName(), "UTF-8"));
-
-						// 连接远程服务器，传输数据
-						final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
-						final String json = HttpUtil.httpPost(url, team, request);
-						if (ValidateUtil.isValid(json)) {
-							final boolean flag = JsonUtil.toBean(json, Boolean.class);
-							if (flag) {
-								msg.setCode(1);
-								msg.setResult("修改成功");
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null != sessionInfo){
+			if (!"".equals(code) && code != null) {
+				if (code.equals(team.getVerification_code())) {
+					if (team.getPassword() != null && !"".equals(team.getPassword())) {
+						try {
+							// AES 解密
+							final String password = AESUtil.Decrypt(team.getPassword(), UNIQUE_KEY);
+							// MD5 加密
+							team.setPassword(DataUtil.md5(password));
+							// 转码
+							team.setPassword(URLEncoder.encode(team.getPassword(), "UTF-8"));
+							team.setLoginName(URLEncoder.encode(sessionInfo.getLoginName(), "UTF-8"));
+							// 连接远程服务器，传输数据
+							final String url = URL_PREFIX + "portal/team/static/updatePasswordByLoginName";
+							final String json = HttpUtil.httpPost(url, team, request);
+							if (ValidateUtil.isValid(json)) {
+								final boolean flag = JsonUtil.toBean(json, Boolean.class);
+								if (flag) {
+									msg.setCode(1);
+									msg.setResult("修改成功");
+								}
 							}
+						} catch (Exception e) {
+							Log.error(
+									"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...",
+									sessionInfo);
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error(
-								"ProviderController method:updatePasswordByLoginName() Provider Password Decrypt Error On Provider Register ...",
-								sessionInfo);
-						e.printStackTrace();
 					}
+				} else {
+					msg.setResult("验证码错误");
 				}
-			} else {
-				msg.setResult("验证码错误");
+			}else{
+				msg.setResult("验证码无效");
 			}
+		}else{
+			msg.setResult("供应商未登录");
 		}
 		return msg;
+	}
+
+	@RequestMapping("/upload/teamPhoto")
+	public String uploadLogo(final HttpServletRequest request, final HttpServletResponse response,
+			@PathParam("file") final MultipartFile file) {
+		response.setContentType("text/html;charset=UTF-8");
+		// 如果文件为空，则不更新图片路径;反之亦然
+		if (!file.isEmpty()) {
+			final long fileSize = file.getSize(); // 上传文件大小
+			final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
+			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
+
+			if (fileSize > maxSize * 1024) {
+				// 文件大小超出规定范围
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
+				return "false@error=1";
+			} else {
+				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					final String fileId = DFSservice.upload(file);
+					return fileId;
+				} else {
+					// 文件格式不正确
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
+					return "false@error=2";
+				}
+			}
+
+		}
+
+		return null;
 	}
 
 	/**
@@ -724,28 +770,40 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/add/account")
 	public BaseMsg addAccount(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
-		final String code = (String) request.getSession().getAttribute("code");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		if (isTest || (!"".equals(code) && code != null)) {
-			if (isTest || (code.equals(team.getVerification_code()))) {
-				if (team != null) {
-					try {
-						String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
-						team.setPassword(DataUtil.md5(password));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					final String url = URL_PREFIX + "portal/team/static/data/add/account";
-					final String json = HttpUtil.httpPost(url, team, request);
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					if (flag) {
-						msg.setCode(1);
-						msg.setResult("修改成功");
-					}
+		//验证登录名是否在数据库中已经存在
+		String url = URL_PREFIX + "portal/team/static/checkIsExist";
+		String json = HttpUtil.httpPost(url, team, request);
+		boolean flag = JsonUtil.toBean(json, Boolean.class);
+		if(flag){
+			final String code = (String) request.getSession().getAttribute("code");
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			if(null != sessionInfo){
+				if (!"".equals(code) && code != null) {
+					if (code.equals(team.getVerification_code())) {
+						try {
+							String password = AESUtil.Decrypt(team.getPassword(), GlobalConstant.UNIQUE_KEY);
+							team.setPassword(DataUtil.md5(password));
+							team.setTeamId(sessionInfo.getReqiureId());
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						url = URL_PREFIX + "portal/team/static/data/add/account";
+						json = HttpUtil.httpPost(url, team, request);
+						flag = JsonUtil.toBean(json, Boolean.class);
+						if (flag) {
+							msg.setCode(1);
+							msg.setResult("修改成功");
+						}
+					} else
+						msg.setResult("验证码错误");
+				}else{
+					msg.setResult("验证码无效");
 				}
-			} else
-				msg.setResult("验证码错误");
+			}else{
+				msg.setResult("供应商未登录");
+			}
+		}else{
+			msg.setResult("用户名已经存在");
 		}
 		return msg;
 	}
@@ -783,29 +841,6 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/delete/product/{productId}")
 	public boolean deleteProviderProduct(@PathVariable("productId") final long productId,
 			final HttpServletRequest request) {
-
-		// 先删除文件，后删除数据
-		Product original = new Product();
-		final String originalUrl = URL_PREFIX + "portal/product/static/data/" + productId;
-		final String result = HttpUtil.httpGet(originalUrl, request);
-		if (result != null && !"".equals(result)) {
-			original = JsonUtil.toBean(result, Product.class);
-			// 删除 缩略图
-			final String picLDUrl = original.getPicLDUrl();
-			DFSservice.delete(picLDUrl);
-			// 删除 高清图
-			final String picHDUrl = original.getPicHDUrl();
-			DFSservice.delete(picHDUrl);
-			// 删除 视频
-			final String videoUrl = original.getVideoUrl();
-			DFSservice.delete(videoUrl);
-			// TODO 待修改成分解富文本，删除图片
-			// 删除产品编辑页图片
-			// String sessionId = original.getSessionId();
-			// if (sessionId != null && !"".equals(sessionId))
-			// kindService.deleteImageDir(original.getSessionId());
-
-		}
 		final String url = URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;
 		final String json = HttpUtil.httpGet(url, request);
 		boolean flag = true;
@@ -817,8 +852,33 @@ public class ProviderController extends BaseController {
 		return flag;
 	}
 
-	// 跳转至 上传页面
-	@RequestMapping("/product/{action}/{providerId}/{productId}")
+	
+	// 跳转至 上传页面 新
+	@RequestMapping("/product/upload")
+	public ModelAndView toProductUpload(final ModelMap model, final HttpServletRequest request,
+			String productId) {
+		Team team = getCurrentTeam(request);
+		Product product = new Product();
+		if(null!=team){
+			if(StringUtils.isNotBlank(productId)){
+				final String url = URL_PREFIX + "portal/product/static/data/" + productId;
+				final String json = HttpUtil.httpGet(url, request);
+				if (json != null && !"".equals(json)) {
+					product = JsonUtil.toBean(json, Product.class);
+				}
+			}
+			model.addAttribute("flag", team.getFlag());
+			model.addAttribute("cKey", team.getTeamId());
+			model.addAttribute("product", product);
+			return new ModelAndView("provider/upload", model);
+		}else{
+			return new ModelAndView("redirect:/error");
+		}
+	}
+	
+	
+	// 跳转至 上传页面 旧
+	//@RequestMapping("/product/{action}/{providerId}/{productId}")
 	public ModelAndView productView(@PathVariable("action") final String action,
 			@PathVariable("providerId") final long providerId, @PathVariable("productId") final long productId,
 			final ModelMap model, final HttpServletRequest request) {
@@ -830,15 +890,11 @@ public class ProviderController extends BaseController {
 			final String json = HttpUtil.httpGet(url, request);
 			if (json != null && !"".equals(json)) {
 				product = JsonUtil.toBean(json, Product.class);
-				String sid = product.getSessionId();
-				if (sid == null || "".equals(sid))
-					product.setSessionId(DataUtil.getUuid());
 			}
 		}
 		model.addAttribute("cKey", providerId);
 		model.addAttribute("productKey", productId);
 		model.addAttribute("action", action);
-		model.addAttribute("sId", product.getServiceId());
 		model.addAttribute("model", product);
 		return new ModelAndView("provider/upload", model);
 	}
@@ -858,72 +914,98 @@ public class ProviderController extends BaseController {
 		return list;
 	}
 
+	/**
+	 * 添加一个作品，该作品只有video信息
+	 */
 	@RequestMapping(value = "/save/product/info", method = RequestMethod.POST)
-	public BaseMsg saveProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final Product product) {
-		try {
-			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
-			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
-			}
-
-			// 保存 product
-			long productId = 0;
-			product.setFlag(1); // 默认设置 审核通过 状态
-			final String url = URL_PREFIX + "portal/product/static/data/save/info";
-			final String json = HttpUtil.httpPost(url, product, request);
-			if (json != null && !"".equals(json)) {
-				productId = JsonUtil.toBean(json, Long.class);
-			}
-
+	public BaseMsg saveProduct(HttpServletRequest request,MultipartFile file,
+			final HttpServletResponse response) {
+			BaseMsg baseMsg = new BaseMsg(0,"error");
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
-					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-
-		} catch (IOException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("ProviderController method:saveProduct() file upload error ...", sessionInfo);
-			e.printStackTrace();
-			throw new RuntimeException("file upload error ...", e);
-		}
-		return new BaseMsg(0, "success");
+			if(null != sessionInfo){
+				final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
+				if(file.getSize() > video_MaxSize * 1024 * 1024){
+					baseMsg.setResult("视频超过200M");
+					return baseMsg;
+				}
+				//上传video
+				String fileId = DFSservice.upload(file);
+				Product product = new Product();
+				product.setVideoUrl(fileId);
+				product.setTeamId(sessionInfo.getReqiureId());
+				final String name = file.getOriginalFilename();
+				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
+				String productName = name.split("." + extName)[0];
+				product.setProductName(productName);
+				product.setTags("");
+				product.setFlag(3);//设置保存中状态
+				product.setRecommend(0); // 推荐值 为0
+				product.setSupportCount(0); // 赞值 为0
+				product.setVideoLength("0");
+				product.setpDescription("");
+				product.setVideoDescription("");
+				product.setVisible(0); // 默认可见
+				final String url = URL_PREFIX + "portal/product/static/data/save/info";
+				final String json = HttpUtil.httpPost(url, product, request);
+				if (json != null && !"".equals(json)) {
+					long productId = JsonUtil.toBean(json, Long.class);
+					Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
+							+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
+					baseMsg.setCode(1);
+					baseMsg.setResult(productId);
+				}
+			}else{
+				Log.error("Provider Save Product error,noLogin", sessionInfo);
+				baseMsg.setCode(0);
+				baseMsg.setResult("供应商未登录");
+			}
+			return baseMsg;
 	}
 
 	/**
 	 * 更新 视频 信息
 	 */
 	@RequestMapping(value = "/update/product/info", method = RequestMethod.POST)
-	public String updateProduct(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final Product product) {
-		final long productId = product.getProductId(); // product id
+	public BaseMsg updateProduct(final HttpServletRequest request,
+			final HttpServletResponse response,final Product product) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		try {
-			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
-			// 转码
-			product.setpDescription(URLEncoder.encode(product.getpDescription(), "UTF-8"));
+			if(request instanceof MultipartRequest){//指出对象是否是特定类的一个实例
+				MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
+				MultipartFile file = multipartRquest.getFiles("file").get(0);
+				final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
+				if (file.getSize() > img_MaxSize * 1024) {
+					return new BaseMsg(0, "图片文件超过250K上限");
+				}
+				String fileId = DFSservice.upload(file);
+				product.setPicLDUrl(fileId);
+			}
+			final long productId = product.getProductId();
+			Team team = getCurrentTeam(request);
+			if(team.getFlag()==4){//ghost账户
+				final String tag = product.getTags();
+				if (tag != null && !"".equals(tag)) {
+					product.setTags(URLEncoder.encode(tag, "UTF-8"));
+				}
+				product.setFlag(1);//设置审核通过
+			}else{
+				product.setTags("");
+				product.setFlag(0);//设置审核中状态
+			}
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
-			product.setVideoLength(URLEncoder.encode(product.getVideoLength(), "UTF-8"));
-
-			final String tag = product.getTags();
-			if (tag != null && !"".equals(tag)) {
-				product.setTags(URLEncoder.encode(tag, "UTF-8"));
+			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
+			final String result = HttpUtil.httpPost(updatePath, product, request);
+			if (result != null && !"".equals(result)) {
+				Boolean b  = JsonUtil.toBean(result, Boolean.class);
+				if(b){
+					return new BaseMsg(1,"success");
+				}return new BaseMsg(0,"保存失败");
 			}
-
-			final String sId = HttpUtil.httpPost(updatePath, product, request);
-			long serviceId = 0l;
-			if (sId != null && !"".equals(sId)) {
-				serviceId = JsonUtil.toBean(sId, Long.class);
-			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
 					+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
-			return String.valueOf(serviceId);
+			return new BaseMsg(0,"保存失败");
 		} catch (IOException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
+			
 			Log.error("ProviderController method:updateProduct() file upload error ...", sessionInfo);
 			e.printStackTrace();
 			throw new RuntimeException("Product update error ...", e);
@@ -982,7 +1064,7 @@ public class ProviderController extends BaseController {
 			if ("success".equals(checkResult)) {
 				// 插入数据
 				Product product = new Product();
-				product.setFlag(1); // 默认是 审核通过 状态
+				product.setFlag(3); // 默认是 保存状态
 				final String name = file.getOriginalFilename();
 				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
 				String productName = name.split("." + extName)[0];
@@ -1001,7 +1083,7 @@ public class ProviderController extends BaseController {
 				product.setTeamId(providerId);
 				product.setVideoLength("0");
 				product.setpDescription("");
-				product.setVisible(1); // 默认可见
+				product.setVisible(0); // 默认可见
 				// 保存数据
 				long productId = 0;
 				final String url = URL_PREFIX + "portal/product/static/data/save/info";
@@ -1383,24 +1465,34 @@ public class ProviderController extends BaseController {
 
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		//modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
+		// modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
 		return new ModelAndView("/rePwdPro", modelMap);
 	}
 
-/*	@RequestMapping("/updatePwd")
-	public ModelAndView updatePwd(ModelMap modelMap, HttpServletRequest request) {
-		modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		modelMap.addAttribute("userLoginName", sessionInfo.getLoginName());
-		modelMap.addAttribute("userId", sessionInfo.getReqiureId());
-		return new ModelAndView("/updatePwd", modelMap);
-	}*/
+	/*
+	 * @RequestMapping("/updatePwd") public ModelAndView updatePwd(ModelMap
+	 * modelMap, HttpServletRequest request) { modelMap.addAttribute("userType",
+	 * GlobalConstant.ROLE_PROVIDER); SessionInfo sessionInfo =
+	 * getCurrentInfo(request); modelMap.addAttribute("userLoginName",
+	 * sessionInfo.getLoginName()); modelMap.addAttribute("userId",
+	 * sessionInfo.getReqiureId()); return new ModelAndView("/updatePwd",
+	 * modelMap); }
+	 */
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public boolean setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+	public BaseMsg setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
 		final String updateUrl = URL_PREFIX + "portal/set/masterWork";
-		HttpUtil.httpPost(updateUrl, product, request);
-		return true;
+		String result = HttpUtil.httpPost(updateUrl, product, request);
+		boolean b = JsonUtil.toBean(result, Boolean.class);
+		if(b){
+			baseMsg.setCode(1);
+			baseMsg.setResult("设置成功");
+		}else{
+			baseMsg.setCode(0);
+			baseMsg.setResult("设置失败");
+		}
+		return baseMsg;
 	}
 
 	/**
@@ -1458,26 +1550,21 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/modify/phone")
 	public BaseMsg modifyUserPhone(@RequestBody final Team team, final HttpServletRequest request) {
-		if (team != null) {
+		SessionInfo info = getCurrentInfo(request);
+		if(null != info){
 			final String code = (String) request.getSession().getAttribute("code");
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			// 是否是测试程序
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone))) {
-				if (isTest || (code.equals(team.getVerification_code()) && codeOfphone.equals(team.getPhoneNumber()))) {
-					// 修改 用户密码
-					// final String url = URL_PREFIX +
-					// "portal/team/modify/phone";update/newphone
-					final String url = URL_PREFIX + "portal/team/update/newphone";
-					final String json = HttpUtil.httpPost(url, team, request);
-					// final Boolean result = JsonUtil.toBean(json,
-					// Boolean.class);
-					final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
-					return baseMsg;
-				}
-				return new BaseMsg(1, "验证码错误");
-			}
-			return new BaseMsg(1, "验证码错误");
+			if (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone)) {
+				if (code.equals(team.getVerification_code())) {
+					if(codeOfphone.equals(team.getPhoneNumber())){
+						team.setTeamId(info.getReqiureId());
+						final String url = URL_PREFIX + "portal/team/update/newphone";
+						final String json = HttpUtil.httpPost(url, team, request);
+						final BaseMsg baseMsg = JsonUtil.toBean(json, BaseMsg.class);
+						return baseMsg;
+					}return new BaseMsg(0, "手机号不匹配");
+				}return new BaseMsg(0, "验证码错误");
+			}return new BaseMsg(0, "参数无效");
 		}
 		return new BaseMsg(0, "error");
 	}
@@ -1559,6 +1646,7 @@ public class ProviderController extends BaseController {
 		Boolean bo = JsonUtil.toBean(str, Boolean.class);
 		return bo;
 	}
+
 	/**
 	 * 获取user信息
 	 */
@@ -1566,12 +1654,41 @@ public class ProviderController extends BaseController {
 	public BaseMsg updatePwd(HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(null!=sessionInfo){
+		if (null != sessionInfo) {
 			Team t = new Team();
 			t.setTeamId(sessionInfo.getReqiureId());
 			t.setLoginName(sessionInfo.getLoginName());
 			baseMsg.setCode(1);
 			baseMsg.setResult(t);
+		}
+		return baseMsg;
+	}
+	/**
+	 * 设置作品可见性
+	 */
+	@RequestMapping("/product/visibility")
+	public BaseMsg setProductVisibility(HttpServletRequest request,@RequestBody final Product product) {
+		BaseMsg baseMsg = new BaseMsg();
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if (null != sessionInfo) {
+			if(sessionInfo.getReqiureId().equals(product.getTeamId())){
+				final String url = URL_PREFIX + "portal/product/visibility";
+				String str = HttpUtil.httpPost(url, product, request);
+				Boolean bo = JsonUtil.toBean(str, Boolean.class);
+				if(bo){
+					baseMsg.setCode(1);
+					baseMsg.setResult("修改成功");
+				}else{
+					baseMsg.setCode(0);
+					baseMsg.setResult("修改失败");
+				}
+			}else{
+				baseMsg.setCode(0);
+				baseMsg.setResult("无权限修改此功能");
+			}
+		}else{
+			baseMsg.setCode(0);
+			baseMsg.setResult("供应商未登录");
 		}
 		return baseMsg;
 	}

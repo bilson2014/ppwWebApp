@@ -72,6 +72,16 @@ public class Product extends BaseObject {
 	
 	private String priceDetail = null;
 	
+	private String checkDetails = null; // 审核详情
+	
+	public String getCheckDetails() {
+		return checkDetails;
+	}
+
+	public void setCheckDetails(String checkDetails) {
+		this.checkDetails = checkDetails;
+	}
+
 	public String getPriceDetail() {
 		return priceDetail;
 	}

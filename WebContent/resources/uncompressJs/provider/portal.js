@@ -16,3 +16,20 @@ $().ready(function(){
 	
 	$('.active').click();
 });
+
+
+//提示框隐藏
+function hideTooltip(){
+	$('.tooltip-show').hide('normal');
+}
+
+function hideSuccessTooltip(){
+	$('.tooltip-success-show').hide('normal');
+}
+
+// 成功信息 提示框弹出方法
+function successToolTipShow(){
+	window.clearInterval(successIntervalObj);
+	$('.tooltip-success-show').slideDown('normal');
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}

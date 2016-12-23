@@ -1,11 +1,13 @@
 var nowInt = 0;
 $().ready(function() {
 	providerInfo.init();
+	openOrder();
 	var ProductTree = {
 		loadDatas : function(num) {
 			var teamId = $("#teamId").val();
 			loadData(function(msg) {
 				var timeLine = $('#timeLine');
+				var numMax = msg.length;
 				var $body = '';
 				var int = 0;
 				var index = 0;
@@ -13,7 +15,12 @@ $().ready(function() {
 				var nextNum = 0;
 				int = nowInt;
 				
-				for (int; int < msg.length; int++) {
+				if(numMax <=0){
+					$('.videoSpace').hide();
+					$('.noWorkDemo').show();
+				}
+				
+				for (int; int < numMax; int++) {
 				    
 					var numInt = int;
 					var creationTime = msg[int].creationTime;
@@ -21,6 +28,9 @@ $().ready(function() {
 					//	creationTime =  msg[int].updateDate;
 					//}
 					var date = convert(creationTime);
+					if(date == undefined || date == "" || date ==null ){
+						continue;
+					}
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
@@ -111,6 +121,9 @@ $().ready(function() {
 					timeLine.append($body);
 					$body = '';
 				}
+				if(num == 1){
+					$('#end').removeClass('hide');
+				}
 			}, getContextPath() + '/product/order/loadWithTeamName' ,$.toJSON({
 				condition:"teamName:"+ '"' + $("#teamName").val() + '"'
 			}));
@@ -128,6 +141,7 @@ $().ready(function() {
 		getMore:function(){
 			$('#showMore').on('click',function(){
 				$('#getMore').addClass('hide');
+				$('#end').removeClass('hide');
 				ProductTree.loadDatas(1);
 			});
 		}
@@ -141,16 +155,14 @@ $().ready(function() {
 // 比较之前进行数据转换
 function convert(value) {
 	if(value != null && value != undefined && value != ''){
-		
 		return new Date(Date.parse(value.replace(/-/g, "/")));
-		
 	}
 	return '';
 }
 // 创建轴节点 --》年
 function drawYearView(year) {
 	var moYear = year%5;
-	var $body = '<div class="videoArea"><div class="yearTimeLine"></div><div class="year" id ="'+year+'"><div>';
+	var $body = '<div class="videoArea"><div class="yearTimeLine"></div><div class="year" id ="'+year+'">';
 	        if(moYear==1){
 	        	$body+='<div class="color1">'
 	        }
@@ -168,7 +180,7 @@ function drawYearView(year) {
             }
 	      
 	        $body+= year
-			+ '</div></div></div> <div class="yearTimeLine"></div></div>';
+			+ '</div></div><div class="yearTimeLine"></div></div>';
 	return $body;
 }
 // 创建叶子节点 --》 左
@@ -184,7 +196,7 @@ function drawLeftCard(product,year,month,day) {
 			+ '<div class="leftCard">'
 				+ '<div class="leftDian">'
 					+ '<div class="leftJiaoImg"></div>'
-					+ '<div class="day">'+year+'/'+month+'/'+day+'</div>'
+					+ '<div class="day">'+month+'-'+day+'</div>'
 					+ '<div class="dianImg"></div>'
 				+ '</div>'
 				+ '<div class="videoCrad">'
@@ -192,12 +204,12 @@ function drawLeftCard(product,year,month,day) {
 					//modify by wlc 2016-11-1 14:04:29
 					//修改为dfs路径 begin
 					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
-					+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
+					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
 					//修改为dfs路径 end
-					+ '<div class="videoContentInfo"></div>'
-					+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
+					//+ '<div class="videoContentInfo"></div>'
+					+ '<div class="videoTag">'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
-						+ '<div class="videoBtn btn-red-common">了解详情</div>' 
+						+ '<div class="videoBtn">了解详情</div>' 
 					+ '</a>'
 				+ '</div>'
 			+ '</div>';
@@ -223,10 +235,10 @@ function drawRightCard(product,year,month,day) {
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
-				+ '<div class="videoContentInfo"></div>'
-				+ '<div class="videoTag"><div><img src="/resources/images/provder/videoTag.png"></div>'+drawTags(product.tags)+'</div>'
+				//+ '<div class="videoContentInfo"></div>'
+				+ '<div class="videoTag">'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
-					+ '<div class="videoBtn btn-red-common">了解详情</div>' 
+					+ '<div class="videoBtn">了解详情</div>' 
 				+ '</a>'
 			+ '</div>'
 		+ '</div>';
@@ -237,10 +249,11 @@ return $body;
 function drawMore() {
 	var $body = '<div class="videoArea topMore" id="getMore">'
 						+'<ul class=yearTimeUlLine>'
-							+'<li></li> <li></li> <li></li>'
+							+'<li></li>'
 						+'</ul>'
 					+'<div class="more" id="showMore">'
-						+'<div><div>Read More</div></div>'
+						+'<div><div>更多作品</div></div>'
+						+'<div class="getMore"></div>'
 					+'</div>'
 					+'</div>';
     return $body;
@@ -266,7 +279,10 @@ function drawTags(tags){
 	if(tagsArray !=null ){
 		for (var int = 0; int < tagsArray.length; int++) {
 			var item = tagsArray[int];
-			$body+='<div>'+item+'</div>'
+			if(int != 0){
+				$body+='&nbsp/&nbsp';
+			}
+			$body+='<div>'+item+'</div>';
 		}
 	}
 	return $body;
@@ -292,35 +308,30 @@ var providerInfo = {
 			
 			for(i=0;i<tagLength;i++){
 				var formBody ='<div class="card">';
-				formBody +='<div class="controlCard">';
-				formBody +='<div class="pencil"></div>';
-				formBody +='<div class="cardWord">'+tagList[i]+'</div>';
+//				formBody +='<div class="controlCard">';
+//				formBody +='<div class="pencil"></div>';
+//				formBody +='<div class="cardWord">'+tagList[i]+'</div>';
+				formBody += ''+tagList[i]+'';
 				formBody += '</div>';
 				formBody += '</div>';
 				$("#provderTagId").append(formBody);
 			}
-//			if(tagLength==1){
-//				provderTagWidth = 150;
+
+//			if(tagLength>6){
+//                var multiple = tagLength/6;
+//                var intMultiple = parseInt((Number(multiple)+1));
+//                var provderTagHeight = intMultiple*30+30;
+//                var topLine = provderTagHeight/2-15;
+//				 
+//				
+//				$("#provderTagId").css("height",provderTagHeight);
+//				$("#tagId").css("height",provderTagHeight);
+//				$("#leftLineId").css("top",topLine);
+//				$("#rightLineId").css("top",topLine);
+//				
 //			}
-//			else 
-			if(tagLength>6){
-                var multiple = tagLength/6;
-                var intMultiple = parseInt((Number(multiple)+1));
-                var provderTagHeight = intMultiple*30+30;
-                var topLine = provderTagHeight/2-15;
-				 
-				
-				$("#provderTagId").css("height",provderTagHeight);
-				$("#tagId").css("height",provderTagHeight);
-				$("#leftLineId").css("top",topLine);
-				$("#rightLineId").css("top",topLine);
-				
-			}
 			
-//			else if(tagLength>1){
-//				provderTagWidth=(125*tagList.length)+17*(tagLength-1);
-//			}
-//			$("#provderTagId").css("width",provderTagWidth);
+
 			},
           controlSpecialVideo : function(){
         	  var yk =  $('#ykVideoUrl').val();
@@ -337,3 +348,10 @@ var providerInfo = {
         	  }
           }
 };
+
+
+function openOrder(){
+	$('#withIt').on('click',function(){
+		showOrder('宣传片');
+	});
+}

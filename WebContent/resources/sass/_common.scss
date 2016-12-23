@@ -1336,7 +1336,7 @@ a {
         color: $gray;
         font-size: $font-size-base;
         position: absolute;
-        left: 13px;
+        left: 11px;
         bottom: -1px;
     }
     .dropdown-menus {
@@ -1365,6 +1365,9 @@ a {
         position: absolute !important;
         right: 20px !important;
         top: 10px !important;
+        &:hover{
+             background: url("/resources/images/index/selectIcon.png") no-repeat !important;
+        }
     }
     .dropdown-toggle {
         color: $gray;
@@ -1571,3 +1574,11 @@ a {
         transform: scale(1);
     }
 }
+
+.errorLCommon {
+    border: 1px solid $red-base !important;
+    &:focus {
+        border-color: $red-base;
+    }
+}
+

@@ -32,16 +32,22 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
-     <!--测试-->
+    <!--测试-->
     
-    <mvc:view-controller path="/biao/biao" view-name="/biao/biao" />
+    <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->
      <!--成本计算器-->
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
-    
+    <mvc:view-controller path="/test" view-name="/provider/user" />
+    <mvc:view-controller path="/info2" view-name="/provider/info2" />
+    <mvc:view-controller path="/safe" view-name="/provider/safeInfo" />
+    <mvc:view-controller path="/product" view-name="/provider/productList" />
     <!-- 新首页 -->
     <!-- <mvc:view-controller path="/home" view-name="/homePage" /> -->
     <mvc:view-controller path="/news" view-name="/news" />
      <!--END-->
+     
+     <!-- test -->
+      <mvc:view-controller path="/c" view-name="/costcalculate" />
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
@@ -101,6 +107,7 @@
 			<mvc:exclude-mapping path="/provider/info/register" />
 			<mvc:exclude-mapping path="/provider/info/recover" />
 			<mvc:exclude-mapping path="/provider/login/**" />
+			<mvc:exclude-mapping path="/provider/upload/teamPhoto" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />
 		</mvc:interceptor>
 		
