@@ -5,6 +5,7 @@ var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var parent = window.parent.document;
 var win = window;
 $().ready(function() {
+	$(window.parent.document).find('.tooltip-wati').hide();
 	var videoList = {
 		init : function() {
 			//新建作品
@@ -98,7 +99,7 @@ $().ready(function() {
 				var id = $(this).parent().data('id');
 				if(visible==0){//可见状态下关闭
 					$(parent).find('#tooltip-check').show();
-					$(parent).find('#checkInfo').text('关闭状态会导致您的影片不能在官网显示，确定要关闭视频吗？');
+					$(parent).find('#checkInfo').text('"关闭"会导致您的影片不能在官网显示，确定"关闭"吗？');
 					$(parent).find('#sureCheck').off('click').on('click',function(){
 						_this.visibleAction(1,id,ul);
 						$(parent).find('#tooltip-check').hide();

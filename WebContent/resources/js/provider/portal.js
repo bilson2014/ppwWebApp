@@ -3,9 +3,7 @@ var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
-	
-	
-	
+	$('.tooltip-wati').show();
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
@@ -18,6 +16,9 @@ $().ready(function(){
 			getHeight(1);
 		}else{
 			getHeight(2);
+		}
+		if($(this).data('action')=='video-list'){
+			$('.tooltip-wati').show();
 		}
 	});
 	var p = $('#proLogo').attr('data-value');

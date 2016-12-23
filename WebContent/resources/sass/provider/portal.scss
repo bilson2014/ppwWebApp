@@ -411,6 +411,16 @@ body {
     }
 }
 
+.tooltip-wati{
+    .watiCard{
+        width: 120px;
+        text-align: center;
+        color:$red-base;
+        font-size: 14px;
+    }
+}
+
+.tooltip-wati,
 .tooltip-check,
 .tooltip-warn-up {
     background: rgba(0, 0, 0, 0.8);
@@ -696,6 +706,7 @@ body {
 
 .progress-bar {
     background-color: #337ab7;
+     background-image:none !important;
 }
 
 
@@ -712,4 +723,7 @@ body {
     border-radius: 90px;  
     background-color: red;  
 }  
+
+
+
 

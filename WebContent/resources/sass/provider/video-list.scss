@@ -148,6 +148,7 @@ input:-webkit-autofill {
     .title {
         position: relative;
         top: 50px;
+        z-index: 5px;
     }
     .content {
         opacity: 0;
