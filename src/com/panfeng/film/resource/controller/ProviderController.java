@@ -33,6 +33,7 @@ import com.google.gson.Gson;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.film.mq.service.FileConvertMQService;
 import com.panfeng.film.resource.model.City;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;
@@ -74,12 +75,6 @@ public class ProviderController extends BaseController {
 
 	private static String ALLOW_VIDEO_TYPE = null;
 
-	// private static String TEAM_IMAGE_PATH = null; // 团队logo
-
-	// private static String PRODUCT_VIDEO_PATH = null; // video文件路径
-
-	// private static String PRODUCT_IMAGE_PATH = null; // 产品图片路径
-
 	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
 
 	@Autowired
@@ -87,6 +82,8 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private final FDFSService DFSservice = null;
+	@Autowired
+	private final FileConvertMQService fileConvertMQService = null;
 
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
@@ -949,6 +946,8 @@ public class ProviderController extends BaseController {
 				final String json = HttpUtil.httpPost(url, product, request);
 				if (json != null && !"".equals(json)) {
 					long productId = JsonUtil.toBean(json, Long.class);
+					//上传成功，添加视频转换队列
+					fileConvertMQService.sendMessage(productId, fileId);
 					Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
 							+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
 					baseMsg.setCode(1);

@@ -145,9 +145,7 @@ $().ready(function() {
 			sendcodeForNewPhone:function(){
 				$("#code-fornewphone").off("click").on("click",function(){
 					var concat_tele_new = $("#new-phoneNumber").val().trim();
-					if(!checkMobile(concat_tele_new)){
-						showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
-						$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
+					if(!checkData(6)){
 						return false;
 					}
 					loadData(function(flag){
@@ -328,6 +326,13 @@ function checkData(type){
 		}
 		if(null==newcode || ''==newcode || undefined==newcode){
 			showCommonError($('#new-code-error'),"请输入验证码");
+			return false;
+		}
+		return true
+	case 6:
+		if(!checkMobile(newTelPhone)){
+			showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
+			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
 			return false;
 		}
 		return true

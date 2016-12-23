@@ -183,10 +183,10 @@
 	                            </div>
                             <div class="infoItem">
                                 <div class="title">价格区间</div>
-                                <div class="dropdown infoSelect" id="company-priceRange-value">
-										<button class="btn btn-default dropdown-toggle" type="button"
+                                <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
+										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='priceRange' data-value="${provider.priceRange }">看情况</span>
+											<span id='priceRange' data-value="${provider.priceRange }"></span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
@@ -202,10 +202,11 @@
                             </div>
                             <div class="infoItem">
                                 <div class="title">获知渠道</div>
-                                <div class="dropdown infoSelect" id="company-priceRange-value">
-										<button class="btn btn-default dropdown-toggle" type="button"
+                                <div class="dropdown infoSelect infoResourceSelect" id="company-priceRange-value">
+										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='infoResource' data-value="${provider.infoResource }">友情推荐</span>
+
+											<span id='infoResource' data-value="${provider.infoResource }"></span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
