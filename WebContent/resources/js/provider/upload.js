@@ -240,9 +240,9 @@ function mergeTag(){
 //增加标签
 function addTags(tag) {
 	if(tag != null && tag != undefined && tag != ''){
-		// 增加标签时 ,看其是否超过5条
+		// 增加标签时 ,看其是否超过10条
 		var num = $('.keyword_item').length;
-		if(num < 5){ // 当前没有超过5条，则增加
+		if(num < 10){ // 当前没有超过10条，则增加
 			var $tag = '<span class="keyword_item">';
 			$tag += '<b class="keyword_item_inner">'+ tag +'</b>';
 			$tag += '<a href="javascript:void(0);" class="btn_keyword_del">';
