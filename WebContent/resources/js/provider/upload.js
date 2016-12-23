@@ -293,7 +293,7 @@ function checkData(){
 		$("#img-error").text("请上传视频封面");
 		return false;
 	}
-	if(productId == null || productId == undefined || productId == ''){
+	if(productId == 0){
 		return false;
 	}
 	return true;
