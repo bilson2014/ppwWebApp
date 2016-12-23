@@ -579,7 +579,7 @@ $().ready(function() {
 function checkState(){
 	var href = window.location.href;
     var state = href.substr(href.lastIndexOf("?")+1,href.length);
-    if(state.trim() != "role=user"){
+    if(state.trim() == "role=director"){
     	toProvider();
     }
 }
