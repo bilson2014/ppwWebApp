@@ -2,6 +2,8 @@ var hasVideo = false;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
+var parent = window.parent.document;
+var win = window;
 $().ready(function() {
 	var videoList = {
 		init : function() {
@@ -157,21 +159,21 @@ $().ready(function() {
 		},
 		multipUploadFile:function(){
 			$(".moreUp").off("click").on("click",function(){
-				$(window.parent.document).find('.tooltip-warn-up').show(); 
-				$(window.parent.document).find('.selectVideo').hide(); 
-				$(window.parent.document).find('.showwarn').show(); 
+				$(parent).find('.tooltip-warn-up').show(); 
+				$(parent).find('.selectVideo').hide(); 
+				$(parent).find('.showwarn').show(); 
 			})
-			$(window.parent.document).find('.closewarn').off("click").on("click",function(){
-				$(window.parent.document).find('.tooltip-warn-up').hide();
+			$(parent).find('.closewarn').off("click").on("click",function(){
+				$(parent).find('.tooltip-warn-up').hide();
 			})
-			$(window.parent.document).find('.showmultipUpload').off("click").on("click",function(){
-				$(window.parent.document).find('.showwarn').hide(); 
-				$(window.parent.document).find('#video-container').empty(); 
-				$(window.parent.document).find('.selectVideo').show(); 
+			$(parent).find('.showmultipUpload').off("click").on("click",function(){
+				$(parent).find('.showwarn').hide(); 
+				$(parent).find('#video-container').empty(); 
+				$(parent).find('.selectVideo').show(); 
 			})
-			$(window.parent.document).find('.closewarn-refresh').off("click").on("click",function(){
-				$(window.parent.document).find('.tooltip-warn-up').hide();
-				window.location.reload();
+			$(parent).find('.closewarn-refresh').off("click").on("click",function(){
+				$(parent).find('.tooltip-warn-up').hide();
+				win.location.reload();
 			})
 			upload_Video && upload_Video.destroy();
 			var picker =$(window.parent.document).find('#picker'); 
