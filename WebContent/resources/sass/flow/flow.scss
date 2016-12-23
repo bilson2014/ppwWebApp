@@ -25,11 +25,12 @@
     //左侧树形
     .left-page {
         display: inline-block;
+        vertical-align: top;
         width: 212px;
             @media screen and (min-width:1500px) {
        width: 300px;
     }
-        float: left;
+        position: relative;
         background-color: $white;
         .left-title {
             width: 100%;
@@ -913,6 +914,8 @@
     background: $white;
     margin: 0 auto;
     margin-bottom: 40px;
+        vertical-align: top;
+    display: inline-block;
     .no-poject-div {
         width: 200px;
         vertical-align: middle;

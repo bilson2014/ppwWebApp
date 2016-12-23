@@ -2,8 +2,21 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
+body {
+    background: #FDFFFF;
+}
+
+button,.form-control {
+    /* border-color: #66afe9; */
+    &:focus {
+        outline: none;
+        border-color: #ccc !important;
+        box-shadow: none !important;
+    }
+}
+
 .nav .logo {
-    background: url(../../images/common/logo.svg) no-repeat;
+    background: url(/resources/images/common/logo.svg) no-repeat;
 }
 
 .step {
@@ -12,6 +25,8 @@
     position: relative;
     top: 10px;
     margin-bottom: 50px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
 }
 
 .foot3 {
@@ -90,6 +105,7 @@
         display: inline-block;
         color: $gray-dark;
         font-size: $font-size-base;
+        outline: none;
     }
     .leaderSelect {
         display: inline-block;
@@ -203,6 +219,7 @@
         height: 108px;
         resize: none;
         margin-bottom: 28px;
+        padding: 2px 10px 2px 10px;
     }
 }
 
@@ -323,6 +340,8 @@
     text-align: center;
     background: $f8;
     padding-top: 30px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
     .line {
         height: 4px;
         width: 300px;
@@ -371,13 +390,11 @@
 }
 
 .step-one-div {
-    border: 1px solid $border-line;
     border-top: none;
     background: white;
 }
 
 .step-two-div {
-    border: 1px solid $border-line;
     border-top: none;
     padding-top: 60px;
     background: white;
@@ -385,7 +402,6 @@
 }
 
 .step-three-div {
-    border: 1px solid $border-line;
     border-top: none;
     padding-top: 120px;
     background: white;
@@ -417,10 +433,19 @@
     width: 500px;
     display: inline-block;
     vertical-align: top;
+    position: relative;
     img {
         width: 120px;
         height: 120px;
         border-radius: 4px !important;
+    }
+    &:before {
+        content: attr(data-content);
+        position: absolute;
+        font-size: $font-size-sm;
+        color: $red-base;
+        bottom: -15px;
+        left: 13px;
     }
 }
 

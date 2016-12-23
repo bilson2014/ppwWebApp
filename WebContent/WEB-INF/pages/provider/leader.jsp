@@ -122,10 +122,10 @@
 	      		 <div class="step-one-div" id="step1" data-step="1">
 	      		             <div class="updateLogo">   
 	      		                    <div class="title">公司LOGO</div>
-		      		                <div class="user-img-content">
+		      		                <div class="user-img-content" id="user-img-content">
 										<div class="user-icon">
 											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img"/>
-											<input type="hidden" id="user_img_url" value="/resources/images/index/db13.jpg">
+											<input type="hidden" id="user_img_url" value="">
 										</div>
 										<div class="upload-info">
 											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>

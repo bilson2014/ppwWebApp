@@ -129,7 +129,7 @@
 	        
 	    <div class="introduce" >
 			<h2 >团队简介</h2>
-			<p>我们拍片网是一个年轻的团队。年轻的人，年轻的事，也成长在一个年轻而富有热情的领域。我们期待简单、高效的沟通方式，喜欢平等、愉快的工
+			<p>北京攀峰文化传播有限公司成立了拍片网。我们拍片网是一个年轻的团队。年轻的人，年轻的事，也成长在一个年轻而富有热情的领域。我们期待简单、高效的沟通方式，喜欢平等、愉快的工
 		             	作环境，为了这些我们可以「不择手段」。这里是个不错的地方，我们都这样认为！</p>
 		</div>
 		
@@ -161,6 +161,7 @@
 	           	等、愉快的工作环境，为了这些我们可以「不择手段」。这里是个不错的地方，我们都这样认为：</h3>
 	           
 	        <p><strong>请将简历投递至</strong><a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
+	        <p style="color: #000;">公司地址：北京朝阳区建外SOHO东区6号楼2505</p>
 	    </div>
 
 	     <c:if test="${!empty jobList}">
@@ -204,8 +205,8 @@
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
-                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login" />">导演登录</a></div>
+                                         <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
+                                            <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>

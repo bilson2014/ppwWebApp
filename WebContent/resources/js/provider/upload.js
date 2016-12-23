@@ -13,8 +13,6 @@ $().ready(function(){
 			this.initPage();
 			//初始化上传图片
 			this.uploaderPic();
-			//取消上传视频，返回视频列表
-			this.backToList();
 		},
 		uploaderVideo:function(){
 			var _this = this;
@@ -160,12 +158,17 @@ $().ready(function(){
 				$("#img-error").text("");
 			});
 			uploader_Pic.on('uploadSuccess', function(file,response) {
-				$(".step2").addClass("hide");
-				$(".step3").removeClass("hide");
-				SetLastTime();
-				$('#toPortal').off('click').on('click',function(){
-					window.location.href=getContextPath() + '/provider/portal';
-				});
+				if(response.code==1){
+					$(".step2").addClass("hide");
+					$(".step3").removeClass("hide");
+					SetLastTime();
+					$('#toPortal').off('click').on('click',function(){
+						window.location.href=getContextPath() + '/provider/portal';
+					});
+				}else{
+					$("#img-error").text(response.result);
+				}
+				
 			});
 			uploader_Pic.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
@@ -217,9 +220,6 @@ $().ready(function(){
 					});
 				}
 			});
-		},
-		backToList:function(){
-			
 		}
 	}
 	upload.init();
@@ -240,9 +240,9 @@ function mergeTag(){
 //增加标签
 function addTags(tag) {
 	if(tag != null && tag != undefined && tag != ''){
-		// 增加标签时 ,看其是否超过5条
+		// 增加标签时 ,看其是否超过10条
 		var num = $('.keyword_item').length;
-		if(num < 5){ // 当前没有超过5条，则增加
+		if(num < 10){ // 当前没有超过10条，则增加
 			var $tag = '<span class="keyword_item">';
 			$tag += '<b class="keyword_item_inner">'+ tag +'</b>';
 			$tag += '<a href="javascript:void(0);" class="btn_keyword_del">';

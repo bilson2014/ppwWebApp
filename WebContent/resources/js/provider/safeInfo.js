@@ -52,16 +52,19 @@ $().ready(function() {
 			},
 			loginNameValidate:function(){
 				$("#loginName").off("change").on("change",function(){
-					loadData(function(flag){
-						if(!flag){
-							showCommonError($('#loginName-error'),"用户名已经重复");
-							$("#loginName").focus();
-						}else{
-							resumeCommonError($(".setItem"),'');
-						}
-					}, getContextPath() + '/provider/checkExisting', $.toJSON({
-						loginName : $("#loginName").val().trim()
-					}));
+					if($("#loginName").val().trim()!=''){
+						loadData(function(flag){
+							if(!flag){
+								showCommonError($('#loginName-error'),"用户名已经重复");
+								$("#loginName").focus();
+							}else{
+								resumeCommonError($(".setItem"),'');
+								$(".setItem").remove("errorIcon").remove("sureIcon");
+							}
+						}, getContextPath() + '/provider/checkExisting', $.toJSON({
+							loginName : $("#loginName").val().trim()
+						}));
+					}
 				});
 			},
 			pwdValidate:function(){
@@ -142,9 +145,7 @@ $().ready(function() {
 			sendcodeForNewPhone:function(){
 				$("#code-fornewphone").off("click").on("click",function(){
 					var concat_tele_new = $("#new-phoneNumber").val().trim();
-					if(!checkMobile(concat_tele_new)){
-						showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
-						$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
+					if(!checkData(6)){
 						return false;
 					}
 					loadData(function(flag){
@@ -223,14 +224,15 @@ function verification(phone,ID){
 }
 //公共验证
 function checkData(type){
-	var LoginName = $("#loginName").val().trim();
+	resumeCommonError($(".setItem"),'');
+	$(".setItem").remove("errorIcon").remove("sureIcon");
+	var LoginName = $("#loginName").val();
 	var pwd = $("#newpwd").val().trim();
 	var repwd = $("#repwd").val().trim();
 	var telPhone = $("#phoneNumber").val();
 	var veritifyCode = $("#veritifyCode").val();
 	var newTelPhone = $("#new-phoneNumber").val();
 	var newcode = $("#new-code").val();
-	
 	switch (type) {
 	case 1:
 		if(null==pwd || ''==pwd || undefined==pwd){
@@ -314,11 +316,25 @@ function checkData(type){
 			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;
 		}
+		if(!checkMobile(newTelPhone)){
+			showCommonError($('#new-phoneNumber-error'),"请输入正确格式的手机号");
+			$("#new-phoneNumber").focus();
+			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
+			return false;
+		}else{
+			$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
+		}
 		if(null==newcode || ''==newcode || undefined==newcode){
 			showCommonError($('#new-code-error'),"请输入验证码");
 			return false;
 		}
-		resumeCommonError($(".setItem"),'');
+		return true
+	case 6:
+		if(!checkMobile(newTelPhone)){
+			showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
+			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
+			return false;
+		}
 		return true
 	default:
 		break;

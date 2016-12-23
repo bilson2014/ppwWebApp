@@ -2,6 +2,8 @@
 <%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -93,9 +95,7 @@
 <body>
 	<input type="hidden" value="${team.phoneNumber }" id="phoneNumber">
 	<input type="hidden" value="${team.teamId }" id="teamId">
-	<input type="hidden" value="${team.loginName }" id="loginName">
 	<div class="proInfo">
-
 		<div class="safeInfo" id="normal">
 			<div class="safeItem">
 				<div class="leftItem">
@@ -125,7 +125,7 @@
 					<div class="content">
 						<div class="infoName">原机绑定</div>
 						<c:if test="${not empty team.phoneNumber }">
-							<div>${team.phoneNumber}</div>
+							<div>${fn:replace(team.phoneNumber,fn:substring(team.phoneNumber,3,7), '****')}</div>
 						</c:if>
 					</div>
 					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
@@ -180,6 +180,7 @@
 				<div class="title">登录名</div>
 				<c:if test="${not empty team.loginName }">
 					<div class="loginDivName">${team.loginName }</div>
+					<input id="loginName" type="hidden" value='${team.loginName }'>
 				</c:if>
 				<c:if test="${empty team.loginName }">
 					<input id="loginName">

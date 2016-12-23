@@ -185,7 +185,7 @@
 		 </div>
 		 <div class="selectVideo">
 		     <div class="top">
-		       <div class="closeX closewarn">x</div>
+		       <div class="closeX closewarn"></div>
 		       <div class="title">批量上传作品</div>
 		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
 		     </div>
@@ -222,9 +222,22 @@
 			                 </div>
                     </div>
                     <div class="userName">${provider.teamName }</div>
-                    <a href="/provider/info_${provider.teamId }.html">
-                    	<div class="userProduct">公司主页</div>
-                    </a>
+                                 <c:if test="${provider.flag == 2}">
+										 <div class="userProduct">公司主页
+										  <span>审核通过方可进入公司主页</span>
+										 </div>
+								 </c:if>
+								 <c:if test="${provider.flag == 0}">
+										 <div class="userProduct">公司主页
+										   <span>审核通过方可进入公司主页</span>
+										 </div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
+										                     <a href="/provider/info_${provider.teamId }.html">
+                    	                                           <div class="userProduct">公司主页</div>
+                                                             </a>
+								 </c:if>
+
                     <div class="left-content">
                          <div class="infoItem activeThis">
                                 <div class="product" data-action="video-list">作品列表</div>

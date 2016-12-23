@@ -94,7 +94,7 @@
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
-											<div id="uploadBt">上传头像</div>
+											<div id="uploadBt">上传Logo</div>
 											<input type="file" name="file" id="file" style="display: none;"/> 
 											<div class="errorImg"></div>
 										</div>

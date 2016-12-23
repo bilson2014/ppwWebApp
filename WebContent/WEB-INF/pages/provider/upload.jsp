@@ -157,7 +157,9 @@
 	<input type="hidden" value="${flag}" id="flag">
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
+		<div class="top">
 			<div class="topBanner" id="closeBanner"></div>
+		</div>
 			<div class="imgContent">
 				<img src="/resources/images/provider/default-cover.jpg"
 					id="previewImg" class="previewImg"
@@ -212,7 +214,7 @@
 				</c:if>
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
-					<input type="text" class="form-control" id="video-name"
+					<input type="text" class="" id="video-name"
 						maxlength="12" placeholder="视频标题为必填字段"
 						value="${product.productName }">
 				</div>
@@ -246,7 +248,7 @@
 				</c:if>
 				<div class="proItem" id="creationTime-error">
 					<div class="itemTitle">创作时间</div>
-					<input type="text" class="form-control" id="creationTime"
+					<input type="text" class="" id="creationTime"
 						placeholder="请选择作品创作时间" readonly="readonly"
 						value="${product.creationTime }">
 				</div>
@@ -281,7 +283,7 @@
 						<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					</c:if>
 					<div class="btn-c-r submit" id="infoBt">提交审核</div>
-					<div class="btn-c-g cancle">取消</div>
+					<div class="btn-c-g cancle" onclick="window.location.href='/provider/portal'">取消</div>
 				</div>
 			</div>
 			<div class="step3 hide">
