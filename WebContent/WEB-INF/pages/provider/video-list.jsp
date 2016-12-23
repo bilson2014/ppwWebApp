@@ -118,6 +118,9 @@
 								</div>
 							</c:if>
 						</div>
+						
+
+						<div class="lastContent">
 						<c:if test="${product.flag==0}">
 							<div class="state yellow">审核中</div>
 						</c:if>
@@ -130,8 +133,6 @@
 						<c:if test="${product.flag==3}">
 							<div class="state blue">编辑中</div>
 						</c:if>
-
-						<div class="lastContent">
 							<c:if test="${product.flag==1}">
 								<c:if test="${product.masterWork==1}">
 									<div class="master-flag setMaster <c:if test="${cType==4}">gStar</c:if>">

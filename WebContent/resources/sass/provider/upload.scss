@@ -41,9 +41,15 @@ body,
     border-bottom: 1px solid $e;
     margin: 0 auto;
     position: relative;
-    top: 60px;
+    top: 0px;
     height: 740px;
     border-radius: 6px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        top: 30px;
+    }
+    @media screen and (min-width: 1500px) {
+         top: 60px;
+    }
 }
 
 .titleInfo {
