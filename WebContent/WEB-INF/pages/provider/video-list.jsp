@@ -51,6 +51,7 @@
 </head>
 
 <body>
+
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
 	<input type="hidden" value="${cKey }" id="company-key" />
