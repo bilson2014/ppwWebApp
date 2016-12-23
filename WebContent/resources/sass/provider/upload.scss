@@ -44,11 +44,11 @@ body,
     top: 0px;
     height: 740px;
     border-radius: 6px;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
         top: 30px;
     }
     @media screen and (min-width: 1500px) {
-         top: 60px;
+        top: 60px;
     }
 }
 
@@ -214,13 +214,14 @@ body,
 
 .progress-bar {
     background-color: #337ab7;
+    background-image:none;
 }
 
 .upIng {
     position: absolute;
     font-size: $font-size-sm;
     color: $gray;
-    right: -80px;
+    right: -90px;
     top: 20px;
 }
 
@@ -228,7 +229,7 @@ body,
     position: absolute;
     font-size: $font-size-sm;
     color: $gray;
-    right: -80px;
+    right: -90px;
     top: 13px;
     img {
         position: relative;
@@ -288,9 +289,9 @@ body,
         content: attr(data-content);
         position: absolute;
         color: $red-base;
-        font-size: $font-size-base;
+        font-size: $font-size-sm;
         top: 45px;
-        left: 100px;
+        left: 97px;
     }
     .itemTitle {
         font-size: $font-size-base;
@@ -317,6 +318,7 @@ body,
         border-radius: 4px;
         line-height: 34px;
         outline: none;
+        padding-left: 20px;
     }
     ul {
         display: inline-block;
@@ -335,6 +337,9 @@ body,
             font-size: $font-size-base;
             color: $red-base;
             cursor: pointer;
+            &:hover{
+                text-decoration:underline;
+            }
         }
         .upBanner {
             width: 120px;
@@ -356,6 +361,7 @@ body,
             width: 200px;
             margin-top: 30px;
             margin-bottom: 12px;
+            border-radius: 6px;
         }
         span {
             font-size: $font-size-sm;
@@ -533,6 +539,11 @@ body,
         margin-left: -340px;
         background: #f0f2f5;
         border-radius: 4px;
+
+    }
+    .top{
+        height: 33px;
+        border-bottom: 1px solid $border-line;
     }
     .topBanner {
         height: 14px;
@@ -541,12 +552,18 @@ body,
         font-size: $font-size-base;
         cursor: pointer;
         background: url(/resources/images/icons/close.png);
+        position: absolute;
+        right: 15px;
+        top:10px;
         &:hover {
             background-position: 0px -14px;
         }
     }
     .imgContent {
-        padding: 15px;
+        padding: 10px;
+        img{
+            border-radius: 4px;
+        }
     }
 }
 

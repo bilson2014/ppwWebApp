@@ -94,7 +94,7 @@
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
-											<div id="uploadBt">上传头像</div>
+											<div id="uploadBt">上传Logo</div>
 											<input type="file" name="file" id="file" style="display: none;"/> 
 											<div class="errorImg"></div>
 										</div>
@@ -184,7 +184,7 @@
                             <div class="infoItem">
                                 <div class="title">价格区间</div>
                                 <div class="dropdown infoSelect" id="company-priceRange-value">
-										<button class="btn dropdown-toggle" type="button"
+										<button class="btn btn-default dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
 											<span id='priceRange' data-value="0">看情况</span>
 											<div class="carets"></div>
@@ -203,7 +203,7 @@
                             <div class="infoItem">
                                 <div class="title">获知渠道</div>
                                 <div class="dropdown infoSelect" id="company-priceRange-value">
-										<button class="btn dropdown-toggle" type="button"
+										<button class="btn btn-default dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
 											<span id='infoResource' data-value="0">友情推荐</span>
 											<div class="carets"></div>

@@ -252,7 +252,7 @@
                                              35800+导演/编剧/摄影师/影视服务专家为您服务,
                  <br/>专业一站式视频服务/全流程质量监管
 		   </div>
-		   <a href="<spring:url value="/login" />"><div class="bottomBtn btn-red-common btn-c-r">立即加入</div></a>
+		   <a href="<spring:url value="/login?role=director" />"><div class="bottomBtn btn-red-common btn-c-r">立即加入</div></a>
 		</div>
 		
 		</div>

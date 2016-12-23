@@ -242,14 +242,14 @@ function initUl(){
 	var flag = $("#bean-flag").val();
 	if(flag != null && flag !='' && flag == '0'){
 		//var msg = $('#recommendation').val();
-		showInfomation('您提交的资料正在审核中','官方将在3个工作日内完成您的资质审核');
+		showInfomation('您提交的资料正在审核中','官方将在1个工作日内联系您');
 	}else if(flag != null && flag !='' && flag == '2'){
 		showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
 	}else{
 		var a = $("#bean-checkStatus").val();//是否存在再次审核
 		if(a != null && a !='' && a == '0'){
 			//var msg = $('#recommendation').val();
-			showInfomation('您提交的资料正在审核中','官方将在3个工作日内完成您的资质审核');
+			showInfomation('您提交的资料正在审核中','官方将在1个工作日内联系您');
 		}else if(a != null && a !='' && a == '2'){
 			var msg = $('#checkDetails').val();
 			showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
