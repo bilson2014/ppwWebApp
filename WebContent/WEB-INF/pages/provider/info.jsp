@@ -119,7 +119,7 @@
                             </div>
                             <div class="infoItem" id="company-phoneNumber-error">
                                 <div class="title">手机号</div>
-                                <input type="text" readonly class=" " id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
+                                <input type="text" readonly class="noBorderInput" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
                             <div class="infoItem" id="company-webchat-error">
                                 <div class="title">微信号</div>
@@ -205,6 +205,7 @@
                                 <div class="dropdown infoSelect infoResourceSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
+
 											<span id='infoResource' data-value="${provider.infoResource }"></span>
 											<div class="carets"></div>
 										</button>

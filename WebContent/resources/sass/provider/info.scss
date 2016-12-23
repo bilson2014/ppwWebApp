@@ -12,6 +12,10 @@ body {
     font-size: $font-size-base;
 }
 
+.noBorderInput {
+    border: none !important;
+}
+
 .proInfo {
     padding-top: 60px;
     background: white;
@@ -178,7 +182,7 @@ body {
         outline: none;
         border: none;
         box-shadow: none;
-        color:$gray-dark;
+        color: $gray-dark;
         padding-left: 20px;
         &:hover {
             outline: none;
@@ -299,7 +303,7 @@ body {
 .leaderSelect {
     display: inline-block;
     width: 200px;
-    .btn{
+    .btn {
         padding-left: 20px;
     }
     .carets {
@@ -353,4 +357,9 @@ body {
     &:focus {
         border-color: $red-base;
     }
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 90px;
+    background-color: $gray;
 }

@@ -215,7 +215,7 @@
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="" id="video-name"
-						maxlength="12" placeholder="视频标题为必填字段"
+						maxlength="18" placeholder="视频标题为必填字段"
 						value="${product.productName }">
 				</div>
 				<c:if test="${flag == 4}">
@@ -272,7 +272,7 @@
 							
 						</li>
 						<li>
-							<span>仅支持小于250k的png/jpg格式,推荐1110*600分辨率</span>
+							<span>仅支持小于250k的png/jpg格式,推荐1280*720分辨率</span>
 							<label>*</label>
 						</li>
 					</ul>

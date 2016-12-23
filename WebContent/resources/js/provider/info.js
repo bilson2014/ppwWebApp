@@ -429,7 +429,7 @@ function updateProvider(){
 //成功信息 提示框弹出方法
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-success-show').slideDown('normal');
+	$(window.parent.document).find('.tooltip-success-show').hide();
 	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
 	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
@@ -446,12 +446,12 @@ function hideError(){
 // 成功信息 提示框弹出方法
 function successErrorTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-error-show').slideDown('normal');
+	$(window.parent.document).find('.tooltip-error-show').hide();
 	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
 function showInfomation(title,body){
-	$(window.parent.document).find('#infomation').slideDown('normal');
+	$(window.parent.document).find('#infomation').hide();
 	$(window.parent.document).find('#infomation_title').text(title);
 	$(window.parent.document).find('#infomation_body').text(body);
 	$(window.parent.document).find('#closeInfo').on('click',function(){

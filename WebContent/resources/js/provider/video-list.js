@@ -160,6 +160,7 @@ $().ready(function() {
 				$(parent).find('.selectVideo').hide(); 
 				$(parent).find('.showwarn').show(); 
 			})
+
 			$(parent).find('.closewarn').off("click").on("click",function(){
 				$(parent).find('.tooltip-warn-up').hide();
 			})
