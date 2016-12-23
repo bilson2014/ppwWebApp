@@ -145,7 +145,7 @@
 					<div class="title">${team.phoneNumber}</div>
 				</div>
 				<div class="setItem" id='old-code-error'>
-					<div class="title">验证手机</div>
+					<div class="title">验证码</div>
 					<input class="setInput" id='old-code'>
 					<button class="setCode" id='code-foroldphone'>发送验证码</button>
 				</div>
@@ -159,7 +159,7 @@
 					<input id='new-phoneNumber'>
 				</div>
 				<div class="setItem" id='new-code-error'>
-					<div class="title">验证手机</div>
+					<div class="title">验证码</div>
 					<input class="setInput" id='new-code'>
 					<button class="setCode" id='code-fornewphone'>发送验证码</button>
 				</div>

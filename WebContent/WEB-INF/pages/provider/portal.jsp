@@ -184,13 +184,7 @@
 	           </div>
 		 </div>
 		 
-		 <div class="tooltip-wati" >
-		     <div class="watiCard">
-		         <img src="/resources/images/incons/wait.gif">
-		         <div>进度处理中...</div>
-		     </div>
-		 </div>
-		 
+		 		 
 		 <div class="selectVideo">
 		     <div class="top">
 		       <div class="closeX closewarn"></div>
@@ -207,7 +201,15 @@
 		        <div class='closewarn-refresh'>关闭</div>
 		     </div>
 		 </div>
-	</div> 
+	</div>
+	
+	<div class="tooltip-wati" >
+		     <div class="watiCard">
+		         <img src="/resources/images/icons/wait.gif">
+		         <div>进度处理中...</div>
+		     </div>
+		 </div>
+	 
 
 	 <div class="page" style="height:100%">
 

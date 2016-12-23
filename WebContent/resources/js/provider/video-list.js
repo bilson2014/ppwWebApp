@@ -5,7 +5,7 @@ var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var parent = window.parent.document;
 var win = window;
 $().ready(function() {
-	$(window.parent.document).find('.tooltip-wati').hide();
+	$(parent).find('.tooltip-wati').hide();
 	var videoList = {
 		init : function() {
 			//新建作品

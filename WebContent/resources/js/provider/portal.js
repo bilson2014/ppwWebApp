@@ -4,6 +4,7 @@ var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	$('.tooltip-wati').show();
+	
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
