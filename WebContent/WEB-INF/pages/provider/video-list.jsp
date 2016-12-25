@@ -51,6 +51,7 @@
 </head>
 
 <body>
+
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
 	<input type="hidden" value="${cKey }" id="company-key" />
@@ -87,7 +88,7 @@
 						</c:if>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
-							class="mid <c:if test="${empty product.checkDetails}"> nC</c:if>">
+							class="mid <c:if test="${empty product.checkDetails || product.flag != 2}"> nC</c:if>">
 							<div class="title">
 								<span>标题：</span> <span><c:out
 										value="${product.productName }" /></span>
@@ -95,9 +96,9 @@
 							<div class="content">
 								<div class="cTitle">建议：</div>
 								<div class="cContent">
-									<c:if test="${not empty product.checkDetails}">
-										<c:out value="${product.checkDetails }" />
-									</c:if>
+								<c:if test="${not empty product.checkDetails and product.flag == 2}">
+									${product.checkDetails }
+								</c:if>
 								</div>
 							</div>
 							<c:if test="${product.flag==1}">

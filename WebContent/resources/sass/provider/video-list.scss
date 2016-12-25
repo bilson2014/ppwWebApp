@@ -135,6 +135,7 @@ input:-webkit-autofill {
             border-radius: 6px;
             display: inline-block;
             vertical-align: top;
+            cursor: pointer;
         }
         .mid {
             display: inline-block;
@@ -147,6 +148,7 @@ input:-webkit-autofill {
     .title {
         position: relative;
         top: 50px;
+        z-index: 5px;
     }
     .content {
         opacity: 0;
@@ -166,6 +168,7 @@ input:-webkit-autofill {
             font-size: $font-size-base;
             color: $gray-light;
             margin-right: 8px;
+            line-height: $font-size-base;
         }
         span:nth-child(2) {
             font-size: $font-size-sm;
@@ -215,7 +218,7 @@ input:-webkit-autofill {
         position: relative;
         white-space: nowrap;
         margin-top: -5px;
-        top:13px;
+        top: 13px;
         transition: all .4s linear .4s;
         -moz-transition: all .4s linear .4s;
         /* Firefox 4 */
@@ -237,12 +240,12 @@ input:-webkit-autofill {
             vertical-align: top;
             position: relative;
             left: 0px;
-            transition: all .4s linear .4s;
-            -moz-transition: all .4s linear .4s;
+            transition: all .1s linear .1s;
+            -moz-transition: all .1s linear .1s;
             /* Firefox 4 */
-            -webkit-transition: all .4s linear .4s;
+            -webkit-transition: all .1s linear .1s;
             /* Safari 和 Chrome */
-            -o-transition: all .4s linear .4s;
+            -o-transition: all .1s linear .1s;
         }
         li:nth-child(1) {
             background: #33d8b5;
@@ -498,3 +501,18 @@ input:-webkit-autofill {
         }
     }
 }
+
+
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    border-radius: 90px;  
+    background-color: red;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 90px;  
+    background-color: red;  
+} 

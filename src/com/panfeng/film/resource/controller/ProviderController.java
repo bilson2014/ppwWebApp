@@ -74,12 +74,6 @@ public class ProviderController extends BaseController {
 
 	private static String ALLOW_VIDEO_TYPE = null;
 
-	// private static String TEAM_IMAGE_PATH = null; // 团队logo
-
-	// private static String PRODUCT_VIDEO_PATH = null; // video文件路径
-
-	// private static String PRODUCT_IMAGE_PATH = null; // 产品图片路径
-
 	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
 
 	@Autowired
@@ -87,7 +81,7 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private final FDFSService DFSservice = null;
-
+	
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
 	static String ORIGINAL = "original";// 源对象
@@ -949,6 +943,7 @@ public class ProviderController extends BaseController {
 				final String json = HttpUtil.httpPost(url, product, request);
 				if (json != null && !"".equals(json)) {
 					long productId = JsonUtil.toBean(json, Long.class);
+					
 					Log.error("Provider Save Product success,productId:" + productId + " ,productName:"
 							+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
 					baseMsg.setCode(1);
