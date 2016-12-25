@@ -201,9 +201,10 @@ body {
             }
         }
         .activeThis {
-            border-left: 4px solid $red-base;
+            border-left: 4px solid $red-base !important;
             div {
                 color: $red-base;
+                background: transparent !important;
                 &:before {
                     background-position: 0px -14px !important;
                 }
@@ -362,7 +363,7 @@ body {
         text-align: center;
         position: absolute;
         top: 20px;
-        right: 30px;
+        right: 20px;
         cursor: pointer;
         background: url(/resources/images/icons/close.png);
         &:hover {
@@ -383,6 +384,7 @@ body {
     .checkBottom {
         width: 160px;
         margin: 0 auto;
+        margin-top: 20px;
         .sureCheck {
             width: 70px;
             height: 30px;
@@ -444,7 +446,7 @@ body {
         position: absolute;
         background: white;
         border-radius: 4px;
-        top: 220px;
+        top: 160px;
         left: 50%;
         margin-left: -300px;
         text-align: left;
@@ -559,7 +561,7 @@ body {
     background: white;
     border-radius: 4px;
     position: absolute;
-    top: 220px;
+    top: 160px;
     left: 50%;
     margin-left: -300px;
     display: none;
@@ -617,7 +619,7 @@ body {
             .videoContent {
                 position: relative;
                 .showUpSuccess {
-                    right: 40px !important;
+                    right: 27px !important;
                     &:after {
                         content: "";
                         position: absolute;
@@ -625,7 +627,7 @@ body {
                         height: 16px;
                         width: 16px;
                         top: -1px;
-                        right: -40px;
+                        right: -26px;
                     }
                 }
                 .videoName {

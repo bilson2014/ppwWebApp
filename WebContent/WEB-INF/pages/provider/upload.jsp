@@ -272,7 +272,7 @@
 							
 						</li>
 						<li>
-							<span>仅支持小于250k的png/jpg格式,推荐1280*720分辨率</span>
+							<span>仅支持小于250KB的png/jpg格式,推荐1280*720分辨率</span>
 							<label>*</label>
 						</li>
 					</ul>

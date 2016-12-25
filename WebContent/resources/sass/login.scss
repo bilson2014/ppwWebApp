@@ -51,7 +51,7 @@ body {
         display: inline-block;
         vertical-align: top;
         position: relative;
-        left: -93px;
+        left: -100px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             left: -50px;
         }
@@ -74,8 +74,6 @@ body {
                 margin-left: 52px;
             }
         }
-
-
         .infoItem {
             position: relative;
             margin-left: 83px;
@@ -125,14 +123,18 @@ body {
 
 .showArea {
     background: #fff;
-    width: 480px;
+    width: 400px;
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
-    padding: 60px 64px 60px 64px;
-    @media screen and (max-width: 1276px) {
-        width: 400px;
-        padding: 20px 34px 20px 34px;
+    padding: 20px 34px 20px 34px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 480px;
+        padding: 50px 54px 50px 54px;
+    }
+    @media screen and (min-width: 1500px) {
+        width: 480px;
+        padding: 60px 64px 60px 64px;
     }
     font-size: 0;
     border-radius: 4px;
@@ -385,9 +387,21 @@ body {
     }
     li:nth-child(3) {
         background: url('/resources/images/login/wb.png') no-repeat;
-        background-position: 72px 0px;
+        background-position: 45px 0px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            background-position: 72px 0px;
+        }
+        @media screen and (min-width:1500px) {
+            background-position: 72px 0px;
+        }
         &:hover {
-            background-position: 66px -45px;
+            background-position: 45px -45px;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                background-position: 66px -45px;
+            }
+            @media screen and (min-width:1500px) {
+                background-position: 66px -45px;
+            }
         }
     }
 }

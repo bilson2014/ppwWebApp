@@ -171,7 +171,7 @@ input:-webkit-autofill {
             line-height: $font-size-base;
         }
         span:nth-child(2) {
-            font-size: $font-size-sm;
+            font-size: $font-size-base;
             color: $gray-dark;
             width: 300px;
             @include ellipsis;
@@ -475,13 +475,14 @@ input:-webkit-autofill {
         color: $gray;
         &:hover {
             background: $gray-light !important;
-        }
-        div:nth-child(1) {
+             div:nth-child(1) {
             background-position: 0px -14px;
         }
         div:nth-child(2) {
-            color: $gray-dark !important;
+            color: white !important;
         }
+        }
+       
         div {
             display: inline-block;
             overflow: top;

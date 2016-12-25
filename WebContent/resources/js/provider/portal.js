@@ -4,7 +4,7 @@ var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	$('.tooltip-wati').show();
-	
+	showPassInfo();
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
@@ -47,6 +47,17 @@ function getHeight(num){
 	}
 }
 
+function showPassInfo(){
+	var pass = $('.userProduct');
+	pass.on('click',function(){
+		if(pass.hasClass('showInfo')){
+			var info = pass.attr('data-content');
+			$('#tooltip-check').show();
+			$('#checkInfo').text(info);
+		}
+	});
+
+}
 
 
 function hideSuccessTooltip(){

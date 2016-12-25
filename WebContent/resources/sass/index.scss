@@ -334,14 +334,16 @@ input:focus {
         @media screen and (max-width: 1275px) {
             width: 240px;
             background-size: 240px 142px !important;
+            margin-right: 9px;
         }
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: 280px;
             height: 180px;
             background-size: 280px 180px !important;
+            margin-right: 9px;
         }
         display: inline-block;
-        margin-right: 9px;
+        
         margin-top: 80px;
         @media screen and (min-width: 960px) and (max-width: 1275px) {
             margin-right: 0px;

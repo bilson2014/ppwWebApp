@@ -233,13 +233,11 @@
                     </div>
                     <div class="userName">${provider.teamName }</div>
                                  <c:if test="${provider.flag == 2}">
-										 <div class="userProduct">公司主页
-										  <span>审核通过方可进入公司主页</span>
+										 <div class="userProduct showInfo" data-content="您的资质未通过审核，暂时无法查看，请完善相关资质重新提交审核！" >公司主页
 										 </div>
 								 </c:if>
 								 <c:if test="${provider.flag == 0}">
-										 <div class="userProduct">公司主页
-										   <span>审核通过方可进入公司主页</span>
+										 <div class="userProduct showInfo" data-content="您的资质正在审核中，暂时无法查看！">公司主页
 										 </div>
 								 </c:if> 
 								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
@@ -261,7 +259,7 @@
                     </div>
                 </div>
                 <div class="right-wrap">
-                       <div class="titleTop" id="titleTop">个人信息</div>
+                       <div class="titleTop" id="titleTop">作品列表</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
        </div>

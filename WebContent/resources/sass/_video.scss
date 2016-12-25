@@ -70,7 +70,7 @@
 		line-height: 12px;
 		@include ellipsis;
 		font: {
-			size: $font-size-base;
+			size: $font-size-sm;
 		}
 		margin-bottom: 12px;
 	}
@@ -145,12 +145,13 @@
 	margin-bottom: 20px;
 	@include media_screen_width();
 	text-align: center;
-	font-size: $font-size-lger;
+	font-size: $font-size;
 	color: $gray;
-	line-height: $font-size-lger;
+	line-height: $font-size;
 
 	a {
-	    color:blue;
+	    color:$red-base;
 	    font-weight: 600;
 	}
 }
+

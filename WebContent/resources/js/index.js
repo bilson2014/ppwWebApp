@@ -263,7 +263,7 @@ var homePage = {
 
 	    var director = new Swiper('.swiper-director', {
 	        pagination: '.swiper-pagination',
-	        slidesPerView: 5,
+	        slidesPerView: 4,
 	       // centeredSlides: true,
 	        paginationClickable: true,
 	        spaceBetween: 12,
