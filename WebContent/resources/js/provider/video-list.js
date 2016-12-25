@@ -1,4 +1,3 @@
-var hasVideo = false;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
@@ -70,25 +69,18 @@ $().ready(function() {
 				var picUrl = $(this).attr('src');
 				var videoPath = getDfsHostName() + videoUrl;
 				$('#playVideo').removeClass('hide');
-				if (!hasVideo) {
-					var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
-							+   '<div class="openVideoCommon"></div>'
-							+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="'+picUrl+'"  name="media" id="header3Video"> '
-							+'<source  src="'+videoPath+'"  id="source" type="video/mp4">'
-							+ '</video></div>';
-					$body += '</div>';
-					$("body").append($body);
-					hasVideo = true;
-					initClose();
-					setTimeout(function(){
-						 $('#header3Video').addClass('active');
-						},100);
-				} else {
-					document.getElementById('header3Video').play();
-					setTimeout(function(){
-						 $('#header3Video').addClass('active');
-						},100);
-				}
+				$(".openVideo") && $(".openVideo").remove();
+				var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
+						+   '<div class="openVideoCommon"></div>'
+						+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="'+picUrl+'"  name="media" id="header3Video"> '
+						+'<source  src="'+videoPath+'"  id="source" type="video/mp4">'
+						+ '</video></div>';
+				$body += '</div>';
+				$("body").append($body);
+				initClose();
+				setTimeout(function(){
+					 $('#header3Video').addClass('active');
+					},100);
 			});
 		},
 		visibleProduct:function(){
@@ -180,6 +172,7 @@ $().ready(function() {
 				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
 				server : '/provider/multipUploadFile',
+				timeout:0,
 				pick : picker,
 				fileSingleSizeLimit : video_max_size,
 				accept :{

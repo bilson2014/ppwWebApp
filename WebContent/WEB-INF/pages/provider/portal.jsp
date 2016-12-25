@@ -23,7 +23,6 @@
 <spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
-
 <spring:url value="/resources/images/user" var="imgPath"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -64,7 +63,11 @@
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
 <div class="header headerMove" id="header">
+		<input type="hidden" id="bean-flag" value="${provider2.flag }">
+		<input type="hidden" id="recommendation" value="${recommendation.recommendation }">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+ 		<input type="hidden" id="bean-checkStatus" value="${provider2.checkStatus }">
+		<input type="hidden" id="checkDetails" value="${provider2.checkDetails}">
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>

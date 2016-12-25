@@ -553,6 +553,10 @@ public class PCController extends BaseController {
 		if (team != null) {
 			model.addAttribute("provider", team);
 		}
+		Team provider2 = getLatestTeam(request);
+		if (provider2 != null) {
+			model.addAttribute("provider2", provider2);
+		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
 				+ "flag is " + flag, sessionInfo);
@@ -726,5 +730,23 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news info",sessionInfo);
 		return new ModelAndView("/news");
+	}
+	
+	/**
+	 * 获取最新的供应商信息,最新代表,若存在待审核,则待审核是最新消息
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public Team getLatestTeam(final HttpServletRequest request) {
+		final SessionInfo info = getCurrentInfo(request);
+		final String url = GlobalConstant.URL_PREFIX + "portal/team/static/latest/" + info.getReqiureId();
+		final String json = HttpUtil.httpGet(url, request);
+		if (ValidateUtil.isValid(json)) {
+			final Team team = JsonUtil.toBean(json, Team.class);
+			return team;
+		}
+
+		return null;
 	}
 }
