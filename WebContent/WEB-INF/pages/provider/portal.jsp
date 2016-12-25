@@ -69,7 +69,7 @@
 	<div class="header-content">
 <div class="header headerMove" id="header">
 		<input type="hidden" id="bean-flag" value="${provider2.flag }">
-		<input type="hidden" id="recommendation" value="${recommendation.recommendation }">
+		<input type="hidden" id="recommendation" value="${provider2.recommendation }">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
  		<input type="hidden" id="bean-checkStatus" value="${provider2.checkStatus }">
 		<input type="hidden" id="checkDetails" value="${provider2.checkDetails}">

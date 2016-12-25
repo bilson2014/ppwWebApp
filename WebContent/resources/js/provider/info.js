@@ -388,7 +388,6 @@ function updateProvider(){
 							dealTeamTmpAndUpdateTeamDesc();
 							$(window.parent.document).find('#tooltip-check').hide();
 						});
-						
 					}else{
 						updateProviderInfo();
 					}
@@ -422,7 +421,8 @@ function updateProvider(){
 					description : $('#company-description').val().trim(),
 					phoneNumber : $('#company-phoneNumber').val().trim(),
 					teamProvince : $('#getProvince').attr('data-value'),
-					teamCity : $("#getCity").attr('data-value')
+					teamCity : $("#getCity").attr('data-value'),
+					teamPhotoUrl : $('#user_img_url').val()
 				}));
 			}
 		}
