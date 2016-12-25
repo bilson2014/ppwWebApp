@@ -1,6 +1,5 @@
 var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
-	jQuery('.no-js').scrollbar();
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
@@ -103,10 +102,19 @@ function verifyData() {
 
 	var qq = $('#company-qq').val().trim(); // QQ
 	if (qq == '' || qq == null || qq == undefined) {
+		
 		showCommonError($('#company-qq-error'),"请输入QQ号码!");
 		$('#company-qq').focus();
 		return false;
 	}
+	
+	var reg = /^[1-9]\d{4,9}$/;
+	if(!qq.match(reg)&&(qq == '' || qq == null || qq == undefined)){
+		showCommonError($('#company-qq-error'),"QQ号码有误!");
+		$('#company-qq').focus();
+			return false;
+	}
+
 	
 	var province = $('#getProvince').attr('data-value'); // 所在城市
 	if (province == '' || province == null || province == undefined) {

@@ -1404,6 +1404,7 @@ a {
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
+
 //成功提示
 .showSuccess {
     width: 100%;
@@ -1412,7 +1413,7 @@ a {
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 45;
+    z-index: 230;
     .cCloseBtn {
         width: 24px;
         height: 24px;
@@ -1447,6 +1448,7 @@ a {
     left: 50%;
     margin-top: -143px;
     margin-left: -201px;
+    z-index: 101;
 }
 
 .successWord {
