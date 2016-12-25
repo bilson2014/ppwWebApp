@@ -48,6 +48,8 @@
 	<link rel="stylesheet" href="${webuploaderCss }">
 	<link rel="stylesheet" href="${providerInfoCss }">
 	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
+	<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
+<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -73,6 +75,7 @@
 	<!-- qq -->
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 	<spring:url value="/resources/images/provder" var="imgPath"/>
+	
 </head>
 <body style="height: auto;">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
