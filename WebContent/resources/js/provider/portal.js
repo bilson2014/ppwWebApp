@@ -48,23 +48,23 @@ function getHeight(num){
 
 
 function hideSuccessTooltip(){
-	$('.tooltip-success-show').hide('normal');
+	$('.tooltip-success-show').hide();
 }
 
 // 成功信息 提示框弹出方法
 function successToolTipShow(){
 	window.clearInterval(successIntervalObj);
-	$('.tooltip-success-show').slideDown('normal');
+	$('.tooltip-success-show').slideDown();
 	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
 
 function hideError(){
-	$('.tooltip-error-show').hide('normal');
+	$('.tooltip-error-show').hide();
 }
 
 // 成功信息 提示框弹出方法
 function successErrorTipShow(){
 	window.clearInterval(successIntervalObj);
-	$('.tooltip-error-show').slideDown('normal');
+	$('.tooltip-error-show').slideDown();
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
