@@ -103,6 +103,8 @@ $().ready(function() {
 					loadData(function(data){
 						if(data.code==1){
 							window.location.reload();
+						}else if(data.code==2){
+							showCommonError($('#loginName-error'),data.result);
 						}else{
 							showCommonError($('#veritifyCode-error'),data.result);
 						}
