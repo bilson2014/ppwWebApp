@@ -5,6 +5,7 @@ var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时�
 $().ready(function(){
 	$('.tooltip-wati').show();
 	showPassInfo();
+
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
@@ -86,6 +87,9 @@ function showPassInfo(){
 			var info = pass.attr('data-content');
 			$('#tooltip-check').show();
 			$('#checkInfo').text(info);
+			$('#sureCheck').on('click',function(){
+				$('#tooltip-check').hide();
+			});
 		}
 	});
 

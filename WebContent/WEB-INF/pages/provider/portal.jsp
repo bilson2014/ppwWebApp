@@ -24,6 +24,8 @@
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/images/user" var="imgPath"/>
+<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
+<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -42,6 +44,7 @@
 	<link rel="stylesheet" href="${providerPortalCss }">
 	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 	<link rel="shortcut icon" href="${imgPath }/../favicon.ico" >
+
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -57,6 +60,8 @@
 	<script src="${porviderPortalJs }"></script>
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
+	
+	
 </head>
 <body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
