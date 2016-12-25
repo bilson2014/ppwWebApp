@@ -1299,10 +1299,10 @@ input:focus {
 
 .join {
     background: url(/resources/images/index/joinS.jpg) no-repeat !important;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    @media screen and (min-width: 1276px) and (max-width: 1460px) {
         background: url(/resources/images/index/joinM.jpg) no-repeat !important;
     }
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: 1461px) {
         background: url(/resources/images/index/joinL.jpg) no-repeat !important;
     }
     background-size: cover !important;

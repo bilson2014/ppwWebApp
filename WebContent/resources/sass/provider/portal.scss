@@ -411,6 +411,22 @@ body {
     }
 }
 
+.tooltip-wati {
+    .watiCard {
+        position: absolute;
+        width: 120px;
+        height: 80px;
+        text-align: center;
+        color: $red-base;
+        font-size: 14px;
+        top: 50%;
+        left: 50%;
+        margin-top: -40px;
+        margin-left: -60px;
+    }
+}
+
+.tooltip-wati,
 .tooltip-check,
 .tooltip-warn-up {
     background: rgba(0, 0, 0, 0.8);
@@ -523,17 +539,15 @@ body {
                 background: $red-base;
                 &:hover {
                     color: white;
-                     background: darken($red-base, 10%);
+                    background: darken($red-base, 10%);
                 }
             }
             div:nth-child(2) {
                 color: white;
                 background: $gray-light !important;
-
                 &:hover {
                     color: white;
                     background: darken($gray-light, 10%) !important;
-
                 }
             }
         }
@@ -696,20 +710,21 @@ body {
 
 .progress-bar {
     background-color: #337ab7;
+    background-image: none !important;
 }
 
 
-/*定义滚动条轨道 内阴影+圆角*/  
-::-webkit-scrollbar-track  
-{  
-    border-radius: 90px;  
-    background-color: red;  
-}  
-  
-/*定义滑块 内阴影+圆角*/  
-::-webkit-scrollbar-thumb  
-{  
-    border-radius: 90px;  
-    background-color: red;  
-}  
+/*定义滚动条轨道 内阴影+圆角*/
 
+::-webkit-scrollbar-track {
+    border-radius: 90px;
+    background-color: red;
+}
+
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb {
+    border-radius: 90px;
+    background-color: red;
+}

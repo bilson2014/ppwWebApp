@@ -300,10 +300,13 @@ function hasAuditing() {
 	return flag == 1 ? true : false
 }
 function updateProviderInfo() {
+	$(window.parent.document).find('.tooltip-wati').show();
 	loadData(function(flag) {
+		$(window.parent.document).find('.tooltip-wati').hide();
 		if (flag) {
 			// 更新成功
 			successToolTipShow("更新成功");
+			
 		} else {
 			// 更新失败
 			successErrorTipShow('请重新保存');
@@ -334,7 +337,9 @@ function updateProviderInfo() {
 	}));
 }
 function dealTeamTmpAndUpdateTeamDesc(){
+	$(window.parent.document).find('.tooltip-wati').show();
 	loadData(function(flag){
+		$(window.parent.document).find('.tooltip-wati').hide();
 		if(flag){
 			// 
 			successToolTipShow("更新成功");
@@ -376,9 +381,6 @@ function updateProvider(){
 				//验证team是否修改 true存在修改 false 没有修改
 				loadData(function(flag){
 					var a = $("#bean-checkStatus").val();//是否存在再次审核
-					
-				
-					
 					if(flag || a !=""){
 						$(window.parent.document).find('#tooltip-check').show();
 						$(window.parent.document).find('#checkInfo').text('您修改了贵公司资料,需要再次进行审核,是否确定?');
@@ -429,7 +431,7 @@ function updateProvider(){
 //成功信息 提示框弹出方法
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-success-show').hide();
+	$(window.parent.document).find('.tooltip-success-show').show();
 	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
 	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
@@ -446,12 +448,12 @@ function hideError(){
 // 成功信息 提示框弹出方法
 function successErrorTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-error-show').hide();
+	$(window.parent.document).find('.tooltip-error-show').show();
 	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
 function showInfomation(title,body){
-	$(window.parent.document).find('#infomation').hide();
+	$(window.parent.document).find('#infomation').show();
 	$(window.parent.document).find('#infomation_title').text(title);
 	$(window.parent.document).find('#infomation_body').text(body);
 	$(window.parent.document).find('#closeInfo').on('click',function(){
