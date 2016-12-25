@@ -24,6 +24,7 @@ $().ready(function(){
 					id:'#upBtn',
 					multiple :false//弹窗时不允许多选
 				},
+				timeout:0,
 				fileSingleSizeLimit : video_max_size,
 				accept :{
 				    title: 'video',

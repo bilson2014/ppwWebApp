@@ -179,6 +179,7 @@ $().ready(function() {
 				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
 				server : '/provider/multipUploadFile',
+				timeout:0,
 				pick : picker,
 				fileSingleSizeLimit : video_max_size,
 				accept :{
