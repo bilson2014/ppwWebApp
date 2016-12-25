@@ -788,15 +788,21 @@ public class ProviderController extends BaseController {
 							msg.setCode(1);
 							msg.setResult("修改成功");
 						}
-					} else
+					} else{
+						msg.setCode(3);
 						msg.setResult("验证码错误");
+					}
+						
 				}else{
+					msg.setCode(3);
 					msg.setResult("验证码无效");
 				}
 			}else{
+				msg.setCode(3);
 				msg.setResult("供应商未登录");
 			}
 		}else{
+			msg.setCode(2);
 			msg.setResult("用户名已经存在");
 		}
 		return msg;
