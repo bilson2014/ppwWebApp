@@ -58,8 +58,7 @@ $().ready(function() {
 								showCommonError($('#loginName-error'),"用户名已经重复");
 								$("#loginName").focus();
 							}else{
-								resumeCommonError($(".setItem"),'');
-								$(".setItem").remove("errorIcon").remove("sureIcon");
+								showCommonError($('#loginName-error'),"");
 							}
 						}, getContextPath() + '/provider/checkExisting', $.toJSON({
 							loginName : $("#loginName").val().trim()
@@ -317,7 +316,7 @@ function checkData(type){
 			return false;
 		}
 		if(!checkMobile(newTelPhone)){
-			showCommonError($('#new-phoneNumber-error'),"请输入正确格式的手机号");
+			showCommonError($('#new-phoneNumber-error'),"请输入正确的手机号码");
 			$("#new-phoneNumber").focus();
 			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
 			return false;

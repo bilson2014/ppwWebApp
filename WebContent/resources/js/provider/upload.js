@@ -73,8 +73,12 @@ $().ready(function(){
 			$('#creationTime').datepicker({
 				language: 'zh',
 				dateFormat:'yyyy-MM-dd',
-				maxDate: new Date() 
+				maxDate: new Date(),
+				autoClose:true
 			});
+			if(!$("#creationTime").val()){
+				$("#creationTime").val(new Date().Format("yyyy-MM-dd"));
+			}
 			// 注册 标签输入 监听
 			$('.input_inner').bind('keypress',function(event){
 				// 如果含有, 或者 空格 ，则添加标签，然后清空input
@@ -106,7 +110,12 @@ $().ready(function(){
 					}
 				}else {
 					addTags(tag); // 增加标签
+					
 				}
+				$('.btn_keyword_del').unbind('click');
+				$('.btn_keyword_del').bind('click',function(){
+					removeTags($(this));
+				});
 			});
 			// 激活 x 
 			$('.btn_keyword_del').unbind('click');
