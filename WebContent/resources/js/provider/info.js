@@ -1,5 +1,6 @@
 var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
+	jQuery('.no-js').scrollbar();
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
