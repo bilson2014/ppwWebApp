@@ -174,7 +174,7 @@ function checkStepOne(){
 	if(qq != '' || qq != null || qq != undefined){
 		var reg = /^[1-9]\d{4,9}$/;
 		if(!qq.match(reg)){
-			showErrorLeader($('#company-qq-error'),'请输入QQ号码!');
+			showErrorLeader($('#company-qq-error'),'QQ号码有误!');
 				$('#company-qq').focus();
 				return false;
 		}
