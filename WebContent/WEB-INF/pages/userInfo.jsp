@@ -5,27 +5,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
-<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
-<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/css/userInfo.css" var="userInfoCss"/>
+<spring:url value="/resources/css/commons.css" var="commonCss"/>
+<spring:url value="/resources/css/provider/portal.css" var="providerPortalCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css"
+	var="webuploaderCss" />
 <%-- import JS --%>
-<spring:url value="/resources/lib/html5shiv/html5shiv.js" var="html5shivJs"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/>
-<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs"/>
+<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
-<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
-<spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/juicer.js" var="juicerJs"/>
-<spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
-<spring:url value="/resources/images" var="imgPath"/>
-
+<spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
+<spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
+<spring:url value="/resources/js/juicer.js" var="juicerJs" />
+<spring:url value="/resources/images/user" var="imgPath"/>
+<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
+<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -35,15 +35,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网,用户信息,用户资料,拍片网资料,导演信息">
+	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销_个人信息修改页面</title>
+	<title>拍片网 | 供应商页面</title>
 	<link rel="stylesheet" href="${normalizeCss }">
-	<link rel="stylesheet" href="${jcropCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
-	<link rel="stylesheet" href="${userInfoCss }">
-	<link rel="stylesheet" href="${webuploaderCss }">
-	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	<link rel="stylesheet" href="${commonCss }">
+	<link rel="stylesheet" href="${providerPortalCss }">
+	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
+	<link rel="shortcut icon" href="${imgPath }/../favicon.ico" >
+
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -51,32 +52,27 @@
 	<script src="${pluginJs }"></script>
 	<script src="${bootstrapJs }"></script>
 	<script src="${ajaxfileuploadJs }"></script>
-	<script src="${webuploaderJs }" ></script>
 	<script src="${jsonJs }"></script>
-	<script src="${jcropJs }"></script>
-	<script src="${jcropColorJs }"></script>
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
+	<script src="${suggestJs }"></script>
+	<script src="${porviderPortalJs }"></script>
+	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
-	<script src="${userInfoJs }"></script>
 	
 	
-<!-- sina weibo -->
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
-	<!-- webcat -->
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-	<!-- qq -->
-	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 </head>
-<body>
+<body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" id="user_sex" value="${user.sex }"/>
-	<input type="hidden" id="user_unique" value="${user.id }"/>
-	<input type="hidden" id="user_img" value="${user.imgUrl }"/>
-	
-	 <div class="header headerMove" id="header">
+	<input type="hidden" value="${flag}" id="portal-flag"/>
+	<div class="header-content">
+<div class="header headerMove" id="header">
+		<input type="hidden" id="bean-flag" value="${provider2.flag }">
+		<input type="hidden" id="recommendation" value="${provider2.recommendation }">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+ 		<input type="hidden" id="bean-checkStatus" value="${provider2.checkStatus }">
+		<input type="hidden" id="checkDetails" value="${provider2.checkDetails}">
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
@@ -136,427 +132,135 @@
             </div>
         </div>
     </div>
+	</div>
+
 	
-	<div class="page">
-		<div class="user-content">
-				<section class="user-img-section-wrap">
-					<div class="user-img">
-						<img alt="用户头像" src="${imgPath }/icons/default.png" class="img-circle" id="user-circle-img"/>
-					</div>
-					<div class="user-info">
-						<h1 id="user-name">${user.userName }</h1>
-						<p id="user-telephone">${user.telephone }</p>
-					</div>
-				</section>
-				<section class="user-info-section-wrap" style="height:525px!important">
-					<div class="user-info-wrap">
-						<div class="navigation">
-							<ul class="nav nav-tabs">
-								<li><a href="javascript:void(0);" data-url="self-info-content">个人资料</a></li>
-								<li id="safe-point"><a href="javascript:void(0);" data-url="password-info-content">安全设置</a></li>
-								<li><a href="javascript:void(0);" data-url="userpic-info-content">头像修改</a></li>
-								<li><a href="javascript:void(0);" data-url="phone-info-content">更换手机</a></li>
-								<li><a href="javascript:void(0);" data-url="three-band">三方绑定</a></li>
-							</ul>
-						</div>
-						<div class="self-info-content information">
-							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">昵称</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="nickName" value="${user.userName }" tabindex="1" placeholder="请输入昵称" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="label-nickName" class="label-message hide" >请输入用户昵称</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">性别</label>
-									<div class="col-sm-5">
-										<label class="radio-inline">
-											<input type="radio"  value="0" name="sex">男性
-										</label>
-										<label class="radio-inline">
-											<input type="radio"  value="1" name="sex">女性
-										</label>
-										<label class="radio-inline">
-											<input type="radio"  value="2" name="sex">保密
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">真实姓名</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="trueName" value="${user.realName }" tabindex="2" placeholder="请输入真实姓名" autocomplete="off" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">公司名称</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
-										<label id="label-company" class="label-message hide" >请输入正确的邮箱地址</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">电子邮件</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="label-email" class="label-message hide" >请输入正确的邮箱地址</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">QQ</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">微信</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
-									</div>
-								</div>
-									<div class="form-group">
-									<label class="col-sm-2 control-label">客户来源</label>
-									<div class="col-sm-5">
-										<select class="tableinput-baseinfo form-control selectdiv" id="customerSource" >
-										<c:if test="${!empty userSource}">
-											<c:forEach items="${userSource }" var="source" varStatus="status">
-											  <option value ="${source.key }" 
-											  	<c:if test="${user.customerSource == source.key }">
-											  		selected="selected"
-											  	</c:if> >${source.value }</option>
-											</c:forEach>
-										</c:if>
-										</select>
-									</div>
-									<div class="col-sm-5">
-										<label id="" class="label-message hide" >请输入来源</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"></label>
-									<div class="col-sm-5">
-										<a class="btn btn-primary" href="javascript:void(0);" id="self-info-contentBt" >修改</a>
-									</div>
-								</div>
-							</form>
-						</div>
-						
-						<!-- 密码修改 -->
-						<div class="password-info-content information">
-						
-						   <div  id="ins">
-							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
-							<div class="form-group">
-									<label class="col-sm-2 control-label item-height">用户名</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" id="insuserName" tabindex="1" placeholder="请输入用户名" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="insuserName-error" class="label-message hide" ></label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">新密码</label>
-									<div class="col-sm-5">
-										<input type="password" class="form-control" id="insPassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="insPassword-error" class="label-message hide" >请输入6位以上密码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">密码确认</label>
-									<div class="col-sm-5">
-										<input type="password" class="form-control" id="insTwoPassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label id="insTwoPassword-error" class="label-message hide" >两次输入的密码不一致</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">验证码</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="veritifyCode-pwd" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
-									</div>
-									<div class="col-sm-3">
-										<button type="button" data-flag="new-bind" class="btn btn-default codeBt" id="pwd-codeBt">获取验证码</button>
-									</div>
-									<div class="col-sm-4">
-										<label id="label-code" class="label-message hide" >请输入验证码</label>
-										<label id="label-code-error" class="label-message hide" >验证码错误</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"> </label>
-									<div class="col-sm-5">
-										<a class="btn btn-primary" href="javascript:void(0);" id="password-info-contentBt" >修改</a>
-									</div>
-								</div>
-							</form>
-							</div>
-							
-							<div  class="hide" id="upd">
-							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">用户名</label>
-									<div class="col-sm-5">
-										<div class="col-sm-2 control-label item-height" id = "userLoginName" style="width:100px">${user.loginName }</div>
-									</div>
-									<div class="col-sm-5">
-										<label id="label-passw0rd" class="label-message hide" >请输入6位以上密码</label>
-									</div>
-								</div>
-								
-								<!--  
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">原密码</label>
-									<div class="col-sm-5">
-										<input type="password" class="form-control" id="upd-passwords"  placeholder="请输入原密码" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label  class="label-message hide" id ="upd-password-error">请输入6位以上密码</label>
-									</div>
-								</div>
-								 -->
-								
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">新密码</label>
-									<div class="col-sm-5">
-										<input type="password" class="form-control" id="upd-newpassword" tabindex="1" placeholder="请输入6位以上密码" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label  class="label-message hide" id = "upd-newpassword-error" >请输入6位以上密码</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label item-height">密码确认</label>
-									<div class="col-sm-5">
-										<input type="password" class="form-control" id="upd-towpassword" tabindex="1" placeholder="请输入6位以上确认密码" autocomplete="off" />
-									</div>
-									<div class="col-sm-5">
-										<label  class="label-message hide" id = "upd-towpassword-error">两次输入的密码不一致</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">验证码</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="upd-veritifyCode" tabindex="2" placeholder="请输入验证码" autocomplete="off" />
-									</div>
-									<div class="col-sm-3">
-										<button type="button" class="btn btn-default codeBt" id="upd-codeBt">获取验证码</button>
-									</div>
-									<div class="col-sm-4">
-										<label id="upd-label-code" class="label-message hide" >请输入验证码</label>
-										<label id="upd-label-code-error" class="label-message hide" >验证码错误</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"> </label>
-									<div class="col-sm-5">
-										<a class="btn btn-primary" href="javascript:void(0);" id="upd-btn" >修改</a>
-									</div>
-								</div>
-							</form>
-							</div>
-						</div>
-						
-						<!-- 头像修改 -->
-						<div class="userpic-info-content information">
-							<div class="userpic-wrap">
-								<div class="user-img-content">
-									<div class="user-icon">
-										<img alt="用户头像" src="${imgPath }/icons/default.png" class="img-circle" id="user-img"/>
-									</div>
-									<div class="upload-btn">
-										<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
-										<div id="uploadBt">上传头像</div>
-										<input type="file" name="file" id="file" style="display: none;"/> 
-									</div>
-									
-									<div class="upload-info">
-										<label>仅支持JPG、	PNG格式，文件小于2M</label>
-									</div>
-								</div>
-								<div class="alternative-img-content">
-									<div class="alternative-img-wrap">
-										<ul>
-											<li><img alt="" src="${imgPath}/user/icon1.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon2.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon3.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon4.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon5.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon6.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon7.jpg"></li>
-											<li><img alt="" src="${imgPath}/user/icon8.jpg"></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- 更换手机 -->
-						<div class="phone-info-content information">
-							<form class="form-horizontal" role="form" method="post" autocomplete="off" accept-charset="UTF-8" >
-								<div class="form-group form-margin-5">
-									<label class="col-sm-2 control-label label-height" >原手机号码</label>
-									<div class="col-sm-5">
-										<label id="concat_tele_old">${user.telephone }</label>
-									</div>
-								</div>
-								<div class="phone-bind">
-								</div>
-							</form>
-						</div>
-						<div class="three-band information">
-						<!-- 提示框 -->
-						<div class="tooltip-showBand">
-							<label class="tooltip-message">修改成功!</label>
-						</div>
-						  <div class="noBand" id="wechat">
-						       <div class="inLine"><img src="${imgPath}/icons/webcat.png"></div>
-						       <div class="inLine vertical">
-						            <ul>
-						               <li>微信登录</li>
-						               <li class="bandWord" id="wechatWord"></li>
-						            </ul>
-						       </div>
-						       <div class="bandBtn" data-status="0" id="wechatBtn"></div>
-						  </div>
-								  
-						 <div class="line"></div>
-								  
-					    <div class="noBand" id="qq">
-						   <div class="inLine"><img src="${imgPath}/icons/qq.png"></div>
-						       <div class="inLine vertical">
-						            <ul>
-						               <li>QQ账号</li>
-						               <li class="bandWord" id="qqWord"></li>
-						            </ul>
-						       </div>
-						       <div class="bandBtn" data-status="0" id="qqBtn"></div>
-						  </div>
-						  
-						  <div class="line"></div>
-										  
-					    <div class="noBand" id="wb">
-						   <div class="inLine"><img src="${imgPath}/icons/weibo.png"></div>
-						       <div class="inLine vertical">
-						            <ul>
-						               <li>微博账号</li>
-						               <li class="bandWord" id="wbWord"></li>
-						            </ul>
-						       </div>
-						       <div class="bandBtn" data-status="0" id="wbBtn"></div>
-						  </div>
-						</div>
-								
-							
-								
-						
-						<!-- 提示框 -->
-						<div class="tooltip-show">
-							<label class="tooltip-message">信息修改成功!</label>
-						</div>
-					</div>
-				</section>
-			</div>
+	<div class="infomation" id="infomation" style="display: none;">
+	        <label id="infomation_title">*您的资质提交已经成功提交,审核中...</label>
+	        <label id="infomation_body">官方将在3个工作日内完成您的资质审核,敬请等候...</label>
+	        <div class="closeInfo" id="closeInfo"></div>
+	</div>
+	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
+	</div>
+	
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
 	
 	
-<!-- foot -->
-         					<div class="foot3">
-                                <div class="footContent">
-                                    <div class="contentTop">
-                                        <div class="topItem codeWidth">
-                                            <div class="Twocode"></div>
-                                            <div class="smWord">扫一扫 关注官方微信</div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>登录</a></div>
-                                            <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
-                                            <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
-                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
-                                            <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>关于拍片网</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/about-us.html' />">了解我们</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/member.html#join-us' />">加入我们</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/company-activity.html' />">公司活动</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/member.html#activityPart' />">团队介绍</a></div>
-                                        </div>
-                                        <div class="topItem commonWidth">
-                                            <div class="title"><a>服务</a></div>
-                                            <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
-                                        </div>
-                                        <div class="topItem onLineWidth">
-                                            <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
-                                            <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
-                                        </div>
-                                        <div class="topItem">
-                                            <div class="title"><a>咨询电话</a></div>
-                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
-                                            <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="contentBottom">
-                                        <div>版权信息</div>
-                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
-                                        <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--新版底部-->
+	<div class="tooltip-check" id="tooltip-check" >
+	     <div class="checkCard">
+	          <div class="closeCheck" id='closeCheck'></div>
+	          <div class="checkInfo" id="checkInfo">error</div>
+	          <div class="checkBottom">
+	                 <div class="sureCheck" id="sureCheck">确认</div>
+	                 <div class="falseCheck" id="falseCheck">取消</div>
+	          </div>
+	     </div>
+	</div>
+
+	 <div class="tooltip-warn-up" >
+		 <div class="infoCard showwarn">
+			   <div class="closeX closewarn"></div>
+			   <div class="title">拍片网郑重提醒您：</div>
+			   <div class="redWord">上传作品必须为贵公司或贵工作室及个人的原创作品;</div>
+			   <div class="redWord">不得上传有贵公司或贵工作室及个人二维码/电话/手机/微信等联系方式的作品;</div>
+			   <div class="redWord">作品必须填写创作完成日期。</div>
+			   <div class="midWord">为响应国家九部委联合开展深入整治互联网和手机媒体淫秽色情及低俗信息专项行动的号召，营造一个
+	健康文明的网络环境，给大家一个和谐积极的家园。</div>
+	           <div class="grayWord">不得上传任何有违国家法律法规的视频。</div>
+	           <div class="grayWord">不得上传具有色情内容的视频</div>
+	           <div class="grayWord">不得上传内容低俗，格调不高的视频。</div>
+	           <div class="grayWord">  不得上传具有色情诱导性内容的视频。</div>
+	           <div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
+	           <div class="grayWord">不含有涉及版权问题的影视片段。</div>
+	           <div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+	           <div class="bottom">
+	             	   <div class='showmultipUpload'>确定</div>
+	                   <div class='closewarn'>取消</div>
+	           </div>
+		 </div>
+		 
+		 		 
+		 <div class="selectVideo">
+		     <div class="top">
+		       <div class="closeX closewarn"></div>
+		       <div class="title">批量上传作品</div>
+		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
+		     </div>
+		     <div class="mid" id='video-container'>
+		        
+		     </div>
+		     
+		     <div class="bottom">
+		        <div class="picker" id='picker'>选择文件</div>
+		        <div class="btn-c-r begin" id='submit-multip'>开始上传</div>
+		        <div class='closewarn-refresh'>关闭</div>
+		     </div>
+		 </div>
 	</div>
 	
-	<!-- photo Modal start -->
-	<div class="modal" id="mymodal">
-		<div class="modal-dialog">
-			<div class="modal-content model-distance">
-				<div class="modal-header model-no-border">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				</div>
-				<div class="modal-body">
-					<div class="modal-left">
-						<div class="modal-original">
-							<img alt="" src="" id="modal-original-img">
-						</div>
-					</div>
-					<div class="modal-right">
-						<div class="modal-preview-container">
-							<img alt="" src="" id="modal-preview">
-						</div>
-						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- photo Modal start -->
-	
-	<!-- photo Modal start -->
-	<div class="modal" id="errorModal">
-		<div class="modal-dialog">
-			<div class="modal-content model-distance">
-				<div class="modal-body">
-					<label id="error-message"></label>
-					<button type="button" class="btn btn-warning" id="iKnow">知道了</button>
-				</div>
-			</div>
-			
-			
-		</div>
-	</div>
-	<!-- photo Modal start -->
+	<div class="tooltip-wati" >
+		     <div class="watiCard">
+		         <img src="/resources/images/icons/wait.gif">
+		         <div>进度处理中...</div>
+		     </div>
+		 </div>
+	 
+
+	 <div class="page" style="height:100%">
+
+       <div class="user-wrap">
+                <div class="left-wrap">
+                    <div class="left-header">
+                    	<a <c:if test="${provider.flag == 1 || provider.flag == 4}">href="/provider/info_${provider.teamId }.html"</c:if>>
+                          <img class="proLogo" id="proLogo" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"/>
+                         </a>
+                          <div class="isPass">
+			                     <c:if test="${provider.flag == 2}">
+										<img src="/resources/images/provder/noPass.png"><div class="noPass">未通过</div>
+								 </c:if>
+								 <c:if test="${provider.flag == 0}">
+										<img src="/resources/images/provder/wPass.png"><div class="wPass">审核中</div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
+										<img src="/resources/images/provder/pass.png"><div class="pass">已认证</div>
+								 </c:if>
+			                 </div>
+                    </div>
+                    <div class="userName">${provider.teamName }</div>
+                                 <c:if test="${provider.flag == 2}">
+										 <div class="userProduct showInfo" data-content="您的资质未通过审核，暂时无法查看，请完善相关资质重新提交审核！" >公司主页
+										 </div>
+								 </c:if>
+								 <c:if test="${provider.flag == 0}">
+										 <div class="userProduct showInfo" data-content="您的资质正在审核中，暂时无法查看！">公司主页
+										 </div>
+								 </c:if> 
+								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
+										                     <a href="/provider/info_${provider.teamId }.html">
+                    	                                           <div class="userProduct">公司主页</div>
+                                                             </a>
+								 </c:if>
+
+                    <div class="left-content">
+                         <div class="infoItem activeThis">
+                                <div class="product" data-action="video-list">作品列表</div>
+                         </div>  
+                          <div class="infoItem">
+                                <div class="info" data-action="company-info">公司信息</div>
+                         </div>
+                          <div class="infoItem">
+                                 <div class="safeInfo" data-action="safe-info">安全设置</div>
+                         </div> 
+                    </div>
+                </div>
+                <div class="right-wrap">
+                       <div class="titleTop" id="titleTop">作品列表</div>
+                       <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
+                </div>
+       </div>
+    </div>
 </body>
 </html>

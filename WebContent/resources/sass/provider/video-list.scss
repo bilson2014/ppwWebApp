@@ -155,11 +155,13 @@ input:-webkit-autofill {
     }
 }
 
+
 .mid {
     margin-left: 18px;
     position: relative;
     .title {
         font-size: 0;
+        line-height: $font-size-base;
         span {
             display: inline-block;
             vertical-align: top;
@@ -171,7 +173,7 @@ input:-webkit-autofill {
             line-height: $font-size-base;
         }
         span:nth-child(2) {
-            font-size: $font-size-base;
+            font-size: $font-size-sm;
             color: $gray-dark;
             width: 300px;
             @include ellipsis;

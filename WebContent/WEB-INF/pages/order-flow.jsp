@@ -134,7 +134,7 @@
                     <label>606 名脑洞超大的创 意人员随时抢单,创意策划完全免费!
 <br>根据预算,视频管家会从世界各地 5208 名 导演中,挑出最适合您的一位. </label>
                     <label>606 creative writers are ready to draft ideas. And it is all free! 
-Within your budget, the specialist<br> will find the best match from 5208 experienced directors all over the world. 
+Within your budget, <br>the specialist will find the best match from 5208 experienced directors all over the world. 
                     </label>
                 </div>
                 <div></div>
