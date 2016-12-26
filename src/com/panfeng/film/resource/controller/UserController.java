@@ -484,4 +484,19 @@ public class UserController extends BaseController{
 		Boolean b = JsonUtil.toBean(str, Boolean.class);
 		return b;
 	}
+	
+	// -----------------------------------------------------------------------------
+	
+	@RequestMapping("/infoCommon")
+	public ModelAndView infoCommonView(){
+		return new ModelAndView("userInfoCommon");
+	}
+	
+	@RequestMapping("/safeInfo")
+	public ModelAndView safeInfo(){
+		return new ModelAndView("userSafeInfo");
+	}
+	
+	
+	
 }
