@@ -225,25 +225,25 @@ function userpicInfo() {
 		if (path != '' && path != null) {
 			if (path.indexOf('false@error') > -1) {
 				if (path.indexOf("error=1") > -1) {
-					$('#.errorImg').text("文件超过最大限制");
+					$('.errorImg').text("文件超过最大限制");
 				} else if (path.indexOf("error=2") > -1) {
-					$('#.errorImg').text("格式不正确");
+					$('.errorImg').text("格式不正确");
 				}
 			} else {
 				$('#user_img_url').val(path);
 				var img = getDfsHostName() + path;
 				$('#user-img').attr('src', img);
-				$('#.errorImg').text("");
+				$('.errorImg').text("");
 			}
 		} else {
-		    $('#.errorImg').text("上传失败!");
+		    $('.errorImg').text("上传失败!");
 		}
 	});
 	uploader.on('error', function(type) {
 		if (type == "Q_TYPE_DENIED") {
-			$('#.errorImg').text("文件超过最大限制");
+			$('.errorImg').text("文件超过最大限制");
 		} else if (type == "F_EXCEED_SIZE") {
-			$('#.errorImg').text("格式不正确");
+			$('.errorImg').text("格式不正确");
 		}
 	});
 }
@@ -342,7 +342,8 @@ function updateProviderInfo() {
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function dealTeamTmpAndUpdateTeamDesc(){
@@ -378,7 +379,8 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function updateProvider(){

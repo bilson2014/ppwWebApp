@@ -365,8 +365,7 @@ public class PCController extends BaseController {
 		final String url = URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:" + list.size(), sessionInfo);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(),null);
 		return list;
 	}
 
