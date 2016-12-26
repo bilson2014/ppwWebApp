@@ -303,6 +303,19 @@ function checkData(){
 			$('#tagLabel').show().text("请填写作品标签！");
 			return false;
 		}
+		var tag = $("#text_tags").val().replace (/,/g,'').trim();
+		// 检查是否 汉字或是 全角
+		if(tag != null && tag != '' && tag != undefined){
+			var count = tag.replace(/[^\x00-\xff]/g,"**").length;
+			if(count > 16){
+				// 提示错误信息
+				$('#tagLabel').show().text("每个标签最多8个汉字或16个字母！");
+				return false;
+			}else {
+				$('#tagLabel').hide();
+				addTags(tag); // 增加标签
+			}
+		}
 	}
 	if(creationTime == null || creationTime == undefined || creationTime == ''){
 		showCommonError($('#creationTime-error'),"请输入创作时间");
