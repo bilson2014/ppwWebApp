@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +36,6 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.service.UserService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
@@ -54,8 +52,6 @@ import com.panfeng.film.util.ValidateUtil;
 @RestController
 public class PCController extends BaseController {
 
-	@Autowired
-	private UserService userService;
 
 	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
 
@@ -466,31 +462,6 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load Video Item, total number is " + list.size(), sessionInfo);
 		return list;
-	}
-
-	/**
-	 * 用户信息设置界面
-	 */
-	@RequestMapping("/user/info")
-	public ModelAndView userInfo(final HttpServletRequest request, final ModelMap model) {
-		final SessionInfo info = getCurrentInfo(request);
-		if (info != null) {
-			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
-			String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final User currentUser = JsonUtil.toBean(json, User.class);
-				currentUser.setPassword(null);
-				model.addAttribute("user", currentUser);
-			}
-			Map<Integer, String> sourecs = userService.getCustomerSource();
-			if (ValidateUtil.isValid(sourecs)) {
-				model.addAttribute("userSource", sourecs);
-			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(), sessionInfo);
-		}
-
-		return new ModelAndView("userInfo", model);
 	}
 
 	/**
