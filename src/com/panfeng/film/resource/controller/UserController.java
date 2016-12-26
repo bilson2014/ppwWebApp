@@ -497,6 +497,4 @@ public class UserController extends BaseController{
 		return new ModelAndView("userSafeInfo");
 	}
 	
-	
-	
 }
