@@ -10,6 +10,7 @@
 <spring:url value="/resources/css/userInfo.css" var="userInfoCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss"/>
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -25,8 +26,11 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
-
 <spring:url value="/resources/images" var="path" />
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
+<spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
+<spring:url value="/resources/js/juicer.js" var="juicerJs"/>
+
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -47,6 +51,7 @@
 	<link rel="stylesheet" href="${datepickerCss }">
 	<link rel="stylesheet" href="${webuploaderCss }">
 	<link rel="stylesheet" href="${userInfoCss }">
+	<link rel="stylesheet" href="${jcropCss }">
 	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 	<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
 <spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
@@ -68,6 +73,9 @@
 	<script src="${commonJs }"></script>
 	<script src="${userInfoJs }"></script>
 	<script src="${webuploaderJs}"></script>
+	<script src="${jcropJs }"></script>
+	<script src="${jcropColorJs }"></script>
+	<script src="${juicerJs }"></script>
 	<!-- sina weibo -->
 	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
 	<!-- webcat -->
@@ -114,7 +122,7 @@
 	      		                    <div class="title">当前头像</div>
 		      		                <div class="user-img-content">
 										<div class="user-icon">
-											<img alt="用户头像" src="/resources/images/provider/initLogo.png" data-value="${provider.teamPhotoUrl }" class="img-circle" id="user-img"/>
+											<img alt="用户头像" src="${user.imgUrl }" class="img-circle" id="user-img"/>
 											<input type="hidden" id="user_img_url" value="/resources/images/provider/initLogo.png">
 										</div>
 										<div class="upload-info">
@@ -157,7 +165,7 @@
                                 <input type="text" class="" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="contact-email-error">
-                                <div class="title">点击邮件</div>
+                                <div class="title">电子邮件</div>
                                 <input type="text" class="" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
                             </div>
                             <div class="infoItem">
