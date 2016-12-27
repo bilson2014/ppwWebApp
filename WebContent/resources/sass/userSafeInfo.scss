@@ -336,7 +336,7 @@ input:-webkit-autofill {
     line-height: 34px;
     font-size: $font-size-base;
     color: $red-base;
-    border-radius: 6px;
+    border-radius: 4px;
     &:hover {
         color: $white;
         background: $red-base;
@@ -351,7 +351,7 @@ input:-webkit-autofill {
     line-height: 34px;
     font-size: $font-size-base;
     color: $gray-light;
-    border-radius: 6px;
+    border-radius: 4px;
     &:hover {
         color: $white;
         background: $gray-light;

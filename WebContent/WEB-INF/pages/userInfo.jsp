@@ -24,7 +24,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
+<spring:url value="/resources/js/userInfo.js" var="userInfoJs"/>
 
 <spring:url value="/resources/images" var="path" />
 
@@ -66,7 +66,7 @@
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
 	<script src="${commonJs }"></script>
-	<script src="${providerInfoJs }"></script>
+	<script src="${userInfoJs }"></script>
 	<script src="${webuploaderJs}"></script>
 	<!-- sina weibo -->
 	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
