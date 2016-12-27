@@ -335,6 +335,8 @@ input:-webkit-autofill {
     // background-size:100%; 
 }
 
+var redInfo:darken($red-base,10%);
+var grayInfo:darken($gray-light,10%);
 .isBind {
     width: 60px;
     height: 36px;
@@ -344,9 +346,10 @@ input:-webkit-autofill {
     font-size: $font-size-base;
     color: $red-base;
     border-radius: 4px;
+    cursor: pointer;
     &:hover {
-        color: $white;
-        background: $red-base;
+        color: darken($redInfo,10%);
+        border: 1px solid $redInfo;
     }
 }
 
@@ -357,10 +360,11 @@ input:-webkit-autofill {
     text-align: center;
     line-height: 34px;
     font-size: $font-size-base;
-    color: $gray-light;
+    color: $gray;
     border-radius: 4px;
+    cursor: pointer;
     &:hover {
-        color: $white;
-        background: $gray-light;
+        color: darken($gray,10%);
+        border: 1px solid $grayInfo;
     }
 }

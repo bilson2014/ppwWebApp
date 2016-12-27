@@ -58,10 +58,8 @@ $().ready(function() {
 					noraml.hide();
 					userBind.show();
 				});
-				$('#bindReturn').on('click',function(){
-					noraml.show();
-					userBind.hide();
-				});
+
+				
 			},
 			loginNameValidate:function(){
 				$("#loginName").off("change").on("change",function(){
@@ -480,34 +478,37 @@ function bandInfo(){
 			$("#qq").find('state').text('绑定');
 			$("#qqSet").addClass("activeBind");
 			$("#qqSet").find('state').text('绑定');
-			$('#qqBtn').addClass('isBind');
-			$('#qqBtn').text('绑定');
-			$("#qqBtn").attr("data-status","1");
+			$('#qqBtn').addClass('isNotBind');
+			$('#qqBtn').text('取消绑定');
+			$("#qqBtn").attr("data-status","0");
+
 		}else{
 			$("#qqSet").removeClass("activeBind");
 			$("#qqSet").find('state').text('未绑定');
 			$("#qqSet").removeClass("activeBind");
 			$("#qqSet").find('state').text('未绑定');
-			$('#qqBtn').addClass('isNotBind');
-			$('#qqBtn').text('取消绑定');
-			$("#qqBtn").attr("data-status","0");
+			$('#qqBtn').addClass('isBind');
+			$('#qqBtn').text('绑定');
+			$("#qqBtn").attr("data-status","1");
+
 		}
 		if(data.wechat==1){
 			$("#wechat").addClass("activeBind");
 			$("#wechat").find('state').text('绑定');
 			$("#wechat").addClass("activeBind");
 			$("#wechat").find('state').text('绑定');
-			$('#wechatBtn').addClass('isBind');
-			$('#wechatBtn').text('绑定');
-			$("#wechatBtn").attr("data-status","1");
+			$('#wechatBtn').addClass('isNotBind');
+			$('#wechatBtn').text('取消绑定');
+			$("#wechatBtn").attr("data-status","0");
+
 		}else{
 			$("#wechatSet").removeClass("activeBind");
 			$("#wechatSet").find('state').text('未绑定');
 			$("#wechatSet").removeClass("activeBind");
 			$("#wechatSet").find('state').text('未绑定');
-			$('#wechatBtn').addClass('isNotBind');
-			$('#wechatBtn').text('取消绑定');
-			$("#wechatBtn").attr("data-status","0");
+			$('#wechatBtn').addClass('isBind');
+			$('#wechatBtn').text('绑定');
+			$("#wechatBtn").attr("data-status","1");
 		}
 		if(data.wb==1){
 			$("#wb").addClass("activeBind");
@@ -515,18 +516,24 @@ function bandInfo(){
 			$("#wbSet").addClass("activeBind");
 			$("#wbSet").find('state').text('绑定');
 			$('#wbBtn').addClass('isBind');
-			$('#wbBtn').text('绑定');
-			$("#wbBtn").attr("data-status","1");
+			$('#wbBtn').text('取消绑定');
+			$("#wbBtn").attr("data-status","0");
+
 		}else{
 			$("#wb").removeClass("activeBind");
 			$("#wb").find('state').text('未绑定');
 			$("#wbSet").removeClass("activeBind");
 			$("#wbSet").find('state').text('未绑定');
 			$('#wbBtn').addClass('isNotBind');
-			$('#wbBtn').text('取消绑定');
-			$("#wbBtn").attr("data-status","0");
+			$('#wbBtn').text('绑定');
+			$("#wbBtn").attr("data-status","1");
+		
 		}
 		//初始化第三方
+        $('#bindReturn').on('click',function(){
+        	$('#normal').show();
+            $('#userBind').hide();
+        });
 		userinfo_third.init();
 		
 	}, getContextPath() + '/user/third/status');
