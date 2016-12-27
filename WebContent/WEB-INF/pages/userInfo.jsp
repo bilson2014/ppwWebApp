@@ -104,11 +104,11 @@
 									</div>
 							</div>	
                             <div class="infoItem" id="company-name-error">
-                                <div class="title"><span>*</span>昵称</div>
+                                <div class="title">昵称</div>
                                 <input type="text" class="form-control" id="nickName" value="${user.userName }" tabindex="1" placeholder="请输入昵称" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="company-name-error">
-                                <div class="title notop"><span>*</span>性别</div>
+                                <div class="title notop">性别</div>
                                 <div class="sexCheckItem">
                                      <div class="sexCheck" data-value="0"></div>
                                      <div class="sexInfo">男</div>
@@ -123,23 +123,23 @@
                                 </div>
                             </div>
                              <div class="infoItem" id="company-email-error">
-                                <div class="title"><span>*</span>真实姓名</div>
+                                <div class="title">真实姓名</div>
                                 <input type="text" class="form-control" id="trueName" value="${user.realName }" tabindex="2" placeholder="请输入真实姓名" autocomplete="off" />
                             </div>
                              <div class="infoItem" id="company-address-error">
-                                <div class="title"><span>*</span>公司名称</div>
+                                <div class="title">公司名称</div>
                                 <input type="text" class="form-control" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="company-linkman-error">
-                                <div class="title"><span>*</span>点击邮件</div>
+                                <div class="title">点击邮件</div>
                                 <input type="text" class="form-control" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="company-phoneNumber-error">
-                                <div class="title"><span>*</span>QQ</div>
+                                <div class="title">QQ</div>
                                 <input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="company-webchat-error">
-                                <div class="title"><span>*</span>微信</div>
+                                <div class="title">微信</div>
                                 <input type="text" class="form-control" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
                             </div>
                             

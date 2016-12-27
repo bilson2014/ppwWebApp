@@ -51,30 +51,34 @@ body {
         margin-left: 95px;
         width: 650px;
         position: relative;
-
-        .notop{
-            top:0 !important;
+        .notop {
+            top: 0 !important;
         }
-
-        .sexCheckItem{
+        .sexCheckItem {
             display: inline-block;
             vertical-align: top;
             margin-right: 30px;
-            div{
+            div {
                 display: inline-block;
                 vertical-align: top;
-                color:$gray-dark;
+                color: $gray-dark;
                 font-size: $font-size-base;
             }
-
-            div:nth-child(1){
+            div:nth-child(1) {
                 background: url('/resources/images/icons/sexCheck.png');
                 height: 14px;
                 width: 14px;
                 margin-right: 10px;
             }
         }
-       
+        &:after {
+            content: "*";
+            position: absolute;
+            color: $red-base;
+            right: -8px;
+            top: 9px;
+            font-size: $font-size-sm;
+        }
         &:before {
             content: attr(data-content);
             position: absolute;
@@ -91,7 +95,6 @@ body {
             font-size: $font-size-base;
             position: relative;
             top: 11px;
-
         }
         input {
             display: inline-block;
@@ -259,7 +262,7 @@ body {
 .updateLogo {
     width: 650px;
     margin-bottom: 30px;
-    margin-left: 100px;
+    margin-left: 90px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         margin-left: 190px;
     }
@@ -406,4 +409,34 @@ body {
     border-radius: 120px;
     // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
+}
+
+
+
+.isBind {
+    width: 60px;
+    height: 36px;
+    border: 1px solid $red-base;
+    text-align: center;
+    line-height: 34px;
+    font-size: $font-size-base;
+    color: $red-base;
+    &:hover {
+        color: $white;
+        background: $red-base;
+    }
+}
+
+.isNotBind {
+    width: 100px;
+    height: 36px;
+    border: 1px solid $red-base;
+    text-align: center;
+    line-height: 34px;
+    font-size: $gray-light;
+    color: $gray-light;
+    &:hover {
+        color: $white;
+        background: $gray-light;
+    }
 }
