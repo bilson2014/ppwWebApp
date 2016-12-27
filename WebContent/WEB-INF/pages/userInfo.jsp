@@ -83,6 +83,32 @@
 	<input type="hidden" id="user_unique" value="${user.id }"/>
 	<input type="hidden" id="user_img" value="${user.imgUrl }"/>
 	
+		<!-- photo Modal start -->
+	<div class="modal" id="mymodal">
+		<div class="modal-dialog">
+			<div class="modal-content model-distance">
+				<div class="modal-header model-no-border">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-left">
+						<div class="modal-original">
+							<img alt="" src="" id="modal-original-img">
+						</div>
+					</div>
+					<div class="modal-right">
+						<div class="modal-preview-container">
+							<img alt="" src="" id="modal-preview">
+						</div>
+						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- photo Modal start -->
+	
+	
      <div class="proInfo">
      					  <div class="updateLogo">   
 	      		                    <div class="title">当前头像</div>
