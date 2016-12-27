@@ -335,8 +335,6 @@ input:-webkit-autofill {
     // background-size:100%; 
 }
 
-var redInfo:darken($red-base,10%);
-var grayInfo:darken($gray-light,10%);
 .isBind {
     width: 60px;
     height: 36px;
@@ -348,8 +346,8 @@ var grayInfo:darken($gray-light,10%);
     border-radius: 4px;
     cursor: pointer;
     &:hover {
-        color: darken($redInfo,10%);
-        border: 1px solid $redInfo;
+        color: darken(darken($red-base,10%),10%);
+        border: 1px solid darken($red-base,10%)o;
     }
 }
 
@@ -364,7 +362,7 @@ var grayInfo:darken($gray-light,10%);
     border-radius: 4px;
     cursor: pointer;
     &:hover {
-        color: darken($gray,10%);
-        border: 1px solid $grayInfo;
+        color: darken(darken($gray-light,10%),10%);
+        border: 1px solid darken($gray-light,10%);
     }
 }
