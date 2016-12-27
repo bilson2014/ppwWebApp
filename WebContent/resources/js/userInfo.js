@@ -4,14 +4,9 @@ $().ready(function() {
 		$('.sexCheckItem').removeClass('selectItem');
 		$(this).addClass('selectItem');
 	});
-
 	initUl();
 	selfInfo();
-	
-
 });
-
-
 function initUl(){
 	$('.dropdown li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
@@ -22,8 +17,26 @@ function initUl(){
         	Province($(this));
         return false;
    });
+	var sex = $('.sex').val();
+	if(sex!=null && sex != ''){
+		setSex(sex);
+	}else{
+		setSex(2);
+	}
 }
-
+function setSex(sid){
+	var item = $('.sexCheckItem');
+	item.removeClass('selectItem');
+	if(item != null){
+		for ( var i in item) {
+			var id = $(item[i]).attr('data-content');
+			if(sid == id){
+				$(item[i]).addClass('selectItem');
+				break;
+			}
+		}
+	}
+}
 function selfInfo(){
 	$('.self-info-content').slideDown('normal');
 	$("#nickName").off("change").on("change",function(){
@@ -51,14 +64,10 @@ function selfInfo(){
 						// 提示信息修改成功
 						$('.tooltip-show').slideDown('normal');
 						if(flag){
-							$("#user-name").text($("#nickName").val());
-							$(".header-name").text($("#trueName").val());
-							successToolTipShow('信息修改成功!');
 						}else{
-							successErrorTipShow('信息修改失败，请刷新后再试!');
 							alert('success');
 						}
-						window.setInterval(hideTooltip, 2000);
+						window.reload()
 					}, getContextPath() + '/user/modify/info', $.toJSON({
 						id : $('#user_unique').val(),
 						userName : $('#nickName').val().trim(),
@@ -68,7 +77,7 @@ function selfInfo(){
 						qq : $('#contact-qq').val().trim(),
 						weChat : $('#contact-wechat').val().trim(),
 						userCompany : $('#company').val().trim(),
-						customerSource : $("#customerSource").text().trim()
+						customerSource : $("#customerSource").attr('data-value')
 					}))
 				}
 			}else{
@@ -77,8 +86,6 @@ function selfInfo(){
 		});
 	});
 }
-
-
 
 function validateNickName(fun){
 	loadData(function(flag){
@@ -95,8 +102,6 @@ function validateNickName(fun){
 		userName : $('#nickName').val().trim(),
 	}))
 }
-
-
 
 function updateProvider(){}
 //成功信息 提示框弹出方法

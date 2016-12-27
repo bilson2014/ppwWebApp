@@ -108,6 +108,7 @@
                             </div>
                             <div class="infoItem" id="company-name-error">
                                 <div class="title notop">性别</div>
+                                <input type="hidden" class="sex" value="${user.sex }">
                                 <div class="sexCheckItem selectItem" data-content="0">
                                      <div class="sexCheck" ></div>
                                      <div class="sexInfo">男</div>
@@ -149,14 +150,14 @@
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='priceRange' data-value=""></span>
+											<span id='customerSource' data-value=""></span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
 											aria-labelledby="dropdownMenu1">
 											<c:if test="${!empty userSource}">
 												<c:forEach items="${userSource }" var="source" varStatus="status">
-												  <li value ="${source.key }" 
+												  <li data-value ="${source.key }" 
 												  	<c:if test="${user.customerSource == source.key }">
 												  		selected="selected"
 												  	</c:if> >${source.value }</li>
