@@ -11,7 +11,7 @@
 <spring:url
 	value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css"
 	var="datepickerCss" />
-<spring:url value="/resources/css/provider/safeInfo.css"
+<spring:url value="/resources/css/userSafeInfo.css"
 	var="safeInfoCss" />
 <spring:url value="/resources/lib/webuploader/webuploader.css"
 	var="webuploaderCss" />
@@ -37,7 +37,7 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
-<spring:url value="/resources/js/provider/safeInfo.js" var="safeInfoJs" />
+<spring:url value="/resources/js/userSafeInfo.js" var="safeInfoJs" />
 
 <spring:url value="/resources/images" var="path" />
 
@@ -131,6 +131,42 @@
 					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
 				</div>
 			</div>
+			<div class="line"></div>
+			<div class="safeItem">
+				<div class="leftItem">
+					<div class="content">
+						<div class="loginTitle">第三方登录</div>
+						<div>使用第三方账号登录时使用</div>
+					</div>
+					<div class="content">
+						  <div class="weChat">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">微信账号</div>
+					               <div class="state">微信账号</div>
+					          </div>
+						  </div>
+						  <div class="qq activeBind">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">微信账号</div>
+					               <div class="state">微信账号</div>
+					          </div>
+						  </div>
+						  <div class="wb">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">微信账号</div>
+					               <div class="state">微信账号</div>
+					          </div>
+						  </div>
+					</div>
+					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
+				</div>
+			</div>
 		</div>
 
 
@@ -208,6 +244,47 @@
 				</c:if>
 				<div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
 			</div>
+
+		</div>
+		
+		
+		<div class="setUserContent" id="userBind">
+			<div class="top">
+				<div>第三方登录</div>
+				<div>使用第三方登录时使用</div>
+			</div>
+			
+			<div class="bind">
+			             <div class="weChat">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">微信账号</div>
+					               <div class="state">未绑定</div>
+					          </div>
+					          <div class="btn-bind">绑定</div>
+						  </div>
+						  <div class="qq activeBind">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">QQ账号</div>
+					               <div class="state">未绑定</div>
+					          </div>
+					          <div class="btn-bind">绑定</div>
+						  </div>
+						  <div class="wb">
+					          <div class="icon">
+					          </div>
+					           <div class="info">
+					               <div class="title">微博账号</div>
+					               <div class="state">未绑定</div>
+					          </div>
+					          <div class="btn-bind" id="userBind-btn">绑定</div>
+						  </div>
+			</div>
+			
+			<div class="infoSubmit btn-c-r pwdadd bindBack">返回</div>
 
 		</div>
 

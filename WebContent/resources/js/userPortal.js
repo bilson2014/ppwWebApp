@@ -6,17 +6,13 @@ $().ready(function(){
 	showPassInfo();
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
-		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
+		$("#content-frame").prop("src", getContextPath() + '/user/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');
 		$(this).addClass('active');
 		$('.infoItem').removeClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
-		if($(this).data('action')=='safe-info'){
-			getHeight(1);
-		}else{
-			getHeight(2);
-		}
+		getHeight();
 		if($(this).data('action')=='video-list'){
 			$('.tooltip-wati').show();
 		}
@@ -33,25 +29,6 @@ $().ready(function(){
 		$(window.parent.document).find('#tooltip-check').hide();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        							
 	});
 	
-	var msg = $('#recommendation').val();
-	var flag = $("#bean-flag").val();
-	if(flag != null && flag !='' && flag == '0'){
-		//var msg = $('#recommendation').val();
-		showInfomation('您提交的资料正在审核中','官方将在1个工作日内联系您');
-	}else if(flag != null && flag !='' && flag == '2'){
-		showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
-	}else{
-		var a = $("#bean-checkStatus").val();//是否存在再次审核
-		if(a != null && a !='' && a == '0'){
-			//var msg = $('#recommendation').val();
-			showInfomation('您提交的资料正在审核中','官方将在1个工作日内联系您');
-		}else if(a != null && a !='' && a == '2'){
-			var msg = $('#checkDetails').val();
-			showInfomation('您提交的资料审核未通过','审核失败原因：'+msg);
-		}else{
-			hideInfomation();
-		}
-	}
 	
 });
 
@@ -68,14 +45,9 @@ function hideInfomation(){
 	$(document).find('#infomation').hide();
 }
 
-function getHeight(num){
-	var screen = document.body.clientHeight - 180;
-	var safe = 546;
-	if(num == 1){
-	$("#content-frame").css('height',safe);
-	}else{
-		$("#content-frame").css('height',screen);
-	}
+function getHeight(){
+	var screen = document.body.clientHeight - 200;
+	$("#content-frame").css('height',screen);
 }
 
 function showPassInfo(){
