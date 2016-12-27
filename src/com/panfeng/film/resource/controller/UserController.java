@@ -413,15 +413,6 @@ public class UserController extends BaseController {
 		return new ModelAndView("/rePwdCus", modelMap);
 	}
 
-	/*
-	 * @RequestMapping("/updatePwd") public ModelAndView updatePwd(ModelMap
-	 * modelMap, HttpServletRequest request) { modelMap.addAttribute("userType",
-	 * GlobalConstant.ROLE_CUSTOMER); SessionInfo sessionInfo =
-	 * getCurrentInfo(request); modelMap.addAttribute("userLoginName",
-	 * sessionInfo.getLoginName()); modelMap.addAttribute("userId",
-	 * sessionInfo.getReqiureId()); return new ModelAndView("/updatePwd",
-	 * modelMap); }
-	 */
 
 	/**
 	 * 获取user信息
@@ -504,12 +495,29 @@ public class UserController extends BaseController {
 	// -----------------------------------------------------------------------------
 
 	@RequestMapping("/infoCommon")
-	public ModelAndView infoCommonView() {
-		return new ModelAndView("userInfo");
+	public ModelAndView infoCommonView(final HttpServletRequest request, final ModelMap model) {
+		final SessionInfo info = getCurrentInfo(request);
+		if (info != null) {
+			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
+			String json = HttpUtil.httpGet(url, request);
+			if (ValidateUtil.isValid(json)) {
+				final User currentUser = JsonUtil.toBean(json, User.class);
+				currentUser.setPassword(null);
+				model.addAttribute("user", currentUser);
+			}
+			Map<Integer, String> sourecs = userService.getCustomerSource();
+			if (ValidateUtil.isValid(sourecs)) {
+				model.addAttribute("userSource", sourecs);
+			}
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(), sessionInfo);
+		}
+		return new ModelAndView("userInfo", model);
 	}
 
 	@RequestMapping("/safeInfo")
-	public ModelAndView safeInfo() {
+	public ModelAndView safeInfo(final HttpServletRequest request, final ModelMap model) {
+
 		return new ModelAndView("userSafeInfo");
 	}
 

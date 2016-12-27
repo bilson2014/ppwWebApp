@@ -52,7 +52,6 @@ import com.panfeng.film.util.ValidateUtil;
 @RestController
 public class PCController extends BaseController {
 
-
 	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
 
 	final Logger logger = LoggerFactory.getLogger("error");
@@ -122,7 +121,7 @@ public class PCController extends BaseController {
 		model.addAttribute("isLogin", "login");
 		return new ModelAndView("login", model);
 	}
-	
+
 	// 跳转注册页面
 	@RequestMapping("/register")
 	public ModelAndView register(final ModelMap model) {
@@ -349,20 +348,23 @@ public class PCController extends BaseController {
 		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
 	}
-	
+
 	/**
 	 * 根据 团队名称 去solr中 加载 产品列表
+	 * 
 	 * @param teamName
 	 */
 	@RequestMapping("/product/order/loadWithTeamName")
-	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,final HttpServletRequest request) {
+	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,
+			final HttpServletRequest request) {
 
 		List<Solr> list = new ArrayList<Solr>();
 		final String url = URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:" + list.size(), sessionInfo);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:"
+				+ list.size(), sessionInfo);
 		return list;
 	}
 
@@ -467,37 +469,39 @@ public class PCController extends BaseController {
 	/**
 	 * 跳转至 供应商 登录界面
 	 */
-	/*@RequestMapping("/provider/login")
-	public ModelAndView providerLoginView(final ModelMap model) {
-
-		model.addAttribute("action", "login");
-		model.addAttribute("pageName", "供应商登录");
-
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/login") public ModelAndView
+	 * providerLoginView(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "login"); model.addAttribute("pageName",
+	 * "供应商登录");
+	 * 
+	 * return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 跳转至 供应商 注册页面
 	 */
-	/*@RequestMapping("/provider/register")
-	public ModelAndView providerRegisterView(final ModelMap model) {
-
-		model.addAttribute("action", "register");
-		model.addAttribute("pageName", "供应商注册");
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/register") public ModelAndView
+	 * providerRegisterView(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "register"); model.addAttribute("pageName",
+	 * "供应商注册"); return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 跳转至 供应商 密码找回页面
 	 */
-	/*@RequestMapping("/provider/recover")
-	public ModelAndView providerRecover(final ModelMap model) {
-
-		model.addAttribute("action", "recover");
-		model.addAttribute("pageName", "供应商密码找回");
-
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/recover") public ModelAndView
+	 * providerRecover(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "recover"); model.addAttribute("pageName",
+	 * "供应商密码找回");
+	 * 
+	 * return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 供应商 头部信息
@@ -661,7 +665,7 @@ public class PCController extends BaseController {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 新闻详情页推荐
 	 * 
@@ -675,34 +679,34 @@ public class PCController extends BaseController {
 			List<News> list = JsonUtil.toList(str);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
-		}else{
+		} else {
 			baseMsg.setErrorMsg("list is null");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("get news info recommend",sessionInfo);
+		Log.error("get news info recommend", sessionInfo);
 		return baseMsg;
 	}
-	
+
 	/**
 	 * 跳转新闻详情
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
-	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId,
-			final HttpServletRequest request,final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/"+newId;
+	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model) {
+		final String url = URL_PREFIX + "portal/news/info/" + newId;
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			News news = JsonUtil.toBean(str, News.class);
 			model.addAttribute("news", news);
-		}else{
-			//请求不存在的新闻
+		} else {
+			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news info",sessionInfo);
+		Log.error("homepage news info", sessionInfo);
 		return new ModelAndView("/news");
 	}
-	
+
 	/**
 	 * 获取最新的供应商信息,最新代表,若存在待审核,则待审核是最新消息
 	 * 
