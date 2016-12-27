@@ -19,6 +19,7 @@ $().ready(function(){
 	});
 	var p = $('#proLogo').attr('data-value');
 	if(p!=null && p!=''){
+		if(p.indexOf('group') > -1)
 		$('#proLogo').attr('src',getDfsHostName() + p);
 	}
 	

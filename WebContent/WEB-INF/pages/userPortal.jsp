@@ -65,14 +65,8 @@
 </head>
 <body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
 <div class="header headerMove" id="header">
-		<input type="hidden" id="bean-flag" value="${provider2.flag }">
-		<input type="hidden" id="recommendation" value="${provider2.recommendation }">
- 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
- 		<input type="hidden" id="bean-checkStatus" value="${provider2.checkStatus }">
-		<input type="hidden" id="checkDetails" value="${provider2.checkDetails}">
         <div class="menu-bar nav">
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
@@ -133,11 +127,6 @@
         </div>
     </div>
 	</div>
-
-	
-
-	
-	
 	<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
 	          <div class="closeCheck" id='closeCheck'></div>
@@ -148,9 +137,6 @@
 	          </div>
 	     </div>
 	</div>
-
-
-	
 	<div class="tooltip-wati" >
 		     <div class="watiCard">
 		         <img src="/resources/images/icons/wait.gif">
@@ -173,14 +159,10 @@
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">
-                    	<a <c:if test="${provider.flag == 1 || provider.flag == 4}">href="/provider/info_${provider.teamId }.html"</c:if>>
-                          <img class="proLogo" id="proLogo" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"/>
-                         </a>
+                          <img class="proLogo" id="proLogo" data-value="${user.imgUrl }" src="/resources/images/provider/initLogo.png"/>
                     </div>
-                    <div class="userName">${provider.teamName }</div>
-
+                    <div class="userName">${user.userName }</div>
                     <div class="left-content">
- 
                           <div class="infoItem activeThis">
                                 <div class="info" data-action="infoCommon">个人信息</div>
                          </div>

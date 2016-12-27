@@ -8,12 +8,14 @@ var y2;
 var w;
 var h;
 //头像裁剪参数 
-
 // 自定义图片上传 检验参数
 var ImgObj=new Image(); //建立一个图像对象
 var AllowExt=".jpg|.gif" //允许上传的文件类型 ŀ为无限制 每个扩展名后边要加一个"|" 小写字母表示
 var AllowImgFileSize=70;  //允许上传图片文件的大小 0为无限制  单位：KB
 var FileObj,ImgFileSize,FileExt,ErrMsg,FileMsg,HasCheked,IsImg//全局变量 图片相关属性
+
+var parent = $(window.parent.document);
+
 // 自定义图片上传 检验参数
 $().ready(function() {
 	$('.sexCheckItem').on('click', function() {
@@ -41,6 +43,22 @@ function initUl(){
 	}else{
 		setSex(2);
 	}
+	var src = $('#user-img').attr('src');
+	if(src == null || src == '' || src == undefined){
+		$('#user-img').attr('src','/resources/images/provider/initLogo.png');
+		parent.find('#proLogo').attr('src','/resources/images/provider/initLogo.png');
+	}else{
+		if(src.indexOf('group')> -1){
+			var url = getDfsHostName() + src;
+			$('#user-img').attr('src',url);
+			$('#user_img_url').val(src);
+			// 刷新父类页面
+			parent.find('#proLogo').attr('src',url);
+		}
+	}
+	var name = $('#nickName').val();
+	parent.find('.userName').text(name);
+	
 }
 function setSex(sid){
 	var item = $('.sexCheckItem');
@@ -81,7 +99,6 @@ function selfInfo(){
 					$(window.parent.document).find('.tooltip-wati').show();
 					loadData(function(flag){
 						// 提示信息修改成功
-					   
 						if(flag){
 							successToolTipShow('修改成功');
 							$(window.parent.document).find('.tooltip-wati').hide();
@@ -99,7 +116,8 @@ function selfInfo(){
 						qq : $('#contact-qq').val().trim(),
 						weChat : $('#contact-wechat').val().trim(),
 						userCompany : $('#company').val().trim(),
-						customerSource : $("#customerSource").attr('data-value')
+						customerSource : $("#customerSource").attr('data-value'),
+						imgUrl : $('#user_img_url').val()
 					}))
 				}
 			}else{
@@ -183,15 +201,23 @@ function userpicInfo(){
 				// 点击确定，裁剪文件，并将该文件转化为正规的文件名称
 				$('#uploadConfirmBt').unbind('click');
 				$('#uploadConfirmBt').bind('click',function(){
+					if(x == 0 && y == 0 && x2 ==0 && y2 ==0){
+						$('#user-img').attr('src',imgPath);
+						$('#user_img_url').val(path);
+						jcrop_api.destroy();
+						$('#uploadConfirmBt').attr('disabled',false);
+						$("#mymodal").modal("hide");
+						return;
+					}
 					$('#uploadConfirmBt').attr('disabled','disabled');
 					// 裁剪图片
 					loadData(function(userTarget){
 						jcrop_api.destroy();
 						$('#uploadConfirmBt').attr('disabled',false);
 						$("#mymodal").modal("hide");
+						$('#user_img_url').val(userTarget.imgFileName);
 						var imgPath = getDfsHostName() + userTarget.imgFileName;
 						$('#user-img').attr('src',imgPath);
-						$('#user-circle-img').attr('src',imgPath);
 					}, getContextPath() + '/user/cutPhoto', $.toJSON({
 						userId : $('#user_unique').val().trim(),
 						imgUrl : path,
@@ -264,3 +290,45 @@ function showInfomation(title,body){
 function hideInfomation(){
 	$(window.parent.document).find('#infomation').hide();
 }
+//图片裁剪功能 start
+function JcropFunction(){
+	x=0;
+	y=0;
+	x2=0;
+	y2=0;
+	h=0;
+	w=0;
+	
+	// 初始化Jcrop
+	jcrop_api = $.Jcrop('#modal-original-img',{
+		bgOpacity : 0.2,
+		aspectRatio : 1 / 1,
+		onSelect : updateCoords // 当选择完成时执行的函数
+	});
+}
+
+function updateCoords(coords){
+	
+	x=coords.x;
+	y=coords.y;
+	x2=coords.x2;
+	y2=coords.y2;
+	w=coords.w;
+	h=coords.h;
+	
+	if(parseInt(coords.w) > 0){
+		//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到 
+		var rx = $(".modal-preview-container").width() / coords.w;
+		var ry = $(".modal-preview-container").height() / coords.h;
+		
+		//通过比例值控制图片的样式与显示 
+		$("#modal-preview").css({
+			width:Math.round(rx * $("#modal-original-img").width()) + "px", //预览图片宽度为计算比例值与原图片宽度的乘积 
+			height:Math.round(ry * $("#modal-original-img").height()) + "px", //预览图片高度为计算比例值与原图片高度的乘积 
+			marginLeft:"-" + Math.round(rx * coords.x) + "px",
+			marginTop:"-" + Math.round(ry * coords.y) + "px"
+		});
+		
+	}
+}
+//图片裁剪功能 end
