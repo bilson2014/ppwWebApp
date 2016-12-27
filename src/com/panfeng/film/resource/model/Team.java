@@ -471,11 +471,6 @@ public class Team extends BaseObject {
 				return false;
 		} else if (!business.equals(other.business))
 			return false;
-		if (businessDesc == null) {
-			if (other.businessDesc != null)
-				return false;
-		} else if (!businessDesc.equals(other.businessDesc))
-			return false;
 		if (demand == null) {
 			if (other.demand != null)
 				return false;
@@ -486,22 +481,12 @@ public class Team extends BaseObject {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (establishDate == null) {
-			if (other.establishDate != null)
-				return false;
-		} else if (!establishDate.equals(other.establishDate))
-			return false;
 		if (infoResource != other.infoResource)
 			return false;
 		if (linkman == null) {
 			if (other.linkman != null)
 				return false;
 		} else if (!linkman.equals(other.linkman))
-			return false;
-		if (officialSite == null) {
-			if (other.officialSite != null)
-				return false;
-		} else if (!officialSite.equals(other.officialSite))
 			return false;
 		if (priceRange != other.priceRange)
 			return false;

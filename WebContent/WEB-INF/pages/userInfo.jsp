@@ -150,7 +150,7 @@
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='priceRange' data-value="${source.key }">${source.value }</span>
+											<span id='priceRange' data-value=""></span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
