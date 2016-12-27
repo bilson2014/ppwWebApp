@@ -128,7 +128,7 @@
 											<input type="hidden" id="user_img_url" value="">
 										</div>
 										<div class="upload-info">
-											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过2M</label>
+											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过250KB</label>
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->

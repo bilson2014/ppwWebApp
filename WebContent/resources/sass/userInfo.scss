@@ -48,17 +48,33 @@ body {
     .infoItem {
         font-size: 0;
         margin-bottom: 30px;
-        margin-left: 100px;
+        margin-left: 95px;
         width: 650px;
         position: relative;
-        &:after {
-            content: "*";
-            position: absolute;
-            color: $red-base;
-            right: -8px;
-            top: 9px;
-            font-size: $font-size-sm;
+
+        .notop{
+            top:0 !important;
         }
+
+        .sexCheckItem{
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 30px;
+            div{
+                display: inline-block;
+                vertical-align: top;
+                color:$gray-dark;
+                font-size: $font-size-base;
+            }
+
+            div:nth-child(1){
+                background: url('/resources/images/icons/sexCheck.png');
+                height: 14px;
+                width: 14px;
+                margin-right: 10px;
+            }
+        }
+       
         &:before {
             content: attr(data-content);
             position: absolute;
@@ -75,6 +91,7 @@ body {
             font-size: $font-size-base;
             position: relative;
             top: 11px;
+
         }
         input {
             display: inline-block;
@@ -390,6 +407,3 @@ body {
     // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
-
-
-

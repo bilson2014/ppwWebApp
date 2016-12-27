@@ -7,7 +7,7 @@
 <spring:url value="/resources/lib/normalize/normalize.css" var="normalizeCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/css/commons.css" var="commonCss"/>
-<spring:url value="/resources/css/userInfo.css" var="userInfoCss"/>
+<spring:url value="/resources/css/userPortal.css" var="userInfoCss"/>
 <spring:url value="/resources/lib/webuploader/webuploader.css"
 	var="webuploaderCss" />
 <%-- import JS --%>
@@ -20,7 +20,7 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
-<spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
+<spring:url value="/resources/js/userPortal.js" var="userPortalJs"/>
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/images/user" var="imgPath"/>
@@ -55,10 +55,11 @@
 	<script src="${jsonJs }"></script>
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
-	<%-- <script src="${commonJs }"></script> --%>
+	<script src="${commonJs }"></script>
 	<script src="${suggestJs }"></script>
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
+	<script src="${userPortalJs}"></script>
 	
 	
 </head>
@@ -172,7 +173,7 @@
                     <div class="left-content">
  
                           <div class="infoItem activeThis">
-                                <div class="info" data-action="infoCommon">基础信息</div>
+                                <div class="info" data-action="infoCommon">个人信息</div>
                          </div>
                           <div class="infoItem">
                                  <div class="safeInfo" data-action="safeInfo">安全设置</div>
@@ -180,7 +181,7 @@
                     </div>
                 </div>
                 <div class="right-wrap">
-                       <div class="titleTop" id="titleTop">基础信息</div>
+                       <div class="titleTop" id="titleTop">个人信息</div>
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/user/infoCommon'/>"></iframe>
                 </div>
        </div>
