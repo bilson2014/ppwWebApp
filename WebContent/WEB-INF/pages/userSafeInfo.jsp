@@ -144,27 +144,27 @@
 					          </div>
 					           <div class="info">
 					               <div class="title">微信账号</div>
-					               <div class="state">微信账号</div>
+					               <div class="state">绑定</div>
 					          </div>
 						  </div>
 						  <div class="qq activeBind">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
-					               <div class="title">微信账号</div>
-					               <div class="state">微信账号</div>
+					               <div class="title">QQ账号</div>
+					               <div class="state">未绑定</div>
 					          </div>
 						  </div>
 						  <div class="wb">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
-					               <div class="title">微信账号</div>
-					               <div class="state">微信账号</div>
+					               <div class="title">微博账号</div>
+					               <div class="state">綁定</div>
 					          </div>
 						  </div>
 					</div>
-					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
+					<div class="setInfo btn-c-r" id="userBind-btn"">设置</div>
 				</div>
 			</div>
 		</div>
@@ -271,7 +271,7 @@
 					               <div class="title">QQ账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind">绑定</div>
+					          <div class="btn-bind isBind" >绑定</div>
 						  </div>
 						  <div class="wb">
 					          <div class="icon">
@@ -280,7 +280,7 @@
 					               <div class="title">微博账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind" id="userBind-btn">绑定</div>
+					          <div class="btn-bind isNotBind" >未绑定</div>
 						  </div>
 			</div>
 			
