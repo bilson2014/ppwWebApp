@@ -159,7 +159,7 @@
                                <div class="cIcon7"></div>
                          </div>
                          <div class="infoItem">
-                               <label>免费的经济服务,</label>
+                               <label>免费的导演经纪人服务 ,</label>
                                <label>免费的线上线下推广服务</label>
                                <div class="cIcon4"></div>
                          </div>

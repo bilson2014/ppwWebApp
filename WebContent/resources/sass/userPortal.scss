@@ -193,12 +193,6 @@ body {
             &:hover {
                 border-left: 4px solid transparent;
                 background: $f8;
-                div {
-                    color: $red-base;
-                    &:before {
-                        background-position: 0px -14px !important;
-                    }
-                }
             }
         }
         .activeThis {
