@@ -139,15 +139,15 @@
 						<div>使用第三方账号登录时使用</div>
 					</div>
 					<div class="content">
-						  <div class="weChat">
+						  <div class="weChat bind" id="wechat">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
 					               <div class="title">微信账号</div>
-					               <div class="state">绑定</div>
+					               <div class="state">未绑定</div>
 					          </div>
 						  </div>
-						  <div class="qq activeBind">
+						  <div class="qq bind" id="qq">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
@@ -155,12 +155,12 @@
 					               <div class="state">未绑定</div>
 					          </div>
 						  </div>
-						  <div class="wb">
+						  <div class="wb bind" id="wb">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
 					               <div class="title">微博账号</div>
-					               <div class="state">綁定</div>
+					               <div class="state">未綁定</div>
 					          </div>
 						  </div>
 					</div>
@@ -254,37 +254,37 @@
 				<div>使用第三方登录时使用</div>
 			</div>
 			
-			<div class="bind">
-			             <div class="weChat margin">
+			<div class="">
+			             <div class="weChat margin" id="wechatSet">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
 					               <div class="title">微信账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind isBind">绑定</div>
+					          <div class="btn-bind isBind" id="wechatBtn">绑定</div>
 						  </div>
-						  <div class="qq margin activeBind">
+						  <div class="qq margin activeBind" id="qqSet">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
 					               <div class="title">QQ账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind isBind" >绑定</div>
+					          <div class="btn-bind isBind" id="qqBtn" >绑定</div>
 						  </div>
-						  <div class="wb margin">
+						  <div class="wb margin" id="wbSet">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
 					               <div class="title">微博账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind isNotBind" >未绑定</div>
+					          <div class="btn-bind isNotBind" id="wbBtn">未绑定</div>
 						  </div>
 			</div>
 			
-			<div class="infoSubmit btn-c-r pwdadd bindBack">返回</div>
+			<div class="infoSubmit btn-c-r pwdadd bindBack" id="bindReturn">返回</div>
 
 		</div>
 

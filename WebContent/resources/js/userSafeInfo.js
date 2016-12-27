@@ -3,6 +3,10 @@ var curCount; // 当前剩余秒数
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
 $().ready(function() {
+	
+	
+	bandInfo();
+	
 	var safeInfo = {
 			init:function(){
 				//****登录密码设置******
@@ -53,6 +57,10 @@ $().ready(function() {
 				$('#userBind-btn').on('click',function(){
 					noraml.hide();
 					userBind.show();
+				});
+				$('#bindReturn').on('click',function(){
+					noraml.show();
+					userBind.hide();
 				});
 			},
 			loginNameValidate:function(){
@@ -187,9 +195,6 @@ $().ready(function() {
 			}
 	}
 	safeInfo.init();
-
-
-
 });
 
 
@@ -344,5 +349,215 @@ function checkData(type){
 		return true
 	default:
 		break;
+	}
+}
+
+
+
+//绑定
+var userinfo_third = {
+		init:function(){
+			//qq登陆
+			this.qq();
+			//微信登陆
+			this.wechat();
+			//微博登陆
+			this.wb();
+		},
+		qq :function(){
+			$('#qqBtn').on('click',function(){
+				if($("#qqBtn").attr("data-status")==0){//去绑定
+					QC.Login.showPopup();
+					var paras = {};
+					//用JS SDK调用OpenAPI
+					QC.api("get_user_info", paras)
+					//指定接口访问成功的接收函数，s为成功返回Response对象
+					.success(function(s){
+						// 成功回掉，通过 s.data 获取OpenAPI的返回数据
+						QC.Login.getMe(function(openId, accessToken){
+							// 存入session
+							var condition = $.toJSON({
+								userName : s.data.nickname,
+								imgUrl : s.data.figureurl,
+								uniqueId : openId,
+								lType : 'qq',
+								qqUnique : openId
+							});
+							//个人中心绑定
+							userInfoToBind(condition);
+						});
+					})
+					.error(function(e){
+						// 回掉失败
+						alert('获取用户信息失败');
+					})
+					.complete(function(c){
+						// 完成请求回掉
+					})
+				}else{//取消绑定
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							successToolTipShow();
+							$('#qq').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"qq"
+					}));
+				}
+			});
+		},
+		wechat:function(){
+//		/	 open model
+			$('#wechatBtn').on('click',function(){
+				if($("#wechatBtn").attr("data-status")==0){//去绑定
+					var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx3d453a7abb5fc026&redirect_uri=http%3A%2F%2Fwww.apaipian.com%2Flogin%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login';
+					window.open (url,'_self','height=560,width=400,top=60,left=450,toolbar=no,menubar=no,scrollbars=no, resizable=yes,location=no, status=no');
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wechat').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"wechat"
+					}));
+				}
+			})
+		},
+		wb:function(){
+			$('#wbBtn').on('click',function(){
+				if($("#wbBtn").attr("data-status")==0){//去绑定
+					WB2.login(function() {
+						// 获取 用户信息
+						getWBUserData(function(o){
+							// 保存至session中，并跳转
+							var condition = $.toJSON({
+								userName : o.screen_name,
+								imgUrl : o.profile_image_url,
+								uniqueId : wb_uniqueId,
+								lType : 'weibo',
+								wbUnique : wb_uniqueId
+							});
+							userInfoToBind(condition);
+						});
+					});
+				}else{
+					loadData(function(flag){
+						if(flag){ // 发送成功
+							//提示成功
+							$('.tooltip-showBand').slideDown('normal');
+							$('#wb').removeAttr("class").addClass("noBand");
+							check();
+						}
+					}, getContextPath() + '/user/unbind/third',  $.toJSON({
+						lType:"wb"
+					}));
+				}
+				
+			});
+		},
+}
+
+function userInfoToBind(condition){
+	loadData(function(data){
+		if(data.code==1){
+			bandInfo();
+			$('.tooltip-message').text('绑定成功!');
+			successToolTipShow();
+		}
+	}, getContextPath() + '/user/bind/third',condition);
+}
+
+function bandInfo(){
+
+	loadData(function(data){
+		if(data.qq==1){
+			$("#qq").addClass("activeBind");
+			$("#qq").find('state').text('绑定');
+			$("#qqSet").addClass("activeBind");
+			$("#qqSet").find('state').text('绑定');
+			$('#qqBtn').addClass('isBind');
+			$('#qqBtn').text('绑定');
+			$("#qqBtn").attr("data-status","1");
+		}else{
+			$("#qqSet").removeClass("activeBind");
+			$("#qqSet").find('state').text('未绑定');
+			$("#qqSet").removeClass("activeBind");
+			$("#qqSet").find('state').text('未绑定');
+			$('#qqBtn').addClass('isNotBind');
+			$('#qqBtn').text('取消绑定');
+			$("#qqBtn").attr("data-status","0");
+		}
+		if(data.wechat==1){
+			$("#wechat").addClass("activeBind");
+			$("#wechat").find('state').text('绑定');
+			$("#wechat").addClass("activeBind");
+			$("#wechat").find('state').text('绑定');
+			$('#wechatBtn').addClass('isBind');
+			$('#wechatBtn').text('绑定');
+			$("#wechatBtn").attr("data-status","1");
+		}else{
+			$("#wechatSet").removeClass("activeBind");
+			$("#wechatSet").find('state').text('未绑定');
+			$("#wechatSet").removeClass("activeBind");
+			$("#wechatSet").find('state').text('未绑定');
+			$('#wechatBtn').addClass('isNotBind');
+			$('#wechatBtn').text('取消绑定');
+			$("#wechatBtn").attr("data-status","0");
+		}
+		if(data.wb==1){
+			$("#wb").addClass("activeBind");
+			$("#wb").find('state').text('绑定');
+			$("#wbSet").addClass("activeBind");
+			$("#wbSet").find('state').text('绑定');
+			$('#wbBtn').addClass('isBind');
+			$('#wbBtn').text('绑定');
+			$("#wbBtn").attr("data-status","1");
+		}else{
+			$("#wb").removeClass("activeBind");
+			$("#wb").find('state').text('未绑定');
+			$("#wbSet").removeClass("activeBind");
+			$("#wbSet").find('state').text('未绑定');
+			$('#wbBtn').addClass('isNotBind');
+			$('#wbBtn').text('取消绑定');
+			$("#wbBtn").attr("data-status","0");
+		}
+		//初始化第三方
+		userinfo_third.init();
+		
+	}, getContextPath() + '/user/third/status');
+}
+
+
+
+////获取微博用户信息
+function getWBUserData(callback){
+	WB2.anyWhere(function(W){
+		W.parseCMD('/account/get_uid.json',function(oResult, bStatus){
+			if(bStatus){
+				getWBUserInfo(W, oResult);
+				wb_uniqueId = oResult.uid;
+			}else{
+				alert('授权失败或错误!');
+			}
+		},{},{
+			method : 'GET'
+		});
+	});
+	
+	function getWBUserInfo(W,result){
+		W.parseCMD('/users/show.json', function(sResult, bStatus) {
+			if(bStatus) {
+				callback.call(this,sResult);
+			}
+		}, {
+			'uid' : result.uid
+		}, {
+			method : 'GET'
+		});
 	}
 }

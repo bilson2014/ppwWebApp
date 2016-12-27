@@ -209,12 +209,6 @@ body {
             color: $gray;
             font-size: $font-size-base;
             position: relative;
-            &:hover {
-                color: $red-base;
-                &:before {
-                    background-position: 0px -14px;
-                }
-            }
             &:before {
                 content: "";
                 position: absolute;
