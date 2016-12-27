@@ -78,14 +78,18 @@ function selfInfo(){
 					}
 				}
 				if(ret){
+					$(window.parent.document).find('.tooltip-wati').show();
 					loadData(function(flag){
 						// 提示信息修改成功
-						$('.tooltip-show').slideDown('normal');
+					   
 						if(flag){
+							successToolTipShow('修改成功');
+							$(window.parent.document).find('.tooltip-wati').hide();
 						}else{
-							alert('success');
+							successErrorTipShow('修改失败');
+							$(window.parent.document).find('.tooltip-wati').hide();
 						}
-						window.reload()
+						$(window.parent.document).reload();
 					}, getContextPath() + '/user/modify/info', $.toJSON({
 						id : $('#user_unique').val(),
 						userName : $('#nickName').val().trim(),
@@ -99,7 +103,7 @@ function selfInfo(){
 					}))
 				}
 			}else{
-				alert('error');
+				successErrorTipShow('修改异常');
 			}
 		});
 	});
@@ -223,8 +227,7 @@ function userpicInfo(){
 
 
 
-=======
->>>>>>> 8cd645837140b02066841dcf9ff2cbed3cbec46c
+
 function updateProvider(){}
 //成功信息 提示框弹出方法
 function successToolTipShow(msg){

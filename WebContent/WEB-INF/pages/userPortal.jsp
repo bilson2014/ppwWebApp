@@ -156,7 +156,16 @@
 		         <img src="/resources/images/icons/wait.gif">
 		         <div>进度处理中...</div>
 		     </div>
-		 </div>
+   </div>
+   
+   
+   	<div class="tooltip-success-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
+	</div>
+	
+	<div class="tooltip-error-show" style="display: none;">
+		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
+	</div>
 	 
 
 	 <div class="page" style="height:100%">
