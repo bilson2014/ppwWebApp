@@ -54,6 +54,13 @@ body {
         .notop {
             top: 0 !important;
         }
+
+        .selectItem{
+            div:nth-child(1){
+                background-position: 0px -42px !important;
+            }
+        }
+
         .sexCheckItem {
             display: inline-block;
             vertical-align: top;
@@ -413,30 +420,4 @@ body {
 
 
 
-.isBind {
-    width: 60px;
-    height: 36px;
-    border: 1px solid $red-base;
-    text-align: center;
-    line-height: 34px;
-    font-size: $font-size-base;
-    color: $red-base;
-    &:hover {
-        color: $white;
-        background: $red-base;
-    }
-}
 
-.isNotBind {
-    width: 100px;
-    height: 36px;
-    border: 1px solid $red-base;
-    text-align: center;
-    line-height: 34px;
-    font-size: $gray-light;
-    color: $gray-light;
-    &:hover {
-        color: $white;
-        background: $gray-light;
-    }
-}

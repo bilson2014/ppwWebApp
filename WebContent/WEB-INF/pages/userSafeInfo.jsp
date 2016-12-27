@@ -262,7 +262,7 @@
 					               <div class="title">微信账号</div>
 					               <div class="state">未绑定</div>
 					          </div>
-					          <div class="btn-bind">绑定</div>
+					          <div class="btn-bind isBind">绑定</div>
 						  </div>
 						  <div class="qq activeBind">
 					          <div class="icon">
