@@ -255,7 +255,7 @@
 			</div>
 			
 			<div class="bind">
-			             <div class="weChat">
+			             <div class="weChat margin">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
@@ -264,7 +264,7 @@
 					          </div>
 					          <div class="btn-bind isBind">绑定</div>
 						  </div>
-						  <div class="qq activeBind">
+						  <div class="qq margin activeBind">
 					          <div class="icon">
 					          </div>
 					           <div class="info">
@@ -273,7 +273,7 @@
 					          </div>
 					          <div class="btn-bind isBind" >绑定</div>
 						  </div>
-						  <div class="wb">
+						  <div class="wb margin">
 					          <div class="icon">
 					          </div>
 					           <div class="info">

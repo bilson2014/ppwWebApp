@@ -1,5 +1,8 @@
 var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
+	
+
+	
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
@@ -109,11 +112,12 @@ function verifyData() {
 	}
 	
 	var reg = /^[1-9]\d{4,9}$/;
-	if(!qq.match(reg)&&(qq == '' || qq == null || qq == undefined)){
+	if(!qq.match(reg)){
 		showCommonError($('#company-qq-error'),"QQ号码有误!");
 		$('#company-qq').focus();
 			return false;
 	}
+	
 
 	
 	var province = $('#getProvince').attr('data-value'); // 所在城市

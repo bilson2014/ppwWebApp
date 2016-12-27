@@ -54,13 +54,11 @@ body {
         .notop {
             top: 0 !important;
         }
-
-        .selectItem{
-            div:nth-child(1){
+        .selectItem {
+            div:nth-child(1) {
                 background-position: 0px -42px !important;
             }
         }
-
         .sexCheckItem {
             display: inline-block;
             vertical-align: top;
@@ -78,14 +76,6 @@ body {
                 margin-right: 10px;
                 cursor: pointer;
             }
-        }
-        &:after {
-            content: "*";
-            position: absolute;
-            color: $red-base;
-            right: -8px;
-            top: 9px;
-            font-size: $font-size-sm;
         }
         &:before {
             content: attr(data-content);
@@ -174,7 +164,7 @@ body {
     margin-left: 190px;
     text-align: center;
     line-height: 36px;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .infoReSet {
@@ -418,7 +408,3 @@ body {
     // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
-
-
-
-

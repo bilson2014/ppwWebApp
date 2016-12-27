@@ -79,11 +79,10 @@
 </head>
 <body style="height: auto;">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${provider.teamId }" id="company-id"/>
-    <input type="hidden" id="bean-flag" value="${provider.flag }">
-	<input type="hidden" id="bean-checkStatus" value="${provider.checkStatus }">
-	<input type="hidden" id="checkDetails" value="${provider.checkDetails}">
-	<input type="hidden" id="recommendation" value="${provider.recommendation }">
+	<input type="hidden" id="user_sex" value="${user.sex }"/>
+	<input type="hidden" id="user_unique" value="${user.id }"/>
+	<input type="hidden" id="user_img" value="${user.imgUrl }"/>
+	
      <div class="proInfo">
      					  <div class="updateLogo">   
 	      		                    <div class="title">当前头像</div>
@@ -103,54 +102,54 @@
 										</div>
 									</div>
 							</div>	
-                            <div class="infoItem" id="company-name-error">
+                            <div class="infoItem" id="nickName-error">
                                 <div class="title">昵称</div>
-                                <input type="text" class="form-control" id="nickName" value="${user.userName }" tabindex="1" placeholder="请输入昵称" autocomplete="off" />
+                                <input type="text" class="" id="nickName" value="${user.userName }" tabindex="1" placeholder="请输入昵称" autocomplete="off" />
                             </div>
                             <div class="infoItem" id="company-name-error">
                                 <div class="title notop">性别</div>
-                                <div class="sexCheckItem">
-                                     <div class="sexCheck" data-value="0"></div>
+                                <div class="sexCheckItem selectItem" data-content="0">
+                                     <div class="sexCheck" ></div>
                                      <div class="sexInfo">男</div>
                                 </div>
-                                 <div class="sexCheckItem">
-                                     <div class="sexCheck" data-value="1"></div>
+                                 <div class="sexCheckItem" data-content="1">
+                                     <div class="sexCheck" ></div>
                                      <div class="sexInfo">女</div>
                                 </div>
-                                 <div class="sexCheckItem">
-                                     <div class="sexCheck" data-value="2"></div>
+                                 <div class="sexCheckItem" data-content="2">
+                                     <div class="sexCheck" ></div>
                                      <div class="sexInfo">保密</div>
                                 </div>
                             </div>
-                             <div class="infoItem" id="company-email-error">
+                             <div class="infoItem" >
                                 <div class="title">真实姓名</div>
-                                <input type="text" class="form-control" id="trueName" value="${user.realName }" tabindex="2" placeholder="请输入真实姓名" autocomplete="off" />
+                                <input type="text" class="" id="trueName" value="${user.realName }" tabindex="2" placeholder="请输入真实姓名" autocomplete="off" />
                             </div>
-                             <div class="infoItem" id="company-address-error">
+                             <div class="infoItem">
                                 <div class="title">公司名称</div>
-                                <input type="text" class="form-control" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
+                                <input type="text" class="" id="company" value="${user.userCompany }" tabindex="3" placeholder="请输入公司名称" autocomplete="off" />
                             </div>
-                            <div class="infoItem" id="company-linkman-error">
+                            <div class="infoItem" id="contact-email-error">
                                 <div class="title">点击邮件</div>
-                                <input type="text" class="form-control" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
+                                <input type="text" class="" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
                             </div>
-                            <div class="infoItem" id="company-phoneNumber-error">
+                            <div class="infoItem">
                                 <div class="title">QQ</div>
-                                <input type="text" class="form-control" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
+                                <input type="text" class="" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
                             </div>
-                            <div class="infoItem" id="company-webchat-error">
+                            <div class="infoItem">
                                 <div class="title">微信</div>
-                                <input type="text" class="form-control" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
+                                <input type="text" class="" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
                             </div>
                             
                             
                           
                             <div class="infoItem">
-                                <div class="title"><span>*</span>客户来源</div>
+                                <div class="title">客户来源</div>
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='priceRange' data-value="${source.key }">${source.value }</span>
+											<span id="customerSource" data-value="${source.key }">${source.value }</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
@@ -167,7 +166,7 @@
 									</div>
                             </div>
                             <div class="infoBottom">
-	                            <div class="infoSubmit btn-c-r" id="infoBt">保存</div>
+	                            <div class="infoSubmit btn-c-r" id="self-info-contentBt">保存</div>
                             </div>
                        </div>
 </body>
