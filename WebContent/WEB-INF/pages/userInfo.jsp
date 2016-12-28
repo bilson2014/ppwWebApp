@@ -176,8 +176,6 @@
                                 <div class="title">微信</div>
                                 <input type="text" class="" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
                             </div>
-                            
-                            
                           
                             <div class="infoItem">
                                 <div class="title">客户来源</div>
