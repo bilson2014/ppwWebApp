@@ -123,10 +123,10 @@
 		      		                <div class="user-img-content">
 										<div class="user-icon">
 											<img alt="用户头像" src="${user.imgUrl }" class="img-circle" id="user-img"/>
-											<input type="hidden" id="user_img_url" value="/resources/images/provider/initLogo.png">
+											<input type="hidden" id="user_img_url" value="/resources/images/provider/default-user.jpg">
 										</div>
 										<div class="upload-info">
-											<label>仅支持小于2M的png/jpg格式，推荐120*120分辨率</label>
+											<label>仅支持小于250KB的png/jpg格式，推荐120*120分辨率</label>
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -168,7 +168,7 @@
                                 <div class="title">电子邮件</div>
                                 <input type="text" class="" id="contact-email" value="${user.email }" tabindex="4" placeholder="请输入电子邮件" autocomplete="off" />
                             </div>
-                            <div class="infoItem">
+                            <div class="infoItem" id="contact-qq-error">
                                 <div class="title">QQ</div>
                                 <input type="text" class="" id="contact-qq" value="${user.qq }" tabindex="5" placeholder="请输入QQ号" autocomplete="off" />
                             </div>
