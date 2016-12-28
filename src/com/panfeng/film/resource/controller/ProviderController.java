@@ -1466,19 +1466,9 @@ public class ProviderController extends BaseController {
 
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		// modelMap.addAttribute("userType", GlobalConstant.ROLE_PROVIDER);
 		return new ModelAndView("/rePwdPro", modelMap);
 	}
 
-	/*
-	 * @RequestMapping("/updatePwd") public ModelAndView updatePwd(ModelMap
-	 * modelMap, HttpServletRequest request) { modelMap.addAttribute("userType",
-	 * GlobalConstant.ROLE_PROVIDER); SessionInfo sessionInfo =
-	 * getCurrentInfo(request); modelMap.addAttribute("userLoginName",
-	 * sessionInfo.getLoginName()); modelMap.addAttribute("userId",
-	 * sessionInfo.getReqiureId()); return new ModelAndView("/updatePwd",
-	 * modelMap); }
-	 */
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg setMasterWork(@RequestBody final Product product, HttpServletRequest request) {
