@@ -86,6 +86,7 @@
 						<c:if test="${not empty product.picLDUrl}">
 							<img class='media-object' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
+						    <img class="playIcon" src="/resources/images/index/play-icon.png"/>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
 							class="mid <c:if test="${empty product.checkDetails || product.flag != 2}"> nC</c:if>">

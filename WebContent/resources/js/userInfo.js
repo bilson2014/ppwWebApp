@@ -91,22 +91,36 @@ function selfInfo(){
 					ret = checkEmail($('#contact-email').val().trim());
 					if(!ret){
 						showCommonError($('#contact-email-error'),"请输入正确的邮箱地址");
+						return false;
 					}else{
 						showCommonError($('#contact-email-error'),"");
 					}
 				}
+				
+				var qq = $('#contact-qq').val().trim(); // QQ				
+				var reg = /^[1-9]\d{4,9}$/;
+				
+				if(qq!=""){
+					if(!qq.match(reg)){
+						showCommonError($('#contact-qq-error'),"QQ号码有误!");
+						$('#contact-qq').focus();
+							return false;
+					}
+				}
+				console.info($('#nickName').val().trim());
+				
 				if(ret){
-					$(window.parent.document).find('.tooltip-wati').show();
+					parent.find('.tooltip-wati').show();
 					loadData(function(flag){
 						// 提示信息修改成功
 						if(flag){
 							successToolTipShow('修改成功');
-							$(window.parent.document).find('.tooltip-wati').hide();
+							parent.find('.tooltip-wati').hide();
 						}else{
 							successErrorTipShow('修改失败');
-							$(window.parent.document).find('.tooltip-wati').hide();
+							parent.find('.tooltip-wati').hide();
 						}
-						$(window.parent.document).reload();
+						$(window.parent.document).reload;
 					}, getContextPath() + '/user/modify/info', $.toJSON({
 						id : $('#user_unique').val(),
 						userName : $('#nickName').val().trim(),

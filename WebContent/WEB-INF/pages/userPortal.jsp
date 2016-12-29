@@ -159,7 +159,7 @@
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">
-                          <img class="proLogo" id="proLogo" data-value="${user.imgUrl }" src="/resources/images/provider/initLogo.png"/>
+                          <img class="proLogo" id="proLogo" data-value="${user.imgUrl }" src="/resources/images/provider/default-user.jpg"/>
                     </div>
                     <div class="userName">${user.userName }</div>
                     <div class="left-content">

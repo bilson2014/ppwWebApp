@@ -683,12 +683,13 @@ input:focus {
             // -moz-box-shadow: 10px 10px 5px #d1d1d1;
             // /* 老的 Firefox */
             // box-shadow: 0px 0px 10px #d1d1d1;
-            -moz-transform: scale(1.05);
-            /* Firefox 4 */
-            -webkit-transform: scale(1.05);
-            /* Safari 和 Chrome */
-            -o-transform: scale(1.05);
-            transform: scale(1.05);
+            // -moz-transform: scale(1.05);
+            // /* Firefox 4 */
+            // -webkit-transform: scale(1.05);
+            // /* Safari 和 Chrome */
+            // -o-transform: scale(1.05);
+            // transform: scale(1.05);
+            border: solid 1px #b8b8b8;
             .videoContet {
                 -moz-box-shadow: 10px 10px 5px #d1d1d1;
                 -webkit-box-shadow: 0px 0px 10px #d1d1d1;
@@ -1216,16 +1217,25 @@ input:focus {
             padding-bottom: 80px;
             margin-bottom: 0px !important;
         }
+
+       li:nth-child(3){
+         margin-right: 0px !important;
+       }
+       li:nth-child(6){
+         margin-right: 0px !important;
+       }
+
         li {
             position: relative;
             display: inline-block;
             border: none;
-            width: 33%;
-            width: calc(100/3 - 2px);
+            @include newsCard();
             text-align: center;
             color: white;
             text-align: left;
             margin-top: 66px;
+            margin-right: 96px;
+
             &:hover {
                 div {
                     color: $red-base !important;
@@ -1269,7 +1279,6 @@ input:focus {
                 font-size: $font-size-lg;
                 cursor: pointer;
                 @include ellipsis;
-                padding-right: 60px;
             }
             div:nth-child(2) {
                 height: 2px;
@@ -1281,7 +1290,6 @@ input:focus {
             div:nth-child(3) {
                 color: $gray-light !important;
                 font-size: $font-size-sm;
-                padding-right: 15%;
                 height: 54px;
                 overflow: hidden;
                 text-overflow: ellipsis;
