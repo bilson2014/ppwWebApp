@@ -244,9 +244,9 @@ function passwordInfo(){
 					loginName : loginName,
 					verification_code:verification_code
 				}));
-			}else{
-				$('#label-confirm-passw0rd').removeClass('hide');
-			}
+		}else{
+			$('#label-confirm-passw0rd').removeClass('hide');
+		}
 	});
 	
 	$('#upd-btn').unbind('click');
@@ -271,9 +271,9 @@ function passwordInfo(){
 					password : Encrypt(password),
 					verification_code:verification_code
 				}));
-			}else{
-				$('#label-confirm-passw0rd').removeClass('hide');
-			}
+		}else{
+			$('#label-confirm-passw0rd').removeClass('hide');
+		}
 	});
 }
 
