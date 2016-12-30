@@ -93,8 +93,8 @@
 <spring:url value="/resources/images/provder" var="imgPath" />
 </head>
 <body>
-	<input type="hidden" value="${team.phoneNumber }" id="phoneNumber">
-	<input type="hidden" value="${team.teamId }" id="teamId">
+	<input type="hidden" value="${user.telephone }" id="phoneNumber">
+	<input type="hidden" value="${user.id }" id="userId">
 	<div class="proInfo">
 		<div class="safeInfo" id="normal">
 			<div class="safeItem">
@@ -105,11 +105,11 @@
 					</div>
 					<div class="content">
 						<div class="infoName">登录名</div>
-						<c:if test="${empty team.loginName }">
+						<c:if test="${empty user.loginName }">
 							<div>未设置</div>
 						</c:if>
-						<c:if test="${not empty team.loginName }">
-							<div>${team.loginName}</div>
+						<c:if test="${not empty user.loginName }">
+							<div>${user.loginName}</div>
 						</c:if>
 					</div>
 					<div class="setInfo btn-c-r" id="toUserName">设置</div>
@@ -124,8 +124,8 @@
 					</div>
 					<div class="content">
 						<div class="infoName">原机绑定</div>
-						<c:if test="${not empty team.phoneNumber }">
-							<div>${fn:replace(team.phoneNumber,fn:substring(team.phoneNumber,3,7), '****')}</div>
+						<c:if test="${not empty user.telephone }">
+							<div>${fn:replace(user.telephone,fn:substring(user.telephone,3,7), '****')}</div>
 						</c:if>
 					</div>
 					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
@@ -160,7 +160,7 @@
 					          </div>
 					           <div class="info">
 					               <div class="title">微博账号</div>
-					               <div class="state">未綁定</div>
+					               <div class="state">未绑定</div>
 					          </div>
 						  </div>
 					</div>
@@ -178,7 +178,7 @@
 			<div class="old-phone">
 				<div class="setItem change">
 					<div class="title">原手机号</div>
-					<div class="title">${team.phoneNumber}</div>
+					<div class="title">${user.telephone}</div>
 				</div>
 				<div class="setItem" id='old-code-error'>
 					<div class="title">验证码</div>
@@ -206,7 +206,6 @@
 			</div>
 		</div>
 
-
 		<div class="setUserContent" id="userPassWord">
 			<div class="top">
 				<div>登录密码</div>
@@ -214,13 +213,9 @@
 			</div>
 			<div class="setItem" id="loginName-error">
 				<div class="title">登录名</div>
-				<c:if test="${not empty team.loginName }">
-					<div class="loginDivName">${team.loginName }</div>
-					<input id="loginName" type="hidden" value='${team.loginName }'>
-				</c:if>
-				<c:if test="${empty team.loginName }">
-					<input id="loginName">
-				</c:if>
+					
+					<div id="loginDivName" style="display: none;" class="loginDivName">${user.loginName }</div>
+					<input id="loginName" type="text" value='${user.loginName }'>
 			</div>
 			<div class="setItem" id="newpwd-error">
 				<div class="title">新密码</div>
@@ -236,17 +231,11 @@
 				<button class="setCode" id="code-forpwd">发送验证码</button>
 			</div>
 			<div class="bottom">
-				<c:if test="${not empty team.loginName }">
-					<div class="infoSubmit btn-c-r pwdupdate">保存</div>
-				</c:if>
-				<c:if test="${empty team.loginName }">
-					<div class="infoSubmit btn-c-r pwdadd">保存</div>
-				</c:if>
+				<div class="infoSubmit btn-c-r pwdupdate">保存</div>
 				<div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
 			</div>
 
 		</div>
-		
 		
 		<div class="setUserContent" id="userBind">
 			<div class="top">
@@ -255,40 +244,36 @@
 			</div>
 			
 			<div class="">
-			             <div class="weChat margin" id="wechatSet">
-					          <div class="icon">
-					          </div>
-					           <div class="info">
-					               <div class="title">微信账号</div>
-					               <div class="state">未绑定</div>
-					          </div>
-					          <div class="btn-bind isBind" id="wechatBtn">绑定</div>
-						  </div>
-						  <div class="qq margin activeBind" id="qqSet">
-					          <div class="icon">
-					          </div>
-					           <div class="info">
-					               <div class="title">QQ账号</div>
-					               <div class="state">未绑定</div>
-					          </div>
-					          <div class="btn-bind isBind" id="qqBtn" >绑定</div>
-						  </div>
-						  <div class="wb margin" id="wbSet">
-					          <div class="icon">
-					          </div>
-					           <div class="info">
-					               <div class="title">微博账号</div>
-					               <div class="state">未绑定</div>
-					          </div>
-					          <div class="btn-bind isNotBind" id="wbBtn">未绑定</div>
-						  </div>
+		             <div class="weChat margin" id="wechatSet">
+				          <div class="icon">
+				          </div>
+				           <div class="info">
+				               <div class="title">微信账号</div>
+				               <div class="state">未绑定</div>
+				          </div>
+				          <div class="btn-bind isBind" id="wechatBtn">绑定</div>
+					  </div>
+					  <div class="qq margin activeBind" id="qqSet">
+				          <div class="icon">
+				          </div>
+				           <div class="info">
+				               <div class="title">QQ账号</div>
+				               <div class="state">未绑定</div>
+				          </div>
+				          <div class="btn-bind isBind" id="qqBtn" >绑定</div>
+					  </div>
+					  <div class="wb margin" id="wbSet">
+				          <div class="icon">
+				          </div>
+				           <div class="info">
+				               <div class="title">微博账号</div>
+				               <div class="state">未绑定</div>
+				          </div>
+				          <div class="btn-bind isNotBind" id="wbBtn">未绑定</div>
+					  </div>
 			</div>
-			
 			<div class="infoSubmit btn-c-r pwdadd bindBack" id="bindReturn">返回</div>
-
 		</div>
-
-
 	</div>
 </body>
 </html>

@@ -517,7 +517,18 @@ public class UserController extends BaseController {
 
 	@RequestMapping("/safeInfo")
 	public ModelAndView safeInfo(final HttpServletRequest request, final ModelMap model) {
-
+		final SessionInfo info = getCurrentInfo(request);
+		if (info != null) {
+			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
+			String json = HttpUtil.httpGet(url, request);
+			if (ValidateUtil.isValid(json)) {
+				final User currentUser = JsonUtil.toBean(json, User.class);
+				currentUser.setPassword(null);
+				model.addAttribute("user", currentUser);
+			}
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(), sessionInfo);
+		}
 		return new ModelAndView("userSafeInfo");
 	}
 

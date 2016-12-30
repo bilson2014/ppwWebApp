@@ -2,199 +2,400 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
-$().ready(function() {
-	
-	
-	bandInfo();
-	
-	var safeInfo = {
-			init:function(){
-				//****登录密码设置******
-				//页面点击初始化
-				this.initPage();
-				//设置登录名      登录名失去焦点
-				this.loginNameValidate();
-				//设置登录名      密码失去焦点
-				this.pwdValidate();
-				//设置登录名      点击获取手机验证码
-				this.sendCodeForPwd();
-				//登录密码	确定事件 
-				this.submitPWD();
-				
-				//****手机绑定设置******
-				//手机绑定  发送验证码到原手机号
-				this.sendcodeForOldPhone();
-				//原手机验证码验证事件
-				this.oldPhoneCodeValidate();
-				//手机绑定  发送验证码到新手机号
-				this.sendcodeForNewPhone();
-				//新手机保存事件
-				this.bindNewPhone();
-			},
-			initPage:function(){
-				var noraml = $('#normal');
-				var userName = $('#userName');
-				var userPassWord = $('#userPassWord');
-				var userBind = $('#userBind');
-				$('#toUserName').on('click',function(){
-					noraml.hide();
-					userPassWord.show();
-				});
-				$('#nameReturn').on('click',function(){
-					noraml.show();
-					userName.hide();
-				});
-				$('#toUserPassWord').on('click',function(){
-					noraml.hide();
-					userName.show();
-					$(".new-phone").addClass("hide");
-					$(".old-phone").removeClass("hide");
-				});
-				$('#pwdReturn').on('click',function(){
-					noraml.show();
-					userPassWord.hide();
-				});
-				$('#userBind-btn').on('click',function(){
-					noraml.hide();
-					userBind.show();
-				});
 
-				
-			},
-			loginNameValidate:function(){
-				$("#loginName").off("change").on("change",function(){
-					if($("#loginName").val().trim()!=''){
-						loadData(function(flag){
-							if(!flag){
-								showCommonError($('#loginName-error'),"用户名已经重复");
-								$("#loginName").focus();
-							}else{
-								showCommonError($('#loginName-error'),"");
-							}
-						}, getContextPath() + '/provider/checkExisting', $.toJSON({
-							loginName : $("#loginName").val().trim()
-						}));
-					}
-				});
-			},
-			pwdValidate:function(){
-				$("#newpwd").off("change").on("change",function(){
-					var pwd = $("#newpwd").val().trim();
-					if(checkData(1)){
-						$("#newpwd").parent().removeClass("errorIcon").addClass("sureIcon");
-					}
-				});
-				$("#repwd").off("change").on("change",function(){
-					if(checkData(2)){
-						$("#repwd").parent().removeClass("errorIcon").addClass("sureIcon");
-					}
-				});
-			},
-			sendCodeForPwd:function(){
-				var telPhone = $("#phoneNumber").val();
-				$("#code-forpwd").off("click").on("click",function(){
-					if(checkData(3)){
-						verification(telPhone,"code-forpwd");
-					}
-				})
-			},
-			submitPWD:function(){
-				var _this = this;
-				$(".pwdadd").off("click").on("click",function(){
-					var url = '/provider/add/account';
-					_this.submit(url);
-				})
-				$(".pwdupdate").off("click").on("click",function(){
-					var url = '/provider/recover/password';
-					_this.submit(url);
-				})
-			},
-			submit:function(url){
-				if(checkData(4)){ // 检测数据完整性
-					loadData(function(data){
-						if(data.code==1){
-							window.location.reload();
-						}else if(data.code==2){
-							showCommonError($('#loginName-error'),data.result);
-						}else{
-							showCommonError($('#veritifyCode-error'),data.result);
-						}
-					}, getContextPath() + url, $.toJSON({
-						loginName : $("#loginName").val().trim(),
-						password : Encrypt($('#newpwd').val().trim()),
-						verification_code:$("#veritifyCode").val().trim()
-					}));
-				}
-			},
-			sendcodeForOldPhone:function(){
-				$("#code-foroldphone").off("click").on("click",function(){
-					var telPhone = $("#phoneNumber").val();
-					verification(telPhone,"code-foroldphone");
-				})
-			},
-			oldPhoneCodeValidate:function(){
-				var _this = this;
-				$("#validate-oldPhonecode").off("click").on("click",function(){
-					var oldCode = $("#old-code").val().trim();
-					if(oldCode == null || oldCode == '' || oldCode == undefined){
-						showCommonError($('#old-code-error'),'请填写验证码');
-						return false;
-					}
-					loadData(function(result){
-						if(result){
-							$(".old-phone").addClass("hide");
-							$(".new-phone").removeClass("hide")
-							
-						}else{
-							showCommonError($('#old-code-error'),'验证码错误');
-						}
-					}, getContextPath() + '/phone/validate', $.toJSON({
-						telephone : $("#phoneNumber").val().trim(),
-						verification_code : oldCode
-					}));
-				})
-			},
-			sendcodeForNewPhone:function(){
-				$("#code-fornewphone").off("click").on("click",function(){
-					var concat_tele_new = $("#new-phoneNumber").val().trim();
-					if(!checkData(6)){
-						return false;
-					}
-					loadData(function(flag){
-						if(!flag){
-							// 注册过
-							showCommonError($('#new-phoneNumber-error'),'您输入的手机号码已被注册');
-							$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
-						}else{ // 未注册
-							$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
-							//发送手机验证码
-							verification(concat_tele_new,"code-fornewphone");
-						}
-					}, getContextPath() + '/provider/checkExisting', $.toJSON({
-						phoneNumber : concat_tele_new
-					}));
-				});
-			},
-			bindNewPhone:function(){
-				$("#bindNewPhone").off("click").on("click",function(){
-					if(checkData(5)){
-						loadData(function(data){
-							if(data.code == 1){
-								window.location.reload();
-							}else {
-								showCommonError($('#new-code-error'),data.result);
-							}
-						}, getContextPath() + '/provider/modify/phone', $.toJSON({
-							phoneNumber : $("#new-phoneNumber").val().trim(),
-							verification_code : $('#new-code').val().trim()
-						}));
-					}
-				})
-			}
-	}
-	safeInfo.init();
+var passwordMode = '';
+$().ready(function() {
+	init();
 });
 
+function init(){
+	// 初始化页面切换
+	initPage();
+	// 初始化动态验证
+	verify();
+	// 初始化验证码发送模块
+	sendCode();
+	// 初始化提交按钮
+	initSubBtn();
+	// 第三方绑定
+	bandInfo();
+}
+
+function initPage(){
+	var noraml = $('#normal');
+	var userName = $('#userName');
+	var userPassWord = $('#userPassWord');
+	var userBind = $('#userBind');
+	$('#toUserName').on('click',function(){
+		noraml.hide();
+		userPassWord.show();
+	});
+	$('#nameReturn').on('click',function(){
+		noraml.show();
+		userName.hide();
+	});
+	$('#toUserPassWord').on('click',function(){
+		noraml.hide();
+		userName.show();
+		$(".new-phone").addClass("hide");
+		$(".old-phone").removeClass("hide");
+	});
+	$('#pwdReturn').on('click',function(){
+		noraml.show();
+		userPassWord.hide();
+	});
+	$('#userBind-btn').on('click',function(){
+		noraml.hide();
+		userBind.show();
+	});
+	
+	var res = $('#loginDivName').text();
+	if(res != null && res != ''){
+		// 修改密码 模式
+		$('#loginDivName').show();
+		$('#loginName').hide();
+		passwordMode = 'pass';
+	}else{
+		// 修改用户名和密码模式
+		$('#loginDivName').hide();
+		$('#loginName').show();
+		passwordMode = 'passAlog';
+	}
+	
+	$('#code-foroldphone').off('click').on('click',function(){
+		var telPhone = $("#phoneNumber").val();
+		verification(telPhone,"code-foroldphone");
+	});
+	
+	$("#validate-oldPhonecode").off("click").on("click",function(){
+		if(phoneVeritifyCode()){
+			loadData(function(result){
+				if(result){
+					$(".old-phone").addClass("hide");
+					$(".new-phone").removeClass("hide")
+				}else{
+					showCommonError($('#old-code-error'),'验证码错误');
+				}
+			}, getContextPath() + '/phone/validate', $.toJSON({
+				telephone : $("#phoneNumber").val().trim(),
+				verification_code :  $('#old-code').val()
+			}));
+		}
+	});
+	$("#code-fornewphone").off("click").on("click",function(){
+		var concat_tele_new = $("#new-phoneNumber").val().trim();
+		if(!checkData(3)){
+			return false;
+		}
+		loadData(function(flag){
+			if(!flag){
+				// 注册过
+				showCommonError($('#new-phoneNumber-error'),'您输入的手机号码已被注册');
+				$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
+			}else{ // 未注册
+				$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
+				//发送手机验证码
+				verification(concat_tele_new,"code-fornewphone");
+			}
+		}, getContextPath() + '/provider/checkExisting', $.toJSON({
+			phoneNumber : concat_tele_new
+		}));
+	});
+	
+	$("#bindNewPhone").off("click").on("click",function(){
+		if(checkData(3) && checkData(4)){
+			$(window.parent.document).find('.tooltip-wati').show();
+			$(this).attr('disabled','disabled');
+			loadData(function(result){
+				if(result.code == 3){
+					window.clearInterval(InterValObj); // 停止计时器
+					$("#codeBt").text("获取验证码").removeAttr("disabled");
+					successToolTipShow('电话修改成功!');
+				}else if(result.code == 1){
+					showCommonError($('#new-code-error'),"验证码错误");
+				}	
+				else if(result.code == 2){
+					showCommonError($('#new-phoneNumber-error'),"您输入的手机号码已被注册");
+				}
+				$('#bindNewPhone').removeAttr('disabled');
+				$(window.parent.document).find('.tooltip-wati').hide();
+			}, getContextPath() + '/user/modify/phone', $.toJSON({
+				id : $('#userId').val(),
+				telephone : $('#new-phoneNumber').val().trim(),
+				verification_code : $('#new-code').val().trim()
+			}));
+		}
+	});
+	
+}
+function verify(){
+	$("#newpwd").off("change").on("change",function(){
+		var pwd = $("#newpwd").val().trim();
+		if(checkData(11)){
+			$("#newpwd").parent().removeClass("errorIcon").addClass("sureIcon");
+		}
+	});
+	$("#repwd").off("change").on("change",function(){
+		if(checkData(11) && checkData(12)){
+			$("#repwd").parent().removeClass("errorIcon").addClass("sureIcon");
+		}
+	});
+	$("#loginName").off("change").on("change",function(){
+		syncLoadData(function(flag){
+			if(flag){
+				showCommonError($('#loginName-error'),"用户名已经重复过请更换用户名！");
+				$('#loginName').focus();
+				x = true;
+			}else{
+				showCommonError($('#loginName-error'),"");
+			}
+		}, getContextPath() + '/login/validation/userName', $.toJSON({
+			loginName : $("#loginName").val()
+		}));
+	});
+	
+}
+
+function sendCode(){
+	var telPhone = $("#phoneNumber").val();
+	$("#code-forpwd").off("click").on("click",function(){
+		if(checkData(1)){
+			verification(telPhone,"code-forpwd");
+		}
+	})
+}
+
+function initSubBtn(){
+	$('.pwdupdate').off('click').on('click',function(){
+		$(window.parent.document).find('.tooltip-wati').show();
+		if(passwordMode == 'pass'){
+			// 修改密码 模式
+			if(checkData(2)){
+				var confirmPassw0rd = $('#repwd').val().trim();
+				var id = $('#userId').val();
+				var verification_code = $("#veritifyCode").val().trim();
+					loadData(function(data){
+						$(window.parent.document).find('.tooltip-wati').hide();
+						// 提示信息修改成功
+						if(data.code==1){
+							successToolTipShow('修改成功!');
+						}else{
+							showCommonError($('.tooltip-error-show'),data.msg);
+						}
+						window.clearInterval(InterValObj);
+						$("#code-forpwd").text("获取验证码").removeAttr("disabled");
+					}, getContextPath() + '/user/modify/code/password', $.toJSON({
+						id : id,
+						password : Encrypt(confirmPassw0rd),
+						verification_code:verification_code
+					}));
+			}else{
+				$(window.parent.document).find('.tooltip-wati').hide();
+			}
+		}else{
+			// 修改用户名和密码模式
+			if(checkData(2)){
+				var confirmPassw0rd = $('#repwd').val().trim();
+				var loginName = $('#loginName').val().trim();
+				var id = $('#userId').val();
+				var verification_code = $("#veritifyCode").val().trim();
+					loadData(function(flag){
+						$(window.parent.document).find('.tooltip-wati').hide();
+						if(flag.errorCode == 200){
+							if(flag.result){
+								window.clearInterval(InterValObj);
+								successToolTipShow('修改成功!');
+								$("#code-forpwd").text("获取验证码").removeAttr("disabled");
+								$("#loginDivName").text(loginName);
+								$("#loginName").val(loginName);
+								$("#upd").removeClass("hide");
+								$("#ins").addClass("hide");
+								$(".warn").attr("class","").text("");//清除右上角提示标识
+							}else{
+								$(window.parent.document).find('.tooltip-wati').hide();
+								showCommonError($('.tooltip-error-show'),"修改失败！");
+							}
+						}else if(flag.errorCode == 500){
+							showCommonError($('.tooltip-error-show'),flag.errorMsg);
+							$(window.parent.document).find('.tooltip-wati').hide();
+						}else{
+							showCommonError($('.tooltip-error-show'),"修改失败，请稍后重试！");
+							$(window.parent.document).find('.tooltip-wati').hide();
+						}
+						window.setInterval(hideTooltip, 2000);
+					}, getContextPath() + '/login/modify/logName', $.toJSON({
+						id : id,
+						password : Encrypt(confirmPassw0rd),
+						loginName : loginName,
+						verification_code:verification_code
+					}));
+			}else{
+				$(window.parent.document).find('.tooltip-wati').hide();
+			}
+		}
+	})
+}
+
+
+//公共验证
+function checkData(type){
+	resumeCommonError($(".setItem"),'');
+	$(".setItem").remove("errorIcon").remove("sureIcon");
+	var LoginName = $("#loginName").val();
+	var pwd = $("#newpwd").val().trim();
+	var repwd = $("#repwd").val().trim();
+	var telPhone = $("#phoneNumber").val();
+	
+	var veritifyCode = $("#veritifyCode").val();
+	var newTelPhone = $("#new-phoneNumber").val();
+	var newcode = $("#new-code").val();
+	switch (type) {
+		case 1: 
+			return baseVerify();
+			break;
+		case 2: 
+			var res = baseVerify();
+			if(res){
+				if(null==veritifyCode || ''==veritifyCode || undefined==veritifyCode){
+					showCommonError($('#veritifyCode-error'),"请输入验证码");
+					$("#veritifyCode").focus();
+					return false;
+				}
+				resumeCommonError($(".setItem"),'');
+				return true;
+			}else{
+				return false;
+			}
+			break;
+		case 3:
+			if(null==newTelPhone || ''==newTelPhone || undefined==newTelPhone){
+				showCommonError($('#new-phoneNumber-error'),"手机号不能为空");
+				$("#new-phoneNumber").focus();
+				$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
+				return false;
+			}
+			if(!checkMobile(newTelPhone)){
+				showCommonError($('#new-phoneNumber-error'),"请输入正确的手机号码");
+				$("#new-phoneNumber").focus();
+				$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
+				return false;
+			}else{
+				$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
+			}
+			return true
+		case 4:
+			if(null==newcode || ''==newcode || undefined==newcode){
+				showCommonError($('#new-code-error'),"请输入验证码");
+				return false;
+			}
+			return true
+		// 双位的都是页面动态验证
+		case 11:
+			if(null==pwd || ''==pwd || undefined==pwd){
+				showCommonError($('#newpwd-error'),"密码不能为空");
+				$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
+				return false;
+			}
+			if(pwd.length<6 || pwd.length>16){
+				showCommonError($('#newpwd-error'),"密码长度6~16位");
+				$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
+				return false;
+			}
+			resumeCommonError($(".setItem"),'');
+			return true
+			break;
+		case 12:
+			if(repwd != pwd){
+				showCommonError($('#repwd-error'),"两次密码不一致");
+				$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
+				return false;
+			}
+			resumeCommonError($(".setItem"),'');
+			return true
+			break;
+	}
+}
+
+function loginNameVeritifyCode(){
+	var veritifyCode = $("#veritifyCode").val();
+	if(null==veritifyCode || ''==veritifyCode || undefined==veritifyCode){
+		showCommonError($('#veritifyCode-error'),"请输入验证码");
+		$("#veritifyCode").focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function phoneVeritifyCode(){
+	var veritifyCode = $("#old-code").val();
+	if(null==veritifyCode || ''==veritifyCode || undefined==veritifyCode){
+		showCommonError($('#old-code-error'),"请输入验证码");
+		$("#old-code").focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function baseVerify(){
+	var pwd = $("#newpwd").val().trim();
+	var repwd = $("#repwd").val().trim();
+	var telPhone = $("#phoneNumber").val();
+	
+	var res = verifyLoginName(); 
+	
+	if(!res)
+		return false;
+	
+	if(null==pwd || ''==pwd || undefined==pwd){
+        showCommonError($('#newpwd-error'),"密码不能为空");
+        $("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
+        return false;
+    }
+    if(pwd.length<6 || pwd.length>16){
+        showCommonError($('#newpwd-error'),"密码长度6~16位");
+        $("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
+        return false;
+    }
+    if(repwd != pwd){
+        showCommonError($('#repwd-error'),"两次密码不一致");
+        $("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
+        return false;
+    }
+    resumeCommonError($(".setItem"),'');
+    return true;
+}
+
+function verifyLoginName(){
+	if(passwordMode == 'pass')
+		return true;
+
+	var LoginName = $("#loginName").val();
+	if(null==LoginName || ''==LoginName || undefined==LoginName){
+		showCommonError($('#loginName-error'),"登录名不能为空");
+		$("#loginName").focus();
+		return false;
+	}
+	var x; 
+	syncLoadData(function(flag){
+		if(flag){
+			showCommonError($('#loginName-error'),"用户名已经重复过请更换用户名！");
+			$("#loginName").focus();
+			x = false;
+		}else{
+			x = true;
+			showCommonError($('#loginName-error'),"");
+		}
+	}, getContextPath() + '/login/validation/userName', $.toJSON({
+		loginName : LoginName
+	}));
+	if(!x){
+		return false;
+	}else{
+		return true;	
+	}
+}
 
 function verification(phone,ID){
 	curCount = count;
@@ -231,128 +432,75 @@ function verification(phone,ID){
 		}, getContextPath() + '/login/verification/' + phone, null);
 	}
 }
-//公共验证
-function checkData(type){
-	resumeCommonError($(".setItem"),'');
-	$(".setItem").remove("errorIcon").remove("sureIcon");
-	var LoginName = $("#loginName").val();
-	var pwd = $("#newpwd").val().trim();
-	var repwd = $("#repwd").val().trim();
-	var telPhone = $("#phoneNumber").val();
-	var veritifyCode = $("#veritifyCode").val();
-	var newTelPhone = $("#new-phoneNumber").val();
-	var newcode = $("#new-code").val();
-	switch (type) {
-	case 1:
-		if(null==pwd || ''==pwd || undefined==pwd){
-			showCommonError($('#newpwd-error'),"密码不能为空");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(pwd.length<6 || pwd.length>16){
-			showCommonError($('#newpwd-error'),"密码长度6~16位");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		resumeCommonError($(".setItem"),'');
-		return true
-		break;
 
-	case 2:
-		if(repwd != pwd){
-			showCommonError($('#repwd-error'),"两次密码不一致");
-			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		resumeCommonError($(".setItem"),'');
-		return true
-		break;
-	case 3:
-		if(null==LoginName || ''==LoginName || undefined==LoginName){
-			showCommonError($('#loginName-error'),"登录名不能为空");
-			$("#loginName").focus();
-			return false;
-		}
-		if(null==pwd || ''==pwd || undefined==pwd){
-			showCommonError($('#newpwd-error'),"密码不能为空");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(pwd.length<6 || pwd.length>16){
-			showCommonError($('#newpwd-error'),"密码长度6~16位");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(repwd != pwd){
-			showCommonError($('#repwd-error'),"两次密码不一致");
-			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		resumeCommonError($(".setItem"),'');
-		return true
-	case 4:
-		if(null==LoginName || ''==LoginName || undefined==LoginName){
-			showCommonError($('#loginName-error'),"登录名不能为空");
-			$("#loginName").focus();
-			return false;
-		}
-		if(null==pwd || ''==pwd || undefined==pwd){
-			showCommonError($('#newpwd-error'),"密码不能为空");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(pwd.length<6 || pwd.length>16){
-			showCommonError($('#newpwd-error'),"密码长度6~16位");
-			$("#newpwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(repwd != pwd){
-			showCommonError($('#repwd-error'),"两次密码不一致");
-			$("#repwd").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(null==veritifyCode || ''==veritifyCode || undefined==veritifyCode){
-			showCommonError($('#veritifyCode-error'),"请输入验证码");
-			$("#veritifyCode").focus();
-			return false;
-		}
-		resumeCommonError($(".setItem"),'');
-		return true
-	case 5:
-		if(null==newTelPhone || ''==newTelPhone || undefined==newTelPhone){
-			showCommonError($('#new-phoneNumber-error'),"手机号不能为空");
-			$("#new-phoneNumber").focus();
-			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
-		}
-		if(!checkMobile(newTelPhone)){
-			showCommonError($('#new-phoneNumber-error'),"请输入正确的手机号码");
-			$("#new-phoneNumber").focus();
-			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon");
-			return false;
+
+function bandInfo(){
+	$('.three-band').slideDown('normal');
+	$("#qq").attr("class","");
+	$("#wechat").attr("class","");
+	$("#wb").attr("class","");
+	loadData(function(data){
+		if(data.qq==1){
+			$("#qq").addClass("activeBind");
+			$("#qq").find('.state').text('绑定');
+			$("#qqSet").addClass("activeBind");
+			$("#qqSet").find('.state').text('绑定');
+			$('#qqBtn').addClass('isNotBind');
+			$('#qqBtn').text('取消绑定');
+			$("#qqBtn").attr("data-status","1");
 		}else{
-			$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
+			$("#qqSet").removeClass("activeBind");
+			$("#qqSet").find('.state').text('未绑定');
+			$("#qqSet").removeClass("activeBind");
+			$("#qqSet").find('.state').text('未绑定');
+			$('#qqBtn').addClass('isBind');
+			$('#qqBtn').text('绑定');
+			$("#qqBtn").attr("data-status","0");
 		}
-		if(null==newcode || ''==newcode || undefined==newcode){
-			showCommonError($('#new-code-error'),"请输入验证码");
-			return false;
+		if(data.wechat==1){
+			$("#wechat").addClass("activeBind");
+			$("#wechat").find('.state').text('绑定');
+			$("#wechatSet").addClass("activeBind");
+			$("#wechatSet").find('.state').text('绑定');
+			$('#wechatBtn').addClass('isNotBind');
+			$('#wechatBtn').text('取消绑定');
+			$("#wechatBtn").attr("data-status","1");
+
+		}else{
+			$("#wechat").removeClass("activeBind");
+			$("#wechat").find('.state').text('未绑定');
+			$("#wechatSet").removeClass("activeBind");
+			$("#wechatSet").find('.state').text('未绑定');
+			$('#wechatBtn').addClass('isBind');
+			$('#wechatBtn').text('绑定');
+			$("#wechatBtn").attr("data-status","0");
 		}
-		return true
-	case 6:
-		if(!checkMobile(newTelPhone)){
-			showCommonError($('#new-phoneNumber-error'),'请输入正确的手机号码');
-			$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
-			return false;
+		if(data.wb==1){
+			$("#wb").addClass("activeBind");
+			$("#wb").find('.state').text('绑定');
+			$("#wbSet").addClass("activeBind");
+			$("#wbSet").find('.state').text('绑定');
+			$('#wbBtn').addClass('isBind');
+			$('#wbBtn').text('取消绑定');
+			$("#wbBtn").attr("data-status","1");
+
+		}else{
+			$("#wb").removeClass("activeBind");
+			$("#wb").find('.state').text('未绑定');
+			$("#wbSet").removeClass("activeBind");
+			$("#wbSet").find('.state').text('未绑定');
+			$('#wbBtn').addClass('isNotBind');
+			$('#wbBtn').text('绑定');
+			$("#wbBtn").attr("data-status","0");
+		
 		}
-		return true
-	default:
-		break;
-	}
+		
+		//初始化第三方
+		userinfo_third.init();
+		
+	}, getContextPath() + '/user/third/status');
 }
 
-
-
-//绑定
 var userinfo_third = {
 		init:function(){
 			//qq登陆
@@ -398,7 +546,6 @@ var userinfo_third = {
 							//提示成功
 							successToolTipShow();
 							$('#qq').removeAttr("class").addClass("noBand");
-							check();
 						}
 					}, getContextPath() + '/user/unbind/third',  $.toJSON({
 						lType:"qq"
@@ -416,9 +563,14 @@ var userinfo_third = {
 					loadData(function(flag){
 						if(flag){ // 发送成功
 							//提示成功
-							$('.tooltip-showBand').slideDown('normal');
-							$('#wechat').removeAttr("class").addClass("noBand");
-							check();
+							$("#wechat").removeClass("activeBind");
+							$("#wechat").find('.state').text('未绑定');
+							$("#wechatSet").removeClass("activeBind");
+							$("#wechatSet").find('.state').text('未绑定');
+							$('#wechatBtn').addClass('isBind');
+							$('#wechatBtn').text('绑定');
+							$("#wechatBtn").attr("data-status","0");
+							successToolTipShow();
 						}
 					}, getContextPath() + '/user/unbind/third',  $.toJSON({
 						lType:"wechat"
@@ -449,7 +601,6 @@ var userinfo_third = {
 							//提示成功
 							$('.tooltip-showBand').slideDown('normal');
 							$('#wb').removeAttr("class").addClass("noBand");
-							check();
 						}
 					}, getContextPath() + '/user/unbind/third',  $.toJSON({
 						lType:"wb"
@@ -459,7 +610,6 @@ var userinfo_third = {
 			});
 		},
 }
-
 function userInfoToBind(condition){
 	loadData(function(data){
 		if(data.code==1){
@@ -469,78 +619,6 @@ function userInfoToBind(condition){
 		}
 	}, getContextPath() + '/user/bind/third',condition);
 }
-
-function bandInfo(){
-
-	loadData(function(data){
-		if(data.qq==1){
-			$("#qq").addClass("activeBind");
-			$("#qq").find('state').text('绑定');
-			$("#qqSet").addClass("activeBind");
-			$("#qqSet").find('state').text('绑定');
-			$('#qqBtn').addClass('isNotBind');
-			$('#qqBtn').text('取消绑定');
-			$("#qqBtn").attr("data-status","0");
-
-		}else{
-			$("#qqSet").removeClass("activeBind");
-			$("#qqSet").find('state').text('未绑定');
-			$("#qqSet").removeClass("activeBind");
-			$("#qqSet").find('state').text('未绑定');
-			$('#qqBtn').addClass('isBind');
-			$('#qqBtn').text('绑定');
-			$("#qqBtn").attr("data-status","1");
-
-		}
-		if(data.wechat==1){
-			$("#wechat").addClass("activeBind");
-			$("#wechat").find('state').text('绑定');
-			$("#wechat").addClass("activeBind");
-			$("#wechat").find('state').text('绑定');
-			$('#wechatBtn').addClass('isNotBind');
-			$('#wechatBtn').text('取消绑定');
-			$("#wechatBtn").attr("data-status","0");
-
-		}else{
-			$("#wechatSet").removeClass("activeBind");
-			$("#wechatSet").find('state').text('未绑定');
-			$("#wechatSet").removeClass("activeBind");
-			$("#wechatSet").find('state').text('未绑定');
-			$('#wechatBtn').addClass('isBind');
-			$('#wechatBtn').text('绑定');
-			$("#wechatBtn").attr("data-status","1");
-		}
-		if(data.wb==1){
-			$("#wb").addClass("activeBind");
-			$("#wb").find('state').text('绑定');
-			$("#wbSet").addClass("activeBind");
-			$("#wbSet").find('state').text('绑定');
-			$('#wbBtn').addClass('isBind');
-			$('#wbBtn').text('取消绑定');
-			$("#wbBtn").attr("data-status","0");
-
-		}else{
-			$("#wb").removeClass("activeBind");
-			$("#wb").find('state').text('未绑定');
-			$("#wbSet").removeClass("activeBind");
-			$("#wbSet").find('state').text('未绑定');
-			$('#wbBtn').addClass('isNotBind');
-			$('#wbBtn').text('绑定');
-			$("#wbBtn").attr("data-status","1");
-		
-		}
-		//初始化第三方
-        $('#bindReturn').on('click',function(){
-        	$('#normal').show();
-            $('#userBind').hide();
-        });
-		userinfo_third.init();
-		
-	}, getContextPath() + '/user/third/status');
-}
-
-
-
 ////获取微博用户信息
 function getWBUserData(callback){
 	WB2.anyWhere(function(W){
@@ -567,4 +645,46 @@ function getWBUserData(callback){
 			method : 'GET'
 		});
 	}
+}
+
+
+
+
+
+
+
+
+function successToolTipShow(msg){
+	window.clearInterval(successIntervalObj);
+	$(window.parent.document).find('.tooltip-success-show').slideDown();
+	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
+	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
+}
+function hideSuccessTooltip(){
+	$(window.parent.document).find('.tooltip-success-show').hide();
+	location.reload();
+}
+
+function hideError(){
+	$(window.parent.document).find('.tooltip-error-show').hide();
+	location.reload();
+}
+
+// 成功信息 提示框弹出方法
+function successErrorTipShow(msg){
+	window.clearInterval(successIntervalObj);
+	$(window.parent.document).find('.tooltip-error-show').slideDown();
+	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
+	successIntervalObj = window.setInterval(hideError(), 3000);
+}
+function showInfomation(title,body){
+	$(window.parent.document).find('#infomation').slideDown();
+	$(window.parent.document).find('#infomation_title').text(title);
+	$(window.parent.document).find('#infomation_body').text(body);
+	$(window.parent.document).find('#closeInfo').on('click',function(){
+		hideInfomation();
+	});
+}
+function hideInfomation(){
+	$(window.parent.document).find('#infomation').hide();
 }
