@@ -10,10 +10,19 @@ var setInfoContent = new Array(
 
 
 $().ready(function() {
-    init();
-    InitGetPrice();
-    $('#equipmentInfo').text(setInfoContent[3]);
-	$('#teamInfo').text(setInfoContent[0]);
+//    init();
+//    InitGetPrice();
+//    $('#equipmentInfo').text(setInfoContent[3]);
+//	$('#teamInfo').text(setInfoContent[0]);
+	$('.dropdown li').on('click',function(){
+        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
+        var info=parseInt($(this).attr('data-info'));
+        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
+        $(this).parent().slideUp();
+        if($(this).hasClass('Province'))
+        	Province($(this));
+        return false;
+   });
 });
 function init() {
 
