@@ -187,8 +187,7 @@
 				</div>
 				<div class="btn-c-r infoSubmit" id="validate-oldPhonecode">验证</div>
 			</div>
-
-
+			
 			<div class="new-phone hide">
 				<div class="setItem" id='new-phoneNumber-error'>
 					<div class="title">新手机号</div>
