@@ -2,6 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -721,8 +723,16 @@ public class PCController extends BaseController {
 		final String url = URL_PREFIX + "portal/news/info/"+newId;
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
-			News news = JsonUtil.toBean(str, News.class);
-			model.addAttribute("news", news);
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b),"UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}else{
 			//请求不存在的新闻
 			return new ModelAndView("/error");

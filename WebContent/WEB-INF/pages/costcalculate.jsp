@@ -11,7 +11,6 @@
 <spring:url value="/resources/lib/swiper/swiper.min.js" var="swiperJs" />
 <spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
 <spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
-<spring:url value="/resources/js/homePage.js" var="homePageJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -233,6 +232,14 @@
                                 <div class="title" data-content=""  id="errorPhone">您的联系方式</div>
                                 <div>
                                 <input data-content="0" placeholder="您的手机号" id="phone">
+                                </div>
+                            </div>
+                            
+                             <div class="calItem code" id='code-container'>
+                                <div class="title" data-content=""  id="errorCode">您的验证码</div>
+                                <div>
+                                   <input data-content="0" placeholder="您的验证码" id="phoneCode">
+                                   <button class="setCode" id='getPhoneCode'>发送验证码</button>
                                 </div>
                             </div>
 
