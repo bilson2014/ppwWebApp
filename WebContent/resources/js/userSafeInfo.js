@@ -436,9 +436,9 @@ function verification(phone,ID){
 
 function bandInfo(){
 	$('.three-band').slideDown('normal');
-	$("#qq").attr("class","");
-	$("#wechat").attr("class","");
-	$("#wb").attr("class","");
+	$("#qq").attr("class","qq");
+	$("#wechat").attr("class","weChat");
+	$("#wb").attr("class","wb");
 	loadData(function(data){
 		if(data.qq==1){
 			$("#qq").addClass("activeBind");
@@ -449,8 +449,8 @@ function bandInfo(){
 			$('#qqBtn').text('取消绑定');
 			$("#qqBtn").attr("data-status","1");
 		}else{
-			$("#qqSet").removeClass("activeBind");
-			$("#qqSet").find('.state').text('未绑定');
+			$("#qq").removeClass("activeBind");
+			$("#qq").find('.state').text('未绑定');
 			$("#qqSet").removeClass("activeBind");
 			$("#qqSet").find('.state').text('未绑定');
 			$('#qqBtn').addClass('isBind');
@@ -497,6 +497,10 @@ function bandInfo(){
 		
 		//初始化第三方
 		userinfo_third.init();
+        $('#bindReturn').on('click',function(){
+        	$('#normal').show();
+            $('#userBind').hide();
+        });
 		
 	}, getContextPath() + '/user/third/status');
 }
