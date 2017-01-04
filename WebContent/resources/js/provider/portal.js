@@ -61,10 +61,32 @@ function initPage(){
 	
 	var href = window.location.href;
     var state = href.substr(href.lastIndexOf("?")+1,href.length);
-    if(state.trim() == "company-info" || state.trim() == "safe-info"){
+   /* if(state.trim() == "company-info" || state.trim() == "safe-info"){
     	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
     	$('.tooltip-wati').hide();
+    }*/
+    if(state.trim() == "company-info"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickCompany div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickCompany').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($('#clickCompany div').text());
     }
+    if(state.trim() == "safe-info"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickSafe div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickSafe').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($('#clickSafe div').text());
+    }
+    
+   
 }
 
 function showInfomation(title,body){
