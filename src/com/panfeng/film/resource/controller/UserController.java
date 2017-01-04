@@ -212,7 +212,6 @@ public class UserController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret,
 				sessionInfo);
-
 		// updateUserInSession(request);
 		return ret;
 	}
@@ -255,7 +254,6 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/clear/code")
 	public int clearCode(final HttpServletRequest request) {
-
 		request.getSession().removeAttribute("code");
 		return 0;
 	}
