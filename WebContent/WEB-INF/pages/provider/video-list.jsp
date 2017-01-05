@@ -48,6 +48,23 @@
 <title>拍片网－用户信息页</title>
 <link rel="stylesheet" type="text/css" href="${productListCss}">
 <link rel="stylesheet" type="text/css" href="${webuploaderCss}">
+<script type="text/javascript">
+	var _vds = _vds || [];
+	window._vds = _vds;
+	(function() {
+		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
+		(function() {
+			var vds = document.createElement('script');
+			vds.type = 'text/javascript';
+			vds.async = true;
+			vds.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'dn-growing.qbox.me/vds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(vds, s);
+		})();
+	})();
+</script>
 </head>
 
 <body>
@@ -86,6 +103,7 @@
 						<c:if test="${not empty product.picLDUrl}">
 							<img class='media-object' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
+						    <img class="playIcon" src="/resources/images/index/play-icon.png"/>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
 							class="mid <c:if test="${empty product.checkDetails || product.flag != 2}"> nC</c:if>">

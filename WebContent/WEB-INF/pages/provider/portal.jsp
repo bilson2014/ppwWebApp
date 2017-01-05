@@ -60,7 +60,7 @@
 	<script src="${porviderPortalJs }"></script>
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
-	
+
 	
 </head>
 <body style="overflow:hidden">
@@ -118,12 +118,22 @@
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="${user.imgUrl}" src="/resources/images/provider/default-user.jpg"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -258,10 +268,10 @@
                          <div class="infoItem activeThis">
                                 <div class="product" data-action="video-list">作品列表</div>
                          </div>  
-                          <div class="infoItem">
+                          <div class="infoItem" id="clickCompany">
                                 <div class="info" data-action="company-info">公司信息</div>
                          </div>
-                          <div class="infoItem">
+                          <div class="infoItem" id="clickSafe">
                                  <div class="safeInfo" data-action="safe-info">安全设置</div>
                          </div> 
                     </div>
