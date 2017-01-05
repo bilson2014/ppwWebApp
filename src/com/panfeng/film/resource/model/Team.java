@@ -25,7 +25,7 @@ public class Team extends BaseObject {
 
 	private String address = null; // 公司地址
 
-	private int flag = 0; // 状态位
+	private int flag = 0; // 状态位 0未审核1审核通过2审核未通过
 
 	private String teamName = null; // 团队名称
 
