@@ -20,7 +20,6 @@ input:-webkit-autofill {
 .control {
     background: #f9fafb;
     height: 50px;
-    border-top: 1px solid $e;
     position: relative;
     padding-top: 10px;
     .newProduct {
@@ -129,12 +128,18 @@ input:-webkit-autofill {
         border-bottom: 1px solid $e;
         padding-top: 11px;
         padding-bottom: 11px;
-        img {
+        .media-object {
             width: 200px;
             height: 115px;
             border-radius: 6px;
             display: inline-block;
             vertical-align: top;
+            cursor: pointer;
+        }
+        .playIcon {
+            position: absolute;
+            top: 35px;
+            left: 66px;
             cursor: pointer;
         }
         .mid {
@@ -148,7 +153,7 @@ input:-webkit-autofill {
     .title {
         position: relative;
         top: 50px;
-        z-index:5;
+        z-index: 5;
     }
     .content {
         opacity: 0;
@@ -160,6 +165,7 @@ input:-webkit-autofill {
     position: relative;
     .title {
         font-size: 0;
+        line-height: $font-size-base;
         span {
             display: inline-block;
             vertical-align: top;
@@ -171,7 +177,7 @@ input:-webkit-autofill {
             line-height: $font-size-base;
         }
         span:nth-child(2) {
-            font-size: $font-size-base;
+            font-size: $font-size-sm;
             color: $gray-dark;
             width: 300px;
             @include ellipsis;
@@ -475,14 +481,13 @@ input:-webkit-autofill {
         color: $gray;
         &:hover {
             background: $gray-light !important;
-             div:nth-child(1) {
-            background-position: 0px -14px;
+            div:nth-child(1) {
+                background-position: 0px -14px;
+            }
+            div:nth-child(2) {
+                color: white !important;
+            }
         }
-        div:nth-child(2) {
-            color: white !important;
-        }
-        }
-       
         div {
             display: inline-block;
             overflow: top;
@@ -502,7 +507,6 @@ input:-webkit-autofill {
         }
     }
 }
-
 
 ::-webkit-scrollbar {
     width: 4px;
