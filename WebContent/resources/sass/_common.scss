@@ -101,6 +101,16 @@ a {
     & a:last-child {
         margin-right: 0;
     }
+    
+}
+
+.right-part{
+      img{
+        height: 30px;
+        width: 30px;
+        border-radius: 90px;
+        vertical-align: middle !important;
+     }
 }
 
 .page {
@@ -685,6 +695,19 @@ a {
         color: $red-base !important;
         font-weight: 500;
     }
+
+.warn {
+    width: 18px;
+    height: 18px;
+    border-radius: 120px;
+    background: #fe5453;
+    color: white;
+    text-align: center;
+    line-height: 18px;
+    position: absolute;
+    top: 33px;
+    left: 17px;
+}
 }
 
 .headerMove {
@@ -693,18 +716,6 @@ a {
     -moz-box-shadow: 10px 10px 5px #cccccc;
     /* 老的 Firefox */
     box-shadow: 0px 0px 10px #cccccc;
-    .warn {
-        width: 18px;
-        height: 18px;
-        border-radius: 120px;
-        background: #fe5453;
-        color: white;
-        text-align: center;
-        line-height: 18px;
-        position: absolute;
-        top: 2px !important;
-        left: 39px;
-    }
     .header-item {
         line-height: 60px !important;
         color: black;
@@ -1671,3 +1682,7 @@ a {
         }
     }
 }
+
+
+
+
