@@ -56,37 +56,6 @@ $().ready(function() {
 	
 			});
 			$('#equipmentInfo').text(setInfoContent[3]);
-//    init();
-//    InitGetPrice();
-//    $('#equipmentInfo').text(setInfoContent[3]);
-//	$('#teamInfo').text(setInfoContent[0]);
-	$('.dropdown li').on('click',function(){
-        $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
-        var info=parseInt($(this).attr('data-info'));
-        $(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-value",($(this).attr('data-value')));
-        $(this).parent().slideUp();
-        if($(this).hasClass('Province'))
-        	Province($(this));
-        return false;
-   });
-});
-
-function InitGetPrice(){
-	  $('#start').on('click',function(){
-		  $('#phone').removeClass('errorPhone');
-	    	var phone = $('#phone').val();
-	    	if(checkMobile(phone)){
-	    	getPrice(phone);
-	    	showError($('#errorPhone'),'');
-	    	}else{
-	    		$('#phone').addClass('errorPhone');
-	    		showError($('#errorPhone'),'请输入正确手机号');
-	    	}
-	    });
-	  
-	  $('#clear').on('click',function(){
-		    $('#equipmentInfo').text(setInfoContent[3]);
->>>>>>> ui
 			$('#teamInfo').text(setInfoContent[0]);
 		},
 		//点击获取手机验证码
