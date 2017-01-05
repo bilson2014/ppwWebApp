@@ -271,6 +271,7 @@ input:-webkit-autofill {
         text-align: center;
         border: 1px solid $border-line;
         background: transparent !important;
+        outline: none;
         &:hover {
             color: $red-base;
             border: 1px solid $red-base;
