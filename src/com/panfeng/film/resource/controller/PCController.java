@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +38,6 @@ import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.service.UserService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
@@ -55,9 +53,6 @@ import com.panfeng.film.util.ValidateUtil;
  */
 @RestController
 public class PCController extends BaseController {
-
-	@Autowired
-	private UserService userService;
 
 	final Logger serLogger = LoggerFactory.getLogger("service"); // service log
 
@@ -128,7 +123,7 @@ public class PCController extends BaseController {
 		model.addAttribute("isLogin", "login");
 		return new ModelAndView("login", model);
 	}
-	
+
 	// 跳转注册页面
 	@RequestMapping("/register")
 	public ModelAndView register(final ModelMap model) {
@@ -355,20 +350,23 @@ public class PCController extends BaseController {
 		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
 	}
-	
+
 	/**
 	 * 根据 团队名称 去solr中 加载 产品列表
+	 * 
 	 * @param teamName
 	 */
 	@RequestMapping("/product/order/loadWithTeamName")
-	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,final HttpServletRequest request) {
+	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,
+			final HttpServletRequest request) {
 
 		List<Solr> list = new ArrayList<Solr>();
 		final String url = URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:" + list.size(), sessionInfo);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition() + " ,product's size:"
+				+ list.size(), sessionInfo);
 		return list;
 	}
 
@@ -471,64 +469,41 @@ public class PCController extends BaseController {
 	}
 
 	/**
-	 * 用户信息设置界面
-	 */
-	@RequestMapping("/user/info")
-	public ModelAndView userInfo(final HttpServletRequest request, final ModelMap model) {
-		final SessionInfo info = getCurrentInfo(request);
-		if (info != null) {
-			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
-			String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final User currentUser = JsonUtil.toBean(json, User.class);
-				currentUser.setPassword(null);
-				model.addAttribute("user", currentUser);
-			}
-			Map<Integer, String> sourecs = userService.getCustomerSource();
-			if (ValidateUtil.isValid(sourecs)) {
-				model.addAttribute("userSource", sourecs);
-			}
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Redirecting userInfo page,userId:" + info.getReqiureId(), sessionInfo);
-		}
-
-		return new ModelAndView("userInfo", model);
-	}
-
-	/**
 	 * 跳转至 供应商 登录界面
 	 */
-	/*@RequestMapping("/provider/login")
-	public ModelAndView providerLoginView(final ModelMap model) {
-
-		model.addAttribute("action", "login");
-		model.addAttribute("pageName", "供应商登录");
-
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/login") public ModelAndView
+	 * providerLoginView(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "login"); model.addAttribute("pageName",
+	 * "供应商登录");
+	 * 
+	 * return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 跳转至 供应商 注册页面
 	 */
-	/*@RequestMapping("/provider/register")
-	public ModelAndView providerRegisterView(final ModelMap model) {
-
-		model.addAttribute("action", "register");
-		model.addAttribute("pageName", "供应商注册");
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/register") public ModelAndView
+	 * providerRegisterView(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "register"); model.addAttribute("pageName",
+	 * "供应商注册"); return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 跳转至 供应商 密码找回页面
 	 */
-	/*@RequestMapping("/provider/recover")
-	public ModelAndView providerRecover(final ModelMap model) {
-
-		model.addAttribute("action", "recover");
-		model.addAttribute("pageName", "供应商密码找回");
-
-		return new ModelAndView("provider/login", model);
-	}*/
+	/*
+	 * @RequestMapping("/provider/recover") public ModelAndView
+	 * providerRecover(final ModelMap model) {
+	 * 
+	 * model.addAttribute("action", "recover"); model.addAttribute("pageName",
+	 * "供应商密码找回");
+	 * 
+	 * return new ModelAndView("provider/login", model); }
+	 */
 
 	/**
 	 * 供应商 头部信息
@@ -692,7 +667,7 @@ public class PCController extends BaseController {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 新闻详情页推荐
 	 * 
@@ -706,21 +681,21 @@ public class PCController extends BaseController {
 			List<News> list = JsonUtil.toList(str);
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
-		}else{
+		} else {
 			baseMsg.setErrorMsg("list is null");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("get news info recommend",sessionInfo);
+		Log.error("get news info recommend", sessionInfo);
 		return baseMsg;
 	}
-	
+
 	/**
 	 * 跳转新闻详情
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
-	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId,
-			final HttpServletRequest request,final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/"+newId;
+	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model) {
+		final String url = URL_PREFIX + "portal/news/info/" + newId;
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			try {
@@ -738,10 +713,10 @@ public class PCController extends BaseController {
 			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news info",sessionInfo);
+		Log.error("homepage news info", sessionInfo);
 		return new ModelAndView("/news");
 	}
-	
+
 	/**
 	 * 获取最新的供应商信息,最新代表,若存在待审核,则待审核是最新消息
 	 * 

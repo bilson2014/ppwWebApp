@@ -258,10 +258,10 @@
                          <div class="infoItem activeThis">
                                 <div class="product" data-action="video-list">作品列表</div>
                          </div>  
-                          <div class="infoItem">
+                          <div class="infoItem" id="clickCompany">
                                 <div class="info" data-action="company-info">公司信息</div>
                          </div>
-                          <div class="infoItem">
+                          <div class="infoItem" id="clickSafe">
                                  <div class="safeInfo" data-action="safe-info">安全设置</div>
                          </div> 
                     </div>

@@ -7,6 +7,9 @@ var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function(){
+	
+	
+	getImgUrl();
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
@@ -975,5 +978,12 @@ Date.prototype.Format = function (fmt) { //author: wanglc
     for (var k in o)
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+function getImgUrl(){
+	var p = $('#getImgUrl').attr('data-value');
+	if(p!=null && p!=''){
+		$('#getImgUrl').attr('src',getDfsHostName() + p);
+	}
 }
 
