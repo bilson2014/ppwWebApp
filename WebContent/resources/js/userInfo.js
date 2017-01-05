@@ -90,30 +90,31 @@ function selfInfo(){
 			if($("#self-info-contentBt").attr("disabled")=='disabled'){
 				return false;
 			}
+			
+			if($('#contact-email').val().trim() != ''){
+				ret = checkEmail($('#contact-email').val().trim());
+				if(!ret){
+					showCommonError($('#contact-email-error'),"请输入正确的邮箱地址");
+					return false;
+				}else{
+					showCommonError($('#contact-email-error'),"");
+				}
+			}
+			
+			var qq = $('#contact-qq').val().trim(); // QQ				
+			var reg = /^[1-9]\d{4,9}$/;
+			
+			if(qq!=""){
+				if(!qq.match(reg)){
+					showCommonError($('#contact-qq-error'),"QQ号码有误!");
+					$('#contact-qq').focus();
+						return false;
+				}
+			}
+			
 			if($('#nickName').val().trim() != ''){
 				var ret = true;
-				if($('#contact-email').val().trim() != ''){
-					ret = checkEmail($('#contact-email').val().trim());
-					if(!ret){
-						showCommonError($('#contact-email-error'),"请输入正确的邮箱地址");
-						return false;
-					}else{
-						showCommonError($('#contact-email-error'),"");
-					}
-				}
-				
-				var qq = $('#contact-qq').val().trim(); // QQ				
-				var reg = /^[1-9]\d{4,9}$/;
-				
-				if(qq!=""){
-					if(!qq.match(reg)){
-						showCommonError($('#contact-qq-error'),"QQ号码有误!");
-						$('#contact-qq').focus();
-							return false;
-					}
-				}
-				console.info($('#nickName').val().trim());
-				
+								
 				if(ret){
 					parent.find('.tooltip-wati').show();
 					loadData(function(flag){
