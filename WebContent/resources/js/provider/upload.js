@@ -98,7 +98,7 @@ $().ready(function(){
 						}
 					}
 				}
-			});*/
+			});
 			// 注册 标签输入框 的失去焦点事件
 			/*$('.input_inner').blur(function(){
 				var tag = $(this).val().replace (/,/g,'').trim();
@@ -212,8 +212,7 @@ $().ready(function(){
 							productId:$("#productId").val(),
 							productName:$("#video-name").val(),
 							creationTime:$("#creationTime").val(),
-							//tags:mergeTag()
-							tags:delTag()
+							tags:$("#text_tags").val()
 						});
 						uploader_Pic.upload();
 					}
@@ -228,7 +227,7 @@ $().ready(function(){
 					productId:$("#productId").val(),
 					productName:$("#video-name").val(),
 					creationTime:$("#creationTime").val(),
-					tags:mergeTag()
+					tags:$("#text_tags").val()
 				},
 				dataType : 'json',
 				success : function(data){
@@ -257,11 +256,6 @@ $().ready(function(){
 	});
 	return tagName;
 }*/
-function delTag(){
-	var tagName = '';
-	
-	return tagName;
-}
 //增加标签
 /*function addTags(tag) {
 	if(tag != null && tag != undefined && tag != ''){
@@ -298,7 +292,7 @@ function checkData(){
 	var creationTime = $("#creationTime").val();
 	var picLDChange = $("#pic-LD-url").attr("data-change");
 	var picImgUrl = $("#pic-LD-url").val();
-	var tagsinput = mergeTag();
+	var tagsinput = $("#text_tags").val();
 	resumeCommonError($(".proItem"),'');
 	if(productName == null || productName == undefined || productName == ''){
 		showCommonError($('#video-name-error'),"请输入作品名称");
@@ -309,7 +303,7 @@ function checkData(){
 			$('#tagLabel').show().text("请填写作品标签！");
 			return false;
 		}
-		var tag = $("#text_tags").val().replace (/,/g,'').trim();
+		/*var tag = $("#text_tags").val().replace (/,/g,'').trim();
 		// 检查是否 汉字或是 全角
 		if(tag != null && tag != '' && tag != undefined){
 			var count = tag.replace(/[^\x00-\xff]/g,"**").length;
@@ -321,7 +315,7 @@ function checkData(){
 				$('#tagLabel').hide();
 				addTags(tag); // 增加标签
 			}
-		}
+		}*/
 	}
 	if(creationTime == null || creationTime == undefined || creationTime == ''){
 		showCommonError($('#creationTime-error'),"请输入创作时间");

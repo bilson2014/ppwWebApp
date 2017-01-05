@@ -246,15 +246,15 @@
 							<div class="upload_filed_area">
 								
 								<div class="mod_keyword">
-									<c:if test="${not empty product.tags }">
+									<%-- <c:if test="${not empty product.tags }">
 										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
 											<span class="keyword_item">
 											 	<b class="keyword_item_inner">${tag }</b>
 											 	<a href="javascript:void(0);" class="btn_keyword_del"> <span>x</span></a>
 											</span>
 										</c:forEach>
-									</c:if>
-									<span class="keyword_input"> <input type="text"
+									</c:if> --%>
+									<span class="keyword_input"> <input type="text" value='${product.tags }'
 										class="input_inner" id="text_tags" />
 									</span>
 								</div>
@@ -262,7 +262,7 @@
 									style="display: none;">每个标签最多8个汉字或16个字母！</div>
 							     </div>
 							     <span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~标签之间以空格分割</span>
 							<span style="color: red;">*</span>
 						</div>
 					</div>

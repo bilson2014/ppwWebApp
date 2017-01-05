@@ -986,7 +986,7 @@ public class ProviderController extends BaseController {
 			if(team.getFlag()==4){//ghost账户
 				final String tag = product.getTags();
 				if (tag != null && !"".equals(tag)) {
-					product.setTags(URLEncoder.encode(tag, "UTF-8"));
+					product.setTags(URLEncoder.encode(tag.replaceAll("(\\s+)", " "), "UTF-8"));
 				}
 				product.setFlag(1);//设置审核通过
 			}else{
