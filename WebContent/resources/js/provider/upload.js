@@ -212,7 +212,7 @@ $().ready(function(){
 							productId:$("#productId").val(),
 							productName:$("#video-name").val(),
 							creationTime:$("#creationTime").val(),
-							tags:$("#text_tags").val()
+							tags:delTag()
 						});
 						uploader_Pic.upload();
 					}
@@ -227,7 +227,7 @@ $().ready(function(){
 					productId:$("#productId").val(),
 					productName:$("#video-name").val(),
 					creationTime:$("#creationTime").val(),
-					tags:$("#text_tags").val()
+					tags:delTag()
 				},
 				dataType : 'json',
 				success : function(data){
@@ -244,6 +244,16 @@ $().ready(function(){
 	upload.init();
 });
 //提取标签
+function delTag(){
+	var t = $("#text_tags").val();
+	if(t){
+		t = t.trim();
+		var re2='(\\s+)';
+	    var p = new RegExp(re2,["gm"]);
+	    t = t.replace(p, ' ');
+	}
+	return t;
+}
 /*function mergeTag(){
 	var tagName = '';
 	$.each($('.keyword_item_inner'),function(i,obj){

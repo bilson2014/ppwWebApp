@@ -24,7 +24,7 @@ $().ready(function(){
 		}
 	});
 	var p = $('#proLogo').attr('data-value');
-	if(p!=null && p!=''){
+	if(p!=null && p!='' && p.indexOf("/resources/")== -1){
 		$('#proLogo').attr('src',getDfsHostName() + p);
 	}
 	

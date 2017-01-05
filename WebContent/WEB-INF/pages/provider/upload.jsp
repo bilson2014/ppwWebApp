@@ -262,7 +262,7 @@
 									style="display: none;">每个标签最多8个汉字或16个字母！</div>
 							     </div>
 							     <span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~标签之间以空格分割</span>
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~<span style="color:#fe5453!important">标签之间以空格分割</span></span>
 							<span style="color: red;">*</span>
 						</div>
 					</div>
