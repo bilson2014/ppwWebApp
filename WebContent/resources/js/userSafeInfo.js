@@ -48,6 +48,10 @@ function initPage(){
 		noraml.hide();
 		userBind.show();
 	});
+	$('#phoneReturn').on('click',function(){
+		noraml.show();
+		userName.hide();
+	});
 	
 	var res = $('#loginDivName').text();
 	if(res != null && res != ''){

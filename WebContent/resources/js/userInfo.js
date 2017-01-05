@@ -15,6 +15,7 @@ var AllowImgFileSize=70;  //允许上传图片文件的大小 0为无限制  单
 var FileObj,ImgFileSize,FileExt,ErrMsg,FileMsg,HasCheked,IsImg//全局变量 图片相关属性
 
 var parent = $(window.parent.document);
+var uploader;
 
 // 自定义图片上传 检验参数
 $().ready(function() {
@@ -25,6 +26,10 @@ $().ready(function() {
 	initUl();
 	selfInfo();
 	userpicInfo();
+	
+	if($('#user_img_url').val()!='/resources/images/provider/default-user.jpg'){
+		$('#uploadBt').text('修改头像')
+	}
 
 });
 function initUl(){
@@ -46,7 +51,7 @@ function initUl(){
 	var src = $('#user-img').attr('src');
 	if(src == null || src == '' || src == undefined){
 		$('#user-img').attr('src','/resources/images/provider/initLogo.png');
-		parent.find('#proLogo').attr('src','/resources/images/provider/initLogo.png');
+		parent.find('#proLogo').attr('src','/resources/images/provider/default-user.jpg');
 	}else{
 		if(src.indexOf('group')> -1){
 			var url = getDfsHostName() + src;

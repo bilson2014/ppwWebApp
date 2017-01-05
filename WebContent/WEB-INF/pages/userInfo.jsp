@@ -122,7 +122,7 @@
 	      		                    <div class="title">当前头像</div>
 		      		                <div class="user-img-content">
 										<div class="user-icon">
-											<img alt="用户头像" src="${user.imgUrl }" class="img-circle" id="user-img"/>
+											<img alt="用户头像" src="${user.imgUrl}" class="img-circle" id="user-img"/>
 											<input type="hidden" id="user_img_url" value="/resources/images/provider/default-user.jpg">
 										</div>
 										<div class="upload-info">

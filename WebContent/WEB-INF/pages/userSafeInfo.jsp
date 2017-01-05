@@ -123,12 +123,13 @@
 						<div>确保账号登录时的安全性，同时作为密码找回身份验证使用</div>
 					</div>
 					<div class="content">
-						<div class="infoName">原机绑定</div>
+						<div class="infoName">原手机号</div>
 						<c:if test="${not empty user.telephone }">
 							<div>${fn:replace(user.telephone,fn:substring(user.telephone,3,7), '****')}</div>
 						</c:if>
 					</div>
 					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
+					
 				</div>
 			</div>
 			<div class="line"></div>
@@ -186,6 +187,7 @@
 					<button class="setCode" id='code-foroldphone'>发送验证码</button>
 				</div>
 				<div class="btn-c-r infoSubmit" id="validate-oldPhonecode">验证</div>
+				<div class="btn-c-g infoReSet" id="phoneReturn">取消</div>
 			</div>
 			
 			<div class="new-phone hide">
