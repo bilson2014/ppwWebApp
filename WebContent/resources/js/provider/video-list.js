@@ -64,8 +64,8 @@ $().ready(function() {
 			});
 		},
 		playProduct:function(){
-			$('.media-object').off("click").on('click',function() {
-				var videoUrl = $(this).next('input').val();
+			$('.playCBtn').off("click").on('click',function() {
+				var videoUrl = $(this).parent().find('input').val();
 				var picUrl = $(this).attr('src');
 				var videoPath = getDfsHostName() + videoUrl;
 				$('#playVideo').removeClass('hide');

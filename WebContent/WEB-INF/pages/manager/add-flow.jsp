@@ -58,7 +58,7 @@ var="ajaxfileuploadJs" />
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
 <script src="${jsonJs }"></script>
-<%-- <script src="${commonJs }"></script> --%>
+<script src="${commonJs }"></script>
 <script src="${cookiejs }"></script>
 <script src="${modelJs }"></script>
 <script type="text/javascript" src="${addflowjs }"></script>
@@ -367,7 +367,7 @@ function checkMobile(str) {
 	<div class="indent-btn-div">
 		<button  class="indent-btn" id="indent-btn"  >确认</button>
 		<a  href="javascript:void(0);" onClick="javascript :history.back(-1);"> <button class="indent-btn-cancle">取消</button></a>
-	</div>  	
+			</div>  	
 	            <div class="bottom-div">
                       <div class="loadmore-div">
 			       			<div class="load-word">加载中</div>
