@@ -83,7 +83,23 @@
 	<!-- qq -->
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 	<spring:url value="/resources/images/provder" var="imgPath"/>
-	
+	<script type="text/javascript">
+	var _vds = _vds || [];
+	window._vds = _vds;
+	(function() {
+		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
+		(function() {
+			var vds = document.createElement('script');
+			vds.type = 'text/javascript';
+			vds.async = true;
+			vds.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'dn-growing.qbox.me/vds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(vds, s);
+		})();
+	})();
+</script>
 </head>
 <body style="height: auto;">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
@@ -182,7 +198,7 @@
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='customerSource' data-value=""></span>
+											<span id='customerSource' data-value="1">渠道</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"

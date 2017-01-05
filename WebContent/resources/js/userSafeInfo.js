@@ -448,7 +448,7 @@ function bandInfo(){
 			$("#qq").addClass("activeBind");
 			$("#qq").find('.state').text('绑定');
 			$("#qqSet").addClass("activeBind");
-			$("#qqSet").find('.state').text('绑定');
+			$("#qqSet").find('.state').text('已绑定');
 			$('#qqBtn').addClass('isNotBind');
 			$('#qqBtn').text('取消绑定');
 			$("#qqBtn").attr("data-status","1");
@@ -465,7 +465,7 @@ function bandInfo(){
 			$("#wechat").addClass("activeBind");
 			$("#wechat").find('.state').text('绑定');
 			$("#wechatSet").addClass("activeBind");
-			$("#wechatSet").find('.state').text('绑定');
+			$("#wechatSet").find('.state').text('已绑定');
 			$('#wechatBtn').addClass('isNotBind');
 			$('#wechatBtn').text('取消绑定');
 			$("#wechatBtn").attr("data-status","1");
@@ -483,7 +483,7 @@ function bandInfo(){
 			$("#wb").addClass("activeBind");
 			$("#wb").find('.state').text('绑定');
 			$("#wbSet").addClass("activeBind");
-			$("#wbSet").find('.state').text('绑定');
+			$("#wbSet").find('.state').text('已绑定');
 			$('#wbBtn').addClass('isBind');
 			$('#wbBtn').text('取消绑定');
 			$("#wbBtn").attr("data-status","1");

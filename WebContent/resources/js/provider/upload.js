@@ -80,7 +80,7 @@ $().ready(function(){
 				$("#creationTime").val(new Date().Format("yyyy-MM-dd"));
 			}
 			// 注册 标签输入 监听
-			$('.input_inner').bind('keypress',function(event){
+		/*	$('.input_inner').bind('keypress',function(event){
 				// 如果含有, 或者 空格 ，则添加标签，然后清空input
 				e = event ? event :(window.event ? window.event : null);
 				var code = e.keyCode||e.which||e.charCode;
@@ -98,9 +98,9 @@ $().ready(function(){
 						}
 					}
 				}
-			});
+			});*/
 			// 注册 标签输入框 的失去焦点事件
-			$('.input_inner').blur(function(){
+			/*$('.input_inner').blur(function(){
 				var tag = $(this).val().replace (/,/g,'').trim();
 				if(tag == null || tag == '' || tag == undefined){
 					// 为空时，查看是否有标签，如果没有，则显示 placeholder 提示
@@ -130,7 +130,7 @@ $().ready(function(){
 			$('.btn_keyword_del').unbind('click');
 			$('.btn_keyword_del').bind('click',function(){
 				removeTags($(this));
-			});
+			});*/
 		},
 		uploaderPic:function(){
 			var _this = this;
@@ -212,7 +212,8 @@ $().ready(function(){
 							productId:$("#productId").val(),
 							productName:$("#video-name").val(),
 							creationTime:$("#creationTime").val(),
-							tags:mergeTag()
+							//tags:mergeTag()
+							tags:delTag()
 						});
 						uploader_Pic.upload();
 					}
@@ -244,7 +245,7 @@ $().ready(function(){
 	upload.init();
 });
 //提取标签
-function mergeTag(){
+/*function mergeTag(){
 	var tagName = '';
 	$.each($('.keyword_item_inner'),function(i,obj){
 		var tag = $(obj).text().replace (/,/g,'').trim();
@@ -255,9 +256,14 @@ function mergeTag(){
 		}
 	});
 	return tagName;
+}*/
+function delTag(){
+	var tagName = '';
+	
+	return tagName;
 }
 //增加标签
-function addTags(tag) {
+/*function addTags(tag) {
 	if(tag != null && tag != undefined && tag != ''){
 		// 增加标签时 ,看其是否超过10条
 		var num = $('.keyword_item').length;
@@ -276,15 +282,15 @@ function addTags(tag) {
 		// 清空input
 		$('.input_inner').val('');
 	}
-}
+}*/
 // 删除 标签
-function removeTags(obj) {
+/*function removeTags(obj) {
 	obj.parent().remove();
 	var num = $('.keyword_item').length;
 	if(num == 0){
 		$('.keyword_placeholder').show('fast');
 	}
-}
+}*/
 
 function checkData(){
 	var productId = $("#productId").val();
