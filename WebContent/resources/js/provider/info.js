@@ -343,7 +343,8 @@ function updateProviderInfo() {
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function dealTeamTmpAndUpdateTeamDesc(){
@@ -379,7 +380,8 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function updateProvider(){

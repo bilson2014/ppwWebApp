@@ -26,11 +26,6 @@ $().ready(function() {
 	initUl();
 	selfInfo();
 	userpicInfo();
-	
-	if($('#user_img_url').val()!='/resources/images/provider/default-user.jpg'){
-		$('#uploadBt').text('修改头像')
-	}
-
 });
 function initUl(){
 	$('.dropdown li').on('click',function(){
@@ -52,6 +47,7 @@ function initUl(){
 	if(src == null || src == '' || src == undefined){
 		$('#user-img').attr('src','/resources/images/provider/initLogo.png');
 		parent.find('#proLogo').attr('src','/resources/images/provider/default-user.jpg');
+		$('#uploadBt').text('上传头像');
 	}else{
 		if(src.indexOf('group')> -1){
 			var url = getDfsHostName() + src;
@@ -59,6 +55,9 @@ function initUl(){
 			$('#user_img_url').val(src);
 			// 刷新父类页面
 			parent.find('#proLogo').attr('src',url);
+			$('#uploadBt').text('修改头像');
+		}else{
+			$('#uploadBt').text('上传头像');
 		}
 	}
 	var name = $('#nickName').val();
