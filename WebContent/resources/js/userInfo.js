@@ -45,7 +45,7 @@ function initUl(){
 	}
 	var src = $('#user-img').attr('src');
 	if(src == null || src == '' || src == undefined){
-		$('#user-img').attr('src','/resources/images/provider/initLogo.png');
+		$('#user-img').attr('src','/resources/images/provider/default-user.jpg');
 		parent.find('#proLogo').attr('src','/resources/images/provider/default-user.jpg');
 		$('#uploadBt').text('上传头像');
 	}else{
@@ -179,7 +179,7 @@ function userpicInfo(){
 		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 1024*256,
 		duplicate: true//允许重复上传同一个
 	});
 	uploader.on('uploadSuccess', function(file,response) {
@@ -259,9 +259,9 @@ function userpicInfo(){
 		// 开启 modal
 		$('#errorModal').modal('show');
 		 if (type=="Q_TYPE_DENIED"){
-			 	$('#error-message').text('格式不正确');
+			 	$('.errorImg').text('格式不正确');
 	        }else if(type=="F_EXCEED_SIZE"){
-	        	$('#error-message').text('文件超过最大限制');
+	        	$('.errorImg').text('文件超过最大限制');
 	        }
 		 $('#iKnow').unbind('click');
 			$('#iKnow').bind('click',function(){
@@ -275,32 +275,32 @@ function updateProvider(){}
 //成功信息 提示框弹出方法
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-success-show').slideDown();
-	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
+	parent.find('.tooltip-success-show').slideDown();
+	parent.find("#tooltip-success-messageSSSS").val(msg);
 	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
 function hideSuccessTooltip(){
-	$(window.parent.document).find('.tooltip-success-show').hide();
+	parent.find('.tooltip-success-show').hide();
 	location.reload();
 }
 
 function hideError(){
-	$(window.parent.document).find('.tooltip-error-show').hide();
+	parent.find('.tooltip-error-show').hide();
 	location.reload();
 }
 
 // 成功信息 提示框弹出方法
 function successErrorTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-error-show').slideDown();
-	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
+	parent.find('.tooltip-error-show').slideDown();
+	parent.find("#tooltip-success-messageEEEE").val(msg);
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
 function showInfomation(title,body){
-	$(window.parent.document).find('#infomation').slideDown();
-	$(window.parent.document).find('#infomation_title').text(title);
-	$(window.parent.document).find('#infomation_body').text(body);
-	$(window.parent.document).find('#closeInfo').on('click',function(){
+	parent.find('#infomation').slideDown();
+	parent.find('#infomation_title').text(title);
+	parent.find('#infomation_body').text(body);
+	parent.find('#closeInfo').on('click',function(){
 		hideInfomation();
 	});
 }

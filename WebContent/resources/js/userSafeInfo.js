@@ -2,7 +2,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
-
+var parent = $(window.parent.document);
 var passwordMode = '';
 $().ready(function() {
 	init();
@@ -458,6 +458,7 @@ function bandInfo(){
 			$("#qqSet").removeClass("activeBind");
 			$("#qqSet").find('.state').text('未绑定');
 			$('#qqBtn').addClass('isBind');
+			$('#qqBtn').removeClass('isNotBind');
 			$('#qqBtn').text('绑定');
 			$("#qqBtn").attr("data-status","0");
 		}
@@ -478,13 +479,14 @@ function bandInfo(){
 			$('#wechatBtn').addClass('isBind');
 			$('#wechatBtn').text('绑定');
 			$("#wechatBtn").attr("data-status","0");
+			$('#wechatBtn').removeClass('isNotBind');
 		}
 		if(data.wb==1){
 			$("#wb").addClass("activeBind");
 			$("#wb").find('.state').text('绑定');
 			$("#wbSet").addClass("activeBind");
 			$("#wbSet").find('.state').text('已绑定');
-			$('#wbBtn').addClass('isBind');
+			$('#wbBtn').addClass('isNotBind');
 			$('#wbBtn').text('取消绑定');
 			$("#wbBtn").attr("data-status","1");
 
@@ -493,9 +495,10 @@ function bandInfo(){
 			$("#wb").find('.state').text('未绑定');
 			$("#wbSet").removeClass("activeBind");
 			$("#wbSet").find('.state').text('未绑定');
-			$('#wbBtn').addClass('isNotBind');
+			$('#wbBtn').addClass('isBind');
 			$('#wbBtn').text('绑定');
 			$("#wbBtn").attr("data-status","0");
+			$('#wbBtn').removeClass('isNotBind');
 		
 		}
 		
@@ -607,7 +610,7 @@ var userinfo_third = {
 					loadData(function(flag){
 						if(flag){ // 发送成功
 							//提示成功
-							$('.tooltip-showBand').slideDown('normal');
+							successToolTipShow();
 							$('#wb').removeAttr("class").addClass("noBand");
 						}
 					}, getContextPath() + '/user/unbind/third',  $.toJSON({
@@ -656,43 +659,37 @@ function getWBUserData(callback){
 }
 
 
-
-
-
-
-
-
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-success-show').slideDown();
-	$(window.parent.document).find("#tooltip-success-messageSSSS").val(msg);
+	parent.find('.tooltip-success-show').slideDown();
+	parent.find("#tooltip-success-messageSSSS").val(msg);
 	successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
 function hideSuccessTooltip(){
-	$(window.parent.document).find('.tooltip-success-show').hide();
+	parent.find('.tooltip-success-show').hide();
 	location.reload();
 }
 
 function hideError(){
-	$(window.parent.document).find('.tooltip-error-show').hide();
+	parent.find('.tooltip-error-show').hide();
 	location.reload();
 }
 
 // 成功信息 提示框弹出方法
 function successErrorTipShow(msg){
 	window.clearInterval(successIntervalObj);
-	$(window.parent.document).find('.tooltip-error-show').slideDown();
-	$(window.parent.document).find("#tooltip-success-messageEEEE").val(msg);
+	parent.find('.tooltip-error-show').slideDown();
+	parent.find("#tooltip-success-messageEEEE").val(msg);
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
 function showInfomation(title,body){
-	$(window.parent.document).find('#infomation').slideDown();
-	$(window.parent.document).find('#infomation_title').text(title);
-	$(window.parent.document).find('#infomation_body').text(body);
-	$(window.parent.document).find('#closeInfo').on('click',function(){
+	parent.find('#infomation').slideDown();
+	parent.find('#infomation_title').text(title);
+	parent.find('#infomation_body').text(body);
+	parent.find('#closeInfo').on('click',function(){
 		hideInfomation();
 	});
 }
 function hideInfomation(){
-	$(window.parent.document).find('#infomation').hide();
+	parent.find('#infomation').hide();
 }
