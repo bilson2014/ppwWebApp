@@ -98,12 +98,12 @@
 				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
 						<c:if test="${empty product.picLDUrl}">
-							<img class='media-object' src="/resources/images/index/noImg.jpg" />
+							<img class='media-object playCBtn' src="/resources/images/index/noImg.jpg" />
 						</c:if>
 						<c:if test="${not empty product.picLDUrl}">
-							<img class='media-object' src='${file_locate_storage_path }${product.picLDUrl }' />
+							<img class='media-object playCBtn' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
-						    <img class="playIcon" src="/resources/images/index/play-icon.png"/>
+						    <img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
 						<div
 							class="mid <c:if test="${empty product.checkDetails || product.flag != 2}"> nC</c:if>">

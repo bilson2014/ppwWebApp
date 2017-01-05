@@ -84,4 +84,11 @@
 		<tag-class>com.panfeng.film.taglib.OutNameTag</tag-class>
 		<body-content>JSP</body-content>
 	</tag>
+	
+	<!-- 输出头像路径 -->
+	<tag>
+		<name>outImg</name>
+		<tag-class>com.panfeng.film.taglib.OutImgTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
 </taglib>

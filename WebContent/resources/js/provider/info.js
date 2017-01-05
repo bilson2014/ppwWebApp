@@ -261,7 +261,7 @@ function initUl(){
    });
 	
 	var url = $('#user-img').attr('data-value');
-	if(url!=null && url !='' && url.indexOf("resources/images/index/") == -1){
+	if(url!=null && url !='' && url.indexOf("/resources/") == -1){
 		$('#user-img').attr('src',getDfsHostName()+url);
 		$('#user_img_url').val(url);
 	}
