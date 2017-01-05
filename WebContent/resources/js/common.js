@@ -982,10 +982,10 @@ Date.prototype.Format = function (fmt) { //author: wanglc
 
 function getImgUrl(){
 	var p = $('#getImgUrl').attr('data-value');
-	if(p!=null && p!='' && p.indexOf("/resources/") == -1){
-		$('#getImgUrl').attr('src',getDfsHostName() + p);
-	}else{
-		$('#getImgUrl').attr('src',p);
+	if(p!=null && p!=''){
+		if(p.indexOf("/resources/") == -1){
+			$('#getImgUrl').attr('src',getDfsHostName() + p);
+		}
 	}
 }
 
