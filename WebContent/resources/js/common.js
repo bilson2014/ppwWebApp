@@ -766,7 +766,7 @@ function initOrderClick(){
 						indent_tele:$("#indent_tele").val(),
 						phoneCode:'-1',
 						indent_recomment:$("#submit-indent-recomment").text(),
-						indentName:'新订单',
+						indentName:'直接下单',
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,
@@ -964,7 +964,7 @@ function resumeCommonError(document){
     $('input').removeClass('errorLCommon');
 }
 
-Date.prototype.Format = function (fmt) { //author: wanglc
+Date.prototype.Format = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
@@ -982,10 +982,9 @@ Date.prototype.Format = function (fmt) { //author: wanglc
 
 function getImgUrl(){
 	var p = $('#getImgUrl').attr('data-value');
-	if(p!=null && p!='' && p.indexOf("/resources/") == -1){
-		$('#getImgUrl').attr('src',getDfsHostName() + p);
-	}else{
-		$('#getImgUrl').attr('src',p);
+	if(p!=null && p!=''){
+		if(p.indexOf("/resources/") == -1){
+			$('#getImgUrl').attr('src',getDfsHostName() + p);
+		}
 	}
 }
-

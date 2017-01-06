@@ -2,7 +2,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var IntervalObj; // timer变量，控制时间
 var sendCodeFlag = true;
-
+var parent = $(window.parent.document);
 var passwordMode = '';
 $().ready(function() {
 	init();
@@ -671,12 +671,6 @@ function getWBUserData(callback){
 	}
 }
 
-
-
-
-
-
-
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
 	parent.find('.tooltip-success-show').slideDown();
@@ -690,15 +684,15 @@ function hideSuccessTooltip(){
 
 function hideError(){
 	parent.find('.tooltip-error-show').hide();
-	//location.reload();
+
 }
 
 // 成功信息 提示框弹出方法
 function successErrorTipShow(msg){
 	window.clearInterval(successIntervalObj);
 	parent.find('.tooltip-error-show').slideDown();
-	parent.find("#tooltip-success-messageEEEE").text(msg);
-	successIntervalObj = window.setInterval(hideError, 3000);
+	parent.find("#tooltip-success-messageEEEE").val(msg);
+	successIntervalObj = window.setInterval(hideError(), 3000);
 }
 function showInfomation(title,body){
 	parent.find('#infomation').slideDown();

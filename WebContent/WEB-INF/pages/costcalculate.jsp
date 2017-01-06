@@ -25,7 +25,7 @@
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
-	 <title>拍片网－成本计算器</title>
+	<title>拍片成本计算器-拍片网</title>
     <link rel="stylesheet" href="/resources/css/costCalculator.css">
     <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/resources/lib/Bootstrap/css/bootstrap.min.css">
@@ -98,11 +98,11 @@
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="${user.imgUrl}" src="/resources/images/provider/default-user.jpg"></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="${provider.teamPhotoUrl }" src="/resources/images/provider/initLogo.png"></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 					<div class="showInfo">
 				       <div class="showInfoList">

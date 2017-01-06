@@ -171,7 +171,7 @@ var homePage = {
 						indent_tele:$("#help-phone").val(),
 						phoneCode:'-1',
 						indent_recomment:$("#indent_recomment").text(),
-						indentName:'新订单',
+						indentName:'首页banner下单',
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,
