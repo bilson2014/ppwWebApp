@@ -236,7 +236,7 @@
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="" id="video-name"
-						maxlength="18" placeholder="视频标题为必填字段"
+						maxlength="30" placeholder="视频标题为必填字段"
 						value="${product.productName }">
 				</div>
 				<c:if test="${flag == 4}">
