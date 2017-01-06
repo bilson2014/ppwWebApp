@@ -11,7 +11,6 @@
 <spring:url value="/resources/lib/swiper/swiper.min.js" var="swiperJs" />
 <spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
 <spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
-<spring:url value="/resources/js/homePage.js" var="homePageJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
-	 <title>拍片网－成本计算器</title>
+	<title>拍片成本计算器-拍片网</title>
     <link rel="stylesheet" href="/resources/css/costCalculator.css">
     <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/resources/lib/Bootstrap/css/bootstrap.min.css">
@@ -99,12 +98,22 @@
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
@@ -114,6 +123,9 @@
         </div>
     </div>
     <div class="page">
+        
+
+    
         <div class="costBackguound">
             <div class="costContent">
                 <div class="info">
@@ -233,6 +245,14 @@
                                 <div class="title" data-content=""  id="errorPhone">您的联系方式</div>
                                 <div>
                                 <input data-content="0" placeholder="您的手机号" id="phone">
+                                </div>
+                            </div>
+                            
+                             <div class="calItem code" id='code-container'>
+                                <div class="title" data-content=""  id="errorCode">您的验证码</div>
+                                <div>
+                                   <input data-content="0" placeholder="您的验证码" id="phoneCode">
+                                   <button class="setCode" id='getPhoneCode'>发送验证码</button>
                                 </div>
                             </div>
 

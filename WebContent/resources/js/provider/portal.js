@@ -4,6 +4,7 @@ var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	$('.tooltip-wati').show();
+	initPage();
 	showPassInfo();
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
@@ -23,7 +24,7 @@ $().ready(function(){
 		}
 	});
 	var p = $('#proLogo').attr('data-value');
-	if(p!=null && p!=''){
+	if(p!=null && p!='' && p.indexOf("/resources/")== -1){
 		$('#proLogo').attr('src',getDfsHostName() + p);
 	}
 	
@@ -56,6 +57,37 @@ $().ready(function(){
 	
 });
 
+function initPage(){
+	
+	var href = window.location.href;
+    var state = href.substr(href.lastIndexOf("?")+1,href.length);
+   /* if(state.trim() == "company-info" || state.trim() == "safe-info"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+    	$('.tooltip-wati').hide();
+    }*/
+    if(state.trim() == "company-info"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickCompany div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickCompany').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($('#clickCompany div').text());
+    }
+    if(state.trim() == "safe-info"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickSafe div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickSafe').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($('#clickSafe div').text());
+    }
+    
+   
+}
 
 function showInfomation(title,body){
 	$(document).find('#infomation').slideDown();
@@ -65,6 +97,7 @@ function showInfomation(title,body){
 		hideInfomation();
 	});
 }
+
 function hideInfomation(){
 	$(document).find('#infomation').hide();
 }

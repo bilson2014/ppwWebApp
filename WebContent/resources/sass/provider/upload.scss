@@ -415,14 +415,16 @@ body,
     position: relative;
     width: 540px;
     position: relative;
-    height: 60px;
+    min-height: 60px;
+    height: auto;
 }
 
 .mod_keyword {
     width: 540px;
     display: inline-block;
     vertical-align: top;
-    height: 36px;
+    min-height: 36px;
+    height: auto;
     border: 1px solid $border-line;
     border-radius: 4px;
 }
@@ -436,7 +438,6 @@ body,
     display: inline-block;
     vertical-align: top;
     input {
-        width: 200px !important;
         border: none;
         color: black;
         background: transparent;
@@ -460,12 +461,12 @@ body,
 
 .alert {
     width: 540px !important;
-    position: absolute;
-    bottom: -25px;
+    position: relative;
     color: $red-base;
     font-size: $font-size-sm;
     background: transparent;
     border: none;
+    margin-bottom: 0px !important;
 }
 
 .keyword_item {

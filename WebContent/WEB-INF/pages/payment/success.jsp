@@ -28,6 +28,23 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<script type="text/javascript">
+	var _vds = _vds || [];
+	window._vds = _vds;
+	(function() {
+		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
+		(function() {
+			var vds = document.createElement('script');
+			vds.type = 'text/javascript';
+			vds.async = true;
+			vds.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'dn-growing.qbox.me/vds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(vds, s);
+		})();
+	})();
+</script>
 	
 </head>
 <body>
@@ -38,12 +55,22 @@
             <div class="left-part">
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
-					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>

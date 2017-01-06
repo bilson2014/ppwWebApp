@@ -1,5 +1,8 @@
 var  successIntervalObj; // timer变量，控制时间
 $().ready(function() {
+	
+
+	
 	$('.getTag').on('click', function() {
 		if ($(this).hasClass('redTag')) {
 			$(this).removeClass('redTag');
@@ -102,19 +105,17 @@ function verifyData() {
 
 	var qq = $('#company-qq').val().trim(); // QQ
 	if (qq == '' || qq == null || qq == undefined) {
-		
 		showCommonError($('#company-qq-error'),"请输入QQ号码!");
 		$('#company-qq').focus();
 		return false;
 	}
 	
 	var reg = /^[1-9]\d{4,9}$/;
-	if(!qq.match(reg)&&(qq == '' || qq == null || qq == undefined)){
+	if(!qq.match(reg)){
 		showCommonError($('#company-qq-error'),"QQ号码有误!");
 		$('#company-qq').focus();
 			return false;
 	}
-
 	
 	var province = $('#getProvince').attr('data-value'); // 所在城市
 	if (province == '' || province == null || province == undefined) {
@@ -225,25 +226,25 @@ function userpicInfo() {
 		if (path != '' && path != null) {
 			if (path.indexOf('false@error') > -1) {
 				if (path.indexOf("error=1") > -1) {
-					$('#.errorImg').text("文件超过最大限制");
+					$('.errorImg').text("文件超过最大限制");
 				} else if (path.indexOf("error=2") > -1) {
-					$('#.errorImg').text("格式不正确");
+					$('.errorImg').text("格式不正确");
 				}
 			} else {
 				$('#user_img_url').val(path);
 				var img = getDfsHostName() + path;
 				$('#user-img').attr('src', img);
-				$('#.errorImg').text("");
+				$('.errorImg').text("");
 			}
 		} else {
-		    $('#.errorImg').text("上传失败!");
+		    $('.errorImg').text("上传失败!");
 		}
 	});
 	uploader.on('error', function(type) {
 		if (type == "Q_TYPE_DENIED") {
-			$('#.errorImg').text("文件超过最大限制");
+			$('.errorImg').text("文件超过最大限制");
 		} else if (type == "F_EXCEED_SIZE") {
-			$('#.errorImg').text("格式不正确");
+			$('.errorImg').text("格式不正确");
 		}
 	});
 }
@@ -260,7 +261,7 @@ function initUl(){
    });
 	
 	var url = $('#user-img').attr('data-value');
-	if(url!=null && url !='' && url.indexOf("resources/images/index/") == -1){
+	if(url!=null && url !='' && url.indexOf("/resources/") == -1){
 		$('#user-img').attr('src',getDfsHostName()+url);
 		$('#user_img_url').val(url);
 	}
@@ -342,7 +343,8 @@ function updateProviderInfo() {
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function dealTeamTmpAndUpdateTeamDesc(){
@@ -378,7 +380,8 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
-		teamPhotoUrl : $('#user_img_url').val()
+		teamPhotoUrl : $('#user_img_url').val(),
+		flag : $('#bean-flag').val()
 	}));
 }
 function updateProvider(){
@@ -400,15 +403,6 @@ function updateProvider(){
 					}else{
 						updateProviderInfo();
 					}
-							
-//					if(flag || a != ""){//信息存在修改且数据库中有再次审核记录,a的目的是确保如果有审核未通过后,又改成跟原来一样的,这样也需要审核
-//						if(confirm('您修改了贵公司资料,需要再次进行审核,是否确定?')){
-//							//处理team_tmp记录,更新team备注
-//							dealTeamTmpAndUpdateTeamDesc();
-//						}
-//					}else{
-//						updateProviderInfo();
-//					}
 				}, getContextPath() + '/provider/validate/change', $.toJSON({
 					teamId : $('#company-id').val().trim(),
 					teamName : $('#company-name').val().trim(),

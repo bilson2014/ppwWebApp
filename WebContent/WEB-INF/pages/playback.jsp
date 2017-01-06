@@ -75,14 +75,22 @@
 			<div class="left-part">
 				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>

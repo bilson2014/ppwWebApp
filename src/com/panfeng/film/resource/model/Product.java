@@ -74,6 +74,16 @@ public class Product extends BaseObject {
 	
 	private String checkDetails = null; // 审核详情
 	
+	private String submitTime = null; // 提交审核时间，该字段只会在前端修改提交后修改
+	
+	public String getSubmitTime() {
+		return submitTime;
+	}
+
+	public void setSubmitTime(String submitTime) {
+		this.submitTime = submitTime;
+	}
+
 	public String getCheckDetails() {
 		return checkDetails;
 	}

@@ -75,7 +75,23 @@
 	<!-- qq -->
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
 	<spring:url value="/resources/images/provder" var="imgPath"/>
-	
+	<script type="text/javascript">
+	var _vds = _vds || [];
+	window._vds = _vds;
+	(function() {
+		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
+		(function() {
+			var vds = document.createElement('script');
+			vds.type = 'text/javascript';
+			vds.async = true;
+			vds.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'dn-growing.qbox.me/vds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(vds, s);
+		})();
+	})();
+</script>
 </head>
 <body style="height: auto;">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
@@ -93,7 +109,7 @@
 											<input type="hidden" id="user_img_url" value="/resources/images/provider/initLogo.png">
 										</div>
 										<div class="upload-info">
-											<label>仅支持小于2M的png/jpg格式，推荐120*120分辨率</label>
+											<label>仅支持小于250KB的png/jpg格式，推荐120*120分辨率</label>
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -103,7 +119,6 @@
 										</div>
 									</div>
 							</div>	
-     
                             <div class="infoItem" id="company-name-error">
                                 <div class="title">公司名称</div>
                                 <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">

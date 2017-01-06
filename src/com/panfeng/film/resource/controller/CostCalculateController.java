@@ -3,6 +3,8 @@ package com.panfeng.film.resource.controller;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +62,26 @@ public class CostCalculateController extends BaseController{
 	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate,
 			HttpServletRequest request){
 		Map<String, Object> map = new HashMap<>();
+		if(calculate.getIndentId() == 0){//首次计算
+			final String code = (String) request.getSession().getAttribute("code");
+			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+			if(StringUtils.isBlank(code) || StringUtils.isBlank(codeOfphone)){
+				map.put("code", 0);
+				map.put("msg", "请重新获取验证码");
+				return map;
+			}
+			if(!code.equals(calculate.getVerification_code())){
+				map.put("code", 0);
+				map.put("msg", "验证码错误");
+				return map;
+			}
+			if(!codeOfphone.equals(calculate.getPhone())){
+				map.put("code", 0);
+				map.put("msg", "手机号不匹配");
+				return map;
+			}
+		}
+		map.put("code", 1);
 		int cost = calculateService.dealCost(typeAddTeam,calculate);
 		map.put("cost", cost);
 		//提交订单

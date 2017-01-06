@@ -7,6 +7,9 @@ var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function(){
+	
+	
+	getImgUrl();
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
@@ -763,7 +766,7 @@ function initOrderClick(){
 						indent_tele:$("#indent_tele").val(),
 						phoneCode:'-1',
 						indent_recomment:$("#submit-indent-recomment").text(),
-						indentName:'新订单',
+						indentName:'直接下单',
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,
@@ -961,7 +964,7 @@ function resumeCommonError(document){
     $('input').removeClass('errorLCommon');
 }
 
-Date.prototype.Format = function (fmt) { //author: wanglc
+Date.prototype.Format = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
@@ -977,3 +980,11 @@ Date.prototype.Format = function (fmt) { //author: wanglc
     return fmt;
 }
 
+function getImgUrl(){
+	var p = $('#getImgUrl').attr('data-value');
+	if(p!=null && p!=''){
+		if(p.indexOf("/resources/") == -1){
+			$('#getImgUrl').attr('src',getDfsHostName() + p);
+		}
+	}
+}

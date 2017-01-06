@@ -73,6 +73,23 @@
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	<script type="text/javascript">
+	var _vds = _vds || [];
+	window._vds = _vds;
+	(function() {
+		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
+		(function() {
+			var vds = document.createElement('script');
+			vds.type = 'text/javascript';
+			vds.async = true;
+			vds.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'dn-growing.qbox.me/vds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(vds, s);
+		})();
+	})();
+</script>
 </head>
 <body>
 	<div class="header headerMove" id="header">
@@ -128,18 +145,22 @@
 						class="header-item login-item" target="_self">注册</a>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />"
-						class="header-item login-item" target="_self"
-						title="<r:outName />"><r:outName /></a>
-					<a href="<spring:url value="/login/loginout" />"
-						class="header-item login-item" target="_self">登出</a>
+					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
 				</r:identity>
 				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />"
-						class="header-item login-item" target="_self"
-						title="<r:outName />"><r:outName /></a>
-					<a href="<spring:url value="/login/loginout" />"
-						class="header-item login-item" target="_self">登出</a>
+					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
+					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />"
@@ -225,15 +246,15 @@
 							<div class="upload_filed_area">
 								
 								<div class="mod_keyword">
-									<c:if test="${not empty product.tags }">
+									<%-- <c:if test="${not empty product.tags }">
 										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
 											<span class="keyword_item">
 											 	<b class="keyword_item_inner">${tag }</b>
 											 	<a href="javascript:void(0);" class="btn_keyword_del"> <span>x</span></a>
 											</span>
 										</c:forEach>
-									</c:if>
-									<span class="keyword_input"> <input type="text"
+									</c:if> --%>
+									<span class="keyword_input"> <input type="text" value='${product.tags }'
 										class="input_inner" id="text_tags" />
 									</span>
 								</div>
@@ -241,7 +262,7 @@
 									style="display: none;">每个标签最多8个汉字或16个字母！</div>
 							     </div>
 							     <span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~敲击空格键添加标签</span>
+									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~<span style="color:#fe5453!important">标签之间以空格分割</span></span>
 							<span style="color: red;">*</span>
 						</div>
 					</div>

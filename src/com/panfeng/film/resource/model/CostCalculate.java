@@ -24,6 +24,14 @@ public class CostCalculate {
 	
 	private String description;//条件组合字符串：活动视频,专业级导演团队。。。。。
 	
+	private String verification_code;//手机验证码
+	
+	public String getVerification_code() {
+		return verification_code;
+	}
+	public void setVerification_code(String verification_code) {
+		this.verification_code = verification_code;
+	}
 	public long getIndentId() {
 		return indentId;
 	}
