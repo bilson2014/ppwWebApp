@@ -155,11 +155,11 @@ public class LoginController extends BaseController {
 		if ("true".equals(json)) { // 被注册
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...",sessionInfo);
-			return new BaseMsg(BaseMsg.NORMAL,"",null);
+			return new BaseMsg(BaseMsg.ERROR,"",false);
 		} else if ("false".equals(json)) { // 未被注册
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...",sessionInfo);
-			return new BaseMsg(BaseMsg.WARNING,"",null);
+			return new BaseMsg(BaseMsg.NORMAL,"",true);
 		}
 		return new BaseMsg(BaseMsg.ERROR,"服务器通信失败请稍后重试！",null);
 	}

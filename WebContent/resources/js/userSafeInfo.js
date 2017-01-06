@@ -8,6 +8,7 @@ $().ready(function() {
 	init();
 });
 
+var parent = $(window.parent.document);
 function init(){
 	// 初始化页面切换
 	initPage();
@@ -91,8 +92,8 @@ function initPage(){
 		if(!checkData(3)){
 			return false;
 		}
-		loadData(function(flag){
-			if(!flag){
+		loadData(function(msg){
+			if(msg.errorCode == 500){
 				// 注册过
 				showCommonError($('#new-phoneNumber-error'),'您输入的手机号码已被注册');
 				$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
@@ -101,33 +102,45 @@ function initPage(){
 				//发送手机验证码
 				verification(concat_tele_new,"code-fornewphone");
 			}
-		}, getContextPath() + '/provider/checkExisting', $.toJSON({
-			phoneNumber : concat_tele_new
+		}, getContextPath() + '/login/validation/phone', $.toJSON({
+			telephone : concat_tele_new
 		}));
 	});
 	
 	$("#bindNewPhone").off("click").on("click",function(){
 		if(checkData(3) && checkData(4)){
-			$(window.parent.document).find('.tooltip-wati').show();
+			parent.find('.tooltip-wati').show();
 			$(this).attr('disabled','disabled');
+			
 			loadData(function(result){
-				if(result.code == 3){
-					window.clearInterval(InterValObj); // 停止计时器
-					$("#codeBt").text("获取验证码").removeAttr("disabled");
-					successToolTipShow('电话修改成功!');
-				}else if(result.code == 1){
-					showCommonError($('#new-code-error'),"验证码错误");
-				}	
-				else if(result.code == 2){
-					showCommonError($('#new-phoneNumber-error'),"您输入的手机号码已被注册");
-				}
-				$('#bindNewPhone').removeAttr('disabled');
-				$(window.parent.document).find('.tooltip-wati').hide();
-			}, getContextPath() + '/user/modify/phone', $.toJSON({
-				id : $('#userId').val(),
-				telephone : $('#new-phoneNumber').val().trim(),
-				verification_code : $('#new-code').val().trim()
-			}));
+                if(result){
+                	loadData(function(result){
+        				if(result.code == 3){
+        					window.clearInterval(InterValObj); // 停止计时器
+        					$("#codeBt").text("获取验证码").removeAttr("disabled");
+        					successToolTipShow('电话修改成功!');
+        				}else if(result.code == 1){
+        					showCommonError($('#new-code-error'),"验证码错误");
+        				}	
+        				else if(result.code == 2){
+        					showCommonError($('#new-phoneNumber-error'),"您输入的手机号码已被注册");
+        				}
+        			}, getContextPath() + '/user/modify/phone', $.toJSON({
+        				id : $('#userId').val(),
+        				telephone : $('#new-phoneNumber').val().trim(),
+        				verification_code : $('#new-code').val().trim()
+        			}));
+                }else{
+                	showCommonError($('#new-code-error'),"验证码错误");
+                }
+                $('#bindNewPhone').removeAttr('disabled');
+				parent.find('.tooltip-wati').hide();
+            }, getContextPath() + '/phone/validate', $.toJSON({
+                telephone : $('#new-phoneNumber').val().trim(),
+                verification_code : $('#new-code').val().trim()
+            }));
+			
+			
 		}
 	});
 	
@@ -171,7 +184,7 @@ function sendCode(){
 
 function initSubBtn(){
 	$('.pwdupdate').off('click').on('click',function(){
-		$(window.parent.document).find('.tooltip-wati').show();
+		parent.find('.tooltip-wati').show();
 		if(passwordMode == 'pass'){
 			// 修改密码 模式
 			if(checkData(2)){
@@ -179,12 +192,12 @@ function initSubBtn(){
 				var id = $('#userId').val();
 				var verification_code = $("#veritifyCode").val().trim();
 					loadData(function(data){
-						$(window.parent.document).find('.tooltip-wati').hide();
+						parent.find('.tooltip-wati').hide();
 						// 提示信息修改成功
 						if(data.code==1){
 							successToolTipShow('修改成功!');
 						}else{
-							showCommonError($('.tooltip-error-show'),data.msg);
+							successErrorTipShow(data.msg);
 						}
 						window.clearInterval(InterValObj);
 						$("#code-forpwd").text("获取验证码").removeAttr("disabled");
@@ -194,7 +207,7 @@ function initSubBtn(){
 						verification_code:verification_code
 					}));
 			}else{
-				$(window.parent.document).find('.tooltip-wati').hide();
+				parent.find('.tooltip-wati').hide();
 			}
 		}else{
 			// 修改用户名和密码模式
@@ -204,7 +217,7 @@ function initSubBtn(){
 				var id = $('#userId').val();
 				var verification_code = $("#veritifyCode").val().trim();
 					loadData(function(flag){
-						$(window.parent.document).find('.tooltip-wati').hide();
+						parent.find('.tooltip-wati').hide();
 						if(flag.errorCode == 200){
 							if(flag.result){
 								window.clearInterval(InterValObj);
@@ -216,17 +229,17 @@ function initSubBtn(){
 								$("#ins").addClass("hide");
 								$(".warn").attr("class","").text("");//清除右上角提示标识
 							}else{
-								$(window.parent.document).find('.tooltip-wati').hide();
+								parent.find('.tooltip-wati').hide();
 								showCommonError($('.tooltip-error-show'),"修改失败！");
 							}
 						}else if(flag.errorCode == 500){
 							showCommonError($('.tooltip-error-show'),flag.errorMsg);
-							$(window.parent.document).find('.tooltip-wati').hide();
+							parent.find('.tooltip-wati').hide();
 						}else{
 							showCommonError($('.tooltip-error-show'),"修改失败，请稍后重试！");
-							$(window.parent.document).find('.tooltip-wati').hide();
+							parent.find('.tooltip-wati').hide();
 						}
-						window.setInterval(hideTooltip, 2000);
+						//window.setInterval(hideTooltip, 2000);
 					}, getContextPath() + '/login/modify/logName', $.toJSON({
 						id : id,
 						password : Encrypt(confirmPassw0rd),
@@ -234,7 +247,7 @@ function initSubBtn(){
 						verification_code:verification_code
 					}));
 			}else{
-				$(window.parent.document).find('.tooltip-wati').hide();
+				parent.find('.tooltip-wati').hide();
 			}
 		}
 	})
@@ -658,7 +671,6 @@ function getWBUserData(callback){
 	}
 }
 
-
 function successToolTipShow(msg){
 	window.clearInterval(successIntervalObj);
 	parent.find('.tooltip-success-show').slideDown();
@@ -672,7 +684,7 @@ function hideSuccessTooltip(){
 
 function hideError(){
 	parent.find('.tooltip-error-show').hide();
-	location.reload();
+
 }
 
 // 成功信息 提示框弹出方法

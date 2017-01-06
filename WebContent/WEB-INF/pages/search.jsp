@@ -220,7 +220,7 @@
 							<div class="video-row">
 						</c:if>
 						<div class="video-card video-col-4">
-							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>">
+							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">
 								<c:if test="${not empty solr.picLDUrl }">
 									<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" />
 								</c:if>

@@ -446,7 +446,7 @@ function loadProduction(start){
 					}
 					$body += '<div class="video-card video-col-4">';
 					var targetHref = getContextPath() + '/play/' + solr.teamId + '_' + solr.productId + '.html';
-					$body += '<a href="'+ targetHref +'">';
+					$body += '<a href="'+ targetHref +'" target="_blank">';
 					$body += '<img class="img-card-4" src="'+ imgPath +'" alt="拍片网" />';
 					$body += '</a>';
 					$body += '<div class="video-desc-section">';
