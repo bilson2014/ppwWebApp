@@ -964,7 +964,7 @@ function resumeCommonError(document){
     $('input').removeClass('errorLCommon');
 }
 
-Date.prototype.Format = function (fmt) { //author: wanglc
+Date.prototype.Format = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
@@ -988,4 +988,3 @@ function getImgUrl(){
 		}
 	}
 }
-
