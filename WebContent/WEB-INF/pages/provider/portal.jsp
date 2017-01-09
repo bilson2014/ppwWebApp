@@ -207,7 +207,7 @@
 		     <div class="top">
 		       <div class="closeX closewarn"></div>
 		       <div class="title">批量上传作品</div>
-		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
+		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span><span id='maxLength'></span></div>
 		     </div>
 		     <div class="mid" id='video-container'>
 		        
