@@ -8,7 +8,7 @@ $().ready(function() {
 	var videoList = {
 		init : function() {
 			//新建作品
-			this.addProduct();
+			//this.addProduct();
 			//修改作品
 			this.modifyProduct();
 			//删除作品
@@ -22,7 +22,7 @@ $().ready(function() {
 			//设置代表作
 			this.setMaster();
 			//批量上传
-			this.multipUploadFile();
+			//this.multipUploadFile();
 		},
 		addProduct:function(){
 			$('.newProduct').off("click").on('click',function(){

@@ -2,27 +2,16 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数
 var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
+var upload_Video;
+var video_max_size = 200*1024*1024; // 200MB
+var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function(){
 	$('.tooltip-wati').show();
 	initPage();
 	showPassInfo();
 	getHeight(2);
-	$('.infoItem div').on('click',function(){
-		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
-		$('.menu-content').find('li').removeClass('active');
-		$(this).addClass('active');
-		$('.infoItem').removeClass('activeThis');
-		$(this).parent().addClass('activeThis');
-		$('#titleTop').text($(this).text());
-		if($(this).data('action')=='safe-info'){
-			getHeight(1);
-		}else{
-			getHeight(2);
-		}
-		if($(this).data('action')=='video-list'){
-			$('.tooltip-wati').show();
-		}
-	});
+	videoListProtal.init();
+	changePage();
 	var p = $('#proLogo').attr('data-value');
 	if(p!=null && p!='' && p.indexOf("/resources/")== -1){
 		$('#proLogo').attr('src',getDfsHostName() + p);
@@ -57,6 +46,30 @@ $().ready(function(){
 	
 });
 
+
+function changePage(){
+	
+	$('.infoItem div').on('click',function(){
+		$('#control').hide();
+		$("#content-frame").prop("src", getContextPath() + '/provider/' + $(this).data('action'));
+		$('.menu-content').find('li').removeClass('active');
+		$(this).addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($(this).text());
+		if($(this).data('action')=='safe-info'){
+			getHeight(1);
+		}else{
+			getHeight(2);
+		}
+		if($(this).data('action')=='video-list'){
+			$('.tooltip-wati').show();
+			$('#control').show();
+		}
+	});
+	
+}
+
 function initPage(){
 	
 	var href = window.location.href;
@@ -74,6 +87,7 @@ function initPage(){
 		$('#clickCompany').addClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($('#clickCompany div').text());
+		$('#control').hide();
     }
     if(state.trim() == "safe-info"){
     	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
@@ -84,6 +98,7 @@ function initPage(){
 		$('#clickSafe').addClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($('#clickSafe div').text());
+		$('#control').hide();
     }
     
    
@@ -103,7 +118,7 @@ function hideInfomation(){
 }
 
 function getHeight(num){
-	var screen = document.body.clientHeight - 180;
+	var screen = document.body.clientHeight - 240;
 	var safe = 546;
 	if(num == 1){
 	$("#content-frame").css('height',safe);
@@ -149,3 +164,99 @@ function successErrorTipShow(){
 	$('.tooltip-error-show').slideDown();
 	successIntervalObj = window.setInterval(hideError(), 3000);
 }
+var videoListProtal = {
+		init : function() {
+			//新建作品
+			this.addProduct();
+			
+			//批量上传
+			this.multipUploadFile();
+		},
+		addProduct:function(){
+			$('.newProduct').off("click").on('click',function(){
+			    top.location=''+getContextPath()+'/provider/product/upload';
+			});
+		},
+		multipUploadFile:function(){
+			$(".moreUp").off("click").on("click",function(){
+				$('.tooltip-warn-up').show(); 
+				$('.selectVideo').hide(); 
+				$('.showwarn').show(); 
+			})
+
+			$('.closewarn').off("click").on("click",function(){
+				$('.tooltip-warn-up').hide();
+				window.location.reload();
+			})
+			$('.showmultipUpload').off("click").on("click",function(){
+				$('.showwarn').hide(); 
+				$('#video-container').empty(); 
+				$('.selectVideo').show(); 
+			})
+			$('.closewarn-refresh').off("click").on("click",function(){
+				$('.tooltip-warn-up').hide();
+				window.location.reload();
+			})
+			upload_Video && upload_Video.destroy();
+			var picker =$('#picker'); 
+			upload_Video = WebUploader.create({
+				auto:false,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/provider/multipUploadFile',
+				timeout:0,
+				pick : picker,
+				fileSingleSizeLimit : video_max_size,
+				accept :{
+				    title: 'video',
+				    extensions: 'mp4',
+				    mimeTypes: 'video/mp4'
+				}
+			});
+			upload_Video.on('fileQueued', function(file) {
+				$("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
+			});
+			// 文件上传过程中创建进度条实时显示。
+			upload_Video.on('uploadProgress',function(file, percentage) {
+				var $li = $('#' + file.id), $percent = $li
+				.find('.progress .progress-bar');
+				// 避免重复创建
+				if (!$percent.length) {
+					$percent = $(
+							'<div class="progress progress-striped active">'
+									+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+									+ '</div>' + '</div>')
+							.appendTo($li).find('.progress-bar');
+				}
+				$li.find('.videoState').text('上传中');
+				$percent.css('width', percentage * 100 + '%');
+			});
+			upload_Video.on('uploadSuccess', function(file,response) {
+				$('#'+file.id ).find('.videoState').text('已上传');
+				$('#'+file.id ).find('.videoState').addClass("showUpSuccess");
+				$('#' + file.id).find('.progress').fadeOut();
+			});
+			upload_Video.on('error', function(type) {
+				 if (type=="Q_TYPE_DENIED"){
+					 	alert('请上传mp4格式');
+			        }else if(type=="F_EXCEED_SIZE"){
+						alert(video_err_msg);
+			        }
+			});
+			$("#submit-multip").on('click', function() {
+				upload_Video.upload();
+			});
+		}
+}
+
+var videoList_tpl = {
+		upload_Tpl:[
+		" <div class='videoCard'>                            "+
+		"	<div class='videoContent'>                       "+
+		"   	<div id='${file.id}' class='item'>			 "+
+		"	    <div class='videoName'>${file.name}</div>    "+
+		"	    <div class='videoState'>等待上传</div>          "+
+		"	</div>                                            "+
+		" </div>                                              "      
+		].join("")
+}
+
