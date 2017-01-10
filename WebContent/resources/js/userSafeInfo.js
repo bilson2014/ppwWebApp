@@ -512,16 +512,13 @@ function bandInfo(){
 			$('#wbBtn').text('绑定');
 			$("#wbBtn").attr("data-status","0");
 			$('#wbBtn').removeClass('isNotBind');
-		
 		}
-		
 		//初始化第三方
 		userinfo_third.init();
         $('#bindReturn').on('click',function(){
         	$('#normal').show();
             $('#userBind').hide();
         });
-		
 	}, getContextPath() + '/user/third/status');
 }
 
