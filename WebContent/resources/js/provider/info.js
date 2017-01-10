@@ -242,9 +242,10 @@ function userpicInfo() {
 	});
 	uploader.on('error', function(type) {
 		if (type == "Q_TYPE_DENIED") {
-			$('.errorImg').text("文件超过最大限制");
-		} else if (type == "F_EXCEED_SIZE") {
 			$('.errorImg').text("格式不正确");
+		} else if (type == "F_EXCEED_SIZE") {
+			$('.errorImg').text("文件超过最大限制");
+			
 		}
 	});
 }
