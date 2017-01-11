@@ -173,10 +173,11 @@ $().ready(function() {
 				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
 				server : '/provider/multipUploadFile',
-				timeout:0,
+				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : video_max_size,
 				fileNumLimit : 10,//最多上传文件
+				threads :1,
 				accept :{
 				    title: 'video',
 				    extensions: 'mp4',
@@ -208,9 +209,18 @@ $().ready(function() {
 				$percent.css('width', percentage * 100 + '%');
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
-				$(parent).find( '#'+file.id ).find('.videoState').text('已上传');
-				$(parent).find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
-				$(parent).find('#' + file.id).find('.progress').fadeOut();
+				if(response._raw == 'success'){
+					$(parent).find( '#'+file.id ).find('.videoState').text('已上传');
+					$(parent).find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
+					$(parent).find('#' + file.id).find('.progress').fadeOut();
+				}else{
+					$(parent).find( '#'+file.id ).find('.videoState').text('上传失败');
+					$(parent).find('#' + file.id).find('.progress').fadeOut();
+				}
+				
+			});
+			upload_Video.on('uploadError', function(file,reason) {
+				console.info(reason);
 			});
 			upload_Video.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
