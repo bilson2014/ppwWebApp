@@ -4,6 +4,7 @@ var uploader;
 var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时间
 $().ready(function(){
 	showPassInfo();
+	initPage();
 	getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/user/' + $(this).data('action'));
@@ -87,4 +88,22 @@ function successErrorTipShow(){
 	window.clearInterval(successIntervalObj);
 	$('.tooltip-error-show').slideDown();
 	successIntervalObj = window.setInterval(hideError(), 3000);
+}
+
+function initPage(){
+	
+	var href = window.location.href;
+    var state = href.substr(href.lastIndexOf("?")+1,href.length);
+    if(state.trim() == "safeInfo"){
+    	$("#content-frame").prop("src", getContextPath() + '/user/' + state);
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickSafe div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickSafe').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').text($('#clickSafe div').text());
+    }
+    
+   
 }

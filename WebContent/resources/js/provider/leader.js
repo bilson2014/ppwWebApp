@@ -285,7 +285,7 @@ function userpicInfo(){
 		pick : '#uploadBt',
 		accept :{
 		    title: 'Images',
-		    extensions: 'jpg,png',
+		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
 		resize : true,
@@ -313,9 +313,9 @@ function userpicInfo(){
 	});
 	uploader.on('error', function(type) {
 		 if (type=="Q_TYPE_DENIED"){
-			 showErrorLeader($('.user-img-content'),'文件超过最大限制!');
+			 showErrorLeader($('.user-img-content'),'格式不正确!');
         }else if(type=="F_EXCEED_SIZE"){
-        	showErrorLeader($('.user-img-content'),'格式不正确!');
+        	showErrorLeader($('.user-img-content'),'文件超过最大限制!');
         }
 	});
 }

@@ -102,6 +102,23 @@ function initPage(){
 				//发送手机验证码
 				verification(concat_tele_new,"code-fornewphone");
 			}
+			
+			if(flag.errorCode == 200){
+				//  未注册
+				$("#new-phoneNumber").parent().removeClass("errorIcon").addClass("sureIcon")
+				//发送手机验证码
+				verification(concat_tele_new,"code-fornewphone");
+			}else if(flag.errorCode == 500){
+				if(flag.result == false){
+					// 已经注册
+					showCommonError($('#new-phoneNumber-error'),'您输入的手机号码已被注册');
+					$("#new-phoneNumber").parent().removeClass("sureIcon").addClass("errorIcon")
+				}else{
+					// 服务器错误
+					showCommonError($('#new-phoneNumber-error'),flag.errorMsg);
+				}
+			}
+			
 		}, getContextPath() + '/login/validation/phone', $.toJSON({
 			telephone : concat_tele_new
 		}));
@@ -512,16 +529,13 @@ function bandInfo(){
 			$('#wbBtn').text('绑定');
 			$("#wbBtn").attr("data-status","0");
 			$('#wbBtn').removeClass('isNotBind');
-		
 		}
-		
 		//初始化第三方
 		userinfo_third.init();
         $('#bindReturn').on('click',function(){
         	$('#normal').show();
             $('#userBind').hide();
         });
-		
 	}, getContextPath() + '/user/third/status');
 }
 

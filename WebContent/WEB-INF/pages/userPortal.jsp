@@ -115,11 +115,20 @@
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<a  class="header-item login-item widthHear" target="_self"><r:outName /></a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/user/info" />"><li class="toSet">个人信息</li></a>
+					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
@@ -179,7 +188,7 @@
                           <div class="infoItem activeThis">
                                 <div class="info" data-action="infoCommon">个人信息</div>
                          </div>
-                          <div class="infoItem">
+                          <div class="infoItem" id="clickSafe">
                                  <div class="safeInfo" data-action="safeInfo">安全设置</div>
                          </div> 
                     </div>

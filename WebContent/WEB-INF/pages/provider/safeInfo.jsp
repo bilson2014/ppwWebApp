@@ -140,7 +140,7 @@
 						<div>确保账号登录时的安全性，同时作为密码找回身份验证使用</div>
 					</div>
 					<div class="content">
-						<div class="infoName">原机绑定</div>
+						<div class="infoName">原手机号</div>
 						<c:if test="${not empty team.phoneNumber }">
 							<div>${fn:replace(team.phoneNumber,fn:substring(team.phoneNumber,3,7), '****')}</div>
 						</c:if>
