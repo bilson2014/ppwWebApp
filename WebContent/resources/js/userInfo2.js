@@ -474,17 +474,34 @@ function getVeritifyCodeValidate(){
 					return false;
 				}
 				loadData(function(flag){
+//					if(flag.errorCode == 200){
+//						// 注册过
+//						$('#label-telephone').text('您输入的手机号码已被注册');
+//						$('#label-telephone').removeClass('hide');
+//					}else if(flag.errorCode == 300){ // 未注册
+//						$('#label-telephone').addClass('hide');
+//						verification(concat_tele_new);
+//					}else if(flag.errorCode == 500){
+//						$('#label-telephone').text(flag.errorMsg);
+//						$('#label-telephone').removeClass('hide');
+//					}
+					
 					if(flag.errorCode == 200){
-						// 注册过
-						$('#label-telephone').text('您输入的手机号码已被注册');
-						$('#label-telephone').removeClass('hide');
-					}else if(flag.errorCode == 300){ // 未注册
+						//  未注册
 						$('#label-telephone').addClass('hide');
 						verification(concat_tele_new);
 					}else if(flag.errorCode == 500){
-						$('#label-telephone').text(flag.errorMsg);
-						$('#label-telephone').removeClass('hide');
+						if(flag.result == false){
+							// 已经注册
+							$('#label-telephone').text('您输入的手机号码已被注册');
+							$('#label-telephone').removeClass('hide');
+						}else{
+							// 服务器错误
+							$('#label-telephone').text(flag.errorMsg);
+							$('#label-telephone').removeClass('hide');
+						}
 					}
+					
 				}, getContextPath() + '/login/validation/phone', $.toJSON({
 					telephone : concat_tele_new
 				}));

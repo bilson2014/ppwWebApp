@@ -28,14 +28,29 @@ $().ready(function() {
 				}
 				if(checkMobile(telephone)){
 					loadData(function(flag){
+//						if(flag.errorCode == 200){
+//							$('#phone_error_user').addClass('hide')
+//						}else if(flag.errorCode == 300){
+//							$('#phone_error_user').removeClass('hide').text('该手机号未注册');
+//						}else if(flag.errorCode == 500){
+//							$('#phone_error_user').removeClass('hide');
+//							$('#phone_error_user').text(flag.errorMsg);
+//						}
+						
 						if(flag.errorCode == 200){
-							$('#phone_error_user').addClass('hide')
-						}else if(flag.errorCode == 300){
+							//  未注册
 							$('#phone_error_user').removeClass('hide').text('该手机号未注册');
 						}else if(flag.errorCode == 500){
-							$('#phone_error_user').removeClass('hide');
-							$('#phone_error_user').text(flag.errorMsg);
+							if(flag.result == false){
+								// 已经注册
+								$('#phone_error_user').addClass('hide')
+							}else{
+								// 服务器错误
+								$('#phone_error_user').removeClass('hide');
+								$('#phone_error_user').text(flag.errorMsg);
+							}
 						}
+						
 					}, getContextPath() + '/login/validation/phone', $.toJSON({
 						telephone : telephone
 					}));
