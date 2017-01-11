@@ -24,11 +24,11 @@ $().ready(function() {
 			//批量上传
 			//this.multipUploadFile();
 		},
-		addProduct:function(){
+		/*addProduct:function(){
 			$('.newProduct').off("click").on('click',function(){
 			    top.location=''+getContextPath()+'/provider/product/upload';
 			});
-		},
+		},*/
 		modifyProduct:function(){
 			$('.product-edit').off("click").on('click',function(){
 				var productId = $(this).attr("data-id");
@@ -147,7 +147,7 @@ $().ready(function() {
 				}));
 			})
 		},
-		multipUploadFile:function(){
+		/*multipUploadFile:function(){
 			$(".moreUp").off("click").on("click",function(){
 				 $(parent).find("#maxLength").text("");
 				$(parent).find('.tooltip-warn-up').show(); 
@@ -232,7 +232,7 @@ $().ready(function() {
 			$(parent).find("#submit-multip").on('click', function() {
 				upload_Video.upload();
 			});
-		}
+		}*/
 	}	
 	videoList.init();
 	var videoList_tpl = {
