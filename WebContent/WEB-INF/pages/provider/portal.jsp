@@ -26,6 +26,8 @@
 <spring:url value="/resources/images/user" var="imgPath"/>
 <spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
 <spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.js"
+	var="webuploaderJs" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -60,7 +62,7 @@
 	<script src="${porviderPortalJs }"></script>
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
-
+	<script src="${webuploaderJs }"></script>
 	
 </head>
 <body style="overflow:hidden">
@@ -119,11 +121,20 @@
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/user/info" />"><li class="toSet">个人信息</li></a>
+					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
@@ -207,7 +218,7 @@
 		     <div class="top">
 		       <div class="closeX closewarn"></div>
 		       <div class="title">批量上传作品</div>
-		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span></div>
+		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span><span id='maxLength'></span></div>
 		     </div>
 		     <div class="mid" id='video-container'>
 		        
@@ -278,6 +289,18 @@
                 </div>
                 <div class="right-wrap">
                        <div class="titleTop" id="titleTop">作品列表</div>
+                       
+				       <div class="control" id="control">
+							<div class="newProduct">
+								<div></div>
+								<span>新建作品</span>
+							</div>
+							<div class="moreUp">
+								<div></div>
+								<span>批量上传作品</span>
+							</div>
+						</div> 
+                       
                        <iframe class="frame" id="content-frame" class="iframe" src="<spring:url value='/provider/video-list'/>"></iframe>
                 </div>
        </div>

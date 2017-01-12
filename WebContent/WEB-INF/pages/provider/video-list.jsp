@@ -74,7 +74,7 @@
 	<input type="hidden" value="${cKey }" id="company-key" />
 	<input type="hidden" value="${cType }" id="company-type" />
 	<div class="proInfo">
-		<div class="control">
+<!-- 		<div class="control">
 			<div class="newProduct">
 				<div></div>
 				<span>新建作品</span>
@@ -83,7 +83,7 @@
 				<div></div>
 				<span>批量上传作品</span>
 			</div>
-		</div>
+		</div> -->
 
 
 

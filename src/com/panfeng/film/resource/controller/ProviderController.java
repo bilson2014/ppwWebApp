@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,6 +64,8 @@ import com.panfeng.film.util.WechatUtils;
 @RequestMapping("/provider")
 public class ProviderController extends BaseController {
 
+	private Logger logger = LoggerFactory.getLogger(ProviderController.class);
+	
 	private static String URL_PREFIX = null;
 
 	private static String IMAGE_MAX_SIZE = null;
@@ -273,7 +277,6 @@ public class ProviderController extends BaseController {
 		if (!ValidateUtil.isValid(json))
 			return new ModelAndView("/register");
 		Team original = JsonUtil.toBean(json, Team.class);
-		// TODO:
 		boolean isBind = providerThirdLogin.login(original, request);
 		if (isBind) {
 			return new ModelAndView("/provider/portal");
@@ -1053,57 +1056,66 @@ public class ProviderController extends BaseController {
 		response.setContentType("text/html;charset=UTF-8");
 		final SessionInfo info = getCurrentInfo(request);
 		final Long providerId = info.getReqiureId(); // 供应商ID
-		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRquest.getFileMap();
-		for (final Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			final MultipartFile file = entity.getValue();
-			// 检测视频是否大于限制
-			final String checkResult = checkFile(file);
-			if ("success".equals(checkResult)) {
-				// 插入数据
-				Product product = new Product();
-				product.setFlag(3); // 默认是 保存状态
-				final String name = file.getOriginalFilename();
-				final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
-				String productName = name.split("." + extName)[0];
-				// 转码
-				try {
-					productName = URLEncoder.encode(productName, "UTF-8");
-				} catch (UnsupportedEncodingException e1) {
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("ProviderController method:uploadFiles() productName Encoder error, teamId=" + providerId
-							+ "...", sessionInfo);
-					e1.printStackTrace();
+		try {
+			MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
+			Map<String, MultipartFile> fileMap = multipartRquest.getFileMap();
+			for (final Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+				final MultipartFile file = entity.getValue();
+				// 检测视频是否大于限制
+				final String checkResult = checkFile(file);
+				if ("success".equals(checkResult)) {
+					// 插入数据
+					Product product = new Product();
+					product.setFlag(3); // 默认是 保存状态
+					final String name = file.getOriginalFilename();
+					final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
+					String productName = name.split("." + extName)[0];
+					// 转码
+					try {
+						productName = URLEncoder.encode(productName, "UTF-8");
+					} catch (UnsupportedEncodingException e1) {
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("ProviderController method:uploadFiles() productName Encoder error, teamId=" + providerId
+								+ "...", sessionInfo);
+						e1.printStackTrace();
+					}
+					product.setProductName(productName);
+					product.setRecommend(0); // 推荐值 为0
+					product.setSupportCount(0); // 赞值 为0
+					product.setTeamId(providerId);
+					product.setVideoLength("0");
+					product.setpDescription("");
+					product.setVisible(0); // 默认可见
+					// 保存数据
+					long productId = 0;
+					final String url = URL_PREFIX + "portal/product/static/data/save/info";
+					final String json = HttpUtil.httpPost(url, product, request);
+					String fileId = "";
+					if (json != null && !"".equals(json)) {
+						productId = JsonUtil.toBean(json, Long.class);
+						fileId = DFSservice.upload(file);
+						if(StringUtils.isNotBlank(fileId)) {
+							product.setProductId(productId);
+							product.setVideoUrl(fileId);
+							// 更新文件路径
+							final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
+							HttpUtil.httpPost(updateUrl, product, request);
+							SessionInfo sessionInfo = getCurrentInfo(request);
+							Log.info("ProviderController method:uploadFiles() file upload success,productId = " + productId
+									+ " ...", sessionInfo);
+							return "success";
+						} else {
+							logger.error("uploadFiles Method : File Name is " + product.getProductName() + " upload error ... ");
+							return "error";
+						}
+					}
 				}
-				product.setProductName(productName);
-				product.setRecommend(0); // 推荐值 为0
-				product.setSupportCount(0); // 赞值 为0
-				product.setTeamId(providerId);
-				product.setVideoLength("0");
-				product.setpDescription("");
-				product.setVisible(0); // 默认可见
-				// 保存数据
-				long productId = 0;
-				final String url = URL_PREFIX + "portal/product/static/data/save/info";
-				final String json = HttpUtil.httpPost(url, product, request);
-				String fileId = "";
-				if (json != null && !"".equals(json)) {
-					productId = JsonUtil.toBean(json, Long.class);
-					fileId = DFSservice.upload(file);
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("ProviderController method:uploadFiles() file upload success,productId = " + productId
-							+ " ...", sessionInfo);
-					product.setProductId(productId);
-					product.setVideoUrl(fileId);
-					// 更新文件路径
-					final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
-					HttpUtil.httpPost(updateUrl, product, request);
-				}
-			} else {
-				return checkResult;
 			}
+		} catch (Exception e) {
+			logger.error("File multip upload error ...",e);
+			e.printStackTrace();
 		}
-		return "success";
+		return "error";
 	}
 
 	// 检查文件是否符合规范

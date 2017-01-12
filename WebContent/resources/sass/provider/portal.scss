@@ -750,3 +750,93 @@ body {
     // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
+
+
+.control {
+    background: #f9fafb;
+    height: 50px;
+    position: relative;
+    padding-top: 10px;
+    .newProduct {
+        font-size: 0px;
+        border: 1px solid $gray-light;
+        width: 120px;
+        height: 30px;
+        line-height: 28px;
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 16px;
+        position: absolute;
+        right: 180px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+            border: 1px solid $red-base;
+            background: $red-base;
+            color: white;
+            div {
+                background-position: 0px -14px;
+            }
+            span {
+                color: white;
+            }
+        }
+        div {
+            display: inline-block;
+            vertical-align: top;
+            background: url(/resources/images/provider/add.png);
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 6px;
+            margin-right: 10px;
+        }
+        span {
+            display: inline-block;
+            vertical-align: top;
+            font-size: $font-size-base;
+            color: $gray-dark;
+        }
+    }
+    .moreUp {
+        cursor: pointer;
+        font-size: 0px;
+        border: 1px solid $gray-light;
+        width: 140px;
+        height: 30px;
+        line-height: 28px;
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 16px;
+        position: absolute;
+        right: 30px;
+        border-radius: 4px;
+        &:hover {
+            border: 1px solid $red-base;
+            background: $red-base;
+            color: white;
+            div {
+                background-position: 0px -14px;
+            }
+            span {
+                color: white;
+            }
+        }
+        div {
+            display: inline-block;
+            vertical-align: top;
+            background: url(/resources/images/provider/moreUp.png);
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 6px;
+            margin-right: 10px;
+        }
+        span {
+            display: inline-block;
+            vertical-align: top;
+            font-size: $font-size-base;
+            color: $gray-dark;
+        }
+    }
+}
