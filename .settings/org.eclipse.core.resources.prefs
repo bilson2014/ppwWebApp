@@ -1,14 +1,2 @@
 eclipse.preferences.version=1
-encoding//WebContent/WEB-INF/pages/index.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/login.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/news.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/order-flow.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/play.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/provider/upload.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/provider/user.jsp_back=UTF-8
-encoding//WebContent/WEB-INF/pages/rePwdCus.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/rePwdPro.jsp=UTF-8
-encoding//WebContent/WEB-INF/pages/register.jsp=UTF-8
-encoding//WebContent/resources/js/index.js=UTF-8
-encoding//src/jdbc.properties=UTF-8
 encoding/<project>=UTF-8
