@@ -88,6 +88,7 @@ public class CostCalculateController extends BaseController{
 		Indent indent = new Indent();
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
+		indent.setId(calculate.getIndentId());
 		indent.setIndentName("成本计算器下单");
 		indent.setIndentType(0);
 		indent.setServiceId(-1l);
@@ -102,7 +103,7 @@ public class CostCalculateController extends BaseController{
 		final String url = URL_PREFIX + "portal/indent/cost/save";
 		String str = HttpUtil.httpPost(url, indent,request);
 		indent = JsonUtil.toBean(str, Indent.class);
-		map.put("indentId", indent.getIndentId());
+		map.put("indentId", indent.getId());
  		return map;
 	}
 }

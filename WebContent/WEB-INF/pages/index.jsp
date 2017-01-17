@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="r" uri="/mytaglib"%>
+<%@ page import="com.panfeng.film.resource.model.User"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
+<%-- import CSS --%>
+<spring:url value="/resources/css/index.css" var="indexCss"/>
+<%-- import JS --%>
+<spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
+<spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->

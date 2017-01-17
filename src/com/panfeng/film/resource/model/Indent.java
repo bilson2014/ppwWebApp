@@ -10,6 +10,8 @@ public class Indent extends BaseObject {
 
 	private static final long serialVersionUID = 3600890814141989814L;
 
+	private long id = 0l; // 订单编号
+	
 	private long indentId = 0l; // 订单编号
 	
 	private String indentName = null; // 订单名称
@@ -72,6 +74,14 @@ public class Indent extends BaseObject {
 	
 	private Boolean sendToUser = true;//订单给客户发短信
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public long getIndentId() {
 		return indentId;
 	}
