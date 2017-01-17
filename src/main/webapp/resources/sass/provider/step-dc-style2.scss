@@ -1,0 +1,132 @@
+@CHARSET "UTF-8";
+div.step_context {
+	height: 58px;
+	margin: 15px 0px 15px 0px;
+	
+}
+
+.step_context ul {
+	height: 58px;
+	width: auto;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+
+
+.step_context li {
+	background-image: url("/resources/images/flow/arrow.png");
+	background-repeat: no-repeat;
+	border: none;
+	height: 58px;
+	width: 130px;
+	float: left;
+	list-style: none;
+	line-height: 58px;
+	position: relative;
+}
+
+.step_context li a {
+	border: none;
+	height: 52px;
+	width: 83px;
+	float: left;
+	color: #fff;
+	text-decoration: none;
+	font-size: 15px;
+	list-style: none;
+	text-align: center;
+	margin-top: 3px;
+}
+/*�Ѿ���ɵĲ������ʽ*/
+li.finshStep {
+	background-position: right -158px;
+}
+
+li.finshStep a {
+	background-position: right -158px;
+	background-color: #FC857F;
+}
+/*��һ����ɵĲ������ʽ*/
+li.firstFinshStep {
+	//margin-top:1px;
+	width: 170px;
+	background-position: right -158px;
+}
+
+li.firstFinshStep a {
+	width:123px;
+	background-color: #FC857F;
+}
+/*�ڶ�����ǰһ����ʽ*/
+li.firstFinshStepTwo {
+	background-position: right -82px;
+	width: 170px;
+}
+
+li.firstFinshStepTwo a {
+	width:123px;
+	background-color: #FC857F;
+}
+
+/*ֻ���е���һ��*/
+li.firstFinshStep_curr1 {
+	background-position: right -0px;
+	width: 170px;
+}
+
+li.firstFinshStep_curr1 a {
+	margin-top: 0px;
+	background-color: #FF6565;
+	background-position: right -0px;
+	height: 58px;
+	width:123px;
+}
+
+/*��һ��δ��ɵĲ�����ʽ*/
+li.coressStep {
+	background-position: right -0px;
+}
+
+li.coressStep a {
+	margin-top: 0px;
+	background-color: #FF6565;
+	height: 58px;
+}
+/*�ȴ���ɵĲ�����ʽ*/
+li.loadStep {
+	background-position: right -234px;
+}
+
+li.loadStep a {
+	background-color: #A3A3A3;
+	background-position: 153px -198px;
+}
+/*����ɲ�������*/
+li.finshlastBefore {
+	background-position: right -82px;
+}
+
+li.finshlastBefore a {
+	background-position: 153px -237px;
+	background-color: #FC857F;
+}
+/*���һ��������ɺ����ʽ*/
+li.finshlast {
+	background-position: right -397px;
+}
+
+li.finshlast a {
+	margin-top: 0px;
+	background-color: #FF6565;
+	height: 58px;
+}
+/*���һ���������ʽ*/
+li.last {
+	background-position: right -318px;
+}
+
+li.last a {
+	background-color: #A3A3A3;
+}

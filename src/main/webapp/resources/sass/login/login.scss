@@ -1,0 +1,121 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "flexslider";
+@import "indexSwiper";
+@import "header3";
+.zz {
+    display: inline-block;
+}
+
+.bb {
+    // animation-name:antMoveLeftIn;
+    // transform:translateZ(0);
+    // animation-play-state:running
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cc {
+    position: relative;
+    left: 0px;
+    transition: all .8s linear 0s;
+}
+
+body {
+    background: #ccc;
+}
+
+.header {
+    background: black !important;
+}
+
+.page {
+    //top: 0 !important;
+    background: #ccc;
+}
+
+.loginModel {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    height: 800px;
+    padding-top: 60px;
+    position: relative;
+    .loginArea {
+        position: absolute;
+        right: 0px;
+        padding-left: 66px;
+        padding-right: 66px;
+        font-size: 0;
+        background: white;
+        border-radius: 4px;
+    }
+}
+
+.loginArea .title {
+    position: relative;
+    div {
+        color: $gray-light;
+        font-size: $font-size-lg;
+        text-align: center;
+    }
+    div:nth-child(1) {
+        width: 176px;
+        height: 70px;
+        line-height: 70px;
+        display: inline-block;
+        border-bottom: 4px solid $e;
+        cursor: pointer;
+    }
+    div:nth-child(2) {
+        width: 176px;
+        height: 70px;
+        line-height: 70px;
+        display: inline-block;
+        border-bottom: 4px solid $e;
+        cursor: pointer;
+    }
+    div:nth-child(3) {
+        width: 176px;
+        height: 4px;
+        background: $red-base;
+        position: absolute;
+        bottom: 0px;
+        left: 66;
+    }
+}
+
+.loginArea .contentTop {
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.loginArea .cusLogin {
+    .loginItem {
+        height: 40px;
+        border-bottom: 1px solid $e;
+        margin-top: 20px;
+        input {
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            border:none;
+            color:$gray-light;
+            font-size: $font-size-base;
+            outline: none;
+        }
+    }
+}
+
+
+.loginArea .contentMid{
+	   margin-top: 20px;
+	   div:nth-child(1){
+            font-size: $font-size-base;
+            color:$red-base;
+	   }
+	   div:nth-child(2){
+           margin-top: 50px;
+	   }
+}

@@ -1,0 +1,331 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "flexslider";
+@import "compass/typography/text/ellipsis";
+body {
+    background: #FDFFFF;
+}
+
+.page {
+    top: 0 !important;
+}
+
+.btn-default {
+    color: #333;
+    background-color: white !important;
+    border-color: none;
+}
+
+.costBackguound {
+    width: 100%;
+    height: 100%;
+    min-height: 960px;
+    background: url(/resources/images/cost/costBg.jpg) no-repeat!important;
+    background-size: cover !important;
+    background-position: center 0;
+}
+
+.costContent {
+    @include media_screen_width_beta3();
+    height: 960px;
+    margin: 0 auto;
+    padding-top: 120px;
+    position: relative;
+}
+
+.costContent .info {
+    position: absolute;
+    top: 398px;
+    width: auto;
+    color: white;
+    left: 45px;
+    @media screen and (min-width: 1500px) {
+        left: 100px;
+    }
+    div:nth-child(1) {
+        font-size: 5.0rem;
+        font-weight: bold;
+    }
+    div:nth-child(2) {
+        font-size: 3.6rem;
+        margin-top: -3px;
+        margin-bottom: 6px;
+    }
+    div:nth-child(3) {
+        font-size: $font-size-base;
+        label {
+            position: relative;
+            top: 3px;
+            width: 6px;
+            height: 6px;
+            background: $red-base;
+            border-radius: 90px;
+            margin-right: 5px;
+        }
+    }
+    div:nth-child(4) {
+        font-size: $font-size-base;
+        label {
+            width: 6px;
+            height: 6px;
+            background: transparent;
+            border-radius: 90px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.costContent .calculator {
+    width: 500px;
+    position: absolute;
+    right: 10px;
+    padding-bottom: 50px;
+    .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0.8;
+        border-radius: 4px;
+    }
+    .price {
+        position: relative;
+        text-align: center;
+        color: white;
+        padding-top: 30px;
+        @include ellipsis;
+        label {
+            font-weight: 500;
+        }
+        label:nth-child(1) {
+            font-size: 5.0rem;
+        }
+        label:nth-child(2) {
+            margin-left: 10px;
+            font-size: 4.8rem;
+        }
+    }
+    .controlWidth {
+        width: 410px;
+        position: relative;
+        margin: 0 auto;
+    }
+}
+
+.controlWidth .youNeed {
+    color: white;
+    font-size: $font-size-base;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid $gray-light;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+.inputWidthPhone {
+    width: 100% !important;
+    padding-top: 22px !important;
+    .title:after,
+    .title after {
+        content: attr(data-content);
+        color: $red-base;
+        font-size: $font-size-sm;
+        padding-left: 15px;
+    }
+    input {
+        width: 100%;
+        color: $gray-light;
+        font-size: $font-size-base;
+        height: 36px;
+        border-radius: 4px;
+        border: none;
+        padding-left: 10px;
+        outline: none !important;
+        border: 2px solid transparent;
+    }
+}
+
+.errorPhone {
+    border: 2px solid $red-base !important;
+}
+
+.inputWidth {
+    width: 100% !important;
+    padding-top: 50px !important;
+    button {
+        position: relative;
+        font-size: $font-size;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+    }
+    button:first-child {
+        left: 0px;
+        width: 295px;
+        height: 50px;
+        background: $red-base;
+        &:hover {
+            background-color: $gray;
+            color: #fff;
+        }
+        &:active {
+            background: darken($red-base, 10%);
+        }
+    }
+    button:last-child {
+        right: 0px;
+        width: 109px;
+        height: 50px;
+        background: $gray-light;
+        &:hover {
+            background: darken($gray, 10%);
+        }
+    }
+}
+
+.error {
+    border: 1px solid $red-base;
+}
+
+.code {
+    width: 100% !important;
+    .title:after {
+        content: attr(data-content);
+        color: $red-base;
+        font-size: $font-size-sm;
+        padding-left: 15px;
+    }
+    input {
+        width: 304px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        height: 36px;
+        border-radius: 4px;
+        border: none;
+        padding-left: 10px;
+        outline: none !important;
+        border: 2px solid transparent;
+        display: inline-block;
+        vertical-align: top;
+    }
+    button {
+        width: 100px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        height: 36px;
+        border-radius: 4px;
+        border: none;
+        padding-left: 10px;
+        outline: none !important;
+        border: 2px solid transparent;
+        display: inline-block;
+        vertical-align: top;
+        background: white;
+        &:hover {
+            background: $gray-light;
+            color:white;
+        }
+    }
+}
+
+.calItem {
+    display: inline-block;
+    width: 202px;
+    padding-top: 22px;
+    vertical-align: top;
+    .title {
+        color: white;
+        padding-bottom: 6px;
+    }
+    .infoContent {
+        color: $gray-light;
+        font-size: $font-size-sm;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .costSelect {
+        width: 100%;
+        .dropdown-toggle {
+            width: 100%;
+            height: 36px;
+            line-height: 24px;
+            font-size: $font-size-base;
+            color: $gray-dark;
+            text-align: left;
+            padding-left: 10px;
+            &:hover {
+                background: white !important;
+            }
+        }
+        .carets {
+            height: 15px;
+            width: 15px;
+            background: url("/resources/images/index/selectIcon.png") no-repeat !important;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+        .dropdown-menu {
+            width: 101%;
+            top: 31px;
+            left: -1px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+        li {
+            padding-left: 10px;
+            color: $gray-dark;
+            cursor: pointer;
+            line-height: 36px;
+            &:hover {
+                background: #f0f2f5;
+            }
+        }
+    }
+}
+
+.code {
+    width: 100% !important;
+    .title:after {
+        content: attr(data-content);
+        color: $red-base;
+        font-size: $font-size-sm;
+        padding-left: 15px;
+    }
+    input {
+        width: 304px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        height: 36px;
+        border-radius: 4px;
+        border: none;
+        padding-left: 10px;
+        outline: none !important;
+        border: 2px solid transparent;
+        display: inline-block;
+        vertical-align: top;
+    }
+    button {
+        width: 100px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        height: 36px;
+        border-radius: 4px;
+        border: none;
+        padding-left: 10px;
+        outline: none !important;
+        border: 2px solid transparent;
+        display: inline-block;
+        vertical-align: top;
+        background: white;
+        &:hover {
+            background: $gray-light;
+            color:white;
+        }
+    }
+}

@@ -1,0 +1,124 @@
+    @import "common";
+    @import "buttons";
+    @import "video";
+    @import "flexslider";
+    @import "compass/typography/text/ellipsis";
+
+
+    $price-wrap-min: 236px;
+    $price-wrap: 340px;
+    $price-wrap-max: 460px;
+    $order-width: 330px;
+    $rightWidth:320px;
+
+
+    .page{
+        background: transparent !important;
+    }
+
+    .contentWidth {
+        @include media_screen_width_beta3();
+        padding-top: 60px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+        font-size: 0;
+        .leftContent {
+            display: inline-block;
+            vertical-align: top;
+            width: $width-min - $rightWidth;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: $width-middle - $rightWidth;
+            }
+            @media screen and (min-width:1500px) {
+                width: $width-lg3 - $rightWidth;
+            }
+            img,
+            video { 
+                width: 100%;
+            }
+            p{
+                margin: 0;
+                padding: 0;
+            }
+            .title {
+                font-size: 26px;
+                color: $gray-dark;
+                margin-bottom: 30px;
+                overflow: hidden;
+                margin-bottom: 20px;
+                padding-right: 220px;
+            }
+            .setPro {
+                padding-right: 220px;
+                color: $gray-dark;
+                font-size: $font-size-base;
+                img {
+                    width: $width-min - $rightWidth - 220px;
+                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                        width: $width-middle - $rightWidth - 220px;
+                    }
+                    @media screen and (min-width:1500px) {
+                        width: $width-lg3 - $rightWidth - 220px;
+                    }
+                }
+            }
+        }
+        .rightContent {
+            display: inline-block;
+            vertical-align: top;
+            width: $rightWidth;
+            position: relative;
+            padding-left: 40px;
+            border-left: 1px solid $border-line;
+            .title {
+                font-size: $font-size;
+                color: $gray-dark;
+                margin-bottom: 30px;
+                overflow: hidden;
+                position: relative;
+                top: 10px;
+            }
+            .videoModel {
+                margin-bottom: 30px;
+                cursor: pointer;
+
+                 &:hover{
+                    label:first-child,label:nth-child(2){
+                        color:$red-base !important;
+                    }
+                 }
+
+                label {
+                    display: block;
+                    font-weight: 500;
+                }
+                label:first-child {
+                    font-size: $font-size !important;
+                    color: $gray-dark !important;
+                    cursor: pointer;
+                    overflow: hidden;
+                    @include ellipsis;
+                    &:hover {
+                        color: $red-base !important;
+                    }
+                }
+                label:nth-child(2) {
+                    font-size: $font-size-sm;
+                    color: $gray-light;
+                    margin-top: 16px;
+                    margin-bottom: 12px;
+                    height: 54px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    &:hover {
+                        color: $red-base !important;
+                    }
+                }
+                label:last-child {
+                    font-size: $font-size-sm;
+                    color: $red-base;
+                    cursor: pointer;
+                }
+            }
+        }
+    }

@@ -1,0 +1,380 @@
+@CHARSET "UTF-8";
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $header-height;
+    z-index: 9998;
+    background: transparent;
+    @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);
+    height: 80px;
+    transition: all .8s ease-in-out 0s;
+    box-shadow: none;
+}
+
+//切换后
+.headerMove {
+    height: 60px !important;
+    background: white;
+    -moz-box-shadow: 10px 10px 5px #888888;
+    /* 老的 Firefox */
+    box-shadow: 0px 0px 10px #888888;
+    .header-item {
+        line-height: 60px !important;
+        color: black;
+        &:hover {
+            color: $red-base !important;
+            .showVideo {
+                background-position: 0px -15px !important;
+            }
+        }
+        span {
+            bottom: 10px;
+        }
+    }
+    .showVideo {
+        width: 15px;
+        height: 15px;
+        background: url(/resources/images/index/showVideoB.png) no-repeat 0 0px !important;
+        position: absolute;
+        top: 23px !important;
+        left: 75px !important;
+    }
+    .tele-h-svg {
+        transition: all .8s ease-in-out 0s;
+        position: relative;
+        top: 22px !important;
+        width: 145px;
+        height: 60px;
+        background: url(/resources/images/index/bannerPhoneR.svg) no-repeat !important;
+    }
+    .nav .logo {
+        background: url(/resources/images/index/bannerLogoR.png) no-repeat;
+        //margin-top: -4px;
+        width: 92px !important;
+        height: 30px !important;
+        background-size: 92px 30px !important;
+        top: 14px !important;
+        border-radius: 0px !important;
+    }
+    .menu-bar .middle-part {
+        top: 15px;
+        input {
+            color: $gray !important;
+            border: 1px solid $gray !important;
+        }
+        .bannerSearchFind {
+            background: url(/resources/images/index/bannnerSearch.png) no-repeat;
+            background-position-y: -16px;
+        }
+    }
+}
+
+//切换后 end
+//切换前
+.nav .logo {
+    position: relative;
+    float: left;
+    top: 22px;
+    background: url(/resources/images/index/bannerLogoW.png) no-repeat;
+    //margin-top: -4px;
+    width: 110px;
+    height: 36px;
+    background-size: 110px 36px;
+    transition: all .8s ease-in-out 0s;
+    border-radius: 0px;
+    margin-right: 26px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        margin-right: 76px;
+    }
+    @media screen and (min-width: 1500px) {
+        margin-right: 76px;
+    }
+    h1 {
+        text-indent: -119988px;
+        overflow: hidden;
+        text-align: left;
+    }
+}
+
+.menu-bar>.right-part {
+    right: -20px !important;
+}
+
+.menu-bar .middle-part {
+    top: 24px;
+    width: 300px;
+    height: 30px;
+    transition: all .8s ease-in-out 0s;
+    width: 100px !important;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 350px !important;
+    }
+    @media screen and (min-width: 1500px) {
+        width: 450px !important;
+    }
+    input {
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 350px !important;
+        }
+        @media screen and (min-width: 1500px) {
+            width: 450px !important;
+        }
+        width: 100px !important;
+        min-width: 100px;
+        height: 30px !important;
+        color: white;
+        border: 1px solid white;
+        outline: none;
+        padding-right: 40px;
+    }
+    .bannerSearchFind {
+        position: absolute;
+        right: 15px;
+        top: 7px;
+        width: 15px;
+        height: 15px;
+        background: url(/resources/images/index/bannnerSearch.png) no-repeat;
+    }
+}
+
+.header-item-last {
+    padding-right: 18px;
+}
+
+.header-item {
+    &:hover {
+        background: none !important;
+        color: $red-base !important;
+        .showVideo {
+            background-position: 0px -15px !important;
+        }
+    }
+    line-height: 80px;
+    width: auto;
+    margin-right: 30px;
+    color: white;
+    transition: line-height .6s ease-in-out 0s;
+    -moz-transition: all .6s ease-out 0s;
+    /* Firefox 4 */
+    -webkit-transition: all .6s ease-out 0s;
+    /* Safari 和 Chrome */
+    -o-transition: all .6s ease-out 0s;
+    /* Opera */
+    &:hover {
+        background: none !important;
+        color: $red-base !important;
+        span {
+            width: 100%;
+            left: 0;
+        }
+    }
+    span {
+        display: inline-block;
+        width: 0px;
+        height: 2px;
+        background-color: $red-base;
+        position: absolute;
+        left: 50%;
+        bottom: 21px;
+        transition: all .6s ease-in-out 0s;
+        -moz-transition: all .6s ease-in-out 0s;
+        /* Firefox 4 */
+        -webkit-transition: all .6s ease-in-out 0s;
+        /* Safari 和 Chrome */
+        -o-transition: all .6s ease-in-out 0s;
+        /* Opera */
+    }
+    .showVideo {
+        width: 15px;
+        height: 15px;
+        background: url(/resources/images/index/showVideoW.png) no-repeat;
+        position: absolute;
+        top: 32px;
+        left: 74px;
+    }
+    .tele-h-svg {
+        transition: all .8s ease-in-out 0s;
+        position: relative;
+        top: 31px;
+        width: 145px;
+        height: 60px;
+        background: url(/resources/images/index/bannerPhoneW.svg) no-repeat;
+    }
+}
+
+//底部
+.foot3 {
+    background: black;
+    height: 440px;
+    a:hover {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
+    a:link {
+        color: white;
+    }
+    a {
+        color: white;
+    }
+    .footContent {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        padding-top: 60px;
+        .contentBottom {
+            text-align: center;
+            color: white;
+            padding-top: 30px;
+            div {
+                font-size: $font-size-sm;
+            }
+            div:first-child {
+                font-size: $font-size !important;
+                margin-bottom: 16px;
+            }
+            div:last-child {
+                margin-top: 20px;
+            }
+        }
+        .contentTop {
+            font-size: 0;
+            padding-bottom: 55px;
+            border-bottom: 1px solid $gray;
+            .codeWidth {
+                width: 140px !important;
+                @media screen and (min-width: 1276px) {
+                    width: 200px !important;
+                }
+            }
+            .commonWidth {
+                width: 110px;
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    width: 144px !important;
+                }
+                @media screen and (min-width: 1500px) {
+                    width: 184px !important;
+                }
+            }
+            .onLineWidth {
+                width: 220px !important;
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    width: 196px !important;
+                }
+                @media screen and (min-width: 1500px) {
+                    width: 296px !important;
+                }
+            }
+            .topItem {
+                display: inline-block;
+                color: white;
+                font-size: $font-size-sm;
+                vertical-align: top;
+                .Twocode {
+                    width: 110px;
+                    height: 110px;
+                    background: url(/resources/images/index/pai.png) no-repeat !important;
+                    margin-bottom: 10px;
+                }
+                .smWord {
+                    font-size: $font-size-sm;
+                    color: white;
+                }
+                .title {
+                    font-size: $font-size!important;
+                    margin-bottom: 30px;
+                }
+                .noiconItem {
+                    height: 12px;
+                    margin-bottom: 11px;
+                    a {
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+                .iconItem {
+                    height: 12px;
+                    padding-left: 14px;
+                    margin-bottom: 11px;
+                    a {
+                        position: relative;
+                        top: -2px;
+                        left: 8px;
+                    }
+                    &:hover {
+                        background-position-y: -12px;
+                    }
+                }
+                .cusLogin {
+                    background: url(/resources/images/index/cusLogin.png) no-repeat;
+                }
+                .proLogin {
+                    background: url(/resources/images/index/proLogin.png) no-repeat;
+                }
+                .manLogin {
+                    background: url(/resources/images/index/manLogin.png) no-repeat;
+                }
+                .reg {
+                    background: url(/resources/images/index/reg.png) no-repeat;
+                }
+                .cusSer {
+                    background: url(/resources/images/index/cusSer.png) no-repeat;
+                }
+                .proSer {
+                    background: url(/resources/images/index/proSer.png) no-repeat;
+                }
+                .email {
+                    background: url(/resources/images/index/email.png) no-repeat;
+                }
+                .tel {
+                    font-size: 34px !important;
+                    position: relative;
+                    top: -10px;
+                    a {
+                        color: $red-base !important;
+                    }
+                }
+                .workTime {
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+    }
+}
+
+//视频
+.openVideo {
+    background: black;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+    z-index: 10;
+    background: transparent;
+    div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        background: black;
+        opacity: 0.5;
+        z-index: 11;
+    }
+    video {
+        object-fit: contain;
+        position: fixed;
+        z-index: 12;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
+    }
+}
