@@ -216,7 +216,7 @@ var videoListProtal = {
 			upload_Video.on('beforeFileQueued', function(file) {
 				 var array = upload_Video.getFiles();
 				 if(array.length == 10){
-					 $(parent).find("#maxLength").text("最多一次上传10个视频");
+					 $('body').find("#maxLength").text("最多一次上传10个视频");
 				 }
 			});
 			upload_Video.on('fileQueued', function(file) {
@@ -239,12 +239,12 @@ var videoListProtal = {
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
 				if(response._raw == 'success'){
-					$(parent).find( '#'+file.id ).find('.videoState').text('已上传');
-					$(parent).find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
-					$(parent).find('#' + file.id).find('.progress').fadeOut();
+					$('body').find( '#'+file.id ).find('.videoState').text('已上传');
+					$('body').find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
+					$('body').find('#' + file.id).find('.progress').fadeOut();
 				}else{
-					$(parent).find( '#'+file.id ).find('.videoState').text('上传失败');
-					$(parent).find('#' + file.id).find('.progress').fadeOut();
+					$('body').find( '#'+file.id ).find('.videoState').text('上传失败');
+					$('body').find('#' + file.id).find('.progress').fadeOut();
 				}
 				
 			});
