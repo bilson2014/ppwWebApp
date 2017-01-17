@@ -41,11 +41,17 @@ $().ready(function(){
 				$(".progress-bar").css('width', percentage * 100 + '%');
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
-				$('.upIng').addClass("hide");
-				$('.upSuccess').removeClass("hide");
-				$('.upError').addClass("hide");
-				$("#productId").val(response.result);
-				$(".stateInfo").addClass("hide");
+				if(response.code == 1){
+					$('.upIng').addClass("hide");
+					$('.upSuccess').removeClass("hide");
+					$('.upError').addClass("hide");
+					$("#productId").val(response.result);
+					$(".stateInfo").addClass("hide");
+				}else{
+					$('.upIng').addClass("hide");
+					$('.upSuccess').addClass("hide");
+					$('.upError').removeClass("hide");
+				}
 			});
 			upload_Video.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
