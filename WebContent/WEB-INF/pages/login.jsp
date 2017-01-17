@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="r" uri="/mytaglib"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
