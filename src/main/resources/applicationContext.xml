@@ -65,9 +65,6 @@
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="uploadTempDir" value="${upload.path}" />
 	</bean>
-	<!-- <bean id="multipartResolver" class="com.panfeng.film.filter.CustomMultipartResolver"> 
-		<property name="defaultEncoding" value="UTF-8" /> <property name="uploadTempDir" 
-		value="${upload.path}" /> </bean> -->
 
 	<!-- redis 配置 -->
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">

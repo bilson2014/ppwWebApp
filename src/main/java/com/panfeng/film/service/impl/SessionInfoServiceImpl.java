@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,5 +93,13 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public String getOriginalSession(final String token) {
+		if(StringUtils.isNotBlank(token)) {
+			return dao.getOriginalSession(token);
+		}
+		return null;
 	}
 }
