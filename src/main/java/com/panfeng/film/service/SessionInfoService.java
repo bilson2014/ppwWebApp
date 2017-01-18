@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.domain.SessionInfo;
 
 public interface SessionInfoService {
 

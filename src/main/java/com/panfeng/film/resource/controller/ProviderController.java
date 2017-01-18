@@ -32,9 +32,9 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.City;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Item;

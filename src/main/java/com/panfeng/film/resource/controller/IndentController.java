@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.util.HttpUtil;

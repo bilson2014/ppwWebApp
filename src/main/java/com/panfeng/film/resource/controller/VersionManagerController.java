@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,15 +26,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.ActivitiTask;
 import com.panfeng.film.resource.model.BizBean;
 import com.panfeng.film.resource.model.Employee;
@@ -52,7 +49,6 @@ import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.EmployeeThirdLogin;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ResourceService;
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -321,18 +317,14 @@ public class VersionManagerController extends BaseController {
 	 */
 	@RequestMapping("/index")
 	public ModelAndView indexView(ModelMap model, HttpServletRequest request) {
-		final ServletContext sc = request.getServletContext();
-		WebApplicationContext wc = WebApplicationContextUtils.findWebApplicationContext(sc);
-		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
-
-		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
 		if (info != null) {
 			model.put("userId", info.getReqiureId());
 		}
 		return new ModelAndView("/manager/index");
 	}
 
-	// ////////////////////////////////////project/////////////////////////////////////////////////////////////
+	// ------------------------------ project ------------------------------
 
 	@RequestMapping(value = "/projects/save", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public boolean projectsSave(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
@@ -407,11 +399,8 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/flow-index")
 	public ModelAndView projectsView(final ModelMap model, String key, HttpServletRequest request) {
 		model.put("key", key);
-		final ServletContext sc = request.getServletContext();
-		WebApplicationContext wc = WebApplicationContextUtils.findWebApplicationContext(sc);
-		final SessionInfoService sessionService = (SessionInfoService) wc.getBean("sessionInfoService");
-
-		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		
 		if (info != null) {
 			model.put("userId", info.getReqiureId());
 		}
