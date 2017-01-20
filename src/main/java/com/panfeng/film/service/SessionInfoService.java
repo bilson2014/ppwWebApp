@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.panfeng.film.domain.SessionInfo;
+import com.panfeng.domain.SessionInfo;
 
 public interface SessionInfoService {
 
@@ -19,4 +19,6 @@ public interface SessionInfoService {
 	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, Object> map, int i);
 
 	public void removeSessionByToken(HttpServletRequest request, String token);
+
+	public String getOriginalSession(final String token);
 }

@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.Log;
@@ -21,10 +21,6 @@ import com.panfeng.film.util.Log;
  */
 public abstract class BaseController {
 
-	
-	@Autowired
-	final SessionInfoService sessionService = null;
-	
 	// get current user
 	protected User getUser (final HttpServletRequest request){
 		
@@ -44,7 +40,7 @@ public abstract class BaseController {
 	}
 	
 	protected SessionInfo getCurrentInfo(final HttpServletRequest request){
-		final SessionInfo info = (SessionInfo) sessionService.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
 		return info;
 	}
 	
@@ -63,7 +59,9 @@ public abstract class BaseController {
 			if(cookie.length>0){
 				for (Cookie c : cookie) {
 					if ("token".equals(c.getName())) {
-						sessionService.removeSessionByToken(request, c.getValue());
+						// TODO 删除
+						// sessionService.removeSessionByToken(request, c.getValue());
+						request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
 						Cookie cookieUsername = new Cookie("token", null);
 						cookieUsername.setPath("/");
 						cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);

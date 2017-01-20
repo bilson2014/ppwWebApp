@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Job;

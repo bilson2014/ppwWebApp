@@ -1,5 +1,6 @@
-package com.panfeng.film.domain;
+package com.panfeng.domain;
 
+import com.panfeng.film.domain.BaseObject;
 import com.panfeng.film.resource.model.Right;
 
 public class SessionInfo extends BaseObject {

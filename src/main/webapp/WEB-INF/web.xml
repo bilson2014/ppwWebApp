@@ -63,6 +63,10 @@
 		<servlet-name>Kaptcha</servlet-name>
 		<url-pattern>/kaptcha.png</url-pattern>
 	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>720</session-timeout>
+	</session-config>
 
 	<jsp-config>
 		<taglib>

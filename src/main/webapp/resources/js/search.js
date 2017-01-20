@@ -19,8 +19,18 @@ var search = {
 	},
 	initCrumbs : function() {
 		// 初始化面包屑布局 
-		var q = $('#q').val();
+		var q = $('#tags').val();
 		var $tagBody ='';
+		var qs = $('#q').val();
+		
+		if(qs != undefined  && qs.trim() != '' && qs.trim() != '*'){
+			$tagBody += '<div class="tag" id="tagType">';
+			$tagBody += '<div class="controlCard">';
+			$tagBody += '<span>'+ qs.trim() +'</span><span class="tagX" id="tagContentX" data-type="tag" data-text='+ qs.trim() +'>x</span></div>';
+			$tagBody += '</div>';
+		}
+		
+		
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
 			// 将搜索内容写入面包屑布局
 			// TODO 去除空格以及,
@@ -100,6 +110,7 @@ var search = {
 			var q = $('#q').val();
 			var price = $('#price').val();
 			var length = $('#length').val();
+			var tags = $('#tags').val();
 			
 			var param = '?q=@_@';
 			if(price != null && price != undefined && price != ''){
@@ -110,33 +121,76 @@ var search = {
 				param += '&length=' + length;
 			}
 			
+			
+			
 			$.each(typeArray,function(i,item){
 				// 去除重复
+//				if(q != undefined && q != '') {
+//					if(q.indexOf(item) > -1) 
+//						param = param.replace('@_@',q);
+//					else 
+//						param = param.replace('@_@',q + ' ' + item);
+//				}else {
+//					
+//					param = param.replace('@_@',q + ' ' + item);
+//				}
+				
+				//lt add
+				
 				if(q != undefined && q != '') {
-					if(q.indexOf(item) > -1) 
-						param = param.replace('@_@',q);
-					else 
-						param = param.replace('@_@',q + ' ' + item);
-				}else {
+				if(q.indexOf(item) > -1) 
+					param = param.replace('@_@',q);
+				else {
+					if(tags != null && tags != undefined && tags != '') {
+						var items = tags+","+item;
+						param = param.replace('@_@',q + '&tags=' + items);
+					}else{
+						param = param.replace('@_@',q + '&tags=' + item);
+					}
 					
-					param = param.replace('@_@',q + ' ' + item);
 				}
+					
+			}else {
+				if(tags != null && tags != undefined && tags != '') {
+					var items = tags+","+item;
+					param = param.replace('@_@',q + '&tags=' + items);
+				}else{
+					param = param.replace('@_@',q + '&tags=' + item);
+				}
+				
+			}
+				
+				
 				$ul += '<li>';
 				$ul += '<a href="'+ getContextPath() + '/search' + param + '" class="itemAll" data-id="'+ item +'">'+ item +'</a>';
 				$ul += '</li>';
 				param = '?q=@_@';
 			});
 			
+			
+			
 			$.each(busArray,function(i,item){
 				// 去除重复
 				if(q != undefined && q != '') {
 					if(q.indexOf(item) > -1) 
 						param = param.replace('@_@',q);
-					else 
-						param = param.replace('@_@',q + ' ' + item);
+					else {
+						if(tags != null && tags != undefined && tags != '') {
+							var items = tags+","+item;
+							param = param.replace('@_@',q + '&tags=' + items);
+						}else{
+							param = param.replace('@_@',q + '&tags=' + item);
+						}
+					}
+						
 				}else {
 					
-					param = param.replace('@_@',q + ' ' + item);
+					if(tags != null && tags != undefined && tags != '') {
+						var items = tags+","+item;
+						param = param.replace('@_@',q + '&tags=' + items);
+					}else{
+						param = param.replace('@_@',q + '&tags=' + item);
+					}
 				}
 				$ulBus += '<li>';
 				$ulBus += '<a href="'+ getContextPath() + '/search' + param + '" class="BusItemAll" data-id="'+ item +'">'+ item +'</a>';
@@ -310,6 +364,9 @@ function crumbsClick() {
 	var q = $('#q').val();
 	var length = $('#length').val();
 	var price = $('#price').val();
+	//add lt 20170119
+	var tags = $('#tags').val();
+	//end
 	var param = '';
 	if(strType != undefined && strType != '') {
 		// 类型不为空时，排除了 “全部”的可能
@@ -318,13 +375,13 @@ function crumbsClick() {
 			if(strText != undefined && strText != '' && strText != null) {
 				q = q.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, price, length);
+			param = recombineSearchCondition(q,tags, price, length);
 		} else if(strType == 'price') {
 			// 取消价格时
-			param = recombineSearchCondition(q, '', length);
+			param = recombineSearchCondition(q,tags, '', length);
 		} else if(strType == 'length') {
 			// 取消时长时
-			param = recombineSearchCondition(q, price, '');
+			param = recombineSearchCondition(q,tags,price, '');
 		}
 	}else {
 		// 类型为空时，则证明是“全部”，不做任何处理
@@ -335,11 +392,16 @@ function crumbsClick() {
 }
 
 // 重组url
-function recombineSearchCondition(q,price,length) {
+function recombineSearchCondition(q,tags,price,length) {
 	var param = '';
 	if(q != null && q != undefined && q != '') {
 		param = '?q=' + q;
 	}
+	//add by lt 2017,1,19
+	if(tags != null && tags != undefined && tags != '') {
+		param += '&tags=' + tags;
+	}
+	//end
 	
 	if(price != null && price != undefined && price != '') {
 		param += '&price=' + price;
@@ -494,8 +556,8 @@ function loadProduction(start){
 		begin : start,
 		limit : pageSize,
 		condition : $('#q').val().trim(),
+		tagsFq : $('#tags').val().trim(),
 		priceFq : $('#price').val(),
-		itemFq : $('#item').val(),
 		lengthFq : $('#length').val()
 	}));
 }

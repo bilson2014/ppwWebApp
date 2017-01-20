@@ -5,12 +5,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.dao.SessionInfoDao;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Progress;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.RedisUtils;
@@ -92,5 +93,13 @@ public class SessionInfoServiceImpl implements SessionInfoService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public String getOriginalSession(final String token) {
+		if(StringUtils.isNotBlank(token)) {
+			return dao.getOriginalSession(token);
+		}
+		return null;
 	}
 }

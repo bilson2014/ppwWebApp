@@ -28,23 +28,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.domain.SessionInfo;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.ThirdBind;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.resource.model.WechatToken;
 import com.panfeng.film.security.AESUtil;
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.service.SmsService;
+import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
 import com.panfeng.film.util.ValidateUtil;
-import com.panfeng.film.util.Constants.loginType;
 
 /**
  * 登陆事件 控制器
@@ -68,9 +67,6 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private Producer captchaProducer = null;
-
-	@Autowired
-	private SessionInfoService service = null;
 
 	public LoginController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
@@ -523,7 +519,7 @@ public class LoginController extends BaseController {
 	@RequestMapping("/loginout")
 	public ModelAndView loginout(final HttpServletRequest request,final HttpServletResponse response) {
 		logOutCookie(request,response);
-		service.removeSession(request);
+		request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
 		return new ModelAndView("redirect:/");
 	}
 

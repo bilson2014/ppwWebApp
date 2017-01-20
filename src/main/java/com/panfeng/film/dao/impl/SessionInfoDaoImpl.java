@@ -178,4 +178,23 @@ public class SessionInfoDaoImpl implements SessionInfoDao {
 		
 		return false;
 	}
+
+
+	@Override
+	public String getOriginalSession(final String token) {
+		Jedis jedis = null;
+		try {
+			jedis = pool.getResource();
+			final String str = jedis.get(token);
+			return str;
+		} catch (Exception e) {
+			// do something for logger
+		} finally {
+			if(jedis != null){
+				jedis.disconnect();
+				jedis.close();
+			}
+		}
+		return null;
+	}
 }
