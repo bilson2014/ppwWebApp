@@ -28,5 +28,7 @@ public interface SessionInfoDao {
 
 	public void removeSessionByToken(HttpServletRequest request, String token);
 
+	public String getOriginalSession(final String token);
+
 	
 }

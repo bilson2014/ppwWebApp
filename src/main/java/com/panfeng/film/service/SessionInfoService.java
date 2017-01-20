@@ -19,4 +19,6 @@ public interface SessionInfoService {
 	public boolean addSessionSeveralTime(HttpServletRequest request, Map<String, Object> map, int i);
 
 	public void removeSessionByToken(HttpServletRequest request, String token);
+
+	public String getOriginalSession(final String token);
 }

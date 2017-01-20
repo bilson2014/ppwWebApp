@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;
 
 /**
@@ -19,22 +21,26 @@ import com.panfeng.film.util.DataUtil;
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+	@Autowired
+	final SessionInfoService sessionInfoService = null;
+	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String requestType = request.getHeader("X-Requested-With");
 		if (null == requestType || !"XMLHttpRequest".equals(requestType)) {// 非ajax
 			final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
-			
+			// final String str = sessionInfoService.getOriginalSession(request.getSession().getId());
 			if (info != null) {
 				return true;
 			}
 			// 新客户端 ,获取cookie，检测客户端是否存在七天内登陆
-			return checkAutoLogin(request,response);
+			// return checkAutoLogin(request,response);
 		}
 		return true;
 	}
 
 	private boolean checkAutoLogin(HttpServletRequest request,HttpServletResponse response) {
+		// 检测版本的cookie文件
 		String token = null;
 		Cookie[] cookie = request.getCookies();
 		if (cookie != null) {
@@ -45,10 +51,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 					}
 				}
 				if (null != token) {
+					// 如果有cookie文件
 					final HttpSession session = request.getSession();
 					//final SessionInfo info = (SessionInfo) service.getSessionInfoWithToken(request, token);
 					final SessionInfo info = (SessionInfo) session.getAttribute(GlobalConstant.SESSION_INFO);
-					
+					final String str = sessionInfoService.getOriginalSession(token);
 					if (info != null) {
 						// 将info重新放入session redis键改为当前sessionId
 						info.setToken(DataUtil.md5(request.getSession().getId()));
