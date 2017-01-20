@@ -82,9 +82,9 @@
     .swiper-pagination-bullets {
         bottom: 81px !important;
     }
-    .title {
+     .title {
         width: 100%;
-        font-size: 5rem;
+        font-size: 4rem;
         line-height: $font-size-lgester;
         margin: 0 auto 30px;
         text-align: center;
@@ -94,6 +94,12 @@
         font-weight: bold;
         z-index: 10;
         display: block;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            font-size: 4.6rem;
+        }
+        @media screen and (min-width: 1500px) {
+            font-size: 5rem;
+        }
     }
     .showTitle {
         opacity: 1 !important;
@@ -128,7 +134,7 @@
     //     border-top: 2px solid #ccc;
     //     right: -110px;
     // }
-    .desc {
+ .desc {
         width: 100%;
         height: 23px;
         margin: 10px auto 26px;
@@ -137,8 +143,20 @@
         color: $white;
         display: block;
         font: {
-            size: $font-size-lg;
+            size: $font-size-base;
             weight: 300;
+        }
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            font: {
+                size: $font-size;
+                weight: 300;
+            }
+        }
+        @media screen and (min-width: 1500px) {
+            font: {
+                size: $font-size-lg;
+                weight: 300;
+            }
         }
     }
     .one {
