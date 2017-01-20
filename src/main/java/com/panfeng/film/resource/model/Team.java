@@ -14,6 +14,8 @@ public class Team extends BaseObject {
 	private static final long serialVersionUID = -2618543190652423599L;
 
 	private long teamId = 0l;
+	
+	private long id;
 
 	private String password = "E10ADC3949BA59ABBE56E057F20F883E"; // 123456 密码
 
@@ -426,8 +428,12 @@ public class Team extends BaseObject {
 	public void setThirdLoginType(String thirdLoginType) {
 		this.thirdLoginType = thirdLoginType;
 	}
-
-
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

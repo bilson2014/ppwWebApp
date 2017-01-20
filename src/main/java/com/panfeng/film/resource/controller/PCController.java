@@ -252,7 +252,7 @@ public class PCController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/product/view/{teamId}/{productId}")
+	/*@RequestMapping("/product/view/{teamId}/{productId}")
 	public ModelAndView redirect(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
 			final HttpServletRequest request) {
@@ -267,8 +267,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("team", model);
-	}
-
+	}*/
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
@@ -310,7 +309,6 @@ public class PCController extends BaseController {
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("play", model);
 	}
-
 	/**
 	 * 根据 团队编号 加载 产品列表
 	 * 
@@ -374,7 +372,7 @@ public class PCController extends BaseController {
 	 * @param productId
 	 *            产品编号
 	 */
-	@RequestMapping("/product/information/{productId}")
+	/*@RequestMapping("/product/information/{productId}")
 	public Product productInformation(@PathVariable("productId") final Integer productId,
 			final HttpServletRequest request) {
 
@@ -386,7 +384,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load product information,productId:" + productId, sessionInfo);
 		return product;
-	}
+	}*/
 
 	/**
 	 * 获取产品的服务信息
