@@ -476,11 +476,12 @@ public class VersionManagerController extends BaseController {
 	}
 
 	@RequestMapping("/projects/getProjectTags")
-	public List<String> getProjectTags(final HttpServletRequest request) {
+	public List<BizBean> getProjectTags(final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "project/getProjectTags";
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
-			return JsonUtil.toList(str);
+			List<BizBean> list = JsonUtil.toList(str);
+			return list;
 		}
 		return new ArrayList<>();
 	}

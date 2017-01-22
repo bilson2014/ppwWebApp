@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,22 +51,22 @@ public class SolrController extends BaseController {
 	}
 
 	@RequestMapping("/search")
-	public ModelAndView searchView(String q, final String item,
+	public ModelAndView searchView(String q, final String tags,
 			final String length, final String price, final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
 
-		if("".equals(q)){
-			q = "*";
-		}
-
 		model.addAttribute("q", q);
 		model.addAttribute("price",price );
 		model.addAttribute("length", length);
-		model.addAttribute("item",item);
+		model.addAttribute("tags",tags);
 		final SolrView view = new SolrView();
-		view.setCondition(URLEncoder.encode(q, "UTF-8"));
-		view.setItemFq(item);
+		
+		if(StringUtils.isNotBlank(q))
+			view.setCondition(URLEncoder.encode(q, "UTF-8"));
+		if(StringUtils.isNotBlank(tags))
+			view.setTagsFq(URLEncoder.encode(tags,"UTF-8"));
+		
 		view.setLengthFq(length);
 		view.setPriceFq(price);
 		view.setLimit(20l);

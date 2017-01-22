@@ -23,9 +23,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
+	<meta name="keywords" content="团队活动、公司活动、拍片网">
 	<meta name="description" content="拍片网团队线上线下的活动简介">
-	<title>公司活动-拍片网</title>
+	<title>拍片网团队活动_拍片网公司活动-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${companyActivityCss }">
 	<!--[if lt IE 9]>

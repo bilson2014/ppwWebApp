@@ -49,7 +49,7 @@ public class SolrView extends Pagination{
 	public void setItemFq(String itemFq) {
 		this.itemFq = itemFq;
 	}
-
+	
 	public int getSortord() {
 		return sortord;
 	}

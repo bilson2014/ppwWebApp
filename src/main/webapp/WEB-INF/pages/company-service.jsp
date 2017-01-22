@@ -23,9 +23,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
-	<meta name="description" content="拍片网服务客户时的服务协议">
-	<title>服务协议-拍片网</title>
+	<meta name="keywords" content="拍片服务协议、视频制作服务协议、拍片服务合同">
+	<meta name="description" content="拍片网平台针对客户的服务协议以及拍片服务合同">
+	<title>拍片服务协议_视频制作服务协议-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${companyServiceCss }">
 	<!--[if lt IE 9]>
