@@ -220,8 +220,8 @@ public class LoginController extends BaseController {
 			return new Info(false, "该手机号已经注册");
 		}
 		final HttpSession session = request.getSession();
-		final String code = (String) request.getSession().getAttribute("code");
-		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		final String code = (String) session.getAttribute("code");
+		final String codeOfphone = (String) session.getAttribute("codeOfphone");
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if ((!"".equals(code) && code != null)) {
