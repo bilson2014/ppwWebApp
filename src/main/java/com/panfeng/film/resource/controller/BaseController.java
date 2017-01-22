@@ -5,12 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.User;
-import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.Log;
 
 /**
