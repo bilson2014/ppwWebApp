@@ -23,10 +23,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
-	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<meta name="keywords" content="拍片成本计算器，视频价格计算器，宣传片制作报价，宣传片制作成本，视频制作价格">
+	<meta name="description" content="拍片网平台致力于打造“影视工业化”行业标准，首家模块化成本定价，推出拍片成本计算器，让你随时了解视频制作价格。拍片就上拍片网">
 	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
-	<title>拍片成本计算器-拍片网</title>
+	<title>拍片成本计算器_视频价格计算器_宣传片制作报价-拍片网</title>
     <link rel="stylesheet" href="/resources/css/costCalculator.css">
     <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/resources/lib/Bootstrap/css/bootstrap.min.css">

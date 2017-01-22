@@ -41,9 +41,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
-	<meta name="description" content="拍片网团队简介以及团队建设">
-	<title>加入我们-拍片网</title>
+	<meta name="keywords" content="拍片网招聘，拍片网团队，拍片网怎么样">
+	<meta name="description" content="拍片网是一个温暖和谐的大家庭，成员全部来自于影视和互联网行业的精英，致力于打造“影视工业化”流程规范">
+	<title>拍片网招聘_拍片网团队_拍片网怎么样-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${memberCss }">
 	<!--[if lt IE 9]>
