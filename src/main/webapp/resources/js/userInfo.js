@@ -174,7 +174,7 @@ function userpicInfo(){
 		pick : '#uploadBt',
 		accept :{
 		    title: 'Images',
-		    extensions: 'jpg,png',
+		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
 		resize : true,
