@@ -20,28 +20,22 @@ var search = {
 	initCrumbs : function() {
 		// 初始化面包屑布局 
 		var q = $('#q').val();
+		var tags = $('#tags').val();
+		
 		var $tagBody ='';
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
 			// 将搜索内容写入面包屑布局
-			// TODO 去除空格以及,
+			// 去除空格以及','
 			var re2='(\\s*)(,)(\\s*)';	
 		    var p = new RegExp(re2,["gm"]);
 		    q = q.replace(p, ' ');
 		    var qArray = q.split(/\s+/);
 			if(qArray != '') {
 				$.each(qArray,function(i,tag){
-					if(tag.trim() == '*'){
-						// 如果为*，那么删除所有
-						$('#videoTag').empty();
+					if(tag.trim() != '' && tag.trim() != undefined) {
 						$tagBody += '<div class="tag" id="tagType">';
 						$tagBody += '<div class="controlCard">';
-						$tagBody += '<span>全部</span><span class="tagX" id="tagContentX" data-text="全部">x</span></div>';
-						$tagBody += '</div>';
-						return;
-					} else if(tag.trim() != '' && tag.trim() != undefined) {
-						$tagBody += '<div class="tag" id="tagType">';
-						$tagBody += '<div class="controlCard">';
-						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="tag" data-text='+ tag.trim() +'>x</span></div>';
+						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="condition" data-text='+ tag.trim() +'>x</span></div>';
 						$tagBody += '</div>';
 					}
 				});
@@ -59,6 +53,26 @@ var search = {
 			$tagBody += '<div class="controlCard">';
 			$tagBody += '<span>全部</span><span class="tagX" id="tagContentX" data-text="全部">x</span></div>';
 			$tagBody += '</div>';
+		}
+		
+		// 标签
+		if(tags != undefined  && tags != null && tags.trim() != '') {
+			// 将搜索内容写入面包屑布局
+			// 去除空格以及','
+			var re2='(\\s*)(,)(\\s*)';	
+		    var p = new RegExp(re2,["gm"]);
+		    tags = tags.replace(p, ' ');
+		    var qArray = tags.split(/\s+/);
+			if(qArray != '') {
+				$.each(qArray,function(i,tag){
+					if(tag.trim() != '' && tag.trim() != undefined) {
+						$tagBody += '<div class="tag" id="tagType">';
+						$tagBody += '<div class="controlCard">';
+						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="tag" data-text='+ tag.trim() +'>x</span></div>';
+						$tagBody += '</div>';
+					}
+				});
+			}
 		}
 		
 		// 价格
@@ -98,10 +112,11 @@ var search = {
 			$ul = '';
 			$ulBus = '';
 			var q = $('#q').val();
+			var tags = $('#tags').val();
 			var price = $('#price').val();
 			var length = $('#length').val();
 			
-			var param = '?q=@_@';
+			var param = '?q=' + q;
 			if(price != null && price != undefined && price != ''){
 				param += '&price=' + price;
 			}
@@ -109,39 +124,41 @@ var search = {
 			if(length != null && length != undefined && length != '') {
 				param += '&length=' + length;
 			}
+		
+			var tParam = '&tags=@_@';
 			
 			$.each(typeArray,function(i,item){
 				// 去除重复
-				if(q != undefined && q != '') {
-					if(q.indexOf(item) > -1) 
-						param = param.replace('@_@',q);
+				if(tags != undefined && tags != '' && tags != null) {
+					if(tags.indexOf(item) > -1) 
+						tParam = tParam.replace('@_@',tags);
 					else 
-						param = param.replace('@_@',q + ' ' + item);
+						tParam = tParam.replace('@_@',tags + ' ' + item);
 				}else {
-					
-					param = param.replace('@_@',q + ' ' + item);
+					tParam = tParam.replace('@_@',item + ' ');
 				}
 				$ul += '<li>';
-				$ul += '<a href="'+ getContextPath() + '/search' + param + '" class="itemAll" data-id="'+ item +'">'+ item +'</a>';
+				$ul += '<a href="'+ getContextPath() + '/search' + param + tParam.trim() + '" class="itemAll" data-id="'+ item +'">'+ item +'</a>';
 				$ul += '</li>';
-				param = '?q=@_@';
+				
+				tParam = '&tags=@_@';
 			});
 			
 			$.each(busArray,function(i,item){
 				// 去除重复
-				if(q != undefined && q != '') {
-					if(q.indexOf(item) > -1) 
-						param = param.replace('@_@',q);
+				if(tags != undefined && tags != '' && tags != null) {
+					if(tags.indexOf(item) > -1) 
+						tParam = tParam.replace('@_@',tags);
 					else 
-						param = param.replace('@_@',q + ' ' + item);
+						tParam = tParam.replace('@_@',tags + ' ' + item);
 				}else {
-					
-					param = param.replace('@_@',q + ' ' + item);
+					tParam = tParam.replace('@_@',item + ' ');
 				}
 				$ulBus += '<li>';
-				$ulBus += '<a href="'+ getContextPath() + '/search' + param + '" class="BusItemAll" data-id="'+ item +'">'+ item +'</a>';
+				$ulBus += '<a href="'+ getContextPath() + '/search' + param + tParam.trim() + '" class="BusItemAll" data-id="'+ item +'">'+ item +'</a>';
 				$ulBus += '</li>';
-				param = '?q=@_@';
+				
+				tParam = '&tags=@_@';
 			});
 			
 			$('#item-list').append($ul);
@@ -152,12 +169,16 @@ var search = {
 		$('#price-list').empty();
 		var q = $('#q').val();
 		var length = $('#length').val();
-		var item = $('#item').val();
+		var tags = $('#tags').val();
 		
 		var param = '?q=' + q;
 		
 		if(length != null && length != undefined && length != '') {
 			param += '&length=' + length;
+		}
+		
+		if(tags != null && tags != undefined && tags != '') {
+			param += '&tags=' + tags.trim();
 		}
 		
 		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[0 TO 30000]' +'" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>';
@@ -214,12 +235,16 @@ var search = {
 		
 		var q = $('#q').val();
 		var price = $('#price').val();
-		var item = $('#item').val();
+		var tags = $('#tags').val();
 		
 		var param = '?q=' + q;
 		
 		if(price != null && price != undefined && price != '') {
 			param += '&price=' + price;
+		}
+		
+		if(tags != null && tags != undefined && tags != '') {
+			param += '&tags=' + tags.trim();
 		}
 		
 		var $lengthLi = '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[0 TO 60]' +'" data-length="[0 TO 60]" class="lengthAll">0~60秒</a></li>';
@@ -274,12 +299,10 @@ var search = {
 		
 	},
 	
-	
-	
 	pagination : function(){
 		$(".pagination").createPage({
 			pageCount: Math.ceil($('#total').val() / pageSize),
-			current: 1,
+			current: 3,
 			backFn:function(p){
 				// 点击 翻页，查询符合条件的视频
 				loadProduction((p - 1) * pageSize);
@@ -310,21 +333,31 @@ function crumbsClick() {
 	var q = $('#q').val();
 	var length = $('#length').val();
 	var price = $('#price').val();
+	//add lt 20170119
+	var tags = $('#tags').val();
+	//end
 	var param = '';
 	if(strType != undefined && strType != '') {
 		// 类型不为空时，排除了 “全部”的可能
-		if(strType == 'tag'){
+		if(strType == 'condition'){
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				q = q.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, price, length);
+			param = recombineSearchCondition(q,tags, price, length);
+		} else if (strType == 'tag') {
+			// 取消标签时
+			// 点击标签时，移除这个标签
+			if(strText != undefined && strText != '' && strText != null) {
+				tags = tags.replace(strText,'');
+			}
+			param = recombineSearchCondition(q,tags, price, length);
 		} else if(strType == 'price') {
 			// 取消价格时
-			param = recombineSearchCondition(q, '', length);
+			param = recombineSearchCondition(q,tags, '', length);
 		} else if(strType == 'length') {
 			// 取消时长时
-			param = recombineSearchCondition(q, price, '');
+			param = recombineSearchCondition(q,tags,price, '');
 		}
 	}else {
 		// 类型为空时，则证明是“全部”，不做任何处理
@@ -335,11 +368,24 @@ function crumbsClick() {
 }
 
 // 重组url
-function recombineSearchCondition(q,price,length) {
+function recombineSearchCondition(q,tags,price,length) {
 	var param = '';
 	if(q != null && q != undefined && q != '') {
 		param = '?q=' + q;
 	}
+	//add by lt 2017,1,19
+	if(tags != null && tags != undefined && tags != '') {
+		var tag = tags.split(' ');
+		var temp = '';
+		for(var i = 0;i < tag.length;i ++) {
+			if(tag[i].trim() != '') {
+				temp += tag[i].trim() + ' ';
+			}
+		}
+		if(temp != '' && temp != null)
+			param += '&tags=' + temp.trim();
+	}
+	//end
 	
 	if(price != null && price != undefined && price != '') {
 		param += '&price=' + price;
@@ -349,7 +395,14 @@ function recombineSearchCondition(q,price,length) {
 		param += '&length=' + item;
 	}
 	
-	return param != '' ? param : '?q=*';
+	// 判断param中是否含有q
+	if(param != '' && param != null) {
+		if(param.indexOf('?q=') < 0) {
+			// param不包含q,那么把&替换成?
+			param = '?q=' + param;
+		}
+	}
+	return param;
 }
 
 // 价格解析
@@ -494,8 +547,8 @@ function loadProduction(start){
 		begin : start,
 		limit : pageSize,
 		condition : $('#q').val().trim(),
+		tagsFq : $('#tags').val().trim(),
 		priceFq : $('#price').val(),
-		itemFq : $('#item').val(),
 		lengthFq : $('#length').val()
 	}));
 }

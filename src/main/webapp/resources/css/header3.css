@@ -1,6 +1,6 @@
 /*
 Error: Undefined variable: "$header-height".
-        on line 7 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/header3.scss
+        on line 7 of D:/newFilm/Film/src/main/webapp/resources/sass/header3.scss
 
 2: .header {
 3:     position: fixed;
@@ -15,7 +15,7 @@ Error: Undefined variable: "$header-height".
 12:     transition: all .8s ease-in-out 0s;
 
 Backtrace:
-D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/header3.scss:7
+D:/newFilm/Film/src/main/webapp/resources/sass/header3.scss:7
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -72,4 +72,4 @@ C:/Ruby23-x64/bin/compass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$header-height\".\A         on line 7 of D:/workshop/paipianwang-workshop/Film/WebContent/resources/sass/header3.scss\A \A 2: .header {\A 3:     position: fixed;\A 4:     left: 0;\A 5:     right: 0;\A 6:     top: 0;\A 7:     height: $header-height;\A 8:     z-index: 9998;\A 9:     background: transparent;\A 10:     @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);\A 11:     height: 80px;\A 12:     transition: all .8s ease-in-out 0s;"; }
+  content: "Error: Undefined variable: \"$header-height\".\A         on line 7 of D:/newFilm/Film/src/main/webapp/resources/sass/header3.scss\A \A 2: .header {\A 3:     position: fixed;\A 4:     left: 0;\A 5:     right: 0;\A 6:     top: 0;\A 7:     height: $header-height;\A 8:     z-index: 9998;\A 9:     background: transparent;\A 10:     @include box-shadow(rgba(0, 0, 0, .2) 0 0 4px);\A 11:     height: 80px;\A 12:     transition: all .8s ease-in-out 0s;"; }
