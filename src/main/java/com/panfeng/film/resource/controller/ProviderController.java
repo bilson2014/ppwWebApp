@@ -1086,28 +1086,19 @@ public class ProviderController extends BaseController {
 					product.setVideoLength("0");
 					product.setpDescription("");
 					product.setVisible(0); // 默认可见
+					String fileId = DFSservice.upload(file);
+					product.setVideoUrl(fileId);
 					// 保存数据
-					long productId = 0;
 					final String url = URL_PREFIX + "portal/product/static/data/save/info";
 					final String json = HttpUtil.httpPost(url, product, request);
-					String fileId = "";
 					if (json != null && !"".equals(json)) {
-						productId = JsonUtil.toBean(json, Long.class);
-						fileId = DFSservice.upload(file);
-						if(StringUtils.isNotBlank(fileId)) {
-							product.setProductId(productId);
-							product.setVideoUrl(fileId);
-							// 更新文件路径
-							final String updateUrl = URL_PREFIX + "portal/product/static/data/updateFilePath";
-							HttpUtil.httpPost(updateUrl, product, request);
-							SessionInfo sessionInfo = getCurrentInfo(request);
-							Log.info("ProviderController method:uploadFiles() file upload success,productId = " + productId
-									+ " ...", sessionInfo);
-							return "success";
-						} else {
-							logger.error("uploadFiles Method : File Name is " + product.getProductName() + " upload error ... ");
-							return "error";
-						}
+						Long productId = JsonUtil.toBean(json, Long.class);
+						Log.info("ProviderController method:uploadFiles() file upload success,productId = " + productId
+								+ " ...",info);
+						return "success";
+					}else{
+						logger.error("uploadFiles Method : File Name is " + product.getProductName() + " upload error ... ");
+						return "error";
 					}
 				}
 			}
@@ -1248,6 +1239,9 @@ public class ProviderController extends BaseController {
 		final String json = HttpUtil.httpGet(url, request);
 		if (ValidateUtil.isValid(json)) {
 			final Team team = JsonUtil.toBean(json, Team.class);
+			if(team.getId()!=0l){
+				team.setTeamId(team.getId());
+			}
 			return team;
 		}
 
@@ -1580,6 +1574,7 @@ public class ProviderController extends BaseController {
 		String json = HttpUtil.httpGet(url, request);
 		final Team result = JsonUtil.toBean(json, Team.class);
 		if (result != null) {
+			result.setTeamId(result.getId());
 			modelMap.addAttribute("provider", result);
 			// 加载导演标签
 			url = URL_PREFIX + "portal/team/tags";

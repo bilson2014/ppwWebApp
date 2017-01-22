@@ -60,8 +60,8 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${q }" id="q"/>
+	<input type="hidden" value="${tags }" id="tags"/>
 	<input type="hidden" value="${price }" id="price"/>
-	<input type="hidden" value="${item}" id="item"/>
 	<input type="hidden" value="${length}" id="length"/>
 	<input type="hidden" value="${total }" id="total"/>
 	 <div class="header headerMove" id="header">

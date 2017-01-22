@@ -13,11 +13,6 @@
 	</properties>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		<dependency>
-			<groupId>com.paipianwang.pat</groupId>
-			<artifactId>pat-facade-indent</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 		<!-- Common Dependency Begin -->
 		<dependency>
 			<groupId>xalan</groupId>
