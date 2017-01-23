@@ -23,7 +23,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="团队活动、公司活动、拍片网">
+	<meta name="keywords" content="团队活动,公司活动,拍片网">
 	<meta name="description" content="拍片网团队线上线下的活动简介">
 	<title>拍片网团队活动_拍片网公司活动-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
