@@ -531,8 +531,10 @@ public class PCController extends BaseController {
 			model.addAttribute("provider2", provider2);
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
-				+ "flag is " + flag, sessionInfo);
+		if(team != null) {
+			Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
+			+ "flag is " + flag, sessionInfo);
+		}
 		return new ModelAndView("provider/portal", model);
 	}
 
@@ -658,7 +660,7 @@ public class PCController extends BaseController {
 	public boolean loginNameValidate(final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "portal/loginName/validate";
 		final String json = HttpUtil.httpGet(url, request);
-		if (null != json && !"".equals(json)) {
+		if (json != null && !"".equals(json)) {
 			return JsonUtil.toBean(json, Boolean.class);
 		}
 		return true;

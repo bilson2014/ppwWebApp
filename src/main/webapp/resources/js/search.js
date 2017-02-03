@@ -1,7 +1,8 @@
 var pageSize = 20;
 var currentSize = 0;
-var typeArray = new Array('访谈','宣传片','形象宣传片','活动宣传片','产品宣传片','企业宣传片','TVC','广告','微电影','路演视频','网站视频','动画','公益片','社交媒体视频','病毒视频','真人秀','预告片','纪录片','MV','花絮','发布会','演讲');
-var busArray = new Array('智能硬件','互联网','软件','服装纺织','金融','医疗健康','游戏','动漫','教育','旅游','营销','艺术','家居','房地产','电器','电子产品','美食','媒体','文化','体育','娱乐','通讯','建筑','运输','物流','电器','汽车','人工智能','电影','软件','音乐','美妆','能源','服务','母婴');
+var typeArray = new Array('宣传片','TVC','个人宣传片','活动宣传片','产品宣传片','企业宣传片','广告','创意广告','产品广告','品牌广告','活动广告','微电影','路演视频','公益片','社交媒体视频','病毒视频','城市宣传片','品牌宣传片','场景宣传片','招商宣传片','形象宣传片','花絮');
+var busArray = new Array('智能硬件','互联网','电商','体育','软件','硬件','服装纺织','金融','医疗保健','游戏','食品饮料','旅游','影视','音乐','房地产','电器','电子产品','媒体','娱乐','通讯','交通运输','汽车','文化','人工智能','日用美妆','家居建材','政府机构','百货零售','移动互联网','企业服务','餐饮美食','母婴','美容美发');
+var mark = 'tags='; // 特殊标记
 $().ready(function(){
 	search.showTitle(); // 在标题栏显示搜索内容
 	search.initCrumbs(); // 初始化面包屑布局
@@ -15,6 +16,13 @@ $().ready(function(){
 var search = {
 	showTitle : function() {
 		var q = $('#q').val();
+		if(q != '' && q != undefined) {
+			if(q.indexOf(mark) > -1) {
+				// 如果含有tags字样，那么证明只对tags字段进行搜索
+				q.replace(mark,'');
+			}
+		}
+		
 		$('#search-q').val(q == '*' ? '' : q);
 	},
 	initCrumbs : function() {
@@ -302,7 +310,7 @@ var search = {
 	pagination : function(){
 		$(".pagination").createPage({
 			pageCount: Math.ceil($('#total').val() / pageSize),
-			current: 3,
+			current: 1,
 			backFn:function(p){
 				// 点击 翻页，查询符合条件的视频
 				loadProduction((p - 1) * pageSize);
@@ -480,6 +488,7 @@ function loadProduction(start){
 	$('#video-content').empty();
 	
 	loadData(function(list){
+		
 		$body = '';
 		if(list != null && list.length > 0){
 			 // 此布局是一行4个
@@ -507,6 +516,8 @@ function loadProduction(start){
 					$body += '<div class="video-tags">';
 					
 					var tags = solr.tags;
+					console.info('tags 加载前' + tags);
+					
 					if(tags != '' && tags != null) {
 						var re2='(\\s*)(,|，)(\\s*)';	
 					    var p = new RegExp(re2,["gm"]);
