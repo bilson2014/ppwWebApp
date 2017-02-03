@@ -181,7 +181,7 @@ $().ready(function() {
 						loadData(function(info){
 							$(".errorDiv").addClass("hide");
 							if(info.key){
-								window.location.href=getContextPath()+'/mgr/index';
+								window.location.href=getContextPath()+'/login';
 							}else{
 								add = true;
 								$("#code_error_info_user").text(info.value).removeClass("hide");

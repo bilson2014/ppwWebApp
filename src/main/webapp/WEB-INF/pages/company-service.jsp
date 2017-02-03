@@ -23,7 +23,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片服务协议、视频制作服务协议、拍片服务合同">
+	<meta name="keywords" content="拍片服务协议,视频制作服务协议,拍片服务合同">
 	<meta name="description" content="拍片网平台针对客户的服务协议以及拍片服务合同">
 	<title>拍片服务协议_视频制作服务协议-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >

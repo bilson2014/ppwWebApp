@@ -22,9 +22,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
-	<meta name="description" content="拍片网平台简介，了解拍片网平台服务">
-	<title>了解我们-拍片网</title>
+	<meta name="keywords" content="拍片网融资,拍片网简介,拍片网愿景,拍片网社区,拍片网团队">
+	<meta name="description" content="拍片网平台简介，拍片网是一个开放、共享、透明、公正的一个视频制作服务平台，了解更多拍片网平台服务和拍片网平台愿景">
+	<title>拍片网融资_拍片网简介_了解拍片网平台-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${aboutUsCss }">
 	<!--[if lt IE 9]>
