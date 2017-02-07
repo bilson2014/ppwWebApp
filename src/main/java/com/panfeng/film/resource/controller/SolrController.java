@@ -51,7 +51,7 @@ public class SolrController extends BaseController {
 	}
 
 	@RequestMapping("/search")
-	public ModelAndView searchView(String q, final String tags,
+	public ModelAndView searchView(String q, final String industry,final String genre,
 			final String length, final String price, final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
@@ -59,14 +59,17 @@ public class SolrController extends BaseController {
 		model.addAttribute("q", q);
 		model.addAttribute("price",price );
 		model.addAttribute("length", length);
-		model.addAttribute("tags",tags);
+		model.addAttribute("industry", industry);
+		model.addAttribute("genre", genre);
 		final SolrView view = new SolrView();
 		
 		if(StringUtils.isNotBlank(q))
 			view.setCondition(URLEncoder.encode(q, "UTF-8"));
-		if(StringUtils.isNotBlank(tags))
-			view.setTagsFq(URLEncoder.encode(tags,"UTF-8"));
-		
+		if(StringUtils.isNotBlank(industry))
+			view.setIndustry(URLEncoder.encode(industry, "UTF-8"));
+		if(StringUtils.isNotBlank(genre))
+			view.setGenre(URLEncoder.encode(genre, "UTF-8"));
+			
 		view.setLengthFq(length);
 		view.setPriceFq(price);
 		view.setLimit(20l);
@@ -100,7 +103,18 @@ public class SolrController extends BaseController {
 			final HttpServletRequest request)
 			throws Exception {
 
-		view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
+		final String condition = view.getCondition();
+		final String industry = view.getIndustry();
+		final String genre = view.getGenre();
+		
+		if(StringUtils.isNotBlank(condition)) 
+			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
+
+		if(StringUtils.isNotBlank(industry))
+			view.setIndustry(URLEncoder.encode(industry, "UTF-8"));
+		
+		if(StringUtils.isNotBlank(genre))
+			view.setGenre(URLEncoder.encode(genre, "UTF-8"));
 		
 		try {
 			String url = URL_PREFIX + "portal/solr/query";
@@ -149,8 +163,10 @@ public class SolrController extends BaseController {
 	@RequestMapping("/team/product/more")
 	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg baseMsg = new BaseMsg();
+		
 		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
 		final String json = HttpUtil.httpPost(url, team, request);
+		
 		if (null != json && !"".equals(json)) {
 			List<Solr> list = JsonUtil.toList(json);
 			baseMsg.setCode(1);
@@ -168,12 +184,21 @@ public class SolrController extends BaseController {
 	 * 参数：condition  表示tag标签
 	 */
 	@RequestMapping("/tags/product/search")
-	public BaseMsg getMoreProductByTags(final HttpServletRequest request,@RequestBody final SolrView slorView) {
+	public BaseMsg getMoreProductByTags(final HttpServletRequest request,@RequestBody final SolrView solrView) {
 		BaseMsg baseMsg = new BaseMsg();
+		
+		final String condition = solrView.getCondition();
+		try {
+			if(StringUtils.isNotBlank(condition))
+				solrView.setCondition(URLEncoder.encode(condition, "UTF-8"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+		
 		Map<String, Object> map = new HashMap<>();
 		long total = 0l;
 		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
-		final String json = HttpUtil.httpPost(url, slorView, request);
+		final String json = HttpUtil.httpPost(url, solrView, request);
 		if (null != json && !"".equals(json)) {
 			List<Solr> list;
 			try {
