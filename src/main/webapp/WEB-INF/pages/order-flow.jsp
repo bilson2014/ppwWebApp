@@ -187,7 +187,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon icon4 LeftIcon">
                 <div>
                     <label>执行方案</label>
-                    <label>选演员、选场地、前期拍摄、后期制作、配音配乐,视频管家会替您全程监管.</label>
+                    <label>选演员,选场地,前期拍摄,后期制作,配音配乐,视频管家会替您全程监管.</label>
                     <label>Casting,locations,shooting,production,dubbing... The specialist cares all of them. 
                     </label>
                 </div>
@@ -207,7 +207,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon6 LeftIcon">
                 <div>
                     <label>影片交付</label>
-                    <label>如果您非常满意,确认收片，我们会将托管的制作费支付给导演团队.
+                    <label>如果您非常满意,确认收片,我们会将托管的制作费支付给导演团队.
                     <br>不满意,可全额退款或重新拍摄制作.</label>
                     <label>If you satisfy the video, the fee will  be transferred to the directors. <br>
                           Otherwise, you will be fully refunded or your video will be reproduced. 

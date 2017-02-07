@@ -1090,7 +1090,7 @@ a {
         height: 24px;
         width: 24px;
         z-index: 15;
-        right: -349px;
+        right: -486px;
         top: -10px;
         background: url(/resources/images/block/close.png) no-repeat;
         cursor: pointer;
@@ -1120,8 +1120,8 @@ a {
         // margin: auto;
         position: fixed;
         z-index: 12;
-        width: 678px;
-        height: 385px;
+        width: 960px;
+        height: 544px;
         -moz-transition: perspective(1000px) rotatex(-61deg);
         ;
         /* Firefox 4 */
@@ -1146,12 +1146,12 @@ a {
     #videoRoata {
         position: fixed;
         z-index: 12;
-        width: 679px;
-        height: 389px;
+        width: 960px;
+        height: 540px;
         top: 50%;
         left: 50%;
-        margin-top: -194px;
-        margin-left: -692px;
+        margin-top: -270px;
+        margin-left: -960px;
     }
     .active {
         -moz-transition: rotateX(0);

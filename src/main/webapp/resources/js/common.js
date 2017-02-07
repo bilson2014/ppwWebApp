@@ -639,11 +639,9 @@ function playVideo() {
 							$("body").append($body);
 							hasVideo = true;
 							initClose();
-							
 							setTimeout(function(){
 								 $('#header3Video').addClass('active');
-								},100);
-							
+								},100);	
 						} else {
 							document.getElementById('header3Video').play();
 							setTimeout(function(){
