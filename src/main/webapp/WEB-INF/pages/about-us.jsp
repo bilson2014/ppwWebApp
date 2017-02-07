@@ -10,6 +10,7 @@
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/aboutUs.js" var="aboutJs"/>
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
@@ -154,68 +155,138 @@
         </div>
 
 		<div class="nav-shadow"></div>
+		 <img id="icon" class="bannerAni" src="/resources/images/about/icon.png">
+
+		
 		
 
 		<!-- 内容区域 start -->
-			<div class="model margintop">
-			<img class="image-1"/>
-			<div class="info background-1">
-				<p>拍片网汇聚了中国顶尖的影视创作者，无论是导演、制片、策划、<br>还是摄影师、编剧、演员，都能过在這里找到创作机会和合作伙伴，每天<br>都有崭新的创意在产生，每天都有不同的影片在拍摄，每天都有新鲜的作品在诞生。</p>
-				<h1>——— 拍片网 ———</h1>
-			</div>
-          	<div class="info-bot">
-	          	<div class="fr"><h2 class="h3-word">愿景</h2></div>
-	            <div class="fb"><p>拍片网致力于汇聚影视行业的从业者，为他们提供有价值的服务，帮助他们互相链接建立合作，创作出优质的影视作品。</p></div>              
-	        </div>
-		</div>
-
-		<div class="model">
-			<img class="image-2"/>
-			<div class="info background-2">
-				<p>一句话来讲，我们拍片网就是“滴滴导演”，可以找到为您拍片的导<br>演，也可以理解为视频制作领域的京东或淘宝，是一个视频内<br>容制作平台。我们的优势是：选择多、价格低、速度快。</p>
-				<h1>——— 拍片网 ———</h1>
-			</div>
-          	<div class="info-bot">
-	        <div class="fr"><h2 class="h3-word">社区</h2></div>
-            <div class="fb"><p>拍片网汇聚了中国顶尖的影视创作者，无论是导演、制片、策划、还是摄影师、编剧、演员都能过在這里找到创作机会和伙伴，每天都有影片在這里诞生。</p></div>               
-	        </div>
-		</div>
-
-		<div class="model">
-			<img class="image-3"/>
-			<div class="info background-3">
-				<p>低预算 拍大片／保证行业最低价 不满意随时退款<br>免费创意策划／资深视频营销专家 全程1对1服务到位<br> 100+导演／工作室／制作公司为您服务／5年以上行业经验</p>
-				<h2>——— 拍片网 ———</h2>
-			</div>
-          	<div class="info-bot">
-	          	  	<div class="fr"><h3 class="h3-word">团队</h3></div>
-            <div class="fb"><p>我们是一群来自影视和互联网行业的人，通过互联网的方式创建一个共享平台，使影视行业变得更开放、更高效。</p></div>                    
-	        </div>
-		</div>
-
-		<div class="model">
-			<img class="image-4"/>
-			<div class="info background-4">
-					<p>拍片网的产品包括企业宣传片、融资路演影片、产品众筹影片、发布会影<br>片、病毒视频、动画影片、微电影、网络节目、网络剧等。影片适合在客户销<br>售、融资路演、产品发布、重大活动、产品众筹、自媒体传播、广告投放等场景使用。</p>
-				<h2>——— 拍片网 ———</h2>
-			</div>
-          	<div class="info-bot">
-	          		<div class="fr"><h3 class="h3-word">历史</h3></div>
-	            <div class="fb">
-		            <ul>
-				    	<li >2014年10月成立获得PreAngel王利杰、顾浩天使轮投资</li>
-				    	<li >2015年2月获得洪泰基金投资人俞敏洪、盛希泰天使轮追加投资</li>
-				    	<li >2015年5月demo版上线测试</li>
-				    	<li >2015年7月正式版上线，入驻导演团队三百多家</li>
-				    	<li >2015年9月承接中国铁塔2015北展视频展示全案</li>
-				    	<li >2015年11月拍片网微信客户端上线</li>
-				    	<li >2015年12月获得老鹰基金preA轮投资，投资人刘小鹰</li>
-				    </ul>
-				</div>              
-         	</div>    
+		<div class="banner">
+		 <img id="orImg"  src="${imgPath }/about/back.jpg">
+		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
+		<div class="video-div" id="video">
+			<video id="playVideos" src="/resources/video/aboutus.mp4" preload="auto" controls="controls" poster="${imgPath }/about/2017.png" ></video>
 	    </div>
-
+		      <!-- <div class="bannerContent">
+					<div class="middle">
+					    <img src="/resources/images/about/2017.png">
+					</div>
+					<div class="bannerInfo">
+					   拍片网-专业商业视频支付服务平台,为千万企业解决拍片需求
+					</div>
+				  <div class="showVideo" id="showVideo ">	
+					<img id="showVideoGif" src="/resources/images/about/play.gif">
+					<img id="showVideoJPG" src="/resources/images/about/play.png">
+				  </div>
+			  </div> 	 -->
+		</div>
+		
+		<div class="location">
+		
+		   <div class="locationTop">
+		          <div class="leftCircle"></div>
+		          <div class="rightCircle"></div>
+		   </div>
+		    <div class="locationTitle">
+		            <div>我们的定位</div>
+		            <div>Our Positioning</div>
+		            <div>我们服务的每一个客户在我们眼里,都是未来的世界500强</div>
+		            <div>所以我们致力于为每一个客户</div>
+		            <div>提供世界500强同等品质的服务</div>
+		     </div>
+		   <div class="locationImg">
+			   <img src="/resources/images/about/rightImg.png">
+			   <img src="/resources/images/about/midImg.png">
+			   <img src="/resources/images/about/leftImg.png">
+		   </div>	   
+	   </div>
 	    <!-- 内容区域 end -->
+	    <!-- 历史start -->
+	         <div class="history">
+	              <div class="historyTitle">
+	                <div>我们的历史</div>
+		            <div>Our History</div>
+	              </div>
+	              <div class="historyContent">
+	                  <div class="contentLeft">
+	                     <img src="/resources/images/about/usInfo.png">
+	                  </div>
+	                  <div class="contentRight">
+	                        <div class="modalTitle">
+	                             <img src="/resources/images/about/lineS.png">
+	                             <div>2016</div>
+	                        </div>
+	                        <div class="modalLine">
+	                              <ul>
+	                                 <li><div></div>11月获得国泰君安力鼎A轮投资</li>
+	                                 <li><div></div>10月举办中国首届视频营销大会</li>
+	                                 <li><div></div>3月拍片网2.0迭代上线,签约客户超过100家</li>
+	                              </ul>
+	                        </div>
+	                         <div class="modalTree">
+	                             <img src="/resources/images/about/lineM.png">
+	                             <div>2015</div>
+	                        </div>
+	                        <div class="modalLine">
+	                              <ul>
+	                                 <li><div></div>12月获得老鹰基金Pre-A轮投资,投资人刘小鹰</li>
+	                                 <li><div></div>11月拍片网微信客户端上线</li>
+	                                 <li><div></div>10月签约用友集团 </li>
+	                                 <li><div></div>9月承接中国铁塔2015国际通信展览视频展示全案</li>
+	                                 <li><div></div>7月拍片网正式版上线,入驻导演团队三百多家 </li>
+	                                 <li><div></div>5月拍片网Demo版上线测试 </li>
+	                                 <li><div></div>2月获得洪泰基金投资人俞敏洪、盛希泰天使轮追加投资</li>
+	                              </ul>
+	                        </div>
+	                         <div class="modalTree">
+	                             <img src="/resources/images/about/lineM.png">
+	                             <div>2014</div>
+	                        </div>
+	                        <div class="modalLine">
+	                              <ul>
+	                                 <li><div></div>10月成立获得PreAngel王利杰、顾浩天使轮投资</li>
+	                              </ul>
+	                        </div>
+	                  </div>
+	              </div>
+	         </div>
+	      <!-- 历史end -->
+	      
+
+
+
+	      
+	      <!-- 价值观start -->
+	          <div class="value">
+	                  <ul>
+	                     <li>我们的价值观</li>
+	                     <li>Our Value</li>
+	                     <li> 作品如人品</li>
+	                     <li>我们认识一个人往往从他的作品开始 </li>
+	                     <li>在自然科学和文学艺术领域 </li>
+	                     <li>作品深刻的反映了创作者的灵魂质地</li>
+	                     <li>拍片网用作品说话</li>
+	                  </ul>
+	                 <img style="width:100%" src="/resources/images/about/info.png">
+	          </div>
+	      <!-- 价值观end -->
+	      
+	        
+
+	            
+	      <!-- 使命start -->
+	          <div class="Mission">
+	                  <ul>
+	                     <li>我们的使命</li>
+	                     <li>Our Mission</li>
+	                     <li>通过互联网的方式连接影视创作者,让影视行业变得开放、共享、高效</li>
+	                     <li>创造伟大的作品,让世界变得更好</li>
+	                  </ul>
+	                  <img style="width:100%" src="/resources/images/about/bottomBg.jpg">
+	          </div>
+	      <!-- 使命end -->
+	     
+	    
 
 	</div>
 	
@@ -318,5 +389,7 @@
 	<script type="text/javascript" src="${pluginJs }"></script>
 	<script type="text/javascript" src="${modelJs }"></script>
 	<script type="text/javascript" src="${commonJs }"></script>
+	<script type="text/javascript" src="${aboutJs }"></script>
+	
 </body>
 </html>
