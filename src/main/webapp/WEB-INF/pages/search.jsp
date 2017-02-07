@@ -240,9 +240,10 @@
 								<h3>${solr.productName }</h3>
 								<div class="video-tags">
 									<c:if test="${not empty fn:trim(solr.tags) }">
-										<c:forEach items="${fn:split(solr.tags,' ') }" var="tag" end="2" varStatus="stat">
+										<%-- <c:forEach items="${fn:split(fn:trim(solr.tags),' ') }" var="tag" end="2" varStatus="stat">
 											${tag} <c:if test="${!stat.last }">/</c:if>
-										</c:forEach>
+										</c:forEach> --%>
+											${fn:trim(solr.tags)}
 									</c:if>
 								</div>
 							</div>
