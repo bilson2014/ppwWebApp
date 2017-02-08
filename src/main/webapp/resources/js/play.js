@@ -24,12 +24,6 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
-//    var node=document.getElementsByClassName('playContent')[0];  
-//    $clamp(node,{clamp:4});   
-//    
-//    var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
-//    $clamp(teamDescripti,{clamp:2});   
-
     
     loadRecommendProductIfNo();
     
@@ -227,7 +221,7 @@ function showDiv(){
 }
 
 
-/////////////////////////////////////////wang//////////////////////////////////////
+// ----------------- wang -----------------
 // order verificationCode
 function verificationCodeBtn(){
 	if(curCount == 0 && checkData(1)){
@@ -350,7 +344,7 @@ function initView(){
 	}
 }
 
-
+// 加载相关视频推荐
 function loadRecommendProduct(){
 		var tags=$('#tags').val();
 		if(tags == null || tags == undefined || tags == ''){
@@ -392,7 +386,7 @@ function loadRecommendProduct(){
 					}
 					if(count > 8){
 						$('#moreProductInfo').removeClass('hide');
-						$('#moreProductInfo').attr('href','/search?q=tags='+tags);
+						$('#moreProductInfo').attr('href','/search?q=*&industry='+tags);
 					}
 				}else{
 					$('#recommendProductTitle').addClass('hide');
@@ -458,7 +452,7 @@ function loadRecommendProductIfNo(){
 				
 				if(count > 8){
 					 $('#moreNoInfo').removeClass('hide');
-					 $('#moreNoInfo').attr('href','/search?q=tags='+tags);
+					 $('#moreNoInfo').attr('href','/search?q=*&industry='+tags);
 				}
 				
 			}else{

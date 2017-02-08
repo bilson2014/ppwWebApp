@@ -17,6 +17,10 @@ public class SolrView extends Pagination{
 	private int sortord = 0; // 0：升序 1：降序
 	
 	private String sequence = null; // 排序字段
+	
+	private String industry = null; // 行业
+	
+	private String genre = null; // 类型
 
 	public String getCondition() {
 		return condition;
@@ -72,6 +76,22 @@ public class SolrView extends Pagination{
 
 	public void setTagsFq(String tagsFq) {
 		this.tagsFq = tagsFq;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	
 }

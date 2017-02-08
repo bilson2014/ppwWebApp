@@ -60,7 +60,8 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${q }" id="q"/>
-	<input type="hidden" value="${tags }" id="tags"/>
+	<input type="hidden" value="${industry }" id="industry"/>
+	<input type="hidden" value="${genre }" id="genre"/>
 	<input type="hidden" value="${price }" id="price"/>
 	<input type="hidden" value="${length}" id="length"/>
 	<input type="hidden" value="${total }" id="total"/>
@@ -240,10 +241,9 @@
 								<h3>${solr.productName }</h3>
 								<div class="video-tags">
 									<c:if test="${not empty fn:trim(solr.tags) }">
-										<%-- <c:forEach items="${fn:split(fn:trim(solr.tags),' ') }" var="tag" end="2" varStatus="stat">
+										<c:forEach items="${fn:split(fn:trim(solr.tags),' ') }" var="tag" end="2" varStatus="stat">
 											${tag} <c:if test="${!stat.last }">/</c:if>
-										</c:forEach> --%>
-											${fn:trim(solr.tags)}
+										</c:forEach>
 									</c:if>
 								</div>
 							</div>
