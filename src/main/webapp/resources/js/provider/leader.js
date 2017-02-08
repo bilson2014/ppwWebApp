@@ -306,6 +306,7 @@ function userpicInfo(){
 				$('#user_img_url').val(path);
 				var img = getDfsHostName()+path;
 				$('#user-img').attr('src',img);
+				howErrorLeader($('.user-img-content'),'');
 			}
 		}else{
 			showErrorLeader($('.user-img-content'),'上传失败!');
