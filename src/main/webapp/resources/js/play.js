@@ -452,7 +452,7 @@ function loadRecommendProductIfNo(){
 				
 				if(count > 8){
 					 $('#moreNoInfo').removeClass('hide');
-					 $('#moreNoInfo').attr('href','/search?q=*&industry='+tags);
+					 $('#moreNoInfo').attr('href','/search?q=*&industry='+tags + '&isMore=true');
 				}
 				
 			}else{

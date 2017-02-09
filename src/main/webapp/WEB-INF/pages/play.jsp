@@ -329,7 +329,7 @@
                         </div>
 	                        <a id="moreProductInfo" class="hide">
 		                      <div class="get-new-detail newsMore ">
-			                      	<span>更多视频</span>
+			                      	<span>更多影片</span>
 			                      	<div></div>
 		                      </div>
 	                       </a>    

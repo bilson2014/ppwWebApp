@@ -65,6 +65,7 @@
 	<input type="hidden" value="${price }" id="price"/>
 	<input type="hidden" value="${length}" id="length"/>
 	<input type="hidden" value="${total }" id="total"/>
+	<input type="hidden" value="${isMore }" id="isMore"/>
 	 <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
