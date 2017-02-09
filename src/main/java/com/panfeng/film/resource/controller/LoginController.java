@@ -160,9 +160,6 @@ public class LoginController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR,"服务器通信失败请稍后重试！",null);
 	}
 
-	/**
-	 * 验证手机号码是否注册
-	 */
 	@RequestMapping("/validation/userName")
 	public boolean validationUserName(@RequestBody Map<String, String> loginName, final ModelMap model,
 			final HttpServletRequest request) {
