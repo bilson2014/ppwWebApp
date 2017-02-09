@@ -61,7 +61,7 @@ $().ready(function() {
 		//点击获取手机验证码
 		getVerificationCode:function(){
 			// 点击获取手机验证码发送按钮
-			$('#getPhoneCode').off('click').on('click',function(){
+			$('#getPhoneCodes').off('click').on('click',function(){
 				curCount = count;
 				$('#phone').removeClass('errorPhone');
 				$("#errorPhone").attr('data-content','');
@@ -76,14 +76,14 @@ $().ready(function() {
 					showError($('#errorPhone'), '请输入正确格式的手机号');
 					return false;
 				}
-				$('#getPhoneCode').text('已发送('+ curCount +')');
-				$('#getPhoneCode').attr('disabled','disabled');
+				$('#getPhoneCodes').text('已发送('+ curCount +')');
+				$('#getPhoneCodes').attr('disabled','disabled');
 				InterValObj = window.setInterval(setRemainTime, 1000); // 启动计时器，1秒钟执行一次
 				loadData(function(flag){
 					if(!flag){
 						window.clearInterval(InterValObj);
-						$('#getPhoneCode').text('重新获取');
-						$('#getPhoneCode').removeAttr('disabled');
+						$('#getPhoneCodes').text('重新获取');
+						$('#getPhoneCodes').removeAttr('disabled');
 					}
 				}, getContextPath() + '/login/verification/' + $('#phone').val().trim(), null);
 			});
@@ -184,14 +184,14 @@ function checkData(){
 function setRemainTime(){
 	if(curCount == 0){
 		window.clearInterval(InterValObj); // 停止计时器
-		$('#getPhoneCode').text('重新获取');
-		$('#getPhoneCode').removeAttr('disabled')
+		$('#getPhoneCodes').text('重新获取');
+		$('#getPhoneCodes').removeAttr('disabled')
 		// 清除session code
 		getData(function(data){
 			// 清除session code
 		}, getContextPath() + '/login/clear/code');
 	}else{
 		curCount--;  
-		$("#getPhoneCode").text('已发送('+ curCount +')');
+		$("#getPhoneCodes").text('已发送('+ curCount +')');
 	}
 }

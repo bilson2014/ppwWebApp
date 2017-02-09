@@ -199,7 +199,7 @@
 									<img src='<spring:url value="${file_locate_storage_path}${product.teamPhotoUrl}"/>' alt="${product.teamName }照片_拍片网" class="img-rounded">
 								</c:if>
 	                            <span>${product.teamName }</span>
-	                            <div>作品集</div>
+	                            <div class="toHover">作品集</div>
 	                        </div>
 	                         </a>
 	                        <div class="teamDescription">
@@ -329,7 +329,7 @@
                         </div>
 	                        <a id="moreProductInfo" class="hide">
 		                      <div class="get-new-detail newsMore ">
-			                      	<span>更多视频</span>
+			                      	<span>更多影片</span>
 			                      	<div></div>
 		                      </div>
 	                       </a>    

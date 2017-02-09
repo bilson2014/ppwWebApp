@@ -165,7 +165,7 @@
 		 <img id="orImg"  src="${imgPath }/about/back.jpg">
 		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
 		<div class="video-div" id="video">
-			<video id="playVideos" src="/resources/video/aboutus.mp4" preload="auto" controls="controls" poster="${imgPath }/about/2017.png" ></video>
+			<video id="playVideos" src="${file_locate_storage_path }group1/M00/00/60/CgpmTlib2EaAbOOdAQ1EMav8_P0022.mp4" preload="auto" controls="controls" poster="${imgPath }/about/2017.png" ></video>
 	    </div>
 		      <!-- <div class="bannerContent">
 					<div class="middle">

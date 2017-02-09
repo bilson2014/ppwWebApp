@@ -512,6 +512,7 @@ function pause() {
 		$('#reason').removeClass('textareaInfo');
 		$('#reason').addClass('textareaInfoError');
 		$('#pauseError').removeClass('hide');
+		setModalMessageEvent(pause);
 	} else {
 		$('#pauseError').addClass('hide');
 		$('#sureControl').removeClass('no-red-btn');

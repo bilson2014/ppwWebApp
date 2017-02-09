@@ -72,7 +72,7 @@ $().ready(function() {
 				$(".openVideo") && $(".openVideo").remove();
 				var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
 						+   '<div class="openVideoCommon"></div>'
-						+ '<div id="videoRoata"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="'+picUrl+'"  name="media" id="header3Video"> '
+						+ '<div class="setOpi" id="videoRoata"><div class="videoClose setCloseSize" id="commonCloseVideo"></div><video class="setSize" autoplay controls loop poster="'+picUrl+'"  name="media" id="header3Video"> '
 						+'<source  src="'+videoPath+'"  id="source" type="video/mp4">'
 						+ '</video></div>';
 				$body += '</div>';

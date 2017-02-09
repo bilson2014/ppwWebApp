@@ -1,8 +1,10 @@
 var pageSize = 20;
 var currentSize = 0;
-var typeArray = new Array('宣传片','TVC','个人宣传片','活动宣传片','产品宣传片','企业宣传片','广告','创意广告','产品广告','品牌广告','活动广告','微电影','路演视频','公益片','社交媒体视频','病毒视频','城市宣传片','品牌宣传片','场景宣传片','招商宣传片','形象宣传片','花絮');
-var busArray = new Array('智能硬件','互联网','电商','体育','软件','硬件','服装纺织','金融','医疗保健','游戏','食品饮料','旅游','影视','音乐','房地产','电器','电子产品','媒体','娱乐','通讯','交通运输','汽车','文化','人工智能','日用美妆','家居建材','政府机构','百货零售','移动互联网','企业服务','餐饮美食','母婴','美容美发');
+var typeArray = new Array(' 宣传片','个人宣传片','活动宣传片','产品宣传片','企业宣传片','城市宣传片','品牌宣传片','场景宣传片','招商宣传片','形象宣传片','TVC',' 广告','创意广告','产品广告','品牌广告','活动广告','微电影','路演视频','病毒视频','公益片','社交媒体视频','花絮');
+var busArray = new Array('智能硬件','互联网','移动互联网','电商','体育','软件','硬件','服装纺织','金融','医疗保健','游戏','食品饮料','旅游','影视','音乐','房地产','电器','电子产品','媒体','娱乐','通讯','交通运输','汽车','文化','人工智能','日用美妆','家居建材','政府机构','百货零售','企业服务','餐饮美食','母婴','美容美发');
 var mark = 'tags='; // 特殊标记
+var industry = 'industry='; // 行业
+var genre = 'genre='; // 类型
 $().ready(function(){
 	search.showTitle(); // 在标题栏显示搜索内容
 	search.initCrumbs(); // 初始化面包屑布局
@@ -17,9 +19,10 @@ var search = {
 	showTitle : function() {
 		var q = $('#q').val();
 		if(q != '' && q != undefined) {
-			if(q.indexOf(mark) > -1) {
+			if(q.indexOf(industry) > -1 || q.indexOf(genre) > -1) {
 				// 如果含有tags字样，那么证明只对tags字段进行搜索
-				q.replace(mark,'');
+				q.replace(industry,'');
+				q.replace(genre,'');
 			}
 		}
 		
@@ -28,7 +31,9 @@ var search = {
 	initCrumbs : function() {
 		// 初始化面包屑布局 
 		var q = $('#q').val();
-		var tags = $('#tags').val();
+		// var tags = $('#tags').val();
+		var industry = $('#industry').val(); // 行业
+		var genre = $('#genre').val(); // 类型
 		
 		var $tagBody ='';
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
@@ -63,20 +68,40 @@ var search = {
 			$tagBody += '</div>';
 		}
 		
-		// 标签
-		if(tags != undefined  && tags != null && tags.trim() != '') {
+		// 行业
+		if(industry != undefined  && industry != null && industry.trim() != '') {
 			// 将搜索内容写入面包屑布局
 			// 去除空格以及','
 			var re2='(\\s*)(,)(\\s*)';	
 		    var p = new RegExp(re2,["gm"]);
-		    tags = tags.replace(p, ' ');
-		    var qArray = tags.split(/\s+/);
+		    industry = industry.replace(p, ' ');
+		    var qArray = industry.split(/\s+/);
 			if(qArray != '') {
 				$.each(qArray,function(i,tag){
 					if(tag.trim() != '' && tag.trim() != undefined) {
 						$tagBody += '<div class="tag" id="tagType">';
 						$tagBody += '<div class="controlCard">';
-						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="tag" data-text='+ tag.trim() +'>x</span></div>';
+						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="indy" data-text='+ tag.trim() +'>x</span></div>';
+						$tagBody += '</div>';
+					}
+				});
+			}
+		}
+		
+		// 类型
+		if(genre != undefined  && genre != null && genre.trim() != '') {
+			// 将搜索内容写入面包屑布局
+			// 去除空格以及','
+			var re2='(\\s*)(,)(\\s*)';	
+		    var p = new RegExp(re2,["gm"]);
+		    genre = genre.replace(p, ' ');
+		    var qArray = genre.split(/\s+/);
+			if(qArray != '') {
+				$.each(qArray,function(i,tag){
+					if(tag.trim() != '' && tag.trim() != undefined) {
+						$tagBody += '<div class="tag" id="tagType">';
+						$tagBody += '<div class="controlCard">';
+						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="gen" data-text='+ tag.trim() +'>x</span></div>';
 						$tagBody += '</div>';
 					}
 				});
@@ -120,7 +145,11 @@ var search = {
 			$ul = '';
 			$ulBus = '';
 			var q = $('#q').val();
-			var tags = $('#tags').val();
+			// var tags = $('#tags').val();
+			// TODO 行业、类型
+			var industry = $('#industry').val(); // 行业
+			var genre = $('#genre').val(); // 类型
+			
 			var price = $('#price').val();
 			var length = $('#length').val();
 			
@@ -132,16 +161,27 @@ var search = {
 			if(length != null && length != undefined && length != '') {
 				param += '&length=' + length;
 			}
+			
+			var tParam = '&industry=@_@';
+			
+			var gParam = '&genre=@_@';
+			
+			if(industry != null && industry != undefined && industry != '')
+				gParam += '&industry=' + industry;
+			
+			if(genre != null && genre != undefined && genre != '')
+				tParam += '&genre=' + genre;
+			
 		
-			var tParam = '&tags=@_@';
+			
 			
 			$.each(typeArray,function(i,item){
 				// 去除重复
-				if(tags != undefined && tags != '' && tags != null) {
-					if(tags.indexOf(item) > -1) 
-						tParam = tParam.replace('@_@',tags);
-					else 
-						tParam = tParam.replace('@_@',tags + ' ' + item);
+				if(industry != undefined && industry != '' && industry != null) {
+					if(industry.indexOf(item) > -1)
+						tParam = tParam.replace('@_@',industry);
+					else
+						tParam = tParam.replace('@_@',industry + ' ' + item);
 				}else {
 					tParam = tParam.replace('@_@',item + ' ');
 				}
@@ -149,24 +189,29 @@ var search = {
 				$ul += '<a href="'+ getContextPath() + '/search' + param + tParam.trim() + '" class="itemAll" data-id="'+ item +'">'+ item +'</a>';
 				$ul += '</li>';
 				
-				tParam = '&tags=@_@';
+				tParam = '&industry=@_@';
+				if(genre != null && genre != undefined && genre != '')
+					tParam += '&genre=' + genre;
 			});
 			
 			$.each(busArray,function(i,item){
 				// 去除重复
-				if(tags != undefined && tags != '' && tags != null) {
-					if(tags.indexOf(item) > -1) 
-						tParam = tParam.replace('@_@',tags);
+				if(genre != undefined && genre != '' && genre != null) {
+					if(genre.indexOf(item) > -1) 
+						gParam = gParam.replace('@_@',genre);
 					else 
-						tParam = tParam.replace('@_@',tags + ' ' + item);
+						gParam = gParam.replace('@_@',genre + ' ' + item);
 				}else {
-					tParam = tParam.replace('@_@',item + ' ');
+					gParam = gParam.replace('@_@',item + ' ');
 				}
 				$ulBus += '<li>';
-				$ulBus += '<a href="'+ getContextPath() + '/search' + param + tParam.trim() + '" class="BusItemAll" data-id="'+ item +'">'+ item +'</a>';
+				$ulBus += '<a href="'+ getContextPath() + '/search' + param + gParam.trim() + '" class="BusItemAll" data-id="'+ item +'">'+ item +'</a>';
 				$ulBus += '</li>';
 				
-				tParam = '&tags=@_@';
+				gParam = '&genre=@_@';
+				if(industry != null && industry != undefined && industry != '')
+					gParam += '&industry=' + industry;
+				
 			});
 			
 			$('#item-list').append($ul);
@@ -177,7 +222,10 @@ var search = {
 		$('#price-list').empty();
 		var q = $('#q').val();
 		var length = $('#length').val();
-		var tags = $('#tags').val();
+		// var tags = $('#tags').val();
+		// TODO 行业、类型
+		var industry = $('#industry').val(); // 行业
+		var genre = $('#genre').val(); // 类型
 		
 		var param = '?q=' + q;
 		
@@ -185,8 +233,12 @@ var search = {
 			param += '&length=' + length;
 		}
 		
-		if(tags != null && tags != undefined && tags != '') {
-			param += '&tags=' + tags.trim();
+		if(industry != null && industry != undefined && industry != '') {
+			param += '&industry=' + industry.trim();
+		}
+		
+		if(genre != null && genre != undefined && genre != '') {
+			param += '&genre=' + genre.trim();
 		}
 		
 		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[0 TO 30000]' +'" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>';
@@ -243,7 +295,10 @@ var search = {
 		
 		var q = $('#q').val();
 		var price = $('#price').val();
-		var tags = $('#tags').val();
+		// var tags = $('#tags').val();
+		
+		var industry = $('#industry').val(); // 行业
+		var genre = $('#genre').val(); // 类型
 		
 		var param = '?q=' + q;
 		
@@ -251,8 +306,12 @@ var search = {
 			param += '&price=' + price;
 		}
 		
-		if(tags != null && tags != undefined && tags != '') {
-			param += '&tags=' + tags.trim();
+		if(industry != null && industry != undefined && industry != '') {
+			param += '&industry=' + industry.trim();
+		}
+		
+		if(genre != null && genre != undefined && genre != '') {
+			param += '&genre=' + genre.trim();
 		}
 		
 		var $lengthLi = '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[0 TO 60]' +'" data-length="[0 TO 60]" class="lengthAll">0~60秒</a></li>';
@@ -341,9 +400,10 @@ function crumbsClick() {
 	var q = $('#q').val();
 	var length = $('#length').val();
 	var price = $('#price').val();
-	//add lt 20170119
-	var tags = $('#tags').val();
-	//end
+	
+	var industry = $('#industry').val(); // 行业
+	var genre = $('#genre').val(); // 类型
+	
 	var param = '';
 	if(strType != undefined && strType != '') {
 		// 类型不为空时，排除了 “全部”的可能
@@ -352,20 +412,27 @@ function crumbsClick() {
 			if(strText != undefined && strText != '' && strText != null) {
 				q = q.replace(strText,'');
 			}
-			param = recombineSearchCondition(q,tags, price, length);
-		} else if (strType == 'tag') {
-			// 取消标签时
+			param = recombineSearchCondition(q, industry, genre, price, length);
+		} else if (strType == 'indy') {
+			// 取消行业标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
-				tags = tags.replace(strText,'');
+				industry = industry.replace(strText,'');
 			}
-			param = recombineSearchCondition(q,tags, price, length);
+			param = recombineSearchCondition(q, industry, genre, price, length);
+		} else if(strType == 'gen') {
+			// 取消类型标签时
+			// 点击标签时，移除这个标签
+			if(strText != undefined && strText != '' && strText != null) {
+				genre = genre.replace(strText,'');
+			}
+			param = recombineSearchCondition(q, industry, genre, price, length);
 		} else if(strType == 'price') {
 			// 取消价格时
-			param = recombineSearchCondition(q,tags, '', length);
+			param = recombineSearchCondition(q, industry, genre, '', length);
 		} else if(strType == 'length') {
 			// 取消时长时
-			param = recombineSearchCondition(q,tags,price, '');
+			param = recombineSearchCondition(q, industry, genre, price, '');
 		}
 	}else {
 		// 类型为空时，则证明是“全部”，不做任何处理
@@ -376,24 +443,34 @@ function crumbsClick() {
 }
 
 // 重组url
-function recombineSearchCondition(q,tags,price,length) {
+function recombineSearchCondition(q,industry,genre,price,length) {
 	var param = '';
 	if(q != null && q != undefined && q != '') {
 		param = '?q=' + q;
 	}
-	//add by lt 2017,1,19
-	if(tags != null && tags != undefined && tags != '') {
-		var tag = tags.split(' ');
+	if(industry != null && industry != undefined && industry != '') {
+		var indy = industry.split(' ');
 		var temp = '';
-		for(var i = 0;i < tag.length;i ++) {
-			if(tag[i].trim() != '') {
-				temp += tag[i].trim() + ' ';
+		for(var i = 0;i < indy.length;i ++) {
+			if(indy[i].trim() != '') {
+				temp += indy[i].trim() + ' ';
 			}
 		}
 		if(temp != '' && temp != null)
-			param += '&tags=' + temp.trim();
+			param += '&industry=' + temp.trim();
 	}
-	//end
+	
+	if(genre != null && genre != undefined && genre != '') {
+		var gen = genre.split(' ');
+		var temp = '';
+		for(var i = 0;i < gen.length;i ++) {
+			if(gen[i].trim() != '') {
+				temp += gen[i].trim() + ' ';
+			}
+		}
+		if(temp != '' && temp != null)
+			param += '&genre=' + temp.trim();
+	}
 	
 	if(price != null && price != undefined && price != '') {
 		param += '&price=' + price;
@@ -516,7 +593,6 @@ function loadProduction(start){
 					$body += '<div class="video-tags">';
 					
 					var tags = solr.tags;
-					console.info('tags 加载前' + tags);
 					
 					if(tags != '' && tags != null) {
 						var re2='(\\s*)(,|，)(\\s*)';	
@@ -558,7 +634,8 @@ function loadProduction(start){
 		begin : start,
 		limit : pageSize,
 		condition : $('#q').val().trim(),
-		tagsFq : $('#tags').val().trim(),
+		industry : $('#industry').val().trim(),
+		genre : $('#genre').val().trim(),
 		priceFq : $('#price').val(),
 		lengthFq : $('#length').val()
 	}));
