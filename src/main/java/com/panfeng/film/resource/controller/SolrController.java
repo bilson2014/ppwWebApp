@@ -52,7 +52,7 @@ public class SolrController extends BaseController {
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry,final String genre,
-			final String length, final String price, final ModelMap model,
+			final String length, final String price, final boolean isMore,final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
 
@@ -61,6 +61,7 @@ public class SolrController extends BaseController {
 		model.addAttribute("length", length);
 		model.addAttribute("industry", industry);
 		model.addAttribute("genre", genre);
+		model.addAttribute("isMore", isMore);
 		final SolrView view = new SolrView();
 		
 		if(StringUtils.isNotBlank(q))
@@ -72,6 +73,10 @@ public class SolrController extends BaseController {
 			
 		view.setLengthFq(length);
 		view.setPriceFq(price);
+		
+		// 设置是否是从相关性推荐过来的
+		view.setMore(isMore);
+		
 		view.setLimit(20l);
 		try {
 			final String url = URL_PREFIX + "portal/solr/query";

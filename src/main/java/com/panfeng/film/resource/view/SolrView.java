@@ -21,6 +21,8 @@ public class SolrView extends Pagination{
 	private String industry = null; // 行业
 	
 	private String genre = null; // 类型
+	
+	private boolean more = false; // 是否相关性推荐
 
 	public String getCondition() {
 		return condition;
@@ -93,5 +95,13 @@ public class SolrView extends Pagination{
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
+
+	public boolean isMore() {
+		return more;
+	}
+
+	public void setMore(boolean more) {
+		this.more = more;
+	}
+
 }

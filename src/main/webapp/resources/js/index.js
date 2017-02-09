@@ -1,4 +1,3 @@
-
 $().ready(function() {
     
     originTool();
@@ -10,11 +9,7 @@ $().ready(function() {
     window.onresize = function(){
     	getVideoHeight();
     };
-     
 });
-
-
-
 
 function getVideoHeight(){
 	    var screenWidth = document.documentElement.clientWidth;
@@ -46,6 +41,7 @@ function client() {
         $('.noLi').css('display', 'none');
     });
 }
+
 //特效优势
 function ourYouDian() {
     $("#caLogo1").hover(function() {
@@ -142,7 +138,7 @@ var homePage = {
 	search:function(){
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
-			window.location.href='/search?q=tags:'+flag;
+			window.location.href='/search?q=&industry:'+flag;
 		})
 	},
 	deliverOrder:function(){
@@ -249,10 +245,6 @@ var homePage = {
 				$("#directorContent").empty().html(juicer(homePage_tpl.team_recommend,data));
 				//渲染team效果
 				_this.director();
-//				 $('.dContent').each(function(i){ 
-//               	  var node=document.getElementsByClassName('dContent')[i];  
-//    			      $clamp(node,{clamp:3});     
-//               	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -312,10 +304,6 @@ var homePage = {
 				_this.getNewsDetail();
 				
                   var hasNum = $('.Content').length;
-//                  $('.Content').each(function(i){ 
-//                	  var node=document.getElementsByClassName('Content')[i];  
-//     			      $clamp(node,{clamp:3});     
-//                	  }); 
 			}else{
 				//TODO
 				console.log("数据加载错误")
@@ -433,5 +421,3 @@ var homePage_tpl = {
          ].join("")         
     
 }
-
-
