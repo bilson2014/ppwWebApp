@@ -231,7 +231,7 @@
                                         <li data-content="0">无演员</li>
                                         <li data-content="1">自有演员</li>
                                         <li data-content="2">普通演员</li>
-                                        <li data-content="3">一线演员</li>
+                                        <li data-content="3">专业演员</li>
                                     </ul>
                                 </div>
                             </div>
