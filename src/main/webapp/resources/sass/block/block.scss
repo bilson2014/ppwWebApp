@@ -177,11 +177,13 @@
     }
     
     .videoContent .player-wrap .videoBottom {
+        cursor: default;
         div:nth-child(1) {
             height: 40px !important;
             line-height: 40px;
             margin-top: 40px;
             margin-bottom: 16px;
+            cursor: default;
             span {
                 font-size: $font-size;
                 color: white;
@@ -190,10 +192,14 @@
                 height: 30px;
                 @include ellipsis;
                 vertical-align: top;
+                cursor: pointer;
                 &:hover {
                     color: $red-base;
                     border-color: transparent;
                 }
+            }
+            .toHover {
+                cursor: pointer !important;
             }
             img {
                 width: 40px;
@@ -203,6 +209,7 @@
                 border-radius: 90px;
                 margin-right: 16px;
                 display: inline-block;
+                cursor: pointer;
             }
             div {
                 height: 20px;
@@ -231,7 +238,6 @@
         }
     }
     
-
     .videoContent .videoPrice {
         position: absolute;
         top: 118px;

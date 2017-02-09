@@ -263,7 +263,7 @@
                                 <div class="title" data-content=""  id="errorCode">您的验证码</div>
                                 <div>
                                    <input data-content="0" placeholder="您的验证码" id="phoneCode">
-                                   <button class="setCode btn-c-r" id='getPhoneCode'>发送验证码</button>
+                                   <button class="setCode btn-c-r" id='getPhoneCodes'>发送验证码</button>
                                 </div>
                             </div>
 
