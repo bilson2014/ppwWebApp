@@ -920,11 +920,12 @@ public class ProviderController extends BaseController {
 				if (tag != null && !"".equals(tag)) {
 					product.setTags(URLEncoder.encode(tag, "UTF-8"));
 				}
-				product.setFlag(1);// 设置审核通过
+				//product.setFlag(1);// 设置审核通过
 			} else {
 				product.setTags("");
-				product.setFlag(0);// 设置审核中状态
+				//product.setFlag(0);// 设置审核中状态
 			}
+			product.setFlag(0);// 设置审核中状态
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
 			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			final String result = HttpUtil.httpPost(updatePath, product, request);
