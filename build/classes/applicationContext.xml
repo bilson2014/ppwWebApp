@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		                   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		                   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<context:property-placeholder
+		location="classpath:jdbc.properties,classpath:redis.properties" />
+
+	<context:annotation-config />
+
+	<tx:annotation-driven />
+
+	<!-- 扫描service -->
+	<context:component-scan
+		base-package="com.panfeng.film.service,
+										  com.panfeng.film.listener,
+										  com.panfeng.film.dao" />
+
+	<!-- log here -->
+	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />
+
+	<aop:aspectj-autoproxy>
+		<aop:include name="callMonitor" />
+	</aop:aspectj-autoproxy>
+
+
+	<bean class="com.panfeng.film.util.FastDFSClient" init-method="init">
+		<property name="minPoolSize" value="${minPoolSize}" />
+		<property name="maxPoolSize" value="${maxPoolSize}" />
+		<property name="waitTimes" value="${waitTimes}" />
+	</bean>
+	<!-- kaptcha -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.border">no</prop>
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<prop key="kaptcha.textproducer.font.color">64,122,184</prop>  
+						<prop key="kaptcha.image.width">94</prop>  
+						<prop key="kaptcha.image.height">40</prop>  
+						<prop key="kaptcha.textproducer.font.size">32</prop>  
+						<prop key="kaptcha.textproducer.char.length">4</prop>  
+						<prop key="kaptcha.textproducer.font.names">TimesNewMan</prop>  
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
+						<prop key="kaptcha.background.clear.from">white</prop>
+						<prop key="kaptcha.background.clear.to">white</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<property name="defaultEncoding" value="UTF-8" /> <property name="uploadTempDir" 
+		value="${upload.path}" /> </bean> -->
+	<bean id="multipartResolver" class="com.panfeng.film.filter.CustomMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="uploadTempDir" value="${upload.path}" />
+	</bean>
+
+	<!-- redis 配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="${redis.maxTotal}" />
+		<!-- 最大空闲数 -->
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<!-- 每次释放连接的最大数目 -->
+		<property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" />
+		<!-- 释放连接的扫描间隔（毫秒） -->
+		<property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" />
+		<!-- 连接最小空闲时间 -->
+		<property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" />
+		<!-- 连接空闲多久后 释放，当空闲时间 > 该值 且 空闲连接 > 最大空闲连接数 时，直接释放 -->
+		<property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}" />
+		<!-- 最大等待时间 -->
+		<property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+		<!-- 获取连接时检查有效性，默认false -->
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+		<!-- 空闲时检查有效性，默认false -->
+		<property name="testWhileIdle" value="${redis.testWhileIdle}" />
+		<!-- 连接耗尽是否阻塞，false报异常，true阻塞直到超时，默认true -->
+		<property name="blockWhenExhausted" value="${blockWhenExhausted}" />
+	</bean>
+
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${redis.server}" />
+		<constructor-arg index="2" value="6379" />
+		<constructor-arg index="3" value="${redis.timeout}" />
+		<constructor-arg index="4" value="${redis.password}" />
+	</bean>
+	
+</beans>
