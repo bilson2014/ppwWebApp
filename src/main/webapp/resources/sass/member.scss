@@ -4,8 +4,10 @@
 @import "bootstrap-grid";
 @import "image";
 @import "compass/typography/text/ellipsis";
-
 $c97:#979797;
+body {
+    background: $f8;
+}
 
 .nav-shadow {
     width: 100%;
@@ -107,11 +109,98 @@ $c97:#979797;
     .top {
         margin-top: 20px;
     }
+    .cActive {
+        li:nth-child(1) {
+            div img {
+                -webkit-animation: showHead 1s linear;
+                -moz-animation: showHead 1s linear;
+                -o-animation: showHead 1s linear;
+                animation: showHead 1s linear;
+            }
+        }
+        li:nth-child(2) {
+            div img {
+                -webkit-animation: showHead 1.2s linear;
+                -moz-animation: showHead 1.2s linear;
+                -o-animation: showHead 1.2s linear;
+                animation: showHead 1.2s linear;
+            }
+        }
+        li:nth-child(3) {
+            div img {
+                -webkit-animation: showHead 1.4s linear;
+                -moz-animation: showHead 1.4s linear;
+                -o-animation: showHead 1.4s linear;
+                animation: showHead 1.4s linear;
+            }
+        }
+        li:nth-child(4) {
+            div img {
+                -webkit-animation: showHead 1.2s linear;
+                -moz-animation: showHead 1.2s linear;
+                -o-animation: showHead 1.2s linear;
+                animation: showHead 1.2s linear;
+            }
+        }
+        li:nth-child(5) {
+            div img {
+                -webkit-animation: showHead 1s linear;
+                -moz-animation: showHead 1s linear;
+                -o-animation: showHead 1s linear;
+                animation: showHead 1s linear;
+            }
+        }
+    }
     .ul-member {
         width: 800px;
         margin: 0 auto;
         margin-top: 30px;
         font-size: 0;
+        li {
+            div img {
+                position: relative;
+            }
+        }
+        // li:nth-child(1) {
+        //     div img {
+        //         transition: all .6s ease-in-out .2s;
+        //         -moz-transition: all .6s ease-in-out .2s;
+        //         -webkit-transition: all .6s ease-in-out .2s;
+        //         -o-transition: all .6s ease-in-out .2s;
+        //     }
+        // }
+        // li:nth-child(2) {
+        //     div img {
+        //         transition: all .7s ease-in-out .2s;
+        //         -moz-transition: all .7s ease-in-out .2s;
+        //         -webkit-transition: all .7s ease-in-out .2s;
+        //         -o-transition: all .7s ease-in-out .2s;
+        //     }
+        // }
+        // li:nth-child(3) {
+        //     div img {
+        //         transition: all .8s ease-in-out .2s;
+        //         -moz-transition: all .8s ease-in-out .2s;
+        //         -webkit-transition: all .8s ease-in-out .2s;
+        //         -o-transition: all .8s ease-in-out .2s;
+        //     }
+        // }
+        // li:nth-child(4) {
+        //     div img {
+        //         transition: all .9s ease-in-out .2s;
+        //         -moz-transition: all .9s ease-in-out .2s;
+        //         -webkit-transition: all .9s ease-in-out .2s;
+        //         -o-transition: all .9s ease-in-out .2s;
+        //     }
+        // }
+        // li:nth-child(5) {
+        //     div img {
+        //         transition: all 1s ease-in-out .2s;
+        //         -moz-transition: all 1s ease-in-out .2s;
+        //         -webkit-transition: all 1s ease-in-out .2s;
+        //         -o-transition: all 1s ease-in-out .2s;
+        //     }
+        // }
     }
     .nav-member {
         //$image-width: 100px;
@@ -172,7 +261,7 @@ $c97:#979797;
         margin-top: 60px;
         font-size: $font-size-lg26;
         color: $gray-dark;
-        margin-bottom:22px;
+        margin-bottom: 22px;
     }
     p {
         margin-top: 10px;
@@ -228,7 +317,7 @@ $c97:#979797;
         }
         li {
             font-size: $font-size-base;
-            border-radius: 8px;
+            border-radius: 4px;
             vertical-align: top;
             text-align: center;
             color: white;
@@ -249,7 +338,7 @@ $c97:#979797;
         position: relative;
         width: 450px;
         margin: 0 auto;
-        margin-bottom: 90px;
+        margin-bottom: 60px;
         h2 {
             padding-top: 10px;
             font-weight: bold;
@@ -262,7 +351,7 @@ $c97:#979797;
         }
         p {
             margin-top: 10px;
-            font-size: $font-size-sm;
+            font-size: $font-size-base;
             color: $gray-dark;
             line-height: 20px;
         }
@@ -374,12 +463,13 @@ $c97:#979797;
     text-align: center;
     ul {
         width: 280px;
-        background: white;
+        background: $f8;
         margin: 0 auto;
-        margin-top: -19px;
+        margin-top: -14px;
     }
     li {
         display: inline-block;
+        vertical-align: -webkit-baseline-middle;
     }
     li:nth-child(1),
     li:nth-child(3) {
@@ -414,7 +504,6 @@ $c97:#979797;
     background-size: 100%;
     text-align: center;
     position: relative;
-
     img {
         width: 1280px;
     }
@@ -431,11 +520,83 @@ $c97:#979797;
     color: $gray-dark;
     div {
         font-size: $font-size-base;
-        margin-bottom:5px;
+        margin-bottom: 5px;
     }
     div:nth-child(3) {
         margin-top: 15px;
         font-size: $font-size-sm;
     }
     margin-bottom: 100px;
+}
+
+@-webkit-keyframes showHead {
+     0% {
+        top: 300px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        top: -100px;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes showHead {
+    0% {
+        top: 300px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        top: -100px;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@-o-keyframes showHead {
+ 0% {
+        top: 300px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        top: -100px;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes showHead {
+    0% {
+        top: 300px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        top: -100px;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
 }

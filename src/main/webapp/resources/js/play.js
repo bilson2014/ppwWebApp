@@ -413,9 +413,7 @@ function loadRecommendProduct(){
 			begin : 0,
 			limit : 9
 		}));
-		
-	
-		}
+	}
 
 
 function loadRecommendProductIfNo(){

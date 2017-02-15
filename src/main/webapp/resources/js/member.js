@@ -26,7 +26,35 @@ $().ready(function() {
 		}
 	});
 	controlVideo();
+	
+	setMemberActive();
+	
+	window.onresize = function(){
+		 setMemberActive();
+	};
+	
+  
+	
+//	$('.nav-member').waypoint(function(direction) {
+//        if (direction == "up") { // 了解 拍片网之前
+//               console.info('up'); 
+//        }
+//        
+//        if (direction == "bottom") { // 了解 拍片网之前
+//            console.info('bot'); 
+//     } 
+//    });
+	
+	
+	
 });
+
+function setMemberActive(){
+	var screenHeight = document.documentElement.clientHeight;
+	$('.ul-member').waypoint(function() {  
+		    $(this).addClass('cActive');  
+		}, { offset: screenHeight });
+}
 
 function controlVideo(){
 	

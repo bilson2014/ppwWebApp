@@ -404,6 +404,8 @@
 	<script src="${modelJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${suggestJs }"></script>
+    <script type="text/javascript" src="resources/lib/jquery/waypoints.min.js"></script>
 	<script src="${memberJs }"></script>
+
 </body>
 </html>
