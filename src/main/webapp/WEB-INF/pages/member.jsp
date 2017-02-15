@@ -134,7 +134,7 @@
         </div>
     </div>
 
- 	<div class="page">
+ 	<div class="outSideDiv">
 
 		       <div class="titleTag">
             <div class="titleWord">
@@ -157,20 +157,35 @@
         </div>
 	
 		<div class="nav-shadow"></div>
+		
+		<div class="topContent">
+		    <div>加入我们</div>
+		    <div>Why join us?</div>
+		    <div>拍片网位于北京通惠河畔的国贸商业核心区,位置优越,交通便利,我们有家一般舒适的工作环境,自由的工作氛围,精英的互联网团队,扁平的管理结构,温暖的员工关怀,丰厚的福利待遇.<br>
+		     从拍片网创立至今,有越来越多的优秀人才加入我们,我们为了同一个梦想而聚到一起,分享成长和成功带来的快乐.如果你也渴望实现梦想与价值,我们期待与你相遇!
+		    </div>
+		</div>
+		
+		<div class="imageWall">
+		 <img src="/resources/images/introduce/member/topWall.jpg">
+		 <img src="/resources/images/introduce/member/midWall.jpg">
+		</div>
 	
-		<div class="video-div" id="activityPart">
-			<video src="${file_locate_storage_path }group1/M00/00/27/Cgpw7FgiySOACsjIARHf7MfQdak085.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/about-us/about-us-3.jpg" ></video>
-	    </div>
+
 	        
 	    <div class="introduce" >
-			<h2 >团队简介</h2>
-			<p>北京攀峰文化传播有限公司成立了拍片网。我们拍片网是一个年轻的团队。年轻的人，年轻的事，也成长在一个年轻而富有热情的领域。我们期待简单、高效的沟通方式，喜欢平等、愉快的工
-		             	作环境，为了这些我们可以「不择手段」。这里是个不错的地方，我们都这样认为！</p>
+			  <ul>
+			      <li></li>
+			      <li>我们的团队</li>
+			      <li></li>
+			  </ul>
+			  <div>Our Team</div>
+			  <div>这里有最尖端前沿的技术,这里有最不寻常的经历,我们欢迎每一个新思维的加入,
+			   <br>在这里没有不可能,我们创造一切可能.
+			  </div>
 		</div>
 		
 		<div class="contain member">
-			<h2>团队介绍</h2>
-			
 			<c:if test="${!empty list}">
 				<c:forEach items="${list }" var="staff" varStatus="status">
 					<c:if test="${status.count % 5 == 1 }">
@@ -189,19 +204,72 @@
 				</c:forEach>
 			</c:if>
 		</div>
+		
+		
+			<div class="introduce" >
+				  <ul>
+				      <li></li>
+				      <li>公司福利</li>
+				      <li></li>
+				  </ul>
+				  <div>Our Benefits</div>
+			</div>
+		
+		<div class="weal">
+		   <ul>
+			       <li>
+			          <img src="/resources/images/introduce/member/member1.png">
+			          <div>岗位晋升</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member2.png">
+			          <div>扁平管理</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member3.png">
+			          <div>丰厚期权</div>
+			       </li>
+			          <li>
+			          <img src="/resources/images/introduce/member/member4.png">
+			          <div>五险一金</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member5.png">
+			          <div>节日礼物</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member6.png">
+			          <div>生日蛋糕</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member7.png">
+			          <div>活动郊游</div>
+			       </li>
+			       <li>
+			          <img src="/resources/images/introduce/member/member8.png">
+			          <div>帅哥美女</div>
+			       </li>
+		   </ul>
+		</div>
+		
+		<div class="showVideo">
+		<img src="/resources/images/introduce/member/come.png">
+			<div class="video-div" id="activityPart">
+			     <img class="playVideo" id="playVideo" src="/resources/images/introduce/member/playVideo.png">
+				<video id="video" src="${file_locate_storage_path }group1/M00/00/20/CgqNZViiqe2ANmqIAZ-Ai8Au-R8971.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/poster.jpg" ></video>
+		    </div>
+		</div>    
+		
 
 		<div class="join-us" id="join-us">
-	     	<h2>加入我们</h2>
-	     	<h3>我们是一个年轻的团队。年轻的人，年轻的事，也成长在一个年轻而富有热情的领域。我们期待简单、高效的沟通方式，喜欢平
-	           	等、愉快的工作环境，为了这些我们可以「不择手段」。这里是个不错的地方，我们都这样认为：</h3>
-	           
-	        <p><strong>请将简历投递至</strong><a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
-	        <p style="color: #000;">公司地址：北京朝阳区建外SOHO东区6号楼2505</p>
+	     	<h2>这一次你将离梦想真的很近</h2>
+	        <p>发送简历:姓名+[申请职位]至<a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
 	    </div>
-
+        
+       
+        
 	     <c:if test="${!empty jobList}">
 	     	<div class="hold-work">
-	     		<h2>职位列表</h2>
 	     		<div class="work-list">
 					<ul id="job-list">
 					  <c:forEach items="${jobList }" var="job" varStatus="status">
@@ -214,11 +282,11 @@
 					  </c:forEach>
 					</ul>
 				</div>
-				
+				 <div class="line"></div> 
 				<div class="work-message">
 	              <h3 id="title">工作职责：</h3>
 	              <p  id="job-demand" class="job-demand">
-	              	1、负责拍片网平台影视及广告类项目的执行管理；<br> 2、时时管理把控项目制作进展，保证项目顺利交付。<br> 3、负责网站平台客服在线解答等工作。<br> 4、有关网站发展的相关其他工作。 
+	              	 1、具备影视业或广告行业5年以上客户服务经验，制片管理经验，能够独立运行项目， 包括项目的研发及执行；<br> 2、拥有成熟的影视行业导演、编剧、策划、摄影等执行资源。 <br> 4、有关网站发展的相关其他工作。 
 	              <br></p>
 	              
 	              <h3 id="title">工作描述：</h3>
@@ -228,6 +296,12 @@
 	             </div>
 	     	</div>
 	     </c:if> 	     
+	     
+	     <div class="bottomContent">
+	         <div>如果你想坐垫足够酷的事,在一个每个人都有话语权的平台尽情施展,体会前所未有的成长速度!</div>
+	         <div>那么加入一家注定伟大的公司,少年们还等什么!</div>
+	         <div>Add: 北京朝阳区建外SOHO东区6号楼2505</div>
+	     </div>
 	</div>
 
    	<!-- foot -->

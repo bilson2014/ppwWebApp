@@ -46,6 +46,8 @@
      <!--END-->
      
      <!-- test -->
+      <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
+      <!-- testEnd -->
       <mvc:view-controller path="/c" view-name="/costcalculate" />
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
