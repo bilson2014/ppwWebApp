@@ -532,7 +532,7 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	@RequestMapping("/projects/user/search/info")
+	/*@RequestMapping("/projects/user/search/info")
 	public List<User> getUserByName(@RequestBody final User user, final HttpServletRequest request) {
 		// fill userinfo
 		final String url = GlobalConstant.URL_PREFIX + "portal/user/search/info";
@@ -541,7 +541,7 @@ public class VersionManagerController extends BaseController {
 			return JsonUtil.toList(str);
 		}
 		return new ArrayList<>();
-	}
+	}*/
 
 	@RequestMapping("/projects/staff/static/list")
 	public List<Staff> getStaffList(final HttpServletRequest request) {
@@ -556,7 +556,7 @@ public class VersionManagerController extends BaseController {
 	/**
 	 * 添加简单客户
 	 */
-	@RequestMapping("/projects/user/save/simple")
+	/*@RequestMapping("/projects/user/save/simple")
 	public long addSimpleUser(@RequestBody final User user, final HttpServletRequest request) {
 		final String url = GlobalConstant.URL_PREFIX + "portal/user/save/simple";
 		String str = HttpUtil.httpPost(url, user, request);
@@ -564,7 +564,7 @@ public class VersionManagerController extends BaseController {
 			return JsonUtil.toBean(str, Long.class);
 		} else
 			return -1;
-	}
+	}*/
 
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {

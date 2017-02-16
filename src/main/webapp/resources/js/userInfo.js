@@ -56,6 +56,9 @@ function initUl(){
 			// 刷新父类页面
 			parent.find('#proLogo').attr('src',url);
 			$('#uploadBt').text('更换头像');
+		}else if(src.indexOf('http')> -1){
+			$('#user-img').attr('src',src);
+			$('#user_img_url').val(src);
 		}else{
 			$('#uploadBt').text('上传头像');
 		}
