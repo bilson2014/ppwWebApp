@@ -68,15 +68,15 @@ $price-wrap-max: 460px;
 .video-play-wrap > .player-wrap {
 	float: left;
 	width: $width-min - $price-wrap-min;
-	height: ($width-min - $price-wrap-min) * (9 / 16);
+	height: ($width-min - $price-wrap-min) * (9 / 16) !important;
 
 		@media screen and (min-width:1276px) and (max-width:1500px) {
 			width: $width-middle - $price-wrap;
-			height: ($width-middle - $price-wrap) * (9 / 16);
+			height: ($width-middle - $price-wrap) * (9 / 16) !important;
 		}
 		@media screen and (min-width:1500px) {
 			width: $width-lg - $price-wrap-max;
-			height: ($width-middle - $price-wrap) * (9 / 16);
+			height: ($width-middle - $price-wrap) * (9 / 16) !important;
 		}
 
 	video {
