@@ -20,8 +20,12 @@ $().ready(function(){
 	});
 	var p = $('#proLogo').attr('data-value');
 	if(p!=null && p!=''){
-		if(p.indexOf('group') > -1)
-		$('#proLogo').attr('src',getDfsHostName() + p);
+		if(p.indexOf("/resources/")== -1){
+			$('#proLogo').attr('src',getDfsHostName() + p);
+		}
+		if(p.indexOf("http")!= -1){
+			$('#proLogo').attr('src',p);
+		}
 	}
 	
 	$('#falseCheck').on('click',function(){
