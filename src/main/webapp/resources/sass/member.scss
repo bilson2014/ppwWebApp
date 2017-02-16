@@ -63,6 +63,11 @@ body {
     height: 560px;
     margin: 0 auto;
     margin-left: -480px;
+    @media screen and (max-width: 1276px) {
+        width: 720px;
+        height: 405px;
+        margin-left: -360px;
+    }
     img {
         width: 100%;
     }
@@ -74,6 +79,9 @@ body {
         margin-left: -40px;
         cursor: pointer;
         z-index: 100;
+        @media screen and (max-width: 1276px) {
+            bottom: 170px;
+        }
     }
     video {
         width: 100%;
@@ -508,6 +516,7 @@ body {
         width: 1280px;
     }
     @media screen and (max-width:1276px) {
+        height: 850px;
         img {
             width: 960px;
             margin-top: 75px;
@@ -530,7 +539,7 @@ body {
 }
 
 @-webkit-keyframes showHead {
-     0% {
+    0% {
         top: 300px;
         opacity: 0;
     }
@@ -566,7 +575,7 @@ body {
 }
 
 @-o-keyframes showHead {
- 0% {
+    0% {
         top: 300px;
         opacity: 0;
     }
