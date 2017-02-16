@@ -113,7 +113,7 @@
 		<!-- 视频管家登陆拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/mgr/**" />
-			<!-- <mvc:exclude-mapping path="/mgr/login" /> -->
+			<mvc:exclude-mapping path="/mgr/login" />
 			<mvc:exclude-mapping path="/mgr/doLogin" />
 			<mvc:exclude-mapping path="/mgr/thirdLogin" />
 			<mvc:exclude-mapping path="/mgr/bind" />

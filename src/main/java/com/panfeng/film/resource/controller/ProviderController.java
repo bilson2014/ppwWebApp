@@ -435,7 +435,7 @@ public class ProviderController extends BaseController {
 	 *            供应商信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	@RequestMapping("/info/recover")
+	/*@RequestMapping("/info/recover")
 	public Info recoverPassword(final HttpServletRequest request, @RequestBody final Team original) {
 
 		final String code = (String) request.getSession().getAttribute("code");
@@ -483,7 +483,7 @@ public class ProviderController extends BaseController {
 			return info;
 		}
 
-	}
+	}*/
 
 	/**
 	 * 更新供应商基本信息
@@ -679,7 +679,7 @@ public class ProviderController extends BaseController {
 	 * @param team
 	 *            包含 供应商唯一编号
 	 */
-	@RequestMapping("/change/status")
+	/*@RequestMapping("/change/status")
 	public boolean updateStatus(final HttpServletRequest request, @RequestBody final Team team) {
 		if (team != null) {
 			final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
@@ -688,7 +688,7 @@ public class ProviderController extends BaseController {
 			return flag;
 		}
 		return false;
-	}
+	}*/
 
 	/**
 	 * 带有短信验证的供应商用户名密码注册
