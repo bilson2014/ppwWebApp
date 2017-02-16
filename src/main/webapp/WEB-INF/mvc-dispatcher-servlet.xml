@@ -44,7 +44,7 @@
     <!-- <mvc:view-controller path="/home" view-name="/homePage" /> -->
     <mvc:view-controller path="/news" view-name="/news" />
      <!--END-->
-     
+     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
      <!-- test -->
       <mvc:view-controller path="/c" view-name="/costcalculate" />
     
