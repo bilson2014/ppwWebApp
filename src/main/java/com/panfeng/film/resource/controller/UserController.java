@@ -14,7 +14,6 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +53,8 @@ public class UserController extends BaseController {
 
 	private static String URL_PREFIX = null;
 
+	private static String FILE_PROFIX = null; // 文件路径前缀
+
 	private static String IMAGE_MAX_SIZE = null;
 
 	private static String ALLOW_IMAGE_TYPE = null;
@@ -70,6 +71,7 @@ public class UserController extends BaseController {
 				Properties propertis = new Properties();
 				propertis.load(is);
 				URL_PREFIX = propertis.getProperty("urlPrefix");
+				FILE_PROFIX = propertis.getProperty("file.prefix");
 				IMAGE_MAX_SIZE = propertis.getProperty("imageMaxSize");
 				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
 			} catch (IOException e) {
@@ -336,12 +338,16 @@ public class UserController extends BaseController {
 		if (user != null && !"".equals(user.getImgUrl())) {
 			final String path = user.getImgUrl();
 			// 删除文件
-			if (StringUtils.isNotEmpty(path) && path.contains("group")) {
-				DFSservice.delete(path);
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),
-						sessionInfo);
-				return true;
+			File file = new File(FILE_PROFIX + path);
+			if (file.exists()) {
+				if (!file.isDirectory()) {
+					file.delete();
+
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),
+							sessionInfo);
+					return true;
+				}
 			}
 		}
 		return false;

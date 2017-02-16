@@ -435,7 +435,7 @@ public class ProviderController extends BaseController {
 	 *            供应商信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	/*@RequestMapping("/info/recover")
+	@RequestMapping("/info/recover")
 	public Info recoverPassword(final HttpServletRequest request, @RequestBody final Team original) {
 
 		final String code = (String) request.getSession().getAttribute("code");
@@ -483,7 +483,7 @@ public class ProviderController extends BaseController {
 			return info;
 		}
 
-	}*/
+	}
 
 	/**
 	 * 更新供应商基本信息
@@ -673,13 +673,80 @@ public class ProviderController extends BaseController {
 
 		return null;
 	}
+
+	/**
+	 * 上传 供应商 logo 地址
+	 * 
+	 * @param file
+	 *            上传的图片文件
+	 * @param team
+	 *            团队信息
+	 * @return 成功返回 true, 失败返回 false
+	 */
+	@RequestMapping("/update/teamPhotoPath")
+	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
+			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		// 如果文件为空，则不更新图片路径;反之亦然
+		if (!file.isEmpty()) {
+
+			final long fileSize = file.getSize(); // 上传文件大小
+			final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
+			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
+
+			if (fileSize > maxSize * 1024) {
+				// 文件大小超出规定范围
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
+				return "false@error=1";
+			} else {
+				if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					// 修改为DFs上传 begin
+					// 2016-10-20 14:25:02
+					final String fileId = DFSservice.upload(file);
+					// 修改为DFs上传 end
+
+					// 删除 原文件
+					final String originalTeamUrl = URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
+					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
+					if (originalJson != null && !"".equals(originalJson)) {
+						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
+						final String originalPath = originalTeam.getTeamPhotoUrl();
+						if (null != originalPath && !originalPath.equals("")) {
+							DFSservice.delete(originalPath);// ==0 success
+						}
+					}
+					team.setTeamPhotoUrl(fileId);
+					// save photo path
+					final String updateTeamUrl = URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
+					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
+					final boolean flag = JsonUtil.toBean(json, Boolean.class);
+					if (flag) {
+						SessionInfo sessionInfo = getCurrentInfo(request);
+						Log.error("upload provider photo success,photoUrl:" + fileId, sessionInfo);
+						return fileId;
+					}
+				} else {
+					// 文件格式不正确
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
+					return "false@error=2";
+				}
+			}
+
+		}
+
+		return null;
+	}
+
 	/**
 	 * 更新 供应商审核状态为 审核中
 	 * 
 	 * @param team
 	 *            包含 供应商唯一编号
 	 */
-	/*@RequestMapping("/change/status")
+	@RequestMapping("/change/status")
 	public boolean updateStatus(final HttpServletRequest request, @RequestBody final Team team) {
 		if (team != null) {
 			final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
@@ -688,7 +755,7 @@ public class ProviderController extends BaseController {
 			return flag;
 		}
 		return false;
-	}*/
+	}
 
 	/**
 	 * 带有短信验证的供应商用户名密码注册
@@ -920,12 +987,11 @@ public class ProviderController extends BaseController {
 				if (tag != null && !"".equals(tag)) {
 					product.setTags(URLEncoder.encode(tag, "UTF-8"));
 				}
-				//product.setFlag(1);// 设置审核通过
+				product.setFlag(1);// 设置审核通过
 			} else {
 				product.setTags("");
-				//product.setFlag(0);// 设置审核中状态
+				product.setFlag(0);// 设置审核中状态
 			}
-			product.setFlag(0);// 设置审核中状态
 			product.setProductName(URLEncoder.encode(product.getProductName(), "UTF-8"));
 			final String updatePath = URL_PREFIX + "portal/product/static/data/update/info";
 			final String result = HttpUtil.httpPost(updatePath, product, request);
@@ -1599,7 +1665,7 @@ public class ProviderController extends BaseController {
 	/**
 	 * 设置作品可见性
 	 */
-	@RequestMapping(value="/product/visibility", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping("/product/visibility")
 	public BaseMsg setProductVisibility(HttpServletRequest request, @RequestBody final Product product) {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);

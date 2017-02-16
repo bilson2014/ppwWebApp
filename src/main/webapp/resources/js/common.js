@@ -984,8 +984,5 @@ function getImgUrl(){
 		if(p.indexOf("/resources/") == -1){
 			$('#getImgUrl').attr('src',getDfsHostName() + p);
 		}
-		if(p.indexOf("http") != -1){
-			$('#getImgUrl').attr('src', p);
-		}
 	}
 }

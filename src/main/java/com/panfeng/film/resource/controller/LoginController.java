@@ -160,6 +160,9 @@ public class LoginController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR,"服务器通信失败请稍后重试！",null);
 	}
 
+	/**
+	 * 验证手机号码是否注册
+	 */
 	@RequestMapping("/validation/userName")
 	public boolean validationUserName(@RequestBody Map<String, String> loginName, final ModelMap model,
 			final HttpServletRequest request) {
@@ -181,7 +184,7 @@ public class LoginController extends BaseController {
 	/**
 	 * 验证手机号码是否注册
 	 */
-	/*@RequestMapping("/checkPwd")
+	@RequestMapping("/checkPwd")
 	public BaseMsg checkPwd(@RequestBody User user, final HttpServletRequest request) {
 		try {
 			// AES 密码解密
@@ -201,7 +204,7 @@ public class LoginController extends BaseController {
 			return new BaseMsg(BaseMsg.ERROR, "请求失败，密码解码失败！", false);
 		}
 	}
-*/
+
 	/**
 	 * 注册
 	 */
@@ -229,11 +232,11 @@ public class LoginController extends BaseController {
 						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 						// MD5加密
 						user.setPassword(DataUtil.md5(password));
-						//session.removeAttribute("code"); // 移除验证码
 						url = URL_PREFIX + "portal/user/register";
 						String str = HttpUtil.httpPost(url, user, request);
 						if (str != null && !"".equals(str)) {
 							boolean ret = JsonUtil.toBean(str, Boolean.class);
+							session.removeAttribute("code"); // 移除验证码
 							info.setKey(ret);
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName(),sessionInfo);
@@ -241,6 +244,7 @@ public class LoginController extends BaseController {
 							// 注册失败
 							info.setKey(false);
 							info.setValue("服务器繁忙，请稍候再试...");
+							session.removeAttribute("code"); // 移除验证码
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName()
 							+ " failure ,Becase HttpClient Connect error... ",sessionInfo);
@@ -447,7 +451,7 @@ public class LoginController extends BaseController {
 	 * 
 	 * @throws Exception
 	 */
-	/*@RequestMapping("/doRecover")
+	@RequestMapping("/doRecover")
 	public Info recover(final HttpServletRequest request, @RequestBody final User user) throws Exception {
 
 		final HttpSession session = request.getSession();
@@ -507,7 +511,7 @@ public class LoginController extends BaseController {
 			Log.error("Recover user (userId:" + user.getId() + ") password error,becase code is empty ...",sessionInfo);
 			return info;
 		}
-	}*/
+	}
 
 	/**
 	 * 退出登录
