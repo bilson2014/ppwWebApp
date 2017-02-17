@@ -532,7 +532,7 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	/*@RequestMapping("/projects/user/search/info")
+	@RequestMapping("/projects/user/search/info")
 	public List<User> getUserByName(@RequestBody final User user, final HttpServletRequest request) {
 		// fill userinfo
 		final String url = GlobalConstant.URL_PREFIX + "portal/user/search/info";
@@ -541,7 +541,7 @@ public class VersionManagerController extends BaseController {
 			return JsonUtil.toList(str);
 		}
 		return new ArrayList<>();
-	}*/
+	}
 
 	@RequestMapping("/projects/staff/static/list")
 	public List<Staff> getStaffList(final HttpServletRequest request) {

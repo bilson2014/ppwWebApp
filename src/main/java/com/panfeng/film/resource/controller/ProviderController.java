@@ -679,7 +679,7 @@ public class ProviderController extends BaseController {
 	 * @param team
 	 *            包含 供应商唯一编号
 	 */
-	/*@RequestMapping("/change/status")
+	@RequestMapping("/change/status")
 	public boolean updateStatus(final HttpServletRequest request, @RequestBody final Team team) {
 		if (team != null) {
 			final String url = URL_PREFIX + "portal/team/static/data/updateStatus";
@@ -688,7 +688,7 @@ public class ProviderController extends BaseController {
 			return flag;
 		}
 		return false;
-	}*/
+	}
 
 	/**
 	 * 带有短信验证的供应商用户名密码注册
