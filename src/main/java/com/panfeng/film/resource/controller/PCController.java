@@ -670,7 +670,7 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/news/pagelist")
-	public BaseMsg newsList(final HttpServletRequest request, final PageFilter pf) {
+	public BaseMsg newsList(final HttpServletRequest request, @RequestBody PageFilter pf) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagelist";
 		String str = HttpUtil.httpPost(url, pf, request);
