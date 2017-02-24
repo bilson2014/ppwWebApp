@@ -36,7 +36,7 @@ import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
-import com.panfeng.film.resource.view.PageFilter;
+import com.panfeng.film.resource.view.NewsView;
 import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.DataUtil;
@@ -670,10 +670,16 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/news/pagelist")
-	public BaseMsg newsList(final HttpServletRequest request, @RequestBody PageFilter pf) {
+	public BaseMsg newsList(final HttpServletRequest request, @RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagelist";
-		String str = HttpUtil.httpPost(url, pf, request);
+
+		final long page = newsView.getPage();
+		final long rows = newsView.getRows();
+		newsView.setBegin((page - 1) * rows);
+		newsView.setLimit(rows);
+
+		String str = HttpUtil.httpPost(url, newsView, request);
 		if (str != null && !"".equals(str)) {
 			List<News> list = JsonUtil.toList(str);
 			baseMsg.setCode(1);
