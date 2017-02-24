@@ -36,6 +36,7 @@ import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
+import com.panfeng.film.resource.view.PageFilter;
 import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.DataUtil;
@@ -252,22 +253,22 @@ public class PCController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	/*@RequestMapping("/product/view/{teamId}/{productId}")
-	public ModelAndView redirect(@PathVariable("teamId") final Integer teamId,
-			@PathVariable("productId") final Integer productId, final ModelMap model,
-			final HttpServletRequest request) {
-		model.addAttribute("teamId", teamId);
-		model.addAttribute("productId", productId);
-		Product product = new Product();
-		final String url = URL_PREFIX + "portal/product/static/information/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		product = JsonUtil.toBean(json, Product.class);
-		model.addAttribute("product", product);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
-		return new ModelAndView("team", model);
-	}*/
+	/*
+	 * @RequestMapping("/product/view/{teamId}/{productId}") public ModelAndView
+	 * redirect(@PathVariable("teamId") final Integer teamId,
+	 * 
+	 * @PathVariable("productId") final Integer productId, final ModelMap model,
+	 * final HttpServletRequest request) { model.addAttribute("teamId", teamId);
+	 * model.addAttribute("productId", productId); Product product = new
+	 * Product(); final String url = URL_PREFIX +
+	 * "portal/product/static/information/" + productId; String json =
+	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
+	 * Product.class); model.addAttribute("product", product);
+	 * 
+	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
+	 * "Redirect team page,teamId:" + teamId + " ,productId:" + productId,
+	 * sessionInfo); return new ModelAndView("team", model); }
+	 */
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
@@ -309,6 +310,7 @@ public class PCController extends BaseController {
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("play", model);
 	}
+
 	/**
 	 * 根据 团队编号 加载 产品列表
 	 * 
@@ -362,7 +364,7 @@ public class PCController extends BaseController {
 		final String url = URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(),null);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(), null);
 		return list;
 	}
 
@@ -372,19 +374,20 @@ public class PCController extends BaseController {
 	 * @param productId
 	 *            产品编号
 	 */
-	/*@RequestMapping("/product/information/{productId}")
-	public Product productInformation(@PathVariable("productId") final Integer productId,
-			final HttpServletRequest request) {
-
-		Product product = new Product();
-		final String url = URL_PREFIX + "portal/product/static/information/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		product = JsonUtil.toBean(json, Product.class);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load product information,productId:" + productId, sessionInfo);
-		return product;
-	}*/
+	/*
+	 * @RequestMapping("/product/information/{productId}") public Product
+	 * productInformation(@PathVariable("productId") final Integer productId,
+	 * final HttpServletRequest request) {
+	 * 
+	 * Product product = new Product(); final String url = URL_PREFIX +
+	 * "portal/product/static/information/" + productId; String json =
+	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
+	 * Product.class);
+	 * 
+	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
+	 * "Load product information,productId:" + productId, sessionInfo); return
+	 * product; }
+	 */
 
 	/**
 	 * 获取产品的服务信息
@@ -531,9 +534,9 @@ public class PCController extends BaseController {
 			model.addAttribute("provider2", provider2);
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(team != null) {
-			Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
-			+ "flag is " + flag, sessionInfo);
+		if (team != null) {
+			Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : "
+					+ team.getTeamName() + "flag is " + flag, sessionInfo);
 		}
 		return new ModelAndView("provider/portal", model);
 	}
@@ -666,6 +669,36 @@ public class PCController extends BaseController {
 		return true;
 	}
 
+	@RequestMapping("/news/pagelist")
+	public BaseMsg newsList(final HttpServletRequest request, @RequestBody PageFilter pf) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = URL_PREFIX + "portal/news/pagelist";
+		String str = HttpUtil.httpPost(url, pf, request);
+		if (str != null && !"".equals(str)) {
+			List<News> list = JsonUtil.toList(str);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+		} else {
+			baseMsg.setErrorMsg("list is null");
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping("/news/pagesize")
+	public BaseMsg newsMaxSize(final HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = URL_PREFIX + "portal/news/pagesize";
+		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			Long parseLong = Long.parseLong(str);
+			baseMsg.setCode(1);
+			baseMsg.setResult(parseLong);
+		} else {
+			baseMsg.setErrorMsg("list size is null");
+		}
+		return baseMsg;
+	}
+
 	/**
 	 * 新闻详情页推荐
 	 * 
@@ -700,14 +733,14 @@ public class PCController extends BaseController {
 				News news = JsonUtil.toBean(str, News.class);
 				String content = news.getContent();
 				byte[] b = content.getBytes("UTF-8");
-				content = new String(Base64Utils.decode(b),"UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
 				news.setContent(content);
 				model.addAttribute("news", news);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-		}else{
-			//请求不存在的新闻
+		} else {
+			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
