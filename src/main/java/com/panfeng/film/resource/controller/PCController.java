@@ -691,10 +691,10 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/news/pagesize")
-	public BaseMsg newsMaxSize(final HttpServletRequest request) {
+	public BaseMsg newsMaxSize(final HttpServletRequest request,@RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagesize";
-		String str = HttpUtil.httpGet(url, request);
+		String str = HttpUtil.httpPost(url, newsView, request);
 		if (str != null && !"".equals(str)) {
 			Long parseLong = Long.parseLong(str);
 			baseMsg.setCode(1);
