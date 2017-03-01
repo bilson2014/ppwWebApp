@@ -3,19 +3,42 @@
     @import "video";
     @import "flexslider";
     @import "compass/typography/text/ellipsis";
-
-
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
-
-
-    .page{
+    .page {
         background: transparent !important;
     }
-
+    
+    //     ::selection {
+    //     background: #000;
+    //     color: $red-base;
+    // }
+    // ::-moz-selection {
+    //     background: #000;
+    //     color: $red-base;
+    // }
+    // ::-webkit-selection {
+    //     background: #000;
+    //     color: $red-base;
+    // }
+    ::selection {
+        background: lighten(#333,10%);
+        color: $red-base;
+    }
+    
+    ::-moz-selection {
+        background: lighten(#333,10%);
+        color: $red-base;
+    }
+    
+    ::-webkit-selection {
+        background: lighten(#333,10%);
+        color: $red-base;
+    }
+    
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 60px;
@@ -33,10 +56,10 @@
                 width: $width-lg3 - $rightWidth;
             }
             img,
-            video { 
+            video {
                 width: 100%;
             }
-            p{
+            p {
                 margin: 0;
                 padding: 0;
             }
@@ -81,13 +104,12 @@
             .videoModel {
                 margin-bottom: 30px;
                 cursor: pointer;
-
-                 &:hover{
-                    label:first-child,label:nth-child(2){
-                        color:$red-base !important;
+                &:hover {
+                    label:first-child,
+                    label:nth-child(2) {
+                        color: $red-base !important;
                     }
-                 }
-
+                }
                 label {
                     display: block;
                     font-weight: 500;

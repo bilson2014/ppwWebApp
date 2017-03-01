@@ -104,6 +104,7 @@
         color: white;
         font-size: 26px;
         margin-bottom: 40px;
+         @include ellipsis;
     }
     
     div:nth-child(2) {
