@@ -137,6 +137,8 @@
             </div>
         </div>
     </div>
+    
+
     <div class="page">
     	 <div class="titleTag">
             <div class="titleWord">
@@ -160,6 +162,12 @@
                 </a>
             </div>
         </div>
+                 <c:if test="${empty list}">
+						<div class="prompt-background">
+							<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
+						</div>
+						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
+	</c:if>
           <div class="newsList">
                   <ul id="pageInfo">
                   	<c:if test="${!empty list}">
@@ -192,12 +200,7 @@
 	                    </c:forEach>
                     </c:if>
                     
-                    <c:if test="${empty list}">
-						<div class="prompt-background">
-							<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
-						</div>
-						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
-					</c:if>
+                   
                   </ul>
                   
                   <div class="page-section" id="pagination">
@@ -209,6 +212,8 @@
 		          </div>
           </div>
     </div>
+    
+
     
     <!-- foot -->
          					<div class="foot3">
