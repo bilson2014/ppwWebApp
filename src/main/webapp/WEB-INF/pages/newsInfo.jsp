@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
-<spring:url value="/resources/css/news/newsInfo.css" var="newsCss"/>
+<spring:url value="/resources/css/news/newsInfo.css" var="newsInfoCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
@@ -31,7 +31,7 @@
     <meta name="description" content="${news.discription}">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>新闻资讯</title>
-    <link rel="stylesheet" href="${newsCss }">
+    <link rel="stylesheet" href="${newsInfoCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
     <script type="text/javascript">
 	var _vds = _vds || [];
@@ -140,22 +140,22 @@
     <div class="page">
     	 <div class="titleTag">
             <div class="titleWord">
-                <a href="<spring:url value='/search/news' />" alt="全部">
+                <a href="<spring:url value='/news/list' />" alt="全部">
                 	<div class="category checkActive" data-value="">全部</div>
                 </a>
-                <a href="<spring:url value='/search/news?q=最热资讯' />" alt="最热资讯">
+                <a href="<spring:url value='/news/list?q=最热资讯' />" alt="最热资讯">
                 	<div class="category" data-value="最热资讯">最热资讯</div>
                 </a>
-                <a href="<spring:url value='/search/news?q=案例分享' />" alt="案例分享">
+                <a href="<spring:url value='/news/list?q=案例分享' />" alt="案例分享">
                 	<div class="category" data-value="案例分享">案例分享</div>
                 </a>
-                <a href="<spring:url value='/search/news?q=企业活动' />" alt="企业活动">
+                <a href="<spring:url value='/news/list?q=企业活动' />" alt="企业活动">
                 	<div class="category" data-value="企业活动">企业活动</div>
                 </a>
-                <a href="<spring:url value='/search/news?q=行业资讯' />" alt="行业资讯">
+                <a href="<spring:url value='/news/list?q=行业资讯' />" alt="行业资讯">
                 	<div class="category" data-value="行业资讯">行业资讯</div>
                 </a>
-                <a href="<spring:url value='/search/news?q=人物专访' />" alt="人物专访">
+                <a href="<spring:url value='/news/list?q=人物专访' />" alt="人物专访">
                 	<div class="category" data-value="人物专访">人物专访</div>
                 </a>
             </div>
@@ -191,6 +191,13 @@
 	                    	</li>
 	                    </c:forEach>
                     </c:if>
+                    
+                    <c:if test="${empty list}">
+						<div class="prompt-background">
+							<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
+						</div>
+						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
+					</c:if>
                   </ul>
                   
                   <div class="page-section" id="pagination">
