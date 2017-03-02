@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.resource.model.NewsSolr;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
@@ -133,6 +134,71 @@ public class SolrController extends BaseController {
 			e.printStackTrace();
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("SolrController method:searchPagination() encode failue,q="
+					+ view.getCondition(),sessionInfo);
+		}
+		return null;
+	}
+	
+	@RequestMapping("/search/news")
+	public ModelAndView searchNewView(String q, final ModelMap model,
+			final HttpServletRequest request)
+			throws Exception {
+
+		model.addAttribute("q", q);
+		final SolrView view = new SolrView();
+		
+		if(StringUtils.isNotBlank(q))
+			view.setCondition(URLEncoder.encode(q, "UTF-8"));
+			
+		view.setLimit(20l);
+		try {
+			final String url = URL_PREFIX + "portal/solr/query/news";
+			final String json = HttpUtil.httpPost(url,view,request);
+			long total = 0l;
+			if (json != null && !"".equals(json)) {
+				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
+				if (list != null && !list.isEmpty()) {
+					final NewsSolr s = list.get(0);
+					if(s != null){
+						total = s.getTotal(); // 设置总数
+					}
+				}
+				model.addAttribute("list", list);
+				model.addAttribute("total", total);
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController method:searchNewView() encode failue,q="
+					+ q,sessionInfo);
+		}
+		return new ModelAndView("newsInfo", model);
+	}
+	
+	
+	// 搜索分页
+	@RequestMapping("/search/news/pagination")
+	public List<NewsSolr> searchNewsPagination(@RequestBody final SolrView view,
+			final HttpServletRequest request)
+			throws Exception {
+
+		final String condition = view.getCondition();
+		
+		if(StringUtils.isNotBlank(condition)) 
+			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
+
+		try {
+			String url = URL_PREFIX + "portal/solr/query/news";
+			final String json = HttpUtil.httpPost(url,view,request);
+			
+			if (json != null && !"".equals(json)) {
+				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
+				return list;
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController searchNewsPagination() encode failue,q="
 					+ view.getCondition(),sessionInfo);
 		}
 		return null;
