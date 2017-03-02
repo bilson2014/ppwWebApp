@@ -219,7 +219,7 @@
 	                        </div>
 	                        <div class="modalLine">
 	                              <ul>
-	                                 <li><div></div>11月获得国泰君安力鼎A轮投资</li>
+	                                 <li><div></div>11月获得国泰君安力鼎投资A轮投资</li>
 	                                 <li><div></div>10月举办中国首届视频营销大会</li>
 	                                 <li><div></div>3月拍片网2.0迭代上线，签约客户超过100家</li>
 	                              </ul>

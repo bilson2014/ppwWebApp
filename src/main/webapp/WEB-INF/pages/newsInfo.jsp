@@ -51,6 +51,7 @@
 
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" value="${total }" id="total"/>
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -135,12 +136,12 @@
     <div class="page">
     	 <div class="titleTag">
             <div class="titleWord">
-                <div class="category checkActive" data-value="-1">全部资讯</div>
-                <div class="category" data-value="0">最热资讯</div>
-                <div class="category" data-value="1">案例分享</div>
-                <div class="category" data-value="2">企业活动</div>
-                <div class="category" data-value="3">行业资讯</div>
-                <div class="category" data-value="4">人物专访</div>
+                <div class="category checkActive" data-value="">全部资讯</div>
+                <div class="category" data-value="最热资讯">最热资讯</div>
+                <div class="category" data-value="案例分享">案例分享</div>
+                <div class="category" data-value="企业活动">企业活动</div>
+                <div class="category" data-value="行业资讯">行业资讯</div>
+                <div class="category" data-value="人物专访">人物专访</div>
             </div>
         </div>
           <div class="newsList">

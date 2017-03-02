@@ -1,4 +1,5 @@
-var categorys = -1; 
+var condition = ""; 
+var pageSize = 20;
 $().ready(function() {	
 	initContent(1);
 	initPageSize();
@@ -10,12 +11,13 @@ function initContent(num) {
 		 $("#pageInfo").html('');
 	    $.each(data.result, function(i,item) {	
 	    	addMoreNews(item);
+	    	$("#total").val(item.total);
 	    });
 	    scrollTo(0,0);
-	}, getContextPath() + '/news/pagelist',$.toJSON({
-		page:num,
-		rows:20,
-		category:categorys
+	}, getContextPath() + '/solr/query/news',$.toJSON({
+		begin : num,
+		limit : pageSize,
+		condition : condition
 	}));
 	
 	
@@ -33,11 +35,15 @@ function initCategory(){
 }
 
 function initPageSize(){
-	loadData(function(data){
-        getPageSize(data.result);
-	}, getContextPath() + '/news/pagesize',$.toJSON({
-		category:categorys
-	}));
+	
+	
+	var dataResult = $("#total").val();
+	
+//	loadData(function(data){
+        getPageSize(dataResult);
+//	}, getContextPath() + '/solr/query/news',$.toJSON({
+//		category:categorys
+//	}));
 }
 
 function addMoreNews(item){
