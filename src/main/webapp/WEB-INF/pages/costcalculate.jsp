@@ -82,6 +82,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/newsInfo" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -231,7 +232,7 @@
                                         <li data-content="0">无演员</li>
                                         <li data-content="1">自有演员</li>
                                         <li data-content="2">普通演员</li>
-                                        <li data-content="3">一线演员</li>
+                                        <li data-content="3">专业演员</li>
                                     </ul>
                                 </div>
                             </div>

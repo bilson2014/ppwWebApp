@@ -33,6 +33,7 @@
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
     <!--测试-->
+    <mvc:view-controller path="/newsInfo" view-name="/newsInfo" />
     
     <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->
      <!--成本计算器-->
@@ -44,8 +45,9 @@
     <!-- <mvc:view-controller path="/home" view-name="/homePage" /> -->
     <mvc:view-controller path="/news" view-name="/news" />
      <!--END-->
-     
+     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
      <!-- test -->
+      <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
       <mvc:view-controller path="/c" view-name="/costcalculate" />
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
@@ -73,11 +75,11 @@
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/resources/**" />
 			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 		
 		
 		<mvc:interceptor>

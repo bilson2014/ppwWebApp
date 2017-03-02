@@ -81,6 +81,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/newsInfo" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -190,7 +191,7 @@
 		    <div class="locationTitle">
 		            <div>我们的定位</div>
 		            <div>Our Positioning</div>
-		            <div>我们服务的每一个客户在我们眼里,都是未来的世界500强</div>
+		            <div>我们服务的每一个客户在我们眼里，都是未来的世界500强</div>
 		            <div>所以我们致力于为每一个客户</div>
 		            <div>提供世界500强同等品质的服务</div>
 		     </div>
@@ -218,9 +219,9 @@
 	                        </div>
 	                        <div class="modalLine">
 	                              <ul>
-	                                 <li><div></div>11月获得国泰君安力鼎A轮投资</li>
+	                                 <li><div></div>11月获得国泰君安力鼎投资A轮投资</li>
 	                                 <li><div></div>10月举办中国首届视频营销大会</li>
-	                                 <li><div></div>3月拍片网2.0迭代上线,签约客户超过100家</li>
+	                                 <li><div></div>3月拍片网2.0迭代上线，签约客户超过100家</li>
 	                              </ul>
 	                        </div>
 	                         <div class="modalTree">
@@ -229,11 +230,11 @@
 	                        </div>
 	                        <div class="modalLine">
 	                              <ul>
-	                                 <li><div></div>12月获得老鹰基金Pre-A轮投资,投资人刘小鹰</li>
+	                                 <li><div></div>12月获得老鹰基金Pre-A轮投资，投资人刘小鹰</li>
 	                                 <li><div></div>11月拍片网微信客户端上线</li>
 	                                 <li><div></div>10月签约用友集团 </li>
 	                                 <li><div></div>9月承接中国铁塔2015国际通信展览视频展示全案</li>
-	                                 <li><div></div>7月拍片网正式版上线,入驻导演团队三百多家 </li>
+	                                 <li><div></div>7月拍片网正式版上线，入驻导演团队三百多家 </li>
 	                                 <li><div></div>5月拍片网Demo版上线测试 </li>
 	                                 <li><div></div>2月获得洪泰基金投资人俞敏洪、盛希泰天使轮追加投资</li>
 	                              </ul>
@@ -279,8 +280,8 @@
 	                  <ul>
 	                     <li>我们的使命</li>
 	                     <li>Our Mission</li>
-	                     <li>通过互联网的方式连接影视创作者,让影视行业变得开放、共享、高效</li>
-	                     <li>创造伟大的作品,让世界变得更好</li>
+	                     <li>通过互联网的方式连接影视创作者，让影视行业变得开放、共享、高效</li>
+	                     <li>创造伟大的作品，让世界变得更好</li>
 	                  </ul>
 	                  <img style="width:100%" src="/resources/images/about/bottomBg.jpg">
 	          </div>
@@ -333,7 +334,7 @@
                                     </div>
                                     <div class="contentBottom">
                                         <div>版权信息</div>
-                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
+                                        <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务，</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
                                         <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
                                     </div>
