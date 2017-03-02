@@ -108,7 +108,7 @@
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					   </div>
 					</div>
 				</r:identity>
 				<r:identity role="provider">

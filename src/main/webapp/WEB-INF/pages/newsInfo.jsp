@@ -1,15 +1,15 @@
  <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.resource.model.NewsSolr"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="r" uri="/mytaglib" %> 
-
-
+<%@ taglib prefix="r" uri="/mytaglib" %>
 
 <spring:url value="/resources/css/news/newsInfo.css" var="newsCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/newsInfo.js" var="newsJS"/>
@@ -17,6 +17,9 @@
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
+<!-- imgPath -->
+<spring:url value="/resources/images" var="imgPath" />
+
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -51,6 +54,8 @@
 
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" value="${total }" id="total"/>
+	<input type="hidden" id="q" value="${q}" />
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -82,7 +87,7 @@
                 </a>
                  <a href="/newsInfo" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
-            <input type="hidden" id="commonToken" name="token" value="${token}"/>
+            
             <div class="middle-part">
                 <div class="search-box">
                     <form method="get" action="/search" id="s-form">
@@ -135,18 +140,58 @@
     <div class="page">
     	 <div class="titleTag">
             <div class="titleWord">
-                <div class="category checkActive" data-value="-1">全部资讯</div>
-                <div class="category" data-value="0">最热资讯</div>
-                <div class="category" data-value="1">案例分享</div>
-                <div class="category" data-value="2">企业活动</div>
-                <div class="category" data-value="3">行业资讯</div>
-                <div class="category" data-value="4">人物专访</div>
+                <a href="<spring:url value='/search/news' />" alt="全部">
+                	<div class="category checkActive" data-value="">全部</div>
+                </a>
+                <a href="<spring:url value='/search/news?q=最热资讯' />" alt="最热资讯">
+                	<div class="category" data-value="最热资讯">最热资讯</div>
+                </a>
+                <a href="<spring:url value='/search/news?q=案例分享' />" alt="案例分享">
+                	<div class="category" data-value="案例分享">案例分享</div>
+                </a>
+                <a href="<spring:url value='/search/news?q=企业活动' />" alt="企业活动">
+                	<div class="category" data-value="企业活动">企业活动</div>
+                </a>
+                <a href="<spring:url value='/search/news?q=行业资讯' />" alt="行业资讯">
+                	<div class="category" data-value="行业资讯">行业资讯</div>
+                </a>
+                <a href="<spring:url value='/search/news?q=人物专访' />" alt="人物专访">
+                	<div class="category" data-value="人物专访">人物专访</div>
+                </a>
             </div>
         </div>
           <div class="newsList">
                   <ul id="pageInfo">
-                    
-                  </ul>  
+                  	<c:if test="${!empty list}">
+	                    <c:forEach items="${list }" var="newsSolr">
+	                    	<li class="videoModel">
+	                    		<a href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
+	                    			<c:if test="${!empty  newsSolr.picLDUrl}">
+		                    			<img src="${file_locate_storage_path}${newsSolr.picLDUrl}" alt="${newsSolr.title}_拍片网" />
+	                    			</c:if>
+	                    			<c:if test="${empty  newsSolr.picLDUrl}">
+		                    			<img src="${imgPath}/index/noImg.jpg" alt="${newsSolr.title}_拍片网" />
+	                    			</c:if>
+	                    			<div class="tagDiv">
+	                    				<div class="tags" alt="${newsSolr.tags}">
+	                    					<c:if test="${not empty fn:trim(newsSolr.tags) }">
+												<c:forEach items="${fn:split(fn:trim(newsSolr.tags),' ') }" var="tag" end="2" varStatus="stat">
+													${tag} <c:if test="${!stat.last }">/</c:if>
+												</c:forEach>
+											</c:if>
+	                    				</div>
+	                    			</div>
+	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
+	                   				<div class="content" alt="${newsSolr.discription }">${newsSolr.discription }</div>
+	                   				<div class="time" >发表于 
+	                   					<fmt:parseDate value="${newsSolr.creationTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
+	                   					<fmt:formatDate value="${yearMonth}" pattern="yyyy年MM月dd日" />
+	                   				</div>
+	                    		</a>
+	                    	</li>
+	                    </c:forEach>
+                    </c:if>
+                  </ul>
                   
                   <div class="page-section" id="pagination">
 					<div class="page-wrap">
@@ -209,16 +254,12 @@
                             </div>
                             <!--新版底部-->
 	
-    	
-    
-
-     <script type="text/javascript" src="${clampJs }"></script>
-     <script type="text/javascript" src="${jqueryJs }"></script>
-      <script type="text/javascript" src="${jquerybase64Js }"></script>
+    <script type="text/javascript" src="${clampJs }"></script>
+    <script type="text/javascript" src="${jqueryJs }"></script>
+    <script type="text/javascript" src="${jquerybase64Js }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>
-        <script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="${json }" ></script>
 	<script type="text/javascript" src="${jqueryPageJs }"></script>	
     <script type="text/javascript" src="${newsJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>

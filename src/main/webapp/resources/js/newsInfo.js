@@ -1,89 +1,95 @@
-var categorys = -1; 
+var pageSize = 20;
 $().ready(function() {	
-	initContent(1);
-	initPageSize();
-	initCategory();
+	// 分类高亮
+	newsInfo.initCategory();
+	
+	// 格式化标题和介绍
+	newsInfo.formatContent();
+	// TODO 窗口大小监听，format title and description
+	
+	// 初始化page
+	newsInfo.initPagination();
 });
 
-function initContent(num) {	
-	loadData(function(data){
-		 $("#pageInfo").html('');
-	    $.each(data.result, function(i,item) {	
-	    	addMoreNews(item);
-	    });
-	    scrollTo(0,0);
-	}, getContextPath() + '/news/pagelist',$.toJSON({
-		page:num,
-		rows:20,
-		category:categorys
-	}));
-	
-	
-}
-
-function initCategory(){
-	$('.category').on('click',function(){
-		categorys = $(this).attr('data-value');
-		$('.category').removeClass('checkActive');
-		$(this).addClass('checkActive');
-		initContent(1);
-		initPageSize();
-	});
-	
-}
-
-function initPageSize(){
-	loadData(function(data){
-        getPageSize(data.result);
-	}, getContextPath() + '/news/pagesize',$.toJSON({
-		category:categorys
-	}));
-}
-
-function addMoreNews(item){
-	
-	 var hrefs = getHostName()+"/news/article-"+item.id+".html";
-	 var tagsList = item.tags.split(" ");
-	 
-	  var $body = '<li class="videoModel">' +
-                  '<a href="'+hrefs+'">'+	  
-	              '<img src='+getDfsHostName()+item.picLDUrl+'>'+
-	              '<div class="tagDiv">';
-	             
-		for(var i=0;i<tagsList.length;i++){
-			if(i>0){
-				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
-			}else{
-				 $body += '<div class="tags">'+tagsList[i]+'</div>';
+var newsInfo = {
+		// 分类高亮
+		initCategory : function() {
+			var q = $('#q').val();
+			if(q != undefined && q != '' && q != null) {
+				$.each($('.category'),function(i,model) {
+					if($(model).data('value') == q) {
+						$('.category').removeClass('checkActive');
+						$(this).addClass('checkActive');
+						return;
+					}
+				});
 			}
+		},
+		// 格式化标题及介绍
+		formatContent : function() {
+			$.each($('.videoModel'), function(i,model) {
+				var title = $(model).find('.title').text();
+				var description = $(model).find('.content').text();
+				$(model).find('.title').text(getTitleIndex(title));
+				$(model).find('.content').text(getContentIndex(description))
+			})
+		},
+		initPagination : function() {
 			
+			$(".pagination").createPage({
+				pageCount: Math.ceil($('#total').val() / pageSize),
+				current: 1,
+				backFn:function(p){
+					// 点击 翻页，查询符合条件的视频
+					loadNews((p - 1) * pageSize);
+					currentSize = (p - 1) * pageSize;
+					scrollTo(0,0);
+				}
+			});
 		}
-		$body += '</div>';
-		$body += '<div class="title">'+getTitleIndex(item.title)+'</div>';
-		$body += '<div class="content">'+getContentIndex(item.discription)+'</div>';
-		$body += '<div class="time">发表于 '+getTime(item.createTime)+'</div>';
-		$body +='</a></li>';		 
-	    $("#pageInfo").append($body);
 }
 
-function getPageSize(num){
+// 加载新闻
+function loadNews(page) {
 	
-//	if(num<=20){
-//		$('#pagination').hide();
-//	}else{
-//		$('#pagination').show();
-//	}
+	loadData(function(list){
+		
+		$("#pageInfo").empty();
+	    $.each(list, function(i,news) {	
+	    	var hrefs = getHostName()+"/news/article-"+news.id+".html";
+	   	 	var tagsList = news.tags.split(" ");
+	   	 
+	   	  var $body = '<li class="videoModel">' +
+	                     '<a href="'+hrefs+'">'+	  
+	   	              '<img src='+getDfsHostName()+news.picLDUrl+'>'+
+	   	              '<div class="tagDiv">';
+	   	             
+	   		for(var i=0;i<tagsList.length;i++){
+	   			if(i>0){
+	   				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
+	   			}else{
+	   				 $body += '<div class="tags">'+tagsList[i]+'</div>';
+	   			}
+	   			
+	   		}
+	   		$body += '</div>';
+	   		$body += '<div class="title">'+getTitleIndex(news.title)+'</div>';
+	   		$body += '<div class="content">'+getContentIndex(news.discription)+'</div>';
+	   		$body += '<div class="time">发表于 '+getTime(news.creationTime)+'</div>';
+	   		$body +='</a></li>';		 
+	   	    $("#pageInfo").append($body);
+	    });
+	}, getContextPath() + '/search/news/pagination',$.toJSON({
+		begin : page,
+		limit : pageSize,
+		condition : $('#q').val().trim()
+	}));
 	
-	$(".pagination").createPage({
-		pageCount: Math.ceil(num / 20),
-		current: 1,
-		backFn:function(p){
-			initContent(p);
-		}
-	});
+	
 }
 
-function getTitleIndex(string){
+// 标题缩略格式化
+function getTitleIndex(str){
 	 var screenWidth = document.documentElement.clientWidth;
 	 var num = 32;  
 	    if(screenWidth<=1500){
@@ -92,16 +98,17 @@ function getTitleIndex(string){
 	    if(screenWidth<=1276){
 	    	num = 20;
 	    }
-	if(string.length<=num){
-		var content = string
+	if(str.length<=num){
+		var content = str;
 	}else{
-		var content = string.substr(0,num) +"..."
+		var content = str.substr(0,num) +"..."
 	}
 	
 	return  content;
 }
 
-function getContentIndex(string){
+// 描述缩略格式化
+function getContentIndex(str){
 	
 	 var screenWidth = document.documentElement.clientWidth;
 	 var num = 55;  
@@ -111,18 +118,18 @@ function getContentIndex(string){
 	    if(screenWidth<=1276){
 	    	num = 30;
 	    }
-	if(string.length<=num){
-		var content = string
+	if(str.length<=num){
+		var content = str;
 	}else{
-		var content = string.substr(1,num) +"[...]"
+		var content = str.substr(1,num) +"[...]"
 	}
 	
 	return  content;
 }
 
-
-function getTime(string){
-	var date = convert(string);
+// 日期格式化
+function getTime(str){
+	var date = convert(str);
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1;
 	var day = date.getDate();
@@ -130,9 +137,9 @@ function getTime(string){
 
 }
 
-function convert(value) {
-	if(value != null && value != undefined && value != ''){
-		return new Date(Date.parse(value.replace(/-/g, "/")));
+function convert(val) {
+	if(val != null && val != undefined && val != ''){
+		return new Date(Date.parse(val.replace(/-/g, "/")));
 	}
 	return '';
 }
