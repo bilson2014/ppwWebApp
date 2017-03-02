@@ -32,9 +32,6 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
-    <!--测试-->
-    <mvc:view-controller path="/newsInfo" view-name="/newsInfo" />
-    
     <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->
      <!--成本计算器-->
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />

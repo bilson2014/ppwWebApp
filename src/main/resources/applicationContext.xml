@@ -21,7 +21,8 @@
 	<!-- 扫描service -->
 	<context:component-scan base-package="com.panfeng.film.service,
 										  com.panfeng.film.listener,
-										  com.panfeng.film.dao" />
+										  com.panfeng.film.dao,
+										  com.panfeng.film.util" />
 
 	<!-- log here -->
 	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />

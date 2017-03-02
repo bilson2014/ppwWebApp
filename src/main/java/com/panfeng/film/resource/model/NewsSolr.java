@@ -11,11 +11,11 @@ public class NewsSolr extends BaseObject {
 
 	private static final long serialVersionUID = 5263692798871248537L;
 
-	private Long id = 0l; // 唯一编号
+	private String id = null; // 唯一编号
 	
 	private String title = null; // 标题
 	
-	private String description = null; // 描述
+	private String discription = null; // 描述
 	
 	private boolean status = false; // 是否显示在首页
 	
@@ -26,12 +26,14 @@ public class NewsSolr extends BaseObject {
 	private String tags = null; // 标签
 	
 	private String picLDUrl = null; // 图片链接
+	
+	private long total = 0l; // 总数
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -43,12 +45,12 @@ public class NewsSolr extends BaseObject {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDiscription() {
+		return discription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDiscription(String discription) {
+		this.discription = discription;
 	}
 
 	public boolean isStatus() {
@@ -89,6 +91,14 @@ public class NewsSolr extends BaseObject {
 
 	public void setPicLDUrl(String picLDUrl) {
 		this.picLDUrl = picLDUrl;
+	}
+
+	public long getTotal() {
+		return total;
+	}
+
+	public void setTotal(long total) {
+		this.total = total;
 	}
 	
 }
