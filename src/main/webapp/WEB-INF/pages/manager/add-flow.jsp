@@ -109,7 +109,7 @@ function checkMobile(str) {
                     	拍片网介绍
                     <span></span>
                 </a>
-                 <a href="/newsInfo" class="header-item" target="_parent">新闻资讯<span></span></a>
+                 <a href="/search/news" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -131,7 +131,7 @@ function checkMobile(str) {
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
 					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
-				       <div class="showInfoList">
+				       	   <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <a href="<spring:url value="/user/info" />"><li class="toSet">个人信息</li></a>
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
