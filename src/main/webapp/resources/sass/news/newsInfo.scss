@@ -127,3 +127,17 @@ $itemMargin:35px;
         font-size: $font-size-base;
     }
 }
+
+
+.prompt-background{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.prompt-word{
+    color: $gray-dark;
+    span{
+        font-weight: bold;
+        text-decoration:underline;
+    }
+}

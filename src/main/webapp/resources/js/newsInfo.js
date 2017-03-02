@@ -55,30 +55,40 @@ function loadNews(page) {
 	loadData(function(list){
 		
 		$("#pageInfo").empty();
-	    $.each(list, function(i,news) {	
-	    	var hrefs = getHostName()+"/news/article-"+news.id+".html";
-	   	 	var tagsList = news.tags.split(" ");
-	   	 
-	   	  var $body = '<li class="videoModel">' +
-	                     '<a href="'+hrefs+'">'+	  
-	   	              '<img src='+getDfsHostName()+news.picLDUrl+'>'+
-	   	              '<div class="tagDiv">';
-	   	             
-	   		for(var i=0;i<tagsList.length;i++){
-	   			if(i>0){
-	   				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
-	   			}else{
-	   				 $body += '<div class="tags">'+tagsList[i]+'</div>';
-	   			}
-	   			
-	   		}
-	   		$body += '</div>';
-	   		$body += '<div class="title">'+getTitleIndex(news.title)+'</div>';
-	   		$body += '<div class="content">'+getContentIndex(news.discription)+'</div>';
-	   		$body += '<div class="time">发表于 '+getTime(news.creationTime)+'</div>';
-	   		$body +='</a></li>';		 
-	   	    $("#pageInfo").append($body);
-	    });
+		if(list != null && list.length > 0) {
+			 $.each(list, function(i,news) {	
+			    	var hrefs = getHostName()+"/news/article-"+news.id+".html";
+			   	 	var tagsList = news.tags.split(" ");
+			   	 
+			   	  var $body = '<li class="videoModel">' +
+			                     '<a href="'+hrefs+'">'+	  
+			   	              '<img src='+getDfsHostName()+news.picLDUrl+'>'+
+			   	              '<div class="tagDiv">';
+			   	             
+			   		for(var i=0;i<tagsList.length;i++){
+			   			if(i>0){
+			   				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
+			   			}else{
+			   				 $body += '<div class="tags">'+tagsList[i]+'</div>';
+			   			}
+			   			
+			   		}
+			   		$body += '</div>';
+			   		$body += '<div class="title">'+getTitleIndex(news.title)+'</div>';
+			   		$body += '<div class="content">'+getContentIndex(news.discription)+'</div>';
+			   		$body += '<div class="time">发表于 '+getTime(news.creationTime)+'</div>';
+			   		$body +='</a></li>';		 
+			   	    $("#pageInfo").append($body);
+			    });
+		}else {
+			// 没有新闻
+			var $no_body = '<div class="prompt-background">';
+			$no_body += '<img alt="未找到相关作品_拍片网" src="'+ getContextPath() +'/search/airship.png">';
+			$no_body += '</div>';
+			$no_body += '<div class="prompt-word">您找的新闻遗落在外星球了！</div>';
+			
+			$("#pageInfo").append($body);
+		}
 	}, getContextPath() + '/search/news/pagination',$.toJSON({
 		begin : page,
 		limit : pageSize,

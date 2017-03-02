@@ -139,7 +139,15 @@ public class SolrController extends BaseController {
 		return null;
 	}
 	
-	@RequestMapping("/search/news")
+	/**
+	 * 新闻列表视图页
+	 * @param q
+	 * @param model
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/news/list")
 	public ModelAndView searchNewView(String q, final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
