@@ -61,10 +61,8 @@ function addMoreNews(item){
 				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
 			}else{
 				 $body += '<div class="tags">'+tagsList[i]+'</div>';
-			}
-			
-		}
-		$body += '</div>';
+			}			
+		}0		$body += '</div>';
 		$body += '<div class="title">'+getTitleIndex(item.title)+'</div>';
 		$body += '<div class="content">'+getContentIndex(item.discription)+'</div>';
 		$body += '<div class="time">发表于 '+getTime(item.createTime)+'</div>';
