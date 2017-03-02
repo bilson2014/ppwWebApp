@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.resource.model.NewsSolr;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
@@ -133,6 +134,35 @@ public class SolrController extends BaseController {
 			e.printStackTrace();
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("SolrController method:searchPagination() encode failue,q="
+					+ view.getCondition(),sessionInfo);
+		}
+		return null;
+	}
+	
+	
+	// 搜索分页
+	@RequestMapping("/search/news/pagination")
+	public List<NewsSolr> searchNewsPagination(@RequestBody final SolrView view,
+			final HttpServletRequest request)
+			throws Exception {
+
+		final String condition = view.getCondition();
+		
+		if(StringUtils.isNotBlank(condition)) 
+			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
+
+		try {
+			String url = URL_PREFIX + "portal/solr/query/news";
+			final String json = HttpUtil.httpPost(url,view,request);
+			
+			if (json != null && !"".equals(json)) {
+				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
+				return list;
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("SolrController searchNewsPagination() encode failue,q="
 					+ view.getCondition(),sessionInfo);
 		}
 		return null;
