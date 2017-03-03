@@ -11,11 +11,68 @@
   top:1px;
 }
 
+.page{
+   @include media_screen_width_beta3();
+    margin: 0 auto;
+    height: auto;
+    text-align: center;
+    font-size: 0;
+    top:0px !important;
+}
+
+.activeTitle{
+   div:nth-child(1){
+     color:$red-base;
+     font-size: $font-size-lg26;
+     margin-top: 60px;
+   }
+
+   div:nth-child(2){
+     margin-top: 5px;
+     color:$gray-light;
+     font-size: $font-size-base;
+     margin-bottom: 30px;
+   }
+}
+
+.infoTitle{
+   div:nth-child(1){
+     color:$red-base;
+     font-size: $font-size-lg;
+   }
+
+   div:nth-child(2){
+     color:$gray;
+     font-size: $font-size-sm;
+     margin-top: 12px;
+     margin-bottom: 12px;
+   }
+
+  div:nth-child(3){
+     color:$gray;
+     font-size: $font-size-base;
+     padding-left: 10px;
+     padding-right: 10px;
+     line-height: 18px;
+   }
+
+   img{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 80px;
+   }
+
+   .bottomDiv{
+      margin-bottom: 100px !important;
+   }
+}
+
 
 .titleTag {
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+    margin-top: 60px;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -38,46 +95,46 @@
     }
 }
  
-.area-top {
-  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
-  margin: auto;
+// .area-top {
+//   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+//   margin: auto;
 
-  p {
-    padding-top: 60px;
-    margin-bottom: 20px;
-    color: $gray;
-    font-size: $font-size;
-    line-height: 20px;
-  }
-  .image-top {
-    @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
-    height: auto;
-  }
-}
-
-
-.area-bottom {
-  margin-bottom: 100px;
-}
+//   p {
+//     padding-top: 60px;
+//     margin-bottom: 20px;
+//     color: $gray;
+//     font-size: $font-size;
+//     line-height: 20px;
+//   }
+//   .image-top {
+//     @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+//     height: auto;
+//   }
+// }
 
 
-//冲突我要拍片
-.dropdowns .dropdown-menu{
-  position: absolute;
-  background: white;
-  border:1px solid $gray-dark;
-  border: 1px solid #999;
-    z-index: 9;
-    display: none;
-    top:32px !important;
-  li{
-    &:hover{
-      background: #f0f2f5;
-    }
-  }
-}
+// .area-bottom {
+//   margin-bottom: 100px;
+// }
 
 
-.video-card .video-desc-section h3{
-  line-height: 16px !important;
-}
+// //冲突我要拍片
+// .dropdowns .dropdown-menu{
+//   position: absolute;
+//   background: white;
+//   border:1px solid $gray-dark;
+//   border: 1px solid #999;
+//     z-index: 9;
+//     display: none;
+//     top:32px !important;
+//   li{
+//     &:hover{
+//       background: #f0f2f5;
+//     }
+//   }
+// }
+
+
+// .video-card .video-desc-section h3{
+//   line-height: 16px !important;
+// }

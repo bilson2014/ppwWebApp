@@ -80,7 +80,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
-                 <a href="/newsInfo" class="header-item" target="_parent">新闻资讯<span></span></a>
+                 <a href="/news/list" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -134,9 +134,8 @@
             </div>
         </div>
     </div>
-
-	<div class="page">
-		 <div class="titleTag">
+    
+    <div class="titleTag">
             <div class="titleWord">
                 <a href="/about-us.html">
                     <div>了解我们</div>
@@ -156,16 +155,67 @@
             </div>
         </div>
 
-		<div class="nav-shadow"></div>
+	<div class="page">
+		 
 
-		<div class="contain area-top area-bottom" >
-		   <p>拍片网与众多知名企事业单位，领袖级企业联合举办了多次线下活动。拍片网在推动影视和互联网行业的发展，建立良性生态社群方面起着关键的作用。</p>
-		   <img class="image-top" src="${imgPath }/introduce/activity/company.png"></img>
-		    <p>我们是一个充满正能量的团队，热爱电影，热爱网络，热爱户外活动。公司成立以来，组织了多次外出郊游，踏青采风，感受自然赋予我们的无穷能量。</p>
-		   <img class="image-top" src="${imgPath }/introduce/activity/travel.png"></img>
-		    <p>我们又是一群年轻，热情，才华横溢的文艺青年。每逢公司组织的聚餐，联欢会，年会等活动，大家拿出看家本领，当然各种奖项也是人人有份啦。</p>
-		   <img class="image-top" src="${imgPath }/introduce/activity/party.png"></img>
-		</div>
+		<div class="nav-shadow"></div>
+		
+		<div class="page">
+		    <div class="activeTitle">
+		        <div>公司活动</div>
+		        <div>Corporate Events</div>
+		    </div>
+		    
+		    
+		    <div class="infoTitle">
+		        <div>共享未来－中国视频行业领袖峰会</div>
+		        <div>2017年2月27日 北京海淀新世纪日航</div>
+		        <div>由拍片网主办，千位视频行业龙头聚首在北京，一场有关“共享未来”的视频行业争锋一触即发。多位顶级创投圈、影视行业名人和全国各地的视频行业领袖，聚首“共享未来”的高峰交流，</br>
+共同讨论互联网时代下的影视行业资源共享及连接资源等于连接未来的观点。</div>
+                <img src="${imgPath }/introduce/activity/active1.png">
+		    </div>
+		     <div class="infoTitle">
+		        <div>视频营销大会</div>
+		        <div>2016年10月10日 北京体坛宾馆</div>
+		        <div>由拍片网联合镖狮网主办的“2016年新媒体视频营销大会”，大家聚集一堂与投资大咖们来感受“视频营销的力量”！</br>
+这是一次企业互联网营销方式的变革大会，视频时代的到来彻底点燃万千企业营销创意的新思想，新媒体与视频的结合成为互联网营销新风口。
+				</div>
+                <img src="${imgPath }/introduce/activity/active2.png">
+		    </div>
+		    <div class="infoTitle">
+		        <div>拍片网movie 2.0论坛</div>
+		        <div>2016年5月至今</div>
+		        <div>《MOVIE2.0论坛》是每周举办的线下影视人聚集的社群论坛，以主创见面会，创作分享会，项目推介会等为内容，打造影视行业纯净的资源生态圈；先后有黄国宾、邢健、冷小张、上官凌月、冯</br>悦、郑来志等影视人到场参与《MOVIE2.0论坛》中国影视人沙龙。至今已经成功举办29期。
+				</div>
+                <img src="${imgPath }/introduce/activity/active3.png">
+		    </div>
+		     <div class="infoTitle">
+		        <div>创业邦－创新中国</div>
+		        <div>2016年9月21日 杭州洲际酒店</div>
+		        <div>2016 创新中国秋季峰会主题为“科技改变生活”,将通过八大现场路演及展览活动等多种形式为业内人士搭建对话平台,为企业顶层人士、行业专家提供社交和沟通互联,分享与交流经验的机会。 
+				</div>
+                <img src="${imgPath }/introduce/activity/active4.png">
+		    </div>
+		    <div class="infoTitle">
+		        <div>一块投吧</div>
+		        <div>2016年10月9日</div>
+		        <div>深圳卫视《一块投吧》栏目是一档大型创投类电视节。节目讲求专业化、商业化的特点。参加节目的明星投资人有俞敏洪、张泉灵、邓锋、林依轮。</br>
+夏攀代表拍片网参加了《一块投吧》节目的录制，面对4位明星投资人的问题，从容介绍了拍片网的运营模式，竞争优势等核心问题。</div>
+                <img src="${imgPath }/introduce/activity/active5.png">
+		    </div>
+		    <div class="infoTitle">
+		        <div>团队建设</div>
+		        <div>2015年至今</div>
+		        <div>我们是一个充满正能量的团队，热爱电影，热爱网络，热爱户外活动。公司成立以来，组织了多次外出郊游，踏青采风，感受自然赋予我们的无穷能量。</div>
+                <img src="${imgPath }/introduce/activity/active6.png">
+		    </div>
+		    <div class="infoTitle">
+		        <div>公司年会/生日会</div>
+		        <div>2015年~2017年</div>
+		        <div>我们又是一群年轻，热情，才华横溢的文艺青年。每逢公司组织的聚餐，联欢会，年会等活动，大家拿出看家本领，当然各种奖项也是人人有份啦。</div>
+                <img class="bottomDiv" src="${imgPath }/introduce/activity/active7.png">
+		    </div>
+		</div>		
 	</div>
 	
 	<!-- foot -->

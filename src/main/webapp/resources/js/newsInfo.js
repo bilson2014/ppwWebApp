@@ -11,6 +11,7 @@ $().ready(function() {
 	newsInfo.initPagination();
 });
 
+
 var newsInfo = {
 		// 分类高亮
 		initCategory : function() {
@@ -47,6 +48,7 @@ var newsInfo = {
 				}
 			});
 		}
+
 }
 
 // 加载新闻
