@@ -58,7 +58,7 @@ function setMemberActive(){
 
 function controlVideo(){
 	
-	playIcon = $('#playVideo');
+	playIcon = $('#playVideos');
 	
 	playIcon.on('click',function(){
 		document.getElementById('video').play();
