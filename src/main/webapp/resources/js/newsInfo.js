@@ -24,6 +24,19 @@ var newsInfo = {
 						return;
 					}
 				});
+			}else {
+				// q为空时，判断是 全部还是最热资讯
+				var param = getParam();
+				if(param != null && param != '' && param != undefined){
+					$.each($('.category'),function(i,model) {
+						if($(model).data('value') == '最热资讯') {
+							$('.category').removeClass('checkActive');
+							$(this).addClass('checkActive');
+							return;
+						}
+					});
+				}
+					
 			}
 		},
 		// 格式化标题及介绍
@@ -156,9 +169,11 @@ function convert(val) {
 	return '';
 }
 
-
-
-
+function getParam() {
+    var r = window.location.search.substr(1).replace('q=','');  
+    if (r != null) return decodeURI(r);  
+    return null;
+}
 
 
 

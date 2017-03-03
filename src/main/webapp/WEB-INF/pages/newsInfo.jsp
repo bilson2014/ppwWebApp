@@ -85,7 +85,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
-                 <a href="/news/list" class="header-item" target="_parent">新闻资讯<span></span></a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             
             <div class="middle-part">
@@ -142,22 +142,22 @@
     <div class="page">
     	 <div class="titleTag">
             <div class="titleWord">
-                <a href="<spring:url value='/news/list' />" alt="全部">
+                <a href="<spring:url value='/news-list.html' />" alt="全部">
                 	<div class="category checkActive" data-value="">全部</div>
                 </a>
-                <a href="<spring:url value='/news/list?q=最热资讯' />" alt="最热资讯">
+                <a href="<spring:url value='/news-list.html?q=最热资讯' />" alt="最热资讯">
                 	<div class="category" data-value="最热资讯">最热资讯</div>
                 </a>
-                <a href="<spring:url value='/news/list?q=案例分享' />" alt="案例分享">
+                <a href="<spring:url value='/news-list.html?q=案例分享' />" alt="案例分享">
                 	<div class="category" data-value="案例分享">案例分享</div>
                 </a>
-                <a href="<spring:url value='/news/list?q=企业活动' />" alt="企业活动">
+                <a href="<spring:url value='/news-list.html?q=企业活动' />" alt="企业活动">
                 	<div class="category" data-value="企业活动">企业活动</div>
                 </a>
-                <a href="<spring:url value='/news/list?q=行业资讯' />" alt="行业资讯">
+                <a href="<spring:url value='/news-list.html?q=行业资讯' />" alt="行业资讯">
                 	<div class="category" data-value="行业资讯">行业资讯</div>
                 </a>
-                <a href="<spring:url value='/news/list?q=人物专访' />" alt="人物专访">
+                <a href="<spring:url value='/news-list.html?q=人物专访' />" alt="人物专访">
                 	<div class="category" data-value="人物专访">人物专访</div>
                 </a>
             </div>
