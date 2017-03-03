@@ -240,7 +240,7 @@
 				</div>
 			</div>
 			<div class="footer-box">
-				&copy; 2014 攀峰文化 京ICP备 14036662号-1 | <a>百度统计</a>  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
+				&copy; © 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计  <a href='<spring:url value="/sitemap.html" />' target="_blank" title="站长统计">站长统计</a>
 			</div>
 		</div>
 		<!-- 底栏 end -->
