@@ -399,7 +399,7 @@
 	                         </div>
 	                         <div class="topItem commonWidth">
 	                             <div class="title"><a>服务</a></div>
-	                             <div class="noiconItem"><a>服务流程</a></div>
+	                             <div class="noiconItem"><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
 	                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
 	                         </div>
 	                         <div class="topItem onLineWidth">
