@@ -256,7 +256,7 @@
 		<div class="showVideo">
 		<img src="/resources/images/introduce/member/come.png">
 			<div class="video-div" id="activityPart">
-			     <img class="playVideo" id="playVideo" src="/resources/images/introduce/member/playVideo.png">
+			     <img class="playVideo" id="playVideos" src="/resources/images/introduce/member/playVideo.png">
 				<video id="video" src="${file_locate_storage_path }group1/M00/00/20/CgqNZViiqe2ANmqIAZ-Ai8Au-R8971.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/poster.jpg" ></video>
 		    </div>
 		</div>    
