@@ -172,7 +172,7 @@
 		        <div>2017年2月27日 北京海淀新世纪日航</div>
 		        <div>由拍片网主办，千位视频行业龙头聚首在北京，一场有关“共享未来”的视频行业争锋一触即发。多位顶级创投圈、影视行业名人和全国各地的视频行业领袖，聚首“共享未来”的高峰交流，</br>
 共同讨论互联网时代下的影视行业资源共享及连接资源等于连接未来的观点。</div>
-                <img src="${imgPath }/introduce/activity/active1.png">
+                <img  class="active1" src="${imgPath }/introduce/activity/active1.png">
 		    </div>
 		     <div class="infoTitle">
 		        <div>视频营销大会</div>
@@ -180,7 +180,17 @@
 		        <div>由拍片网联合镖狮网主办的“2016年新媒体视频营销大会”，大家聚集一堂与投资大咖们来感受“视频营销的力量”！</br>
 这是一次企业互联网营销方式的变革大会，视频时代的到来彻底点燃万千企业营销创意的新思想，新媒体与视频的结合成为互联网营销新风口。
 				</div>
-                <img src="${imgPath }/introduce/activity/active2.png">
+                <div class="active2Top">
+	                 <img src="${imgPath }/introduce/activity/active2-1.jpg">
+	                 <img src="${imgPath }/introduce/activity/active2-2.jpg">
+	                 <img src="${imgPath }/introduce/activity/active2-3.jpg">
+                </div>
+                <div class="active2Bottom">
+	                 <img src="${imgPath }/introduce/activity/active2-4.jpg">
+	                 <img src="${imgPath }/introduce/activity/active2-5.jpg">
+	                 <img src="${imgPath }/introduce/activity/active2-6.jpg">
+	                 <img src="${imgPath }/introduce/activity/active2-7.jpg">
+                </div>
 		    </div>
 		    <div class="infoTitle">
 		        <div>拍片网movie 2.0论坛</div>

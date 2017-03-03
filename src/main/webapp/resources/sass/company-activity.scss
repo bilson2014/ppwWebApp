@@ -2,71 +2,58 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
-
-
 .nav-shadow {
-  width: 100%;
-  height: 1px;
-  position:relative;
-  top:1px;
+    width: 100%;
+    height: 1px;
+    position: relative;
+    top: 1px;
 }
 
-.page{
-   @include media_screen_width_beta3();
+.page {
+    @include media_screen_width_beta3();
     margin: 0 auto;
     height: auto;
     text-align: center;
     font-size: 0;
-    top:0px !important;
+    top: 0px !important;
 }
 
-.activeTitle{
-   div:nth-child(1){
-     color:$red-base;
-     font-size: $font-size-lg26;
-     margin-top: 60px;
-   }
-
-   div:nth-child(2){
-     margin-top: 5px;
-     color:$gray-light;
-     font-size: $font-size-base;
-     margin-bottom: 30px;
-   }
+.activeTitle {
+    div:nth-child(1) {
+        color: $red-base;
+        font-size: $font-size-lg26;
+        margin-top: 60px;
+    }
+    div:nth-child(2) {
+        margin-top: 5px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        margin-bottom: 30px;
+    }
 }
 
-.infoTitle{
-   div:nth-child(1){
-     color:$red-base;
-     font-size: $font-size-lg;
-   }
-
-   div:nth-child(2){
-     color:$gray;
-     font-size: $font-size-sm;
-     margin-top: 12px;
-     margin-bottom: 12px;
-   }
-
-  div:nth-child(3){
-     color:$gray;
-     font-size: $font-size-base;
-     padding-left: 10px;
-     padding-right: 10px;
-     line-height: 18px;
-   }
-
-   img{
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 80px;
-   }
-
-   .bottomDiv{
-      margin-bottom: 100px !important;
-   }
+.infoTitle {
+    div:nth-child(1) {
+        color: $red-base;
+        font-size: $font-size-lg;
+    }
+    div:nth-child(2) {
+        color: $gray;
+        font-size: $font-size-sm;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+    div:nth-child(3) {
+        color: $gray;
+        font-size: $font-size-base;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 18px;
+    }
+    .bottomDiv {
+        margin-bottom: 100px !important;
+    }
 }
-
 
 .titleTag {
     background: #f0f2f5;
@@ -94,11 +81,86 @@
         }
     }
 }
- 
+
+.active1 {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.active2Top {
+    img {
+        display: inline-block;
+        height: 390px;
+    }
+    img:nth-child(2) {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        img {
+            height: 1212px*39/130;
+        }
+        img:nth-child(2) {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        img {
+            height: 960px*39/130;
+        }
+        img:nth-child(2) {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+    }
+    margin-bottom: 6px;
+    margin-top: 30px;
+}
+
+.active2Bottom {
+    img {
+        display: inline-block;
+        height: 350px;
+    }
+    img:nth-child(2) {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    img:nth-child(3) {
+        margin-right: 6px;
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        img {
+            height: 1212px*35/130;
+        }
+        img:nth-child(2) {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        img:nth-child(3) {
+            margin-right: 5px;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        img {
+            height: 960px*35/130;
+        }
+        img:nth-child(2) {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+        img:nth-child(3) {
+            margin-right: 4px;
+        }
+    }
+    margin-bottom: 80px;
+}
+
 // .area-top {
 //   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
 //   margin: auto;
-
 //   p {
 //     padding-top: 60px;
 //     margin-bottom: 20px;
@@ -111,13 +173,9 @@
 //     height: auto;
 //   }
 // }
-
-
 // .area-bottom {
 //   margin-bottom: 100px;
 // }
-
-
 // //冲突我要拍片
 // .dropdowns .dropdown-menu{
 //   position: absolute;
@@ -133,8 +191,6 @@
 //     }
 //   }
 // }
-
-
 // .video-card .video-desc-section h3{
 //   line-height: 16px !important;
 // }
