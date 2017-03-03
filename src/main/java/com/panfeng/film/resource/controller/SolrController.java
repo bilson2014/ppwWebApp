@@ -147,17 +147,24 @@ public class SolrController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/news/list")
+	@RequestMapping("/news-list.html")
 	public ModelAndView searchNewView(String q, final ModelMap model,
 			final HttpServletRequest request)
 			throws Exception {
 
-		model.addAttribute("q", q);
 		final SolrView view = new SolrView();
+		if("最热资讯".equals(q)) {
+			// 筛选 推荐值大于0 的新闻
+			view.setRecomendFq("[1 TO *]");
+			q = null;
+		}
+		model.addAttribute("q", q);
+		
+		
 		
 		if(StringUtils.isNotBlank(q))
 			view.setCondition(URLEncoder.encode(q, "UTF-8"));
-			
+		
 		view.setLimit(20l);
 		try {
 			final String url = URL_PREFIX + "portal/solr/query/news";
@@ -191,6 +198,11 @@ public class SolrController extends BaseController {
 			throws Exception {
 
 		final String condition = view.getCondition();
+		
+		if("最热资讯".equals(condition)) {
+			// 筛选 推荐值大于0 的新闻
+			view.setRecomendFq("[1 TO *]");
+		}
 		
 		if(StringUtils.isNotBlank(condition)) 
 			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
