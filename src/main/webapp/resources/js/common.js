@@ -891,6 +891,9 @@ function showError(id, error) {
 // 成功 提示框弹出方法
 
 function showSuccess() {
+	 $('#price').addClass('showPrice');
+     $('#price').removeClass('noShow');
+     $('#order').removeClass('showOrder');
 	if ($('div').hasClass('showSuccess')) {
 	} else {
 
