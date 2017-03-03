@@ -27,10 +27,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="新闻">
-    <meta name="description" content="${news.discription}">
+    <meta name="keywords" content="新闻,拍片网">
+    <meta name="description" content="新闻资讯频道将提供拍片网的案例分享、企业活动、人物专访以及影视行业资讯信息">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>新闻资讯</title>
+    <title>新闻资讯_行业资讯_人物专访-拍片网</title>
     <link rel="stylesheet" href="${newsInfoCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
     <script type="text/javascript">
