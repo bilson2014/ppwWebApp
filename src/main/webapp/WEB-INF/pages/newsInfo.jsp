@@ -85,7 +85,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
-                 <a href="/news/list" class="header-item" target="_parent">新闻资讯<span></span></a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             
             <div class="middle-part">
