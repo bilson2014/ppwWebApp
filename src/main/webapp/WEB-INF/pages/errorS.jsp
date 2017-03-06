@@ -1,39 +1,33 @@
- <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.resource.model.NewsSolr"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%-- import CSS --%>
+<spring:url value="/resources/css/errorS.css" var="errorCss"/>
 
-<spring:url value="/resources/css/news/newsInfo.css" var="newsInfoCss"/>
-<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
-<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
-<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
-<spring:url value="/resources/js/newsInfo.js" var="newsJS"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
-<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
-<spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
-<!-- imgPath -->
+<%-- import JS --%>
+<spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
+
 <spring:url value="/resources/images" var="imgPath" />
-
 <!DOCTYPE html>
-<html class="no-js">
-
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="新闻,拍片网">
-    <meta name="description" content="新闻资讯频道将提供拍片网的案例分享、企业活动、人物专访以及影视行业资讯信息">
-    <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>新闻资讯_行业资讯_人物专访-拍片网</title>
-    <link rel="stylesheet" href="${newsInfoCss }">
-    <link rel="stylesheet" href="${bootstrapCss }">
-    <script type="text/javascript">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
+	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
+	<meta name="baidu-site-verification" content="dMz6jZpIwd" />
+	<title>拍片网－广告－宣传片－微电影－视频营销</title>
+	<link rel="stylesheet" href="${errorCss }">
+	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	<!--[if lt IE 9]>
+		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
+	<![endif]-->
+	<script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
 	(function() {
@@ -50,14 +44,11 @@
 		})();
 	})();
 </script>
+	
 </head>
-
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${total }" id="total"/>
-	<input type="hidden" id="q" value="${q}" />
-	
-    <div class="header headerMove" id="header">
+	 <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -88,7 +79,7 @@
                 </a>
                  <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
-            
+            <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
                 <div class="search-box">
                     <form method="get" action="/search" id="s-form">
@@ -138,85 +129,20 @@
             </div>
         </div>
     </div>
-    
-
-    <div class="page">
-    	 <div class="titleTag">
-            <div class="titleWord">
-                <a href="<spring:url value='/news-list.html' />" alt="全部">
-                	<div class="category checkActive" data-value="">全部</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=最热资讯' />" alt="最热资讯">
-                	<div class="category" data-value="最热资讯">最热资讯</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=案例花絮' />" alt="案例花絮">
-                	<div class="category" data-value="案例花絮">案例花絮</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=企业动态' />" alt="企业动态">
-                	<div class="category" data-value="企业动态">企业动态</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=行业资讯' />" alt="行业资讯">
-                	<div class="category" data-value="行业资讯">行业资讯</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=佳片赏析' />" alt="佳片赏析">
-                	<div class="category" data-value="佳片赏析">佳片赏析</div>
-                </a>
-            </div>
-        </div>
-                 <c:if test="${empty list}">
-						<div class="prompt-background">
-							<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
-						</div>
-						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
-	</c:if>
-          <div class="newsList">
-                  <ul id="pageInfo">
-                  	<c:if test="${!empty list}">
-	                    <c:forEach items="${list }" var="newsSolr">
-	                    	<li class="videoModel">
-	                    		<a href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
-	                    			<c:if test="${!empty  newsSolr.picLDUrl}">
-		                    			<img src="${file_locate_storage_path}${newsSolr.picLDUrl}" alt="${newsSolr.title}_拍片网" />
-	                    			</c:if>
-	                    			<c:if test="${empty  newsSolr.picLDUrl}">
-		                    			<img src="${imgPath}/index/noImg.jpg" alt="${newsSolr.title}_拍片网" />
-	                    			</c:if>
-	                    			<div class="tagDiv">
-	                    				<div class="tags" alt="${newsSolr.tags}">
-	                    					<c:if test="${not empty fn:trim(newsSolr.tags) }">
-												<c:forEach items="${fn:split(fn:trim(newsSolr.tags),' ') }" var="tag" end="2" varStatus="stat">
-													${tag} <c:if test="${!stat.last }">/</c:if>
-												</c:forEach>
-											</c:if>
-	                    				</div>
-	                    			</div>
-	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
-	                   				<div class="content" alt="${newsSolr.discription }">${newsSolr.discription }</div>
-	                   				<div class="time" >发表于 
-	                   					<fmt:parseDate value="${newsSolr.creationTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
-	                   					<fmt:formatDate value="${yearMonth}" pattern="yyyy年MM月dd日" />
-	                   				</div>
-	                    		</a>
-	                    	</li>
-	                    </c:forEach>
-                    </c:if>
-                    
-                   
-                  </ul>
-                  
-                  <div class="page-section" id="pagination">
-					<div class="page-wrap">
-						<div class="pagination">
-							
-						</div>
-					</div>
-		          </div>
-          </div>
-    </div>
-    
-
-    
-    <!-- foot -->
+	
+	<div class="page">
+	  
+	   <div class="errorDiv">
+	       
+	       <div class="centerDiv">
+	        <div><a href="/"><img src="${imgPath }/icons/errors.png"></a></img></div>
+	        <div class="centerWord">您访问的服务器飞走了！请点击<a href="/">返回首页</a></div>
+	       </div>
+	   </div>
+	  
+	  
+	</div>
+	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
@@ -226,7 +152,7 @@
                                         </div>
                                         <div class="topItem commonWidth">
                                             <div class="title"><a>登录</a></div>
-                                         <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
+                             <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
                                             <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
                                             <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
@@ -266,17 +192,50 @@
                                 </div>
                             </div>
                             <!--新版底部-->
+	</div>
 	
-    <script type="text/javascript" src="${clampJs }"></script>
-    <script type="text/javascript" src="${jqueryJs }"></script>
-    <script type="text/javascript" src="${jquerybase64Js }"></script>
-    <script type="text/javascript" src="${bootstrapJs }"></script>
-    <script type="text/javascript" src="${flexsliderJS }"></script>
-    <script type="text/javascript" src="${json }" ></script>
-	<script type="text/javascript" src="${jqueryPageJs }"></script>	
-    <script type="text/javascript" src="${newsJS }"></script>
-    <script type="text/javascript" src="${commonJs }"></script>
-
+	<!-- 代码部分begin -->
+	<div class="toolbar " id="toolbar-section" style="visibility: hidden;">
+		<a href="javascript:void(0);" class="toolbar-item toolbar-item-weixin common-icons-tele-client" id="toolbar-item-weixin"></a>
+		<a href="tencent://message/?uin=2640178216&Site=qq&Menu=yes" class="toolbar-item toolbar-item-qq common-icons-qq-client"></a>
+		<a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top common-icons-top-client"></a>
+	</div>
+	<!-- 代码部分end -->
+	
+	<!-- toolbar modal begin -->
+	<div class="modal fade" id="toolbar-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="common-icons-know-us-close-icon modal-icon" data-dismiss="modal" aria-label="Close"></div>
+					<dl>
+						<dt>
+							<h3 id="modal-h3-first">马上接通视频营销管家</h3>
+						</dt>
+						
+						<dd id="modal-dd-second">
+							<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
+							<a href="javascript:void(0);" id="modal-call">
+								<div class="call-btn">
+									<label class="call-icon common-icons-telephone"></label> 闪电接通
+								</div>
+							</a>
+							<label class="modal-message" style="display: none;"></label>
+						</dd>
+						
+						<dt >
+							<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
+						</dt>
+						
+						<dd>
+							<h4>和QQ客服聊会</h4>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- toolbar modal end -->
+	<script type="text/javascript" defer async="true" src="${requireJs }" data-main="resources/js/index"></script>
 </body>
-
 </html>

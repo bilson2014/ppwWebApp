@@ -16,6 +16,9 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
+<spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypoints" />
+
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -49,6 +52,9 @@
 </head>
 
 <body>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" id="q" value="${q}" />
+	<input type="hidden" id="tags" value="${news.tags}" />
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -144,14 +150,27 @@
             <div class="contentWidth">
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
-                    <div>${news.tags}</div>
+                       <div class="tags">
+                             <img class="tagImg" src="${imgPath}/provder/videoTag.png">
+	                        <div class="tagsContent">	                               
+				                    <c:if test="${not empty fn:trim(news.tags) }">
+										<c:forEach items="${fn:split(fn:trim(news.tags),' ') }" var="tag" end="2" varStatus="stat">
+											${tag} <c:if test="${!stat.last }">/</c:if>
+										</c:forEach>
+									</c:if>
+							</div>
+		                    <div class="time" >发表于 
+		                   					<fmt:parseDate value="${news.createTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
+		                   					<fmt:formatDate value="${yearMonth}" pattern="yyyy年MM月dd日" />
+		                   	</div>
+	                   </div> 
                     <div class="setPro" id="newsValue">
                         ${news.content}
                     </div>
                     <input type="hidden" id="newsId" value="${news.id}">
                 </div>
-                <div class="rightContent">
-                    <div class="title">更多资讯</div>
+                <div class="rightContent fixed">
+                    <div class="title">最热资讯</div>
                     <div class="setVideo" id="moreNews">
                        <!--  <div class="videoModel">
                             <label>标题</label>
@@ -161,9 +180,20 @@
                         </div>
                        -->
                     </div>
+                     <div class="goToOther">
+			           <a><div>上一篇</div></a>
+			           <a><div>下一篇</div></a>   
+			        </div>
                 </div>
             </div>
         </div> 
+       
+        <div class="youLike">
+             <div class="title">您可能感兴趣的文章  Recommende</div>
+             <div class="atrContent"> 
+             </div>
+        </div>
+        
        <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -196,8 +226,14 @@
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
                                             <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>请加微信，与客服进行会话</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
+                                        
                                         </div>
                                         <div class="topItem">
                                             <div class="title"><a>咨询电话</a></div>
@@ -218,11 +254,13 @@
     
      <script type="text/javascript" src="${clampJs }"></script>
      <script type="text/javascript" src="${jqueryJs }"></script>
-      <script type="text/javascript" src="${jquerybase64Js }"></script>
-    <script type="text/javascript" src="${bootstrapJs }"></script>
-    <script type="text/javascript" src="${flexsliderJS }"></script>
-    <script type="text/javascript" src="${newsJS }"></script>
-    <script type="text/javascript" src="${commonJs }"></script>
+     <script type="text/javascript" src="${jquerybase64Js }"></script>
+	 <script type="text/javascript" src="${bootstrapJs }"></script>
+	 <script type="text/javascript" src="${flexsliderJS }"></script>
+	 <script type="text/javascript" src="${newsJS }"></script>
+	 <script type="text/javascript" src="${commonJs }"></script>
+     <script type="text/javascript" src="${waypoints }"></script>
+    
 </body>
 
 </html>

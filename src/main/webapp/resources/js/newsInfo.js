@@ -146,7 +146,7 @@ function getContentIndex(str){
 	if(str.length<=num){
 		var content = str;
 	}else{
-		var content = str.substr(1,num) +"[...]"
+		var content = str.substr(0,num) +"[...]"
 	}
 	
 	return  content;
