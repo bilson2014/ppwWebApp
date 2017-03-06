@@ -195,6 +195,11 @@ public class SolrController extends BaseController {
 	public BaseMsg searchNewByTagsView(String q, HttpServletRequest request) throws Exception {
 		BaseMsg baseMsg = new BaseMsg();
 		final SolrView view = new SolrView();
+		if ("最热资讯".equals(q)) {
+			// 筛选 推荐值大于0 的新闻
+			view.setRecomendFq("[1 TO *]");
+			q = null;
+		}
 		if (StringUtils.isNotBlank(q))
 			view.setCondition(URLEncoder.encode(q, "UTF-8"));
 
