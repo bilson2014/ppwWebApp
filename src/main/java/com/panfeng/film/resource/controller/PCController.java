@@ -691,7 +691,7 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/news/pagesize")
-	public BaseMsg newsMaxSize(final HttpServletRequest request,@RequestBody NewsView newsView) {
+	public BaseMsg newsMaxSize(final HttpServletRequest request, @RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagesize";
 		String str = HttpUtil.httpPost(url, newsView, request);
@@ -734,6 +734,60 @@ public class PCController extends BaseController {
 			final ModelMap model) {
 		final String url = URL_PREFIX + "portal/news/info/" + newId;
 		String str = HttpUtil.httpGet(url, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/next-{newId}.html")
+	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model) {
+		final String url = URL_PREFIX + "portal/news/next";
+		News n = new News();
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/prev-{newId}.html")
+	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model) {
+		final String url = URL_PREFIX + "portal/news/prev";
+		News n = new News();
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
 			try {
 				News news = JsonUtil.toBean(str, News.class);
