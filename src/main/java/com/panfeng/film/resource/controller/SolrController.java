@@ -221,7 +221,7 @@ public class SolrController extends BaseController {
 		}
 		return baseMsg;
 	}
-
+	
 	// 搜索分页
 	@RequestMapping("/search/news/pagination")
 	public List<NewsSolr> searchNewsPagination(@RequestBody final SolrView view, final HttpServletRequest request)
