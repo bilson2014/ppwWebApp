@@ -8,48 +8,62 @@
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
+    body {
+        height: auto;
+    }
+    
     .page {
         background: transparent !important;
     }
-
+    
     ::selection {
-        background: lighten(#333,10%);
+        background: lighten(#333, 10%);
         color: $red-base;
     }
     
     ::-moz-selection {
-        background: lighten(#333,10%);
+        background: lighten(#333, 10%);
         color: $red-base;
     }
     
     ::-webkit-selection {
-        background: lighten(#333,10%);
+        background: lighten(#333, 10%);
         color: $red-base;
     }
-
-
-    .titleTag{
-    	width: 100%;
-    	height: 60px;
-    	background:#f9fafb;
-       
-    	.titleTagContent{
-    		@include media_screen_width_beta3();
-    		height:100%;
-    		margin: 0 auto;
-    		div{
-    			display: inline-block;
-    			height: 100%;
-    			color:$gray-dark;
-    			font-size: $font-size-sm;
-    			line-height: 60px;
-    		}
-            div:nth-child(2n){    			
-    			color:$gray;
-    			font-size: $font-size-sm;
-    		}
-
-    	}
+    
+    .titleTag {
+        width: 100%;
+        height: 60px;
+        background: #f9fafb;
+        .titleTagContent {
+            @include media_screen_width_beta3();
+            height: 100%;
+            margin: 0 auto;
+            div {
+                display: inline-block;
+                height: 100%;
+                color: $gray-dark;
+                font-size: $font-size-sm;
+                line-height: 60px;
+            }
+            div:nth-child(2n) {
+                color: $gray;
+                font-size: $font-size-sm;
+            }
+        }
+    }
+    
+    .tagImg,
+    .tagsContent {
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .tagImg {
+        width: 16px !important;
+        position: relative;
+        top: 3px;
+        margin-right: 13px;
     }
     
     .contentWidth {
@@ -100,24 +114,48 @@
                 }
             }
         }
+        .tags {
+            div {
+                display: inline-block;
+                vertical-align: top;
+                color: $gray-light;
+                font-size: $font-size-base;
+            }
+            .tagsContent {
+                margin-right: 60px;
+            }
+        }
+        .nofixed {
+            bottom:450px;
+        }
+
+        .fixed{    	
+            top: 175px;
+        }
+
         .rightContent {
             display: inline-block;
             vertical-align: top;
             width: $rightWidth;
-            position: fixed;
             padding-left: 40px;
-           
+            position: fixed;
             .title {
-                font-size: $font-size;
-                color: $gray-dark;
+                font-size: $font-size-base;
+                color: white;
                 margin-bottom: 30px;
                 overflow: hidden;
                 position: relative;
                 top: 10px;
+                background: url(/resources/images/news/redBack.png) no-repeat;
+                width: 164px;
+                height: 36px;
+                text-align: center;
+                line-height: 30px;
             }
             .videoModel {
                 margin-bottom: 30px;
                 cursor: pointer;
+                padding-left: 9px;
                 &:hover {
                     label:first-child,
                     label:nth-child(2) {

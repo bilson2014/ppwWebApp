@@ -1,6 +1,25 @@
 $().ready(function() {
-	initContent();
+	initContent();	    
+    controlRightPos();
+     
 });
+
+
+//右侧是否悬浮
+function controlRightPos(){
+	
+	  $(window).scroll(function() {
+		  var heights = $('.page').height() - 1000;
+		  if($(document).scrollTop()>=heights){
+			  $('.rightContent').removeClass('fixed');
+			  $('.rightContent').addClass('nofixed');
+		  }else{
+			  $('.rightContent').removeClass('nofixed');
+			  $('.rightContent').addClass('fixed');
+		  }
+                      
+	  });
+}
 
 function initContent() {
 	var html = $('#newsValue').html().trim();
@@ -24,16 +43,16 @@ function initContent() {
 	    		k++;
 	    	}
 	    });
-	}, getContextPath() + '/news/info/recommend',null);
+	}, getContextPath() + '/get/news/tag?q=最热资讯',null);
 }
 
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
 	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
 	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
-      	'<label>' + item.title + '</label>' +
+	  '<img>'
+      '<label>' + item.title + '</label>' +
       '<label class="discription">' + item.discription + '</label>'+
-      '<label>了解更多</label>' +
       '</a>'+
       '</div>';
 	  $body += '</div>';

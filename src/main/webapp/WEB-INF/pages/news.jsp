@@ -16,6 +16,9 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
+<spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypoints" />
+
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -144,14 +147,27 @@
             <div class="contentWidth">
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
-                    <div>${news.tags}</div>
+                       <div class="tags">
+                             <img class="tagImg" src="${imgPath}/provder/videoTag.png">
+	                        <div class="tagsContent">	                               
+				                    <c:if test="${not empty fn:trim(news.tags) }">
+										<c:forEach items="${fn:split(fn:trim(news.tags),' ') }" var="tag" end="2" varStatus="stat">
+											${tag} <c:if test="${!stat.last }">/</c:if>
+										</c:forEach>
+									</c:if>
+							</div>
+		                    <div class="time" >发表于 
+		                   					<fmt:parseDate value="${news.createTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
+		                   					<fmt:formatDate value="${yearMonth}" pattern="yyyy年MM月dd日" />
+		                   	</div>
+	                   </div> 
                     <div class="setPro" id="newsValue">
                         ${news.content}
                     </div>
                     <input type="hidden" id="newsId" value="${news.id}">
                 </div>
-                <div class="rightContent">
-                    <div class="title">更多资讯</div>
+                <div class="rightContent fixed">
+                    <div class="title">最热资讯</div>
                     <div class="setVideo" id="moreNews">
                        <!--  <div class="videoModel">
                             <label>标题</label>
@@ -218,11 +234,13 @@
     
      <script type="text/javascript" src="${clampJs }"></script>
      <script type="text/javascript" src="${jqueryJs }"></script>
-      <script type="text/javascript" src="${jquerybase64Js }"></script>
-    <script type="text/javascript" src="${bootstrapJs }"></script>
-    <script type="text/javascript" src="${flexsliderJS }"></script>
-    <script type="text/javascript" src="${newsJS }"></script>
-    <script type="text/javascript" src="${commonJs }"></script>
+     <script type="text/javascript" src="${jquerybase64Js }"></script>
+	 <script type="text/javascript" src="${bootstrapJs }"></script>
+	 <script type="text/javascript" src="${flexsliderJS }"></script>
+	 <script type="text/javascript" src="${newsJS }"></script>
+	 <script type="text/javascript" src="${commonJs }"></script>
+     <script type="text/javascript" src="${waypoints }"></script>
+    
 </body>
 
 </html>
