@@ -29,6 +29,7 @@ import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Job;
+import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.ProductModule;
 import com.panfeng.film.resource.model.Service;
@@ -44,7 +45,6 @@ import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.News;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
