@@ -11,19 +11,7 @@
     .page {
         background: transparent !important;
     }
-    
-    //     ::selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
-    // ::-moz-selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
-    // ::-webkit-selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
+
     ::selection {
         background: lighten(#333,10%);
         color: $red-base;
@@ -37,6 +25,31 @@
     ::-webkit-selection {
         background: lighten(#333,10%);
         color: $red-base;
+    }
+
+
+    .titleTag{
+    	width: 100%;
+    	height: 60px;
+    	background:#f9fafb;
+       
+    	.titleTagContent{
+    		@include media_screen_width_beta3();
+    		height:100%;
+    		margin: 0 auto;
+    		div{
+    			display: inline-block;
+    			height: 100%;
+    			color:$gray-dark;
+    			font-size: $font-size-sm;
+    			line-height: 60px;
+    		}
+            div:nth-child(2n){    			
+    			color:$gray;
+    			font-size: $font-size-sm;
+    		}
+
+    	}
     }
     
     .contentWidth {

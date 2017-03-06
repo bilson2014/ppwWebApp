@@ -132,9 +132,19 @@
     </div>
     <div class="page">
         <div class="bottomContent">
+		         <div class="titleTag">
+		            <div class="titleTagContent">
+		                <div>首页</div>
+		                <div>></div>
+		                <div>前页</div>
+		                <div>></div>
+		                <div>正文</div>
+		            </div>
+		        </div>
             <div class="contentWidth">
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
+                    <div></div>
                     <div class="setPro" id="newsValue">
                         ${news.content}
                     </div>

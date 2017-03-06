@@ -5,8 +5,6 @@ $().ready(function() {
 function initContent() {
 	var html = $('#newsValue').html().trim();
 	if (html != '') {
-	//	$.base64.utf8encode = true;
-	//	var decodeContent = $.trim($.base64.atob(html, true));
 		var re2 = 'src="@.@([^"]*)"';
 		var p = new RegExp(re2, [ "gm" ]);
 		html = html.replace(p, "src='" + getDfsHostName()
@@ -15,8 +13,6 @@ function initContent() {
 	} else {
 		$('#newsValue').text('');
 	}
-	
-	
 	
 	loadData(function(data){
 		
@@ -28,13 +24,6 @@ function initContent() {
 	    		k++;
 	    	}
 	    });
-	    
-//	    $('.discription').each(function(i){ 
-//	    	 var teamDescripti=document.getElementsByClassName('discription')[0];  
-//	 	    $clamp(teamDescripti,{clamp:3}); 
-//         	  }); 
-		
-		
 	}, getContextPath() + '/news/info/recommend',null);
 }
 
