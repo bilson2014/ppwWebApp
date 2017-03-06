@@ -556,7 +556,10 @@
 		</div>
 		<!-- 入驻end-->
 <!-- foot -->
-         					<div class="foot3">
+         					<div class="foot3">、
+         					    <div>
+         					      <>
+         					    </div>
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">

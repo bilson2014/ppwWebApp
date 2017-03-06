@@ -1,5 +1,6 @@
 $().ready(function() {
-	initContent();	    
+	initContent();	
+	initLike();
     controlRightPos();
      
 });
@@ -7,7 +8,9 @@ $().ready(function() {
 
 //右侧是否悬浮
 function controlRightPos(){
+	  
 	
+	console.info($(document).height());
 	  $(window).scroll(function() {
 		  var heights = $('.page').height() - 1000;
 		  if($(document).scrollTop()>=heights){
@@ -21,6 +24,8 @@ function controlRightPos(){
 	  });
 }
 
+
+//初始化最热资讯
 function initContent() {
 	var html = $('#newsValue').html().trim();
 	if (html != '') {
@@ -46,17 +51,61 @@ function initContent() {
 	}, getContextPath() + '/get/news/tag?q=最热资讯',null);
 }
 
+
+//初始化感兴趣
+function initLike() {
+
+	
+	loadData(function(data){	
+	    $.each(data.result, function(i,item) {	    	
+	    	addLikeNews(item);//排除自己	    	
+	    });
+	}, getContextPath() + '/get/news/tag?q='+$('#tags').val(),null);
+}
+
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
 	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
 	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
-	  '<img>'
-      '<label>' + item.title + '</label>' +
-      '<label class="discription">' + item.discription + '</label>'+
+	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
+      '<div class="rightDes">'+
+         '<div>'+item.title+'</div>'+
+         '<div>'+getTime(item.creationTime)+'</div>'+
+      '</div>'+
       '</a>'+
       '</div>';
 	  $body += '</div>';
-      $("#moreNews").append($body);
+      $("#moreNews").append($body);   
+}
+
+function addLikeNews(item){
+	  var $body = '<div class="videoLikeModel">' +
+	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
+	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
+	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
+      '<div class="rightDes">'+'s'+'</div>'+
+      '</a>'+
+      '</div>';
+	  $body += '</div>';
+    $(".atrContent").append($body);
+}
+
+
+//日期格式化
+function getTime(str){
+	var date = convert(str);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var day = date.getDate();
+	return year+'年'+month+'月'+day+'日';
+
+}
+
+function convert(val) {
+	if(val != null && val != undefined && val != ''){
+		return new Date(Date.parse(val.replace(/-/g, "/")));
+	}
+	return '';
 }
 
 

@@ -52,6 +52,9 @@
 </head>
 
 <body>
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" id="q" value="${q}" />
+	<input type="hidden" id="tags" value="${news.tags}" />
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -177,9 +180,20 @@
                         </div>
                        -->
                     </div>
+                     <div class="goToOther">
+			           <a><div>上一篇</div></a>
+			           <a><div>下一篇</div></a>   
+			        </div>
                 </div>
             </div>
         </div> 
+       
+        <div class="youLike">
+             <div class="title">您可能感兴趣的文章  Recommende</div>
+             <div class="atrContent"> 
+             </div>
+        </div>
+        
        <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -212,8 +226,14 @@
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
                                             <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>请加微信，与客服进行会话</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
+                                        
                                         </div>
                                         <div class="topItem">
                                             <div class="title"><a>咨询电话</a></div>

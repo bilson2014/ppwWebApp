@@ -56,6 +56,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${total }" id="total"/>
 	<input type="hidden" id="q" value="${q}" />
+	
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -148,17 +149,17 @@
                 <a href="<spring:url value='/news-list.html?q=最热资讯' />" alt="最热资讯">
                 	<div class="category" data-value="最热资讯">最热资讯</div>
                 </a>
-                <a href="<spring:url value='/news-list.html?q=案例分享' />" alt="案例分享">
-                	<div class="category" data-value="案例分享">案例分享</div>
+                <a href="<spring:url value='/news-list.html?q=案例花絮' />" alt="案例花絮">
+                	<div class="category" data-value="案例花絮">案例花絮</div>
                 </a>
-                <a href="<spring:url value='/news-list.html?q=企业活动' />" alt="企业活动">
-                	<div class="category" data-value="企业活动">企业活动</div>
+                <a href="<spring:url value='/news-list.html?q=企业动态' />" alt="企业动态">
+                	<div class="category" data-value="企业动态">企业动态</div>
                 </a>
                 <a href="<spring:url value='/news-list.html?q=行业资讯' />" alt="行业资讯">
                 	<div class="category" data-value="行业资讯">行业资讯</div>
                 </a>
-                <a href="<spring:url value='/news-list.html?q=人物专访' />" alt="人物专访">
-                	<div class="category" data-value="人物专访">人物专访</div>
+                <a href="<spring:url value='/news-list.html?q=佳片赏析' />" alt="佳片赏析">
+                	<div class="category" data-value="佳片赏析">佳片赏析</div>
                 </a>
             </div>
         </div>

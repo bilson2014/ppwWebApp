@@ -126,13 +126,11 @@
             }
         }
         .nofixed {
-            bottom:450px;
+            bottom: 450px;
         }
-
-        .fixed{    	
+        .fixed {
             top: 175px;
         }
-
         .rightContent {
             display: inline-block;
             vertical-align: top;
@@ -156,42 +154,101 @@
                 margin-bottom: 30px;
                 cursor: pointer;
                 padding-left: 9px;
-                &:hover {
-                    label:first-child,
-                    label:nth-child(2) {
-                        color: $red-base !important;
+                img {
+                    width: 125px;
+                    height: 70px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                .rightDes {
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 70px;
+                    position: relative;
+                    width: 145px;
+                    padding-left: 5px;
+                    div:nth-child(1) {
+                        color: $gray-dark;
+                        font-size: $font-size-base;
+                        height: 40px;
+                        line-height: 18px;
+                    }
+                    div:nth-child(2) {
+                        color: $gray-light;
+                        font-size: $font-size-sm;
+                        position: absolute;
+                        bottom: 0px;
                     }
                 }
-                label {
-                    display: block;
-                    font-weight: 500;
+            }
+        }
+    }
+    
+    .goToOther {
+        width: 100%;
+        font-size: 0;
+        text-align: center;
+        div:nth-child(1) {
+            margin-right:30px;
+        }
+        div {
+            display: inline-block;
+            vertical-align: top;
+            width: 200px;
+            height: 36px;
+            border: 1px solid $border-line;
+            border-radius: 4px;
+            color: $gray-light;
+            font-size: $font-size-base;
+            text-align: center;
+            line-height: 28px;
+            cursor: pointer;
+            &:hover{
+            	background: $red-base;
+            	border: 1px solid $red-base;
+            	color:white;
+            }
+        }
+    }
+    
+    .youLike {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        margin-bottom: 100px;
+        .title {
+            color: $gray-dark;
+            font-size: $font-size;
+        }
+        .atrContent {
+            .videoLikeModel:nth-child(3n) {
+                margin-right: 0px !important;
+            }
+            .videoLikeModel {
+                display: inline-block;
+                vertical-align: top;
+                width: ($width-min - $rightWidth - 40px)/3;
+                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                    width: ($width-middle - $rightWidth - 40px)/3;
                 }
-                label:first-child {
-                    font-size: $font-size !important;
-                    color: $gray-dark !important;
-                    cursor: pointer;
-                    overflow: hidden;
-                    @include ellipsis;
-                    &:hover {
-                        color: $red-base !important;
+                @media screen and (min-width:1500px) {
+                    width: ($width-lg3 - $rightWidth - 40px)/3;
+                }
+                margin-right: 20px;
+                img {
+                    width: 100%;
+                    height: ($width-min - $rightWidth - 40px)/3/16*9;
+                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                        height: ($width-middle - $rightWidth - 40px)/3/16*9;
                     }
-                }
-                label:nth-child(2) {
-                    font-size: $font-size-sm;
-                    color: $gray-light;
-                    margin-top: 16px;
-                    margin-bottom: 12px;
-                    height: 54px;
-                    overflow: hidden;
-                    cursor: pointer;
-                    &:hover {
-                        color: $red-base !important;
+                    @media screen and (min-width:1500px) {
+                        height: ($width-lg3 - $rightWidth - 40px)/3/16*9;
                     }
+                    margin-bottom: 10px;
+                    margin-top: 40px;
                 }
-                label:last-child {
-                    font-size: $font-size-sm;
-                    color: $red-base;
-                    cursor: pointer;
+                .rightDes {
+                    color: $gray-dark;
+                    font-size: $font-size;
                 }
             }
         }
