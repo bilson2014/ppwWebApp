@@ -62,6 +62,7 @@
             display: inline-block;
             vertical-align: top;
             width: $width-min - $rightWidth;
+            border-right: 1px solid $border-line;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -103,9 +104,9 @@
             display: inline-block;
             vertical-align: top;
             width: $rightWidth;
-            position: relative;
+            position: fixed;
             padding-left: 40px;
-            border-left: 1px solid $border-line;
+           
             .title {
                 font-size: $font-size;
                 color: $gray-dark;

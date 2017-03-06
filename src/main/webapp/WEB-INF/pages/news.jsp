@@ -144,7 +144,7 @@
             <div class="contentWidth">
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
-                    <div></div>
+                    <div>${news.tags}</div>
                     <div class="setPro" id="newsValue">
                         ${news.content}
                     </div>
