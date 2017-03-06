@@ -109,6 +109,7 @@ function checkMobile(str) {
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -130,7 +131,7 @@ function checkMobile(str) {
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
 					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
-				       <div class="showInfoList">
+				       	   <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <a href="<spring:url value="/user/info" />"><li class="toSet">个人信息</li></a>
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
@@ -432,7 +433,7 @@ function checkMobile(str) {
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,21 +1,65 @@
-@import "common";
+    @import "common";
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
-
-
 .nav-shadow {
-  width: 100%;
-  height: 1px;
-  position:relative;
-  top:1px;
+    width: 100%;
+    height: 1px;
+    position: relative;
+    top: 1px;
 }
 
+.page {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    height: auto;
+    text-align: center;
+    font-size: 0;
+    top: 0px !important;
+}
+
+.activeTitle {
+    div:nth-child(1) {
+        color: $red-base;
+        font-size: $font-size-lg26;
+        margin-top: 60px;
+    }
+    div:nth-child(2) {
+        margin-top: 5px;
+        color: $gray-light;
+        font-size: $font-size-base;
+        margin-bottom: 30px;
+    }
+}
+
+.infoTitle {
+    div:nth-child(1) {
+        color: $red-base;
+        font-size: $font-size-lg;
+    }
+    div:nth-child(2) {
+        color: $gray;
+        font-size: $font-size-sm;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+    div:nth-child(3) {
+        color: $gray;
+        font-size: $font-size-base;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 18px;
+    }
+    .bottomDiv {
+        margin-bottom: 100px !important;
+    }
+}
 
 .titleTag {
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+    margin-top: 60px;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -37,47 +81,240 @@
         }
     }
 }
- 
-.area-top {
-  @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
-  margin: auto;
 
-  p {
-    padding-top: 60px;
-    margin-bottom: 20px;
-    color: $gray;
-    font-size: $font-size;
-    line-height: 20px;
-  }
-  .image-top {
-    @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
-    height: auto;
-  }
+.active1 {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
-
-.area-bottom {
-  margin-bottom: 100px;
+.active1-2 {
+    width: 100%;
+    margin-bottom: 80px;
 }
 
+.active2Top {
+    img {
+        display: inline-block;
+        height: 390px;
+    }
+    img:nth-child(2) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    margin-bottom: 10px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        img {
+            height: 1212px*39/130;
+        }
+        img:nth-child(2) {
+            margin-left: 9px;
+            margin-right: 9px;
+        }
+        margin-bottom: 9px;
+    }
+    @media screen and (max-width: 1275px) {
+        img {
+            height: 960px*39/130;
+        }
+        img:nth-child(2) {
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+        margin-bottom: 7px;
+    }
+    margin-top: 30px;
+}
 
-//冲突我要拍片
-.dropdowns .dropdown-menu{
-  position: absolute;
-  background: white;
-  border:1px solid $gray-dark;
-  border: 1px solid #999;
-    z-index: 9;
-    display: none;
-    top:32px !important;
-  li{
-    &:hover{
-      background: #f0f2f5;
+.active2Bottom {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.active3Top {
+    img {
+        display: inline-block;
+        height: 442px;
+    }
+    img:nth-child(2) {
+        margin-left: 9px;
+    }
+    margin-bottom: 9px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        img {
+            height: 1212px*42/130;
+        }
+        img:nth-child(2) {
+            margin-left: 8px;
+        }
+        margin-bottom: 8px;
+    }
+    @media screen and (max-width: 1275px) {
+        img {
+            height: 960px*42/130;
+        }
+        img:nth-child(2) {
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+        margin-bottom: 7px;
+    }
+    margin-top: 30px;
+}
+
+.active3Bottom {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.active4Top {
+    height: 564px;
+    img {
+        display: inline-block;
+        height: 100%;
+    }
+    img:nth-child(2) {
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        height: 1212px*564/1300;
+        img:nth-child(2) {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        height: 960px*564/1300;
+        img:nth-child(2) {
+            margin-left: 6px;
+            margin-right: 7px;
+        }
+    }
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.active5Top {
+    height: 736px;
+    img {
+        display: inline-block;
+        height: 100%;
+    }
+    img:nth-child(2) {
+        margin-left: 8px;
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        height: 1212px*736/1300;
+        img:nth-child(2) {
+            margin-left: 7px;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        height: 960px*736/1300;
+        img:nth-child(2) {
+            margin-left: 6px;
+        }
+    }
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.active6Top {
+    height: 509px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        height: 1212px*509/1300;
+    }
+    @media screen and (max-width: 1275px) {
+        height: 960px*509/1300;
+    }
+    .leftImg {
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+    }
+    .rightImg {
+        display: inline-block;
+        vertical-align: top;
+        width: 488px;
+        height: 100%;
+        margin-left: 10px;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: 1212px*488/1300;
+            margin-left: 8px;
+            img:nth-child(1) {
+                margin-bottom: 9px;
+            }
+        }
+        @media screen and (max-width: 1275px) {
+            width: 960px*488/1300;
+            margin-left: 7px;
+            img:nth-child(1) {
+                margin-bottom: 8px;
+            }
+        }
+        img {
+            width: 100%;
+        }
+        img:nth-child(1) {
+            margin-bottom: 10px;
+        }
+    }
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.active7Top {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    img {
+        width: 100%;
+    }
+    img:nth-child(1) {
+        margin-bottom: 10px;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            margin-bottom: 9px;
+        }
+        @media screen and (max-width: 1275px) {
+            margin-bottom: 8px;
+        }
     }
   }
-}
-
-
-.video-card .video-desc-section h3{
-  line-height: 16px !important;
-}
+    // .area-top {
+    //   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+    //   margin: auto;
+    //   p {
+    //     padding-top: 60px;
+    //     margin-bottom: 20px;
+    //     color: $gray;
+    //     font-size: $font-size;
+    //     line-height: 20px;
+    //   }
+    //   .image-top {
+    //     @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
+    //     height: auto;
+    //   }
+    // }
+    // .area-bottom {
+    //   margin-bottom: 100px;
+    // }
+    // //冲突我要拍片
+    // .dropdowns .dropdown-menu{
+    //   position: absolute;
+    //   background: white;
+    //   border:1px solid $gray-dark;
+    //   border: 1px solid #999;
+    //     z-index: 9;
+    //     display: none;
+    //     top:32px !important;
+    //   li{
+    //     &:hover{
+    //       background: #f0f2f5;
+    //     }
+    //   }
+    // }
+    // .video-card .video-desc-section h3{
+    //   line-height: 16px !important;
+    // }

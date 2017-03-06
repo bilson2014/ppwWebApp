@@ -104,6 +104,7 @@
         color: white;
         font-size: 26px;
         margin-bottom: 40px;
+         @include ellipsis;
     }
     
     div:nth-child(2) {
@@ -395,6 +396,8 @@
         text-align: center;
         border-radius: 4px;
         cursor: pointer;
+        position: relative;
+        top:5px;
         &:active {
             background: darken($red-base, 20%);
         }
@@ -468,7 +471,7 @@
             position: absolute;
             color: $red-base;
             font-size: $font-size-sm;
-            top: 43px;
+            top: 38px;
             right: 0px;
             bottom: 0px;
             left: 15px;

@@ -1,0 +1,144 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "pagination";
+@import "compass/typography/text/ellipsis";
+$itemMargin:35px;
+
+.page{
+	margin-bottom: 180px;
+    top:40px !important;
+}
+
+.titleTag {
+    background: #f0f2f5;
+    height: 70px;
+    border-bottom: 1px solid $border-line;
+    margin-bottom: 60px;
+    .titleWord {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        font-size: 0;
+        padding-left: 16%;
+        padding-right: 16%;
+        div {
+            color: $gray-light;
+            font-size: $font-size-base;
+            width: 16%;
+            display: inline-block;
+            line-height: 69px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .checkActive {
+            color: $red-base !important;
+            border-bottom: 1px solid $red-base;
+        }
+    }
+}
+
+.newsList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    font-size: 0;
+    ul {
+   //    margin-left: -($itemMargin/2);
+    }
+
+    li:nth-child(4n)
+    {
+      margin-right: 0px !important;
+    }
+
+    li {
+        position: relative;
+        display: inline-block;
+        color: black;
+        font-size: $font-size-base;
+        height: auto;
+        margin-right: $itemMargin;
+        margin-bottom: 16px;
+        padding-bottom: 50px;
+        margin-bottom: 60px;
+        vertical-align: top;
+        width: ($width-min - $itemMargin*3)/4;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            width: ($width-middle - $itemMargin*3)/4;
+        }
+        @media screen and (min-width: 1500px) {
+            width: ($width-lg3 - $itemMargin*3)/4;
+        }
+        img {
+            width: 100%;
+        }
+        .tagDiv {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .tags {
+            display: inline-block;
+            color: $gray-light;
+            font-size: $font-size-sm;
+        }
+        .title {
+            font-size: $font-size;
+            color: $gray-dark;
+            line-height: 26px;
+            height: 52px;
+            overflow: hidden;
+            margin-bottom:12px;
+        }
+        .content {
+            font-size: $font-size-base;
+            color: $gray-light;
+            height: 76px;
+            line-height: 26px;
+            overflow: hidden;
+        }
+        .time {
+            color: $gray-light;
+            font-size: $font-size-sm;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+        }
+    }
+}
+
+.pageNum {
+    font-size: 0;
+    li {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        color: black;
+        display: block;
+    }
+}
+
+.pagination {
+	width: 100%;
+    @include pagination();
+    div,
+    span,
+    a {
+        font-size: $font-size-base;
+    }
+}
+
+
+.prompt-background{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.prompt-word{
+    color: $gray-dark;
+    span{
+        font-weight: bold;
+        text-decoration:underline;
+    }
+}

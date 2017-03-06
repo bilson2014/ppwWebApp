@@ -82,6 +82,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -255,7 +256,7 @@
 		<div class="showVideo">
 		<img src="/resources/images/introduce/member/come.png">
 			<div class="video-div" id="activityPart">
-			     <img class="playVideo" id="playVideo" src="/resources/images/introduce/member/playVideo.png">
+			     <img class="playVideo" id="playVideos" src="/resources/images/introduce/member/playVideo.png">
 				<video id="video" src="${file_locate_storage_path }group1/M00/00/20/CgqNZViiqe2ANmqIAZ-Ai8Au-R8971.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/poster.jpg" ></video>
 		    </div>
 		</div>    
@@ -349,7 +350,7 @@
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>
