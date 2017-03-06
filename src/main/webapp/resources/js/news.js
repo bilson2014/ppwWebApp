@@ -69,7 +69,7 @@ function addMoreNews(item){
 	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
       '<div class="rightDes">'+
-         '<div>'+item.title+'</div>'+
+         '<div>'+getTitleIndex(item.title)+'</div>'+
          '<div>'+getTime(item.creationTime)+'</div>'+
       '</div>'+
       '</a>'+
@@ -83,7 +83,7 @@ function addLikeNews(item){
 	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
 	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
-      '<div class="rightDes">'+'s'+'</div>'+
+      '<div class="rightDes">'+getDesIndex(item.discription)+'</div>'+
       '</a>'+
       '</div>';
 	  $body += '</div>';
@@ -106,6 +106,41 @@ function convert(val) {
 		return new Date(Date.parse(val.replace(/-/g, "/")));
 	}
 	return '';
+}
+
+
+//标题缩略格式化
+function getTitleIndex(str){
+	
+	 var num = 18;  
+	   
+	if(str.length<=num){
+		var content = str;
+	}else{
+		var content = str.substr(0,num) +"..."
+	}
+	
+	return  content;
+}
+
+
+//内容缩略格式化
+function getDesIndex(str){
+	 var screenWidth = document.documentElement.clientWidth;
+	 var num = 32;  
+	    if(screenWidth<=1500){
+	    	num = 25;
+	    }
+	    if(screenWidth<=1276){
+	    	num = 20;
+	    }
+	if(str.length<=num){
+		var content = str;
+	}else{
+		var content = str.substr(0,num) +"..."
+	}
+	
+	return  content;
 }
 
 

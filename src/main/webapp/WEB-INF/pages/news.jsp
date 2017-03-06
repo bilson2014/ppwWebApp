@@ -168,6 +168,10 @@
                         ${news.content}
                     </div>
                     <input type="hidden" id="newsId" value="${news.id}">
+                     <div class="goToOther">
+			           <a href="<spring:url value='/news/prev-${news.id }.html' />" ><div>上一篇</div></a>
+			           <a href="<spring:url value='/news/next-${news.id }.html' />" ><div>下一篇</div></a>   
+			        </div>
                 </div>
                 <div class="rightContent fixed">
                     <div class="title">最热资讯</div>
@@ -180,10 +184,7 @@
                         </div>
                        -->
                     </div>
-                     <div class="goToOther">
-			           <a><div>上一篇</div></a>
-			           <a><div>下一篇</div></a>   
-			        </div>
+                    
                 </div>
             </div>
         </div> 
