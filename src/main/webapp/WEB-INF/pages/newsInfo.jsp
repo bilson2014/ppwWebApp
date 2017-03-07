@@ -174,7 +174,7 @@
                   	<c:if test="${!empty list}">
 	                    <c:forEach items="${list }" var="newsSolr">
 	                    	<li class="videoModel">
-	                    		<a href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
+	                    		<a class="toNewsUrl" href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
 	                    			<c:if test="${!empty  newsSolr.picLDUrl}">
 		                    			<img src="${file_locate_storage_path}${newsSolr.picLDUrl}" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
