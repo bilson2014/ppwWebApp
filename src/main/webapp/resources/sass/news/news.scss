@@ -3,6 +3,7 @@
     @import "video";
     @import "flexslider";
     @import "compass/typography/text/ellipsis";
+    @import "normalize";
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
@@ -29,6 +30,10 @@
     ::-webkit-selection {
         background: lighten(#333, 10%);
         color: $red-base;
+    }
+    
+    .bottomContent {
+        margin-bottom: 100px;
     }
     
     .titleTag {
@@ -115,6 +120,7 @@
             }
         }
         .tags {
+            margin-bottom: 40px;
             div {
                 display: inline-block;
                 vertical-align: top;
@@ -171,7 +177,8 @@
                         color: $gray-dark;
                         font-size: $font-size-base;
                         height: 40px;
-                        line-height: 18px;
+                        line-height: 20px;
+                        overflow: hidden;
                     }
                     div:nth-child(2) {
                         color: $gray-light;
@@ -188,8 +195,9 @@
         width: 100%;
         font-size: 0;
         text-align: center;
+        margin-top: 80px;
         div:nth-child(1) {
-            margin-right:30px;
+            margin-right: 30px;
         }
         div {
             display: inline-block;
@@ -201,12 +209,12 @@
             color: $gray-light;
             font-size: $font-size-base;
             text-align: center;
-            line-height: 28px;
+            line-height: 34px;
             cursor: pointer;
-            &:hover{
-            	background: $red-base;
-            	border: 1px solid $red-base;
-            	color:white;
+            &:hover {
+                background: $red-base;
+                border: 1px solid $red-base;
+                color: white;
             }
         }
     }
@@ -220,6 +228,13 @@
             font-size: $font-size;
         }
         .atrContent {
+            width: $width-min - $rightWidth;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                width: $width-middle - $rightWidth;
+            }
+            @media screen and (min-width:1500px) {
+                width: $width-lg3 - $rightWidth;
+            }
             .videoLikeModel:nth-child(3n) {
                 margin-right: 0px !important;
             }
@@ -249,6 +264,9 @@
                 .rightDes {
                     color: $gray-dark;
                     font-size: $font-size;
+                    height: 40px;
+                    line-height: 20px;
+                    overflow: hidden;
                 }
             }
         }
