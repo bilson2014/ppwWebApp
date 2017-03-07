@@ -181,7 +181,7 @@
                 </div>
                 <div class="rightContent fixed">
                     <div class="title">最热资讯</div>
-                    <a href="/news-list.html"><div class="moreNews">更多活动</div></a>
+                    <a href="/news-list.html?q=最热资讯"><div class="moreNews">更多活动</div></a>
                     <div class="setVideo" id="moreNews">
                     </div>
                     
@@ -190,7 +190,7 @@
         </div> 
        
         <div class="youLike">
-             <div class="title">您可能感兴趣的文章  Recommende</div>
+             <div class="title">您可能感兴趣的文章  Recommendation</div>
              <div class="atrContent"> 
              </div>
         </div>
@@ -226,11 +226,16 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
                                             <div class="proSer iconItem"><a href="">导演客服</a>    
 	                                            <div class="showCodeToPro">
 	                                               <img src="/resources/images/indexCode.jpg">
-	                                               <span>请加微信，与客服进行会话</span>
+	                                               <span>导演客服</span>
 	                                            </div>
 	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
