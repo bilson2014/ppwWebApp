@@ -180,6 +180,7 @@
                 </div>
                 <div class="rightContent fixed">
                     <div class="title">最热资讯</div>
+                    <a href="/news-list.html"><div class="moreNews">更多活动</div></a>
                     <div class="setVideo" id="moreNews">
                     </div>
                     

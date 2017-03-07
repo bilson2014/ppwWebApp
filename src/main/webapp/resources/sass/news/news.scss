@@ -44,6 +44,9 @@
             @include media_screen_width_beta3();
             height: 100%;
             margin: 0 auto;
+            a {
+                cursor: pointer;
+            }
             div {
                 display: inline-block;
                 height: 100%;
@@ -143,6 +146,13 @@
             width: $rightWidth;
             padding-left: 40px;
             position: fixed;
+            .moreNews {
+                position: absolute;
+                color: $red-base;
+                font-size: $font-size-sm;
+                top: 16px;
+                right: 0px;
+            }
             .title {
                 font-size: $font-size-base;
                 color: white;
@@ -274,15 +284,13 @@
     
     .proSer {
         position: relative;
-        
-        &:hover{
-        	.showCodeToPro{
-        		display: block !important;
-        	}
+        &:hover {
+            .showCodeToPro {
+                display: block !important;
+            }
         }
-
         .showCodeToPro {
-        	display: none;
+            display: none;
             position: absolute;
             width: 180px;
             background: white;

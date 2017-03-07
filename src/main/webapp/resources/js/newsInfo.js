@@ -1,4 +1,6 @@
 var pageSize = 20;
+
+
 $().ready(function() {	
 	// 分类高亮
 	newsInfo.initCategory();
@@ -11,7 +13,6 @@ $().ready(function() {
 	newsInfo.initPagination();
 });
 
-
 var newsInfo = {
 		// 分类高亮
 		initCategory : function() {
@@ -21,6 +22,7 @@ var newsInfo = {
 					if($(model).data('value') == q) {
 						$('.category').removeClass('checkActive');
 						$(this).addClass('checkActive');
+						newsInfo.getUrl($(this).attr('data-value'));
 						return;
 					}
 				});
@@ -32,12 +34,24 @@ var newsInfo = {
 						if($(model).data('value') == '最热资讯') {
 							$('.category').removeClass('checkActive');
 							$(this).addClass('checkActive');
+							newsInfo.getUrl($(this).attr('data-value'));
 							return;
 						}
 					});
 				}
 					
 			}
+		},
+		getUrl:function(path){
+			
+			$.each($('.toNewsUrl'),function(i,model){
+				 
+				  var url = $(this).attr('href')+'?path=新闻资讯,' + path;
+				  $(this).attr('href',url);
+				
+			});
+			
+			
 		},
 		// 格式化标题及介绍
 		formatContent : function() {
