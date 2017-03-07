@@ -749,6 +749,8 @@ public class PCController extends BaseController {
 			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
+		if(path == null)
+			path = "";
 		model.addAttribute("path", path);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news info", sessionInfo);
