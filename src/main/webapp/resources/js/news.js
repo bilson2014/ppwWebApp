@@ -87,7 +87,7 @@ function addLikeNews(item){
       '</a>'+
       '</div>';
 	  $body += '</div>';
-    $(".atrContent").append($body);
+      $(".atrContent").append($body);
 }
 
 
