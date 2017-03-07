@@ -32,6 +32,11 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.paipianwang.pat.common.session.PmsRole;
+import com.paipianwang.pat.facade.right.service.PmsRightFacade;
+import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
+import com.paipianwang.pat.facade.team.entity.PmsTeam;
+import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
@@ -85,6 +90,15 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private final FDFSService DFSservice = null;
+	
+	@Autowired
+	private PmsTeamFacade pmsTeamFacade = null;
+	
+	@Autowired
+	private final PmsRightFacade pmsRightFacade = null;
+	
+	@Autowired
+	private final PmsRoleFacade pmsRoleFacade = null;
 
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
@@ -209,67 +223,79 @@ public class ProviderController extends BaseController {
 	 * @return 登陆:true,失败:false
 	 */
 	@RequestMapping("/doLogin")
-	public BaseMsg login(@RequestBody final Team original, final HttpServletRequest request,
+	public BaseMsg login(@RequestBody final PmsTeam original, final HttpServletRequest request,
 			final HttpServletResponse response) {
 		if (original == null) {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
 		if (original.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
-			final String code = (String) request.getSession().getAttribute("code");
-			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			if ((original.getVerification_code() != null && code != null)) {
-				if (code.equals(original.getVerification_code())) {
-					if ((null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
-						final String url = URL_PREFIX + "portal/team/static/data/doLogin";
-						String json = HttpUtil.httpPost(url, original, request);
-						if (json != null && !"".equals(json)) {
-							boolean ret = JsonUtil.toBean(json, Boolean.class);
-							if (ret) {
-								addCookies(request, response);
-								return new BaseMsg(BaseMsg.NORMAL, "", true);
-							} else {
-								return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
-							}
-						}
-					} else {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("手机号错误", sessionInfo);
-						return new BaseMsg(BaseMsg.ERROR, "和验证手机不符", false);
-					}
-				} else {
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("Provider Verification_code error ...", sessionInfo);
-					return new BaseMsg(BaseMsg.ERROR, "验证码错误", false);
-				}
-			} else {
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("Provider Verification_code timeout ...", sessionInfo);
-				return new BaseMsg(BaseMsg.ERROR, "请重新获取验证码", false);
-			}
+			return loginByPhone(original,request,response);
 		} else {// 用户名登录
-			final String pwd = original.getPassword();
-			final String loginName = original.getLoginName();
-			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
-				try {// 解密
-					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
-					original.setPassword(DataUtil.md5(password));
-					final String url = GlobalConstant.URL_PREFIX + "portal/team/static/data/doLogin";
-					final String json = HttpUtil.httpPost(url, original, request);
-					if (ValidateUtil.isValid(json)) {
-						final boolean ret = JsonUtil.toBean(json, Boolean.class);
+			return loginByName(original,request,response);
+		}
+	}
+
+	private BaseMsg loginByName(PmsTeam original, HttpServletRequest request, HttpServletResponse response) {
+		final String pwd = original.getPassword();
+		final String loginName = original.getLoginName();
+		if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
+			try {// 解密
+				final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
+				original.setPassword(DataUtil.md5(password));
+				PmsTeam team = pmsTeamFacade.findTeamByLoginNameAndPwd(original);
+				if (team != null) {
+					// 存入session
+					boolean ret = initSessionInfo(team, request);
+					if (ret) {
+						addCookies(request, response);
+						return new BaseMsg(BaseMsg.NORMAL, "", true);
+					} else {
+						return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
+					}
+				}else{
+					return new BaseMsg(BaseMsg.WARNING, "用户名或密码错误!", false);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
+	}
+
+	private BaseMsg loginByPhone(final PmsTeam original, final HttpServletRequest request,final HttpServletResponse response) {
+		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		if ((original.getVerification_code() != null && code != null)) {
+			if (code.equals(original.getVerification_code())) {
+				if ((null != codeOfphone && codeOfphone.equals(original.getPhoneNumber()))) {
+					PmsTeam team = pmsTeamFacade.doLogin(original.getPhoneNumber());
+					if (team != null) {
+						// 存入session
+						boolean ret = initSessionInfo(team, request);
 						if (ret) {
 							addCookies(request, response);
 							return new BaseMsg(BaseMsg.NORMAL, "", true);
 						} else {
-							return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
+							return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
 						}
+					}else{
+						return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				} else {
+					SessionInfo sessionInfo = getCurrentInfo(request);
+					Log.error("手机号错误", sessionInfo);
+					return new BaseMsg(BaseMsg.ERROR, "和验证手机不符", false);
 				}
+			} else {
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("Provider Verification_code error ...", sessionInfo);
+				return new BaseMsg(BaseMsg.ERROR, "验证码错误", false);
 			}
+		} else {
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("Provider Verification_code timeout ...", sessionInfo);
+			return new BaseMsg(BaseMsg.ERROR, "请重新获取验证码", false);
 		}
-		return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 	}
 
 	@RequestMapping("/thirdLogin")
@@ -1624,5 +1650,49 @@ public class ProviderController extends BaseController {
 			baseMsg.setResult("供应商未登录");
 		}
 		return baseMsg;
+	}
+	/**
+	 * 初始化 sessionInfo 信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @return
+	 */
+	public boolean initSessionInfo(final PmsTeam team, HttpServletRequest request) {
+
+		// 清空session
+		// sessionService.removeSession(request);
+		final HttpSession session = request.getSession();
+		session.removeAttribute(GlobalConstant.SESSION_INFO);
+		// 存入session中
+		final String sessionId = request.getSession().getId();
+		final SessionInfo info = new SessionInfo();
+		info.setLoginName(team.getLoginName());
+		info.setRealName(team.getTeamName());
+		info.setSessionType(GlobalConstant.ROLE_PROVIDER);
+		// info.setSuperAdmin(false);
+		info.setToken(DataUtil.md5(sessionId));
+		info.setReqiureId(team.getTeamId());
+		info.setPhoto(team.getTeamPhotoUrl());
+		if (team.getFlag() == 1)
+			info.setIsIdentification(true);
+		
+		final PmsRole role = pmsRoleFacade.findRoleById(2l); // 获取用户角色
+		final List<PmsRole> roles = new ArrayList<PmsRole>();
+		roles.add(role);
+		team.setRoles(roles);
+		// 计算权限码总和
+		final long maxPos = pmsRightFacade.getMaxPos();
+		final long[] rightSum = new long[(int) (maxPos + 1)];
+		team.setRightSum(rightSum);
+		team.calculateRightSum();
+		info.setSum(team.getRightSum());
+		info.setEmail(team.getEmail());
+		info.setSuperAdmin(team.isSuperAdmin()); // 判断是否是超级管理员
+		/*Map<String, Object> map = new HashMap<String, Object>();
+		map.put(GlobalConstant.SESSION_INFO, info);*/
+		session.setAttribute(GlobalConstant.SESSION_INFO, info);
+		// return sessionService.addSessionSeveralTime(request, map, 60 * 60 * 24 * 7);
+		return true;
 	}
 }

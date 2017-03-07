@@ -10,7 +10,7 @@
 		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		                   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-
+		                   
 
 	<context:property-placeholder
 		location="classpath:jdbc.properties,classpath:redis.properties" />
@@ -18,11 +18,14 @@
 	<context:annotation-config />
 
 	<tx:annotation-driven />
-
+	
+	<import resource="dubbo/dubbo-consumer.xml"/>
 	<!-- 扫描service -->
 	<context:component-scan base-package="com.panfeng.film.service,
 										  com.panfeng.film.listener,
-										  com.panfeng.film.dao" />
+										  com.panfeng.film.dao,
+										  com.panfeng.film.util,
+										  com.paipianwang.pat" />
 
 	<!-- log here -->
 	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />
@@ -98,5 +101,4 @@
 		<constructor-arg index="3" value="${redis.timeout}" />
 		<constructor-arg index="4" value="${redis.password}" />
 	</bean>
-
 </beans>

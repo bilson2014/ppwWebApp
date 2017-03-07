@@ -32,9 +32,6 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
-    <!--测试-->
-    <mvc:view-controller path="/newsInfo" view-name="/newsInfo" />
-    
     <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->
      <!--成本计算器-->
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
@@ -61,21 +58,6 @@
 	<mvc:annotation-driven />
 	
 	<mvc:interceptors>
-	
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/resources/**"/>
-			<mvc:exclude-mapping path="/suggest/**"/>
-			<bean class="com.panfeng.interceptor.SecurityInterceptor" >
-				<property name="excludeUrls">
-					<list>
-						<value>/login/loginout</value>
-						<value>/error</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor> -->
-	
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/resources/**"/>
@@ -138,5 +120,6 @@
 			<mvc:exclude-mapping path="/mgr/recover/**" />
 			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
 		</mvc:interceptor>
+		
 	</mvc:interceptors>
 </beans>
