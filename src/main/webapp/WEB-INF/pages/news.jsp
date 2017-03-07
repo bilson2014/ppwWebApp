@@ -140,7 +140,7 @@
         <div class="bottomContent">
 		         <div class="titleTag">
 		            <div class="titleTagContent">
-		                <div>首页</div>
+		                <a href="/"><div>首页</div></a>
 		                <div>></div>
 		                <div>前页</div>
 		                <div>></div>
@@ -169,20 +169,18 @@
                     </div>
                     <input type="hidden" id="newsId" value="${news.id}">
                      <div class="goToOther">
-			           <a href="<spring:url value='/news/prev-${news.id }.html' />" ><div>上一篇</div></a>
-			           <a href="<spring:url value='/news/next-${news.id }.html' />" ><div>下一篇</div></a>   
+                       <c:if test="${news.prev }">
+			           		<a href="<spring:url value='/news/prev-${news.id }.html' />" ><div>上一篇</div></a>
+			           </c:if>
+			           <c:if test="${news.next }">
+				           <a href="<spring:url value='/news/next-${news.id }.html' />" ><div>下一篇</div></a>
+			           </c:if>
+			            
 			        </div>
                 </div>
                 <div class="rightContent fixed">
                     <div class="title">最热资讯</div>
                     <div class="setVideo" id="moreNews">
-                       <!--  <div class="videoModel">
-                            <label>标题</label>
-                            <label>宣传片宣传片宣传片 宣传片宣传片宣传片宣传片宣传片宣传片宣传片宣传片
-                            </label>
-                            <label>了解更多</label>
-                        </div>
-                       -->
                     </div>
                     
                 </div>

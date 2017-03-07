@@ -271,3 +271,32 @@
             }
         }
     }
+    
+    .proSer {
+        position: relative;
+        
+        &:hover{
+        	.showCodeToPro{
+        		display: block !important;
+        	}
+        }
+
+        .showCodeToPro {
+        	display: none;
+            position: absolute;
+            width: 180px;
+            background: white;
+            top: -280px;
+            left: 0px;
+            text-align: center;
+            img {
+                width: 100%;
+            }
+            span {
+                color: $gray-dark;
+                font-size: $font-size-base;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    }
