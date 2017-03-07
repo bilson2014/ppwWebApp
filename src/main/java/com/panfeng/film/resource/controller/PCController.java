@@ -760,7 +760,7 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/next-{newId}.html")
 	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
+			final ModelMap model, String path) {
 		final String url = URL_PREFIX + "portal/news/next";
 		News n = new News();
 		n.setId(newId);
@@ -780,6 +780,7 @@ public class PCController extends BaseController {
 			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
+		model.addAttribute("path", path);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news info", sessionInfo);
 		return new ModelAndView("/news");
@@ -787,7 +788,7 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/prev-{newId}.html")
 	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
+			final ModelMap model, String path) {
 		final String url = URL_PREFIX + "portal/news/prev";
 		News n = new News();
 		n.setId(newId);
@@ -807,6 +808,7 @@ public class PCController extends BaseController {
 			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
+		model.addAttribute("path", path);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news info", sessionInfo);
 		return new ModelAndView("/news");
