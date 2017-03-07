@@ -144,7 +144,7 @@
     	 <div class="titleTag">
             <div class="titleWord">
                 <a href="<spring:url value='/news-list.html' />" alt="全部">
-                	<div class="category checkActive" data-value="">全部</div>
+                	<div class="category checkActive" data-value="全部">全部</div>
                 </a>
                 <a href="<spring:url value='/news-list.html?q=最热资讯' />" alt="最热资讯">
                 	<div class="category" data-value="最热资讯">最热资讯</div>

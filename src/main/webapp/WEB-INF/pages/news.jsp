@@ -55,6 +55,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="q" value="${q}" />
 	<input type="hidden" id="tags" value="${news.tags}" />
+	<input type="hidden" id="paths" value="${path}" />
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -142,8 +143,8 @@
 		            <div class="titleTagContent">
 		                <a href="/"><div>首页</div></a>
 		                <div>></div>
-		                <div>前页</div>
-		                <div>></div>
+                        <div id="pathDiv">
+                        </div>
 		                <div>正文</div>
 		            </div>
 		        </div>
@@ -170,10 +171,10 @@
                     <input type="hidden" id="newsId" value="${news.id}">
                      <div class="goToOther">
                        <c:if test="${news.prev }">
-			           		<a href="<spring:url value='/news/prev-${news.id }.html' />" ><div>上一篇</div></a>
+			           		<a href="<spring:url value='/news/prev-${news.id }.html?path=${path}' />" ><div>上一篇</div></a>
 			           </c:if>
 			           <c:if test="${news.next }">
-				           <a href="<spring:url value='/news/next-${news.id }.html' />" ><div>下一篇</div></a>
+				           <a href="<spring:url value='/news/next-${news.id }.html?path=${path}' />" ><div>下一篇</div></a>
 			           </c:if>
 			            
 			        </div>

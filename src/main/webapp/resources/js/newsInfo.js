@@ -11,6 +11,7 @@ $().ready(function() {
 	
 	// 初始化page
 	newsInfo.initPagination();
+	newsInfo.getUrl($('.checkActive').attr('data-value'));
 });
 
 var newsInfo = {
@@ -22,7 +23,6 @@ var newsInfo = {
 					if($(model).data('value') == q) {
 						$('.category').removeClass('checkActive');
 						$(this).addClass('checkActive');
-						newsInfo.getUrl($(this).attr('data-value'));
 						return;
 					}
 				});
@@ -34,7 +34,6 @@ var newsInfo = {
 						if($(model).data('value') == '最热资讯') {
 							$('.category').removeClass('checkActive');
 							$(this).addClass('checkActive');
-							newsInfo.getUrl($(this).attr('data-value'));
 							return;
 						}
 					});
