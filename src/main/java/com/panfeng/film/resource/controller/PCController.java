@@ -731,7 +731,7 @@ public class PCController extends BaseController {
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
 	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model,String path) {
+			final ModelMap model, String path) {
 		final String url = URL_PREFIX + "portal/news/info/" + newId;
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
@@ -752,6 +752,7 @@ public class PCController extends BaseController {
 		model.addAttribute("path", path);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("homepage news info", sessionInfo);
+
 		return new ModelAndView("/news");
 	}
 
