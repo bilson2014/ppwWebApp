@@ -731,9 +731,10 @@ public class PCController extends BaseController {
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
 	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/" + newId;
-		String str = HttpUtil.httpGet(url, request);
+			final ModelMap model, News n) {
+		n.setId(newId);
+		final String url = URL_PREFIX + "portal/news/info";
+		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
 			try {
 				News news = JsonUtil.toBean(str, News.class);
@@ -757,7 +758,7 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/next-{newId}.html")
 	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model,News n) {
+			final ModelMap model, News n) {
 		final String url = URL_PREFIX + "portal/news/next";
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
@@ -783,7 +784,7 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/prev-{newId}.html")
 	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model,News n) {
+			final ModelMap model, News n) {
 		final String url = URL_PREFIX + "portal/news/prev";
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
