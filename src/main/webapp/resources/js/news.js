@@ -46,10 +46,8 @@ function controlRightPos(){
 function initPath(){
 	var path = getQueryString('q');
 	var next = $('#next').attr('href');
-	//if(next.length>0)
 	$('#next').attr('href',next + path);
 	var prev = $('#prev').attr('href');
-	//if(prev.length>0)
 	$('#prev').attr('href',prev + path);
 	
     addPath(path);
@@ -131,18 +129,24 @@ function addLikeNews(item){
 
 function addPath(item){
 	 
-
+   if(item == 'index'){
+	   $('#pathDiv').hide();
+   }
+   else{
 	var $body = '<a href="/news-list.html">'+
 	   '<div>'+"新闻资讯"+'</div>'+
 	   '<div class="fg">></div>';
 	   $body += '</a>';
 
+	   if(item.length>0){
 	   $body += '<a href="/news-list.html?q='+item+'">';
 	   $body += '<div>'+item+'</div>';
 	   $body +='<div class="fg">></div>';
 	   $body += '</a>';
+	   }
 
     $("#pathDiv").append($body);
+   }
 }
 
 

@@ -318,13 +318,13 @@ var homePage = {
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
 			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html";
+			window.location.href="/news/article-"+id+".html?q=index";
 		})
 		
 	    $(".get-new-detail").parent().off("click").on("click",function(){
 			var id = $(this).attr("data-id");
 			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html";
+			window.location.href="/news/article-"+id+".html?q=index";
 		})
 	},
 	initVideo:function(){
