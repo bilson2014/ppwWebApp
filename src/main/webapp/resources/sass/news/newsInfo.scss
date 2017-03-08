@@ -78,8 +78,7 @@ $itemMargin:35px;
         .tagDiv {
             width: 100%;
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .tags {
             display: inline-block;
@@ -92,7 +91,8 @@ $itemMargin:35px;
             line-height: 26px;
             height: 52px;
             overflow: hidden;
-            margin-bottom: 12px;
+            margin-top: 6px;
+            margin-bottom: 15px;
         }
         .content {
             font-size: $font-size-base;

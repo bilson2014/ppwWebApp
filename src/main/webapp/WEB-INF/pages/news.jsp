@@ -179,7 +179,7 @@
 			            
 			        </div>
                 </div>
-                <div class="rightContent" style="top:175px">
+                <div class="rightContent" style="top:145px">
                     <div class="title">最热资讯</div>
                     <a href="/news-list.html?q=最热资讯"><div class="moreNews">更多活动</div></a>
                     <div class="setVideo" id="moreNews">

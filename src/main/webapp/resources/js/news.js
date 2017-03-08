@@ -22,19 +22,19 @@ function controlRightPos(){
 		  
 		  if(divTop - $(document).scrollTop()<=screenHeight){
 			//  $('.rightContent').removeClass('fixed');
-			  var bottom = 920 - (divTop - $(document).scrollTop());
+			  var bottom = 1400 - (divTop - $(document).scrollTop());
 			  $('.rightContent').css('top','');
 			  $('.rightContent').css('bottom',bottom + 'px');
 		  }else{
 //			  $('.rightContent').removeClass('nofixed');
 //			  $('.rightContent').addClass('fixed');
-			  $('.rightContent').css('top', '175px');
+			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
 		  if($(document).scrollTop()<=10){
 //			  $('.rightContent').removeClass('nofixed');
 //			  $('.rightContent').addClass('fixed');
-			  $('.rightContent').css('top', '175px');
+			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
 	  });
@@ -129,18 +129,24 @@ function addLikeNews(item){
 
 function addPath(item){
 	 
-
+   if(item == 'index'){
+	   $('#pathDiv').hide();
+   }
+   else{
 	var $body = '<a href="/news-list.html">'+
 	   '<div>'+"新闻资讯"+'</div>'+
 	   '<div class="fg">></div>';
 	   $body += '</a>';
 
+	   if(item.length>0){
 	   $body += '<a href="/news-list.html?q='+item+'">';
 	   $body += '<div>'+item+'</div>';
 	   $body +='<div class="fg">></div>';
 	   $body += '</a>';
+	   }
 
     $("#pathDiv").append($body);
+   }
 }
 
 

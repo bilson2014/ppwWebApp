@@ -154,7 +154,7 @@ public class SolrController extends BaseController {
 			q = null;
 		}
 		model.addAttribute("q", q);
-
+		
 		if (StringUtils.isNotBlank(q))
 			view.setCondition(URLEncoder.encode(q, "UTF-8"));
 
