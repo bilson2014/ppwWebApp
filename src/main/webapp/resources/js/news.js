@@ -14,21 +14,15 @@ $().ready(function() {
 });
 
 
-
 //右侧是否悬浮
 function controlRightPos(){
-	  	
 	  $(window).scroll(function() {
 		  var divTop = $('.foot3').offset().top;
 		  var screenHeight = $(window).height();
 		  
-		  
-		  
 		  if(divTop - $(document).scrollTop()<=screenHeight){
 			//  $('.rightContent').removeClass('fixed');
 			  var bottom = 920 - (divTop - $(document).scrollTop());
-			  console.info(bottom);
-			  
 			  $('.rightContent').css('top','');
 			  $('.rightContent').css('bottom',bottom + 'px');
 		  }else{
@@ -37,14 +31,13 @@ function controlRightPos(){
 			  $('.rightContent').css('top', '175px');
 			  $('.rightContent').css('bottom','');
 		  }
-		  
 		  if($(document).scrollTop()<=10){
 //			  $('.rightContent').removeClass('nofixed');
 //			  $('.rightContent').addClass('fixed');
 			  $('.rightContent').css('top', '175px');
 			  $('.rightContent').css('bottom','');
 		  }
-		                    
+
 	  });
 }
 

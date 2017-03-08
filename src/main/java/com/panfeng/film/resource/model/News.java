@@ -106,9 +106,18 @@ public class News extends BaseObject {
 	public void setRecommend(Integer recommend) {
 		this.recommend = recommend;
 	}
-	
+
 	private boolean next = false;
 	private boolean prev = false;
+	private String q;
+
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
 
 	public boolean isNext() {
 		return next;
