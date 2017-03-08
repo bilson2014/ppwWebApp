@@ -757,9 +757,8 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/next-{newId}.html")
 	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
+			final ModelMap model,News n) {
 		final String url = URL_PREFIX + "portal/news/next";
-		News n = new News();
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
@@ -784,9 +783,8 @@ public class PCController extends BaseController {
 
 	@RequestMapping(value = "/news/prev-{newId}.html")
 	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
+			final ModelMap model,News n) {
 		final String url = URL_PREFIX + "portal/news/prev";
-		News n = new News();
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
