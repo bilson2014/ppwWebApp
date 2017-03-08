@@ -37,7 +37,6 @@ function controlRightPos(){
 			  $('.rightContent').css('top', '175px');
 			  $('.rightContent').css('bottom','');
 		  }
-
 	  });
 }
 
