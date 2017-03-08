@@ -22,7 +22,7 @@ function controlRightPos(){
 		  
 		  if(divTop - $(document).scrollTop()<=screenHeight){
 			//  $('.rightContent').removeClass('fixed');
-			  var bottom = 920 - (divTop - $(document).scrollTop());
+			  var bottom = 1400 - (divTop - $(document).scrollTop());
 			  $('.rightContent').css('top','');
 			  $('.rightContent').css('bottom',bottom + 'px');
 		  }else{
