@@ -44,18 +44,20 @@ function controlRightPos(){
 //初始化面包
 
 function initPath(){
-	var path = $('#paths').val();
-	if(path != ""){
-	  path = $('#paths').val().split(',');
-	for(var i=0;i<path.length;i++){
-		addPath(path[i]);
-	}
-	}else{
-		$('#pathDiv').hide();
-	}
+	var path = getQueryString('q');
+	var next = $('#next').attr('href');
+	$('#next').attr('href',next + path);
+	var prev = $('#prev').attr('href');
+	$('#prev').attr('href',prev + path);
 	
-	
+    addPath(path);
 }
+
+function getQueryString(name) {  
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+    var r = location.search.substr(1).match(reg);  
+    if (r != null) return unescape(decodeURI(r[2])); return null;  
+}  
 
 
 //初始化最热资讯
@@ -94,7 +96,6 @@ function initLike() {
 	    		addLikeNews(item);//排除自己	   
 		    	k++;
 	    	}
-	    
 	    });
 	}, getContextPath() + '/get/news/tag?q='+$('#tags').val(),null);
 }
@@ -128,24 +129,17 @@ function addLikeNews(item){
 
 function addPath(item){
 	 
-	if(item == "新闻资讯" ){
+
 	var $body = '<a href="/news-list.html">'+
-	   '<div>'+item+'</div>'+
+	   '<div>'+"新闻资讯"+'</div>'+
 	   '<div class="fg">></div>';
 	   $body += '</a>';
-	}
-	
-	else if(item == "全部"){
-		return;
-	}
-	
-	else{
-	var $body = '<a href="/news-list.html?q='+item+'">'+
-	    '<div>'+item+'</div>'+
-	    '<div class="fg">></div>';
-	    $body += '</a>';
-	}
-	 
+
+	   $body += '<a href="/news-list.html?q='+item+'">';
+	   $body += '<div>'+item+'</div>';
+	   $body +='<div class="fg">></div>';
+	   $body += '</a>';
+
     $("#pathDiv").append($body);
 }
 

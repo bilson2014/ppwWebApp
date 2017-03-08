@@ -171,10 +171,10 @@
                     <input type="hidden" id="newsId" value="${news.id}">
                      <div class="goToOther">
                        <c:if test="${news.prev }">
-			           		<a href="<spring:url value='/news/prev-${news.id }.html?path=${path}' />" ><div>上一篇</div></a>
+			           		<a id="prev" href="<spring:url value='/news/prev-${news.id }.html?q=' />" ><div>上一篇</div></a>
 			           </c:if>
 			           <c:if test="${news.next }">
-				           <a href="<spring:url value='/news/next-${news.id }.html?path=${path}' />" ><div>下一篇</div></a>
+				            <a id="next" href="<spring:url value='/news/next-${news.id }.html?q=' />" ><div>下一篇</div></a>
 			           </c:if>
 			            
 			        </div>
