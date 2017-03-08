@@ -198,6 +198,7 @@ public class SolrController extends BaseController {
 		if ("最热资讯".equals(q)) {
 			// 筛选 推荐值大于0 的新闻
 			view.setRecomendFq("[1 TO *]");
+			
 			q = null;
 		}
 		if (StringUtils.isNotBlank(q))
