@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.News;
 
 @RestController
 @RequestMapping("/home")

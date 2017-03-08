@@ -29,6 +29,7 @@ import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Item;
 import com.panfeng.film.resource.model.Job;
+import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.ProductModule;
 import com.panfeng.film.resource.model.Service;
@@ -44,7 +45,6 @@ import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.News;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
@@ -691,7 +691,7 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/news/pagesize")
-	public BaseMsg newsMaxSize(final HttpServletRequest request,@RequestBody NewsView newsView) {
+	public BaseMsg newsMaxSize(final HttpServletRequest request, @RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagesize";
 		String str = HttpUtil.httpPost(url, newsView, request);
@@ -731,9 +731,63 @@ public class PCController extends BaseController {
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
 	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/" + newId;
-		String str = HttpUtil.httpGet(url, request);
+			final ModelMap model, News n) {
+		n.setId(newId);
+		final String url = URL_PREFIX + "portal/news/info";
+		String str = HttpUtil.httpPost(url, n, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/next-{newId}.html")
+	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model, News n) {
+		final String url = URL_PREFIX + "portal/news/next";
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/prev-{newId}.html")
+	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model, News n) {
+		final String url = URL_PREFIX + "portal/news/prev";
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
 			try {
 				News news = JsonUtil.toBean(str, News.class);

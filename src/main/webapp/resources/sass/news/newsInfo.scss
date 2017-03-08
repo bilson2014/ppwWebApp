@@ -5,10 +5,9 @@
 @import "pagination";
 @import "compass/typography/text/ellipsis";
 $itemMargin:35px;
-
-.page{
-	margin-bottom: 180px;
-    top:40px !important;
+.page {
+    margin-bottom: 180px;
+    top: 40px !important;
 }
 
 .titleTag {
@@ -43,14 +42,11 @@ $itemMargin:35px;
     margin: 0 auto;
     font-size: 0;
     ul {
-   //    margin-left: -($itemMargin/2);
+        //    margin-left: -($itemMargin/2);
     }
-
-    li:nth-child(4n)
-    {
-      margin-right: 0px !important;
+    li:nth-child(4n) {
+        margin-right: 0px !important;
     }
-
     li {
         position: relative;
         display: inline-block;
@@ -71,12 +67,18 @@ $itemMargin:35px;
         }
         img {
             width: 100%;
+            height: ($width-min - $itemMargin*3)/4*9/16;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                height: ($width-middle - $itemMargin*3)/4*9/16;
+            }
+            @media screen and (min-width: 1500px) {
+                height: ($width-lg3 - $itemMargin*3)/4*9/16;
+            }
         }
         .tagDiv {
             width: 100%;
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .tags {
             display: inline-block;
@@ -89,7 +91,8 @@ $itemMargin:35px;
             line-height: 26px;
             height: 52px;
             overflow: hidden;
-            margin-bottom:12px;
+            margin-top: 6px;
+            margin-bottom: 15px;
         }
         .content {
             font-size: $font-size-base;
@@ -120,7 +123,7 @@ $itemMargin:35px;
 }
 
 .pagination {
-	width: 100%;
+    width: 100%;
     @include pagination();
     div,
     span,
@@ -129,16 +132,15 @@ $itemMargin:35px;
     }
 }
 
-
-.prompt-background{
+.prompt-background {
     width: 900px;
     margin: 0 auto;
 }
 
-.prompt-word{
+.prompt-word {
     color: $gray-dark;
-    span{
+    span {
         font-weight: bold;
-        text-decoration:underline;
+        text-decoration: underline;
     }
 }

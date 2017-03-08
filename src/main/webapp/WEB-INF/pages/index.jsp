@@ -556,7 +556,10 @@
 		</div>
 		<!-- 入驻end-->
 <!-- foot -->
-         					<div class="foot3">
+         					<div class="foot3">、
+         					    <div>
+         					      <>
+         					    </div>
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">
@@ -586,8 +589,20 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                           <!--  <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div> -->
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
