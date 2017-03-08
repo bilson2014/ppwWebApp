@@ -45,7 +45,7 @@ var newsInfo = {
 			
 			$.each($('.toNewsUrl'),function(i,model){
 				 
-				  var url = $(this).attr('href')+'?path=新闻资讯,' + path;
+				  var url = $(this).attr('href')+'?q=' + path;
 				  $(this).attr('href',url);
 				
 			});
