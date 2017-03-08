@@ -28,13 +28,13 @@ function controlRightPos(){
 		  }else{
 //			  $('.rightContent').removeClass('nofixed');
 //			  $('.rightContent').addClass('fixed');
-			  $('.rightContent').css('top', '175px');
+			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
 		  if($(document).scrollTop()<=10){
 //			  $('.rightContent').removeClass('nofixed');
 //			  $('.rightContent').addClass('fixed');
-			  $('.rightContent').css('top', '175px');
+			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
 	  });
@@ -46,8 +46,10 @@ function controlRightPos(){
 function initPath(){
 	var path = getQueryString('q');
 	var next = $('#next').attr('href');
+	//if(next.length>0)
 	$('#next').attr('href',next + path);
 	var prev = $('#prev').attr('href');
+	//if(prev.length>0)
 	$('#prev').attr('href',prev + path);
 	
     addPath(path);
