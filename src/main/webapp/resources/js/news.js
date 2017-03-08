@@ -21,19 +21,14 @@ function controlRightPos(){
 		  var screenHeight = $(window).height();
 		  
 		  if(divTop - $(document).scrollTop()<=screenHeight){
-			//  $('.rightContent').removeClass('fixed');
-			  var bottom = 1400 - (divTop - $(document).scrollTop());
+			  var bottom = 1000 - (divTop - $(document).scrollTop());
 			  $('.rightContent').css('top','');
 			  $('.rightContent').css('bottom',bottom + 'px');
 		  }else{
-//			  $('.rightContent').removeClass('nofixed');
-//			  $('.rightContent').addClass('fixed');
 			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
 		  if($(document).scrollTop()<=10){
-//			  $('.rightContent').removeClass('nofixed');
-//			  $('.rightContent').addClass('fixed');
 			  $('.rightContent').css('top', '145px');
 			  $('.rightContent').css('bottom','');
 		  }
