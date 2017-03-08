@@ -39,7 +39,6 @@
     .titleTag {
         width: 100%;
         height: 60px;
-        background: #f9fafb;
         .titleTagContent {
             @include media_screen_width_beta3();
             height: 100%;
@@ -76,7 +75,7 @@
     
     .contentWidth {
         @include media_screen_width_beta3();
-        padding-top: 60px;
+        padding-top: 30px;
         margin: 0 auto;
         margin-bottom: 60px;
         font-size: 0;
@@ -300,68 +299,4 @@
         }
     }
     
-    .proSer {
-        position: relative;
-        &:hover {
-            .showCodeToPro {
-                display: block !important;
-            }
-        }
-        .showCodeToPro {
-            display: none;
-            position: absolute;
-            background: white;
-            top: -240px;
-            left: 0px;
-            text-align: center;
-            width: 270px;
-            height: 312px;
-            background: url(/resources/images/common/footCodeBackground.png);
-            top: -315px;
-            left: -30px;
-            img {
-                display: block;
-                width: 180px;
-                margin-top: 40px;
-                margin-left: 45px;
-                margin-bottom: 10px;
-            }
-            span {
-                color: $red-base;
-                font-size: $font-size-base;
-                margin-top: 30px;
-                margin-bottom: 10px;
-            }
-        }
-    }
     
-    .cusSer {
-        position: relative;
-        &:hover {
-            .showCodeToPro {
-                display: block !important;
-            }
-        }
-        .showCodeToPro {
-            display: none;
-            position: absolute;
-            width: 270px;
-            height: 312px;
-            background: url(/resources/images/common/footCodeBackground.png);
-            top: -315px;
-            left: -30px;
-            text-align: center;
-            img {
-                display: block;
-                width: 200px;
-                margin-top: 30px;
-                margin-left: 35px;
-            }
-            span {
-                color: $red-base;
-                font-size: $font-size-base;
-                margin-top: 8px;
-                margin-bottom: 10px;
-            }
-        }
-    }
