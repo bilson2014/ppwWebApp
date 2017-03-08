@@ -21,7 +21,7 @@ function controlRightPos(){
 		  var screenHeight = $(window).height();
 		  
 		  if(divTop - $(document).scrollTop()<=screenHeight){
-			  var bottom = 1000 - (divTop - $(document).scrollTop());
+			  var bottom = (screenHeight + 100 ) - (divTop - $(document).scrollTop());
 			  $('.rightContent').css('top','');
 			  $('.rightContent').css('bottom',bottom + 'px');
 		  }else{
@@ -44,7 +44,6 @@ function initPath(){
 	$('#next').attr('href',next + path);
 	var prev = $('#prev').attr('href');
 	$('#prev').attr('href',prev + path);
-	
     addPath(path);
 }
 
@@ -69,7 +68,6 @@ function initContent() {
 	}
 	
 	loadData(function(data){
-		
 		var newsId =$('#newsId').val();
 		var k=0;
 	    $.each(data.result, function(i,item) {
