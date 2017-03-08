@@ -181,7 +181,9 @@
 	                    			<c:if test="${empty  newsSolr.picLDUrl}">
 		                    			<img src="${imgPath}/index/noImg.jpg" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
-	                    			<div class="tagDiv">
+	                    			
+	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
+	                   				<div class="tagDiv">
 	                    				<div class="tags" alt="${newsSolr.tags}">
 	                    					<c:if test="${not empty fn:trim(newsSolr.tags) }">
 												<c:forEach items="${fn:split(fn:trim(newsSolr.tags),' ') }" var="tag" end="2" varStatus="stat">
@@ -190,7 +192,6 @@
 											</c:if>
 	                    				</div>
 	                    			</div>
-	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
 	                   				<div class="content" alt="${newsSolr.discription }">${newsSolr.discription }</div>
 	                   				<div class="time" >发表于 
 	                   					<fmt:parseDate value="${newsSolr.creationTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
