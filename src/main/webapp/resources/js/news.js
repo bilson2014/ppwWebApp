@@ -14,27 +14,22 @@ $().ready(function() {
 });
 
 
-
 //右侧是否悬浮
 function controlRightPos(){
-	  	
 	  $(window).scroll(function() {
 		  var divTop = $('.foot3').offset().top;
 		  var screenHeight = $(window).height();
 		  if(divTop - $(document).scrollTop()<=screenHeight){
 			  $('.rightContent').removeClass('fixed');
-			  $('.rightContent').addClass('nofixed');
+			  $('.rightContent').css("position","absolute");
 		  }else{
 			  $('.rightContent').removeClass('nofixed');
-			  $('.rightContent').addClass('fixed');
+			  $('.rightContent').css("position","fixed");
 		  }
-		  
-		  if($(document).scrollTop()<=10){
-			  $('.rightContent').removeClass('nofixed');
-			  $('.rightContent').addClass('fixed');
-		  }
-		  
-                      
+//		  if($(document).scrollTop()<=10){
+//			  $('.rightContent').removeClass('nofixed');
+//			  //$('.rightContent').addClass('fixed');
+//		  }
 	  });
 }
 
