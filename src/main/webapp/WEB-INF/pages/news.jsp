@@ -145,7 +145,7 @@
 		                <div>></div>
                         <div id="pathDiv">
                         </div>
-		                <div>正文</div>
+		                <div class="newsTitle">${news.title}</div>
 		            </div>
 		        </div>
             <div class="contentWidth">

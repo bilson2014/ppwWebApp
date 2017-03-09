@@ -60,6 +60,12 @@
         }
     }
     
+    .newsTitle {
+        width: 90px;
+        vertical-align: top;
+        @include ellipsis;
+    }
+    
     .tagImg,
     .tagsContent {
         display: inline-block;
@@ -83,7 +89,6 @@
             display: inline-block;
             vertical-align: top;
             width: $width-min - $rightWidth;
-          
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
                 width: $width-middle - $rightWidth;
             }
@@ -299,5 +304,3 @@
             }
         }
     }
-    
-    
