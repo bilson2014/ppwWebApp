@@ -14,7 +14,10 @@ $itemMargin:35px;
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
-    margin-bottom: 60px;
+    width: 100%;
+    position: fixed;
+    top:60px;
+    z-index: 99;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -41,6 +44,7 @@ $itemMargin:35px;
     @include media_screen_width_beta3();
     margin: 0 auto;
     font-size: 0;
+    margin-top: 120px;
     ul {
         //    margin-left: -($itemMargin/2);
     }
@@ -77,8 +81,19 @@ $itemMargin:35px;
         }
         .tagDiv {
             width: 100%;
-            text-align: center;
-            margin-bottom: 12px;
+            text-align: left;
+            margin-bottom: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .tagImg {
+            width: 16px !important;
+            height: 16px;
+            position: relative;
+            top: 3px;
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: top;
         }
         .tags {
             display: inline-block;
@@ -91,8 +106,8 @@ $itemMargin:35px;
             line-height: 26px;
             height: 52px;
             overflow: hidden;
-            margin-top: 6px;
-            margin-bottom: 15px;
+            margin-top: 15px;
+            margin-bottom: 20px;
         }
         .content {
             font-size: $font-size-base;

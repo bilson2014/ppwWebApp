@@ -1127,14 +1127,15 @@ a {
             text-align: center;
             img {
                 display: block;
-                width: 200px;
-                margin-top: 30px;
-                margin-left: 35px;
+                width: 180px;
+                margin-top: 40px;
+                margin-left: 45px;
+                margin-bottom: 10px;
             }
             span {
                 color: $red-base;
                 font-size: $font-size-base;
-                margin-top: 8px;
+                margin-top: 30px;
                 margin-bottom: 10px;
             }
         }

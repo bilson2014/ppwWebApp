@@ -18,10 +18,13 @@ body {
 }
 
 .titleTag {
-    margin-top: 60px;
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+    position: fixed;
+    width: 100%;
+    top: 60px;
+    z-index: 99;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -411,7 +414,7 @@ body {
     div:nth-child(1) {
         color: $red-base;
         font-size: $font-size-lg26;
-        margin-top: 52px;
+        margin-top: 182px;
     }
     div:nth-child(2) {
         color: $gray-light;
