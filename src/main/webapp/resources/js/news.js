@@ -96,7 +96,7 @@ function initLike() {
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
 	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
-	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
+	  '<a href="/news/article-'+item.id+'.html?q=最热资讯" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
       '<div class="rightDes">'+
          '<div>'+getTitleIndex(item.title)+'</div>'+
@@ -111,7 +111,7 @@ function addMoreNews(item){
 function addLikeNews(item){
 	  var $body = '<div class="videoLikeModel">' +
 	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
-	  '<a href="/news/article-'+item.id+'.html" target="_blank">'+
+	  '<a href="/news/article-'+item.id+'.html?q=" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
       '<div class="rightDes">'+getDesIndex(item.discription)+'</div>'+
       '</a>'+
