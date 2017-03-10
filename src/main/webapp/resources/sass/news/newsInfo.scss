@@ -87,10 +87,10 @@ $itemMargin:35px;
             vertical-align: top;
         }
         .tagImg {
-            width: 16px !important;
-            height: 16px;
+            width: 12px !important;
+            height: 12px;
             position: relative;
-            top: 3px;
+            top: 4px;
             margin-right: 5px;
             display: inline-block;
             vertical-align: top;
@@ -101,7 +101,7 @@ $itemMargin:35px;
             font-size: $font-size-sm;
         }
         .title {
-            font-size: $font-size;
+            font-size: $font-size-base;
             color: $gray-dark;
             line-height: 26px;
             height: 52px;
@@ -110,7 +110,7 @@ $itemMargin:35px;
             margin-bottom: 20px;
         }
         .content {
-            font-size: $font-size-base;
+            font-size: $font-size-sm;
             color: $gray-light;
             height: 76px;
             line-height: 26px;
