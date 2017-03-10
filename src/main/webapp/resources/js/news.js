@@ -44,7 +44,7 @@ function initPath(){
 	$('#next').attr('href',next + path);
 	var prev = $('#prev').attr('href');
 	$('#prev').attr('href',prev + path);
-    addPath(path);
+   // addPath(path);
 }
 
 function getQueryString(name) {  
