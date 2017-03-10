@@ -1093,6 +1093,7 @@ a {
             background: url(/resources/images/common/footCodeBackground.png);
             top: -315px;
             left: -30px;
+            z-index: 99;
             img {
                 display: block;
                 width: 180px;
@@ -1125,6 +1126,7 @@ a {
             top: -315px;
             left: -30px;
             text-align: center;
+            z-index: 99;
             img {
                 display: block;
                 width: 180px;
