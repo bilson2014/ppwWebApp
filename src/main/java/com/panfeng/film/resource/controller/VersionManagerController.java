@@ -31,12 +31,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paipianwang.pat.common.session.PmsRole;
 import com.paipianwang.pat.facade.employee.entity.PmsEmployee;
 import com.paipianwang.pat.facade.employee.service.PmsEmployeeFacade;
+import com.paipianwang.pat.facade.right.entity.PmsRole;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
-import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;

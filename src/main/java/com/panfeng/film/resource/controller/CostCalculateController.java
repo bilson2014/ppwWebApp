@@ -2,6 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -9,11 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.paipianwang.pat.common.util.DateUtils;
+import com.paipianwang.pat.facade.indent.entity.PmsIndent;
+import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
+import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.CostCalculate;
-import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.service.CostCalculateService;
-import com.panfeng.film.util.HttpUtil;
-import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.PropertiesUtils;
 /**
  *成本计算控制器
@@ -24,7 +29,10 @@ public class CostCalculateController extends BaseController{
 	
 	@Autowired
 	private CostCalculateService calculateService;
-	private static String URL_PREFIX = null;
+	@Autowired
+	private SmsMQService smsMQService;
+	@Autowired
+	private PmsIndentFacade pmsIndentFacade;
 	/**
 	视频类别	专业级导演团队（3-5）默认	广告级导演团队（5-8）	电影级导演团队（8-10）
 	活动视频1	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
@@ -54,7 +62,6 @@ public class CostCalculateController extends BaseController{
 		typeAddTeam[5][0] = 30000;
 		typeAddTeam[5][1] = 60000;
 		typeAddTeam[5][2] = 100000;
-		URL_PREFIX = PropertiesUtils.getProp("urlPrefix");
 	}
 	
 	
@@ -85,7 +92,7 @@ public class CostCalculateController extends BaseController{
 		int cost = calculateService.dealCost(typeAddTeam,calculate);
 		map.put("cost", cost);
 		//提交订单
-		Indent indent = new Indent();
+		PmsIndent indent = new PmsIndent();
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setId(calculate.getIndentId());
@@ -99,11 +106,19 @@ public class CostCalculateController extends BaseController{
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
 		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
-		
-		final String url = URL_PREFIX + "portal/indent/cost/save";
-		String str = HttpUtil.httpPost(url, indent,request);
-		indent = JsonUtil.toBean(str, Indent.class);
-		map.put("indentId", indent.getId());
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		long ret = 0l;
+		if(indent.getIndentId()==0){
+			ret = pmsIndentFacade.save(indent);
+			indent.setIndentId(ret);
+			Log.error("add new order ...", sessionInfo);
+			String telephone = PropertiesUtils.getProp("service_tel");
+			smsMQService.sendMessage("131844", telephone, new String[]{indent.getIndent_tele(),DateUtils.nowTime(),"【未指定具体影片】"});
+		}else{//更新操作
+			ret = pmsIndentFacade.updateForCalculate(indent);
+			Log.error("update order ...", sessionInfo);
+		}
+		map.put("indentId", indent.getIndentId());
  		return map;
 	}
 }

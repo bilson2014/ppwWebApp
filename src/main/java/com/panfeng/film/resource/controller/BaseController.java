@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.util.Log;

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 
 public interface SessionInfoService {
 

@@ -3,7 +3,7 @@ package com.panfeng.film.taglib;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 
 /**

@@ -38,5 +38,8 @@
 	<!--权限服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.right.service.PmsRightFacade" id="pmsRightFacade" check="false" timeout="5000"/>
 	<dubbo:reference interface="com.paipianwang.pat.facade.right.service.PmsRoleFacade" id="pmsRoleFacade" check="false" timeout="5000"/>
+	<!--消息通知服务接口 -->
+	<dubbo:reference interface="com.paipianwang.pat.facade.information.service.PmsMailFacade" id="pmsMailFacade" check="false" timeout="5000"/>
+	<dubbo:reference interface="com.paipianwang.pat.facade.information.service.PmsNewsFacade" id="pmsNewsFacade" check="false" timeout="5000"/>
 </beans>  
 

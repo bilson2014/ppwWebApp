@@ -13,18 +13,21 @@
 		                   
 
 	<context:property-placeholder
-		location="classpath:jdbc.properties,classpath:redis.properties" />
+		location="classpath:jdbc.properties,classpath:redis.properties,
+		classpath:mq.properties" />
 
 	<context:annotation-config />
 
 	<tx:annotation-driven />
 	
 	<import resource="dubbo/dubbo-consumer.xml"/>
+	<import resource="spring-mq.xml" />
 	<!-- 扫描service -->
 	<context:component-scan base-package="com.panfeng.film.service,
 										  com.panfeng.film.listener,
 										  com.panfeng.film.dao,
 										  com.panfeng.film.util,
+										  com.panfeng.film.mq.service,
 										  com.paipianwang.pat" />
 
 	<!-- log here -->

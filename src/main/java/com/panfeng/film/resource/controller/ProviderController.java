@@ -32,12 +32,16 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.paipianwang.pat.common.session.PmsRole;
+import com.paipianwang.pat.facade.right.entity.PmsRole;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
+import com.paipianwang.pat.facade.team.entity.PmsCity;
+import com.paipianwang.pat.facade.team.entity.PmsProvince;
 import com.paipianwang.pat.facade.team.entity.PmsTeam;
+import com.paipianwang.pat.facade.team.service.PmsCityFacade;
+import com.paipianwang.pat.facade.team.service.PmsProvinceFacade;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
-import com.panfeng.domain.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.City;
@@ -99,6 +103,14 @@ public class ProviderController extends BaseController {
 	
 	@Autowired
 	private final PmsRoleFacade pmsRoleFacade = null;
+	
+	@Autowired
+	private final PmsCityFacade pmsCityFacade = null;
+	
+	@Autowired
+	private final PmsProvinceFacade pmsProvinceFacade = null;
+	
+	
 
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
@@ -138,28 +150,25 @@ public class ProviderController extends BaseController {
 		final Team team = getLatestTeam(request);
 		model.addAttribute("provider", team);
 		// 第一次填充省
-		String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
-		String str = HttpUtil.httpGet(url, request);
-		if (str != null && !"".equals(str)) {
-			List<Province> provinces = JsonUtil.fromJsonArray(str, Province.class);
+		List<PmsProvince> provinces = pmsProvinceFacade.getAll();
+		if (provinces != null && provinces.size()>0) {
 			model.addAttribute("provinces", provinces);
 			if (ValidateUtil.isValid(team.getTeamCity())) {
 				// 填充第一次市区
-				url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + team.getTeamProvince();
-				String str1 = HttpUtil.httpGet(url, request);
-				if (str1 != null && !"".equals(str1)) {
-					List<City> citys = JsonUtil.toList(str1);
+				String teamProvince = team.getTeamProvince();
+				if (ValidateUtil.isValid(teamProvince)) {
+					final List<PmsCity> citys = pmsCityFacade.findCitysByProvinceId(teamProvince);
 					model.addAttribute("citys", citys);
 				}
 			} else {
 				// 填充默认市！
 				if (ValidateUtil.isValid(provinces)) {
-					url = GlobalConstant.URL_PREFIX + "portal/get/citys/" + provinces.get(0).getProvinceID();
-					String str1 = HttpUtil.httpGet(url, request);
-					if (str1 != null && !"".equals(str1)) {
-						List<City> citys = JsonUtil.toList(str1);
+					String provinceID = provinces.get(0).getProvinceID();
+					if (ValidateUtil.isValid(provinceID)) {
+						final List<PmsCity> citys = pmsCityFacade.findCitysByProvinceId(provinceID);
 						model.addAttribute("citys", citys);
 					}
+					
 				}
 			}
 		}

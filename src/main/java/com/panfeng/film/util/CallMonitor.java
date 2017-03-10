@@ -9,7 +9,7 @@ import org.springframework.util.StopWatch;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.panfeng.film.dao.SessionInfoDao;
 import com.panfeng.film.domain.GlobalConstant;
 

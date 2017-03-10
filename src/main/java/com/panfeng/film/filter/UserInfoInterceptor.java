@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 
 /**

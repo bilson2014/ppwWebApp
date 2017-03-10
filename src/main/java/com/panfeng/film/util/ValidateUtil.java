@@ -8,8 +8,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.paipianwang.pat.common.session.PmsRight;
-import com.paipianwang.pat.common.session.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.PmsRight;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
 
 
 public class ValidateUtil {

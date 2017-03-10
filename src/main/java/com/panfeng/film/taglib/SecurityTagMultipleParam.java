@@ -7,10 +7,10 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.panfeng.domain.SessionInfo;
-import com.panfeng.film.dao.RightDao;
+import com.paipianwang.pat.facade.right.entity.PmsRight;
+import com.paipianwang.pat.facade.right.entity.SessionInfo;
+import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.resource.model.Right;
 import com.panfeng.film.util.UrlResourceUtils;
 import com.panfeng.film.util.ValidateUtil;
 
@@ -33,7 +33,8 @@ public class SecurityTagMultipleParam extends TagSupport {
 		
 		final ServletContext sc = pageContext.getServletContext();
 		WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
-		final RightDao dao = (RightDao) wc.getBean("rightDao");
+		//final RightDao dao = (RightDao) wc.getBean("rightDao");
+		final PmsRightFacade pmsRightFacade = (PmsRightFacade) wc.getBean("pmsRightFacade");
 		final SessionInfo info = (SessionInfo) pageContext.getSession().getAttribute(GlobalConstant.SESSION_INFO);
 
 		if(ValidateUtil.isValid(uri)){
@@ -46,7 +47,7 @@ public class SecurityTagMultipleParam extends TagSupport {
 					return EVAL_BODY_INCLUDE;
 				}else {
 					// session 存在
-					Right right = dao.getRightFromRedis(url);
+					PmsRight right = pmsRightFacade.getRightFromRedis(url);
 					if(right != null){
 						if(info.hasRight(right)){
 							
@@ -66,7 +67,7 @@ public class SecurityTagMultipleParam extends TagSupport {
 					return EVAL_BODY_INCLUDE;
 				}else {
 					// session 存在
-					Right right = dao.getRightFromRedis(url);
+					PmsRight right = pmsRightFacade.getRightFromRedis(url);
 					if(right != null){
 						if(info.hasRight(right)){
 							
@@ -86,7 +87,7 @@ public class SecurityTagMultipleParam extends TagSupport {
 					return EVAL_BODY_INCLUDE;
 				}else {
 					// session 存在
-					Right right = dao.getRightFromRedis(url);
+					PmsRight right = pmsRightFacade.getRightFromRedis(url);
 					if(right != null){
 						if(info.hasRight(right)){
 							
