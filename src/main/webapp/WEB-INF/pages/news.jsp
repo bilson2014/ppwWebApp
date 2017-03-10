@@ -143,8 +143,10 @@
 		            <div class="titleTagContent">
 		                <a href="/"><div>首页</div></a>
 		                <div>></div>
-                        <div id="pathDiv">
-                        </div>
+		                <a href="/news-list.html"><div>新闻资讯</div></a>
+		                <div>></div>
+<!--                         <div id="pathDiv">
+                        </div> -->
 		                <div class="newsTitle">${news.title}</div>
 		            </div>
 		        </div>
