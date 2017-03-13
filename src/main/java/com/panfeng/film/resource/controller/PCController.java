@@ -43,14 +43,12 @@ import com.paipianwang.pat.facade.team.entity.PmsTeam;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
-import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.User;
-import com.panfeng.film.resource.view.NewsView;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
@@ -704,7 +702,7 @@ public class PCController extends BaseController {
 		return true;
 	}
 
-	@RequestMapping("/news/pagelist")
+	/*@RequestMapping("/news/pagelist")
 	public BaseMsg newsList(final HttpServletRequest request, @RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagelist";
@@ -723,9 +721,9 @@ public class PCController extends BaseController {
 			baseMsg.setErrorMsg("list is null");
 		}
 		return baseMsg;
-	}
+	}*/
 
-	@RequestMapping("/news/pagesize")
+	/*@RequestMapping("/news/pagesize")
 	public BaseMsg newsMaxSize(final HttpServletRequest request, @RequestBody NewsView newsView) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/pagesize";
@@ -738,13 +736,13 @@ public class PCController extends BaseController {
 			baseMsg.setErrorMsg("list size is null");
 		}
 		return baseMsg;
-	}
+	}*/
 
 	/**
 	 * 新闻详情页推荐
 	 * 
 	 */
-	@RequestMapping(value = "/news/info/recommend")
+	/*@RequestMapping(value = "/news/info/recommend")
 	public BaseMsg newsInfoRecommend(final HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/info/recommend";
@@ -759,7 +757,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("get news info recommend", sessionInfo);
 		return baseMsg;
-	}
+	}*/
 
 	/**
 	 * 跳转新闻详情
