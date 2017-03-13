@@ -30,6 +30,8 @@
 	
 	<mvc:view-controller path="/error" view-name="/error" />
 	
+	<mvc:view-controller path="/errorS" view-name="/errorS" />
+	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
     <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->

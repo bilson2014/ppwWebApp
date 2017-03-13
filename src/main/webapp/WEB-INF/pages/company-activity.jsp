@@ -177,7 +177,7 @@
 		    </div>
 		     <div class="infoTitle">
 		        <div>视频营销大会</div>
-		        <div>2016年10月10日 北京体坛宾馆</div>
+		        <div>2016年10月10日 北京日坛宾馆</div>
 		        <div>由拍片网联合镖狮网主办的“2016年新媒体视频营销大会”，大家聚集一堂与投资大咖们来感受“视频营销的力量”！
 这是一次企业互联网营销方式的变革大会，视频时代的到来彻底点燃万千企业营销创意的新思想，新媒体与视频的结合成为互联网营销新风口。
 				</div>
@@ -276,8 +276,18 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">

@@ -17,7 +17,7 @@ public class News extends BaseObject {
 
 	private String tags;
 	private String picLDUrl;
-	private Integer category;
+	private Integer recommend = 0;
 
 	public Integer getId() {
 		return id;
@@ -99,12 +99,40 @@ public class News extends BaseObject {
 		this.picLDUrl = picLDUrl;
 	}
 
-	public Integer getCategory() {
-		return category;
+	public Integer getRecommend() {
+		return recommend;
 	}
 
-	public void setCategory(Integer category) {
-		this.category = category;
+	public void setRecommend(Integer recommend) {
+		this.recommend = recommend;
+	}
+
+	private boolean next = false;
+	private boolean prev = false;
+	private String q;
+
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public boolean isPrev() {
+		return prev;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
 	}
 
 }

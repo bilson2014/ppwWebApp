@@ -22,6 +22,7 @@ import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.paipianwang.pat.facade.team.entity.PmsTeam;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.util.HttpUtil;

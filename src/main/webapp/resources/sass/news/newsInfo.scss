@@ -5,17 +5,30 @@
 @import "pagination";
 @import "compass/typography/text/ellipsis";
 $itemMargin:35px;
+<<<<<<< HEAD
 
 .page{
 	margin-bottom: 180px;
     top:40px !important;
+=======
+.page {
+    margin-bottom: 180px;
+    top: 40px !important;
+>>>>>>> web3.0
 }
 
 .titleTag {
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+<<<<<<< HEAD
     margin-bottom: 60px;
+=======
+    width: 100%;
+    position: fixed;
+    top:60px;
+    z-index: 99;
+>>>>>>> web3.0
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -42,6 +55,7 @@ $itemMargin:35px;
     @include media_screen_width_beta3();
     margin: 0 auto;
     font-size: 0;
+<<<<<<< HEAD
     ul {
    //    margin-left: -($itemMargin/2);
     }
@@ -51,6 +65,15 @@ $itemMargin:35px;
       margin-right: 0px !important;
     }
 
+=======
+    margin-top: 120px;
+    ul {
+        //    margin-left: -($itemMargin/2);
+    }
+    li:nth-child(4n) {
+        margin-right: 0px !important;
+    }
+>>>>>>> web3.0
     li {
         position: relative;
         display: inline-block;
@@ -71,12 +94,38 @@ $itemMargin:35px;
         }
         img {
             width: 100%;
+<<<<<<< HEAD
         }
         .tagDiv {
             width: 100%;
             text-align: center;
             margin-top: 10px;
             margin-bottom: 10px;
+=======
+            height: ($width-min - $itemMargin*3)/4*9/16;
+            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                height: ($width-middle - $itemMargin*3)/4*9/16;
+            }
+            @media screen and (min-width: 1500px) {
+                height: ($width-lg3 - $itemMargin*3)/4*9/16;
+            }
+        }
+        .tagDiv {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .tagImg {
+            width: 12px !important;
+            height: 12px;
+            position: relative;
+            top: 4px;
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: top;
+>>>>>>> web3.0
         }
         .tags {
             display: inline-block;
@@ -84,15 +133,27 @@ $itemMargin:35px;
             font-size: $font-size-sm;
         }
         .title {
+<<<<<<< HEAD
             font-size: $font-size;
+=======
+            font-size: $font-size-base;
+>>>>>>> web3.0
             color: $gray-dark;
             line-height: 26px;
             height: 52px;
             overflow: hidden;
+<<<<<<< HEAD
             margin-bottom:12px;
         }
         .content {
             font-size: $font-size-base;
+=======
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        .content {
+            font-size: $font-size-sm;
+>>>>>>> web3.0
             color: $gray-light;
             height: 76px;
             line-height: 26px;
@@ -120,7 +181,11 @@ $itemMargin:35px;
 }
 
 .pagination {
+<<<<<<< HEAD
 	width: 100%;
+=======
+    width: 100%;
+>>>>>>> web3.0
     @include pagination();
     div,
     span,
@@ -129,16 +194,28 @@ $itemMargin:35px;
     }
 }
 
+<<<<<<< HEAD
 
 .prompt-background{
+=======
+.prompt-background {
+>>>>>>> web3.0
     width: 900px;
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
 .prompt-word{
     color: $gray-dark;
     span{
         font-weight: bold;
         text-decoration:underline;
+=======
+.prompt-word {
+    color: $gray-dark;
+    span {
+        font-weight: bold;
+        text-decoration: underline;
+>>>>>>> web3.0
     }
 }

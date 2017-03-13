@@ -1,4 +1,9 @@
 var pageSize = 20;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> web3.0
 $().ready(function() {	
 	// 分类高亮
 	newsInfo.initCategory();
@@ -9,9 +14,15 @@ $().ready(function() {
 	
 	// 初始化page
 	newsInfo.initPagination();
+<<<<<<< HEAD
 });
 
 
+=======
+	newsInfo.getUrl($('.checkActive').attr('data-value'));
+});
+
+>>>>>>> web3.0
 var newsInfo = {
 		// 分类高亮
 		initCategory : function() {
@@ -39,6 +50,20 @@ var newsInfo = {
 					
 			}
 		},
+<<<<<<< HEAD
+=======
+		getUrl:function(path){
+			
+			$.each($('.toNewsUrl'),function(i,model){
+				 
+				  var url = $(this).attr('href')+'?q=' + path;
+				  $(this).attr('href',url);
+				
+			});
+			
+			
+		},
+>>>>>>> web3.0
 		// 格式化标题及介绍
 		formatContent : function() {
 			$.each($('.videoModel'), function(i,model) {
@@ -146,7 +171,11 @@ function getContentIndex(str){
 	if(str.length<=num){
 		var content = str;
 	}else{
+<<<<<<< HEAD
 		var content = str.substr(1,num) +"[...]"
+=======
+		var content = str.substr(0,num) +"[...]"
+>>>>>>> web3.0
 	}
 	
 	return  content;

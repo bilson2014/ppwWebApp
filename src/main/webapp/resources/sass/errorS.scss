@@ -1,0 +1,60 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "image";
+@import "compass/typography/text/ellipsis";
+body {
+    background: $white;
+}
+
+.page {
+    background: $white;
+}
+
+.errorDiv {
+    background: $white;
+    height: 500px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        height: 600px;
+    }
+    @media screen and (min-width:1500px) {
+        height: 700px;
+    }
+    margin: 0 auto;
+    a {
+        color: $red-base;
+        font-size: $font-size-lger;
+        text-decoration: none;
+    }
+    .centerWord {
+        position: relative;
+        top: 36px;
+        color: $gray;
+        font-size: $font-size;
+    }
+    span {
+        color: $red-base;
+        font-size: $font-size-lger;
+    }
+}
+
+.centerDiv {
+    margin: 0px auto;
+    text-align: center;
+
+    img{
+      margin-top: 60px;
+    }
+}
+
+
+.proSer{
+  position: relative;
+}
+
+.showCodeToPro{
+  position: absolute;
+  font-size: $font-size;
+  color:$gray;
+}
