@@ -19,18 +19,11 @@
 }
 
 .activeTitle {
-<<<<<<< HEAD
-    div:nth-child(1) {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-top: 60px;
-=======
 
     div:nth-child(1) {
         color: $red-base;
         font-size: $font-size-lg26;
         margin-top: 130px;
->>>>>>> web3.0
     }
     div:nth-child(2) {
         margin-top: 5px;
@@ -67,14 +60,10 @@
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
-<<<<<<< HEAD
-    margin-top: 60px;
-=======
     position: fixed;
     width: 100%;
     top: 60px;
     z-index: 99;
->>>>>>> web3.0
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;

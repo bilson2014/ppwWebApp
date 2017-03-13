@@ -56,6 +56,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${total }" id="total"/>
 	<input type="hidden" id="q" value="${q}" />
+	
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -148,30 +149,17 @@
                 <a href="<spring:url value='/news-list.html?q=最热资讯' />" alt="最热资讯">
                 	<div class="category" data-value="最热资讯">最热资讯</div>
                 </a>
-<<<<<<< HEAD
-                <a href="<spring:url value='/news-list.html?q=案例分享' />" alt="案例分享">
-                	<div class="category" data-value="案例分享">案例分享</div>
-                </a>
-                <a href="<spring:url value='/news-list.html?q=企业活动' />" alt="企业活动">
-                	<div class="category" data-value="企业活动">企业活动</div>
-=======
                 <a href="<spring:url value='/news-list.html?q=案例花絮' />" alt="案例花絮">
                 	<div class="category" data-value="案例花絮">案例花絮</div>
                 </a>
                 <a href="<spring:url value='/news-list.html?q=企业动态' />" alt="企业动态">
                 	<div class="category" data-value="企业动态">企业动态</div>
->>>>>>> web3.0
                 </a>
                 <a href="<spring:url value='/news-list.html?q=行业资讯' />" alt="行业资讯">
                 	<div class="category" data-value="行业资讯">行业资讯</div>
                 </a>
-<<<<<<< HEAD
-                <a href="<spring:url value='/news-list.html?q=人物专访' />" alt="人物专访">
-                	<div class="category" data-value="人物专访">人物专访</div>
-=======
                 <a href="<spring:url value='/news-list.html?q=佳片赏析' />" alt="佳片赏析">
                 	<div class="category" data-value="佳片赏析">佳片赏析</div>
->>>>>>> web3.0
                 </a>
             </div>
         </div>
@@ -186,25 +174,17 @@
                   	<c:if test="${!empty list}">
 	                    <c:forEach items="${list }" var="newsSolr">
 	                    	<li class="videoModel">
-<<<<<<< HEAD
-	                    		<a href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
-=======
 	                    		<a class="toNewsUrl" href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
->>>>>>> web3.0
 	                    			<c:if test="${!empty  newsSolr.picLDUrl}">
 		                    			<img src="${file_locate_storage_path}${newsSolr.picLDUrl}" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
 	                    			<c:if test="${empty  newsSolr.picLDUrl}">
 		                    			<img src="${imgPath}/index/noImg.jpg" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
-<<<<<<< HEAD
-	                    			<div class="tagDiv">
-=======
 	                    			
 	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
 	                   				<div class="tagDiv">
 	                   				    <img class="tagImg" src="${imgPath}/provder/videoTag.png">
->>>>>>> web3.0
 	                    				<div class="tags" alt="${newsSolr.tags}">
 	                    					<c:if test="${not empty fn:trim(newsSolr.tags) }">
 												<c:forEach items="${fn:split(fn:trim(newsSolr.tags),' ') }" var="tag" end="2" varStatus="stat">
@@ -213,10 +193,6 @@
 											</c:if>
 	                    				</div>
 	                    			</div>
-<<<<<<< HEAD
-	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
-=======
->>>>>>> web3.0
 	                   				<div class="content" alt="${newsSolr.discription }">${newsSolr.discription }</div>
 	                   				<div class="time" >发表于 
 	                   					<fmt:parseDate value="${newsSolr.creationTime}" var="yearMonth" pattern="yyyy-MM-dd"/>
@@ -273,10 +249,6 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-<<<<<<< HEAD
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
-=======
                                             <div class="cusSer iconItem"><a href="">客户客服</a>
                                                   <div class="showCodeToPro">
 	                                               <img src="/resources/images/cusCode.jpg">
@@ -289,7 +261,6 @@
 	                                               <span>导演客服</span>
 	                                            </div>
 	                                        </div>
->>>>>>> web3.0
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">

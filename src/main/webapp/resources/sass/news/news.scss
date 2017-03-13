@@ -3,64 +3,31 @@
     @import "video";
     @import "flexslider";
     @import "compass/typography/text/ellipsis";
-<<<<<<< HEAD
-=======
     @import "normalize";
->>>>>>> web3.0
     $price-wrap-min: 236px;
     $price-wrap: 340px;
     $price-wrap-max: 460px;
     $order-width: 330px;
     $rightWidth:320px;
-<<<<<<< HEAD
-=======
     body {
         height: auto;
     }
     
->>>>>>> web3.0
     .page {
         background: transparent !important;
     }
     
-<<<<<<< HEAD
-    //     ::selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
-    // ::-moz-selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
-    // ::-webkit-selection {
-    //     background: #000;
-    //     color: $red-base;
-    // }
-    ::selection {
-        background: lighten(#333,10%);
-=======
     ::selection {
         background: lighten(#333, 10%);
->>>>>>> web3.0
         color: $red-base;
     }
     
     ::-moz-selection {
-<<<<<<< HEAD
-        background: lighten(#333,10%);
-=======
         background: lighten(#333, 10%);
->>>>>>> web3.0
         color: $red-base;
     }
     
     ::-webkit-selection {
-<<<<<<< HEAD
-        background: lighten(#333,10%);
-        color: $red-base;
-    }
-    
-=======
         background: lighten(#333, 10%);
         color: $red-base;
     }
@@ -112,7 +79,6 @@
         margin-right: 13px;
     }
     
->>>>>>> web3.0
     .contentWidth {
         @include media_screen_width_beta3();
         padding-top: 30px;
@@ -221,24 +187,12 @@
             .videoModel {
                 margin-bottom: 30px;
                 cursor: pointer;
-<<<<<<< HEAD
-                &:hover {
-                    label:first-child,
-                    label:nth-child(2) {
-                        color: $red-base !important;
-                    }
-                }
-                label {
-                    display: block;
-                    font-weight: 500;
-=======
                 padding-left: 9px;
                 img {
                     width: 125px;
                     height: 70px;
                     display: inline-block;
                     vertical-align: top;
->>>>>>> web3.0
                 }
                 .rightDes {
                     display: inline-block;

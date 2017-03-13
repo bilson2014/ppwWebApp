@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 var hostpath = '/';
 var newspath = '/news-list.html';
 var hotpath = '/news-list.html?q=最热资讯';
@@ -7,7 +5,6 @@ var flowpath = '/news-list.html?q=案例花絮';
 var companypath = '/news-list.html?q=企业动态';
 var infopath = '/news-list.html?q=行业资讯';
 var goodpath = '/news-list.html?q=佳片赏析';
->>>>>>> web3.0
 $().ready(function() {
 	initContent();	
 	initLike();
