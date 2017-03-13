@@ -24,6 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paipianwang.pat.common.util.DateUtils;
+import com.paipianwang.pat.facade.employee.entity.PmsJob;
+import com.paipianwang.pat.facade.employee.entity.PmsStaff;
+import com.paipianwang.pat.facade.employee.service.PmsJobFacade;
+import com.paipianwang.pat.facade.employee.service.PmsStaffFacade;
+import com.paipianwang.pat.facade.indent.entity.PmsIndent;
+import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsProductModule;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
@@ -34,13 +41,10 @@ import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
-import com.panfeng.film.resource.model.Job;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Solr;
-import com.panfeng.film.resource.model.Staff;
-import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.NewsView;
 import com.panfeng.film.resource.view.SolrView;
@@ -50,6 +54,7 @@ import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
 import com.panfeng.film.util.News;
+import com.panfeng.film.util.PropertiesUtils;
 import com.panfeng.film.util.ValidateUtil;
 
 /**
@@ -74,6 +79,16 @@ public class PCController extends BaseController {
 	private PmsProductModuleFacade pmsProductModuleFacade = null;
 	@Autowired
 	private PmsProductFacade pmsProductFacade = null;
+	@Autowired
+	private SmsMQService smsMQService = null;
+	@Autowired
+	private PmsIndentFacade pmsIndentFacade = null;
+	@Autowired
+	private PmsStaffFacade pmsStaffFacade = null;
+	@Autowired
+	private PmsJobFacade pmsJobFacade = null;
+	
+	
 	
 
 	public PCController() {
@@ -550,12 +565,29 @@ public class PCController extends BaseController {
 	@RequestMapping("/appointment/{telephone}")
 	public boolean appointment(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		if (telephone != null && !"".equals(telephone)) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/indent/appointment/" + telephone;
-			final String json = HttpUtil.httpGet(url, request);
-			boolean result = JsonUtil.toBean(json, boolean.class);
+			
+			//发送短信给业务部门
+			smsMQService.sendMessage("131895", PropertiesUtils.getProp("service_tel"), 
+					new String[]{telephone,DateUtils.nowTime()});
+			//发送给客户
+			smsMQService.sendMessage("134080", telephone, null);
+			//创建新订单
+			PmsIndent indent = new PmsIndent();
+			indent.setIndent_tele(telephone);
+			indent.setIndentName("新订单");
+			indent.setIndentType(0);
+			indent.setServiceId(-1l);
+			indent.setIndentPrice(0d);
+			indent.setProductId(-1);
+			indent.setTeamId(-1);
+			indent.setSecond(0l);
+			indent.setProductId(-1l);
+			indent.setIndentNum(" ");
+			long ret = pmsIndentFacade.save(indent);
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("send Message to telephone:" + telephone, sessionInfo);
-			return result;
+			Log.info("send Message to telephone:" + telephone, sessionInfo);
+			return ret>0;
+			
 		}
 		return false;
 	}
@@ -594,21 +626,13 @@ public class PCController extends BaseController {
 
 	@RequestMapping("/member.html")
 	public ModelAndView introduceView(final HttpServletRequest request, final ModelMap model) throws Exception {
-
 		// 查询所有人信息
-		final String url = GlobalConstant.URL_PREFIX + "portal/staff/static/list";
-		final String json = HttpUtil.httpGet(url, request);
-		List<Staff> list = new ArrayList<Staff>();
-		if (ValidateUtil.isValid(json)) {
-			list = JsonUtil.fromJsonArray(json, Staff.class);
+		final List<PmsStaff> list = pmsStaffFacade.getAll();
+		if (null != list && list.size() > 0) {
 			model.addAttribute("list", list);
 		}
-
-		List<Job> jobList = new ArrayList<Job>();
-		final String jobUrl = GlobalConstant.URL_PREFIX + "portal/job/static/list";
-		final String str = HttpUtil.httpGet(jobUrl, request);
-		if (ValidateUtil.isValid(str)) {
-			jobList = JsonUtil.fromJsonArray(str, Job.class);
+		final List<PmsJob> jobList = pmsJobFacade.getAll();
+		if (null != jobList && jobList.size() > 0) {
 			model.addAttribute("jobList", jobList);
 		}
 		return new ModelAndView("/member");
@@ -631,17 +655,12 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/job/info/{id}")
-	public Job getJob(final HttpServletRequest request, @PathVariable("id") final Long id) {
+	public PmsJob getJob(final HttpServletRequest request, @PathVariable("id") final Long id) {
 
 		if (id != null) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/job/static/" + id;
-			final String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final Job job = JsonUtil.toBean(json, Job.class);
-				return job;
-			}
+			final PmsJob job = pmsJobFacade.findJobById(id);
+			return job;
 		}
-
 		return null;
 	}
 
