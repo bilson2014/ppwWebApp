@@ -13,22 +13,23 @@ $().ready(function() {
 		$(this).addClass('active');
 		$('#job-name').text($(this).text());
 		// 加载数据
+		$('#job-duty').empty();
+		$('#job-desc').empty();
+		$('#job-demand').html($(this).attr('data-value'));
+		$('#job-desc').html($(this).attr('data-content'));
 		var jobId = $(this).data('id');
-		if(jobId != null && jobId != '' && jobId != undefined){
-			
-			loadData(function(job){
-				// 清空div
-				$('#job-duty').empty();
-				$('#job-desc').empty();
-				$('#job-demand').html(job.demand);
-				$('#job-desc').html(job.jobDescription);
-			}, getContextPath() + '/job/info/' + jobId, null);
-		}
+//		if(jobId != null && jobId != '' && jobId != undefined){			
+//			loadData(function(job){
+//				// 清空div
+//				$('#job-duty').empty();
+//				$('#job-desc').empty();
+//				$('#job-demand').html(job.demand);
+//				$('#job-desc').html(job.jobDescription);
+//			}, getContextPath() + '/job/info/' + jobId, null);
+//		}
 	});
 	controlVideo();
-	
 	setMemberActive();
-	
 	window.onresize = function(){
 		 setMemberActive();
 	};

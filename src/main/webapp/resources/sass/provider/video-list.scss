@@ -453,6 +453,7 @@ input:-webkit-autofill {
         }
         div:nth-child(1) {
             background: url(/resources/images/provider/edit.png);
+            background-size: 14px 28px;
             height: 14px;
             width: 14px;
             margin-right: 5px;
@@ -494,6 +495,7 @@ input:-webkit-autofill {
         }
         div:nth-child(1) {
             background: url(/resources/images/provider/del.png);
+            background-size: 14px 28px;
             height: 14px;
             width: 14px;
             margin-right: 5px;
@@ -539,18 +541,19 @@ input:-webkit-autofill {
     // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
-.setSize{
+
+.setSize {
     width: 600px !important;
     height: 338px !important;
 }
 
-.setOpi{
-      width: 600px !important;
+.setOpi {
+    width: 600px !important;
     height: 338px !important;
     margin-top: -169px !important;
     margin-left: -600px !important;
 }
 
-.setCloseSize{
+.setCloseSize {
     right: -310px !important;
 }

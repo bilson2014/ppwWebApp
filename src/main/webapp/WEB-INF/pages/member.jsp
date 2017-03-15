@@ -275,10 +275,11 @@
 					<ul id="job-list">
 					  <c:forEach items="${jobList }" var="job" varStatus="status">
 					  		<c:if test="${status.count == 1 }">
-						  		<li class="work active" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<li class="work active" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
 							</c:if>
 							<c:if test="${status.count != 1 }">
-						  		<li class="work" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<%-- <li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li> --%>
 							</c:if>
 					  </c:forEach>
 					</ul>

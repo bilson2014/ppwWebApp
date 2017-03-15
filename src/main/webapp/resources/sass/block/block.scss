@@ -148,6 +148,7 @@
             /* Safari 和 Chrome */
             -o-transition: all .4s linear 0s;
             border-radius: 6px;
+
             &:hover {
                 background-position-y: -29px !important;
                 border: none;
@@ -426,6 +427,7 @@
             width: 24px;
             height: 24px;
             background: url(/resources/images/block/close.png) no-repeat;
+            background-size: 24px 48px !important;
             position: absolute;
             top: -12px;
             right: -12px;
