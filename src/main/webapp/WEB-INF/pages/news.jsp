@@ -154,7 +154,7 @@
                 <div class="leftContent">
                     <div class="title">${news.title}</div>
                        <div class="tags">
-                             <img class="tagImg" src="${imgPath}/provder/videoTag.png">
+                            <img class="tagImg" src="${imgPath}/provder/videoTag.png">
 	                        <div class="tagsContent">	                               
 				                    <c:if test="${not empty fn:trim(news.tags) }">
 										<c:forEach items="${fn:split(fn:trim(news.tags),' ') }" var="tag" end="2" varStatus="stat">
