@@ -69,6 +69,10 @@ a:visited {
                 left: 20px;
                 border-radius: 4px;
             }
+
+            img{
+                width: 22px;
+            }
         }
         .infoHeadSide {
             height: 130px;
@@ -77,6 +81,7 @@ a:visited {
         }
         .place {
             margin-top: 20px;
+            width: 16px;
         }
         .withIt {
             height: 34px;
@@ -148,6 +153,11 @@ a:visited {
     height: 20px;
     width: 100%;
     margin-bottom: 20px;
+  
+    img{
+        width: 14px;
+    }
+
     div {
         height: 20px;
         width: auto;
@@ -181,6 +191,10 @@ a:visited {
     .en {
         font-size: $font-size-sm;
         color: $gray-light;
+    }
+
+    img{
+        width: 14px;
     }
 }
 

@@ -62,7 +62,10 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	 <div class="header" id="header">
+
+	<div class="page">
+		<div class="advanBack"></div>
+			 <div class="header" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -142,8 +145,6 @@
             </div>
         </div>
     </div>
-	<div class="page">
-		<div class="advanBack"></div>
 		<!-- 轮播 start -->
 		<div class="flex-wrap">
 		<div class="changeHideHeader"></div>
@@ -556,10 +557,7 @@
 		</div>
 		<!-- 入驻end-->
 <!-- foot -->
-         					<div class="foot3">、
-         					    <div>
-         					      <>
-         					    </div>
+         					<div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">
