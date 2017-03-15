@@ -12,6 +12,7 @@ import com.paipianwang.pat.facade.right.entity.PmsRight;
 import com.paipianwang.pat.facade.right.entity.SessionInfo;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.util.ValidateUtil;
+import com.panfeng.film.util.Log;
 import com.panfeng.film.util.UrlResourceUtils;
 
 
@@ -31,27 +32,34 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest req,
 		HttpServletResponse resp, Object handler) throws Exception {
 		
+		/*final String contextPath = request.getContextPath();
+		// final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		if(info != null){
+			if(GlobalConstant.ROLE_PROVIDER.equals(info.getSessionType())){
+				return true;
+			}
+		}
+		response.sendRedirect(contextPath + "/login");
+		return false;*/
 
 		final String contextPath = req.getContextPath();
-
-		// final SessionInfo info = (SessionInfo) service.getSessionWithField(request, GlobalConstant.SESSION_INFO);
 		final SessionInfo info = (SessionInfo) req.getSession().getAttribute(GlobalConstant.SESSION_INFO);
-		
 		if(info == null){
 			// 未登录
+			Log.error("没有权限，请先登录", null);
 			resp.sendRedirect(contextPath + "/login");
 			return false;
 		}else{
-			
 			final String url = req.getRequestURI();
 			final ServletContext sc = req.getServletContext();
 			final String uri = UrlResourceUtils.URLResolver(url, sc.getContextPath());
 			final PmsRight right = pmsRightFacade.getRightFromRedis(uri);
-			
 			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){ 
 				return true;
 			} else {
 				// 没有权限
+				Log.error("没有权限，请先登录", null);
 				resp.sendRedirect(contextPath + "/login");
 				return false;
 			}
