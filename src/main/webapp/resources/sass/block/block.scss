@@ -504,6 +504,7 @@ $rightWidth:320px;
     z-index: 99;
     right: 20px;
     background: url("/resources/images/block/btnNext.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
@@ -518,6 +519,7 @@ $rightWidth:320px;
     z-index: 99;
     left: 20px;
     background: url("/resources/images/block/btnPrev.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
@@ -761,6 +763,7 @@ $rightWidth:320px;
         height: 13px;
         width: 13px;
         background: url('/resources/images/index/newsMore.png')no-repeat !important;
+        background-size: 13px 26px !important;
     }
 }
 

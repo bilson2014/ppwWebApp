@@ -160,8 +160,9 @@
 		<div class="nav-shadow"></div>
 		
 		<div class="topContent">
-		    <div>加入我们</div>
-		    <div>Why join us?</div>
+		      <div class="logoImg">
+		    	<img src="${imgPath}/introduce/member/joinus.svg">
+		      </div>	
 		    <div>拍片网位于北京通惠河畔的国贸商业核心区，位置优越，交通便利。我们有家一般舒适的工作环境，自由的工作氛围，精英的互联网团队，扁平的管理结构，温暖的员工关怀，丰厚的福利待遇。<br>
 		     从拍片网创立至今，有越来越多的优秀人才加入我们。我们为了同一个梦想而聚到一起，分享成长和成功带来的快乐。如果你也渴望实现梦想与价值，我们期待与你相遇！
 		    </div>
@@ -171,16 +172,16 @@
 		 <img src="/resources/images/introduce/member/topWall.jpg">
 		 <img src="/resources/images/introduce/member/midWall.jpg">
 		</div>
-	
-
 	        
 	    <div class="introduce" >
-			  <ul>
+			  <!-- <ul>
 			      <li></li>
 			      <li>我们的团队</li>
 			      <li></li>
-			  </ul>
-			  <div>Our Team</div>
+			  </ul> -->
+			  <div class="logoImg">
+		    	<img src="${imgPath}/introduce/member/member.svg">
+		      </div>
 			  <div>这里有最尖端前沿的技术，这里有最不寻常的经历，我们欢迎每一个新思维的加入，
 			   <br>在这里没有不可能，我们创造一切可能。
 			  </div>
@@ -208,12 +209,14 @@
 		
 		
 			<div class="introduce" >
-				  <ul>
+				 <!--  <ul>
 				      <li></li>
 				      <li>公司福利</li>
 				      <li></li>
-				  </ul>
-				  <div>Our Benefits</div>
+				  </ul> -->
+				<div class="logoImg">
+			    	<img src="${imgPath}/introduce/member/fuli.svg">
+			     </div>
 			</div>
 		
 		<div class="weal">
