@@ -163,6 +163,9 @@
 
 		<!-- 内容区域 start -->
 		<div class="banner">
+		  <div class="bannerLogo">
+		     <img src="${imgPath }/introduce/about-us/test.svg">
+		  </div>
 		 <img id="orImg"  src="${imgPath }/about/back.jpg">
 		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
 		<div class="video-div" id="video">
@@ -185,12 +188,11 @@
 		<div class="location">
 		
 		   <div class="locationTop">
-		          <div class="leftCircle"></div>
-		          <div class="rightCircle"></div>
+		          <!-- <div class="leftCircle"></div>
+		          <div class="rightCircle"></div> -->
+		          <img src="${imgPath }/introduce/about-us/pos.svg" />
 		   </div>
 		    <div class="locationTitle">
-		            <div>我们的定位</div>
-		            <div>Our Positioning</div>
 		            <div>我们服务的每一个客户在我们眼里，都是未来的世界500强</div>
 		            <div>所以我们致力于为每一个客户</div>
 		            <div>提供世界500强同等品质的服务</div>
@@ -205,8 +207,7 @@
 	    <!-- 历史start -->
 	         <div class="history">
 	              <div class="historyTitle">
-	                <div>我们的历史</div>
-		            <div>Our History</div>
+	                 <img src="${imgPath }/introduce/about-us/histroy.svg">
 	              </div>
 	              <div class="historyContent">
 	                  <div class="contentLeft">
@@ -260,9 +261,8 @@
 	      <!-- 价值观start -->
 	          <div class="value">
 	                  <ul>
-	                     <li>我们的价值观</li>
-	                     <li>Our Value</li>
-	                     <li> 作品如人品</li>
+	                     <li><img src="${imgPath }/introduce/about-us/value.svg"></li>
+	                     <li>作品如人品</li>
 	                     <li>我们认识一个人往往从他的作品开始 </li>
 	                     <li>在自然科学和文学艺术领域 </li>
 	                     <li>作品深刻的反映了创作者的灵魂质地</li>
@@ -278,8 +278,7 @@
 	      <!-- 使命start -->
 	          <div class="Mission">
 	                  <ul>
-	                     <li>我们的使命</li>
-	                     <li>Our Mission</li>
+	                     <li><img src="${imgPath }/introduce/about-us/test.svg"></li>
 	                     <li>通过互联网的方式连接影视创作者，让影视行业变得开放、共享、高效</li>
 	                     <li>创造伟大的作品，让世界变得更好</li>
 	                  </ul>

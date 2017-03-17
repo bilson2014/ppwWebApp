@@ -15,14 +15,13 @@ $pink:#FF7F88;
     margin-top: 55px;
 }
 
-
 .titleTag {
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
     position: fixed;
     width: 100%;
-    top:60px;
+    top: 60px;
     z-index: 999;
     .titleWord {
         @include media_screen_width_beta3();
@@ -53,6 +52,21 @@ $pink:#FF7F88;
     text-align: center;
     position: relative;
     margin-top: 70px;
+    .bannerLogo {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        text-align: left;
+        position: relative;
+        top: 60px;
+        z-index:3;
+        img {
+            opacity: 0;
+            @media screen and (min-width: 1276px) {
+                opacity: 1;
+            }
+            width: 242px;
+        }
+    }
     img {
         position: absolute;
         top: 0;
@@ -78,13 +92,13 @@ $pink:#FF7F88;
     width: 100%;
 }
 
-#icon{
-  width: 30px;
-  position: fixed;
-  bottom: 50px;
-  left:50%;
-  margin-left: -15px;
-  z-index: 500;
+#icon {
+    width: 30px;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -15px;
+    z-index: 500;
 }
 
 .bannerAni {
@@ -110,7 +124,7 @@ $pink:#FF7F88;
 }
 
 @-moz-keyframes ba {
-       0% {
+    0% {
         bottom: 33px;
         opacity: 1;
     }
@@ -125,7 +139,7 @@ $pink:#FF7F88;
 }
 
 @-o-keyframes ba {
-     0% {
+    0% {
         bottom: 33px;
         opacity: 1;
     }
@@ -140,7 +154,7 @@ $pink:#FF7F88;
 }
 
 @keyframes ba {
-  0% {
+    0% {
         bottom: 33px;
         opacity: 1;
     }
@@ -154,9 +168,8 @@ $pink:#FF7F88;
     }
 }
 
-
 .video-div {
-   // border: 5px solid rgba(255, 255, 255, 0.3);
+    // border: 5px solid rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     width: 960px;
     height: 544px;
@@ -198,7 +211,6 @@ $pink:#FF7F88;
     @include media_screen_width_beta3();
     margin: 0 auto;
     height: 400px;
-    border-top: 1px solid $gray-light;
     margin-top: 80px;
     text-align: center;
     padding-bottom: 100px;
@@ -225,13 +237,14 @@ $pink:#FF7F88;
 }
 
 .locationTop {
-    width: 240px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 100;
-    margin-top: -6px;
-    background: white;
-    height: 10px;
+    width: 100%;
+    text-align: left;
+    // margin: 0 auto;
+    // position: relative;
+    // z-index: 100;
+    // margin-top: -6px;
+    // background: white;
+    // height: 10px;
 }
 
 .circle {
@@ -257,20 +270,15 @@ $pink:#FF7F88;
     text-align: center;
     position: relative;
     z-index: 111;
-    margin-top: -20px;
+    margin-top: 20px;
     div {
         font-size: $font-size-base;
         color: $gray;
         margin-bottom: 8px;
     }
     div:first-child {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-bottom: 8px;
-    }
-    div:nth-child(2) {
-        color: $gray-light;
-        margin-bottom: 30px;
+        //  margin-bottom: 30px;
+        // text-align: left;
     }
 }
 
@@ -281,8 +289,6 @@ $pink:#FF7F88;
     padding-top: 80px;
     padding-bottom: 80px;
     margin-top: 60px;
-
-    
     .historyContent {
         position: relative;
         @include media_screen_width_beta3();
@@ -292,17 +298,20 @@ $pink:#FF7F88;
 }
 
 .historyTitle {
-    text-align: center;
-    div:first-child {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-bottom: 8px;
-    }
-    div:nth-child(2) {
-        color: $gray-light;
-        font-size: $font-size-base;
-        margin-bottom: 60px;
-    }
+    text-align: left;
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    margin-bottom: 60px;
+    // div:first-child {
+    //     color: $red-base;
+    //     font-size: $font-size-lg26;
+    //     margin-bottom: 8px;
+    // }
+    // div:nth-child(2) {
+    //     color: $gray-light;
+    //     font-size: $font-size-base;
+    //     margin-bottom: 60px;
+    // }
 }
 
 .contentLeft {
@@ -401,6 +410,8 @@ $pink:#FF7F88;
 
 //价值观
 .value {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
     text-align: center;
     padding-top: 80px;
     padding-bottom: 80px;
@@ -414,16 +425,11 @@ $pink:#FF7F88;
         margin-bottom: 8px;
     }
     li:first-child {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-bottom: 8px;
+        margin-bottom: 30px;
+        width: 100%;
+        text-align: left;
     }
     li:nth-child(2) {
-        color: $gray-light;
-        font-size: $font-size-base;
-        margin-bottom: 30px;
-    }
-    li:nth-child(3) {
         color: $gray-dark;
         font-size: $font-size-lg;
         margin-bottom: 30px;
@@ -453,11 +459,11 @@ $pink:#FF7F88;
         margin-bottom: 8px;
     }
     li:first-child {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-bottom: 8px;
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        text-align: left;
     }
-    li:nth-child(2) {
+    li:nth-child(1) {
         font-size: $font-size-base;
         margin-bottom: 30px;
     }
