@@ -96,15 +96,8 @@ body {
     @include media_screen_width_beta3();
     height: 100px;
     margin: 0 auto;
-    h2 {
-        margin-top: 50px;
-        font-weight: bold;
-        font-size: $font-size-lg;
-    }
-    p {
-        margin-top: 30px;
-        font-size: $font-size;
-        line-height: 20px;
+    .logoImg{
+         margin-top: 50px;
     }
 }
 
@@ -112,6 +105,8 @@ body {
     @include media_screen_width_beta3();
     margin: 0 auto;
     margin-bottom: 103px;
+    margin-top: 65px;
+    
     h2 {
         margin-top: 50px;
         font-weight: bold;
@@ -411,17 +406,12 @@ body {
 //顶部内容
 .topContent {
     text-align: center;
-    div:nth-child(1) {
-        color: $red-base;
-        font-size: $font-size-lg26;
-        margin-top: 182px;
+    margin-top: 182px;
+    img {
+        position: relative;
+        left: 0px;
     }
     div:nth-child(2) {
-        color: $gray-light;
-        font-size: $font-size-base;
-        margin-top: 10px;
-    }
-    div:nth-child(3) {
         color: $gray-dark;
         font-size: $font-size-base;
         margin-top: 30px;
@@ -495,11 +485,6 @@ body {
         width: 250px;
     }
     div:nth-child(2) {
-        color: $gray-light;
-        font-size: $font-size-base;
-        margin-top: 10px;
-    }
-    div:nth-child(3) {
         color: $gray;
         font-size: $font-size-base;
         margin-top: 30px;
@@ -611,4 +596,11 @@ body {
         top: 0px;
         opacity: 1;
     }
+}
+
+//logo
+.logoImg {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    text-align: left !important;
 }

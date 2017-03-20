@@ -161,10 +161,14 @@
 		<div class="nav-shadow"></div>
 		
 		<div class="page">
-		    <div class="activeTitle">
+<!-- 		    <div class="activeTitle">
 		        <div>公司活动</div>
 		        <div>Corporate Events</div>
-		    </div>
+		    </div> -->
+		    
+		    <div class="logoImg">
+		    	<img src="${imgPath}/introduce/member/company.svg">
+		      </div>
 		    
 		    
 		    <div class="infoTitle">

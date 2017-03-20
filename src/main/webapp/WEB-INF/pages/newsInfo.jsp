@@ -184,7 +184,7 @@
 	                    			
 	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
 	                   				<div class="tagDiv">
-	                   				    <img class="tagImg" src="${imgPath}/provder/videoTag.png">
+	                   				    <%-- <img class="tagImg" src="${imgPath}/provder/videoTag.png"> --%>
 	                    				<div class="tags" alt="${newsSolr.tags}">
 	                    					<c:if test="${not empty fn:trim(newsSolr.tags) }">
 												<c:forEach items="${fn:split(fn:trim(newsSolr.tags),' ') }" var="tag" end="2" varStatus="stat">

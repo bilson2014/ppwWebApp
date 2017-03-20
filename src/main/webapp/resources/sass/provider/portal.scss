@@ -178,6 +178,7 @@ body {
                 content: "";
                 position: absolute;
                 background: url(/resources/images/provider/info.png);
+                background-size: 14px 28px;
                 width: 14px;
                 height: 14px;
                 left: -20px;
@@ -225,6 +226,7 @@ body {
                 content: "";
                 position: absolute;
                 background: url(/resources/images/provider/safeInfo.png);
+                background-size: 14px 28px;
                 width: 14px;
                 height: 14px;
                 left: -20px;
@@ -245,6 +247,7 @@ body {
                 content: "";
                 position: absolute;
                 background: url(/resources/images/provider/product.png);
+                background-size: 14px 28px;
                 width: 14px;
                 height: 14px;
                 left: -20px;
@@ -299,6 +302,9 @@ body {
     @media screen and (min-width: 1276px) {
         right: -47px;
         bottom: 2px;
+    }
+    img {
+        width: 20px;
     }
     div {
         height: 22px;
@@ -751,7 +757,6 @@ body {
     // background-size:100%; 
 }
 
-
 .control {
     background: #f9fafb;
     height: 50px;
@@ -785,6 +790,7 @@ body {
             display: inline-block;
             vertical-align: top;
             background: url(/resources/images/provider/add.png);
+             background-size: 14px 28px;
             width: 14px;
             height: 14px;
             position: relative;
@@ -826,6 +832,7 @@ body {
             display: inline-block;
             vertical-align: top;
             background: url(/resources/images/provider/moreUp.png);
+            background-size: 14px 28px;
             width: 14px;
             height: 14px;
             position: relative;

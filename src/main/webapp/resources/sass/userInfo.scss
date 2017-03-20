@@ -71,10 +71,12 @@ body {
             }
             div:nth-child(1) {
                 background: url('/resources/images/icons/sexCheck.png');
+                background-size: 14px 28px;
                 height: 14px;
                 width: 14px;
                 margin-right: 10px;
                 cursor: pointer;
+
             }
         }
         &:before {

@@ -16,6 +16,7 @@
 
 .swiper-button-prev {
     background: url(/resources/images/index/prev.png) no-repeat !important;
+     background-size: 52px 26px;
     &:hover {
         background-position-x: -26px !important;
     }
@@ -23,6 +24,7 @@
 
 .swiper-button-next {
     background: url(/resources/images/index/next.png) no-repeat !important;
+    background-size: 52px 26px;
     &:hover {
         background-position-x: -26px !important;
     }
@@ -30,6 +32,7 @@
 
 .swiper-banner .swiper-button-prev {
     left: 150px !important;
+    background-size: 52px 26px;
     @media screen and (min-width: 1500px) {
         left: 300px !important;
     }
@@ -37,6 +40,7 @@
 
 .swiper-banner .swiper-button-next {
     right: 150px !important;
+    background-size: 52px 26px;
     @media screen and (min-width: 1500px) {
         right: 300px !important;
     }
@@ -215,6 +219,7 @@
 
 .backgroundCover .swiper-button-prev {
     left: 20px !important;
+    background-size: 52px 26px;
     @media screen and (min-width: 1500px) {
         top: 295px;
         left: 150px !important;
@@ -223,6 +228,7 @@
 
 .backgroundCover .swiper-button-next {
     right: 20px !important;
+    background-size: 52px 26px;
     @media screen and (min-width: 1500px) {
         top: 295px;
         right: 150px !important;
@@ -470,6 +476,7 @@
 
 .director .swiper-button-next {
     background: url(/resources/images/index/dright.png) no-repeat !important;
+    background-size: 52px 26px;
     position: absolute;
     right: 20px !important;
     top:300px;
@@ -483,6 +490,7 @@
 
 .director .swiper-button-prev {
     background: url(/resources/images/index/dleft.png) no-repeat !important;
+    background-size: 52px 26px;
     position: absolute;
     left: 20px !important;
     top:300px;

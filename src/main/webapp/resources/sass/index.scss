@@ -16,8 +16,9 @@
 }
 
 .page {
-    top: 0 !important;
+    //top: 0 !important;
     background: transparent !important;
+    margin-top: -60px;
 }
 
 .btn-default {
@@ -151,8 +152,6 @@ input:focus {
     // background-size:695px 70px !important;
 }
 
-
-
 .bannerSearch {
     position: absolute;
     height: 60px;
@@ -174,21 +173,15 @@ input:focus {
     left: 0;
     right: 0;
     top: 15px;
-
-       @media screen and (min-width: 1100px) and (max-width: 1276px) {
+    @media screen and (min-width: 1100px) and (max-width: 1276px) {
         top: 40px;
     }
-
-
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         top: 40px;
     }
-
-     @media screen and (min-width: 1500px) and (max-width: 1600px) {
+    @media screen and (min-width: 1500px) and (max-width: 1600px) {
         top: 260px;
     }
-
-
     @media screen and (min-width: 1600px) {
         top: 326px;
     }
@@ -243,6 +236,7 @@ input:focus {
                     position: relative;
                     bottom: 1px;
                     cursor: pointer;
+                    width: 12px;
                 }
                 span {
                     position: relative;
@@ -530,6 +524,7 @@ input:focus {
                         width: 26px;
                         height: 25px;
                         background: url("/resources/images/index/four1.png") no-repeat;
+                        background-size: 26px 52px;
                         position: absolute;
                         background-position: 0px -26px;
                         @media screen and (max-width: 1275px) {
@@ -543,6 +538,7 @@ input:focus {
                         width: 26px;
                         height: 25px;
                         background: url("/resources/images/index/four2.png") no-repeat;
+                        background-size: 26px 52px;
                         position: absolute;
                         background-position: 0px -26px;
                         @media screen and (max-width: 1275px) {
@@ -556,6 +552,7 @@ input:focus {
                         width: 26px;
                         height: 25px;
                         background: url("/resources/images/index/four3.png") no-repeat;
+                        background-size: 26px 52px;
                         position: absolute;
                         background-position: 0px -26px;
                         @media screen and (max-width: 1275px) {
@@ -569,6 +566,7 @@ input:focus {
                         width: 26px;
                         height: 25px;
                         background: url("/resources/images/index/four4.png") no-repeat;
+                        background-size: 26px 52px;
                         position: absolute;
                         background-position: 0px -26px;
                         @media screen and (max-width: 1275px) {
@@ -600,10 +598,12 @@ input:focus {
                 width: 26px;
                 height: 25px;
                 background: url("/resources/images/index/four1.png") no-repeat;
+                background-size: 26px 52px;
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
                     background: url("/resources/images/index/four1s.png") no-repeat;
+                    background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
@@ -612,10 +612,12 @@ input:focus {
                 width: 26px;
                 height: 25px;
                 background: url("/resources/images/index/four2.png") no-repeat;
+                background-size: 26px 52px;
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
                     background: url("/resources/images/index/four2s.png") no-repeat;
+                    background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
@@ -624,10 +626,12 @@ input:focus {
                 width: 26px;
                 height: 25px;
                 background: url("/resources/images/index/four3.png") no-repeat;
+                background-size: 26px 52px;
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
                     background: url("/resources/images/index/four3s.png") no-repeat;
+                    background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
@@ -636,10 +640,12 @@ input:focus {
                 width: 26px;
                 height: 25px;
                 background: url("/resources/images/index/four4.png") no-repeat;
+                background-size: 26px 52px;
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
                     background: url("/resources/images/index/four4s.png") no-repeat;
+                    background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
@@ -1132,6 +1138,7 @@ input:focus {
         li:nth-child(1) {
             div:nth-child(1) {
                 background: url(/resources/images/index/free.png) no-repeat;
+                background-size: 80px 160px;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1140,6 +1147,7 @@ input:focus {
         li:nth-child(2) {
             div:nth-child(1) {
                 background: url(/resources/images/index/low.png) no-repeat;
+                background-size: 80px 160px;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1148,6 +1156,7 @@ input:focus {
         li:nth-child(3) {
             div:nth-child(1) {
                 background: url(/resources/images/index/72.png) no-repeat;
+                background-size: 80px 160px;
                 &:hover {
                     background-position: 0px -80px;
                 }
@@ -1200,6 +1209,7 @@ input:focus {
                     position: relative;
                     top: 0-13px;
                     left: 0%;
+                    width: 46px;
                 }
             }
             div:nth-child(2) {
@@ -1268,6 +1278,7 @@ input:focus {
                 width: 13px !important;
                 height: 13px !important;
                 background: url('/resources/images/index/newsMore.png')no-repeat !important;
+                background-size: 13px 26px !important;
                 background-position: 0px 0px;
                 margin-left: 10px !important;
                 margin-top: 0px !important;
@@ -1406,146 +1417,6 @@ input:focus {
     }
 }
 
-//
-//底部
-.foot3 {
-    background: black;
-    height: 440px;
-    position: relative;
-    a:hover {
-        color: white;
-    }
-    a:visited {
-        color: white;
-    }
-    a:link {
-        color: white;
-    }
-    a {
-        color: white;
-    }
-    .footContent {
-        @include media_screen_width_beta3();
-        margin: 0 auto;
-        padding-top: 60px;
-        .contentBottom {
-            text-align: center;
-            color: white;
-            padding-top: 30px;
-            div {
-                font-size: $font-size-sm;
-            }
-            div:first-child {
-                font-size: $font-size !important;
-                margin-bottom: 16px;
-            }
-            div:last-child {
-                margin-top: 20px;
-            }
-        }
-        .contentTop {
-            font-size: 0;
-            padding-bottom: 55px;
-            border-bottom: 1px solid $gray;
-            .codeWidth {
-                width: 140px !important;
-                @media screen and (min-width: 1276px) {
-                    width: 200px !important;
-                }
-            }
-            .commonWidth {
-                width: 110px;
-                @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                    width: 144px !important;
-                }
-                @media screen and (min-width: 1500px) {
-                    width: 184px !important;
-                }
-            }
-            .onLineWidth {
-                width: 220px !important;
-                @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                    width: 196px !important;
-                }
-                @media screen and (min-width: 1500px) {
-                    width: 296px !important;
-                }
-            }
-            .topItem {
-                display: inline-block;
-                color: white;
-                font-size: $font-size-sm;
-                vertical-align: top;
-                .Twocode {
-                    width: 110px;
-                    height: 110px;
-                    background: url(../images/index/pai.png) no-repeat !important;
-                    margin-bottom: 10px;
-                }
-                .smWord {
-                    font-size: $font-size-sm;
-                    color: white;
-                }
-                .title {
-                    font-size: $font-size!important;
-                    margin-bottom: 30px;
-                }
-                .noiconItem {
-                    height: 12px;
-                    margin-bottom: 11px;
-                    a {
-                        position: relative;
-                        top: -2px;
-                    }
-                }
-                .iconItem {
-                    height: 12px;
-                    padding-left: 14px;
-                    margin-bottom: 11px;
-                    a {
-                        position: relative;
-                        top: -2px;
-                        left: 8px;
-                    }
-                    &:hover {
-                        background-position: 0px -12px;
-                    }
-                }
-                .cusLogin {
-                    background: url(../images/index/cusLogin.png) no-repeat;
-                }
-                .proLogin {
-                    background: url(../images/index/proLogin.png) no-repeat;
-                }
-                .manLogin {
-                    background: url(../images/index/manLogin.png) no-repeat;
-                }
-                .reg {
-                    background: url(../images/index/reg.png) no-repeat;
-                }
-                .cusSer {
-                    background: url(../images/index/cusSer.png) no-repeat;
-                }
-                .proSer {
-                    background: url(../images/index/proSer.png) no-repeat;
-                }
-                .email {
-                    background: url(../images/index/email.png) no-repeat;
-                }
-                .tel {
-                    font-size: 34px !important;
-                    position: relative;
-                    top: -10px;
-                    color: $red-base;
-                }
-                .workTime {
-                    position: relative;
-                    top: -3px;
-                }
-            }
-        }
-    }
-}
 
 .directorWants {
     width: 130px;
@@ -1599,17 +1470,16 @@ input:focus {
 //     }
 // }
 
-.right-part{
-      img{
+.right-part {
+    img {
         height: 30px;
         width: 30px;
         border-radius: 90px;
-     }
+    }
 }
 
-#getImgUrl{
+#getImgUrl {
     height: 30px;
     width: 30px;
     border-radius: 90px;
 }
-

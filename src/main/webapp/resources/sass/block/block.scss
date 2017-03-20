@@ -1,48 +1,48 @@
 @import "common";
-    @import "buttons";
-    @import "video";
-    @import "flexslider";
-    @import "compass/typography/text/ellipsis";
-    @import "mixins/indexScreen";
-    @import "compass/typography/text/ellipsis";
-    @import "normalize";
-    $price-wrap-min: 236px;
-    $price-wrap: 340px;
-    $price-wrap-max: 460px;
-    $order-width: 330px;
-    $rightWidth:320px;
-    .videoArea {
-        height: 830px;
-        background: url(/resources/images/index/hotback.png) no-repeat;
-        background-size: 100% 100%;
+@import "buttons";
+@import "video";
+@import "flexslider";
+@import "compass/typography/text/ellipsis";
+@import "mixins/indexScreen";
+@import "compass/typography/text/ellipsis";
+@import "normalize";
+$price-wrap-min: 236px;
+$price-wrap: 340px;
+$price-wrap-max: 460px;
+$order-width: 330px;
+$rightWidth:320px;
+.videoArea {
+    height: 830px;
+    background: url(/resources/images/index/hotback.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    padding-top: 60px;
+    @media screen and (min-width: 1276px) {
+        height: 900px;
+    }
+    .videoContent {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
         position: relative;
-        padding-top: 60px;
-        @media screen and (min-width: 1276px) {
-            height: 900px;
-        }
-        .videoContent {
-            @include media_screen_width_beta3();
-            margin: 0 auto;
-            position: relative;
-        }
     }
-    
-    .bottomContent {
-        margin-bottom: 140px;
+}
+
+.bottomContent {
+    margin-bottom: 140px;
+}
+
+.videoContent .player-wrap object {
+    width: $width-min - $order-width;
+    height: ($width-min - $order-width) * (9 / 16);
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: $width-middle - $order-width;
+        height: ($width-middle - $order-width) * (9 / 16);
     }
-    
-    .videoContent .player-wrap object {
-        width: $width-min - $order-width;
-        height: ($width-min - $order-width) * (9 / 16);
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: $width-middle - $order-width;
-            height: ($width-middle - $order-width) * (9 / 16);
-        }
-        @media screen and (min-width:1500px) {
-            width: $width-lg3 - $order-width;
-            height: ($width-lg3 - $order-width) * (9 / 16);
-        }
+    @media screen and (min-width:1500px) {
+        width: $width-lg3 - $order-width;
+        height: ($width-lg3 - $order-width) * (9 / 16);
     }
+}
 
 .videoContent .player-wrap {
     position: relative;
@@ -51,11 +51,9 @@
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: $width-middle - $order-width;
     }
-    
     @media screen and (min-width:1500px) {
         width: $width-lg3 - $order-width;
     }
-    
     .controlVideo {
         width: $width-min - $order-width;
         height: ($width-min - $order-width) * (9 / 16);
@@ -68,7 +66,6 @@
             height: ($width-lg3 - $order-width) * (9 / 16);
         }
     }
-    
     video {
         width: $width-min - $order-width;
         height: ($width-min - $order-width) * (9 / 16);
@@ -82,7 +79,6 @@
             height: ($width-lg3 - $order-width) * (9 / 16);
         }
     }
-    
     object {
         width: $width-min - $order-width;
         height: ($width-min - $price-wrap-min) * (9 / 16);
@@ -97,6 +93,7 @@
         }
     }
 }
+
 .videoContent .player-wrap .videoTop {
     position: relative;
     margin-bottom: 16px;
@@ -104,9 +101,8 @@
         color: white;
         font-size: 26px;
         margin-bottom: 40px;
-         @include ellipsis;
+        @include ellipsis;
     }
-    
     div:nth-child(2) {
         img {
             margin-right: 20px;
@@ -128,7 +124,6 @@
             }
         }
     }
-    
     div:nth-child(3) {
         font-size: 0;
         position: absolute;
@@ -149,7 +144,7 @@
             -o-transition: all .4s linear 0s;
             border-radius: 6px;
             &:hover {
-                background-position-y: -29px !important;
+                background-position-y: -24px !important;
                 border: none;
             }
         }
@@ -172,28 +167,33 @@
             background: url(/resources/images/block/qq.png) no-repeat;
             margin-left: 16px;
             border: 1px solid $gray;
-            background-position: -2px -1px;
+            background-position: 0px 0px;
+            background-size: 24px 48px;
         }
         li:nth-child(4) {
             background: url(/resources/images/block/zoom.png) no-repeat;
             margin-left: 14px;
             border: 1px solid $gray;
-            background-position: -2px -1px;
+            background-position: 0px 0px;
+            background-size: 24px 48px;
         }
         li:nth-child(5) {
             background: url(/resources/images/block/wb.png) no-repeat;
             margin-left: 14px;
             border: 1px solid $gray;
-            background-position: -2px -1px;
+            background-position: 0px 0px;
+            background-size: 24px 48px;
         }
         li:nth-child(6) {
             background: url(/resources/images/block/wechat.png) no-repeat;
             margin-left: 14px;
             border: 1px solid $gray;
-            background-position: -2px -1px;
+            background-position: 0px 0px;
+            background-size: 24px 48px;
         }
     }
 }
+
 .videoContent .player-wrap .videoBottom {
     cursor: default;
     div:nth-child(1) {
@@ -247,7 +247,6 @@
             }
         }
     }
-    
     div:nth-child(2) {
         font-size: $font-size-sm;
         color: $gray-light;
@@ -256,6 +255,7 @@
         width: 95%;
     }
 }
+
 .videoContent .videoPrice {
     position: absolute;
     top: 118px;
@@ -268,11 +268,9 @@
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         height: ($width-middle - $order-width) * (9 / 16);
     }
-    
     @media screen and (min-width:1500px) {
         height: ($width-lg3 - $order-width) * (9 / 16);
     }
-    
     .wordContent {
         margin-top: 40px;
         padding-left: 15px;
@@ -304,21 +302,17 @@
             }
         }
     }
-    
     .noshow {
         bottom: 300px !important;
         opacity: 0 !important;
     }
-    
     .showPrice {
         bottom: 30px !important;
         opacity: 1 !important;
     }
-    
     .delPrice {
         bottom: 250px !important;
     }
-    
     .price {
         position: absolute;
         width: 300px;
@@ -379,12 +373,10 @@
             }
         }
     }
-    
     .showOrder {
         bottom: 0px !important;
         opacity: 1 !important;
     }
-    
     .order-btn {
         height: 35px;
         width: 100%;
@@ -397,12 +389,11 @@
         border-radius: 4px;
         cursor: pointer;
         position: relative;
-        top:5px;
+        top: 5px;
         &:active {
             background: darken($red-base, 20%);
         }
     }
-    
     .order {
         position: absolute;
         width: 300px;
@@ -426,6 +417,7 @@
             width: 24px;
             height: 24px;
             background: url(/resources/images/block/close.png) no-repeat;
+            background-size: 24px 48px !important;
             position: absolute;
             top: -12px;
             right: -12px;
@@ -482,6 +474,7 @@
         }
     }
 }
+
 //顶部视频end
 .videoStar {
     background: #f0f2f5;
@@ -493,12 +486,15 @@
         font-size: $font-size;
     }
 }
+
 .container-fluid {
     background: #f0f2f5;
 }
+
 .container {
     @include media_screen_width_beta3();
 }
+
 .flex-next {
     position: absolute;
     top: 50%;
@@ -508,10 +504,12 @@
     z-index: 99;
     right: 20px;
     background: url("/resources/images/block/btnNext.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
 }
+
 .flex-prev {
     position: absolute;
     top: 50%;
@@ -521,15 +519,18 @@
     z-index: 99;
     left: 20px;
     background: url("/resources/images/block/btnPrev.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
 }
+
 .slides li {
     position: relative;
     width: 240px !important;
     margin-right: 10px;
 }
+
 .layer {
     position: absolute;
     left: 0;
@@ -539,11 +540,13 @@
     background: rgba(255, 255, 255, 0.7);
     display: none;
 }
+
 .con {
     -moz-box-shadow: 10px 10px 5px #d1d1d1;
     box-shadow: 0px 0px 10px #d1d1d1;
     border-radius: 6px;
 }
+
 .con .conTop {
     padding-top: 24px;
     width: 100%;
@@ -557,7 +560,6 @@
         margin-bottom: 16px;
         text-align: center;
     }
-    
     div:nth-child(2) {
         font-size: 0;
         position: relative;
@@ -569,6 +571,7 @@
         }
     }
 }
+
 .con .conBottom {
     width: 100%;
     height: 200px;
@@ -580,11 +583,13 @@
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
 }
+
 .bottomTab {
     background: #f0f2f5;
     height: 60px;
     width: 100%;
 }
+
 .contentWidth {
     @include media_screen_width_beta3();
     padding-top: 60px;
@@ -635,7 +640,6 @@
             //}
         }
     }
-    
     .rightContent {
         display: inline-block;
         vertical-align: top;
@@ -737,6 +741,7 @@
         }
     }
 }
+
 .newsMore {
     color: $gray;
     font-size: $font-size-sm;
@@ -751,7 +756,6 @@
             background-position: 0px -13px !important;
         }
     }
-    
     div {
         position: absolute;
         right: -30px;
@@ -759,13 +763,16 @@
         height: 13px;
         width: 13px;
         background: url('/resources/images/index/newsMore.png')no-repeat !important;
+        background-size: 13px 26px !important;
     }
 }
+
 .noMore {
     position: relative;
     color: $gray-dark;
     font-size: $font-size-base;
 }
+
 .noInfo {
     position: relative;
     @include media_screen_width_beta3();
@@ -780,7 +787,6 @@
             font-size: $font-size-sm;
         }
     }
-    
     .searchMore {
         color: $gray;
         font-size: $font-size-sm;
@@ -804,7 +810,6 @@
             background: url('/resources/images/index/newsMore.png')no-repeat !important;
         }
     }
-    
     .swiper-button-prev {
         height: 45px;
         width: 45px;
@@ -817,7 +822,6 @@
             left: -4px;
         }
     }
-    
     .swiper-button-next {
         height: 45px;
         width: 45px;
@@ -831,19 +835,20 @@
         }
     }
 }
+
 .swiper-containers {
     width: 100%;
 }
+
 .swiper-slide {
     -webkit-transition: all .8s ease-in-out 0s;
     -moz-transition: all .6s linear 0s;
     /* Firefox 4 */
-    
     -webkit-transition: all .6s linear 0s;
     /* Safari 和 Chrome */
-    
     -o-transition: all .6s linear 0s;
 }
+
 .swiper-noInfo .swiper-slide {
     overflow: hidden;
     font-size: 18px;
@@ -865,7 +870,6 @@
     a {
         width: 100%;
     }
-    
     img {
         width: 100%;
         @include cardUlImgHeight();
@@ -873,11 +877,9 @@
         position: relative;
         border-radius: 4px;
     }
-    
     .margin-top {
         margin-top: 10px;
     }
-    
     div {
         position: relative;
         width: 100%;
@@ -900,6 +902,7 @@
         }
     }
 }
+
 .paddingBottom {
     padding-bottom: 60px;
 }
