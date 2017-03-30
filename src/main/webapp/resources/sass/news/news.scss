@@ -50,12 +50,12 @@
                 display: inline-block;
                 height: 100%;
                 color: $gray-dark;
-                font-size: $font-size-sm;
+                font-size: $font-size-base;
                 line-height: 60px;
             }
             div:nth-child(2n) {
                 color: $gray;
-                font-size: $font-size-sm;
+                font-size: $font-size-base;
             }
         }
     }
