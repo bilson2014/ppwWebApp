@@ -209,7 +209,13 @@
 	              <div class="historyTitle">
 	                 <img src="${imgPath }/introduce/about-us/histroy.svg">
 	              </div>
+
 	              <div class="historyContent">
+<!-- 	              	              <div style="text-align:center;font-size:1.4rem;line-height: 25px;margin-bottom:20px">
+	             拍片网隶属于 北京拍片乐科技有限公司，于2015年正式成立。<br>
+	             北京拍片乐科技有限公司是由资深影视从业者和互联网精英组成的跨界团队，本着“作品如人品”的共同理念，采用互联网链接影视行业的优秀创作者，<br>建立一个开放、共享的创作平台——拍片网。
+	              平台致力于为创作者提供更多的创作机会，为客户提供顶尖的视频作品，实现共赢。
+	              </div> -->
 	                  <div class="contentLeft">
 	                     <img src="/resources/images/about/usInfo.png">
 	                  </div>

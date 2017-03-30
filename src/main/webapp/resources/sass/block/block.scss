@@ -68,7 +68,7 @@ $rightWidth:320px;
     }
     video {
         width: $width-min - $order-width;
-        height: ($width-min - $order-width) * (9 / 16);
+        height: ($width-min - $order-width) * (9 / 16) !important;
         background: black;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: $width-middle - $order-width;
@@ -81,7 +81,7 @@ $rightWidth:320px;
     }
     object {
         width: $width-min - $order-width;
-        height: ($width-min - $price-wrap-min) * (9 / 16);
+        height: ($width-min - $order-width) * (9 / 16) !important;
         background: black;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: $width-middle - $order-width;
