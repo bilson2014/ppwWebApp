@@ -62,7 +62,10 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	 <div class="header" id="header">
+
+	<div class="page">
+		<div class="advanBack"></div>
+			 <div class="header" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -90,6 +93,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -141,8 +145,6 @@
             </div>
         </div>
     </div>
-	<div class="page">
-		<div class="advanBack"></div>
 		<!-- 轮播 start -->
 		<div class="flex-wrap">
 		<div class="changeHideHeader"></div>
@@ -585,8 +587,20 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                           <!--  <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
+                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div> -->
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
@@ -599,7 +613,7 @@
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>

@@ -30,9 +30,9 @@
 	
 	<mvc:view-controller path="/error" view-name="/error" />
 	
+	<mvc:view-controller path="/errorS" view-name="/errorS" />
+	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
-    
-    <!--测试-->
     
     <!-- <mvc:view-controller path="/biao/biao" view-name="/biao/biao" /> -->
      <!--成本计算器-->
@@ -47,8 +47,10 @@
      
      <!-- test -->
       <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
-      <!-- testEnd -->
       <mvc:view-controller path="/c" view-name="/costcalculate" />
+      
+       <mvc:view-controller path="/testImg" view-name="/testImg" />
+
     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
@@ -61,7 +63,6 @@
 	<mvc:annotation-driven />
 	
 	<mvc:interceptors>
-	
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/resources/**"/>
@@ -69,7 +70,7 @@
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
-			<mvc:mapping path="/order/submit"/>
+			<!-- <mvc:mapping path="/order/submit"/> -->
 			<mvc:mapping path="/pay/income"/>
 			<bean class="com.panfeng.film.filter.ValidateTokenInterceptor" />
 		</mvc:interceptor>
@@ -124,5 +125,6 @@
 			<mvc:exclude-mapping path="/mgr/recover/**" />
 			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
 		</mvc:interceptor>
+		
 	</mvc:interceptors>
 </beans>

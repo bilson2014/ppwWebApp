@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.service.SessionInfoService;
 import com.panfeng.film.util.DataUtil;

@@ -7,10 +7,10 @@ import org.joda.time.LocalTime;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.panfeng.film.model.json.LocalDateDeserializer;
-import com.panfeng.film.model.json.LocalDateSerializer;
-import com.panfeng.film.model.json.LocalTimeDeserializer;
-import com.panfeng.film.model.json.LocalTimeSerializer;
+import com.paipianwang.pat.common.entity.json.LocalDateDeserializer;
+import com.paipianwang.pat.common.entity.json.LocalDateSerializer;
+import com.paipianwang.pat.common.entity.json.LocalTimeDeserializer;
+import com.paipianwang.pat.common.entity.json.LocalTimeSerializer;
 
 public abstract class BaseObject implements Serializable{
 

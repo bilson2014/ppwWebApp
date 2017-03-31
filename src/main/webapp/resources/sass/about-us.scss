@@ -15,10 +15,15 @@ $pink:#FF7F88;
     margin-top: 55px;
 }
 
+
 .titleTag {
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+    position: fixed;
+    width: 100%;
+    top:60px;
+    z-index: 999;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -47,6 +52,7 @@ $pink:#FF7F88;
     background: black;
     text-align: center;
     position: relative;
+    margin-top: 70px;
     img {
         position: absolute;
         top: 0;
@@ -274,6 +280,9 @@ $pink:#FF7F88;
     background: #eee;
     padding-top: 80px;
     padding-bottom: 80px;
+    margin-top: 60px;
+
+    
     .historyContent {
         position: relative;
         @include media_screen_width_beta3();
@@ -335,6 +344,7 @@ $pink:#FF7F88;
         vertical-align: top;
         position: relative;
         top: 1px;
+        width: 24px;
     }
     div {
         margin-left: 7px;
@@ -355,6 +365,7 @@ $pink:#FF7F88;
         position: relative;
         top: 5px;
         left: -7px;
+        width: 12px;
     }
     div {
         margin-left: 7px;

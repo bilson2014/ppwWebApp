@@ -138,7 +138,10 @@ var homePage = {
 	search:function(){
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
-			window.location.href='/search?q=&industry:'+flag;
+			if (flag == '广告片')
+				window.location.href='/search?q='+flag;
+			else 
+				window.location.href='/search?q=&industry='+flag;
 		})
 	},
 	deliverOrder:function(){
@@ -300,6 +303,7 @@ var homePage = {
 		var _this = this;
 		loadData(function(data){
 			if(data.code==1){
+				juicer.register("getContentIndex",getContentIndex);
 				$("#news-container").empty().html(juicer(homePage_tpl.news_resommend,data));
 				_this.getNewsDetail();
 				
@@ -314,13 +318,13 @@ var homePage = {
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
 			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html";
+			window.location.href="/news/article-"+id+".html?q=index";
 		})
 		
 	    $(".get-new-detail").parent().off("click").on("click",function(){
 			var id = $(this).attr("data-id");
 			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html";
+			window.location.href="/news/article-"+id+".html?q=index";
 		})
 	},
 	initVideo:function(){
@@ -411,7 +415,7 @@ var homePage_tpl = {
 			'<li data-id=${item.id}>',
 			'	<div class="get-new-detail newsTitle">${item.title}</div>',
 			'	<div class="newsLine"></div>',
-			'	<div class="Content">${item.discription}</div>',
+			'	<div class="Content">${item.discription | getContentIndex}</div>',
 			'	<div class="get-new-detail newsMore">',
 			'		<span>了解更多</span>',
 			'		<div class="moreIcon"></div>',
@@ -420,4 +424,25 @@ var homePage_tpl = {
 			'{@/each}'
          ].join("")         
     
+}
+
+
+
+
+function getContentIndex(string){
+	 var screenWidth = document.documentElement.clientWidth;
+	 var num = 100;  
+	    if(screenWidth<=1500){
+	    	num = 70;
+	    }
+	    if(screenWidth<=1276){
+	    	num = 50;
+	    }
+	if(string.length<=num){
+		var content = string
+	}else{
+		var content = string.substr(1,num) +"[...]"
+	}
+	
+	return  content;
 }

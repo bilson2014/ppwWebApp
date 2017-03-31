@@ -4,19 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,19 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.PmsRole;
+import com.paipianwang.pat.facade.right.service.PmsRightFacade;
+import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
+import com.paipianwang.pat.facade.user.entity.PmsUser;
+import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.PhotoCutParam;
-import com.panfeng.film.resource.model.User;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
-import com.panfeng.film.service.SmsService;
 import com.panfeng.film.service.UserService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
-import com.panfeng.film.util.HttpUtil;
-import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
 import com.panfeng.film.util.PhotoUtil;
 import com.panfeng.film.util.ValidateUtil;
@@ -46,8 +46,6 @@ import com.panfeng.film.util.ValidateUtil;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
-	@Autowired
-	private SmsService smsService = null;
 	@Autowired
 	private final FDFSService DFSservice = null;
 
@@ -63,7 +61,12 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private PmsUserFacade pmsUserFacade;
+	@Autowired
+	private PmsRoleFacade pmsRoleFacade;
+	@Autowired
+	private PmsRightFacade pmsRightFacade;
 	public UserController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
 			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
@@ -83,46 +86,31 @@ public class UserController extends BaseController {
 
 	/**
 	 * 修改用户信息
-	 * 
 	 * @param user
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/modify/info")
-	public boolean modifiedUserInfo(@RequestBody final User user, final HttpServletRequest request) {
-		try {
-			// 转码
-			user.setEmail(URLEncoder.encode(user.getEmail(), "UTF-8"));
-			user.setQq(URLEncoder.encode(user.getQq(), "UTF-8"));
-			user.setWeChat(URLEncoder.encode(user.getWeChat(), "UTF-8"));
-			user.setRealName(URLEncoder.encode(user.getRealName(), "UTF-8"));
-			user.setUserName(URLEncoder.encode(user.getUserName(), "UTF-8"));
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("User id is " + user.getId() + " update info(username:" + user.getUserName() + ",qq:"
-					+ user.getQq() + ",realname:" + user.getRealName() + ",email:" + user.getEmail() + ")",
-					sessionInfo);
-
-			// 修改 用户基本信息
-			final String url = URL_PREFIX + "portal/user/modify/info";
-			String json = HttpUtil.httpPost(url, user, request);
-			Boolean result = JsonUtil.toBean(json, Boolean.class);
-			Log.error("User id is " + user.getId() + " update info(username,qq,realname,email) -success=" + result,
-					sessionInfo);
-
-			// updateUserInSession(request);
-			return result;
-		} catch (UnsupportedEncodingException e) {
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("UserController method:modifiedUserInfo() user info encode error ...", sessionInfo);
-			e.printStackTrace();
+	public boolean modifiedUserInfo(@RequestBody final PmsUser user, final HttpServletRequest request) {
+		// 转码
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		// 修改 用户基本信息
+		if (user != null) {
+			if (user.getId() != 0){
+				pmsUserFacade.modifyUserInfo(user);
+				PmsUser u = pmsUserFacade.findUserById(user.getId());
+				initSessionInfo(u, request);
+				Log.error("User id is " + user.getId() + " update info(username,qq,realname,email) -success",
+						sessionInfo);
+				return true;
+			}
 		}
 		return false;
 	}
 
 	@RequestMapping("/modify/password")
-	public boolean modifiedUserPassword(@RequestBody final User user, final HttpServletRequest request)
+	public boolean modifiedUserPassword(@RequestBody final PmsUser user, final HttpServletRequest request)
 			throws Exception {
-
 		if (user != null) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			long userId = sessionInfo.getReqiureId();
@@ -132,16 +120,15 @@ public class UserController extends BaseController {
 				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 				// MD5加密
 				user.setPassword(DataUtil.md5(password));
-
 				// 修改 用户密码
-				final String url = URL_PREFIX + "portal/user/modify/password";
-				final String json = HttpUtil.httpPost(url, user, request);
-				final Boolean result = JsonUtil.toBean(json, Boolean.class);
-				Log.error("User id is " + userId + " update password -success=" + result, sessionInfo);
-				return result;
+				if (user != null) {
+					pmsUserFacade.modifyUserPassword(user);
+					Log.error("User id is " + userId + " update password success", sessionInfo);
+					return true;
+				}
 			}
-			Log.error("UserController method:modifiedUserPassword() User id is " + userId
-					+ " update password -success=false,info=password is null ...", sessionInfo);
+			Log.error("User id is " + userId
+					+ " update password error", sessionInfo);
 		}
 		return false;
 	}
@@ -152,8 +139,9 @@ public class UserController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/modify/code/password")
-	public Map<String, Object> modifiedUserPasswordByVerificationCode(@RequestBody final User user,
+	public Map<String, Object> modifiedUserPasswordByVerificationCode(@RequestBody final PmsUser user,
 			final HttpServletRequest request) throws Exception {
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", 0);
 		map.put("msg", "信息修改失败，请刷新后再试!");
@@ -165,23 +153,14 @@ public class UserController extends BaseController {
 					final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
 					// MD5加密
 					user.setPassword(DataUtil.md5(password));
-
 					// 修改 用户密码
-					final String url = URL_PREFIX + "portal/user/modify/password";
-					final String json = HttpUtil.httpPost(url, user, request);
-					final Boolean result = JsonUtil.toBean(json, Boolean.class);
-
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("User id is " + userId + " update password -success=" + result, sessionInfo);
-					if (result) {
+					if (user != null) {
+						pmsUserFacade.modifyUserPassword(user);
+						Log.error("User id is " + userId + " update password success", sessionInfo);
 						map.put("code", 1);
 						map.put("msg", "修改成功");
 					}
 				}
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("UserController method:modifiedUserPassword() User id is " + userId
-						+ " update password -success=false,info=password is null ...", sessionInfo);
-
 			} else {
 				map.put("msg", "验证码错误");
 			}
@@ -189,17 +168,15 @@ public class UserController extends BaseController {
 		return map;
 	}
 
-	private boolean judgeTestAndValidateCode(HttpServletRequest request, User user) {
+	private boolean judgeTestAndValidateCode(HttpServletRequest request, PmsUser user) {
 		final String code = (String) request.getSession().getAttribute("code");
-		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-		return isTest || (!"".equals(code) && code != null && code.equals(user.getVerification_code()));
+		return (!"".equals(code) && code != null && code.equals(user.getVerification_code()));
 	}
 
 	/**
 	 * 发送验证码
 	 */
-	@RequestMapping("/verification/{telephone}")
+	/*@RequestMapping("/verification/{telephone}")
 	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 
 		final String code = DataUtil.random(true, 6);
@@ -214,33 +191,38 @@ public class UserController extends BaseController {
 				sessionInfo);
 		// updateUserInSession(request);
 		return ret;
-	}
+	}*/
 
 	/**
 	 * 修改用户手机号码
 	 */
 	@RequestMapping("/modify/phone")
-	public BaseMsg modifyUserPhone(@RequestBody final User user, final HttpServletRequest request) {
+	public BaseMsg modifyUserPhone(@RequestBody final PmsUser user, final HttpServletRequest request) {
 		if (user != null) {
 			if (judgeTestAndValidatePhoneCode(request, user)) {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("User id is " + user.getId() + " update phone number:" + user.getTelephone(), sessionInfo);
 
 				// 验证手机号是否是新的,然后 更新手机
-				final String url = URL_PREFIX + "portal/user/update/newphone";
-				final String json = HttpUtil.httpPost(url, user, request);
-				final BaseMsg result = JsonUtil.toBean(json, BaseMsg.class);
-				Log.error("User id is " + user.getId() + " update phone number -success=" + result, sessionInfo);
-				// updateUserInSession(request);
-				return result;
-
+				final int count = pmsUserFacade.validationPhone(user.getTelephone(), null);
+				if (count > 0) {
+					return new BaseMsg(2,"手机号被占用");
+				}
+				//修改手机号
+				final long ret = pmsUserFacade.modifyUserPhone(user);
+				if (ret > 0) {
+					Log.error("User id is " + user.getId() + " update phone number -success", sessionInfo);
+					// updateUserInSession(request);
+					return new BaseMsg(3,"success");
+				}
+				return new BaseMsg(0,"error");
 			}
 			return new BaseMsg(1, "验证码错误");
 		}
 		return new BaseMsg(0, "error");
 	}
 
-	private boolean judgeTestAndValidatePhoneCode(HttpServletRequest request, User user) {
+	private boolean judgeTestAndValidatePhoneCode(HttpServletRequest request, PmsUser user) {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
@@ -269,18 +251,15 @@ public class UserController extends BaseController {
 				final long fileSize = file.getSize(); // 上传文件大小
 				final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
 				final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
-
 				if (fileSize > maxSize * 1024) {
 					// 文件大小超出规定范围
 					return "false@error=1";
 				} else {
-
 					if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
 						String path = DFSservice.upload(file);
 						SessionInfo sessionInfo = getCurrentInfo(request);
 						Log.error("User id is " + sessionInfo.getReqiureId() + " upload photo by self path is" + path,
 								sessionInfo);
-
 						return path;
 					} else {
 						// 文件格式不正确
@@ -288,7 +267,6 @@ public class UserController extends BaseController {
 					}
 				}
 			}
-
 		} catch (Exception e) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("UserController method:modifyUserPhoto() Upload user image error ...", sessionInfo);
@@ -302,7 +280,7 @@ public class UserController extends BaseController {
 	 * 
 	 * @throws MalformedURLException
 	 */
-	@RequestMapping(value = "/directModify/photo", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/directModify/photo", method = RequestMethod.POST)
 	public boolean changePhotoWithClick(@RequestBody final User user, final HttpServletRequest request)
 			throws MalformedURLException {
 
@@ -327,13 +305,13 @@ public class UserController extends BaseController {
 		}
 
 		return false;
-	}
+	}*/
 
 	/**
 	 * 删除 取消的自定义上传文件
 	 */
 	@RequestMapping("/delete/photo")
-	public boolean deleteTempPhoto(@RequestBody final User user, HttpServletRequest request) {
+	public boolean deleteTempPhoto(@RequestBody final PmsUser user, HttpServletRequest request) {
 
 		if (user != null && !"".equals(user.getImgUrl())) {
 			final String path = user.getImgUrl();
@@ -359,7 +337,7 @@ public class UserController extends BaseController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/cutPhoto")
-	public User uploadDIYUserImg(@RequestBody final PhotoCutParam param, final HttpServletRequest request)
+	public PmsUser uploadDIYUserImg(@RequestBody final PhotoCutParam param, final HttpServletRequest request)
 			throws IOException {
 
 		if (param != null && !"".equals(param.getImgUrl())) {
@@ -378,18 +356,14 @@ public class UserController extends BaseController {
 
 				String path = DFSservice.upload(inputStream, imgPath);
 				// 更新数据库
-				final User user = new User();
+				final PmsUser user = new PmsUser();
 				user.setId(param.getUserId());
 				user.setImgFileName(path);// ?这个是做啥的
 				user.setImgUrl(path);
 
-				final String url = URL_PREFIX + "portal/user/modify/photo";
-				final String json = HttpUtil.httpPost(url, user, request);
-				final Boolean result = JsonUtil.toBean(json, Boolean.class);
-
-				Log.error("User id is " + param.getUserId() + " update DIY photo - success = " + result, sessionInfo);
-
-				if (result) {
+				final long ret = pmsUserFacade.modifyUserPhoto(user);
+				Log.error("User id is " + param.getUserId() + " update DIY photo - success" , sessionInfo);
+				if (ret>0) {
 					// updateUserInSession(request);
 					return user;
 				} else {
@@ -420,7 +394,7 @@ public class UserController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (null != sessionInfo) {
-			User user = new User();
+			PmsUser user = new PmsUser();
 			user.setId(sessionInfo.getReqiureId());
 			user.setLoginName(sessionInfo.getLoginName());
 			baseMsg.setCode(1);
@@ -432,17 +406,13 @@ public class UserController extends BaseController {
 	/**
 	 * 第三方绑定状态
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/third/status")
 	public Map<String, Object> thirdBindStatus(HttpServletRequest request) {
-		Map<String, Object> result = new HashMap<String, Object>();
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		User user = new User();
+		PmsUser user = new PmsUser();
 		user.setId(sessionInfo.getReqiureId());
-		final String url = URL_PREFIX + "portal/user/third/status";
-		final String json = HttpUtil.httpPost(url, user, request);
-		result = JsonUtil.toBean(json, Map.class);
-		return result;
+		Map<String, Object> map = pmsUserFacade.thirdStatus(user);
+		return map;
 	}
 
 	/**
@@ -450,13 +420,11 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/bind/third")
 	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final User user) {
+			@RequestBody final PmsUser user) {
 		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		user.setId(sessionInfo.getReqiureId());// 填充用户id
-		final String url = URL_PREFIX + "portal/user/info/bind";
-		String str = HttpUtil.httpPost(url, user, request);
-		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		boolean b = pmsUserFacade.userInfoBind(user);
 		if (b) {
 			baseMsg.setCode(1);
 			baseMsg.setResult("绑定成功");
@@ -469,24 +437,20 @@ public class UserController extends BaseController {
 	 * 个人中心解除第三方绑定
 	 */
 	@RequestMapping("/unbind/third")
-	public boolean unBindThird(@RequestBody final User user, final HttpServletRequest request) {
+	public boolean unBindThird(@RequestBody final PmsUser user, final HttpServletRequest request) {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		user.setId(sessionInfo.getReqiureId());// 填充用户id
 		// 查询该用户是否存在
-		final String url = URL_PREFIX + "portal/user/info/unbind";
-		String str = HttpUtil.httpPost(url, user, request);
-		Boolean b = JsonUtil.toBean(str, Boolean.class);
+		boolean b = pmsUserFacade.userInfoUnBind(user);
 		return b;
 	}
 
 	/**
-	 * 个人中心解除第三方绑定
+	 * 验证用户名唯一性
 	 */
 	@RequestMapping("/unique/username")
-	public boolean uniqueUserName(@RequestBody final User user, final HttpServletRequest request) {
-		final String url = URL_PREFIX + "portal/user/unique/username";
-		String str = HttpUtil.httpPost(url, user, request);
-		Boolean b = JsonUtil.toBean(str, Boolean.class);
+	public boolean uniqueUserName(@RequestBody final PmsUser user, final HttpServletRequest request) {
+		boolean b = pmsUserFacade.uniqueUserName(user);
 		return b;
 	}
 
@@ -496,10 +460,9 @@ public class UserController extends BaseController {
 	public ModelAndView infoCommonView(final HttpServletRequest request, final ModelMap model) {
 		final SessionInfo info = getCurrentInfo(request);
 		if (info != null) {
-			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
-			String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final User currentUser = JsonUtil.toBean(json, User.class);
+			Long userId = info.getReqiureId();
+			if (userId != null) {
+				final PmsUser currentUser = pmsUserFacade.findUserById(userId);
 				currentUser.setPassword(null);
 				model.addAttribute("user", currentUser);
 			}
@@ -517,10 +480,9 @@ public class UserController extends BaseController {
 	public ModelAndView safeInfo(final HttpServletRequest request, final ModelMap model) {
 		final SessionInfo info = getCurrentInfo(request);
 		if (info != null) {
-			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
-			String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final User currentUser = JsonUtil.toBean(json, User.class);
+			Long userId = info.getReqiureId();
+			if (userId != null) {
+				final PmsUser currentUser = pmsUserFacade.findUserById(userId);
 				currentUser.setPassword(null);
 				model.addAttribute("user", currentUser);
 			}
@@ -537,10 +499,9 @@ public class UserController extends BaseController {
 	public ModelAndView userInfo(final HttpServletRequest request, final ModelMap model) {
 		final SessionInfo info = getCurrentInfo(request);
 		if (info != null) {
-			final String url = URL_PREFIX + "portal/user/info/" + info.getReqiureId();
-			String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final User currentUser = JsonUtil.toBean(json, User.class);
+			Long userId = info.getReqiureId();
+			if (userId != null) {
+				final PmsUser currentUser = pmsUserFacade.findUserById(userId);
 				currentUser.setPassword(null);
 				model.addAttribute("user", currentUser);
 			}
@@ -554,5 +515,48 @@ public class UserController extends BaseController {
 
 		return new ModelAndView("userPortal", model);
 	}
+	/**
+	 * 初始化 sessionInfo 信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @return
+	 */
+	public boolean initSessionInfo(final PmsUser user, HttpServletRequest request) {
+		final HttpSession session = request.getSession();
+		
+		// 清空session
+		session.removeAttribute(GlobalConstant.SESSION_INFO);
+		
+		// 存入session中
+		final SessionInfo info = new SessionInfo();
+		info.setLoginName(user.getLoginName());
+		info.setRealName(user.getRealName());
+		info.setSessionType(GlobalConstant.ROLE_CUSTOMER);
+		//info.setSuperAdmin(false);
+		info.setToken(DataUtil.md5(session.getId()));
+		info.setReqiureId(user.getId());
+		info.setClientLevel(user.getClientLevel()); // 客户级别
+		info.setTelephone(user.getTelephone());
 
+		final PmsRole role = pmsRoleFacade.findRoleById(3l); // 获取用户角色
+		final List<PmsRole> roles = new ArrayList<PmsRole>();
+		roles.add(role);
+		user.setRoles(roles);
+		// 计算权限码总和
+		final long maxPos = pmsRightFacade.getMaxPos();
+		final long[] rightSum = new long[(int) (maxPos + 1)];
+		user.setRightSum(rightSum);
+		user.calculateRightSum();
+		info.setSum(user.getRightSum());
+		info.setEmail(user.getEmail());
+		info.setPhoto(user.getImgUrl());
+		info.setSuperAdmin(user.isSuperAdmin()); // 判断是否是超级管理员
+
+		/*Map<String, Object> map = new HashMap<String, Object>();
+		map.put(GlobalConstant.SESSION_INFO, info);*/
+		session.setAttribute(GlobalConstant.SESSION_INFO, info);
+		// return sessionService.addSessionSeveralTime(request, map,60*60*24*7);//登陆用户存放七天
+		return true;
+	}
 }

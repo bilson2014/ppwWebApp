@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,28 +24,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.panfeng.domain.SessionInfo;
-import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.DataUtil;
+import com.paipianwang.pat.common.util.DateUtils;
+import com.paipianwang.pat.common.util.JsonUtil;
+import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.facade.employee.entity.PmsJob;
+import com.paipianwang.pat.facade.employee.entity.PmsStaff;
+import com.paipianwang.pat.facade.employee.service.PmsJobFacade;
+import com.paipianwang.pat.facade.employee.service.PmsStaffFacade;
+import com.paipianwang.pat.facade.indent.entity.PmsIndent;
+import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
+import com.paipianwang.pat.facade.product.entity.PmsProduct;
+import com.paipianwang.pat.facade.product.entity.PmsProductModule;
+import com.paipianwang.pat.facade.product.service.PmsProductFacade;
+import com.paipianwang.pat.facade.product.service.PmsProductModuleFacade;
+import com.paipianwang.pat.facade.team.entity.PmsTeam;
+import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
+import com.paipianwang.pat.facade.user.entity.PmsUser;
+import com.paipianwang.pat.facade.user.service.PmsUserFacade;
+import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
-import com.panfeng.film.resource.model.Item;
-import com.panfeng.film.resource.model.Job;
+import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
-import com.panfeng.film.resource.model.ProductModule;
-import com.panfeng.film.resource.model.Service;
 import com.panfeng.film.resource.model.Solr;
-import com.panfeng.film.resource.model.Staff;
-import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
-import com.panfeng.film.resource.view.ProductView;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
-import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.News;
-import com.panfeng.film.util.ValidateUtil;
+import com.panfeng.film.util.PropertiesUtils;
 
 /**
  * PC端 控制器
@@ -59,6 +68,26 @@ public class PCController extends BaseController {
 	final Logger logger = LoggerFactory.getLogger("error");
 
 	static String URL_PREFIX = null;
+	
+	@Autowired
+	private PmsUserFacade pmsUserFacade = null;
+	@Autowired
+	private PmsTeamFacade pmsTeamFacade = null;
+	@Autowired
+	private PmsProductModuleFacade pmsProductModuleFacade = null;
+	@Autowired
+	private PmsProductFacade pmsProductFacade = null;
+	@Autowired
+	private SmsMQService smsMQService = null;
+	@Autowired
+	private PmsIndentFacade pmsIndentFacade = null;
+	@Autowired
+	private PmsStaffFacade pmsStaffFacade = null;
+	@Autowired
+	private PmsJobFacade pmsJobFacade = null;
+	
+	
+	
 
 	public PCController() {
 		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
@@ -206,7 +235,7 @@ public class PCController extends BaseController {
 	/**
 	 * 加载视频列表时，获取 视频总数
 	 */
-	@RequestMapping(value = "/product/size", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	/*@RequestMapping(value = "/product/size", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public long maxSize(@RequestBody final ProductView view, final HttpServletRequest request) {
 
 		long pageSize = 0l;
@@ -220,7 +249,7 @@ public class PCController extends BaseController {
 		Log.error("Load product size,productType:" + view.getProductType() + " total number is " + pageSize,
 				sessionInfo);
 		return pageSize;
-	}
+	}*/
 
 	/**
 	 * 加载 视频列表
@@ -229,7 +258,7 @@ public class PCController extends BaseController {
 	 *            条件
 	 * @return List<Product> 产品列表
 	 */
-	@RequestMapping(value = "/product/listWithCondition", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	/*@RequestMapping(value = "/product/listWithCondition", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<Product> list(@RequestBody final ProductView view, final HttpServletRequest request) {
 
 		List<Product> list = new ArrayList<Product>();
@@ -242,7 +271,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("List With Condition,productType:", sessionInfo);
 		return list;
-	}
+	}*/
 
 	/**
 	 * 跳转 作者页，并加载当前产品信息
@@ -252,57 +281,54 @@ public class PCController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	/*@RequestMapping("/product/view/{teamId}/{productId}")
-	public ModelAndView redirect(@PathVariable("teamId") final Integer teamId,
-			@PathVariable("productId") final Integer productId, final ModelMap model,
-			final HttpServletRequest request) {
-		model.addAttribute("teamId", teamId);
-		model.addAttribute("productId", productId);
-		Product product = new Product();
-		final String url = URL_PREFIX + "portal/product/static/information/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		product = JsonUtil.toBean(json, Product.class);
-		model.addAttribute("product", product);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
-		return new ModelAndView("team", model);
-	}*/
+	/*
+	 * @RequestMapping("/product/view/{teamId}/{productId}") public ModelAndView
+	 * redirect(@PathVariable("teamId") final Integer teamId,
+	 * 
+	 * @PathVariable("productId") final Integer productId, final ModelMap model,
+	 * final HttpServletRequest request) { model.addAttribute("teamId", teamId);
+	 * model.addAttribute("productId", productId); Product product = new
+	 * Product(); final String url = URL_PREFIX +
+	 * "portal/product/static/information/" + productId; String json =
+	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
+	 * Product.class); model.addAttribute("product", product);
+	 * 
+	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
+	 * "Redirect team page,teamId:" + teamId + " ,productId:" + productId,
+	 * sessionInfo); return new ModelAndView("team", model); }
+	 */
 	@RequestMapping("/play/{teamId}_{productId}.html")
-	public ModelAndView play(@PathVariable("teamId") final Integer teamId,
+	public ModelAndView play(@PathVariable("teamId") final Long teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
 			final HttpServletRequest request) {
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
-		Product product = new Product();
-		String url = URL_PREFIX + "portal/product/static/information/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		if (ValidateUtil.isValid(json)) {
-			product = JsonUtil.toBean(json, Product.class);
-			model.addAttribute("product", product);
-			url = URL_PREFIX + "portal/get/productModules";
-			String priceDetail = product.getPriceDetail();
-			if (ValidateUtil.isValid(priceDetail)) {
-				Map<String, String[]> ids = new HashMap<>();
-				String[] priceDetails = priceDetail.split("\\,");
-				ids.put("ids", priceDetails);
-				String json2 = HttpUtil.httpPost(url, ids, request);
-				if (ValidateUtil.isValid(json2)) {
-					try {
-						List<ProductModule> productModules = JsonUtil.fromJsonArray(json2, ProductModule.class);
-						model.addAttribute("productModules", productModules);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+		String priceDetail = null;
+		final PmsProduct product = pmsProductFacade.loadProduct(productId);
+		if (null != product && product.getTeamId() != null && !"".equals(product.getTeamId())) {
+			priceDetail = product.getPriceDetail();
+			final PmsTeam team = pmsTeamFacade.findTeamById(product.getTeamId());	
+			if (team != null) {
+				product.setTeamDescription(team.getTeamDescription());
+				product.setTeamName(team.getTeamName());
+				product.setTeamPhotoUrl(team.getTeamPhotoUrl());
 			}
 		}
+		model.addAttribute("product", product);
+		if (ValidateUtil.isValid(priceDetail)) {
+			Map<String, Object> ids = new HashMap<>();
+			String[] priceDetails = priceDetail.split("\\,");
+			ids.put("ids", priceDetails);
+			List<PmsProductModule> productModules = pmsProductModuleFacade.findListByIds(ids);
+			model.addAttribute("productModules", productModules);
+		}
 		if (teamId != null) {
-			url = URL_PREFIX + "portal/team/info/" + teamId;
-			String json3 = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json3)) {
-				Team team = JsonUtil.toBean(json3, Team.class);
+			PmsTeam team = pmsTeamFacade.getTeamInfo(teamId);
+			if (team != null) {
 				model.addAttribute("teamFlag", team.getFlag());
+			}else{
+				SessionInfo sessionInfo = getCurrentInfo(request);
+				Log.error("team is null ...", sessionInfo);
 			}
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
@@ -311,11 +337,10 @@ public class PCController extends BaseController {
 	}
 	/**
 	 * 根据 团队编号 加载 产品列表
-	 * 
 	 * @param teamId
 	 *            产品编号
 	 */
-	@RequestMapping("/product/loadWithTeam/{teamId}")
+	/*@RequestMapping("/product/loadWithTeam/{teamId}")
 	public List<Product> productInformationByTeam(@PathVariable("teamId") final Integer teamId,
 			final HttpServletRequest request) {
 
@@ -327,7 +352,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
-	}
+	}*/
 
 	/**
 	 * 根据 团队编号 加载 产品列表
@@ -335,7 +360,7 @@ public class PCController extends BaseController {
 	 * @param teamId
 	 *            产品编号
 	 */
-	@RequestMapping("/product/order/loadWithTeam/{teamId}")
+	/*@RequestMapping("/product/order/loadWithTeam/{teamId}")
 	public List<Product> productInformationByTeamOrder(@PathVariable("teamId") final Integer teamId,
 			final HttpServletRequest request) {
 
@@ -347,7 +372,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
 		return list;
-	}
+	}*/
 
 	/**
 	 * 根据 团队名称 去solr中 加载 产品列表
@@ -362,7 +387,7 @@ public class PCController extends BaseController {
 		final String url = URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(),null);
+		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(), null);
 		return list;
 	}
 
@@ -372,19 +397,20 @@ public class PCController extends BaseController {
 	 * @param productId
 	 *            产品编号
 	 */
-	/*@RequestMapping("/product/information/{productId}")
-	public Product productInformation(@PathVariable("productId") final Integer productId,
-			final HttpServletRequest request) {
-
-		Product product = new Product();
-		final String url = URL_PREFIX + "portal/product/static/information/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		product = JsonUtil.toBean(json, Product.class);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load product information,productId:" + productId, sessionInfo);
-		return product;
-	}*/
+	/*
+	 * @RequestMapping("/product/information/{productId}") public Product
+	 * productInformation(@PathVariable("productId") final Integer productId,
+	 * final HttpServletRequest request) {
+	 * 
+	 * Product product = new Product(); final String url = URL_PREFIX +
+	 * "portal/product/static/information/" + productId; String json =
+	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
+	 * Product.class);
+	 * 
+	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
+	 * "Load product information,productId:" + productId, sessionInfo); return
+	 * product; }
+	 */
 
 	/**
 	 * 获取产品的服务信息
@@ -392,7 +418,7 @@ public class PCController extends BaseController {
 	 * @param productId
 	 * @return
 	 */
-	@RequestMapping("/service/loadService/{productId}")
+	/*@RequestMapping("/service/loadService/{productId}")
 	public List<Service> loadService(@PathVariable("productId") final Integer productId,
 			final HttpServletRequest request) {
 
@@ -404,7 +430,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load All Service By Product,productId:" + productId, sessionInfo);
 		return list;
-	}
+	}*/
 
 	/**
 	 * 作品页跳转
@@ -451,7 +477,7 @@ public class PCController extends BaseController {
 	/**
 	 * 装载 视频类别
 	 */
-	@RequestMapping("/item/list")
+	/*@RequestMapping("/item/list")
 	public List<Item> loadItem(final HttpServletRequest request) {
 
 		List<Item> list = new ArrayList<Item>();
@@ -462,7 +488,7 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load Video Item, total number is " + list.size(), sessionInfo);
 		return list;
-	}
+	}*/
 
 	/**
 	 * 跳转至 供应商 登录界面
@@ -517,23 +543,18 @@ public class PCController extends BaseController {
 	public ModelAndView providerPortalView(final HttpServletRequest request, final ModelMap model) {
 		Integer flag = 4;
 		final SessionInfo info = getCurrentInfo(request);
-		final String url = GlobalConstant.URL_PREFIX + "portal/team/static/data/" + info.getReqiureId();
-		final String json = HttpUtil.httpGet(url, request);
-		Team team = null;
-		if (ValidateUtil.isValid(json)) {
-			team = JsonUtil.toBean(json, Team.class);
-		}
+		final PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
+		team.setPassword(null);
 		if (team != null) {
 			model.addAttribute("provider", team);
 		}
-		Team provider2 = getLatestTeam(request);
+		final PmsTeam provider2 = getLatestTeam(request);
 		if (provider2 != null) {
 			model.addAttribute("provider2", provider2);
 		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(team != null) {
-			Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : " + team.getTeamName()
-			+ "flag is " + flag, sessionInfo);
+		if (team != null) {
+			Log.error("Redirect provider portal page,teamId : " + team.getTeamId() + " ,teamName : "
+					+ team.getTeamName() + "flag is " + flag, info);
 		}
 		return new ModelAndView("provider/portal", model);
 	}
@@ -542,12 +563,29 @@ public class PCController extends BaseController {
 	@RequestMapping("/appointment/{telephone}")
 	public boolean appointment(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		if (telephone != null && !"".equals(telephone)) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/indent/appointment/" + telephone;
-			final String json = HttpUtil.httpGet(url, request);
-			boolean result = JsonUtil.toBean(json, boolean.class);
+			
+			//发送短信给业务部门
+			smsMQService.sendMessage("131895", PropertiesUtils.getProp("service_tel"), 
+					new String[]{telephone,DateUtils.nowTime()});
+			//发送给客户
+			smsMQService.sendMessage("134080", telephone, null);
+			//创建新订单
+			PmsIndent indent = new PmsIndent();
+			indent.setIndent_tele(telephone);
+			indent.setIndentName("新订单");
+			indent.setIndentType(0);
+			indent.setServiceId(-1l);
+			indent.setIndentPrice(0d);
+			indent.setProductId(-1);
+			indent.setTeamId(-1);
+			indent.setSecond(0l);
+			indent.setProductId(-1l);
+			indent.setIndentNum(" ");
+			long ret = pmsIndentFacade.save(indent);
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("send Message to telephone:" + telephone, sessionInfo);
-			return result;
+			Log.info("send Message to telephone:" + telephone, sessionInfo);
+			return ret>0;
+			
 		}
 		return false;
 	}
@@ -586,21 +624,13 @@ public class PCController extends BaseController {
 
 	@RequestMapping("/member.html")
 	public ModelAndView introduceView(final HttpServletRequest request, final ModelMap model) throws Exception {
-
 		// 查询所有人信息
-		final String url = GlobalConstant.URL_PREFIX + "portal/staff/static/list";
-		final String json = HttpUtil.httpGet(url, request);
-		List<Staff> list = new ArrayList<Staff>();
-		if (ValidateUtil.isValid(json)) {
-			list = JsonUtil.fromJsonArray(json, Staff.class);
+		final List<PmsStaff> list = pmsStaffFacade.getAll();
+		if (null != list && list.size() > 0) {
 			model.addAttribute("list", list);
 		}
-
-		List<Job> jobList = new ArrayList<Job>();
-		final String jobUrl = GlobalConstant.URL_PREFIX + "portal/job/static/list";
-		final String str = HttpUtil.httpGet(jobUrl, request);
-		if (ValidateUtil.isValid(str)) {
-			jobList = JsonUtil.fromJsonArray(str, Job.class);
+		final List<PmsJob> jobList = pmsJobFacade.getAll();
+		if (null != jobList && jobList.size() > 0) {
 			model.addAttribute("jobList", jobList);
 		}
 		return new ModelAndView("/member");
@@ -623,17 +653,12 @@ public class PCController extends BaseController {
 	}
 
 	@RequestMapping("/job/info/{id}")
-	public Job getJob(final HttpServletRequest request, @PathVariable("id") final Long id) {
+	public PmsJob getJob(final HttpServletRequest request, @PathVariable("id") final Long id) {
 
 		if (id != null) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/job/static/" + id;
-			final String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				final Job job = JsonUtil.toBean(json, Job.class);
-				return job;
-			}
+			final PmsJob job = pmsJobFacade.findJobById(id);
+			return job;
 		}
-
 		return null;
 	}
 
@@ -658,19 +683,66 @@ public class PCController extends BaseController {
 	 */
 	@RequestMapping("/loginName/validate")
 	public boolean loginNameValidate(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "portal/loginName/validate";
-		final String json = HttpUtil.httpGet(url, request);
-		if (json != null && !"".equals(json)) {
-			return JsonUtil.toBean(json, Boolean.class);
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(null!=sessionInfo){
+			String type = sessionInfo.getSessionType();
+			switch (type) { 
+			case "role_customer":
+				PmsUser user = pmsUserFacade.findUserById(sessionInfo.getReqiureId());
+				if(ValidateUtil.isValid(user.getLoginName())){
+					return true;
+				}return false;
+			case "role_provider":
+				PmsTeam team = pmsTeamFacade.findTeamById(sessionInfo.getReqiureId());
+				if(ValidateUtil.isValid(team.getLoginName())){
+					return true;
+				}return false;
+			}
 		}
 		return true;
 	}
+
+	/*@RequestMapping("/news/pagelist")
+	public BaseMsg newsList(final HttpServletRequest request, @RequestBody NewsView newsView) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = URL_PREFIX + "portal/news/pagelist";
+
+		final long page = newsView.getPage();
+		final long rows = newsView.getRows();
+		newsView.setBegin((page - 1) * rows);
+		newsView.setLimit(rows);
+
+		String str = HttpUtil.httpPost(url, newsView, request);
+		if (str != null && !"".equals(str)) {
+			List<News> list = JsonUtil.toList(str);
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+		} else {
+			baseMsg.setErrorMsg("list is null");
+		}
+		return baseMsg;
+	}*/
+
+	/*@RequestMapping("/news/pagesize")
+	public BaseMsg newsMaxSize(final HttpServletRequest request, @RequestBody NewsView newsView) {
+		BaseMsg baseMsg = new BaseMsg();
+		final String url = URL_PREFIX + "portal/news/pagesize";
+		String str = HttpUtil.httpPost(url, newsView, request);
+		if (str != null && !"".equals(str)) {
+			Long parseLong = Long.parseLong(str);
+			baseMsg.setCode(1);
+			baseMsg.setResult(parseLong);
+		} else {
+			baseMsg.setErrorMsg("list size is null");
+		}
+		return baseMsg;
+	}*/
 
 	/**
 	 * 新闻详情页推荐
 	 * 
 	 */
-	@RequestMapping(value = "/news/info/recommend")
+	/*@RequestMapping(value = "/news/info/recommend")
 	public BaseMsg newsInfoRecommend(final HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		final String url = URL_PREFIX + "portal/news/info/recommend";
@@ -685,29 +757,83 @@ public class PCController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("get news info recommend", sessionInfo);
 		return baseMsg;
-	}
+	}*/
 
 	/**
 	 * 跳转新闻详情
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
 	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model) {
-		final String url = URL_PREFIX + "portal/news/info/" + newId;
-		String str = HttpUtil.httpGet(url, request);
+			final ModelMap model, News n) {
+		n.setId(newId);
+		final String url = URL_PREFIX + "portal/news/info";
+		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
 			try {
 				News news = JsonUtil.toBean(str, News.class);
 				String content = news.getContent();
 				byte[] b = content.getBytes("UTF-8");
-				content = new String(Base64Utils.decode(b),"UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
 				news.setContent(content);
 				model.addAttribute("news", news);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-		}else{
-			//请求不存在的新闻
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/next-{newId}.html")
+	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model, News n) {
+		final String url = URL_PREFIX + "portal/news/next";
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
+			return new ModelAndView("/error");
+		}
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		Log.error("homepage news info", sessionInfo);
+		return new ModelAndView("/news");
+	}
+
+	@RequestMapping(value = "/news/prev-{newId}.html")
+	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
+			final ModelMap model, News n) {
+		final String url = URL_PREFIX + "portal/news/prev";
+		n.setId(newId);
+		String str = HttpUtil.httpPost(url, n, request);
+		if (str != null && !"".equals(str)) {
+			try {
+				News news = JsonUtil.toBean(str, News.class);
+				String content = news.getContent();
+				byte[] b = content.getBytes("UTF-8");
+				content = new String(Base64Utils.decode(b), "UTF-8");
+				news.setContent(content);
+				model.addAttribute("news", news);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
 		SessionInfo sessionInfo = getCurrentInfo(request);
@@ -721,15 +847,11 @@ public class PCController extends BaseController {
 	 * @param request
 	 * @return
 	 */
-	public Team getLatestTeam(final HttpServletRequest request) {
+	public PmsTeam getLatestTeam(final HttpServletRequest request) {
 		final SessionInfo info = getCurrentInfo(request);
-		final String url = GlobalConstant.URL_PREFIX + "portal/team/static/latest/" + info.getReqiureId();
-		final String json = HttpUtil.httpGet(url, request);
-		if (ValidateUtil.isValid(json)) {
-			final Team team = JsonUtil.toBean(json, Team.class);
-			return team;
-		}
-
-		return null;
+		final PmsTeam team = pmsTeamFacade.findLatestTeamById(info.getReqiureId());
+		team.setPassword(null);
+		return team;
 	}
+	
 }

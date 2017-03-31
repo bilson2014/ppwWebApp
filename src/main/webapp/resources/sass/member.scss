@@ -18,10 +18,13 @@ body {
 }
 
 .titleTag {
-    margin-top: 60px;
     background: #f0f2f5;
     height: 70px;
     border-bottom: 1px solid $border-line;
+    position: fixed;
+    width: 100%;
+    top: 60px;
+    z-index: 99;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -160,7 +163,7 @@ body {
         }
     }
     .ul-member {
-        width: 800px;
+        width: 960px;
         margin: 0 auto;
         margin-top: 30px;
         font-size: 0;
@@ -213,9 +216,9 @@ body {
     .nav-member {
         //$image-width: 100px;
         display: inline-block;
-        width: 130px;
+        width: 150px;
         text-align: center;
-        margin-right: 35px;
+        margin-right: 50px;
         // margin-right: ($width-min - ($image-width*4)) / 4- 40px;
         // @media screen and (min-width: 1276px) and (max-width: 1500px) {
         //     width: $image-width;
@@ -344,7 +347,7 @@ body {
     }
     .work-message {
         position: relative;
-        width: 450px;
+        width: 460px;
         margin: 0 auto;
         margin-bottom: 60px;
         h2 {
@@ -411,7 +414,7 @@ body {
     div:nth-child(1) {
         color: $red-base;
         font-size: $font-size-lg26;
-        margin-top: 52px;
+        margin-top: 182px;
     }
     div:nth-child(2) {
         color: $gray-light;

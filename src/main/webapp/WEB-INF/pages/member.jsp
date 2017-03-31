@@ -82,6 +82,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -161,8 +162,8 @@
 		<div class="topContent">
 		    <div>加入我们</div>
 		    <div>Why join us?</div>
-		    <div>拍片网位于北京通惠河畔的国贸商业核心区,位置优越,交通便利,我们有家一般舒适的工作环境,自由的工作氛围,精英的互联网团队,扁平的管理结构,温暖的员工关怀,丰厚的福利待遇.<br>
-		     从拍片网创立至今,有越来越多的优秀人才加入我们,我们为了同一个梦想而聚到一起,分享成长和成功带来的快乐.如果你也渴望实现梦想与价值,我们期待与你相遇!
+		    <div>拍片网位于北京通惠河畔的国贸商业核心区，位置优越，交通便利。我们有家一般舒适的工作环境，自由的工作氛围，精英的互联网团队，扁平的管理结构，温暖的员工关怀，丰厚的福利待遇。<br>
+		     从拍片网创立至今，有越来越多的优秀人才加入我们。我们为了同一个梦想而聚到一起，分享成长和成功带来的快乐。如果你也渴望实现梦想与价值，我们期待与你相遇！
 		    </div>
 		</div>
 		
@@ -180,8 +181,8 @@
 			      <li></li>
 			  </ul>
 			  <div>Our Team</div>
-			  <div>这里有最尖端前沿的技术,这里有最不寻常的经历,我们欢迎每一个新思维的加入,
-			   <br>在这里没有不可能,我们创造一切可能.
+			  <div>这里有最尖端前沿的技术，这里有最不寻常的经历，我们欢迎每一个新思维的加入，
+			   <br>在这里没有不可能，我们创造一切可能。
 			  </div>
 		</div>
 		
@@ -255,15 +256,15 @@
 		<div class="showVideo">
 		<img src="/resources/images/introduce/member/come.png">
 			<div class="video-div" id="activityPart">
-			     <img class="playVideo" id="playVideo" src="/resources/images/introduce/member/playVideo.png">
+			     <img class="playVideo" id="playVideos" src="/resources/images/introduce/member/playVideo.png">
 				<video id="video" src="${file_locate_storage_path }group1/M00/00/20/CgqNZViiqe2ANmqIAZ-Ai8Au-R8971.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/poster.jpg" ></video>
 		    </div>
 		</div>    
 		
 
 		<div class="join-us" id="join-us">
-	     	<h2>这一次你将离梦想真的很近</h2>
-	        <p>发送简历:姓名+[申请职位]至<a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
+	     	<h2>这一次你将离梦想真的很近！</h2>
+	        <p>发送简历：姓名+【申请职位】至<a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
 	    </div>
         
        
@@ -274,10 +275,11 @@
 					<ul id="job-list">
 					  <c:forEach items="${jobList }" var="job" varStatus="status">
 					  		<c:if test="${status.count == 1 }">
-						  		<li class="work active" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<li class="work active" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
 							</c:if>
 							<c:if test="${status.count != 1 }">
-						  		<li class="work" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
+						  		<%-- <li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li> --%>
 							</c:if>
 					  </c:forEach>
 					</ul>
@@ -298,9 +300,9 @@
 	     </c:if> 	     
 	     
 	     <div class="bottomContent">
-	         <div>如果你想坐垫足够酷的事,在一个每个人都有话语权的平台尽情施展,体会前所未有的成长速度!</div>
-	         <div>那么加入一家注定伟大的公司,少年们还等什么!</div>
-	         <div>Add: 北京朝阳区建外SOHO东区6号楼2505</div>
+	         <div>如果你想做点足够酷的事，在一个每个人都有话语权的平台尽情施展，体会前所未有的成长速度！</div>
+	         <div>那么加入一家注定伟大的公司，少年们还等什么！</div>
+	         <div>地址: 北京朝阳区建外SOHO东区6号楼2505</div>
 	     </div>
 	</div>
 
@@ -335,8 +337,18 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                           <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
@@ -349,7 +361,7 @@
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>

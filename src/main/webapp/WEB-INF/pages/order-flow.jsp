@@ -80,6 +80,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -107,7 +108,7 @@
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					   </div>
 					</div>
 				</r:identity>
 				<r:identity role="provider">
@@ -156,8 +157,8 @@
             <div class="icon icon1 RightIcon">
                 <div>
                     <label>需求沟通</label>
-                    <label>您只需要填写电话号码,点击下单.
-                            <br>视频管家就会上门,一对一服务,了解您的需求.</label>
+                    <label>您只需要填写电话号码，点击下单。
+                            <br>视频管家就会上门，一对一服务，了解您的需求。</label>
                     <label>You only need a phone number to make order. 
                           <br>A video specialist will then collect your requirements. 
                     </label>
@@ -167,10 +168,10 @@
             <div class="icon icon2 LeftIcon">
                 <div>
                     <label>创意策划</label>
-                    <label>606名脑洞超大的创意人员随时抢单,创意策划完全免费!
-<br>根据预算,视频管家会从世界各地5208名导演中,挑出最适合您的一位. </label>
+                    <label>606名脑洞超大的创意人员随时抢单，创意策划完全免费!
+<br>根据预算，视频管家会从世界各地5208名导演中，挑出最适合您的一位。 </label>
                     <label>606 creative writers are ready to draft ideas. And it is all free! 
-Within your budget, <br>the specialist will find the best match from 5208 experienced directors all over the world. 
+Within your budget, <br>the specialist will find the best match from 5208 experienced directors all over the world.
                     </label>
                 </div>
                 <div></div>
@@ -178,7 +179,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon icon3 RightIcon">
                 <div>
                     <label>商务流程</label>
-                    <label>您将制作费托管到拍片网平台,导演团队就开始干活了!</label>
+                    <label>您将制作费托管到拍片网平台，导演团队就开始干活了!</label>
                     <label>Once the deposit is settled, the project is on! 
                     </label>
                 </div>
@@ -187,7 +188,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon icon4 LeftIcon">
                 <div>
                     <label>执行方案</label>
-                    <label>选演员,选场地,前期拍摄,后期制作,配音配乐,视频管家会替您全程监管.</label>
+                    <label>选演员，选场地，前期拍摄，后期制作，配音配乐，视频管家会替您全程监管。</label>
                     <label>Casting,locations,shooting,production,dubbing... The specialist cares all of them. 
                     </label>
                 </div>
@@ -196,9 +197,9 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon icon5 RightIcon">
                 <div>
                     <label>影片制作</label>
-                    <label>您只需要耐心等候,最快24小时一条影片就出炉了!
-<br>我们视“作品如人品”,认真创作每一条影片!</label>
-                    <label>Just a little patience, a fastest video production can be done within 24 hours! 
+                    <label>您只需要耐心等候，最快24小时一条影片就出炉了！
+<br>我们视“作品如人品”，认真创作每一条影片!</label>
+                    <label>Just a little patience,a fastest video production can be done within 24 hours！ 
 <br>We always believe in "great work talks"! 
                     </label>
                 </div>
@@ -207,8 +208,8 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
             <div class="icon6 LeftIcon">
                 <div>
                     <label>影片交付</label>
-                    <label>如果您非常满意,确认收片,我们会将托管的制作费支付给导演团队.
-                    <br>不满意,可全额退款或重新拍摄制作.</label>
+                    <label>如果您非常满意，确认收片，我们会将托管的制作费支付给导演团队。
+                    <br>不满意，可全额退款或重新拍摄制作。</label>
                     <label>If you satisfy the video, the fee will  be transferred to the directors. <br>
                           Otherwise, you will be fully refunded or your video will be reproduced. 
                     </label>
@@ -247,8 +248,18 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
@@ -261,7 +272,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>

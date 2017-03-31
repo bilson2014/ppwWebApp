@@ -8,7 +8,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +31,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.facade.right.entity.PmsEmployee;
+import com.paipianwang.pat.facade.right.entity.PmsRole;
+import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
+import com.paipianwang.pat.facade.right.service.PmsRightFacade;
+import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
@@ -65,6 +72,12 @@ public class VersionManagerController extends BaseController {
 	@Autowired
 	private EmployeeThirdLogin employeeThirdLogin;
 	@Autowired
+	private PmsEmployeeFacade pmsEmployeeFacade;
+	@Autowired
+	private PmsRoleFacade pmsRoleFacade;
+	@Autowired
+	private PmsRightFacade pmsRightFacade;
+	@Autowired
 	private FDFSService fdfsService;
 
 	static String UNIQUE = "unique_e";
@@ -79,9 +92,11 @@ public class VersionManagerController extends BaseController {
 	 * 登录
 	 */
 	@RequestMapping("/doLogin")
-	public Result doLogin(final HttpServletRequest request, @RequestBody final Employee employee,
+	public Result doLogin(final HttpServletRequest request, @RequestBody final PmsEmployee employee,
 			final HttpServletResponse response) {
 		final Result result = new Result();
+		result.setRet(false);
+		result.setMessage("用户名或密码错误!");
 		if (employee != null) {
 			final String pwd = employee.getEmployeePassword();
 			final String loginName = employee.getEmployeeLoginName();
@@ -89,30 +104,26 @@ public class VersionManagerController extends BaseController {
 				// 解密
 				try {
 					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
-					employee.setEmployeePassword(DataUtil.md5(password));
-					final String url = GlobalConstant.URL_PREFIX + "/portal/manager/static/encipherment";
-					final String json = HttpUtil.httpPost(url, employee, request);
-					if (ValidateUtil.isValid(json)) {
-						final boolean ret = JsonUtil.toBean(json, Boolean.class);
-						if (!ret) {
-							result.setMessage("用户名或密码错误!");
-						} else {
+					final PmsEmployee e = pmsEmployeeFacade.doLogin(employee.getEmployeeLoginName(), DataUtil.md5(password));
+					if (e != null) {
+						//填充角色
+						List<PmsRole> roles = pmsRoleFacade.findRolesByEmployId(e.getEmployeeId());
+						e.setRoles(roles);
+						// infoService.removeSession(request);
+						request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
+						final boolean ret = initSessionInfo(e, request);
+						if (ret) {
 							addCookies(request, response);
 						}
 						result.setRet(ret);
-						return result;
 					}
-
 				} catch (Exception e) {
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("VersionManager login error,Becase of decrypt password error ...", sessionInfo);
+					Log.error("VersionManager login error,Because of decrypt password error ...", sessionInfo);
 					e.printStackTrace();
 				}
 			}
 		}
-
-		result.setRet(false);
-		result.setMessage("用户名或密码错误!");
 		return result;
 	}
 
@@ -828,29 +839,7 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	@RequestMapping("/getFile/{id}")
-	public void getFile(@PathVariable final long id, final HttpServletResponse response,
-			final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "getFile/" + id;
-		try {
-			Object[] objArrayObjects = HttpUtil.httpGetFile(url, request);
-			response.reset();
-			response.setCharacterEncoding("utf-8");
-			if (objArrayObjects[1] != null) {
-				File inputFile = (File) objArrayObjects[1];
-				response.setContentType("application/octet-stream");
-				response.setContentLength((int) inputFile.length());
-				response.setHeader("Content-Disposition", objArrayObjects[0] + "");
-				ServletOutputStream ouputStream = response.getOutputStream();
-				InputStream is = new FileInputStream(inputFile);
-				// send file
-				HttpUtil.saveTo(is, ouputStream);
-				inputFile.delete();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	@RequestMapping("/getDFSFile/{id}")
 	public void getDFSFile(@PathVariable final long id, final HttpServletResponse response,
 			final HttpServletRequest request) {
@@ -906,6 +895,45 @@ public class VersionManagerController extends BaseController {
 		// fill user info
 		indentComment.setIcUserId(info.getReqiureId());
 		indentComment.setIcUserType(info.getSessionType());
+	}
+	/**
+	 * 初始化 sessionInfo 信息
+	 */
+	public boolean initSessionInfo(final PmsEmployee e, final HttpServletRequest request) {
+		// 存入session中
+		final String sessionId = request.getSession().getId();
+		final SessionInfo info = new SessionInfo();
+		info.setLoginName(e.getEmployeeLoginName());
+		info.setRealName(e.getEmployeeRealName());
+		info.setSessionType(GlobalConstant.ROLE_EMPLOYEE);
+		// info.setSuperAdmin(false);
+		info.setToken(DataUtil.md5(sessionId));
+		info.setReqiureId(e.getEmployeeId());
+		info.setPhoto(e.getEmployeeImg());
+
+		// 计算权限码
+		// 替换带有权限的角色
+		final List<PmsRole> roles = new ArrayList<PmsRole>();
+		for (final PmsRole r : e.getRoles()) {
+			final PmsRole role = pmsRoleFacade.findRoleById(r.getRoleId());
+			roles.add(role);
+		}
+		e.setRoles(roles);
+
+		// 计算权限码总和
+		final long maxPos = pmsRightFacade.getMaxPos();
+		final long[] rightSum = new long[(int) (maxPos + 1)];
+
+		e.setRightSum(rightSum);
+		e.calculateRightSum();
+		long[] sum = e.getRightSum();
+		info.setSum(sum);
+		info.setSuperAdmin(e.isSuperAdmin()); // 判断是否是超级管理员
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(GlobalConstant.SESSION_INFO, info);
+		request.getSession().setAttribute(GlobalConstant.SESSION_INFO, info);
+		// return infoService.addSessionSeveralTime(request, map, 60*60*24*7);
+		return true;
 	}
 }
 			

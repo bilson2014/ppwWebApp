@@ -2,11 +2,12 @@ package com.panfeng.film.resource.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -28,11 +29,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.facade.right.entity.PmsRole;
+import com.paipianwang.pat.facade.right.service.PmsRightFacade;
+import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
+import com.paipianwang.pat.facade.user.entity.PmsUser;
+import com.paipianwang.pat.facade.user.entity.ThirdBind;
+import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
+import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Info;
-import com.panfeng.film.resource.model.ThirdBind;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.resource.model.WechatToken;
@@ -43,7 +52,6 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.ValidateUtil;
 
 /**
  * 登陆事件 控制器
@@ -58,29 +66,20 @@ public class LoginController extends BaseController {
 
 	final Logger logger = LoggerFactory.getLogger("error");
 
-	private static String URL_PREFIX = null;
-
-	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
-
 	@Autowired
 	private SmsService smsService = null;
+	
+	@Autowired
+	private PmsUserFacade pmsUserFacade = null;
+	@Autowired
+	private PmsRoleFacade pmsRoleFacade = null;
+	@Autowired
+	private PmsRightFacade pmsRightFacade = null;
+	@Autowired
+	private SmsMQService smsMQService = null;
 
 	@Autowired
 	private Producer captchaProducer = null;
-
-	public LoginController() {
-		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
-			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
-			try {
-				Properties propertis = new Properties();
-				propertis.load(is);
-				URL_PREFIX = propertis.getProperty("urlPrefix");
-			} catch (IOException e) {
-				Log.error("LoginController method:constructor load Properties fail ...",null);
-				e.printStackTrace();
-			}
-		}
-	}
 
 	/**
 	 * 验证登录操作
@@ -88,71 +87,74 @@ public class LoginController extends BaseController {
 	 * @return 是否成功
 	 */
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public Info login(@RequestBody final User user, final HttpServletRequest request,
+	public Info login(@RequestBody final PmsUser user, final HttpServletRequest request,
 			final HttpServletResponse response) {
-		final String code = (String) request.getSession().getAttribute("code");
-		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		if (user.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
-			if ((!"".equals(code) && code != null)) {
-				if (code.equals(user.getVerification_code())) {
-					if (null != codeOfphone && codeOfphone.equals(user.getTelephone())) {
-						final String url = URL_PREFIX + "portal/user/encipherment";
-						String str = HttpUtil.httpPost(url, user, request);
-						if (str != null && !"".equals(str)) {
-							boolean result = JsonUtil.toBean(str, Boolean.class);
-							if(result){
-								addCookies(request,response);
-								return new Info(true, "登录成功");
-							}return new Info(false,"手机号或密码错误");
-						}else{
-							return new Info(false, "登录失败");
-						}
-					} else {
-						return new Info(false, "和验证手机不符!");
-					}
-				} else {
-					return new Info(false, "验证码输入错误!");
-				}
-			} else {
-				return new Info(false, "请重新获取验证码!");
-			}
+			return loginByPhone(user,request,response);
 		} else {// 用户名登录
-			final String pwd = user.getPassword();
-			final String loginName = user.getLoginName();
-			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
-				try {// 解密
-					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
-					user.setPassword(DataUtil.md5(password));
-					final String url = URL_PREFIX + "portal/user/encipherment";
-					String str = HttpUtil.httpPost(url, user, request);
-					if (ValidateUtil.isValid(str)) {
-						final boolean ret = JsonUtil.toBean(str, Boolean.class);
-						if (ret) {
-							addCookies(request,response);
-							return new Info(true, "登录成功");
-						} else {
-							return new Info(false, "帐户名或密码错误");
-						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+			return loginByName(user,request,response);
+		}
+	}
+	private Info loginByName(PmsUser user, HttpServletRequest request, HttpServletResponse response) {
+		final String pwd = user.getPassword();
+		final String loginName = user.getLoginName();
+		if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
+			try {
+				String password = AESUtil.Decrypt(pwd, PmsConstant.UNIQUE_KEY);
+				user.setPassword(DataUtil.md5(password));
+				PmsUser orignUser = pmsUserFacade.findUserByLoginNameAndPwd(user);
+				if(null != orignUser){
+					initSessionInfo(orignUser, request);
+					addCookies(request,response);
+					return new Info(true, "登录成功");
+				}else{
+					return new Info(false, "帐户名或密码错误");
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return new Info(false,"数据错误");
 	}
+
+	private Info loginByPhone(PmsUser user, HttpServletRequest request, HttpServletResponse response) {
+		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		if ((!"".equals(code) && code != null)) {
+			if (code.equals(user.getVerification_code())) {
+				if (null != codeOfphone && codeOfphone.equals(user.getTelephone())) {
+					PmsUser orignUser = pmsUserFacade.findUserByAttr(user);
+					if (orignUser != null) {
+						// 清空当前session
+						// sessionService.removeSession(request);
+						initSessionInfo(orignUser, request);
+						addCookies(request,response);
+						return new Info(true, "登录成功");
+					}else{
+						return new Info(false, "手机号或密码错误");
+					}
+				} else {
+					return new Info(false, "和验证手机不符!");
+				}
+			} else {
+				return new Info(false, "验证码输入错误!");
+			}
+		} else {
+			return new Info(false, "请重新获取验证码!");
+		}
+	}
+
 	/**
 	 * 验证用户手机号码是否注册
 	 */
 	@RequestMapping("/validation/phone")
 	public BaseMsg validation(@RequestBody final User user, final ModelMap model, final HttpServletRequest request) {
-		final String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
-		String json = HttpUtil.httpGet(url, request);
-		if ("true".equals(json)) { // 被注册
+		final int count = pmsUserFacade.validationPhone(user.getTelephone(), null);
+		if (count > 0) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...",sessionInfo);
 			return new BaseMsg(BaseMsg.ERROR,"",false);
-		} else if ("false".equals(json)) { // 未被注册
+		}else if(count == 0){
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + user.getTelephone() + " can register,Becase it is not exist ...",sessionInfo);
 			return new BaseMsg(BaseMsg.NORMAL,"",true);
@@ -160,20 +162,19 @@ public class LoginController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR,"服务器通信失败请稍后重试！",null);
 	}
 
-	/**
-	 * 验证手机号码是否注册
-	 */
 	@RequestMapping("/validation/userName")
 	public boolean validationUserName(@RequestBody Map<String, String> loginName, final ModelMap model,
 			final HttpServletRequest request) {
 		String userName_key = "loginName";
-		final String url = URL_PREFIX + "portal/user/valication/loginname";
-		String json = HttpUtil.httpPost(url, loginName, request);
-		if ("true".equals(json)) { // 被注册
+		if (!ValidateUtil.isValid(loginName)) {
+			return false;
+		}
+		final int count = pmsUserFacade.validationPhone(null, loginName.get("loginName"));
+		if (count > 0) {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + loginName.get(userName_key) + " can't register,Becase it is exist ...",sessionInfo);
 			return true;
-		} else if ("false".equals(json)) { // 未被注册
+		}else if(count == 0){
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + loginName.get(userName_key) + " can register,Becase it is not exist ...",sessionInfo);
 			return false;
@@ -182,39 +183,14 @@ public class LoginController extends BaseController {
 	}
 
 	/**
-	 * 验证手机号码是否注册
-	 */
-	@RequestMapping("/checkPwd")
-	public BaseMsg checkPwd(@RequestBody User user, final HttpServletRequest request) {
-		try {
-			// AES 密码解密
-			final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-			// MD5加密
-			user.setPassword(DataUtil.md5(password));
-
-			final String url = URL_PREFIX + "portal/user/checkPwd";
-			String json = HttpUtil.httpPost(url, user, request);
-			if (json != null) {
-				return new BaseMsg(BaseMsg.NORMAL, "请求成功", JsonUtil.toBean(json, Boolean.class));
-			} else {
-				return new BaseMsg(BaseMsg.ERROR, "请求失败，服务器繁忙！", false);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new BaseMsg(BaseMsg.ERROR, "请求失败，密码解码失败！", false);
-		}
-	}
-
-	/**
 	 * 注册
 	 */
 	@RequestMapping("/register")
-	public Info register(final HttpServletRequest request, @RequestBody final User user, final ModelMap model)
+	public Info register(final HttpServletRequest request, @RequestBody final PmsUser user, final ModelMap model)
 			throws Exception {
 		//先验证手机号是否可以注册
-		String url = URL_PREFIX + "portal/user/valication/phone/" + user.getTelephone();
-		String json = HttpUtil.httpGet(url, request);
-		if ("true".equals(json)) { // 被注册
+		final int count = pmsUserFacade.validationPhone(user.getTelephone(), null);
+		if(count>0){
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("validation telephone " + user.getTelephone() + " can't register,Becase it is exist ...",sessionInfo);
 			return new Info(false, "该手机号已经注册");
@@ -229,22 +205,23 @@ public class LoginController extends BaseController {
 				if (null != codeOfphone && codeOfphone.equals(user.getTelephone())) {
 					if (user.getPassword() != null && !"".equals(user.getPassword())) {
 						// AES 密码解密
-						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						final String password = AESUtil.Decrypt(user.getPassword(), PmsConstant.UNIQUE_KEY);
 						// MD5加密
 						user.setPassword(DataUtil.md5(password));
-						url = URL_PREFIX + "portal/user/register";
-						String str = HttpUtil.httpPost(url, user, request);
-						if (str != null && !"".equals(str)) {
-							boolean ret = JsonUtil.toBean(str, Boolean.class);
-							session.removeAttribute("code"); // 移除验证码
-							info.setKey(ret);
+						//session.removeAttribute("code"); // 移除验证码
+						PmsUser result = pmsUserFacade.register(user);
+						if(null != result){
+							info.setKey(true);
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName(),sessionInfo);
-						} else {
+							smsMQService.sendMessage("132269", user.getTelephone(), null);
+							Log.error("save user...",null);
+							//return initSessionInfo(result, request);
+							initSessionInfo(result, request);
+						}else{
 							// 注册失败
 							info.setKey(false);
 							info.setValue("服务器繁忙，请稍候再试...");
-							session.removeAttribute("code"); // 移除验证码
 							SessionInfo sessionInfo = getCurrentInfo(request);
 							Log.error("Register User " + user.getUserName()
 							+ " failure ,Becase HttpClient Connect error... ",sessionInfo);
@@ -283,7 +260,7 @@ public class LoginController extends BaseController {
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
 		if (!isTest) {
-			final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE,telephone, new String[]{code,GlobalConstant.SMS_CODE_DURATION + "分钟"});
+			final boolean ret = smsService.smsSend(PublicConfig.SMS_VERIFICATION_CODE,telephone, new String[]{code,PublicConfig.SMS_CODE_DURATION + "分钟"});
 			Log.error("Send sms code " + code + " to telephone " + telephone,sessionInfo);
 			return ret;
 		}else{
@@ -380,24 +357,21 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping("/modify/logName")
-	public BaseMsg modifyLogName(final HttpServletRequest request, @RequestBody final User user) {
+	public BaseMsg modifyLogName(final HttpServletRequest request, @RequestBody final PmsUser user) {
 		try {
 			final HttpSession session = request.getSession();
 			final String code = (String) session.getAttribute("code");
-			boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
-			if (isTest || (!"".equals(code) && code != null)) {
-				if (isTest || (code.equals(user.getVerification_code()))) {
+			if (!"".equals(code) && code != null) {
+				if (code.equals(user.getVerification_code())) {
 					if (user != null && ValidateUtil.isValid(user.getPassword())
 							&& ValidateUtil.isValid(user.getLoginName())) {
 						// AES 密码解密
-						final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+						final String password = AESUtil.Decrypt(user.getPassword(), PmsConstant.UNIQUE_KEY);
 						// MD5 加密
 						user.setPassword(DataUtil.md5(password));
-						final String url = URL_PREFIX + "portal/user/modify/loginName";
-						String str = HttpUtil.httpPost(url, user, request);
-						if (str != null && !"".equals(str)) {
-							boolean result = JsonUtil.toBean(str, Boolean.class);
-							// 添加 session
+						
+						boolean result = pmsUserFacade.modifyUserLoginName(user) > 0 ? true : false;
+						if (result) {
 							return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
 						} else {
 							return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
@@ -418,21 +392,19 @@ public class LoginController extends BaseController {
 
 	}
 	@RequestMapping("/modify/logName2")
-	public BaseMsg modifyLogNameNoMsgAuth(final HttpServletRequest request, @RequestBody final User user) {
+	public BaseMsg modifyLogNameNoMsgAuth(final HttpServletRequest request, @RequestBody final PmsUser user) {
 		if (user != null && ValidateUtil.isValid(user.getPassword())
 				&& ValidateUtil.isValid(user.getLoginName())) {
 			try {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				user.setId(sessionInfo.getReqiureId());
 				// AES 密码解密
-				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+				final String password = AESUtil.Decrypt(user.getPassword(), PmsConstant.UNIQUE_KEY);
 				// MD5 加密
 				user.setPassword(DataUtil.md5(password));
-				final String url = URL_PREFIX + "portal/user/modify/loginName";
-				String str = HttpUtil.httpPost(url, user, request);
-				if (str != null && !"".equals(str)) {
-					boolean result = JsonUtil.toBean(str, Boolean.class);
-					// 添加 session
+				
+				boolean result = pmsUserFacade.modifyUserLoginName(user) > 0 ? true : false;
+				if (result) {
 					return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
 				} else {
 					return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
@@ -447,86 +419,18 @@ public class LoginController extends BaseController {
 	}
 
 	/**
-	 * 密码重置
-	 * 
-	 * @throws Exception
-	 */
-	@RequestMapping("/doRecover")
-	public Info recover(final HttpServletRequest request, @RequestBody final User user) throws Exception {
-
-		final HttpSession session = request.getSession();
-		// 密码重置
-		final String code = (String) session.getAttribute("code");
-		Info info = new Info(); // 信息载体
-		// 判断验证码
-		if (!"".equals(code) && code != null) {
-			if (code.equals(user.getVerification_code())) {
-				if (user.getPassword() != null && !"".equals(user.getPassword())) {
-					// AES 密码解密
-					final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
-					// MD5 加密
-					user.setPassword(DataUtil.md5(password));
-					final String url = URL_PREFIX + "portal/user/recover";
-					String str = HttpUtil.httpPost(url, user, request);
-					Boolean result = null;
-					if (str != null && !"".equals(str)) {
-						result = JsonUtil.toBean(str, Boolean.class);
-						// 添加 session
-						session.removeAttribute("code"); // 移除验证码
-						info.setKey(result);
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("Recover user password success",sessionInfo);
-						return info;
-					} else {
-						// 注册失败
-						info.setKey(false);
-						info.setValue("服务器繁忙，请稍候再试...");
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("Recover user (userId:" + user.getId()
-						+ ") password error,becase HttpClient Connection error ...",sessionInfo);
-						return info;
-					}
-
-				} else {
-					// 验证码不匹配
-					info.setKey(false);
-					info.setValue("密码为空!");
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("Recover user (userId:" + user.getId() + ") password error,becase password is empty ...",sessionInfo);
-					return info;
-				}
-			} else {
-				// 验证码不匹配
-				info.setKey(false);
-				info.setValue("短信验证码不正确!");
-				serLogger
-						.info("Recover user (userId:" + user.getId() + ") password error,becase code is not equal ...");
-				return info;
-			}
-		} else {
-			// 验证码为空
-			info.setKey(false);
-			info.setValue("点击获取验证码!");
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("Recover user (userId:" + user.getId() + ") password error,becase code is empty ...",sessionInfo);
-			return info;
-		}
-	}
-
-	/**
 	 * 退出登录
 	 */
 	@RequestMapping("/loginout")
 	public ModelAndView loginout(final HttpServletRequest request,final HttpServletResponse response) {
 		logOutCookie(request,response);
-		request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
+		request.getSession().removeAttribute(PmsConstant.SESSION_INFO);
 		return new ModelAndView("redirect:/");
 	}
 
 	/**
 	 * 三方登录后 查询:有uniqueId 没有电话 跳转绑定页 1 有uniqueId 有电话 直接登录2 无uniqueId 无电话 跳转绑定页3
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/OAuthor")
 	public ModelAndView oAuthor(final HttpServletRequest request, final HttpServletResponse response,
 			final ModelMap model) {
@@ -534,7 +438,7 @@ public class LoginController extends BaseController {
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
 			final String json = request.getParameter("json");
-			final User user = new User().fromString(json, User.class);
+			final PmsUser user = new PmsUser().fromString(json, PmsUser.class);
 			model.put("userName", user.getUserName());
 			model.put("imgUrl", user.getImgUrl());
 			model.put("unique", user.getUniqueId());
@@ -544,20 +448,24 @@ public class LoginController extends BaseController {
 				model.put("type", "qq");
 			}
 			// 查询该用户是否存在
-			final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
-			String str = HttpUtil.httpPost(url, user, request);
-			Map<String, Object> map = JsonUtil.toBean(str, Map.class);
-			if (null != map) {
-				int code = Integer.parseInt(String.valueOf(map.get("code")));
-				if (code == 2) {// 可直接登录
-					return new ModelAndView("redirect:/mgr/index");
-				} else if (code == 0) {// 不存在账户
+			if (user != null) {
+				final List<PmsUser> users = pmsUserFacade.verificationUserExistByThirdLogin(user);
+				if (users.size() < 1) { // 用户不存在
 					model.put("code", "0");
 					return new ModelAndView("threeLogin", model);
-				} else if (code == 1) {// 存在账号,需要更新手机号
-					model.put("code", "1");
-					model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
-					return new ModelAndView("threeLogin", model);
+				} else {
+					final PmsUser u = users.get(0);
+					if (null != u.getTelephone() && !"".equals(u.getTelephone())) {// 手机号存在,直接登录
+						// 清除当前session
+						// sessionService.removeSession(request);
+						// 存入session中
+						initSessionInfo(u, request);
+						return new ModelAndView("redirect:/mgr/index");
+					} else {// 手机号不存在,绑定页
+						model.put("code", "1");
+						model.put("userId", Long.toString(u.getId()));
+						return new ModelAndView("threeLogin", model);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -571,15 +479,14 @@ public class LoginController extends BaseController {
 	/**
 	 * 第三方登录-微信登陆
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/wechat/callback.do")
 	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
 			final ModelMap model) {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		if (code != null && !"".equals(code)) {
 			WechatToken token = new WechatToken();
-			token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
-			token.setSecret(GlobalConstant.CUSTOMER_WEBCHAT_APPSECRET);
+			token.setAppid(PmsConstant.CUSTOMER_WEBCHAT_APPID);
+			token.setSecret(PmsConstant.CUSTOMER_WEBCHAT_APPSECRET);
 			// 通过code获取access_token
 			final StringBuffer tokenUrl = new StringBuffer();
 			tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
@@ -590,8 +497,8 @@ public class LoginController extends BaseController {
 			final String str = HttpUtil.httpGet(tokenUrl.toString(), request);
 			if (str != null && !"".equals(str)) {
 				token = JsonUtil.toBean(str, WechatToken.class);
-				token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
-				token.setSecret(GlobalConstant.CUSTOMER_WEBCHAT_APPSECRET);
+				token.setAppid(PmsConstant.CUSTOMER_WEBCHAT_APPID);
+				token.setSecret(PmsConstant.CUSTOMER_WEBCHAT_APPSECRET);
 			}
 
 			if (token.getErrcode() == null) {
@@ -622,14 +529,12 @@ public class LoginController extends BaseController {
 				}
 				// 获取到 用户信息后，写入session
 				if (wechat != null) {
-					User user = new User();
+					PmsUser user = new PmsUser();
 					if (null != sessionInfo && ValidateUtil.isValid(sessionInfo.getReqiureId())) {// 用户已经登录,个人资料页绑定
 						user.setUniqueId(token.getOpenid());
 						user.setlType("wechat");
 						user.setId(sessionInfo.getReqiureId());
-						final String url = URL_PREFIX + "portal/user/info/bind";
-						String s = HttpUtil.httpPost(url, user, request);
-						Boolean b = JsonUtil.toBean(s, Boolean.class);
+						boolean b = pmsUserFacade.userInfoBind(user);
 						if (b) {
 							model.addAttribute("msg", "绑定成功");// 返回页面用作提示绑定成功
 						} else
@@ -647,23 +552,26 @@ public class LoginController extends BaseController {
 							model.put("unique", token.getOpenid());
 							model.put("type", "wechat");
 							// 查询该用户是否存在
-							final String url = URL_PREFIX + "portal/user/thirdLogin/isExist";
-							final String json = HttpUtil.httpPost(url, user, request);
-							Map<String, Object> map = JsonUtil.toBean(json, Map.class);
-							if (null != map) {
-								int num = Integer.parseInt(String.valueOf(map.get("code")));
-								if (num == 2) {// 可直接登录
-									return new ModelAndView("redirect:/mgr/index");
-								} else if (num == 0) {// 不存在账户
+							if (user != null) {
+								final List<PmsUser> users = pmsUserFacade.verificationUserExistByThirdLogin(user);
+								if (users.size() < 1) { // 用户不存在
 									model.put("code", "0");
 									return new ModelAndView("threeLogin", model);
-								} else if (num == 1) {// 存在账号,需要更新手机号
-									model.put("code", "1");
-									model.put("userId", Long.parseLong(String.valueOf(map.get("userId"))));
-									return new ModelAndView("threeLogin", model);
+								} else {
+									final PmsUser u = users.get(0);
+									if (null != u.getTelephone() && !"".equals(u.getTelephone())) {// 手机号存在,直接登录
+										// 清除当前session
+										// sessionService.removeSession(request);
+										// 存入session中
+										initSessionInfo(u, request);
+										return new ModelAndView("redirect:/mgr/index");
+									} else {// 手机号不存在,绑定页
+										model.put("code", "1");
+										model.put("userId", Long.toString(u.getId()));
+										return new ModelAndView("threeLogin", model);
+									}
 								}
 							}
-							return new ModelAndView("redirect:/");
 						} catch (UnsupportedEncodingException e) {
 							Log.error("UserName Encode error on Wechat Login Process ...",sessionInfo);
 							e.printStackTrace();
@@ -682,17 +590,31 @@ public class LoginController extends BaseController {
 	/**
 	 * 第三方登录验证手机号码 register:0未注册||1注册 qq:0未绑定||1绑定 wechat: wb:
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/threeLogin/phone", method = RequestMethod.POST)
-	public Map<String, Object> threeLoginPhone(@RequestBody final User user, final ModelMap model,
+	public Map<String, Object> threeLoginPhone(@RequestBody final PmsUser user, final ModelMap model,
 			final HttpServletRequest request) {
-		final String url = URL_PREFIX + "portal/user/threeLogin/phone/" + user.getTelephone();
-		String json = HttpUtil.httpGet(url, request);
-		Map<String, Object> map = JsonUtil.toBean(json, Map.class);
+		Map<String, Object> map = new HashMap<String, Object>();
+		final PmsUser u = pmsUserFacade.threeLoginPhone(user.getTelephone());
+		map.put("qq", "0");
+		map.put("wechat", "0");
+		map.put("wb", "0");
+		if (null != u) {
+			map.put("register", "1");// 注册过
+			if (null != user.getQqUnique() && !"".equals(user.getQqUnique())) {
+				map.put("qq", "1");
+			}
+			if (null != user.getWechatUnique() && !"".equals(user.getWechatUnique())) {
+				map.put("wechat", "1");
+			}
+			if (null != user.getWbUnique() && !"".equals(user.getWbUnique())) {
+				map.put("wb", "1");
+			}
+		} else {
+			map.put("register", "0");// 未注册过
+		}
 		return map;
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/third/bind", method = RequestMethod.POST)
 	public Info thirdBind(@RequestBody final ThirdBind bind, final HttpServletRequest request) {
 		final String code = (String) request.getSession().getAttribute("code");
@@ -701,18 +623,20 @@ public class LoginController extends BaseController {
 		if (!"".equals(code) && code != null) {
 			if (code.equals(bind.getVerification_code())) {
 				if (null != codeOfphone && codeOfphone.equals(bind.getTelephone())) {
-					final String url = URL_PREFIX + "portal/user/bindthird";
-					String str = HttpUtil.httpPost(url, bind, request);
-					if (str != null && !"".equals(str)) {
-						Map<String, Object> map = JsonUtil.toBean(str, Map.class);
-						String num = String.valueOf(map.get("code"));
-						if ("1".equals(num)) {
-							info.setKey(true);
-						} else {
-							String msg = String.valueOf(map.get("msg"));
-							info.setKey(false);
-							info.setValue(msg);
+					Map<String, Object> map = pmsUserFacade.bindThird(bind);
+					String num = String.valueOf(map.get("code"));
+					if ("1".equals(num)) {
+						if (map.containsKey("user")) {
+							PmsUser user = (PmsUser) map.get("user");
+							if (user.getId() != 0) {
+								initSessionInfo(user, request);
+							}
 						}
+						info.setKey(true);
+					} else {
+						String msg = String.valueOf(map.get("msg"));
+						info.setKey(false);
+						info.setValue(msg);
 					}
 				} else {
 					// 手机号错误
@@ -732,5 +656,46 @@ public class LoginController extends BaseController {
 			info.setValue("点击获取验证码!");
 		}
 		return info;
+	}
+	/**
+	 * 初始化 sessionInfo 信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @return
+	 */
+	public boolean initSessionInfo(final PmsUser user, HttpServletRequest request) {
+		final HttpSession session = request.getSession();
+		
+		// 清空session
+		session.removeAttribute(PmsConstant.SESSION_INFO);
+		
+		// 存入session中
+		final SessionInfo info = new SessionInfo();
+		info.setLoginName(user.getLoginName());
+		info.setRealName(user.getRealName());
+		info.setSessionType(PmsConstant.ROLE_CUSTOMER);
+		//info.setSuperAdmin(false);
+		info.setToken(DataUtil.md5(session.getId()));
+		info.setReqiureId(user.getId());
+		info.setClientLevel(user.getClientLevel()); // 客户级别
+		info.setTelephone(user.getTelephone());
+
+		final PmsRole role = pmsRoleFacade.findRoleById(3l); // 获取用户角色
+		final List<PmsRole> roles = new ArrayList<PmsRole>();
+		roles.add(role);
+		user.setRoles(roles);
+		// 计算权限码总和
+		final long maxPos = pmsRightFacade.getMaxPos();
+		final long[] rightSum = new long[(int) (maxPos + 1)];
+		user.setRightSum(rightSum);
+		user.calculateRightSum();
+		info.setSum(user.getRightSum());
+		info.setEmail(user.getEmail());
+		info.setPhoto(user.getImgUrl());
+		info.setSuperAdmin(user.isSuperAdmin()); // 判断是否是超级管理员
+
+		session.setAttribute(PmsConstant.SESSION_INFO, info);
+		return true;
 	}
 }

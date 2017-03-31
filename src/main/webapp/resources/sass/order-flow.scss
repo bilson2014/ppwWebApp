@@ -16,7 +16,11 @@
 .titleTag {
     background: #f0f2f5;
     height: 70px;
+    width: 100%;
     border-bottom: 1px solid $border-line;
+    position: fixed;
+    top:60px;
+    z-index: 99;
     .titleWord {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -43,6 +47,7 @@
     @include media_screen_width_beta3();
     margin: 0 auto;
     margin-bottom: 120px;
+    margin-top: 120px;
     @media screen and (min-width: 1276px) {
         padding-left: 150px;
         padding-right: 150px;
@@ -77,6 +82,7 @@
         }
         div:last-child {
             background: url('/resources/images/service/iconbg1.png') no-repeat;
+            background-size: 350px 428px !important;
             width: 350px;
             height: 214px;
             position: absolute;
@@ -121,6 +127,7 @@
         div:last-child {
             width: 350px;
             height: 214px;
+            background-size: 350px 428px !important;
             position: absolute;
             left: 40px;
             top: -30px;

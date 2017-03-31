@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.panfeng.domain.SessionInfo;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.panfeng.film.dao.SessionInfoDao;
 import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.Progress;

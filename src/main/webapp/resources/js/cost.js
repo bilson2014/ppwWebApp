@@ -5,6 +5,7 @@ var setInfoContent = new Array('两到三年创作经验,拥有十部以上成�
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
+var add = true;
 $().ready(function() {
 	var cost = {
 		init : function() {
@@ -102,28 +103,33 @@ $().ready(function() {
 							",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
 					var phone = $('#phone').val();
 					var verification_code = $('#phoneCode').val();
-					loadData(function(result) {
-						if(result.code == 1){
-							$('#price').text(thousandCount(result.cost));
-							$('#phone').attr('data-content', result.indentId);
-							$("#code-container").remove();
-						}else if(result.code == 0 && result.msg == '手机号不匹配'){
-							$('#errorPhone').attr('data-content', '手机号不匹配');
-						}else{
-							$('#errorCode').attr('data-content', result.msg);
-						}
-					}, getContextPath() + '/calculate/cost', $.toJSON({
-						videoType : $('#videoType').attr('data-content'),
-						team : $('#team').attr('data-content'),
-						equipment : $('#equipment').attr('data-content'),
-						actor : $('#actor').attr('data-content'),
-						animation : $('#animation').attr('data-content'),
-						time : $('#time').attr('data-content'),
-						phone : phone,
-						indentId : indentId,
-						description : description,
-						verification_code:verification_code
-					}));
+					
+					if(add){
+						add = false;
+						loadData(function(result) {
+							add = true;
+							if(result.code == 1){
+								$('#price').text(thousandCount(result.cost));
+								$('#phone').attr('data-content', result.indentId);
+								$("#code-container").remove();
+							}else if(result.code == 0 && result.msg == '手机号不匹配'){
+								$('#errorPhone').attr('data-content', '手机号不匹配');
+							}else{
+								$('#errorCode').attr('data-content', result.msg);
+							}
+						}, getContextPath() + '/calculate/cost', $.toJSON({
+							videoType : $('#videoType').attr('data-content'),
+							team : $('#team').attr('data-content'),
+							equipment : $('#equipment').attr('data-content'),
+							actor : $('#actor').attr('data-content'),
+							animation : $('#animation').attr('data-content'),
+							time : $('#time').attr('data-content'),
+							phone : phone,
+							indentId : indentId,
+							description : description,
+							verification_code:verification_code
+						}));
+					}
 				}
 			});
 		},

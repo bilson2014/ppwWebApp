@@ -1,6 +1,8 @@
 package com.panfeng.film.test;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
@@ -16,7 +18,9 @@ import org.apache.http.impl.client.DefaultRedirectStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.panfeng.film.mq.service.MailMQService;
 import com.panfeng.film.util.HttpUtil;
 
 
@@ -26,7 +30,8 @@ public class entitytest extends BaseTest{
 	public static HttpClientContext context = null;
 	public static CookieStore cookieStore = null;
 	public static RequestConfig requestConfig = null;
-
+	@Autowired
+	private MailMQService service;
 	@SuppressWarnings("unused")
 	private  void   init() {
 		context = HttpClientContext.create();
@@ -96,6 +101,13 @@ public class entitytest extends BaseTest{
 //		}
 		
 		HttpUtil.httpPost("http://localhost:8081/portal/product/static/listWithCondition", null,null);
+	}
+	
+	@Test
+	public void saveRelation(){
+		Map<String, String[]> map = new HashMap<>();
+		map.put("1061942069@qq.com", new String[]{"XX","XX","XX"});
+		service.sendMailsByType("REGESTER", map);
 	}
 
 }

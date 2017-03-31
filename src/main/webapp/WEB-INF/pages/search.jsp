@@ -59,7 +59,7 @@
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${q }" id="q"/>
+	<input type="hidden" value='${q }' id="q"/>
 	<input type="hidden" value="${industry }" id="industry"/>
 	<input type="hidden" value="${genre }" id="genre"/>
 	<input type="hidden" value="${price }" id="price"/>
@@ -73,7 +73,7 @@
                 <a href="<spring:url value='/'/>" class="logo" id="logo"><h1>拍片网</h1></a>
 				<r:identity role="customer">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目<span></span></a>
-					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
 				<r:identity role="provider">
 					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理<span></span></a>
@@ -81,12 +81,12 @@
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
-					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
 				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
-					<a href="<spring:url value='/cost/cal'/>" class="header-item">在线估价<span></span></a>
+					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
@@ -95,6 +95,7 @@
                     	拍片网介绍
                     <span></span>
                 </a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
@@ -338,8 +339,18 @@
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
-                                            <div class="cusSer iconItem"><a href="tencent://message/?uin=2640178216&Site=qq&Menu=no">客户客服</a></div>
-                                            <div class="proSer iconItem"><a href="tencent://message/?uin=3299894058&Site=qq&Menu=no">导演客服</a></div>
+                                            <div class="cusSer iconItem"><a href="">客户客服</a>
+                                                  <div class="showCodeToPro">
+	                                               <img src="/resources/images/cusCode.jpg">
+	                                               <span>客户客服</span>
+	                                            </div>
+                                            </div>
+                                            <div class="proSer iconItem"><a href="">导演客服</a>    
+	                                            <div class="showCodeToPro">
+	                                               <img src="/resources/images/indexCode.jpg">
+	                                               <span>导演客服</span>
+	                                            </div>
+	                                        </div>
                                             <div class="email iconItem"><a href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a></div>
                                         </div>
                                         <div class="topItem">
@@ -352,7 +363,7 @@
                                         <div>版权信息</div>
                                         <div>本站视频作品采用知识共享署名-非商业性使用.本站不提供任何视听上传服务,</div>
                                         <div>所有内容均来自视频分享站点所提供的公开引用资源.</div>
-                                        <div>© 2014 攀峰文化 京ICP备 14036662号-1 | 百度统计 站长统计</div>
+                                        <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
                             </div>
