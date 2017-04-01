@@ -1171,6 +1171,7 @@ a {
     }
 }
 
+
 //视频
 .openVideo {
     background: black;
@@ -1180,7 +1181,7 @@ a {
     position: fixed;
     top: 0px;
     overflow: hidden;
-    z-index: 99;
+    z-index: 999;
     background: transparent;
     .videoClose {
         position: absolute;
