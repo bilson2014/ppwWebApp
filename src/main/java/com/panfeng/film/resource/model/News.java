@@ -18,6 +18,7 @@ public class News implements Serializable {
 	private String tags;
 	private String picLDUrl;
 	private Integer recommend = 0;
+	private Integer visible = 0; // 0 可见 1不可见。默认可见
 
 	public Integer getId() {
 		return id;
@@ -111,14 +112,6 @@ public class News implements Serializable {
 	private boolean prev = false;
 	private String q;
 
-	public String getQ() {
-		return q;
-	}
-
-	public void setQ(String q) {
-		this.q = q;
-	}
-
 	public boolean isNext() {
 		return next;
 	}
@@ -133,6 +126,22 @@ public class News implements Serializable {
 
 	public void setPrev(boolean prev) {
 		this.prev = prev;
+	}
+
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+	public Integer getVisible() {
+		return visible;
+	}
+
+	public void setVisible(Integer visible) {
+		this.visible = visible;
 	}
 
 }
