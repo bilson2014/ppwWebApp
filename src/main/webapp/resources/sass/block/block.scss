@@ -11,6 +11,13 @@ $price-wrap: 340px;
 $price-wrap-max: 460px;
 $order-width: 330px;
 $rightWidth:320px;
+
+.-mob-share-weixin-qrcode-content{
+	position: relative;
+	left:100% !important;
+	margin-left: -300px;
+}
+
 .videoArea {
     height: 830px;
     background: url(/resources/images/index/hotback.png) no-repeat;
@@ -81,7 +88,7 @@ $rightWidth:320px;
     }
     object {
         width: $width-min - $order-width;
-        height: ($width-min - $price-wrap-min) * (9 / 16);
+        height: ($width-min - $order-width) * (9 / 16);
         background: black;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             width: $width-middle - $order-width;
@@ -504,6 +511,7 @@ $rightWidth:320px;
     z-index: 99;
     right: 20px;
     background: url("/resources/images/block/btnNext.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
@@ -518,6 +526,7 @@ $rightWidth:320px;
     z-index: 99;
     left: 20px;
     background: url("/resources/images/block/btnPrev.png") no-repeat center;
+    background-size: 45px 45px;
     &:hover {
         transform: scale(1.2);
     }
@@ -761,6 +770,7 @@ $rightWidth:320px;
         height: 13px;
         width: 13px;
         background: url('/resources/images/index/newsMore.png')no-repeat !important;
+        background-size: 13px 26px !important;
     }
 }
 

@@ -81,7 +81,7 @@ $price-wrap-max: 460px;
 
 	video {
 		width: $width-min - $price-wrap-min;
-		height: ($width-min - $price-wrap-min) * (9 / 16);
+		height: ($width-min - $price-wrap-min) * (9 / 16)!important;
 
 		@media screen and (min-width:1276px) and (max-width:1500px) {
 			width: $width-middle - $price-wrap;
@@ -95,7 +95,7 @@ $price-wrap-max: 460px;
 	
 	object {
 		width: $width-min - $price-wrap-min;
-		height: ($width-min - $price-wrap-min) * (9 / 16);
+		height: ($width-min - $price-wrap-min) * (9 / 16) !important;
 
 		@media screen and (min-width:1276px) and (max-width:1500px) {
 			width: $width-middle - $price-wrap;

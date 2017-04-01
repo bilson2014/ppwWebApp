@@ -10,6 +10,7 @@ $().ready(function(){
 	
 	
 	getImgUrl();
+	controlInput();
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
@@ -988,4 +989,15 @@ function getImgUrl(){
 			$('#getImgUrl').attr('src',getDfsHostName() + p);
 		}
 	}
+}
+
+function controlInput(){
+	$("#search-q").focus(function(){
+	 $('.middle-part').addClass('consorlInput');
+	}); 
+	
+	$("#search-q").blur(function(){
+		 $('.middle-part').removeClass('consorlInput');
+		});
+    
 }
