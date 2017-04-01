@@ -6,17 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.resource.model.Employee;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.service.EmployeeThirdLogin;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
-import com.panfeng.film.util.ValidateUtil;
 
 @Service
 public class EmployeeThirdLoginImpl implements EmployeeThirdLogin {
-	final static String url = GlobalConstant.URL_PREFIX + "portal/manager/thirdLogin/isExist";
+	final static String url = PublicConfig.URL_PREFIX + "portal/manager/thirdLogin/isExist";
 	final Logger logger = LoggerFactory.getLogger("error");
 
 	@Override

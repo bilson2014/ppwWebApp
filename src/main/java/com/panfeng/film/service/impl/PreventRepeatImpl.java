@@ -9,10 +9,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.springframework.stereotype.Service;
 
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.resource.model.PreventRepeatModel;
 import com.panfeng.film.resource.model.PreventRepeatModel.CurrentTokenVal;
 import com.panfeng.film.service.PreventRepeat;
-import com.panfeng.film.util.ValidateUtil;
 
 @Service
 public class PreventRepeatImpl implements PreventRepeat {

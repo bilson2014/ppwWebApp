@@ -1,11 +1,10 @@
 package com.panfeng.film.resource.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.panfeng.film.domain.BaseObject;
-
-public class IndentProject extends BaseObject {
+public class IndentProject implements Serializable {
 
 	private static final long serialVersionUID = 4610963805615371485L;
 

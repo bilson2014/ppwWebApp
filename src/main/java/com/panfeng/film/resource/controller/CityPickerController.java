@@ -23,16 +23,6 @@ public class CityPickerController extends BaseController {
 	@Autowired
 	private PmsCityFacade pmsCityFacade;
 
-	/*@RequestMapping("/get/provinces")
-	public List<Province> getAllProvince(HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "portal/get/provinces";
-		String str = HttpUtil.httpGet(url, request);
-		if (str != null && !"".equals(str)) {
-			return JsonUtil.toList(str);
-		}
-		return new ArrayList<Province>(); // 没查到返回空
-	}*/
-
 	@RequestMapping("/get/citys")
 	public List<PmsCity> getCitys(@RequestBody HashMap<String, String> provinceId, HttpServletRequest request) {
 		if (ValidateUtil.isValid(provinceId)) {

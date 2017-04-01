@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.MDC;
 
-import com.panfeng.film.resource.model.User;
+import com.paipianwang.pat.common.entity.SessionInfo;
 
 
 public class LogFilter implements Filter{
@@ -22,14 +22,15 @@ public class LogFilter implements Filter{
 	
 	private static final String SESSION_KEY = "session";
 	
-	private static final String USER_KEY = "username";
+	private static final String USER_KEY = "loginName";
+	
+	private static final String ROLE_KEY = "roleKey";
 	
 	private static final String CLIENT_KEY = "client";
 	
 	@Override
 	public void destroy() {
 		// empty
-		
 	}
 
 	@Override
@@ -37,15 +38,21 @@ public class LogFilter implements Filter{
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		final User user = (User) session.getAttribute(USER_KEY);
-		String username = user == null ? null : user.getUserName();
+		final SessionInfo info = (SessionInfo) session.getAttribute(USER_KEY);
+		String username = info == null ? null : info.getLoginName();
+		String roleName = "缺省角色";
+		if(info != null) {
+			roleName = info.getSessionType();
+		}
 		if (username == null || username.trim().isEmpty()) {
 			username = "缺省用户";
 		}
+		
 		final String clientIP = getRemoteAddress(req);
 		MDC.put(REQUEST_KEY, req.getRequestURI());
 		MDC.put(SESSION_KEY, session.getId().substring(0, 5));
 		MDC.put(USER_KEY, username);
+		MDC.put(ROLE_KEY, roleName);
 		MDC.put(CLIENT_KEY, clientIP);
 		try {
 			chain.doFilter(request, response);
@@ -53,6 +60,7 @@ public class LogFilter implements Filter{
 			MDC.remove(REQUEST_KEY);
 			MDC.remove(SESSION_KEY);
 			MDC.remove(USER_KEY);
+			MDC.remove(ROLE_KEY);
 			MDC.remove(CLIENT_KEY);
 		}
 	}

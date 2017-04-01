@@ -31,14 +31,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
 import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.resource.model.ActivitiTask;
 import com.panfeng.film.resource.model.BizBean;
@@ -60,7 +62,6 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.ValidateUtil;
 import com.panfeng.film.util.WechatUtils;
 
 @RestController
@@ -103,14 +104,15 @@ public class VersionManagerController extends BaseController {
 			if (ValidateUtil.isValid(loginName) && ValidateUtil.isValid(pwd)) {
 				// 解密
 				try {
-					final String password = AESUtil.Decrypt(pwd, GlobalConstant.UNIQUE_KEY);
-					final PmsEmployee e = pmsEmployeeFacade.doLogin(employee.getEmployeeLoginName(), DataUtil.md5(password));
+					final String password = AESUtil.Decrypt(pwd, PmsConstant.UNIQUE_KEY);
+					final PmsEmployee e = pmsEmployeeFacade.doLogin(employee.getEmployeeLoginName(),
+							DataUtil.md5(password));
 					if (e != null) {
-						//填充角色
+						// 填充角色
 						List<PmsRole> roles = pmsRoleFacade.findRolesByEmployId(e.getEmployeeId());
 						e.setRoles(roles);
 						// infoService.removeSession(request);
-						request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
+						request.getSession().removeAttribute(PmsConstant.SESSION_INFO);
 						final boolean ret = initSessionInfo(e, request);
 						if (ret) {
 							addCookies(request, response);
@@ -221,7 +223,7 @@ public class VersionManagerController extends BaseController {
 							break;
 						}
 						// 后台绑定
-						final String url = GlobalConstant.URL_PREFIX + "portal/manager/thirdLogin/bind";
+						final String url = PublicConfig.URL_PREFIX + "portal/manager/thirdLogin/bind";
 						final String json = HttpUtil.httpPost(url, employee, request);
 						if (ValidateUtil.isValid(json)) {
 							final BaseMsg msg = JsonUtil.toBean(json, BaseMsg.class);
@@ -254,7 +256,7 @@ public class VersionManagerController extends BaseController {
 			final HttpServletRequest request) {
 
 		if (ValidateUtil.isValid(phoneNumber)) {
-			final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
+			final String url = PublicConfig.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
 			final String json = HttpUtil.httpGet(url, request);
 			if (ValidateUtil.isValid(json)) {
 				Long count = JsonUtil.toBean(json, Long.class);
@@ -282,10 +284,10 @@ public class VersionManagerController extends BaseController {
 			if (isTest || code.equals(e.getVerification_code())) {
 				if (e.getEmployeePassword() != null && !"".equals(e.getEmployeePassword())) {
 					// AES 密码解密
-					final String password = AESUtil.Decrypt(e.getEmployeePassword(), GlobalConstant.UNIQUE_KEY);
+					final String password = AESUtil.Decrypt(e.getEmployeePassword(), PmsConstant.UNIQUE_KEY);
 					// MD5 加密
 					e.setEmployeePassword(DataUtil.md5(password));
-					final String url = GlobalConstant.URL_PREFIX + "portal/manager/static/editPwd";
+					final String url = PublicConfig.URL_PREFIX + "portal/manager/static/editPwd";
 					String str = HttpUtil.httpPost(url, e, request);
 					Boolean result = null;
 					if (str != null && !"".equals(str)) {
@@ -328,7 +330,7 @@ public class VersionManagerController extends BaseController {
 	 */
 	@RequestMapping("/index")
 	public ModelAndView indexView(ModelMap model, HttpServletRequest request) {
-		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		if (info != null) {
 			model.put("userId", info.getReqiureId());
 		}
@@ -342,7 +344,7 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "project/save";
+		final String url = PublicConfig.URL_PREFIX + "project/save";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -354,7 +356,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping(value = "/projects/remove/synergy", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public boolean removeSynergy(@RequestBody final BizBean bizBean, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "project/remove/synergy";
+		final String url = PublicConfig.URL_PREFIX + "project/remove/synergy";
 		String str = HttpUtil.httpPost(url, bizBean, request);
 		if (ValidateUtil.isValid(str)) {
 			boolean ret = JsonUtil.toBean(str, Boolean.class);
@@ -369,7 +371,7 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "project/get/synergys";
+		final String url = PublicConfig.URL_PREFIX + "project/get/synergys";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -384,7 +386,7 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		// fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "portal/getEmployeeListByReffer";
+		final String url = PublicConfig.URL_PREFIX + "portal/getEmployeeListByReffer";
 		String str = HttpUtil.httpPost(url, bizBean, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -397,7 +399,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping(value = "/projects/search/employee/list", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<Employee> searchEmployee(@RequestBody BizBean bizBean, final HttpServletRequest request) {
 		// fill userinfo
-		final String url = GlobalConstant.URL_PREFIX + "portal/search/employee/list";
+		final String url = PublicConfig.URL_PREFIX + "portal/search/employee/list";
 		String str = HttpUtil.httpPost(url, bizBean, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -410,8 +412,8 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/flow-index")
 	public ModelAndView projectsView(final ModelMap model, String key, HttpServletRequest request) {
 		model.put("key", key);
-		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
-		
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
+
 		if (info != null) {
 			model.put("userId", info.getReqiureId());
 		}
@@ -431,7 +433,7 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "project/all-project";
+		final String url = PublicConfig.URL_PREFIX + "project/all-project";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -447,7 +449,7 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "project/get-projectInfo";
+		final String url = PublicConfig.URL_PREFIX + "project/get-projectInfo";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -462,9 +464,8 @@ public class VersionManagerController extends BaseController {
 			final HttpServletRequest request) {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "project/get-redundantProject";
+		final String url = PublicConfig.URL_PREFIX + "project/get-redundantProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
-		// User information = null;
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, IndentProject.class);
 		}
@@ -476,9 +477,8 @@ public class VersionManagerController extends BaseController {
 	public boolean updateIndentProject(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "project/update-synergyProject";
+		final String url = PublicConfig.URL_PREFIX + "project/update-synergyProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
-		// User information = null;
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, Boolean.class);
 		}
@@ -488,7 +488,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/getProjectTags")
 	public List<BizBean> getProjectTags(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "project/getProjectTags";
+		final String url = PublicConfig.URL_PREFIX + "project/getProjectTags";
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			List<BizBean> list = JsonUtil.toList(str);
@@ -501,7 +501,7 @@ public class VersionManagerController extends BaseController {
 	public boolean cancelProject(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "project/cancelProject";
+		final String url = PublicConfig.URL_PREFIX + "project/cancelProject";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -512,7 +512,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/get/SerialID")
 	public String getProjectSerialID(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "project/get/SerialID";
+		final String url = PublicConfig.URL_PREFIX + "project/get/SerialID";
 		String str = HttpUtil.httpGet(url, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -523,7 +523,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/verifyProjectInfo")
 	public BaseMsg verifyProjectInfo(final HttpServletRequest request, @RequestBody IndentProject indentProject) {
-		final String url = GlobalConstant.URL_PREFIX + "project/verifyProjectInfo";
+		final String url = PublicConfig.URL_PREFIX + "project/verifyProjectInfo";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toBean(str, BaseMsg.class);
@@ -534,7 +534,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/team/search/info")
 	public List<Team> getTeamByName(@RequestBody final Team team, final HttpServletRequest request) {
 		// fill userinfo
-		final String url = GlobalConstant.URL_PREFIX + "portal/team/search/info";
+		final String url = PublicConfig.URL_PREFIX + "portal/team/search/info";
 		String str = HttpUtil.httpPost(url, team, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -546,7 +546,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/projects/user/search/info")
 	public List<User> getUserByName(@RequestBody final User user, final HttpServletRequest request) {
 		// fill userinfo
-		final String url = GlobalConstant.URL_PREFIX + "portal/user/search/info";
+		final String url = PublicConfig.URL_PREFIX + "portal/user/search/info";
 		String str = HttpUtil.httpPost(url, user, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toList(str);
@@ -556,7 +556,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/staff/static/list")
 	public List<Staff> getStaffList(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "/portal/staff/static/list";
+		final String url = PublicConfig.URL_PREFIX + "/portal/staff/static/list";
 		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toList(str);
@@ -564,26 +564,17 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	/**
-	 * 添加简单客户
-	 */
-	@RequestMapping("/projects/user/save/simple")
-	public long addSimpleUser(@RequestBody final User user, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "portal/user/save/simple";
-		String str = HttpUtil.httpPost(url, user, request);
-		if (str != null && !"".equals(str)) {
-			return JsonUtil.toBean(str, Long.class);
-		} else
-			return -1;
-	}
-
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "project/get/report";
+		final String url = PublicConfig.URL_PREFIX + "project/get/report";
 		try {
 			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);
-			Object[] objArrayObjects = HttpUtil.httpPostFile(url, indentProject, request);
+
+			// TODO HTTP 通讯方式更改为 dubbo 方式
+			// Object[] objArrayObjects = HttpUtil.httpPostFile(url,
+			// indentProject, request);
+			Object[] objArrayObjects = null;
 
 			response.reset();
 			response.setCharacterEncoding("utf-8");
@@ -611,7 +602,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping(value = "/flow/verifyIntegrity", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg verifyIntegrity(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "verifyIntegrity";
+		final String url = PublicConfig.URL_PREFIX + "verifyIntegrity";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -623,7 +614,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping(value = "/flow/getnodes", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<ActivitiTask> getFlowNodes(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "getnodes";
+		final String url = PublicConfig.URL_PREFIX + "getnodes";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -635,7 +626,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping(value = "/flow/startProcess", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public boolean startProcess(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "startProcess";
+		final String url = PublicConfig.URL_PREFIX + "startProcess";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -648,7 +639,7 @@ public class VersionManagerController extends BaseController {
 	public ActivitiTask getCurrectTask(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "getCurrectTask";
+		final String url = PublicConfig.URL_PREFIX + "getCurrectTask";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -660,7 +651,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/completeTask")
 	public BaseMsg completeTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "completeTask";
+		final String url = PublicConfig.URL_PREFIX + "completeTask";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -673,7 +664,7 @@ public class VersionManagerController extends BaseController {
 	public List<IndentFlow> getIndentFlows(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "getIndentFlows";
+		final String url = PublicConfig.URL_PREFIX + "getIndentFlows";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -685,7 +676,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/suspendProcess")
 	public boolean suspendProcess(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "suspendProcess";
+		final String url = PublicConfig.URL_PREFIX + "suspendProcess";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -697,7 +688,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/resumeProcess")
 	public boolean resumeProcess(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "resumeProcess";
+		final String url = PublicConfig.URL_PREFIX + "resumeProcess";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -709,7 +700,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/removeProcess")
 	public boolean removeProcess(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "removeProcess";
+		final String url = PublicConfig.URL_PREFIX + "removeProcess";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -721,7 +712,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/flow/jumpPrevTask")
 	public boolean jumpPrevTask(@RequestBody final IndentProject indentProject, final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "jumpPrevTask";
+		final String url = PublicConfig.URL_PREFIX + "jumpPrevTask";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -734,7 +725,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/doc/getDocView")
 	public String getViewUrl(@RequestBody final IndentResource indentResource, final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "getDocView";
+		final String url = PublicConfig.URL_PREFIX + "getDocView";
 		String str = HttpUtil.httpPost(url, indentResource, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -756,7 +747,7 @@ public class VersionManagerController extends BaseController {
 	public long addComment(@RequestBody final IndentComment indentComment, final HttpServletRequest request) {
 		// fill userinfo
 		fillUserInfo(request, indentComment);
-		final String url = GlobalConstant.URL_PREFIX + "addComment";
+		final String url = PublicConfig.URL_PREFIX + "addComment";
 		String str = HttpUtil.httpPost(url, indentComment, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -770,7 +761,7 @@ public class VersionManagerController extends BaseController {
 			final HttpServletRequest request) {
 		// fill userinfo
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "getAllComment";
+		final String url = PublicConfig.URL_PREFIX + "getAllComment";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -782,14 +773,14 @@ public class VersionManagerController extends BaseController {
 	// /////////////////////////////Resource////////////////////////////////////////
 
 	@RequestMapping(value = "/resource/addResource", method = RequestMethod.POST)
-	public String addResource(final MultipartFile file, String projectId,String tag,
+	public String addResource(final MultipartFile file, String projectId, String tag,
 			final HttpServletRequest request) {
 		IndentProject indentProject = new IndentProject();
 		indentProject.setId(Long.valueOf(projectId));
 		indentProject.setTag(tag);
 		fillUserInfo(request, indentProject);
 
-		final String url = GlobalConstant.URL_PREFIX + "addResource";
+		final String url = PublicConfig.URL_PREFIX + "addResource";
 		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
 		multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 		multipartEntityBuilder.setCharset(Charset.forName("utf-8"));
@@ -803,8 +794,8 @@ public class VersionManagerController extends BaseController {
 			multipartEntityBuilder.addTextBody("userId", indentProject.getUserId() + "",
 					ContentType.create("text/plain", Charset.forName("utf-8")));
 
-			multipartEntityBuilder.addBinaryBody("addfile", file.getBytes(),
-					ContentType.create(file.getContentType()), file.getOriginalFilename());
+			multipartEntityBuilder.addBinaryBody("addfile", file.getBytes(), ContentType.create(file.getContentType()),
+					file.getOriginalFilename());
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -830,7 +821,7 @@ public class VersionManagerController extends BaseController {
 	public List<IndentResource> getResourceList(@RequestBody final IndentProject indentProject,
 			final HttpServletRequest request) {
 		fillUserInfo(request, indentProject);
-		final String url = GlobalConstant.URL_PREFIX + "getResourceList";
+		final String url = PublicConfig.URL_PREFIX + "getResourceList";
 		String str = HttpUtil.httpPost(url, indentProject, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -839,30 +830,29 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	
 	@RequestMapping("/getDFSFile/{id}")
 	public void getDFSFile(@PathVariable final long id, final HttpServletResponse response,
 			final HttpServletRequest request) {
-		//fdfsService
-		final String url = GlobalConstant.URL_PREFIX + "getIndentResource/" + id;
+		// fdfsService
+		final String url = PublicConfig.URL_PREFIX + "getIndentResource/" + id;
 		try {
 			String str = HttpUtil.httpGet(url, request);
 			if (ValidateUtil.isValid(str)) {
 				final IndentResource indentResource = JsonUtil.toBean(str, IndentResource.class);
 				InputStream in = fdfsService.download(indentResource.getIrFormatName());
-				//此处设置文件大小
-				//System.err.println(indentResource.getIrOriginalName() + " 文件大小为: " + in.available());
-				//response.setContentLength(in.available());
+				// 此处设置文件大小
+				// System.err.println(indentResource.getIrOriginalName() + "
+				// 文件大小为: " + in.available());
+				// response.setContentLength(in.available());
 				ServletOutputStream ouputStream = response.getOutputStream();
 				response.setCharacterEncoding("utf-8");
 				response.setContentType("application/octet-stream");
-				String filename=URLEncoder.encode(indentResource.getIrOriginalName(), "UTF-8");
-				response.setHeader("Content-Disposition", "attachment; filename=\""
-						+  filename+ "\"\r\n");
+				String filename = URLEncoder.encode(indentResource.getIrOriginalName(), "UTF-8");
+				response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"\r\n");
 				// send file
 				HttpUtil.saveTo(in, ouputStream);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -870,7 +860,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping(value = "/comment/getTags", produces = "application/json; charset=UTF-8")
 	public List<IndentResource> getTags(final HttpServletRequest request) {
-		final String url = GlobalConstant.URL_PREFIX + "getTags";
+		final String url = PublicConfig.URL_PREFIX + "getTags";
 		String str = HttpUtil.httpGet(url, request);
 		// User information = null;
 		if (str != null && !"".equals(str)) {
@@ -896,6 +886,7 @@ public class VersionManagerController extends BaseController {
 		indentComment.setIcUserId(info.getReqiureId());
 		indentComment.setIcUserType(info.getSessionType());
 	}
+
 	/**
 	 * 初始化 sessionInfo 信息
 	 */
@@ -905,8 +896,7 @@ public class VersionManagerController extends BaseController {
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(e.getEmployeeLoginName());
 		info.setRealName(e.getEmployeeRealName());
-		info.setSessionType(GlobalConstant.ROLE_EMPLOYEE);
-		// info.setSuperAdmin(false);
+		info.setSessionType(PmsConstant.ROLE_EMPLOYEE);
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(e.getEmployeeId());
 		info.setPhoto(e.getEmployeeImg());
@@ -930,10 +920,9 @@ public class VersionManagerController extends BaseController {
 		info.setSum(sum);
 		info.setSuperAdmin(e.isSuperAdmin()); // 判断是否是超级管理员
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(GlobalConstant.SESSION_INFO, info);
-		request.getSession().setAttribute(GlobalConstant.SESSION_INFO, info);
+		map.put(PmsConstant.SESSION_INFO, info);
+		request.getSession().setAttribute(PmsConstant.SESSION_INFO, info);
 		// return infoService.addSessionSeveralTime(request, map, 60*60*24*7);
 		return true;
 	}
 }
-			

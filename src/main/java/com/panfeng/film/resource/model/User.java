@@ -1,15 +1,16 @@
 package com.panfeng.film.resource.model;
 
+import com.paipianwang.pat.common.entity.BaseEntity;
+
 /**
  * 用户业务类
  * 
  * @author GY
  */
-public class User extends Customer {
+public class User extends BaseEntity {
 
 	private static final long serialVersionUID = -3500839628063835593L;
 
-	private long id = 0l;
 	private String userName = null; // 昵称
 	private String realName = null; // 真实姓名
 	private String password = null; // 密码
@@ -92,14 +93,6 @@ public class User extends Customer {
 
 	public void setLoginType(String loginType) {
 		this.loginType = loginType;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getUserName() {

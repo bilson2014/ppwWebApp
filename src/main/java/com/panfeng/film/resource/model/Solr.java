@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class Solr extends BaseObject{
+public class Solr extends BaseEntity{
 
 	private static final long serialVersionUID = -3365175562854271223L;
 

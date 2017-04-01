@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,14 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.PhotoCutParam;
 import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.FDFSService;
@@ -40,7 +41,6 @@ import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.Log;
 import com.panfeng.film.util.PhotoUtil;
-import com.panfeng.film.util.ValidateUtil;
 
 @RestController
 @RequestMapping("/user")
@@ -49,15 +49,6 @@ public class UserController extends BaseController {
 	@Autowired
 	private final FDFSService DFSservice = null;
 
-	private static String URL_PREFIX = null;
-
-	private static String FILE_PROFIX = null; // 文件路径前缀
-
-	private static String IMAGE_MAX_SIZE = null;
-
-	private static String ALLOW_IMAGE_TYPE = null;
-
-	private static String UNIQUE_KEY = "0102030405060708"; // AES 加密key
 
 	@Autowired
 	private UserService userService;
@@ -67,22 +58,7 @@ public class UserController extends BaseController {
 	private PmsRoleFacade pmsRoleFacade;
 	@Autowired
 	private PmsRightFacade pmsRightFacade;
-	public UserController() {
-		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
-			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
-			try {
-				Properties propertis = new Properties();
-				propertis.load(is);
-				URL_PREFIX = propertis.getProperty("urlPrefix");
-				FILE_PROFIX = propertis.getProperty("file.prefix");
-				IMAGE_MAX_SIZE = propertis.getProperty("imageMaxSize");
-				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
-			} catch (IOException e) {
-				Log.error("UserController method:constructor load Properties fail ...", null);
-				e.printStackTrace();
-			}
-		}
-	}
+
 
 	/**
 	 * 修改用户信息
@@ -117,7 +93,7 @@ public class UserController extends BaseController {
 			user.setId(userId);
 			if (user.getPassword() != null && !"".equals(user.getPassword())) {
 				// AES密码解密
-				final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+				final String password = AESUtil.Decrypt(user.getPassword(), PmsConstant.UNIQUE_KEY);
 				// MD5加密
 				user.setPassword(DataUtil.md5(password));
 				// 修改 用户密码
@@ -150,7 +126,7 @@ public class UserController extends BaseController {
 				final long userId = user.getId();
 				if (user.getPassword() != null && !"".equals(user.getPassword())) {
 					// AES密码解密
-					final String password = AESUtil.Decrypt(user.getPassword(), UNIQUE_KEY);
+					final String password = AESUtil.Decrypt(user.getPassword(), PmsConstant.UNIQUE_KEY);
 					// MD5加密
 					user.setPassword(DataUtil.md5(password));
 					// 修改 用户密码
@@ -172,26 +148,6 @@ public class UserController extends BaseController {
 		final String code = (String) request.getSession().getAttribute("code");
 		return (!"".equals(code) && code != null && code.equals(user.getVerification_code()));
 	}
-
-	/**
-	 * 发送验证码
-	 */
-	/*@RequestMapping("/verification/{telephone}")
-	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
-
-		final String code = DataUtil.random(true, 6);
-		request.getSession().setAttribute("code", code); // 存放验证码
-		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
-		// 发送短信验证码
-		final boolean ret = smsService.smsSend(GlobalConstant.SMS_VERIFICATION_CODE, telephone,
-				new String[] { code, GlobalConstant.SMS_CODE_DURATION + "分钟" });
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("phone number is " + telephone + " send sms code to update user telephone number -success=" + ret,
-				sessionInfo);
-		// updateUserInSession(request);
-		return ret;
-	}*/
 
 	/**
 	 * 修改用户手机号码
@@ -249,13 +205,13 @@ public class UserController extends BaseController {
 		try {
 			if (!file.isEmpty()) {
 				final long fileSize = file.getSize(); // 上传文件大小
-				final long maxSize = Long.parseLong(IMAGE_MAX_SIZE);
+				final long maxSize = Long.parseLong(PublicConfig.IMAGE_MAX_SIZE);
 				final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
 				if (fileSize > maxSize * 1024) {
 					// 文件大小超出规定范围
 					return "false@error=1";
 				} else {
-					if (ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
 						String path = DFSservice.upload(file);
 						SessionInfo sessionInfo = getCurrentInfo(request);
 						Log.error("User id is " + sessionInfo.getReqiureId() + " upload photo by self path is" + path,
@@ -316,7 +272,7 @@ public class UserController extends BaseController {
 		if (user != null && !"".equals(user.getImgUrl())) {
 			final String path = user.getImgUrl();
 			// 删除文件
-			File file = new File(FILE_PROFIX + path);
+			File file = new File(PublicConfig.FILE_PROFIX + path);
 			if (file.exists()) {
 				if (!file.isDirectory()) {
 					file.delete();
@@ -381,7 +337,6 @@ public class UserController extends BaseController {
 
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
-		// modelMap.addAttribute("userType", GlobalConstant.ROLE_CUSTOMER);
 		return new ModelAndView("/rePwdCus", modelMap);
 	}
 
@@ -526,13 +481,13 @@ public class UserController extends BaseController {
 		final HttpSession session = request.getSession();
 		
 		// 清空session
-		session.removeAttribute(GlobalConstant.SESSION_INFO);
+		session.removeAttribute(PmsConstant.SESSION_INFO);
 		
 		// 存入session中
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(user.getLoginName());
 		info.setRealName(user.getRealName());
-		info.setSessionType(GlobalConstant.ROLE_CUSTOMER);
+		info.setSessionType(PmsConstant.ROLE_CUSTOMER);
 		//info.setSuperAdmin(false);
 		info.setToken(DataUtil.md5(session.getId()));
 		info.setReqiureId(user.getId());
@@ -553,10 +508,7 @@ public class UserController extends BaseController {
 		info.setPhoto(user.getImgUrl());
 		info.setSuperAdmin(user.isSuperAdmin()); // 判断是否是超级管理员
 
-		/*Map<String, Object> map = new HashMap<String, Object>();
-		map.put(GlobalConstant.SESSION_INFO, info);*/
-		session.setAttribute(GlobalConstant.SESSION_INFO, info);
-		// return sessionService.addSessionSeveralTime(request, map,60*60*24*7);//登陆用户存放七天
+		session.setAttribute(PmsConstant.SESSION_INFO, info);
 		return true;
 	}
 }

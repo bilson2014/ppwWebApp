@@ -1,13 +1,13 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import java.io.Serializable;
 
 /**
  * 新闻solr存储实体
  * @author Jack
  *
  */
-public class NewsSolr extends BaseObject {
+public class NewsSolr implements Serializable {
 
 	private static final long serialVersionUID = 5263692798871248537L;
 

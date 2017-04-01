@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
 
-public class IndentFlow extends BaseObject {
+public class IndentFlow extends BaseEntity {
 
 	private static final long serialVersionUID = 927916387241744169L;
 	public static String defaultDate = "1970-01-01";

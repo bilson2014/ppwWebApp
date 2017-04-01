@@ -1,14 +1,11 @@
 package com.panfeng.film.resource.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DataUtil;
 import com.paipianwang.pat.common.util.DateUtils;
@@ -67,8 +65,6 @@ public class PCController extends BaseController {
 
 	final Logger logger = LoggerFactory.getLogger("error");
 
-	static String URL_PREFIX = null;
-	
 	@Autowired
 	private PmsUserFacade pmsUserFacade = null;
 	@Autowired
@@ -85,23 +81,6 @@ public class PCController extends BaseController {
 	private PmsStaffFacade pmsStaffFacade = null;
 	@Autowired
 	private PmsJobFacade pmsJobFacade = null;
-	
-	
-	
-
-	public PCController() {
-		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
-			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
-			try {
-				Properties propertis = new Properties();
-				propertis.load(is);
-				URL_PREFIX = propertis.getProperty("urlPrefix");
-			} catch (IOException e) {
-				Log.error("PCController method:constructor load Properties fail ...", null);
-				e.printStackTrace();
-			}
-		}
-	}
 
 	/**
 	 * 获取本地ip地址+端口号
@@ -232,71 +211,6 @@ public class PCController extends BaseController {
 		return new ModelAndView("order", model);
 	}
 
-	/**
-	 * 加载视频列表时，获取 视频总数
-	 */
-	/*@RequestMapping(value = "/product/size", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public long maxSize(@RequestBody final ProductView view, final HttpServletRequest request) {
-
-		long pageSize = 0l;
-		final String url = URL_PREFIX + "portal/product/static/pageSize";
-		String str = HttpUtil.httpPost(url, view, request);
-		if (str != null && !"".equals(str)) {
-			pageSize = Long.parseLong(str);
-		}
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load product size,productType:" + view.getProductType() + " total number is " + pageSize,
-				sessionInfo);
-		return pageSize;
-	}*/
-
-	/**
-	 * 加载 视频列表
-	 * 
-	 * @param view
-	 *            条件
-	 * @return List<Product> 产品列表
-	 */
-	/*@RequestMapping(value = "/product/listWithCondition", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public List<Product> list(@RequestBody final ProductView view, final HttpServletRequest request) {
-
-		List<Product> list = new ArrayList<Product>();
-		final String url = URL_PREFIX + "portal/product/static/listWithCondition";
-		String str = HttpUtil.httpPost(url, view, request);
-		if (str != null && !"".equals(str)) {
-			list = JsonUtil.toList(str);
-		}
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("List With Condition,productType:", sessionInfo);
-		return list;
-	}*/
-
-	/**
-	 * 跳转 作者页，并加载当前产品信息
-	 * 
-	 * @param teamId
-	 * @param productId
-	 * @param model
-	 * @return
-	 */
-	/*
-	 * @RequestMapping("/product/view/{teamId}/{productId}") public ModelAndView
-	 * redirect(@PathVariable("teamId") final Integer teamId,
-	 * 
-	 * @PathVariable("productId") final Integer productId, final ModelMap model,
-	 * final HttpServletRequest request) { model.addAttribute("teamId", teamId);
-	 * model.addAttribute("productId", productId); Product product = new
-	 * Product(); final String url = URL_PREFIX +
-	 * "portal/product/static/information/" + productId; String json =
-	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
-	 * Product.class); model.addAttribute("product", product);
-	 * 
-	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
-	 * "Redirect team page,teamId:" + teamId + " ,productId:" + productId,
-	 * sessionInfo); return new ModelAndView("team", model); }
-	 */
 	@RequestMapping("/play/{teamId}_{productId}.html")
 	public ModelAndView play(@PathVariable("teamId") final Long teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
@@ -307,7 +221,7 @@ public class PCController extends BaseController {
 		final PmsProduct product = pmsProductFacade.loadProduct(productId);
 		if (null != product && product.getTeamId() != null && !"".equals(product.getTeamId())) {
 			priceDetail = product.getPriceDetail();
-			final PmsTeam team = pmsTeamFacade.findTeamById(product.getTeamId());	
+			final PmsTeam team = pmsTeamFacade.findTeamById(product.getTeamId());
 			if (team != null) {
 				product.setTeamDescription(team.getTeamDescription());
 				product.setTeamName(team.getTeamName());
@@ -326,7 +240,7 @@ public class PCController extends BaseController {
 			PmsTeam team = pmsTeamFacade.getTeamInfo(teamId);
 			if (team != null) {
 				model.addAttribute("teamFlag", team.getFlag());
-			}else{
+			} else {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("team is null ...", sessionInfo);
 			}
@@ -335,44 +249,6 @@ public class PCController extends BaseController {
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("play", model);
 	}
-	/**
-	 * 根据 团队编号 加载 产品列表
-	 * @param teamId
-	 *            产品编号
-	 */
-	/*@RequestMapping("/product/loadWithTeam/{teamId}")
-	public List<Product> productInformationByTeam(@PathVariable("teamId") final Integer teamId,
-			final HttpServletRequest request) {
-
-		List<Product> list = new ArrayList<Product>();
-		final String url = URL_PREFIX + "portal/product/static/team/" + teamId;
-		String json = HttpUtil.httpGet(url, request);
-		list = JsonUtil.toList(json);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
-		return list;
-	}*/
-
-	/**
-	 * 根据 团队编号 加载 产品列表
-	 * 
-	 * @param teamId
-	 *            产品编号
-	 */
-	/*@RequestMapping("/product/order/loadWithTeam/{teamId}")
-	public List<Product> productInformationByTeamOrder(@PathVariable("teamId") final Integer teamId,
-			final HttpServletRequest request) {
-
-		List<Product> list = new ArrayList<Product>();
-		final String url = URL_PREFIX + "portal/product/static/order/team/" + teamId;
-		String json = HttpUtil.httpGet(url, request);
-		list = JsonUtil.toList(json);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load products By TeamId,teamId:" + teamId + " ,product's size:" + list.size(), sessionInfo);
-		return list;
-	}*/
 
 	/**
 	 * 根据 团队名称 去solr中 加载 产品列表
@@ -384,7 +260,7 @@ public class PCController extends BaseController {
 			final HttpServletRequest request) {
 
 		List<Solr> list = new ArrayList<Solr>();
-		final String url = URL_PREFIX + "/portal/product/more";
+		final String url = PublicConfig.URL_PREFIX + "/portal/product/more";
 		String json = HttpUtil.httpPost(url, solrView, request);
 		list = JsonUtil.toList(json);
 		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(), null);
@@ -392,55 +268,10 @@ public class PCController extends BaseController {
 	}
 
 	/**
-	 * 根据 产品编号 获取 产品信息
-	 * 
-	 * @param productId
-	 *            产品编号
-	 */
-	/*
-	 * @RequestMapping("/product/information/{productId}") public Product
-	 * productInformation(@PathVariable("productId") final Integer productId,
-	 * final HttpServletRequest request) {
-	 * 
-	 * Product product = new Product(); final String url = URL_PREFIX +
-	 * "portal/product/static/information/" + productId; String json =
-	 * HttpUtil.httpGet(url, request); product = JsonUtil.toBean(json,
-	 * Product.class);
-	 * 
-	 * SessionInfo sessionInfo = getCurrentInfo(request); Log.error(
-	 * "Load product information,productId:" + productId, sessionInfo); return
-	 * product; }
-	 */
-
-	/**
-	 * 获取产品的服务信息
-	 * 
-	 * @param productId
-	 * @return
-	 */
-	/*@RequestMapping("/service/loadService/{productId}")
-	public List<Service> loadService(@PathVariable("productId") final Integer productId,
-			final HttpServletRequest request) {
-
-		List<Service> list = new ArrayList<Service>();
-		final String url = URL_PREFIX + "portal/service/static/loadService/" + productId;
-		String json = HttpUtil.httpGet(url, request);
-		list = JsonUtil.toList(json);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load All Service By Product,productId:" + productId, sessionInfo);
-		return list;
-	}*/
-
-	/**
 	 * 作品页跳转
 	 */
 	@RequestMapping("/list.html")
 	public ModelAndView listView(final ModelMap model, final HttpServletRequest request) {
-
-		// modify by jack,2016-07-06 18:12 begin
-		// -> change search type database to solr
-		// return new ModelAndView("list", model);
 
 		model.addAttribute("q", "*");
 
@@ -451,7 +282,7 @@ public class PCController extends BaseController {
 			final SolrView view = new SolrView();
 			view.setCondition(URLEncoder.encode("*", "UTF-8"));
 			view.setLimit(20l);
-			final String url = URL_PREFIX + "portal/solr/query";
+			final String url = PublicConfig.URL_PREFIX + "portal/solr/query";
 			final String json = HttpUtil.httpPost(url, view, request);
 			long total = 0l;
 			if (json != null && !"".equals(json)) {
@@ -471,61 +302,7 @@ public class PCController extends BaseController {
 			Log.error("PCController method:listView() encode failue,q=*", sessionInfo);
 		}
 		return new ModelAndView("search", model);
-		// modify by jack,2016-07-06 18:13 end
 	}
-
-	/**
-	 * 装载 视频类别
-	 */
-	/*@RequestMapping("/item/list")
-	public List<Item> loadItem(final HttpServletRequest request) {
-
-		List<Item> list = new ArrayList<Item>();
-		final String url = URL_PREFIX + "portal/item/static/data";
-		String json = HttpUtil.httpPost(url, null, request);
-		list = JsonUtil.toList(json);
-
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("Load Video Item, total number is " + list.size(), sessionInfo);
-		return list;
-	}*/
-
-	/**
-	 * 跳转至 供应商 登录界面
-	 */
-	/*
-	 * @RequestMapping("/provider/login") public ModelAndView
-	 * providerLoginView(final ModelMap model) {
-	 * 
-	 * model.addAttribute("action", "login"); model.addAttribute("pageName",
-	 * "供应商登录");
-	 * 
-	 * return new ModelAndView("provider/login", model); }
-	 */
-
-	/**
-	 * 跳转至 供应商 注册页面
-	 */
-	/*
-	 * @RequestMapping("/provider/register") public ModelAndView
-	 * providerRegisterView(final ModelMap model) {
-	 * 
-	 * model.addAttribute("action", "register"); model.addAttribute("pageName",
-	 * "供应商注册"); return new ModelAndView("provider/login", model); }
-	 */
-
-	/**
-	 * 跳转至 供应商 密码找回页面
-	 */
-	/*
-	 * @RequestMapping("/provider/recover") public ModelAndView
-	 * providerRecover(final ModelMap model) {
-	 * 
-	 * model.addAttribute("action", "recover"); model.addAttribute("pageName",
-	 * "供应商密码找回");
-	 * 
-	 * return new ModelAndView("provider/login", model); }
-	 */
 
 	/**
 	 * 供应商 头部信息
@@ -563,13 +340,13 @@ public class PCController extends BaseController {
 	@RequestMapping("/appointment/{telephone}")
 	public boolean appointment(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		if (telephone != null && !"".equals(telephone)) {
-			
-			//发送短信给业务部门
-			smsMQService.sendMessage("131895", PropertiesUtils.getProp("service_tel"), 
-					new String[]{telephone,DateUtils.nowTime()});
-			//发送给客户
+
+			// 发送短信给业务部门
+			smsMQService.sendMessage("131895", PropertiesUtils.getProp("service_tel"),
+					new String[] { telephone, DateUtils.nowTime() });
+			// 发送给客户
 			smsMQService.sendMessage("134080", telephone, null);
-			//创建新订单
+			// 创建新订单
 			PmsIndent indent = new PmsIndent();
 			indent.setIndent_tele(telephone);
 			indent.setIndentName("新订单");
@@ -584,8 +361,8 @@ public class PCController extends BaseController {
 			long ret = pmsIndentFacade.save(indent);
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.info("send Message to telephone:" + telephone, sessionInfo);
-			return ret>0;
-			
+			return ret > 0;
+
 		}
 		return false;
 	}
@@ -684,80 +461,25 @@ public class PCController extends BaseController {
 	@RequestMapping("/loginName/validate")
 	public boolean loginNameValidate(final HttpServletRequest request) {
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(null!=sessionInfo){
+		if (null != sessionInfo) {
 			String type = sessionInfo.getSessionType();
-			switch (type) { 
+			switch (type) {
 			case "role_customer":
 				PmsUser user = pmsUserFacade.findUserById(sessionInfo.getReqiureId());
-				if(ValidateUtil.isValid(user.getLoginName())){
+				if (ValidateUtil.isValid(user.getLoginName())) {
 					return true;
-				}return false;
+				}
+				return false;
 			case "role_provider":
 				PmsTeam team = pmsTeamFacade.findTeamById(sessionInfo.getReqiureId());
-				if(ValidateUtil.isValid(team.getLoginName())){
+				if (ValidateUtil.isValid(team.getLoginName())) {
 					return true;
-				}return false;
+				}
+				return false;
 			}
 		}
 		return true;
 	}
-
-	/*@RequestMapping("/news/pagelist")
-	public BaseMsg newsList(final HttpServletRequest request, @RequestBody NewsView newsView) {
-		BaseMsg baseMsg = new BaseMsg();
-		final String url = URL_PREFIX + "portal/news/pagelist";
-
-		final long page = newsView.getPage();
-		final long rows = newsView.getRows();
-		newsView.setBegin((page - 1) * rows);
-		newsView.setLimit(rows);
-
-		String str = HttpUtil.httpPost(url, newsView, request);
-		if (str != null && !"".equals(str)) {
-			List<News> list = JsonUtil.toList(str);
-			baseMsg.setCode(1);
-			baseMsg.setResult(list);
-		} else {
-			baseMsg.setErrorMsg("list is null");
-		}
-		return baseMsg;
-	}*/
-
-	/*@RequestMapping("/news/pagesize")
-	public BaseMsg newsMaxSize(final HttpServletRequest request, @RequestBody NewsView newsView) {
-		BaseMsg baseMsg = new BaseMsg();
-		final String url = URL_PREFIX + "portal/news/pagesize";
-		String str = HttpUtil.httpPost(url, newsView, request);
-		if (str != null && !"".equals(str)) {
-			Long parseLong = Long.parseLong(str);
-			baseMsg.setCode(1);
-			baseMsg.setResult(parseLong);
-		} else {
-			baseMsg.setErrorMsg("list size is null");
-		}
-		return baseMsg;
-	}*/
-
-	/**
-	 * 新闻详情页推荐
-	 * 
-	 */
-	/*@RequestMapping(value = "/news/info/recommend")
-	public BaseMsg newsInfoRecommend(final HttpServletRequest request) {
-		BaseMsg baseMsg = new BaseMsg();
-		final String url = URL_PREFIX + "portal/news/info/recommend";
-		String str = HttpUtil.httpGet(url, request);
-		if (str != null && !"".equals(str)) {
-			List<News> list = JsonUtil.toList(str);
-			baseMsg.setCode(1);
-			baseMsg.setResult(list);
-		} else {
-			baseMsg.setErrorMsg("list is null");
-		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("get news info recommend", sessionInfo);
-		return baseMsg;
-	}*/
 
 	/**
 	 * 跳转新闻详情
@@ -766,7 +488,7 @@ public class PCController extends BaseController {
 	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
 			final ModelMap model, News n) {
 		n.setId(newId);
-		final String url = URL_PREFIX + "portal/news/info";
+		final String url = PublicConfig.URL_PREFIX + "portal/news/info";
 		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
 			try {
@@ -792,7 +514,7 @@ public class PCController extends BaseController {
 	@RequestMapping(value = "/news/next-{newId}.html")
 	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
 			final ModelMap model, News n) {
-		final String url = URL_PREFIX + "portal/news/next";
+		final String url = PublicConfig.URL_PREFIX + "portal/news/next";
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
@@ -818,7 +540,7 @@ public class PCController extends BaseController {
 	@RequestMapping(value = "/news/prev-{newId}.html")
 	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
 			final ModelMap model, News n) {
-		final String url = URL_PREFIX + "portal/news/prev";
+		final String url = PublicConfig.URL_PREFIX + "portal/news/prev";
 		n.setId(newId);
 		String str = HttpUtil.httpPost(url, n, request);
 		if (str != null && !"".equals(str)) {
@@ -853,5 +575,5 @@ public class PCController extends BaseController {
 		team.setPassword(null);
 		return team;
 	}
-	
+
 }

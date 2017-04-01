@@ -3,7 +3,7 @@ package com.panfeng.film.resource.model;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
 /**
  * 每个session 拥有一份 rtoken : this
@@ -11,7 +11,7 @@ import com.panfeng.film.domain.BaseObject;
  * @author wang
  *
  */
-public class PreventRepeatModel extends BaseObject {
+public class PreventRepeatModel extends BaseEntity {
 	
 	private static final long serialVersionUID = 8459920504152155274L;
 

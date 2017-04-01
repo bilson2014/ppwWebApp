@@ -6,8 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.panfeng.film.domain.GlobalConstant;
-import com.panfeng.film.util.ValidateUtil;
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.util.ValidateUtil;
 
 /** 
  * URL拦截器 验证token访问机制
@@ -31,7 +31,7 @@ public class ValidateTokenInterceptor extends HandlerInterceptorAdapter {
 
 		final String referer = request.getHeader("Referer");
 
-		if (ValidateUtil.isValid(referer) && referer.indexOf(GlobalConstant.HTTP_REFERER) > -1) {
+		if (ValidateUtil.isValid(referer) && referer.indexOf(PublicConfig.HTTP_REFERER) > -1) {
 			// 判断来源地址为 www.apaipian.com
 			if (ValidateUtil.isValid(stoken) && ValidateUtil.isValid(token)) {
 				// session中的token 与 url中的token不为空

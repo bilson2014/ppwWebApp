@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.view;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class Pagination extends BaseObject {
+public class Pagination extends BaseEntity {
 
 	private static final long serialVersionUID = -4473519214881594462L;
 

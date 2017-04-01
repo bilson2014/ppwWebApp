@@ -1,14 +1,13 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 /**
  * 产品模块化
  */
-public class ProductModule extends BaseObject {
+public class ProductModule extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private Integer pid = 0;
 	private String moduleName;
 	private String description;
@@ -33,12 +32,6 @@ public class ProductModule extends BaseObject {
 	}
 	public void setText(String text) {
 		this.text = text;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	public Integer getPid() {
 		return pid;

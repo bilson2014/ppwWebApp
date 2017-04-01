@@ -3,8 +3,8 @@ package com.panfeng.film.taglib;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
-import com.panfeng.film.domain.GlobalConstant;
 
 /**
  * 该自定义标签用于判断供应商是否登陆并且未审核
@@ -17,7 +17,7 @@ public class JudgeProviderNoIndentityTag extends TagSupport {
 	private static final long serialVersionUID = 1009368661198300917L;
 	
 	public int doStartTag() throws JspException {
-		final SessionInfo info = (SessionInfo) pageContext.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) pageContext.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		
 		if(info != null){
 			if(info.getSessionType().indexOf("provider") > -1){
