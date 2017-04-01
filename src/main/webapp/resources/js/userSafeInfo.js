@@ -8,7 +8,6 @@ $().ready(function() {
 	init();
 });
 
-var parent = $(window.parent.document);
 function init(){
 	// 初始化页面切换
 	initPage();

@@ -5,7 +5,7 @@
         http://code.alibabatech.com/schema/dubbo  
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
-	<dubbo:application name="edu-web-boss" /> 
+	<dubbo:application name="pat-web-film" /> 
 	<!-- 使用zookeeper注册中心暴露服务地址 -->
 	<!-- 注册中心地址 -->
 	<!-- <dubbo:registry protocol="zookeeper" address="106.75.4.197:2181" /> -->
@@ -31,7 +31,7 @@
 	<!--分销服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.sales.service.PmsSalesmanFacade" id="pmsSalesmanFacade" check="false" timeout="5000"/>
 	<!--员工服务接口 -->
-	<dubbo:reference interface="com.paipianwang.pat.facade.employee.service.PmsEmployeeFacade" id="pmsEmployeeFacade" check="false" timeout="5000"/>
+	<dubbo:reference interface="com.paipianwang.pat.facade.right.service.PmsEmployeeFacade" id="pmsEmployeeFacade" check="false" timeout="5000"/>
 	<dubbo:reference interface="com.paipianwang.pat.facade.employee.service.PmsStaffFacade" id="pmsStaffFacade" check="false" timeout="5000"/>
 	<dubbo:reference interface="com.paipianwang.pat.facade.employee.service.PmsJobFacade" id="pmsJobFacade" check="false" timeout="5000"/>
 	<!--权限服务接口 -->
