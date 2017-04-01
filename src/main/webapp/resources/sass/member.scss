@@ -460,7 +460,6 @@ body {
 .introduce {
     @include media_screen_width_beta3();
     margin: 0 auto;
-    border-top: 1px solid $c97;
     text-align: center;
     ul {
         width: 280px;

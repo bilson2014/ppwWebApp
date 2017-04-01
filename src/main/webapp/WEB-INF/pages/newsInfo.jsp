@@ -165,7 +165,7 @@
         </div>
                  <c:if test="${empty list}">
 						<div class="prompt-background">
-							<img alt="未找到相关作品_拍片网" src="${imgPath}/search/airship.png">
+							<img alt="未找到相关作品_拍片网" style="margin-top:100px" src="${imgPath}/search/airship.png">
 						</div>
 						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
 	</c:if>
