@@ -7,12 +7,12 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRight;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.util.UrlResourceUtils;
-import com.panfeng.film.util.ValidateUtil;
 
 public class SecurityTag extends TagSupport{
 
@@ -25,11 +25,10 @@ public class SecurityTag extends TagSupport{
 		if(ValidateUtil.isValid(uri)){
 			final ServletContext sc = pageContext.getServletContext();
 			WebApplicationContext  wc = WebApplicationContextUtils.findWebApplicationContext(sc);
-			//final RightDao dao = (RightDao) wc.getBean("rightDao");
 			final PmsRightFacade pmsRightFacade = (PmsRightFacade) wc.getBean("pmsRightFacade");
 			final String url = UrlResourceUtils.URLResolver(uri, sc.getContextPath());
 			
-			final SessionInfo info = (SessionInfo) pageContext.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+			final SessionInfo info = (SessionInfo) pageContext.getSession().getAttribute(PmsConstant.SESSION_INFO);
 			
 			if(info != null){
 				if(info.isSuperAdmin()){

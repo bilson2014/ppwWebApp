@@ -13,8 +13,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.dao.StorageLocateDao;
-import com.panfeng.film.util.ValidateUtil;
 
 @SuppressWarnings("rawtypes")
 @Component

@@ -5,16 +5,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Transaction;
-
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.dao.RightDao;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.Right;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.RedisUtils;
-import com.panfeng.film.util.ValidateUtil;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Transaction;
 
 @Repository(value = "rightDao")
 public class RightDaoImpl implements RightDao {
@@ -26,7 +26,7 @@ public class RightDaoImpl implements RightDao {
 		Jedis jedis = null;
 		try {
 			jedis = pool.getResource();
-			String str = jedis.hget(GlobalConstant.CONTEXT_RIGHT_MAP, uri);
+			String str = jedis.hget(PmsConstant.CONTEXT_RIGHT_MAP, uri);
 			final Right right = JsonUtil.toBean(str, Right.class);
 			return right;
 		} catch (Exception e) {
@@ -45,7 +45,7 @@ public class RightDaoImpl implements RightDao {
 		Jedis jedis = null;
 		try {
 			jedis = pool.getResource();
-			Map<String,String> map = jedis.hgetAll(GlobalConstant.CONTEXT_RIGHT_MAP);
+			Map<String,String> map = jedis.hgetAll(PmsConstant.CONTEXT_RIGHT_MAP);
 			if(ValidateUtil.isValid(map)){
 				final Map<String,Right> rightMap = RedisUtils.fromJson(map);
 				return rightMap;
@@ -73,7 +73,7 @@ public class RightDaoImpl implements RightDao {
 				final String str = RedisUtils.toJson(right);
 				if(ValidateUtil.isValid(str)){
 					Transaction t = jedis.multi();
-					t.hset(GlobalConstant.CONTEXT_RIGHT_MAP, right.getUrl(), str);
+					t.hset(PmsConstant.CONTEXT_RIGHT_MAP, right.getUrl(), str);
 					t.exec();
 				}
 			} catch (Exception e) {
@@ -95,7 +95,7 @@ public class RightDaoImpl implements RightDao {
 				jedis = pool.getResource();
 				Transaction tx = jedis.multi();
 				final Map<String,String> rightMap = RedisUtils.toJson(map);
-				tx.hmset(GlobalConstant.CONTEXT_RIGHT_MAP, rightMap);
+				tx.hmset(PmsConstant.CONTEXT_RIGHT_MAP, rightMap);
 				tx.exec();
 			} catch (Exception e) {
 				// do something for logger

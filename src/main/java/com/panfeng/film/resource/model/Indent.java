@@ -1,17 +1,15 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
 /**
  * 订单业务类
  * @author GY
  */
-public class Indent extends BaseObject {
+public class Indent extends BaseEntity {
 
 	private static final long serialVersionUID = 3600890814141989814L;
 
-	private long id = 0l; // 订单编号
-	
 	private long indentId = 0l; // 订单编号
 	
 	private String indentName = null; // 订单名称
@@ -74,14 +72,6 @@ public class Indent extends BaseObject {
 	
 	private Boolean sendToUser = true;//订单给客户发短信
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public long getIndentId() {
 		return indentId;
 	}

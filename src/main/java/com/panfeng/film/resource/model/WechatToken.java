@@ -1,11 +1,11 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
 /**
  * wechat token 
  */
-public class WechatToken extends BaseObject {
+public class WechatToken extends BaseEntity {
 
 	private static final long serialVersionUID = 2862541565626913853L;
 

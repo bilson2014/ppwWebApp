@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class IndentComment extends BaseObject {
+public class IndentComment extends BaseEntity {
 
 	private static final long serialVersionUID = 0xfe5453;
 

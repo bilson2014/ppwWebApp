@@ -2,13 +2,15 @@ package com.panfeng.film.resource.model;
 
 import java.util.List;
 
+import com.paipianwang.pat.common.entity.BaseEntity;
+
 /**
  * 职工表
  * 
  * @author GY
  *
  */
-public class Employee extends Customer {
+public class Employee extends BaseEntity {
 
 	private static final long serialVersionUID = -2956477405160485997L;
 

@@ -1489,6 +1489,7 @@ function showAlert(message) {
 }
 // add by guoyang, 2016-04-19 03:14 begin
 // -> 添加进度条显示
+// TODO 文件上传进度方法删除了，之后都改为 百度的上传控件，使用FastDFS存储
 function getProgress() {
 	var now = new Date();
 	loadData(function(data) {

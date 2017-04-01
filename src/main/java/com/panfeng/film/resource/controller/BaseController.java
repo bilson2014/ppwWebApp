@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.util.Log;
 
@@ -37,7 +37,7 @@ public abstract class BaseController {
 	}
 	
 	protected SessionInfo getCurrentInfo(final HttpServletRequest request){
-		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		return info;
 	}
 	
@@ -57,8 +57,7 @@ public abstract class BaseController {
 				for (Cookie c : cookie) {
 					if ("token".equals(c.getName())) {
 						// TODO 删除
-						// sessionService.removeSessionByToken(request, c.getValue());
-						request.getSession().removeAttribute(GlobalConstant.SESSION_INFO);
+						request.getSession().removeAttribute(PmsConstant.SESSION_INFO);
 						Cookie cookieUsername = new Cookie("token", null);
 						cookieUsername.setPath("/");
 						cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);

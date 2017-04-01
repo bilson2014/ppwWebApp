@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.resource.model.Right;
 /**
  * Redis 数据转换

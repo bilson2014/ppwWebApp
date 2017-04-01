@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.panfeng.film.dao.StorageLocateDao;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.util.DataUtil;
-import com.panfeng.film.util.ValidateUtil;
 
 /**
  * URL拦截器 添加token访问机制
@@ -58,7 +59,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 			throws Exception {
 		if(mv != null) {
 			// 如果不为空，则说明进入视图解析器
-			final Map<String, String> nodeMap = storageDao.getStorageFromRedis(GlobalConstant.STORAGE_NODE_RELATIONSHIP);
+			final Map<String, String> nodeMap = storageDao.getStorageFromRedis(PmsConstant.STORAGE_NODE_RELATIONSHIP);
 			// 获取最优Storage节点
 			final String serviceIP = fdfsService.locateFileStoragePath();
 			String ip = "";
@@ -71,13 +72,13 @@ public class TokenInterceptor implements HandlerInterceptor {
 					sbf.append(ip);
 					sbf.append(":8888/");
 				} else {
-					sbf.append(GlobalConstant.FDFS_BACKUP_SERVER_PATH);
+					sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
 				}
 			} else {
-				sbf.append(GlobalConstant.FDFS_BACKUP_SERVER_PATH);
+				sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
 			}
 			
-			mv.addObject(GlobalConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
+			mv.addObject(PmsConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
 		}
 		
 	}

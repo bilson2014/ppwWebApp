@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class Customer extends BaseObject {
+public class Customer extends BaseEntity {
 
 	private static final long serialVersionUID = -7583136454730129997L;
 

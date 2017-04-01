@@ -1,7 +1,6 @@
 package com.panfeng.film.resource.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,11 +36,5 @@ public class KindeditorController extends BaseController {
 		// step 3.生成图片URL
 		result = kindeditorService.getImageUrl(result);
 		return kindeditorService.createMsg(result, Constants.MSG_SUCCESS);
-	}
-	@RequestMapping(value = "/kindeditor/delete/{sessionId}")
-	public boolean delete(@PathVariable("sessionId") final String sessionid) {
-		if (sessionid != null &&!"".equals(sessionid))
-			kindeditorService.deleteImageDir(sessionid);
-		return true;
 	}
 }

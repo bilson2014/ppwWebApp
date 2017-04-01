@@ -9,13 +9,8 @@ import java.util.Properties;
  */
 public final class Constants {
 
-	public static String FILE_PROFIX;
-	public static String PRODUCT_DESCRIPTION_IMAGE_PATH;
-	public static String PRODUCT_DESCRIPTION_IMAGE_URL;
-	public static String TEMP_DIR;
 	public static String AUTO_TEST;
 	public static String COOKIES_SCOPE;
-	public static String UPLOAD_PATH;
 	public static Constants CONSTANTS = new Constants();
 	
 	
@@ -55,15 +50,8 @@ public final class Constants {
 	}
 
 	private static void full(Properties properties) {
-		FILE_PROFIX = properties.getProperty("file.prefix");
-		PRODUCT_DESCRIPTION_IMAGE_PATH = properties
-				.getProperty("upload.server.product.description.image");
-		PRODUCT_DESCRIPTION_IMAGE_URL = properties
-				.getProperty("upload.server.product.description.image.url");
-		TEMP_DIR=properties.getProperty("upload.server.temp");
 		AUTO_TEST=properties.getProperty("auto.test");
 		COOKIES_SCOPE=properties.getProperty("cookies_scope");
-		UPLOAD_PATH = PropertiesUtils.getProp("upload.path");
 	}
 	
 	/**

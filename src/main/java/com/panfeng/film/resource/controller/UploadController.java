@@ -1,9 +1,5 @@
 package com.panfeng.film.resource.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.paipianwang.pat.common.config.PublicConfig;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.util.FileUtils;
-import com.panfeng.film.util.Log;
 
 
 /**
@@ -23,38 +19,10 @@ import com.panfeng.film.util.Log;
  */
 @RestController
 public class UploadController {
-	private static String URL_PREFIX = null;
-
-	private static String PRODUCT_IMAGE_MAX_SIZE = null;
-
-	private static String VIDEO_MAX_SIZE = null;
-
-	private static String ALLOW_IMAGE_TYPE = null;
-
-	private static String ALLOW_VIDEO_TYPE = null;
 	
 	@Autowired
 	private FDFSService DFSservice;
 
-	public UploadController() {
-		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
-			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
-			try {
-				Properties propertis = new Properties();
-				propertis.load(is);
-				URL_PREFIX = propertis.getProperty("urlPrefix");
-				ALLOW_IMAGE_TYPE = propertis.getProperty("imageType");
-				PRODUCT_IMAGE_MAX_SIZE = propertis.getProperty("productMaxSize");
-				VIDEO_MAX_SIZE = propertis.getProperty("videoMaxSize");
-				ALLOW_VIDEO_TYPE = propertis.getProperty("videoType");
-			} catch (IOException e) {
-				Log.error("ProviderController method:constructor load Properties fail ...", null);
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	
 	@RequestMapping("/web/upload")
 	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file,String oldUrl) {
 		// 检测视频是否大于限制
@@ -72,12 +40,12 @@ public class UploadController {
 	
 	public BaseMsg checkFile(final MultipartFile file) {
 		if (file != null && !file.isEmpty()) {
-			final long img_MaxSize = Long.parseLong(PRODUCT_IMAGE_MAX_SIZE);
-			final long video_MaxSize = Long.parseLong(VIDEO_MAX_SIZE);
+			final long img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
+			final long video_MaxSize = Long.parseLong(PublicConfig.VIDEO_MAX_SIZE);
 
 			// 检测文件类型
 			final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
-			final short fileType = FileUtils.divideIntoGroup(extName, ALLOW_IMAGE_TYPE, ALLOW_VIDEO_TYPE);
+			final short fileType = FileUtils.divideIntoGroup(extName, PublicConfig.ALLOW_IMAGE_TYPE, PublicConfig.ALLOW_VIDEO_TYPE);
 			final long fileSize = file.getSize();
 			switch (fileType) {
 			case 0: // video

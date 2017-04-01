@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import java.io.Serializable;
 
-public class News extends BaseObject {
+public class News implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

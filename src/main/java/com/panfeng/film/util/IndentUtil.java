@@ -2,7 +2,7 @@ package com.panfeng.film.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.security.AESUtil;
 
@@ -19,7 +19,7 @@ public class IndentUtil {
 			sb.append(",salesmanUniqueId:" + indent.getSalesmanUniqueId());
 			sb.append("}");
 			
-			final String token = AESUtil.Encrypt(sb.toString(), GlobalConstant.ORDER_TOKEN_UNIQUE_KEY);
+			final String token = AESUtil.Encrypt(sb.toString(), PmsConstant.ORDER_TOKEN_UNIQUE_KEY);
 			return token;
 		}
 }

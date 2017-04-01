@@ -1,7 +1,5 @@
 package com.panfeng.film.util;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -28,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.config.PublicConfig;
 
 public class HttpUtil {
 	final static Logger logger = LoggerFactory.getLogger("error");
@@ -45,7 +43,7 @@ public class HttpUtil {
 
 		context = HttpClientContext.create();
 		cookieStore = new BasicCookieStore();
-		addCookie("JSESSIONID", request.getSession().getId(), GlobalConstant.COOKIES_SCOPE, "/");
+		addCookie("JSESSIONID", request.getSession().getId(), PublicConfig.COOKIES_SCOPE, "/");
 		// 配置超时时间（连接服务端超时1秒，请求数据返回超时2秒）
 		requestConfig = RequestConfig.custom().setConnectTimeout(120000).setSocketTimeout(60000)
 				.setConnectionRequestTimeout(60000).build();
@@ -132,76 +130,6 @@ public class HttpUtil {
 			e.printStackTrace();
 		}
 		return result;
-	}
-
-	/**
-	 * 下载文件进行临时中转（内部存取转发到外网）
-	 * 
-	 * @param url
-	 * @param request
-	 * @return
-	 */
-	public static Object[] httpGetFile(final String url, final HttpServletRequest request) {
-		CloseableHttpClient client = getClient(request);
-		HttpGet httpGet = new HttpGet(url);
-		CloseableHttpResponse response = null;
-		Object[] objArray = new Object[2];
-		try {
-			response = client.execute(httpGet, context);
-			String filename = null;
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				filename = response.getFirstHeader("Content-Disposition").getValue();
-				HttpEntity httpEntity = response.getEntity();
-				objArray[0] = filename;
-				InputStream is = httpEntity.getContent();
-				String tempNamt = PathFormatUtils.parse("{time}{rand:6}");
-				File tempFile = new File(Constants.FILE_PROFIX + Constants.TEMP_DIR, tempNamt);
-				OutputStream os = new FileOutputStream(tempFile);
-				saveTo(is, os);
-				objArray[1] = tempFile;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return objArray;
-	}
-
-	/**
-	 * 下载文件进行临时中转（内部存取转发到外网）
-	 * 
-	 * @param url
-	 * @param request
-	 * @return
-	 */
-	public static Object[] httpPostFile(final String url, final Object obj, final HttpServletRequest request) {
-		CloseableHttpClient client = getClient(request);
-		HttpPost httpPost = new HttpPost(url);
-		CloseableHttpResponse response = null;
-		Object[] objArray = new Object[2];
-		Gson gson = new Gson();
-		String param = gson.toJson(obj);
-		try {
-			StringEntity s = new StringEntity(param.toString(), "utf-8");
-			s.setContentEncoding("UTF-8");
-			s.setContentType("application/json");// 发送json数据需要设置contentType
-			httpPost.setEntity(s);
-			response = client.execute(httpPost, context);
-			String filename = null;
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				filename = response.getFirstHeader("Content-Disposition").getValue();
-				HttpEntity httpEntity = response.getEntity();
-				objArray[0] = filename;
-				InputStream is = httpEntity.getContent();
-				String tempNamt = PathFormatUtils.parse("{time}{rand:6}");
-				File tempFile = new File(Constants.FILE_PROFIX + Constants.TEMP_DIR, tempNamt);
-				OutputStream os = new FileOutputStream(tempFile);
-				saveTo(is, os);
-				objArray[1] = tempFile;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return objArray;
 	}
 
 	public static void saveTo(InputStream in, OutputStream out) throws Exception {
