@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.resource.model.WechatToken;
 
@@ -21,8 +21,8 @@ public class WechatUtils {
 
 		if (code != null && !"".equals(code)) {
 			WechatToken token = new WechatToken();
-			token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
-			token.setSecret(GlobalConstant.CUSTOMER_WEBCHAT_APPSECRET);
+			token.setAppid(PmsConstant.CUSTOMER_WEBCHAT_APPID);
+			token.setSecret(PmsConstant.CUSTOMER_WEBCHAT_APPSECRET);
 			// 通过code获取access_token
 			final StringBuffer tokenUrl = new StringBuffer();
 			tokenUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
@@ -33,8 +33,8 @@ public class WechatUtils {
 			final String str = HttpUtil.httpGet(tokenUrl.toString(), request);
 			if (str != null && !"".equals(str)) {
 				token = JsonUtil.toBean(str, WechatToken.class);
-				token.setAppid(GlobalConstant.CUSTOMER_WEBCHAT_APPID);
-				token.setSecret(GlobalConstant.CUSTOMER_WEBCHAT_APPSECRET);
+				token.setAppid(PmsConstant.CUSTOMER_WEBCHAT_APPID);
+				token.setSecret(PmsConstant.CUSTOMER_WEBCHAT_APPSECRET);
 			}
 			if (token.getErrcode() == null) {
 				// 正确

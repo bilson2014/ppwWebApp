@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.paipianwang.pat.facade.right.entity.SessionInfo;
-import com.panfeng.film.domain.GlobalConstant;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
 
 /**
  * 供应商管理拦截器
@@ -21,7 +21,7 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
 		
 		final String contextPath = request.getContextPath();
 
-		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(GlobalConstant.SESSION_INFO);
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		
 		if(info != null){
 			return true;

@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class Role extends BaseObject {
+public class Role extends BaseEntity {
 
 	private static final long serialVersionUID = -8854764223286938909L;
 	

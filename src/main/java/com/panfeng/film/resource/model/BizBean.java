@@ -1,11 +1,11 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import java.io.Serializable;
 
 /**
  * 业务字典
  */
-public class BizBean extends BaseObject {
+public class BizBean implements Serializable {
 
 	private static final long serialVersionUID = 2072179123234736135L;
 

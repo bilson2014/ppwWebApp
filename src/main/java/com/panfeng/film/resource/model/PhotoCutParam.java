@@ -1,8 +1,8 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
-public class PhotoCutParam extends BaseObject {
+public class PhotoCutParam extends BaseEntity {
 
 	private static final long serialVersionUID = 1155350380579334858L;
 

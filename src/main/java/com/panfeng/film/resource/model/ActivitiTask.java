@@ -1,12 +1,11 @@
 package com.panfeng.film.resource.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 import org.activiti.engine.task.TaskInfo;
 
-import com.panfeng.film.domain.BaseObject;
-
-public class ActivitiTask extends BaseObject {
+public class ActivitiTask implements Serializable {
 
 	private static final long serialVersionUID = 112464574554L;
 
@@ -125,7 +124,7 @@ public class ActivitiTask extends BaseObject {
 	public String getId() {
 		return id;
 	}
-
+	
 	public void setId(String id) {
 		this.id = id;
 	}

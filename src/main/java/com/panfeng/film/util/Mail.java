@@ -1,15 +1,14 @@
 package com.panfeng.film.util;
 
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 /**
  * mail模板
  */
-public class Mail extends BaseObject{
+public class Mail extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	/**
      * 邮件主题
      */
@@ -22,14 +21,6 @@ public class Mail extends BaseObject{
 	private String createTime = null;
 	private String updateTime = null;
 	
-	
-    
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getSubject() {
 		return subject;
 	}

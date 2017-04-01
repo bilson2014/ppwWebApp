@@ -1,6 +1,6 @@
 package com.panfeng.film.resource.model;
 
-import com.panfeng.film.domain.BaseObject;
+import java.io.Serializable;
 
 /**
  * 级联“市”
@@ -8,7 +8,7 @@ import com.panfeng.film.domain.BaseObject;
  * @author wang
  *
  */
-public class City extends BaseObject {
+public class City implements Serializable {
 
 	private static final long serialVersionUID = 7933928369958873968L;
 

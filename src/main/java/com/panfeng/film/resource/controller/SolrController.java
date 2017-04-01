@@ -1,14 +1,11 @@
 package com.panfeng.film.resource.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paipianwang.pat.facade.right.entity.SessionInfo;
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.domain.GlobalConstant;
 import com.panfeng.film.resource.model.NewsSolr;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.Team;
@@ -33,22 +30,6 @@ import com.panfeng.film.util.Log;
 
 @RestController
 public class SolrController extends BaseController {
-
-	private static String URL_PREFIX = null;
-
-	public SolrController() {
-		if (URL_PREFIX == null || "".equals(URL_PREFIX)) {
-			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
-			try {
-				Properties propertis = new Properties();
-				propertis.load(is);
-				URL_PREFIX = propertis.getProperty("urlPrefix");
-			} catch (IOException e) {
-				Log.error("SolrController method:constructor load Properties fail ...", null);
-				e.printStackTrace();
-			}
-		}
-	}
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String length,
@@ -78,7 +59,7 @@ public class SolrController extends BaseController {
 
 		view.setLimit(20l);
 		try {
-			final String url = URL_PREFIX + "portal/solr/query";
+			final String url = PublicConfig.URL_PREFIX + "portal/solr/query";
 			final String json = HttpUtil.httpPost(url, view, request);
 			long total = 0l;
 			if (json != null && !"".equals(json)) {
@@ -119,7 +100,7 @@ public class SolrController extends BaseController {
 			view.setGenre(URLEncoder.encode(genre, "UTF-8"));
 
 		try {
-			String url = URL_PREFIX + "portal/solr/query";
+			String url = PublicConfig.URL_PREFIX + "portal/solr/query";
 			final String json = HttpUtil.httpPost(url, view, request);
 
 			if (json != null && !"".equals(json)) {
@@ -160,7 +141,7 @@ public class SolrController extends BaseController {
 
 		view.setLimit(20l);
 		try {
-			final String url = URL_PREFIX + "portal/solr/query/news";
+			final String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
 			final String json = HttpUtil.httpPost(url, view, request);
 			long total = 0l;
 			if (json != null && !"".equals(json)) {
@@ -205,7 +186,7 @@ public class SolrController extends BaseController {
 
 		view.setLimit(20l);
 		try {
-			final String url = URL_PREFIX + "portal/solr/query/news";
+			final String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
 			final String json = HttpUtil.httpPost(url, view, request);
 			if (json != null && !"".equals(json)) {
 				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
@@ -238,7 +219,7 @@ public class SolrController extends BaseController {
 			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
 
 		try {
-			String url = URL_PREFIX + "portal/solr/query/news";
+			String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
 			final String json = HttpUtil.httpPost(url, view, request);
 
 			if (json != null && !"".equals(json)) {
@@ -260,7 +241,7 @@ public class SolrController extends BaseController {
 			try {
 				final String word = URLDecoder.decode(token, "UTF-8");
 
-				String url = URL_PREFIX + "portal/solr/suggest/" + word;
+				String url = PublicConfig.URL_PREFIX + "portal/solr/suggest/" + word;
 				final String json = HttpUtil.httpGet(url, request);
 				if (json != null && !"".equals(json)) {
 					List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
@@ -282,7 +263,7 @@ public class SolrController extends BaseController {
 	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
 		BaseMsg baseMsg = new BaseMsg();
 
-		final String url = GlobalConstant.URL_PREFIX + "portal/product/more";
+		final String url = PublicConfig.URL_PREFIX + "portal/product/more";
 		final String json = HttpUtil.httpPost(url, team, request);
 
 		if (null != json && !"".equals(json)) {
@@ -314,7 +295,7 @@ public class SolrController extends BaseController {
 
 		Map<String, Object> map = new HashMap<>();
 		long total = 0l;
-		final String url = GlobalConstant.URL_PREFIX + "portal/tags/search";
+		final String url = PublicConfig.URL_PREFIX + "portal/tags/search";
 		final String json = HttpUtil.httpPost(url, solrView, request);
 		if (null != json && !"".equals(json)) {
 			List<Solr> list;

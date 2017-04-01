@@ -2,21 +2,19 @@ package com.panfeng.film.resource.model;
 
 import java.util.List;
 
-import com.panfeng.film.domain.BaseObject;
+import com.paipianwang.pat.common.entity.BaseEntity;
 
 /**
  * 供应商业务类
  * 
  * @author GY
  */
-public class Team extends BaseObject {
+public class Team extends BaseEntity {
 
 	private static final long serialVersionUID = -2618543190652423599L;
 
 	private long teamId = 0l;
 	
-	private long id;
-
 	private String password = "E10ADC3949BA59ABBE56E057F20F883E"; // 123456 密码
 
 	private String phoneNumber = null; // 联系电话
@@ -427,12 +425,6 @@ public class Team extends BaseObject {
 
 	public void setThirdLoginType(String thirdLoginType) {
 		this.thirdLoginType = thirdLoginType;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	@Override
 	public int hashCode() {
