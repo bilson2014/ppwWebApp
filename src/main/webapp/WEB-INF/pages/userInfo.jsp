@@ -192,12 +192,12 @@
                                 <input type="text" class="" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
                             </div>
                           
-                            <div class="infoItem">
+                            <div class="infoItem hide">
                                 <div class="title">客户来源</div>
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
-											<span id='customerSource' data-value="1">渠道</span>
+											<span id='customerSource' data-value="3">渠道</span>
 											<div class="carets"></div>
 										</button>
 										<ul class="dropdown-menu" id="selectUl" role="menu"
