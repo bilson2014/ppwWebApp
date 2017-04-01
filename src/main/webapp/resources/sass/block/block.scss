@@ -630,6 +630,7 @@ $rightWidth:320px;
             margin-bottom: 35px;
             span {
                 font-size: $font-size-sm;
+                color:$gray-light;
             }
         }
         .setPro {
@@ -647,6 +648,11 @@ $rightWidth:320px;
             //}
         }
     }
+
+.colorDark{
+    color:$gray-light;
+}
+
     .rightContent {
         display: inline-block;
         vertical-align: top;
@@ -668,6 +674,7 @@ $rightWidth:320px;
             overflow: hidden;
             span {
                 font-size: $font-size-sm;
+                color:$gray-light;
             }
         }
         .rightContentSwiper {
