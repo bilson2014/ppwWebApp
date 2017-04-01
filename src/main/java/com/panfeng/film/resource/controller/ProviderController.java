@@ -1489,7 +1489,7 @@ public class ProviderController extends BaseController {
 	 * 验证供应商信息是否存在修改
 	 */
 	@RequestMapping("/validate/change")
-	public boolean validateChange(@RequestBody final Team team, final HttpServletRequest request) {
+	public boolean validateChange(@RequestBody final PmsTeam team, final HttpServletRequest request) {
 		
 		final PmsTeam oldTeam = pmsTeamFacade.findTeamById(team.getTeamId());
 		team.setPassword(null);
