@@ -183,6 +183,9 @@
                 height: 36px;
                 padding-left: 17px;
                 line-height: 30px;
+                span{
+                    font-size: $font-size-sm;
+                }
             }
             .videoModel {
                 margin-bottom: 30px;
@@ -262,6 +265,9 @@
         .title {
             color: $gray-dark;
             font-size: $font-size;
+            span{
+                font-size: $font-size-sm;
+            }
         }
         .atrContent {
             width: $width-min - $rightWidth;

@@ -345,7 +345,7 @@
 
 		<div class="noInfo hide" id="noInfo">
 			<div class="swiper-container  swiper-noInfo">
-			    <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span>Recommended for you</span></div>
+			    <div class="title" id="moreTeamProductTitle" >相关影片推荐 <span class="colorDark">Recommended for you</span></div>
 			    <a class="hide" id="moreNoInfo">
 				    <div class="searchMore">
 		                      	<span>更多影片</span>

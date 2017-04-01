@@ -182,7 +182,7 @@
 			        </div>
                 </div>
                 <div class="rightContent" style="top:145px">
-                    <div class="title">最热资讯</div>
+                    <div class="title">最热资讯<span>Hot~</span></div>
                     <a href="/news-list.html?q=最热资讯"><div class="moreNews">更多活动</div></a>
                     <div class="setVideo" id="moreNews">
                     </div>
@@ -192,7 +192,7 @@
         </div> 
        
         <div class="youLike">
-             <div class="title">您可能感兴趣的文章  Recommendation</div>
+             <div class="title">您可能感兴趣的文章  <span>Recommendation</span></div>
              <div class="atrContent"> 
              </div>
         </div>

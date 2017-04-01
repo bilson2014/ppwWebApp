@@ -276,10 +276,8 @@ public class UserController extends BaseController {
 			if (file.exists()) {
 				if (!file.isDirectory()) {
 					file.delete();
-
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),
-							sessionInfo);
+					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),sessionInfo);
 					return true;
 				}
 			}

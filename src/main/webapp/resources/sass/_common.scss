@@ -15,6 +15,10 @@ body {
     font-weight: 500;
 }
 
+li{
+	list-style:none;
+}
+
 .page {
     background: #FDFFFF !important;
 }
@@ -732,9 +736,9 @@ a {
     .showVideo {
         width: 15px;
         height: 15px;
-        background: url(/resources/images/index/showVideoW.png) no-repeat;
+        background: url(/resources/images/index/showVideoB.png) no-repeat !important;
         position: absolute;
-        background-size: 15px 30px;
+        background-size: 15px 30px !important;
         top: 23px !important;
         left: 74px;
     }
@@ -918,7 +922,7 @@ a {
     .showVideo {
         width: 15px;
         height: 15px;
-        background: url(/resources/images/index/showVideoB.png) no-repeat;
+        background: url(/resources/images/index/showVideoW.png) no-repeat;
         position: absolute;
         background-size: 15px 30px;
         top: 32px;
