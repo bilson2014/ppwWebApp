@@ -40,11 +40,12 @@ function controlRightPos(){
 
 function initPath(){
 	var path = getQueryString('q');
-	var next = $('#next').attr('href');
-	$('#next').attr('href',next + path);
-	var prev = $('#prev').attr('href');
-	$('#prev').attr('href',prev + path);
-   // addPath(path);
+	if(path != null){
+		var next = $('#next').attr('href');
+		$('#next').attr('href',next + path);
+		var prev = $('#prev').attr('href');
+		$('#prev').attr('href',prev + path);
+	}
 }
 
 function getQueryString(name) {  

@@ -91,7 +91,7 @@ public class ProviderController extends BaseController {
 	private final SmsMQService smsMQService = null;
 	@Autowired
 	private final FileConvertMQService fileConvertMQService = null;
-	
+
 	static String UNIQUE = "unique_s"; // 三方登录凭证
 	static String LINKMAN = "username_s";// 用户名
 	static String ORIGINAL = "original";// 源对象
@@ -112,7 +112,7 @@ public class ProviderController extends BaseController {
 		model.addAttribute("provider", team);
 		// 第一次填充省
 		List<PmsProvince> provinces = pmsProvinceFacade.getAll();
-		if (provinces != null && provinces.size()>0) {
+		if (provinces != null && provinces.size() > 0) {
 			model.addAttribute("provinces", provinces);
 			if (ValidateUtil.isValid(team.getTeamCity())) {
 				// 填充第一次市区
@@ -129,7 +129,7 @@ public class ProviderController extends BaseController {
 						final List<PmsCity> citys = pmsCityFacade.findCitysByProvinceId(provinceID);
 						model.addAttribute("citys", citys);
 					}
-					
+
 				}
 			}
 		}
@@ -188,9 +188,9 @@ public class ProviderController extends BaseController {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
 		if (original.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
-			return loginByPhone(original,request,response);
+			return loginByPhone(original, request, response);
 		} else {// 用户名登录
-			return loginByName(original,request,response);
+			return loginByName(original, request, response);
 		}
 	}
 
@@ -211,7 +211,7 @@ public class ProviderController extends BaseController {
 					} else {
 						return new BaseMsg(BaseMsg.ERROR, "用户名或密码错误!", false);
 					}
-				}else{
+				} else {
 					return new BaseMsg(BaseMsg.WARNING, "用户名或密码错误!", false);
 				}
 			} catch (Exception e) {
@@ -221,7 +221,8 @@ public class ProviderController extends BaseController {
 		return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 	}
 
-	private BaseMsg loginByPhone(final PmsTeam original, final HttpServletRequest request,final HttpServletResponse response) {
+	private BaseMsg loginByPhone(final PmsTeam original, final HttpServletRequest request,
+			final HttpServletResponse response) {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		if ((original.getVerification_code() != null && code != null)) {
@@ -237,7 +238,7 @@ public class ProviderController extends BaseController {
 						} else {
 							return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
 						}
-					}else{
+					} else {
 						return new BaseMsg(BaseMsg.WARNING, "手机号或密码错误!", false);
 					}
 				} else {
@@ -311,7 +312,7 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/checkExisting")
 	public boolean isExisting(@RequestBody final PmsTeam team, final HttpServletRequest request) {
 		final long count = pmsTeamFacade.checkExist(team);
-		if (count == 0){
+		if (count == 0) {
 			return true;
 		}
 		return false;
@@ -326,11 +327,11 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/checkPhoneExisting")
 	public BaseMsg phoneIsExisting(@RequestBody final PmsTeam team, final HttpServletRequest request) {
-		
+
 		final long count = pmsTeamFacade.checkExist(team);
-		if (count == 0){
+		if (count == 0) {
 			return new BaseMsg(BaseMsg.NORMAL, "", null); // 请求失败
-		}else{
+		} else {
 			return new BaseMsg(BaseMsg.WARNING, "手机号已经重复注册啦！", null); // 请求失败
 		}
 	}
@@ -348,7 +349,7 @@ public class ProviderController extends BaseController {
 		// 判断手机号是否能注册
 		final long count = pmsTeamFacade.checkExist(original);
 		if (ValidateUtil.isValid(count)) {
-			if (count>0) {
+			if (count > 0) {
 				return new Info(false, "手机号已经注册");
 			}
 		}
@@ -482,7 +483,6 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 
-
 	/**
 	 * 供应商信息界面-修改密码
 	 * 
@@ -503,10 +503,10 @@ public class ProviderController extends BaseController {
 							final String password = AESUtil.Decrypt(team.getPassword(), PmsConstant.UNIQUE_KEY);
 							// MD5 加密
 							team.setPassword(DataUtil.md5(password));
-							
+
 							final long ret = pmsTeamFacade.updatePasswordByLoginName(team);
 							Log.error("update team ...", sessionInfo);
-							if (ret > 0){
+							if (ret > 0) {
 								msg.setCode(1);
 								msg.setResult("修改成功");
 							}
@@ -596,7 +596,8 @@ public class ProviderController extends BaseController {
 					// 修改为DFs上传 end
 
 					// 删除 原文件
-					final String originalTeamUrl = PublicConfig.URL_PREFIX + "portal/team/static/data/" + team.getTeamId();
+					final String originalTeamUrl = PublicConfig.URL_PREFIX + "portal/team/static/data/"
+							+ team.getTeamId();
 					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
 					if (originalJson != null && !"".equals(originalJson)) {
 						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
@@ -607,7 +608,8 @@ public class ProviderController extends BaseController {
 					}
 					team.setTeamPhotoUrl(fileId);
 					// save photo path
-					final String updateTeamUrl = PublicConfig.URL_PREFIX + "portal/team/static/data/updateTeamPhotoPath";
+					final String updateTeamUrl = PublicConfig.URL_PREFIX
+							+ "portal/team/static/data/updateTeamPhotoPath";
 					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
 					final boolean flag = JsonUtil.toBean(json, Boolean.class);
 					if (flag) {
@@ -657,7 +659,7 @@ public class ProviderController extends BaseController {
 		BaseMsg msg = new BaseMsg(0, "信息修改失败，请刷新后再试!");
 		// 验证登录名是否在数据库中已经存在
 		long count = pmsTeamFacade.checkExist(team);
-		if (count == 0){
+		if (count == 0) {
 			final String code = (String) request.getSession().getAttribute("code");
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			if (null != sessionInfo) {
@@ -794,12 +796,12 @@ public class ProviderController extends BaseController {
 			product.setpDescription("");
 			product.setVideoDescription("");
 			product.setVisible(0); // 默认可见
-			
+
 			long proId = pmsProductFacade.save(product); // 保存视频信息
 			product.setProductId(proId);
 			final PmsTeam team = pmsTeamFacade.findTeamById(sessionInfo.getReqiureId());
-			if(team.getFlag() != 4){//ghost不需要添加service
-				//添加service信息
+			if (team.getFlag() != 4) {// ghost不需要添加service
+				// 添加service信息
 				PmsService service = new PmsService();
 				service.setProductId(product.getProductId());
 				service.setProductName(product.getProductName());
@@ -866,11 +868,10 @@ public class ProviderController extends BaseController {
 		}
 		pmsProductFacade.updateProductInfo(oldProduct); // 更新视频信息
 		Log.error("update product ... ", sessionInfo);
-		Log.error("Provider Update Product success,productId:" + productId + " ,productName:"
-				+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
+		Log.error("Provider Update Product success,productId:" + productId + " ,productName:" + product.getProductName()
+				+ " ,flag:" + product.getFlag(), sessionInfo);
 		return new BaseMsg(1, "success");
 	}
-
 
 	@RequestMapping(value = "/multipUploadFile", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
@@ -902,8 +903,8 @@ public class ProviderController extends BaseController {
 				long proId = pmsProductFacade.save(product); // 保存视频信息
 				product.setProductId(proId);
 				final PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
-				if(team.getFlag() != 4){//ghost不需要添加service
-					//添加service信息
+				if (team.getFlag() != 4) {// ghost不需要添加service
+					// 添加service信息
 					PmsService service = new PmsService();
 					service.setProductId(product.getProductId());
 					service.setProductName(product.getProductName());
@@ -918,8 +919,8 @@ public class ProviderController extends BaseController {
 				// 加入文件转换队列
 				fileConvertMQService.sendMessage(product.getProductId(), product.getVideoUrl());
 				Log.error("save product ... ", info);
-				Log.info("ProviderController method:uploadFiles() file upload success,productId = " + proId
-						+ " ...",info);
+				Log.info("ProviderController method:uploadFiles() file upload success,productId = " + proId + " ...",
+						info);
 				return "success";
 			}
 		}
@@ -934,7 +935,8 @@ public class ProviderController extends BaseController {
 
 			// 检测文件类型
 			final String extName = FileUtils.getExtName(file.getOriginalFilename(), ".");
-			final short fileType = FileUtils.divideIntoGroup(extName, PublicConfig.ALLOW_IMAGE_TYPE, PublicConfig.ALLOW_VIDEO_TYPE);
+			final short fileType = FileUtils.divideIntoGroup(extName, PublicConfig.ALLOW_IMAGE_TYPE,
+					PublicConfig.ALLOW_VIDEO_TYPE);
 			final long fileSize = file.getSize();
 			switch (fileType) {
 			case 0: // video
@@ -1036,7 +1038,7 @@ public class ProviderController extends BaseController {
 				model.addAttribute("citys", citys);
 			} else {
 				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("provinceId is null ...",sessionInfo);
+				Log.error("provinceId is null ...", sessionInfo);
 			}
 		}
 		HttpSession httpSession = request.getSession();
@@ -1052,7 +1054,7 @@ public class ProviderController extends BaseController {
 		final SessionInfo info = getCurrentInfo(request);
 		final PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
 		team.setPassword(null);
-		if(team.getId()!=0l){
+		if (team.getId() != 0l) {
 			team.setTeamId(team.getId());
 		}
 		return team;
@@ -1071,11 +1073,12 @@ public class ProviderController extends BaseController {
 		return team;
 	}
 
-	public boolean updateInfo(final PmsTeam team, final HttpServletRequest request) throws UnsupportedEncodingException {
+	public boolean updateInfo(final PmsTeam team, final HttpServletRequest request)
+			throws UnsupportedEncodingException {
 		// 将状态置为审核中
-		if(team.getFlag() == 2)
+		if (team.getFlag() == 2)
 			team.setFlag(0);
-		
+
 		final long ret = pmsTeamFacade.updateTeamInfomation(team);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("update team ...", sessionInfo);
@@ -1085,8 +1088,7 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 
-	public boolean updateInfo_register(@RequestBody final PmsTeam team, final HttpServletRequest request)
-			{
+	public boolean updateInfo_register(@RequestBody final PmsTeam team, final HttpServletRequest request) {
 		try {
 			HttpSession httpSession = request.getSession();
 			// String unique = (String) httpSession.getAttribute(UNIQUE);
@@ -1111,7 +1113,7 @@ public class ProviderController extends BaseController {
 					}
 				}
 				team.setFlag(0);// 设置审核状态为审核中
-				
+
 				PmsTeam dbteam = pmsTeamFacade.register(team);
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("save team ...", sessionInfo);
@@ -1170,7 +1172,6 @@ public class ProviderController extends BaseController {
 	public ModelAndView repwd(ModelMap modelMap) {
 		return new ModelAndView("/rePwdPro", modelMap);
 	}
-
 
 	@RequestMapping(value = "/set/masterWork", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg setMasterWork(@RequestBody final PmsProduct product, HttpServletRequest request) {
@@ -1322,7 +1323,7 @@ public class ProviderController extends BaseController {
 	 */
 	@RequestMapping("/validate/change")
 	public boolean validateChange(@RequestBody final PmsTeam team, final HttpServletRequest request) {
-		
+
 		final PmsTeam oldTeam = pmsTeamFacade.findTeamById(team.getTeamId());
 		team.setPassword(null);
 		if (team.equals(oldTeam)) {
@@ -1367,7 +1368,7 @@ public class ProviderController extends BaseController {
 	/**
 	 * 设置作品可见性
 	 */
-	@RequestMapping(value="/product/visibility", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/product/visibility", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg setProductVisibility(HttpServletRequest request, @RequestBody final PmsProduct product) {
 
 		BaseMsg baseMsg = new BaseMsg();
@@ -1392,6 +1393,7 @@ public class ProviderController extends BaseController {
 		}
 		return baseMsg;
 	}
+
 	/**
 	 * 初始化 sessionInfo 信息
 	 * 
@@ -1417,7 +1419,7 @@ public class ProviderController extends BaseController {
 		info.setPhoto(team.getTeamPhotoUrl());
 		if (team.getFlag() == 1)
 			info.setIsIdentification(true);
-		
+
 		final PmsRole role = pmsRoleFacade.findRoleById(2l); // 获取用户角色
 		final List<PmsRole> roles = new ArrayList<PmsRole>();
 		roles.add(role);
