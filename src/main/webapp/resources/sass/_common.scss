@@ -732,7 +732,7 @@ a {
     .showVideo {
         width: 15px;
         height: 15px;
-        background: url(/resources/images/index/showVideoB.png) no-repeat;
+        background: url(/resources/images/index/showVideoW.png) no-repeat;
         position: absolute;
         background-size: 15px 30px;
         top: 23px !important;
@@ -803,6 +803,18 @@ a {
     }
 }
 
+.consorlInput {
+    @media screen and (max-width: 1276px) {
+        width: 210px !important;
+        position: relative !important;
+        left: 3px !important;
+        input {
+            width: 210px !important;
+            padding-right: 20px !important;
+        }
+    }
+}
+
 .menu-bar .middle-part {
     top: 24px;
     width: 300px;
@@ -813,17 +825,7 @@ a {
     -webkit-transition: all .8s ease-out 0s;
     /* Safari 和 Chrome */
     -o-transition: all .8s ease-out 0s;
-    width: 115px !important;
-    &:hover {
-        @media screen and (max-width: 1276px) {
-            width: 205px !important;
-            position: relative;
-            left: 5px;
-            input {
-                width: 205px !important;
-            }
-        }
-    }
+    width: 115px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         width: 300px !important;
     }
@@ -843,7 +845,7 @@ a {
         -webkit-transition: all .8s ease-out 0s;
         /* Safari 和 Chrome */
         -o-transition: all .8s ease-out 0s;
-        width: 115px !important;
+        width: 115px;
         min-width: 115px;
         height: 30px !important;
         color: white;
@@ -853,7 +855,7 @@ a {
     }
     .bannerSearchFind {
         position: absolute;
-        right: 15px;
+        right: 5px;
         top: 7px;
         width: 15px;
         height: 15px;
@@ -1006,7 +1008,6 @@ a {
                     width: 296px !important;
                 }
             }
-
             .topItem {
                 display: inline-block;
                 color: white;
@@ -1059,7 +1060,6 @@ a {
                         background-position-y: -15px;
                     }
                 }
-
                 .cusLogin {
                     background: url(/resources/images/index/cusLogin.png) no-repeat;
                 }
@@ -1190,6 +1190,7 @@ a {
         right: -486px;
         top: -10px;
         background: url(/resources/images/block/close.png) no-repeat;
+        background-size: 24px 48px;
         cursor: pointer;
         &:hover {
             background-position-y: -24px;
@@ -1247,7 +1248,7 @@ a {
         height: 540px;
         top: 50%;
         left: 50%;
-        margin-top: -270px;
+        margin-top: -250px;
         margin-left: -960px;
     }
     .active {

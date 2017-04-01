@@ -43,12 +43,12 @@ var newsInfo = {
 		},
 		getUrl:function(path){
 			
-			$.each($('.toNewsUrl'),function(i,model){
-				 
-				  var url = $(this).attr('href')+'?q=' + path;
-				  $(this).attr('href',url);
-				
-			});
+//			$.each($('.toNewsUrl'),function(i,model){
+//				 
+//				  var url = $(this).attr('href')+'?q=' + path;
+//				  $(this).attr('href',url);
+//				
+//			});
 			
 			
 		},
