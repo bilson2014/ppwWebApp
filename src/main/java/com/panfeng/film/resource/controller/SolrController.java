@@ -2,7 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +10,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,18 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
-import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.SolrUtil;
+import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.domain.ResourceToken;
+import com.paipianwang.pat.facade.information.entity.PmsNewsSolr;
+import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.resource.model.NewsSolr;
-import com.panfeng.film.resource.model.Solr;
-import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.util.HttpUtil;
-import com.panfeng.film.util.JsonUtil;
-import com.panfeng.film.util.Log;
+import com.panfeng.film.service.SolrService;
 
 @RestController
 public class SolrController extends BaseController {
+
+	@Autowired
+	private SolrService solrService = null;
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String length,
@@ -42,77 +46,38 @@ public class SolrController extends BaseController {
 		model.addAttribute("industry", industry);
 		model.addAttribute("genre", genre);
 		model.addAttribute("isMore", isMore);
+
 		final SolrView view = new SolrView();
-
-		if (StringUtils.isNotBlank(q))
-			view.setCondition(URLEncoder.encode(q, "UTF-8"));
-		if (StringUtils.isNotBlank(industry))
-			view.setIndustry(URLEncoder.encode(industry, "UTF-8"));
-		if (StringUtils.isNotBlank(genre))
-			view.setGenre(URLEncoder.encode(genre, "UTF-8"));
-
+		view.setCondition(q);
+		view.setIndustry(industry);
+		view.setGenre(genre);
 		view.setLengthFq(length);
 		view.setPriceFq(price);
-
 		// 设置是否是从相关性推荐过来的
 		view.setMore(isMore);
-
 		view.setLimit(20l);
-		try {
-			final String url = PublicConfig.URL_PREFIX + "portal/solr/query";
-			final String json = HttpUtil.httpPost(url, view, request);
-			long total = 0l;
-			if (json != null && !"".equals(json)) {
-				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list != null && !list.isEmpty()) {
-					final Solr s = list.get(0);
-					if (s != null) {
-						total = s.getTotal(); // 设置总数
-					}
-				}
-				model.addAttribute("list", list);
-				model.addAttribute("total", total);
+
+		final List<PmsProductSolr> list = solrService.listWithPagination(view, request);
+
+		long total = 0l;
+		if (list != null && !list.isEmpty()) {
+			final PmsProductSolr s = list.get(0);
+			if (s != null) {
+				total = s.getTotal(); // 设置总数
 			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("SolrController method:searchView() encode failue,q=" + q, sessionInfo);
 		}
+
+		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 		return new ModelAndView("search", model);
 	}
 
 	// 搜索分页
 	@RequestMapping("/search/pagination")
-	public List<Solr> searchPagination(@RequestBody final SolrView view, final HttpServletRequest request)
+	public List<PmsProductSolr> searchPagination(@RequestBody final SolrView view, final HttpServletRequest request)
 			throws Exception {
-
-		final String condition = view.getCondition();
-		final String industry = view.getIndustry();
-		final String genre = view.getGenre();
-
-		if (StringUtils.isNotBlank(condition))
-			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
-
-		if (StringUtils.isNotBlank(industry))
-			view.setIndustry(URLEncoder.encode(industry, "UTF-8"));
-
-		if (StringUtils.isNotBlank(genre))
-			view.setGenre(URLEncoder.encode(genre, "UTF-8"));
-
-		try {
-			String url = PublicConfig.URL_PREFIX + "portal/solr/query";
-			final String json = HttpUtil.httpPost(url, view, request);
-
-			if (json != null && !"".equals(json)) {
-				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				return list;
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("SolrController method:searchPagination() encode failue,q=" + view.getCondition(), sessionInfo);
-		}
-		return null;
+		final List<PmsProductSolr> list = solrService.listWithPagination(view, request);
+		return list;
 	}
 
 	/**
@@ -135,31 +100,17 @@ public class SolrController extends BaseController {
 			q = null;
 		}
 		model.addAttribute("q", q);
-		
-		if (StringUtils.isNotBlank(q))
-			view.setCondition(URLEncoder.encode(q, "UTF-8"));
-
 		view.setLimit(20l);
-		try {
-			final String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
-			final String json = HttpUtil.httpPost(url, view, request);
-			long total = 0l;
-			if (json != null && !"".equals(json)) {
-				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
-				if (list != null && !list.isEmpty()) {
-					final NewsSolr s = list.get(0);
-					if (s != null) {
-						total = s.getTotal(); // 设置总数
-					}
-				}
-				model.addAttribute("list", list);
-				model.addAttribute("total", total);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("SolrController method:searchNewView() encode failue,q=" + q, sessionInfo);
+
+		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
+
+		long total = 0l;
+		final PmsNewsSolr s = list.get(0);
+		if (s != null) {
+			total = s.getTotal(); // 设置总数
 		}
+		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 		return new ModelAndView("newsInfo", model);
 	}
 
@@ -181,31 +132,24 @@ public class SolrController extends BaseController {
 			view.setRecomendFq("[1 TO *]");
 			q = null;
 		}
-		if (StringUtils.isNotBlank(q))
-			view.setCondition(URLEncoder.encode(q, "UTF-8"));
 
 		view.setLimit(20l);
-		try {
-			final String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
-			final String json = HttpUtil.httpPost(url, view, request);
-			if (json != null && !"".equals(json)) {
-				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
-				baseMsg.setCode(BaseMsg.NORMAL);
-				baseMsg.setResult(list);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("SolrController method:searchNewView() encode failue,q=" + q, sessionInfo);
-			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("服务器通信失败！");
+
+		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
+		if (ValidateUtil.isValid(list)) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setResult(list);
+			return baseMsg;
 		}
+
+		baseMsg.setCode(BaseMsg.ERROR);
+		baseMsg.setErrorMsg("服务器通信失败！");
 		return baseMsg;
 	}
-	
+
 	// 搜索分页
 	@RequestMapping("/search/news/pagination")
-	public List<NewsSolr> searchNewsPagination(@RequestBody final SolrView view, final HttpServletRequest request)
+	public List<PmsNewsSolr> searchNewsPagination(@RequestBody final SolrView view, final HttpServletRequest request)
 			throws Exception {
 
 		final String condition = view.getCondition();
@@ -215,67 +159,39 @@ public class SolrController extends BaseController {
 			view.setRecomendFq("[1 TO *]");
 		}
 
-		if (StringUtils.isNotBlank(condition))
-			view.setCondition(URLEncoder.encode(view.getCondition(), "UTF-8"));
-
-		try {
-			String url = PublicConfig.URL_PREFIX + "portal/solr/query/news";
-			final String json = HttpUtil.httpPost(url, view, request);
-
-			if (json != null && !"".equals(json)) {
-				List<NewsSolr> list = JsonUtil.fromJsonArray(json, NewsSolr.class);
-				return list;
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("SolrController searchNewsPagination() encode failue,q=" + view.getCondition(), sessionInfo);
-		}
-		return null;
+		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
+		return list;
 	}
 
 	@RequestMapping("/suggest/{token}")
-	public List<Solr> suggest(@PathVariable("token") final String token, final HttpServletRequest request) {
+	public List<PmsProductSolr> suggest(@PathVariable("token") final String token, final HttpServletRequest request) {
 
 		if (token != null && !"".equals(token)) {
-			try {
-				final String word = URLDecoder.decode(token, "UTF-8");
 
-				String url = PublicConfig.URL_PREFIX + "portal/solr/suggest/" + word;
-				final String json = HttpUtil.httpGet(url, request);
-				if (json != null && !"".equals(json)) {
-					List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-					if (list != null && list.size() > 0) {
-					}
-					return list;
-				}
-			} catch (Exception e) {
+			final ResourceToken resourceToken = (ResourceToken) request.getAttribute("searchResourceToken"); // 访问资源库令牌
+			String word = null;
+			try {
+				word = URLDecoder.decode(token, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
+			final SolrQuery query = new SolrQuery();
+			query.set("qt", "/suggest");
+			query.set("q", word);
+			query.set("spellcheck.build", "true");
+			List<String> list = solrService.suggestDocs(resourceToken.getSolrUrl(), query);
+			final List<PmsProductSolr> sList = new ArrayList<PmsProductSolr>();
+			if (list != null) {
+
+				for (final String string : list) {
+					final PmsProductSolr solr = new PmsProductSolr();
+					solr.setCondition(string);
+					sList.add(solr);
+				}
+			}
+			return sList;
 		}
 		return null;
-	}
-
-	/**
-	 * 播放界面获取更多导演作品
-	 */
-	@RequestMapping("/team/product/more")
-	public BaseMsg getMoreProduct(final HttpServletRequest request, @RequestBody final Team team) {
-		BaseMsg baseMsg = new BaseMsg();
-
-		final String url = PublicConfig.URL_PREFIX + "portal/product/more";
-		final String json = HttpUtil.httpPost(url, team, request);
-
-		if (null != json && !"".equals(json)) {
-			List<Solr> list = JsonUtil.toList(json);
-			baseMsg.setCode(1);
-			baseMsg.setResult(list);
-			return baseMsg;
-		} else {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("list is null");
-		}
-		return baseMsg;
 	}
 
 	/**
@@ -285,37 +201,45 @@ public class SolrController extends BaseController {
 	public BaseMsg getMoreProductByTags(final HttpServletRequest request, @RequestBody final SolrView solrView) {
 		BaseMsg baseMsg = new BaseMsg();
 
-		final String condition = solrView.getCondition();
-		try {
-			if (StringUtils.isNotBlank(condition))
-				solrView.setCondition(URLEncoder.encode(condition, "UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		}
+		final ResourceToken token = (ResourceToken) request.getAttribute("resourceToken"); // 访问资源库令牌
+		if (token != null) {
+			String condition = solrView.getCondition();
+			final SolrQuery query = new SolrQuery();
+			query.set("defType", "edismax");
+			query.set("q.alt", "*:*");
+			query.set("qf", "productName^2.3 tags");
 
-		Map<String, Object> map = new HashMap<>();
-		long total = 0l;
-		final String url = PublicConfig.URL_PREFIX + "portal/tags/search";
-		final String json = HttpUtil.httpPost(url, solrView, request);
-		if (null != json && !"".equals(json)) {
-			List<Solr> list;
-			try {
-				list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list.size() > 0) {
-					total = list.get(0).getTotal();
-				}
+			if (StringUtils.isNotBlank(condition)) {
+				// 如果有标签的话，那么判断condition按照标签搜索
+				// 分析标签优先级顺序，按顺序权重依次降低
+				condition = SolrUtil.ReweightingByTags(condition);
+				query.setQuery(condition);
+			} else {
+				// 没有标签，则相关视频推荐为空
+				return null;
+			}
+			query.set("pf", "tags^2.3 productName");
+			query.set("tie", "0.1");
+			query.setFields("teamId,productId,productName,orignalPrice,price,picLDUrl,tags");
+			query.setStart((int) solrView.getBegin());
+			query.setRows((int) solrView.getLimit());
+
+			final List<PmsProductSolr> list = solrService.queryDocs(token.getSolrUrl(), query);
+			if (ValidateUtil.isValid(list)) {
+				Map<String, Object> map = new HashMap<>();
+				long total = 0;
+				total = list.get(0).getTotal();
 				map.put("total", total);
 				map.put("result", list);
-			} catch (Exception e) {
-				e.printStackTrace();
+				baseMsg.setCode(1);
+				baseMsg.setResult(map);
+				return baseMsg;
 			}
-			baseMsg.setCode(1);
-			baseMsg.setResult(map);
-			return baseMsg;
-		} else {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("list is null");
+
 		}
+
+		baseMsg.setErrorCode(BaseMsg.ERROR);
+		baseMsg.setErrorMsg("list is null");
 		return baseMsg;
 	}
 }

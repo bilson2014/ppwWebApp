@@ -1,12 +1,12 @@
 package com.panfeng.film.resource.model;
 
-import com.paipianwang.pat.common.entity.BaseEntity;
+import java.io.Serializable;
 
 /**
  * 项目业务类
  * @author GY
  */
-public class Product extends BaseEntity {
+public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1070045570754608438L;
 

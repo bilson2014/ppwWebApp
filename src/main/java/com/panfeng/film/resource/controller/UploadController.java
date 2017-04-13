@@ -3,14 +3,13 @@ package com.panfeng.film.resource.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.util.FileUtils;
 
 
@@ -20,18 +19,15 @@ import com.panfeng.film.util.FileUtils;
 @RestController
 public class UploadController {
 	
-	@Autowired
-	private FDFSService DFSservice;
-
 	@RequestMapping("/web/upload")
 	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file,String oldUrl) {
 		// 检测视频是否大于限制
 		final BaseMsg msg = checkFile(file);
 		if (0 == msg.getCode()) {
-			String fileId = DFSservice.upload(file);
+			String fileId = FastDFSClient.uploadFile(file);
 			//删除旧地址
 			if(StringUtils.isNotBlank(oldUrl)){
-				DFSservice.delete(oldUrl);
+				FastDFSClient.deleteFile(oldUrl);
 			}
 			msg.setResult(fileId);
 		} 

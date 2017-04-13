@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.facade.information.entity.PmsNews;
+import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.paipianwang.pat.facade.information.service.PmsNewsFacade;
 import com.paipianwang.pat.facade.team.entity.PmsTeam;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.panfeng.film.domain.BaseMsg;
-import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.view.SolrView;
-import com.panfeng.film.util.HttpUtil;
-import com.panfeng.film.util.JsonUtil;
+import com.panfeng.film.service.SolrService;
 import com.panfeng.film.util.Log;
 
 @RestController
@@ -39,6 +40,9 @@ public class HomePageController extends BaseController {
 
 	@Autowired
 	private PmsNewsFacade pmsNewsFacade = null;
+	
+	@Autowired
+	private SolrService solrService = null;
 
 	/**
 	 * 加载 主页 视频列表
@@ -48,36 +52,40 @@ public class HomePageController extends BaseController {
 	@RequestMapping(value = "/product/loadProduct", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public BaseMsg productList(final HttpServletRequest request, @RequestBody SolrView solrView) {
 		BaseMsg baseMsg = new BaseMsg();
-		final String url = PublicConfig.URL_PREFIX + "portal/product/static/pc/list";
-		String str = HttpUtil.httpPost(url, solrView, request);
-		if (str != null && !"".equals(str)) {
-			try {
-				List<Solr> list = JsonUtil.fromJsonArray(str, Solr.class);
-				if (null != list) {
-					// 处理标签
-					for (Solr s : list) {
-						String tags = s.getTags();
-						if (StringUtils.isNotBlank(tags)) {
-							// 匹配标签分割 空格，多个空格 中文逗号，英文逗号
-							String[] tagsArr = tags.split("(\\s+)|(,)|(，)");
-							int maxLength = tagsArr.length > 3 ? 3 : tagsArr.length;
-							tags = "";
-							for (int i = 0; i < maxLength; i++) {
-								tags += tagsArr[i] + "/";
-							}
-							tags = tags.substring(0, tags.length() - 1);
-							s.setTags(tags);
-						}
-					}
-					baseMsg.setCode(1);
-					baseMsg.setResult(list);
-				} else {
-					baseMsg.setErrorMsg("null list");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
+		final SolrQuery query = new SolrQuery();
+		query.set("qf", "productName^4 tags^3 teamName^2 pDescription^1");
+		query.setQuery("*:*");
+		query.setFields(
+				"teamId,productId,productName,productType,itemName,teamName,orignalPrice,price,picLDUrl,length,pDescription,recommend,supportCount,tags");
+		query.setStart(0);
+		query.setRows(Integer.MAX_VALUE);
+		if (null != solrView.getSort()) {
+			query.setSort(solrView.getSort(), ORDER.desc);
 		}
+		final List<PmsProductSolr> list = solrService.queryDocs(PublicConfig.SOLR_PORTAL_URL, query);
+		if (null != list) {
+			// 处理标签
+			for (PmsProductSolr s : list) {
+				String tags = s.getTags();
+				if (StringUtils.isNotBlank(tags)) {
+					// 匹配标签分割 空格，多个空格 中文逗号，英文逗号
+					String[] tagsArr = tags.split("(\\s+)|(,)|(，)");
+					int maxLength = tagsArr.length > 3 ? 3 : tagsArr.length;
+					tags = "";
+					for (int i = 0; i < maxLength; i++) {
+						tags += tagsArr[i] + "/";
+					}
+					tags = tags.substring(0, tags.length() - 1);
+					s.setTags(tags);
+				}
+			}
+			baseMsg.setCode(1);
+			baseMsg.setResult(list);
+		} else {
+			baseMsg.setErrorMsg("null list");
+		}
+		
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load portal page products", sessionInfo);
 		return baseMsg;

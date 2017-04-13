@@ -126,5 +126,18 @@
 			<bean class="com.panfeng.film.filter.ManagerInterceptor" />
 		</mvc:interceptor>
 		
+		<mvc:interceptor>
+			<mvc:mapping path="/home/product/loadProduct"/>
+			<mvc:mapping path="/product/order/loadWithTeamName"/>
+			<mvc:mapping path="/search"/>
+			<mvc:mapping path="/search/pagination"/>
+			<mvc:mapping path="/tags/product/search"/>
+			<bean class="com.panfeng.film.intercepter.SearchResourceInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/suggest/**"/>
+			<bean class="com.panfeng.film.intercepter.SuggestResourceInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

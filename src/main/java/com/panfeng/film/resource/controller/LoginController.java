@@ -32,7 +32,9 @@ import com.google.code.kaptcha.Producer;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.enums.LoginType;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
@@ -45,9 +47,7 @@ import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.resource.model.WechatToken;
-import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.SmsService;
-import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
@@ -89,12 +89,13 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public Info login(@RequestBody final PmsUser user, final HttpServletRequest request,
 			final HttpServletResponse response) {
-		if (user.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
+		if (user.getLoginType().equals(LoginType.PHONE.getDesc())) {// 手机号登录
 			return loginByPhone(user,request,response);
 		} else {// 用户名登录
 			return loginByName(user,request,response);
 		}
 	}
+	
 	private Info loginByName(PmsUser user, HttpServletRequest request, HttpServletResponse response) {
 		final String pwd = user.getPassword();
 		final String loginName = user.getLoginName();
@@ -255,7 +256,7 @@ public class LoginController extends BaseController {
 	@RequestMapping("/verification/{telephone}")
 	public boolean verification(final HttpServletRequest request, @PathVariable("telephone") final String telephone) {
 		SessionInfo sessionInfo = getCurrentInfo(request);
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 		final String code = DataUtil.random(true, 6);
 		request.getSession().setAttribute("code", code); // 存放验证码
 		request.getSession().setAttribute("codeOfphone", telephone); // 存放手机号
@@ -324,7 +325,7 @@ public class LoginController extends BaseController {
 
 		final Info info = new Info();
 		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 		if (kaptcha_code != null && !"".equals(kaptcha_code)) {
 			final String kaptchaCode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 			if (kaptchaCode != null && !"".equals(kaptcha_code)) {

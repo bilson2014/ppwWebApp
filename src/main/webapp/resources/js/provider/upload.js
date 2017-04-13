@@ -243,6 +243,9 @@ $().ready(function(){
 					$('#toPortal').off('click').on('click',function(){
 						window.location.href=getContextPath() + '/provider/portal';
 					});
+				},
+				error : function() {
+					alert(error);
 				}
 			});
 		}

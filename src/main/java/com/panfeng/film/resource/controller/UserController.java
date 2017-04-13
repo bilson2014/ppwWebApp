@@ -1,7 +1,6 @@
 package com.panfeng.film.resource.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
+import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
@@ -34,8 +35,6 @@ import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.model.PhotoCutParam;
-import com.panfeng.film.security.AESUtil;
-import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.UserService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
@@ -47,10 +46,6 @@ import com.panfeng.film.util.PhotoUtil;
 public class UserController extends BaseController {
 
 	@Autowired
-	private final FDFSService DFSservice = null;
-
-
-	@Autowired
 	private UserService userService;
 	@Autowired
 	private PmsUserFacade pmsUserFacade;
@@ -59,9 +54,9 @@ public class UserController extends BaseController {
 	@Autowired
 	private PmsRightFacade pmsRightFacade;
 
-
 	/**
 	 * 修改用户信息
+	 * 
 	 * @param user
 	 * @param request
 	 * @return
@@ -72,7 +67,7 @@ public class UserController extends BaseController {
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		// 修改 用户基本信息
 		if (user != null) {
-			if (user.getId() != 0){
+			if (user.getId() != 0) {
 				pmsUserFacade.modifyUserInfo(user);
 				PmsUser u = pmsUserFacade.findUserById(user.getId());
 				initSessionInfo(u, request);
@@ -103,8 +98,7 @@ public class UserController extends BaseController {
 					return true;
 				}
 			}
-			Log.error("User id is " + userId
-					+ " update password error", sessionInfo);
+			Log.error("User id is " + userId + " update password error", sessionInfo);
 		}
 		return false;
 	}
@@ -162,16 +156,16 @@ public class UserController extends BaseController {
 				// 验证手机号是否是新的,然后 更新手机
 				final int count = pmsUserFacade.validationPhone(user.getTelephone(), null);
 				if (count > 0) {
-					return new BaseMsg(2,"手机号被占用");
+					return new BaseMsg(2, "手机号被占用");
 				}
-				//修改手机号
+				// 修改手机号
 				final long ret = pmsUserFacade.modifyUserPhone(user);
 				if (ret > 0) {
 					Log.error("User id is " + user.getId() + " update phone number -success", sessionInfo);
 					// updateUserInSession(request);
-					return new BaseMsg(3,"success");
+					return new BaseMsg(3, "success");
 				}
-				return new BaseMsg(0,"error");
+				return new BaseMsg(0, "error");
 			}
 			return new BaseMsg(1, "验证码错误");
 		}
@@ -182,7 +176,7 @@ public class UserController extends BaseController {
 		final String code = (String) request.getSession().getAttribute("code");
 		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 		return isTest || (code != null && !"".equals(code) && codeOfphone != null && !"".equals(codeOfphone)
 				&& code.equals(user.getVerification_code()) && codeOfphone.equals(user.getTelephone()));
 	}
@@ -212,7 +206,7 @@ public class UserController extends BaseController {
 					return "false@error=1";
 				} else {
 					if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
-						String path = DFSservice.upload(file);
+						String path = FastDFSClient.uploadFile(file);
 						SessionInfo sessionInfo = getCurrentInfo(request);
 						Log.error("User id is " + sessionInfo.getReqiureId() + " upload photo by self path is" + path,
 								sessionInfo);
@@ -236,32 +230,30 @@ public class UserController extends BaseController {
 	 * 
 	 * @throws MalformedURLException
 	 */
-	/*@RequestMapping(value = "/directModify/photo", method = RequestMethod.POST)
-	public boolean changePhotoWithClick(@RequestBody final User user, final HttpServletRequest request)
-			throws MalformedURLException {
-
-		if (user != null) {
-			String imgPath = request.getServletContext().getRealPath(user.getImgUrl());
-
-			File original = new File(imgPath);
-			String path = DFSservice.upload(original, user.getImgUrl());
-			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("User id is " + user.getId() + " upload photo by system path is" + path, sessionInfo);
-			// 更新数据库
-			if (user != null) {
-				user.setImgUrl(path);
-				final String url = URL_PREFIX + "portal/user/modify/photo";
-				final String json = HttpUtil.httpPost(url, user, request);
-				final Boolean result = JsonUtil.toBean(json, Boolean.class);
-
-				Log.error("User id is " + user.getId() + " update photo by system -success=" + result, sessionInfo);
-				// updateUserInSession(request);
-				return result;
-			}
-		}
-
-		return false;
-	}*/
+	/*
+	 * @RequestMapping(value = "/directModify/photo", method =
+	 * RequestMethod.POST) public boolean changePhotoWithClick(@RequestBody
+	 * final User user, final HttpServletRequest request) throws
+	 * MalformedURLException {
+	 * 
+	 * if (user != null) { String imgPath =
+	 * request.getServletContext().getRealPath(user.getImgUrl());
+	 * 
+	 * File original = new File(imgPath); String path =
+	 * DFSservice.upload(original, user.getImgUrl()); SessionInfo sessionInfo =
+	 * getCurrentInfo(request); Log.error("User id is " + user.getId() +
+	 * " upload photo by system path is" + path, sessionInfo); // 更新数据库 if (user
+	 * != null) { user.setImgUrl(path); final String url = URL_PREFIX +
+	 * "portal/user/modify/photo"; final String json = HttpUtil.httpPost(url,
+	 * user, request); final Boolean result = JsonUtil.toBean(json,
+	 * Boolean.class);
+	 * 
+	 * Log.error("User id is " + user.getId() +
+	 * " update photo by system -success=" + result, sessionInfo); //
+	 * updateUserInSession(request); return result; } }
+	 * 
+	 * return false; }
+	 */
 
 	/**
 	 * 删除 取消的自定义上传文件
@@ -277,7 +269,8 @@ public class UserController extends BaseController {
 				if (!file.isDirectory()) {
 					file.delete();
 					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),sessionInfo);
+					Log.error("User id is " + user.getId() + " cancel diy photo path is " + user.getImgUrl(),
+							sessionInfo);
 					return true;
 				}
 			}
@@ -296,37 +289,31 @@ public class UserController extends BaseController {
 
 		if (param != null && !"".equals(param.getImgUrl())) {
 
-			try {
-				final String imgPath = param.getImgUrl();
-				InputStream inputStream = DFSservice.download(imgPath);
-				final String extName = FileUtils.getExtName(imgPath, ".");
+			final String imgPath = param.getImgUrl();
+			InputStream inputStream = FastDFSClient.downloadFile(imgPath);
+			final String extName = FileUtils.getExtName(imgPath, ".");
 
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("User id is " + param.getUserId() + " cut photo begin", sessionInfo);
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			Log.error("User id is " + param.getUserId() + " cut photo begin", sessionInfo);
 
-				// cut photo
-				inputStream = PhotoUtil.cutPhoto(inputStream, param, extName);
-				Log.error("User id is " + param.getUserId() + " cut photo - success", sessionInfo);
+			// cut photo
+			inputStream = PhotoUtil.cutPhoto(inputStream, param, extName);
+			Log.error("User id is " + param.getUserId() + " cut photo - success", sessionInfo);
 
-				String path = DFSservice.upload(inputStream, imgPath);
-				// 更新数据库
-				final PmsUser user = new PmsUser();
-				user.setId(param.getUserId());
-				user.setImgFileName(path);// ?这个是做啥的
-				user.setImgUrl(path);
+			String path = FastDFSClient.uploadFile(inputStream, imgPath);
+			// 更新数据库
+			final PmsUser user = new PmsUser();
+			user.setId(param.getUserId());
+			user.setImgFileName(path);// ?这个是做啥的
+			user.setImgUrl(path);
 
-				final long ret = pmsUserFacade.modifyUserPhoto(user);
-				Log.error("User id is " + param.getUserId() + " update DIY photo - success" , sessionInfo);
-				if (ret>0) {
-					// updateUserInSession(request);
-					return user;
-				} else {
-					return null;
-				}
-			} catch (FileNotFoundException e) {
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("UserController method:uploadDIYUserImg() cut user photo error ...", sessionInfo);
-				e.printStackTrace();
+			final long ret = pmsUserFacade.modifyUserPhoto(user);
+			Log.error("User id is " + param.getUserId() + " update DIY photo - success", sessionInfo);
+			if (ret > 0) {
+				// updateUserInSession(request);
+				return user;
+			} else {
+				return null;
 			}
 
 		}
@@ -337,7 +324,6 @@ public class UserController extends BaseController {
 	public ModelAndView repwd(ModelMap modelMap) {
 		return new ModelAndView("/rePwdCus", modelMap);
 	}
-
 
 	/**
 	 * 获取user信息
@@ -468,6 +454,7 @@ public class UserController extends BaseController {
 
 		return new ModelAndView("userPortal", model);
 	}
+
 	/**
 	 * 初始化 sessionInfo 信息
 	 * 
@@ -477,16 +464,16 @@ public class UserController extends BaseController {
 	 */
 	public boolean initSessionInfo(final PmsUser user, HttpServletRequest request) {
 		final HttpSession session = request.getSession();
-		
+
 		// 清空session
 		session.removeAttribute(PmsConstant.SESSION_INFO);
-		
+
 		// 存入session中
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(user.getLoginName());
 		info.setRealName(user.getRealName());
 		info.setSessionType(PmsConstant.ROLE_CUSTOMER);
-		//info.setSuperAdmin(false);
+		// info.setSuperAdmin(false);
 		info.setToken(DataUtil.md5(session.getId()));
 		info.setReqiureId(user.getId());
 		info.setClientLevel(user.getClientLevel()); // 客户级别

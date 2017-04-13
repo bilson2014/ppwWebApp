@@ -35,6 +35,8 @@ import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
+import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
 import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
@@ -54,9 +56,7 @@ import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
-import com.panfeng.film.security.AESUtil;
 import com.panfeng.film.service.EmployeeThirdLogin;
-import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.HttpUtil;
@@ -78,8 +78,6 @@ public class VersionManagerController extends BaseController {
 	private PmsRoleFacade pmsRoleFacade;
 	@Autowired
 	private PmsRightFacade pmsRightFacade;
-	@Autowired
-	private FDFSService fdfsService;
 
 	static String UNIQUE = "unique_e";
 	static String LINKMAN = "username_e";
@@ -111,7 +109,6 @@ public class VersionManagerController extends BaseController {
 						// 填充角色
 						List<PmsRole> roles = pmsRoleFacade.findRolesByEmployId(e.getEmployeeId());
 						e.setRoles(roles);
-						// infoService.removeSession(request);
 						request.getSession().removeAttribute(PmsConstant.SESSION_INFO);
 						final boolean ret = initSessionInfo(e, request);
 						if (ret) {
@@ -193,7 +190,6 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/bind")
 	public BaseMsg bind(@RequestBody final Employee employee, final HttpServletRequest request) {
-		// TODO:
 		HttpSession httpSession = request.getSession();
 		final String phone = employee.getPhoneNumber();
 		final String Ltype = employee.getThirdLoginType();
@@ -206,7 +202,7 @@ public class VersionManagerController extends BaseController {
 				final String Unique = (String) objUnique;
 				final String realName = (String) objLinkman;
 				final String code = (String) objCode;
-				boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+				boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 				// 不需要输入验证码 code == null dev code != null
 				if (isTest || code.equals(employee.getVerification_code())) {
 					employee.setEmployeeRealName(realName);
@@ -277,7 +273,7 @@ public class VersionManagerController extends BaseController {
 		// 密码重置
 		final String code = (String) session.getAttribute("code");
 		// 是否是测试程序
-		boolean isTest = com.panfeng.film.util.Constants.AUTO_TEST.equals("yes") ? true : false;
+		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 		Info info = new Info(); // 信息载体
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
@@ -381,19 +377,18 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
+	/**
+	 * 获取推荐人信息列表
+	 * 
+	 * @param bizBean
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/projects/get/reffers", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public List<IndentProject> getReffers(@RequestBody BizBean bizBean, final HttpServletRequest request) {
-		// fill userinfo
-		// fillUserInfo(request, indentProject);
+	public List<PmsEmployee> getReffers(@RequestBody BizBean bizBean, final HttpServletRequest request) {
 
-		final String url = PublicConfig.URL_PREFIX + "portal/getEmployeeListByReffer";
-		String str = HttpUtil.httpPost(url, bizBean, request);
-		// User information = null;
-		if (str != null && !"".equals(str)) {
-			return JsonUtil.toList(str);
-		}
-
-		return new ArrayList<>();
+		List<PmsEmployee> refers = pmsEmployeeFacade.findEmployeeByRealNameWithinVersionManager(bizBean.getName());
+		return refers;
 	}
 
 	@RequestMapping(value = "/projects/search/employee/list", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
@@ -839,7 +834,7 @@ public class VersionManagerController extends BaseController {
 			String str = HttpUtil.httpGet(url, request);
 			if (ValidateUtil.isValid(str)) {
 				final IndentResource indentResource = JsonUtil.toBean(str, IndentResource.class);
-				InputStream in = fdfsService.download(indentResource.getIrFormatName());
+				InputStream in = FastDFSClient.downloadFile(indentResource.getIrFormatName());
 				// 此处设置文件大小
 				// System.err.println(indentResource.getIrOriginalName() + "
 				// 文件大小为: " + in.available());

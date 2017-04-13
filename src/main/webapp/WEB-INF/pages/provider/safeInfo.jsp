@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.util.Constants"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -25,7 +24,6 @@
 	var="jsonJs" />
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js"
 	var="bootstrapJs" />
-<%-- <spring:url value="/resources/lib/jquery/ajaxfileupload_userInfo.js" var="ajaxfileuploadJs"/> --%>
 <spring:url value="/resources/lib/webuploader/webuploader.js"
 	var="webuploaderJs" />
 <spring:url
