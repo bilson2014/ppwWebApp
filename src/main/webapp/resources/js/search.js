@@ -172,9 +172,6 @@ var search = {
 			if(genre != null && genre != undefined && genre != '')
 				tParam += '&genre=' + genre;
 			
-		
-			
-			
 			$.each(typeArray,function(i,item){
 				// 去除重复
 				if(industry != undefined && industry != '' && industry != null) {

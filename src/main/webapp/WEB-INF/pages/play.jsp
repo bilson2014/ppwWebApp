@@ -55,8 +55,6 @@
 	</script>
 </head>
 
-
-
 <body>
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />

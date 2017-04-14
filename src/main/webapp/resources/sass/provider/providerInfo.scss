@@ -607,7 +607,7 @@ a:visited {
         margin-left: 210px;
         position: relative;
         &:after {
-            content: "";
+            content:"";
             background: url(/resources/images/index/newsMore.png) no-repeat;
             width: 13px;
             height: 13px;
@@ -615,6 +615,7 @@ a:visited {
             background-position: 0 -13px;
             top: 8px;
             left: 80px;
+            background-size: 13px 26px;
         }
     }
 }
