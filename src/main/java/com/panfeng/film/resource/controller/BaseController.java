@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.panfeng.film.resource.model.User;
@@ -44,7 +45,7 @@ public abstract class BaseController {
 	protected void addCookies(HttpServletRequest request, HttpServletResponse response) {
 		Cookie cookieUsername = new Cookie("token", request.getSession().getId());
 		cookieUsername.setPath("/");
-		cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);
+		cookieUsername.setDomain(PublicConfig.COOKIES_SCOPE);
 		cookieUsername.setMaxAge(60 * 60 * 24 * 7); /* 设置cookie的有效期为 7 天 */
 		response.addCookie(cookieUsername);
 	}
@@ -56,11 +57,10 @@ public abstract class BaseController {
 			if(cookie.length>0){
 				for (Cookie c : cookie) {
 					if ("token".equals(c.getName())) {
-						// TODO 删除
 						request.getSession().removeAttribute(PmsConstant.SESSION_INFO);
 						Cookie cookieUsername = new Cookie("token", null);
 						cookieUsername.setPath("/");
-						cookieUsername.setDomain(com.panfeng.film.util.Constants.COOKIES_SCOPE);
+						cookieUsername.setDomain(PublicConfig.COOKIES_SCOPE);
 						cookieUsername.setMaxAge(0);
 						response.addCookie(cookieUsername);
 						

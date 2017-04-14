@@ -23,7 +23,7 @@ public class StorageNodeListener implements ApplicationListener{
 	@Autowired
 	private final StorageLocateDao storageDao = null;
 	
-	private static final String CONF_FILENAME = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "fdfs_storage.conf";
+	private static final String CONF_FILENAME = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "fdfs/fdfs_storage.conf";
 	private IniFileReader iniReader;
 	private String[] storageServers;
 	

@@ -30,7 +30,10 @@ import com.google.gson.Gson;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.enums.LoginType;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
+import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsService;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
@@ -50,10 +53,7 @@ import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.Wechat;
-import com.panfeng.film.security.AESUtil;
-import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.service.ProviderThirdLogin;
-import com.panfeng.film.util.Constants.loginType;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
@@ -73,8 +73,6 @@ public class ProviderController extends BaseController {
 
 	@Autowired
 	private ProviderThirdLogin providerThirdLogin;
-	@Autowired
-	private final FDFSService DFSservice = null;
 	@Autowired
 	private PmsTeamFacade pmsTeamFacade = null;
 	@Autowired
@@ -161,18 +159,6 @@ public class ProviderController extends BaseController {
 		model.addAttribute("team", team);
 		return new ModelAndView("provider/safeInfo", model);
 	}
-	/**
-	 * 跳转至 审核状态页
-	 */
-	/*
-	 * @RequestMapping("/company-status") public ModelAndView statusView(final
-	 * HttpServletRequest request, final ModelMap model) {
-	 * 
-	 * final Team team = getCurrentTeam(request); model.addAttribute("status",
-	 * team.getFlag()); model.addAttribute("cKey", team.getTeamId());
-	 * model.addAttribute("recomment", team.getRecommendation()); return new
-	 * ModelAndView("provider/status", model); }
-	 */
 
 	/**
 	 * 登录
@@ -187,7 +173,7 @@ public class ProviderController extends BaseController {
 		if (original == null) {
 			return new BaseMsg(BaseMsg.ERROR, "登陆错误", false);
 		}
-		if (original.getLoginType().equals(loginType.phone.getKey())) {// 手机号登录
+		if (original.getLoginType().equals(LoginType.PHONE.getDesc())) {// 手机号登录
 			return loginByPhone(original, request, response);
 		} else {// 用户名登录
 			return loginByName(original, request, response);
@@ -288,19 +274,6 @@ public class ProviderController extends BaseController {
 			return new ModelAndView("/provider/threeLogin", modelMap);
 		}
 	}
-
-	/**
-	 * 供应商系统登出操作
-	 * 
-	 * @return 供应商系统登录页面
-	 */
-	/*
-	 * @RequestMapping("/loginout") public ModelAndView loginOut(final
-	 * HttpServletRequest request) {
-	 * 
-	 * sessionService.removeSession(request); return new
-	 * ModelAndView("redirect:/provider/login"); }
-	 */
 
 	/**
 	 * 检测登录名是否可用
@@ -547,7 +520,7 @@ public class ProviderController extends BaseController {
 				return "false@error=1";
 			} else {
 				if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
-					final String fileId = DFSservice.upload(file);
+					final String fileId = FastDFSClient.uploadFile(file);
 					return fileId;
 				} else {
 					// 文件格式不正确
@@ -592,7 +565,7 @@ public class ProviderController extends BaseController {
 				if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
 					// 修改为DFs上传 begin
 					// 2016-10-20 14:25:02
-					final String fileId = DFSservice.upload(file);
+					final String fileId = FastDFSClient.uploadFile(file);
 					// 修改为DFs上传 end
 
 					// 删除 原文件
@@ -603,7 +576,7 @@ public class ProviderController extends BaseController {
 						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
 						final String originalPath = originalTeam.getTeamPhotoUrl();
 						if (null != originalPath && !originalPath.equals("")) {
-							DFSservice.delete(originalPath);// ==0 success
+							FastDFSClient.deleteFile(originalPath);
 						}
 					}
 					team.setTeamPhotoUrl(fileId);
@@ -737,6 +710,8 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/delete/product/{productId}")
 	public boolean deleteProviderProduct(@PathVariable("productId") final long productId,
 			final HttpServletRequest request) {
+		
+		// TODO 变为dubbo服务
 		final String url = PublicConfig.URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;
 		final String json = HttpUtil.httpGet(url, request);
 		boolean flag = true;
@@ -780,7 +755,7 @@ public class ProviderController extends BaseController {
 				return baseMsg;
 			}
 			// 上传video
-			String fileId = DFSservice.upload(file);
+			String fileId = FastDFSClient.uploadFile(file);
 			PmsProduct product = new PmsProduct();
 			product.setVideoUrl(fileId);
 			product.setTeamId(sessionInfo.getReqiureId());
@@ -814,7 +789,8 @@ public class ProviderController extends BaseController {
 				pmsProductFacade.save(service);
 			}
 			// 加入文件转换队列
-			fileConvertMQService.sendMessage(product.getProductId(), product.getVideoUrl());
+			// fileConvertMQService.sendMessage(product.getProductId(),
+			// product.getVideoUrl());
 			if (proId > 0) {
 				Log.error("Provider Save Product success,productId:" + proId + " ,productName:"
 						+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
@@ -844,7 +820,7 @@ public class ProviderController extends BaseController {
 			if (file.getSize() > img_MaxSize * 1024) {
 				return new BaseMsg(0, "图片文件超过250K上限");
 			}
-			String fileId = DFSservice.upload(file);
+			String fileId = FastDFSClient.uploadFile(file);
 			product.setPicLDUrl(fileId);
 		}
 		final long productId = product.getProductId();
@@ -863,7 +839,7 @@ public class ProviderController extends BaseController {
 			oldProduct.setPicLDUrl(product.getPicLDUrl());
 			if (StringUtils.isNotBlank(oldProduct.getPicLDUrl())
 					&& !product.getPicLDUrl().equals(oldProduct.getPicLDUrl())) {
-				DFSservice.delete(oldProduct.getPicLDUrl());
+				FastDFSClient.deleteFile(oldProduct.getPicLDUrl());
 			}
 		}
 		pmsProductFacade.updateProductInfo(oldProduct); // 更新视频信息
@@ -898,7 +874,7 @@ public class ProviderController extends BaseController {
 				product.setVideoLength("0");
 				product.setpDescription("");
 				product.setVisible(0); // 默认可见
-				String fileId = DFSservice.upload(file);
+				String fileId = FastDFSClient.uploadFile(file);
 				product.setVideoUrl(fileId);
 				long proId = pmsProductFacade.save(product); // 保存视频信息
 				product.setProductId(proId);
@@ -1091,8 +1067,6 @@ public class ProviderController extends BaseController {
 	public boolean updateInfo_register(@RequestBody final PmsTeam team, final HttpServletRequest request) {
 		try {
 			HttpSession httpSession = request.getSession();
-			// String unique = (String) httpSession.getAttribute(UNIQUE);
-			// String ltype = (String) httpSession.getAttribute(LTYPE);
 			String type = (String) httpSession.getAttribute(TYPE);
 			String original_str = (String) httpSession.getAttribute(ORIGINAL);
 			Gson gson = new Gson();
@@ -1404,7 +1378,6 @@ public class ProviderController extends BaseController {
 	public boolean initSessionInfo(final PmsTeam team, HttpServletRequest request) {
 
 		// 清空session
-		// sessionService.removeSession(request);
 		final HttpSession session = request.getSession();
 		session.removeAttribute(PmsConstant.SESSION_INFO);
 		// 存入session中
@@ -1413,7 +1386,6 @@ public class ProviderController extends BaseController {
 		info.setLoginName(team.getLoginName());
 		info.setRealName(team.getTeamName());
 		info.setSessionType(PmsConstant.ROLE_PROVIDER);
-		// info.setSuperAdmin(false);
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(team.getTeamId());
 		info.setPhoto(team.getTeamPhotoUrl());

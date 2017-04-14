@@ -27,8 +27,6 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private final PmsRightFacade pmsRightFacade = null;
 	
-	
-	
 	public boolean preHandle(HttpServletRequest req,
 		HttpServletResponse resp, Object handler) throws Exception {
 		

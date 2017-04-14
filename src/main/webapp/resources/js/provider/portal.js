@@ -178,7 +178,7 @@ var videoListProtal = {
 		},
 		addProduct:function(){
 			$('.newProduct').off("click").on('click',function(){
-			    top.location=''+getContextPath()+'/provider/product/upload';
+			    top.location= getContextPath()+'/provider/product/upload';
 			});
 		},
 		multipUploadFile:function(){

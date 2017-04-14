@@ -2,13 +2,15 @@ package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,14 @@ import com.paipianwang.pat.common.util.DataUtil;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.common.util.JsonUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.domain.ResourceToken;
 import com.paipianwang.pat.facade.employee.entity.PmsJob;
 import com.paipianwang.pat.facade.employee.entity.PmsStaff;
 import com.paipianwang.pat.facade.employee.service.PmsJobFacade;
 import com.paipianwang.pat.facade.employee.service.PmsStaffFacade;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
+import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsProductModule;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
@@ -48,6 +52,7 @@ import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.SolrView;
+import com.panfeng.film.service.SolrService;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.Log;
@@ -81,6 +86,8 @@ public class PCController extends BaseController {
 	private PmsStaffFacade pmsStaffFacade = null;
 	@Autowired
 	private PmsJobFacade pmsJobFacade = null;
+	@Autowired
+	private SolrService solrService = null;
 
 	/**
 	 * 获取本地ip地址+端口号
@@ -256,14 +263,28 @@ public class PCController extends BaseController {
 	 * @param teamName
 	 */
 	@RequestMapping("/product/order/loadWithTeamName")
-	public List<Solr> productInformationByTeamOrder(@RequestBody final SolrView solrView,
+	public List<PmsProductSolr> productInformationByTeamOrder(@RequestBody final SolrView solrView,
 			final HttpServletRequest request) {
 
-		List<Solr> list = new ArrayList<Solr>();
-		final String url = PublicConfig.URL_PREFIX + "/portal/product/more";
-		String json = HttpUtil.httpPost(url, solrView, request);
-		list = JsonUtil.toList(json);
-		Log.info("Load products By TeamName from solr,condition:" + solrView.getCondition(), null);
+		final ResourceToken token = (ResourceToken) request.getAttribute("resourceToken"); // 访问资源库令牌
+		String condition = solrView.getCondition();
+		final SolrQuery query = new SolrQuery();
+		query.set("defType", "edismax");
+		query.set("q.alt", "*:*");
+		query.set("qf", "teamName");
+		if (StringUtils.isNotBlank(condition)) {
+			query.setQuery(condition);
+		} else {
+			return null;
+		}
+		query.setSort("creationTime", ORDER.desc);
+		query.set("pf", "teamName");
+		query.set("tie", "0.1");
+		query.setFields("teamId,productId,productName,orignalPrice,price,picLDUrl,tags,creationTime,pDescription");
+		query.setStart(Integer.parseInt(String.valueOf(solrView.getBegin())));
+		query.setRows(Integer.parseInt(String.valueOf(solrView.getLimit())));
+
+		final List<PmsProductSolr> list = solrService.queryDocs(token.getSolrUrl(), query);
 		return list;
 	}
 

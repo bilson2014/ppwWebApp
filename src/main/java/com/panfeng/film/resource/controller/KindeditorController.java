@@ -6,17 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
-import com.panfeng.film.service.FDFSService;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.panfeng.film.service.KindeditorService;
-import com.panfeng.film.util.Constants;
 
 @RestController
 public class KindeditorController extends BaseController {
 
 	@Autowired
 	private KindeditorService kindeditorService;
-	@Autowired
-	private final FDFSService DFSservice = null;
 
 	@RequestMapping(value = "/kindeditor/uploadImage", produces = "text/html; charset=UTF-8")
 	public String uploadImage(final MultipartRequest multipartRequest,
@@ -27,14 +25,13 @@ public class KindeditorController extends BaseController {
 		// step 1.验证文件
 		String result = kindeditorService.verifyImage(multipartFile, dir);
 		if (!"".equals(result))
-			return kindeditorService.createMsg(result, Constants.MSG_FAIL);
+			return kindeditorService.createMsg(result, PmsConstant.MSG_FAIL);
 		// step 2.保存文件
-		//result = kindeditorService.saveImage(multipartFile, sessionId);
-		result = DFSservice.upload(multipartFile);
-		if (Constants.FAIL.equals(result))
-			return kindeditorService.createMsg("保存文件失败。", Constants.MSG_FAIL);
+		result = FastDFSClient.uploadFile(multipartFile);
+		if (PmsConstant.FAIL.equals(result))
+			return kindeditorService.createMsg("保存文件失败。", PmsConstant.MSG_FAIL);
 		// step 3.生成图片URL
 		result = kindeditorService.getImageUrl(result);
-		return kindeditorService.createMsg(result, Constants.MSG_SUCCESS);
+		return kindeditorService.createMsg(result, PmsConstant.MSG_SUCCESS);
 	}
 }

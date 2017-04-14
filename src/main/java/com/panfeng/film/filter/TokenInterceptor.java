@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.panfeng.film.dao.StorageLocateDao;
-import com.panfeng.film.service.FDFSService;
 import com.panfeng.film.util.DataUtil;
 
 /**
@@ -28,9 +28,6 @@ public class TokenInterceptor implements HandlerInterceptor {
 	@Autowired
 	private final StorageLocateDao storageDao = null;
 	
-	@Autowired
-	public final FDFSService fdfsService = null;
-
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
@@ -61,7 +58,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 			// 如果不为空，则说明进入视图解析器
 			final Map<String, String> nodeMap = storageDao.getStorageFromRedis(PmsConstant.STORAGE_NODE_RELATIONSHIP);
 			// 获取最优Storage节点
-			final String serviceIP = fdfsService.locateFileStoragePath();
+			final String serviceIP = FastDFSClient.locateSource();
 			String ip = "";
 			final StringBuffer sbf = new StringBuffer();
 			sbf.append("http://");

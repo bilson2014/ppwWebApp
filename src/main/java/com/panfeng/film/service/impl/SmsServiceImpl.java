@@ -2,8 +2,8 @@ package com.panfeng.film.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.paipianwang.pat.common.util.sms.SendSMS;
 import com.panfeng.film.service.SmsService;
-import com.panfeng.sms.utils.SendSMS;
 
 @Service
 public class SmsServiceImpl implements SmsService {
