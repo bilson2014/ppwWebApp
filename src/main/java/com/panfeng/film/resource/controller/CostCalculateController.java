@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
@@ -19,7 +20,6 @@ import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.CostCalculate;
 import com.panfeng.film.service.CostCalculateService;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.PropertiesUtils;
 /**
  *成本计算控制器
  */
@@ -112,7 +112,7 @@ public class CostCalculateController extends BaseController{
 			ret = pmsIndentFacade.save(indent);
 			indent.setIndentId(ret);
 			Log.error("add new order ...", sessionInfo);
-			String telephone = PropertiesUtils.getProp("service_tel");
+			String telephone = PublicConfig.PHONENUMBER_ORDER;
 			smsMQService.sendMessage("131844", telephone, new String[]{indent.getIndent_tele(),DateUtils.nowTime(),"【未指定具体影片】"});
 		}else{//更新操作
 			ret = pmsIndentFacade.updateForCalculate(indent);

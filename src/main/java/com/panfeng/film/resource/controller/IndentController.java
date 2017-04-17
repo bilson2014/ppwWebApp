@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
@@ -22,7 +23,6 @@ import com.paipianwang.pat.facade.product.service.PmsProductFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
-import com.panfeng.film.util.PropertiesUtils;
 
 @RestController
 @RequestMapping("/order")
@@ -75,7 +75,7 @@ public class IndentController extends BaseController {
 			boolean res = pmsIndentFacade.saveOrder(indent);
 			if (res) {
 				result.setRet(true);
-				String telephone = PropertiesUtils.getProp("service_tel");
+				String telephone = PublicConfig.PHONENUMBER_ORDER;
 				if (indent.getSendToStaff()) {
 					if (StringUtils.isBlank(productName)) {
 						smsMQService.sendMessage("131844", telephone,
