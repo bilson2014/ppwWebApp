@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
-<spring:url value="/resources/css/block/block.css" var="playCss"/>
+<spring:url value="/resources/css/play.css" var="playCss"/>
 <spring:url value="/resources/lib/swiper/swiper.min.css" var="swiperCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -154,8 +154,8 @@
 
         <div class="videoArea">
             <div class="videoContent">
-                <div class="player-wrap">
-                    <div class="videoTop">
+            
+                <div class="videoTop">
                         <div id="pName">${product.productName }</div>
                         <div><span><img src="/resources/images/block/tag.png"></span>
                        		<span>
@@ -177,6 +177,9 @@
                             </ul>
                         </div>
                     </div>
+            
+                <div class="player-wrap">
+                   
                     <div class="controlVideo">
                         <div class="player-wrap" id="player-wrap">
                         	<c:if test="${empty product.picLDUrl }">
