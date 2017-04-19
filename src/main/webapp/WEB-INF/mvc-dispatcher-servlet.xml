@@ -129,6 +129,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/home/product/loadProduct"/>
 			<mvc:mapping path="/product/order/loadWithTeamName"/>
+			<mvc:mapping path="/list.html"/>
 			<mvc:mapping path="/search"/>
 			<mvc:mapping path="/search/pagination"/>
 			<mvc:mapping path="/tags/product/search"/>

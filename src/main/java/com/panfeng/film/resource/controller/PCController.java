@@ -49,14 +49,12 @@ import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
-import com.panfeng.film.resource.model.Solr;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SolrService;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.PropertiesUtils;
 
 /**
  * PC端 控制器
@@ -303,16 +301,13 @@ public class PCController extends BaseController {
 			final SolrView view = new SolrView();
 			view.setCondition(URLEncoder.encode("*", "UTF-8"));
 			view.setLimit(20l);
-			final String url = PublicConfig.URL_PREFIX + "portal/solr/query";
-			final String json = HttpUtil.httpPost(url, view, request);
+			List<PmsProductSolr> list = solrService.listWithPagination(view, request);
+
 			long total = 0l;
-			if (json != null && !"".equals(json)) {
-				List<Solr> list = JsonUtil.fromJsonArray(json, Solr.class);
-				if (list != null && !list.isEmpty()) {
-					final Solr s = list.get(0);
-					if (s != null) {
-						total = s.getTotal(); // 设置总数
-					}
+			if (ValidateUtil.isValid(list)) {
+				final PmsProductSolr s = list.get(0);
+				if (s != null) {
+					total = s.getTotal(); // 设置总数
 				}
 				model.addAttribute("list", list);
 				model.addAttribute("total", total);
@@ -363,7 +358,7 @@ public class PCController extends BaseController {
 		if (telephone != null && !"".equals(telephone)) {
 
 			// 发送短信给业务部门
-			smsMQService.sendMessage("131895", PropertiesUtils.getProp("service_tel"),
+			smsMQService.sendMessage("131895", PublicConfig.PHONENUMBER_ORDER,
 					new String[] { telephone, DateUtils.nowTime() });
 			// 发送给客户
 			smsMQService.sendMessage("134080", telephone, null);

@@ -99,6 +99,8 @@ public class SolrController extends BaseController {
 			view.setRecomendFq("[1 TO *]");
 			q = null;
 		}
+		
+		view.setCondition("q");
 		model.addAttribute("q", q);
 		view.setLimit(20l);
 
