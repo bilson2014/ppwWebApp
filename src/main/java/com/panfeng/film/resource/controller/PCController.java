@@ -1,5 +1,6 @@
 package com.panfeng.film.resource.controller;
 
+import java.awt.Color;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -283,6 +284,11 @@ public class PCController extends BaseController {
 		query.setRows(Integer.parseInt(String.valueOf(solrView.getLimit())));
 
 		final List<PmsProductSolr> list = solrService.queryDocs(token.getSolrUrl(), query);
+		for (PmsProductSolr pmsProductSolr : list) {
+			String tags = pmsProductSolr.getTags();
+			if(StringUtils.isNotBlank(tags))
+				pmsProductSolr.setTags(tags.trim().replaceAll("(\\s*)(,|，|\\s+)(\\s*)", " "));
+		}
 		return list;
 	}
 
@@ -302,7 +308,8 @@ public class PCController extends BaseController {
 			view.setCondition(URLEncoder.encode("*", "UTF-8"));
 			view.setLimit(20l);
 			List<PmsProductSolr> list = solrService.listWithPagination(view, request);
-
+			/*String abc = "a";
+			abc.indexOf("a");*/
 			long total = 0l;
 			if (ValidateUtil.isValid(list)) {
 				final PmsProductSolr s = list.get(0);

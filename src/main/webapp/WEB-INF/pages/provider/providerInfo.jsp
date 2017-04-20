@@ -203,13 +203,6 @@
 			             </div>
 			           <div class="midLine" id="provderTagId">
 			           		<div class="hide" id="provderTags" >${providerTags}</div>
-			            <!--      <div class="card">
-			                     <div class="controlCard"> 
-			                     		<div class="pencil"></div>
-			                     		<div class="cardWord">电影</div>
-			                     </div>
-			                 </div> -->
-			        
 			           </div>
 			         </div>
 		         </c:if>

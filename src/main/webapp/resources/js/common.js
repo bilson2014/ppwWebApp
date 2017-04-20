@@ -596,13 +596,21 @@ var _hmt = _hmt || [];
 	var s = document.getElementsByTagName("script")[0];
 	s.parentNode.insertBefore(hm, s);
 })();
-/*var _hmt = _hmt || [];
+
+var _hmt = _hmt || [];
+
 (function() {
+
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6cdc36f100fe051e5adec56d084b6ca";
-  var s = document.getElementsByTagName("script")[0]; 
+
+  hm.src = "https://hm.baidu.com/hm.js?0087b7e6cc5371a3a8bf40eeb6ee6f0a";
+
+  var s = document.getElementsByTagName("script")[0];
+
   s.parentNode.insertBefore(hm, s);
-})();*/
+
+})();
+
 var _vds = _vds || [];
 window._vds = _vds;
 (function(){
@@ -616,8 +624,6 @@ window._vds = _vds;
     s.parentNode.insertBefore(vds, s);
   })();
 })();
-
-
 
 //3.0
 function playVideo() {

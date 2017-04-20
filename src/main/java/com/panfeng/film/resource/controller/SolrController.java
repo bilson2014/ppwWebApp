@@ -105,11 +105,13 @@ public class SolrController extends BaseController {
 		view.setLimit(20l);
 
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
-
+		
 		long total = 0l;
-		final PmsNewsSolr s = list.get(0);
-		if (s != null) {
-			total = s.getTotal(); // 设置总数
+		if(ValidateUtil.isValid(list)) {
+			final PmsNewsSolr s = list.get(0);
+			if (s != null) {
+				total = s.getTotal(); // 设置总数
+			}
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
@@ -183,8 +185,7 @@ public class SolrController extends BaseController {
 			query.set("spellcheck.build", "true");
 			List<String> list = solrService.suggestDocs(resourceToken.getSolrUrl(), query);
 			final List<PmsProductSolr> sList = new ArrayList<PmsProductSolr>();
-			if (list != null) {
-
+			if (ValidateUtil.isValid(list)) {
 				for (final String string : list) {
 					final PmsProductSolr solr = new PmsProductSolr();
 					solr.setCondition(string);
@@ -230,7 +231,11 @@ public class SolrController extends BaseController {
 			if (ValidateUtil.isValid(list)) {
 				Map<String, Object> map = new HashMap<>();
 				long total = 0;
-				total = list.get(0).getTotal();
+				final PmsProductSolr product = list.get(0);
+				
+				if(product != null)
+					total = list.get(0).getTotal();
+				
 				map.put("total", total);
 				map.put("result", list);
 				baseMsg.setCode(1);

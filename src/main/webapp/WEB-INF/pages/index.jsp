@@ -297,17 +297,7 @@
 				
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
-				<div id='product-container' class="swiper-wrapper">
-				<!-- 	<div class="swiper-slide coverSlide">
-                        <div class="scaleDiv">
-                            <img src=" /resources/images/index/test1.png">
-                            <div class="coverContent">
-                                <div class="">宣传片1</div>
-                                <div>￥598,00</div>
-                            </div>
-                        </div>
-                    </div> -->
-				</div>
+				<div id='product-container' class="swiper-wrapper"></div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
@@ -342,20 +332,7 @@
 				<a href="/register?role=director">
 					<div class="directorWant">我要入驻</div>
 				</a>
-				<div class="swiper-wrapper" id="directorContent">
-					<!-- <div class="swiper-slide">
-						<div class="m"></div>
-						<div class="b"></div>
-						<div class="directorContent">
-							<img src=" /resources/images/index/test2.png">
-							<div class="title">标题</div>
-							<div class="line"></div>
-							<div class="content">我就是内容啊啊啊啊打算大厦大打算大苏打大苏打撒旦大厦大啊打算大厦大打算大啊打算大厦大打算大打算大啊打算大厦大打算大
-								打算大啊打算大厦大打算大</div>
-							<div class="toProduct">作品集</div>
-						</div>
-					</div> -->
-				</div>
+				<div class="swiper-wrapper" id="directorContent"></div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>

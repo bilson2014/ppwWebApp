@@ -167,12 +167,7 @@
 						<ul class="list-inline" id="item-list">
 							<!-- 行业分类 -->
 						</ul>
-						
 					</dd>
-
-					<!-- <div class="more-link" id="more-link">
-						<span>更多</span>
-					</div> -->
 				</div>
 				
 				<div class="classify-business ">
@@ -181,14 +176,8 @@
 						<ul class="list-inline" id="bus-item-list">
 							<!-- 行业分类 -->
 						</ul>
-						
 					</dd>
-
-					<!-- <div class="more-link" id="more-link">
-						<span>更多</span>
-					</div> -->
 				</div>
-				
 				
 				<div class="classify-price ">
 					<dt>价格：</dt>

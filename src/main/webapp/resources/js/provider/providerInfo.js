@@ -24,9 +24,6 @@ $().ready(function() {
 				    
 					var numInt = int;
 					var creationTime = msg[int].creationTime;
-					//if(creationTime == '' || creationTime == undefined || creationTime == null){
-					//	creationTime =  msg[int].updateDate;
-					//}
 					var date = convert(creationTime);
 					if(date == undefined || date == "" || date ==null ){
 						continue;
@@ -190,7 +187,6 @@ function drawLeftCard(product,year,month,day) {
 	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
 		imgPath = getDfsHostName() + product.picLDUrl;
 	}
-	
 	
 	var $body = ''
 			+ '<div class="leftCard">'
