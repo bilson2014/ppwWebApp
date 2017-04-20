@@ -137,9 +137,8 @@ var homePage = {
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
 			if (flag == '广告片')
-				window.location.href='/search?q='+flag;
-			else 
-				window.location.href='/search?q=&industry='+flag;
+				flag = '广告';
+			window.location.href='/search?q=&industry='+flag;
 		})
 	},
 	deliverOrder:function(){

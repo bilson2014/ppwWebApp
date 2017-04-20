@@ -296,8 +296,7 @@
 				
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
-				<div id='product-container' class="swiper-wrapper">
-				</div>
+				<div id='product-container' class="swiper-wrapper"></div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
@@ -321,8 +320,7 @@
 				<a href="/register?role=director">
 					<div class="directorWant">我要入驻</div>
 				</a>
-				<div class="swiper-wrapper" id="directorContent">
-				</div>
+				<div class="swiper-wrapper" id="directorContent"></div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>

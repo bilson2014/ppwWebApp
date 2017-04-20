@@ -31,7 +31,6 @@ var search = {
 	initCrumbs : function() {
 		// 初始化面包屑布局 
 		var q = $('#q').val();
-		// var tags = $('#tags').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
 		
@@ -145,15 +144,16 @@ var search = {
 			$ul = '';
 			$ulBus = '';
 			var q = $('#q').val();
-			// var tags = $('#tags').val();
-			// TODO 行业、类型
 			var industry = $('#industry').val(); // 行业
 			var genre = $('#genre').val(); // 类型
 			
 			var price = $('#price').val();
 			var length = $('#length').val();
 			
+			q = q.replace(/"/g,'&quot');
 			var param = '?q=' + q;
+			
+			
 			if(price != null && price != undefined && price != ''){
 				param += '&price=' + price;
 			}
@@ -219,8 +219,6 @@ var search = {
 		$('#price-list').empty();
 		var q = $('#q').val();
 		var length = $('#length').val();
-		// var tags = $('#tags').val();
-		// TODO 行业、类型
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
 		

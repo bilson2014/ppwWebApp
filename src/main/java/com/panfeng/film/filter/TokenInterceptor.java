@@ -35,12 +35,15 @@ public class TokenInterceptor implements HandlerInterceptor {
 		final HttpSession session = request.getSession();
 		// 获取session的token
 		String stoken = (String) session.getAttribute("csrftoken");
-
+		
 		if (!ValidateUtil.isValid(stoken)) {
 			// 如果没有，则创建
 			stoken = DataUtil.getUuid();
 			session.setAttribute("csrftoken", stoken);
 		}
+		
+		// 配置全局官方电话
+		session.setAttribute(PmsConstant.OFFICAL_PHONE_MARK, PmsConstant.OFFICAL_PHONE);
 		return true;
 	}
 
