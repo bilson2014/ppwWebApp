@@ -259,7 +259,7 @@
                              <div class="calItem code" id='code-container'>
                                 <div class="title" data-content=""  id="errorCode">您的验证码</div>
                                 <div>
-                                   <input data-content="0" placeholder="您的验证码" id="phoneCode">
+                                   <input data-content="0" placeholder="您的验证码" id="phoneCodes">
                                    <button class="setCode btn-c-r" id='getPhoneCodes'>发送验证码</button>
                                 </div>
                             </div>

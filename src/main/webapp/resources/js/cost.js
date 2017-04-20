@@ -91,7 +91,7 @@ $().ready(function() {
 					var description = [ "视频类别:" + videoType, ",时长:" + time, ",导演团队:" + team,
 							",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
 					var phone = $('#phone').val();
-					var verification_code = $('#phoneCode').val();
+					var verification_code = $('#phoneCodes').val();
 					
 					if(add){
 						add = false;
@@ -150,11 +150,11 @@ $().ready(function() {
 function checkData(){
 	$('#phone').removeClass('errorPhone');
 	$("#errorPhone").attr('data-content','');
-	$('#phoneCode').removeClass('errorPhone');
+	$('#phoneCodes').removeClass('errorPhone');
 	$("#errorCode").attr('data-content','');
 	var indentId = $('#phone').attr("data-content");
 	var phone = $('#phone').val();
-	var code = $('#phoneCode').val()
+	var code = $('#phoneCodes').val()
 	if(phone == null || phone == '' || phone == undefined){
 		$('#phone').addClass('errorPhone');
 		showError($('#errorPhone'), '请输入手机号');
@@ -167,7 +167,7 @@ function checkData(){
 	}
 	if( indentId == 0 ){//只有第一次计算需要验证码
 		if(code == null || code == '' || code == undefined){
-			$('#phoneCode').addClass('errorPhone');
+			$('#phoneCodes').addClass('errorPhone');
 			showError($('#errorCode'), '请填写验证码');
 			return false;
 		}
