@@ -1,16 +1,13 @@
 $().ready(function() {
-    
 	
 	initVideo();
 	initImg();
 	window.onresize = function(){
 		 initVideo();
 	    };
-	    
 	    setTimeout(function() {
 	    	   document.getElementById('playVideos').play();
          }, 2000);
-	 
 
 });
 
@@ -36,7 +33,6 @@ function initVideo(){
 
 function initImg(){
 	 $(document).on('mousemove',function(e){
-			
 		    var height = document.getElementById('video').getBoundingClientRect().top;
 		    console.info(height);
 		    if(height<0){
@@ -44,6 +40,5 @@ function initImg(){
 		    }else{
 		    	$('#icon').show();
 		    }
-          
 		  });
 }

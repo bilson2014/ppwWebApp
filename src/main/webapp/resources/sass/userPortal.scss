@@ -5,48 +5,7 @@
 $leftWidth:320px;
 $leftWidthS:200px;
 $green:#2ad2ae;
-// .nav .logo {
-//   position: relative;
-//   float: left;
-//   top: 14px;
-//   background: url(../../images/common/logo.svg) no-repeat;
-//   width: 92px;
-//   height: 30px;
-//   margin-right: 76px;
-// }
-// body{
-//   background-color: #F5F5F5;
-// }
-// .menu-content {
-//   position: absolute;
-//   top: 64px;
-//   left: 10px;
-//   width: 208px;
-//   bottom: 0;
-//   background-color: #ffffff;
-// }
-// .content-title {
-//   position: absolute;
-//   top: 47px;
-//   left: 234px;
-//   right: 10px;
-//   height: 20px;
-//   line-height: 20px;
-// }
-// .content {
-//   position: absolute;
-//   top: 65px;
-//   left: 234px;
-//   right: 0px;
-//   bottom: 0px;
-//   padding: 5px;
-// }
-// .btn-default{
-//   background:$red-base !important;
-//   color:white !important;
-//  height: 20px !important;
-//  line-height: 0px;
-// }
+
 body {
     //overflow: hidden;
     background: $f0 !important;
@@ -738,6 +697,4 @@ body {
 ::-webkit-scrollbar-thumb:horizontal {
     background-color: $gray-dark;
     border-radius: 120px;
-    // background: url(../../images/biao/scrollH.png) no-repeat right;
-    // background-size:100%; 
 }

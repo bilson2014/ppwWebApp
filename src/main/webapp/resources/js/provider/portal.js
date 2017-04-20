@@ -51,7 +51,6 @@ $().ready(function(){
 	
 });
 
-
 function changePage(){
 	
 	$('.infoItem div').on('click',function(){
@@ -79,10 +78,6 @@ function initPage(){
 	
 	var href = window.location.href;
     var state = href.substr(href.lastIndexOf("?")+1,href.length);
-   /* if(state.trim() == "company-info" || state.trim() == "safe-info"){
-    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
-    	$('.tooltip-wati').hide();
-    }*/
     if(state.trim() == "company-info"){
     	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
     	$('.tooltip-wati').hide();
@@ -105,8 +100,6 @@ function initPage(){
 		$('#titleTop').text($('#clickSafe div').text());
 		$('#control').hide();
     }
-    
-   
 }
 
 function showInfomation(title,body){
@@ -144,9 +137,7 @@ function showPassInfo(){
 			});
 		}
 	});
-
 }
-
 
 function hideSuccessTooltip(){
 	$('.tooltip-success-show').hide();
@@ -280,4 +271,3 @@ var videoList_tpl = {
 		" </div>                                              "      
 		].join("")
 }
-

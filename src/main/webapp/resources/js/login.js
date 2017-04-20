@@ -4,7 +4,7 @@ var curCount; // 当前剩余秒数
 $().ready(function() {
 	
 	checkState();
-
+	
 	var login = {
 		// 方法都在init中
 		init_user : function() {
@@ -49,14 +49,6 @@ $().ready(function() {
 				}
 				if(checkMobile(telephone)){
 					loadData(function(flag){
-//						if(flag.errorCode == 200){
-//							$('#phone_error_user').addClass('hide')
-//						}else if(flag.errorCode == 300){
-//							$('#phone_error_user').removeClass('hide').text('该手机号未注册');
-//						}else if(flag.errorCode == 500){
-//							$('#phone_error_user').removeClass('hide');
-//							$('#phone_error_user').text(flag.errorMsg);
-//						}
 						
 						if(flag.errorCode == 200){
 							//  未注册
@@ -489,12 +481,6 @@ $().ready(function() {
 				$('#showPro').hide();
 				$('#showCus').show();
 				$('#hideProvider').slideUp();
-//				$('#showPro').fadeOut();
-//				$('#showCus').fadeIn();
-//				$('#showPro').fadeOut("fast",function(){
-//					alert(1);
-//					
-//				});
 				setTimeout(function() {
 					$('#cusPhoneLogin').css('display', 'block');
 					$('#cusNoPhoneLogin').css('display', 'none');
@@ -512,9 +498,6 @@ $().ready(function() {
 				$('#showCus').hide();
 				$('#showPro').show();
 				$('#hideCus').slideUp();
-//				$('#showCus').fadeOut("fast",function(){
-//					$('#showPro').fadeIn();
-//				});
 				setTimeout(function() {
 					$('#cusPhoneLogin').css('display', 'none');
 					$('#cusNoPhoneLogin').css('display', 'none');
@@ -527,7 +510,6 @@ $().ready(function() {
 	}
 	login.init_user();
 	login.init_team();
-	
 	//timer 处理函数 - 注册
 	function SetUsrRemainTime(){
 		if(curCount == 0){

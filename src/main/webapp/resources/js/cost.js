@@ -19,17 +19,6 @@ $().ready(function() {
 			this.clearForm()
 		},
 		initPage : function() {
-			// $(".dropdown").hover(function() {
-			// $(this).find('ul').slideDown();
-			// }, function() {
-			// $(this).find('ul').slideUp();
-			// });
-			// $(".costSelect").on('click',function(){
-			// alert(1);
-			// $(".dropdown").find('ul').slideUp();
-			// $(this).find('ul').slideDown();
-			// return false;
-			// });
 			$('li').on('click',function() {
 				$(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
 				var info = parseInt($(this).attr('data-info'));
@@ -183,7 +172,6 @@ function checkData(){
 			return false;
 		}
 	}
-	
 	return true;
 }
 //timer 处理函数 - 注册

@@ -24,25 +24,15 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
-//    var node=document.getElementsByClassName('playContent')[0];  
-//    $clamp(node,{clamp:4});   
-//    
-//    var teamDescripti=document.getElementsByClassName('teamDescription')[0];  
-//    $clamp(teamDescripti,{clamp:2});   
-
-    
     loadRecommendProductIfNo();
-    
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
-
 });
 function initTab() {
     var product_id = 1;
     // 初始化
     handleScreenSlider(initKey(product_id));
     $(window).resize(function() {
-        // window.location.reload();
         handleScreenSlider(initKey(product_id));
     });
 
@@ -349,7 +339,6 @@ function initView(){
 	}
 }
 
-
 function loadRecommendProduct(){
 		var tags=$('#tags').val();
 		if(tags == null || tags == undefined || tags == ''){
@@ -370,7 +359,6 @@ function loadRecommendProduct(){
 								count --;
 								continue;
 							}
-								
 							hasCount ++;
 							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
 							v1.append(card);
@@ -412,10 +400,7 @@ function loadRecommendProduct(){
 			begin : 0,
 			limit : 9
 		}));
-		
-	
-		}
-
+	}
 
 function loadRecommendProductIfNo(){
 	var tags=$('#tags').val();
@@ -471,7 +456,6 @@ function loadRecommendProductIfNo(){
 	}));
 }
 
-
 function initNoInfo(){
 	
 	 var director = new Swiper('.swiper-noInfo', {
@@ -492,7 +476,6 @@ function initNoInfo(){
 }
 
 function initMoreInfo(num){
-	
 	var initNum = 0;
 	 if(num > 6){
 		 initNum = 6;
@@ -501,10 +484,8 @@ function initMoreInfo(num){
 		 $('.rightNext').hide();
 		 $('.rightPrev').hide();
 	 }
-	 
 	 var realHeight = (280/16*9 + 30)*initNum + (initNum-1)*30;
 	 $('.rightContentSwiper').css('height',realHeight+"px");
-	
     var moreInfo = new Swiper('.swiper-more', {
         pagination: '.swiper-pagination',
         slidesPerView:initNum,
@@ -514,19 +495,11 @@ function initMoreInfo(num){
         prevButton: '.rightPrev',
         direction: 'vertical'
     });
-    
-  
 }
-
-
-
-
 
 function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-	
 	var ImageUrl = '/resources/images/index/noImg.jpg';
-
 	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
 		ImageUrl = getDfsHostName() + imageUrl;
 	}
@@ -549,16 +522,12 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	return html;
 }
 
-
 function createCard(productName,productId,teamId,imageUrl,price){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-
 var ImageUrl = '/resources/images/index/noImg.jpg';
-
 if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
 	ImageUrl = getDfsHostName() + imageUrl;
 }
-
 if(price<=0){
 	var productPrice = "";	
 }else{
@@ -579,11 +548,3 @@ var html = [
 ].join('');
 return html;
 }
-
-
-
- 	
-
-
-
-

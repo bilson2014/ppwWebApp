@@ -9,6 +9,7 @@ $().ready(function() {
     window.onresize = function(){
     	getVideoHeight();
     };
+    
 });
 
 function getVideoHeight(){
@@ -18,17 +19,14 @@ function getVideoHeight(){
 	    	videoHeight = 320;
 	    	$('.video-bg').css('width','949');
 	    }
-	    
 	    $('.flex-wrap').css('height',videoHeight);
 	    $('.flexVideo').css('height',videoHeight);
 	    $('.flexVideo video').css('height',videoHeight);
 }
 
-
 function scrollBack() {
     var top = $('#advan').position().top;
 }
-
 
 function client() {
     var num = $("#Clients .logo");
@@ -66,6 +64,7 @@ function ourYouDian() {
         $('#caLogo3w').addClass('oro');
     });
 }
+
 function originTool() {
 
     // 滚动监听 start
@@ -87,7 +86,6 @@ function originTool() {
      });
 
     $('#classical').waypoint(function() {
-        //$('.cardUl').find('li').addClass('topAnimaltion');
     }, { offset: 600 });
     $('.hereClients').waypoint(function() {
         $('#Clients').find('.up').css('top', '0');
@@ -290,7 +288,6 @@ var homePage = {
 	        'url(/resources/images/index/db19.jpg) no-repeat'
 	    );
 
-
 	    var initM = $('#directorContent .swiper-slide .m');
 	    $.each(initM, function(i, item) {
 	        $(this).css('background', images[i]);
@@ -426,9 +423,6 @@ var homePage_tpl = {
     
 }
 
-
-
-
 function getContentIndex(string){
 	 var screenWidth = document.documentElement.clientWidth;
 	 var num = 100;  
@@ -443,6 +437,5 @@ function getContentIndex(string){
 	}else{
 		var content = string.substr(1,num) +"[...]"
 	}
-	
 	return  content;
 }

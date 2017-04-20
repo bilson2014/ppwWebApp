@@ -127,7 +127,7 @@
 				</div>
 			</div>
 		</div>
-	</div>${OFFICAL_PHONE }
+	</div>
 	<!-- photo Modal start -->
      <div class="proInfo">
      					  <div class="updateLogo">   
