@@ -222,7 +222,7 @@
 		</div>
 		<!-- 轮播 end -->
 		<div class="tel">
-			<a href="tel:4006609728"> <span>服务热线 </span><span>400-660-9728</span></a>
+			<a href="tel:${OFFICAL_PHONE }"> <span>服务热线 </span><span>${OFFICAL_PHONE }</span></a>
 		</div>
 		<!-- 宣传片 start -->
 		<div class="FourModelColor">
@@ -561,7 +561,7 @@
                                         </div>
                                         <div class="topItem">
                                             <div class="title"><a>咨询电话</a></div>
-                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
+                                            <div class="tel"><a href="tel:${OFFICAL_PHONE }">${OFFICAL_PHONE }</a></div>
                                             <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
                                         </div>
                                     </div>
