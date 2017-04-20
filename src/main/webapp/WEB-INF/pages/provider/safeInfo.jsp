@@ -64,6 +64,7 @@
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
@@ -148,7 +149,6 @@
 			</div>
 		</div>
 
-
 		<div class="setUserContent" id="userName">
 			<div class="top">
 				<div>手机绑定</div>
@@ -167,7 +167,6 @@
 				<div class="btn-c-r infoSubmit" id="validate-oldPhonecode">验证</div>
 			</div>
 
-
 			<div class="new-phone hide">
 				<div class="setItem" id='new-phoneNumber-error'>
 					<div class="title">新手机号</div>
@@ -184,7 +183,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<div class="setUserContent" id="userPassWord">
 			<div class="top">
@@ -223,10 +221,7 @@
 				</c:if>
 				<div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
 			</div>
-
 		</div>
-
-
 	</div>
 </body>
 </html>

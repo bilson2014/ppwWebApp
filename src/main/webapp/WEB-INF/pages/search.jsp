@@ -168,6 +168,9 @@
 							<!-- 行业分类 -->
 						</ul>
 					</dd>
+					<!-- <div class="more-link" id="more-link">
+						<span>更多</span>
+					</div> -->
 				</div>
 				
 				<div class="classify-business ">
@@ -176,9 +179,12 @@
 						<ul class="list-inline" id="bus-item-list">
 							<!-- 行业分类 -->
 						</ul>
+						
 					</dd>
+					<!-- <div class="more-link" id="more-link">
+						<span>更多</span>
+					</div> -->
 				</div>
-				
 				<div class="classify-price ">
 					<dt>价格：</dt>
 					<dd id="price-item">
@@ -191,7 +197,6 @@
 						</ul>
 					</dd>
 				</div>
-				
 				<div class="classify-length">
 					<dt>时长：</dt>
 					<dd id="length-item">
@@ -207,7 +212,6 @@
 			</div>
 		</div>
 		<!-- 搜索条件模块 end -->
-		
 		<!-- video list start -->
 		<div class="video-section">
 			<div class="video-content" id="video-content">

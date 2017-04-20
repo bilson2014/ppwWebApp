@@ -30,7 +30,6 @@
 <spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
 <spring:url value="/resources/js/juicer.js" var="juicerJs"/>
 
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -53,11 +52,12 @@
 	<link rel="stylesheet" href="${jcropCss }">
 	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 	<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
-<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
+    <spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${blockUIJs }"></script>
@@ -105,7 +105,6 @@
 	<input type="hidden" id="user_sex" value="${user.sex }"/>
 	<input type="hidden" id="user_unique" value="${user.id }"/>
 	<input type="hidden" id="user_img" value="${user.imgUrl }"/>
-	
 		<!-- photo Modal start -->
 	<div class="modal" id="mymodal">
 		<div class="modal-dialog">
@@ -130,8 +129,6 @@
 		</div>
 	</div>
 	<!-- photo Modal start -->
-	
-	
      <div class="proInfo">
      					  <div class="updateLogo">   
 	      		                    <div class="title">当前头像</div>
@@ -191,7 +188,6 @@
                                 <div class="title">微信</div>
                                 <input type="text" class="" id="contact-wechat" value="${user.weChat }" tabindex="5" placeholder="请输入微信号" autocomplete="off" />
                             </div>
-                          
                             <div class="infoItem hide">
                                 <div class="title">客户来源</div>
                                 <div class="dropdown infoSelect priceRangeSelect" id="company-priceRange-value">

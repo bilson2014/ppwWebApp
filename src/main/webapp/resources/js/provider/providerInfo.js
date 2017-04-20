@@ -31,7 +31,6 @@ $().ready(function() {
 					var year = date.getFullYear();
 					var month = date.getMonth() + 1;
 					var day = date.getDate();
-					
 					if(int == 0)
 						oidYear = year;
 					//创建叶子节点
@@ -39,13 +38,10 @@ $().ready(function() {
 						// left
 						// 添加年节点
 						if(!checkYearIsExist(year)){
-						
 							$body+=drawYearView(year);
 						}
 						$body+=drawVideoAreaBegin();
-
 						$body+=drawLeftCard(msg[int],year,month,day);
-						
 						//TODO看这
 						if(num==0&&int>5){
 							nowInt = int;
@@ -53,7 +49,6 @@ $().ready(function() {
                             $body = '';
 							break;
 						   }
-
 					}else{
 						// right
 						if(!checkYearIsExist(year) && oidYear != year){
@@ -61,7 +56,6 @@ $().ready(function() {
 							// 首先结束是一片树叉
 							$body+=drawMidTimeLine();
 							$body+=drawVideoAreaEnd();
-							
 							timeLine.append($body);
 							$body = '';
 							// 添加新的树叉  --》年
@@ -71,13 +65,11 @@ $().ready(function() {
 							index = 1;
 							oidYear = year;
 							// 最后一年只有一块
-							
 							if((int+1) >= msg.length){
 								$body+=drawMidTimeLine();
 								$body+=drawVideoAreaEnd();
 								timeLine.append($body);
 								$body = '';
-								
 							}
 							//TODO看这
 							if(num==0&&int>5){
@@ -101,10 +93,8 @@ $().ready(function() {
 						   }
 						$body = '';
 					}
-
 					index ++;
 					oidYear = year;
-
 				}
 				if(num==0&&msg.length>6){
 				var $body = drawMore();
@@ -143,10 +133,8 @@ $().ready(function() {
 			});
 		}
 	}
-	
 	ProductTree.initInfoHead();
 	ProductTree.loadDatas(0);
-	
 });
 
 // 比较之前进行数据转换
@@ -175,19 +163,17 @@ function drawYearView(year) {
 	        else if(moYear==0){
 	        	$body+='<div class="color5">'
             }
-	      
 	        $body+= year
 			+ '</div></div><div class="yearTimeLine"></div></div>';
 	return $body;
 }
 // 创建叶子节点 --》 左
 function drawLeftCard(product,year,month,day) {
-	
 	var imgPath = '/resources/images/index/noImg.jpg';
 	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
 		imgPath = getDfsHostName() + product.picLDUrl;
 	}
-	
+
 	var $body = ''
 			+ '<div class="leftCard">'
 				+ '<div class="leftDian">'
@@ -197,12 +183,7 @@ function drawLeftCard(product,year,month,day) {
 				+ '</div>'
 				+ '<div class="videoCrad">'
 					+ '<div class="title">'+product.productName+'</div>'
-					//modify by wlc 2016-11-1 14:04:29
-					//修改为dfs路径 begin
-					//+ '<a  href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="/product/img/'+getFileName(product.picLDUrl)+'"></a>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html" ><img src="'+imgPath+'"></a>'
-					//修改为dfs路径 end
-					//+ '<div class="videoContentInfo"></div>'
 					+ '<div class="videoTag">'+drawTags(product.tags)+'</div>'
 					+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 						+ '<div class="videoBtn">了解详情</div>' 
@@ -214,13 +195,10 @@ function drawLeftCard(product,year,month,day) {
 
 // 创建叶子节点 --》 右
 function drawRightCard(product,year,month,day) {
-	
-	
 	var imgPath = '/resources/images/index/noImg.jpg';
 	if(product.picLDUrl != null && product.picLDUrl != "" && product.picLDUrl != undefined){
 		imgPath = getDfsHostName() + product.picLDUrl;
 	}
-	
 	var $body = ''
 		+ '<div class="rightCard">'
 			+ '<div class="rightDian">'
@@ -231,7 +209,6 @@ function drawRightCard(product,year,month,day) {
 			+ '<div class="videoCrad">'
 				+ '<div class="title">'+product.productName+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html"><img src="'+imgPath+'"></a>'
-				//+ '<div class="videoContentInfo"></div>'
 				+ '<div class="videoTag">'+drawTags(product.tags)+'</div>'
 				+ '<a href ="/play/'+product.teamId+'_'+product.productId+'.html">'
 					+ '<div class="videoBtn">了解详情</div>' 
@@ -240,7 +217,6 @@ function drawRightCard(product,year,month,day) {
 		+ '</div>';
 return $body;
 }
-
 //创建叶子节点 --》 加载更多
 function drawMore() {
 	var $body = '<div class="videoArea topMore" id="getMore">'
@@ -304,30 +280,12 @@ var providerInfo = {
 			
 			for(i=0;i<tagLength;i++){
 				var formBody ='<div class="card">';
-//				formBody +='<div class="controlCard">';
-//				formBody +='<div class="pencil"></div>';
-//				formBody +='<div class="cardWord">'+tagList[i]+'</div>';
 				formBody += ''+tagList[i]+'';
 				formBody += '</div>';
 				formBody += '</div>';
 				$("#provderTagId").append(formBody);
 			}
-
-//			if(tagLength>6){
-//                var multiple = tagLength/6;
-//                var intMultiple = parseInt((Number(multiple)+1));
-//                var provderTagHeight = intMultiple*30+30;
-//                var topLine = provderTagHeight/2-15;
-//				 
-//				
-//				$("#provderTagId").css("height",provderTagHeight);
-//				$("#tagId").css("height",provderTagHeight);
-//				$("#leftLineId").css("top",topLine);
-//				$("#rightLineId").css("top",topLine);
-//				
-//			}
 			
-
 			},
           controlSpecialVideo : function(){
         	  var yk =  $('#ykVideoUrl').val();
@@ -340,11 +298,9 @@ var providerInfo = {
         	  else{
         		  var formBody =' <video class="showVideo" controls src="'+local+'" preload="auto" poster="'+localImg+'"></video>';
         		  $("#showVideos").append(formBody);
-        		//  <video class="showVideo" controls src="'+local+'" preload="auto" poster=''></video>
         	  }
           }
 };
-
 
 function openOrder(){
 	$('#withIt').on('click',function(){

@@ -18,12 +18,10 @@ $().ready(function(){
 				break;
 			case 2: // 未审核通过
 				$('#process-2').removeClass('hide');
-				
 				var recomment = $('#company-recomment').val().trim();
 				if(recomment == '' || recomment == null){
 					$('#company-recomment').val('请完善信息后提交审核!');
 				}
-				
 				$('.btn').on('click',submitCheck);
 				break;
 			case 3: // 未提交

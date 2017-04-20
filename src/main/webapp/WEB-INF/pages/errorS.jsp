@@ -131,7 +131,6 @@
     </div>
 	
 	<div class="page">
-	  
 	   <div class="errorDiv">
 	       
 	       <div class="centerDiv">
@@ -139,8 +138,6 @@
 	        <div class="centerWord">您访问的服务器飞走了！请点击<a href="/">返回首页</a></div>
 	       </div>
 	   </div>
-	  
-	  
 	</div>
 	<!-- foot -->
          					<div class="foot3">
@@ -222,7 +219,6 @@
 						<dt>
 							<h3 id="modal-h3-first">马上接通视频营销管家</h3>
 						</dt>
-						
 						<dd id="modal-dd-second">
 							<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
 							<a href="javascript:void(0);" id="modal-call">
@@ -232,11 +228,9 @@
 							</a>
 							<label class="modal-message" style="display: none;"></label>
 						</dd>
-						
 						<dt >
 							<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
 						</dt>
-						
 						<dd>
 							<h4>和QQ客服聊会</h4>
 						</dd>

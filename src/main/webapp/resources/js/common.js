@@ -7,8 +7,6 @@ var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function(){
-	
-	
 	getImgUrl();
 	controlInput();
 	// 弹出电话预约界面
@@ -16,7 +14,6 @@ $().ready(function(){
 		$('#toolbar-modal').modal({
 			keyboard: false
 		})
-		
 		$('#modal-call').on('click',function(){
 			// 检测手机号码
 			var phoneNumber = $('#phoneCall').val();
@@ -68,7 +65,6 @@ $().ready(function(){
 	
 	//检测用户是否完善登录名和密码 wanglc
 	loadData(function(flag){
-		
 		if(!flag){
 			$(".right-part").append('<div class="warn">!</div>');
 			//.append('<div class="warnWindom"><div class="divImg"></div><div></div></div>');
@@ -79,7 +75,6 @@ $().ready(function(){
 			}
 		}
 	}, getContextPath() + '/loginName/validate');
-	
 	
 	playVideo();
 	chickShowOrder();
@@ -128,13 +123,11 @@ function debug(obj) {
 
 	var linebreak = "\r\n";
 	// var linebreak = "; ";
-
 	var msg = "OBJECT->" + linebreak;
 	msg += obj + linebreak;
 	for ( var e in obj) {
 		msg += e + "=" + obj[e] + linebreak;
 	}
-
 	return alert(msg);
 }
 
@@ -201,14 +194,12 @@ function loadData2(Func,url,param){
 function submitForm(Func,url,param,checkElement){
 	var processing = $(checkElement).hasClass('X');
 	var rtoken = $('#rtoken').val();
-	
 	// 页面存在rtoken添加在提交的参数内
 	if(rtoken != undefined && rtoken != null && rtoken != ''){
 		var obj = $.evalJSON(param);
 		obj.rtoken = rtoken;
 		param = $.toJSON(obj);
 	}
-	
 	if(!processing){
 		$(checkElement).addClass('X');
 		$.ajax({
@@ -255,9 +246,7 @@ function syncLoadData(Func,url,param){
 
 //导出excel
 function download(url,condition){
-	
 	$.growlUI('报表输出中…', '正在为您输出报表，请稍等。。。');
-	
 	var inputHTML = '<input type="hidden" name="json" value="'+ htmlSpecialCharsEntityEncode(decodeURIComponent(condition)) +'" />';
 	$('<form action="'+ getContextPath() + url +'" method="POST">' + inputHTML + '</form>').appendTo('body').submit().remove();
 }
@@ -291,7 +280,6 @@ function getFileName(val){
 			imgName = arr[i]
 		}
 	}
-	
 	return imgName;
 }
 
@@ -330,8 +318,6 @@ function thousandCount(number) {
 	}
 	return tableData;
 }
-
-
 /**
  * 去掉千分位显示
  */
@@ -349,14 +335,12 @@ function DisThousandCount(number){
 	}
 	return tableData;
 }
-
 // 重新编码
 function htmlSpecialCharsEntityEncode(str) {
 	return str.replace(htmlSpecialCharsRegEx, function(match) {
 		return '&' + htmlSpecialCharsPlaceHolders[match];
 	});
 }
-
 var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
 var htmlSpecialCharsPlaceHolders = {
 	'<' : 'lt;',
@@ -406,7 +390,6 @@ function checkDecimal(str){
 		return true;
 	else
 		return false;
-	
 }
 /**
  * 检验 用户名格式
@@ -419,7 +402,6 @@ function checkUserName(name){
 	else
 		return false;
 }
-
 /**
  * 加密
  * @param word

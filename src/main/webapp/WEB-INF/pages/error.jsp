@@ -65,7 +65,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -131,16 +130,12 @@
     </div>
 	
 	<div class="page">
-	  
 	   <div class="errorDiv">
-	       
 	       <div class="centerDiv">
 	        <div><a href="/"><img src="${imgPath }/icons/error.png"></a></img></div>
 	        <div class="centerWord">服务器去拍电影啦~回到<a href="/">首页</a>去看看吧！</div>
 	       </div>
 	   </div>
-	  
-	  
 	</div>
 	<!-- foot -->
          					<div class="foot3">

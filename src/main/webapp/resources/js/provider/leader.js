@@ -41,7 +41,6 @@ function initUl(){
         	Province($(this));
         return false;
    });
-
 }
 
 function Province(self){
@@ -78,7 +77,6 @@ function SetRemainTime(){
 	}
 }
 
-
 function checkStepOneData(){
  if(step==1){
 
@@ -105,45 +103,33 @@ function resumeError(){
 }
 
 function showStepOne(){
-	 //$('.step-two-div').slideUp();
+
 	 $('.step-two-div').hide();
 	 $('.step-one-div').show();
 
-
-//		setTimeout(function() {
-//			$('.step-one-div').slideDown();
-//		}, 500);
      $('#step-1').addClass('step-1');
      $('#step-2').removeClass('step-1');
 }
 
 function showStepTwo(){
 	$('.step-one-div').hide();
-//	setTimeout(function() {
 	$('.step-two-div').show();
-//	}, 500);
  $('#step-2').addClass('step-1');
  $('#step-1').removeClass('step-1');
 }
 
 function showStepThree(){
-
 	    $('.step-two-div').hide();
-	//setTimeout(function() {
 		$('.step-three-div').show();
-	//}, 500);
- $('#step-2').removeClass('step-1');
- $('#step-3').addClass('step-1');
- SetLastTime();
+        $('#step-2').removeClass('step-1');
+        $('#step-3').addClass('step-1');
+        SetLastTime();
 }
-
-
 
 function checkStepOne(){
     var name = $('#company-name').val().trim(); // 公司名称
 	var email = $('#company-email').val().trim(); // 公司邮箱
 	var linkman = $('#company-linkman').val().trim(); // 联系人
-//	var pwd = $('#company-pwd').val().trim();
 	var webchat = $('#company-webchat').val().trim(); // 微信
 	var qq = $('#company-qq').val().trim(); // QQ
 	var address = $('#company-address').val().trim();
@@ -154,7 +140,6 @@ function checkStepOne(){
 		 showErrorLeader($('.user-img-content'),'请选择Logo!');
 		return false;
 	}
-	
 	
 	if(name == '' || name == null || name == undefined){
 		showErrorLeader($('#company-name-error'),'请输入公司名称!');
@@ -241,7 +226,6 @@ function getBusinessVal(){
 	}
 	return busArr;
 }
-
 
 function infoSave(){
 	submitForm(function(flag){

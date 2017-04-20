@@ -49,6 +49,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${bootstrapJs }"></script>
@@ -154,17 +155,6 @@
         </div>
     </div>
 	</div>
-<!-- 	<div class="menu-content panel">
-		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active" data-action="company-info"><a href="javascript:void(0);">基本信息</a></li>
-			<li role="presentation" data-action="video-list"><a href="javascript:void(0);">作品列表</a></li>
-			<li role="presentation" data-action="company-status"><a href="javascript:void(0);">审核状态</a></li>
-		</ul>
-	</div>
-
-	<div class="content panel">
-		<iframe id="content-frame" class="iframe"></iframe>
-	</div> -->
 	
 	<div class="infomation" id="infomation" style="display: none;">
 	        <label id="infomation_title">*您的资质提交已经成功提交,审核中...</label>
@@ -178,7 +168,6 @@
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
-	
 	
 	<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
@@ -212,7 +201,6 @@
 	                   <div class='closewarn'>取消</div>
 	           </div>
 		 </div>
-		 
 		 		 
 		 <div class="selectVideo">
 		     <div class="top">
@@ -238,7 +226,6 @@
 		         <div>进度处理中...</div>
 		     </div>
 		 </div>
-	 
 
 	 <div class="page" style="height:100%">
 

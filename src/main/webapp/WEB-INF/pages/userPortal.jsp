@@ -23,8 +23,6 @@
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/images/user" var="imgPath"/>
-<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
-<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -47,6 +45,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${bootstrapJs }"></script>
@@ -59,9 +58,6 @@
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
 	<script src="${userPortalJs}"></script>
-	
-
-	
 	
 </head>
 <body style="overflow:hidden">
@@ -83,7 +79,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -166,7 +161,6 @@
 		     </div>
    </div>
    
-   
    	<div class="tooltip-success-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
 	</div>
@@ -174,10 +168,8 @@
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
-	 
 
 	 <div class="page" style="height:100%">
-
        <div class="user-wrap">
                 <div class="left-wrap">
                     <div class="left-header">

@@ -69,9 +69,11 @@
 <link rel="stylesheet" href="${providerUploadCss }">
 <link rel="stylesheet" href="${datepickerCss }">
 <link rel="stylesheet" href="${webuploaderCss }">
+
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
@@ -253,16 +255,7 @@
 						<div for="video-tag" class="control-label itemTitle">标签</div>
 						<div class="tagArea">
 							<div class="upload_filed_area">
-								
 								<div class="mod_keyword">
-									<%-- <c:if test="${not empty product.tags }">
-										<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
-											<span class="keyword_item">
-											 	<b class="keyword_item_inner">${tag }</b>
-											 	<a href="javascript:void(0);" class="btn_keyword_del"> <span>x</span></a>
-											</span>
-										</c:forEach>
-									</c:if> --%>
 									<span class="keyword_input"> <input type="text" value='${product.tags }'
 										class="input_inner" id="text_tags" />
 									</span>
@@ -284,7 +277,6 @@
 				</div>
 				<div class="proItem noItem">
 					<div class="itemTitle">视频封面</div>
-
 					<ul>
 						<li>
 							<div class="upBanner" id='upBtn-pic'>上传封面</div>
@@ -299,7 +291,6 @@
 								<img id="LDimg" src="/resources/images/index/noImg.jpg">
 								<input type="hidden" id='pic-LD-url' data-change="0">
 							</c:if>
-							
 						</li>
 						<li>
 							<span>仅支持小于250KB的png/jpg格式,推荐1280*720分辨率</span>

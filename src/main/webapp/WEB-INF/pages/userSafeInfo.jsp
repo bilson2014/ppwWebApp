@@ -65,6 +65,7 @@
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
@@ -147,7 +148,6 @@
 						</c:if>
 					</div>
 					<div class="setInfo btn-c-r" id="toUserPassWord">设置</div>
-					
 				</div>
 			</div>
 			<div class="line"></div>
@@ -187,7 +187,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<div class="setUserContent" id="userName">
 			<div class="top">
@@ -253,7 +252,6 @@
 				<div class="infoSubmit btn-c-r pwdupdate">保存</div>
 				<div class="btn-c-g infoReSet" id="pwdReturn">取消</div>
 			</div>
-
 		</div>
 		
 		<div class="setUserContent" id="userBind">

@@ -9,13 +9,9 @@ var currentSize = 0;
 $().ready(function(){
 	
 	mergeVideo(0); // 加载视频
-	
 	maxSize(); // 初始化分页
-	
 	list.itemToggle(); // 注册 更多 按钮
-	
 	list.loadItem(); // 加载 行业分类
-	
 	list.lengthToggle(); // 注册点击 价格区间
 	
 	// 绑定input 值变动事件
@@ -94,7 +90,6 @@ var list = {
 					}else{
 						itemId = iId;
 					}
-					
 					currentSize = 0;
 					mergeVideo(0); // 装载 视频
 					
@@ -123,12 +118,9 @@ var list = {
 				// 选中 标识 高亮
 				$('.lengthAll').removeClass('active');
 				$(this).addClass('active');
-				
 				currentSize = 0;
 				mergeVideo(0); // 装载 视频
-				
 				$(".pagination").initPage({
-					
 				}); // 重置分页
 				maxSize();
 			});
@@ -142,23 +134,17 @@ var list = {
 						// 开始时长为空时，赋值为0
 						lengthBegin = 0;
 					}
-					
 					if(endLength == null || endLength == '' || endLength == undefined){
 						// 开始时长为空时，赋值为0
 						lengthEnd = 36000;
 					}
-					
 					lengthBegin = startLength;
 					lengthEnd = endLength;
-					
 					// 选中 标识 高亮
 					$('.lengthAll').removeClass('active');
-					
 					currentSize = 0;
 					mergeVideo(0); // 装载 视频
-					
 					$(".pagination").initPage({
-						
 					}); // 重置分页
 					maxSize();
 				}
@@ -166,7 +152,6 @@ var list = {
 		},
 		priceBtn : function(){
 			$('#priceBtn').on('click',function(){
-
 				if(!$(this).hasClass('disabled')){ // 按钮是否可用
 					var startPrice = $('#start-price').val().trim();
 					var endPrice = $('#end-price').val().trim();
@@ -174,28 +159,20 @@ var list = {
 						// 开始时长为空时，赋值为0
 						startPrice = 0;
 					}
-					
 					if(endPrice == null || endPrice == '' || endPrice == undefined){
 						// 开始时长为空时，赋值为0
 						endPrice = 100000;
 					}
-					
 					priceBegin = startPrice * 10000;
-					
 					priceEnd = endPrice * 10000;
-					
 					// 选中 标识 高亮
 					$('.priceAll').removeClass('active');
-					
 					currentSize = 0;
 					mergeVideo(0); // 装载 视频
-					
 					$(".pagination").initPage({
-						
 					}); // 重置分页
 					maxSize();
 				}
-			
 			});
 		},
 		priceToggle : function(){ // 时间区间 点击事件
@@ -205,12 +182,9 @@ var list = {
 				// 选中 标识 高亮
 				$('.priceAll').removeClass('active');
 				$(this).addClass('active');
-				
 				currentSize = 0;
 				mergeVideo(0); // 装载 视频
-				
 				$(".pagination").initPage({
-					
 				}); // 重置分页
 				maxSize();
 			});
@@ -251,18 +225,15 @@ function mergeVideo(begin){
 				$body += '<a href="'+ getContextPath() + '/play/' + product.teamId + '_' + product.productId +'.html">了解详情</a>';
 				$body += '</div>';
 				$body += '</div>';
-
 				if(i % 4 == 3){
 					$body += '</div>';
 				}
 			});
-
 			$('#video-content').append($body); // 填充数据
 		}else {
 			// 如果没有数据，则显示 "对不起，没有查询到您想要的数据"
 			$('#video-content').append('<div class="prompt-word">对不起，没有查询到您想要的数据!</div>');
 		}
-
 	}, getContextPath() + '/product/listWithCondition', $.toJSON({
 		begin : begin,
 		limit : pageSize,

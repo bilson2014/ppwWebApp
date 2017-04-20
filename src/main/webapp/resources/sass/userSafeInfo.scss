@@ -325,15 +325,13 @@ input:-webkit-autofill {
 
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb:vertical {
-    //background: url(../../images/biao/scrollV.png) no-repeat;
     background: $gray-dark;
     border-radius: 90px;
 }
 ::-webkit-scrollbar-thumb:horizontal {
     background-color: $gray-dark;
     border-radius: 120px;
-    // background: url(../../images/biao/scrollH.png) no-repeat right;
-    // background-size:100%; 
+
 }
 
 .isBind {

@@ -4,7 +4,6 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/autoweb/autoWeb.css" var="errorCss"/>
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -38,6 +37,5 @@
 		<img src="/resources/images/about/rightImg.png">
 		<img src="/resources/images/about/leftImg.png">
 	</div>
-
 </body>
 </html>

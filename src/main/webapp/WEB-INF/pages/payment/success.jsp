@@ -27,7 +27,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
-	<script type="text/javascript">
+<script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
 	(function() {
@@ -65,7 +65,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -131,21 +130,15 @@
     </div>
 	
 	<div class="page">
-	  
 	   <div class="errorDiv">
-	       
 	       <div class="centerDiv">
 	       
 	       <img class="liImg" src='${imgPath }/icons/successSure.png'>
 	         <ul>
-	                        
 				          <li>支付成功啦</li>
 				          <li>请尽快联系拍片网视频管家，支付已完成，我们将尽快为您服务！</li>
-				   
-				       </ul>
+		     </ul>
 	   </div>
-	  
-	  
 	</div>
 	<!-- foot -->
          					<div class="foot3">
@@ -208,7 +201,6 @@
                             </div>
                             <!--新版底部-->
 	</div>
-	
 	<!-- 代码部分begin -->
 	<div class="toolbar " id="toolbar-section" style="visibility: hidden;">
 		<a href="javascript:void(0);" class="toolbar-item toolbar-item-weixin common-icons-tele-client" id="toolbar-item-weixin"></a>
@@ -216,7 +208,6 @@
 		<a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top common-icons-top-client"></a>
 	</div>
 	<!-- 代码部分end -->
-	
 	<!-- toolbar modal begin -->
 	<div class="modal fade" id="toolbar-modal">
 		<div class="modal-dialog">
@@ -227,7 +218,6 @@
 						<dt>
 							<h3 id="modal-h3-first">马上接通视频营销管家</h3>
 						</dt>
-						
 						<dd id="modal-dd-second">
 							<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
 							<a href="javascript:void(0);" id="modal-call">
@@ -237,11 +227,9 @@
 							</a>
 							<label class="modal-message" style="display: none;"></label>
 						</dd>
-						
 						<dt >
 							<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
 						</dt>
-						
 						<dd>
 							<h4>和QQ客服聊会</h4>
 						</dd>

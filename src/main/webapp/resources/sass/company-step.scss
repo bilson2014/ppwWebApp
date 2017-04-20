@@ -7,8 +7,6 @@
 .area-top {
 	  @include media_screen_width($about-us-width-min,$about-us-width-min,$about-us-width-min);
 	margin: auto;
-
-
 	.image-top {
 		@include media_screen_width($about-us-width-min,$about-us-width-min,$about-us-width-min);
 		height: auto;

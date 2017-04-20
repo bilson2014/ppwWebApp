@@ -37,9 +37,11 @@
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${providerInfoCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
@@ -92,7 +94,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -249,7 +250,6 @@
 			    </div>     
 		     </div>
 		     
-		     
 	  <div class="videoSpace">
 	          <div class="productOutSide">
 	                                       影视作品
@@ -286,8 +286,6 @@
 		</div>
 		
 			<div class="footer">
-		
-		
 		<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -348,7 +346,6 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-	
 	</div>
 		 
 </body>

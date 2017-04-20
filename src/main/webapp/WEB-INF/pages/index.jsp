@@ -62,7 +62,6 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-
 	<div class="page">
 		<div class="advanBack"></div>
 			 <div class="header" id="header">
@@ -310,17 +309,6 @@
 						<div class="directorWants">更多案例</div>
 					</a>
 					<div class="cardUl">
-						<!-- <li>
-	                        <div class="videoCard">
-	                            <img src=" /resources/images/index/test2.png">
-	                            <div class="videoContet">
-	                                <div class="title">标题</div>
-	                                <div class="type">类型</div>
-	                                <div class="price">￥500</div>
-	                                <div class="realPrice">原价￥400</div>
-	                            </div>
-	                        </div>
-	                    </li> -->
 					</ul>
 				</div>
 			</div>
@@ -490,15 +478,6 @@
 			<div class="newsContent">
 				<div class="newsLogo"></div>
 				<ul id='news-container'>
-					<!-- <li>
-						<div class="newsTitle">新闻标题</div>
-						<div class="newsLine"></div>
-						<div class="Content">这就是内容这就是内容这就是内容这就是内容这就是内容这就是内容</div>
-						<div class="newsMore">
-							<span>了解更多</span><img
-								src="/resources/images/index/newsMore.png">
-						</div>
-					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -601,8 +580,6 @@
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/index.js"></script>
-
-
 </body>
 
 </html>

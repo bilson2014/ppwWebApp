@@ -16,7 +16,6 @@ $().ready(function() {
 				this.sendCodeForPwd();
 				//登录密码	确定事件 
 				this.submitPWD();
-				
 				//****手机绑定设置******
 				//手机绑定  发送验证码到原手机号
 				this.sendcodeForOldPhone();
@@ -133,7 +132,6 @@ $().ready(function() {
 						if(result){
 							$(".old-phone").addClass("hide");
 							$(".new-phone").removeClass("hide")
-							
 						}else{
 							showCommonError($('#old-code-error'),'验证码错误');
 						}
@@ -182,11 +180,7 @@ $().ready(function() {
 			}
 	}
 	safeInfo.init();
-
-
-
 });
-
 
 function verification(phone,ID){
 	curCount = count;

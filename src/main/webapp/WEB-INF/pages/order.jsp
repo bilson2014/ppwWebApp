@@ -4,7 +4,6 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/order.css" var="orderCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -13,7 +12,6 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/order.js" var="orderJs"/>
-
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -34,6 +32,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -63,7 +62,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
 					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
@@ -101,14 +99,7 @@
 	</div>
 	
 	<div class="page">
-	
-	
-	
-	
 		<div class="video-wrap" id="area">
-		
-		            
-				
 				<div class="order-title" id="line">我要拍片</div>
 				<!-- 订单信息 start-->
 				<div class="information-section">
@@ -139,7 +130,6 @@
 					</form>
 				</div>
 				<!-- 订单信息 end-->
-				
 				<!-- 订单官方描述 start-->
 				<div class="description-section" id="word">
 					<dl class="dl1">
@@ -165,11 +155,8 @@
 
 				</div>
 				<!-- 订单官方描述 end-->
-				
-					<!-- 视频区域-->
+				<!-- 视频区域-->
 				<div class="description-sections hide" id="video">
-						
-				
 						  <video autoplay loop title="点击播放" id="openVideo" autoplay name="media" poster="/resources/images/video/showVideo.jpg">
 				   			 <source  src="/resources/images/video/paipianwang.mp4"   id="source" type="video/mp4">
 				   		  </video>
@@ -180,19 +167,15 @@
 						</div>
 				</div>
 				<!-- 视频区域end-->
-				
 			</div>
 	</div>
-	
 	<div class="openVideo hide" title="双击关闭视频" id="playVideo">
-
 	</div>
-	
 	<div class="footer">
 		<!-- 底栏 start -->
 		<div class="footer-wrap">
 			<div class="footer-content">
-			
+				
 				<div class="footer-column">
 					<a href="javascript:void(0);" class="title" >登录</a>
 					<a href="<spring:url value="/mgr/login" />" target="_self">视频管家登录</a>

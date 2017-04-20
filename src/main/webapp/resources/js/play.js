@@ -5,7 +5,6 @@ var count = 120; // 间隔函数，1秒执行
 var curCount = 0; // 当前剩余秒数 - 注册
 var recoverCount; // 当前剩余秒数 - 密码找回
 var noCardIndex = 0;
-
 var color = new Array(
    '#33D8B5',
    '#F5A623',
@@ -207,20 +206,15 @@ function showDiv(){
       $('#price').addClass('noShow');
       $('#order').addClass('showOrder');
     });
-
-
     $('#closeBtn').on('click',function(){
       $('#price').addClass('showPrice');
       $('#price').removeClass('noShow');
       $('#order').removeClass('showOrder');
     });
-    
     // event
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
     $('#order-btn').off('click').on('click',submitOrder);
 }
-
-
 // ----------------- wang -----------------
 // order verificationCode
 function verificationCodeBtn(){
@@ -316,7 +310,6 @@ function initView(){
 	if(hret != '' && hret != null && hret != undefined){
 		makePlayer('player-wrap', hret); // 创建视频浏览器
 	}
-	
 	// -> 注册 分享按钮 
 	$('.share').click(function(){
 		var title = $('#pName').text();
@@ -324,7 +317,6 @@ function initView(){
 		var img_path = getDfsHostName() + $('#picPath').val();
 		share.init(url,title,img_path);
 	});
-	
 	var html = $('#videoValue').text().trim();
 	if(html != ''){
 		$.base64.utf8encode = true;
@@ -343,7 +335,6 @@ function initView(){
 		loadRecommendProduct();
 	}
 }
-
 // 加载相关视频推荐
 function loadRecommendProduct(){
 		var tags=$('#tags').val();
@@ -365,7 +356,6 @@ function loadRecommendProduct(){
 								count --;
 								continue;
 							}
-								
 							hasCount ++;
 							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
 							v1.append(card);
@@ -415,7 +405,6 @@ function loadRecommendProduct(){
 		}));
 	}
 
-
 function loadRecommendProductIfNo(){
 	var tags=$('#tags').val();
 	if(tags == null || tags == undefined || tags == ''){
@@ -453,12 +442,10 @@ function loadRecommendProductIfNo(){
 					}
 					initNoInfo();
 				}
-				
 				if(count > 8){
 					 $('#moreNoInfo').removeClass('hide');
 					 $('#moreNoInfo').attr('href','/search?q=*&industry='+tags + '&isMore=true');
 				}
-				
 			}else{
 				$('#noInfo').addClass('hide');
 			}
@@ -469,7 +456,6 @@ function loadRecommendProductIfNo(){
 		limit : 9
 	}));
 }
-
 
 function initNoInfo(){
 	
@@ -491,7 +477,6 @@ function initNoInfo(){
 }
 
 function initMoreInfo(num){
-	
 	var initNum = 0;
 	 if(num > 6){
 		 initNum = 6;
@@ -513,19 +498,11 @@ function initMoreInfo(num){
         prevButton: '.rightPrev',
         direction: 'vertical'
     });
-    
-  
 }
-
-
-
-
 
 function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-	
 	var ImageUrl = '/resources/images/index/noImg.jpg';
-
 	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
 		ImageUrl = getDfsHostName() + imageUrl;
 	}
@@ -547,7 +524,6 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	].join('');
 	return html;
 }
-
 
 function createCard(productName,productId,teamId,imageUrl,price){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
@@ -578,11 +554,3 @@ var html = [
 ].join('');
 return html;
 }
-
-
-
- 	
-
-
-
-

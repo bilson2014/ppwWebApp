@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
-
 <spring:url value="/resources/css/provider/video-list.css"
 	var="productListCss" />
 <spring:url value="/resources/css/provider/step-dc-style2.css"
@@ -33,8 +32,6 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-
-
 
 <head>
 <meta charset="utf-8">
@@ -73,18 +70,6 @@
 	<input type="hidden" value="${cKey }" id="company-key" />
 	<input type="hidden" value="${cType }" id="company-type" />
 	<div class="proInfo">
-<!-- 		<div class="control">
-			<div class="newProduct">
-				<div></div>
-				<span>新建作品</span>
-			</div>
-			<div class="moreUp">
-				<div></div>
-				<span>批量上传作品</span>
-			</div>
-		</div> -->
-
-
 
 		<c:if test="${empty list }">
 			<div class="noProduct">

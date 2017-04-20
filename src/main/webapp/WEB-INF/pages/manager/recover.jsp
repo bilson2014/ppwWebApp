@@ -119,7 +119,6 @@
         </div>
     </div>
 		
-		
 		 <div class="outSideDiv">
 		         <div class="loginDiv">
 		            <h1>视频管家密码找回</h1>
@@ -145,9 +144,7 @@
 				            </div>
 				            <div class="redBtn" id="recoverBt">密码找回</div> 
 		            </form>
-		           
 		         </div>
-		   
 		   </div>
 	
 	<script src="${jqueryJs }"></script>

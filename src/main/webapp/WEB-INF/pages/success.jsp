@@ -4,14 +4,12 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/success.css" var="successCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
-
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -32,6 +30,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
@@ -69,7 +68,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -126,7 +124,6 @@
 					       </div>
 					</div>
 				</r:identity>
-
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
@@ -158,8 +155,7 @@
 			</div>
 		</div>
 		<!-- 拍片网介绍区域 end -->
-		
-	<!-- foot -->
+	    <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">

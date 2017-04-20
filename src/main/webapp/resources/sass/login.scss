@@ -8,7 +8,6 @@ body {
     height: 100%;
     background: $f0;
 }
-
 .page {
     background: $f0!important;
     @include media_screen_width_beta3();

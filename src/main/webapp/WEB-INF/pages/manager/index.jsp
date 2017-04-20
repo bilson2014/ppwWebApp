@@ -34,8 +34,6 @@
 <spring:url value="/resources/js/flow/step-jquery-dc.js"
 	var="stepjquery" />
 <spring:url value="/resources/js/flow/flow.js" var="indexjs" />
-
-
 <spring:url value="/resources/lib/dist/tether.min.js" var="tetherjs" />
 <spring:url value="/resources/lib/dist/js/drop.min.js" var="dropjs" />
 <spring:url value="/resources/js/flow/ajaxfileupload.js"
@@ -69,14 +67,15 @@
 <link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${commonCss }">
 <link rel="stylesheet" href="${webuploaderCss }">
-
 <link rel="stylesheet" href="${index }">
 <link rel="stylesheet" href="${stepdcstyle }">
 <link rel="stylesheet" href="${dropTheme }">
 <link rel="stylesheet" href="${datepickerCss }">
+
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 <script src="${jqueryJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${pluginJs }"></script>
@@ -93,9 +92,6 @@
 <script src="${modelJs }"></script>
 <script src="${datepickerZhJs }"></script>
 <script src="${zclipJs }"></script>
-
-
-
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 </head>
 <body>
@@ -128,7 +124,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -193,7 +188,6 @@
         </div>
     </div>
 	<div class="page" id="page">
-
 		<div class="left-page">
 			<div class="left-title">
 				<r:permission uri="/add-view">
@@ -218,7 +212,6 @@
 										<r:identity role="employee">
 											<li><a id="helpProject">协同</a>
 												<ul id="helpProjectId">
-	
 												</ul></li>
 										</r:identity>
 									</ul>
@@ -237,8 +230,6 @@
 					</div>
 				</div>
 			</r:identity>
-			
-			
 			<r:identity role="provider">
 				<div class="indentdiv">
 					<div id="content">
@@ -277,10 +268,7 @@
 					<ul id="pauseProjectId" class="hide"></ul>
 				</div>
 			</r:identity>
-			
-			
 		</div>
-
 		<div class="noproject hide">
 			<div class="no-poject-div" id="no-poject-div">
 				<ul>
@@ -317,8 +305,6 @@
 						class="drop-a content-title"></a> <a href="#"
 						class="description-c"></a>
 				</div>
-
-
 				<div class="descriptiondiv top-margin">
 					<ul class="time-div firstline div-margin-sm ">
 						<li class="timeword" id="cu_gt"></li>
@@ -331,7 +317,6 @@
 								<dd class="timeword" id="et_gt">未设置</dd>
 							</dl></li>
 					</ul>
-
 					<ul class="time-div secondline">
 						<li class="timeword" id="cu_fa"></li>
 						<li class="stepword" id="stepword_fa">未完成</li>
@@ -343,7 +328,6 @@
 								<dd class="timeword" id="et_fa">未设置</dd>
 							</dl></li>
 					</ul>
-
 					<ul class="time-div thirdline div-margin-mid">
 						<li class="timeword" id="cu_sw"></li>
 						<li class="stepword" id="stepword_sw">未完成</li>
@@ -355,7 +339,6 @@
 								<dd class="timeword" id="et_sw">未设置</dd>
 							</dl></li>
 					</ul>
-
 					<ul class="time-div fourline div-margin-large">
 						<li class="timeword" id="cu_zz"></li>
 						<li class="stepword " id="stepword_zz">未完成</li>
@@ -367,7 +350,6 @@
 								<dd class="timeword" id="et_zz">未设置</dd>
 							</dl></li>
 					</ul>
-
 					<ul class="time-div fiveline  div-margin-xl">
 						<li class="timeword" id="cu_jf"></li>
 						<li class="stepword " id="stepword_jf">完成</li>
@@ -398,9 +380,7 @@
 					</div>
 				</r:multPermission>
 			</div>
-
 			<r:identity role="customer">
-
 				<div class="payInfo payTop hide" id="cusId">
 					<label class="pay-title">订单信息</label>
 					<button class="border-btn payBtnPos" type="button"
@@ -427,10 +407,8 @@
 							style="display: inline-block; position: relative; left: 10px;"
 							src="${imgPath }/flow/getMore.png" />
 					</div>
-
 				</div>
 			</r:identity>
-
 			<r:identity role="employee">
 				<div class="payInfo payTop hide" id="managerId">
 					<label class="pay-title">收款方式</label> <a
@@ -450,9 +428,7 @@
 							src="${imgPath }/flow/getMore.png" />
 					</div>
 				</div>
-
 			</r:identity>
-
 			<div class="payCardHeight payInfo" id="payHistoryList">
 				<div class="loadmore-div" id="listLoad">
 					<div class="load-word">加载中</div>
@@ -462,13 +438,10 @@
 						<div class="bounce3"></div>
 					</div>
 				</div>
-
-
 				<div class="payCardZoom" id="payListPage">
 					<!-- 支付历史 -->
 				</div>
 			</div>
-
 			<div class="indentinfo">
 				<div class="indentinfo-title">
 					<label class="indentinfo-title-text">项目详细信息</label>
@@ -549,18 +522,14 @@
 						<img id="more-FileImg" style="display: inline-block; position: relative; left: 10px;"
 							src="${imgPath }/flow/getMore.png" class="open" />
 					</div>
-
 			</div>
-
 			<div class="message-div">
 				<div class="message-title">
 					<label class="message-title-text">留言板</label>
 				</div>
-				
 				<div class="message-table-div">
 					<r:permission uri="/addComment">
 						<textarea class="comment"></textarea>
-
 						<div id="loadHeight">
 						 <button class="comment-btn border-btn">提交</button>
 						</div>
@@ -589,8 +558,6 @@
 		</div>
 	</div>
 
-
-	<!-- foot -->
   <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -650,10 +617,8 @@
                                     </div>
                                 </div>
                             </div>
-                           
                             <!--新版底部-->
 	</div>
-
 	<!-- photo Modal start -->
 	<div class="modal" id="mymodal" data-backdrop="static"
 		data-keyboard=true>
@@ -671,7 +636,6 @@
 		</div>
 	</div>
 	<!-- photo Modal end -->
-
 	<!-- toolbar modal begin -->
 	<div class="modal fade upload-window" id="toolbar-modal">
 		<!-- 	<img class="circle-img" src="/resources/images/flow/circle.png" id="circle-img-id"></img> -->
@@ -747,7 +711,6 @@
 							<textarea class="form-control textareaInfo" id="reason"
 								placeholder="原因"></textarea>
 						</div>
-
 					</div>
 					<div class="pauseBtn">
 						<button class="red-btn puaseLeft" id="sureControl">确定</button>
@@ -768,7 +731,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<div class="modal fade upload-window" id="close-list">
 		<div class="modal-dialog">
@@ -907,8 +869,6 @@
 							</ul>
 						</div>
 					</div>
-
-
 
 					<div class="pay-bottom">
 						<div id="pay-sure" class="pay-red-btn">确认</div>

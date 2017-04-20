@@ -32,9 +32,7 @@
 	<!-- webcat -->
 	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 	<!-- qq -->
-	
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
-    
     <script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
@@ -52,12 +50,9 @@
 		})();
 	})();
 </script>
-
 </head>
 
 <body>
-     
-
   	 <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -140,12 +135,8 @@
         </div>
     </div>
 
-
     <div class="page">
-
-
           <div class="loginLeftArea">
-
               <div id="showCus" >
                 <div class="setImageCus"></div>
                 <div class="setInfo">
@@ -205,12 +196,7 @@
                          </div>
                 </div>
               </div>    
-
           </div>
-
-
-
-
 
         <div class="loginModel">
             <div class="showArea">
@@ -266,10 +252,8 @@
                               <div class="redBtn btn-c-r" id="submitBtn_user_name">登录</div>
 
                               <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
-
                   </div>
                  </div>
-
 
                    <div id="hideProvider" style="display:none">
                           <div class="loginDiv right" id="providePhoneLogin" style="display:none">
@@ -292,7 +276,6 @@
                               <div class="changeLogin" id="toNoProPhone">使用账号登录</div>
                               <div class="redBtn btn-c-r" id="submitBtn-team">登录</div>
                               <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
-
                           </div>
                   
                           <div class="loginDiv" id="providerNoPhoneLogin"  style="display:none">
@@ -307,17 +290,12 @@
                                       </div>  
                                       <div class="changeLogin"><span id="toProPhone">使用手机号登录</span><span onclick="window.location.href='/provider/repwd'">忘记了密码?</span></div>
                                       <div class="redBtn btn-c-r" id="submitBtn_team_name">登录</div>
-
                                       <div class="Ihave ">还没有账号?&nbsp&nbsp&nbsp请<a><span onclick="window.location.href='/register'">注册</span></a></div>
-
                           </div>
                  </div>
-
                </div>
         </div>
-        
     </div>
-    
            <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -378,11 +356,5 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-    
-    
-    
-    
-    
 </body>
-
 </html>

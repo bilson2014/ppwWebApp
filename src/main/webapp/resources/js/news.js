@@ -13,7 +13,6 @@ $().ready(function() {
      
 });
 
-
 //右侧是否悬浮
 function controlRightPos(){
 	  $(window).scroll(function() {
@@ -35,9 +34,7 @@ function controlRightPos(){
 	  });
 }
 
-
 //初始化面包
-
 function initPath(){
 	var path = getQueryString('q');
 	if(path != null){
@@ -53,7 +50,6 @@ function getQueryString(name) {
     var r = location.search.substr(1).match(reg);  
     if (r != null) return unescape(decodeURI(r[2])); return null;  
 }  
-
 
 //初始化最热资讯
 function initContent() {
@@ -79,7 +75,6 @@ function initContent() {
 	    });
 	}, getContextPath() + '/get/news/tag?q=最热资讯',null);
 }
-
 
 //初始化感兴趣
 function initLike() {	
@@ -143,7 +138,6 @@ function addPath(item){
    }
 }
 
-
 //日期格式化
 function getTime(str){
 	var date = convert(str);
@@ -151,7 +145,6 @@ function getTime(str){
 	var month = date.getMonth() + 1;
 	var day = date.getDate();
 	return year+'年'+month+'月'+day+'日';
-
 }
 
 function convert(val) {
@@ -161,12 +154,9 @@ function convert(val) {
 	return '';
 }
 
-
 //标题缩略格式化
 function getTitleIndex(str){
-	
-	 var num = 18;  
-	   
+	var num = 18;  
 	if(str.length<=num){
 		var content = str;
 	}else{
@@ -174,7 +164,6 @@ function getTitleIndex(str){
 	}
 	return  content;
 }
-
 
 //内容缩略格式化
 function getDesIndex(str){
@@ -191,7 +180,6 @@ function getDesIndex(str){
 	}else{
 		var content = str.substr(0,num) +"..."
 	}
-	
 	return  content;
 }
 

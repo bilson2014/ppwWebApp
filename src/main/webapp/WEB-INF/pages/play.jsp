@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
-<spring:url value="/resources/css/block/block.css" var="playCss"/>
+<spring:url value="/resources/css/play.css" var="playCss"/>
 <spring:url value="/resources/lib/swiper/swiper.min.css" var="swiperCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -144,18 +144,11 @@
         </div>
     </div>
     <div class="page">
-    <!-- <div class="showSuccess">
-       <div class="successModal">
-          <div class="show-zero2 zeromodal-icon zeromodal-success"><span class="line tip"></span><span class="line long"></span><div class="placeholder"></div></div>
-          <div class="successWord">绑定成功</div>
-          <div class="successInfo">欢迎加入拍片网!  自动跳转至<span id="toPortal">首页</span><span id="last3">3</span>秒</div>
-       </div>   
-    </div> -->
 
         <div class="videoArea">
             <div class="videoContent">
-                <div class="player-wrap">
-                    <div class="videoTop">
+            
+                <div class="videoTop">
                         <div id="pName">${product.productName }</div>
                         <div><span><img src="/resources/images/block/tag.png"></span>
                        		<span>
@@ -177,6 +170,9 @@
                             </ul>
                         </div>
                     </div>
+            
+                <div class="player-wrap">
+                   
                     <div class="controlVideo">
                         <div class="player-wrap" id="player-wrap">
                         	<c:if test="${empty product.picLDUrl }">
@@ -350,28 +346,12 @@
 		                      	<div></div>
 		            </div>
 	            </a>
-				<div class="swiper-wrapper paddingBottom" id="swiper-noInfoId">
-					
-				<!--  <div class="swiper-slide">
-					  <a>
-					    <div class="noInfoCard">
-							 <img src="/resources/images/index/test.png">
-					         <div class="margin-top">
-							    <span>adasda</span>
-							    <span>123</span>
-							 </div>
-					 	</div>
-					  </a>	
-					</div> -->
-					
-				</div>
+				<div class="swiper-wrapper paddingBottom" id="swiper-noInfoId"></div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
 		</div>
 </div>
-
-
 
 <!-- foot -->
 				<div class="foot3">
@@ -441,8 +421,6 @@
     <script type="text/javascript" src="${ykJs }"></script>
     <script type="text/javascript" src="${blockJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
-
-    
     <!-- 加载Mob share 控件 -->
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>

@@ -1,6 +1,4 @@
 var pageSize = 20;
-
-
 $().ready(function() {	
 	// 分类高亮
 	newsInfo.initCategory();
@@ -13,7 +11,6 @@ $().ready(function() {
 	newsInfo.initPagination();
 	newsInfo.getUrl($('.checkActive').attr('data-value'));
 });
-
 var newsInfo = {
 		// 分类高亮
 		initCategory : function() {
@@ -42,15 +39,6 @@ var newsInfo = {
 			}
 		},
 		getUrl:function(path){
-			
-//			$.each($('.toNewsUrl'),function(i,model){
-//				 
-//				  var url = $(this).attr('href')+'?q=' + path;
-//				  $(this).attr('href',url);
-//				
-//			});
-			
-			
 		},
 		// 格式化标题及介绍
 		formatContent : function() {
@@ -74,7 +62,6 @@ var newsInfo = {
 				}
 			});
 		}
-
 }
 
 // 加载新闻
@@ -123,7 +110,6 @@ function loadNews(page) {
 		condition : $('#q').val().trim()
 	}));
 	
-	
 }
 
 // 标题缩略格式化
@@ -141,7 +127,6 @@ function getTitleIndex(str){
 	}else{
 		var content = str.substr(0,num) +"..."
 	}
-	
 	return  content;
 }
 
@@ -161,7 +146,6 @@ function getContentIndex(str){
 	}else{
 		var content = str.substr(0,num) +"[...]"
 	}
-	
 	return  content;
 }
 
@@ -172,7 +156,6 @@ function getTime(str){
 	var month = date.getMonth() + 1;
 	var day = date.getDate();
 	return year+'年'+month+'月'+day+'日';
-
 }
 
 function convert(val) {
@@ -187,6 +170,3 @@ function getParam() {
     if (r != null) return decodeURI(r);  
     return null;
 }
-
-
-
