@@ -46,6 +46,7 @@
 	<title>拍片网招聘_拍片网团队_拍片网怎么样-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${memberCss }">
+	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -174,11 +175,6 @@
 		</div>
 	        
 	    <div class="introduce" >
-			  <!-- <ul>
-			      <li></li>
-			      <li>我们的团队</li>
-			      <li></li>
-			  </ul> -->
 			  <div class="logoImg">
 		    	<img src="${imgPath}/introduce/member/member.svg">
 		      </div>
@@ -207,13 +203,7 @@
 			</c:if>
 		</div>
 		
-		
 			<div class="introduce" >
-				 <!--  <ul>
-				      <li></li>
-				      <li>公司福利</li>
-				      <li></li>
-				  </ul> -->
 				<div class="logoImg">
 			    	<img src="${imgPath}/introduce/member/fuli.svg">
 			     </div>
@@ -263,14 +253,11 @@
 				<video id="video" src="${file_locate_storage_path }group1/M00/00/20/CgqNZViiqe2ANmqIAZ-Ai8Au-R8971.mp4" preload="auto" controls="controls" poster="${imgPath }/introduce/member/poster.jpg" ></video>
 		    </div>
 		</div>    
-		
 
 		<div class="join-us" id="join-us">
 	     	<h2>这一次你将离梦想真的很近！</h2>
 	        <p>发送简历：姓名+【申请职位】至<a href="mailto:hr@paipianwang.cn">hr@paipianwang.cn</a></p>
 	    </div>
-        
-       
         
 	     <c:if test="${!empty jobList}">
 	     	<div class="hold-work">
@@ -308,7 +295,6 @@
 	         <div>地址: 北京朝阳区建外SOHO东区6号楼2505</div>
 	     </div>
 	</div>
-
    	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -370,9 +356,6 @@
                             </div>
                             <!--新版底部-->
 	
-	
-	
-	
 	<!-- 代码部分begin -->
 	<div class="toolbar " id="toolbar-section" >
 		<a href="javascript:void(0);" class="toolbar-item toolbar-item-weixin common-icons-tele-client" id="toolbar-item-weixin"></a>
@@ -380,7 +363,6 @@
 		<a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top common-icons-top-client"></a>
 	</div>
 	<!-- 代码部分end -->
-	
 	<!-- toolbar modal begin -->
 	<div class="modal fade" id="toolbar-modal">
 		<div class="modal-dialog">
@@ -391,7 +373,6 @@
 						<dt>
 							<h3 id="modal-h3-first">马上接通视频营销管家</h3>
 						</dt>
-						
 						<dd id="modal-dd-second">
 							<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
 							<a href="javascript:void(0);" id="modal-call">
@@ -401,11 +382,9 @@
 							</a>
 							<label class="modal-message" style="display: none;"></label>
 						</dd>
-						
 						<dt >
 							<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
 						</dt>
-						
 						<dd>
 							<h4>和QQ客服聊会</h4>
 						</dd>

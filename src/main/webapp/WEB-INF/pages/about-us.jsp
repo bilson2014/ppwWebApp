@@ -11,7 +11,6 @@
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/aboutUs.js" var="aboutJs"/>
-
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -156,10 +155,7 @@
         </div>
 
 		<div class="nav-shadow"></div>
-		 <img id="icon" class="bannerAni" src="/resources/images/about/icon.png">
-
-		
-		
+		<img id="icon" class="bannerAni" src="/resources/images/about/icon.png">
 
 		<!-- 内容区域 start -->
 		<div class="banner">
@@ -171,18 +167,6 @@
 		<div class="video-div" id="video">
 			<video id="playVideos" src="${file_locate_storage_path }group1/M00/00/60/CgpmTlib2EaAbOOdAQ1EMav8_P0022.mp4" preload="auto" controls="controls" poster="${imgPath }/about/2017.png" ></video>
 	    </div>
-		      <!-- <div class="bannerContent">
-					<div class="middle">
-					    <img src="/resources/images/about/2017.png">
-					</div>
-					<div class="bannerInfo">
-					   拍片网-专业商业视频支付服务平台,为千万企业解决拍片需求
-					</div>
-				  <div class="showVideo" id="showVideo ">	
-					<img id="showVideoGif" src="/resources/images/about/play.gif">
-					<img id="showVideoJPG" src="/resources/images/about/play.png">
-				  </div>
-			  </div> 	 -->
 		</div>
 		
 		<div class="location">
@@ -211,11 +195,6 @@
 	              </div>
 
 	              <div class="historyContent">
-<!-- 	              	              <div style="text-align:center;font-size:1.4rem;line-height: 25px;margin-bottom:20px">
-	             拍片网隶属于 北京拍片乐科技有限公司，于2015年正式成立。<br>
-	             北京拍片乐科技有限公司是由资深影视从业者和互联网精英组成的跨界团队，本着“作品如人品”的共同理念，采用互联网链接影视行业的优秀创作者，<br>建立一个开放、共享的创作平台——拍片网。
-	              平台致力于为创作者提供更多的创作机会，为客户提供顶尖的视频作品，实现共赢。
-	              </div> -->
 	                  <div class="contentLeft">
 	                     <img src="/resources/images/about/usInfo.png">
 	                  </div>
@@ -259,11 +238,6 @@
 	              </div>
 	         </div>
 	      <!-- 历史end -->
-	      
-
-
-
-	      
 	      <!-- 价值观start -->
 	          <div class="value">
 	                  <ul>
@@ -277,10 +251,6 @@
 	                 <img style="width:100%" src="/resources/images/about/info.png">
 	          </div>
 	      <!-- 价值观end -->
-	      
-	        
-
-	            
 	      <!-- 使命start -->
 	          <div class="Mission">
 	                  <ul>
@@ -291,11 +261,7 @@
 	                  <img style="width:100%" src="/resources/images/about/bottomBg.jpg">
 	          </div>
 	      <!-- 使命end -->
-	     
-	    
-
 	</div>
-	
 	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">

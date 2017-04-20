@@ -14,12 +14,10 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/threeLogin.js" var="loginJs"/>
-
 <spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
 <spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
 <spring:url value="/resources/lib/disk/rAF.js" var="rAFJs"/>
 <spring:url value="/resources/lib/disk/demo-1.js" var="demoJs"/>
-
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -43,6 +41,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -60,7 +59,6 @@
 	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 	<!-- qq -->
 	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
-    
     <script type="text/javascript">
 	var _vds = _vds || [];
 	window._vds = _vds;
@@ -78,7 +76,6 @@
 		})();
 	})();
 </script>
-
 </head>
 <body >
 
@@ -101,7 +98,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -158,7 +154,6 @@
 					       </div>
 					</div>
 				</r:identity>
-
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
@@ -197,7 +192,6 @@
 		                 <input class="fontSizeBaseLight"  placeholder="短信验证码" id="verification_code"></input>
 		                 <div class="otherDiv"><button type="button" id="verification_code_recover_btn" class="btn-get-validation fontSizeBaseLight" >点击获取</button></div>
 		                 <div class="errorDiv hide" id="code_error_info">*验证码错误</div>
-		                
 		            </div>
 		            <div class="redBtn" id="bindBtn">立即绑定</div> 
 		            <div class="Ihave">已有账号?&nbsp&nbsp&nbsp请<span onclick="window.location.href='/login'">登录</span></div> 

@@ -14,7 +14,6 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/updatePwd.js" var="updatePwdJs"/>
-
 <spring:url value="/resources/lib/disk/EasePack.min.js" var="EasePackJs"/>
 <spring:url value="/resources/lib/disk/TweenLite.min.js" var="TweenLiteJs"/>
 <spring:url value="/resources/lib/disk/rAF.js" var="rAFJs"/>
@@ -40,6 +39,7 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -146,7 +146,6 @@
 					       </div>
 					</div>
 				</r:identity>
-
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
@@ -154,7 +153,6 @@
             </div>
         </div>
     </div>
-			   
 		    <div class="outSideDiv phoneHeight" id="outSideId">
 		         <div class="loginDiv">
 		         <input id="login_type" value="phone" type="hidden"></input>

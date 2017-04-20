@@ -5,8 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %> 
 
-
-
 <spring:url value="/resources/css/news/news.css" var="newsCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -73,7 +71,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -145,8 +142,6 @@
 		                <div>></div>
 		                <a href="/news-list.html"><div>新闻资讯</div></a>
 		                <div>></div>
-<!--                         <div id="pathDiv">
-                        </div> -->
 		                <div class="newsTitle">${news.title}</div>
 		            </div>
 		        </div>
@@ -178,7 +173,6 @@
 			           <c:if test="${news.next }">
 				            <a id="next" href="<spring:url value='/news/next-${news.id }.html?q=' />" ><div>下一篇</div></a>
 			           </c:if>
-			            
 			        </div>
                 </div>
                 <div class="rightContent" style="top:145px">
@@ -186,17 +180,14 @@
                     <a href="/news-list.html?q=最热资讯"><div class="moreNews">更多活动</div></a>
                     <div class="setVideo" id="moreNews">
                     </div>
-                    
                 </div>
             </div>
         </div> 
-       
         <div class="youLike">
              <div class="title">您可能感兴趣的文章  <span>Recommendation</span></div>
              <div class="atrContent"> 
              </div>
         </div>
-        
        <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">

@@ -33,9 +33,11 @@
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${commonCss }">
 	<link rel="stylesheet" href="${providerStatusCss }">
+	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -72,7 +74,6 @@
 			<div class="proce doing"><ul></ul></div>
 			<div class="node wait"><ul><li class="tx1" id="promise_time_1"></li><li class="tx2">审核通过</li><li class="tx3">&nbsp;</li></ul></div>		
 		</div>
-		
 		<!-- 审核通过 -->
 		<div id="process-1" class="section4 process hide">
 			<div class="node fore ready"><ul><li class="tx1">&nbsp;</li><li class="tx2">提交审核</li></ul></div>
@@ -81,7 +82,6 @@
 			<div class="proce ready"><ul></ul></div>
 			<div class="node success"><ul><li class="tx1" id="promise_time_0"></li><li class="tx2"><span style="color: green;">审核成功</span></li><li class="tx3">&nbsp;</li></ul></div>
 		</div>
-		
 		<!-- 未审核通过 -->
 		<div id="process-2" class="hide">
 			<div >
@@ -111,7 +111,6 @@
 				<button type="button" class="btn btn-primary">提交审核</button>
 			</div>
 		</div>
-		
 		<div id="mainPage" class="successLabel">
 			<div class="alert alert-success" role="alert" id="alert-success">
 				恭喜您验证通过，<a href="#" class="alert-link" id="myPage" target="_blank">点击跳转主页</a>

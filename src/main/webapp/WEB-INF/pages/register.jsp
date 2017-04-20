@@ -142,9 +142,6 @@
         </div>
     </div>
 
-
-
-
 	<div class="page">
 	
 		<div class="loginModel">
@@ -233,23 +230,12 @@
 							<div class="errorDiv hide " id="code_error_info_team">*验证码错误</div>
 						</div>
 						<div class="redBtn btn-c-r" id="submitBtn-team">注册</div>
-						
-						<!-- <div class="bindLogin ">
-							<div>第三方登录</div>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div> -->
 					</div>
-                             
 				</div>
 			</div>
 		</div>
 		 <div class="ourUser">已有账号?&nbsp&nbsp&nbsp&nbsp请<a href="<spring:url value="/login" />"><span>登录</span></a></div>
 	</div>
-	
 	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -310,9 +296,6 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-	
-
-    
 </body>
 
 </html>

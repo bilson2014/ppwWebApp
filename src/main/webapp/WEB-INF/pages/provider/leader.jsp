@@ -34,7 +34,6 @@
 	<link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 	<link rel="stylesheet" type="text/css" href="${providerStepCss2}">
 	<link rel="stylesheet" type="text/css" href="${webuploaderCss}">
-	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
@@ -146,7 +145,6 @@
 	<div class="page" >
 
 	      <div class="step">
-               
 			  <div class="step-bar" id="step-bar">
 			      <div class="first step-1" id="step-1" data-content="填写基本信息">1</div>
 			      <div class="line"></div>
@@ -202,10 +200,7 @@
 				  	      </div>
   	      		  </div>
 
-
-
                 <div class="step-two-div" id="step2" data-step="2">
-
                 <div class="input-group-div">
   	      			<span for="company-city" class="title-word">所在省</span>	
 							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
@@ -220,7 +215,6 @@
 															<ul class="dropdown-menu id="selectUl" role="menu"
 																aria-labelledby="dropdownMenu1">
 													</c:if>
-												
 													  <li class="Province" data-value ="${source.provinceID }"
 													  	<c:if test="${provider.teamProvince == source.provinceID }">
 													  		selected="selected"
@@ -231,16 +225,6 @@
 							</div>
 									
 					<span for="company-city" class="title-word-city">所在城市</span>	
-<%-- 							<select class="step-two-select-city form-control"  id="company-city">
-								<c:if test="${!empty citys}">
-									<c:forEach items="${citys }" var="source" varStatus="status">
-									  <option value ="${source.cityID }"
-									  	<c:if test="${provider.teamCity == source.cityID }">
-									  		selected="selected"
-									  	</c:if> >${source.city }</option>
-									</c:forEach>
-								</c:if>
-							</select> --%>
 							<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
@@ -253,7 +237,6 @@
 															<ul class="dropdown-menu" id="selectUlCity" role="menu"
 																aria-labelledby="dropdownMenu1">
 												      </c:if>
-												      
 													  <li data-value ="${source.cityID }"
 													  	<c:if test="${provider.teamCity == source.cityID }">
 													  		selected="selected"
@@ -267,14 +250,6 @@
   	      			 <div class="input-group-div">
   	      		       	 	  <span for="company-priceRange" class="title-word">价格区间</span>	
   	      					  <input type="hidden" id="company-priceRange-value" value="${provider.priceRange }"/>
-									<!-- <select class="step-two-select form-control" id="company-priceRange" >
-										<option value="0" >看情况</option>
-			            				<option value="1" >1万元及以上</option>
-			            				<option value="2" >2万元及以上</option>
-			            				<option value="3" >3万元及以上</option>
-			            				<option value="4" >5万元及以上</option>
-			            				<option value="5" >10万元及以上</option>
-									</select> -->
 									<div class="dropdown leaderSelect" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
@@ -296,13 +271,6 @@
   	      				 <div class="input-group-div">
   	      		       	 	  <span for="company-infoResource" class="title-word">获知渠道</span>	
   	      						 <input type="hidden" id="company-infoResource-value" value="${provider.infoResource }"/>
-									<!-- <select class="step-two-select form-control" id="company-infoResource" >
-										<option value="0" >友情推荐</option>
-			            				<option value="1" >网络搜索</option>
-			            				<option value="2" >拍片帮</option>
-			            				<option value="3" >拍片网</option>
-			            				<option value="4" >电销</option>
-												</select> -->
 									<div class="dropdown leaderSelect" id="company-infoResource">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">

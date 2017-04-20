@@ -91,7 +91,6 @@
 		             
 		             <div class="solidLine">----------------------------------------------------------------------------------------------------------------------------------------</div>
 
-
 			              <div class="contentLeft"><span class="contentTitleSpan grayColor" style="font-weight:400;font-size:1.6rem">付款金额：
 			              </span><span class="contentSpan contentSpanBig botPos">${dealLog.payPrice}</span>
 			              <span class="contentSpanSmall">元</span></div>
@@ -103,26 +102,20 @@
 			             	 	<a href="?token=${dealLog.token}&csrftoken=${csrftoken}" id ="submit"><button class="btn-red botPos">确认</button></a>
 			             	 </div>
 			              </c:if>
-
 		             </div> 
 	           </div>
-	           
          </div>
-     
      </div>
-     
      <div class="cue">请仔细核对项目支付信息</div>
-     
-      <c:if test="${! dealLog.urlEffective}">
-		<div>
-            <ul class="timeOut">
-              <li><img src="${imgPath }/icons/linkTimeOut.png"/></li>
-              <li>这个链接失效 </li>
-              <li>可以重新向视频管家申请</li>
-            </ul>
-       </div>
-	  </c:if>
-       
+	      <c:if test="${! dealLog.urlEffective}">
+			<div>
+	            <ul class="timeOut">
+	              <li><img src="${imgPath }/icons/linkTimeOut.png"/></li>
+	              <li>这个链接失效 </li>
+	              <li>可以重新向视频管家申请</li>
+	            </ul>
+	       </div>
+		  </c:if>
     </div>
 	<script src="${jqueryJs }"></script>
 	<script src="${modelJs }"></script>

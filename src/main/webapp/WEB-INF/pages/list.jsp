@@ -4,7 +4,6 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/list.css" var="listCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -68,7 +67,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -144,12 +142,10 @@
 							<!-- 行业分类 -->
 						</ul>
 					</dd>
-
 					<div class="more-link" id="more-link">
 						<span>更多</span>
 					</div>
 				</div>
-				
 				
 				<div class="classify-price ">
 					<dt>价格：<a class="active priceAll" href="javascript:void(0);" data-begin="0" data-end="1000000000">全部</a></dt>

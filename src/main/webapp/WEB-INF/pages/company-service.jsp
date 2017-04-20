@@ -69,7 +69,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -231,7 +230,6 @@
 			七、因签订、履行本合同而发生的争议，双方应当协商解决；不能协商解决的，交由合乙方所在地有管辖权的人民法院管辖。</p>
          </div>
 	</div>
-	
 	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -312,7 +310,6 @@
 						<dt>
 							<h3 id="modal-h3-first">马上接通视频营销管家</h3>
 						</dt>
-						
 						<dd id="modal-dd-second">
 							<input placeholder="输入电话，我们即刻回电!" type="text" id="phoneCall"/>
 							<a href="javascript:void(0);" id="modal-call">
@@ -322,11 +319,9 @@
 							</a>
 							<label class="modal-message" style="display: none;"></label>
 						</dd>
-						
 						<dt >
 							<a href="tencent://message/?uin=2640178216&Site=qq&Menu=no"><div class="model-qq-icon common-icons-qq-icon"></div></a>
 						</dt>
-						
 						<dd>
 							<h4>和QQ客服聊会</h4>
 						</dd>

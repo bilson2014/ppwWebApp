@@ -138,7 +138,6 @@
             </div>
         </div>
     </div>
-    
 
     <div class="page">
     	 <div class="titleTag">
@@ -168,7 +167,8 @@
 							<img alt="未找到相关作品_拍片网" style="margin-top:200px" src="${imgPath}/search/airship.png">
 						</div>
 						<div class="prompt-word">您找的新闻遗落在外星球了！</div>
-	</c:if>
+	             </c:if>
+	             
           <div class="newsList">
                   <ul id="pageInfo">
                   	<c:if test="${!empty list}">
@@ -181,7 +181,6 @@
 	                    			<c:if test="${empty  newsSolr.picLDUrl}">
 		                    			<img src="${imgPath}/index/noImg.jpg" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
-	                    			
 	                   				<div class="title" alt="${newsSolr.title }">${newsSolr.title }</div>
 	                   				<div class="tagDiv">
 	                    				<div class="tags" alt="${newsSolr.tags}">
@@ -201,22 +200,16 @@
 	                    	</li>
 	                    </c:forEach>
                     </c:if>
-                    
-                   
                   </ul>
                   
                   <div class="page-section" id="pagination">
 					<div class="page-wrap">
 						<div class="pagination">
-							
 						</div>
 					</div>
 		          </div>
           </div>
     </div>
-    
-
-    
     <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -277,7 +270,6 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-	
     <script type="text/javascript" src="${clampJs }"></script>
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${jquerybase64Js }"></script>
@@ -287,7 +279,6 @@
 	<script type="text/javascript" src="${jqueryPageJs }"></script>	
     <script type="text/javascript" src="${newsJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
-
 </body>
 
 </html>

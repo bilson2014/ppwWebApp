@@ -4,14 +4,12 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/company-activity.css" var="companyActivityCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
-
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -95,10 +93,8 @@
             </div>
             <div class="right-part">
             	<r:noLogin>
-
 				    <a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
-
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
@@ -161,16 +157,10 @@
 		<div class="nav-shadow"></div>
 		
 		<div class="page">
-<!-- 		    <div class="activeTitle">
-		        <div>公司活动</div>
-		        <div>Corporate Events</div>
-		    </div> -->
-		    
+
 		    <div class="logoImg">
 		    	<img src="${imgPath}/introduce/member/company.svg">
 		      </div>
-		    
-		    
 		    <div class="infoTitle">
 		        <div>共享未来－中国视频行业领袖峰会</div>
 		        <div>2017年2月27日 北京海淀新世纪日航</div>
@@ -248,7 +238,6 @@
 		    </div>
 		</div>		
 	</div>
-	
 	<!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
@@ -353,7 +342,6 @@
 		</div>
 	</div>
 	<!-- toolbar modal end -->
-	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${modelJs }"></script>

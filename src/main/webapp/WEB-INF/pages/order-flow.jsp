@@ -24,7 +24,6 @@
     <spring:url value="/resources/js/common.js" var="commonJs"/>
     <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 
-
 <link rel="stylesheet" href="${serviceToCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
    
@@ -48,8 +47,6 @@
    
 </head>
 
-
-
 <body>
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
@@ -68,7 +65,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -278,37 +274,6 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                             </div>
                             <!--新版底部-->
     </div>
-<!--     <div class="comOrder">
-        <div class="cOrder" id="cOrder">
-            <div class="cCloseBtn" id="closeBtn">
-                <div></div>
-            </div>
-            <div class="cOrderTitle">立即下单,对接制作团队</div>
-            <div class="cOrderItem">
-                <div class="dropdown dropdowns" id="selectType">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                        <span>宣传片</span>
-                        <div class="carets"></div>
-                    </button>
-                    <ul class="dropdown-menu" id="selectUl" role="menu" aria-labelledby="dropdownMenu1">
-                        <li>宣传片</li>
-                        <li>微电影</li>
-                        <li>广告片</li>
-                        <li>病毒视频</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="cOrderItem" data-content="">
-                <input placeholder="您的电话号">
-            </div>
-            <div class="cOrderItem" data-content>
-                <input placeholder="输入手机验证码">
-                <div>获取验证码</div>
-            </div>
-            <div class="cOrderBtn">确认下单</div>
-            <div class="cOrderBotTitle">下单后,专业顾问将在2小时之内与您致电确认具体需求</div>
-        </div>
-    </div> -->
 </body>
     <script type="text/javascript" src="${jqueryJs }"></script>
     <script type="text/javascript" src="${commonJs }"></script>

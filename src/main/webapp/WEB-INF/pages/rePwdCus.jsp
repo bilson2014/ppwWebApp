@@ -48,10 +48,6 @@
 
 <body>
 	
-	
-	
-	
-	
     <div class="page">
         <div class="loginLeftArea">
             <div id="showCus">
@@ -216,8 +212,6 @@
                                 </div>
                             </div>
                             <!--新版底部-->
-    
-    
 </body>
 
 </html>

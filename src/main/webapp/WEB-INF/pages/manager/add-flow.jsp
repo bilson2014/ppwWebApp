@@ -21,9 +21,7 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
-
 <spring:url value="/resources/js/common.js" var="commonJs" />
-
 <spring:url value="/resources/lib/jquery.cookie/jquery.cookie.js"
 var="cookiejs" />
 <spring:url value="/resources/js/model.js" var="modelJs" />
@@ -50,9 +48,11 @@ var="ajaxfileuploadJs" />
 <link rel="stylesheet" href="${bootstrapCss }">
 <link rel="stylesheet" href="${addflowcss }">
 <link rel="stylesheet" href="${datepickerCss }">
+
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
+	
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
@@ -65,7 +65,6 @@ var="ajaxfileuploadJs" />
 <script type="text/javascript" src="${datepickerJs }"></script>
 <script type="text/javascript" src="${datepickerZhJs }"></script>
 <script type="text/javascript" src="${bootstrapJs }"></script>
-
 <script type="text/javascript">
 function checkMobile(str) {
 	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$/;
@@ -97,7 +96,6 @@ function checkMobile(str) {
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -185,9 +183,7 @@ function checkMobile(str) {
 							<input type="text" class="tableinput-baseinfo  projectName form-control">
 							<label class="error-label" id="error-projectName">该信息不能为空</label>
 						</div>
-						
                    </div>
-
                   <div class="baseinfo-table">
 						<div class="divtable">
 							<div class="baseinfo-table-key font-weight-title">来源信息</div>
@@ -203,11 +199,9 @@ function checkMobile(str) {
 							<input type="text" id="input-referrer" class="tableinput-baseinfo form-control">
 							<label class="error-label" id="error-input-referrer">该信息有误</label>
 						</div>
-						
 						<ul class="ul-option-source" style="" id="ul-select-referrer">
 						</ul>  
                    </div>
-                   
                    
                     <div class="cooperative-div">
 						<div class="divtable">
@@ -220,13 +214,10 @@ function checkMobile(str) {
 									<div class="cooperative pos-left">比例</div>
 								</div>
 								<div id="Synergy-root" style="display: inline-block;">
-								
 								</div>
 							</div>
-							
 						<label id="helpLabel" style="position: relative;left: 273px;font-size: 14px;color: #B8B8B8">无协同人信息</label>
                    </div>
-
                    <div class="baseinfo-table">
                    		<input type="hidden" class="userId" id="userId">
 						<div class="divtable">
@@ -249,9 +240,7 @@ function checkMobile(str) {
 							<input type="text" class="tableinput-baseinfo form-control userPhone">
 							<label class="error-label" id="error-userPhone" >号码有误</label>
 						</div>
-						
-						<ul class="ul-option" id="ul-select">
-								</ul>
+						<ul class="ul-option" id="ul-select"></ul>
                    </div>
 				<div class="baseinfo-table">
 						<input type="hidden" class="teamId" id="teamId">
@@ -278,11 +267,9 @@ function checkMobile(str) {
 			 	        </ul>
 				</div> 
 				<div class="baseinfo-table" style="height:175px" >
-					
 					<div class="divtable">
 						<div class="baseinfo-table-key font-weight-title" >项目价格</div>
 					</div>
-
 					<div class="divtable pospricediv">
 						<div class="price-table-key pirce-title ">项目预算信息</div>
 							<div class="final-price-div">
@@ -294,7 +281,6 @@ function checkMobile(str) {
 								</div>
 						 </div>
 					</div>
-
 					<div class="divtable finishdiv finish">
 							<div class="price-table-key ">项目最终价格</div>
 							<input type="text" id='finishInput' class="tableinput-baseinfo form-control finishInput wordMargin"/><label style="color:#666;">元</label>
@@ -302,12 +288,9 @@ function checkMobile(str) {
 					<div>
                     <label class="final-price-left-label" id="error-finishInput">输入信息有误</label>
                     </div>
-					<div class="mright">
-					</div> 
-								
+					<div class="mright"></div> 
 				</div>
 			<div class="price-inarea" id="close-div" style="margin-top: -53px !important;">
-					
 					<div class="divtable userPrice">
 						<div class="userPriceTitle pirce-title">客户支付金额</div>
 							<div class="final-price-div">
@@ -337,7 +320,6 @@ function checkMobile(str) {
 	</div>
 	<div class="indent-time">
 		<div class="indent-time-right">
-
 			<div class="indent-time-table-border-tr">
 				 <div class="right-border font-weight-title">项目时间表</div>
 				 <div class="right-border right-border-margin">沟通</div>
@@ -370,7 +352,6 @@ function checkMobile(str) {
 				<div class="right-border right-border-margin"><label id="error-zzstarttime" class="tableinput-error ">日期有误</label></div>
 				<div class="right-border right-border-margin"><label id="error-jfstarttime" class="tableinput-error ">日期有误</label></div>
 			</div>
-				
 		</div>
 	</div>
 	<div class="indent-btn-div">

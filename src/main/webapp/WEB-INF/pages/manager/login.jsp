@@ -124,9 +124,6 @@
         </div>
     </div>
 		
-		
-		
-		
 		 <div class="outSideDiv">
 		         <div class="loginDiv">
 		            <h1>视频管家登录</h1>
@@ -173,9 +170,7 @@
 								</li>
 							</ul>
 						</div>
-		            
 		         </div>
-		   
 		   </div>
 		   
 		   <div class="foot3">

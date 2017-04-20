@@ -23,8 +23,6 @@
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/images/user" var="imgPath"/>
-<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>
-<spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.css" var="jsBarCss"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -59,9 +57,6 @@
 	<script src="${webuploaderJs }"></script>
 	<script src="${juicerJs }"></script>
 	<script src="${userPortalJs}"></script>
-	
-
-	
 	
 </head>
 <body style="overflow:hidden">

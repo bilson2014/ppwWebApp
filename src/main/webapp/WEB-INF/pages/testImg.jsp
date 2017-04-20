@@ -4,10 +4,8 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/error.css" var="errorCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
-
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -15,8 +13,6 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-	
-	
 </head>
 <body>
 	<img  src="/resources/images/test/1.png">
@@ -42,7 +38,5 @@
 	<img  src="/resources/images/test/13.png">
 	<img  src="/resources/images/test/14.png">
 	<img  src="/resources/images/test/15.png">
-
-	
 </body>
 </html>
