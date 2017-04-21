@@ -896,16 +896,17 @@ function showSuccess() {
 				+ '   	<span class="line long"></span>'
 				+ '   	<div class="placeholder"></div>'
 				+ '	</div>'
-				+ '   <div class="successWord" id="handClsoe">手动关闭</div>'
-				+ '   <div class="successInfo">下单成功!<span id="toPortal"></span><span id="last3">3</span>秒后关闭</div>'
+				+ '   <div class="desBig">您已下单成功!</div>'
+				+ '   <div class="desSmall">视频管家将在两小时内与您沟通</div>'
+				+ '   <div class="successInfo"><span id="toPortal"></span><span id="last3">3</span>秒后关闭</div>'
 				+ '</div>';
 		$body += '</div>';
 		$("body").append($body);
-		successToolTipShow();
-		
-		$('.comOrder').remove();
-		curCounts = 0;
-		window.clearInterval(InterValObj); // 停止计时器
+//		successToolTipShow();
+//		
+//		$('.comOrder').remove();
+//		curCounts = 0;
+//		window.clearInterval(InterValObj); // 停止计时器
 	}
 }
 

@@ -1563,6 +1563,20 @@ a {
     z-index: 101;
 }
 
+.desBig{
+    color: $gray-dark;
+    font-size: $font-size;
+    text-align:center;
+}
+
+.desSmall{
+    color: $gray-light;
+    font-size: $font-size-base;
+    text-align:center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .successWord {
     color: $gray-dark;
     font-size: $font-size-base;

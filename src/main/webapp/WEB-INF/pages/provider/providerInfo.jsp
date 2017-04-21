@@ -252,8 +252,8 @@
 		     
 	  <div class="videoSpace">
 	          <div class="productOutSide">
-	                                       影视作品
-	               <span>Work Demo</span>
+	                                     更多作品
+	               <span>Other works</span>
 	          </div>
 	          <div class="prodectLine"></div>
 	          <div class="timeLine" id ="timeLine">
