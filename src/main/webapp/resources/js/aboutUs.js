@@ -8,6 +8,7 @@ $().ready(function() {
 	    setTimeout(function() {
 	    	   document.getElementById('playVideos').play();
          }, 2000);
+	    
 
 });
 
