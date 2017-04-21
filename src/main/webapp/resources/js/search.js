@@ -16,6 +16,7 @@ $().ready(function(){
 });
 
 var search = {
+				
 	showTitle : function() {
 		var q = $('#q').val();
 		if(q != '' && q != undefined) {

@@ -259,7 +259,7 @@
                              <div class="calItem code" id='code-container'>
                                 <div class="title" data-content=""  id="errorCode">您的验证码</div>
                                 <div>
-                                   <input data-content="0" placeholder="您的验证码" id="phoneCode">
+                                   <input data-content="0" placeholder="您的验证码" id="phoneCodes">
                                    <button class="setCode btn-c-r" id='getPhoneCodes'>发送验证码</button>
                                 </div>
                             </div>
@@ -268,7 +268,6 @@
                                 <button class="btn-c-r" id="start">开始计算</button>
                                 <button id="clear">重置</button>
                             </div>
-
                     </div>
                 </div>
             </div>
@@ -320,7 +319,7 @@
                                         </div>
                                         <div class="topItem">
                                             <div class="title"><a>咨询电话</a></div>
-                                            <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
+                                            <div class="tel"><a href="tel:${OFFICAL_PHONE }">${OFFICAL_PHONE }</a></div>
                                             <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
                                         </div>
                                     </div>

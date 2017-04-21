@@ -398,7 +398,7 @@
 	                         </div>
 	                         <div class="topItem">
 	                             <div class="title"><a>咨询电话</a></div>
-	                             <div class="tel"><a href="tel:4006609728">400-660-9728</a></div>
+	                             <div class="tel"><a href="tel:${OFFICAL_PHONE }">${OFFICAL_PHONE }</a></div>
 	                             <div class="workTime"><a>工作时间 9:00-18:00  (周一至周五)</a></div>
 	                         </div>
 	                     </div>
