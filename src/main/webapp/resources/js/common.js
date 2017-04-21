@@ -902,11 +902,11 @@ function showSuccess() {
 				+ '</div>';
 		$body += '</div>';
 		$("body").append($body);
-//		successToolTipShow();
-//		
-//		$('.comOrder').remove();
-//		curCounts = 0;
-//		window.clearInterval(InterValObj); // 停止计时器
+		successToolTipShow();
+		
+		$('.comOrder').remove();
+		curCounts = 0;
+		window.clearInterval(InterValObj); // 停止计时器
 	}
 }
 
