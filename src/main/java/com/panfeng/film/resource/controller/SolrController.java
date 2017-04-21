@@ -100,7 +100,7 @@ public class SolrController extends BaseController {
 			q = null;
 		}
 		
-		view.setCondition("q");
+		view.setCondition(q);
 		model.addAttribute("q", q);
 		view.setLimit(20l);
 
@@ -136,9 +136,9 @@ public class SolrController extends BaseController {
 			view.setRecomendFq("[1 TO *]");
 			q = null;
 		}
-
+		
+		view.setCondition(q);
 		view.setLimit(20l);
-
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
 		if (ValidateUtil.isValid(list)) {
 			baseMsg.setCode(BaseMsg.NORMAL);
