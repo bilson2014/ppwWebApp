@@ -9,8 +9,6 @@
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs" />
 <spring:url value="/resources/lib/swiper/swiper.min.js" var="swiperJs" />
-<spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
-<spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>

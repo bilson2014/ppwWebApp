@@ -3,6 +3,7 @@ package com.panfeng.film.resource.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
@@ -46,17 +49,31 @@ public class IndentController extends BaseController {
 	public Result successView(final PmsIndent indent, final HttpServletRequest request,
 			@RequestParam(required = false) String phoneCode) throws UnsupportedEncodingException {
 		final Result result = new Result();
-		String code = (String) request.getSession().getAttribute("code");
-		String codeOfPhone = (String) request.getSession().getAttribute("codeOfphone");
+		
+		final HttpSession session = request.getSession();
+		// 判断该用户是否登录
+		final SessionInfo info = (SessionInfo) session.getAttribute(PmsConstant.SESSION_INFO);
 		boolean flag = false;
-		if (null != phoneCode && phoneCode.equals("-1")) {
+		
+		if(info != null) {
+			// 登录之后，不需要判断验证码
+			indent.setIndent_tele(info.getTelephone());
 			flag = true;
 		} else {
-			if (null != code && null != codeOfPhone && null != phoneCode && code.equals(phoneCode)
-					&& codeOfPhone.equals(indent.getIndent_tele())) {
+			// 未登录，需要判断验证码
+			String code = (String) session.getAttribute("code");
+			String codeOfPhone = (String) request.getSession().getAttribute("codeOfphone");
+			
+			if (null != phoneCode && phoneCode.equals("-1")) {
 				flag = true;
+			} else {
+				if (null != code && null != codeOfPhone && null != phoneCode && code.equals(phoneCode)
+						&& codeOfPhone.equals(indent.getIndent_tele())) {
+					flag = true;
+				}
 			}
 		}
+		
 		if (flag) {
 			request.setCharacterEncoding("UTF-8");
 			String productName = null;
