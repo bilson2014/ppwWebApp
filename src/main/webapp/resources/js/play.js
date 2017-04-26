@@ -201,18 +201,23 @@ function devicesSize() {
 }
 // 表单特效
 function showDiv(){
-//    $('#needOrder').on('click',function(){
-////      $('#price').removeClass('showPrice');
-////      $('#price').addClass('noShow');
-////      $('#order').addClass('showOrder');
-//    });
+    $('#needOrder').on('click',function(){
+  	var loginTel = $('#rolephone').val();
+	if(loginTel!=null && loginTel!= "" ){
+		loginOrder();
+	}else{
+	    $('#price').removeClass('showPrice');
+	    $('#price').addClass('noShow');
+	    $('#order').addClass('showOrder');
+	}
+    });
     $('#closeBtn').on('click',function(){
       $('#price').addClass('showPrice');
       $('#price').removeClass('noShow');
       $('#order').removeClass('showOrder');
     });
     // event
-    $('#needOrder').off('click').on('click',submitOrder);
+    $('#order-btn').off('click').on('click',submitOrder);
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
 //    $('#order-btn').off('click').on('click',submitOrder);
 }
@@ -281,12 +286,7 @@ function SetRemainTime(){
 }
 
 function submitOrder(){
-	var loginTel = $('#rolephone').val();
-	if(loginTel!=null && loginTel!= "" ){
-		loginOrder();
-	}else{
-		noLoginOrder();
-	}
+	noLoginOrder();
 }
 
 function loginOrder(){

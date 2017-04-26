@@ -103,6 +103,8 @@ public class CostCalculateController extends BaseController{
 		map.put("cost", cost);
 		//提交订单
 		PmsIndent indent = new PmsIndent();
+		
+		
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setId(calculate.getIndentId());
@@ -115,8 +117,15 @@ public class CostCalculateController extends BaseController{
 		indent.setSecond(0l);
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
-		final String telephone = info.getTelephone();
-		indent.setIndent_tele(telephone == null ? calculate.getPhone() : telephone);
+		
+		if(info == null){
+			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+			indent.setIndent_tele(codeOfphone == null ? calculate.getPhone() : codeOfphone);
+		}else{
+			final String telephone = info.getTelephone();
+			indent.setIndent_tele(telephone == null ? calculate.getPhone() : telephone);
+		}
+
 		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		long ret = 0l;

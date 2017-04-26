@@ -117,27 +117,30 @@ $().ready(function() {
 	});
 
 function loginOrder(){
-
+        
 		var videoType = $('#videoType').text();
 		var team = $('#team').text();
 		var equipment = $('#equipment').text();
 		var actor = $('#actor').text();
 		var animation = $('#animation').text();
 		var time = $('#time').text();
-		var indentId = $('#phone').attr('data-content');
+		var indentId = $('#rolephone').attr('data-content');
 		var description = [ "视频类别:" + videoType, ",时长:" + time, ",导演团队:" + team,
 				",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
 		var phone = $('#rolephone').val();
+		$('#netError').hide();
 			loadData(function(result) {
 				add = true;
 				if(result.code == 1){
 					$('#price').text(thousandCount(result.cost));
-					$('#phone').attr('data-content', result.indentId);
+					$('#rolephone').attr('data-content', result.indentId);
 					$("#code-container").remove();
 				}else if(result.code == 0 && result.msg == '手机号不匹配'){
-					$('#errorPhone').attr('data-content', '手机号不匹配');
+					$('#netError').show();
+					$('#netError').attr('data-content', '手机号不匹配');
 				}else{
-					$('#errorCode').attr('data-content', result.msg);
+					$('#netError').show();
+					$('#netError').attr('data-content', result.msg);
 				}
 			}, getContextPath() + '/calculate/cost', $.toJSON({
 				videoType : $('#videoType').attr('data-content'),
@@ -146,7 +149,7 @@ function loginOrder(){
 				actor : $('#actor').attr('data-content'),
 				animation : $('#animation').attr('data-content'),
 				time : $('#time').attr('data-content'),
-				phone : phone,
+				phone : '',
 				indentId : indentId,
 				description : description,
 				verification_code:""

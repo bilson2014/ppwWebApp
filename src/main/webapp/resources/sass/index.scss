@@ -14,6 +14,7 @@
     position: absolute;
     top: 80px;
 }
+
 .page {
     //top: 0 !important;
     background: transparent !important;
@@ -74,6 +75,7 @@
     display: inline-block;
     position: relative;
     top: -1px;
+    margin-left: 4px;
     .dropdown-menuHost {
         width: 222px;
         top: 31px;
@@ -113,15 +115,15 @@
 }
 
 .bannerOut {
-    height: 90px !important;
-    width: 620px !important;
-    background: url("/resources/images/index/setInput.png") no-repeat !important;
-    background-size: 620px 90px !important;
+    height: auto !important;
+    width: 480px !important;
     background: white;
     color: $gray-dark;
     font-size: $font-size-base;
     padding-top: 16px;
     top: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         top: 200px;
     }
@@ -136,7 +138,7 @@ input:focus {
 
 .bannerDiv {
     height: 70px !important;
-    width: 692px !important;
+    width: 480px !important;
     background: none !important;
     border: none !important;
     line-height: 70px;
@@ -144,6 +146,37 @@ input:focus {
     outline: none !important;
     color: $gray-dark !important;
     padding-left: 30px !important;
+}
+
+.isShowItem {
+    display: none;
+}
+
+.itemInput {
+    width: 220px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+    position: relative;
+    .sendCode {
+        width: 110px;
+        height: 32px;
+        position: absolute;
+        right: 0px;
+        text-align: center;
+        line-height: 34px;
+        top: 2px;
+        border-left: 1px solid #979797;
+        color: $gray;
+    }
+    .errorSendCode {
+        color: $red-base;
+        font-size: $font-size-sm;
+        text-align: left;
+        margin-left: 18px;
+        margin-top: 10px;
+        display: none;
+    }
 }
 
 .bannerSearch {
@@ -183,23 +216,23 @@ input:focus {
     width: 620px;
     height: 90px;
     z-index: 10;
-    .bannerOut::after {
-        content: attr(data-content);
-        position: absolute;
-        color: $red-base;
-        font-size: $font-size-sm;
-        top: 60px;
-        right: 0px;
-        bottom: 0px;
-        left: 15px;
-    }
+    // .bannerOut::after {
+    //     content: attr(data-content);
+    //     position: absolute;
+    //     color: $red-base;
+    //     font-size: $font-size-sm;
+    //     top: 60px;
+    //     right: 0px;
+    //     bottom: 0px;
+    //     left: 15px;
+    // }
     .search-box {
         text-align: center;
         & > form {
             display: inline-block;
             position: relative;
             .helpYou {
-                width: 140px;
+                width: 220px;
                 height: 36px;
                 background: $red-base;
                 border-radius: 4px;
@@ -207,6 +240,7 @@ input:focus {
                 font-size: $font-size-base;
                 border: none;
                 outline: none;
+                margin-left: 1px;
                 &:active {
                     background: darken($red-base, 10%);
                 }
@@ -218,6 +252,7 @@ input:focus {
                 padding-top: 6px;
                 position: relative;
                 z-index: 5;
+                margin-bottom: 5px;
             }
             .bannerWord {
                 display: inline-block;
@@ -835,8 +870,7 @@ input:focus {
                 }
             }
         }
-        li:nth-child(1) {
-        }
+        li:nth-child(1) {}
         li:nth-child(2) {
             div {
                 background-position: -150px 0px !important;

@@ -135,10 +135,10 @@
     <div class="page">
     
      <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="${sessionScope.sessionInfo.telephone}" />              
+	    <input type="hidden" id="rolephone" value="1314520ppw" />              
 	 </r:identity>
 	 <r:identity role="customer">
-	    <input type="hidden" id="rolephone" value="${sessionScope.sessionInfo.telephone}" />
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	 </r:identity>  
     
         <div class="costBackguound">
@@ -274,6 +274,7 @@
                                 </div>
                             </div>
                            </r:noLogin>
+                           <div class="netError">错误</div>
                             <div class="calItem inputWidth">
                                 <button class="btn-c-r" id="start">开始计算</button>
                                 <button id="clear">重置</button>
