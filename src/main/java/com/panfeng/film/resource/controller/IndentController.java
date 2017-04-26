@@ -64,13 +64,11 @@ public class IndentController extends BaseController {
 			String code = (String) session.getAttribute("code");
 			String codeOfPhone = (String) request.getSession().getAttribute("codeOfphone");
 			
-			if (null != phoneCode && phoneCode.equals("-1")) {
+			if (null != code && null != codeOfPhone && null != phoneCode && code.equals(phoneCode)
+					&& codeOfPhone.equals(indent.getIndent_tele())) {
 				flag = true;
 			} else {
-				if (null != code && null != codeOfPhone && null != phoneCode && code.equals(phoneCode)
-						&& codeOfPhone.equals(indent.getIndent_tele())) {
-					flag = true;
-				}
+				return new Result(false, "验证码错误！");
 			}
 		}
 		
