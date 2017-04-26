@@ -40,8 +40,9 @@
     <mvc:view-controller path="/product" view-name="/provider/productList" />
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
-     
-     <!-- test -->
+    <!-- 产品线 -->
+    <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
+    <!-- test -->
     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
     <mvc:view-controller path="/c" view-name="/costcalculate" />
       
