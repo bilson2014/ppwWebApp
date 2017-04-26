@@ -185,6 +185,10 @@ function noLoginOrder(){
 			success : function(data){
 				if(data.ret){
 				window.location.href='/search?q='+$("#indent_recomment").text();
+				$("#help-phone").val('');
+				$("#getCheckCodes").val('');
+				count = 120 ; 
+				curCount = 0;
 				}else{
 					$('#sendCodeError').show();
 					$('#sendCodeError').text(data.message);
