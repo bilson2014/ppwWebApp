@@ -167,7 +167,7 @@ var homePage = {
 						indent_tele:$("#help-phone").val(),
 						phoneCode:'-1',
 						indent_recomment:$("#indent_recomment").text(),
-						indentName:'首页banner下单',
+						indentName:'网站-PC-首页banner',
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,

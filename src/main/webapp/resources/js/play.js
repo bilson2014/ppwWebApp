@@ -319,7 +319,7 @@ function noLoginOrder(){
 				showError($('#phoneCodeError'),'验证码错误');
 			}
 		}, getContextPath() + '/order/deliver', 
-			{indentName : $("#indentName").val(),
+			{indentName : '网站-PC-' + $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),
 			serviceId : $('#service-unique').val(),
@@ -328,7 +328,6 @@ function noLoginOrder(){
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
 			indent_tele : telephone
 			});
-		// ret
 	}
 }
 

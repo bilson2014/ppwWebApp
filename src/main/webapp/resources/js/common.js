@@ -753,7 +753,7 @@ function initOrderClick(){
 						indent_tele:$("#indent_tele").val(),
 						phoneCode:'-1',
 						indent_recomment:$("#submit-indent-recomment").text(),
-						indentName:'直接下单',
+						indentName:'网站-PC-直接下单',
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,

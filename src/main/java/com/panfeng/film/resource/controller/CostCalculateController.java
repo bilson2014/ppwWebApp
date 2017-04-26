@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
@@ -65,27 +67,35 @@ public class CostCalculateController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value="cost")
+	@RequestMapping(value="/cost")
 	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate,
 			HttpServletRequest request){
 		Map<String, Object> map = new HashMap<>();
+		
+		final HttpSession session = request.getSession();
+		// 判断该用户是否登录
+		final SessionInfo info = (SessionInfo) session.getAttribute(PmsConstant.SESSION_INFO);
+		
 		if(calculate.getIndentId() == 0){//首次计算
-			final String code = (String) request.getSession().getAttribute("code");
-			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-			if(StringUtils.isBlank(code) || StringUtils.isBlank(codeOfphone)){
-				map.put("code", 0);
-				map.put("msg", "请重新获取验证码");
-				return map;
-			}
-			if(!code.equals(calculate.getVerification_code())){
-				map.put("code", 0);
-				map.put("msg", "验证码错误");
-				return map;
-			}
-			if(!codeOfphone.equals(calculate.getPhone())){
-				map.put("code", 0);
-				map.put("msg", "手机号不匹配");
-				return map;
+			if(info == null) {
+				// 未登录，则需要验证短信验证码
+				final String code = (String) request.getSession().getAttribute("code");
+				final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+				if(StringUtils.isBlank(code) || StringUtils.isBlank(codeOfphone)){
+					map.put("code", 0);
+					map.put("msg", "请重新获取验证码");
+					return map;
+				}
+				if(!code.equals(calculate.getVerification_code())){
+					map.put("code", 0);
+					map.put("msg", "验证码错误");
+					return map;
+				}
+				if(!codeOfphone.equals(calculate.getPhone())){
+					map.put("code", 0);
+					map.put("msg", "手机号不匹配");
+					return map;
+				}
 			}
 		}
 		map.put("code", 1);
@@ -96,7 +106,7 @@ public class CostCalculateController extends BaseController{
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setId(calculate.getIndentId());
-		indent.setIndentName("成本计算器下单");
+		indent.setIndentName("网站-PC-成本计算器");
 		indent.setIndentType(0);
 		indent.setServiceId(-1l);
 		indent.setIndentPrice(0d);
@@ -105,6 +115,8 @@ public class CostCalculateController extends BaseController{
 		indent.setSecond(0l);
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
+		final String telephone = info.getTelephone();
+		indent.setIndent_tele(telephone == null ? calculate.getPhone() : telephone);
 		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		long ret = 0l;
@@ -112,8 +124,8 @@ public class CostCalculateController extends BaseController{
 			ret = pmsIndentFacade.save(indent);
 			indent.setIndentId(ret);
 			Log.error("add new order ...", sessionInfo);
-			String telephone = PublicConfig.PHONENUMBER_ORDER;
-			smsMQService.sendMessage("131844", telephone, new String[]{indent.getIndent_tele(),DateUtils.nowTime(),"【未指定具体影片】"});
+			String eTele = PublicConfig.PHONENUMBER_ORDER;
+			smsMQService.sendMessage("131844", eTele, new String[]{indent.getIndent_tele(),DateUtils.nowTime(),"【未指定具体影片】"});
 		}else{//更新操作
 			ret = pmsIndentFacade.updateForCalculate(indent);
 			Log.error("update order ...", sessionInfo);
