@@ -180,6 +180,13 @@ input:-webkit-autofill {
             font-size: $font-size-sm;
             color: $gray-dark;
             width: 300px;
+            @media screen and (min-width: 970px) {
+                width: 250px !important;
+            }
+            @media screen and (min-width: 700px) and (max-width: 893px) {
+                width: 130px !important;
+            }
+
             @include ellipsis;
         }
     }

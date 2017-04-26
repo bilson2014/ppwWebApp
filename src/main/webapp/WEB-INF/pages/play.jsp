@@ -56,6 +56,14 @@
 </head>
 
 <body>
+     
+     <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="${sessionScope.sessionInfo.telephone}" />              
+	 </r:identity>
+	 <r:identity role="customer">
+	    <input type="hidden" id="rolephone" value="${sessionScope.sessionInfo.telephone}" />
+	 </r:identity>  
+	 
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
