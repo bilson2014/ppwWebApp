@@ -296,7 +296,7 @@ function loginOrder(){
 				showSuccess();
 			}
 		}, getContextPath() + '/order/deliver', 
-			{indentName : $("#indentName").val(),
+			{indentName : '网站-PC-' + $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),
 			serviceId : $('#service-unique').val(),

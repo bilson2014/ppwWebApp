@@ -1385,10 +1385,12 @@ public class ProviderController extends BaseController {
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(team.getLoginName());
 		info.setRealName(team.getTeamName());
+		info.setTelephone(team.getPhoneNumber());
 		info.setSessionType(PmsConstant.ROLE_PROVIDER);
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(team.getTeamId());
 		info.setPhoto(team.getTeamPhotoUrl());
+		
 		if (team.getFlag() == 1)
 			info.setIsIdentification(true);
 

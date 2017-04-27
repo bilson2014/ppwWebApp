@@ -62,7 +62,10 @@
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	 </r:identity>  
+	 </r:identity>
+	 <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
 	 
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
