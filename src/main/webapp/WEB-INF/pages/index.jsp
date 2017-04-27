@@ -67,7 +67,10 @@
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	 </r:identity>  
+	 </r:identity>
+	 <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
 	<div class="page">
 		<div class="advanBack"></div>
 			 <div class="header" id="header">

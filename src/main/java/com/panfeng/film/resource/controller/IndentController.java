@@ -94,10 +94,10 @@ public class IndentController extends BaseController {
 				if (indent.getSendToStaff()) {
 					if (StringUtils.isBlank(productName)) {
 						smsMQService.sendMessage("131844", telephone,
-								new String[] { indent.getIndent_tele(), DateUtils.nowTime(), "【未指定具体影片】" });
+								new String[] { telephone, DateUtils.nowTime(), "【未指定具体影片】" });
 					} else {
 						smsMQService.sendMessage("131844", telephone,
-								new String[] { indent.getIndent_tele(), DateUtils.nowTime(), "【" + productName + "】" });
+								new String[] { telephone, DateUtils.nowTime(), "【" + productName + "】" });
 					}
 				}
 				// 发送短信给用户下单成功

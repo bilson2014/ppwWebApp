@@ -34,6 +34,7 @@ var search = {
 		var q = $('#q').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
+		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 		
 		var $tagBody ='';
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
@@ -151,7 +152,7 @@ var search = {
 			var price = $('#price').val();
 			var length = $('#length').val();
 			
-			q = q.replace(/"/g,'&quot');
+			q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 			var param = '?q=' + q;
 			
 			
@@ -223,6 +224,7 @@ var search = {
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
 		
+		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 		var param = '?q=' + q;
 		
 		if(length != null && length != undefined && length != '') {
@@ -296,6 +298,7 @@ var search = {
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
 		
+		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 		var param = '?q=' + q;
 		
 		if(price != null && price != undefined && price != '') {
@@ -394,6 +397,8 @@ function crumbsClick() {
 	var strText = $(this).data('text');
 	// 搜索维度信息
 	var q = $('#q').val();
+	q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
+	
 	var length = $('#length').val();
 	var price = $('#price').val();
 	
