@@ -217,7 +217,7 @@ function showDiv(){
       $('#order').removeClass('showOrder');
     });
     // event
-    $('#order-btn').off('click').on('click',submitOrder);
+    $('#order-btn1').off('click').on('click',submitOrder);
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
 //    $('#order-btn').off('click').on('click',submitOrder);
 }
@@ -296,7 +296,7 @@ function loginOrder(){
 				showSuccess();
 			}
 		}, getContextPath() + '/order/deliver', 
-			{indentName : $("#indentName").val(),
+			{indentName : '网站-PC-' + $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),
 			serviceId : $('#service-unique').val(),

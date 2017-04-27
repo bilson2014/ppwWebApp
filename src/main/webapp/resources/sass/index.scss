@@ -168,6 +168,7 @@ input:focus {
         top: 2px;
         border-left: 1px solid #979797;
         color: $gray;
+        cursor: pointer;
     }
     .errorSendCode {
         color: $red-base;
@@ -252,7 +253,7 @@ input:focus {
                 padding-top: 6px;
                 position: relative;
                 z-index: 5;
-                margin-bottom: 5px;
+                margin-bottom: 15px;
             }
             .bannerWord {
                 display: inline-block;
