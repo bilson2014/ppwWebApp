@@ -176,7 +176,16 @@
 		                </div>
 		                <div class="cardBottom">
 		                     <img src="${imgPath}/index/advanBack.png">
+		                     <img src="${imgPath}/projectLine/projectSet/hd.png">
 		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
+		                      <div class="tagsContent">
+		                          <div class="noraml">只是个标签</div>
+		                          <div class="noraml">只是个标签</div>
+		                          <div class="noraml">只是个标签</div>
+		                          <div class="noraml">只是个标签</div>
+		                          <div class="noraml">只是个标签</div>
+		                          <div class="noraml">只是个标签</div>
+		                      </div>
 		                </div>
 		           </div>
 		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
@@ -190,7 +199,13 @@
 		                </div>
 		                <div class="cardBottom">
 		                     <img src="${imgPath}/index/advanBack.png">
+		                     <img src="${imgPath}/projectLine/projectSet/2k.png">
 		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
+		                     <div class="tagsContent">
+		                          <div class="k2">只是个标签</div>
+		                          <div class="k2">只是个标签</div>
+		                          <div class="k2">只是个标签</div>
+		                     </div>
 		                </div>
 		           </div>
 		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
@@ -204,7 +219,13 @@
 		                </div>
 		                <div class="cardBottom">
 		                     <img src="${imgPath}/index/advanBack.png">
+		                     <img src="${imgPath}/projectLine/projectSet/4k.png">
 		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
+		                       <div class="tagsContent">
+		                          <div class="k4">只是个标签</div>
+		                          <div class="k4">只是个标签</div>
+		                          <div class="k4">只是个标签</div>
+		                      </div>
 		                </div>
 		           </div>
 		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
@@ -283,6 +304,10 @@
 		                    <div>39800元</div>
 		             </div>
 		              <div class="timeCard">
+		                    <div>1分钟</div>
+		                    <div>39800元</div>
+		             </div>
+		             <div class="timeCard">
 		                    <div>1分钟</div>
 		                    <div>39800元</div>
 		             </div>

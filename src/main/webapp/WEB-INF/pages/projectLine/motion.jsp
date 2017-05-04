@@ -174,12 +174,16 @@
 			<div class="swiper-container swiper-banner flexslider">
 				<div class="swiper-wrapper swiper-banner-slide">
 					<div class="swiper-slide">
+					    <img src="${imgPath}/projectLine/motion/test2.jpg">
+					    <div class="bannerModel"></div>
 						<ul>
 							<li class="title" id="bannerTitleAn1">图形动画是什么？</li>
 							<li class="desc" id="DescAn1">图形动画是什么图形动画是什么图形动画是什么图形动画是什么图形动画是什么35800+ 导演 编剧 摄影师 影视专家为您服务</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
+				        <img src="${imgPath}/projectLine/motion/test1.jpg">
+					    <div class="bannerModel"></div>
 						<ul>
 							<li class="title" id="bannerTitleAn2">免费创意策划 72小时极速出片</li>
 							<li class="desc" id="DescAn2">专业视频管家 一站式视频服务 全流程质量监管</li>
@@ -190,33 +194,108 @@
 			</div>
 		<!-- 轮播 end -->
 		   <div class="LiveApp">
-		        <div class="LiveContent">
+		        <div class="LiveContent content4">
 		             <div class="title">应用场景</div>
 		             <div class="imgContent">
-		               <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                <div>测试啊啊啊</div>
-		               </div> 
-		               <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                 <div>测试啊啊啊</div>
-		               </div> 
-		              <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                 <div>测试啊啊啊</div>
-		              </div> 
-		              <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                 <div>测试啊啊啊</div>
-		               </div> 
-		             <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                 <div>测试啊啊啊</div>
-		             </div> 
-		              <div class="cItem">
-		                <img src="${imgPath}/index/advanBack.png">
-		                 <div>测试啊啊啊</div>
-		              </div> 
+		                     <center>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                 <div>
+				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
+				                 <span>测试啊啊啊</span>
+				                 </div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>  
+				             </center>  
+		             </div>
+		        </div>   
+		   </div>
+		   
+		    <div class="LiveApp">
+		        <div class="LiveContent content35">
+		             <div class="title">应用场景</div>
+		             <div class="imgContent">
+		                     <center>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                 <div>
+				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
+				                 <span>测试啊啊啊</span>
+				                 </div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>    
+				             </center>  
+		             </div>
+		        </div>   
+		   </div>
+		   
+		   	<div class="LiveApp">
+		        <div class="LiveContent content78">
+		             <div class="title">应用场景</div>
+		             <div class="imgContent">
+		                     <center>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>
+				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
+				                 <span>测试啊啊啊</span>
+				                 </div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div> 
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>  
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>  
+				               <div class="cItem">
+				                <img src="${imgPath}/index/advanBack.png">
+				                <div>测试啊啊啊</div>
+				               </div>      
+				             </center>  
 		             </div>
 		        </div>   
 		   </div>
@@ -272,12 +351,12 @@
 					     <img src="${imgPath}/index/advanBack.png">
 					     <div class="productContent">
 					         <div class="contentTitle">图形动画企业视频应用案例</div>
-					         <div class="contentInfo"> 图形动画企业视频应用案例</div>
 					         <div class="contentContent">
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div class="contentDes">大叔大叔大所大所多</div>
 					         </div>
 					     </div>
 					   </div>  
@@ -289,10 +368,11 @@
 					         <div class="contentTitle">应用案例应用案例应用案例</div>
 					         <div class="contentInfo"> 应用案例应用案例应用案例</div>
 					         <div class="contentContent">
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div class="contentDes">大叔大叔大所大所多</div>
 					         </div>
 					     </div>
 					   </div>  

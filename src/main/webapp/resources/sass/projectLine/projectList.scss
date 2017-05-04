@@ -25,7 +25,7 @@
                                 height: (($width-middle/2)-50px)/1.77;
                             }
                             @media screen and (min-width: 1500px) {
-                                height: (($width-lg3/2)-50px)/1.77;
+                                height: (($width-lg3/2)-50px)/(16/9);
                             }
                             img,
                             .cardContent {
@@ -55,7 +55,7 @@
                                 padding-left: 30px;
                                 .contentTitle {
                                     @include ellipsis;
-                                    font-size: $font-size-lg30;
+                                    font-size: $font-size-base;
                                     color: $gray-dark;
                                 }
                                 .contentInfo {
@@ -68,16 +68,23 @@
                                 .contentContent {
                                     width: 100%;
                                     height: auto;
+                                    margin-top: 30px;
                                     div {
-                                        font-size: $font-size-base;
-                                        color: $gray-dark;
+                                        font-size: $font-size-sm;
+                                        color: $gray-light;
                                         width: 100%;
                                         margin-bottom: 10px;
                                     }
                                     span {
-                                        font-size: $font-size-base;
-                                        color: $gray-light;
+                                        font-size: $font-size-sm;
+                                        color: $gray-dark;
                                     }
+                                }
+                                .contentDes {
+                                    margin-top: 25px;
+                                    font-size: $font-size-base;
+                                    color: $gray-dark !important;
+                                    font-style: italic;
                                 }
                             }
                         }

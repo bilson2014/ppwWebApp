@@ -1,17 +1,17 @@
 $().ready(function() {
     
-    getVideoHeight();
+    getBannerHeight();
     window.onresize = function(){
-    	getVideoHeight();
+    	getBannerHeight();
     };
     banner();
     product();
     
 });
 
-function getVideoHeight(){
+function getBannerHeight(){
 	    var screenWidth = document.documentElement.clientWidth;
-	    var videoHeight = screenWidth/16*9*0.6;
+	    var videoHeight = screenWidth/16*9;
 	    if(screenWidth<=960){
 	    	videoHeight = 320;
 	    	  $('.swiper-banner').css('height','960px');

@@ -168,46 +168,46 @@
 		             <img src="${imgPath}/index/advanBack.png">
 		             <div class="cardContent">
 		                    <div class="contentTitle">图形动画企业视频应用案例</div>
-					         <div class="contentInfo"> 图形动画企业视频应用案例</div>
-					         <div class="contentContent">
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					         </div>
+					        <div class="contentContent">
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div>标题   :  <span>内容内容内容</span></div>
+					                <div class="contentDes">大叔大叔大所大所多</div>
+					        </div>
 		             </div>
 		           </div>
 		             <div class="listCard">
 		             <img src="${imgPath}/index/advanBack.png">
 		             <div class="cardContent">
-		                      <div class="contentTitle">图形动画企业视频应用案例</div>
-					         <div class="contentInfo"> 图形动画企业视频应用案例</div>
-					         <div class="contentContent">
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					         </div>
+		                    <div class="contentTitle">图形动画企业视频应用案例</div>
+					        <div class="contentContent">
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div class="contentDes">大叔大叔大所大所多</div>
+					        </div>
 		              </div>
 		           </div>
 		             <div class="listCard">
 		             <img src="${imgPath}/index/advanBack.png">
 		             <div class="cardContent">
-		                      <div class="contentTitle">图形动画企业视频应用案例</div>
-					         <div class="contentInfo"> 图形动画企业视频应用案例</div>
-					         <div class="contentContent">
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					                 <div>标题:<span>内容内容内容</span></div>
-					         </div>
+		                    <div class="contentTitle">图形动画企业视频应用案例</div>
+					        <div class="contentContent">
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div>标题   :  <span>内容内容内容</span></div>
+					                 <div class="contentDes">大叔大叔大所大所多</div>
+					        </div>
 		             </div>
 		           </div>
 		      </div>
 		</div>
 		
 		
-		 <!-- foot -->         					<div class="foot3">
+		 <!-- foot -->      <div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">
