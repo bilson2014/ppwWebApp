@@ -1,0 +1,196 @@
+            @import "common";
+            @import "buttons";
+            @import "video";
+            @import "flexslider";
+            @import "motionSwiper";
+            @import "mixins/indexScreen";
+            @import "compass/typography/text/ellipsis";
+            @import "normalize";
+            @import "plCommon";
+            .page {
+                background: black !important;
+            }
+            
+           
+            
+            //场景应用
+            .LiveApp {
+                width: 100%;
+                height: auto;
+                background: white;
+                padding-top: 120px;
+                padding-bottom: 120px;
+                .LiveContent {
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    .title {
+                        text-align: center;
+                        color: $gray-dark;
+                        font-size: $font-size-lgester;
+                        margin-bottom: 120px;
+                    }
+                    .imgContent {
+                        font-size: 0;
+                        .cItem {
+                            display: inline-block;
+                            vertical-align: top;
+                            @include media_motion_img();
+                            margin-bottom: 10px;
+                            position: relative;
+                            &:hover {
+                                div {
+                                    top: 0 !important;
+                                    opacity: 1 !important;
+                                    height: 100% !important;
+                                }
+                            }
+                            div {
+                                width: 100%;
+                                height: 0;
+                                position: absolute;
+                                top: 0px;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                color: white;
+                                font-size: $font-size-lg24;
+                                top: 100%;
+                                left: -10px;
+                                text-align: center;
+                                transition: all .3s ease-in-out .2s;
+                                -moz-transition: all .3s ease-in-out .2s;
+                                /* Firefox 4 */
+                                -webkit-transition: all .3s ease-in-out .2s;
+                                /* Safari 和 Chrome */
+                                -o-transition: all .3s ease-in-out .2s;
+                                /* Opera */
+                                opacity: 0;
+                            }
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                        div:nth-child(2) {
+                            margin-left: 10px;
+                            margin-right: 10px;
+                        }
+                        div:nth-child(5) {
+                            margin-left: 10px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            
+            //优势
+            .product {
+                padding-top: 120px;
+                padding-bottom: 250px;
+                height: 760px;
+                background: $f0;
+                .productContent {
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    .title {
+                        text-align: center;
+                        color: $gray-dark;
+                        font-size: $font-size-lgester;
+                        margin-bottom: 120px;
+                    }
+                    .cardContent {
+                        font-size: 0;
+                        .item:nth-child(1),
+                        .item:nth-child(4) {
+                            width: 230px;
+                            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                width: 275px;
+                            }
+                            .desc {
+                                margin: 0 !important;
+                            }
+                        }
+                        .item:nth-child(1) {
+                            text-align: -webkit-auto;
+                        }
+                        .item:nth-child(4) {
+                            text-align: right;
+                            padding-left: 75px;
+                        }
+                        .item {
+                            width: 240px;
+                            display: inline-block;
+                            vertical-align: top;
+                            text-align: center;
+                            position: relative;
+                            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                width: 330px;
+                            }
+                            @media screen and (min-width: 1500px) {
+                                width: 375px;
+                            }
+                            img {
+                                width: 150px;
+                                height: 150px;
+                                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                    width: 200px;
+                                    height: 200px;
+                                }
+                                border-radius: 100%;
+                                margin-bottom: 35px;
+                            }
+                            .line {
+                                width: 1px;
+                                height: 120px;
+                                background: $border-line;
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                            }
+                            .desc {
+                                width: 150px;
+                                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                    width: 200px;
+                                }
+                                height: 120px;
+                                margin: 0 auto;
+                                position: relative;
+                                div:nth-child(1) {
+                                    width: 130px;
+                                    height: 60px;
+                                    margin: 0 auto;
+                                    line-height: 20px;
+                                    color: $gray-dark;
+                                    font-size: $font-size;
+                                    overflow: hidden;
+                                    margin-bottom: 10px;
+                                    text-align: center;
+                                    position: relative;
+                                }
+                                div:nth-child(2) {
+                                    width: 150px;
+                                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                        width: 200px;
+                                    }
+                                    margin: 0 auto;
+                                    line-height: 20px;
+                                    color: $gray-light;
+                                    font-size: $font-size-base;
+                                    overflow: hidden;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            //案例
+            .wordCase {
+                padding-top: 120px;
+                background: white;
+                .title {
+                    color: $gray-dark;
+                    text-align: center;
+                    font-size: $font-size-lgester;
+                    margin-bottom: 200px;
+                }
+            }

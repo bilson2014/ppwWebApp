@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+
 <%-- import CSS --%>
 <spring:url value="/resources/css/index.css" var="indexCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss" />
@@ -9,8 +10,6 @@
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs" />
 <spring:url value="/resources/lib/swiper/swiper.min.js" var="swiperJs" />
-<spring:url value="/resources/js/grally/grally.js" var="grallyJs" />
-<spring:url value="/resources/js/grally/prefixfree.min.js" var="prefixfreeJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -134,15 +133,28 @@
         </div>
     </div>
     <div class="page">
+    
+     <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	 </r:identity>
+	 <r:identity role="customer">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
+	 <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>  
+    
         <div class="costBackguound">
             <div class="costContent">
                 <div class="info">
                     <div>拍片价格计算器</div>
                     <div>COST EVALUATOR</div>
                     <div>
-                        <label></label>此价格仅限参考</div>
+                        <label></label>此价格仅限参考
+                    </div>
                     <div>
-                        <label></label>最终价格以视频管家报价为准</div>
+                        <label></label>最终价格以视频管家报价为准
+                    </div>
                 </div>
                 <div class="calculator">
                     <div class="bg"></div>
@@ -248,7 +260,8 @@
                                     </ul>
                                 </div>
                             </div>
-
+                          
+                          <r:noLogin>
                              <div class="calItem inputWidthPhone">
                                 <div class="title" data-content=""  id="errorPhone">您的联系方式</div>
                                 <div>
@@ -263,7 +276,8 @@
                                    <button class="setCode btn-c-r" id='getPhoneCodes'>发送验证码</button>
                                 </div>
                             </div>
-
+                           </r:noLogin>
+                           <div class="netError">错误</div>
                             <div class="calItem inputWidth">
                                 <button class="btn-c-r" id="start">开始计算</button>
                                 <button id="clear">重置</button>

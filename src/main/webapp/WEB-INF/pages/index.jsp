@@ -62,6 +62,15 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
+     <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	 </r:identity>
+	 <r:identity role="customer">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
+	 <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
 	<div class="page">
 		<div class="advanBack"></div>
 			 <div class="header" id="header">
@@ -202,10 +211,21 @@
 								<li>纪录片</li>
 							</ul>
 						</div>
-						<input id="csrftoken" type="hidden"
+						
+						<button class="helpYou btn-c-r" type="button">帮我推荐</button>
+					<div class="isShowItem">	
+						<div class="itemInput">
+						 <input id="csrftoken" type="hidden"
 							value="${sessionScope.csrftoken }"> <input
 							id="help-phone" name="indent_tele" placeholder="您的联系方式">
-						<button class="helpYou btn-c-r" type="button">帮我推荐</button>
+							<div class="errorSendCode" id="sendPhoneError">error</div>
+						</div>
+						<div class="itemInput">
+						  <input id="getCheckCodes"  placeholder="输入验证码">
+						  <div class="sendCode" id="sendCode">发送验证码</div>
+						  <div class="errorSendCode" id="sendCodeError">error</div>
+						</div>
+				  </div>		
 						<div class="wordPosition">
 						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">

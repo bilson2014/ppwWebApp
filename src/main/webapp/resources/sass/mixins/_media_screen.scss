@@ -71,6 +71,28 @@
 
 }
 
+@mixin media_motion_img($min-width: $width-min,
+							$middle-width: $width-middle,
+							$large-width: $width-lg3) {
+	width: ($width-min - 20px)/3 !important;
+	height: ($width-min - 20px)/3/432*300;
+	 line-height: ($width-min - 20px)/3/432*300;
+	@media screen and (min-width: 1276px) and (max-width: 1500px) {
+		width: ($width-middle - 20px)/3 !important;
+        height: ($width-middle - 20px)/3/432*300;
+        line-height: ($width-middle - 20px)/3/432*300;
+	}
+
+	@media screen and (min-width: 1500px){
+		width: ($width-lg3 - 20px)/3 !important;
+        height: ($width-lg3 - 20px)/3/432*300;
+        line-height: ($width-lg3 - 20px)/3/432*300;
+	}
+
+}
+
+
+
 
 // @mixin indexScreen($min-width: $width-min,
 // 							$middle-width: $width-middle,

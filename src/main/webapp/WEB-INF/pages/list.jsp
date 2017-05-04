@@ -151,10 +151,10 @@
 					<dt>价格：<a class="active priceAll" href="javascript:void(0);" data-begin="0" data-end="1000000000">全部</a></dt>
 					<dd id="price-item">
 						<ul class="list-inline">
-							<li><a href="javascript:void(0);" data-begin="0" data-end="30000" class="priceAll">0~3万</a></li>
-							<li><a href="javascript:void(0);" data-begin="30000" data-end="100000" class="priceAll">3~10万</a></li>
-							<li><a href="javascript:void(0);" data-begin="100000" data-end="600000" class="priceAll">10~60万</a></li>
-							<li><a href="javascript:void(0);" data-begin="600000" data-end="1000000000" class="priceAll">60万以上</a></li>
+							<li><a href="javascript:void(0);" data-begin="1" data-end="30000" class="priceAll">0~3万</a></li>
+							<li><a href="javascript:void(0);" data-begin="29999" data-end="100000" class="priceAll">3~10万</a></li>
+							<li><a href="javascript:void(0);" data-begin="99999" data-end="600000" class="priceAll">10~60万</a></li>
+							<li><a href="javascript:void(0);" data-begin="599999" data-end="1000000000" class="priceAll">60万以上</a></li>
 							<li><div class="price-section"><input type="text" id="start-price" />万 ~ <input type="text" id="end-price" />万<a href="javascript:void(0);"><button class="btn btn-primary disabled" id="priceBtn">确定</button></a></div></li>
 						</ul>
 					</dd>

@@ -42,11 +42,14 @@
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
     <mvc:view-controller path="/test" view-name="/provider/user" />
     <mvc:view-controller path="/safe" view-name="/provider/safeInfo" />
-    <mvc:view-controller path="/product" view-name="/provider/productList" />
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
-     
-     <!-- test -->
+    <!-- 产品线 -->
+    <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
+    <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
+     <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
+       <mvc:view-controller path="/pList" view-name="/projectLine/projectList" />
+    <!-- test -->
     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
     <mvc:view-controller path="/c" view-name="/costcalculate" />
       

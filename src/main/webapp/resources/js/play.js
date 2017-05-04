@@ -202,9 +202,14 @@ function devicesSize() {
 // 表单特效
 function showDiv(){
     $('#needOrder').on('click',function(){
-      $('#price').removeClass('showPrice');
-      $('#price').addClass('noShow');
-      $('#order').addClass('showOrder');
+  	var loginTel = $('#rolephone').val();
+	if(loginTel!=null && loginTel!= "" ){
+		loginOrder();
+	}else{
+	    $('#price').removeClass('showPrice');
+	    $('#price').addClass('noShow');
+	    $('#order').addClass('showOrder');
+	}
     });
     $('#closeBtn').on('click',function(){
       $('#price').addClass('showPrice');
@@ -212,8 +217,9 @@ function showDiv(){
       $('#order').removeClass('showOrder');
     });
     // event
+    $('#order-btn1').off('click').on('click',submitOrder);
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
-    $('#order-btn').off('click').on('click',submitOrder);
+//    $('#order-btn').off('click').on('click',submitOrder);
 }
 // ----------------- wang -----------------
 // order verificationCode
@@ -280,6 +286,29 @@ function SetRemainTime(){
 }
 
 function submitOrder(){
+	noLoginOrder();
+}
+
+function loginOrder(){
+	    var telephone = $('#rolephone').val().trim();
+		loadData2(function(msg){
+			if(msg.ret){
+				showSuccess();
+			}
+		}, getContextPath() + '/order/deliver', 
+			{indentName : '网站-PC-' + $("#indentName").val(),
+			productId :$("#play-unique").val() ,
+			teamId : $('#company-unique').val(),
+			serviceId : $('#service-unique').val(),
+			csrftoken : $('#csrftoken').val(),
+			phoneCode :'',
+			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
+			indent_tele : telephone
+			});
+
+}
+
+function noLoginOrder(){
 	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
 	var telephone = $('#phoneNumber').val().trim();
 	if(checkData(1) && checkData(2)){
@@ -290,7 +319,7 @@ function submitOrder(){
 				showError($('#phoneCodeError'),'验证码错误');
 			}
 		}, getContextPath() + '/order/deliver', 
-			{indentName : $("#indentName").val(),
+			{indentName : '网站-PC-' + $("#indentName").val(),
 			productId :$("#play-unique").val() ,
 			teamId : $('#company-unique').val(),
 			serviceId : $('#service-unique').val(),
@@ -298,9 +327,8 @@ function submitOrder(){
 			phoneCode : $('#verificationCodeValue').val(),
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
 			indent_tele : telephone
-			});
-		// ret
-	}	
+		});
+	}
 }
 
 function initView(){

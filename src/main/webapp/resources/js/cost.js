@@ -80,45 +80,13 @@ $().ready(function() {
 		},
 		submit : function() {
 			$('#start').off("click").on('click', function() {
-				if(checkData()){
-					var videoType = $('#videoType').text();
-					var team = $('#team').text();
-					var equipment = $('#equipment').text();
-					var actor = $('#actor').text();
-					var animation = $('#animation').text();
-					var time = $('#time').text();
-					var indentId = $('#phone').attr('data-content');
-					var description = [ "视频类别:" + videoType, ",时长:" + time, ",导演团队:" + team,
-							",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
-					var phone = $('#phone').val();
-					var verification_code = $('#phoneCodes').val();
-					
-					if(add){
-						add = false;
-						loadData(function(result) {
-							add = true;
-							if(result.code == 1){
-								$('#price').text(thousandCount(result.cost));
-								$('#phone').attr('data-content', result.indentId);
-								$("#code-container").remove();
-							}else if(result.code == 0 && result.msg == '手机号不匹配'){
-								$('#errorPhone').attr('data-content', '手机号不匹配');
-							}else{
-								$('#errorCode').attr('data-content', result.msg);
-							}
-						}, getContextPath() + '/calculate/cost', $.toJSON({
-							videoType : $('#videoType').attr('data-content'),
-							team : $('#team').attr('data-content'),
-							equipment : $('#equipment').attr('data-content'),
-							actor : $('#actor').attr('data-content'),
-							animation : $('#animation').attr('data-content'),
-							time : $('#time').attr('data-content'),
-							phone : phone,
-							indentId : indentId,
-							description : description,
-							verification_code:verification_code
-						}));
-					}
+				
+				var loginTel = $('#rolephone').val();
+				
+				if(loginTel!=null && loginTel!= "" ){
+					loginOrder();
+				}else{
+					noLoginOrder();
 				}
 			});
 		},
@@ -147,6 +115,90 @@ $().ready(function() {
 		}
 	cost.init();
 	});
+
+function loginOrder(){
+        
+		var videoType = $('#videoType').text();
+		var team = $('#team').text();
+		var equipment = $('#equipment').text();
+		var actor = $('#actor').text();
+		var animation = $('#animation').text();
+		var time = $('#time').text();
+		var indentId = $('#rolephone').attr('data-content');
+		var description = [ "视频类别:" + videoType, ",时长:" + time, ",导演团队:" + team,
+				",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
+		var phone = $('#rolephone').val();
+		$('#netError').hide();
+			loadData(function(result) {
+				add = true;
+				if(result.code == 1){
+					$('#price').text(thousandCount(result.cost));
+					$('#rolephone').attr('data-content', result.indentId);
+					$("#code-container").remove();
+				}else if(result.code == 0 && result.msg == '手机号不匹配'){
+					$('#netError').show();
+					$('#netError').attr('data-content', '手机号不匹配');
+				}else{
+					$('#netError').show();
+					$('#netError').attr('data-content', result.msg);
+				}
+			}, getContextPath() + '/calculate/cost', $.toJSON({
+				videoType : $('#videoType').attr('data-content'),
+				team : $('#team').attr('data-content'),
+				equipment : $('#equipment').attr('data-content'),
+				actor : $('#actor').attr('data-content'),
+				animation : $('#animation').attr('data-content'),
+				time : $('#time').attr('data-content'),
+				phone : '',
+				indentId : indentId,
+				description : description,
+				verification_code:""
+			}));
+	
+}
+
+function noLoginOrder(){
+	if(checkData()){
+		var videoType = $('#videoType').text();
+		var team = $('#team').text();
+		var equipment = $('#equipment').text();
+		var actor = $('#actor').text();
+		var animation = $('#animation').text();
+		var time = $('#time').text();
+		var indentId = $('#phone').attr('data-content');
+		var description = [ "视频类别:" + videoType, ",时长:" + time, ",导演团队:" + team,",拍摄设备:" + equipment, ",演员:" + actor, ",动画:" + animation ].join("");
+		var phone = $('#phone').val();
+		var verification_code = $('#phoneCodes').val();
+		
+		if(add){
+			add = false;
+			loadData(function(result) {
+				add = true;
+				if(result.code == 1){
+					$('#price').text(thousandCount(result.cost));
+					$('#phone').attr('data-content', result.indentId);
+					$("#code-container").remove();
+				}else if(result.code == 0 && result.msg == '手机号不匹配'){
+					$('#errorPhone').attr('data-content', '手机号不匹配');
+				}else{
+					$('#errorCode').attr('data-content', result.msg);
+				}
+			}, getContextPath() + '/calculate/cost', $.toJSON({
+				videoType : $('#videoType').attr('data-content'),
+				team : $('#team').attr('data-content'),
+				equipment : $('#equipment').attr('data-content'),
+				actor : $('#actor').attr('data-content'),
+				animation : $('#animation').attr('data-content'),
+				time : $('#time').attr('data-content'),
+				phone : phone,
+				indentId : indentId,
+				description : description,
+				verification_code:verification_code
+			}));
+		}
+	}
+}
+
 function checkData(){
 	$('#phone').removeClass('errorPhone');
 	$("#errorPhone").attr('data-content','');

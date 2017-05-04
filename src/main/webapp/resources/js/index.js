@@ -1,5 +1,9 @@
+var kaptcharInterValObj; // timer变量，控制时间
+var InterValObj; // timer变量，控制时间 - 注册
+var InterValRecoverObj; // timer变量，控制时间 - 密码找回
+var count = 120; // 间隔函数，1秒执行 
+var curCount = 0; // 当前剩余秒数 - 注册
 $().ready(function() {
-    
     originTool();
     banner();
     client();
@@ -115,6 +119,133 @@ function banner() {
 /**
  * 主页业务处理部分
  */
+
+function loginOrder(){
+	$.ajax({
+		url : '/order/deliver',
+		type : 'POST',
+		data : {
+			csrftoken:$("#csrftoken").val(),
+			indent_tele:'',
+			phoneCode:'-1',
+			indent_recomment:$("#indent_recomment").text(),
+			indentName:'网站-PC-首页banner',
+			productId:-1,
+			teamId:-1,
+			serviceId:-1,
+			sendToStaff:true,
+			sendToUser:false
+		},
+		dataType : 'json',
+		success : function(data){
+			window.location.href='/search?q='+$("#indent_recomment").text();
+		}
+	});
+}
+
+function noLoginOrder(){
+	var phone = $("#help-phone").val();
+	var getCheckCodes = $("#getCheckCodes").val();
+	$('#sendPhoneError').hide();
+	$('#errorSendCode').hide();
+	if(phone==''){
+		$('#sendPhoneError').show();
+		$('#sendPhoneError').text('请填写手机号');
+		return false;
+	}
+	if(!checkMobile(phone)){
+		$('#sendPhoneError').show();
+		$('#sendPhoneError').text('手机格式不正确');
+		return false;
+	}
+	
+	if(getCheckCodes ==''){
+		$('#sendCodeError').show();
+		$('#sendCodeError').text('请输入验证码');
+		 return false;
+	}else{
+		$.ajax({
+			url : '/order/deliver',
+			type : 'POST',
+			data : {
+				csrftoken:$("#csrftoken").val(),
+				indent_tele:$("#help-phone").val(),
+				phoneCode:'-1',
+				indent_recomment:$("#indent_recomment").text(),
+				indentName:'网站-PC-首页banner',
+				productId:-1,
+				teamId:-1,
+				serviceId:-1,
+				sendToStaff:true,
+				sendToUser:false,
+				phoneCode:getCheckCodes
+			},
+			dataType : 'json',
+			success : function(data){
+				if(data.ret){
+				window.location.href='/search?q='+$("#indent_recomment").text();
+				$("#help-phone").val('');
+				$("#getCheckCodes").val('');
+				count = 120 ; 
+				curCount = 0;
+				}else{
+					$('#sendCodeError').show();
+					$('#sendCodeError').text(data.message);
+				}
+			},
+			error:function(){
+				$('#sendCodeError').show();
+				$('#sendCodeError').text('服务器异常');
+			}
+		});
+	}
+}
+
+//timer 处理函数 - 注册
+function SetRemainTime(){
+	if(curCount == 0){
+		window.clearInterval(InterValObj); // 停止计时器
+		sendCode=true;
+		$('#sendCode').text('重新获取');
+		$('#sendCode').removeAttr('disabled')
+		// 清除session code
+		getData(function(data){
+			// 清除session code
+		}, getContextPath() + '/login/clear/code');
+	}else{
+		curCount--;  
+		$("#sendCode").text('已发送('+ curCount +')');
+	}
+}
+
+function verificationCodeBtn(){
+	if(curCount == 0){
+		var telephone = $('#help-phone').val().trim();
+		if(telephone !=''){
+		
+		curCount = count;
+		
+		$('#sendCode').text('已发送('+ curCount +')');
+		$('#sendCode').attr('disabled','disabled');
+		InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
+		loadData(function(flag){
+			if(!flag){
+				// 发送不成功
+				// 显示重新发送
+				sendCode=true;
+				$('#sendCode').text('重新获取');
+				$('#sendCode').removeAttr('disabled');
+			}
+		}, getContextPath() + '/login/verification/' + telephone, null);
+	}
+		else{
+			$('#sendPhoneError').show();
+			$('#sendPhoneError').text('请填写手机号');
+		}
+}
+}
+
+
 var homePage = {
 	init:function(){
 		
@@ -148,38 +279,24 @@ var homePage = {
 		})
 	},
 	clickHelpYou:function(){
+		$('#sendCode').off('click').on('click',verificationCodeBtn);
 		$(".helpYou").off("click").on("click",function(){
-			var phone = $("#help-phone").val();
-			showError($('.bannerOut'),'');
-			if(phone==''){
-				showError($('.bannerOut'),'请填写手机号');
-				return false;
-			}
-			if(!checkMobile(phone)){
-				showError($('.bannerOut'),'手机格式不正确');
-				return false;
-			}else{
-				$.ajax({
-					url : '/order/deliver',
-					type : 'POST',
-					data : {
-						csrftoken:$("#csrftoken").val(),
-						indent_tele:$("#help-phone").val(),
-						phoneCode:'-1',
-						indent_recomment:$("#indent_recomment").text(),
-						indentName:'首页banner下单',
-						productId:-1,
-						teamId:-1,
-						serviceId:-1,
-						sendToStaff:true,
-						sendToUser:false
-					},
-					dataType : 'json',
-					success : function(data){
-						window.location.href='/search?q='+$("#indent_recomment").text();
+			
+				  	var loginTel = $('#rolephone').val();
+					if(loginTel!=null && loginTel!= "" ){
+						loginOrder();
+					}else{
+						
+						if($(".helpYou").hasClass('active')){
+							noLoginOrder();
+						}
+						else{
+							
+							$('.isShowItem').show();
+							$(".helpYou").addClass('active');
+						}
+			
 					}
-				});
-			}
 		})
 	},
 	getRecommendProduct:function(){

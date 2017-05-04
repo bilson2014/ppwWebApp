@@ -1,0 +1,208 @@
+                @import "common";
+                @import "buttons";
+                @import "video";
+                @import "flexslider";
+                @import "motionSwiper";
+                @import "mixins/indexScreen";
+                @import "compass/typography/text/ellipsis";
+                @import "normalize";
+                @import "plCommon";
+                .page {
+                    background: white !important;
+                }
+                
+                $imgWidthLg:540px;
+                $imgWidthMi:440px;
+                $imgWidthSi:340px;
+                $paddingImgL:30px;
+                //购物区域   
+                .orderContent {
+                    @include media_screen_width_beta3();
+                    min-width: 960px;
+                    margin: 0 auto;
+                    height: auto;
+                    border-top: 1px solid $border-line;
+                    padding-top: 60px;
+                    padding-bottom: 300px;
+                    font-size: 0;
+                    img,
+                    .contentArea {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+                    img {
+                        width: $imgWidthSi;
+                        height: $imgWidthSi;
+                        border-radius: 8px;
+                        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                            width: $imgWidthMi;
+                            height: $imgWidthMi;
+                        }
+                        @media screen and (min-width: 1500px) {
+                            width: $imgWidthLg;
+                            height: $imgWidthLg;
+                        }
+                    }
+                    .contentArea {
+                        padding-left: $paddingImgL;
+                        width: $width-min - $paddingImgL - $imgWidthSi;
+                        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                            width: $width-middle - $paddingImgL - $imgWidthMi;
+                        }
+                        @media screen and (min-width: 1500px) {
+                            width: $width-lg3 - $paddingImgL - $imgWidthLg;
+                        }
+                    }
+                    .priceitem {
+                        width: 100%;
+                        height: 136px;
+                        background: $f0;
+                        border-bottom: 1px dashed $gray-dark;
+                        color: $red-base;
+                        font-size: $font-size-lg24;
+                        line-height: 136px;
+                        margin-bottom: 45px;
+                        span {
+                            font-size: $font-size;
+                            color: $gray-dark;
+                            margin-left: 10px;
+                        }
+                        span:nth-child(2) {
+                            margin-left: 30px;
+                            margin-right: 5px;
+                            color: $red-base !important;
+                        }
+                    }
+                    .optionItem {
+                        width: 100%;
+                        padding-left: 10px;
+                        margin-top: -15px;
+                        .title,
+                        ul {
+                            display: inline-block;
+                            vertical-align: top;
+                            width: 390px;
+                            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                width: 490px;
+                            }
+                            @media screen and (min-width: 1500px) {
+                                width: 590px;
+                            }
+                        }
+                        .title {
+                            width: 100px;
+                            height: 50px;
+                            color: $gray-light;
+                            font-size: $font-size-base;
+                            line-height: 50px;
+                        }
+                        ul {
+                            li {
+                                display: inline-block;
+                                vertical-align: top;
+                                width: 178px;
+                                height: 48px;
+                                border: 1px solid $border-line;
+                                border-radius: 4px;
+                                line-height: 48px;
+                                color: $gray-light;
+                                font-size: $font-size-base;
+                                text-align: center;
+                                margin-right: 10px;
+                                margin-bottom: 15px;
+                                cursor: pointer;
+                            }
+                            .active {
+                                background: $red-base;
+                                color: white;
+                                border: 1px solid $red-base;
+                            }
+                        }
+                        .checkOrder,
+                        .renturnEdit {
+                            width: 220px;
+                            height: 50px;
+                            text-align: center;
+                            line-height: 50px;
+                            display: inline-block;
+                            vertical-align: top;
+                            color: white;
+                            border-radius: 4px;
+                            margin-top: 15px;
+                            font-size: $font-size-lg;
+                        }
+                        .checkOrder {
+                            background: $red-base;
+                            margin-right: 10px;
+                        }
+                        .renturnEdit {
+                            background: $gray-light;
+                        }
+                    }
+                }
+                
+                .orderSuccess {
+                    padding-top: 90px;
+                    padding-bottom: 400px;
+                    text-align: center;
+                    .title {
+                        color: $gray-dark;
+                        font-size: $font-size-lger;
+                        margin-top: 50px;
+                        margin-bottom: 45px;
+                    }
+                    .desc,
+                    .descBot {
+                        color: $gray-light;
+                        font-size: $font-size-base;
+                        margin-bottom: 10px;
+                        a {
+                            color: $red-base;
+                        }
+                    }
+                    .descBot {
+                        margin-top: 40px;
+                    }
+                }
+                
+                //服务套餐
+                .serviceContent {
+                    background: $f0;
+                    .sContent {
+                        @include media_screen_width_beta3();
+                        margin: 0 auto;
+                        position: relative;
+                        .sTitle {
+                            font-size: $font-size-lg24;
+                            color: $gray-dark;
+                            span {
+                                font-size: $font-size-base;
+                                color: $gray-light;
+                            }
+                        }
+                    }
+                }
+                
+                .packItem:nth-child(1) {
+                    width: 170px;
+                }
+                
+                .packItem {
+                    text-align: center;
+                    width: 190px;
+                    img {
+                        width: 130px;
+                        height: 130px;
+                        border-radius: 100%;
+                    }
+                    .pTitle {
+                        font-size: $font-size;
+                        color: $gray-dark;
+                    }
+                    .itemContent {
+                        width: 100px;
+                        height: 180px;
+                        font-size: $font-size-base;
+                        color: $gray-light;
+                    }
+                }

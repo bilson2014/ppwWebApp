@@ -56,6 +56,17 @@
 </head>
 
 <body>
+     
+     <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	 </r:identity>
+	 <r:identity role="customer">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
+	 <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	 </r:identity>
+	 
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
@@ -79,7 +90,6 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
-				
 				<r:noLogin>
 					<a class="header-item" target="_parent" id="wantOrder">我要拍片<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
@@ -245,7 +255,7 @@
 	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
 	                            <div class="btn-c-r" id="verification_code_recover_btn">获取验证码</div>
 	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn" ><div class="order-btn btn-c-r">确认提交</div></a>
+	                         <a href="javascript:void(0);" id="order-btn1" ><div class="order-btn btn-c-r">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
 	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
                         </form>
