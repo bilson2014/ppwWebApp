@@ -9,6 +9,11 @@
 
 	<mvc:view-controller path="/" view-name="/index" />
 	
+	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
+	
+	<mvc:view-controller path="/list" view-name="/standardized/requireList" />
+	
+	
 	<mvc:view-controller path="/about-us.html" view-name="/about-us" />
 	
 	<mvc:view-controller path="/company-activity.html" view-name="/company-activity" />
