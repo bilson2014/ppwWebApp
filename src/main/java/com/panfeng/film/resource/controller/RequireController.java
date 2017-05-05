@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
@@ -53,4 +55,10 @@ public class RequireController extends BaseController {
 		}
 		return baseMsg;
 	}
+	@RequestMapping("/require")
+	public ModelAndView requireView(Long indentId,ModelMap model){
+		model.addAttribute("indentId", indentId);
+		return new ModelAndView("/standardized/requireForm",model);
+	}
+	
 }

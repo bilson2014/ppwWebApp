@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="r" uri="/mytaglib"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -44,7 +47,7 @@
 	<a href="/list">列表页面</a>
 	<div style="margin-left: 50px;margin-top: 20px">
 		<form action="" method="post" id="fm">
-			<input type="hidden" id="indentId" name="" value="1">
+			<input type="hidden" id="indentId"  value="${indentId }">
 			<div>
 				1.项目背景描述，片子使用途径？请选择所有合适的选项。
 				<div>

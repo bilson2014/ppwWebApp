@@ -11,6 +11,7 @@ $().ready(function() {
 			}
 		}
 		$('.tt').on('click',function(){
+			var reId = $(this).attr('data-id');
 			var productList = $('#productList');
 			productList.html('');
 			loadData(function(res){
@@ -19,7 +20,7 @@ $().ready(function() {
 					for (var int2 = 0; int2 < rows.length; int2++) {
 						var r = rows[int2];
 						var html = [
-									'<a href = ?chanpinId="'+r.chanpinId+'">',
+									'<a href = "/std/product/index?chanpinId='+r.chanpinId+'&requireId='+reId+'">',
 									'<div>',
 									'	<img src="'+getDfsHostName() + r.chanpinPicLDUrl +'" style="width: 50px;height:50px ">',
 									'	<label>'+r.chanpinName+'</label>',

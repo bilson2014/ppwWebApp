@@ -1,20 +1,14 @@
 var kaptcharInterValObj; // timer变量，控制时间
 var successIntervalObj;
 var initM = 3;
-    
 $().ready(function() {
-	pOrder.init();
 });
-
-
 /**
  * 主页业务处理部分
  */
 var pOrder= {
 	init:function(){
 		this.initOption();
-		
-		
 	},
 	initOption:function(){
 	    $('.mealCard li').off('click').on('click',function(){
@@ -49,6 +43,5 @@ var pOrder= {
 				$('#last3').text(initM--);
 			}
 		
-	},
-	
+	}
 }

@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="r" uri="/mytaglib" %><%-- import CSS --%>
 <%-- import CSS --%>
 <spring:url value="/resources/css/projectLine/projectSetting.css" var="pSetCss"/>
 <%-- import JS --%>
@@ -27,12 +29,9 @@
 
 
 <script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>	
-	
+	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
 
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -62,6 +61,7 @@
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
 	<div class="page">
+	<input type="hidden" id="productId" value="${product.chanpinId }">
 	
 	<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
@@ -146,11 +146,16 @@
     
        <div class="projectType">
                   <center>
-                       <a><div class="active">MG动画</div></a>
-                       <a><div>宣传片</div></a>
-                       <a><div>广告片</div></a>
-                       <a><div>微电影</div></a>
-                       <a><div>病毒视频</div></a>
+                      <c:if test="${! empty productList}">
+							<c:forEach items="${productList }" var="tag">
+								 <c:if test="${product.chanpinName == tag.chanpinName }">
+										<a><div class="active">${tag.chanpinName}</div></a>
+								 </c:if>
+								 <c:if test="${product.chanpinName != tag.chanpinName }">
+										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+								 </c:if>
+							</c:forEach>
+						</c:if>
                   </center>
        </div>
        <div class="motionTitles">
@@ -159,6 +164,11 @@
 	               <div>图形动画</div>
 	               <div>Motion Graphic</div>
 	          </div>
+	           <div class="motionType">
+	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品描述</div></a>
+	               <a><div>全部案例</div></a>
+	               <a><div class="active">产品配置</div></a>
+	          </div>
           </div>
        </div>
        
@@ -166,70 +176,8 @@
     
 		<!-- 配置卡片 -->
 		<div class="setCard">
+			   <input type="hidden" id="CConfigId">
 		       <div class="cardTitle">寻找适合你的图形动画</div>
-		       <div class="cardContent active">
-		           <div class="card">
-		                <div class="cardTop">
-			                <div>标准被产品</div>
-			                <div>(基础价)</div>
-			                <div>39800元</div>
-		                </div>
-		                <div class="cardBottom">
-		                     <img src="${imgPath}/index/advanBack.png">
-		                     <img src="${imgPath}/projectLine/projectSet/hd.png">
-		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
-		                      <div class="tagsContent">
-		                          <div class="noraml">只是个标签</div>
-		                          <div class="noraml">只是个标签</div>
-		                          <div class="noraml">只是个标签</div>
-		                          <div class="noraml">只是个标签</div>
-		                          <div class="noraml">只是个标签</div>
-		                          <div class="noraml">只是个标签</div>
-		                      </div>
-		                </div>
-		           </div>
-		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
-		       </div>
-		       <div class="cardContent">
-		           <div class="card">
-		                <div class="cardTop">
-			                <div>标准被产品</div>
-			                <div>(基础价)</div>
-			                <div>39800元</div>
-		                </div>
-		                <div class="cardBottom">
-		                     <img src="${imgPath}/index/advanBack.png">
-		                     <img src="${imgPath}/projectLine/projectSet/2k.png">
-		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
-		                     <div class="tagsContent">
-		                          <div class="k2">只是个标签</div>
-		                          <div class="k2">只是个标签</div>
-		                          <div class="k2">只是个标签</div>
-		                     </div>
-		                </div>
-		           </div>
-		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
-		       </div>
-		       <div class="cardContent">
-		           <div class="card">
-		                <div class="cardTop">
-			                <div>标准被产品</div>
-			                <div>(基础价)</div>
-			                <div>39800元</div>
-		                </div>
-		                <div class="cardBottom">
-		                     <img src="${imgPath}/index/advanBack.png">
-		                     <img src="${imgPath}/projectLine/projectSet/4k.png">
-		                     <div class="info">你好呀今天天气好晴朗认真的检查一下哈晴朗认真的检查一下哈晴朗认真的检查一下哈</div>
-		                       <div class="tagsContent">
-		                          <div class="k4">只是个标签</div>
-		                          <div class="k4">只是个标签</div>
-		                          <div class="k4">只是个标签</div>
-		                      </div>
-		                </div>
-		           </div>
-		           <img class="shape" src="${imgPath}/projectLine/projectSet/shape.png">
-		       </div>
 		</div>
 		
 		<!-- 服务套餐--> 
@@ -239,151 +187,37 @@
 		    <div class="sContent">
 		        <div class="sTitle">服务套餐<span>Service Packages</span></div>
 		        <div class="setPack">
-		           <div class="packItem">
-		                   <img src="${imgPath}/index/advanBack.png">
-		                   <div class="pTitle">监制</div>
-		                   <div class="itemContent">
-		                         <div class="iLine"></div>
-		                         <div class="iContent">
-		                                                                             打算打打打所多大大打算打打打所多大大打算打打打所多大大打算打打打所多大大
-		                         </div>
-		                         <div class="iDes">(赠送)</div>
-		                   </div>
-		           </div>
-		            <div class="packItem">
-		                   <img src="${imgPath}/index/advanBack.png">
-		                   <div class="pTitle">监制</div>
-		                   <div class="itemContent">
-		                         <div class="iLine"></div>
-		                         <div class="iContent">
-		                                                                             打算打打打所多大大
-		                         </div>
-		                         <div class="iDes">(赠送)</div>
-		                   </div>
-		           </div>
-		            <div class="packItem">
-		                   <img src="${imgPath}/index/advanBack.png">
-		                   <div class="pTitle">监制</div>
-		                   <div class="itemContent">
-		                         <div class="iLine"></div>
-		                         <div class="iContent">
-		                                                                             打算打打打所多大大
-		                         </div>
-		                         <div class="iDes">(赠送)</div>
-		                   </div>
-		           </div>
+		           
 		        </div>
 		        
 		    </div>
-		
-		
 		</div>
 		
 		<!-- 时长 --> 
 		  <div class="timeContent">
+		      <input type="hidden" id="CTimeID">
 		      <div class="timeTitle">时长<span>Length</span></div>
 		      <div class="timeSet">
-		             <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		              <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		              <div class="timeCard active">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		              <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		              <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		              <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
-		             <div class="timeCard">
-		                    <div>1分钟</div>
-		                    <div>39800元</div>
-		             </div>
+		             
 		      </div>
 		  </div>
 		  
 		  	<!-- 附加服务 --> 
 		  <div class="addContent">
+		 	  <input type="hidden" id="CSubjoinID">
 		      <div class="addTitle">附加服务<span>Additional Services</span></div>
 		      <div class="addSet">
-		           <div class="setItem active">
-			             <div class="addCard">
-			                    <img src="${imgPath}/index/advanBack.png">
-			                    <div>1分钟</div>
-			                    <div>39800元</div>
-			                    <div>打算打打打算打打三大所多打算打打三大打算打打</div>
-			             </div>
-			             <div class="howMush">
-			                  <div>数量</div>
-			                  <div>-</div>
-			                  <input value='0'></input>
-			                  <div>+</div>
-			             </div>
-		          </div>
-		             <div class="setItem">
-			             <div class="addCard">
-			                    <img src="${imgPath}/index/advanBack.png">
-			                    <div>1分钟</div>
-			                    <div>39800元</div>
-			                    <div>打算打打打算打打三大所多打算打打三大打算打打</div>
-			             </div>
-			             <div class="howMush">
-			                  <div>数量</div>
-			                  <div>-</div>
-			                  <input value='0'></input>
-			                  <div>+</div>
-			             </div>
-		          </div>  
-		             <div class="setItem">
-			             <div class="addCard">
-			                    <img src="${imgPath}/index/advanBack.png">
-			                    <div>1分钟</div>
-			                    <div>39800元</div>
-			                    <div>打算打打打算打打三大所多打算打打三大打算打打</div>
-			             </div>
-			             <div class="howMush">
-			                  <div>数量</div>
-			                  <div>-</div>
-			                  <input value='0'></input>
-			                  <div>+</div>
-			             </div>
-		          </div>  
-		             <div class="setItem">
-			             <div class="addCard">
-			                    <img src="${imgPath}/index/advanBack.png">
-			                    <div>1分钟</div>
-			                    <div>39800元</div>
-			                    <div>打算打打打算打打三大所多打算打打三大打算打打</div>
-			             </div>
-			             <div class="howMush">
-			                  <div>数量</div>
-			                  <div>-</div>
-			                  <input value='0'></input>
-			                  <div>+</div>
-			             </div>
-		          </div>     
+		     
 		      </div>
 		  </div>
 		  
 		        	<!-- 确认下单 -->
 		      	
 		      	<div class="checkOrder">
-			      	<div>您选择了：1+2+3</div>
+			      	<div id="checkOrder"></div>
 			      	<div><span>总价格 </span><span>¥</span>99800</div>
 			      	<div>含增值税及其他法定税费：约 RMB 1,051</div>
-			      	<div>确认</div>
+			      	<div id="confirm">确认</div>
 		      	</div> 
 		
 		 <!-- foot -->         					<div class="foot3">
