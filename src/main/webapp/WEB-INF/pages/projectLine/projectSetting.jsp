@@ -145,13 +145,13 @@
     </div>
     
        <div class="projectType">
-                  <center>
-                       <a><div class="active">MG动画</div></a>
-                       <a><div>宣传片</div></a>
-                       <a><div>广告片</div></a>
-                       <a><div>微电影</div></a>
-                       <a><div>病毒视频</div></a>
-                  </center>
+                  <div class="pTContent">
+	                       <a><div class="active">MG动画</div></a>
+	                       <a><div>宣传片</div></a>
+	                       <a><div>广告片</div></a>
+	                       <a><div>微电影</div></a>
+	                       <a><div>病毒视频</div></a>
+                      </div> 
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -383,7 +383,7 @@
 			      	<div>您选择了：1+2+3</div>
 			      	<div><span>总价格 </span><span>¥</span>99800</div>
 			      	<div>含增值税及其他法定税费：约 RMB 1,051</div>
-			      	<div>确认</div>
+			      	<div class="btn-c-r">确认</div>
 		      	</div> 
 		
 		 <!-- foot -->         					<div class="foot3">

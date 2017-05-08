@@ -145,13 +145,13 @@
     </div>
     
        <div class="projectType">
-                  <center>
-                       <a><div class="active">MG动画</div></a>
-                       <a><div>宣传片</div></a>
-                       <a><div>广告片</div></a>
-                       <a><div>微电影</div></a>
-                       <a><div>病毒视频</div></a>
-                  </center>
+                  <div class="pTContent">
+	                       <a><div class="active">MG动画</div></a>
+	                       <a><div>宣传片</div></a>
+	                       <a><div>广告片</div></a>
+	                       <a><div>微电影</div></a>
+	                       <a><div>病毒视频</div></a>
+                      </div> 
        </div>
        <div class="motionTitles">
           <div class="modelOp"></div>
@@ -202,8 +202,8 @@
                    </div>
                     <div class="optionItem">
                         <div class="title"></div>
-                        <div class="checkOrder">确认下单</div>
-                        <div class="renturnEdit">返回修改</div>
+                        <div class="checkOrder btn-c-r">确认下单</div>
+                        <div class="renturnEdit btn-c-g">返回修改</div>
                    </div>
             </div>
        </div>

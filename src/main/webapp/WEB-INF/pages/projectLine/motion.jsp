@@ -146,13 +146,13 @@
     </div>
     
        <div class="projectType">
-                  <center>
-                       <a><div class="active">MG动画</div></a>
-                       <a><div>宣传片</div></a>
-                       <a><div>广告片</div></a>
-                       <a><div>微电影</div></a>
-                       <a><div>病毒视频</div></a>
-                  </center>
+                      <div class="pTContent">
+	                       <a><div class="active">MG动画</div></a>
+	                       <a><div>宣传片</div></a>
+	                       <a><div>广告片</div></a>
+	                       <a><div>微电影</div></a>
+	                       <a><div>病毒视频</div></a>
+                      </div> 
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -161,7 +161,7 @@
 	               <div>Motion Graphic</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div>产品描述</div></a>
+	               <a><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
 	               <a><div class="active">产品配置</div></a>
 	          </div>
@@ -348,7 +348,10 @@
 				<div class="swiper-wrapper swiper-product-slide">
 					<div class="swiper-slide">
 					   <div class="productItem">
-					     <img src="${imgPath}/index/advanBack.png">
+					      <div class="imgContent">
+			               	  <img src="${imgPath}/index/advanBack.png">
+			               	  <img src="${imgPath}/index/play-icon.png">
+		                  </div>
 					     <div class="productContent">
 					         <div class="contentTitle">图形动画企业视频应用案例</div>
 					         <div class="contentContent">
@@ -363,7 +366,10 @@
 					</div>
 					<div class="swiper-slide">
 					   <div class="productItem">
-					     <img src="${imgPath}/index/advanBack.png">
+					     <div class="imgContent">
+		               	  <img src="${imgPath}/index/advanBack.png">
+		               	  <img src="${imgPath}/index/play-icon.png">
+		                 </div>
 					     <div class="productContent">
 					         <div class="contentTitle">应用案例应用案例应用案例</div>
 					         <div class="contentInfo"> 应用案例应用案例应用案例</div>
