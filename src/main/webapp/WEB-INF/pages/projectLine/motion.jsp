@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
-<%-- import CSS --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="r" uri="/mytaglib" %><%-- import CSS --%>
 <spring:url value="/resources/css/projectLine/motion.css" var="motionCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
@@ -26,13 +27,13 @@
 
 
 <script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery/waypoints.min.js"></script>
-<script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
+	src="/resources/lib/jquery/waypoints.min.js"></script>
+<script type="text/javascript" src="/resources/lib/swiper/swiper.js"></script>
+<script type="text/javascript" src="/resources/lib/Clamp/clamp.js"></script>
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
@@ -60,8 +61,8 @@
 </head>
 
 <body>
-	<input type="hidden" id="storage_node"
-		value="${file_locate_storage_path }" />
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	<input type="hidden" id="productId" value="${product.chanpinId }">
 	<div class="page">
 	
 	<div class="header headerMove" id="header">
@@ -144,15 +145,22 @@
             </div>
         </div>
     </div>
+    	
+    	
     
        <div class="projectType">
-                      <div class="pTContent">
-	                       <a><div class="active">MG动画</div></a>
-	                       <a><div>宣传片</div></a>
-	                       <a><div>广告片</div></a>
-	                       <a><div>微电影</div></a>
-	                       <a><div>病毒视频</div></a>
-                      </div> 
+                  <center>
+						<c:if test="${! empty productList}">
+							<c:forEach items="${productList }" var="tag">
+								 <c:if test="${product.chanpinName == tag.chanpinName }">
+										<a><div class="active">${tag.chanpinName}</div></a>
+								 </c:if>
+								 <c:if test="${product.chanpinName != tag.chanpinName }">
+										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+								 </c:if>
+							</c:forEach>
+						</c:if>
+                  </center>
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -161,180 +169,41 @@
 	               <div>Motion Graphic</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div>产品概述</div></a>
+	               <a><div class="active">产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a><div class="active">产品配置</div></a>
+	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div>产品配置</div></a>
 	          </div>
           </div>
        </div>
     
      <div class="setMargin"></div>
 		<!-- 轮播 start -->
-           
+           	<div  id="bannerArray" class="hide">${product.chanpinBannerUrl }</div>
 			<div class="swiper-container swiper-banner flexslider">
-				<div class="swiper-wrapper swiper-banner-slide">
-					<div class="swiper-slide">
-					    <img src="${imgPath}/projectLine/motion/test2.jpg">
-					    <div class="bannerModel"></div>
-						<ul>
-							<li class="title" id="bannerTitleAn1">图形动画是什么？</li>
-							<li class="desc" id="DescAn1">图形动画是什么图形动画是什么图形动画是什么图形动画是什么图形动画是什么35800+ 导演 编剧 摄影师 影视专家为您服务</li>
-						</ul>
-					</div>
-					<div class="swiper-slide">
-				        <img src="${imgPath}/projectLine/motion/test1.jpg">
-					    <div class="bannerModel"></div>
-						<ul>
-							<li class="title" id="bannerTitleAn2">免费创意策划 72小时极速出片</li>
-							<li class="desc" id="DescAn2">专业视频管家 一站式视频服务 全流程质量监管</li>
-						</ul>
-					</div>
+				<div class="swiper-wrapper swiper-banner-slide" id="bannerView">
 				</div>
 				 <div class="swiper-pagination"></div>
 			</div>
 		<!-- 轮播 end -->
-		   <div class="LiveApp">
-		        <div class="LiveContent content4">
-		             <div class="title">应用场景</div>
-		             <div class="imgContent">
-		                     <center>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                 <div>
-				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
-				                 <span>测试啊啊啊</span>
-				                 </div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>  
-				             </center>  
-		             </div>
-		        </div>   
-		   </div>
-		   
-		    <div class="LiveApp">
-		        <div class="LiveContent content35">
-		             <div class="title">应用场景</div>
-		             <div class="imgContent">
-		                     <center>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                 <div>
-				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
-				                 <span>测试啊啊啊</span>
-				                 </div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>    
-				             </center>  
-		             </div>
-		        </div>   
-		   </div>
-		   
-		   	<div class="LiveApp">
-		        <div class="LiveContent content78">
-		             <div class="title">应用场景</div>
-		             <div class="imgContent">
-		                     <center>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>
-				                 <img src="${imgPath}/projectLine/motion/cardBack.png">      
-				                 <span>测试啊啊啊</span>
-				                 </div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div> 
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>  
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>  
-				               <div class="cItem">
-				                <img src="${imgPath}/index/advanBack.png">
-				                <div>测试啊啊啊</div>
-				               </div>      
-				             </center>  
-		             </div>
-		        </div>   
-		   </div>
+		<!-- 场景begin -->
+	
+			<div class="LiveApp">
+	            <div class="LiveContent">
+	                 <div class="title">应用场景</div>
+	                 <div class="imgContent">
+	                         <center id="sceneView">
+	              			 </center>  
+	        		 </div>
+			    </div>   
+			</div>
+		
+		<!-- 场景end -->
 		<!-- 产品优势 -->
 		 <div class="product">
+		 		<div  id="featureArray" class="hide">${product.chanpinFeature }</div>
 		        <div class="productContent">
 		              <div class="title">产品优势</div>
-		              <div class="cardContent">
-		                 <div class="item">
-		                      <img src="${imgPath}/index/advanBack.png">
-		                      <div class="desc">
-		                           <div>打算打打打大叔大叔大所大多撒大叔大叔大所大</div>
-		                           <div>大叔大叔大所大</div>
-		                      </div>
-		                      <div class="line"></div>
-		                 </div>
-		                 <div class="item">
-		                      <img src="${imgPath}/index/advanBack.png">
-		                      <div class="desc">
-		                           <div>打算打打打大叔大叔大所大多撒大叔大叔大所大</div>
-		                           <div>大叔大叔大所大</div>
-		                      </div>
-		                       <div class="line"></div>
-		                 </div>
-		                 <div class="item">
-		                      <img src="${imgPath}/index/advanBack.png">
-		                      <div class="desc">
-		                           <div>打算打打打大叔大叔大所大多撒大叔大叔大所大</div>
-		                           <div>大叔大叔大所大</div>
-		                      </div>
-		                      <div class="line"></div>
-		                 </div>
-		                 <div class="item">
-		                      <img src="${imgPath}/index/advanBack.png">
-		                      <div class="desc">
-		                           <div>打算打打打大叔大叔大所大多撒大叔大叔大所大</div>
-		                           <div>大叔大叔大所大</div>
-		                      </div>
-		                 </div>
+		              <div class="cardContent" id="featureView">
 		             </div> 
 		        </div>   
 		 </div>
@@ -388,6 +257,7 @@
 				<div class="swiper-button-prev"></div>
 			</div>
 		</div>	
+		
          <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">

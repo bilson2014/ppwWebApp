@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/projectLine/projectOrder.css" var="projectOrderCss"/>
@@ -26,35 +28,15 @@
 <title>拍片网－产品线</title>
 
 <script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+	src="/resources/lib/jquery.form/jquery.form.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery/waypoints.min.js"></script>
-<script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
+	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
-<script type="text/javascript">
-	var _vds = _vds || [];
-	window._vds = _vds;
-	(function() {
-		_vds.push([ 'setAccountId', '9f2e33a3d43b5d78' ]);
-		(function() {
-			var vds = document.createElement('script');
-			vds.type = 'text/javascript';
-			vds.async = true;
-			vds.src = ('https:' == document.location.protocol ? 'https://'
-					: 'http://')
-					+ 'dn-growing.qbox.me/vds.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(vds, s);
-		})();
-	})();
-</script>
 <link rel="stylesheet"  href="${projectOrderCss }" >
-<link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 
 </head>
 
@@ -145,13 +127,18 @@
     </div>
     
        <div class="projectType">
-                  <div class="pTContent">
-	                       <a><div class="active">MG动画</div></a>
-	                       <a><div>宣传片</div></a>
-	                       <a><div>广告片</div></a>
-	                       <a><div>微电影</div></a>
-	                       <a><div>病毒视频</div></a>
-                      </div> 
+                  <center>
+                       <c:if test="${! empty productList}">
+							<c:forEach items="${productList }" var="tag">
+								 <c:if test="${product.chanpinName == tag.chanpinName }">
+										<a><div class="active">${tag.chanpinName}</div></a>
+								 </c:if>
+								 <c:if test="${product.chanpinName != tag.chanpinName }">
+										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+								 </c:if>
+							</c:forEach>
+						</c:if>
+                  </center>
        </div>
        <div class="motionTitles">
           <div class="modelOp"></div>
@@ -168,6 +155,7 @@
        <div class="orderContent ">
             <img src="${imgPath}/index/advanBack.png">
             <div class="contentArea">
+            	   <form id="fm" action="/std/product/confirm/indent" method="post">
                    <div class="title">您购买MG动画详细包如下</div>
                    <div class="priceitem">
                        <div>
@@ -176,35 +164,31 @@
                    </div>
                    <div class="optionItem">
                         <div class="title">基础套餐</div>
+                        <input type="hidden" name="configId" value="${config.chanpinconfigurationId}">
                         <ul class="mealCard">
-                              <li class="active">测试(10000)</li>
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
+                              <li>${config.chanpinconfigurationName }</li>
                         </ul>
                    </div>
                     <div class="optionItem">
                         <div class="title">时长</div>
+                        <input type="hidden" name="timeId" value="${time.dimensionId}">
                         <ul class="timeCard">
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
+                              <li>${time.rowName }</li>
                         </ul>
                    </div>
                     <div class="optionItem">
                         <div class="title">附加包类型</div>
+                        <input type="hidden" name="subJoin" value="${subjoin.productModuleId}">
                         <ul class="moreCard">
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
-                              <li>测试(10000)</li>
+                              <li>${subjoin.moduleName }</li>
                         </ul>
                    </div>
                     <div class="optionItem">
                         <div class="title"></div>
-                        <div class="checkOrder btn-c-r">确认下单</div>
-                        <div class="renturnEdit btn-c-g">返回修改</div>
+                        <input type="submit" class="checkOrder" value="确认下单" />
+                        <div class="renturnEdit">返回修改</div>
                    </div>
+                   </form>
             </div>
        </div>
        
@@ -290,9 +274,6 @@
 	</div>
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>
-	<script type="text/javascript" src="/resources/js/juicer.js"></script>
-	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
-	<script type="text/javascript" src="/resources/js/projectLine/motion.js"></script>
 	<script type="text/javascript" src="${projectOrderJs}"></script>
 	
 </body>

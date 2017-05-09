@@ -1,12 +1,13 @@
 $().ready(function() {
-    
+	initBanner();
+	initScene();
+	initFeature();
     getBannerHeight();
     window.onresize = function(){
     	getBannerHeight();
     };
     banner();
     product();
-    
 });
 
 function getBannerHeight(){
@@ -54,10 +55,99 @@ function product(){
  */
 var homePage = {
 	init:function(){
-	
 	},
 	search:function(){
-	
 	},
+}
+
+
+/***********************************************4/5/wang*********************************************************/
+
+function initBanner(){
+	var str =  $('#bannerArray').text().trim();
+	var view = $('#bannerView');
+	view.html('');
+	var json = $.evalJSON(str);
+	if(json != null && json.length > 0){
+		for (var int = 0; int < json.length; int++) {
+			var jj = json[int];
+			var html = [
+						'<div class="swiper-slide">',
+						'	<img src="'+getDfsHostName() + jj +'">',
+						'</div>'
+			            ].join(''); 
+			view.append(html);
+		}
+	}
 	
 }
+function initScene(){
+	var productId = $('#productId').val();
+	loadData(function(res){
+		if(res.errorCode == 200){
+			var rows = res.result.rows;
+			var view = $('#sceneView');
+			view.html('');
+			if(rows != null && rows.length > 0){
+				var v = $('.LiveContent');
+				switch(rows.length){
+				case 1:
+				case 2:
+				case 3:
+					v.addClass('content35');
+					break;
+				case 4:
+					v.addClass('content4');
+					break;
+				case 5:
+				case 6:
+					v.addClass('content35');
+					break;
+				default:
+					v.addClass('content78');
+				}
+				for (var int = 0; int < rows.length; int++) {
+					var rr = rows[int];
+					var html = [
+								'<div class="cItem">',
+								'	<img src="'+getDfsHostName() + rr.scenenPicLDUrl +'">',
+								'	<div>',
+								'		<img src="/resources/images/projectLine/motion/cardBack.png">',      
+								'		<span>'+rr.sceneName+'</span>',
+								'	</div>',
+								'</div>'
+					            ].join('');
+					view.append(html);
+				}
+			}
+		}
+	}, getContextPath() +'/std/product/scene/'+productId, null);
+}
+
+function initFeature(){
+	var str =  $('#featureArray').text().trim();
+	var view = $('#featureView');
+	view.html('');
+	var json = $.evalJSON(str);
+	if( json!=null && json.length > 0){
+		for (var int = 0; int < json.length; int++) {
+			var jj = json[int];
+			var line = '<div class="line"></div>';
+			if(int == (json.length-1))
+				line = '';
+			var html = [
+						'<div class="item">',
+						'<img src="'+getDfsHostName() + jj.picHDUrl+'">',
+						'<div class="desc">',
+						'     <div>'+jj.name+'</div>',
+						'     <div>'+jj.description+'</div>',
+						'</div>',
+						line,
+						'</div>'
+			           ].join('');
+			view.append(html);
+		}
+	}
+	
+}
+
