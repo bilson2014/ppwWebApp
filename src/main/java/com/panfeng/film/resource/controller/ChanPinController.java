@@ -42,7 +42,7 @@ public class ChanPinController extends BaseController {
 
 	@Autowired
 	private PmsChanPinConfigurationFacade pmsChanPinConfigurationFacade;
-	
+
 	@Autowired
 	private PmsIndentConfirmFacade pmsIndentConfirmFacade;
 
@@ -53,7 +53,7 @@ public class ChanPinController extends BaseController {
 	}
 
 	@RequestMapping("/product/index")
-	public ModelAndView productIndex(Long chanpinId, ModelMap model,Long requireId,HttpServletRequest request) {
+	public ModelAndView productIndex(Long chanpinId, ModelMap model, Long requireId, HttpServletRequest request) {
 		PmsChanPin chanPinInfo = pmsChanPinFacade.getChanPinInfo(chanpinId);
 		// 当前页显示的产品信息
 		model.addAttribute("product", chanPinInfo);
@@ -131,8 +131,8 @@ public class ChanPinController extends BaseController {
 		if (ValidateUtil.isValid(pmsProductModule)) {
 			for (PmsProductModule pmsProductModule2 : pmsProductModule) {
 				Integer cpmModuleType = pmsProductModule2.getPinConfiguration_ProductModule().getCpmModuleType();
-				if(cpmModuleType.equals(1)){
-					if(pmsProductModule2.getProductModuleId().equals(subJoin)){
+				if (cpmModuleType.equals(1)) {
+					if (pmsProductModule2.getProductModuleId().equals(subJoin)) {
 						model.addAttribute("subjoin", pmsProductModule2);
 						System.err.println(pmsProductModule2.toString());
 					}
@@ -141,36 +141,37 @@ public class ChanPinController extends BaseController {
 		}
 		return new ModelAndView("/projectLine/projectOrder");
 	}
+
 	@RequestMapping("/product/confirm/indent")
-	public ModelAndView indentConfirm2(Long configId, Long timeId, Long subJoin,HttpServletRequest request){
+	public ModelAndView indentConfirm2(Long configId, Long timeId, Long subJoin, HttpServletRequest request) {
 		PmsChanPinConfiguration config = pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
-		
+
 		List<PmsDimension> pmsDimensions = config.getPmsDimensions();
 		if (ValidateUtil.isValid(pmsDimensions)) {
 			Iterator<PmsDimension> iterator = pmsDimensions.iterator();
 			while (iterator.hasNext()) {
 				PmsDimension pmsDimension = (PmsDimension) iterator.next();
-				if (! pmsDimension.getDimensionId().equals(timeId)) {
+				if (!pmsDimension.getDimensionId().equals(timeId)) {
 					iterator.remove();
 				}
 			}
 		}
-		
+
 		List<PmsProductModule> pmsProductModule = config.getPmsProductModule();
 		if (ValidateUtil.isValid(pmsProductModule)) {
-			Iterator<PmsProductModule> in =  pmsProductModule.iterator();
+			Iterator<PmsProductModule> in = pmsProductModule.iterator();
 			while (in.hasNext()) {
 				PmsProductModule productModule = (PmsProductModule) in.next();
 				Integer cpmModuleType = productModule.getPinConfiguration_ProductModule().getCpmModuleType();
-				if(cpmModuleType.equals(1)){
-					if(!productModule.getProductModuleId().equals(subJoin)){
+				if (cpmModuleType.equals(1)) {
+					if (!productModule.getProductModuleId().equals(subJoin)) {
 						in.remove();
 					}
 				}
 			}
 		}
-		
-		PmsIndentConfirm pmsIndentConfirm= new PmsIndentConfirm();
+
+		PmsIndentConfirm pmsIndentConfirm = new PmsIndentConfirm();
 		pmsIndentConfirm.setChanpinId(config.getChanpinId());
 		pmsIndentConfirm.setConfigurationId(config.getChanpinconfigurationId());
 		PmsChanPin chanPinInfo = pmsChanPinFacade.getChanPinInfo(config.getChanpinId());
@@ -179,17 +180,17 @@ public class ChanPinController extends BaseController {
 		pmsIndentConfirm.setConfigurationJson(json);
 		HttpSession session = request.getSession();
 		Object attribute = session.getAttribute("requireId");
-		if(attribute!=null){
+		if (attribute != null) {
 			Long id = Long.valueOf(attribute.toString());
 			pmsIndentConfirm.setRequire_id(id);
 		}
 		Map<String, Object> save = pmsIndentConfirmFacade.save(pmsIndentConfirm);
-		if(save!=null){
+		if (save != null) {
 			Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
-			if(object != null){
+			if (object != null) {
 				Long valueOf = Long.valueOf(object.toString());
-				if(valueOf >0){
-					return new ModelAndView("/");
+				if (valueOf > 0) {
+					return new ModelAndView("/index");
 				}
 			}
 		}
