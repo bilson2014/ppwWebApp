@@ -136,6 +136,7 @@ border: 1px solid $red-base; */
                             border-radius: 4px;
                             margin-top: 15px;
                             font-size: $font-size-base;
+                            border: none;
                         }
                         .checkOrder {
                             background: $red-base;
@@ -143,6 +144,7 @@ border: 1px solid $red-base; */
                         }
                         .renturnEdit {
                             background: $gray-light;
+                            cursor: pointer;
                         }
                     }
                 }

@@ -149,7 +149,7 @@
     	
     
        <div class="projectType">
-                  <center>
+                 <div class="pTContent">
 						<c:if test="${! empty productList}">
 							<c:forEach items="${productList }" var="tag">
 								 <c:if test="${product.chanpinName == tag.chanpinName }">
@@ -160,7 +160,7 @@
 								 </c:if>
 							</c:forEach>
 						</c:if>
-                  </center>
+                 </div>
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -169,9 +169,9 @@
 	               <div>Motion Graphic</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div class="active">产品概述</div></a>
+	               <a><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div>产品配置</div></a>
+	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div >产品配置</div></a>
 	          </div>
           </div>
        </div>

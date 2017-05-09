@@ -94,14 +94,14 @@ function initScene(){
 				case 1:
 				case 2:
 				case 3:
-					v.addClass('content35');
+					v.addClass('content3');
 					break;
 				case 4:
 					v.addClass('content4');
 					break;
 				case 5:
 				case 6:
-					v.addClass('content35');
+					v.addClass('content56');
 					break;
 				default:
 					v.addClass('content78');

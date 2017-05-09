@@ -12,6 +12,12 @@
                 }
                 
                 $margin-right-card:50px;
+
+
+                .hideImg{
+                    opacity: 0;
+                }
+
                 //卡片配置
                 .setCard {
                     @include media_screen_width_beta3();
@@ -41,6 +47,10 @@
                             display: block !important;
                         }
                     }
+
+
+                 
+
                     .cardContent {
                         display: inline-block;
                         vertical-align: top;
@@ -165,6 +175,7 @@
                 
                 //时长
                 .timeContent {
+                    display: none;
                     @include media_screen_width_beta3();
                     margin: 0 auto;
                     font-size: 0;
@@ -225,6 +236,7 @@
                 
                 //附加
                 .addContent {
+                    display: none;
                     @include media_screen_width_beta3();
                     margin: 0 auto;
                     font-size: 0;
@@ -397,6 +409,7 @@
                 
                 //服务套餐
                 .serviceContent {
+                    display: none;
                     background: $f0;
                     padding-bottom: 80px;
                     padding-top: 30px;
