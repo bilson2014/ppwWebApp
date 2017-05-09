@@ -169,7 +169,7 @@
 	               <div>Motion Graphic</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div class="active">产品描述</div></a>
+	               <a><div class="active">产品概述</div></a>
 	               <a><div>全部案例</div></a>
 	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div>产品配置</div></a>
 	          </div>
@@ -217,7 +217,10 @@
 				<div class="swiper-wrapper swiper-product-slide">
 					<div class="swiper-slide">
 					   <div class="productItem">
-					     <img src="${imgPath}/index/advanBack.png">
+					      <div class="imgContent">
+			               	  <img src="${imgPath}/index/advanBack.png">
+			               	  <img src="${imgPath}/index/play-icon.png">
+		                  </div>
 					     <div class="productContent">
 					         <div class="contentTitle">图形动画企业视频应用案例</div>
 					         <div class="contentContent">
@@ -232,7 +235,10 @@
 					</div>
 					<div class="swiper-slide">
 					   <div class="productItem">
-					     <img src="${imgPath}/index/advanBack.png">
+					     <div class="imgContent">
+		               	  <img src="${imgPath}/index/advanBack.png">
+		               	  <img src="${imgPath}/index/play-icon.png">
+		                 </div>
 					     <div class="productContent">
 					         <div class="contentTitle">应用案例应用案例应用案例</div>
 					         <div class="contentInfo"> 应用案例应用案例应用案例</div>

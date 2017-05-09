@@ -144,13 +144,13 @@
     </div>
     
        <div class="projectType">
-                  <center>
-                       <a><div class="active">MG动画</div></a>
-                       <a><div>宣传片</div></a>
-                       <a><div>广告片</div></a>
-                       <a><div>微电影</div></a>
-                       <a><div>病毒视频</div></a>
-                  </center>
+                   <div class="pTContent">
+	                       <a><div class="active">MG动画</div></a>
+	                       <a><div>宣传片</div></a>
+	                       <a><div>广告片</div></a>
+	                       <a><div>微电影</div></a>
+	                       <a><div>病毒视频</div></a>
+                      </div> 
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -165,7 +165,10 @@
 		<!-- 配置卡片 -->
 		      <div class="listContent">
 		           <div class="listCard">
-		             <img src="${imgPath}/index/advanBack.png">
+		             <div class="imgContent">
+		               	  <img src="${imgPath}/index/advanBack.png">
+		               	  <img src="${imgPath}/index/play-icon.png">
+		             </div>
 		             <div class="cardContent">
 		                    <div class="contentTitle">图形动画企业视频应用案例</div>
 					        <div class="contentContent">
@@ -178,7 +181,10 @@
 		             </div>
 		           </div>
 		             <div class="listCard">
-		             <img src="${imgPath}/index/advanBack.png">
+		             <div class="imgContent">
+		               	  <img src="${imgPath}/index/advanBack.png">
+		               	  <img src="${imgPath}/index/play-icon.png">
+		             </div>
 		             <div class="cardContent">
 		                    <div class="contentTitle">图形动画企业视频应用案例</div>
 					        <div class="contentContent">
@@ -191,7 +197,10 @@
 		              </div>
 		           </div>
 		             <div class="listCard">
-		             <img src="${imgPath}/index/advanBack.png">
+		            <div class="imgContent">
+		               	  <img src="${imgPath}/index/advanBack.png">
+		               	  <img src="${imgPath}/index/play-icon.png">
+		             </div>
 		             <div class="cardContent">
 		                    <div class="contentTitle">图形动画企业视频应用案例</div>
 					        <div class="contentContent">
@@ -205,7 +214,6 @@
 		           </div>
 		      </div>
 		</div>
-		
 		
 		 <!-- foot -->      <div class="foot3">
                                 <div class="footContent">

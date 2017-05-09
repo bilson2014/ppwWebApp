@@ -18,18 +18,22 @@
                     margin: 0 auto;
                     font-size: 0;
                     height: auto;
-                    padding-top: 80px;
+                    padding-top: 60px;
                     .cardTitle {
                         color: $gray-dark;
                         font-size: $font-size-lg30;
                         text-align: center;
-                        margin-top: 80px;
-                        margin-bottom: 80px;
+                        margin-bottom: 60px;
                     }
                     .cardContent:last-child {
                         margin-right: 0px !important;
                     }
                     .active {
+                        .cardTop {
+                            div {
+                                color: $red-base !important;
+                            }
+                        }
                         .cardBottom {
                             border: 1px solid $red-base !important;
                         }
@@ -64,6 +68,7 @@
                                 font-size: $font-size;
                                 color: $gray-dark;
                                 margin-bottom: 15px;
+                                font-weight: bold;
                             }
                             div:nth-child(2) {
                                 font-size: $font-size-base;
@@ -73,7 +78,7 @@
                                 margin-top: 5px;
                                 margin-bottom: 30px;
                                 color: $gray-dark;
-                                font-size: $font-size-lg24;
+                                font-size: $font-size-base;
                             }
                         }
                         .active {
@@ -163,7 +168,7 @@
                     @include media_screen_width_beta3();
                     margin: 0 auto;
                     font-size: 0;
-                    border-bottom: 1px dashed $gray-dark;
+                    border-bottom: 1px dashed $border-line;
                     padding-bottom: 70px;
                     padding-top: 80px;
                     .timeTitle {
@@ -180,14 +185,18 @@
                 
                 .timeCard:nth-child(6n) {
                     @media screen and (min-width: 1500px) {
-                        margin-right: 0px !important;
+                        // margin-right: 0px !important;
+                        //   margin-left: 5px;
                     }
                 }
                 
                 .timeSet {
+                    cursor: pointer;
                     .active {
                         border: 1px solid $red-base !important;
-                        color: $red-base;
+                        div {
+                            color: $red-base !important;
+                        }
                     }
                 }
                 
@@ -219,7 +228,7 @@
                     @include media_screen_width_beta3();
                     margin: 0 auto;
                     font-size: 0;
-                    border-bottom: 1px dashed $gray-dark;
+                    border-bottom: 1px dashed $border-line;
                     padding-bottom: 70px;
                     padding-top: 80px;
                     .addTitle {
@@ -240,6 +249,7 @@
                     .active {
                         .addCard {
                             border: 1px solid $red-base !important;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -379,6 +389,9 @@
                         border-radius: 8px;
                         position: absolute;
                         right: 0;
+                        &:hover {
+                            background: $red-base;
+                        }
                     }
                 }
                 
@@ -419,6 +432,7 @@
                 .packItem:nth-child(1) {
                     width: 170px;
                     text-align: -webkit-auto !important;
+                    cursor: pointer;
                     .pTitle {
                         width: 130px !important;
                     }

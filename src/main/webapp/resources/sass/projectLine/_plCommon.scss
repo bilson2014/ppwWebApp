@@ -6,9 +6,21 @@
                               position: fixed;
                               top: 60px;
                               z-index: 50;
+                              font-size: 0;
+                              text-align: center;
+                              .pTContent {
+                                  @include media_screen_width_beta3();
+                                  margin: 0 auto;
+                                  padding-left: 16%;
+                                  padding-right: 16%;
+                                  font-size: 0;
+                              }
                               div {
                                   font-size: $font-size-base;
                                   color: $gray;
+                                  &:hover {
+                                      color: $red-base;
+                                  }
                               }
                               .active {
                                   color: $red-base;
@@ -16,7 +28,7 @@
                               a {
                                   display: inline-block;
                                   vertical-align: top;
-                                  margin-right: 30px;
+                                  width: 20%;
                               }
                               a:last-child {
                                   margin-right: 0px !important;
@@ -26,7 +38,7 @@
                           .motionTitles {
                               background-color: rgba(255, 255, 255, 0.8);
                               width: 100%;
-                              height: 60px;
+                              height: 70px;
                               position: fixed;
                               top: 120px;
                               z-index: 50;
@@ -38,9 +50,10 @@
                               position: relative;
                               .motionIcon {
                                   position: absolute;
-                                  height: 100%;
-                                  line-height: 60px;
+                                  width: 100%;
+                                  line-height: 65px;
                                   left: 0;
+                                  border-bottom: 1px solid $border-line;
                                   div {
                                       color: $gray-dark;
                                       font-size: $font-size-lg24;
@@ -65,6 +78,9 @@
                                       margin-top: 15px;
                                       line-height: 30px;
                                       text-align: center;
+                                      &:hover {
+                                          color: $red-base;
+                                      }
                                   }
                                   a {
                                       display: inline-block;
@@ -75,9 +91,13 @@
                               .active {
                                   background: $red-base;
                                   color: white !important;
+                                  &:hover {
+                                      background: darken($red-base, 10%)!important;
+                                      ;
+                                  }
                               }
                           }
                           
                           .setMargin {
-                              margin-top: 120px;
+                              margin-top: 130px;
                           }

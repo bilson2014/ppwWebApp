@@ -145,18 +145,18 @@
     </div>
     
        <div class="projectType">
-                  <center>
-                      <c:if test="${! empty productList}">
-							<c:forEach items="${productList }" var="tag">
-								 <c:if test="${product.chanpinName == tag.chanpinName }">
-										<a><div class="active">${tag.chanpinName}</div></a>
-								 </c:if>
-								 <c:if test="${product.chanpinName != tag.chanpinName }">
-										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
-								 </c:if>
-							</c:forEach>
+			<center>
+				<c:if test="${! empty productList}">
+					<c:forEach items="${productList }" var="tag">
+						<c:if test="${product.chanpinName == tag.chanpinName }">
+							<a><div class="active">${tag.chanpinName}</div></a>
 						</c:if>
-                  </center>
+						<c:if test="${product.chanpinName != tag.chanpinName }">
+							<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</center>
        </div>
        <div class="motionTitles">
           <div class="motionContent">
@@ -217,7 +217,7 @@
 			      	<div id="checkOrder"></div>
 			      	<div><span>总价格 </span><span>¥</span>99800</div>
 			      	<div>含增值税及其他法定税费：约 RMB 1,051</div>
-			      	<div id="confirm">确认</div>
+			      	<div id="confirm" class="btn-c-r">确认</div>
 		      	</div> 
 		
 		 <!-- foot -->         					<div class="foot3">
