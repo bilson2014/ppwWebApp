@@ -1,6 +1,5 @@
 package com.panfeng.film.resource.controller;
 
-import java.awt.Color;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
