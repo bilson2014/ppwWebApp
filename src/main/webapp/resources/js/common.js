@@ -768,7 +768,7 @@ function initOrderClick(){
 			var telephone = $('#indent_tele').val().trim();
 			$('#getPhoneCode').text('已发送(' + curCounts + ')');
 			$('#getPhoneCode').attr('disabled', 'disabled');
-			InterValObj = window.setInterval(SetRemainTimes, 1000); // 启动计时器，1秒钟执行一次
+			InterValObj = window.setInterval(SetRemainTimes, 1000); // 启动计时器，1秒钟执行一次s
 			loadData(function(flag) {
 				if (!flag) {
 					// 发送不成功
