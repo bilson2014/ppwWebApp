@@ -5,7 +5,10 @@ $().ready(function() {
 		var cId = $('#CConfigId').val();
 		var tId = $('#CTimeID').val();
 		var subId = $('#CSubjoinID').val();
+		
+		if(getCheck()){
 		window.location.href= '/std/product/confirm?configId='+cId +'&timeId='+tId +'&subJoin='+subId;
+		}
 	})
 });
 
@@ -24,6 +27,26 @@ var pSet = {
 			$('#CConfigId').val($(this).attr('data-id'));
 			showCard();
 		});
+	}
+}
+
+function getCheck(){
+	var v0 = $(".setCard div.active");
+	var v3 = $(".timeSet div.active");
+	var getPack = $(v0).find('.info').text();
+	var getTime = $(v3).find('.time').text();
+	$('#setError').text('');
+	if(getPack!=null&&getPack!=''){
+ 	
+	}else{
+		$('#setError').text('请选择套餐');
+		return false;
+	}
+	if(getTime!=null&&getTime!=''){
+	 	return true;
+	}else{
+		$('#setError').text('请选择时间');
+		return false;
 	}
 }
 

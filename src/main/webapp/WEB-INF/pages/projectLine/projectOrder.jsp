@@ -25,7 +25,7 @@
 <meta name="keywords" content="宣传片制作,广告片制作,企业微电影,产品宣传片制作,路演视频制作">
 <meta name="description" content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、产品广告片拍摄、企业微电影以及病毒视频制作等。拍片就上拍片网">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>拍片网－产品线</title>
+<title>${product.chanpinName}| 拍片网标准化产品线</title>
 
 <script type="text/javascript"
 	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
@@ -144,13 +144,13 @@
        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
-	               <div>图形动画</div>
-	               <div>Motion Graphic</div>
+	               <div>${product.chanpinName}</div>
+	               <div>${product.englishName}</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div>产品概述</div></a>
+	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div class="active">产品配置</div></a>
+	               <a><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
@@ -189,7 +189,7 @@
                    </div>
                     <div class="optionItem">
                         <div class="title"></div>
-                        <input type="submit" class="checkOrder" value="确认下单" />
+                        <input type="button" class="checkOrder" value="确认下单" />
                         <div class="renturnEdit">返回修改</div>
                    </div>
                    </form>
@@ -206,7 +206,7 @@
 		        <div class="desc">已经自动生产项目!进入我的项目查看</div>
 		        <div class="desc">页面将自动跳转进入<a>您的项目</a>页面</div>
 		        <div class="desc"><span id="last3">3</span>秒</div>
-		        <div class="descBot"><a>返回产品概述</a>请点击这里</div>
+		        <div class="descBot"><a href="/std/product/index?chanpinId=${product.chanpinId}">返回产品概述</a>请点击这里</div>
 		   </div>
        </div>
        

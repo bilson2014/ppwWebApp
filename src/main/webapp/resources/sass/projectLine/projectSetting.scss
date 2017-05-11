@@ -389,9 +389,16 @@
                     div:nth-child(3) {
                         font-size: $font-size-base;
                         color: $gray-light;
-                        margin-bottom: 60px;
+                        margin-bottom: 10px;
                     }
-                    div:nth-child(4) {
+
+                     div:nth-child(4) {
+                        font-size: $font-size-base;
+                        color: $red-base;
+                        margin-bottom: 40px;
+                    }
+
+                    div:nth-child(5) {
                         font-size: $font-size-base;
                         color: white;
                         width: 220px;
