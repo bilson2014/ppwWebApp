@@ -145,7 +145,7 @@
     </div>
     
        <div class="projectType">
-			<center>
+			<div class="pTContent">
 				<c:if test="${! empty productList}">
 					<c:forEach items="${productList }" var="tag">
 						<c:if test="${product.chanpinName == tag.chanpinName }">
@@ -156,7 +156,7 @@
 						</c:if>
 					</c:forEach>
 				</c:if>
-			</center>
+			</div>
        </div>
        <div class="motionTitles">
           <div class="motionContent">

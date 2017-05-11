@@ -115,9 +115,14 @@ public class ChanPinController extends BaseController {
 
 	@RequestMapping("/product/confirm")
 	public ModelAndView indentConfirmView(ModelMap model, Long configId, Long timeId, Long subJoin) {
+		// 顶部所有产品分类
+		DataGrid<PmsChanPin> allChanPin = pmsChanPinFacade.getAllChanPin();
+		if (allChanPin != null) {
+			List<PmsChanPin> rows = allChanPin.getRows();
+			model.addAttribute("productList", rows);
+		}
 		PmsChanPinConfiguration config = pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
 		model.addAttribute("config", config);
-
 		List<PmsDimension> pmsDimensions = config.getPmsDimensions();
 		if (ValidateUtil.isValid(pmsDimensions)) {
 			for (PmsDimension pmsDimension : pmsDimensions) {

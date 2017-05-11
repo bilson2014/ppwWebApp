@@ -8,6 +8,7 @@
                               z-index: 50;
                               font-size: 0;
                               text-align: center;
+                              border-bottom: 1px solid #d1d1d1;
                               .pTContent {
                                   @include media_screen_width_beta3();
                                   margin: 0 auto;

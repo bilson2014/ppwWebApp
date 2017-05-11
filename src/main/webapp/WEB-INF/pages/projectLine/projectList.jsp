@@ -132,7 +132,7 @@
 					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					    </div>
 					</div>
 				</r:identity>
 				<r:identity role="employee">
@@ -144,6 +144,7 @@
     </div>
     
        <div class="projectType">
+       
                    <div class="pTContent">
 	                       <a><div class="active">MG动画</div></a>
 	                       <a><div>宣传片</div></a>

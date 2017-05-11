@@ -22,8 +22,20 @@ var pSet = {
 			$(this).addClass('active');
 			initModel($(this).attr('data-id'));
 			$('#CConfigId').val($(this).attr('data-id'));
+			showCard();
 		});
 	}
+}
+
+function showCard(){
+	 $('.serviceContent').show();
+	 $('.timeContent').show();
+	 $('.addContent').show();
+	 $('.shape').removeClass('hideImg');
+	 $('.closeContent').off('click').on('click',function(){
+		$('.serviceContent').hide(); 
+		$('.cardContent').find('.shape').addClass('hideImg');
+	 });
 }
 
 function calculatedValue(){
