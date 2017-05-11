@@ -121,7 +121,7 @@ function initScene(){
 				}
 			}
 		}
-	}, getContextPath() +'/std/product/scene/'+productId, null);
+	}, getContextPath() +'/product/scene/'+productId, null);
 }
 
 function initFeature(){

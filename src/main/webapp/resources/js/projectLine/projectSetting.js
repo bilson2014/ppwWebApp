@@ -5,7 +5,8 @@ $().ready(function() {
 		var cId = $('#CConfigId').val();
 		var tId = $('#CTimeID').val();
 		var subId = $('#CSubjoinID').val();
-		window.location.href= '/std/product/confirm?configId='+cId +'&timeId='+tId +'&subJoin='+subId;
+		var englishName = $('#englishName').val();
+		window.location.href= '/product/'+englishName+'/order?configId='+cId +'&timeId='+tId +'&subJoin='+subId;
 	})
 });
 
@@ -91,10 +92,30 @@ function initModel(id){
 			});
 
 			$('.setItem').off('click').on('click', function() {
-				$('.setItem').removeClass('active');
-				$(this).addClass('active');
+				var clas = $(this).hasClass('active');
+				if(clas){
+					$(this).removeClass('active');
+				}else{
+					$(this).addClass('active');
+				}
 				calculatedValue();
-				$('#CSubjoinID').val($(this).attr('data-id'));
+				var v3 = $(".setItem");
+				
+				if(v3.length > 0){
+					var dId = '';
+					for (var int4 = 0; int4 < v3.length; int4++) {
+						if($(v3[int4]).hasClass('active')){
+							dId += $(v3[int4]).attr('data-id');
+							if((int4 + 1) != v3.length){
+								dId +=',';
+							}
+						}
+					}
+					if(dId.lastIndexOf(',') == dId.length -1){
+						dId = dId.substring(0,dId.length -1);
+					}
+					$('#CSubjoinID').val(dId);
+				}
 			});
 		}
 	}
@@ -166,7 +187,7 @@ function initConfig() {
 			}
 			pSet.init();
 		}
-	}, getContextPath()+'/std/product/config/list?chanpinId='+productId, null);
+	}, getContextPath()+'/product/config/list?chanpinId='+productId, null);
 }
 
 function buildCar1(obj){

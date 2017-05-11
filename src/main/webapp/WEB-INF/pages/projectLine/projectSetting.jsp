@@ -60,6 +60,7 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
+	<input type="hidden" id="englishName" value="${product.englishName }">
 	<div class="page">
 	<input type="hidden" id="productId" value="${product.chanpinId }">
 	
@@ -152,7 +153,7 @@
 							<a><div class="active">${tag.chanpinName}</div></a>
 						</c:if>
 						<c:if test="${product.chanpinName != tag.chanpinName }">
-							<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+							<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
 						</c:if>
 					</c:forEach>
 				</c:if>
@@ -165,7 +166,7 @@
 	               <div>Motion Graphic</div>
 	          </div>
 	           <div class="motionType">
-	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品描述</div></a>
+	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
 	               <a><div>全部案例</div></a>
 	               <a><div class="active">产品配置</div></a>
 	          </div>

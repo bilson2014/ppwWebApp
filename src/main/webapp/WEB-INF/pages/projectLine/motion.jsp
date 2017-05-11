@@ -153,7 +153,7 @@
 										<a><div class="active">${tag.chanpinName}</div></a>
 								 </c:if>
 								 <c:if test="${product.chanpinName != tag.chanpinName }">
-										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+										<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
 								 </c:if>
 							</c:forEach>
 						</c:if>
@@ -168,7 +168,7 @@
 	          <div class="motionType">
 	               <a><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div class="active">产品配置</div></a>
+	               <a href="/product/${product.englishName }/set"><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>

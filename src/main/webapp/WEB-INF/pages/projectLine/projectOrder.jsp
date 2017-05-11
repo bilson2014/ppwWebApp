@@ -134,7 +134,7 @@
 										<a><div class="active">${tag.chanpinName}</div></a>
 								 </c:if>
 								 <c:if test="${product.chanpinName != tag.chanpinName }">
-										<a href="/std/product/index?chanpinId=${tag.chanpinId }"><div>${tag.chanpinName}</div></a>
+										<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
 								 </c:if>
 							</c:forEach>
 						</c:if>
@@ -150,7 +150,7 @@
 	          <div class="motionType">
 	               <a><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div class="active">产品配置</div></a>
+	              <a href="/product/${tag.englishName }/set"><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
@@ -159,7 +159,7 @@
        <div class="orderContent ">
             <img src="${imgPath}/index/advanBack.png">
             <div class="contentArea">
-            	   <form id="fm" action="/std/product/confirm/indent" method="post">
+            	   <form id="fm" action="/product/confirm/indent" method="post">
                    <div class="title">您购买MG动画详细包如下</div>
                    <div class="priceitem">
                        <div>
@@ -182,9 +182,13 @@
                    </div>
                     <div class="optionItem">
                         <div class="title">附加包类型</div>
-                        <input type="hidden" name="subJoin" value="${subjoin.productModuleId}">
+                        <input type="hidden" name="subJoin" value="${subjoinId}">
                         <ul class="moreCard">
-                              <li>${subjoin.moduleName }</li>
+                        	  <c:if test="${! empty  subjoin}">
+	                        	<c:forEach items="${subjoin }" var="tag">
+									 <li>${tag.moduleName }</li>
+								</c:forEach>
+                        	  </c:if>
                         </ul>
                    </div>
                     <div class="optionItem">
