@@ -223,6 +223,9 @@ public class ChanPinController extends BaseController {
 	public List<PmsChanPinConfiguration> getConfig(Long chanpinId) {
 		List<PmsChanPinConfiguration> chanPinConfigurationByChanPinId = pmsChanPinConfigurationFacade
 				.getChanPinConfigurationByChanPinId(chanpinId);
+		
+		
+		
 		return chanPinConfigurationByChanPinId;
 	}
 }
