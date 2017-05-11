@@ -42,7 +42,8 @@ public class RequireController extends BaseController {
 		if (require != null) {
 			Map<String, Object> save = pmsRequireFacade.save(require);
 			if (save != null) {
-				Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
+				//Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
+				Object object = save.get("save_map_rows");
 				if (object != null && Integer.valueOf(object.toString()) > 0) {
 					baseMsg.setErrorCode(BaseMsg.NORMAL);
 					baseMsg.setErrorMsg("保存成功！");

@@ -156,7 +156,6 @@
        </div>
        
        <div class="setMargin"></div>
-       
        <div class="orderContent ">
             <img src="${imgPath}/index/advanBack.png">
             <div class="contentArea">

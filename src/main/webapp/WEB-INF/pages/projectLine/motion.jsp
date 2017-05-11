@@ -25,7 +25,6 @@
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>拍片网－产品线</title>
 
-
 <script type="text/javascript"
 	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
@@ -146,8 +145,6 @@
         </div>
     </div>
     	
-    	
-    
        <div class="projectType">
                  <div class="pTContent">
 						<c:if test="${! empty productList}">
@@ -171,7 +168,7 @@
 	          <div class="motionType">
 	               <a><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div >产品配置</div></a>
+	               <a href="/std/product/config?chanpinId=${product.chanpinId }"><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
@@ -204,7 +201,7 @@
 		        <div class="productContent">
 		              <div class="title">产品优势</div>
 		              <div class="cardContent" id="featureView">
-		             </div> 
+		              </div> 
 		        </div>   
 		 </div>
 		 

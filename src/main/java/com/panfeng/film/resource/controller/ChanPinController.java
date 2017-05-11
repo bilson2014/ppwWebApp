@@ -191,7 +191,8 @@ public class ChanPinController extends BaseController {
 		}
 		Map<String, Object> save = pmsIndentConfirmFacade.save(pmsIndentConfirm);
 		if (save != null) {
-			Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
+			//Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
+			Object object = save.get("save_map_rows");
 			if (object != null) {
 				Long valueOf = Long.valueOf(object.toString());
 				if (valueOf > 0) {

@@ -133,7 +133,7 @@
 					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					   </div>
 					</div>
 				</r:identity>
 				<r:identity role="employee">
@@ -173,13 +173,11 @@
        </div>
        
        <div class="setMargin"></div>
-    
 		<!-- 配置卡片 -->
 		<div class="setCard">
 			   <input type="hidden" id="CConfigId">
 		       <div class="cardTitle">寻找适合你的图形动画</div>
 		</div>
-		
 		<!-- 服务套餐--> 
 		
 		<div class="serviceContent">

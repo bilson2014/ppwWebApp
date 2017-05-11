@@ -145,7 +145,6 @@ function createTime(obj){
 	return html;
 }
 
-
 function initConfig() {
 	var productId = $('#productId').val();
 	var view = $('.setCard');
