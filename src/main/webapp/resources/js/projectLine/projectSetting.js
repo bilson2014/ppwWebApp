@@ -68,21 +68,51 @@ function calculatedValue(){
 	var time = $(".timeSet div.active");
 	var addSet = "";
 	var addprice = 0;
+	var priceArray = new Array;
+
+	
+	var cardSet = $(card).find('.info').text();
+	var timeSet = '+' + $(time).find('.time').text();
+	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
+	var cardPrice = $(card).find('.price').text();
+	priceArray.push(cardPrice);
+	var timePrice =  $(time).find('.price').text();
+	var timePriceType =  $(time).find('.computeType').text();
 	if(add.length > 0){
 		for (var int = 0; int < add.length; int++) {
 			var nowAdd = '+' + $(add[int]).find('.name').text();
 			var nowPrice =$(add[int]).find('.price').text();
 		    addSet =addSet + nowAdd;
-		    addprice =parseInt(addprice)+parseInt(nowPrice);
+		    priceArray.push("+");
+		    priceArray.push(nowPrice);
 		}
 	}
-	var cardSet = $(card).find('.info').text();
-	var timeSet = '+' + $(time).find('.time').text();
-	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
-	var cardPrice = $(card).find('.price').text();
-	var timePrice =  $(time).find('.price').text();
-	var total = parseInt(cardPrice)+parseInt(timePrice)+parseInt(addprice);
-	$('#setTotalPrice').text(total);
+	
+	if(timePriceType == 0){
+		priceArray.push("*");
+	}
+	if(timePriceType == 1){
+		priceArray.push("+");
+	}
+	if(timePriceType == 2){
+		priceArray.push("-");
+	}
+	
+	priceArray.push(timePrice);
+	console.info(priceArray);
+	
+	$.ajax({
+		url :  getContextPath()+'/product/compute',
+		type : 'POST',
+		data : {json:$.toJSON(priceArray)},
+		success : function(data){
+			$('#setTotalPrice').text(data.result);
+		}
+	});
+//	loadData(function(){
+//		$('#setTotalPrice').text(total);
+//	}, getContextPath()+'/product/config/list?chanpinId='+productId, null);
+
 }
 
 function initModel(id){
@@ -192,7 +222,8 @@ function createTime(obj){
 				'<div class="timeCard" data-id="'+obj.dimensionId+'">',
 				'<div class="time">'+obj.rowName+'</div>',
 				'<div ><span class="price">'+obj.rowValue+'</span>元</div>',
-				'</div>'
+				'<div class="computeType hide">'+obj.computeType+'</div>',
+				'</div>',
 	            ].join('');
 	return html;
 }
@@ -271,7 +302,7 @@ function buildCar2(obj){
 	             '         <div class="cardTop">',
 	             '             <div>增强版产品</div>',
 	             '             <div>(基础价)</div>',
-	             '             <div>'+obj.basePrice+'元</div>',
+	             '             <div><span class="price">'+obj.basePrice+'</span>元</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',

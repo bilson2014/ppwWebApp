@@ -2,7 +2,6 @@ $().ready(function() {
 	initBanner();
 	initScene();
 	initFeature();
-    getBannerHeight();
     window.onresize = function(){
     	getBannerHeight();
     };
@@ -80,6 +79,7 @@ function initBanner(){
 			}
 		}
 		banner();
+		getBannerHeight();
 	}
 	
 }

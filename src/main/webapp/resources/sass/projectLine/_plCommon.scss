@@ -12,8 +12,6 @@
                               .pTContent {
                                   @include media_screen_width_beta3();
                                   margin: 0 auto;
-                                  padding-left: 16%;
-                                  padding-right: 16%;
                                   font-size: 0;
                               }
                               div {
@@ -27,7 +25,9 @@
                               a {
                                   display: inline-block;
                                   vertical-align: top;
-                                  width: 20%;
+                                  width: 10%;
+                                  position: relative;
+                                  top:-1px;
                               }
                               a:last-child {
                                   margin-right: 0px !important;
