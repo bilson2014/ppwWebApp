@@ -2,6 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ibm.icu.math.BigDecimal;
 import com.paipianwang.pat.common.entity.DataGrid;
 import com.paipianwang.pat.common.util.JsonUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -223,9 +226,43 @@ public class ChanPinController extends BaseController {
 	public List<PmsChanPinConfiguration> getConfig(Long chanpinId) {
 		List<PmsChanPinConfiguration> chanPinConfigurationByChanPinId = pmsChanPinConfigurationFacade
 				.getChanPinConfigurationByChanPinId(chanpinId);
-		
-		
-		
+
 		return chanPinConfigurationByChanPinId;
+	}
+
+	@RequestMapping("/product/compute")
+	public BaseMsg compute(String json) throws Exception {
+		BaseMsg baseMsg = new BaseMsg();
+		if (ValidateUtil.isValid(json)) {
+			List<String> vv = JsonUtil.fromJsonArray(json, String.class);
+			LinkedList<String> value = new LinkedList<>(vv);
+			if (ValidateUtil.isValid(value) && value.size() % 2 != 0) {
+				BigDecimal A = null;
+				BigDecimal B = null;
+				while (!value.isEmpty()) {
+					String key = value.poll();
+					switch (key) {
+					case "+":
+						B = new BigDecimal(value.poll());
+						A = A.add(B);
+						break;
+					case "-":
+						B = new BigDecimal(value.poll());
+						A = A.subtract(B);
+						break;
+					case "*":
+						B = new BigDecimal(value.poll());
+						A = A.multiply(B);
+						break;
+					default:
+						A = new BigDecimal(key);
+						break;
+					}
+				}
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setResult(A.doubleValue());
+			}
+		}
+		return baseMsg;
 	}
 }

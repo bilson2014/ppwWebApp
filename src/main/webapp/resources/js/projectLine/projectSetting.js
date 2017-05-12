@@ -99,7 +99,6 @@ function calculatedValue(){
 	}
 	
 	priceArray.push(timePrice);
-	console.info(priceArray);
 	
 	$.ajax({
 		url :  getContextPath()+'/product/compute',
