@@ -62,19 +62,22 @@ function showCard(){
 }
 
 function calculatedValue(){
-	var v0 = $(".setCard div.active");
-	var v2 = $(".addSet div.active");
-	var v3 = $(".timeSet div.active");
-	var vvv = $(v0).find('.info').text();
-	var vvv3 = $(v3).find('.time').text();
-	var vvv2 = $(v2).find('.name').text();
-	
-	$('#checkOrder').text('您选择了：'+vvv + '+' + vvv3 +'+' + vvv2);
-	// 价格计算
-	
+	var card = $(".setCard div.active");
+	var add = $(".addSet div.active");
+	var time = $(".timeSet div.active");
+	var addSet;
+	if(add.length > 0){
+		for (var int = 0; int < add.length; int++) {
+		addset += $(this).find('.name').text();
+		}
+	}
+	else{
+	  addSet = '+'$(add).find('.name').text();
+	}
+	var cardSet = $(card).find('.info').text();
+	var timeSet = '+'$(time).find('.time').text();
+	$('#checkOrder').text('您选择了 :'+time + cardSet + addSet);
 }
-
-
 
 function initModel(id){
 	var v1 = $(".setPack");
