@@ -84,7 +84,7 @@
 		</table>
 	</c:if>
 	
-	<div id="bbbb" style="margin-left: 75px">
+	<div id="bbbb" style="margin-left: 75px; display: none;">
 		<form action="" method="post">
 			订单ID:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly" name="id" id="formId"><br/><br/>
 			联系人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="realName" id = "formrealName" ><br/><br/>
@@ -95,7 +95,7 @@
 			备注:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="4" cols="45" name="indent_recomment" id = "formindent_recomment"></textarea><br/><br/>
 			状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="indentType" id = "formindentType"><br/><br/>
 			
-			<input type="submit" value="提交">
+			<input type="submit" onclick="subBtn()" value="提交">
 		</form>
 	</div>
 </body>

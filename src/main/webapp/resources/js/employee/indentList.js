@@ -1,7 +1,7 @@
 $().ready(function(){
 	$('.edit').on('click',function(){
+		$('#bbbb').show();
 		var tr = $(this).closest('tr');
-		
 		var id = $(tr).find('.id');
 		var realName = $(tr).find('.realName');
 		var indent_tele = $(tr).find('.indent_tele');
@@ -19,7 +19,9 @@ $().ready(function(){
 		$('#formorderDate').val($(orderDate).text().trim());
 		$('#formindent_recomment').val($(indent_recomment).text().trim());
 		$('#formindentType').val($(indentType).text().trim());
-		
-		
 	});
 });
+
+function subBtn(){
+	
+}
