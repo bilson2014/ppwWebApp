@@ -79,13 +79,15 @@ public class ChanPinController extends BaseController {
 	}
 
 	@RequestMapping("/product/{englishName}/order")
-	public ModelAndView indentConfirmView(ModelMap model, Long configId, Long timeId, String subJoin) {
+	public ModelAndView indentConfirmView(@PathVariable("englishName") String englishName,ModelMap model, Long configId, Long timeId, String subJoin,Double price) {
 		// 顶部所有产品分类
 		DataGrid<PmsChanPin> allChanPin = pmsChanPinFacade.getAllChanPin();
 		if (allChanPin != null) {
 			List<PmsChanPin> rows = allChanPin.getRows();
 			model.addAttribute("productList", rows);
 		}
+		PmsChanPin chanPinInfo = pmsChanPinFacade.getInfoByEnglishName(englishName);
+		model.addAttribute("product", chanPinInfo);
 		PmsChanPinConfiguration config = pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
 		model.addAttribute("config", config);
 		List<PmsDimension> pmsDimensions = config.getPmsDimensions();
@@ -114,6 +116,7 @@ public class ChanPinController extends BaseController {
 					}
 				}
 				model.addAttribute("subjoin", list);
+				model.addAttribute("price", price);
 				model.addAttribute("subjoinId", subJoin);
 			}
 		}

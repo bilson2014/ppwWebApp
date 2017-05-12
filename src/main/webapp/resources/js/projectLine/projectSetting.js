@@ -1,16 +1,21 @@
 var configCache;
 $().ready(function() {
 	initConfig();
+	getNext();
+
+});
+
+function getNext(){
 	$('#confirm').on('click',function(){
 		var cId = $('#CConfigId').val();
 		var tId = $('#CTimeID').val();
 		var subId = $('#CSubjoinID').val();
 		if(getCheck()){
 			var englishName = $('#englishName').val();
-			window.location.href= '/product/'+englishName+'/order?configId='+cId +'&timeId='+tId +'&subJoin='+subId;
+			window.location.href= '/product/'+englishName+'/order?configId='+cId +'&timeId='+tId +'&subJoin='+subId+'&price='+$('#setTotalPrice').text();
 		}
 	})
-});
+}
 
 /**
  * 主页业务处理部分
@@ -26,7 +31,7 @@ var pSet = {
 			initModel($(this).attr('data-id'));
 			$('#CConfigId').val($(this).attr('data-id'));
 			showCard();
-			calculatedValue();
+			//calculatedValue();
 		});
 	}
 }
@@ -38,15 +43,14 @@ function getCheck(){
 	var getTime = $(v3).find('.time').text();
 	$('#setError').text('');
 	if(getPack!=null&&getPack!=''){
- 	
 	}else{
-		$('#setError').text('请选择套餐');
+		$('#setError').text('*请选择套餐');
 		return false;
 	}
 	if(getTime!=null&&getTime!=''){
 	 	return true;
 	}else{
-		$('#setError').text('请选择时间');
+		$('#setError').text('*请选择时间');
 		return false;
 	}
 }
@@ -70,10 +74,8 @@ function calculatedValue(){
 	var addprice = 0;
 	var priceArray = new Array;
 
-	
 	var cardSet = $(card).find('.info').text();
-	var timeSet = '+' + $(time).find('.time').text();
-	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
+	var timeSet = '+' + $(time).find('.time').text();	
 	var cardPrice = $(card).find('.price').text();
 	priceArray.push(cardPrice);
 	var timePrice =  $(time).find('.price').text();
@@ -87,6 +89,7 @@ function calculatedValue(){
 		    priceArray.push(nowPrice);
 		}
 	}
+	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
 	
 	if(timePriceType == 0){
 		priceArray.push("*");
@@ -99,7 +102,7 @@ function calculatedValue(){
 	}
 	
 	priceArray.push(timePrice);
-	
+	console.info(priceArray);
 	$.ajax({
 		url :  getContextPath()+'/product/compute',
 		type : 'POST',

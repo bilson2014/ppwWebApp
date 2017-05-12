@@ -150,8 +150,7 @@
 	          <div class="motionType">
 	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品概述</div></a>
 	               <a><div>全部案例</div></a>
-	              <a href="/product/${tag.englishName }/set"><div class="active">产品配置</div></a>
-
+	               <a href="/product/${tag.englishName }/set"><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
@@ -164,7 +163,7 @@
                    <div class="title">您购买MG动画详细包如下</div>
                    <div class="priceitem">
                        <div>
-                            <span>总价格</span><span>¥</span> 97800                                           
+                            <span>总价格</span><span>¥</span> ${price}                                           
                        </div>
                    </div>
                    <div class="optionItem">
