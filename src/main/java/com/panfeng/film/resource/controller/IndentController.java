@@ -163,11 +163,16 @@ public class IndentController extends BaseController {
 		return new DataGrid<PmsIndent>();
 	}
 
+	@RequestMapping(value = "/update", produces = "application/json; charset=UTF-8")
 	public BaseMsg updateIndent(PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("更新失败！");
-
+		long update = pmsIndentFacade.update(indent);
+		if(update > 0){
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("更新成功");
+		}
 		return baseMsg;
 	}
 
