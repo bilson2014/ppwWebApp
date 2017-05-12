@@ -26,6 +26,7 @@ var pSet = {
 			initModel($(this).attr('data-id'));
 			$('#CConfigId').val($(this).attr('data-id'));
 			showCard();
+			calculatedValue();
 		});
 	}
 }
@@ -65,18 +66,23 @@ function calculatedValue(){
 	var card = $(".setCard div.active");
 	var add = $(".addSet div.active");
 	var time = $(".timeSet div.active");
-	var addSet;
+	var addSet = "";
+	var addprice = 0;
 	if(add.length > 0){
 		for (var int = 0; int < add.length; int++) {
-		addset += $(this).find('.name').text();
+			var nowAdd = '+' + $(add[int]).find('.name').text();
+			var nowPrice =$(add[int]).find('.price').text();
+		    addSet =addSet + nowAdd;
+		    addprice =parseInt(addprice)+parseInt(nowPrice);
 		}
 	}
-	else{
-	  addSet = '+'$(add).find('.name').text();
-	}
 	var cardSet = $(card).find('.info').text();
-	var timeSet = '+'$(time).find('.time').text();
-	$('#checkOrder').text('您选择了 :'+time + cardSet + addSet);
+	var timeSet = '+' + $(time).find('.time').text();
+	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
+	var cardPrice = $(card).find('.price').text();
+	var timePrice =  $(time).find('.price').text();
+	var total = parseInt(cardPrice)+parseInt(timePrice)+parseInt(addprice);
+	$('#setTotalPrice').text(total);
 }
 
 function initModel(id){
@@ -167,7 +173,7 @@ function createSubjoinMod(obj){
 				'<div class="addCard">',
 				'       <img src="'+getDfsHostName() +obj.pic +'">',
 				'       <div class="name">'+obj.moduleName+'</div>',
-				'       <div class="price">'+obj.pinConfiguration_ProductModule.cpmModulePrice+'元</div>',
+				'       <div ><span class="price">'+obj.pinConfiguration_ProductModule.cpmModulePrice+'</span>元</div>',
 				'       <div>'+obj.description+'</div>',
 				'</div>',
 				'<div class="howMush">',
@@ -185,7 +191,7 @@ function createTime(obj){
     var html = [
 				'<div class="timeCard" data-id="'+obj.dimensionId+'">',
 				'<div class="time">'+obj.rowName+'</div>',
-				'<div class="price">'+obj.rowValue+'元</div>',
+				'<div ><span class="price">'+obj.rowValue+'</span>元</div>',
 				'</div>'
 	            ].join('');
 	return html;
@@ -230,9 +236,9 @@ function buildCar1(obj){
 				'<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 				'    <div class="card">',
 				'         <div class="cardTop">',
-				'             <div>标准被产品</div>',
+				'             <div>标准版产品</div>',
 				'             <div>(基础价)</div>',
-				'             <div>'+obj.basePrice+'元</div>',
+				'             <div><span  class="price">'+obj.basePrice+'</span>元</div>',
 				'         </div>',
 				'         <div class="cardBottom">',
 				'              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
