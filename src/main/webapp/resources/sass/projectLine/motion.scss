@@ -183,6 +183,7 @@
                 padding-bottom: 250px;
                 height: 760px;
                 background: $f0;
+                display: none;
                 .productContent {
                     @include media_screen_width_beta3();
                     margin: 0 auto;

@@ -10,6 +10,9 @@
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
 <spring:url value="/resources/js/projectLine/projectSetting.js" var="pSet" />
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
+<spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -27,12 +30,11 @@
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>${product.chanpinName}|拍片网标准化产品线</title>
 
-
 <script type="text/javascript"
 	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
 	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
-
+	
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
@@ -54,7 +56,6 @@
 	})();
 </script>
 <link rel="stylesheet"  href="${pSetCss }" >
-
 </head>
 
 <body>
@@ -185,6 +186,39 @@
 		    <div class="sContent">
 		        <div class="sTitle">服务套餐<span>Service Packages</span></div>
 		        <div class="setPack">
+		           		   <div class="container-fluid" style="overflow: hidden">
+		            <div class="row">
+		                <div class="container second_sort" style="padding: 20px 0;">
+		                    <div class="row">
+		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
+		                            <div class="f_slider">
+		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
+		                                    <ul class="slides">
+										<!-- 		    <li class="s_item s_item_cur packItem">
+														<img src="'+getDfsHostName() +obj.pic +'">
+														<div class="pTitle">moduleName</div>
+														<div class="itemContent">
+															<div class="iLine"></div>
+															<div class="iContent">description</div>
+															<div class="iDes">(赠送)</div>
+														</div>
+													</li> -->
+		                                    </ul>
+		                                </div>
+		                                <ul class="flex-direction-nav">
+		                                    <li>
+		                                        <a class="flex-prev" href="#" style="display: none;"><div></div></a>
+		                                    </li>
+		                                    <li>
+		                                        <a class="flex-next" href="#"><div></div></a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
 		        </div>
 		    </div>
 		</div>
@@ -205,6 +239,8 @@
 		     
 		      </div>
 		  </div>
+		  
+
 		  
 		<!-- 确认下单 -->
 		      	
@@ -281,8 +317,9 @@
 	</div>
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>
+	<script type="text/javascript" src="${bootstrapJs}"></script>
+	<script type="text/javascript" src="${flexsliderJS}"></script>
 	<script type="text/javascript" src="${pSet}"></script>
-	
 </body>
 
 </html>

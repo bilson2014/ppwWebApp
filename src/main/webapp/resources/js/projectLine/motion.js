@@ -1,13 +1,10 @@
 $().ready(function() {
 	initBanner();
 	initScene();
-	initFeature();
+	//initFeature();
     window.onresize = function(){
     	getBannerHeight();
     };
-	window.onresize = function() {
-		getBannerHeight();
-	};
 	product();
 
 });
