@@ -194,7 +194,6 @@
 		      <input type="hidden" id="CTimeID">
 		      <div class="timeTitle">时长<span>Length</span></div>
 		      <div class="timeSet">
-		             
 		      </div>
 		  </div>
 		  
@@ -211,7 +210,7 @@
 		      	
       	<div class="checkOrder">
 	      	<div id="checkOrder"></div>
-	      	<div><span>总价格 </span><span>¥</span>99800</div>
+	      	<div><span>总价格 </span><span>¥</span><label id="setTotalPrice"></label></div>
 	      	<div>含增值税及其他法定税费：约 RMB 1,051</div>
 	      	<div id="setError"></div>
 	      	<div id="confirm" class="btn-c-r">确认</div>
