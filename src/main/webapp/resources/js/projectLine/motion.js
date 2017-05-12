@@ -6,7 +6,6 @@ $().ready(function() {
     window.onresize = function(){
     	getBannerHeight();
     };
-    banner();
     product();
 });
 
@@ -71,13 +70,16 @@ function initBanner(){
 	if(json != null && json.length > 0){
 		for (var int = 0; int < json.length; int++) {
 			var jj = json[int];
-			var html = [
-						'<div class="swiper-slide">',
-						'	<img src="'+getDfsHostName() + jj +'">',
-						'</div>'
-			            ].join(''); 
-			view.append(html);
+			if(jj.type == 0){
+				var html = [
+							'<div class="swiper-slide">',
+							'	<img src="'+getDfsHostName() + jj.url +'">',
+							'</div>'
+				            ].join(''); 
+				view.append(html);
+			}
 		}
+		banner();
 	}
 	
 }
