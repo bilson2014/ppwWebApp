@@ -1,4 +1,5 @@
 var configCache;
+var num = 1;
 $().ready(function() {
 	initConfig();
 	getNext();
@@ -168,7 +169,7 @@ function initModel(id){
 		}
 	}
 	//初始化服务
-	initTab(); 
+	initTab(); 	
 }
 
 
@@ -398,13 +399,13 @@ function initKey(product_id) {
 // 不同屏幕下
 function handleScreenSlider(default_val) {
     if (devicesSize() == "md") {
-        initSlider(4, default_val);
-    } else if (devicesSize() == "sm") {
-        initSlider(3, default_val);
-    } else if (devicesSize() == "xs") {
-        initSlider(1, default_val);
-    } else {
         initSlider(5, default_val);
+    } else if (devicesSize() == "sm") {
+        initSlider(4, default_val);
+    } else if (devicesSize() == "xs") {
+        initSlider(3, default_val);
+    } else {
+        initSlider(7, default_val);
     }
 }
 // 初始化轮播图
@@ -481,11 +482,11 @@ function initSlider(number, default_item) {
                     }
                     handleLayer(d, $s_item, number);
                     var data_id = $s_item.eq(default_item).parent().data('id');
-                    setPackageData(default_item, data_id);
+                  //  setPackageData(default_item, data_id);
                 } else {
                     handleLayer(cur_item_index, $s_item, number);
                     var data_id = $s_item.eq(cur_item_index).parent().data('id');
-                    setPackageData(cur_item_index, data_id);
+                   // setPackageData(cur_item_index, data_id);
                 }
             }
         });
