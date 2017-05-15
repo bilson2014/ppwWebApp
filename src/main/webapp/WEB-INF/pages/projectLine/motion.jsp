@@ -165,8 +165,8 @@
 	               <div>${product.englishName}</div>
 	          </div>
 	          <div class="motionType">
-	               <a><div>产品概述</div></a>
-	               <a><div>全部案例</div></a>
+	               <a href="/product/${product.englishName }/main"><div>产品概述</div></a>
+	               <a href="/product/${product.englishName }/case"><div>全部案例</div></a>
 	               <a href="/product/${product.englishName }/set"><div class="active">产品配置</div></a>
 	          </div>
           </div>
