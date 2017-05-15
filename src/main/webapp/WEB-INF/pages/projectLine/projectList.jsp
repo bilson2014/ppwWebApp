@@ -173,23 +173,23 @@
 	      <div class="listContent">
              <c:if test="${! empty caseList.rows}">
 				<c:forEach items="${caseList.rows }" var="tag">
-					
-					<div class="listCard">
-		             <div class="imgContent">
-		               	  <img src="${file_locate_storage_path }${tag.product.picHDUrl}">
-		             </div>
-		             <div class="cardContent">
-		                    <div class="contentTitle">${tag.product.productName}</div>
-					        <div class="contentContent">
-					                 <div>客户   :  <span>${tag.user.userName}</span></div>
-					                 <div>时长   :  <span>${tag.mcoms}</span></div>
-					                 <div>周期   :  <span>${tag.pProductionCycle}</span></div>
-					                 <div>应用场景   :  <span>${tag.pScene}</span></div>
-					                 <div class="contentDes">${tag.customerRestimonial}</div>
-					        </div>
-		              </div>
-					</div>
-					
+					<a href='/play/${tag.product.teamId }_${tag.productId }.html'>
+						<div class="listCard">
+			             <div class="imgContent">
+			               	  <img src="${file_locate_storage_path }${tag.product.picHDUrl}">
+			             </div>
+			             <div class="cardContent">
+			                    <div class="contentTitle">${tag.product.productName}</div>
+						        <div class="contentContent">
+						                <%--  <div>客户   :  <span>${tag.user.userName}</span></div> --%>
+						                 <div>时长   :  <span>${tag.mcoms}</span></div>
+						                 <div>周期   :  <span>${tag.pProductionCycle}</span></div>
+						                 <div>应用场景   :  <span>${tag.pScene}</span></div>
+						                 <div class="contentDes">${tag.customerRestimonial}</div>
+						        </div>
+			              </div>
+						</div>
+					</a>
 				</c:forEach>
 			  </c:if>
 	      </div>
