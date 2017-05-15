@@ -1,12 +1,10 @@
 $().ready(function() {
 	initBanner();
 	initScene();
-	//initFeature();
+	initProduct();
     window.onresize = function(){
     	getBannerHeight();
     };
-	product();
-
 });
 
 function getBannerHeight() {
@@ -123,6 +121,30 @@ function initScene() {
 			}, getContextPath() + '/product/scene/' + productId, null);
 }
 
+function initProduct(){
+	var view = $('.swiper-product-slide');
+	view.html('');
+	var html = [
+				'<div class="swiper-slide">',
+				'   <div class="productItem">',
+				'    <div class="imgContent">',  
+				'	  <img src="">',
+				'   </div>',
+				'   <div class="productContent">',
+				'       <div class="contentTitle">图形动画企业视频应用案例</div>',
+				'       <div class="contentContent">',
+	            '           <div>客户   :  <span>内容内容内容</span></div>',
+	            '           <div>时长   :  <span>内容内容内容</span></div>',
+	            '           <div>制作周期   :  <span>内容内容内容</span></div>',
+	            '           <div>应用场景   :  <span>内容内容内容</span></div>',
+	            '           <div class="contentDes">大叔大叔大所大所多</div>',
+	            '       </div>',
+				'	</div>', '</div>' ].join('');
+		view.append(html);
+		view.append(html);
+		product();
+}
+
 function initFeature() {
 	var str = $('#featureArray').text().trim();
 	var view = $('#featureView');
@@ -142,5 +164,4 @@ function initFeature() {
 			view.append(html);
 		}
 	}
-
 }
