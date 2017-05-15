@@ -211,29 +211,11 @@
 		    </div>
 		 	<div class="swiper-container swiper-product flexslider">
 				<div class="swiper-wrapper swiper-product-slide">
-					<div class="swiper-slide">
-					   <div class="productItem">
-					      <div class="imgContent">
-			               	  <img src="${imgPath}/index/advanBack.png">
-			               	  <img src="${imgPath}/index/play-icon.png">
-		                  </div>
-					     <div class="productContent">
-					         <div class="contentTitle">图形动画企业视频应用案例</div>
-					         <div class="contentContent">
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div class="contentDes">大叔大叔大所大所多</div>
-					         </div>
-					     </div>
-					   </div>  
-					</div>
-					<div class="swiper-slide">
+					
+				<%-- 	<div class="swiper-slide" id="setItem">
 					   <div class="productItem">
 					     <div class="imgContent">
 		               	  <img src="${imgPath}/index/advanBack.png">
-		               	  <img src="${imgPath}/index/play-icon.png">
 		                 </div>
 					     <div class="productContent">
 					         <div class="contentTitle">应用案例应用案例应用案例</div>
@@ -246,8 +228,8 @@
 					                 <div class="contentDes">大叔大叔大所大所多</div>
 					         </div>
 					     </div>
-					   </div>  
-					</div>
+					   </div>   
+					</div>--%>
 				</div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>

@@ -89,7 +89,6 @@ function calculatedValue(){
 	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
 	//end
 	priceArray.push(timePrice);
-	
 	if(timePrice!=''&&add.length > 0){
 		$.ajax({
 			url :  getContextPath()+'/product/compute',
@@ -100,7 +99,6 @@ function calculatedValue(){
 			}
 		});
 	}
-
 }
 
 function initModel(id){
@@ -169,9 +167,8 @@ function initModel(id){
 		}
 	}
 	//初始化服务
-	initTab(); 	
+		initTab();
 }
-
 
 function createMustMod(obj){
 		var html = ['<li class="s_item s_item_cur packItem">',
@@ -537,23 +534,4 @@ function devicesSize() {
     }
     return flag;
 }
-// 表单特效
-function showDiv(){
-    $('#needOrder').on('click',function(){
-  	var loginTel = $('#rolephone').val();
-	if(loginTel!=null && loginTel!= "" ){
-		loginOrder();
-	}else{
-	    $('#price').removeClass('showPrice');
-	    $('#price').addClass('noShow');
-	    $('#order').addClass('showOrder');
-	}
-    });
-    $('#closeBtn').on('click',function(){
-      $('#price').addClass('showPrice');
-      $('#price').removeClass('noShow');
-      $('#order').removeClass('showOrder');
-    });
-    $('#order-btn1').off('click').on('click',submitOrder);
-    $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
-}
+
