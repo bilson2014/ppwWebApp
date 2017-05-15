@@ -119,29 +119,35 @@ function initScene() {
 				}
 			}, getContextPath() + '/product/scene/' + productId, null);
 }
-
 function initProduct(){
-	var view = $('.swiper-product-slide');
-	view.html('');
-	var html = [
-				'<div class="swiper-slide">',
-				'   <div class="productItem">',
-				'    <div class="imgContent">',  
-				'	  <img src="">',
-				'   </div>',
-				'   <div class="productContent">',
-				'       <div class="contentTitle">图形动画企业视频应用案例</div>',
-				'       <div class="contentContent">',
-	            '           <div>客户   :  <span>内容内容内容</span></div>',
-	            '           <div>时长   :  <span>内容内容内容</span></div>',
-	            '           <div>制作周期   :  <span>内容内容内容</span></div>',
-	            '           <div>应用场景   :  <span>内容内容内容</span></div>',
-	            '           <div class="contentDes">大叔大叔大所大所多</div>',
-	            '       </div>',
-				'	</div>', '</div>' ].join('');
-		view.append(html);
-		view.append(html);
-		product();
+	var productId = $('#productId').val();
+	loadData(
+			function(res) {
+				var view = $('.swiper-product-slide');
+				view.html('');
+						for (var int = 0; int < res.length; int++) {
+							var rr = res[int];
+							var html = [
+										'<a href="/play/'+rr.product.teamId+'_'+rr.productId+'.html"><div class="swiper-slide">',
+										'   <div class="productItem">',
+										'    <div class="imgContent">',  
+										'	  <img src="' + getDfsHostName() + rr.product.picHDUrl + '">',
+										'   </div>',
+										'   <div class="productContent">',
+										'       <div class="contentTitle">'+rr.product.productName+'</div>',
+										'       <div class="contentContent">',
+							            '           <div>时长   :  <span>'+rr.mcoms+'</span></div>',
+							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'</span></div>',
+							            '           <div>应用场景   :  <span>'+rr.pScene+'</span></div>',
+							            '           <div class="contentDes">'+rr.customerRestimonial+'</div>',
+							            '       </div>',
+										'	</div>', '</div>','</a>' ].join('');
+								view.append(html);
+						}
+						product();
+			}, getContextPath() + '/product/case?productId=' + productId, null);
+
+	
 }
 
 function initFeature() {

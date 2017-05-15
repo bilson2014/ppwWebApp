@@ -169,7 +169,7 @@
 	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
 	               <a href="/product/${product.englishName }/case"><div>全部案例</div></a>
 	               <a><div class="active">产品配置</div></a>
-	          </div>
+	           </div>
           </div>
        </div>
        
@@ -177,7 +177,7 @@
 		<!-- 配置卡片 -->
 		<div class="setCard">
 			   <input type="hidden" id="CConfigId">
-		       <div class="cardTitle">寻找适合你的图形动画</div>
+		       <div class="cardTitle">寻找适合你的${product.chanpinName}</div>
 		</div>
 		<!-- 服务套餐--> 
 		
