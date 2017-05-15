@@ -76,7 +76,6 @@ function initBanner() {
 		banner();
 		getBannerHeight();
 	}
-
 }
 function initScene() {
 	var productId = $('#productId').val();
