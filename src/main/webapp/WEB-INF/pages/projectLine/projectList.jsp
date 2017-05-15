@@ -9,6 +9,8 @@
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -24,19 +26,9 @@
 <meta name="keywords" content="宣传片制作,广告片制作,企业微电影,产品宣传片制作,路演视频制作">
 <meta name="description" content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、产品广告片拍摄、企业微电影以及病毒视频制作等。拍片就上拍片网">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>拍片网－产品线</title>
+<title>${product.chanpinName}|拍片网标准化产品线</title>
 
 
-<script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery/waypoints.min.js"></script>
-<script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
-
-<script type="text/javascript" src="/resources/js/projectLine/projectList.js"></script>
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
@@ -58,7 +50,8 @@
 	})();
 </script>
 <link rel="stylesheet"  href="${projectListCss}" >
-
+<script type="text/javascript" src="${jqueryJs}"></script>
+<script type="text/javascript" src="${commonJs}"></script>
 </head>
 
 <body>
@@ -161,11 +154,16 @@
 							  </c:if>
                       </div> 
        </div>
-       <div class="motionTitles">
+        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
-	               <div>图形动画</div>
-	               <div>Motion Graphic</div>
+		           <div>${product.chanpinName}</div>
+	               <div>${product.englishName}</div>
+	          </div>
+	           <div class="motionType">
+	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
+	               <a href="/product/${product.englishName }/case"><div>全部案例</div></a>
+	               <a><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
@@ -260,10 +258,9 @@
                             <!--新版底部-->
 	</div>
 	<!-- video-->
-	<script type="text/javascript" src="/resources/js/common.js"></script>
-	<script type="text/javascript" src="/resources/js/juicer.js"></script>
-	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
-	<script type="text/javascript" src="/resources/js/projectLine/projectSetting.js"></script>
+
+	
+	
 </body>
 
 </html>

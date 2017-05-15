@@ -31,8 +31,7 @@
                             .cardContent {
                                 display: inline-block;
                                 vertical-align: top;
-                                border-radius: 8px;
-                            }
+                                border-radius: 8px;                            }
                             .imgContent {
                                 height: 100%;
                                 position: relative;
@@ -72,6 +71,7 @@
                                     @include ellipsis;
                                     font-size: $font-size-base;
                                     color: $gray-dark;
+                                    padding-top: 30px;
                                 }
                                 .contentInfo {
                                     @include ellipsis;
@@ -85,6 +85,7 @@
                                     height: auto;
                                     margin-top: 30px;
                                     div {
+                                    	 @include ellipsis;
                                         font-size: $font-size-sm;
                                         color: $gray-light;
                                         width: 100%;

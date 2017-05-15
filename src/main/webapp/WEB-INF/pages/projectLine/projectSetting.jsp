@@ -177,7 +177,7 @@
 		<!-- 配置卡片 -->
 		<div class="setCard">
 			   <input type="hidden" id="CConfigId">
-		       <div class="cardTitle">寻找适合你的图形动画</div>
+		       <div class="cardTitle">寻找适合你的${product.chanpinName}</div>
 		</div>
 		<!-- 服务套餐--> 
 		
