@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/projectLine/projectList.css" var="projectListCss"/>
@@ -33,6 +35,8 @@
 	src="resources/lib/jquery/waypoints.min.js"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
+
+<script type="text/javascript" src="/resources/js/projectLine/projectList.js"></script>
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
@@ -144,13 +148,17 @@
     </div>
     
        <div class="projectType">
-       
                    <div class="pTContent">
-	                       <a><div class="active">MG动画</div></a>
-	                       <a><div>宣传片</div></a>
-	                       <a><div>广告片</div></a>
-	                       <a><div>微电影</div></a>
-	                       <a><div>病毒视频</div></a>
+		                      <c:if test="${! empty productList}">
+								<c:forEach items="${productList }" var="tag">
+									 <c:if test="${product.chanpinName == tag.chanpinName }">
+											<a><div class="active">${tag.chanpinName}</div></a>
+									 </c:if>
+									 <c:if test="${product.chanpinName != tag.chanpinName }">
+											<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+									 </c:if>
+								</c:forEach>
+							  </c:if>
                       </div> 
        </div>
        <div class="motionTitles">
@@ -164,56 +172,29 @@
     
     <div class="setMargin"></div>
 		<!-- 配置卡片 -->
-		      <div class="listContent">
-		           <div class="listCard">
+	      <div class="listContent">
+             <c:if test="${! empty caseList.rows}">
+				<c:forEach items="${caseList.rows }" var="tag">
+					
+					<div class="listCard">
 		             <div class="imgContent">
-		               	  <img src="${imgPath}/index/advanBack.png">
-		               	  <img src="${imgPath}/index/play-icon.png">
+		               	  <img src="${file_locate_storage_path }${tag.product.picHDUrl}">
 		             </div>
 		             <div class="cardContent">
-		                    <div class="contentTitle">图形动画企业视频应用案例</div>
+		                    <div class="contentTitle">${tag.product.productName}</div>
 					        <div class="contentContent">
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div>标题   :  <span>内容内容内容</span></div>
-					                <div class="contentDes">大叔大叔大所大所多</div>
-					        </div>
-		             </div>
-		           </div>
-		             <div class="listCard">
-		             <div class="imgContent">
-		               	  <img src="${imgPath}/index/advanBack.png">
-		               	  <img src="${imgPath}/index/play-icon.png">
-		             </div>
-		             <div class="cardContent">
-		                    <div class="contentTitle">图形动画企业视频应用案例</div>
-					        <div class="contentContent">
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div class="contentDes">大叔大叔大所大所多</div>
+					                 <div>客户   :  <span>${tag.user.userName}</span></div>
+					                 <div>时长   :  <span>${tag.mcoms}</span></div>
+					                 <div>周期   :  <span>${tag.pProductionCycle}</span></div>
+					                 <div>应用场景   :  <span>${tag.pScene}</span></div>
+					                 <div class="contentDes">${tag.customerRestimonial}</div>
 					        </div>
 		              </div>
-		           </div>
-		             <div class="listCard">
-		            <div class="imgContent">
-		               	  <img src="${imgPath}/index/advanBack.png">
-		               	  <img src="${imgPath}/index/play-icon.png">
-		             </div>
-		             <div class="cardContent">
-		                    <div class="contentTitle">图形动画企业视频应用案例</div>
-					        <div class="contentContent">
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div class="contentDes">大叔大叔大所大所多</div>
-					        </div>
-		             </div>
-		           </div>
-		      </div>
+					</div>
+					
+				</c:forEach>
+			  </c:if>
+	      </div>
 		</div>
 		
 		 <!-- foot -->      <div class="foot3">
