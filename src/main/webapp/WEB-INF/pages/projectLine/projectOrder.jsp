@@ -147,7 +147,7 @@
           <div class="motionContent">
 	          <div class="motionIcon">
 	               <div>${product.chanpinName}</div>
-	               <div id="english">${product.englishName}</div>
+	               <div id="english">${product.englishTitle}</div>
 	          </div>
 	          <div class="motionType">
 	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品概述</div></a>

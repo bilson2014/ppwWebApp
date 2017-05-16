@@ -168,7 +168,7 @@
           <div class="motionContent">
 	          <div class="motionIcon">
 		           <div>${product.chanpinName}</div>
-	               <div id="english">${product.englishName}</div>
+	               <div id="english">${product.englishTitle}</div>
 	          </div>
 	           <div class="motionType">
 	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
