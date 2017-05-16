@@ -193,9 +193,6 @@ function initModel(id){
 
 function createMustMod(obj,num){
 	var hasDes="";
-	var text = obj.description;
-	var setHtml = text;
-	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
@@ -205,7 +202,7 @@ function createMustMod(obj,num){
 					'    <div class="itemContent">',
 					'          <div class="iLine"></div>',
 					'          <div class="iContent">',
-					              getHtml,
+					 obj.description,
 					'          </div>',
 					'         <div class="iDes">'+hasDes+'</div>',
 					'    </div>',
@@ -213,19 +210,14 @@ function createMustMod(obj,num){
 		return html;
 }
 function createSubjoinMod(obj){
-	var text = obj.description;
-	var setHtml = text;
-	var getHtml = setHtml.replace(" ","<br/>");
-	
-	
-	
+
 	var html = [
 				'<div class="setItem" data-id="'+obj.productModuleId+'">',
 				'<div class="addCard">',
 				'       <img src="'+getDfsHostName() +obj.pic +'">',
 				'       <div class="name">'+obj.moduleName+'</div>',
 				'       <div ><span class="price">'+obj.pinConfiguration_ProductModule.cpmModulePrice+'</span>元</div>',
-				'       <div>'+getHtml+'</div>',
+				'       <div>'+obj.description+'</div>',
 				'</div>',
 				'<div class="howMush">',
 				'     <div>数量</div>',
@@ -313,9 +305,6 @@ function initConfig() {
 function buildCar1(obj){
 	var tags = obj.tags;
 	var tag = '';
-	var text = obj.chanpinconfigurationDescription;
-	var setHtml = text;
-	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -335,7 +324,7 @@ function buildCar1(obj){
 				'         <div class="cardBottom">',
 				'              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 				'              <img src="/resources/images/projectLine/projectSet/hd.png">',
-				'              <div class="info">'+getHtml+'</div>',
+				'              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
 				'               <div class="tagsContent">',
 				                       tag,
 				'               </div>',
@@ -349,9 +338,7 @@ function buildCar1(obj){
 function buildCar2(obj){
 	var tags = obj.tags;
 	var tag = '';
-	var text = obj.chanpinconfigurationDescription;
-	var setHtml = text;
-	var getHtml = setHtml.replace(/ /g,"<br/>");
+
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -371,7 +358,7 @@ function buildCar2(obj){
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 	             '              <img src="/resources/images/projectLine/projectSet/2k.png">',
-	             '              <div class="info">'+getHtml+'</div>',
+	             '              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
 	             '               <div class="tagsContent">',
 	             tag,
 	             '               </div>',
@@ -385,9 +372,7 @@ function buildCar2(obj){
 function buildCar3(obj){
 	var tags = obj.tags;
 	var tag = '';
-	var text = obj.chanpinconfigurationDescription;
-	var setHtml = text;
-	var getHtml = setHtml.replace(/ /g,"<br/>");
+
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -407,7 +392,7 @@ function buildCar3(obj){
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 	             '              <img src="/resources/images/projectLine/projectSet/4k.png">',
-	             '              <div class="info">'+getHtml+'</div>',
+	             '              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
 	             '               <div class="tagsContent">',
 	             tag,
 	             '               </div>',
