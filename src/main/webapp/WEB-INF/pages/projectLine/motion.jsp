@@ -7,7 +7,7 @@
 <spring:url value="/resources/css/projectLine/motion.css" var="motionCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
-<spring:url value="/resources/lib/jquery/waypoints.min.js"" var="waypointsJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

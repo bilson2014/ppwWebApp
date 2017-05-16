@@ -195,7 +195,7 @@ function createMustMod(obj,num){
 	var hasDes="";
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
@@ -215,7 +215,10 @@ function createMustMod(obj,num){
 function createSubjoinMod(obj){
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(" ","<br/>");
+	
+	
+	
 	var html = [
 				'<div class="setItem" data-id="'+obj.productModuleId+'">',
 				'<div class="addCard">',
@@ -312,7 +315,7 @@ function buildCar1(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -348,7 +351,7 @@ function buildCar2(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -384,7 +387,7 @@ function buildCar3(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ /g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
