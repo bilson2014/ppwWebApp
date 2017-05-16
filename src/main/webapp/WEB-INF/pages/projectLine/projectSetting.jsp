@@ -13,6 +13,8 @@
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -58,12 +60,6 @@
 <link rel="stylesheet"  href="${pSetCss }" >
 </head>
 
-<body>
-	<input type="hidden" id="storage_node"
-		value="${file_locate_storage_path }" />
-	<input type="hidden" id="englishName" value="${product.englishName }">
-	<div class="page">
-	<input type="hidden" id="productId" value="${product.chanpinId }">
 	<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -159,12 +155,20 @@
 				</c:if>
 			</div>
        </div>
+
+<body>
+	<input type="hidden" id="storage_node"
+		value="${file_locate_storage_path }" />
+	<input type="hidden" id="englishName" value="${product.englishName }">
+	<div class="page">
+	<input type="hidden" id="productId" value="${product.chanpinId }">
+
        
        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
 		           <div>${product.chanpinName}</div>
-	               <div>${product.englishName}</div>
+	               <div id="english">${product.englishName}</div>
 	          </div>
 	           <div class="motionType">
 	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
@@ -320,6 +324,8 @@
 	<script type="text/javascript" src="${bootstrapJs}"></script>
 	<script type="text/javascript" src="${flexsliderJS}"></script>
 	<script type="text/javascript" src="${pSet}"></script>
+    <script type="text/javascript" src="${waypointsJs}"></script>
+	
 </body>
 
 </html>

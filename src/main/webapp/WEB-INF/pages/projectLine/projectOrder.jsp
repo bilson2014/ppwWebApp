@@ -10,6 +10,7 @@
 <spring:url value="/resources/js/projectLine/projectOrder.js" var="projectOrderJs"/>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -33,6 +34,7 @@
 	src="/resources/lib/jquery.form/jquery.form.js"></script>
 <script type="text/javascript"
 	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+<script type="text/javascript" src="${waypointsJs}"></script>	
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
@@ -43,9 +45,8 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	<div class="page">
-	
-	<div class="header headerMove" id="header">
+		
+			<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -140,12 +141,13 @@
 						</c:if>
                  </div>
        </div>
-       
+	
+	<div class="page">       
        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
 	               <div>${product.chanpinName}</div>
-	               <div>${product.englishName}</div>
+	               <div id="english">${product.englishName}</div>
 	          </div>
 	          <div class="motionType">
 	               <a href="/std/product/index?chanpinId=${product.chanpinId }"><div>产品概述</div></a>

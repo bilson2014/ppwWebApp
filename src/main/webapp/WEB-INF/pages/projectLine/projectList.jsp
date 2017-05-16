@@ -11,6 +11,8 @@
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/projectLine/projectList.js" var="projectListJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -52,14 +54,14 @@
 <link rel="stylesheet"  href="${projectListCss}" >
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
+<script type="text/javascript" src="${projectListJs}"></script>
+<script type="text/javascript" src="${waypointsJs}"></script>
 </head>
 
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	<div class="page">
-	
-	<div class="header headerMove" id="header">
+			<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -154,11 +156,14 @@
 							  </c:if>
                       </div> 
        </div>
+	<div class="page">
+	
+
         <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
 		           <div>${product.chanpinName}</div>
-	               <div>${product.englishName}</div>
+	               <div id="english">${product.englishName}</div>
 	          </div>
 	           <div class="motionType">
 	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>

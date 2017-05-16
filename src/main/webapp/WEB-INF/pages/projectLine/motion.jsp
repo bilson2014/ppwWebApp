@@ -7,6 +7,7 @@
 <spring:url value="/resources/css/projectLine/motion.css" var="motionCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js"" var="waypointsJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -61,9 +62,7 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="productId" value="${product.chanpinId }">
-	<div class="page">
-	
-	<div class="header headerMove" id="header">
+		<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -143,8 +142,8 @@
             </div>
         </div>
     </div>
-    	
-       <div class="projectType">
+    
+           <div class="projectType">
                  <div class="pTContent">
 						<c:if test="${! empty productList}">
 							<c:forEach items="${productList }" var="tag">
@@ -158,6 +157,9 @@
 						</c:if>
                  </div>
        </div>
+    
+    
+	<div class="page">
        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">

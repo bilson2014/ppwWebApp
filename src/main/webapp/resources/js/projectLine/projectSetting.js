@@ -3,7 +3,20 @@ var num = 1;
 $().ready(function() {
 	initConfig();
 	getNext();
+	originTool();
 });
+
+function originTool() {
+
+    // 滚动监听 start
+    $('.projectType').waypoint(function(direction) {
+        if (direction == "up") { // 了解 拍片网之前
+           $('.motionTitles').removeClass('setTop');
+        }else{
+           $('.motionTitles').addClass('setTop');
+        }
+    });  
+}
 
 function getNext(){
 	$('#confirm').on('click',function(){
@@ -41,7 +54,7 @@ function getCheck(){
 	var setCard = $(".setCard div.active");
 	var timeSet = $(".timeSet div.active");
 	var getPack = $(setCard).find('.info').text();
-	var getTime = $(getPack).find('.time').text();
+	var getTime = $(timeSet).find('.time').text();
 	$('#setError').text('');
 	if(getPack!=null&&getPack!=''){
 	}else{
@@ -88,8 +101,8 @@ function calculatedValue(num){
 	}
 	
 	if(num>0){
-		$('#checkOrder').text('您选择了 :' + cardSet);
-		$('#setTotalPrice').text($(card).find('.price').text());
+		$('#checkOrder').text('您选择了 :' + cardSet + timeSet);
+		$('#setTotalPrice').text(timePrice);
 	}
 	else{
 	//设置内容
@@ -136,7 +149,7 @@ function initModel(id){
 			if(dimensions != null && dimensions.length > 0){
 				for (var int3 = 0; int3 < dimensions.length; int3++) {
 					var dd = dimensions[int3];
-					var html = createTime(dd);
+					var html = createTime(dd,int3);
 					v3.append(html);
 				}
 			}
@@ -182,7 +195,7 @@ function createMustMod(obj,num){
 	var hasDes="";
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
@@ -202,7 +215,7 @@ function createMustMod(obj,num){
 function createSubjoinMod(obj){
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
 	var html = [
 				'<div class="setItem" data-id="'+obj.productModuleId+'">',
 				'<div class="addCard">',
@@ -222,7 +235,7 @@ function createSubjoinMod(obj){
 	return html;
 }
 
-function createTime(obj){
+function createTime(obj,num){
 	var card = $(".setCard div.active");
 	var cardPrice = $(card).find('.price').text();
 	var setArray = new Array;
@@ -247,13 +260,26 @@ function createTime(obj){
 			realPrice = data.result;
 		}
 	});
-    var html = [
-				'<div class="timeCard" data-id="'+obj.dimensionId+'">',
-				'<div class="time">'+obj.rowName+'</div>',
-				'<div ><span class="price">'+realPrice+'</span>元</div>',
-				'<div class="computeType hide">'+obj.computeType+'</div>',
-				'</div>',
-	            ].join('');
+	
+	if(num <1){
+	    var html = [
+					'<div class="timeCard active" data-id="'+obj.dimensionId+'">',
+					'<div class="time">'+obj.rowName+'</div>',
+					'<div ><span class="price">'+realPrice+'</span>元</div>',
+					'<div class="computeType hide">'+obj.computeType+'</div>',
+					'</div>',
+		            ].join('');
+	}else{
+	    var html = [
+					'<div class="timeCard" data-id="'+obj.dimensionId+'">',
+					'<div class="time">'+obj.rowName+'</div>',
+					'<div ><span class="price">'+realPrice+'</span>元</div>',
+					'<div class="computeType hide">'+obj.computeType+'</div>',
+					'</div>',
+		            ].join('');
+	}
+	
+
 	return html;
 }
 
@@ -286,7 +312,7 @@ function buildCar1(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -322,7 +348,7 @@ function buildCar2(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -358,7 +384,7 @@ function buildCar3(obj){
 	var tag = '';
 	var text = obj.chanpinconfigurationDescription;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
