@@ -41,7 +41,7 @@ function getCheck(){
 	var setCard = $(".setCard div.active");
 	var timeSet = $(".timeSet div.active");
 	var getPack = $(setCard).find('.info').text();
-	var getTime = $(getPack).find('.time').text();
+	var getTime = $(timeSet).find('.time').text();
 	$('#setError').text('');
 	if(getPack!=null&&getPack!=''){
 	}else{
