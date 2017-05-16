@@ -10,12 +10,7 @@
             .page {
                 background: black !important;
             }
-            .header{
-                position: relative !important;
-            }
-            .projectType{
-                position: relative !important;
-            }
+     
             
             //场景应用
             .LiveApp {
@@ -290,7 +285,7 @@
             //案例
             .wordCase {
                 padding-top: 120px;
-                background: white;
+                background: #f8f8f8;
                 .title {
                     color: $gray-dark;
                     text-align: center;
