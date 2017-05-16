@@ -1,6 +1,7 @@
 package com.panfeng.film.resource.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.icu.math.BigDecimal;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.DataGrid;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.JsonUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.product.entity.PmsChanPin;
@@ -30,7 +33,11 @@ import com.paipianwang.pat.facade.product.service.PmsChanPinConfigurationFacade;
 import com.paipianwang.pat.facade.product.service.PmsChanPinFacade;
 import com.paipianwang.pat.facade.product.service.PmsIndentConfirmFacade;
 import com.paipianwang.pat.facade.product.service.PmsSceneFacade;
+import com.paipianwang.pat.facade.right.entity.PmsEmployee;
+import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
 import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.mq.service.MailMQService;
+import com.panfeng.film.util.Log;
 
 @RestController
 public class ChanPinController extends BaseController {
@@ -46,6 +53,12 @@ public class ChanPinController extends BaseController {
 
 	@Autowired
 	private PmsIndentConfirmFacade pmsIndentConfirmFacade;
+
+	@Autowired
+	private MailMQService mailMQService;
+
+	@Autowired
+	private PmsEmployeeFacade employeeFacade;
 
 	@RequestMapping("/product/list")
 	public DataGrid<PmsChanPin> sceneList() {
@@ -78,7 +91,8 @@ public class ChanPinController extends BaseController {
 	}
 
 	@RequestMapping("/product/{englishName}/order")
-	public ModelAndView indentConfirmView(@PathVariable("englishName") String englishName,ModelMap model, Long configId, Long timeId, String subJoin,Double price) {
+	public ModelAndView indentConfirmView(@PathVariable("englishName") String englishName, ModelMap model,
+			Long configId, Long timeId, String subJoin, Double price) {
 		// 顶部所有产品分类
 		DataGrid<PmsChanPin> allChanPin = pmsChanPinFacade.getAllChanPin();
 		if (allChanPin != null) {
@@ -138,7 +152,7 @@ public class ChanPinController extends BaseController {
 		}
 		List<PmsProductModule> pmsProductModule = config.getPmsProductModule();
 		List<PmsProductModule> sub = new ArrayList<>();
-		
+
 		Iterator<PmsProductModule> in = pmsProductModule.iterator();
 		while (in.hasNext()) {
 			PmsProductModule productModule = (PmsProductModule) in.next();
@@ -148,8 +162,8 @@ public class ChanPinController extends BaseController {
 				in.remove();
 			}
 		}
-		
-		if(ValidateUtil.isValid(subJoin)){
+
+		if (ValidateUtil.isValid(subJoin)) {
 			String[] split = subJoin.split(",");
 			if (ValidateUtil.isValid(pmsProductModule) && split != null && split.length != 0) {
 				Iterator<PmsProductModule> iterator = sub.iterator();
@@ -173,6 +187,7 @@ public class ChanPinController extends BaseController {
 		String json = JsonUtil.toJson(config);
 		pmsIndentConfirm.setConfigurationJson(json);
 		HttpSession session = request.getSession();
+		SessionInfo currentInfo = getCurrentInfo(request);
 		Object attribute = session.getAttribute("requireId");
 		if (attribute != null) {
 			Long id = Long.valueOf(attribute.toString());
@@ -185,6 +200,14 @@ public class ChanPinController extends BaseController {
 			if (object != null) {
 				Long valueOf = Long.valueOf(object.toString());
 				if (valueOf > 0) {
+					// 发送邮件
+					StringBuilder stringBuffer = new StringBuilder();
+					stringBuffer.append("产品线：");
+					stringBuffer.append(chanPinInfo.getChanpinName());
+					stringBuffer.append("   配置：");
+					stringBuffer.append(config.getChanpinconfigurationName());
+					String string = stringBuffer.toString();
+					sendMail(string, config.computePrice()+"", currentInfo);
 					return new ModelAndView("/index");
 				}
 			}
@@ -270,5 +293,36 @@ public class ChanPinController extends BaseController {
 			}
 		}
 		return baseMsg;
+	}
+
+	/**
+	 * 临时解决方案
+	 */
+	private void sendMail(String config, String price, SessionInfo sessionInfo) {
+		String templateId = "productMail";
+		if (sessionInfo != null) {
+			String sessionType = sessionInfo.getSessionType();
+			if (ValidateUtil.isValid(sessionType)) {
+				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+					try {
+						PmsEmployee employee = employeeFacade.findEmployeeById(sessionInfo.getReqiureId());
+						/**
+						 * key -->邮箱 <br>
+						 * value --> String[] 参数列表
+						 */
+						Map<String, String[]> parser = new HashMap<String, String[]>();
+						String key = employee.getEmail();
+						String[] value = new String[2];
+						value[0] = config;
+						value[1] = price;
+						parser.put(key, value);
+						mailMQService.sendMailsByType(templateId, parser);
+					} catch (Exception e) {
+						e.printStackTrace();
+						Log.error("send mail fail ...", null, e);
+					}
+				}
+			}
+		}
 	}
 }
