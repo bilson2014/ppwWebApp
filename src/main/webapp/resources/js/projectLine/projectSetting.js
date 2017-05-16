@@ -31,16 +31,17 @@ var pSet = {
 			initModel($(this).attr('data-id'));
 			$('#CConfigId').val($(this).attr('data-id'));
 			showCard();
-			//calculatedValue();
+			$('#setError').hide();
+			calculatedValue(2);
 		});
 	}
 }
 
 function getCheck(){
-	var v0 = $(".setCard div.active");
-	var v3 = $(".timeSet div.active");
-	var getPack = $(v0).find('.info').text();
-	var getTime = $(v3).find('.time').text();
+	var setCard = $(".setCard div.active");
+	var timeSet = $(".timeSet div.active");
+	var getPack = $(setCard).find('.info').text();
+	var getTime = $(getPack).find('.time').text();
 	$('#setError').text('');
 	if(getPack!=null&&getPack!=''){
 	}else{
@@ -66,7 +67,7 @@ function showCard(){
 	 });
 }
 
-function calculatedValue(){
+function calculatedValue(num){
 	var card = $(".setCard div.active");
 	var add = $(".addSet div.active");
 	var time = $(".timeSet div.active");
@@ -85,6 +86,12 @@ function calculatedValue(){
 			priceArray.push("+");
 		}
 	}
+	
+	if(num>0){
+		$('#checkOrder').text('您选择了 :' + cardSet);
+		$('#setTotalPrice').text($(card).find('.price').text());
+	}
+	else{
 	//设置内容
 	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
 	//end
@@ -98,6 +105,7 @@ function calculatedValue(){
 				$('#setTotalPrice').text(data.result);
 			}
 		});
+	}
 	}
 }
 
@@ -171,7 +179,10 @@ function initModel(id){
 }
 
 function createMustMod(obj,num){
-	var hasDes="";   
+	var hasDes="";
+	var text = obj.description;
+	var setHtml = text;
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
@@ -181,7 +192,7 @@ function createMustMod(obj,num){
 					'    <div class="itemContent">',
 					'          <div class="iLine"></div>',
 					'          <div class="iContent">',
-					obj.description,
+					              getHtml,
 					'          </div>',
 					'         <div class="iDes">'+hasDes+'</div>',
 					'    </div>',
@@ -189,13 +200,16 @@ function createMustMod(obj,num){
 		return html;
 }
 function createSubjoinMod(obj){
+	var text = obj.description;
+	var setHtml = text;
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 	var html = [
 				'<div class="setItem" data-id="'+obj.productModuleId+'">',
 				'<div class="addCard">',
 				'       <img src="'+getDfsHostName() +obj.pic +'">',
 				'       <div class="name">'+obj.moduleName+'</div>',
 				'       <div ><span class="price">'+obj.pinConfiguration_ProductModule.cpmModulePrice+'</span>元</div>',
-				'       <div>'+obj.description+'</div>',
+				'       <div>'+getHtml+'</div>',
 				'</div>',
 				'<div class="howMush">',
 				'     <div>数量</div>',
@@ -270,6 +284,9 @@ function initConfig() {
 function buildCar1(obj){
 	var tags = obj.tags;
 	var tag = '';
+	var text = obj.chanpinconfigurationDescription;
+	var setHtml = text;
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -289,7 +306,7 @@ function buildCar1(obj){
 				'         <div class="cardBottom">',
 				'              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 				'              <img src="/resources/images/projectLine/projectSet/hd.png">',
-				'              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
+				'              <div class="info">'+getHtml+'</div>',
 				'               <div class="tagsContent">',
 				                       tag,
 				'               </div>',
@@ -303,6 +320,9 @@ function buildCar1(obj){
 function buildCar2(obj){
 	var tags = obj.tags;
 	var tag = '';
+	var text = obj.chanpinconfigurationDescription;
+	var setHtml = text;
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -322,7 +342,7 @@ function buildCar2(obj){
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 	             '              <img src="/resources/images/projectLine/projectSet/2k.png">',
-	             '              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
+	             '              <div class="info">'+getHtml+'</div>',
 	             '               <div class="tagsContent">',
 	             tag,
 	             '               </div>',
@@ -336,6 +356,9 @@ function buildCar2(obj){
 function buildCar3(obj){
 	var tags = obj.tags;
 	var tag = '';
+	var text = obj.chanpinconfigurationDescription;
+	var setHtml = text;
+	var getHtml = setHtml.replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 	if(tags != null){
 		var tagArray = tags.split(" ");
 		if(tagArray!=null && tagArray.length >0){
@@ -355,7 +378,7 @@ function buildCar3(obj){
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
 	             '              <img src="/resources/images/projectLine/projectSet/4k.png">',
-	             '              <div class="info">'+obj.chanpinconfigurationDescription+'</div>',
+	             '              <div class="info">'+getHtml+'</div>',
 	             '               <div class="tagsContent">',
 	             tag,
 	             '               </div>',

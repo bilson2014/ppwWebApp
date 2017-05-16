@@ -987,5 +987,12 @@ function controlInput(){
 	$("#search-q").blur(function(){
 		 $('.middle-part').removeClass('consorlInput');
 		});
-    
+}
+//控制英文
+function controlEnglish(){
+	var enSize = $('#english').text();
+	var realWord = '';
+	for (var int = 0; int < enSize.length; int++) {
+		 
+	}
 }
