@@ -191,7 +191,7 @@
 					<a href='/play/${tag.product.teamId }_${tag.productId }.html'>
 						<div class="listCard">
 			             <div class="imgContent">
-			               	  <img src="${file_locate_storage_path }${tag.product.picHDUrl}">
+			               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}">
 			             </div>
 			             <div class="cardContent">
 			                    <div class="contentTitle">${tag.product.productName}</div>
