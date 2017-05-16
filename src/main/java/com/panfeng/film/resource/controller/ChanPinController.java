@@ -138,24 +138,28 @@ public class ChanPinController extends BaseController {
 		}
 		List<PmsProductModule> pmsProductModule = config.getPmsProductModule();
 		List<PmsProductModule> sub = new ArrayList<>();
-		String[] split = subJoin.split(",");
-		if (ValidateUtil.isValid(pmsProductModule) && split != null && split.length > 0) {
-			Iterator<PmsProductModule> in = pmsProductModule.iterator();
-			while (in.hasNext()) {
-				PmsProductModule productModule = (PmsProductModule) in.next();
-				Integer cpmModuleType = productModule.getPinConfiguration_ProductModule().getCpmModuleType();
-				if (cpmModuleType.equals(1)) {
-					sub.add(productModule);
-					in.remove();
-				}
+		
+		Iterator<PmsProductModule> in = pmsProductModule.iterator();
+		while (in.hasNext()) {
+			PmsProductModule productModule = (PmsProductModule) in.next();
+			Integer cpmModuleType = productModule.getPinConfiguration_ProductModule().getCpmModuleType();
+			if (cpmModuleType.equals(1)) {
+				sub.add(productModule);
+				in.remove();
 			}
-			Iterator<PmsProductModule> iterator = sub.iterator();
-			while (iterator.hasNext()) {
-				PmsProductModule productModule = (PmsProductModule) iterator.next();
-				for (int i = 0; i < split.length; i++) {
-					Long sId = Long.valueOf(split[i]);
-					if (productModule.getProductModuleId().equals(sId)) {
-						pmsProductModule.add(productModule);
+		}
+		
+		if(ValidateUtil.isValid(subJoin)){
+			String[] split = subJoin.split(",");
+			if (ValidateUtil.isValid(pmsProductModule) && split != null && split.length != 0) {
+				Iterator<PmsProductModule> iterator = sub.iterator();
+				while (iterator.hasNext()) {
+					PmsProductModule productModule = (PmsProductModule) iterator.next();
+					for (int i = 0; i < split.length; i++) {
+						Long sId = Long.valueOf(split[i]);
+						if (productModule.getProductModuleId().equals(sId)) {
+							pmsProductModule.add(productModule);
+						}
 					}
 				}
 			}
