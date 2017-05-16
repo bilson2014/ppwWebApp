@@ -159,6 +159,7 @@
 				</c:if>
 			</div>
        </div>
+       
        <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">

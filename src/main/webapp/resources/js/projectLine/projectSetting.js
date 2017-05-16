@@ -73,7 +73,7 @@ function calculatedValue(){
 	var addSet = "";
 	var addprice = 0;
 	var priceArray = new Array;
-	var cardSet = $(card).find('.info').text();
+	var cardSet = $(card).find('.pName').text();
 	var timeSet = '+' + $(time).find('.time').text();	
 	var timePrice =  $(time).find('.price').text();
 	if(add.length > 0){
@@ -89,7 +89,7 @@ function calculatedValue(){
 	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
 	//end
 	priceArray.push(timePrice);
-	if(timePrice!=''&&add.length > 0){
+	if(timePrice!=''){
 		$.ajax({
 			url :  getContextPath()+'/product/compute',
 			type : 'POST',
@@ -118,7 +118,7 @@ function initModel(id){
 					var mod = productModule[int2];
 					var type = mod.pinConfiguration_ProductModule.cpmModuleType;
 					if(type == 0){
-						v1.append(createMustMod(mod));
+						v1.append(createMustMod(mod,int2));
 						
 					}else{
 						v2.append(createSubjoinMod(mod));
@@ -170,7 +170,11 @@ function initModel(id){
 		initTab();
 }
 
-function createMustMod(obj){
+function createMustMod(obj,num){
+	var hasDes="";   
+	if(num<2){
+		hasDes="(赠送)";
+	   }  
 		var html = ['<li class="s_item s_item_cur packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
 					'    <div class="pTitle">'+obj.moduleName+'</div>',
@@ -179,7 +183,7 @@ function createMustMod(obj){
 					'          <div class="iContent">',
 					obj.description,
 					'          </div>',
-					'         <div class="iDes">(赠送)</div>',
+					'         <div class="iDes">'+hasDes+'</div>',
 					'    </div>',
 					'</li>'].join('');
 		return html;
@@ -278,7 +282,7 @@ function buildCar1(obj){
 				'<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 				'    <div class="card">',
 				'         <div class="cardTop">',
-				'             <div>标准版产品</div>',
+				'             <div class="pName">标准版产品</div>',
 				'             <div>(基础价)</div>',
 				'             <div><span  class="price">'+obj.basePrice+'</span>元</div>',
 				'         </div>',
@@ -311,7 +315,7 @@ function buildCar2(obj){
 	             '<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 	             '    <div class="card">',
 	             '         <div class="cardTop">',
-	             '             <div>增强版产品</div>',
+	             '             <div class="pName">增强版产品</div>',
 	             '             <div>(基础价)</div>',
 	             '             <div><span class="price">'+obj.basePrice+'</span>元</div>',
 	             '         </div>',
@@ -344,9 +348,9 @@ function buildCar3(obj){
 	             '<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 	             '    <div class="card">',
 	             '         <div class="cardTop">',
-	             '             <div>尊享版产品</div>',
+	             '             <div class="pName">尊享版产品</div>',
 	             '             <div>(基础价)</div>',
-	             '             <div>'+obj.basePrice+'元</div>',
+	             '             <div><span class="price">'+obj.basePrice+'</span>元</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
@@ -362,8 +366,6 @@ function buildCar3(obj){
 	             ].join('');
 	return html1;
 }
-
-
 
 function initTab() {
     var product_id = 1;
