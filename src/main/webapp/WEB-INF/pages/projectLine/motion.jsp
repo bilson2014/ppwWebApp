@@ -211,6 +211,7 @@
 		    <div class="title">
 		                             图形动画企业视频应用案例
 		    </div>
+		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">
 				<div class="swiper-wrapper swiper-product-slide">
 					
@@ -233,9 +234,10 @@
 					   </div>   
 					</div>--%>
 				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
 			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		   </div>	
 		</div>	
 		
          <!-- foot -->

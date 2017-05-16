@@ -101,12 +101,12 @@ function calculatedValue(num){
 	}
 	
 	if(num>0){
-		$('#checkOrder').text('您选择了 :' + cardSet + timeSet);
+		$('#checkOrder').text('您选择了: ' + cardSet + timeSet);
 		$('#setTotalPrice').text(timePrice);
 	}
 	else{
 	//设置内容
-	$('#checkOrder').text('您选择了 :' + cardSet + timeSet + addSet);
+	$('#checkOrder').text('您选择了: ' + cardSet + timeSet + addSet);
 	//end
 	priceArray.push(timePrice);
 	if(timePrice!=''){
