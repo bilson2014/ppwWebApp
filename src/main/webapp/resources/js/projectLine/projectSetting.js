@@ -195,7 +195,7 @@ function createMustMod(obj,num){
 	var hasDes="";
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ ?\n/g,"<br/>");
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
@@ -215,7 +215,7 @@ function createMustMod(obj,num){
 function createSubjoinMod(obj){
 	var text = obj.description;
 	var setHtml = text;
-	var getHtml = setHtml.replace(/\r?\n/g,"<br/>");
+	var getHtml = setHtml.replace(/ ?\n/g,"<br/>");
 	var html = [
 				'<div class="setItem" data-id="'+obj.productModuleId+'">',
 				'<div class="addCard">',
