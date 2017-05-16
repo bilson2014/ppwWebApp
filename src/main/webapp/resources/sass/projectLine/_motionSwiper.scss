@@ -25,15 +25,13 @@
     &:hover {
         opacity: 1 !important;
     }
-    @media screen and (min-width: 1060px) and (max-width: 1200px) {
-        left: 150px !important;
-    }
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        left: 150px !important;
-    }
-    @media screen and (min-width:1500px) {
-        left: 150px !important;
-    }
+    left: -90px;
+        @media screen and (max-width: 1400px) {
+            left: -45px;
+        }
+        @media screen and (max-width: 1100px) {
+            left: -4px;
+        }
 }
 
 .swiper-button-next {
@@ -46,15 +44,13 @@
     &:hover {
         opacity: 1 !important;
     }
-    @media screen and (min-width: 1060px) and (max-width: 1200px) {
-        right: 150px !important;
-    }
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        right: 150px !important;
-    }
-    @media screen and (min-width:1500px) {
-        right: 150px !important;
-    }
+    right: -90px;
+        @media screen and (max-width: 1400px) {
+            right: -45px;
+        }
+        @media screen and (max-width: 1100px) {
+            right: -4px;
+        }
 }
 
 .swiper-banner .swiper-button-prev {
