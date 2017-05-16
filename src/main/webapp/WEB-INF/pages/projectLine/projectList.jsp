@@ -173,7 +173,7 @@
 	           <div class="motionType">
 	               <a href="/product/${product.englishName }/main"><div>产品描述</div></a>
 	               <a href="/product/${product.englishName }/case"><div>全部案例</div></a>
-	               <a><div class="active">产品配置</div></a>
+	               <a href="/product/${product.englishName }/set"><div class="active">产品配置</div></a>
 	          </div>
           </div>
        </div>
