@@ -182,17 +182,19 @@
                               <li>${time.rowName }</li>
                         </ul>
                    </div>
+                   <c:if test="${! empty  subjoin}">
                     <div class="optionItem">
                         <div class="title">附加包类型</div>
                         <input type="hidden" name="subJoin" value="${subjoinId}">
                         <ul class="moreCard">
-                        	  <c:if test="${! empty  subjoin}">
+                        	  
 	                        	<c:forEach items="${subjoin }" var="tag">
 									 <li>${tag.moduleName }</li>
 								</c:forEach>
-                        	  </c:if>
+                       
                         </ul>
                    </div>
+                   </c:if>
                     <div class="optionItem">
                         <div class="title"></div>
                         <input type="button" class="checkOrder" value="确认下单" />

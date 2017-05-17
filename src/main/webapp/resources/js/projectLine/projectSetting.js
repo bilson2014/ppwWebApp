@@ -23,9 +23,10 @@ function getNext(){
 		var cId = $('#CConfigId').val();
 		var tId = $('#CTimeID').val();
 		var subId = $('#CSubjoinID').val();
+		var price = $('#setTotalPrice').text();
 		if(getCheck()){
 			var englishName = $('#englishName').val();
-			window.location.href= '/product/'+englishName+'/order?configId='+cId +'&timeId='+tId +'&subJoin='+subId+'&price='+$('#setTotalPrice').text();
+			window.location.href= '/product/'+englishName+'/order?configId='+cId +'&timeId='+tId +'&price='+price+'&subJoin='+subId;
 		}
 	})
 }
@@ -77,6 +78,7 @@ function showCard(){
 	 $('.shape').removeClass('hideImg');
 	 $('.closeContent').off('click').on('click',function(){
 		$('.cardContent').find('.shape').addClass('hideImg');
+		$('.serviceContent').slideUp();
 	 });
 }
 
@@ -196,7 +198,7 @@ function createMustMod(obj,num){
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
-		var html = ['<li class="s_item s_item_cur packItem">',
+		var html = ['<li class="packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
 					'    <div class="pTitle">'+obj.moduleName+'</div>',
 					'    <div class="itemContent">',
@@ -257,6 +259,7 @@ function createTime(obj,num){
 	});
 	
 	if(num <1){
+		$('#CTimeID').val(obj.dimensionId);
 	    var html = [
 					'<div class="timeCard active" data-id="'+obj.dimensionId+'">',
 					'<div class="time">'+obj.rowName+'</div>',
@@ -518,11 +521,11 @@ function initSlider(number, default_item) {
                     }
                     handleLayer(d, $s_item, number);
                     var data_id = $s_item.eq(default_item).parent().data('id');
-                  //  setPackageData(default_item, data_id);
+                    setPackageData(default_item, data_id);
                 } else {
                     handleLayer(cur_item_index, $s_item, number);
                     var data_id = $s_item.eq(cur_item_index).parent().data('id');
-                   // setPackageData(cur_item_index, data_id);
+                    setPackageData(cur_item_index, data_id);
                 }
             }
         });
