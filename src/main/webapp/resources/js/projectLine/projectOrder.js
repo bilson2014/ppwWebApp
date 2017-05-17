@@ -58,3 +58,15 @@ function showSuccess(){
 		$('#last3').text(initM--);
 	}
 }
+
+function initProduct(){
+	var productId = $('#productId').val();
+	loadData(
+			function(res) 
+			         {
+						for (var int = 0; int < res.length; int++) {
+							$('#productImg').attr('src',getDfsHostName() + rr.product.picLDUrl);
+							break;
+						}
+			}, getContextPath() + '/product/case?productId=' + productId, null);
+}
