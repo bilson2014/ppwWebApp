@@ -589,7 +589,11 @@ public class VersionManagerController extends BaseController {
 		}
 	}
 
-	// /////////////////////////flowcontroller///////////////////////////////
+	/**
+	 * 跳转项目信息页面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/flow/add-view")
 	public ModelAndView flowView(final ModelMap model) {
 		return new ModelAndView("/manager/add-flow", model);

@@ -38,23 +38,23 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
-     <!--成本计算器-->
-    <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
-    <mvc:view-controller path="/test" view-name="/provider/user" />
+    <!--成本计算器-->
+    <mvc:view-controller path="/calculate" view-name="/costcalculate" />
     <mvc:view-controller path="/safe" view-name="/provider/safeInfo" />
+    
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
+    
     <!-- 产品线 -->
     <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
     <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
-     <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
-       <mvc:view-controller path="/pList" view-name="/projectLine/projectList" />
+    <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
+    <mvc:view-controller path="/pList" view-name="/projectLine/projectList" />
+    
     <!-- test -->
     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
     <mvc:view-controller path="/c" view-name="/costcalculate" />
       
-    <mvc:view-controller path="/testImg" view-name="/testImg" />
-
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />

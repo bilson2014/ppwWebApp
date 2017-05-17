@@ -191,7 +191,19 @@ function checkMobile(str) {
 						</div>
 						<div class="divtable" id="div-projectSource">
 							<div class="baseinfo-table-key" >项目来源</div>
-							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" ></select>
+							<select class="tableinput-baseinfo form-control selectdiv" id="projectSource" >
+								<option value="推广">推广</option>
+								<option value="活动">活动</option>
+								<option value="新媒体">新媒体</option>
+								<option value="渠道">渠道</option>
+								<option value="线下拓展">线下拓展</option>
+								<option value="市场活动">市场活动</option>
+								<option value="社区运营">社区运营</option>
+								<option value="自主开发">自主开发</option>
+								<option value="电销">电销</option>
+								<option value="复购">复购</option>
+								<option value="推荐">推荐</option>
+							</select>
 							<label class="error-label" id="error-projectSource">该信息不能为空</label>
 						</div>
 						<div class="divtable hide" id="div-friendship">

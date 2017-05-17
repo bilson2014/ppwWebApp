@@ -389,8 +389,8 @@ public class ChanPinController extends BaseController {
 		return sb.toString();
 	}
 
-	static String space = "&nbsp;&nbsp;&nbsp;&nbsp;";
-	static int rowLength = 20;
+	static String space = "&emsp;";
+	static int rowLength = 15;
 
 	private String formatRow(String head) {
 		String result = "";
