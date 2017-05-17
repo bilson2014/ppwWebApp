@@ -214,7 +214,6 @@
 		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">
 				<div class="swiper-wrapper swiper-product-slide">
-					
 				<%-- 	<div class="swiper-slide" id="setItem">
 					   <div class="productItem">
 					     <div class="imgContent">
