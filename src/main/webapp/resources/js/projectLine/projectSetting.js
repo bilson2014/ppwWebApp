@@ -579,7 +579,7 @@ function devicesSize() {
 }
 
 function resumeConfig(){
-	var CconfigId = $('#CconfigId').val();
+	var CconfigId = $('#CacheconfigId').val();
 	if(CconfigId != null && CconfigId != undefined && CconfigId != ''){
 		var cards = $('.cardContent');
 		$('.cardContent').removeClass('active');
@@ -602,7 +602,7 @@ function resumeConfig(){
 }
 
 function resumeTime(){
-	var CtimeId = $('#CtimeId').val();
+	var CtimeId = $('#CachetimeId').val();
 	if(CtimeId != null && CtimeId != undefined && CtimeId != ''){
 		var cards = $('.timeCard');
 		$('.timeCard').removeClass('active');
@@ -619,8 +619,8 @@ function resumeTime(){
 	
 }
 function resumeSubjoin(){
-	var CsubJoin = $('#CsubJoin').val();
-	var Cprice = $('#Cprice').val();
+	var CsubJoin = $('#CachesubJoin').val();
+	var Cprice = $('#Cacheprice').val();
 	
 	if(CsubJoin != null && CsubJoin != undefined && CsubJoin != ''){
 		var idArray = CsubJoin.split(',');

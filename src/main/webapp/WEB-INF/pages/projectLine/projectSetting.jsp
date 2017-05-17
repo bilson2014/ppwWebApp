@@ -158,10 +158,10 @@
 
 <body>
 	<!-- 返回修改信息 begin -->
-	<input type="hidden" id="CconfigId" value="${configId }">
-	<input type="hidden" id="CtimeId" value="${timeId }">
-	<input type="hidden" id="CsubJoin" value="${subJoin }">
-	<input type="hidden" id="Cprice" value="${price }">
+	<input type="hidden" id="CacheconfigId" value="${configId }">
+	<input type="hidden" id="CachetimeId" value="${timeId }">
+	<input type="hidden" id="CachesubJoin" value="${subJoin }">
+	<input type="hidden" id="Cacheprice" value="${price }">
 	<!-- 返回修改信息 end -->
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
