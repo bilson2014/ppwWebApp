@@ -217,7 +217,7 @@ function showDiv(){
       $('#order').removeClass('showOrder');
     });
     // event
-    $('#order-btn').off('click').on('click',submitOrder);
+    $('#order-btn1').off('click').on('click',submitOrder);
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
 //    $('#order-btn').off('click').on('click',submitOrder);
 }

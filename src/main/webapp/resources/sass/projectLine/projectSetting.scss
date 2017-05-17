@@ -1,0 +1,561 @@
+                @import "common";
+                @import "buttons";
+                @import "video";
+                @import "flexslider";
+                @import "motionSwiper";
+                @import "mixins/indexScreen";
+                @import "compass/typography/text/ellipsis";
+                @import "normalize";
+                @import "plCommon";
+                .page {
+                    background: white !important;
+                }
+                
+                $margin-right-card:50px;
+                .hideImg {
+                    opacity: 0;
+                }
+                
+                //卡片配置
+                .setCard {
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    font-size: 0;
+                    height: auto;
+                    padding-top: 60px;
+                    .cardTitle {
+                        color: $gray-dark;
+                        font-size: $font-size-lg30;
+                        text-align: center;
+                        margin-bottom: 60px;
+                    }
+                    .cardContent:last-child {
+                        margin-right: 0px !important;
+                    }
+                    .active {
+                        .cardTop {
+                            div {
+                                color: $red-base !important;
+                            }
+                        }
+                        .cardBottom {
+                            border: 1px solid $red-base !important;
+                        }
+                        .shape {
+                            display: block !important;
+                        }
+                    }
+                    .cardContent {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-right: 10px;
+                        padding-bottom: 80px;
+                        width: ($width-min - 40)/3;
+                        position: relative;
+                        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                            width: ($width-middle - $margin-right-card*2)/3;
+                            margin-right: 50px;
+                        }
+                        @media screen and (min-width: 1500px) {
+                            width: ($width-lg3 - $margin-right-card*2)/3;
+                            margin-right: 50px;
+                        }
+                        .shape {
+                            width: 60px;
+                            position: absolute;
+                            bottom: 0px;
+                            left: 50%;
+                            margin-left: -30px;
+                            display: none;
+                        }
+                        .cardTop {
+                            text-align: center;
+                            div:nth-child(1) {
+                                font-size: $font-size;
+                                color: $gray-dark;
+                                margin-bottom: 15px;
+                                font-weight: bold;
+                            }
+                            div:nth-child(2) {
+                                font-size: $font-size-base;
+                                color: $gray;
+                            }
+                            div:nth-child(3) {
+                                margin-top: 5px;
+                                margin-bottom: 30px;
+                                color: $gray-dark;
+                                font-size: $font-size-base;
+                            }
+                        }
+                        .active {
+                            border: 1px solid $red-base !important;
+                        }
+                        .cardBottom {
+                            width: 100%;
+                            background: #FFFFFF;
+                            border-radius: 8px;
+                            background: white;
+                            position: relative;
+                            z-index: 5;
+                            //border: 1px solid $d8;
+                            -moz-box-shadow: 10px 10px 5px $d8;
+                            -webkit-box-shadow: 0px 0px 10px $d8;
+                            -o-box-shadow: 0px 0px 10px $d8;
+                            /* 老的 Firefox */
+                            box-shadow: 0px 0px 10px $d8;
+                            text-align: center;
+                            border: 1px solid transparent;
+                            img:nth-child(1) {
+                                width: 100%;
+                                height: (400px /(16/9));
+                                border-top-left-radius: 6px;
+                                border-top-right-radius: 6px;
+                                position: relative;
+                            }
+                            img:nth-child(2) {
+                                width: 60px;
+                                height: 60px;
+                                margin-top: 20px;
+                            }
+                            .info {
+                                width: 90%;
+                                height: 50px;
+                                color: $gray-dark;
+                                font-size: $font-size-base;
+                                overflow: hidden;
+                                text-align: center;
+                                margin: 0 auto;
+                                line-height: 24px;
+                                margin-top: 25px;
+                                margin-bottom: 25px;
+                            }
+                            .tagsContent {
+                                padding-left: 15px;
+                                padding-right: 15px;
+                                height: 100px;
+                                font-size: 0;
+                                .noraml {
+                                    background-image: linear-gradient(0deg, #D9D2CF 0%, #B5B5B5 52%, #F3F0F1 54%, #BCBCBE 100%);
+                                }
+                                .k2 {
+                                    background-image: linear-gradient(-180deg, #EAC322 0%, #FDCE3A 47%, #B08312 52%, #DA932E 100%);
+                                }
+                                .k4 {
+                                    background-image: linear-gradient(-180deg, #131418 0%, #383838 44%, #000000 50%, #2F2F2F 98%);
+                                    color: white !important;
+                                }
+                                div:nth-child(3n) {
+                                    margin-right: 0 !important;
+                                }
+                                div {
+                                    height: 30px;
+                                    line-height: 30px;
+                                    display: inline-block;
+                                    vertical-align: top;
+                                    border-radius: 4px;
+                                    color: $gray-dark;
+                                    font-size: $font-size-sm;
+                                    width: (($width-min - $margin-right-card*2)/3 - 42px)/3;
+                                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                        width: (($width-middle - $margin-right-card*2)/3 - 42px)/3;
+                                    }
+                                    @media screen and (min-width: 1500px) {
+                                        width: (($width-lg3 - $margin-right-card*2)/3 - 42px)/3;
+                                    }
+                                    margin-right: 5px;
+                                    margin-bottom: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                //时长
+                .timeContent {
+                    display: none;
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    font-size: 0;
+                    border-bottom: 1px dashed $border-line;
+                    padding-bottom: 70px;
+                    padding-top: 80px;
+                    .timeTitle {
+                        font-size: $font-size-lg26;
+                        color: $gray-dark;
+                        margin-bottom: 30px;
+                        span {
+                            font-size: $font-size-base;
+                            color: $gray-light;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+                
+                .timeCard:nth-child(6n) {
+                    @media screen and (min-width: 1500px) {
+                        // margin-right: 0px !important;
+                        //   margin-left: 5px;
+                    }
+                }
+                
+                .timeSet {
+                    cursor: pointer;
+                    .active {
+                        border: 1px solid $red-base !important;
+                        div {
+                            color: $red-base !important;
+                        }
+                    }
+                }
+                
+                .timeCard {
+                    background: #FFFFFF;
+                    border: 1px solid $border-line;
+                    border-radius: 8px;
+                    width: 180px;
+                    height: 120px;
+                    text-align: center;
+                    margin-right: 5px;
+                    margin-bottom: 5px;
+                    display: inline-block;
+                    vertical-align: top;
+                    div:first-child {
+                        color: black;
+                        font-size: $font-size-base;
+                        margin-top: 30px;
+                        margin-bottom: 20px;
+                    }
+                    div:nth-child(2) {
+                        color: $gray-dark;
+                        font-size: $font-size-lg26;
+                    }
+                }
+                
+                //附加
+                .addContent {
+                    display: none;
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    font-size: 0;
+                    border-bottom: 1px dashed $border-line;
+                    padding-bottom: 70px;
+                    padding-top: 80px;
+                    .addTitle {
+                        font-size: $font-size-lg26;
+                        color: $gray-dark;
+                        margin-bottom: 30px;
+                        span {
+                            font-size: $font-size-base;
+                            color: $gray-light;
+                            margin-left: 10px;
+                        }
+                    }
+                    .setItem:nth-child(4n) {
+                        @media screen and (min-width: 1500px) {
+                            margin-right: 0px !important;
+                        }
+                    }
+                    .active {
+                        .addCard {
+                            border: 1px solid $red-base !important;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                
+                .setItem:nth-child(4n) {
+                    margin-right: 0px !important;
+                }
+                
+                .setItem {
+                    width: 300px;
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-right: 30px;
+                    width: ($width-min - 90px)/4;
+                    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                        width: ($width-middle - 90px)/4;
+                    }
+                    @media screen and (min-width: 1500px) {
+                        width: ($width-lg3 - 90px)/4;
+                    }
+                }
+                
+                .addCard {
+                    background: #FFFFFF;
+                    border: 1px solid $border-line;
+                    border-radius: 8px;
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 10px;
+                    padding-bottom: 30px;
+                    img {
+                        width: 100%;
+                        height: ($width-min - 90px)/4/(16/9);
+                        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                            height: ($width-middle - 90px)/4/(16/9);
+                        }
+                        @media screen and (min-width: 1500px) {
+                            height: ($width-lg3 - 90px)/4/(16/9);
+                        }
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                    }
+                    div:nth-child(2) {
+                        color: $gray-dark;
+                        font-size: $font-size;
+                        margin-top: 30px;
+                    }
+                    div:nth-child(3) {
+                        color: $gray-dark;
+                        font-size: $font-size;
+                        margin-top: 15px;
+                        margin-bottom: 15px;
+                    }
+                    div:nth-child(4) {
+                        color: $gray;
+                        font-size: $font-size-base;
+                        width: 90%;
+                        height: 50px;
+                        text-align: center;
+                        overflow: hidden;
+                        line-height: 24px;
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+                }
+                
+                .howMush {
+                    width: 200px;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                    display: none;
+                    div,
+                    input {
+                        display: inline-block;
+                        vertical-align: baseline;
+                        height: 30px;
+                        margin-left: 10px;
+                        text-align: center;
+                    }
+                    input {
+                        width: 78px;
+                        line-height: 78px;
+                        border: 1px solid $border-line;
+                        color: $gray-light;
+                        font-size: $font-size-base;
+                        outline: none;
+                    }
+                    div {
+                        color: $gray-light;
+                        font-size: $font-size-base;
+                    }
+                }
+                
+                //确认下单
+                .checkOrder {
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    font-size: 0;
+                    text-align: right;
+                    padding-top: 80px;
+                    padding-bottom: 150px;
+                    position: relative;
+                    div:nth-child(1) {
+                        font-size: $font-size;
+                        color: $gray-dark;
+                        font-weight: bold;
+                    }
+                    div:nth-child(2) {
+                        font-size: $font-size-lg30;
+                        color: $red-base;
+                        margin-top: 60px;
+                        margin-bottom: 30px;
+                        span:nth-child(1) {
+                            color: $gray-dark;
+                            font-size: $font-size;
+                        }
+                        span:nth-child(2) {
+                            color: $red-base !important;
+                            font-size: $font-size;
+                            margin-left: 5px;
+                            margin-right: 10px;
+                        }
+                    }
+                    div:nth-child(3) {
+                        font-size: $font-size-base;
+                        color: $gray-light;
+                        margin-bottom: 10px;
+                    }
+                    div:nth-child(4) {
+                        font-size: $font-size-base;
+                        color: $red-base;
+                        margin-bottom: 40px;
+                    }
+                    div:nth-child(5) {
+                        font-size: $font-size-base;
+                        color: white;
+                        width: 220px;
+                        height: 40px;
+                        text-align: center;
+                        line-height: 40px;
+                        background: $red-base;
+                        border-radius: 4px;
+                        position: absolute;
+                        right: 0;
+                        &:hover {
+                            background: $red-base;
+                        }
+                    }
+                }
+                
+                //服务套餐
+                .serviceContent {
+                    display: none;
+                    background: $f0;
+                    padding-bottom: 80px;
+                    padding-top: 30px;
+                    .closeContent {
+                        width: 36px;
+                        height: 36px;
+                        margin: 0 auto;
+                        background: url('/resources/images/projectLine/projectSet/close.png') no-repeat;
+                        background-size: 36px 87px !important;
+                        &:hover {
+                            background-position: 0 -51px;
+                        }
+                    }
+                    .sContent {
+                        @include media_screen_width_beta3();
+                        margin: 0 auto;
+                        position: relative;
+                        margin-top: 50px;
+                        .sTitle {
+                            font-size: $font-size-lg26;
+                            color: $gray-dark;
+                            margin-bottom: 30px;
+                            margin-left: 10px;
+                            span {
+                                font-size: $font-size-base;
+                                color: $gray-light;
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+                
+                // .packItem:nth-child(1) {
+                //     width: 170px !important;
+                //     text-align: -webkit-auto !important;
+                //     cursor: pointer;
+                //     .pTitle {
+                //         width: 130px !important;
+                //     }
+                //     .iContent,
+                //     .iDes {
+                //         margin: inherit;
+                //     }
+                //     .iDes {
+                //         margin-top: 20px !important;
+                //     }
+                // }
+                .packItem {
+                    text-align: center;
+                    width: 190px;
+                    position: relative;
+                    display: inline-block;
+                    vertical-align: top;
+                    img {
+                        width: 130px;
+                        height: 130px;
+                        border-radius: 100%;
+                    }
+                    .iLine {
+                        position: absolute;
+                        width: 1px;
+                        height: 60px;
+                        background: $border-line;
+                        top: 0;
+                        right: 0;
+                    }
+                    .pTitle {
+                        font-size: $font-size;
+                        color: $gray-dark;
+                        text-align: center;
+                        margin-top: 30px;
+                        margin-bottom: 30px;
+                        @include ellipsis;
+                    }
+                    .itemContent {
+                        width: 100%;
+                        height: 180px;
+                        font-size: $font-size-base;
+                        color: $gray-light;
+                        text-align: center;
+                        position: relative;
+                    }
+                    .iContent {
+                        width: 130px;
+                        margin: 0 auto;
+                        line-height: 24px;
+                        overflow: hidden;
+                    }
+                    .iDes {
+                        margin: 0 auto;
+                        font-size: $font-size;
+                        color: $red-base;
+                        margin-top: 20px;
+                        width: 130px;
+                    }
+                }
+                
+                .slides {
+                    position: relative;
+                    li {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+                }
+                
+                .flex-direction-nav {
+                    position: absolute;
+                    width: 100%;
+                    z-index: 15;
+                    top: 130px;
+                }
+                
+                .flex-prev {
+                    div {
+                        background: url(/resources/images/block/btnPrev.png);
+                        background-size: 45px 45px;
+                        width: 45px;
+                        height: 45px;
+                        position: absolute;
+                        left: -90px;
+                        cursor: pointer;
+                        @media screen and (max-width: 1400px) {
+                            left: -45px;
+                        }
+                        @media screen and (max-width: 1100px) {
+                            left: -4px;
+                        }
+                    }
+                }
+                
+                .flex-next {
+                    div {
+                        background: url(/resources/images/block/btnNext.png);
+                        background-size: 45px 45px;
+                        width: 45px;
+                        height: 45px;
+                        position: absolute;
+                        right: -90px;
+                        cursor: pointer;
+                        @media screen and (max-width: 1400px) {
+                            right: -45px;
+                        }
+                        @media screen and (max-width: 1100px) {
+                            right: -4px;
+                        }
+                    }
+                }

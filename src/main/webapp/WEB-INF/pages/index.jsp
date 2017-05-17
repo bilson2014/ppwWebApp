@@ -129,7 +129,7 @@
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					   </div>
 					</div>
 				</r:identity>
 				<r:identity role="provider">
@@ -191,6 +191,21 @@
 			<div class="new-banner">
 				<div class="search-box" id="banner-search">
 					<form method="" action="" id="s-form" class="bannerOut">
+					
+					<div class="isShowItem">
+					    <div class="itemInput">
+						 <input id="csrftoken" type="hidden"
+							value="${sessionScope.csrftoken }"> <input
+							id="help-phone" name="indent_tele" placeholder="您的联系方式">
+							<div class="errorSendCode" id="sendPhoneError">error</div>
+						</div>
+						<div class="itemInput">
+						  <input id="getCheckCodes"  placeholder="输入验证码">
+						  <div class="sendCode" id="sendCode">发送验证码</div>
+						  <div class="errorSendCode" id="sendCodeError">error</div>
+						</div>
+					</div>
+							
 						<div class="dropdown" id="selectType">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown">
@@ -213,19 +228,9 @@
 						</div>
 						
 						<button class="helpYou btn-c-r" type="button">帮我推荐</button>
-					<div class="isShowItem">	
-						<div class="itemInput">
-						 <input id="csrftoken" type="hidden"
-							value="${sessionScope.csrftoken }"> <input
-							id="help-phone" name="indent_tele" placeholder="您的联系方式">
-							<div class="errorSendCode" id="sendPhoneError">error</div>
-						</div>
-						<div class="itemInput">
-						  <input id="getCheckCodes"  placeholder="输入验证码">
-						  <div class="sendCode" id="sendCode">发送验证码</div>
-						  <div class="errorSendCode" id="sendCodeError">error</div>
-						</div>
-				  </div>		
+						
+						
+				
 						<div class="wordPosition">
 						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">

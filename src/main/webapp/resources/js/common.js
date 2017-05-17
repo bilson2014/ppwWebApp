@@ -571,7 +571,7 @@ var share = {
 		}
 }
 
-var _hmt = _hmt || [];
+/*var _hmt = _hmt || [];
 (function() {
 	var hm = document.createElement("script");
 	hm.src = "//hm.baidu.com/hm.js?b0ac6d7e1cee0e96c5c43106c5d43537";
@@ -605,7 +605,7 @@ window._vds = _vds;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(vds, s);
   })();
-})();
+})();*/
 
 //3.0
 function playVideo() {
@@ -768,7 +768,7 @@ function initOrderClick(){
 			var telephone = $('#indent_tele').val().trim();
 			$('#getPhoneCode').text('已发送(' + curCounts + ')');
 			$('#getPhoneCode').attr('disabled', 'disabled');
-			InterValObj = window.setInterval(SetRemainTimes, 1000); // 启动计时器，1秒钟执行一次
+			InterValObj = window.setInterval(SetRemainTimes, 1000); // 启动计时器，1秒钟执行一次s
 			loadData(function(flag) {
 				if (!flag) {
 					// 发送不成功
@@ -987,5 +987,31 @@ function controlInput(){
 	$("#search-q").blur(function(){
 		 $('.middle-part').removeClass('consorlInput');
 		});
-    
 }
+//控制英文
+function controlEnglish(){
+	var enSize = $('#english').text();
+	var result = '';
+	var begin = 0;
+	var end = 0;
+	for (var int = 0; int < enSize.length; int++) {
+		var charcode = parseInt(enSize.charCodeAt(int));
+		if(charcode >= 65 && charcode <= 90 && int != 0){
+			end = int;
+			console.log(begin+'b');
+			console.log(end +'e');
+			var tmp = enSize.substring(begin,end);
+			begin = end;
+			result+=tmp;
+			result+= ' ';
+		}
+		
+		if(int == enSize.length -1){
+			var tmp = enSize.substring(end,enSize.length);
+			result+=tmp;
+			result+= ' ';
+		}
+	}
+	$('#english').text(result);
+}
+

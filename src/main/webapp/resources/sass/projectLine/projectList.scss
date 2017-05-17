@@ -1,0 +1,113 @@
+                    @import "common";
+                    @import "buttons";
+                    @import "video";
+                    @import "flexslider";
+                    @import "motionSwiper";
+                    @import "mixins/indexScreen";
+                    @import "compass/typography/text/ellipsis";
+                    @import "normalize";
+                    @import "plCommon";
+                    .page {
+                        background: white !important;
+                    }
+                    
+                    //列表
+                    .listContent {
+                        @include media_screen_width_beta3();
+                        margin: 0 auto;
+                        padding-top: 100px;
+                        padding-bottom: 100px;
+                        .listCard {
+                            width: 100%;
+                            margin-bottom: 60px;
+                            height: (($width-min/2)-50px)/1.77;
+                            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                height: (($width-middle/2)-50px)/1.77;
+                            }
+                            @media screen and (min-width: 1500px) {
+                                height: (($width-lg3/2)-50px)/(16/9);
+                            }
+                            .imgContent,
+                            .cardContent {
+                                display: inline-block;
+                                vertical-align: top;
+                                border-radius: 8px;
+                            }
+                            .imgContent {
+                                height: 100%;
+                                position: relative;
+                                width: ($width-min/2)-50px;
+                                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                    width: ($width-middle/2)-50px;
+                                }
+                                @media screen and (min-width: 1500px) {
+                                    width: ($width-lg3/2)-50px;
+                                }
+                                img:nth-child(1) {
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 8px;
+                                }
+                                img:nth-child(2) {
+                                    width: 65px;
+                                    height: 65px;
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    margin-top: -32px;
+                                    margin-left: -32px;
+                                }
+                            }
+                            .cardContent {
+                                width: ($width-min/2)-50px;
+                                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                    width: ($width-middle/2)-50px;
+                                }
+                                @media screen and (min-width: 1500px) {
+                                    width: ($width-lg3/2)-50px;
+                                }
+                                height: 100%;
+                                padding-left: 30px;
+                                .contentTitle {
+                                    @include ellipsis;
+                                    font-size: $font-size-base;
+                                    color: $gray-dark;
+                                    padding-top: 30px;
+                                }
+                                .contentInfo {
+                                    @include ellipsis;
+                                    font-size: $font-size-base;
+                                    color: $gray-dark;
+                                    margin-top: 20px;
+                                    margin-bottom: 60px;
+                                }
+                                .contentContent {
+                                    width: 100%;
+                                    height: auto;
+                                    margin-top: 30px;
+                                    div:nth-child(1),
+                                    div:nth-child(2),
+                                    div:nth-child(3) {
+                                        @include ellipsis;
+                                    }
+                                    div {
+                                        font-size: $font-size-sm;
+                                        color: $gray-light;
+                                        width: 100%;
+                                        margin-bottom: 10px;
+                                    }
+                                    span {
+                                        font-size: $font-size-sm;
+                                        color: $gray-dark;
+                                    }
+                                }
+                                .contentDes {
+                                    margin-top: 25px;
+                                    font-size: $font-size-base;
+                                    color: $gray-dark !important;
+                                    font-style: italic;
+                                    line-height: 20px;
+                                }
+                            }
+                        }
+                    }
