@@ -9,6 +9,7 @@
             @import "plCommon";
             .page {
                 background: black !important;
+                top:61px !important;
             }
      
             
@@ -290,6 +291,6 @@
                     color: $gray-dark;
                     text-align: center;
                     font-size: $font-size-lg26;
-                    margin-bottom: 200px;
+                    margin-bottom: 100px;
                 }
             }

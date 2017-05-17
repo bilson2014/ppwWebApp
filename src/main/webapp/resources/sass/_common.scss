@@ -69,7 +69,7 @@ a {
     float: left;
     left: 30px;
     right: 20px;
-    top: 14px;
+    top: 10px;
     input {
         min-width: $header-search-box-min;
         height: 32px;
@@ -711,15 +711,14 @@ a {
         left: 17px;
     }
 }
-
 .headerMove {
-    height: 60px !important;
+    height: $header-height;
     background: white;
     -moz-box-shadow: 10px 10px 5px #cccccc;
     /* 老的 Firefox */
     box-shadow: 0px 0px 10px #cccccc;
     .header-item {
-        line-height: 60px !important;
+        line-height:$header-height !important;
         color: black;
         font-weight: 500;
         &:hover {
@@ -739,7 +738,7 @@ a {
         background: url(/resources/images/index/showVideoB.png) no-repeat !important;
         position: absolute;
         background-size: 15px 30px !important;
-        top: 23px !important;
+        top: 18px !important;
         left: 74px;
     }
     .tele-h-svg {
@@ -756,11 +755,11 @@ a {
         width: 92px !important;
         height: 30px !important;
         background-size: 92px 30px !important;
-        top: 14px !important;
+        top: 9px !important;
         border-radius: 0px !important;
     }
     .menu-bar .middle-part {
-        top: 15px;
+        top: 10px;
         input {
             color: $gray !important;
             border: 1px solid $gray !important;
@@ -809,11 +808,11 @@ a {
 
 .consorlInput {
     @media screen and (max-width: 1276px) {
-        width: 210px !important;
+        width: 195px !important;
         position: relative !important;
         left: 3px !important;
         input {
-            width: 210px !important;
+            width: 195px !important;
             padding-right: 20px !important;
         }
     }

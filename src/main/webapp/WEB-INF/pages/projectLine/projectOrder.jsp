@@ -61,7 +61,8 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
+					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>				
 				<r:noLogin>
@@ -211,8 +212,8 @@
 				<span class="line long"></span>
 		   </div>
 		   <div class="oSContent">
-		        <div class="title">下单成功并生成项目</div>
-		        <div class="desc">已经自动生产项目!进入我的项目查看</div>
+		        <div class="title">下单成功</div>
+		        <div class="desc">已生成订单并发送邮件到您的邮箱</div>
 		        <div class="desc">页面将自动跳转进入<a>您的项目</a>页面</div>
 		        <div class="desc"><span id="last3">3</span>秒</div>
 		        <div class="descBot"><a href="/product/${product.englishName }/main">返回产品概述</a>请点击这里</div>

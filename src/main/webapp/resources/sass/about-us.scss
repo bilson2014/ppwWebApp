@@ -17,11 +17,11 @@ $pink:#FF7F88;
 
 .titleTag {
     background: #f0f2f5;
-    height: 70px;
+    height: 40px;
     border-bottom: 1px solid $border-line;
     position: fixed;
     width: 100%;
-    top: 60px;
+    top: 50px;
     z-index: 999;
     .titleWord {
         @include media_screen_width_beta3();
@@ -34,7 +34,7 @@ $pink:#FF7F88;
             font-size: $font-size-base;
             width: 20%;
             display: inline-block;
-            line-height: 69px;
+            line-height: 39px;
             text-align: center;
             cursor: pointer;
         }

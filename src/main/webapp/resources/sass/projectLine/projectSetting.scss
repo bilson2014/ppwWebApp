@@ -71,7 +71,7 @@
                         .cardTop {
                             text-align: center;
                             div:nth-child(1) {
-                                font-size: $font-size;
+                                font-size: $font-size-lg;
                                 color: $gray-dark;
                                 margin-bottom: 15px;
                                 font-weight: bold;
@@ -177,8 +177,8 @@
                     margin: 0 auto;
                     font-size: 0;
                     border-bottom: 1px dashed $border-line;
-                    padding-bottom: 70px;
-                    padding-top: 80px;
+                    padding-bottom: 60px;
+                    padding-top: 60px;
                     .timeTitle {
                         font-size: $font-size-lg26;
                         color: $gray-dark;
@@ -238,8 +238,8 @@
                     margin: 0 auto;
                     font-size: 0;
                     border-bottom: 1px dashed $border-line;
-                    padding-bottom: 70px;
-                    padding-top: 80px;
+                    padding-bottom: 60px;
+                    padding-top: 60px;
                     .addTitle {
                         font-size: $font-size-lg26;
                         color: $gray-dark;
@@ -288,7 +288,7 @@
                     width: 100%;
                     text-align: center;
                     margin-bottom: 10px;
-                    padding-bottom: 30px;
+                    padding-bottom: 25px;
                     img {
                         width: 100%;
                         height: ($width-min - 90px)/4/(16/9);
@@ -304,7 +304,7 @@
                     div:nth-child(2) {
                         color: $gray-dark;
                         font-size: $font-size;
-                        margin-top: 30px;
+                        margin-top: 15px;
                     }
                     div:nth-child(3) {
                         color: $gray-dark;
@@ -466,8 +466,8 @@
                     display: inline-block;
                     vertical-align: top;
                     img {
-                        width: 130px;
-                        height: 130px;
+                        width: 120px;
+                        height: 120px;
                         border-radius: 100%;
                     }
                     .iLine {
@@ -479,7 +479,7 @@
                         right: 0;
                     }
                     .pTitle {
-                        font-size: $font-size;
+                        font-size: $font-size-base;
                         color: $gray-dark;
                         text-align: center;
                         margin-top: 30px;
@@ -489,7 +489,7 @@
                     .itemContent {
                         width: 100%;
                         height: 180px;
-                        font-size: $font-size-base;
+                        font-size: $font-size-sm;
                         color: $gray-light;
                         text-align: center;
                         position: relative;
@@ -502,7 +502,7 @@
                     }
                     .iDes {
                         margin: 0 auto;
-                        font-size: $font-size;
+                        font-size: $font-size-base;
                         color: $red-base;
                         margin-top: 20px;
                         width: 130px;
