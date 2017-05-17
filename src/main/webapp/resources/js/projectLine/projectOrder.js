@@ -43,9 +43,6 @@ var pOrder= {
 	    	$('.orderSuccess').removeClass('hide');
 	    	InterValObj = window.setInterval(showSuccess, 1000);
 	    });
-	    $('.renturnEdit').off('click').on('click',function(){
-	    	window.history.back();
-	    });
 	},
 
 }

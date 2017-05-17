@@ -198,7 +198,7 @@
                     <div class="optionItem">
                         <div class="title"></div>
                         <input type="button" class="checkOrder" value="确认下单" />
-                        <div class="renturnEdit">返回修改</div>
+                        <a href="/product/${product.englishName }/set"><div class="renturnEdit">返回修改</div></a>
                    </div>
                    </form>
             </div>
@@ -214,7 +214,7 @@
 		        <div class="desc">已经自动生产项目!进入我的项目查看</div>
 		        <div class="desc">页面将自动跳转进入<a>您的项目</a>页面</div>
 		        <div class="desc"><span id="last3">3</span>秒</div>
-		        <div class="descBot"><a href="/std/product/index?chanpinId=${product.chanpinId}">返回产品概述</a>请点击这里</div>
+		        <div class="descBot"><a href="/product/${product.englishName }/main">返回产品概述</a>请点击这里</div>
 		   </div>
        </div>
        
