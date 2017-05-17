@@ -46,6 +46,8 @@ var pSet = {
 			showCard();
 			$('#setError').hide();
 			calculatedValue(2);
+			$('.serviceContent').slideUp();
+			$('.serviceContent').slideDown(); 
 		});
 	}
 }
@@ -70,12 +72,10 @@ function getCheck(){
 }
 
 function showCard(){
-	 $('.serviceContent').slideDown();
 	 $('.timeContent').show();
 	 $('.addContent').show();
 	 $('.shape').removeClass('hideImg');
 	 $('.closeContent').off('click').on('click',function(){
-		$('.serviceContent').slideUp(); 
 		$('.cardContent').find('.shape').addClass('hideImg');
 	 });
 }
