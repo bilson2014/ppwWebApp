@@ -190,7 +190,7 @@ function initModel(id){
 		}
 	}
 	//初始化服务
-		initTab();
+	initTab();
 }
 
 function createMustMod(obj,num){
@@ -586,24 +586,61 @@ function resumeConfig(){
 		for (var int = 0; int < cards.length; int++) {
 			var car = cards[int];
 			if($(car).attr('data-id') == CconfigId){
-				$('#CConfigId').val($(this).attr('data-id'));
+				$('#CConfigId').val(CconfigId);
 				$(car).addClass('active');
 				initModel($(car).attr('data-id'));
 				showCard();
 				$('#setError').hide();
-				calculatedValue(2);
 				$('.serviceContent').slideUp();
 				$('.serviceContent').slideDown(); 
+				break;
 			}
 		}
+		resumeTime();
+		resumeSubjoin();
 	}
 }
 
 function resumeTime(){
 	var CtimeId = $('#CtimeId').val();
+	if(CtimeId != null && CtimeId != undefined && CtimeId != ''){
+		var cards = $('.timeCard');
+		$('.timeCard').removeClass('active');
+		for (var int = 0; int < cards.length; int++) {
+			var car = cards[int];
+			if($(car).attr('data-id') == CtimeId){
+				$('#CTimeID').val(CtimeId);
+				$(car).addClass('active');
+				break;
+			}
+		}
+	}
+	
+	
 }
 function resumeSubjoin(){
 	var CsubJoin = $('#CsubJoin').val();
 	var Cprice = $('#Cprice').val();
+	
+	if(CsubJoin != null && CsubJoin != undefined && CsubJoin != ''){
+		var idArray = CsubJoin.split(',');
+		if(idArray != null && idArray.length > 0){
+			var cards = $('.setItem');
+			$('.setItem').removeClass('active');
+			for (var int = 0; int < cards.length; int++) {
+				var car = cards[int];
+				for (var int2 = 0; int2 < idArray.length; int2++) {
+					if($(car).attr('data-id') == idArray[int2]){
+						$(car).addClass('active');
+						break;
+					}
+				}
+			}
+			$('#CSubjoinID').val(CsubJoin);
+			
+			calculatedValue();
+		}
+	}
+	
 }
 
