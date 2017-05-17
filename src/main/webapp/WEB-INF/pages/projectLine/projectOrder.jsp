@@ -218,10 +218,7 @@
 		        <div class="descBot"><a href="/product/${product.englishName }/main">返回产品概述</a>请点击这里</div>
 		   </div>
        </div>
-       
      </div>  
-    
-	
          <!-- foot -->
          					<div class="foot3">
                                 <div class="footContent">
