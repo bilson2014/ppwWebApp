@@ -45,6 +45,7 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
+		<input type="hidden" id="productId" value="${product.chanpinId }">
 		
 			<div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
@@ -159,7 +160,7 @@
        
        <div class="setMargin"></div>
        <div class="orderContent ">
-            <img src="${imgPath}/index/advanBack.png">
+            <img id="productImg" src="${imgPath}/index/advanBack.png">
             <div class="contentArea">
             	   <form id="fm" action="/product/confirm/indent" method="post">
                    <div class="title">您购买MG动画详细包如下</div>

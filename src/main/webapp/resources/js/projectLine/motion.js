@@ -161,8 +161,6 @@ function initProduct(){
 						}
 						product();
 			}, getContextPath() + '/product/case?productId=' + productId, null);
-
-	
 }
 
 function initFeature() {
