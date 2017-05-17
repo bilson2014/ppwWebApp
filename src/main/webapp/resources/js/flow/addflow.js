@@ -30,7 +30,7 @@ $().ready(function() {
 	$('#error-Synergy').hide();
 	//end
 	$(".tableinput-error").hide();
-	loadSource();
+	// loadSource();
 	$("#ul-select").hide();
 	$("#ul-select-team").hide();
 	$("#ul-select-referrer").hide();
@@ -444,7 +444,7 @@ function updateProject_ViewInit() {
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
 	
-			if($("#projectSource").val().trim()=='个人信息下单'){
+			if($("#projectSource").val().trim()=='推荐'){
 			$("#div-friendship").removeClass('hide');
 			$("#referrer-Id-hidden").val(msg.referrerId);
 			$("#input-referrer").val(msg.referrerName);
@@ -665,7 +665,7 @@ function addProject() {
 		customerPayment:customerPayment
 	}));
 }
-function loadSource() {
+/*function loadSource() {
 	loadData(function(msg) {
 		var select=$("#projectSource");
 		for (var int = 0; int < msg.length; int++) {
@@ -673,7 +673,7 @@ function loadSource() {
 			select.append(li);
 		}
 	}, getContextPath() + '/mgr/projects/getProjectTags', null);
-}
+}*/
 function VerifyTime(){
 	var time=$("input[id$='time']");
 	for (var int = time.length-1; int >=0 ; int--) {
@@ -721,7 +721,7 @@ function verifyFrom(){
 	}
 	//add by wangliming 2016-5-10 11:00 begin
 	//-->添加 验证推荐人
-	if($("#projectSource").val().trim()=='个人信息下单'){
+	if($("#projectSource").val().trim()=='推荐'){
 		 var referrerInput=$("#input-referrer");
 		 var id=$("#referrer-Id-hidden").val();
 		 if(!verifyInputNotNull(referrerInput) || id==null || id== ''){
@@ -1045,7 +1045,7 @@ function dateCompare(date1, date2) {
 //20160509 卢涛添加
 function showRecommend(){
 	$("#projectSource").on('change',function(){
-		 if($("#projectSource").val().trim()=='个人信息下单'){
+		 if($("#projectSource").val().trim()=='推荐'){
 			 $("#div-friendship").removeClass('hide');
 		 }
 		 else{
@@ -1066,31 +1066,7 @@ function clearError(input){
 	var div=input.parent();
 	div.removeClass('has-error');
 }
-//add wangliming 2016.5.10 11:00 begin
-//-->添加推荐人相关处理
-//function initReferrer(sourece,referrerId) {
-//	 if(sourece!=null && sourece!='' && sourece.trim()=='个人信息下单'){
-//		 $("#div-friendship").removeClass('hide');
-//		 $("#referrer-Id-hidden").val(referrerId);
-//		 loadData(function(msg) {
-//				referrerList=msg;
-//				
-//				referrerList.forEach(function(referrer){
-//					var staffId=referrer.employeeId+''.trim();
-//					if(staffId==referrerId){
-//						$("#referrer-Id-hidden").val(staffId);
-//						$("#input-referrer").val(referrer.staffName);
-//					}
-//				});
-//				
-//		 }, getContextPath() + '/mgr/projects/search/employee/list', null);
-//	 }
-//	 else{
-//		 $("#div-friendship").addClass('hide');
-//		 $("#input-referrer").val("");
-//		 $("#referrer-Id-hidden").val("");
-//	 }
-//}
+
 function enableSubmitBtnEnent(){
 	var state=$(".state").text().trim();
 	disableSubmitBtnEnent();
@@ -1117,7 +1093,7 @@ function disableSubmitBtnEnent(check){
 	
 }
 function getReferrer() {
-	if($("#projectSource").val().trim()=='个人信息下单'){
+	if($("#projectSource").val().trim()=='推荐'){
 		 return  $("#referrer-Id-hidden").val();
 	 }
 	 else{

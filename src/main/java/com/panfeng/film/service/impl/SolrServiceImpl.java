@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -28,16 +29,28 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 
 		// 组装 行业 和 类型 业务逻辑
 		try {
-			condition = KeywordUtils.mergeQConcition(view);
 			final SolrQuery query = new SolrQuery();
 			query.set("defType", "edismax");
-			query.set("qf", "productName^2.3 tags teamName^0.4");
+			query.set("qf", "productName^1 tags^0.8 teamName^0.4");
 			query.set("q.alt", "*:*");
 
+			// 整合bf，增强搜索字段的权重
+			if (StringUtils.isNotBlank(condition)) {
+				String freq = condition.replaceAll(",", " ").replaceAll(" +", " ");
+				StringBuffer sb = new StringBuffer();
+				for (String element : freq.split(" ")) {
+					sb.append("*");
+					sb.append(element);
+					sb.append("*");
+				}
+				query.set("bf",
+						"sum(termfreq(productName," + sb.toString() + "),div(termfreq(tags," + sb.toString() + "),3))^80");
+			}
+			condition = KeywordUtils.mergeQConcition(view);
 			query.setQuery(condition);
 			query.set("pf", "productName tags teamName");
 			query.set("tie", "0.1");
-			query.setFields("teamId,productId,productName,orignalPrice,price,picLDUrl,tags");
+			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags");
 
 			query.setStart(Integer.parseInt(String.valueOf(view.getBegin())));
 			query.setRows(Integer.parseInt(String.valueOf(view.getLimit())));
