@@ -194,7 +194,7 @@
 			               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}">
 			             </div>
 			             <div class="cardContent">
-			                    <div class="contentTitle">${tag.product.productName}</div>
+			                    <div class="contentTitle">${tag.pName}</div>
 						        <div class="contentContent">
 						                <%--  <div>客户   :  <span>${tag.user.userName}</span></div> --%>
 						                 <div>时长   :  <span>${tag.mcoms}</span></div>

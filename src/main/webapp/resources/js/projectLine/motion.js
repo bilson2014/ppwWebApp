@@ -149,7 +149,7 @@ function initProduct(){
 										'	  <img src="' + getDfsHostName() + rr.product.picLDUrl + '">',
 										'   </div>',
 										'   <div class="productContent">',
-										'       <div class="contentTitle">'+rr.product.productName+'</div>',
+										'       <div class="contentTitle">'+rr.pName+'</div>',
 										'       <div class="contentContent">',
 							            '           <div>时长   :  <span>'+rr.mcoms+'</span></div>',
 							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'</span></div>',
