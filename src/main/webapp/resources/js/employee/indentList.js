@@ -26,5 +26,4 @@ function subBtn(){
 	$('#bbbb').hide();
 	location.reload();
 	
-	
 }
