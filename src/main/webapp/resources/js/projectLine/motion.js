@@ -13,10 +13,13 @@ function getBannerHeight() {
 	var videoHeight = screenWidth / 16 * 9;
 	if (screenWidth <= 960) {
 		videoHeight = 320;
-		$('.swiper-banner').css('height', '960px');
-		$('.swiper-banner').css('width', '540px');
+		$('.swiper-banner').css('height', '540px');
+		$('.swiper-banner').css('width', '960px');
+	}else{
+		$('.swiper-banner').css('height', videoHeight);
+		$('.swiper-banner').css('width', '100%');
 	}
-	$('.swiper-banner').css('height', videoHeight);
+
 }
 
 function banner() {
@@ -108,8 +111,7 @@ function initScene() {
 							var rr = rows[int];
 							var html = [
 									'<div class="cItem">',
-									'	<img src="' + getDfsHostName()
-											+ rr.scenenPicLDUrl + '">',
+									'	<img src="' + getDfsHostName()+ rr.scenenPicLDUrl + '">',
 									'	<div>',
 									'		<img src="/resources/images/projectLine/motion/cardBack.png">',
 									'		<span>' + rr.sceneDescription + '</span>',

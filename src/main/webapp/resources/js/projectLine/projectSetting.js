@@ -1,5 +1,6 @@
 var configCache;
 var num = 1;
+var checkNum = 0;
 $().ready(function() {
 	initConfig();
 	getNext();
@@ -128,7 +129,6 @@ function initModel(id){
 					var type = mod.pinConfiguration_ProductModule.cpmModuleType;
 					if(type == 0){
 						v1.append(createMustMod(mod,int2));
-						
 					}else{
 						v2.append(createSubjoinMod(mod));
 					}
@@ -184,7 +184,7 @@ function createMustMod(obj,num){
 	if(num<2){
 		hasDes="(赠送)";
 	   }  
-		var html = ['<li class="packItem">',
+		var html = ['<li class="s_item packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
 					'    <div class="pTitle">'+obj.moduleName+'</div>',
 					'    <div class="itemContent">',
@@ -194,6 +194,7 @@ function createMustMod(obj,num){
 					'          </div>',
 					'         <div class="iDes">'+hasDes+'</div>',
 					'    </div>',
+					'    <div class="layer" style="cursor: pointer;"></div>', 
 					'</li>'].join('');
 		return html;
 }
@@ -395,6 +396,10 @@ function buildCar3(obj){
 }
 
 function initTab() {
+	if(checkNum > 0 ){
+	$('.slides').addClass('changeLeft');
+	}
+	checkNum = 1;
     var product_id = 1;
     // 初始化
     handleScreenSlider(initKey(product_id));
@@ -508,11 +513,11 @@ function initSlider(number, default_item) {
                     }
                     handleLayer(d, $s_item, number);
                     var data_id = $s_item.eq(default_item).parent().data('id');
-                    setPackageData(default_item, data_id);
+                   // setPackageData(default_item, data_id);
                 } else {
                     handleLayer(cur_item_index, $s_item, number);
                     var data_id = $s_item.eq(cur_item_index).parent().data('id');
-                    setPackageData(cur_item_index, data_id);
+                  //  setPackageData(cur_item_index, data_id);
                 }
             }
         });
@@ -541,11 +546,12 @@ function handleLayer(active_index, obj, n) {
         all_item.push(j);
     }
     other_item = arrDifference(all_item, active_item);
+    console.info(all_item);
     other_item.forEach(function(i, index) {
-        obj.eq(i).find(".layer").fadeIn().css({ "cursor": "auto" });
+        obj.eq(i).find(".layer").show().css({"cursor": "auto" });
     });
     active_item.forEach(function(i, index) {
-        obj.eq(i).find(".layer").fadeOut().css({ "cursor": "pointer" });
+        obj.eq(i).find(".layer").hide().css({"cursor": "pointer" });
     });
 }
 // 判断屏幕尺寸
