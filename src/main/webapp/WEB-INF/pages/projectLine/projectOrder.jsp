@@ -161,7 +161,7 @@
        
        <div class="setMargin"></div>
        <div class="orderContent ">
-            <img id="productImg" src="${imgPath}/index/advanBack.png">
+            <img id="productImg" src="${file_locate_storage_path }${config.chanpinconfigurationPicLDUrl}">
             <div class="contentArea">
             	   <form id="fm" action="/product/confirm/indent" method="post">
                    <div class="title">您购买MG动画详细包如下</div>

@@ -4,6 +4,7 @@ var InterValObj;
 var initM = 3;
 $().ready(function() {
 	pOrder.init();
+	//initProduct();
 });
 
 
