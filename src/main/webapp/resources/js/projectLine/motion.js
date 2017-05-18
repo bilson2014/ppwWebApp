@@ -5,7 +5,6 @@ $().ready(function() {
     window.onresize = function(){
     	getBannerHeight();
     };
-    controlEnglish();
 });
 
 function getBannerHeight() {
