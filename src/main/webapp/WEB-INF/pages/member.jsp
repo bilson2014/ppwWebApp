@@ -12,6 +12,8 @@
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/member.js" var="memberJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
@@ -136,7 +138,7 @@
             </div>
         </div>
     </div>
-
+    
  	<div class="outSideDiv">
 
 		       <div class="titleTag">
@@ -158,10 +160,10 @@
                 </a>
             </div>
         </div>
-	
+	    <div class="page"></div>
 		<div class="nav-shadow"></div>
 		
-		<div class="topContent">
+		<div class="topContent ">
 		      <div class="logoImg">
 		    	<img src="${imgPath}/introduce/member/joinus.svg">
 		      </div>	
@@ -396,11 +398,13 @@
 	</div>
 	<!-- toolbar modal end -->
 	<script src="${jqueryJs }"></script>
+	<script src="${jsonJs }"></script>
 	<script src="${modelJs }"></script>
+	<script src="${waypointsJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${suggestJs }"></script>
-    <script type="text/javascript" src="resources/lib/jquery/waypoints.min.js"></script>
 	<script src="${memberJs }"></script>
+
 
 </body>
 </html>

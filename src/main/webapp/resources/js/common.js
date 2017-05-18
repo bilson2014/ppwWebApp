@@ -9,6 +9,7 @@ var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function(){
 	getImgUrl();
 	controlInput();
+	controlMenu();
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
@@ -1013,5 +1014,27 @@ function controlEnglish(){
 		}
 	}
 	$('#english').text(result);
+}
+
+function controlMenu(){
+	
+	if($('div').hasClass('projectType')){
+		  $('.projectType').waypoint(function(direction) {
+		        if (direction == "up") { // 了解 拍片网之前
+		           $('.motionTitles').removeClass('setTop');
+		        }else{
+		           $('.motionTitles').addClass('setTop');
+		        }
+		    });  
+	}
+	if($('div').hasClass('titleTag')){
+		  $('.page').waypoint(function(direction) {
+		        if (direction == "up") { // 了解 拍片网之前
+		           $('.titleTag').removeClass('setTop');
+		        }else{
+		           $('.titleTag').addClass('setTop');
+		        }
+		    });  
+	}		
 }
 

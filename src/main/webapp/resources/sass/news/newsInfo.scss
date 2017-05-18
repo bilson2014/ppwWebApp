@@ -4,48 +4,25 @@
 @import "bootstrap-grid";
 @import "pagination";
 @import "compass/typography/text/ellipsis";
+@import "companyCommon";
 $itemMargin:35px;
 .page {
     margin-bottom: 180px;
     top: 40px !important;
 }
 
-#getImgUrl{
+#getImgUrl {
     position: relative;
-    top:14px;
+    top: 14px;
 }
 
-.header-item{
+.header-item {
     height: 60px;
 }
 
-.titleTag {
-    background: #f0f2f5;
-    height: 70px;
-    border-bottom: 1px solid $border-line;
-    width: 100%;
-    position: fixed;
-    top:60px;
-    z-index: 99;
-    .titleWord {
-        @include media_screen_width_beta3();
-        margin: 0 auto;
-        font-size: 0;
-        padding-left: 16%;
-        padding-right: 16%;
-        div {
-            color: $gray-light;
-            font-size: $font-size-base;
-            width: 16%;
-            display: inline-block;
-            line-height: 69px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .checkActive {
-            color: $red-base !important;
-            border-bottom: 1px solid $red-base;
-        }
+.titleWord {
+    div {
+        width: 16% !important;
     }
 }
 
@@ -53,7 +30,7 @@ $itemMargin:35px;
     @include media_screen_width_beta3();
     margin: 0 auto;
     font-size: 0;
-    margin-top: 120px;
+    margin-top: 60px;
     ul {
         //    margin-left: -($itemMargin/2);
     }

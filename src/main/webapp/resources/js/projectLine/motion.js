@@ -6,21 +6,7 @@ $().ready(function() {
     	getBannerHeight();
     };
     controlEnglish();
-    originTool();
 });
-
-function originTool() {
-
-    // 滚动监听 start
-    $('.projectType').waypoint(function(direction) {
-        if (direction == "up") { // 了解 拍片网之前
-           $('.motionTitles').removeClass('setTop');
-        }else{
-           $('.motionTitles').addClass('setTop');
-        }
-    });  
-}
-
 
 function getBannerHeight() {
 	var screenWidth = document.documentElement.clientWidth;
@@ -126,7 +112,7 @@ function initScene() {
 											+ rr.scenenPicLDUrl + '">',
 									'	<div>',
 									'		<img src="/resources/images/projectLine/motion/cardBack.png">',
-									'		<span>' + rr.sceneName + '</span>',
+									'		<span>' + rr.sceneDescription + '</span>',
 									'	</div>', '</div>' ].join('');
 							view.append(html);
 						}
