@@ -107,10 +107,16 @@
                             border: 1px solid transparent;
                             img:nth-child(1) {
                                 width: 100%;
-                                height: (400px /(16/9));
                                 border-top-left-radius: 6px;
                                 border-top-right-radius: 6px;
                                 position: relative;
+                                height: ($width-min - 40)/3/(16/9);
+                                @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                    height: ($width-middle - $margin-right-card*2)/3/(16/9);
+                                }
+                                @media screen and (min-width: 1500px) {
+                                    height: ($width-lg3 - $margin-right-card*2)/3/(16/9);
+                                }
                             }
                             img:nth-child(2) {
                                 width: 60px;

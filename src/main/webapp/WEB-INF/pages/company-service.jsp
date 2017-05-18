@@ -11,6 +11,7 @@
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
@@ -334,6 +335,7 @@
 	<!-- toolbar modal end -->
 	
 	<script src="${jqueryJs }"></script>
+	<script src="${waypointsJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${modelJs }"></script>
 	<script src="${commonJs }"></script>

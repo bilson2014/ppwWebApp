@@ -23,6 +23,7 @@
     <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
     <spring:url value="/resources/js/common.js" var="commonJs"/>
     <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
+    <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 
 <link rel="stylesheet" href="${serviceToCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
@@ -277,6 +278,9 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
     </div>
 </body>
     <script type="text/javascript" src="${jqueryJs }"></script>
+    <script type="text/javascript" src="${waypointsJs }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
+    
+    
 </html>

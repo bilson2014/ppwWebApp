@@ -11,6 +11,8 @@
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/aboutUs.js" var="aboutJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
+
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -373,6 +375,7 @@
 	<script type="text/javascript" src="${modelJs }"></script>
 	<script type="text/javascript" src="${commonJs }"></script>
 	<script type="text/javascript" src="${aboutJs }"></script>
+	<script type="text/javascript" src="${waypointsJs }"></script>
 	
 </body>
 </html>

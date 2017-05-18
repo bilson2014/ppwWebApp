@@ -6,10 +6,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
+
 <spring:url value="/resources/css/news/newsInfo.css" var="newsInfoCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/newsInfo.js" var="newsJS"/>
@@ -17,6 +18,7 @@
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypoints" />
 <!-- imgPath -->
 <spring:url value="/resources/images" var="imgPath" />
 
@@ -49,7 +51,7 @@
 			s.parentNode.insertBefore(vds, s);
 		})();
 	})();
-</script>
+</script> 
 </head>
 
 <body>
@@ -277,7 +279,8 @@
     <script type="text/javascript" src="${bootstrapJs }"></script>
     <script type="text/javascript" src="${flexsliderJS }"></script>
     <script type="text/javascript" src="${json }" ></script>
-	<script type="text/javascript" src="${jqueryPageJs }"></script>	
+	<script type="text/javascript" src="${jqueryPageJs }"></script>
+	<script type="text/javascript" src="${waypoints }"></script>	
     <script type="text/javascript" src="${newsJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
 </body>
