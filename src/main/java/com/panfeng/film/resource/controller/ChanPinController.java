@@ -232,6 +232,8 @@ public class ChanPinController extends BaseController {
 	public BaseMsg getScene(@PathVariable("chanpinId") Long chanpinId) {
 		BaseMsg baseMsg = new BaseMsg();
 		DataGrid<PmsScene> allScene = pmsSceneFacade.getAllScene();
+		List<PmsScene> list = new ArrayList<>();
+
 		List<PmsScene> pList = pmsSceneFacade.getSceneByChanPinId(chanpinId);
 		if (ValidateUtil.isValid(pList) && allScene != null && ValidateUtil.isValid(allScene.getRows())) {
 			for (PmsScene pmsScene : pList) {
@@ -240,11 +242,13 @@ public class ChanPinController extends BaseController {
 					Long sceneId = p.getSceneId();
 					if (pListSceneId.equals(sceneId)) {
 						p.setChecked(true);
+						list.add(p);
 						break;
 					}
 				}
 			}
 		}
+		allScene.setRows(list);
 		baseMsg.setErrorCode(BaseMsg.NORMAL);
 		baseMsg.setResult(allScene);
 		return baseMsg;
