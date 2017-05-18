@@ -1021,18 +1021,18 @@ function controlMenu(){
 	if($('div').hasClass('projectType')){
 		  $('.projectType').waypoint(function(direction) {
 		        if (direction == "up") { // 了解 拍片网之前
-		           $('.motionTitles').removeClass('setTop');
+		           $('.motionTitles').removeClass('setTopTgasDiv');
 		        }else{
-		           $('.motionTitles').addClass('setTop');
+		           $('.motionTitles').addClass('setTopTgasDiv');
 		        }
 		    });  
 	}
 	if($('div').hasClass('titleTag')){
 		  $('.page').waypoint(function(direction) {
 		        if (direction == "up") { // 了解 拍片网之前
-		           $('.titleTag').removeClass('setTop');
+		           $('.titleTag').removeClass('setTopTgasDiv');
 		        }else{
-		           $('.titleTag').addClass('setTop');
+		           $('.titleTag').addClass('setTopTgasDiv');
 		        }
 		    });  
 	}		

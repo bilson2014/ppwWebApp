@@ -11,7 +11,7 @@
 @import "compass/typography/text/ellipsis";
 //@import "icons-sprite"; 
 body {
-    font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "PingFang SC", Helvetica,"Microsoft YaHei", "微软雅黑", Arial, sans-serif !important;
     font-weight: 500;
 }
 
@@ -21,6 +21,10 @@ li{
 
 .page {
     background: #FDFFFF !important;
+}
+//所有最高级导航置顶
+.setTopTgasDiv {
+    top: 0 !important;
 }
 
 a:focus,
