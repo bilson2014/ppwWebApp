@@ -1,4 +1,4 @@
- <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -68,7 +68,8 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
+					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
 				<r:noLogin>

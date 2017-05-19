@@ -2,6 +2,7 @@
 @import "buttons";
 @import "video";
 @import "bootstrap-grid";
+@import "companyCommon";
 $historyColor:#f8fbfb;
 $pink:#FF7F88;
 .nav-shadow {
@@ -15,43 +16,12 @@ $pink:#FF7F88;
     margin-top: 55px;
 }
 
-.titleTag {
-    background: #f0f2f5;
-    height: 70px;
-    border-bottom: 1px solid $border-line;
-    position: fixed;
-    width: 100%;
-    top: 60px;
-    z-index: 999;
-    .titleWord {
-        @include media_screen_width_beta3();
-        margin: 0 auto;
-        font-size: 0;
-        padding-left: 16%;
-        padding-right: 16%;
-        div {
-            color: $gray-light;
-            font-size: $font-size-base;
-            width: 20%;
-            display: inline-block;
-            line-height: 69px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .checkActive {
-            color: $red-base !important;
-            border-bottom: 1px solid $red-base;
-        }
-    }
-}
-
 .banner {
     width: 100%;
     height: 900px;
     background: black;
     text-align: center;
     position: relative;
-    margin-top: 70px;
     .bannerLogo {
         @include media_screen_width_beta3();
         margin: 0 auto;

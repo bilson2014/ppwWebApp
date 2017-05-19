@@ -4,20 +4,10 @@ var InterValObj;
 var initM = 3;
 $().ready(function() {
 	pOrder.init();
-	originTool();
+	//initProduct();
 });
 
-function originTool() {
 
-    // 滚动监听 start
-    $('.projectType').waypoint(function(direction) {
-        if (direction == "up") { // 了解 拍片网之前
-           $('.motionTitles').removeClass('setTop');
-        }else{
-           $('.motionTitles').addClass('setTop');
-        }
-    });  
-}
 /**
  * 主页业务处理部分
  */
@@ -39,9 +29,20 @@ var pOrder= {
 	    	$(this).addClass('active');
 	    });
 	    $('.checkOrder').off('click').on('click',function(){
-	    	$('.orderContent').addClass('hide');
-	    	$('.orderSuccess').removeClass('hide');
-	    	InterValObj = window.setInterval(showSuccess, 1000);
+	    	var cId = $('#configId').val();
+	    	var tId = $('#timeId').val();
+	    	var subId = $('#subJoin').val();
+	    loadData(function(res){
+	
+	    	if(res.errorCode == 500){
+	    		window.location.href='/mgr/login';
+	    	}else{
+		    	$('.orderContent').addClass('hide');
+		    	$('.orderSuccess').removeClass('hide');
+		    	InterValObj = window.setInterval(showSuccess, 1000);
+	    	}
+			}, getContextPath()+'/product/confirm/indent?configId='+cId +'&timeId='+tId +'&subJoin='+subId, null);
+
 	    });
 	},
 

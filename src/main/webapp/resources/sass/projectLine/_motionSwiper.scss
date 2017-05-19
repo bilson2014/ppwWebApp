@@ -100,6 +100,7 @@
 
 .swiper-banner {
     width: 100%;
+    min-width: 960px;
     height: 300px;
     margin: 20px auto;
     img {
@@ -203,8 +204,8 @@ $midWidth:500px;
 $smWidth:400px;
 .swiper-product {
     min-width: 960px;
-    height: 500px;
-    font-size: 0;
+    height: auto;
+    padding-bottom: 120px;
     .productItem {
         width: 100%；
     }

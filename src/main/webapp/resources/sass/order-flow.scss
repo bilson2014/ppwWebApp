@@ -2,6 +2,7 @@
 @import "buttons";
 @import "video";
 @import "flexslider";
+@import "companyCommon";
 
 .bgLogo {
     width: 300px;
@@ -12,41 +13,11 @@
     background: url('/resources/images/service/logo.svg') no-repeat !important;
 }
 
-.titleTag {
-    background: #f0f2f5;
-    height: 70px;
-    width: 100%;
-    border-bottom: 1px solid $border-line;
-    position: fixed;
-    top:60px;
-    z-index: 99;
-    .titleWord {
-        @include media_screen_width_beta3();
-        margin: 0 auto;
-        font-size: 0;
-        padding-left: 16%;
-        padding-right: 16%;
-        div {
-            color: $gray-light;
-            font-size: $font-size-base;
-            width: 20%;
-            display: inline-block;
-            line-height: 69px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .checkActive {
-            color: $red-base !important;
-            border-bottom: 1px solid $red-base;
-        }
-    }
-}
 
 .tagsWidth {
     @include media_screen_width_beta3();
     margin: 0 auto;
     margin-bottom: 120px;
-    margin-top: 120px;
     @media screen and (min-width: 1276px) {
         padding-left: 150px;
         padding-right: 150px;

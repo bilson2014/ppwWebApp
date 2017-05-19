@@ -9,6 +9,7 @@ var InterValObj; // timer变量，控制时间 - 注册
 $().ready(function(){
 	getImgUrl();
 	controlInput();
+	controlMenu();
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
@@ -990,28 +991,50 @@ function controlInput(){
 }
 //控制英文
 function controlEnglish(){
-	var enSize = $('#english').text();
-	var result = '';
-	var begin = 0;
-	var end = 0;
-	for (var int = 0; int < enSize.length; int++) {
-		var charcode = parseInt(enSize.charCodeAt(int));
-		if(charcode >= 65 && charcode <= 90 && int != 0){
-			end = int;
-			console.log(begin+'b');
-			console.log(end +'e');
-			var tmp = enSize.substring(begin,end);
-			begin = end;
-			result+=tmp;
-			result+= ' ';
-		}
-		
-		if(int == enSize.length -1){
-			var tmp = enSize.substring(end,enSize.length);
-			result+=tmp;
-			result+= ' ';
-		}
+//	var enSize = $('#english').text();
+//	var result = '';
+//	var begin = 0;
+//	var end = 0;
+//	for (var int = 0; int < enSize.length; int++) {
+//		var charcode = parseInt(enSize.charCodeAt(int));
+//		if(charcode >= 65 && charcode <= 90 && int != 0){
+//			end = int;
+//			console.log(begin+'b');
+//			console.log(end +'e');
+//			var tmp = enSize.substring(begin,end);
+//			begin = end;
+//			result+=tmp;
+//			result+= ' ';
+//		}
+//		
+//		if(int == enSize.length -1){
+//			var tmp = enSize.substring(end,enSize.length);
+//			result+=tmp;
+//			result+= ' ';
+//		}
+//	}
+//	$('#english').text(result);
+}
+
+function controlMenu(){
+	
+	if($('div').hasClass('projectType')){
+		  $('.projectType').waypoint(function(direction) {
+		        if (direction == "up") { // 了解 拍片网之前
+		           $('.motionTitles').removeClass('setTopTgasDiv');
+		        }else{
+		           $('.motionTitles').addClass('setTopTgasDiv');
+		        }
+		    });  
 	}
-	$('#english').text(result);
+	if($('div').hasClass('titleTag')){
+		  $('.page').waypoint(function(direction) {
+		        if (direction == "up") { // 了解 拍片网之前
+		           $('.titleTag').removeClass('setTopTgasDiv');
+		        }else{
+		           $('.titleTag').addClass('setTopTgasDiv');
+		        }
+		    });  
+	}		
 }
 

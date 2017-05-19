@@ -147,91 +147,102 @@ public class ChanPinController extends BaseController {
 	}
 
 	@RequestMapping("/product/confirm/indent")
-	public ModelAndView indentConfirm2(Long configId, Long timeId, String subJoin, HttpServletRequest request) {
-		PmsChanPinConfiguration config = pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
-
-		List<PmsDimension> pmsDimensions = config.getPmsDimensions();
-		if (ValidateUtil.isValid(pmsDimensions)) {
-			Iterator<PmsDimension> iterator = pmsDimensions.iterator();
-			while (iterator.hasNext()) {
-				PmsDimension pmsDimension = (PmsDimension) iterator.next();
-				if (!pmsDimension.getDimensionId().equals(timeId)) {
-					iterator.remove();
+	public BaseMsg indentConfirm2(Long configId, Long timeId, String subJoin, HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setErrorCode(BaseMsg.ERROR);
+		baseMsg.setErrorMsg("下单失败");
+		HttpSession session = request.getSession();
+		SessionInfo currentInfo = getCurrentInfo(request);
+		if (currentInfo != null && PmsConstant.ROLE_EMPLOYEE.equals(currentInfo.getSessionType())) {
+			PmsChanPinConfiguration config = pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
+			List<PmsDimension> pmsDimensions = config.getPmsDimensions();
+			if (ValidateUtil.isValid(pmsDimensions)) {
+				Iterator<PmsDimension> iterator = pmsDimensions.iterator();
+				while (iterator.hasNext()) {
+					PmsDimension pmsDimension = (PmsDimension) iterator.next();
+					if (!pmsDimension.getDimensionId().equals(timeId)) {
+						iterator.remove();
+					}
 				}
 			}
-		}
-		List<PmsProductModule> pmsProductModule = config.getPmsProductModule();
-		List<PmsProductModule> sub = new ArrayList<>();
+			List<PmsProductModule> pmsProductModule = config.getPmsProductModule();
+			List<PmsProductModule> sub = new ArrayList<>();
 
-		Iterator<PmsProductModule> in = pmsProductModule.iterator();
-		while (in.hasNext()) {
-			PmsProductModule productModule = (PmsProductModule) in.next();
-			Integer cpmModuleType = productModule.getPinConfiguration_ProductModule().getCpmModuleType();
-			if (cpmModuleType.equals(1)) {
-				sub.add(productModule);
-				in.remove();
+			Iterator<PmsProductModule> in = pmsProductModule.iterator();
+			while (in.hasNext()) {
+				PmsProductModule productModule = (PmsProductModule) in.next();
+				Integer cpmModuleType = productModule.getPinConfiguration_ProductModule().getCpmModuleType();
+				if (cpmModuleType.equals(1)) {
+					sub.add(productModule);
+					in.remove();
+				}
 			}
-		}
 
-		if (ValidateUtil.isValid(subJoin)) {
-			String[] split = subJoin.split(",");
-			if (ValidateUtil.isValid(pmsProductModule) && split != null && split.length != 0) {
-				Iterator<PmsProductModule> iterator = sub.iterator();
-				while (iterator.hasNext()) {
-					PmsProductModule productModule = (PmsProductModule) iterator.next();
-					for (int i = 0; i < split.length; i++) {
-						Long sId = Long.valueOf(split[i]);
-						if (productModule.getProductModuleId().equals(sId)) {
-							pmsProductModule.add(productModule);
+			if (ValidateUtil.isValid(subJoin)) {
+				String[] split = subJoin.split(",");
+				if (ValidateUtil.isValid(pmsProductModule) && split != null && split.length != 0) {
+					Iterator<PmsProductModule> iterator = sub.iterator();
+					while (iterator.hasNext()) {
+						PmsProductModule productModule = (PmsProductModule) iterator.next();
+						for (int i = 0; i < split.length; i++) {
+							Long sId = Long.valueOf(split[i]);
+							if (productModule.getProductModuleId().equals(sId)) {
+								pmsProductModule.add(productModule);
+							}
 						}
 					}
 				}
 			}
-		}
 
-		PmsIndentConfirm pmsIndentConfirm = new PmsIndentConfirm();
-		pmsIndentConfirm.setChanpinId(config.getChanpinId());
-		pmsIndentConfirm.setConfigurationId(config.getChanpinconfigurationId());
-		PmsChanPin chanPinInfo = pmsChanPinFacade.getChanPinInfo(config.getChanpinId());
-		pmsIndentConfirm.setName(chanPinInfo.getChanpinName());
-		String json = JsonUtil.toJson(config);
-		pmsIndentConfirm.setConfigurationJson(json);
-		HttpSession session = request.getSession();
-		SessionInfo currentInfo = getCurrentInfo(request);
-		Object attribute = session.getAttribute("requireId");
-		if (attribute != null) {
-			Long id = Long.valueOf(attribute.toString());
-			pmsIndentConfirm.setRequire_id(id);
-		}
-		Map<String, Object> save = pmsIndentConfirmFacade.save(pmsIndentConfirm);
-		if (save != null) {
-			// Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
-			Object object = save.get("save_map_rows");
-			if (object != null) {
-				Long valueOf = Long.valueOf(object.toString());
-				if (valueOf > 0) {
-					// 发送邮件
-					StringBuilder stringBuilder = new StringBuilder();
-					stringBuilder.append("产品线：");
-					stringBuilder.append(chanPinInfo.getChanpinName());
-					stringBuilder.append("<br/>配置：");
-					stringBuilder.append(config.getChanpinconfigurationName());
-					stringBuilder.append("<br>");
-					stringBuilder.append(configJoin(config));
+			PmsIndentConfirm pmsIndentConfirm = new PmsIndentConfirm();
+			pmsIndentConfirm.setChanpinId(config.getChanpinId());
+			pmsIndentConfirm.setConfigurationId(config.getChanpinconfigurationId());
+			PmsChanPin chanPinInfo = pmsChanPinFacade.getChanPinInfo(config.getChanpinId());
+			pmsIndentConfirm.setName(chanPinInfo.getChanpinName());
+			String json = JsonUtil.toJson(config);
+			pmsIndentConfirm.setConfigurationJson(json);
 
-					String string = stringBuilder.toString();
-					sendMail(string, config.computePrice() + "", currentInfo);
-					return new ModelAndView("/index");
+			Object attribute = session.getAttribute("requireId");
+			if (attribute != null) {
+				Long id = Long.valueOf(attribute.toString());
+				pmsIndentConfirm.setRequire_id(id);
+			}
+			Map<String, Object> save = pmsIndentConfirmFacade.save(pmsIndentConfirm);
+			if (save != null) {
+				// Object object = save.get(BaseEntity.SAVE_MAP_ROWS);
+				Object object = save.get("save_map_rows");
+				if (object != null) {
+					Long valueOf = Long.valueOf(object.toString());
+					if (valueOf > 0) {
+						// 发送邮件
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.append("产品线：");
+						stringBuilder.append(chanPinInfo.getChanpinName());
+						stringBuilder.append("<br/>配置：");
+						stringBuilder.append(config.getChanpinconfigurationName());
+						stringBuilder.append("<br>");
+						stringBuilder.append(configJoin(config));
+
+						String string = stringBuilder.toString();
+						sendMail(string, config.computePrice() + "", currentInfo);
+						baseMsg.setErrorCode(BaseMsg.NORMAL);
+						baseMsg.setErrorMsg("登录成功！");
+					}
 				}
 			}
+		}else{
+			baseMsg.setErrorCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("请登录！");
 		}
-		return new ModelAndView("/error");
+		return baseMsg;
 	}
 
 	@RequestMapping("/product/scene/{chanpinId}")
 	public BaseMsg getScene(@PathVariable("chanpinId") Long chanpinId) {
 		BaseMsg baseMsg = new BaseMsg();
 		DataGrid<PmsScene> allScene = pmsSceneFacade.getAllScene();
+		List<PmsScene> list = new ArrayList<>();
+
 		List<PmsScene> pList = pmsSceneFacade.getSceneByChanPinId(chanpinId);
 		if (ValidateUtil.isValid(pList) && allScene != null && ValidateUtil.isValid(allScene.getRows())) {
 			for (PmsScene pmsScene : pList) {
@@ -240,11 +251,13 @@ public class ChanPinController extends BaseController {
 					Long sceneId = p.getSceneId();
 					if (pListSceneId.equals(sceneId)) {
 						p.setChecked(true);
+						list.add(p);
 						break;
 					}
 				}
 			}
 		}
+		allScene.setRows(list);
 		baseMsg.setErrorCode(BaseMsg.NORMAL);
 		baseMsg.setResult(allScene);
 		return baseMsg;

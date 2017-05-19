@@ -61,7 +61,8 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
+					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>				
 				<r:noLogin>
@@ -160,7 +161,7 @@
        
        <div class="setMargin"></div>
        <div class="orderContent ">
-            <img id="productImg" src="${imgPath}/index/advanBack.png">
+            <img id="productImg" src="${file_locate_storage_path }${config.chanpinconfigurationPicLDUrl}">
             <div class="contentArea">
             	   <form id="fm" action="/product/confirm/indent" method="post">
                    <div class="title">您购买MG动画详细包如下</div>
@@ -171,14 +172,14 @@
                    </div>
                    <div class="optionItem">
                         <div class="title">基础套餐</div>
-                        <input type="hidden" name="configId" value="${config.chanpinconfigurationId}">
+                        <input type="hidden" name="configId" id="configId" value="${config.chanpinconfigurationId}">
                         <ul class="mealCard">
                               <li>${config.chanpinconfigurationName }</li>
                         </ul>
                    </div>
                     <div class="optionItem">
                         <div class="title">时长</div>
-                        <input type="hidden" name="timeId" value="${time.dimensionId}">
+                        <input type="hidden" name="timeId" id="timeId" value="${time.dimensionId}">
                         <ul class="timeCard">
                               <li>${time.rowName }</li>
                         </ul>
@@ -186,7 +187,7 @@
                    <c:if test="${! empty  subjoin}">
                     <div class="optionItem">
                         <div class="title">附加包类型</div>
-                        <input type="hidden" name="subJoin" value="${subjoinId}">
+                        <input type="hidden" name="subJoin" id="subJoin" value="${subjoinId}">
                         <ul class="moreCard">
                         	  
 	                        	<c:forEach items="${subjoin }" var="tag">
@@ -211,9 +212,9 @@
 				<span class="line long"></span>
 		   </div>
 		   <div class="oSContent">
-		        <div class="title">下单成功并生成项目</div>
-		        <div class="desc">已经自动生产项目!进入我的项目查看</div>
-		        <div class="desc">页面将自动跳转进入<a>您的项目</a>页面</div>
+		        <div class="title">下单成功</div>
+		        <div class="desc">已生成订单并发送邮件到您的邮箱</div>
+		        <div class="desc">页面将自动跳转进入<a href="<spring:url value='/mgr/index'/>">您的项目</a>页面</div>
 		        <div class="desc"><span id="last3">3</span>秒</div>
 		        <div class="descBot"><a href="/product/${product.englishName }/main">返回产品概述</a>请点击这里</div>
 		   </div>

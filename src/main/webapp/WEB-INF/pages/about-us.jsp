@@ -11,6 +11,8 @@
 <spring:url value="/resources/js/model.js" var="modelJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/js/aboutUs.js" var="aboutJs"/>
+<spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
+
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -65,7 +67,8 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
+					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
 				
@@ -372,6 +375,7 @@
 	<script type="text/javascript" src="${modelJs }"></script>
 	<script type="text/javascript" src="${commonJs }"></script>
 	<script type="text/javascript" src="${aboutJs }"></script>
+	<script type="text/javascript" src="${waypointsJs }"></script>
 	
 </body>
 </html>

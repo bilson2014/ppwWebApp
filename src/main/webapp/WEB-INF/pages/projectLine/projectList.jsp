@@ -85,7 +85,8 @@
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
 				</r:identity>
 				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目<span></span></a>
+					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
+					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>				
 				<r:noLogin>
@@ -197,8 +198,8 @@
 			                    <div class="contentTitle">${tag.pName}</div>
 						        <div class="contentContent">
 						                <%--  <div>客户   :  <span>${tag.user.userName}</span></div> --%>
-						                 <div>时长   :  <span>${tag.mcoms}</span></div>
-						                 <div>周期   :  <span>${tag.pProductionCycle}</span></div>
+						                 <div>时长   :  <span>${tag.mcoms}秒</span></div>
+						                 <div>周期   :  <span>${tag.pProductionCycle}天</span></div>
 						                 <div>应用场景   :  <span>${tag.pScene}</span></div>
 						                 <div class="contentDes">${tag.customerRestimonial}</div>
 						        </div>

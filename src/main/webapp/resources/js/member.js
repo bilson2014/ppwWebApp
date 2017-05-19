@@ -7,6 +7,7 @@ $().ready(function() {
 		$('#job-demand').html(job.demand);
 		$('#job-desc').html(job.jobDescription);
 	}, getContextPath() + '/job/info/' + '1', null);
+	
 	$('#job-list').find('li').on('click', function() {
 		$('#job-list').find('li').removeClass('active');
 		$(this).addClass('active');

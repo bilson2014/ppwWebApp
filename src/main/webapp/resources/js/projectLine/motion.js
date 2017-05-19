@@ -5,32 +5,20 @@ $().ready(function() {
     window.onresize = function(){
     	getBannerHeight();
     };
-    controlEnglish();
-    originTool();
 });
-
-function originTool() {
-
-    // 滚动监听 start
-    $('.projectType').waypoint(function(direction) {
-        if (direction == "up") { // 了解 拍片网之前
-           $('.motionTitles').removeClass('setTop');
-        }else{
-           $('.motionTitles').addClass('setTop');
-        }
-    });  
-}
-
 
 function getBannerHeight() {
 	var screenWidth = document.documentElement.clientWidth;
 	var videoHeight = screenWidth / 16 * 9;
 	if (screenWidth <= 960) {
 		videoHeight = 320;
-		$('.swiper-banner').css('height', '960px');
-		$('.swiper-banner').css('width', '540px');
+		$('.swiper-banner').css('height', '540px');
+		$('.swiper-banner').css('width', '960px');
+	}else{
+		$('.swiper-banner').css('height', videoHeight);
+		$('.swiper-banner').css('width', '100%');
 	}
-	$('.swiper-banner').css('height', videoHeight);
+
 }
 
 function banner() {
@@ -122,11 +110,10 @@ function initScene() {
 							var rr = rows[int];
 							var html = [
 									'<div class="cItem">',
-									'	<img src="' + getDfsHostName()
-											+ rr.scenenPicLDUrl + '">',
+									'	<img src="' + getDfsHostName()+ rr.scenenPicLDUrl + '">',
 									'	<div>',
 									'		<img src="/resources/images/projectLine/motion/cardBack.png">',
-									'		<span>' + rr.sceneName + '</span>',
+									'		<span>' + rr.sceneDescription + '</span>',
 									'	</div>', '</div>' ].join('');
 							view.append(html);
 						}
@@ -151,8 +138,8 @@ function initProduct(){
 										'   <div class="productContent">',
 										'       <div class="contentTitle">'+rr.pName+'</div>',
 										'       <div class="contentContent">',
-							            '           <div>时长   :  <span>'+rr.mcoms+'</span></div>',
-							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'</span></div>',
+							            '           <div>时长   :  <span>'+rr.mcoms+'秒</span></div>',
+							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'天</span></div>',
 							            '           <div>应用场景   :  <span>'+rr.pScene+'</span></div>',
 							            '           <div class="contentDes">'+rr.customerRestimonial+'</div>',
 							            '       </div>',
