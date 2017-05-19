@@ -467,7 +467,7 @@ function initSlider(number, default_item) {
                 slider.flexAnimate(start_at, true);
                 $(".flex-viewport").css("overflow", "visible");
                 // 当分类少于number时，左右箭头不显示
-                if (s_item_length < number) {
+                if (s_item_length <= number) {
                     $(".flex-prev").hide();
                     $(".flex-next").hide();
                 }
