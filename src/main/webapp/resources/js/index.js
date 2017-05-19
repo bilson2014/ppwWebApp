@@ -267,6 +267,8 @@ var homePage = {
 	search:function(){
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
+			if(flag == '宣传片')
+				flag = '*宣传片';
 			if (flag == '广告片')
 				flag = '广告';
 			window.location.href='/search?q=&industry='+flag;
