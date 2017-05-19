@@ -9,10 +9,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.UrlResourceUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRight;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
-import com.panfeng.film.util.UrlResourceUtils;
 
 public class SecurityTag extends TagSupport{
 

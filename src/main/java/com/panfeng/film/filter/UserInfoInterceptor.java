@@ -9,11 +9,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.UrlResourceUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRight;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.UrlResourceUtils;
 
 /**
  * 用户信息拦截器 拦截未登录用户做登陆使用
@@ -26,8 +26,6 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private final PmsRightFacade pmsRightFacade = null;
 
-	
-	
 	public boolean preHandle(HttpServletRequest req,
 			HttpServletResponse resp, Object handler) throws Exception {
 		
