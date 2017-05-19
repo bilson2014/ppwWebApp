@@ -991,29 +991,29 @@ function controlInput(){
 }
 //控制英文
 function controlEnglish(){
-	var enSize = $('#english').text();
-	var result = '';
-	var begin = 0;
-	var end = 0;
-	for (var int = 0; int < enSize.length; int++) {
-		var charcode = parseInt(enSize.charCodeAt(int));
-		if(charcode >= 65 && charcode <= 90 && int != 0){
-			end = int;
-			console.log(begin+'b');
-			console.log(end +'e');
-			var tmp = enSize.substring(begin,end);
-			begin = end;
-			result+=tmp;
-			result+= ' ';
-		}
-		
-		if(int == enSize.length -1){
-			var tmp = enSize.substring(end,enSize.length);
-			result+=tmp;
-			result+= ' ';
-		}
-	}
-	$('#english').text(result);
+//	var enSize = $('#english').text();
+//	var result = '';
+//	var begin = 0;
+//	var end = 0;
+//	for (var int = 0; int < enSize.length; int++) {
+//		var charcode = parseInt(enSize.charCodeAt(int));
+//		if(charcode >= 65 && charcode <= 90 && int != 0){
+//			end = int;
+//			console.log(begin+'b');
+//			console.log(end +'e');
+//			var tmp = enSize.substring(begin,end);
+//			begin = end;
+//			result+=tmp;
+//			result+= ' ';
+//		}
+//		
+//		if(int == enSize.length -1){
+//			var tmp = enSize.substring(end,enSize.length);
+//			result+=tmp;
+//			result+= ' ';
+//		}
+//	}
+//	$('#english').text(result);
 }
 
 function controlMenu(){
