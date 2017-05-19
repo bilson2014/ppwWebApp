@@ -251,7 +251,7 @@
                                             <div class="title"><a>登录</a></div>
                                              <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
                                             <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
-                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
+                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">内部员工登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>
                                         <div class="topItem commonWidth">

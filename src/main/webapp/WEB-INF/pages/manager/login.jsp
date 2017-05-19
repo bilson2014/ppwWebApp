@@ -23,10 +23,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="title" content="视频管家登陆页面">
+	<meta name="title" content="内部员工登录页面">
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网－广告－宣传片－微电影－视频营销</title>
+	<title>拍片网</title>
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${loginCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
@@ -127,12 +127,12 @@
 		
 		 <div class="outSideDiv">
 		         <div class="loginDiv">
-		            <h1>视频管家登录</h1>
+		            <h1>内部员工登录</h1>
 		              <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
 		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="管家名" id="loginName"></input>
+		                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName"></input>
 		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="loginNameId">*管家名错误</div>
+		                 <div class="errorDiv hide" id="loginNameId">*用户名错误</div>
 		            </div>
 		                <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
@@ -185,7 +185,7 @@
                                             <div class="title"><a>登录</a></div>
                                             <div class="cusLogin iconItem"><a href="<spring:url value="/login?role=user" />">客户登录</a></div>
                                             <div class="proLogin iconItem"><a href="<spring:url value="/login?role=director" />">导演登录</a></div>
-                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">管家登录</a></div>
+                                            <div class="manLogin iconItem"><a href="<spring:url value="/mgr/login" />">内部员工登录</a></div>
                                             <div class="reg iconItem"><a href="<spring:url value="/register" />">注册</a></div>
                                         </div>
                                         <div class="topItem commonWidth">

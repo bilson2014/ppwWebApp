@@ -32,8 +32,10 @@ var pOrder= {
 	    	var cId = $('#configId').val();
 	    	var tId = $('#timeId').val();
 	    	var subId = $('#subJoin').val();
+	    	if(subId == undefined){
+	    		subId = "";
+	    	}
 	    loadData(function(res){
-	
 	    	if(res.errorCode == 500){
 	    		window.location.href='/mgr/login';
 	    	}else{
@@ -42,10 +44,8 @@ var pOrder= {
 		    	InterValObj = window.setInterval(showSuccess, 1000);
 	    	}
 			}, getContextPath()+'/product/confirm/indent?configId='+cId +'&timeId='+tId +'&subJoin='+subId, null);
-
 	    });
 	},
-
 }
 
 function showSuccess(){
@@ -53,8 +53,7 @@ function showSuccess(){
 		$('#last3').text('0');
 		clearInterval(successIntervalObj);
 		$('.showSuccess').remove();
-		$('.checkOrder').attr('type','submit');
-		$('.checkOrder').click();
+		window.location.href='/';
 	} else {
 		$('#last3').text(initM--);
 	}
