@@ -43,6 +43,9 @@
 <script src="${commonJs }"></script>
 <script src="${indentListJs }"></script>
 
+
+
+<script src="/resources/lib/jquery.form/jquery.form.js"></script>
 <script type="text/javascript" src="/resources/lib/Bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/lib/Bootstrap/css/bootstrap.min.css">
 <style type="text/css">
@@ -69,7 +72,7 @@
 		<c:if test="${ ! empty indentList.rows }">
 			<c:forEach items="${indentList.rows }" var="item" varStatus="status">
 				<tr>
-					<td class="id"><c:out value="${item.id }"/></td>
+					<td class="id" data-indentName = "${item.indentName }"><c:out value="${item.id }"/></td>
 					<td class="realName"><c:out value="${item.realName }"/></td>
 					<td class="indent_tele"><c:out value="${item.indent_tele }"/></td>
 					<td class="userCompany"><c:out value="${item.userCompany }"/></td>
@@ -77,7 +80,7 @@
 					<td class="orderDate"><c:out value="${item.orderDate }"/></td>
 					<td class="indent_recomment"><c:out value="${item.indent_recomment }"/></td>
 					<td class="indentType"><c:out value="${item.indentType }"/></td>
-					<td><button class="edit">编辑</button></td>
+					<td><button class="edit">编辑</button> <button class="editRequire" data-id="${item.id }">填写需求</button></td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -85,7 +88,8 @@
 	</c:if>
 	
 	<div id="bbbb" style="margin-left: 75px; display: none;">
-		<form action="" method="post">
+		<form id="fm" action="/order/update" method="post">
+			<input type="hidden" name="indentName" id="indentName">
 			订单ID:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly" name="id" id="formId"><br/><br/>
 			联系人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="realName" id = "formrealName" ><br/><br/>
 			联系电话:<input type="text" name="indent_tele" id = "formindent_tele"><br/><br/>

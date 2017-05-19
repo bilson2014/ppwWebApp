@@ -16,7 +16,6 @@ import com.paipianwang.pat.facade.product.service.PmsRequireFacade;
 import com.panfeng.film.domain.BaseMsg;
 
 @RestController
-@RequestMapping("/std")
 public class RequireController extends BaseController {
 
 	@Autowired
