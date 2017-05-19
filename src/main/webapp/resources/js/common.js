@@ -572,7 +572,7 @@ var share = {
 		}
 }
 
-/*var _hmt = _hmt || [];
+var _hmt = _hmt || [];
 (function() {
 	var hm = document.createElement("script");
 	hm.src = "//hm.baidu.com/hm.js?b0ac6d7e1cee0e96c5c43106c5d43537";
@@ -606,7 +606,7 @@ window._vds = _vds;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(vds, s);
   })();
-})();*/
+})();
 
 //3.0
 function playVideo() {

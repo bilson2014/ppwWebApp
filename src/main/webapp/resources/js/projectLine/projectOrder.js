@@ -29,9 +29,20 @@ var pOrder= {
 	    	$(this).addClass('active');
 	    });
 	    $('.checkOrder').off('click').on('click',function(){
-	    	$('.orderContent').addClass('hide');
-	    	$('.orderSuccess').removeClass('hide');
-	    	InterValObj = window.setInterval(showSuccess, 1000);
+	    	var cId = $('#configId').val();
+	    	var tId = $('#timeId').val();
+	    	var subId = $('#subJoin').val();
+	    loadData(function(res){
+	
+	    	if(res.errorCode == 500){
+	    		window.location.href='/mgr/login';
+	    	}else{
+		    	$('.orderContent').addClass('hide');
+		    	$('.orderSuccess').removeClass('hide');
+		    	InterValObj = window.setInterval(showSuccess, 1000);
+	    	}
+			}, getContextPath()+'/product/confirm/indent?configId='+cId +'&timeId='+tId +'&subJoin='+subId, null);
+
 	    });
 	},
 

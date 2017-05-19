@@ -172,14 +172,14 @@
                    </div>
                    <div class="optionItem">
                         <div class="title">基础套餐</div>
-                        <input type="hidden" name="configId" value="${config.chanpinconfigurationId}">
+                        <input type="hidden" name="configId" id="configId" value="${config.chanpinconfigurationId}">
                         <ul class="mealCard">
                               <li>${config.chanpinconfigurationName }</li>
                         </ul>
                    </div>
                     <div class="optionItem">
                         <div class="title">时长</div>
-                        <input type="hidden" name="timeId" value="${time.dimensionId}">
+                        <input type="hidden" name="timeId" id="timeId" value="${time.dimensionId}">
                         <ul class="timeCard">
                               <li>${time.rowName }</li>
                         </ul>
@@ -187,7 +187,7 @@
                    <c:if test="${! empty  subjoin}">
                     <div class="optionItem">
                         <div class="title">附加包类型</div>
-                        <input type="hidden" name="subJoin" value="${subjoinId}">
+                        <input type="hidden" name="subJoin" id="subJoin" value="${subjoinId}">
                         <ul class="moreCard">
                         	  
 	                        	<c:forEach items="${subjoin }" var="tag">

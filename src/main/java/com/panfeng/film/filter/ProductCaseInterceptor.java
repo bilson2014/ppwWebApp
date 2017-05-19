@@ -15,42 +15,34 @@ import com.paipianwang.pat.facade.right.entity.PmsRight;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.panfeng.film.util.Log;
 
+public class ProductCaseInterceptor extends HandlerInterceptorAdapter {
 
-/**
- * 供应商管理拦截器
- * 拦截未登录用户做登陆使用
- * @author Jack
- *
- */
-public class ProviderInterceptor extends HandlerInterceptorAdapter {
-	
 	@Autowired
 	private final PmsRightFacade pmsRightFacade = null;
-	
+
 	public boolean preHandle(HttpServletRequest req,
-		HttpServletResponse resp, Object handler) throws Exception {
+			HttpServletResponse resp, Object handler) throws Exception {
 		
 		final String contextPath = req.getContextPath();
 		final SessionInfo info = (SessionInfo) req.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		if(info == null){
 			// 未登录
 			Log.error("没有权限，请先登录", null);
-			resp.sendRedirect(contextPath + "/login");
+			resp.sendRedirect(contextPath + "/error");
 			return false;
-		}else{
+		} else {
 			final String url = req.getRequestURI();
 			final ServletContext sc = req.getServletContext();
 			final String uri = UrlResourceUtils.URLResolver(url, sc.getContextPath());
 			final PmsRight right = pmsRightFacade.getRightFromRedis(uri);
-			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){ 
+			if (ValidateUtil.hasRight(url, req, sc, right, resp, info)) {
 				return true;
 			} else {
 				// 没有权限
 				Log.error("没有权限，请先登录", null);
-				resp.sendRedirect(contextPath + "/login");
+				resp.sendRedirect(contextPath + "/error");
 				return false;
 			}
 		}
 	}
-	
 }
