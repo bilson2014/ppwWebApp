@@ -57,7 +57,23 @@
 	<br/>
 	<c:if test="${! empty indentList }">
 		总共：${indentList.total }条订单
-		<table border="1">
+		<br/>
+		状态值：<br/>
+				0 = 新订单<br/>
+				1=处理中<br/>
+				2=完成<br/>
+				3=停滞<br/>
+				4=再次沟通<br/>
+				5=真实<br/>
+				6=虚假<br/>
+		
+		<br/><br/><br/>
+		
+		<button id="new">新订单</button> &nbsp;&nbsp;&nbsp; <button id="bp">处理中</button> &nbsp;&nbsp;&nbsp; <button id="sub">已提交</button> &nbsp;&nbsp;&nbsp; <button id="des">无效</button>
+		
+		<div id="tableTitle">新订单</div>
+		
+		<table border="1" id="tableList">
 		<tr>
 			<td>订单ID</td>
 			<td>联系人</td>
@@ -98,8 +114,17 @@
 			下单时间:<input type="text" readonly="readonly" name="orderDate" id = "formorderDate"><br/><br/>
 			备注:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="4" cols="45" name="indent_recomment" id = "formindent_recomment"></textarea><br/><br/>
 			状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="indentType" id = "formindentType"><br/><br/>
-			
+			<br/>
+	状态值：<br/>
+				0 = 新订单<br/>
+				1 = 处理中<br/>
+				2 = 完成<br/>
+				3 = 停滞<br/>
+				4 = 再次沟通<br/>
+				5 = 真实<br/>
+				6 = 虚假<br/>
 			<input type="submit" onclick="subBtn()" value="提交">
+			
 		</form>
 	</div>
 </body>
