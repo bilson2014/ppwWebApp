@@ -20,7 +20,7 @@ $().ready(function() {
 					for (var int2 = 0; int2 < rows.length; int2++) {
 						var r = rows[int2];
 						var html = [
-									'<a href = "/std/product/index?chanpinId='+r.chanpinId+'&requireId='+reId+'">',
+									'<a href = "/product/index?chanpinId='+r.chanpinId+'&requireId='+reId+'">',
 									'<div>',
 									'	<img src="'+getDfsHostName() + r.chanpinPicLDUrl +'" style="width: 50px;height:50px ">',
 									'	<label>'+r.chanpinName+'</label>',
@@ -31,10 +31,10 @@ $().ready(function() {
 						productList.append(html);
 					}
 				}
-			}, getContextPath() +'/std/product/list', null);
+			}, getContextPath() +'/product/list', null);
 			$('#myModal').modal('show');
 		});
-	}, getContextPath() +'/std/require/list', $.toJSON({
+	}, getContextPath() +'/require/list', $.toJSON({
 		"page":page,
 		"rows":rows
 	}));
