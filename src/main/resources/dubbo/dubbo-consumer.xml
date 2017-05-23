@@ -39,6 +39,8 @@
 	<dubbo:reference interface="com.paipianwang.pat.facade.finance.service.PmsFinanceFacade" id="pmsFinanceFacade" check="false" timeout="5000"/>
 	<!--分销服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.sales.service.PmsSalesmanFacade" id="pmsSalesmanFacade" check="false" timeout="5000"/>
+	<!-- 作品收藏接口 -->
+	<dubbo:reference interface="com.paipianwang.pat.facade.product.service.PmsEmployeeProductLinkFacade" id="pmsEmployeeProductLinkFacade" check="false" timeout="5000"/>
 	<!--员工服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.right.service.PmsEmployeeFacade" id="pmsEmployeeFacade" check="false" timeout="5000"/>
 	<dubbo:reference interface="com.paipianwang.pat.facade.employee.service.PmsStaffFacade" id="pmsStaffFacade" check="false" timeout="5000"/>

@@ -145,7 +145,7 @@
 		<!-- 产品线相关 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/main"/>
-			<bean class="com.panfeng.film.intercepter.ProductCaseInterceptor" />
+			<bean class="com.panfeng.film.filter.ProductCaseInterceptor" />
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
