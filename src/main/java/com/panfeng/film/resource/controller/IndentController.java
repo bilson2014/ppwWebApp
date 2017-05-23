@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,6 @@ import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsService;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
-import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
@@ -44,14 +44,18 @@ public class IndentController extends BaseController {
 
 	@Autowired
 	private PmsProductFacade pmsProductFacade = null;
+	
 	@Autowired
 	private PmsServiceFacade pmsServiceFacade = null;
+	
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade = null;
+	
 	@Autowired
 	private SmsMQService smsMQService = null;
-	@Autowired
-	private PmsUserFacade pmsUserFacade;
+	
+	//@Autowired
+	//private PmsUserFacade pmsUserFacade;
 
 	/**
 	 * PC端-ajax 提交订单
@@ -125,14 +129,16 @@ public class IndentController extends BaseController {
 	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
 	public ModelAndView indentView(ModelMap modelMap, HttpServletRequest request) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("indentType", 0);
+
 		PageParam pageParam = new PageParam();
-		pageParam.setBegin(1);
+		pageParam.setBegin(0);
 		pageParam.setLimit(20);
 		SessionInfo currentInfo = getCurrentInfo(request);
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
 					Long reqiureId = currentInfo.getReqiureId();
 					paramMap.put("employeeId", reqiureId);
 					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
@@ -145,16 +151,40 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
-	public DataGrid<PmsIndent> listWithPagination(PageParam pageParam, Map<String, Object> paramMap,
+	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
-		SessionInfo currentInfo = getCurrentInfo(request);
-		if (currentInfo != null) {
-			String sessionType = currentInfo.getSessionType();
-			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
-					Long reqiureId = currentInfo.getReqiureId();
-					paramMap.put("employeeId", reqiureId);
-					return pmsIndentFacade.listWithPagination(pageParam, paramMap);
+
+		if (ValidateUtil.isValid(paramMap)) {
+
+			// 设置分页
+			PageParam pageParam = new PageParam();
+			Object object = paramMap.get("page");
+			Object object2 = paramMap.get("rows");
+			if (object != null && object2 != null) {
+				Long begin = Long.valueOf(object.toString());
+				Long limit = Long.valueOf(object2.toString());
+				pageParam.setBegin(begin);
+				pageParam.setLimit(limit);
+				paramMap.remove("page");
+				paramMap.remove("rows");
+				long page = pageParam.getPage();
+				long rows = pageParam.getRows();
+				pageParam.setBegin((page - 1) * rows);
+				pageParam.setLimit(rows);
+			} else {
+				pageParam.setBegin(0);
+				pageParam.setLimit(20);
+			}
+
+			SessionInfo currentInfo = getCurrentInfo(request);
+			if (currentInfo != null) {
+				String sessionType = currentInfo.getSessionType();
+				if (ValidateUtil.isValid(sessionType)) {
+					if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
+						Long reqiureId = currentInfo.getReqiureId();
+						paramMap.put("employeeId", reqiureId);
+						return pmsIndentFacade.listWithPagination(pageParam, paramMap);
+					}
 				}
 			}
 		}
@@ -167,15 +197,11 @@ public class IndentController extends BaseController {
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("更新失败！");
 		long update = pmsIndentFacade.update(indent);
-		if(update > 0){
+		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("更新成功");
 		}
 		return baseMsg;
-	}
-
-	public BaseMsg submitIndent() {
-		return null;
 	}
 
 }
