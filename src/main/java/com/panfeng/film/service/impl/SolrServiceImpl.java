@@ -50,7 +50,7 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			query.setQuery(condition);
 			query.set("pf", "productName tags teamName");
 			query.set("tie", "0.1");
-			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags");
+			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl");
 
 			query.setStart(Integer.parseInt(String.valueOf(view.getBegin())));
 			query.setRows(Integer.parseInt(String.valueOf(view.getLimit())));
