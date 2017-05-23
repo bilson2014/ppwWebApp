@@ -23,12 +23,36 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
-    
     loadRecommendProductIfNo();
-    
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
+    saveVideo();
+
 });
+
+function saveVideo(){
+	
+	$('#managerCollect').off('click').on('click',function(){
+		
+		if($(this).hasClass('save')){
+			$('#managerCollect').removeClass('save');
+			$('#showSave').fadeIn();
+			$('#showSave').text('收藏');
+			 setTimeout(function() {
+					$('#showSave').fadeOut();
+	            }, 1000);
+		}else{
+			$('#managerCollect').addClass('save');
+			$('#showSave').fadeIn();
+			$('#showSave').text('取消收藏');
+			 setTimeout(function() {
+				    $('#showSave').fadeOut();
+	            }, 1000);
+		}
+	});
+	
+}
+
 function initTab() {
     var product_id = 1;
     // 初始化
@@ -383,7 +407,7 @@ function loadRecommendProduct(){
 								continue;
 							}
 							hasCount ++;
-							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
+							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName);
 							v1.append(card);
 							if(hasCount == 8)
 								break;
@@ -461,7 +485,7 @@ function loadRecommendProductIfNo(){
 						if(res[i].productId == productId)
 							continue;
 						hasCount ++;
-						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price);
+						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName);
 						v1.append(card);
 						if(hasCount == 8)
 							break;
@@ -526,7 +550,7 @@ function initMoreInfo(num){
     });
 }
 
-function createNoInfoCard(productName,productId,teamId,imageUrl,price){
+function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 	var ImageUrl = '/resources/images/index/noImg.jpg';
 	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
@@ -537,21 +561,37 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	}else{
 	var productPrice ="￥"+thousandCount(price);
 	}
+	var roleImgUrl ='';
+	var num =$('#roleNum').val();
+	if(num < 0){
+		roleImgUrl = "/resources/images/play/roleOur.png";
+	}
+	if(num = 0) {
+		roleImgUrl = "/resources/images/play/rolePro.png";
+	}
+	if(num > 0){
+		roleImgUrl = "/resources/images/play/rolePlay.png";
+	}
 	var html = [
 	    '<div class="swiper-slide noInfoCard">',
+	    '   <img class="roleImg" src="',roleImgUrl,'">',
 		'	<a href="',url,'">',
 		'     <img src="',ImageUrl,'">',
 		'     <div class="margin-top">',
 		'     	<span>',productName,'</span>',
 		'     	<span>',productPrice,'</span>',
 		'     </div>',
+		'            <div class="videoProvider">',
+		'               <img src="',sUrl,'">',
+		'               <div>',name,'</div>',
+		'           </div>',
 		'	</a>',
 		'</div>'
 	].join('');
 	return html;
 }
 
-function createCard(productName,productId,teamId,imageUrl,price){
+function createCard(productName,productId,teamId,imageUrl,price,sUrl,name){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 
 var ImageUrl = '/resources/images/index/noImg.jpg';
@@ -565,8 +605,20 @@ if(price<=0){
 }else{
 var productPrice ="￥"+thousandCount(price);
 }
+var roleImgUrl ='';
+var num =$('#roleNum').val();
+if(num < 0){
+	roleImgUrl = "/resources/images/play/roleOur.png";
+}
+if(num = 0) {
+	roleImgUrl = "/resources/images/play/rolePro.png";
+}
+if(num > 0){
+	roleImgUrl = "/resources/images/play/rolePlay.png";
+}
 var html = [
             '<div class="swiper-slide">',
+    	    '   <img class="roleImg" src="',roleImgUrl,'">',
     		'     <div class="videoModel Xflag">',
     		'	<a href="',url,'">',
     		'     <div class="videoIcon"></div>',			
@@ -575,6 +627,10 @@ var html = [
     		'     	 <span>',productName,'</span>',
     		'     	 <span>',productPrice,'</span>',
     		'     </div>',
+    		'            <div class="videoProvider">',
+    		'               <img src="',sUrl,'">',
+    		'               <div>',name,'</div>',
+    		'           </div>',
     		'	</a>',
     		'</div>'
 ].join('');

@@ -46,14 +46,14 @@
     <mvc:view-controller path="/news" view-name="/news" />
     
     <!-- 产品线 -->
-    <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
+<!--     <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
     <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
     <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
-    <mvc:view-controller path="/pList" view-name="/projectLine/projectList" />
-    
+    <mvc:view-controller path="/pList" view-name="/manager/collect" /> -->
     <!-- test -->
     <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
-      
+    <mvc:view-controller path="/testS" view-name="/manager/collect" />
+     <!-- end --> 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />

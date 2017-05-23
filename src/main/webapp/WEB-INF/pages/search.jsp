@@ -260,6 +260,24 @@
 									</c:if>
 								</div>
 							</div>
+							<div class="line">
+							     <div class="videoCardLine"></div>
+							</div>
+							<r:identity role="employee">
+							     <c:if test="${solr.indentProjectId = -1 }">
+							          <img class="roleImg" src="/resources/images/play/roleOur.png">
+								 </c:if>
+								 <c:if test="${solr.indentProjectId > 0 }">
+								      <img class="roleImg" src="/resources/images/play/rolePlay.png">
+								 </c:if>
+								 <c:if test="${solr.indentProjectId = 0 }">
+								      <img class="roleImg" src="/resources/images/play/rolePro.png">
+								 </c:if>
+							</r:identity>							
+							<div class="videoProvider">
+							    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+							    <div>${solr.teamName}</div>
+							</div>
 						</div>
 						
 							<c:if test="${status.count % 4 == 0 }">
