@@ -260,6 +260,14 @@
 									</c:if>
 								</div>
 							</div>
+							<div class="line">
+							     <div class="videoCardLine"></div>
+							</div>
+							<img class="roleImg" src="/resources/images/play/roleOur.png">
+							<div class="videoProvider">
+							    <img src="${file_locate_storage_path }${solr.picLDUrl }">
+							    <div>这是名字</div>
+							</div>
 						</div>
 						
 							<c:if test="${status.count % 4 == 0 }">
