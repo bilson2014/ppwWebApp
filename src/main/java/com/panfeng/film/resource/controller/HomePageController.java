@@ -57,7 +57,7 @@ public class HomePageController extends BaseController {
 		query.set("qf", "productName^4 tags^3 teamName^2 pDescription^1");
 		query.setQuery("*:*");
 		query.setFields(
-				"teamId,productId,productName,productType,itemName,teamName,orignalPrice,price,picLDUrl,length,pDescription,recommend,supportCount,tags");
+				"teamId,productId,productName,productType,itemName,teamName,orignalPrice,price,picLDUrl,length,pDescription,recommend,supportCount,tags,indentProjectId,teamPhotoUrl");
 		query.setStart(0);
 		query.setRows(Integer.MAX_VALUE);
 		if (null != solrView.getSort()) {
