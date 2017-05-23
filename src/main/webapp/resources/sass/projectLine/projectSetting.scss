@@ -515,7 +515,7 @@
                     }
                     .itemContent {
                         width: 100%;
-                        height: 180px;
+                        height: auto;
                         font-size: $font-size-sm;
                         color: $gray-light;
                         text-align: center;
@@ -524,7 +524,7 @@
                     .iContent {
                         width: 130px;
                         margin: 0 auto;
-                        line-height: 20px;
+                        line-height: 16px;
                         overflow: hidden;
                     }
                     .iDes {
