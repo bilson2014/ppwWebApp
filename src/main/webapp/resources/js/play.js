@@ -28,7 +28,6 @@ $().ready(function() {
     
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
-
 });
 function initTab() {
     var product_id = 1;
@@ -219,7 +218,6 @@ function showDiv(){
     // event
     $('#order-btn1').off('click').on('click',submitOrder);
     $('#verification_code_recover_btn').off('click').on('click',verificationCodeBtn);
-//    $('#order-btn').off('click').on('click',submitOrder);
 }
 // ----------------- wang -----------------
 // order verificationCode
