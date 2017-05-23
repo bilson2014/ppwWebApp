@@ -96,7 +96,15 @@
 					<td class="orderDate"><c:out value="${item.orderDate }"/></td>
 					<td class="indent_recomment"><c:out value="${item.indent_recomment }"/></td>
 					<td class="indentType"><c:out value="${item.indentType }"/></td>
-					<td><button class="edit">编辑</button> <button class="editRequire" data-id="${item.id }">填写需求</button></td>
+					<td> 
+						<button class="edit">编辑</button>
+						<c:if test="${!empty item.requireId }">
+							<button class="viewRequire" data-id="${item.id }">查看需求文档</button>
+						</c:if>
+						<c:if test="${empty item.requireId }">
+							<button class="editRequire" data-id="${item.id }">填写需求文档</button>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</c:if>

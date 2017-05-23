@@ -32,7 +32,6 @@ import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsService;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
-import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
@@ -45,14 +44,18 @@ public class IndentController extends BaseController {
 
 	@Autowired
 	private PmsProductFacade pmsProductFacade = null;
+	
 	@Autowired
 	private PmsServiceFacade pmsServiceFacade = null;
+	
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade = null;
+	
 	@Autowired
 	private SmsMQService smsMQService = null;
-	@Autowired
-	private PmsUserFacade pmsUserFacade;
+	
+	//@Autowired
+	//private PmsUserFacade pmsUserFacade;
 
 	/**
 	 * PC端-ajax 提交订单
@@ -135,7 +138,7 @@ public class IndentController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
 					Long reqiureId = currentInfo.getReqiureId();
 					paramMap.put("employeeId", reqiureId);
 					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
@@ -177,7 +180,7 @@ public class IndentController extends BaseController {
 			if (currentInfo != null) {
 				String sessionType = currentInfo.getSessionType();
 				if (ValidateUtil.isValid(sessionType)) {
-					if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+					if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
 						Long reqiureId = currentInfo.getReqiureId();
 						paramMap.put("employeeId", reqiureId);
 						return pmsIndentFacade.listWithPagination(pageParam, paramMap);
@@ -199,10 +202,6 @@ public class IndentController extends BaseController {
 			baseMsg.setErrorMsg("更新成功");
 		}
 		return baseMsg;
-	}
-
-	public BaseMsg submitIndent() {
-		return null;
 	}
 
 }

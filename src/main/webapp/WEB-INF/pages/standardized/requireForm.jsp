@@ -44,10 +44,11 @@
 <script src="${requireFormJs }"></script>
 </head>
 <body>
+	<div id="require" style="display: none" class="hide">${require }</div>
 	<a href="/list">列表页面</a>
 	<div style="margin-left: 50px;margin-top: 20px">
 		<form action="" method="post" id="fm">
-			<input type="hidden" id="indentId"  value="${indentId }">
+			<input type="hidden" id="indentId"  name="indentId" value="${indentId }">
 			<div>
 				1.项目背景描述，片子使用途径？请选择所有合适的选项。
 				<div>

@@ -591,6 +591,7 @@ public class VersionManagerController extends BaseController {
 
 	/**
 	 * 跳转项目信息页面
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -886,16 +887,35 @@ public class VersionManagerController extends BaseController {
 		indentComment.setIcUserType(info.getSessionType());
 	}
 
+	static final String CUSTOMERSERVICE = "客服";
+
 	/**
 	 * 初始化 sessionInfo 信息
 	 */
 	public boolean initSessionInfo(final PmsEmployee e, final HttpServletRequest request) {
+		/* 验证客服身份 */
+		boolean isCustomerService = false;
+		List<PmsRole> ro = e.getRoles();
+		if (ValidateUtil.isValid(ro)) {
+			for (PmsRole pmsRole : ro) {
+				String roleName = pmsRole.getRoleName();
+				if (CUSTOMERSERVICE.equals(roleName)) {
+					isCustomerService = true;
+					break;
+				}
+			}
+		}
+
 		// 存入session中
 		final String sessionId = request.getSession().getId();
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(e.getEmployeeLoginName());
 		info.setRealName(e.getEmployeeRealName());
-		info.setSessionType(PmsConstant.ROLE_EMPLOYEE);
+		if (isCustomerService) {
+			info.setSessionType(PmsConstant.ROLE_CUSTOMER_SERVICE);
+		} else {
+			info.setSessionType(PmsConstant.ROLE_EMPLOYEE);
+		}
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(e.getEmployeeId());
 		info.setPhoto(e.getEmployeeImg());
@@ -904,7 +924,7 @@ public class VersionManagerController extends BaseController {
 		// 计算权限码
 		// 替换带有权限的角色
 		final List<PmsRole> roles = new ArrayList<PmsRole>();
-		for (final PmsRole r : e.getRoles()) {
+		for (final PmsRole r : ro) {
 			final PmsRole role = pmsRoleFacade.findRoleById(r.getRoleId());
 			roles.add(role);
 		}

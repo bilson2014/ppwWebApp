@@ -17,10 +17,9 @@ $().ready(function(){
 		title.text('完成');
 	});
 	$('#des').on('click',function(){
-		readMore(6); // 虚假
-		title.text('虚假');
+		readMore(6); // 无效
+		title.text('无效');
 	});
-	
 });
 
 function subBtn(){
@@ -126,4 +125,10 @@ function editEvent(){
 		var id = $(this).attr('data-id');
 		location.href  = '/require?indentId='+id;
 	});
+	
+	$('.viewRequire').on('click',function (){
+		var id = $(this).attr('data-id');
+		location.href  = '/require?indentId='+id;
+	});
 }
+
