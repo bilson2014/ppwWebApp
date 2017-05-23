@@ -3,16 +3,19 @@ package com.panfeng.film.resource.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hankcs.hanlp.dependency.nnparser.parser_dll;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
 import com.paipianwang.pat.common.entity.PageParam;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
@@ -30,14 +33,22 @@ public class RequireController extends BaseController {
 	private PmsIndentFacade pmsIndentFacade;
 
 	@RequestMapping("/require/list")
-	public DataGrid<PmsRequire> getAll(final PmsRequire view, final PageParam param) {
-		final long page = param.getPage();
-		final long rows = param.getRows();
-		param.setBegin((page - 1) * rows);
-		param.setLimit(rows);
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		final DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
-		return dataGrid;
+	public DataGrid<PmsRequire> getAll(final PmsRequire view, final PageParam param, HttpServletRequest request) {
+		SessionInfo currentInfo = getCurrentInfo(request);
+		if (currentInfo != null) {
+			String sessionType = currentInfo.getSessionType();
+			if (ValidateUtil.isValid(sessionType)) {
+				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
+					final long page = param.getPage();
+					final long rows = param.getRows();
+					param.setBegin((page - 1) * rows);
+					param.setLimit(rows);
+					Map<String, Object> paramMap = new HashMap<String, Object>();
+					final DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
+				}
+			}
+		}
+		return null;
 	}
 
 	@RequestMapping("/require/save")
