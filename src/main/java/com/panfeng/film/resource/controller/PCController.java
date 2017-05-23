@@ -70,20 +70,28 @@ public class PCController extends BaseController {
 
 	@Autowired
 	private PmsUserFacade pmsUserFacade = null;
+	
 	@Autowired
 	private PmsTeamFacade pmsTeamFacade = null;
+	
 	@Autowired
 	private PmsProductModuleFacade pmsProductModuleFacade = null;
+	
 	@Autowired
 	private PmsProductFacade pmsProductFacade = null;
+	
 	@Autowired
 	private SmsMQService smsMQService = null;
+	
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade = null;
+	
 	@Autowired
 	private PmsStaffFacade pmsStaffFacade = null;
+	
 	@Autowired
 	private PmsJobFacade pmsJobFacade = null;
+	
 	@Autowired
 	private SolrService solrService = null;
 
@@ -220,6 +228,7 @@ public class PCController extends BaseController {
 	public ModelAndView play(@PathVariable("teamId") final Long teamId,
 			@PathVariable("productId") final Integer productId, final ModelMap model,
 			final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
 		model.addAttribute("teamId", teamId);
 		model.addAttribute("productId", productId);
 		String priceDetail = null;
@@ -246,11 +255,10 @@ public class PCController extends BaseController {
 			if (team != null) {
 				model.addAttribute("teamFlag", team.getFlag());
 			} else {
-				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("team is null ...", sessionInfo);
 			}
 		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
+		
 		Log.error("Redirect team page,teamId:" + teamId + " ,productId:" + productId, sessionInfo);
 		return new ModelAndView("play", model);
 	}
