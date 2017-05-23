@@ -954,6 +954,36 @@ public class VersionManagerController extends BaseController {
 		prst.setResult(false);
 		return prst;
 	}
+	
+	/**
+	 * 判断该影片是否被当前登录者收藏
+	 * @param productId 作品ID
+	 * @return true | false
+	 */
+	@RequestMapping("/favourites/judge/{productId}")
+	public PmsResult judgeFavourites(@PathVariable("productId") final Long productId, final HttpServletRequest request) {
+		// 判断该影片是否是收藏的
+		PmsResult prst = new PmsResult();
+		if(productId != null) {
+			final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
+			if(info != null) {
+				Map<String ,Object> param = new HashMap<String, Object>();
+				param.put("employeeId", info.getReqiureId());
+				param.put("productId", productId);
+				List<PmsEmployeeProductLink> list = pmsEmployeeProductLinkFacade.findLinkByParam(param);
+				prst.setResult(ValidateUtil.isValid(list));
+				return prst;
+			} else {
+				// session 为空
+				prst.setErr("请重新登录!");
+			}
+		} else {
+			// 作品ID为空
+			prst.setErr("请选择作品删除!");
+		}
+		prst.setResult(false);
+		return prst;
+	}
 
 	private void fillUserInfo(HttpServletRequest request, IndentProject indentProject) {
 		final SessionInfo info = getCurrentInfo(request);
