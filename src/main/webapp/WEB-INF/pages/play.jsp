@@ -68,13 +68,13 @@
 	 </r:identity>
 	 
 	<r:identity role="employee">
-		     <c:if test="${solr.indentProjectId = -1 }">
+		     <c:if test="${product.indentProjectId < 0 }">
 		           <input type="hidden" id="roleNum" value="-1" />
 			 </c:if>
-			 <c:if test="${solr.indentProjectId > 0 }">
+			 <c:if test="${product.indentProjectId > 0 }">
 			       <input type="hidden" id="roleNum" value="1" />
 			 </c:if>
-			 <c:if test="${solr.indentProjectId = 0 }">
+			 <c:if test="${product.indentProjectId == 0 }">
 			       <input type="hidden" id="roleNum" value="0" />
 			 </c:if>
 	</r:identity>	
@@ -184,7 +184,12 @@
 						</div>
                         <div>
                             <ul>
-                                <li class="save" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                <r:identity role="employee">
+                                   <li class="save" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                </r:identity>
+                                <r:noLogin>
+                                   <li class="save hide" id="managerCollect"><div id="showSave">已收藏</div></li>   
+                                </r:noLogin>
                                 <li></li>
                                 <li>分享到 : </li>
                                 <li class="-mob-share-qq share"></li>

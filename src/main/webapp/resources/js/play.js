@@ -32,25 +32,43 @@ $().ready(function() {
 
 function saveVideo(){
 	
-	$('#managerCollect').off('click').on('click',function(){
-		
-		if($(this).hasClass('save')){
+	loadData(function(flag){
+		if(flag.result){
 			$('#managerCollect').removeClass('save');
 			$('#showSave').fadeIn();
 			$('#showSave').text('收藏');
-			 setTimeout(function() {
-					$('#showSave').fadeOut();
-	            }, 1000);
 		}else{
 			$('#managerCollect').addClass('save');
 			$('#showSave').fadeIn();
 			$('#showSave').text('取消收藏');
-			 setTimeout(function() {
-				    $('#showSave').fadeOut();
-	            }, 1000);
+		}
+	}, getContextPath() + '/mgr/favourites/judge/' + $('#company-unique').val(), null);
+	
+	$('#managerCollect').off('click').on('click',function(){
+		if($(this).hasClass('save')){
+			loadData(function(flag){
+				if(flag){
+					$('#managerCollect').removeClass('save');
+					$('#showSave').fadeIn();
+					$('#showSave').text('收藏');
+					setTimeout(function() {
+							$('#showSave').fadeOut();
+			            }, 1000);
+				}
+			}, getContextPath() + '/mgr/favourites/add/' + $('#company-unique').val(), null);
+		}else{
+			loadData(function(flag){
+				if(flag){
+					$('#managerCollect').addClass('save');
+					$('#showSave').fadeIn();
+					$('#showSave').text('取消收藏');
+					 setTimeout(function() {
+						    $('#showSave').fadeOut();
+			            }, 1000);
+				}
+			}, getContextPath() + '/mgr/favourites/remove/' + $('#company-unique').val(), null);
 		}
 	});
-	
 }
 
 function initTab() {
@@ -563,18 +581,22 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name)
 	}
 	var roleImgUrl ='';
 	var num =$('#roleNum').val();
+	var isHide = "hide";
 	if(num < 0){
 		roleImgUrl = "/resources/images/play/roleOur.png";
+		isHide = '';
 	}
-	if(num = 0) {
+	if(num == 0) {
 		roleImgUrl = "/resources/images/play/rolePro.png";
+		isHide = '';
 	}
 	if(num > 0){
 		roleImgUrl = "/resources/images/play/rolePlay.png";
+		isHide = '';
 	}
 	var html = [
 	    '<div class="swiper-slide noInfoCard">',
-	    '   <img class="roleImg" src="',roleImgUrl,'">',
+	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
 		'	<a href="',url,'">',
 		'     <img src="',ImageUrl,'">',
 		'     <div class="margin-top">',
@@ -582,7 +604,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name)
 		'     	<span>',productPrice,'</span>',
 		'     </div>',
 		'            <div class="videoProvider">',
-		'               <img src="',sUrl,'">',
+		'               <img src="',getDfsHostName()+sUrl,'">',
 		'               <div>',name,'</div>',
 		'           </div>',
 		'	</a>',
@@ -607,18 +629,22 @@ var productPrice ="￥"+thousandCount(price);
 }
 var roleImgUrl ='';
 var num =$('#roleNum').val();
+var isHide = "hide";
 if(num < 0){
 	roleImgUrl = "/resources/images/play/roleOur.png";
+	isHide = '';
 }
-if(num = 0) {
+if(num == 0) {
 	roleImgUrl = "/resources/images/play/rolePro.png";
+	isHide = '';
 }
 if(num > 0){
 	roleImgUrl = "/resources/images/play/rolePlay.png";
+	isHide = '';
 }
 var html = [
             '<div class="swiper-slide">',
-    	    '   <img class="roleImg" src="',roleImgUrl,'">',
+    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
     		'     <div class="videoModel Xflag">',
     		'	<a href="',url,'">',
     		'     <div class="videoIcon"></div>',			
@@ -628,7 +654,7 @@ var html = [
     		'     	 <span>',productPrice,'</span>',
     		'     </div>',
     		'            <div class="videoProvider">',
-    		'               <img src="',sUrl,'">',
+    		'               <img src="',getDfsHostName()+sUrl,'">',
     		'               <div>',name,'</div>',
     		'           </div>',
     		'	</a>',

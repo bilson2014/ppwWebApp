@@ -264,13 +264,13 @@
 							     <div class="videoCardLine"></div>
 							</div>
 							<r:identity role="employee">
-							     <c:if test="${solr.indentProjectId = -1 }">
+							     <c:if test="${solr.indentProjectId < 0 }">
 							          <img class="roleImg" src="/resources/images/play/roleOur.png">
 								 </c:if>
 								 <c:if test="${solr.indentProjectId > 0 }">
 								      <img class="roleImg" src="/resources/images/play/rolePlay.png">
 								 </c:if>
-								 <c:if test="${solr.indentProjectId = 0 }">
+								 <c:if test="${solr.indentProjectId == 0 }">
 								      <img class="roleImg" src="/resources/images/play/rolePro.png">
 								 </c:if>
 							</r:identity>							
