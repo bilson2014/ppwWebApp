@@ -67,6 +67,18 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	 </r:identity>
 	 
+	<r:identity role="employee">
+		     <c:if test="${solr.indentProjectId = -1 }">
+		           <input type="hidden" id="roleNum" value="-1" />
+			 </c:if>
+			 <c:if test="${solr.indentProjectId > 0 }">
+			       <input type="hidden" id="roleNum" value="1" />
+			 </c:if>
+			 <c:if test="${solr.indentProjectId = 0 }">
+			       <input type="hidden" id="roleNum" value="0" />
+			 </c:if>
+	</r:identity>	
+	 
 	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
