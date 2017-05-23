@@ -172,6 +172,7 @@
 						</div>
                         <div>
                             <ul>
+                                <li class="save" id="managerCollect"><div id="showSave">已收藏</div></li>
                                 <li></li>
                                 <li>分享到 : </li>
                                 <li class="-mob-share-qq share"></li>

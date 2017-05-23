@@ -1075,6 +1075,7 @@ a {
                 }
                 .manLogin {
                     background: url(/resources/images/index/manLogin.png) no-repeat;
+                    visibility: hidden;
                 }
                 .reg {
                     background: url(/resources/images/index/reg.png) no-repeat;
@@ -1797,6 +1798,16 @@ a {
         }
         .loginOut:before {
             content: '';
+            position: absolute;
+            background: url(/resources/images/provider/loginOut.png);
+            background-size: 14px 14px;
+            width: 14px;
+            height: 14px;
+            top: 11px;
+            left: 50px;
+        }
+        .toCollect{
+                        content: '';
             position: absolute;
             background: url(/resources/images/provider/loginOut.png);
             background-size: 14px 14px;

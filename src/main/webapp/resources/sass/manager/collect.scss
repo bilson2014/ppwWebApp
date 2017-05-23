@@ -1,0 +1,172 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+body {
+    background: $f0 !important;
+}
+
+.page {
+    padding-top: 60px;
+    background: $f0 !important;
+}
+
+.managerPgae {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+}
+
+.managerCard {
+    padding-top: 20px;
+    width: 100%px;
+    min-height: 600px;
+    background: white;
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 160px;
+    font-size: 0;
+    .title {
+        font-size: $font-size;
+        color: $gray;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+$twoPad:70px;
+$threeMar:60px;
+.cardItem:nth-child(4n) {
+    margin-right: 0;
+}
+
+.cardItem {
+    font-size: 0;
+    border-radius: 4px;
+    width: ($width-min - $threeMar - $twoPad)/4;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: ($width-middle - $threeMar - $twoPad)/4;
+    }
+    @media screen and (min-width: 1500px) {
+        width: ($width-lg3 - $threeMar - $twoPad)/4;
+    }
+    margin-bottom: 30px;
+    height: auto;
+    .modCheck {
+        background-color: rgba(51, 51, 51, 0.8);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        display: none;
+        border-radius: 4px;
+        div {
+            cursor: pointer;
+            background-position-y: -40px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
+        div:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            background: url(/resources/images/manager/sureManager.png);
+            background-size: 40px 80px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            left: 30%;
+        }
+        div:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            background: url(/resources/images/manager/cancleManager.png);
+            background-size: 40px 80px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            right: 30%;
+        }
+    }
+    .cardImg {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 100%;
+        height: ($width-min - $threeMar - $twoPad)/4*(9/16);
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            height: ($width-middle - $threeMar - $twoPad)/4*(9/16);
+        }
+        @media screen and (min-width: 1500px) {
+            height: ($width-lg3 - $threeMar - $twoPad)/4*(9/16);
+        }
+    }
+    .cardContent {
+        box-shadow: 0 0 5px 0 #CBCBCB;
+        padding-top: 20px;
+    }
+    .title {
+        font-size: $font-size-base;
+        color: $gray-dark;
+        margin-top: 0px !important;
+        margin-bottom: 10px;
+        padding-left: 18px;
+    }
+    .tags {
+        font-size: $font-size-sm;
+        color: $gray-light;
+        margin-bottom: 30px;
+        padding-left: 18px;
+    }
+    .price {
+        position: relative;
+        height: 20px;
+        padding-left: 18px;
+        margin-bottom: 20px;
+        div:nth-child(1) {
+            font-size: $font-size-base;
+            color: $red-base;
+        }
+        div:nth-child(2) {
+            font-size: $font-size-sm;
+            color: $gray;
+            text-decoration: line-through;
+            position: absolute;
+            right: 18px;
+            top: 1px;
+        }
+    }
+    .line {
+        width: 100%;
+        height: 1px;
+        padding-left: 18px;
+        div {
+            width: 100%;
+            height: 100%;
+            background: $border-line;
+        }
+    }
+    .videoProvider {
+        position: relative;
+        .delBtn {
+            width: 16px !important;
+            height: 16px !important;
+            background: url(/resources/images/manager/delBtn.png) no-repeat;
+            background-size: 16px 32px;
+            position: absolute;
+            right: 18px;
+            top: 31px;
+            cursor: pointer;
+            background-position-y: -16px;
+            &:hover {
+                background-position-y: 0px;
+            }
+        }
+    }
+}

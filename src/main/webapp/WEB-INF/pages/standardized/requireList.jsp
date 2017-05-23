@@ -50,6 +50,7 @@
 </style>
 </head>
 <body>
+	登录人：<r:outName/> <br/>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<a href="/wang">添加页面</a>
 	<div style="margin-left: 50px;margin-top: 20px">

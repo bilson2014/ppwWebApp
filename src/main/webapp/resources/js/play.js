@@ -23,12 +23,36 @@ $().ready(function() {
     initTab();
     showDiv();
     initView();
-    
     loadRecommendProductIfNo();
-    
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
+    saveVideo();
+
 });
+
+function saveVideo(){
+	
+	$('#managerCollect').off('click').on('click',function(){
+		
+		if($(this).hasClass('save')){
+			$('#managerCollect').removeClass('save');
+			$('#showSave').fadeIn();
+			$('#showSave').text('收藏');
+			 setTimeout(function() {
+					$('#showSave').fadeOut();
+	            }, 1000);
+		}else{
+			$('#managerCollect').addClass('save');
+			$('#showSave').fadeIn();
+			$('#showSave').text('取消收藏');
+			 setTimeout(function() {
+				    $('#showSave').fadeOut();
+	            }, 1000);
+		}
+	});
+	
+}
+
 function initTab() {
     var product_id = 1;
     // 初始化
@@ -539,12 +563,17 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price){
 	}
 	var html = [
 	    '<div class="swiper-slide noInfoCard">',
+	    '   <img class="roleImg" src="/resources/images/play/roleOur.png">',
 		'	<a href="',url,'">',
 		'     <img src="',ImageUrl,'">',
 		'     <div class="margin-top">',
 		'     	<span>',productName,'</span>',
 		'     	<span>',productPrice,'</span>',
 		'     </div>',
+		'            <div class="videoProvider">',
+		'               <img src="',ImageUrl,'">',
+		'               <div>这是名字</div>',
+		'           </div>',
 		'	</a>',
 		'</div>'
 	].join('');
@@ -567,6 +596,7 @@ var productPrice ="￥"+thousandCount(price);
 }
 var html = [
             '<div class="swiper-slide">',
+    	    '   <img class="roleImg" src="/resources/images/play/roleOur.png">',
     		'     <div class="videoModel Xflag">',
     		'	<a href="',url,'">',
     		'     <div class="videoIcon"></div>',			
@@ -575,6 +605,10 @@ var html = [
     		'     	 <span>',productName,'</span>',
     		'     	 <span>',productPrice,'</span>',
     		'     </div>',
+    		'            <div class="videoProvider">',
+    		'               <img src="',ImageUrl,'">',
+    		'               <div>这是名字</div>',
+    		'           </div>',
     		'	</a>',
     		'</div>'
 ].join('');
