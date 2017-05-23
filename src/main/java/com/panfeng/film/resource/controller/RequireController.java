@@ -44,7 +44,10 @@ public class RequireController extends BaseController {
 					param.setBegin((page - 1) * rows);
 					param.setLimit(rows);
 					Map<String, Object> paramMap = new HashMap<String, Object>();
-					final DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
+					paramMap.put("employeeId", view.getEmployeeId());
+
+					DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
+					return dataGrid;
 				}
 			}
 		}
