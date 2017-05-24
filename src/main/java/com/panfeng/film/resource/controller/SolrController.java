@@ -223,7 +223,7 @@ public class SolrController extends BaseController {
 			}
 			query.set("pf", "tags^2.3 productName");
 			query.set("tie", "0.1");
-			query.setFields("teamId,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl,teamFlag");
+			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl,teamFlag");
 			query.setStart((int) solrView.getBegin());
 			query.setRows((int) solrView.getLimit());
 
