@@ -27,6 +27,7 @@
     border: solid $width-border $gray-border;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
     &:hover {
         border: solid $width-border lighten($gray-light, 12%);
     }
@@ -134,7 +135,7 @@
     }
     img {
         width: 30px !important;
-        height: 30px  !important;
+        height: 30px !important;
         border-radius: 100% !important;
     }
     div {
@@ -145,14 +146,14 @@
     }
 }
 
-.roleImg{
-	width: 60px !important;
-	height: 20px !important;
-	border-radius: 0 !important;
-	position: absolute !important;
-	right:0;
-	top:12px;
-	z-index: 3;
+.roleImg {
+    width: 60px !important;
+    height: 20px !important;
+    border-radius: 0 !important;
+    position: absolute !important;
+    right: 0;
+    top: 12px;
+    z-index: 3;
 }
 
 .videoCardLine {

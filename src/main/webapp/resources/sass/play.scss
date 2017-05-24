@@ -141,17 +141,11 @@ $rightWidth:320px;
             width: 26px;
             height: 26px;
             vertical-align: top;
-            transition: all .4s linear 0s;
-            -moz-transition: all .4s linear 0s;
-            /* Firefox 4 */
-            -webkit-transition: all .4s linear 0s;
-            /* Safari 和 Chrome */
-            -o-transition: all .4s linear 0s;
             border-radius: 6px;
         }
         .save {
             background-position-y: -18px !important;
-            top: 0px;
+            top: 0px !important;
             &:hover {
                 background-position-y: -18px !important;
             }
@@ -193,7 +187,7 @@ $rightWidth:320px;
             color: $gray-light;
             font-size: $font-size-base;
             width: auto !important;
-            margin-left: 12px;
+            margin-left: 0px;
             line-height: 26px;
         }
         li:nth-child(4) {
@@ -202,6 +196,12 @@ $rightWidth:320px;
             border: 1px solid $gray;
             background-position: 0px 0px;
             background-size: 24px 48px;
+            transition: all .4s linear 0s;
+            -moz-transition: all .4s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear 0s;
             &:hover {
                 background-position-y: -24px !important;
                 border: none;
@@ -213,6 +213,12 @@ $rightWidth:320px;
             border: 1px solid $gray;
             background-position: 0px 0px;
             background-size: 24px 48px;
+            transition: all .4s linear 0s;
+            -moz-transition: all .4s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear 0s;
             &:hover {
                 background-position-y: -24px !important;
                 border: none;
@@ -224,6 +230,12 @@ $rightWidth:320px;
             border: 1px solid $gray;
             background-position: 0px 0px;
             background-size: 24px 48px;
+            transition: all .4s linear 0s;
+            -moz-transition: all .4s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear 0s;
             &:hover {
                 background-position-y: -24px !important;
                 border: none;
@@ -235,6 +247,12 @@ $rightWidth:320px;
             border: 1px solid $gray;
             background-position: 0px 0px;
             background-size: 24px 48px;
+            transition: all .4s linear 0s;
+            -moz-transition: all .4s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .4s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .4s linear 0s;
             &:hover {
                 background-position-y: -24px !important;
                 border: none;

@@ -30,27 +30,42 @@ $().ready(function() {
 
 });
 
-function saveVideo(){
-	
-	$('#managerCollect').off('click').on('click',function(){
-		
-		if($(this).hasClass('save')){
+function saveVideo(){	
+	loadData(function(flag){
+		if(flag.result){
 			$('#managerCollect').removeClass('save');
-			$('#showSave').fadeIn();
-			$('#showSave').text('收藏');
-			 setTimeout(function() {
-					$('#showSave').fadeOut();
-	            }, 1000);
+			$('#showSave').hide();
 		}else{
 			$('#managerCollect').addClass('save');
-			$('#showSave').fadeIn();
-			$('#showSave').text('取消收藏');
-			 setTimeout(function() {
-				    $('#showSave').fadeOut();
-	            }, 1000);
+			$('#showSave').hide();
+		}
+	}, getContextPath() + '/mgr/favourites/judge/' + $('#play-unique').val(), null);
+	
+	$('#managerCollect').off('click').on('click',function(){
+		if($(this).hasClass('save')){
+			loadData(function(flag){
+				if(flag){
+					$('#managerCollect').removeClass('save');
+					$('#showSave').fadeIn();
+					$('#showSave').text('已收藏');
+					setTimeout(function() {
+							$('#showSave').fadeOut();
+			            }, 1000);
+				}
+			}, getContextPath() + '/mgr/favourites/add/' + $('#play-unique').val(), null);
+		}else{
+			loadData(function(flag){
+				if(flag){
+					$('#managerCollect').addClass('save');
+					$('#showSave').fadeIn();
+					$('#showSave').text('已取消');
+					 setTimeout(function() {
+						    $('#showSave').fadeOut();
+			            }, 1000);
+				}
+			}, getContextPath() + '/mgr/favourites/remove/' + $('#play-unique').val(), null);
 		}
 	});
-	
 }
 
 function initTab() {
@@ -407,7 +422,7 @@ function loadRecommendProduct(){
 								continue;
 							}
 							hasCount ++;
-							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName);
+							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag);
 							v1.append(card);
 							if(hasCount == 8)
 								break;
@@ -485,7 +500,7 @@ function loadRecommendProductIfNo(){
 						if(res[i].productId == productId)
 							continue;
 						hasCount ++;
-						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName);
+						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag);
 						v1.append(card);
 						if(hasCount == 8)
 							break;
@@ -550,7 +565,7 @@ function initMoreInfo(num){
     });
 }
 
-function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name){
+function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,teamId,teamFlag){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 	var ImageUrl = '/resources/images/index/noImg.jpg';
 	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
@@ -563,35 +578,48 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name)
 	}
 	var roleImgUrl ='';
 	var num =$('#roleNum').val();
+	var isHide = "hide";
 	if(num < 0){
 		roleImgUrl = "/resources/images/play/roleOur.png";
+		isHide = '';
 	}
-	if(num = 0) {
+	if(num == 0) {
 		roleImgUrl = "/resources/images/play/rolePro.png";
+		isHide = '';
 	}
 	if(num > 0){
 		roleImgUrl = "/resources/images/play/rolePlay.png";
+		isHide = '';
+	}
+	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
+	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
+	if(teamFlag != 4){
+		htmlAdd = "";
 	}
 	var html = [
-	    '<div class="swiper-slide noInfoCard">',
-	    '   <img class="roleImg" src="',roleImgUrl,'">',
-		'	<a href="',url,'">',
-		'     <img src="',ImageUrl,'">',
-		'     <div class="margin-top">',
-		'     	<span>',productName,'</span>',
-		'     	<span>',productPrice,'</span>',
-		'     </div>',
-		'            <div class="videoProvider">',
-		'               <img src="',sUrl,'">',
-		'               <div>',name,'</div>',
-		'           </div>',
-		'	</a>',
-		'</div>'
-	].join('');
+	    	    '<div class="swiper-slide noInfoCard">',
+	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
+	    		'	<a href="',url,'">',
+	    		'     <img src="',ImageUrl,'">',
+	    		'     <div class="margin-top">',
+	    		'     	<span>',productName,'</span>',
+	    		'     	<span>',productPrice,'</span>',
+	    		'     </div>',
+	       		'   </a>',
+	    		'   <a href="',teamIdUrl,'">',
+	    		'            <div class="videoProvider">',
+	    		'               <img src="',getDfsHostName()+sUrl,'">',
+	    		'               <div>',name,'</div>',
+	    		'           </div>',
+	    		'   </a>',
+	    		'</div>'
+	    	].join('');
+	
+
 	return html;
 }
 
-function createCard(productName,productId,teamId,imageUrl,price,sUrl,name){
+function createCard(productName,productId,teamId,imageUrl,price,sUrl,name,teamId,teamFlag){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 
 var ImageUrl = '/resources/images/index/noImg.jpg';
@@ -600,6 +628,8 @@ if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
 	ImageUrl = getDfsHostName() + imageUrl;
 }
 
+var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
+
 if(price<=0){
 	var productPrice = "";	
 }else{
@@ -607,32 +637,39 @@ var productPrice ="￥"+thousandCount(price);
 }
 var roleImgUrl ='';
 var num =$('#roleNum').val();
+var isHide = "hide";
 if(num < 0){
 	roleImgUrl = "/resources/images/play/roleOur.png";
+	isHide = '';
 }
-if(num = 0) {
+if(num == 0) {
 	roleImgUrl = "/resources/images/play/rolePro.png";
+	isHide = '';
 }
 if(num > 0){
 	roleImgUrl = "/resources/images/play/rolePlay.png";
+	isHide = '';
 }
-var html = [
-            '<div class="swiper-slide">',
-    	    '   <img class="roleImg" src="',roleImgUrl,'">',
-    		'     <div class="videoModel Xflag">',
-    		'	<a href="',url,'">',
-    		'     <div class="videoIcon"></div>',			
-    		'     <img src="',ImageUrl,'">',
-    		'     <div class="word">',
-    		'     	 <span>',productName,'</span>',
-    		'     	 <span>',productPrice,'</span>',
-    		'     </div>',
-    		'            <div class="videoProvider">',
-    		'               <img src="',sUrl,'">',
-    		'               <div>',name,'</div>',
-    		'           </div>',
-    		'	</a>',
-    		'</div>'
-].join('');
+	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
+	if(teamFlag == 4){
+		htmlAdd ='';
+	}
+	
+	var html = [
+	            '<div class="swiper-slide">',
+	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
+	    		'     <div class="videoModel Xflag">',
+	    		'	<a href="',url,'">',
+	    		'     <div class="videoIcon"></div>',			
+	    		'     <img src="',ImageUrl,'">',
+	    		'     <div class="word">',
+	    		'     	 <span>',productName,'</span>',
+	    		'     	 <span>',productPrice,'</span>',
+	    		'     </div>',
+	    		'   </a>',
+	    		htmlAdd,
+	    		'</div>'
+	].join('');
+
 return html;
 }

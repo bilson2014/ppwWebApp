@@ -154,6 +154,14 @@
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/mgr/favourites" />"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
             </div>
         </div>

@@ -2,6 +2,9 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/manager/collect.css" var="collectCss"/>
 <spring:url value="/resources/js/manager/collect.js" var="collectJs"/>
@@ -122,7 +125,7 @@
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
-					         <a href="<spring:url value="/" />"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/mgr/favourites" />"><li class="toCollect">收藏列表</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
 					       </div>
 					</div>
@@ -133,145 +136,71 @@
 		
 		 <div class="page">
 		         <div class="managerPgae">
+		           <div class="lineHead"></div>
 		              <div class="managerCard">
 		                   <div class="title">收藏列表</div>
 		                   <div class="setCard">
-				                      <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div class="delItem"></div>
-			                                  <div class="cancle"></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                  <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
-				                       <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div></div>
-			                                  <div></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                   <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
-				                      
-				                       <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div></div>
-			                                  <div></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                   <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
-				                      
-				                       <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div></div>
-			                                  <div></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                   <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
-				                      
-				                       <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div></div>
-			                                  <div></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                   <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
-				                      
-				                       <div class="cardItem">
-				                         <div class="modCheck">
-			                                  <div></div>
-			                                  <div></div>
-		                                 </div>
-				                         <img class="roleImg" src="/resources/images/play/roleOur.png">
-				                         <img class="cardImg" />
-				                         <div class="cardContent">
-				                              <div class="title">标题</div>
-				                              <div class="tags">标签</div>
-				                              <div class="price">
-				                                  <div>¥598.0</div>
-				                                   <div>¥原价470.0</div>
-				                              </div>
-				                              <div class="line"><div></div></div>
-						                       <div class="videoProvider">
-									              <img src="/resources/images/about.jpg">
-									              <div>这是名字</div>
-									              <div class="delBtn"></div>
-									           </div>
-				                         </div>
-				                      </div>
+		                      <c:if test="${!empty productList}">
+		                         <c:forEach items="${productList }" var="solr" varStatus="status">
+		                            
+					                      <div class="cardItem">
+					                        
+						                         <div class="modCheck">
+					                                  <div class="delItem" id="${solr.productId}"></div>
+					                                  <div class="cancle"></div>
+				                                 </div>
+											        <c:if test="${solr.indentProjectId < 0 }">
+												          <img class="roleImg" src="/resources/images/play/roleOur.png">
+													 </c:if>
+													 <c:if test="${solr.indentProjectId > 0 }">
+													      <img class="roleImg" src="/resources/images/play/rolePlay.png">
+													 </c:if>
+													 <c:if test="${solr.indentProjectId == 0 }">
+													      <img class="roleImg" src="/resources/images/play/rolePro.png">
+													 </c:if>
+											<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">		 
+						                         <img class="cardImg" src="${file_locate_storage_path }${solr.picLDUrl }" />
+						                         <div class="cardContent">
+						                              <div class="title">${solr.productName }</div>
+						                              <div class="tags">
+												             <c:if test="${not empty fn:trim(solr.tags) }">
+																<c:forEach items="${fn:split(fn:trim(solr.tags),' ') }" var="tag" end="2" varStatus="stat">
+																	${tag} <c:if test="${!stat.last }">/</c:if>
+																</c:forEach>
+															</c:if>
+													 </div>
+						                              <div class="price">
+									                       <div>
+									                             <c:choose>
+																	<c:when test="${solr.servicePrice > 0}">
+																		￥&nbsp;<fmt:formatNumber value="${solr.servicePrice }" pattern="#,#00"/>
+																	</c:when>
+																	<c:when test="${solr.servicePrice == 0}">
+																		暂无报价
+																	</c:when>
+																</c:choose>
+						                                  </div>
+						                                  <div>
+												            <c:if test="${solr.servicePrice < solr.serviceRealPrice }">
+																<h3>原价&nbsp;￥&nbsp;<fmt:formatNumber value="${solr.serviceRealPrice }" pattern="#,#00"/></h3>
+															</c:if>
+						                                  </div>
+						                              </div>
+						                         </a>     
+						                          <c:if test="${solr.teamFlag != 4 }"> 
+						                              <div class="line"><div></div></div>
+									                       <div class="videoProvider">
+									                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
+													              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+													              <div>${solr.teamName}</div>
+												             </a> 
+												              <div class="delBtn"></div>
+												           </div>
+											          </c:if> 
+						                         </div>
+					                      </div>
+				                    </c:forEach>  
+				               </c:if>       
 		                   </div>
 		              </div>
 		         </div>

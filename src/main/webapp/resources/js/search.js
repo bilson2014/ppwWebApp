@@ -34,8 +34,7 @@ var search = {
 		var q = $('#q').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
-		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
-		
+		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');	
 		var $tagBody ='';
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
 			// 将搜索内容写入面包屑布局
@@ -154,16 +153,12 @@ var search = {
 			
 			q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 			var param = '?q=' + q;
-			
-			
 			if(price != null && price != undefined && price != ''){
 				param += '&price=' + price;
 			}
-			
 			if(length != null && length != undefined && length != '') {
 				param += '&length=' + length;
 			}
-			
 			var tParam = '&industry=@_@';
 			
 			var gParam = '&genre=@_@';
@@ -575,9 +570,10 @@ function loadProduction(start){
 			if(list != null && list.length > 0){
 				var $body = '';
 				$.each(list,function(i,solr){
-					
+					var num = solr.indentProjectId;
 					var imgPath = '/resources/images/index/noImg.jpg';
 					var imageUrl = solr.picLDUrl;
+					var itemflag = solr.teamFlag;
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
@@ -619,8 +615,29 @@ function loadProduction(start){
 					}
 					$body += '</div>';
 					$body += '</div>';
+					if(itemflag!=4){
+					$body += '<div class="line">';
+					$body += '  <div class="videoCardLine"></div>';
 					$body += '</div>';
-
+					}
+					if(num<0){
+						$body +='<img class="roleImg" src="/resources/images/play/roleOur.png">';
+					}
+					if(num>0){
+						$body +='<img class="roleImg" src="/resources/images/play/rolePlay.png">';
+					}
+					if(num=0){
+						$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
+					}
+					if(itemflag!=4){
+					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
+					$body +='<div class="videoProvider">';
+					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
+					$body +=' <div>'+solr.teamName+'</div>';
+					$body +='</div>';
+					$body +='</a>';
+					}
+					$body +='</div>';
 					if(i % 4 == 3){
 						$body += '</div>';
 					}
@@ -645,9 +662,7 @@ function loadProduction(start){
 
 
 var searchVideo= {
-		
 		addType : function(word){
-			
 			if(word!="全部"){
 			var formBody ='<div class="tag" id="tagType">';
 			formBody +='<div class="controlCard">';
@@ -659,7 +674,6 @@ var searchVideo= {
 				$('#more-link').click();
 			}
 		},
-		
 		addPrice: function(word){
 			if(word!="全部"){
 			var formBody ='<div class="tag" id="tagPrice">';

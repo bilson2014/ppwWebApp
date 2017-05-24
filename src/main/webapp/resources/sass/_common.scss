@@ -1731,6 +1731,7 @@ a {
     top: $header-height;
     display: none;
     left: -70px;
+    box-shadow: 0px 0px 10px #cccccc;
     .showInfoList {
         margin: 0px;
         padding: 0px 0px 10px 0px;
@@ -1806,10 +1807,10 @@ a {
             top: 11px;
             left: 50px;
         }
-        .toCollect{
-                        content: '';
+        .toCollect:before{
+            content: '';
             position: absolute;
-            background: url(/resources/images/provider/loginOut.png);
+            background: url(/resources/images/provider/collect.png);
             background-size: 14px 14px;
             width: 14px;
             height: 14px;
