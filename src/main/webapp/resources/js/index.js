@@ -324,7 +324,7 @@ var homePage = {
 			}else{
 				//alert("数据加载错误")
 			}
-		}, getContextPath() + '/home/product/loadProduct/',$.toJSON({
+		}, getContextPath() + '/home/product/loadProduct',$.toJSON({
 			sort:"supportCount"
 		}));
 	},
