@@ -283,14 +283,14 @@
 								      <img class="roleImg" src="/resources/images/play/rolePro.png">
 								 </c:if>
 							</r:identity>
-							<c:if test="${solr.teamFlag !=4 }">
-								    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">								
-									<div class="videoProvider">
-									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-									    <div>${solr.teamName}</div>
-									</div>
-									</a>
-							</c:if>
+										<div class="videoProvider">
+										  <c:if test="${not empty solr.teamFlag && solr.teamFlag != 4 }">
+											    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">		
+											    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+											    <div>${solr.teamName}</div>
+											    </a>
+										  </c:if>  
+										</div>
 						</div>
 							<c:if test="${status.count % 4 == 0 }">
 								</div>

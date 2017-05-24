@@ -142,14 +142,12 @@
 		                   <div class="setCard">
 		                      <c:if test="${!empty productList}">
 		                         <c:forEach items="${productList }" var="solr" varStatus="status">
-		                            
 					                      <div class="cardItem">
-					                        
-						                         <div class="modCheck">
-					                                  <div class="delItem" id="${solr.productId}"></div>
-					                                  <div class="cancle"></div>
-				                                 </div>
-											        <c:if test="${solr.indentProjectId < 0 }">
+							                         <div class="modCheck">
+						                                  <div class="delItem" id="${solr.productId}"></div>
+						                                  <div class="cancle"></div>
+					                                 </div>
+											         <c:if test="${solr.indentProjectId < 0 }">
 												          <img class="roleImg" src="/resources/images/play/roleOur.png">
 													 </c:if>
 													 <c:if test="${solr.indentProjectId > 0 }">
@@ -187,16 +185,16 @@
 						                                  </div>
 						                              </div>
 						                         </a>     
-						                          <c:if test="${solr.teamFlag != 4 }"> 
 						                              <div class="line"><div></div></div>
 									                       <div class="videoProvider">
-									                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
-													              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-													              <div>${solr.teamName}</div>
-												             </a> 
+									                        <c:if test="${not empty solr.teamFlag && solr.teamFlag != 4 }"> 
+										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
+														              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+														              <div>${solr.teamName}</div>
+													             </a> 
+												            </c:if> 
 												              <div class="delBtn"></div>
 												           </div>
-											          </c:if> 
 						                         </div>
 					                      </div>
 				                    </c:forEach>  

@@ -629,14 +629,14 @@ function loadProduction(start){
 					if(num=0){
 						$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 					}
-					if(itemflag!=4){
-					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
 					$body +='<div class="videoProvider">';
+					if(itemflag!=4 && itemflag == null ){
+					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
 					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
 					$body +=' <div>'+solr.teamName+'</div>';
-					$body +='</div>';
 					$body +='</a>';
 					}
+					$body +='</div>';
 					$body +='</div>';
 					if(i % 4 == 3){
 						$body += '</div>';
