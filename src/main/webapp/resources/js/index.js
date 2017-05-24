@@ -324,7 +324,7 @@ var homePage = {
 			}else{
 				//alert("数据加载错误")
 			}
-		}, getContextPath() + '/home/product/loadProduct/',$.toJSON({
+		}, getContextPath() + '/home/product/loadProduct',$.toJSON({
 			sort:"supportCount"
 		}));
 	},
@@ -509,12 +509,15 @@ var homePage_tpl = {
 			'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
 			'					<div class="realPrice">原价￥${item.orignalPrice|thousandCount}</div>',
 			'				{@/if}',
+			'               </a>',
 			'               <div class="videoCardLine"></div>', 
 			'			</div>',
+			'           <a href="'+getHostName()+'/provider/info_${item.teamId}.html">',
 			'           <div class="videoProvider">',
 			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
 			'               <div>${item.teamName}</div>',
 			'           </div>',
+			'           </a>',
 			'       </div>',
 			'		</a>',
 			'	</div>',

@@ -150,6 +150,14 @@
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/mgr/favourites" />"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
             </div>
         </div>
@@ -233,12 +241,12 @@
 						<div class="wordPosition">
 						<a href="/cost/cal" target="_blank">
 							<div class="bannerWord" id="toCalculate">
-									<img src="/resources/images/index/bannerOnline.png">估算成本<span>>></span>
+									<img src="/resources/images/index/bannerOnline.png">拍片需要多少钱？点我计算真实成本！<span>>></span>
 							</div>
 					    </a>		
-							<div class="bannerWord" id="showVideoS">
+							<!-- <div class="bannerWord" id="showVideoS">
 								<img src="/resources/images/index/bannerPai.png">拍片网介绍<span>>></span>
-							</div>
+							</div> -->
 						</div>
 					</form>
 				</div>
