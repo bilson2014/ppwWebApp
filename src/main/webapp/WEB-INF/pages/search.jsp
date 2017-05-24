@@ -145,6 +145,14 @@
 				<r:identity role="employee">
 					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
 					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
+					<div class="showInfo">
+				       <div class="showInfoList">
+					         <li class="showName"><r:outName /></li>
+					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+					         <a href="<spring:url value="/mgr/favourites" />"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					       </div>
+					</div>
 				</r:identity>
             </div>
         </div>
@@ -260,6 +268,7 @@
 									</c:if>
 								</div>
 							</div>
+							
 							<div class="line">
 							     <div class="videoCardLine"></div>
 							</div>
@@ -273,17 +282,19 @@
 								 <c:if test="${solr.indentProjectId == 0 }">
 								      <img class="roleImg" src="/resources/images/play/rolePro.png">
 								 </c:if>
-							</r:identity>							
-							<div class="videoProvider">
-							    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-							    <div>${solr.teamName}</div>
-							</div>
+							</r:identity>
+							<c:if test="${solr.teamFlag !=4 }">
+								    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">								
+									<div class="videoProvider">
+									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+									    <div>${solr.teamName}</div>
+									</div>
+									</a>
+							</c:if>
 						</div>
-						
 							<c:if test="${status.count % 4 == 0 }">
 								</div>
 							</c:if>
-						
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty list}">

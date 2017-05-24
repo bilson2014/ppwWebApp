@@ -125,7 +125,7 @@
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
-					         <a href="<spring:url value="/" />"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/mgr/favourites" />"><li class="toCollect">收藏列表</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
 					       </div>
 					</div>
@@ -136,14 +136,17 @@
 		
 		 <div class="page">
 		         <div class="managerPgae">
+		           <div class="lineHead"></div>
 		              <div class="managerCard">
 		                   <div class="title">收藏列表</div>
 		                   <div class="setCard">
 		                      <c:if test="${!empty productList}">
 		                         <c:forEach items="${productList }" var="solr" varStatus="status">
+		                            
 					                      <div class="cardItem">
+					                        
 						                         <div class="modCheck">
-					                                  <div class="delItem" id="${solr.teamName}"></div>
+					                                  <div class="delItem" id="${solr.productId}"></div>
 					                                  <div class="cancle"></div>
 				                                 </div>
 											        <c:if test="${solr.indentProjectId < 0 }">
@@ -155,7 +158,8 @@
 													 <c:if test="${solr.indentProjectId == 0 }">
 													      <img class="roleImg" src="/resources/images/play/rolePro.png">
 													 </c:if>
-						                         <img class="cardImg" />
+											<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">		 
+						                         <img class="cardImg" src="${file_locate_storage_path }${solr.picLDUrl }" />
 						                         <div class="cardContent">
 						                              <div class="title">${solr.productName }</div>
 						                              <div class="tags">
@@ -169,9 +173,9 @@
 									                       <div>
 									                             <c:choose>
 																	<c:when test="${solr.servicePrice > 0}">
-																		<fmt:formatNumber value="${solr.servicePrice }" pattern="#,#00"/>
+																		￥&nbsp;<fmt:formatNumber value="${solr.servicePrice }" pattern="#,#00"/>
 																	</c:when>
-																	<c:when test="${solr.servicePrice <= 0}">
+																	<c:when test="${solr.servicePrice == 0}">
 																		暂无报价
 																	</c:when>
 																</c:choose>
@@ -182,12 +186,17 @@
 															</c:if>
 						                                  </div>
 						                              </div>
+						                         </a>     
+						                          <c:if test="${solr.teamFlag != 4 }"> 
 						                              <div class="line"><div></div></div>
-								                       <div class="videoProvider">
-											              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-											              <div>${solr.teamName}</div>
-											              <div class="delBtn"></div>
-											           </div>
+									                       <div class="videoProvider">
+									                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
+													              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+													              <div>${solr.teamName}</div>
+												             </a> 
+												              <div class="delBtn"></div>
+												           </div>
+											          </c:if> 
 						                         </div>
 					                      </div>
 				                    </c:forEach>  

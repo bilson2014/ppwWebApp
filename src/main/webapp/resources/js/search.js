@@ -573,6 +573,7 @@ function loadProduction(start){
 					var num = solr.indentProjectId;
 					var imgPath = '/resources/images/index/noImg.jpg';
 					var imageUrl = solr.picLDUrl;
+					var itemflag = solr.teamFlag;
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
@@ -614,9 +615,11 @@ function loadProduction(start){
 					}
 					$body += '</div>';
 					$body += '</div>';
+					if(itemflag!=4){
 					$body += '<div class="line">';
 					$body += '  <div class="videoCardLine"></div>';
 					$body += '</div>';
+					}
 					if(num<0){
 						$body +='<img class="roleImg" src="/resources/images/play/roleOur.png">';
 					}
@@ -626,10 +629,14 @@ function loadProduction(start){
 					if(num=0){
 						$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 					}
+					if(itemflag!=4){
+					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
 					$body +='<div class="videoProvider">';
-					$body +='<img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
+					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
 					$body +=' <div>'+solr.teamName+'</div>';
 					$body +='</div>';
+					$body +='</a>';
+					}
 					$body +='</div>';
 					if(i % 4 == 3){
 						$body += '</div>';
