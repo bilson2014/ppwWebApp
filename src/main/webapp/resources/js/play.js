@@ -635,18 +635,22 @@ var productPrice ="￥"+thousandCount(price);
 var roleImgUrl ='';
 var num =$('#roleNum').val();
 var isHide = "hide";
-if(num < 0){
-	roleImgUrl = "/resources/images/play/roleOur.png";
-	isHide = '';
+var loginTel = $('#rolephoneImg').val();
+if(loginTel!=null && loginTel!= "" ){
+	if(num < 0){
+		roleImgUrl = "/resources/images/play/roleOur.png";
+		isHide = '';
+	}
+	if(num == 0) {
+		roleImgUrl = "/resources/images/play/rolePro.png";
+		isHide = '';
+	}
+	if(num > 0){
+		roleImgUrl = "/resources/images/play/rolePlay.png";
+		isHide = '';
+	}
 }
-if(num == 0) {
-	roleImgUrl = "/resources/images/play/rolePro.png";
-	isHide = '';
-}
-if(num > 0){
-	roleImgUrl = "/resources/images/play/rolePlay.png";
-	isHide = '';
-}
+
 	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></a>';
 	if(teamFlag == 4 && teamFlag == null ){
 		htmlAdd ='';

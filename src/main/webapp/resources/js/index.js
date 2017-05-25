@@ -325,7 +325,12 @@ var homePage = {
 				$("#product-container").empty().html(juicer(homePage_tpl.hot_recommend,{list:hot_section}));
 				//初始化爆款加载
 				_this.cover();
-				$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend,{list:classical_section}));
+				var loginTel = $('#rolephoneImg').val();
+				if(loginTel!=null && loginTel!= "" ){
+					$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend,{list:classical_section}));
+				}else{
+					$(".cardUl").empty().html(juicer(homePage_tpl.classical_recommend_noImg,{list:classical_section}));
+				}
 			}else{
 				//alert("数据加载错误")
 			}
@@ -532,6 +537,49 @@ var homePage_tpl = {
 			'{@/if}',
 			'{@/each}'
          ].join(""),
+         classical_recommend_noImg:[
+                  			'{@each list as item, index}',
+                  			'{@if index % 4 == 0}',
+                  			'<div class="flow-div">',
+                  			'{@/if}',
+                  			' <div class="topAnimaltion oneFlow">',
+                  			'	<div class="videoCard">',
+                  			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
+                  			'{@if item.picLDUrl!= null && item.picLDUrl!= "" && item.picLDUrl!= undefined }',
+                  			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+                  			'{@else}',
+                  			'           <img src="/resources/images/index/noImg.jpg"> ',
+                  			'{@/if}',
+                  			'       <div class="cardShadow">',
+                  			'			<div class="videoContet">',
+                  			'				<div class="title">${item.productName}</div>',
+                  			'				<div class="type">${item.tags}</div>',
+                  			'				{@if item.price == 0}',
+                  			'					<div  class="price">￥暂无报价</div>',
+                  			'				{@else}',
+                  			'					<div  class="price">￥${item.price|thousandCount}</div>',
+                  			'				{@/if}',
+                  			'				{@if item.orignalPrice != null && item.orignalPrice != 0 && item.orignalPrice != item.price}',
+                  			'					<div class="realPrice">原价￥${item.orignalPrice|thousandCount}</div>',
+                  			'				{@/if}',
+                  			'               </a>',
+                  			'               <div class="videoCardLine"></div>', 
+                  			'			</div>',
+                  			'           <a href="'+getHostName()+'/provider/info_${item.teamId}.html">',
+                  			'           <div class="videoProvider">',
+                  			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+                  			'               <div>${item.teamName}</div>',
+                  			'           </div>',
+                  			'           </a>',
+                  			'       </div>',
+                  			'		</a>',
+                  			'	</div>',
+                  			'  </div>',
+                  			'{@if index % 4 == 3}',
+                  			'</div>',
+                  			'{@/if}',
+                  			'{@/each}'
+                           ].join(""),
      team_recommend:[
             '{@each result as item}',      
 			'<div class="swiper-slide">',

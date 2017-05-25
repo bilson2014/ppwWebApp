@@ -1108,26 +1108,7 @@ public class VersionManagerController extends BaseController {
 	 * @param indent
 	 * @return
 	 */
-<<<<<<< HEAD
-//	@RequestMapping("/indent/rejected")
-//	public BaseMsg rejectedIndent(PmsIndent indent) {
-//		BaseMsg baseMsg = new BaseMsg();
-//		baseMsg.setErrorCode(BaseMsg.ERROR);
-//		baseMsg.setErrorMsg("驳回异常，请重试！");
-//		indent.setIndentType(PmsIndent.ORDER_HANDLING);
-//		
-//		long res = pmsIndentFacade.rejected(indent);
-//		if (res > 0) {
-//			baseMsg.setErrorCode(BaseMsg.NORMAL);
-//			baseMsg.setErrorMsg("驳回成功！");
-//		}
-//		return baseMsg;
-//	}
-//	
-//	public void tst(){
-//		
-//	}
-=======
+
 	@RequestMapping("/indent/rejected")
 	public BaseMsg rejectedIndent(PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -1146,5 +1127,5 @@ public class VersionManagerController extends BaseController {
 	public void tst() {
 
 	}
->>>>>>> a3eee7ab2c74cf6937081a2a8b64c4214a182c11
+
 }
