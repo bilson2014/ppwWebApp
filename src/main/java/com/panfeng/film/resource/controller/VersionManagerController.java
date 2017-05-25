@@ -33,11 +33,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.DataGrid;
+import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.PmsResult;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.paipianwang.pat.common.web.security.AESUtil;
+import com.paipianwang.pat.facade.indent.entity.PmsIndent;
+import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
 import com.paipianwang.pat.facade.product.entity.PmsEmployeeProductLink;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.service.PmsEmployeeProductLinkFacade;
@@ -74,21 +78,24 @@ public class VersionManagerController extends BaseController {
 
 	@Autowired
 	private ResourceService resourceService;
-	
+
 	@Autowired
 	private EmployeeThirdLogin employeeThirdLogin;
-	
+
 	@Autowired
 	private PmsEmployeeFacade pmsEmployeeFacade;
-	
+
 	@Autowired
 	private PmsRoleFacade pmsRoleFacade;
-	
+
 	@Autowired
 	private PmsRightFacade pmsRightFacade;
 
 	@Autowired
 	private PmsEmployeeProductLinkFacade pmsEmployeeProductLinkFacade;
+
+	@Autowired
+	private PmsIndentFacade pmsIndentFacade;
 
 	static String UNIQUE = "unique_e";
 	static String LINKMAN = "username_e";
@@ -572,7 +579,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {
-		final String url = PublicConfig.URL_PREFIX + "project/get/report";
+		// final String url = PublicConfig.URL_PREFIX + "project/get/report";
 		try {
 			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);
@@ -888,24 +895,27 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/favourites")
 	public ModelAndView view(HttpServletRequest request, ModelMap map) {
 		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-		if(info != null) {
+		if (info != null) {
 			List<PmsProduct> list = pmsEmployeeProductLinkFacade.findProductIdsByEmployeeId(info.getReqiureId());
 			map.put("productList", list);
 		}
 		return new ModelAndView("/manager/collect", map);
 	}
-	
+
 	/**
 	 * 删除收藏作品
-	 * @param productId 作品ID
+	 * 
+	 * @param productId
+	 *            作品ID
 	 * @return
 	 */
 	@RequestMapping("/favourites/remove/{productId}")
-	public PmsResult deleteFavourites(@PathVariable("productId") final Long productId, final HttpServletRequest request) {
+	public PmsResult deleteFavourites(@PathVariable("productId") final Long productId,
+			final HttpServletRequest request) {
 		PmsResult prst = new PmsResult();
-		if(productId != null) {
+		if (productId != null) {
 			final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-			if(info != null) {
+			if (info != null) {
 				List<PmsEmployeeProductLink> list = new ArrayList<PmsEmployeeProductLink>();
 				PmsEmployeeProductLink link = new PmsEmployeeProductLink();
 				link.setEmployeeId(info.getReqiureId());
@@ -925,18 +935,20 @@ public class VersionManagerController extends BaseController {
 		prst.setResult(false);
 		return prst;
 	}
-	
+
 	/**
 	 * 添加作品收藏
-	 * @param productId 作品ID
+	 * 
+	 * @param productId
+	 *            作品ID
 	 * @return
 	 */
 	@RequestMapping("/favourites/add/{productId}")
 	public PmsResult addFavourites(@PathVariable("productId") final Long productId, final HttpServletRequest request) {
 		PmsResult prst = new PmsResult();
-		if(productId != null) {
+		if (productId != null) {
 			final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-			if(info != null) {
+			if (info != null) {
 				PmsEmployeeProductLink link = new PmsEmployeeProductLink();
 				link.setEmployeeId(info.getReqiureId());
 				link.setProductId(productId);
@@ -954,20 +966,23 @@ public class VersionManagerController extends BaseController {
 		prst.setResult(false);
 		return prst;
 	}
-	
+
 	/**
 	 * 判断该影片是否被当前登录者收藏
-	 * @param productId 作品ID
+	 * 
+	 * @param productId
+	 *            作品ID
 	 * @return true | false
 	 */
 	@RequestMapping("/favourites/judge/{productId}")
-	public PmsResult judgeFavourites(@PathVariable("productId") final Long productId, final HttpServletRequest request) {
+	public PmsResult judgeFavourites(@PathVariable("productId") final Long productId,
+			final HttpServletRequest request) {
 		// 判断该影片是否是收藏的
 		PmsResult prst = new PmsResult();
-		if(productId != null) {
+		if (productId != null) {
 			final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-			if(info != null) {
-				Map<String ,Object> param = new HashMap<String, Object>();
+			if (info != null) {
+				Map<String, Object> param = new HashMap<String, Object>();
 				param.put("employeeId", info.getReqiureId());
 				param.put("productId", productId);
 				List<PmsEmployeeProductLink> list = pmsEmployeeProductLinkFacade.findLinkByParam(param);
@@ -1059,5 +1074,56 @@ public class VersionManagerController extends BaseController {
 		map.put(PmsConstant.SESSION_INFO, info);
 		request.getSession().setAttribute(PmsConstant.SESSION_INFO, info);
 		return true;
+	}
+
+	// --------------------------------项目经理----------------------------------------------
+	@RequestMapping("/indent/index")
+	public ModelAndView indentIndex() {
+		return new ModelAndView("/employee/PMIndentList");
+	}
+
+	@RequestMapping("/get/indent/list")
+	public DataGrid<PmsIndent> getIndentList(HttpServletRequest request) {
+		SessionInfo currentInfo = getCurrentInfo(request);
+		if (currentInfo != null) {
+			String sessionType = currentInfo.getSessionType();
+			if (ValidateUtil.isValid(sessionType) && PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+				Long reqiureId = currentInfo.getReqiureId();
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("indentType", PmsIndent.ORDER_DONE);
+				paramMap.put("pMId", reqiureId);
+				PageParam pageParam = new PageParam();
+				pageParam.setBegin(0);
+				pageParam.setLimit(20);
+				DataGrid<PmsIndent> indentList = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+				return indentList;
+			}
+		}
+		return new DataGrid<>();
+	}
+
+	/**
+	 * 驳回订单
+	 * 
+	 * @param indent
+	 * @return
+	 */
+	@RequestMapping("/indent/rejected")
+	public BaseMsg rejectedIndent(PmsIndent indent) {
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setErrorCode(BaseMsg.ERROR);
+		baseMsg.setErrorMsg("驳回异常，请重试！");
+		indent.setIndentType(PmsIndent.ORDER_HANDLING);
+
+		long res = pmsIndentFacade.rejected(indent);
+		if (res > 0) {
+			baseMsg.setErrorCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("驳回成功！");
+		}
+		return baseMsg;
+	}
+
+	public void tst() {
+
 	}
 }

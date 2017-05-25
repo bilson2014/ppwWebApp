@@ -930,23 +930,22 @@ $rightWidth:320px;
 }
 
 .swiper-noInfo .swiper-slide {
-    overflow: hidden;
     font-size: 18px;
     width: 60%;
     background: white;
     border-radius: 4px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    // display: -webkit-box;
+    // display: -ms-flexbox;
+    // display: -webkit-flex;
+    // display: flex;
+    // -webkit-box-pack: center;
+    // -ms-flex-pack: center;
+    // -webkit-justify-content: center;
+    // justify-content: center;
+    // -webkit-box-align: center;
+    // -ms-flex-align: center;
+    // -webkit-align-items: center;
+    // align-items: center;
     a {
         width: 100%;
     }
@@ -994,6 +993,11 @@ $rightWidth:320px;
     padding-right: 0px !important;
     line-height: 20px !important;
     margin-top: 10px;
+    img{
+        position: relative;
+        top:-1px;
+    }
+
     img,
     div {
         display: inline-block;

@@ -593,7 +593,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	}
 	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
-	if(teamFlag != 4){
+	if(teamFlag != 4 && teamFlag == null){
 		htmlAdd = "";
 	}
 	var html = [
@@ -606,12 +606,9 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	    		'     	<span>',productPrice,'</span>',
 	    		'     </div>',
 	       		'   </a>',
-	    		'   <a href="',teamIdUrl,'">',
-	    		'            <div class="videoProvider">',
-	    		'               <img src="',getDfsHostName()+sUrl,'">',
-	    		'               <div>',name,'</div>',
-	    		'           </div>',
-	    		'   </a>',
+	    		'<div class="videoProvider">',
+	    		htmlAdd,
+	    		'</div>',
 	    		'</div>'
 	    	].join('');
 	
@@ -650,11 +647,10 @@ if(num > 0){
 	roleImgUrl = "/resources/images/play/rolePlay.png";
 	isHide = '';
 }
-	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
-	if(teamFlag == 4){
+	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></a>';
+	if(teamFlag == 4 && teamFlag == null ){
 		htmlAdd ='';
 	}
-	
 	var html = [
 	            '<div class="swiper-slide">',
 	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
@@ -667,7 +663,9 @@ if(num > 0){
 	    		'     	 <span>',productPrice,'</span>',
 	    		'     </div>',
 	    		'   </a>',
+	    		'<div class="videoProvider">',
 	    		htmlAdd,
+	    		'</div>',
 	    		'</div>'
 	].join('');
 
