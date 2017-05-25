@@ -1082,7 +1082,7 @@ public class VersionManagerController extends BaseController {
 		return new ModelAndView("/employee/PMIndentList");
 	}
 
-	@RequestMapping("/get/indent/list")
+/*	@RequestMapping("/get/indent/list")
 	public DataGrid<PmsIndent> getIndentList(HttpServletRequest request) {
 		SessionInfo currentInfo = getCurrentInfo(request);
 		if (currentInfo != null) {
@@ -1100,29 +1100,29 @@ public class VersionManagerController extends BaseController {
 			}
 		}
 		return new DataGrid<>();
-	}
+	}*/
 
 	/**
 	 * 驳回订单
 	 * @param indent
 	 * @return
 	 */
-	@RequestMapping("/indent/rejected")
-	public BaseMsg rejectedIndent(PmsIndent indent) {
-		BaseMsg baseMsg = new BaseMsg();
-		baseMsg.setErrorCode(BaseMsg.ERROR);
-		baseMsg.setErrorMsg("驳回异常，请重试！");
-		indent.setIndentType(PmsIndent.ORDER_HANDLING);
-		
-		long res = pmsIndentFacade.rejected(indent);
-		if (res > 0) {
-			baseMsg.setErrorCode(BaseMsg.NORMAL);
-			baseMsg.setErrorMsg("驳回成功！");
-		}
-		return baseMsg;
-	}
-	
-	public void tst(){
-		
-	}
+//	@RequestMapping("/indent/rejected")
+//	public BaseMsg rejectedIndent(PmsIndent indent) {
+//		BaseMsg baseMsg = new BaseMsg();
+//		baseMsg.setErrorCode(BaseMsg.ERROR);
+//		baseMsg.setErrorMsg("驳回异常，请重试！");
+//		indent.setIndentType(PmsIndent.ORDER_HANDLING);
+//		
+//		long res = pmsIndentFacade.rejected(indent);
+//		if (res > 0) {
+//			baseMsg.setErrorCode(BaseMsg.NORMAL);
+//			baseMsg.setErrorMsg("驳回成功！");
+//		}
+//		return baseMsg;
+//	}
+//	
+//	public void tst(){
+//		
+//	}
 }
