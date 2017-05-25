@@ -13,10 +13,9 @@ var production = ' production='; // 制作
 $().ready(function(){
 	search.showTitle(); // 在标题栏显示搜索内容
 	search.initCrumbs(); // 初始化面包屑布局
-	search.loadItem(); // 装配视频类型
+	search.loadItem(); // 装配 功能、行业、制作维度
 	search.itemToggle(); // 注册 行业分类 点击事件
 	search.loadPrice(); // 装配价格
-	search.loadLength(); // 装配时长
 	search.pagination(); // 分页
 });
 
@@ -24,10 +23,11 @@ var search = {
 	showTitle : function() {
 		var q = $('#q').val();
 		if(q != '' && q != undefined) {
-			if(q.indexOf(industry) > -1 || q.indexOf(genre) > -1) {
+			if(q.indexOf(industry) > -1 || q.indexOf(genre) > -1 || q.indexOf(production) > -1) {
 				// 如果含有tags字样，那么证明只对tags字段进行搜索
 				q.replace(industry,'');
 				q.replace(genre,'');
+				q.replace(production,'');
 			}
 		}
 		
@@ -38,6 +38,8 @@ var search = {
 		var q = $('#q').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
+		var production = $('#production').val(); // 制作
+		
 		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');	
 		var $tagBody ='';
 		if(q != undefined  && q.trim() != '' && q.trim() != '*') {
@@ -112,6 +114,26 @@ var search = {
 			}
 		}
 		
+		// 制作
+		if(production != undefined  && production != null && production.trim() != '') {
+			// 将搜索内容写入面包屑布局
+			// 去除空格以及','
+			var re2='(\\s*)(,)(\\s*)';	
+		    var p = new RegExp(re2,["gm"]);
+		    production = production.replace(p, ' ');
+		    var qArray = production.split(/\s+/);
+			if(qArray != '') {
+				$.each(qArray,function(i,tag){
+					if(tag.trim() != '' && tag.trim() != undefined) {
+						$tagBody += '<div class="tag" id="tagType">';
+						$tagBody += '<div class="controlCard">';
+						$tagBody += '<span>'+ tag.trim() +'</span><span class="tagX" id="tagContentX" data-type="pro" data-text='+ tag.trim() +'>x</span></div>';
+						$tagBody += '</div>';
+					}
+				});
+			}
+		}
+		
 		// 价格
 		var price = $('#price').val();
 		if(price != undefined  && price != '') {
@@ -124,17 +146,6 @@ var search = {
 			}
 			
 		}
-		// 时长
-		var length = $('#length').val();
-		if(length != undefined  && length != '') {
-			length = parseLength(length);
-			if(length != null) {
-				$tagBody += '<div class="tag" id="tagType">';
-				$tagBody += '<div class="controlCard">';
-				$tagBody += '<span>'+ length +'</span><span class="tagX" id="tagContentX" data-type="length">x</span></div>';
-				$tagBody += '</div>';
-			}
-		}
 		
 		// 写入页面
 		$("#videoTag").append($tagBody);
@@ -146,32 +157,44 @@ var search = {
 	loadItem : function(){
 			// 清除数据
 			$('#item-list').empty();
+			$('#bus-item-list').empty();
+			$('#production-item-list').empty();
 			$ul = '';
 			$ulBus = '';
+			$ulPro = '';
 			var q = $('#q').val();
 			var industry = $('#industry').val(); // 行业
 			var genre = $('#genre').val(); // 类型
+			var production = $('#production').val();
 			
 			var price = $('#price').val();
-			var length = $('#length').val();
 			
 			q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 			var param = '?q=' + q;
 			if(price != null && price != undefined && price != ''){
 				param += '&price=' + price;
 			}
-			if(length != null && length != undefined && length != '') {
-				param += '&length=' + length;
-			}
+			
 			var tParam = '&industry=@_@';
 			
 			var gParam = '&genre=@_@';
 			
-			if(industry != null && industry != undefined && industry != '')
-				gParam += '&industry=' + industry;
+			var pParam = '&production=@_@';
 			
-			if(genre != null && genre != undefined && genre != '')
+			if(industry != null && industry != undefined && industry != '') {
+				gParam += '&industry=' + industry;
+				pParam += '&industry=' + industry;
+			}
+			
+			if(genre != null && genre != undefined && genre != '') {
 				tParam += '&genre=' + genre;
+				pParam += '&genre=' + genre;
+			}
+			
+			if(production != null && production != undefined && production != '') {
+				gParam += '&production=' + production;
+				tParam += '&production=' + production;
+			}
 			
 			$.each(typeArray,function(i,item){
 				// 去除重复
@@ -190,6 +213,9 @@ var search = {
 				tParam = '&industry=@_@';
 				if(genre != null && genre != undefined && genre != '')
 					tParam += '&genre=' + genre;
+				if(production != null && production != undefined && production != '')
+					tParam += '&production=' + production;
+				
 			});
 			
 			$.each(busArray,function(i,item){
@@ -209,26 +235,45 @@ var search = {
 				gParam = '&genre=@_@';
 				if(industry != null && industry != undefined && industry != '')
 					gParam += '&industry=' + industry;
+				if(production != null && production != undefined && production != '')
+					gParam += '&production=' + production;
+			});
+			
+			$.each(proArray,function(i,item){
+				// 去除重复
+				if(production != undefined && production != '' && production != null) {
+					if(production.indexOf(item) > -1) 
+						pParam = pParam.replace('@_@',production);
+					else 
+						pParam = pParam.replace('@_@',production + ' ' + item);
+				}else {
+					pParam = pParam.replace('@_@',item + ' ');
+				}
+				$ulPro += '<li>';
+				$ulPro += '<a href="'+ getContextPath() + '/search' + param + pParam.trim() + '" class="ProItemAll" data-id="'+ item +'">'+ item +'</a>';
+				$ulPro += '</li>';
+				
+				pParam = '&production=@_@';
+				if(industry != null && industry != undefined && industry != '')
+					pParam += '&industry=' + industry;
+				if(genre != null && genre != undefined && genre != '')
+					pParam += '&genre=' + genre;
 				
 			});
 			
 			$('#item-list').append($ul);
 			$('#bus-item-list').append($ulBus);
-			
+			$('#production-item-list').append($ulPro);
 	},
 	loadPrice : function(){ // 装配价格
 		$('#price-list').empty();
 		var q = $('#q').val();
-		var length = $('#length').val();
+		var production = $('#production').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
 		
 		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 		var param = '?q=' + q;
-		
-		if(length != null && length != undefined && length != '') {
-			param += '&length=' + length;
-		}
 		
 		if(industry != null && industry != undefined && industry != '') {
 			param += '&industry=' + industry.trim();
@@ -236,6 +281,10 @@ var search = {
 		
 		if(genre != null && genre != undefined && genre != '') {
 			param += '&genre=' + genre.trim();
+		}
+		
+		if(production != null && production != undefined && production != '') {
+			param += '&production=' + production.trim();
 		}
 		
 		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[1 TO *]' +'" data-price="[1 TO *]" class="priceAll">有价格</a></li>';
@@ -263,7 +312,7 @@ var search = {
 			}
 		});
 		
-		// 注册 时长 确定按钮
+		// 注册 价格 确定按钮
 		$('#price-btn').on('click',function(){
 			var priceBegin = $('#start-price').val().trim();
 			var priceEnd = $('#end-price').val().trim();
@@ -322,11 +371,11 @@ function crumbsClick() {
 	var q = $('#q').val();
 	q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 	
-	var length = $('#length').val();
 	var price = $('#price').val();
 	
 	var industry = $('#industry').val(); // 行业
 	var genre = $('#genre').val(); // 类型
+	var production = $('#production').val(); // 制作
 	
 	var param = '';
 	if(strType != undefined && strType != '') {
@@ -336,27 +385,31 @@ function crumbsClick() {
 			if(strText != undefined && strText != '' && strText != null) {
 				q = q.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, price, length);
+			param = recombineSearchCondition(q, industry, genre, production,price);
 		} else if (strType == 'indy') {
 			// 取消行业标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				industry = industry.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, price, length);
+			param = recombineSearchCondition(q, industry, genre, production,price);
 		} else if(strType == 'gen') {
 			// 取消类型标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				genre = genre.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, price, length);
+			param = recombineSearchCondition(q, industry, genre, production, price);
+		} else if(strType == 'pro') {
+			// 取消类型标签时
+			// 点击标签时，移除这个标签
+			if(strText != undefined && strText != '' && strText != null) {
+				production = production.replace(strText,'');
+			}
+			param = recombineSearchCondition(q, industry, genre, production, price);
 		} else if(strType == 'price') {
 			// 取消价格时
-			param = recombineSearchCondition(q, industry, genre, '', length);
-		} else if(strType == 'length') {
-			// 取消时长时
-			param = recombineSearchCondition(q, industry, genre, price, '');
+			param = recombineSearchCondition(q, industry, genre, production, '');
 		}
 	}else {
 		// 类型为空时，则证明是“全部”，不做任何处理
@@ -367,7 +420,7 @@ function crumbsClick() {
 }
 
 // 重组url
-function recombineSearchCondition(q,industry,genre,price,length) {
+function recombineSearchCondition(q,industry,genre,production,price) {
 	var param = '';
 	if(q != null && q != undefined && q != '') {
 		param = '?q=' + q;
@@ -396,12 +449,20 @@ function recombineSearchCondition(q,industry,genre,price,length) {
 			param += '&genre=' + temp.trim();
 	}
 	
-	if(price != null && price != undefined && price != '') {
-		param += '&price=' + price;
+	if(production != null && production != undefined && production != '') {
+		var production = production.split(' ');
+		var temp = '';
+		for(var i = 0;i < production.length;i ++) {
+			if(production[i].trim() != '') {
+				temp += production[i].trim() + ' ';
+			}
+		}
+		if(temp != '' && temp != null)
+			param += '&production=' + temp.trim();
 	}
 	
-	if(length != null && length != undefined && length != ''){
-		param += '&length=' + item;
+	if(price != null && price != undefined && price != '') {
+		param += '&price=' + price;
 	}
 	
 	// 判断param中是否含有q
@@ -560,14 +621,14 @@ function loadProduction(start){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 						}
 					}
-					$body +='<div class="videoProvider">';
-					if(itemflag!=4 && itemflag == null ){
+					if(itemflag!=4){
 					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
+					$body +='<div class="videoProvider">';
 					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
 					$body +=' <div>'+solr.teamName+'</div>';
+					$body +='</div>';
 					$body +='</a>';
 					}
-					$body +='</div>';
 					$body +='</div>';
 					if(i % 4 == 3){
 						$body += '</div>';
