@@ -33,8 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
-import com.paipianwang.pat.common.entity.DataGrid;
-import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.PmsResult;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -1102,32 +1100,6 @@ public class VersionManagerController extends BaseController {
 		return new DataGrid<>();
 	}*/
 
-	/**
-	 * 驳回订单
-	 * 
-	 * @param indent
-	 * @return
-	 */
-<<<<<<< HEAD
-//	@RequestMapping("/indent/rejected")
-//	public BaseMsg rejectedIndent(PmsIndent indent) {
-//		BaseMsg baseMsg = new BaseMsg();
-//		baseMsg.setErrorCode(BaseMsg.ERROR);
-//		baseMsg.setErrorMsg("驳回异常，请重试！");
-//		indent.setIndentType(PmsIndent.ORDER_HANDLING);
-//		
-//		long res = pmsIndentFacade.rejected(indent);
-//		if (res > 0) {
-//			baseMsg.setErrorCode(BaseMsg.NORMAL);
-//			baseMsg.setErrorMsg("驳回成功！");
-//		}
-//		return baseMsg;
-//	}
-//	
-//	public void tst(){
-//		
-//	}
-=======
 	@RequestMapping("/indent/rejected")
 	public BaseMsg rejectedIndent(PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -1143,8 +1115,4 @@ public class VersionManagerController extends BaseController {
 		return baseMsg;
 	}
 
-	public void tst() {
-
-	}
->>>>>>> a3eee7ab2c74cf6937081a2a8b64c4214a182c11
 }
