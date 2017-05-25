@@ -1,10 +1,15 @@
 var pageSize = 20;
 var currentSize = 0;
-var typeArray = new Array(' 宣传片','个人宣传片','活动宣传片','产品宣传片','企业宣传片','城市宣传片','品牌宣传片','招商宣传片','形象宣传片','TVC',' 广告','创意广告','产品广告','品牌广告','活动广告','微电影','路演视频','病毒视频','公益片','社交媒体视频','花絮');
-var busArray = new Array('智能硬件','互联网','电子产品','电商','通讯','服装纺织','金融','医疗保健','游戏','交通运输','汽车','文化','日用美妆','家居建材','政府机构','企业服务','餐饮美食','母婴','美容','美发','食品饮料','电器','影视','房地产');
-var mark = 'tags='; // 特殊标记
+// 功能维度
+var typeArray = new Array('产品宣传片','企业宣传片','产品广告','微电影','路演视频','病毒视频','品牌宣传片','活动宣传片','城市宣传片','形象宣传片','个人宣传片','创意广告','活动广告','品牌广告','TVC','发布会','访谈','公益片','暖场片','纪录片');
+// 行业维度
+var busArray = new Array('智能硬件','教育','医疗保健','互联网','电商','旅游','母婴','体育','金融','电子产品','大数据','游戏','服装纺织','家居建材','餐饮美食','食品饮料','农业','房地产','创投','首饰','日用美妆','云计算');
+// 制作维度
+var proArray = new Array('MG动画','Flash动画','明星演员','AE包装','3D','航拍','动画','电影级','广告级','长镜头','定格动画');
 var industry = 'industry='; // 行业
 var genre = 'genre='; // 类型
+var production = ' production='; // 制作
+
 $().ready(function(){
 	search.showTitle(); // 在标题栏显示搜索内容
 	search.initCrumbs(); // 初始化面包屑布局
@@ -16,7 +21,6 @@ $().ready(function(){
 });
 
 var search = {
-				
 	showTitle : function() {
 		var q = $('#q').val();
 		if(q != '' && q != undefined) {
@@ -284,82 +288,6 @@ var search = {
 		});
 		
 	},
-	loadLength : function(){ // 装配时长
-		$('#length-list').empty();
-		
-		var q = $('#q').val();
-		var price = $('#price').val();
-		
-		var industry = $('#industry').val(); // 行业
-		var genre = $('#genre').val(); // 类型
-		
-		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
-		var param = '?q=' + q;
-		
-		if(price != null && price != undefined && price != '') {
-			param += '&price=' + price;
-		}
-		
-		if(industry != null && industry != undefined && industry != '') {
-			param += '&industry=' + industry.trim();
-		}
-		
-		if(genre != null && genre != undefined && genre != '') {
-			param += '&genre=' + genre.trim();
-		}
-		
-		var $lengthLi = '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[0 TO 60]' +'" data-length="[0 TO 60]" class="lengthAll">0~60秒</a></li>';
-		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[60 TO 90]' +'" data-length="[60 TO 90]" class="lengthAll">60~90秒</a></li>';
-		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[90 TO 180]' +'" data-length="[90 TO 180]" class="lengthAll">90~180秒</a></li>';
-		$lengthLi += '<li><a href="'+ getContextPath() + '/search' + param + '&length=' + '[180 TO *]' +'" data-length="[180 TO *]" class="lengthAll">180秒以上</a></li>';
-		$lengthLi += '<li><div class="length-section"><input type="text" id="start-length" /> 秒 ~ <input type="text" id="end-length" /> 秒 <a id="length-alink" href="javascript:void(0);" ><button id="length-btn" type="button" class="btn btn-primary">确定</button></a></div></li>';
-		
-		$('#length-list').append($lengthLi);
-		
-		// 绑定input 值变动事件
-		$('#start-length').change(function(){
-			// 判断输入格式
-			if(!checkNumber($(this).val().trim())){
-				// 如果不是数字，则清空
-				$(this).val('');
-			}
-		});
-		
-		$('#end-length').change(function(){
-			// 判断输入格式
-			if(!checkNumber($(this).val().trim())){
-				// 如果不是数字，则清空
-				$(this).val('');
-			}
-		});
-		
-		// 注册 时长 确定按钮
-		$('#length-btn').on('click',function(){
-			var lengthBegin = $('#start-length').val().trim();
-			var lengthEnd = $('#end-length').val().trim();
-			if((lengthBegin != null && lengthBegin != '' && lengthBegin != undefined) || (lengthEnd != null && lengthEnd != '' && lengthEnd != undefined)){
-				// 拼接搜索条件
-				var condition = '&length=[';
-				if(lengthBegin != null && lengthBegin != '' && lengthBegin != undefined){
-					condition += lengthBegin + ' TO ';
-				}else {
-					condition += '* TO ';
-				}
-				
-				if(lengthEnd != null && lengthEnd != '' && lengthEnd != undefined){
-					condition += lengthEnd + ']';
-				}else {
-					condition += '*]';
-				}
-				$('#length-alink').attr('href',getContextPath() + '/search' + param + condition).click();
-			}else {
-				return false;
-			}
-			
-		});
-		
-	},
-	
 	pagination : function(){
 		$(".pagination").createPage({
 			pageCount: Math.ceil($('#total').val() / pageSize),

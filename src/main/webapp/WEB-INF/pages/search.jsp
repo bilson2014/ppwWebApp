@@ -7,7 +7,7 @@
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%@ page import="java.lang.Integer"%>
 <%@ page import="java.util.List"%>
-<%@ page import="com.panfeng.film.resource.model.Solr"%>
+<%@ page import="com.paipianwang.pat.facade.information.entity.PmsProductSolr"%>
 <%-- import CSS --%>
 <spring:url value="/resources/css/search.css" var="searchCss"/>
 
