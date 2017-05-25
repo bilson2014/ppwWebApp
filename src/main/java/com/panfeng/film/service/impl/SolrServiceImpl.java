@@ -1,16 +1,19 @@
 package com.panfeng.film.service.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.util.ClientUtils;
 import org.springframework.stereotype.Service;
 
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
 import com.paipianwang.pat.common.web.service.impl.BaseSolrServiceImpl;
 import com.paipianwang.pat.facade.information.entity.PmsNewsSolr;
@@ -31,23 +34,39 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 		try {
 			final SolrQuery query = new SolrQuery();
 			query.set("defType", "edismax");
-			query.set("qf", "productName^1 tags^0.8 teamName^0.4");
+			query.set("qf", "productName^80 tags^70 teamName^10");
 			query.set("q.alt", "*:*");
-
+			
 			// 整合bf，增强搜索字段的权重
-			if (StringUtils.isNotBlank(condition)) {
+			if(ValidateUtil.isValid(condition)) {
+				// 分词
 				String freq = condition.replaceAll(",", " ").replaceAll(" +", " ");
-				StringBuffer sb = new StringBuffer();
-				for (String element : freq.split(" ")) {
-					sb.append("*");
-					sb.append(element);
-					sb.append("*");
+				// TODO 正式环境替换
+				// List<String> words = this.getAnalysis(token.getSolrUrl(), freq);
+				List<String> words = this.getAnalysis("http://106.75.2.125:8080/solr/ghost", freq);
+				if(ValidateUtil.isValid(words)) {
+					StringBuffer sb = new StringBuffer();
+					for (int i = 0; i < words.size(); i++) {
+						String str = words.get(i);
+						if(ValidateUtil.isValid(str)) {
+							sb.append("termfreq(productName,*");
+							sb.append(str);
+							sb.append("*),");
+							sb.append("termfreq(tags,*");
+							sb.append(str);
+							if (i == (words.size() - 1))
+								sb.append("*)");
+							else
+								sb.append("*),");
+						}
+					}
+					
+					// query 注入 termfreq 函数
+					query.set("bf", "sum("+ sb.toString() +")^1500");
 				}
-				query.set("bf",
-						"sum(termfreq(productName," + sb.toString() + "),div(termfreq(tags," + sb.toString() + "),3))^80");
 			}
-			condition = KeywordUtils.mergeQConcition(view);
-			query.setQuery(condition);
+			
+			query.setQuery(KeywordUtils.mergeQConcition(view));
 			query.set("pf", "productName tags teamName");
 			query.set("tie", "0.1");
 			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl,teamFlag");
@@ -72,8 +91,10 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			query.setHighlightFragsize(30);
 			query.setHighlightSimplePre("<font color=\"red\">");
 			query.setHighlightSimplePost("</font>");
-
-			final List<PmsProductSolr> list = this.queryDocs(token.getSolrUrl(), query);
+			
+			// TODO 上线替换
+			// final List<PmsProductSolr> list = this.queryDocs(token.getSolrUrl(), query);
+			final List<PmsProductSolr> list = this.queryDocs("http://106.75.2.125:8080/solr/ghost", query);
 			return list;
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

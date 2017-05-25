@@ -119,7 +119,6 @@ function banner() {
 /**
  * 主页业务处理部分
  */
-
 function loginOrder(){
 	$.ajax({
 		url : '/order/deliver',
@@ -138,7 +137,10 @@ function loginOrder(){
 		},
 		dataType : 'json',
 		success : function(data){
-			window.location.href='/search?q='+$("#indent_recomment").text();
+			var word = $("#indent_recomment").text();
+			if(word == '宣传片')
+				word = '*宣传片';
+			window.location.href='/search?q=' + word;
 		}
 	});
 }
@@ -183,7 +185,10 @@ function noLoginOrder(){
 			dataType : 'json',
 			success : function(data){
 				if(data.ret){
-				window.location.href='/search?q='+$("#indent_recomment").text();
+					var word = $("#indent_recomment").text();
+					if(word == '宣传片')
+						word = '*宣传片';
+				window.location.href='/search?q=' + word;
 				$("#help-phone").val('');
 				$("#getCheckCodes").val('');
 				count = 120 ; 
