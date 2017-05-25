@@ -1080,26 +1080,27 @@ public class VersionManagerController extends BaseController {
 		return new ModelAndView("/employee/PMIndentList");
 	}
 
-/*	@RequestMapping("/get/indent/list")
-	public DataGrid<PmsIndent> getIndentList(HttpServletRequest request) {
-		SessionInfo currentInfo = getCurrentInfo(request);
-		if (currentInfo != null) {
-			String sessionType = currentInfo.getSessionType();
-			if (ValidateUtil.isValid(sessionType) && PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
-				Long reqiureId = currentInfo.getReqiureId();
-				Map<String, Object> paramMap = new HashMap<String, Object>();
-				paramMap.put("indentType", PmsIndent.ORDER_DONE);
-				paramMap.put("pMId", reqiureId);
-				PageParam pageParam = new PageParam();
-				pageParam.setBegin(0);
-				pageParam.setLimit(20);
-				DataGrid<PmsIndent> indentList = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-				return indentList;
-			}
-		}
-		return new DataGrid<>();
-	}*/
+	/*
+	 * @RequestMapping("/get/indent/list") public DataGrid<PmsIndent>
+	 * getIndentList(HttpServletRequest request) { SessionInfo currentInfo =
+	 * getCurrentInfo(request); if (currentInfo != null) { String sessionType =
+	 * currentInfo.getSessionType(); if (ValidateUtil.isValid(sessionType) &&
+	 * PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) { Long reqiureId =
+	 * currentInfo.getReqiureId(); Map<String, Object> paramMap = new
+	 * HashMap<String, Object>(); paramMap.put("indentType",
+	 * PmsIndent.ORDER_DONE); paramMap.put("pMId", reqiureId); PageParam
+	 * pageParam = new PageParam(); pageParam.setBegin(0);
+	 * pageParam.setLimit(20); DataGrid<PmsIndent> indentList =
+	 * pmsIndentFacade.listWithPagination(pageParam, paramMap); return
+	 * indentList; } } return new DataGrid<>(); }
+	 */
 
+	/**
+	 * 驳回订单
+	 * 
+	 * @param indent
+	 * @return
+	 */
 	@RequestMapping("/indent/rejected")
 	public BaseMsg rejectedIndent(PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();

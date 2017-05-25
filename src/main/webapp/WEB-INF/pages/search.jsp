@@ -66,6 +66,7 @@
 	<input type="hidden" value="${production}" id="production"/>
 	<input type="hidden" value="${total }" id="total"/>
 	<input type="hidden" value="${isMore }" id="isMore"/>
+	
 	 <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -157,6 +158,11 @@
             </div>
         </div>
     </div>
+    
+     <r:identity role="employee">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
+	 </r:identity>
 
 	<div class="page">
 		<!-- 面包屑导航start -->

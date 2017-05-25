@@ -609,14 +609,17 @@ function loadProduction(start){
 					$body += '  <div class="videoCardLine"></div>';
 					$body += '</div>';
 					}
-					if(num<0){
-						$body +='<img class="roleImg" src="/resources/images/play/roleOur.png">';
-					}
-					if(num>0){
-						$body +='<img class="roleImg" src="/resources/images/play/rolePlay.png">';
-					}
-					if(num=0){
-						$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
+					var loginTel = $('#rolephoneImg').val();
+					if(loginTel!=null && loginTel!= "" ){
+						if(num<0){
+							$body +='<img class="roleImg" src="/resources/images/play/roleOur.png">';
+						}
+						if(num>0){
+							$body +='<img class="roleImg" src="/resources/images/play/rolePlay.png">';
+						}
+						if(num=0){
+							$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
+						}
 					}
 					if(itemflag!=4){
 					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
