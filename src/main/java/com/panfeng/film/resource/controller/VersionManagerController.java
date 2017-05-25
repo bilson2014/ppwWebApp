@@ -579,7 +579,7 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {
-		//final String url = PublicConfig.URL_PREFIX + "project/get/report";
+		// final String url = PublicConfig.URL_PREFIX + "project/get/report";
 		try {
 			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);
@@ -1104,6 +1104,7 @@ public class VersionManagerController extends BaseController {
 
 	/**
 	 * 驳回订单
+	 * 
 	 * @param indent
 	 * @return
 	 */
@@ -1113,7 +1114,7 @@ public class VersionManagerController extends BaseController {
 		baseMsg.setErrorCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("驳回异常，请重试！");
 		indent.setIndentType(PmsIndent.ORDER_HANDLING);
-		
+
 		long res = pmsIndentFacade.rejected(indent);
 		if (res > 0) {
 			baseMsg.setErrorCode(BaseMsg.NORMAL);
@@ -1121,8 +1122,8 @@ public class VersionManagerController extends BaseController {
 		}
 		return baseMsg;
 	}
-	
-	public void tst(){
-		
+
+	public void tst() {
+
 	}
 }
