@@ -187,9 +187,9 @@
                 }
                 
                 .changeLeft {
-                    left: 30px;
+                    left: -35px;
                     @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                        left: 45px;
+                        left: -45px;
                     }
                     @media screen and (min-width: 1500px) {
                         left: 45px;

@@ -27,6 +27,7 @@ var pSet = {
 	},
 	initOption : function() {
 		$('.cardContent').off('click').on('click', function() {
+			$(".slides").html('');
 			$('.cardContent').removeClass('active');
 			$(this).addClass('active');
 			initModel($(this).attr('data-id'));
