@@ -63,7 +63,7 @@
 	<input type="hidden" value="${industry }" id="industry"/>
 	<input type="hidden" value="${genre }" id="genre"/>
 	<input type="hidden" value="${price }" id="price"/>
-	<input type="hidden" value="${length}" id="length"/>
+	<input type="hidden" value="${production}" id="production"/>
 	<input type="hidden" value="${total }" id="total"/>
 	<input type="hidden" value="${isMore }" id="isMore"/>
 	 <div class="header headerMove" id="header">
@@ -174,7 +174,7 @@
 					<dt>类型：</dt>
 					<dd id="classify-item">
 						<ul class="list-inline" id="item-list">
-							<!-- 行业分类 -->
+							<!-- 类型分类 -->
 						</ul>
 					</dd>
 					<!-- <div class="more-link" id="more-link">
@@ -188,12 +188,24 @@
 						<ul class="list-inline" id="bus-item-list">
 							<!-- 行业分类 -->
 						</ul>
-						
 					</dd>
 					<!-- <div class="more-link" id="more-link">
 						<span>更多</span>
 					</div> -->
 				</div>
+				
+				<div class="classify-business">
+					<dt>制作：</dt>
+					<dd id="classify-item">
+						<ul class="list-inline" id="production-item-list">
+							<!-- 制作分类 -->
+						</ul>
+					</dd>
+					<!-- <div class="more-link" id="more-link">
+						<span>更多</span>
+					</div> -->
+				</div>
+				
 				<div class="classify-price ">
 					<dt>价格：</dt>
 					<dd id="price-item">
@@ -203,18 +215,6 @@
 							<li><a href="javascript:void(0)" data-price="[60000 TO 100000]" class="priceAll">6~10万</a></li>
 							<li><a href="javascript:void(0)" data-price="[100000 TO *]" class="priceAll">10万以上</a></li>
 							<li><div class="price-section"><input type="text" id="start-price" />万 ~ <input type="text" id="end-price" />万<a href="javascript:void(0);"><button class="btn btn-primary disabled" id="price-btn">确定</button></a></div></li>
-						</ul>
-					</dd>
-				</div>
-				<div class="classify-length">
-					<dt>时长：</dt>
-					<dd id="length-item">
-						<ul class="list-inline" id="length-list">
-							<li><a href="javascript:void(0)" data-length="[0 TO 60]" class="lengthAll">0~60秒</a></li>
-							<li><a href="javascript:void(0)" data-length="[60 TO 90]" class="lengthAll">60~90秒</a></li>
-							<li><a href="javascript:void(0)" data-length="[90 TO 180]" class="lengthAll">90~180秒</a></li>
-							<li><a href="javascript:void(0)" data-length="[180 TO *]" class="lengthAll">180秒以上</a></li>
-							<li><div class="length-section"><input type="text" id="start-length" />秒 ~ <input type="text" id="end-length" />秒<a href="javascript:void(0);"><button class="btn btn-primary disabled" id="length-btn">确定</button></a></div></li>
 						</ul>
 					</dd>
 				</div>
@@ -283,14 +283,14 @@
 								      <img class="roleImg" src="/resources/images/play/rolePro.png">
 								 </c:if>
 							</r:identity>
-										<div class="videoProvider">
-										  <c:if test="${not empty solr.teamFlag && solr.teamFlag != 4 }">
-											    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">		
-											    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-											    <div>${solr.teamName}</div>
-											    </a>
-										  </c:if>  
-										</div>
+							<c:if test="${solr.teamFlag !=4 }">
+								    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">								
+									<div class="videoProvider">
+									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+									    <div>${solr.teamName}</div>
+									</div>
+									</a>
+							</c:if>
 						</div>
 							<c:if test="${status.count % 4 == 0 }">
 								</div>
