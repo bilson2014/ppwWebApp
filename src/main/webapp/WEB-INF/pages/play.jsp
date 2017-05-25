@@ -65,6 +65,7 @@
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
 	 
 	<r:identity role="employee">
