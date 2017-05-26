@@ -551,8 +551,9 @@ function initMoreInfo(num){
 		 $('.rightPrev').hide();
 	 }
 	 
-	 var realHeight = (280/16*9 + 30)*initNum + (initNum-1)*30;
+	 var realHeight = (280/16*9 + 90)*initNum + (initNum-1)*30 + 60;
 	 $('.rightContentSwiper').css('height',realHeight+"px");
+	 $('.rightContentSwiper').css('max-height',realHeight+"px");
 	
     var moreInfo = new Swiper('.swiper-more', {
         pagination: '.swiper-pagination',
