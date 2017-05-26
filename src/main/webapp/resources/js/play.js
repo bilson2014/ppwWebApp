@@ -579,6 +579,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	var roleImgUrl ='';
 	var num =$('#roleNum').val();
 	var isHide = "hide";
+	var numFlag = parseInt(teamFlag);
 	if(num < 0){
 		roleImgUrl = "/resources/images/play/roleOur.png";
 		isHide = '';
@@ -593,9 +594,10 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	}
 	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
-	if(teamFlag != 4 && teamFlag == null){
+	if(numFlag != 4 && numFlag == null){
 		htmlAdd = "";
 	}
+	
 	var html = [
 	    	    '<div class="swiper-slide noInfoCard">',
 	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',
@@ -636,6 +638,7 @@ var roleImgUrl ='';
 var num =$('#roleNum').val();
 var isHide = "hide";
 var loginTel = $('#rolephoneImg').val();
+var numFlag = parseInt(teamFlag);
 if(loginTel!=null && loginTel!= "" ){
 	if(num < 0){
 		roleImgUrl = "/resources/images/play/roleOur.png";
@@ -652,7 +655,7 @@ if(loginTel!=null && loginTel!= "" ){
 }
 
 	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></a>';
-	if(teamFlag == 4 && teamFlag == null ){
+	if(numFlag == 4 && numFlag == null ){
 		htmlAdd ='';
 	}
 	var html = [
