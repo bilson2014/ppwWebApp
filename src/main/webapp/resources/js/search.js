@@ -621,7 +621,7 @@ function loadProduction(start){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 						}
 					}
-					if(itemflag!=4){
+					if(itemflag!=4 && teamFlag != null){
 					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
 					$body +='<div class="videoProvider">';
 					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
