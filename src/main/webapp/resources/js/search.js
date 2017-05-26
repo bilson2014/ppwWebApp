@@ -562,7 +562,7 @@ function loadProduction(start){
 					var num = parseInt(solr.indentProjectId);
 					var imgPath = '/resources/images/index/noImg.jpg';
 					var imageUrl = solr.picLDUrl;
-					var itemflag = solr.teamFlag;
+					var itemflag = parseInt(solr.teamFlag);
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
@@ -616,7 +616,7 @@ function loadProduction(start){
 						if(num>0){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePlay.png">';
 						}
-						if(num=0){
+						if(num == 0){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 						}
 					}

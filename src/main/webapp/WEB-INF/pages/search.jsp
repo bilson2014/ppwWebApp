@@ -288,16 +288,15 @@
 								 <c:if test="${solr.indentProjectId == 0 }">
 								      <img class="roleImg" src="/resources/images/play/rolePro.png">
 								 </c:if>
-							</r:identity>
-							
-							<c:if test="${solr.teamFlag !=4 }">
-								    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">								
-									<div class="videoProvider">
+							</r:identity>								   					
+								<div class="videoProvider">
+									<c:if test="${solr.teamFlag !=4 }">
+									   <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">			
 									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
 									    <div>${solr.teamName}&&${solr.indentProjectId}</div>
-									</div>
-									</a>
-							</c:if>
+									    		</a>
+							        </c:if>
+								</div>
 						</div>
 							<c:if test="${status.count % 4 == 0 }">
 								</div>
