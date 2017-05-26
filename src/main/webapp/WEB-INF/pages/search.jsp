@@ -294,7 +294,7 @@
 									   <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">			
 									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
 									    <div>${solr.teamName}&&${solr.indentProjectId}</div>
-									    		</a>
+									   </a>
 							        </c:if>
 								</div>
 						</div>
