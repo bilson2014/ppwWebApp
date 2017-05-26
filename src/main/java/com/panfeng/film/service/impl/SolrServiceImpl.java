@@ -1,16 +1,13 @@
 package com.panfeng.film.service.impl;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
-import org.apache.solr.client.solrj.util.ClientUtils;
 import org.springframework.stereotype.Service;
 
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -76,11 +73,6 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			// 如果价格区间为空，则设置为全部
 			if (view.getPriceFq() != null && !"".equals(view.getPriceFq())) {
 				query.addFilterQuery("price:" + view.getPriceFq());
-			}
-
-			// 如果时长区间为空，则设置为全部
-			if (view.getLengthFq() != null && !"".equals(view.getLengthFq())) {
-				query.addFilterQuery("length:" + view.getLengthFq());
 			}
 
 			// 开启高亮
