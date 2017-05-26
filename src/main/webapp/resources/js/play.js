@@ -594,7 +594,7 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	}
 	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
-	if(numFlag != 4 && numFlag == null){
+	if(numFlag == 4 || numFlag == null){
 		htmlAdd = "";
 	}
 	
@@ -655,7 +655,7 @@ if(loginTel!=null && loginTel!= "" ){
 }
 
 	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></a>';
-	if(numFlag == 4 && numFlag == null ){
+	if(numFlag == 4 || numFlag == null ){
 		htmlAdd ='';
 	}
 	var html = [
