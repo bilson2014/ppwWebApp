@@ -623,7 +623,7 @@ function loadProduction(start){
 
 					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
 					$body +='<div class="videoProvider">';
-					if(itemflag!=4 && itemflag != null){
+					if(itemflag!= 4 && itemflag != null){
 					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
 					$body +=' <div>'+solr.teamName+'</div>';
 					}

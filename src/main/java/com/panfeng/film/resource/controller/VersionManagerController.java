@@ -907,7 +907,7 @@ public class VersionManagerController extends BaseController {
 	 *            作品ID
 	 * @return
 	 */
-	@RequestMapping("/favourites/remove/{productId}")
+	@RequestMapping(value = "/favourites/remove/{productId}", method = RequestMethod.POST)
 	public PmsResult deleteFavourites(@PathVariable("productId") final Long productId,
 			final HttpServletRequest request) {
 		PmsResult prst = new PmsResult();
@@ -941,7 +941,7 @@ public class VersionManagerController extends BaseController {
 	 *            作品ID
 	 * @return
 	 */
-	@RequestMapping("/favourites/add/{productId}")
+	@RequestMapping(value = "/favourites/add/{productId}", method = RequestMethod.POST)
 	public PmsResult addFavourites(@PathVariable("productId") final Long productId, final HttpServletRequest request) {
 		PmsResult prst = new PmsResult();
 		if (productId != null) {
@@ -972,7 +972,7 @@ public class VersionManagerController extends BaseController {
 	 *            作品ID
 	 * @return true | false
 	 */
-	@RequestMapping("/favourites/judge/{productId}")
+	@RequestMapping(value = "/favourites/judge/{productId}", method = RequestMethod.POST)
 	public PmsResult judgeFavourites(@PathVariable("productId") final Long productId,
 			final HttpServletRequest request) {
 		// 判断该影片是否是收藏的
