@@ -279,7 +279,6 @@
 							     <div class="videoCardLine"></div>
 							</div>
 							<r:identity role="employee">
-								employee
 							     <c:if test="${solr.indentProjectId < 0 }">
 							          <img class="roleImg" src="/resources/images/play/roleOur.png">
 								 </c:if>
@@ -295,7 +294,7 @@
 								    <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">								
 									<div class="videoProvider">
 									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
-									    <div>${solr.teamName}&&${solr.indentProjectId}</div>
+									    <div>${solr.teamName}</div>
 									</div>
 									</a>
 							</c:if>
