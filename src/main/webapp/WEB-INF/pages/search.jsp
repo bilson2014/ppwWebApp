@@ -279,7 +279,6 @@
 							     <div class="videoCardLine"></div>
 							</div>
 							<r:identity role="employee">
-								employee
 							     <c:if test="${solr.indentProjectId < 0 }">
 							          <img class="roleImg" src="/resources/images/play/roleOur.png">
 								 </c:if>
