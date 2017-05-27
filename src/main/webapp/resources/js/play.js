@@ -31,16 +31,19 @@ $().ready(function() {
 });
 
 function saveVideo(){	
-	loadData(function(flag){
-		if(flag.result){
-			$('#managerCollect').removeClass('save');
-			$('#showSave').hide();
-		}else{
-			$('#managerCollect').addClass('save');
-			$('#showSave').hide();
-		}
-	}, getContextPath() + '/mgr/favourites/judge/' + $('#play-unique').val(), null);
 	
+	var loginTel = $('#rolephoneImg').val();
+	if(loginTel!=null && loginTel!= "" ){
+		loadData(function(flag){
+			if(flag.result){
+				$('#managerCollect').removeClass('save');
+				$('#showSave').hide();
+			}else{
+				$('#managerCollect').addClass('save');
+				$('#showSave').hide();
+			}
+		}, getContextPath() + '/mgr/favourites/judge/' + $('#play-unique').val(), null);
+	}	
 	$('#managerCollect').off('click').on('click',function(){
 		if($(this).hasClass('save')){
 			loadData(function(flag){
