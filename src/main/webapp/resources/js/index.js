@@ -507,7 +507,7 @@ var homePage_tpl = {
 			'				{@if item.teamFlag == 1 && item.indentProjectId == 0}',
 			'					 <img class="roleImg" src="/resources/images/play/rolePro.png">',
 			'				{@/if}',
-			'       <div class="cardShadow">',
+			'       <div class="cardShadow" id="${item.teamFlag},${item.indentProjectId}">',
 			'			<div class="videoContet">',
 			'				<div class="title">${item.productName}</div>',
 			'				<div class="type">${item.tags}</div>',
