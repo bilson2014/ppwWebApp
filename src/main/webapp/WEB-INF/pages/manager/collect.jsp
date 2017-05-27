@@ -147,16 +147,16 @@
 						                                  <div class="delItem" id="${solr.productId}"></div>
 						                                  <div class="cancle"></div>
 					                                 </div>
-											         <c:if test="${solr.indentProjectId < 0 }">
-												          <img class="roleImg" src="/resources/images/play/roleOur.png">
-													 </c:if>
-													 <c:if test="${solr.indentProjectId > 0 }">
-													      <img class="roleImg" src="/resources/images/play/rolePlay.png">
-													 </c:if>
-													 <c:if test="${solr.indentProjectId == 0 }">
-													      <img class="roleImg" src="/resources/images/play/rolePro.png">
-													 </c:if>
-											<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">		 
+								<c:if test="${solr.teamFlag == 1 && solr.indentProjectId != 0 }">
+									<img class="roleImg" src="/resources/images/play/roleOur.png">
+								</c:if>
+								<c:if test="${solr.teamFlag == 4 }">
+									<img class="roleImg" src="/resources/images/play/rolePlay.png">
+								</c:if>
+								<c:if test="${solr.teamFlag == 1 && solr.indentProjectId == 0 }">
+									<img class="roleImg" src="/resources/images/play/rolePro.png">
+								</c:if>
+								<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">		 
 						                         <img class="cardImg" src="${file_locate_storage_path }${solr.picLDUrl }" />
 						                         <div class="cardContent">
 						                              <div class="title">${solr.productName }</div>
@@ -187,7 +187,7 @@
 						                         </a>     
 						                              <div class="line"><div></div></div>
 									                       <div class="videoProvider">
-									                        <c:if test="${not empty solr.teamFlag && solr.teamFlag != 4 }"> 
+									                        <c:if test="${solr.teamFlag != 4 }"> 
 										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
 														              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
 														              <div>${solr.teamName}</div>

@@ -610,25 +610,25 @@ function loadProduction(start){
 					$body += '</div>';
 					var loginTel = $('#rolephoneImg').val();
 					if(loginTel!=null && loginTel!= "" ){
-						if(num<0){
+						if(num != 0 && itemflag == 1){
 							$body +='<img class="roleImg" src="/resources/images/play/roleOur.png">';
 						}
-						if(num>0){
+						if(itemflag == 4){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePlay.png">';
 						}
-						if(num == 0){
+						if(num == 0 && itemflag == 1){
 							$body +='<img class="roleImg" src="/resources/images/play/rolePro.png">';
 						}
 					}
-
-					$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
+					
 					$body +='<div class="videoProvider">';
-					if(itemflag!= 4 && itemflag != null){
-					$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
-					$body +=' <div>'+solr.teamName+'</div>';
+					if(itemflag != 4 ) {
+						$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
+						$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
+						$body +=' <div>'+solr.teamName+'</div>';
+						$body +='</a>';
 					}
 					$body +='</div>';
-					$body +='</a>';
 				
 					$body +='</div>';
 					if(i % 4 == 3){
