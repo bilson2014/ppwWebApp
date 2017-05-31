@@ -147,7 +147,7 @@
         margin-left: 10px;
         @include ellipsis;
         @media screen and (min-width: 960px) and (max-width: 1275px) {
-            width: 140px;
+            width: 135px;
             @include ellipsis;
         }
     &:hover {
