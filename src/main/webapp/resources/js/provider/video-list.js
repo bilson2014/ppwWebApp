@@ -5,6 +5,7 @@ var parent = window.parent.document;
 var win = window;
 $().ready(function() {
 	$(parent).find('.tooltip-wati').hide();
+	
 	var videoList = {
 		init : function() {
 			//新建作品
@@ -23,6 +24,7 @@ $().ready(function() {
 			this.setMaster();
 			//批量上传
 			//this.multipUploadFile();
+			$(parent).find('#content-frame').css('height',$('#ProductContent').height() + 300);
 		},
 		/*addProduct:function(){
 			$('.newProduct').off("click").on('click',function(){

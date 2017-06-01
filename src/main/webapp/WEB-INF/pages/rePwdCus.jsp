@@ -20,7 +20,7 @@
     <meta name="keywords" content="拍片网登录">
     <meta name="description" content="">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>拍片网－密码找回</title>
+    <title>密码找回－拍片网</title>
     <link rel="stylesheet" href="/resources/css/rePwdCus.css">
     <script src="${jqueryJs }"></script>
 	<script src="${jsonJs }"></script>

@@ -38,7 +38,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网 | 供应商页面</title>
+	<title>供应商页面-拍片网</title>
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${commonCss }">
@@ -65,14 +65,17 @@
 	<script src="${webuploaderJs }"></script>
 	
 </head>
+
+<div class="modTop"></div>
+
 <body style="overflow:hidden">
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" value="${flag}" id="portal-flag"/>
 	<div class="header-content">
-<div class="header headerMove" id="header">
+      <div class="header headerMove" id="header">
 		<input type="hidden" id="bean-flag" value="${provider2.flag }">
 		<input type="hidden" id="recommendation" value="${provider2.recommendation }">
- 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
+ 		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}">
  		<input type="hidden" id="bean-checkStatus" value="${provider2.checkStatus }">
 		<input type="hidden" id="checkDetails" value="${provider2.checkDetails}">
         <div class="menu-bar nav">
@@ -138,13 +141,13 @@
 					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/initLogo.png"></a>
 					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
-				       <div class="showInfoList">
-					         <li class="showName"><r:outName /></li>
-					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
-					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
-					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
-					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
-					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+				            <div class="showInfoList">
+						         <li class="showName"><r:outName /></li>
+						         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+						         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
+						         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
+						         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
+						         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
 					       </div>
 					</div>
 				</r:identity>
@@ -173,11 +176,9 @@
 	<div class="tooltip-success-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageSSSS">信息更新成功</label>
 	</div>
-	
 	<div class="tooltip-error-show" style="display: none;">
 		<label class="tooltip-success-message" id="tooltip-success-messageEEEE">信息更新失败</label>
 	</div>
-	
 	<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
 	          <div class="closeCheck" id='closeCheck'></div>

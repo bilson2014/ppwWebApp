@@ -22,7 +22,7 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZHJs"/>
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
+<spring:url value="/resources/js/provider/comPro.js" var="commonJs"/>
 <spring:url value="/resources/js/provider/info.js" var="providerInfoJs"/>
 <spring:url value="/resources/images" var="path" />
 
@@ -37,7 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网 | 供应商信息页面</title>
+	<title>供应商信息页面-拍片网</title>
 	<link rel="shortcut icon" href="${path }/favicon.ico" >
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${commonCss }">
@@ -98,7 +98,7 @@
 	<input type="hidden" id="bean-checkStatus" value="${provider.checkStatus }">
 	<input type="hidden" id="checkDetails" value="${provider.checkDetails}">
 	<input type="hidden" id="recommendation" value="${provider.recommendation }">
-     <div class="proInfo">
+    <div class="proInfo">
      					  <div class="updateLogo">   
 	      		                    <div class="title">公司LOGO</div>
 		      		                <div class="user-img-content">
@@ -161,7 +161,7 @@
 											<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
 											<div class="carets"></div>
 										</button>
-										<ul class="dropdown-menu id="selectUl" role="menu"
+										<ul class="dropdown-menu" id="selectUl" role="menu"
 											aria-labelledby="dropdownMenu1">
 											<c:if test="${!empty provinces}">
 												<c:forEach items="${provinces }" var="source" varStatus="status">
@@ -239,65 +239,65 @@
                                 <div class="title">业务范围</div>
                                 <input type="hidden" id="Tags" value="${provider.business }">
                                  <ul class="ul-step-two">
-                                      <li>  
+                                     <li>  
                                         <div class="getTag" name="business" data-value="0"> 广告</div>
                                       </li>
                                       <li>  
-                                        <div class="getTag" name="business" data-value="16" /> TVC</div>
+                                        <div class="getTag" name="business" data-value="16" > TVC</div>
                                       </li>
                                       <li>
-                                        <div class="getTag" name="business" data-value="1"/> 宣传片</div>
+                                        <div class="getTag" name="business" data-value="1"> 宣传片</div>
                                       </li>
                                       <li>
-                                        <div class="getTag" name="business" data-value="2"/> 真人秀</div>
+                                        <div class="getTag" name="business" data-value="2"> 真人秀</div>
                                       </li>
                                       <li>
-                                        <div class="getTag" name="business" data-value="3"/> 纪录片</div>
+                                        <div class="getTag" name="business" data-value="3"> 纪录片</div>
                                       </li>
                                     <li>
-                                      <div class="getTag" name="business" data-value="4"/> 病毒视频</div>
+                                      <div class="getTag" name="business" data-value="4"> 病毒视频</div>
                                         </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="5"/> 电视栏目</div>
+                                      <div class="getTag" name="business" data-value="5"> 电视栏目</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="17"/> MV</div>
+                                      <div class="getTag" name="business" data-value="17"> MV</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="6"/> 三维动画</div>
+                                      <div class="getTag" name="business" data-value="6"> 三维动画</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="7"/> MG动画</div>
+                                      <div class="getTag" name="business" data-value="7"> MG动画</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="8"/> 体育赛事</div>
+                                      <div class="getTag" name="business" data-value="8"> 体育赛事</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="9"/> 专题片</div>
+                                      <div class="getTag" name="business" data-value="9"> 专题片</div>
                                     </li>
                                       <li> 
-                                      <div class="getTag" name="business" data-value="10"/> VR拍摄</div>
+                                      <div class="getTag" name="business" data-value="10"> VR拍摄</div>
                                     </li>
                                     <li>
-                                      <div class="getTag" name="business" data-value="11"/> 产品拍摄</div>
+                                      <div class="getTag" name="business" data-value="11"> 产品拍摄</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="12"/> 微电影</div>
+                                      <div class="getTag" name="business" data-value="12"> 微电影</div>
                                       </li>
                                   
                                       <li>
-                                      <div class="getTag" name="business" data-value="13"/> 航拍</div>
+                                      <div class="getTag" name="business" data-value="13"> 航拍</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="14"/> 活动视频</div>
+                                      <div class="getTag" name="business" data-value="14"> 活动视频</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="15"/> 后期制作</div>
+                                      <div class="getTag" name="business" data-value="15"> 后期制作</div>
                                       </li>
                                       <li>
-                                      <div class="getTag" name="business" data-value="18"/> 包装</div>
-                                      </li>
-                                   </ul>   
+                                      <div class="getTag" name="business" data-value="18"> 包装</div>
+                                      </li>     
+                                 </ul>   
                             </div>
                             <div class="infoItem" id="company-teamDesc-error">
                                 <div class="title">公司简介</div>

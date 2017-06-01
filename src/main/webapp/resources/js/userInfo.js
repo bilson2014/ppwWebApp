@@ -26,6 +26,7 @@ $().ready(function() {
 	initUl();
 	selfInfo();
 	userpicInfo();
+	$(parent).find('#content-frame').css('height',$('.proInfo').height() + 250);
 });
 function initUl(){
 	$('.dropdown li').on('click',function(){

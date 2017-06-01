@@ -28,7 +28,7 @@
 	<meta name="title" content="内部员工登录页面">
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>拍片网 | 作品收藏夹</title>
+	<title>作品收藏夹-拍片网</title>
 	<link rel="stylesheet" href="${collectCss}">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<!--[if lt IE 9]>

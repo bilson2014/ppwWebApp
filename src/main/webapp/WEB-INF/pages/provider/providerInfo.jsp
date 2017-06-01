@@ -29,8 +29,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
-	<meta name="description" content="${provider.teamDescription }">
+	<meta name="keywords" content="宣传片制作公司,tvc广告拍摄公司,企业微电影制作公司,mg动画制作公司">
+	<meta name="description" content="拍片网平台直签行业内宣传片制作，tvc广告拍摄，企业微电影制作，mg动画制作等资深团队。${provider.teamDescription }">
 	<title>${provider.teamName }-拍片网</title>
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${commonCss }">
@@ -267,7 +267,6 @@
 	          <div class="prodectLine"></div>
 	          <div class="timeLine" id ="timeLine">
 	     		<!-- 时间树  -->
-	     		           
 	   		  </div>
 	   		  <div id="end" class="end hide">
 	   		      <ul>
@@ -356,6 +355,5 @@
                             </div>
                             <!--新版底部-->
 	</div>
-		 
 </body>
 </html>

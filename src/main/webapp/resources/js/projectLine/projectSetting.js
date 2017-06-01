@@ -28,6 +28,7 @@ var pSet = {
 	initOption : function() {
 		$('.cardContent').off('click').on('click', function() {
 			$(".slides").html('');
+			checkNum = 0;
 			$('.cardContent').removeClass('active');
 			$(this).addClass('active');
 			initModel($(this).attr('data-id'));
@@ -540,7 +541,7 @@ function handleLayer(active_index, obj, n) {
     var active_item = [],
         all_item = [],
         other_item = [];
-    for (var i = active_index; i < active_index + n -2; i++) {
+    for (var i = active_index; i < active_index + n; i++) {
         active_item.push(i);
     }
     for (var j = 0; j < obj.length; j++) {

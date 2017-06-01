@@ -24,7 +24,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="团队活动,公司活动,拍片网">
 	<meta name="description" content="拍片网团队线上线下的活动简介">
-	<title>拍片网团队活动_拍片网公司活动-拍片网</title>
+	<title>拍片网团队活动_拍片网公司活动－拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${companyActivityCss }">
 	<!--[if lt IE 9]>

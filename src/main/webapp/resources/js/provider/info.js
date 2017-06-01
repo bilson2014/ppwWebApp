@@ -14,7 +14,8 @@ $().ready(function() {
 		dateFormat : 'yyyy-MM-dd',
 		maxDate : new Date()
 	});
-
+	//iframe 高度
+	$(window.parent.document).find('#content-frame').css('height',$('.proInfo').height() + 300);
 	userpicInfo();
 	initUl();
 	setBusinessVal($('#Tags').val());

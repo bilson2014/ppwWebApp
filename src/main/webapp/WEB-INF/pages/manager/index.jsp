@@ -227,7 +227,6 @@
 								</li>
 								<li><a id="historyProject">暂停</a>
 									<ul id="pauseProjectId" style="margin-top: 10px;">
-
 									</ul>
 								</li>
 								<li><a id="historyProject">完成/取消</a>

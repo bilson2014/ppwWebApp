@@ -30,7 +30,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>拍片网－广告－宣传片－微电影－视频营销_忘记密码</title>
+	<title>忘记密码-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${normalizeCss }">
 	<link rel="stylesheet" href="${bootstrapCss }">

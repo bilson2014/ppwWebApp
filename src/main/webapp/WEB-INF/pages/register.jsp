@@ -20,7 +20,7 @@
 <meta name="keywords" content="拍片网登陆,视频制作登陆,拍片登陆,拍广告登陆,找导演登陆">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>拍片网－注册</title>
+<title>注册-拍片网</title>
 <link rel="stylesheet" href="/resources/css/register.css">
 
 <script src="${jqueryJs }"></script>
