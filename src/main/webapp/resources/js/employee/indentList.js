@@ -1,25 +1,70 @@
+/**
+ * 新订单
+ */
+var  ORDER_NEW = 0;
+/**
+ * 处理中
+ */
+var  ORDER_HANDLING = 1;
+/**
+ * 完成
+ */
+var  ORDER_DONE = 2;
+/**
+ * 停滞
+ */
+var  ORDER_STOP = 3;
+/**
+ * 再次沟通
+ */
+var  ORDER_AGAIN = 4;
+/**
+ * 真实
+ */
+var  ORDER_REAL = 5;
+/**
+ * 虚假
+ */
+var  ORDER_SHAM = 6;
+/**
+ * 提交
+ */
+var  ORDER_SUBMIT = 7;
+
 $().ready(function(){
-	
 	submitEventCreate();
 	editEvent();
 	
 	var title = $('#tableTitle');
 	$('#new').on('click',function(){
-		readMore(0); // 新订单
+		readMore(ORDER_NEW); // 新订单
 		title.text('新订单');
 	});
 	$('#bp').on('click',function(){
-		readMore(1); // 处理中
+		readMore(ORDER_HANDLING); // 处理中
 		title.text('处理中');
 	});
 	$('#sub').on('click',function(){
-		readMore(2); // 完成
+		readMore(ORDER_SUBMIT); // 提交
 		title.text('完成');
 	});
 	$('#des').on('click',function(){
-		readMore(6); // 无效
+		readMore(ORDER_SHAM); // 无效
 		title.text('无效');
 	});
+	
+	
+	$('#confirmSubmit').on('click',function(){
+		$('#fm').attr('action',getContextPath()+'/order/submit');
+		$('#updateBtn').click();
+	});
+	
+	
+	$('#cover').on('click',function(){
+		var update = '<input type="hidden" name="update" id="update" value="true">';
+		$('#fm').append(update);
+	});
+	
 });
 
 function subBtn(){
@@ -111,8 +156,8 @@ function submitEventCreate(){
 		$('#formId').val($(id).text().trim());
 		$('#formrealName').val($(realName).text().trim());
 		$('#formindent_tele').val($(indent_tele).text().trim());
-		$('#userCompany').val($(userCompany).text().trim());
-		$('#wechat').val($(wechat).text().trim());
+		$('#formuserCompany').val($(userCompany).text().trim());
+		$('#formwechat').val($(wechat).text().trim());
 		$('#formorderDate').val($(orderDate).text().trim());
 		$('#formindent_recomment').val($(indent_recomment).text().trim());
 		$('#formindentType').val($(indentType).text().trim());
