@@ -210,7 +210,7 @@
 		                <div class="container second_sort" style="padding: 20px 0;">
 		                    <div class="row">
 		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
-		                            <div class="f_slider">
+		                            <div class="f_slider" id="fslider">
 		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
 		                                    <ul class="slides">
 										<!-- 		    <li class="s_item s_item_cur packItem">
@@ -224,14 +224,14 @@
 													</li> -->
 		                                    </ul>
 		                                </div>
-		                                <ul class="flex-direction-nav">
+	<!-- 	                                <ul class="flex-direction-nav">
 		                                    <li>
 		                                        <a class="flex-prev" href="#" style="display: none;"><div></div></a>
 		                                    </li>
 		                                    <li>
 		                                        <a class="flex-next" href="#"><div></div></a>
 		                                    </li>
-		                                </ul>
+		                                </ul> -->
 		                            </div>
 		                        </div>
 		                    </div>
