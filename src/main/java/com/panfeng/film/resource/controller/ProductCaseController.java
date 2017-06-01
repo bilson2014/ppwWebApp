@@ -59,8 +59,9 @@ public class ProductCaseController extends BaseController {
 		modelMap.addAttribute("product", chanPinInfo);
 		return new ModelAndView("/projectLine/projectList", modelMap);
 	}
+
 	@RequestMapping("/product/case")
-	public List<PmsProductCase> getCase(Long productId){
+	public List<PmsProductCase> getCase(Long productId) {
 		List<PmsProductCase> list = productCase.getCaseByChanPinId(productId);
 		list = productCase.fillProduct(list);
 		return list;
