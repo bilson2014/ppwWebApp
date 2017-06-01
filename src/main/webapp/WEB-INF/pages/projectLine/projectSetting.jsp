@@ -209,30 +209,7 @@
 		            <div class="row">
 		                <div class="container second_sort" style="padding: 20px 0;">
 		                    <div class="row">
-		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
-		                            <div class="f_slider">
-		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
-		                                    <ul class="slides">
-										<!-- 		    <li class="s_item s_item_cur packItem">
-														<img src="'+getDfsHostName() +obj.pic +'">
-														<div class="pTitle">moduleName</div>
-														<div class="itemContent">
-															<div class="iLine"></div>
-															<div class="iContent">description</div>
-															<div class="iDes">(赠送)</div>
-														</div>
-													</li> -->
-		                                    </ul>
-		                                </div>
-		                                <ul class="flex-direction-nav">
-		                                    <li>
-		                                        <a class="flex-prev" href="#" style="display: none;"><div></div></a>
-		                                    </li>
-		                                    <li>
-		                                        <a class="flex-next" href="#"><div></div></a>
-		                                    </li>
-		                                </ul>
-		                            </div>
+		                        <div id="ttttttttt" class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
 		                        </div>
 		                    </div>
 		                </div>
