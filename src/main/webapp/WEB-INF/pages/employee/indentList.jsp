@@ -73,6 +73,7 @@
 			<td>下单时间</td>
 			<td>备注</td>
 			<td>状态</td>
+			<td>职位</td>
 			<td>按钮</td>
 		</tr>
 		<c:if test="${ ! empty indentList.rows }">
@@ -84,8 +85,9 @@
 					<td class="userCompany"><c:out value="${item.userCompany }"/></td>
 					<td class="wechat"><c:out value="${item.wechat }"/></td>
 					<td class="orderDate"><c:out value="${item.orderDate }"/></td>
-					<td class="indent_recomment"><c:out value="${item.indent_recomment }"/></td>
+					<td class="cSRecomment"><c:out value="${item.cSRecomment }"/></td>
 					<td class="indentType"><c:out value="${item.indentType }"/></td>
+					<td class="position"><c:out value="${item.position }"/></td>
 					<td> 
 						<button class="edit">编辑</button>
 						<c:if test="${!empty item.requireId }">
@@ -110,8 +112,16 @@
 			公司: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="userCompany" id = "formuserCompany"><br/><br/>
 			微信:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="wechat" id = "formwechat"><br/><br/>
 			下单时间:<input type="text" readonly="readonly" name="orderDate" id = "formorderDate"><br/><br/>
-			备注:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="4" cols="45" name="indent_recomment" id = "formindent_recomment"></textarea><br/><br/>
+			备注:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="4" cols="45" name="cSRecomment" id = "formcSRecomment"></textarea><br/><br/>
 			状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="indentType" id = "formindentType"><br/><br/>
+			职位：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<select name="position" id="formposition">
+				<option value="0">CEO</option>
+				<option value="1">副总</option>
+				<option value="2">项目经理</option>
+				<option value="3">员工</option>
+			</select>
+			<br/><br/>
 			<br/>
 	状态值：<br/>
 				0 = 新订单<br/>

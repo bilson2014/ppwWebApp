@@ -282,7 +282,7 @@ public class IndentController extends BaseController {
 			}
 		}
 		// 订单操作
-		//indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		indent.setIndentType(PmsIndent.ORDER_SUBMIT);
 
 		long updateIndent = pmsIndentFacade.update(indent);
 		indent.setUserId(user.getId());
