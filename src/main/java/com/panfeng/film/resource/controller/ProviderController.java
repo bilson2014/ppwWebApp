@@ -710,7 +710,7 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/delete/product/{productId}")
 	public boolean deleteProviderProduct(@PathVariable("productId") final long productId,
 			final HttpServletRequest request) {
-		
+
 		// TODO 变为dubbo服务
 		final String url = PublicConfig.URL_PREFIX + "portal/product/static/data/deleteProduct/" + productId;
 		final String json = HttpUtil.httpGet(url, request);
@@ -1390,7 +1390,7 @@ public class ProviderController extends BaseController {
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(team.getTeamId());
 		info.setPhoto(team.getTeamPhotoUrl());
-		
+
 		if (team.getFlag() == 1)
 			info.setIsIdentification(true);
 

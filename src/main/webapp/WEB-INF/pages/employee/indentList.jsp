@@ -57,16 +57,6 @@
 	<br/>
 	<c:if test="${! empty indentList }">
 		总共：${indentList.total }条订单
-		<br/>
-		状态值：<br/>
-				0 = 新订单<br/>
-				1=处理中<br/>
-				2=完成<br/>
-				3=停滞<br/>
-				4=再次沟通<br/>
-				5=真实<br/>
-				6=虚假<br/>
-		
 		<br/><br/><br/>
 		
 		<button id="new">新订单</button> &nbsp;&nbsp;&nbsp; <button id="bp">处理中</button> &nbsp;&nbsp;&nbsp; <button id="sub">已提交</button> &nbsp;&nbsp;&nbsp; <button id="des">无效</button>
@@ -131,9 +121,18 @@
 				4 = 再次沟通<br/>
 				5 = 真实<br/>
 				6 = 虚假<br/>
-			<input type="submit" onclick="subBtn()" value="提交">
+				7 = 提交<br/>
+			<input type="submit" id="updateBtn" onclick="subBtn()" value="更新">
 			
+			<button id="confirmSubmit">提交</button>
+			
+			<br/>
+			<br/>
+			<br/>
+			<br/>
 		</form>
+		
+		<button id="cover">强制更新用户信息</button>
 	</div>
 </body>
 </html>
