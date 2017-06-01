@@ -32,7 +32,7 @@
     <meta name="keywords" content="新闻,拍片网">
     <meta name="description" content="新闻资讯频道将提供拍片网的案例分享、企业活动、人物专访以及影视行业资讯信息">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>新闻资讯_行业资讯_人物专访-拍片网</title>
+    <title>新闻资讯-拍片网</title>
     <link rel="stylesheet" href="${newsInfoCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
     <script type="text/javascript">

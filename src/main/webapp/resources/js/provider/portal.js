@@ -9,7 +9,6 @@ $().ready(function(){
 	$('.tooltip-wati').show();
 	initPage();
 	showPassInfo();
-	getHeight(2);
 	videoListProtal.init();
 	changePage();
 	var p = $('#proLogo').attr('data-value');
@@ -63,12 +62,12 @@ function changePage(){
 		$('#titleTop').text($(this).text());
 		if($(this).data('action')=='safe-info'){
 			getHeight(1);
-		}else{
-			getHeight(2);
 		}
 		if($(this).data('action')=='video-list'){
 			$('.tooltip-wati').show();
 			$('#control').show();
+		}else{
+			getHeight(2);
 		}
 	});
 	

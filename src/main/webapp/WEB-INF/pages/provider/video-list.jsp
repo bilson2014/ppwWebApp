@@ -18,7 +18,7 @@
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
-<spring:url value="/resources/js/common.js" var="commonJs" />
+<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
 <spring:url value="/resources/js/provider/video-list.js"
 	var="productListJs" />
 <spring:url value="/resources/images" var="path" />
@@ -41,7 +41,7 @@
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>拍片网－用户信息页</title>
+<title>用户信息页-拍片网</title>
 <link rel="stylesheet" type="text/css" href="${productListCss}">
 <link rel="stylesheet" type="text/css" href="${webuploaderCss}">
 <script type="text/javascript">
@@ -78,7 +78,7 @@
 		</c:if>
 
 		<c:if test="${!empty list}">
-			<div class="ProductContent">
+			<div class="ProductContent" id='ProductContent'>
 				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
 						<c:if test="${empty product.picLDUrl}">

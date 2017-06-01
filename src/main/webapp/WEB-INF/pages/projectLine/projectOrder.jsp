@@ -26,7 +26,7 @@
 <meta name="keywords" content="宣传片制作,广告片制作,企业微电影,产品宣传片制作,路演视频制作">
 <meta name="description" content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、产品广告片拍摄、企业微电影以及病毒视频制作等。拍片就上拍片网">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>${product.chanpinName}_拍片网标准化产品线</title>
+<title>${product.chanpinName}_拍片网标准化产品线-拍片网</title>
 
 <script type="text/javascript"
 	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>

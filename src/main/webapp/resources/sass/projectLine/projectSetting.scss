@@ -436,6 +436,22 @@
                 }
                 
                 //服务套餐
+                .container {
+                    @include media_screen_width_beta3();
+                    margin: 0 auto;
+                    position: relative;
+                }
+                
+                .layer {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    top: 0;
+                    background: rgba(240,242,245,0.7);
+                    display: none;
+                }
+                
                 .serviceContent {
                     display: none;
                     background: $f0;
@@ -452,15 +468,14 @@
                         }
                     }
                     .sContent {
-                        @include media_screen_width_beta3();
-                        margin: 0 auto;
                         position: relative;
                         margin-top: 50px;
                         .sTitle {
+                            @include media_screen_width_beta3();
                             font-size: $font-size-lg26;
                             color: $gray-dark;
+                            margin: 0 auto;
                             margin-bottom: 30px;
-                            margin-left: 10px;
                             span {
                                 font-size: $font-size-base;
                                 color: $gray-light;

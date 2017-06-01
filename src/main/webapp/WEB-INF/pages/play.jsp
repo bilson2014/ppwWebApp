@@ -29,8 +29,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="${fn:replace(product.tags, '  ', ',') }">
-	<meta name="description" content="${product.pDescription }">
-	<title>${product.productName }_拍片网</title>
+	<meta name="description" content="拍片网平台上覆盖企业形象宣传片、产品tvc广告片、品牌微电影、病毒视频、mg动画、专题片等各种视频。${product.pDescription }">
+	<title>${product.productName }-拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
     <link rel="stylesheet" href="${swiperCss }">
@@ -296,7 +296,7 @@
                 </div>
             </div>
         </div>
-		<c:if test="${!empty productModules}">
+	<%-- 	<c:if test="${!empty productModules}">
 		        <div class="videoStar">
 		            <div>本片导演更多影片推荐</div>
 		        </div>
@@ -347,7 +347,186 @@
 		            </div>
 		        </div>
 		        <div class="bottomTab"></div>
-		</c:if>
+		</c:if> --%>
+		
+		<!--s  -->
+			        <div class="videoStar">
+		            <div>本片导演更多影片推荐</div>
+		        </div>
+		        <div class="container-fluid" style="overflow: hidden">
+		            <div class="row">
+		                <div class="container second_sort" style="padding: 20px 0;">
+		                    <div class="row">
+		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
+		                            <div class="f_slider">
+		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
+		                                    <ul class="slides">
+													<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+												    			<li>
+												        <div class="s_item s_item_cur" style="display: block;">
+												            <div class="con">
+												                <div class="conTop" data-id="${source.pid }">
+												                    <div>${source.moduleName }</div>
+												                    <div>
+												                        <center>
+													                        	<img src="/resources/images/block/star.png">
+												                        </center>
+												                    </div>
+												                </div>
+												                <div class="conBottom">
+												                   ${source.description }
+												                </div>
+												            </div>
+												            <div class="layer" style="cursor: pointer;"></div>
+												        </div>
+												    </li>
+		                                    </ul>
+		                                </div>
+		                                <ul class="flex-direction-nav">
+		                                    <li>
+		                                        <a class="flex-prev" href="#" style="display: none;"></a>
+		                                    </li>
+		                                    <li>
+		                                        <a class="flex-next" href="#"></a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="bottomTab"></div>
+		
+		
+		<!--e  -->
+		
+		
 		
 <c:if test="${product.videoDescription != null && product.videoDescription!= '' && product.showType == 1}">
         <div class="bottomContent hide" id="videoDescription">

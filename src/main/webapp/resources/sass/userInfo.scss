@@ -6,6 +6,10 @@ body {
     height: auto;
 }
 
+html{
+    background:white;
+}
+
 .errorImg {
     height: 20px;
     color: $red-base;
@@ -263,6 +267,7 @@ body {
     width: 650px;
     margin-bottom: 30px;
     margin-left: 90px;
+    margin-top: 40px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         margin-left: 190px;
     }

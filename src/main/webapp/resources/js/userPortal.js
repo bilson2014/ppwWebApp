@@ -5,7 +5,7 @@ var PopInterValObj, successIntervalObj, IntervalObj; // timer变量，控制时�
 $().ready(function(){
 	showPassInfo();
 	initPage();
-	getHeight(2);
+	//getHeight(2);
 	$('.infoItem div').on('click',function(){
 		$("#content-frame").prop("src", getContextPath() + '/user/' + $(this).data('action'));
 		$('.menu-content').find('li').removeClass('active');
@@ -13,7 +13,7 @@ $().ready(function(){
 		$('.infoItem').removeClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
-		getHeight();
+		//getHeight();
 		if($(this).data('action')=='video-list'){
 			$('.tooltip-wati').show();
 		}
