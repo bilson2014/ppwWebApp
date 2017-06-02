@@ -127,6 +127,7 @@ html {
     padding-bottom: 60px;
     border-radius: 6px;
     position: fixed;
+    top: 112px;
     @media screen and (min-width: 1276px) {
         width: 300px;
         padding-top: 60px;
@@ -142,7 +143,6 @@ html {
             padding: 5px;
             background: $f0;
             padding: 5px;
-            margin-top: 60px;
         }
     }
     .userName {
