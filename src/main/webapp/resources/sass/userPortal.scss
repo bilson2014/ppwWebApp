@@ -96,6 +96,7 @@ body {
             padding: 5px;
             background: $f0;
             padding: 5px;
+            margin-top: 60px;
         }
     }
     .userName {
@@ -260,6 +261,7 @@ body {
             width: 1300px - $leftWidth;
         }
         position: fixed;
+        top:111px;
     }
 }
 
