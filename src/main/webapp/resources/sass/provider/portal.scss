@@ -142,6 +142,7 @@ html {
             padding: 5px;
             background: $f0;
             padding: 5px;
+            margin-top: 60px;
         }
     }
     .userName {
@@ -318,6 +319,8 @@ html {
             width: 1300px - $leftWidth;
         }
         position: fixed;
+         top: 111px;
+
     }
 }
 
@@ -803,7 +806,7 @@ html {
         width: 1300px - $leftWidth;
     }
     position: fixed;
-    top:167px;
+    top:165px;
     .newProduct {
         font-size: 0px;
         border: 1px solid $gray-light;
