@@ -22,7 +22,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
-	<title>订单页</title>
+	<title>订单页-拍片网</title>
 	<link rel="stylesheet" href="${paylistCss }">
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>

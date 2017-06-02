@@ -32,20 +32,19 @@
 		color: $gray-dark;
 		padding-top: 2px;
 	}
-
 	dd {
 		margin-left: 80px;
 
 		li {
-			width: 92px;
+			width: 90px;
 			height: 28px;
 
 			@media screen and (min-width: 1276px) and (max-width: 1500px) {
-				width: 112px;
+				width: 90px;
 			}
 
 			@media screen and (min-width: 1500px){
-				right: 120px;
+				width: 90px;
 			}
 		}
 	}
@@ -178,9 +177,10 @@
 } 
 
 .video-row>.video-card {
-	margin-right: 20px;
+	margin-right: 19px;
+	vertical-align: top;
 	&:last-child {
-		margin-right: 0;
+		margin-right: -20px;
 	}
 } 
 

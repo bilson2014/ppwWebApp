@@ -4,8 +4,14 @@
 $green:#79d018;
 $yellow:#f5a623;
 $blue:#30CBFB;
+
+html{
+    overflow: hidden;
+    background:white;
+}
+
 body {
-    overflow: auto;
+    overflow: hidden;
     background: transparent;
 }
 
@@ -13,8 +19,14 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+html{
+    overflow: hidden;
+     background:white;
+}
+
 .proInfo {
     background: white;
+    height: 100%;
 }
 
 .control {
@@ -117,7 +129,7 @@ input:-webkit-autofill {
 }
 
 .ProductContent {
-    padding: 30px 30px 80px 30px;
+    padding: 105px 30px 80px 30px;
     .productCard:last-child {
         border: none;
     }

@@ -113,6 +113,7 @@ function calculatedValue(num){
 }
 
 function initModel(id){
+	$('#showItemCard').html(showItemCard());
 	var v1 = $(".slides");
 	var v2 = $(".addSet");
 	var v3 = $(".timeSet");
@@ -403,10 +404,10 @@ function initTab() {
 	checkNum = 1;
     var product_id = 1;
     // 初始化
-    handleScreenSlider(initKey(product_id));
+    handleScreenSlider();
     $(window).resize(function() {
         // window.location.reload();
-        handleScreenSlider(initKey(product_id));
+        handleScreenSlider();
     });
 
     var initColor = $('.conTop');
@@ -416,36 +417,23 @@ function initTab() {
     });
 
 }
-//获取初始化单品分类下单品在页面中的key值
-function initKey(product_id) {
-    var obj = $(".second_sort .s_item");
-    var _key = '';
-    for (var i = 0; i < obj.length; i++) {
-        var data_id = obj.eq(i).parent().data('id');
-        if (product_id == data_id) {
-            _key = i;
-        }
-    }
-    return _key;
-}
 // 不同屏幕下
-function handleScreenSlider(default_val) {
+function handleScreenSlider() {
     if (devicesSize() == "md") {
-        initSlider(5, default_val);
+        initSlider(5);
     } else if (devicesSize() == "sm") {
-        initSlider(4, default_val);
+        initSlider(4);
     } else if (devicesSize() == "xs") {
-        initSlider(3, default_val);
+        initSlider(3);
     } else {
-        initSlider(7, default_val);
+        initSlider(7);
     }
 }
 // 初始化轮播图
-function initSlider(number, default_item) {
-    var start_at = parseInt(default_item / number);
+function initSlider(number) {
+    var start_at = 0;
     var $s_item = $(".second_sort .s_item");
     var s_item_length = $s_item.length;
-    // var s_item_length = 9;
     var fSliders = $('.second_sort .f_slider');
     fSliders.each(function() {
         $(this).flexslider({
@@ -476,8 +464,6 @@ function initSlider(number, default_item) {
                 if (start_at == 0) {
                     $(".flex-prev").hide();
                 }
-                // 默认项显示
-                $s_item.eq(default_item).addClass("s_item_cur");
                 // 默认蒙层
                 handleLayer(start_at * number, $s_item, number);
             },
@@ -540,7 +526,7 @@ function handleLayer(active_index, obj, n) {
     var active_item = [],
         all_item = [],
         other_item = [];
-    for (var i = active_index; i < active_index + n -2; i++) {
+    for (var i = active_index; i < active_index + n; i++) {
         active_item.push(i);
     }
     for (var j = 0; j < obj.length; j++) {
@@ -635,5 +621,24 @@ function resumeSubjoin(){
 		}
 	}
 	
+}
+
+function showItemCard(){
+	return [
+	        '<div class="f_slider">',
+	        '    <div class="flex-viewport" style="overflow: visible; position: relative;">',
+	        '        <ul class="slides">',
+	        '        </ul>',
+	        '    </div>',
+	        '    <ul class="flex-direction-nav">',
+	        '        <li>',
+	        '            <a class="flex-prev" href="#" style="display: none;"><div></div></a>',
+	        '        </li>',
+	        '        <li>',
+	        '            <a class="flex-next" href="#"><div></div></a>',
+	        '        </li>',
+	        '    </ul>',
+	        '</div>'
+	        ].join('');
 }
 

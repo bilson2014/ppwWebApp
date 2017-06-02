@@ -21,6 +21,7 @@
 
 .video-row > .video-card {
     display: inline-block;
+    vertical-align: top;
     padding: 0;
     margin: 0;
     margin-right: $video-margin;
@@ -144,9 +145,9 @@
         font-size: $font-size-sm !important;
         color: $gray-dark;
         margin-left: 10px;
-        @include ellipsis;
-        @media screen and (min-width: 960px) and (max-width: 1275px) {
-            width: 140px;
+
+        @media screen and (min-width: 1px) and (max-width: 1275px) {
+            width: 135px;
             @include ellipsis;
         }
     &:hover {

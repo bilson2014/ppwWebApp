@@ -30,7 +30,7 @@
 <meta name="keywords" content="宣传片制作,广告片制作,企业微电影,产品宣传片制作,路演视频制作">
 <meta name="description" content="拍片网是中国最大的企业视频内容制作服务平台，汇聚了影视行业数万顶尖创作人才，致力于为中小企业提供一站式商业视频制作服务。主营业务包括：宣传片制作、产品广告片拍摄、企业微电影以及病毒视频制作等。拍片就上拍片网">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>${product.chanpinName}_拍片网标准化产品线</title>
+<title>${product.chanpinName}_拍片网标准化产品线-拍片网</title>
 
 <script type="text/javascript"
 	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
@@ -209,30 +209,7 @@
 		            <div class="row">
 		                <div class="container second_sort" style="padding: 20px 0;">
 		                    <div class="row">
-		                        <div class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
-		                            <div class="f_slider">
-		                                <div class="flex-viewport" style="overflow: visible; position: relative;">
-		                                    <ul class="slides">
-										<!-- 		    <li class="s_item s_item_cur packItem">
-														<img src="'+getDfsHostName() +obj.pic +'">
-														<div class="pTitle">moduleName</div>
-														<div class="itemContent">
-															<div class="iLine"></div>
-															<div class="iContent">description</div>
-															<div class="iDes">(赠送)</div>
-														</div>
-													</li> -->
-		                                    </ul>
-		                                </div>
-		                                <ul class="flex-direction-nav">
-		                                    <li>
-		                                        <a class="flex-prev" href="#" style="display: none;"><div></div></a>
-		                                    </li>
-		                                    <li>
-		                                        <a class="flex-next" href="#"><div></div></a>
-		                                    </li>
-		                                </ul>
-		                            </div>
+		                        <div id="showItemCard" class="col-xs-10 col-sm-12 col-md-12 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 f_slider_rap">
 		                        </div>
 		                    </div>
 		                </div>

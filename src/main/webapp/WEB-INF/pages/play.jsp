@@ -29,8 +29,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="${fn:replace(product.tags, '  ', ',') }">
-	<meta name="description" content="${product.pDescription }">
-	<title>${product.productName }_拍片网</title>
+	<meta name="description" content="拍片网平台上覆盖企业形象宣传片、产品tvc广告片、品牌微电影、病毒视频、mg动画、专题片等各种视频。${product.pDescription }">
+	<title>${product.productName }-拍片网</title>
     <link rel="stylesheet" href="${playCss }">
     <link rel="stylesheet" href="${bootstrapCss }">
     <link rel="stylesheet" href="${swiperCss }">
@@ -296,7 +296,7 @@
                 </div>
             </div>
         </div>
-		<c:if test="${!empty productModules}">
+	<%-- 	<c:if test="${!empty productModules}">
 		        <div class="videoStar">
 		            <div>本片导演更多影片推荐</div>
 		        </div>
@@ -347,7 +347,7 @@
 		            </div>
 		        </div>
 		        <div class="bottomTab"></div>
-		</c:if>
+		</c:if> --%>
 		
 <c:if test="${product.videoDescription != null && product.videoDescription!= '' && product.showType == 1}">
         <div class="bottomContent hide" id="videoDescription">
