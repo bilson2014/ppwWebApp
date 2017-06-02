@@ -40,6 +40,7 @@ public class SolrController extends BaseController {
 			final String price, final boolean isMore, final ModelMap model, final HttpServletRequest request)
 			throws Exception {
 
+		q = q.replaceAll("“+", "\"").replaceAll("”+", "\"");
 		model.addAttribute("q", q);
 		model.addAttribute("price", price);
 		model.addAttribute("production", production);

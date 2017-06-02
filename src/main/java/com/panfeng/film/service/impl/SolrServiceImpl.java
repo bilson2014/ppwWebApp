@@ -39,7 +39,6 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 				// 分词
 				String freq = condition.replaceAll(",", " ").replaceAll(" +", " ");
 				List<String> words = this.getAnalysis(token.getSolrUrl(), freq);
-				// List<String> words = this.getAnalysis("http://106.75.2.125:8080/solr/ghost", freq);
 				if(ValidateUtil.isValid(words)) {
 					StringBuffer sb = new StringBuffer();
 					for (int i = 0; i < words.size(); i++) {
@@ -83,7 +82,6 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			query.setHighlightSimplePre("<font color=\"red\">");
 			query.setHighlightSimplePost("</font>");
 			
-			// final List<PmsProductSolr> list = this.queryDocs("http://106.75.2.125:8080/solr/ghost", query);
 			final List<PmsProductSolr> list = this.queryDocs(token.getSolrUrl(), query);
 			return list;
 		} catch (UnsupportedEncodingException e) {
