@@ -86,7 +86,8 @@
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
 	<input type="hidden" id="tags" value="${product.tags }">
-  <div class="header headerMove" id="header">
+ 	<jsp:include flush="true" page="header.jsp"></jsp:include> 
+  <%-- <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
             <div class="left-part">
@@ -174,7 +175,7 @@
 				</r:identity>
             </div>
         </div>
-    </div>
+    </div> --%>
     <div class="page">
 
         <div class="videoArea">
