@@ -108,6 +108,7 @@ function titleTR(){
 					'<td>下单时间</td>',
 					'<td>备注</td>',
 					'<td>状态</td>',
+					'<td>职位</td>',
 					'<td>按钮</td>',
 				'</tr>'
 	            ].join('');
@@ -130,8 +131,9 @@ function TRCreate(obj){
 					'<td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>',
 					'<td class="wechat">'+(obj.wechat == null ? "":obj.wechat) +'</td>',
 					'<td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>',
-					'<td class="indent_recomment">'+(obj.indent_recomment == null ? "":obj.indent_recomment) +'</td>',
+					'<td class="cSRecomment">'+(obj.cSRecomment == null ? "":obj.cSRecomment) +'</td>',
 					'<td class="indentType">'+(obj.indentType == null ? "":obj.indentType) +'</td>',
+					'<td class="position">'+(obj.position == null ? "":obj.position) +'</td>',
 					btn,
 				'</tr>'
 				].join('');
@@ -148,19 +150,21 @@ function submitEventCreate(){
 		var userCompany = $(tr).find('.userCompany');
 		var wechat = $(tr).find('.wechat');
 		var orderDate = $(tr).find('.orderDate');
-		var indent_recomment = $(tr).find('.indent_recomment');
+		var cSRecomment = $(tr).find('.cSRecomment');
 		var indentType = $(tr).find('.indentType');
+		var position = $(tr).find('.position');
 		
 		var data_indentName = $(id).attr('data-indentName');
-		
+
 		$('#formId').val($(id).text().trim());
 		$('#formrealName').val($(realName).text().trim());
 		$('#formindent_tele').val($(indent_tele).text().trim());
 		$('#formuserCompany').val($(userCompany).text().trim());
 		$('#formwechat').val($(wechat).text().trim());
 		$('#formorderDate').val($(orderDate).text().trim());
-		$('#formindent_recomment').val($(indent_recomment).text().trim());
+		$('#formcSRecomment').val($(cSRecomment).text().trim());
 		$('#formindentType').val($(indentType).text().trim());
+		$('#formposition').val($(position).text().trim());
 		$('#indentName').val(data_indentName);
 	});
 }
