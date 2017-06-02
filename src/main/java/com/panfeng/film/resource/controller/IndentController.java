@@ -38,7 +38,6 @@ import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
-import com.panfeng.film.util.Log;
 
 @RestController
 @RequestMapping("/order")
