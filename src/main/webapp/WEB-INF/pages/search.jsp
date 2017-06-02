@@ -156,7 +156,7 @@
 								<c:if test="${empty solr.picLDUrl }">
 									<img class="img-card-4" src="${imgPath}/index/noImg.jpg" alt="拍片网" />
 								</c:if>
-							</a>
+						
 							<div class="video-desc-section">
 								<h3>${solr.productName }</h3>
 								<div class="video-tags">
@@ -184,7 +184,7 @@
 									</c:if>
 								</div>
 							</div>
-							
+						 </a>
 							<div class="line">
 							     <div class="videoCardLine"></div>
 							</div>

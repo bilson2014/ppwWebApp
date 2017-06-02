@@ -574,7 +574,6 @@ function loadProduction(start){
 					var targetHref = getContextPath() + '/play/' + solr.teamId + '_' + solr.productId + '.html';
 					$body += '<a href="'+ targetHref +'" target="_blank">';
 					$body += '<img class="img-card-4" src="'+ imgPath +'" alt="拍片网" />';
-					$body += '</a>';
 					$body += '<div class="video-desc-section">';
 					$body += '<h3>'+ solr.productName +'</h3>';
 					$body += '<div class="video-tags">';
@@ -604,7 +603,7 @@ function loadProduction(start){
 					}
 					$body += '</div>';
 					$body += '</div>';
-
+					$body += '</a>';
 					$body += '<div class="line">';
 					$body += '  <div class="videoCardLine"></div>';
 					$body += '</div>';
