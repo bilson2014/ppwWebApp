@@ -197,7 +197,7 @@
 				       <div class="control" id="control">
 							<div class="newProduct">
 								<div></div>
-								<span>新建作品</span>
+								<span>单个作品上传</span>
 							</div>
 							<div class="moreUp">
 								<div></div>
