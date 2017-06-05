@@ -794,7 +794,7 @@ html {
 }
 
 .control {
-    background: #f9fafb;
+    background: transparent;
     height: 50px;
     position: relative;
     padding-top: 10px;
@@ -806,11 +806,11 @@ html {
         width: 1300px - $leftWidth;
     }
     position: fixed;
-    top:165px;
+    top:115px;
     .newProduct {
         font-size: 0px;
         border: 1px solid $gray-light;
-        width: 120px;
+        width: 140px;
         height: 30px;
         line-height: 28px;
         display: inline-block;
