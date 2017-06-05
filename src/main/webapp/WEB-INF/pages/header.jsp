@@ -15,7 +15,7 @@
 <head>
 
 </head>
-<body>
+<body> 
 	  <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
