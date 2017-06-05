@@ -545,7 +545,9 @@
 		</div>
 		<!-- 入驻end-->
 <!-- foot -->
-         					<div class="foot3">
+          
+         <jsp:include flush="true" page="foot.jsp"></jsp:include> 
+         					<%-- <div class="foot3">
                                 <div class="footContent">
                                     <div class="contentTop">
                                         <div class="topItem codeWidth">
@@ -570,8 +572,8 @@
                                             <div class="title"><a>服务</a></div>
                                             <div class="noiconItem" ><a href="<spring:url value='/order-flow.html' />">服务流程</a></div>
                                             <div class="noiconItem"><a href="<spring:url value='/company-service.html#servicePart' />">服务协议</a></div>
-<%--                                             <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
-                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div> --%>
+                                            <div class="noiconItem"><a href="<spring:url value="/login" />">找拍摄团队</a></div>
+                                            <div class="noiconItem"><a href="<spring:url value="/provider/login" />">我要发作品</a></div>
                                         </div>
                                         <div class="topItem onLineWidth">
                                             <div class="title"><a>在线联系我们</a></div>
@@ -604,7 +606,7 @@
                                         <div>© 2016 北京拍片乐科技有限公司 京ICP备16066831号-1 | 百度统计 站长统计</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --%>
                             <!--新版底部-->
 	</div>
 	<!-- video-->

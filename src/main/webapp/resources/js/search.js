@@ -566,7 +566,6 @@ function loadProduction(start){
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
-					
 					if(i % 4 == 0){
 						$body += '<div class="video-row">';
 					}

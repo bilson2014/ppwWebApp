@@ -44,61 +44,7 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="telephone" value="${telephone}"/>
-	<div class="header">
-		<div class="menu-bar nav">
-			<div class="left-part">
-				<a href="<spring:url value='/'/>" class="logo"><h1>拍片网</h1></a>
-				<r:identity role="customer">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >我的项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
-				</r:identity>
-				<r:identity role="provider">
-					<a href="<spring:url value='/provider/portal'/>" class="header-item" >信息管理</a>
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >所有项目</a>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-				</r:identity>
-				<r:identity role="employee">
-					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
-					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
-					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
-				</r:identity>
-				<r:noLogin>
-					<a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">作品分类</a>
-					<a href="<spring:url value='/direct/order'/>" class="header-item" target="_parent">我要拍片</a>
-				</r:noLogin>
-			</div>
-			
-			<div class="middle-part">
-				<div class="search-box" id="header-search">
-					<form method="get" action="/search" id="s-form">
-						<input type="text" size="16" autocomplete="off" id="search-q" name="q" placeholder="作品名称，类型，风格，公司信息" class="i-lucency" />
-						<a href="javascript:void(0);" class="go bk_white" onclick="return false;" id="s-btn"></a>
-						<ul id="shelper" class="shelper-lucency"></ul>
-					</form>
-				</div>
-			</div>
-			<div class="right-part">
-				<r:noLogin>
-					<a href="<spring:url value="/provider/login" />" class="header-item login-item" target="_self">供应商登录</a>
-					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">客户登录</a>
-				</r:noLogin>
-				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-				</r:identity>
-				<r:identity role="provider">
-					<a href="<spring:url value="/provider/portal" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-				</r:identity>
-				<r:identity role="employee">
-					<a href="<spring:url value="/mgr/index" />" class="header-item login-item" target="_self" title="<r:outName />"><r:outName /></a>
-					<a href="<spring:url value="/login/loginout" />" class="header-item login-item" target="_self">登出</a>
-				</r:identity>
-			</div>
-		</div>
-	</div>
-	
+	<jsp:include flush="true" page="header.jsp"></jsp:include> 
 	<div class="page">
 		<div class="video-wrap" id="area">
 				<div class="order-title" id="line">我要拍片</div>
