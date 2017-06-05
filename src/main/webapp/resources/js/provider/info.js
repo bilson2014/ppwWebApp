@@ -14,7 +14,7 @@ $().ready(function() {
 		dateFormat : 'yyyy-MM-dd',
 		maxDate : new Date()
 	});
-	//iframe 高度
+	//iframe 高度，离底边距离300
 	$(window.parent.document).find('#content-frame').css('height',$('.proInfo').height() + 300);
 	userpicInfo();
 	initUl();
@@ -184,6 +184,10 @@ function getBusinessVal() {
 	}
 	return busArr;
 }
+/**
+ * 页面标签，点击变红，再点击取消样式
+ * @param ids
+ */
 function setBusinessVal(ids) {
 	if(ids != null && ids!= undefined){
 		var idsArray = ids.split(',');

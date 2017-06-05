@@ -64,21 +64,20 @@
 	<input type="hidden" id="productId" value="${product.chanpinId }">
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 	
     
-           <div class="projectType">
-                 <div class="pTContent">
-						<c:if test="${! empty productList}">
-							<c:forEach items="${productList }" var="tag">
-								 <c:if test="${product.chanpinName == tag.chanpinName }">
-										<a><div class="active">${tag.chanpinName}</div></a>
-								 </c:if>
-								 <c:if test="${product.chanpinName != tag.chanpinName }">
-										<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
-								 </c:if>
-							</c:forEach>
-						</c:if>
-                 </div>
-       </div>
-    
+	<div class="projectType">
+		<div class="pTContent">
+			<c:if test="${! empty productList}">
+				<c:forEach items="${productList }" var="tag">
+					<c:if test="${product.chanpinName == tag.chanpinName }">
+						<a><div class="active">${tag.chanpinName}</div></a>
+					</c:if>
+					<c:if test="${product.chanpinName != tag.chanpinName }">
+						<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+					</c:if>
+				</c:forEach>
+			</c:if>
+		</div>
+	</div>
     
 	<div class="page">
        <div class="motionTitles">
@@ -110,8 +109,7 @@
 	            <div class="LiveContent">
 	                 <div class="title">应用场景</div>
 	                 <div class="imgContent">
-	                         <center id="sceneView">
-	              			 </center>  
+	                         <center id="sceneView"></center>  
 	        		 </div>
 			    </div>   
 			</div>
@@ -135,24 +133,6 @@
 		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">
 				<div class="swiper-wrapper swiper-product-slide">
-				<%-- 	<div class="swiper-slide" id="setItem">
-					   <div class="productItem">
-					     <div class="imgContent">
-		               	  <img src="${imgPath}/index/advanBack.png">
-		                 </div>
-					     <div class="productContent">
-					         <div class="contentTitle">应用案例应用案例应用案例</div>
-					         <div class="contentInfo"> 应用案例应用案例应用案例</div>
-					         <div class="contentContent">
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div>标题   :  <span>内容内容内容</span></div>
-					                 <div class="contentDes">大叔大叔大所大所多</div>
-					         </div>
-					     </div>
-					   </div>   
-					</div>--%>
 					<a></a>
 				</div>
 			</div>
@@ -161,9 +141,9 @@
 		   </div>	
 		</div>	
 		
-         <!-- foot -->
-         					 <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
-                            <!--新版底部-->
+		<!-- foot -->
+			<jsp:include flush="true" page="../foot.jsp"></jsp:include> 
+		<!--新版底部-->
 	</div>
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>

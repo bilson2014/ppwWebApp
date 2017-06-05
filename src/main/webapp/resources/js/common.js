@@ -174,7 +174,7 @@ function loadData(Func,url,param){
 		}
 	});
 }
-//AJAX POST
+//AJAX POST 
 function loadData2(Func,url,param){
 	$.ajax({
 		url : url,

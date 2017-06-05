@@ -162,16 +162,14 @@
 		
 		 <!-- foot -->   
 		   <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
-                            <!--新版底部-->
+         <!--新版底部-->
 	</div>
 	<!-- video-->
 	<script type="text/javascript" src="/resources/js/common.js"></script>
-	s<script type="text/javascript" src="${waypointsJs}"></script>
+	<script type="text/javascript" src="${waypointsJs}"></script>
 	<script type="text/javascript" src="${bootstrapJs}"></script>
 	<script type="text/javascript" src="${flexsliderJS}"></script>
 	<script type="text/javascript" src="${pSet}"></script>
-
-	
 </body>
 
 </html>

@@ -47,20 +47,20 @@
 		value="${file_locate_storage_path }" />
 		<input type="hidden" id="productId" value="${product.chanpinId }">
 		<jsp:include flush="true" page="../header.jsp"></jsp:include> 
-       <div class="projectType">
-                 <div class="pTContent">
-						<c:if test="${! empty productList}">
-							<c:forEach items="${productList }" var="tag">
-								 <c:if test="${product.chanpinName == tag.chanpinName }">
-										<a><div class="active">${tag.chanpinName}</div></a>
-								 </c:if>
-								 <c:if test="${product.chanpinName != tag.chanpinName }">
-										<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
-								 </c:if>
-							</c:forEach>
-						</c:if>
-                 </div>
-       </div>
+	<div class="projectType">
+		<div class="pTContent">
+			<c:if test="${! empty productList}">
+				<c:forEach items="${productList }" var="tag">
+					<c:if test="${product.chanpinName == tag.chanpinName }">
+						<a><div class="active">${tag.chanpinName}</div></a>
+					</c:if>
+					<c:if test="${product.chanpinName != tag.chanpinName }">
+						<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+					</c:if>
+				</c:forEach>
+			</c:if>
+		</div>
+	</div>
 	
 	<div class="page">       
        <div class="motionTitles">

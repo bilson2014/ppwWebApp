@@ -71,23 +71,21 @@
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 	
-       <div class="projectType">
-                   <div class="pTContent">
-		                      <c:if test="${! empty productList}">
-								<c:forEach items="${productList }" var="tag">
-									 <c:if test="${product.chanpinName == tag.chanpinName }">
-											<a><div class="active">${tag.chanpinName}</div></a>
-									 </c:if>
-									 <c:if test="${product.chanpinName != tag.chanpinName }">
-											<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
-									 </c:if>
-								</c:forEach>
-							  </c:if>
-                      </div> 
-       </div>
+	<div class="projectType">
+		<div class="pTContent">
+			<c:if test="${! empty productList}">
+				<c:forEach items="${productList }" var="tag">
+					<c:if test="${product.chanpinName == tag.chanpinName }">
+						<div class="active">${tag.chanpinName}</div>
+					</c:if>
+					<c:if test="${product.chanpinName != tag.chanpinName }">
+						<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+					</c:if>
+				</c:forEach>
+			</c:if>
+		</div> 
+	</div>
 	<div class="page">
-	
-
         <div class="motionTitles">
           <div class="motionContent">
 	          <div class="motionIcon">
@@ -110,7 +108,7 @@
 					<a href='/play/${tag.product.teamId }_${tag.productId }.html'>
 						<div class="listCard">
 			             <div class="imgContent">
-			               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}">
+			               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}" />
 			             </div>
 			             <div class="cardContent">
 			                    <div class="contentTitle">${tag.pName}</div>
@@ -128,12 +126,9 @@
 			  </c:if>
 	      </div>
 		</div>
-		
-		 <!-- foot -->       <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
-                            <!--新版底部-->
-	</div>
-	<!-- video-->
-	
+		 <!-- foot -->       
+		 	<jsp:include flush="true" page="../foot.jsp"></jsp:include> 
+		 <!--新版底部-->
 </body>
 
 </html>
