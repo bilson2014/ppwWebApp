@@ -265,8 +265,8 @@ var videoList_tpl = {
 		"	<div class='videoContent'>                       "+
 		"   	<div id='${file.id}' class='item'>			 "+
 		"	    <div class='videoName'>${file.name}</div>    "+
-		"	    <div class='videoState'>等待上传</div>          "+
-		"	</div>                                            "+
-		" </div>                                              "      
+		"	    <div class='videoState'>等待上传</div>		 "+
+		"	</div>                                           "+
+		" </div>                                             "      
 		].join("")
 }

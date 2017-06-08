@@ -3,7 +3,7 @@
 @import "compass/typography/text/ellipsis";
 @import "normalize";
 $leftWidth:320px;
-$leftWidthS:200px;
+$leftWidthS:210px;
 $green:#2ad2ae;
 // .nav .logo {
 //   position: relative;
@@ -127,6 +127,7 @@ html {
     padding-bottom: 60px;
     border-radius: 6px;
     position: fixed;
+    top: 112px;
     @media screen and (min-width: 1276px) {
         width: 300px;
         padding-top: 60px;
@@ -318,6 +319,8 @@ html {
             width: 1300px - $leftWidth;
         }
         position: fixed;
+         top: 111px;
+
     }
 }
 
@@ -791,7 +794,7 @@ html {
 }
 
 .control {
-    background: #f9fafb;
+    background: transparent;
     height: 50px;
     position: relative;
     padding-top: 10px;
@@ -803,11 +806,11 @@ html {
         width: 1300px - $leftWidth;
     }
     position: fixed;
-    top:167px;
+    top:115px;
     .newProduct {
         font-size: 0px;
         border: 1px solid $gray-light;
-        width: 120px;
+        width: 140px;
         height: 30px;
         line-height: 28px;
         display: inline-block;
