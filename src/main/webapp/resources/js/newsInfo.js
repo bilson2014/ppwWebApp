@@ -9,12 +9,12 @@ $().ready(function() {
 	
 	// 初始化page
 	newsInfo.initPagination();
-	newsInfo.getUrl($('.checkActive').attr('data-value'));
 });
 var newsInfo = {
 		// 分类高亮
 		initCategory : function() {
 			var q = $('#q').val();
+			console.info('q:' + q);
 			if(q != undefined && q != '' && q != null) {
 				$.each($('.category'),function(i,model) {
 					if($(model).data('value') == q) {
@@ -24,21 +24,15 @@ var newsInfo = {
 					}
 				});
 			}else {
-				// q为空时，判断是 全部还是最热资讯
-				var param = getParam();
-				if(param != null && param != '' && param != undefined){
-					$.each($('.category'),function(i,model) {
-						if($(model).data('value') == '最热资讯') {
-							$('.category').removeClass('checkActive');
-							$(this).addClass('checkActive');
-							return;
-						}
-					});
-				}
-					
+				// q为空时，是 全部
+				$.each($('.category'),function(i,model) {
+					if($(model).data('value') == '全部') {
+						$('.category').removeClass('checkActive');
+						$(this).addClass('checkActive');
+						return;
+					}
+				});
 			}
-		},
-		getUrl:function(path){
 		},
 		// 格式化标题及介绍
 		formatContent : function() {
@@ -73,6 +67,9 @@ function loadNews(page) {
 		if(list != null && list.length > 0) {
 			 $.each(list, function(i,news) {	
 			    	var hrefs = getHostName()+"/news/article-"+news.id+".html";
+			    	// TODO 在标签后面添加区域
+			    	var cat = $('.category').find('.checkActive').data('value');
+			    	hrefs += '?q=' + cat;
 			   	 	var tagsList = news.tags.split(" ");
 			   	 
 			   	  var $body = '<li class="videoModel">' +

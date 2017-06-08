@@ -44,18 +44,10 @@
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
     
-    <!-- 产品线 -->
-<!--     <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
-    <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
-    <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
-    <mvc:view-controller path="/pList" view-name="/manager/collect" /> -->
-    <!-- test -->
-    <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
-    <mvc:view-controller path="/testS" view-name="/manager/collect" />
-     <!-- end --> 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+			 p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />
 
@@ -76,12 +68,12 @@
 		</mvc:interceptor>
 		
 		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
-		<mvc:interceptor>
+		<!-- 验证是否是cookie登录 -->
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/resources/**" />
 			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
-		</mvc:interceptor>
-		
+		</mvc:interceptor> -->
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
@@ -142,10 +134,49 @@
 		</mvc:interceptor>
 		
 		<!-- 产品线相关 -->
-		<!-- <mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/main"/>
+			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/case"/>
+			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/set"/>
+			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/order"/>
+			
+			<mvc:mapping path="/product/VideoforPublicPresentation/main"/>
+			<mvc:mapping path="/product/VideoforPublicPresentation/case"/>
+			<mvc:mapping path="/product/VideoforPublicPresentation/set"/>
+			<mvc:mapping path="/product/VideoforPublicPresentation/order"/>
+			
+			<mvc:mapping path="/product/EnterprisePromotionalVideo/main"/>
+			<mvc:mapping path="/product/EnterprisePromotionalVideo/case"/>
+			<mvc:mapping path="/product/EnterprisePromotionalVideo/set"/>
+			<mvc:mapping path="/product/EnterprisePromotionalVideo/order"/>
+			
+			<mvc:mapping path="/product/EnterpriseMicroFilm/main"/>
+			<mvc:mapping path="/product/EnterpriseMicroFilm/case"/>
+			<mvc:mapping path="/product/EnterpriseMicroFilm/set"/>
+			<mvc:mapping path="/product/EnterpriseMicroFilm/order"/>
+			
+			<mvc:mapping path="/product/3DProductAnimation/main"/>
+			<mvc:mapping path="/product/3DProductAnimation/case"/>
+			<mvc:mapping path="/product/3DProductAnimation/set"/>
+			<mvc:mapping path="/product/3DProductAnimation/order"/>
+			
+			<mvc:mapping path="/product/ProductPromotionalVideo/main"/>
+			<mvc:mapping path="/product/ProductPromotionalVideo/case"/>
+			<mvc:mapping path="/product/ProductPromotionalVideo/set"/>
+			<mvc:mapping path="/product/ProductPromotionalVideo/order"/>
+			
+			<mvc:mapping path="/product/ProfessionalEventRecording/main"/>
+			<mvc:mapping path="/product/ProfessionalEventRecording/case"/>
+			<mvc:mapping path="/product/ProfessionalEventRecording/set"/>
+			<mvc:mapping path="/product/ProfessionalEventRecording/order"/>
+			
+			<mvc:mapping path="/product/LectureVideo/main"/>
+			<mvc:mapping path="/product/LectureVideo/case"/>
+			<mvc:mapping path="/product/LectureVideo/set"/>
+			<mvc:mapping path="/product/LectureVideo/order"/>
+			
 			<bean class="com.panfeng.film.filter.ProductCaseInterceptor" />
-		</mvc:interceptor> -->
+		</mvc:interceptor>
 		
 	</mvc:interceptors>
 </beans>

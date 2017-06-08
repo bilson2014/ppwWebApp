@@ -444,7 +444,7 @@ function updateProject_ViewInit() {
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
 	
-			if($("#projectSource").val().trim()=='推荐'){
+			if($("#projectSource").val() == '推荐' ){
 			$("#div-friendship").removeClass('hide');
 			$("#referrer-Id-hidden").val(msg.referrerId);
 			$("#input-referrer").val(msg.referrerName);

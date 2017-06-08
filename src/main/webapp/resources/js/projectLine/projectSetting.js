@@ -533,7 +533,6 @@ function handleLayer(active_index, obj, n) {
         all_item.push(j);
     }
     other_item = arrDifference(all_item, active_item);
-    console.info(all_item);
     other_item.forEach(function(i, index) {
         obj.eq(i).find(".layer").show().css({"cursor": "auto" });
     });

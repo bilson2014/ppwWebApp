@@ -25,7 +25,6 @@
 	<dubbo:reference interface="com.paipianwang.pat.facade.product.service.PmsProductCaseFacade" id="pmsProductCaseFacade" check="false" timeout="5000" />
 	<dubbo:reference interface="com.paipianwang.pat.facade.product.service.PmsRequireFacade" id="pmsRequireFacade" check="false" timeout="5000" />
 	<dubbo:reference interface="com.paipianwang.pat.facade.product.service.PmsIndentConfirmFacade" id="pmsIndentConfirmFacade" check="false" timeout="5000" />
-	
 	<!--供应商服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.team.service.PmsTeamFacade" id="pmsTeamFacade" check="false" timeout="15000" />
 	<dubbo:reference interface="com.paipianwang.pat.facade.team.service.PmsTeamTmpFacade" id="pmsTeamTmpFacade" check="false" timeout="5000"/>

@@ -8,6 +8,7 @@
 <spring:url value="/resources/css/news/news.css" var="newsCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="json" />
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
 <spring:url value="/resources/lib/jquery/jquery.flexslider-min.js" var="flexsliderJS"/>
 <spring:url value="/resources/js/news.js" var="newsJS"/>
@@ -54,6 +55,7 @@
 	<input type="hidden" id="q" value="${q}" />
 	<input type="hidden" id="tags" value="${news.tags}" />
 	<input type="hidden" id="paths" value="${path}" />
+	
     <div class="header headerMove" id="header">
  		<input type="hidden" id="csrftoken" name="csrftoken" value="${csrftoken}"/>
         <div class="menu-bar nav">
@@ -176,11 +178,11 @@
                     </div>
                     <input type="hidden" id="newsId" value="${news.id}">
                      <div class="goToOther">
-                       <c:if test="${news.prev }">
-			           		<a id="prev" href="<spring:url value='/news/prev-${news.id }.html?q=' />" ><div>上一篇</div></a>
+                       <c:if test="${not empty preNews and preNews.id != 0  }">
+				            <a id="next" href="<spring:url value='/news/article-${preNews.id }.html?q=${q}' />" ><div>上一篇</div></a>
 			           </c:if>
-			           <c:if test="${news.next }">
-				            <a id="next" href="<spring:url value='/news/next-${news.id }.html?q=' />" ><div>下一篇</div></a>
+                       <c:if test="${not empty nextNews and nextNews.id != 0  }">
+			           		<a id="prev" href="<spring:url value='/news/article-${nextNews.id }.html?q=${q}' />" ><div>下一篇</div></a>
 			           </c:if>
 			        </div>
                 </div>
@@ -263,6 +265,7 @@
      <script type="text/javascript" src="${clampJs }"></script>
      <script type="text/javascript" src="${jqueryJs }"></script>
      <script type="text/javascript" src="${jquerybase64Js }"></script>
+     <script type="text/javascript" src="${json }"></script>
 	 <script type="text/javascript" src="${bootstrapJs }"></script>
 	 <script type="text/javascript" src="${flexsliderJS }"></script>
 	 <script type="text/javascript" src="${newsJS }"></script>

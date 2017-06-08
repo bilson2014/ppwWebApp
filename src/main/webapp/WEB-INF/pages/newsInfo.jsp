@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 
-
 <spring:url value="/resources/css/news/newsInfo.css" var="newsInfoCss"/>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -185,7 +184,7 @@
                   	<c:if test="${!empty list}">
 	                    <c:forEach items="${list }" var="newsSolr">
 	                    	<li class="videoModel">
-	                    		<a class="toNewsUrl" href="<spring:url value='/news/article-${newsSolr.id}.html' />" >
+	                    		<a class="toNewsUrl" href="<spring:url value='/news/article-${newsSolr.id}.html?q=${q }' />" >
 	                    			<c:if test="${!empty  newsSolr.picLDUrl}">
 		                    			<img src="${file_locate_storage_path}${newsSolr.picLDUrl}" alt="${newsSolr.title}_拍片网" />
 	                    			</c:if>
