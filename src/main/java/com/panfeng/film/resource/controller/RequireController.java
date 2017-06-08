@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
@@ -83,18 +84,19 @@ public class RequireController extends BaseController {
 		}
 		return baseMsg;
 	}
+
 	/**
-	 * 跳转需求表单页。新增和修改和查看
-	 * 这代码只有老天懂
+	 * 跳转需求表单页。新增和修改和查看 这代码只有老天懂
+	 * 
 	 * @param indentId
 	 * @param requireId
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/require")
-	public ModelAndView requireView(Long indentId,Long requireId, ModelMap model) {
+	public ModelAndView requireView(Long indentId, Long requireId, ModelMap model) {
 		model.addAttribute("indentId", indentId);
-		if(!ValidateUtil.isValid(requireId)){
+		if (!ValidateUtil.isValid(requireId)) {
 			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
 			requireId = indent.getRequireId();
 		}
@@ -103,6 +105,15 @@ public class RequireController extends BaseController {
 			model.addAttribute("require", require);
 		}
 		return new ModelAndView("/standardized/requireForm", model);
+	}
+
+	@RequestMapping("/require/config")
+	public BaseMsg getRequireConfig() {
+		String requireConfig = pmsRequireFacade.getRequireConfig();
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(requireConfig);
+		return baseMsg;
 	}
 
 }
