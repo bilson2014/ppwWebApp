@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
@@ -107,13 +106,13 @@ public class RequireController extends BaseController {
 		return new ModelAndView("/standardized/requireForm", model);
 	}
 
-	@RequestMapping("/require/config")
+	/*@RequestMapping("/require/config")
 	public BaseMsg getRequireConfig() {
 		String requireConfig = pmsRequireFacade.getRequireConfig();
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.NORMAL);
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
-	}
+	}*/
 
 }

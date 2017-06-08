@@ -114,7 +114,7 @@
 						<div>
 							<img class="member-img" alt="${staff.staffName}_拍片网" src="<spring:url value="${file_locate_storage_path }${staff.staffImageUrl }"/>">
 							<p title="${staff.staffName }">${staff.staffName }</p>
-							<p class="small-p">${staff.staffPosition}</p>
+							<p class="small-p" alt="${staff.staffPosition}">${staff.staffPosition}</p>
 						</div>
 					</li>
 					<c:if test="${status.count % 5 == 0 }">
@@ -190,7 +190,6 @@
 							</c:if>
 							<c:if test="${status.count != 1 }">
 						  		<li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li>
-						  		<%-- <li class="work" data-value="${job.demand}" data-content="${job.jobDescription}" data-id="${job.jobId }" title="${job.jobName }">${job.jobName }</li> --%>
 							</c:if>
 					  </c:forEach>
 					</ul>

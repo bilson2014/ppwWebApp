@@ -545,8 +545,6 @@ public class PCController extends BaseController {
 			// 获取新该条新闻的上一条及下一条新闻
 			if("最热资讯".equals(q)) {
 				recommend = 1;
-			} else if(!ValidateUtil.isValid(q)) {
-				q = null;
 			}
 			// 获取下一条新闻
 			nextNews = pmsNewsFacade.findNextNew(q, Integer.parseInt(newId + ""), recommend);
