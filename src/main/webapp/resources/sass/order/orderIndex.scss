@@ -1,0 +1,338 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "pagination";
+@import "companyCommon";
+.userHeader {
+    font-size: 0;
+    img,
+    .name {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    img {
+        width: 80px;
+        height: 80px;
+        padding: 1px;
+        border-radius: 50%;
+    }
+    .name {
+        margin-left: 20px;
+        div:nth-child(1) {
+            font-size: $font-size;
+            color: $gray-dark;
+        }
+        div:nth-child(2) {
+            font-size: $font-size-base;
+            color: $gray;
+            margin-top: 10px;
+        }
+    }
+}
+
+.showStatus {
+    width: 100%;
+    height: 40px;
+    background: $d9;
+    border-radius: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .active {
+        background: $red-base;
+        color: white !important;
+    }
+    div {
+        vertical-align: top;
+        display: inline-block;
+        width: 182px;
+        height: 40px;
+        border-right: 2px solid white;
+        text-align: center;
+        line-height: 40px;
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+    div:nth-child(1) {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }
+}
+
+.searchInfo {
+    font-size: 0;
+    margin-bottom: 25px;
+    div {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $font-size-sm;
+        color: $gray;
+        margin-right: 10px;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $font-size-sm;
+        color: $gray;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .time {
+        width: 100px!important;
+        margin-right: 0 !important
+    }
+    input {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 20px;
+        width: 160px;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 15px;
+        font-size: $font-size-sm;
+        color: $gray;
+        border-radius: 4px;
+        border: none;
+        border: 1px solid $border-line;
+        outline: none;
+        &:focus {
+            background: $f6;
+        }
+    }
+}
+
+.orderSelect {
+    width: 100%;
+    img {
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -10px;
+    }
+    span {
+        width: 100%;
+        color: $gray;
+        font-size: $font-size-base;
+    }
+    ul {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 2px 4px 0 #D9EBF2;
+        display: none;
+        z-index: 3;
+        background: white;
+        cursor: pointer;
+        li {
+            width: 100%;
+            height: 36px;
+            text-align: center;
+            line-height: 36px;
+            color: $gray;
+            font-size: $font-size-base;
+            &:hover {
+                background: $d9;
+            }
+        }
+    }
+    input {
+        border: none;
+        outline: none;
+    }
+}
+
+//表格
+table{
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid $border-line;
+    position: relative;
+}
+
+tr {
+    background:$f8;
+    td:nth-child(3) {
+        padding: 0px 10px 0px 10px !important;
+    }
+    td:nth-child(9),
+    td:nth-child(10),
+    td:nth-child(11) {
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+tr:nth-child(1) {
+    background: $f0 !important;
+}
+
+tr:nth-child(2n) {
+    background: white;
+}
+
+th:nth-child(1),td:nth-child(1){
+    width: 8%;
+}
+th:nth-child(2),td:nth-child(2){
+     width: 8%;
+}
+th:nth-child(3),td:nth-child(3){
+    width: 15%;
+}
+th:nth-child(4),td:nth-child(4){
+    width: 8%;
+}
+th:nth-child(5),td:nth-child(5){
+     width: 8%; 
+}
+th:nth-child(6),td:nth-child(6){
+     width: 8%; 
+}
+th:nth-child(7),td:nth-child(7){
+     width: 13%;
+}
+th:nth-child(8),td:nth-child(8){
+     width: 17%;
+}
+th:nth-child(9),td:nth-child(9){
+     width: 5%;
+}
+th:nth-child(10),td:nth-child(10){
+    width: 5%;
+}
+th:nth-child(11),td:nth-child(11){
+     width: 5%;
+}
+
+td,th {
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    line-height: 20px;
+}
+
+option {
+    width: 150px;
+    height: 30px;
+}
+
+.tableList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+}
+
+.page-section {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 60px;
+}
+
+.page-wrap {
+    @include media_screen_width();
+    margin: auto;
+    text-align: center;
+}
+
+.page-wrap .pagination {
+    @include pagination();
+}
+
+.video-row>.video-card {
+    margin-right: 19px;
+    vertical-align: top;
+    &:last-child {
+        margin-right: -20px;
+    }
+}
+
+//弹出框
+.modelPage {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 110;
+    display: none;
+    .successModel {
+        width: 450px;
+        height: 310px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -155px;
+        margin-left: -225px;
+        border-radius: 4px;
+        background: white;
+        padding-top: 30px;
+        text-align: center;
+        .closeBtn {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+    }
+    .oSContent {
+        .title {
+            font-size: $font-size;
+            color: $gray-dark;
+        }
+        .sTitle {
+            padding-top: 80px;
+            font-size: $font-size;
+            color: $gray-dark;
+        }
+        .desc {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            font-size: $font-size-sm;
+            color: $gray-light;
+            span:nth-child(1) {
+                color: $red-base;
+                margin-right: 20px;
+            }
+        }
+        .sureBtn {
+            font-size: 0;
+            padding-top: 50px;
+            width: 265px;
+            margin: 0 auto;
+            div {
+                width: 120px;
+                height: 36px;
+                line-height: 36px;
+                color: white;
+                border: 4px;
+                font-size: $font-size-base;
+                border-radius: 4px;
+                display: inline-block;
+                vertical-align: top;
+            }
+            div:nth-child(1) {
+                margin-right: 20px;
+            }
+        }
+        .descBot {
+            width: 120px;
+            height: 36px;
+            line-height: 36px;
+            color: white;
+            border: 4px;
+            font-size: $font-size-base;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+    }
+}

@@ -44,8 +44,10 @@
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
     
-    <!-- 产品线 -->
-<!--     <mvc:view-controller path="/motion" view-name="/projectLine/motion" />
+    <!-- 订单管理系统 -->
+    <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
+    
+<!--<mvc:view-controller path="/motion" view-name="/projectLine/motion" />
     <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
     <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
     <mvc:view-controller path="/pList" view-name="/manager/collect" /> -->
