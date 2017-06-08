@@ -112,7 +112,7 @@ function addLikeNews(item){
 	  var $body = '<div class="videoLikeModel">' +
 	  '<a href="/news/article-'+item.id+'.html?q=" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
-      '<div class="rightDes">'+getDesIndex(item.discription)+'</div>'+
+      '<div class="rightDes">'+getDesIndex(item.title)+'</div>'+
       '</a>'+
       '</div>';
 	  $body += '</div>';

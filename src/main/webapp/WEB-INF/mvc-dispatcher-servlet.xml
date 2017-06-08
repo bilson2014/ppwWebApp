@@ -44,6 +44,9 @@
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
     
+    <!-- 订单管理系统 -->
+    <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
+    
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

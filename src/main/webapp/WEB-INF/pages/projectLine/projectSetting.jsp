@@ -148,8 +148,6 @@
 		      </div>
 		  </div>
 		  
-
-		  
 		<!-- 确认下单 -->
 		      	
       	<div class="checkOrder">
