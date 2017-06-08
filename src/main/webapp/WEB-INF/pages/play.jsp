@@ -268,7 +268,7 @@
 		                    <div class="afterPrice" ><span>￥</span><span><fmt:formatNumber value="${product.serviceRealPrice }" pattern="#,#00"/></span></div>
 	                    </c:if>
 	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
-	                    	 <div class="afterPrice" ><span>￥</span><span>暂无报价</span></div>
+	                    	 <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                    </c:if>
 	                    <div class="afterPriceTitle">影片价格</div>
                         <div class="btn-c-r" id="needOrder">我要下单</div>

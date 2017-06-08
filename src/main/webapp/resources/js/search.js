@@ -596,7 +596,7 @@ function loadProduction(start){
 					$body += '</div>';
 					$body += '<div class="video-price-section">';
 					$body += '<div class="video-price">';
-					$body += '<h2>￥'+ ((solr.price == 0) ? '暂无报价' : thousandCount(solr.price)) +'</h2>&nbsp;&nbsp;';
+					$body += '<h2>￥'+ ((solr.price == 0) ? '欢迎询价' : thousandCount(solr.price)) +'</h2>&nbsp;&nbsp;';
 					if(solr.price < solr.orignalPrice){
 						$body += '<h3>原价&nbsp;￥&nbsp;'+ thousandCount(solr.orignalPrice) +'</h3>';
 					}

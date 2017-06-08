@@ -72,7 +72,7 @@
 	          <div class="motionType">
 	               <a href="/product/index?chanpinId=${product.chanpinId }"><div>产品概述</div></a>
 	               <a href="/product/${product.englishName }/case"><div>全部案例</div></a>
-	               <a href="/product/${tag.englishName }/set"><div class="active">产品配置</div></a>
+	               <a href="/product/${tag.englishName }/set"><div class="active">套餐配置</div></a>
 	          </div>
           </div>
        </div>

@@ -85,7 +85,7 @@
 																		￥&nbsp;<fmt:formatNumber value="${solr.servicePrice }" pattern="#,#00"/>
 																	</c:when>
 																	<c:when test="${solr.servicePrice == 0}">
-																		暂无报价
+																		欢迎询价
 																	</c:when>
 																</c:choose>
 						                                  </div>

@@ -87,27 +87,41 @@
       <div class="modelPage" id="sureModel">
            <div class="successModel">
                <div class="closeBtn"></div>
-
 		   <div class="oSContent">
-		        <div class="sTitle">订单信息是否真实</div>
+		        <div class="sTitle">订单将作废</div>
+		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的</div>
+		        <div class="sDes">潜在客户?</div>
 		        <div class="sureBtn">
-		           <div class="btn-c-r">虚假</div>
-		           <div class="btn-c-g">真实</div>
+		           <div class="btn-c-r" id="noReal">虚假</div>
+		           <div class="btn-c-g" id="real">真实</div>
+		        </div>
+		   </div>
+           </div>
+      </div>
+      
+       <div class="modelPage" id="checkSureModel">
+           <div class="successModel">
+               <div class="closeBtn"></div>
+		   <div class="oSContent">
+		        <div class="tDes">是否确认"次联系人为<span class="redColor" id="setColor"></span>客户?"</div>
+		        <div class="sureBtn">
+		           <div class="btn-c-r" id="tModel">确定</div>
+		           <div class="btn-c-g" id="cModel">取消</div>
 		        </div>
 		   </div>
            </div>
       </div>
     
       <div class="tableList">
-         <div class="userHeader">
+         <!-- <div class="userHeader">
               <img src="">
               <div class="name">
                   <div>客服姓名</div>
                   <div>姓名</div>
               </div>
-         </div>
-         <div class="showStatus">
-              <a><div class="active">处理中</div></a>
+         </div> -->
+<!--          <div class="showStatus">
+              <a><div>处理中</div></a>
               <a><div>已提交</div></a>
               <a><div>无效订单</div></a>
          </div>
@@ -120,7 +134,8 @@
             <input class="time" id="timeOld" name="time" value="">
             <span>~</span>
             <input class="time" id="timeNew" name="time" value="">
-         </div>
+         </div> -->
+         <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
          <table>
                <tr>
                    <th>订单编号</th>
@@ -137,10 +152,10 @@
                </tr>
                <tr>
                   <td>Savings</td>
-                  <td>Savings</td>
+                  <td><input value="test"></td>
                   <td>
                       <div class="orderSelect">
-                              <div>测试</div>
+                            <div>测试</div>
                             <img src="${imgPath}/orderManager/select.png">
                             <ul class="oSelect">
                                 <li>选项1</li>
@@ -150,14 +165,14 @@
                             </ul>                
                        </div>
                   </td>
+                  <td><input value="test"></td>
+                  <td><input value="test"></td>
+                  <td><input value="test"></td>
                   <td>Savings</td>
-                  <td>Savings</td>
-                  <td>Savings</td>
-                  <td>Savings</td>
-                  <td>Savings</td>
-                  <td><img /></td>
-                  <td><img /></td>
-                  <td><img /></td>
+                  <td><input value="test"></td>
+                  <td class="edit"><div></div></td>
+                  <td class="submit"><div></div></td>
+                  <td class="cancle"><div></div></td>
                </tr>
                <tr>
                   <td>Savings</td>
@@ -178,10 +193,10 @@
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
-                  <td>Savings</td>
-                  <td><img /></td>
-                  <td><img /></td>
-                  <td><img /></td>
+                  <td>的哈四大火炉私搭乱建的克拉手机打开垃圾时打开拉家带口啦就是打开链接阿里斯顿就大声道还哦是地阿斯基调</td>
+                  <td class="edit"><div></div></td>
+                  <td class="submit"><div></div></td>
+                  <td class="cancle"><div></div></td>
                </tr>
                <tr>
                   <td>Savings</td>
@@ -203,9 +218,9 @@
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
-                  <td><img /></td>
-                  <td><img /></td>
-                  <td><img /></td>
+                  <td class="edit"><div></div></td>
+                  <td class="submit"><div></div></td>
+                  <td class="cancle"><div></div></td>
                </tr>
 
          </table>

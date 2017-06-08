@@ -175,7 +175,7 @@
 												<fmt:formatNumber value="${solr.price }" pattern="#,#00"/>
 											</c:when>
 											<c:when test="${solr.price <= 0}">
-												暂无报价
+												欢迎询价
 											</c:when>
 										</c:choose>
 									</h2>&nbsp;&nbsp;

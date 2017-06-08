@@ -46,14 +46,9 @@
     
     <!-- 订单管理系统 -->
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
-    
-<!--<mvc:view-controller path="/motion" view-name="/projectLine/motion" />
-    <mvc:view-controller path="/pOrder" view-name="/projectLine/projectOrder" />
-    <mvc:view-controller path="/pSet" view-name="/projectLine/projectSetting" />
-    <mvc:view-controller path="/pList" view-name="/manager/collect" /> -->
-    <!-- test -->
-    <mvc:view-controller path="/auto" view-name="/autoweb/autoWeb" />
-    <mvc:view-controller path="/testS" view-name="/manager/collect" />
+    <mvc:view-controller path="/sub" view-name="/order/orderSub" />
+    <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
+    <mvc:view-controller path="/orderList" view-name="/order/orderList" />
      <!-- end --> 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 

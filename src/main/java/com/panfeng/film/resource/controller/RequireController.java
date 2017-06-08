@@ -107,13 +107,13 @@ public class RequireController extends BaseController {
 		return new ModelAndView("/standardized/requireForm", model);
 	}
 
-	@RequestMapping("/require/config")
+/*	@RequestMapping("/require/config")
 	public BaseMsg getRequireConfig() {
 		String requireConfig = pmsRequireFacade.getRequireConfig();
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.NORMAL);
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
-	}
+	}*/
 
 }

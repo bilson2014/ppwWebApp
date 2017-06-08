@@ -9,6 +9,7 @@ $().ready(function() {
 		dateFormat:'yyyy-MM-dd',
 		minDate: new Date() 
      });
+	$('.orderIndex').addClass('active');
 	orderIndex.init();
 });
 
@@ -45,13 +46,35 @@ var orderIndex = {
 			});
 		},
 		controlModel:function(){	
+			$('.submit').on('click',function(){
+				$('#successModel').show();
+			});
+			$('.cancle').on('click',function(){
+				$('#sureModel').show();
+			});
+			$('#noReal').on('click',function(){
+				$('.modelPage').hide();
+				$('#checkSureModel').show();
+				$('#setColor').removeClass('greenColor');
+				$('#setColor').addClass('redColor');
+				$('#setColor').text('虚假');
+			});
+			$('#real').on('click',function(){
+				$('.modelPage').hide();
+				$('#checkSureModel').show();
+				$('#setColor').removeClass('redColor');
+				$('#setColor').addClass('greenColor');
+				$('#setColor').text('真实');
+			});			
 			$('.closeBtn').on('click',function(){
-				$('#successModel').hide();
+				$('.modelPage').hide();
+				initM = 3;
 			});
 			$('.descBot').on('click',function(){
-				$('#successModel').hide();
+				$('.modelPage').hide();
+				initM = 3;
 			});
-		}
+		},
 };
 
 function showSuccess(){
