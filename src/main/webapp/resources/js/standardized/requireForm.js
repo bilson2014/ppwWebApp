@@ -1,5 +1,8 @@
 $().ready(function() {
 	
+	initView();
+	
+	
 	var require = $('#require').text();
 	if(require != undefined && require != '' && require != null){
 		alert('没做回显处理！~~  ' + require.trim());
@@ -72,3 +75,85 @@ function RequireEntity(scene, audience, coreMessage, time, budget, sample,
 	this.sample = sample;
 	this.tonal = tonal;
 }
+var rowType = {
+		select : "select",
+		datepicker : "datepicker",
+		textarea :"textarea"
+		};
+
+var optionType = {
+		checkbox:"checkbox",
+		text:"text"
+		};
+
+function initView(){
+	var view = $('#fm');
+	syncLoadData(function (res){
+		var obj = $.evalJSON(res.result);
+		var rows = obj.rows;
+		if(rows != null && rows.length > 0){
+			for (var int = 0; int < rows.length; int++) {
+				var row = rows[int];
+				var type = row.type;
+				var html = '';
+				switch (type) {
+				case rowType.select:
+					html = buildSelect(row);
+					break;
+				case rowType.datepicker:
+					html = buildDatepicker(row);
+					break;
+				case rowType.textarea:
+					html = buildTextarea(row);
+					break;
+				}
+				view.append(html);
+			}
+			$("._datepicker").datepicker({
+				language: 'zh',
+				dateFormat:'yyyy-MM-dd' 
+			});
+		}
+	}, getContextPath() + '/require/config', null);
+}
+
+function buildSelect(obj){
+	var html = $('<div></div>');
+	html.append(obj.title);
+	var items = $('<div></div>');
+	var options = obj.options;
+	if(options != null && options.length > 0){
+		for (var int = 0; int < options.length; int++) {
+			var option = options[int];
+			var type = option.type;
+			switch (type) {
+			case optionType.checkbox:
+				items.append('<input type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+' &nbsp;');
+				break;
+			case optionType.text:
+				items.append(option.text + '<input type="text" name = "'+obj.name+'" />');
+				break;
+			}
+		}
+	}
+	html.append(items);
+	return html;
+}
+function buildDatepicker(obj){
+	var html = $('<div></div>');
+	html.append(obj.title);
+	var items = $('<div><input class="_datepicker" name="'+obj.name+'" /></div>');
+	html.append(items);
+	return html;
+}
+function buildTextarea(obj){
+	var html = $('<div></div>');
+	html.append(obj.title);
+	var items = $('<div><textarea rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+	html.append(items);
+	return html;
+}
+
+
+
+

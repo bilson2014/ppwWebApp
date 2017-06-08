@@ -18,7 +18,7 @@ $().ready(function() {
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
 		minDate: new Date() 
-});
+	});
 
 	$(".error-label").hide();
 	$(".username-error-label").hide();
@@ -444,7 +444,7 @@ function updateProject_ViewInit() {
 		//add wangliming 2016.5.10 11:28 begin
 		//-->添加推荐人
 	
-			if($("#projectSource").val().trim()=='推荐'){
+			if($("#projectSource").val().trim()=='自主开发'){
 			$("#div-friendship").removeClass('hide');
 			$("#referrer-Id-hidden").val(msg.referrerId);
 			$("#input-referrer").val(msg.referrerName);
@@ -721,7 +721,7 @@ function verifyFrom(){
 	}
 	//add by wangliming 2016-5-10 11:00 begin
 	//-->添加 验证推荐人
-	if($("#projectSource").val().trim()=='推荐'){
+	if($("#projectSource").val().trim()=='自主开发'){
 		 var referrerInput=$("#input-referrer");
 		 var id=$("#referrer-Id-hidden").val();
 		 if(!verifyInputNotNull(referrerInput) || id==null || id== ''){
