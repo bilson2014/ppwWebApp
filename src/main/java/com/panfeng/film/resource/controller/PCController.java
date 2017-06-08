@@ -542,14 +542,16 @@ public class PCController extends BaseController {
 			
 			// 推荐值
 			Integer recommend = null;
+			String tags = q;
 			// 获取新该条新闻的上一条及下一条新闻
 			if("最热资讯".equals(q)) {
 				recommend = 1;
+				tags = null;
 			}
 			// 获取下一条新闻
-			nextNews = pmsNewsFacade.findNextNew(q, Integer.parseInt(newId + ""), recommend);
+			nextNews = pmsNewsFacade.findNextNew(tags, Integer.parseInt(newId + ""), recommend);
 			// 获取上一条新闻
-			preNews = pmsNewsFacade.findPreNew(q, Integer.parseInt(newId + ""), recommend);
+			preNews = pmsNewsFacade.findPreNew(tags, Integer.parseInt(newId + ""), recommend);
 		} else {
 			// 请求不存在的新闻
 			return new ModelAndView("/error");
