@@ -6,6 +6,8 @@ public class SolrView extends Pagination{
 
 	private String priceFq = null; // 价格区间筛选
 	
+	private String idFq = null; // ID区间筛选
+	
 	private String lengthFq = null; // 时长区间筛选
 	
 	private String itemFq = null; // 视频类型
@@ -27,6 +29,15 @@ public class SolrView extends Pagination{
 	private boolean more = false; // 是否相关性推荐
 	
 	private String recomendFq = null; // 推荐值筛选字段
+
+	
+	public String getIdFq() {
+		return idFq;
+	}
+
+	public void setIdFq(String idFq) {
+		this.idFq = idFq;
+	}
 
 	public String getCondition() {
 		return condition;

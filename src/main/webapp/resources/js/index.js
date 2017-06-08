@@ -431,25 +431,24 @@ var homePage = {
 				juicer.register("getContentIndex",getContentIndex);
 				$("#news-container").empty().html(juicer(homePage_tpl.news_resommend,data));
 				_this.getNewsDetail();
-				
                   var hasNum = $('.Content').length;
 			}else{
-				//TODO
 				console.log("数据加载错误")
 			}
-		}, getContextPath() + '/home/news/recommend',null);
+		}, getContextPath() + '/home/news/recommend',$.toJSON({
+			begin : 0,
+			limit : 6
+		}));
 	},
 	getNewsDetail:function(){
 		$(".get-new-detail").off("click").on("click",function(){
 			var id = $(this).parent("li").attr("data-id");
-			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html?q=index";
+			window.location.href="/news/article-"+id+".html";
 		})
 		
 	    $(".get-new-detail").parent().off("click").on("click",function(){
 			var id = $(this).attr("data-id");
-			//window.location.href="/home/news/info/"+id;
-			window.location.href="/news/article-"+id+".html?q=index";
+			window.location.href="/news/article-"+id+".html";
 		})
 	},
 	initVideo:function(){

@@ -1,6 +1,8 @@
 package com.panfeng.film.resource.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.information.entity.PmsNews;
 import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.paipianwang.pat.facade.information.service.PmsNewsFacade;
@@ -113,18 +117,21 @@ public class HomePageController extends BaseController {
 	 * 首页获取新闻推荐
 	 */
 	@RequestMapping(value = "/news/recommend", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public BaseMsg getRecommendNews(final HttpServletRequest request) {
+	public BaseMsg getRecommendNews(final HttpServletRequest request, PageParam pageParam) {
 		BaseMsg baseMsg = new BaseMsg();
 
-		List<PmsNews> list = pmsNewsFacade.RecommendNews();
-		if (null != list) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		// 首页显示
+		paramMap.put("status", 1);
+		// 可见
+		paramMap.put("visible", 0);
+		List<PmsNews> list = pmsNewsFacade.listWithPagination(pageParam, paramMap).getRows();
+		if (ValidateUtil.isValid(list)) {
 			baseMsg.setCode(1);
 			baseMsg.setResult(list);
 		} else {
 			baseMsg.setErrorMsg("list is null");
 		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage recommend news list", sessionInfo);
 		return baseMsg;
 	}
 }

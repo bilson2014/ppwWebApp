@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.util.SolrUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
@@ -95,6 +96,7 @@ public class SolrController extends BaseController {
 			throws Exception {
 
 		final SolrView view = new SolrView();
+		model.addAttribute("q", q);
 		if ("最热资讯".equals(q)) {
 			// 筛选 推荐值大于0 的新闻
 			view.setRecomendFq("[1 TO *]");
@@ -102,7 +104,6 @@ public class SolrController extends BaseController {
 		}
 		
 		view.setCondition(q);
-		model.addAttribute("q", q);
 		view.setLimit(20l);
 
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
@@ -128,8 +129,8 @@ public class SolrController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/get/news/tag")
-	public BaseMsg searchNewByTagsView(String q, HttpServletRequest request) throws Exception {
+	@RequestMapping("/get/news/tag/{newsId}")
+	public BaseMsg searchNewByTagsView(String q, @PathVariable("newsId") final Integer newsId, final PageParam pageParam, HttpServletRequest request) throws Exception {
 		BaseMsg baseMsg = new BaseMsg();
 		final SolrView view = new SolrView();
 		if ("最热资讯".equals(q)) {
@@ -139,7 +140,9 @@ public class SolrController extends BaseController {
 		}
 		
 		view.setCondition(q);
-		view.setLimit(20l);
+		view.setBegin(pageParam.getBegin());
+		view.setLimit(pageParam.getLimit());
+		view.setIdFq(newsId + "");
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
 		if (ValidateUtil.isValid(list)) {
 			baseMsg.setCode(BaseMsg.NORMAL);

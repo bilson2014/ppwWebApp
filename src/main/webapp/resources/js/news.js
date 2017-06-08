@@ -64,34 +64,38 @@ function initContent() {
 		$('#newsValue').text('');
 	}
 	
+	var newsId =$('#newsId').val();
 	loadData(function(data){
-		var newsId =$('#newsId').val();
-		var k=0;
 	    $.each(data.result, function(i,item) {
-	    	if(k<6 && item.id != newsId){
-	    		addMoreNews(item);//排除自己
-	    		k++;
-	    	}
+	    	addMoreNews(item);//排除自己
 	    });
-	}, getContextPath() + '/get/news/tag?q=最热资讯',null);
+	}, getContextPath() + '/get/news/tag/'+ parseInt(newsId) +'?q=最热资讯',$.toJSON({
+		begin : 0,
+		limit : 6
+	}));
 }
 
 //初始化感兴趣
 function initLike() {	
-	loadData(function(data){	
-		var k=0;
-	    $.each(data.result, function(i,item) {	 
-	    	if(k<6){
-	    		addLikeNews(item);//排除自己	   
-		    	k++;
-	    	}
-	    });
-	}, getContextPath() + '/get/news/tag?q='+$('#tags').val(),null);
+	var newsId =$('#newsId').val();
+	var tags = $('#tags').val();
+	loadData(function(data){
+	    if(data.result) {
+	    	$.each(data.result, function(i,item) {
+		    	addLikeNews(item);//排除自己
+		    });
+	    } else {
+	    	// 清空 您可能感兴趣的文章 Recommendation
+	    	$('.youLike').remove();
+	    }
+	}, getContextPath() + '/get/news/tag/'+ newsId + (tags == '' ? '' : '?q=' + tags),$.toJSON({
+		begin : 0,
+		limit : 6
+	}));
 }
 
 function addMoreNews(item){
 	  var $body = '<div class="videoModel">' +
-	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
 	  '<a href="/news/article-'+item.id+'.html?q=最热资讯" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
       '<div class="rightDes">'+
@@ -106,7 +110,6 @@ function addMoreNews(item){
 
 function addLikeNews(item){
 	  var $body = '<div class="videoLikeModel">' +
-	  //'<a href="/home/news/info/'+item.id+'" target="_blank">'+
 	  '<a href="/news/article-'+item.id+'.html?q=" target="_blank">'+
 	  '<img src='+getDfsHostName()+item.picLDUrl+'>'+
       '<div class="rightDes">'+getDesIndex(item.title)+'</div>'+

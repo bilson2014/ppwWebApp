@@ -27,7 +27,6 @@ import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DataUtil;
 import com.paipianwang.pat.common.util.DateUtils;
-import com.paipianwang.pat.common.util.JsonUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
 import com.paipianwang.pat.facade.employee.entity.PmsJob;
@@ -36,7 +35,9 @@ import com.paipianwang.pat.facade.employee.service.PmsJobFacade;
 import com.paipianwang.pat.facade.employee.service.PmsStaffFacade;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
+import com.paipianwang.pat.facade.information.entity.PmsNews;
 import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
+import com.paipianwang.pat.facade.information.service.PmsNewsFacade;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.entity.PmsProductModule;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
@@ -47,12 +48,10 @@ import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
-import com.panfeng.film.resource.model.News;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SolrService;
-import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.IndentUtil;
 import com.panfeng.film.util.Log;
 
@@ -94,6 +93,9 @@ public class PCController extends BaseController {
 	
 	@Autowired
 	private SolrService solrService = null;
+	
+	@Autowired
+	private PmsNewsFacade pmsNewsFacade = null;
 
 	/**
 	 * 获取本地ip地址+端口号
@@ -515,81 +517,51 @@ public class PCController extends BaseController {
 	 * 跳转新闻详情
 	 */
 	@RequestMapping(value = "/news/article-{newId}.html")
-	public ModelAndView getRecommendNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model, News n) {
-		n.setId(newId);
-		final String url = PublicConfig.URL_PREFIX + "portal/news/info";
-		String str = HttpUtil.httpPost(url, n, request);
-		if (str != null && !"".equals(str)) {
+	public ModelAndView getRecommendNews(@PathVariable("newId") final Long newId, String q,final HttpServletRequest request,
+			final ModelMap model, PmsNews news) {
+		
+		// 当前新闻
+		PmsNews pmsNews = new PmsNews();
+		// 下一条新闻
+		PmsNews nextNews = new PmsNews();
+		// 上一条新闻
+		PmsNews preNews = new PmsNews();
+				
+		// 获取新闻详情
+		if(newId != null) {
+			pmsNews = pmsNewsFacade.findNewsById(newId);
+			String content = pmsNews.getContent();
+			byte[] b;
 			try {
-				News news = JsonUtil.toBean(str, News.class);
-				String content = news.getContent();
-				byte[] b = content.getBytes("UTF-8");
+				b = content.getBytes("UTF-8");
 				content = new String(Base64Utils.decode(b), "UTF-8");
-				news.setContent(content);
-				model.addAttribute("news", news);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
+			pmsNews.setContent(content);
+			
+			// 推荐值
+			Integer recommend = null;
+			// 获取新该条新闻的上一条及下一条新闻
+			if("最热资讯".equals(q)) {
+				recommend = 1;
+			} else if(!ValidateUtil.isValid(q)) {
+				q = null;
+			}
+			// 获取下一条新闻
+			nextNews = pmsNewsFacade.findNextNew(q, Integer.parseInt(newId + ""), recommend);
+			// 获取上一条新闻
+			preNews = pmsNewsFacade.findPreNew(q, Integer.parseInt(newId + ""), recommend);
 		} else {
 			// 请求不存在的新闻
 			return new ModelAndView("/error");
 		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news info", sessionInfo);
+		
+		model.addAttribute("news", pmsNews);
+		model.addAttribute("nextNews", nextNews);
+		model.addAttribute("preNews", preNews);
+		model.addAttribute("q", q);
 
-		return new ModelAndView("/news");
-	}
-
-	@RequestMapping(value = "/news/next-{newId}.html")
-	public ModelAndView getNextNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model, News n) {
-		final String url = PublicConfig.URL_PREFIX + "portal/news/next";
-		n.setId(newId);
-		String str = HttpUtil.httpPost(url, n, request);
-		if (str != null && !"".equals(str)) {
-			try {
-				News news = JsonUtil.toBean(str, News.class);
-				String content = news.getContent();
-				byte[] b = content.getBytes("UTF-8");
-				content = new String(Base64Utils.decode(b), "UTF-8");
-				news.setContent(content);
-				model.addAttribute("news", news);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		} else {
-			// 请求不存在的新闻
-			return new ModelAndView("/error");
-		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news info", sessionInfo);
-		return new ModelAndView("/news");
-	}
-
-	@RequestMapping(value = "/news/prev-{newId}.html")
-	public ModelAndView getPrevNews(@PathVariable("newId") final Integer newId, final HttpServletRequest request,
-			final ModelMap model, News n) {
-		final String url = PublicConfig.URL_PREFIX + "portal/news/prev";
-		n.setId(newId);
-		String str = HttpUtil.httpPost(url, n, request);
-		if (str != null && !"".equals(str)) {
-			try {
-				News news = JsonUtil.toBean(str, News.class);
-				String content = news.getContent();
-				byte[] b = content.getBytes("UTF-8");
-				content = new String(Base64Utils.decode(b), "UTF-8");
-				news.setContent(content);
-				model.addAttribute("news", news);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		} else {
-			// 请求不存在的新闻
-			return new ModelAndView("/error");
-		}
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Log.error("homepage news info", sessionInfo);
 		return new ModelAndView("/news");
 	}
 
