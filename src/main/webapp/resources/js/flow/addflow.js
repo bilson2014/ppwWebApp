@@ -795,16 +795,11 @@ function verifyFrom(){
 		return false;
 	}
 	
-	
-	
-	
 	if(!VerifyTime()) 
 		return false;
 	
-	
 	if(verifySynerhy())
 		return false;
-	
 
 	//新增错误判断
 	if(!checkUserPrice()){
@@ -816,7 +811,6 @@ function verifyFrom(){
 		$("#error-provider-price").show();
 		return false;
 	}
-	//
 	
 	 return true;
 }
