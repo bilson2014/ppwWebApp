@@ -128,9 +128,11 @@ function initModel(id){
 			if(productModule != null && productModule.length > 0){
 				for (var int2 = 0; int2 < productModule.length; int2++) {
 					var mod = productModule[int2];
+					var price =productModule[int2].pinConfiguration_ProductModule.cpmModulePrice;
+
 					var type = mod.pinConfiguration_ProductModule.cpmModuleType;
 					if(type == 0){
-						v1.append(createMustMod(mod,int2));
+						v1.append(createMustMod(mod,int2,price));
 					}else{
 						v2.append(createSubjoinMod(mod));
 					}
@@ -181,10 +183,11 @@ function initModel(id){
 	initTab();
 }
 
-function createMustMod(obj,num){
+function createMustMod(obj,num,price){
 	var hasDes="";
-	if(num<2){
-		hasDes="(赠送)";
+	
+	if(price == 0){
+		hasDes="(免费)";
 	   }  
 		var html = ['<li class="s_item packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
