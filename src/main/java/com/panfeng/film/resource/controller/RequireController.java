@@ -38,7 +38,7 @@ public class RequireController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
+				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
 					long page = param.getPage();
 					long rows = param.getRows();
 					param.setBegin((page - 1) * rows);
@@ -106,13 +106,13 @@ public class RequireController extends BaseController {
 		return new ModelAndView("/standardized/requireForm", model);
 	}
 
-/*	@RequestMapping("/require/config")
+	@RequestMapping("/require/config")
 	public BaseMsg getRequireConfig() {
 		String requireConfig = pmsRequireFacade.getRequireConfig();
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.NORMAL);
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
-	}*/
+	}
 
 }

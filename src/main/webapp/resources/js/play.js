@@ -343,7 +343,8 @@ function loginOrder(){
 			csrftoken : $('#csrftoken').val(),
 			phoneCode :'',
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
-			indent_tele : telephone
+			indent_tele : telephone,
+			indentSource:1
 			});
 
 }
@@ -366,7 +367,8 @@ function noLoginOrder(){
 			csrftoken : $('#csrftoken').val(),
 			phoneCode : $('#verificationCodeValue').val(),
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
-			indent_tele : telephone
+			indent_tele : telephone,
+			indentSource:1
 		});
 	}
 }

@@ -108,6 +108,7 @@ public class CostCalculateController extends BaseController{
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setId(calculate.getIndentId());
+		indent.setIndentSource(calculate.getIndentSource());
 		indent.setIndentName("网站-PC-成本计算器");
 		indent.setIndentType(0);
 		indent.setServiceId(-1l);
