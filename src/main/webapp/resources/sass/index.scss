@@ -33,6 +33,10 @@
     top: 80px;
 }
 
+.showInfo {
+    top:55px !important;
+}
+
 .tel {
     text-align: center;
     background: #101112;
@@ -1442,6 +1446,13 @@ input:focus {
         background: $red-base;
         color: white;
         border: none;
+    }
+}
+
+.menu-bar>.right-part {
+    right: -40px !important;
+    @media screen and (max-width: 1276px) {
+        margin-right: 25px;
     }
 }
 

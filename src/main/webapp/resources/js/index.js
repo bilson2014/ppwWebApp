@@ -13,6 +13,7 @@ $().ready(function() {
     window.onresize = function(){
     	getVideoHeight();
     };
+    $('#header').removeClass('headerMove');
     
 });
 

@@ -128,7 +128,7 @@
 		 <!-- 应用案例 -->
 		 <div class="wordCase">
 		    <div class="title">
-		                             图形动画企业视频应用案例
+		                    ${product.chanpinName}
 		    </div>
 		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">

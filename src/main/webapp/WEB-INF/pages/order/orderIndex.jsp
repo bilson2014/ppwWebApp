@@ -67,7 +67,7 @@
 	 </r:identity>
 	 
  	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
- 
+    <jsp:include flush="true" page="orderList.jsp"></jsp:include> 
     <div class="page">
       <div class="modelPage" id="successModel">
            <div class="successModel">
@@ -92,8 +92,8 @@
 		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的</div>
 		        <div class="sDes">潜在客户?</div>
 		        <div class="sureBtn">
+		           <div class="" id="real">真实</div>
 		           <div class="btn-c-r" id="noReal">虚假</div>
-		           <div class="btn-c-g" id="real">真实</div>
 		        </div>
 		   </div>
            </div>
@@ -111,6 +111,171 @@
 		   </div>
            </div>
       </div>
+      
+      <div class="modelPage" id="userInfo">
+              <div class="findInfo">
+                    <div class="closeBtn"></div>
+                    <div class="infoTitle">客户信息</div>
+              <div class="itemContent">
+                  <div class="infoItem">
+                          <div class="itemTitile">昵称</div>
+                          <input class="itemInput">
+                          <div class="must">*</div>
+                    </div>  
+                    <div class="infoItem">
+                          <div class="itemTitile">公司名称</div>
+                          <input class="itemInput">
+                          <div class="must">*</div>
+                    </div>
+                    <div class="infoItem">
+                          <div class="itemTitile">真实姓名</div>
+                          <input class="itemInput">
+                          <div class="must">*</div>
+                    </div>
+                    <div class="infoItem">
+                          <div class="itemTitile">联系电话</div>
+                          <input class="itemInput">
+                          <div class="must">*</div>
+                    </div>
+                    <div class="infoItem">
+                          <div class="itemTitile">职位</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                    </div>
+                       <div class="infoItem">
+                          <div class="itemTitile">性别</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                    </div>
+                     <div class="infoItem" style="display:block">
+                          <div class="itemTitile">客户类型</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                    </div>
+                    
+                    <div class="itemLine"></div>
+
+                    <div class="infoItem">
+                          <div class="itemTitile">微信</div>
+                          <input class="itemInput">
+                    </div>
+                    <div class="infoItem">
+                          <div class="itemTitile">邮件</div>
+                          <input class="itemInput">
+                    </div>
+                      <div class="infoItem">
+                          <div class="itemTitile">邮件</div>
+                          <input class="itemInputMax">
+                    </div>
+                    
+                    <div class="itemLine"></div>
+                    
+                     <div class="infoItem" >
+                          <div class="itemTitile">购买频次</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                    </div>
+                    
+                     <div class="infoItem" >
+                          <div class="itemTitile">购买价格</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                    </div>
+                    
+                     <div class="infoItem" >
+                          <div class="itemTitile">客户规模</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                    </div>
+                    
+                     <div class="infoItem" >
+                          <div class="itemTitile">高层背书</div>
+	                      <div class="orderSelect">
+	                              <div>测试</div>
+	                             <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect">
+	                                <li>选项1</li>
+	                                <li>选项2</li>
+	                                <li>选项3</li>
+	                                <li>选项4</li>
+	                            </ul>                
+	                       </div>
+                    </div>
+                    <div class="itemLine"></div>
+                    <div class="infoItem">
+                          <div class="itemTitile textareaTitle">备注</div>
+                          <textarea></textarea>
+                    </div>
+                  </div>  
+                <div class="sureBtn">
+                   <div class="btn-c-g">取消</div>
+		           <div class="btn-c-r">确定</div>
+		        </div>
+            </div>
+      </div>
+    
+<%--       <div class="orderSelect">
+                              <div>测试</div>
+                             <img src="${imgPath}/orderManager/select.png">
+                            <ul class="oSelect">
+                                <li>选项1</li>
+                                <li>选项2</li>
+                                <li>选项3</li>
+                                <li>选项4</li>
+                            </ul>                
+                       </div> --%>
+    
     
       <div class="tableList">
          <!-- <div class="userHeader">
@@ -136,40 +301,29 @@
             <input class="time" id="timeNew" name="time" value="">
          </div> -->
          <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
-         <table>
+         <table id="setTable">
                <tr>
                    <th>订单编号</th>
+                   <th>公司名称</th>
                    <th>联系人</th>
-                   <th>职称</th>
+                   <th>职位</th>
                    <th>联系电话</th>
-                   <th>公司电话</th>
-                   <th>微信号</th>
+                   <th>订单来源</th>
                    <th>下单时间</th>
-                   <th>备注</th>
+                   <th>客户信息</th>
                    <th>编辑</th>
                    <th>提交</th>
                    <th>作废</th>
                </tr>
                <tr>
                   <td>Savings</td>
-                  <td><input value="test"></td>
-                  <td>
-                      <div class="orderSelect">
-                            <div>测试</div>
-                            <img src="${imgPath}/orderManager/select.png">
-                            <ul class="oSelect">
-                                <li>选项1</li>
-                                <li>选项2</li>
-                                <li>选项3</li>
-                                <li>选项4</li>
-                            </ul>                
-                       </div>
-                  </td>
-                  <td><input value="test"></td>
-                  <td><input value="test"></td>
-                  <td><input value="test"></td>
                   <td>Savings</td>
-                  <td><input value="test"></td>
+                  <td>Savings</td>
+                  <td>Savings</td>
+                  <td>Savings</td>
+                  <td>Savings</td>
+                  <td>Savings</td>
+                  <td class="info"><div></div></td>
                   <td class="edit"><div></div></td>
                   <td class="submit"><div></div></td>
                   <td class="cancle"><div></div></td>
@@ -177,23 +331,12 @@
                <tr>
                   <td>Savings</td>
                   <td>Savings</td>
-                   <td>
-                      <div class="orderSelect">
-                              <div>测试</div>
-                             <img src="${imgPath}/orderManager/select.png">
-                            <ul class="oSelect">
-                                <li>选项1</li>
-                                <li>选项2</li>
-                                <li>选项3</li>
-                                <li>选项4</li>
-                            </ul>                
-                       </div>
-                  </td>
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
-                  <td>的哈四大火炉私搭乱建的克拉手机打开垃圾时打开拉家带口啦就是打开链接阿里斯顿就大声道还哦是地阿斯基调</td>
+                  <td>Savings</td>
+                  <td class="info"><div></div></td>
                   <td class="edit"><div></div></td>
                   <td class="submit"><div></div></td>
                   <td class="cancle"><div></div></td>
@@ -201,28 +344,16 @@
                <tr>
                   <td>Savings</td>
                   <td>Savings</td>
-                   <td>
-                      <div class="orderSelect">
-                            <div>测试测试</div>
-                             <img src="${imgPath}/orderManager/select.png">
-                            <ul class="oSelect">
-                                <li>选项1</li>
-                                <li>选项2</li>
-                                <li>选项3</li>
-                                <li>选项4</li>
-                            </ul>                
-                       </div>
-                  </td>
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
                   <td>Savings</td>
+                  <td class="info"><div></div></td>
                   <td class="edit"><div></div></td>
                   <td class="submit"><div></div></td>
                   <td class="cancle"><div></div></td>
                </tr>
-
          </table>
          
          <!-- pagination start -->

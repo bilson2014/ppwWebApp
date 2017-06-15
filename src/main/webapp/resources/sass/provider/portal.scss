@@ -319,8 +319,7 @@ html {
             width: 1300px - $leftWidth;
         }
         position: fixed;
-         top: 111px;
-
+        top: 111px;
     }
 }
 
@@ -456,6 +455,10 @@ html {
     }
 }
 
+.titleWarn {
+    text-align: left;
+}
+
 .tooltip-wati {
     .watiCard {
         position: absolute;
@@ -471,6 +474,55 @@ html {
         img {
             border-radius: 10px;
         }
+    }
+}
+
+.Word,
+.WordBot {
+    font-size: $font-size-sm;
+    color: $gray;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#video-containerP,
+#maxLength {
+    display: none;
+}
+
+.redWord {
+    color: $red-base;
+    font-size: $font-size-sm;
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 8px;
+    &:after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: $red-base;
+        border-radius: 90px;
+        top: 3px;
+        left: 2px;
+    }
+}
+
+.grayWord {
+    color: $gray;
+    font-size: $font-size-sm;
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 8px;
+    &:after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: $gray;
+        border-radius: 90px;
+        top: 3px;
+        left: 2px;
     }
 }
 
@@ -520,40 +572,6 @@ html {
             margin-top: 44px;
             margin-bottom: 16px;
         }
-        .redWord {
-            color: $red-base;
-            font-size: $font-size-sm;
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 8px;
-            &:after {
-                content: "";
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                background: $red-base;
-                border-radius: 90px;
-                top: 3px;
-                left: 2px;
-            }
-        }
-        .grayWord {
-            color: $gray;
-            font-size: $font-size-sm;
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 8px;
-            &:after {
-                content: "";
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                background: $gray;
-                border-radius: 90px;
-                top: 3px;
-                left: 2px;
-            }
-        }
         .botWord {
             color: $red-base;
             font-size: $font-size-sm;
@@ -602,6 +620,10 @@ html {
     }
 }
 
+#video-container {
+    display: none;
+}
+
 .tooltip-warn-up .selectVideo {
     width: 600px;
     background: white;
@@ -637,12 +659,14 @@ html {
             text-align: left;
             margin-top: 20px;
             margin-bottom: 10px;
+            font-weight: bold;
         }
         .titleInfo {
             color: $gray-dark;
             font-size: $font-size-sm;
             text-align: left;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            display: none;
             span {
                 color: $red-base;
                 margin-left: 5px;

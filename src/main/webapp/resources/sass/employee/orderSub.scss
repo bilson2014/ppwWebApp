@@ -1,0 +1,130 @@
+@import "common";
+@import "order";
+.orderSelect {
+    width: 100%;
+    img {
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -8px;
+        outline: none;
+    }
+    span {
+        width: 100%;
+        color: $gray;
+        font-size: $font-size-base;
+    }
+    ul {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 2px 4px 0 #D9EBF2;
+        display: none;
+        z-index: 3;
+        background: white;
+        cursor: pointer;
+        border-top: 1px solid $border-line;
+        li {
+            width: 100%;
+            height: 36px;
+            text-align: center;
+            line-height: 36px;
+            color: $gray;
+            font-size: $font-size-base;
+            &:hover {
+                background: $d9;
+            }
+        }
+    }
+    input {
+        border: none;
+        outline: none;
+    }
+}
+
+
+
+
+.tableList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+}
+
+//弹出框
+.modelPage {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 110;
+    display: none;
+    border-radius: 6px;
+    .findInfo {
+        width: 720px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -250px;
+        margin-left: -360px;
+        border-radius: 4px;
+        background: white;
+        div {
+            font-size: $font-size;
+            color: $gray-dark;
+        }
+        .itemLine {
+            width: 640px;
+            height: 1px;
+            border: 1px solid $f0;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .closeBtn {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+        .infoTitle {
+            height: 61px;
+            width: 100%;
+            line-height: 60px;
+            border-bottom: 1px solid $border-line;
+            font-size: $font-size;
+            color: $gray-dark;
+            text-align: left;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        .itemContent {
+            position: relative;
+        }
+        .infoItem {
+            min-width: 290px;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 0;
+            margin-left: 40px;
+            margin-bottom: 20px;
+            div,
+            input {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .itemTitile {
+                font-size: $font-size-base;
+                color: $gray;
+                width: 70px;
+            }
+        }
+    }
+}

@@ -1,7 +1,9 @@
 package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -129,11 +131,39 @@ public class IndentController extends BaseController {
 	}
 
 	// ---------------------------------------------客服接口------------------------------------------------------------------
-	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
-	public ModelAndView indentView(ModelMap modelMap, HttpServletRequest request) {
+	@RequestMapping(value = "/ongoing", produces = "application/json; charset=UTF-8")
+	public ModelAndView ongoing(ModelMap modelMap, HttpServletRequest request) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("indentType", 0);
+		List<Integer> types = new ArrayList<>();
+		types.add(0);
+		types.add(1);
+		paramMap.put("types", types);
+		PageParam pageParam = new PageParam();
+		pageParam.setBegin(0);
+		pageParam.setLimit(20);
+		SessionInfo currentInfo = getCurrentInfo(request);
+		if (currentInfo != null) {
+			String sessionType = currentInfo.getSessionType();
+			if (ValidateUtil.isValid(sessionType)) {
+				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
+					Long reqiureId = currentInfo.getReqiureId();
+					paramMap.put("employeeId", reqiureId);
+					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+					modelMap.addAttribute("indentList", listWithPagination);
+				}
+			}
+		}
 
+		return new ModelAndView("/employee/orderIndex", modelMap);
+	}
+	
+	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
+	public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		List<Integer> types = new ArrayList<>();
+		types.add(0);
+		types.add(1);
+		paramMap.put("types", types);
 		PageParam pageParam = new PageParam();
 		pageParam.setBegin(0);
 		pageParam.setLimit(20);
@@ -152,7 +182,7 @@ public class IndentController extends BaseController {
 
 		return new ModelAndView("/employee/indentList", modelMap);
 	}
-
+	
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
 	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
@@ -164,14 +194,10 @@ public class IndentController extends BaseController {
 			Object object = paramMap.get("page");
 			Object object2 = paramMap.get("rows");
 			if (object != null && object2 != null) {
-				Long begin = Long.valueOf(object.toString());
-				Long limit = Long.valueOf(object2.toString());
-				pageParam.setBegin(begin);
-				pageParam.setLimit(limit);
+				Long page = Long.valueOf(object.toString());
+				Long rows = Long.valueOf(object2.toString());
 				paramMap.remove("page");
 				paramMap.remove("rows");
-				long page = pageParam.getPage();
-				long rows = pageParam.getRows();
 				pageParam.setBegin((page - 1) * rows);
 				pageParam.setLimit(rows);
 			} else {

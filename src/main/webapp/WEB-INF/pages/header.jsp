@@ -31,7 +31,7 @@
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
-					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
+					<a href="<spring:url value='/product/EnterprisePromotionalVideo/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>
 				<r:noLogin>
@@ -62,6 +62,14 @@
             	<r:noLogin>
 					<a href="<spring:url value="/login" />" class="header-item login-item" target="_self">登录</a>
 					<a href="<spring:url value="/register" />" class="header-item login-item" target="_self">注册</a>
+					<%-- <div class="showInfo">
+				       <div class="showInfoList">
+					         <a href="<spring:url value="/" />"><li class="toSumbit">处理中</li></a>
+					         <a href="<spring:url value="/" />"><li class="toDoing">已提交</li></a>
+					         <a href="<spring:url value="/" />"><li class="toCancle">无效订单</li></a>
+					         <a href="<spring:url value="/" />"><li class="loginOut">退出</li></a>
+					   </div>
+					</div> --%>
 				</r:noLogin>
 				<r:identity role="customer">
 					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
@@ -73,7 +81,7 @@
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
-					       </div>
+					   </div>
 					</div>
 				</r:identity>
 				<r:identity role="provider">

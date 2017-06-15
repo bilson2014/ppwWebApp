@@ -1,3 +1,4 @@
+@import "common";
 @import "order";
 .orderSelect {
     width: 100%;
@@ -41,95 +42,14 @@
     input {
         border: none;
         outline: none;
-        width: 100%;
     }
 }
 
-tr {
-    td:nth-child(9),
-    td:nth-child(10),
-    td:nth-child(11) {
-        div {
-            width: 18px;
-            height: 18px;
-            margin: 0 auto;
-            background-size: 18px 36px !important;
-            cursor: pointer;
-            &:hover {
-                background-position-y: -18px;
-            }
-        }
-    }
-    td:nth-child(9) {
-        div {
-            background: url(/resources/images/orderManager/edit.png)no-repeat;
-        }
-    }
-    td:nth-child(10) {
-        div {
-            background: url(/resources/images/orderManager/submit.png)no-repeat;
-        }
-    }
-    td:nth-child(11) {
-        div {
-            background: url(/resources/images/orderManager/cancle.png)no-repeat;
-        }
-    }
-}
 
-th:nth-child(1),
-td:nth-child(1) {
-    width: 8%;
-}
 
-th:nth-child(2),
-td:nth-child(2) {
-    width: 8%;
-}
-
-th:nth-child(3),
-td:nth-child(3) {
-    width: 15%;
-}
-
-th:nth-child(4),
-td:nth-child(4) {
-    width: 8%;
-}
-
-th:nth-child(5),
-td:nth-child(5) {
-    width: 8%;
-}
-
-th:nth-child(6),
-td:nth-child(6) {
-    width: 8%;
-}
-
-th:nth-child(7),
-td:nth-child(7) {
-    width: 13%;
-}
-
-th:nth-child(8),
-td:nth-child(8) {
-    width: 17%;
-}
-
-th:nth-child(9),
-td:nth-child(9) {
-    width: 5%;
-}
-
-th:nth-child(10),
-td:nth-child(10) {
-    width: 5%;
-}
-
-th:nth-child(11),
-td:nth-child(11) {
-    width: 5%;
+.tableList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
 }
 
 .page-section {

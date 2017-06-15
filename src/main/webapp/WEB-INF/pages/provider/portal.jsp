@@ -123,7 +123,21 @@
 		     <div class="top">
 		       <div class="closeX closewarn"></div>
 		       <div class="title">批量上传作品</div>
-		       <div class="titleInfo">视频不能超过200M,推荐720p分辨率,25帧<span>*</span><span id='maxLength'></span></div>
+		       <div class="titleInfo">视频上传格式要求<span>了解详情</span><span id='maxLength'></span></div>
+		       <div class="titleWarn">
+			       <div class="redWord">视频格式 : MP4格式</div>
+				   <div class="redWord">视频编码 : H264编码</div>
+				   <div class="redWord">音频编码 : MP3编码</div>
+				   <div class="redWord">文件大小 : 200Mb以下</div>
+				   <div class="redWord">分辨率 : 1920x1080、1280x720、960x540</div>
+				   <div class="redWord">比特率 : 3000kb/s(1920x1080)、1400kb/s(1280x720)、900kb/s(960x540)</div>
+				   <div class="redWord">帧速率 : 24fps</div>
+				   <div class="redWord">色彩空间 : yuv420p</div>
+				   <div class="Word">我们建议您使用以下转码软件</div>
+				   <div class="grayWord">Windows系统 : 格式工厂</div>
+	               <div class="grayWord">Mac系统：Any Video Converter</div>
+	               <div class="WordBot">如果您对此有疑问,您可以拨打(010-59005319)与我们联系。</div>
+		       </div>
 		     </div>
 		     <div class="mid" id='video-container'>
 		        
