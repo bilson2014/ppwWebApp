@@ -179,10 +179,10 @@
                     <input type="hidden" id="newsId" value="${news.id}">
                      <div class="goToOther">
                        <c:if test="${not empty preNews and preNews.id != 0  }">
-				            <a id="next" href="<spring:url value='/news/article-${preNews.id }.html?q=${q}' />" ><div>上一篇</div></a>
+				            <a id="next" href="<spring:url value='/news/article-${preNews.id }.html?q=' />" ><div>上一篇</div></a>
 			           </c:if>
                        <c:if test="${not empty nextNews and nextNews.id != 0  }">
-			           		<a id="prev" href="<spring:url value='/news/article-${nextNews.id }.html?q=${q}' />" ><div>下一篇</div></a>
+			           		<a id="prev" href="<spring:url value='/news/article-${nextNews.id }.html?q=' />" ><div>下一篇</div></a>
 			           </c:if>
 			        </div>
                 </div>
@@ -200,7 +200,7 @@
              </div>
         </div>
        <!-- foot -->
-         					 <jsp:include flush="true" page="foot.jsp"></jsp:include> s
+         					 <jsp:include flush="true" page="foot.jsp"></jsp:include>
                             <!--新版底部-->
     </div>
     
