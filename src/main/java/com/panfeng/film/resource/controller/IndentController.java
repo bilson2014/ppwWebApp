@@ -344,7 +344,7 @@ public class IndentController extends BaseController {
 		baseMsg.setResult(res);
 		String nowTime = DateUtils.nowTime();
 		res.put("time", nowTime);
-		res.put("userName", IndentUtil.generateShortUuid());
+		res.put("userName", "User-"+IndentUtil.generateShortUuid());
 		return baseMsg;
 	}
 }

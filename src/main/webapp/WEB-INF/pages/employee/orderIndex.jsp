@@ -166,22 +166,21 @@
                   <div class="infoItem">
                   
                           <div class="itemTitile">订单编号</div>
-                          <div class="itemInfo">111111</div>
-                          <div class="must"></div>
-                          
+                          <div class="itemInfo" id="orderNo"></div>
+                          <div class="must"> </div>
                           <div class="itemTitile">下单时间</div>
-                          <div class="itemInfo" id="formuserCompany">111111</div>
-                          <div class="must"></div>
+                          <div class="itemInfo" id="orderDate"></div>
+                          <div class="must"> </div>
                           
                     </div>  
                   
                     <div class="infoItem">
                           <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="formindent_teles">
+                          <input class="itemInput" id="telName">
                           <div class="must">*</div>
                           
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="formindent_teles">
+                          <input class="itemInput" id="companyName">
                           <div class="must">*</div>
                     </div>
                    
@@ -189,23 +188,23 @@
                        <div class="infoItem">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
-	                              <div>男</div>
-	                             <img src="${imgPath}/orderManager/select.png">
+	                            <div data-value="1" id="orderComeInfo">线上 - 网站</div>
+	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="0">线上 - 网站</li>
-					                    <li data-value="1">线上 - 活动</li>
-					                    <li data-value="2">线上 - 新媒体</li>
-					                    <li data-value="3">线下 - 电销</li>
-					                    <li class="showHelper" data-value="4">线下 - 直销（推荐人）</li>
-					                    <li data-value="5">线下 - 活动</li>
-					                    <li data-value="6">线下 - 渠道</li>
-					                    <li data-value="7">复购</li>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+					                    <li data-value="3">线上-新媒体</li>
+					                    <li data-value="4">线下-电销</li>
+					                    <li class="showHelper" data-value="5">线下-直销（推荐人）</li>
+					                    <li data-value="6">线下-活动</li>
+					                    <li data-value="7">线下-渠道</li>
+					                    <li data-value="8">复购</li>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
                           
                           <div class="itemTitile">联系电话</div>
-                          <input class="itemInput" id="formindent_teles">
+                          <input class="itemInput" id="teles">
                           <div class="must">*</div>
                     </div>
                      <div class="infoItem" id="showHelper">  

@@ -338,29 +338,60 @@ var orderIndex = {
 		}
 };
 //新建 修改事件
-function newOrderEven(check){
+function newOrderEven(check,item){
 	if(check == 1){
 		$('#orderName').text('新建订单');
 	}else{
+		var orderNo = item.rows[0].id;
+		var orderDate = item.rows[0].orderDate;
+		var telName = item.rows[0].realName;
+		var companyName = item.rows[0].userCompany;
+		var teles = item.rows[0].indent_tele;
+		var orderInfo = $('#orderComeInfo').attr('data-value');
 		$('#orderName').text('订单信息修改');
+		$('#orderNo').text(orderNo);
+		$('#orderDate').text(orderDate);
+		$('#telName').val(telName);
+		$('#companyName').val(companyName);
+		$('#teles').val(teles);
+		$('.sureBtn btn-c-r').off('click').on('click',function(){	
+			var data = {id:orderNo,orderDate:orderDate,realName:telName,userCompany:companyName,indent_tele:teles};
+			$.ajax({
+				  type: 'POST',
+				  url: getContextPath()+'/order/submit',
+				  data: data,
+				  success: success,
+				  dataType: dataType
+				});
+		});
 	}
 	$('#NewOrder').show();
 	$('#showHelper').hide();
 	$('#orderCome li').on('click',function(){
+		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-value')));
 	  	if($(this).hasClass('showHelper')){
 	   		$('#showHelper').show();
 	   	 }else{
 	   		$('#showHelper').hide();
 	   }
-	})
-
+	});
+	$('.sureBtn btn-c-g').off('click').on('click',function(){	
+		$('#NewOrder').hide();
+	});
 }
 
 function infoEven(){
 
 		$('.info').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
-			newOrderEven(2);
+			loadData(function (res){
+				newOrderEven(2,res);
+			}, getContextPath() + '/order/list/page', $.toJSON({
+				"id":id 
+			}));
+			
+			
 //			var tr = $(this).parent();
 //			var id = $(tr).find('.id');
 //			var realName = $(tr).find('.realName');
