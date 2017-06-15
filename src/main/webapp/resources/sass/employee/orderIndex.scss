@@ -408,13 +408,13 @@
         }
     }
     .submitModel {
-        width: 665px;
-        height: 500px;
+        width: 665px !important;
+        height: 500px !important;
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -250px;
-        margin-left: -332px;
+        margin-top: -250px !important;
+        margin-left: -332px !important;
         padding-top: 0px !important;
         font-size: 0;
         .submitTitle {
@@ -438,22 +438,60 @@
                 text-align: center;
             }
         }
-        .showInfomotion{
-            height: 200px;
+        .showInfomotion {
             width: 100%;
             background: $f0;
-            padding-top: 10px;
+            padding-top: 15px;
             padding-bottom: 40px;
-            .title{
+            .title {
                 text-align: center;
+                margin-bottom: 15px;
+                font-size: $font-size-base;
+                color:$gray;
             }
-            li{
+            ul {
+                padding-left: 30px;
+                padding-right: 30px;
+                margin-bottom: 0rem;
+                text-align: left;
+            }
+            li {
                 display: inline-block;
                 vertical-align: top;
+                height: 50px;
+                line-height: 50px;
+                font-size: $font-size-base;
+                color: $gray;
+                border-bottom: 1px solid $border-line;
+                border-left: 1px solid $border-line;
+                padding-left: 20px;
             }
-            li:nth-child(1){
-                
+            li:nth-child(1),
+            li:nth-child(2),
+            li:nth-child(3),
+            li:nth-child(4) {
+                border-top: 1px solid $border-line;
             }
+            li:nth-child(1),
+            li:nth-child(3),
+            li:nth-child(5) {
+                width: 96px;
+            }
+            li:nth-child(2) {
+                width: 140px;
+            }
+            li:nth-child(4),
+            {
+                width: 270px;
+                border-right: 1px solid $border-line;
+            }
+            li:nth-child(6) {
+                width: 506px;
+                border-right: 1px solid $border-line;
+            }
+        }
+        .sureBtn{
+            padding-top: 40px !important;
         }
     }
     .successModel,
