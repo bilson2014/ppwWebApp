@@ -26,6 +26,14 @@ public class CostCalculate {
 	
 	private String verification_code;//手机验证码
 	
+	private Integer indentSource;
+	
+	public Integer getIndentSource() {
+		return indentSource;
+	}
+	public void setIndentSource(Integer indentSource) {
+		this.indentSource = indentSource;
+	}
 	public String getVerification_code() {
 		return verification_code;
 	}

@@ -40,6 +40,7 @@ import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
+import com.panfeng.film.util.IndentUtil;
 
 @RestController
 @RequestMapping("/order")
@@ -156,7 +157,7 @@ public class IndentController extends BaseController {
 
 		return new ModelAndView("/employee/orderIndex", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
 	public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -182,7 +183,7 @@ public class IndentController extends BaseController {
 
 		return new ModelAndView("/employee/indentList", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
 	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
@@ -238,7 +239,7 @@ public class IndentController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		String indent_tele = indent.getIndent_tele();
 		int count = pmsUserFacade.validationPhone(indent_tele, null);
-		if (count != 0 && (update ==null || !update)) {
+		if (count != 0 && (update == null || !update)) {
 			baseMsg.setErrorCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("用户已经存在，是否更新？");
 			return baseMsg;
@@ -307,7 +308,7 @@ public class IndentController extends BaseController {
 			}
 		}
 		// 订单操作
-		//indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		// indent.setIndentType(PmsIndent.ORDER_SUBMIT);
 
 		long updateIndent = pmsIndentFacade.update(indent);
 		indent.setUserId(user.getId());
@@ -321,4 +322,29 @@ public class IndentController extends BaseController {
 		return baseMsg;
 	}
 
+	@RequestMapping(value = "/info")
+	public BaseMsg indentInfo(Long indentId) {
+		BaseMsg baseMsg = new BaseMsg();
+		if (indentId != null) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setResult(indent);
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("订单ID不能为空！");
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping(value = "/generate")
+	public BaseMsg generate() {
+		BaseMsg baseMsg = new BaseMsg();
+		Map<String, String> res = new HashMap<>();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(res);
+		String nowTime = DateUtils.nowTime();
+		res.put("time", nowTime);
+		res.put("userName", IndentUtil.generateShortUuid());
+		return baseMsg;
+	}
 }
