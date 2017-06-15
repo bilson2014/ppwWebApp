@@ -21,11 +21,11 @@
             <div>订单编号</div>
             <input value="1312312312">
             <div>联系电话</div>
-            <input type="number" value="182103">
+            <input value="182103">
             <div>日期查询</div>
-            <input class="time" id="timeOld" name="time" value="">
+            <input class="time" readonly id="timeOld" name="time" value="">
             <span>~</span>
-            <input class="time" id="timeNew" name="time" value="">
+            <input class="time" readonly id="timeNew" name="time" value="">
          </div>
 </body>
 

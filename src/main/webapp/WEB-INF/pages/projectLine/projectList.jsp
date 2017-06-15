@@ -76,7 +76,7 @@
 			<c:if test="${! empty productList}">
 				<c:forEach items="${productList }" var="tag">
 					<c:if test="${product.chanpinName == tag.chanpinName }">
-						<div class="active">${tag.chanpinName}</div>
+						<a><div class="active">${tag.chanpinName}</div></a>
 					</c:if>
 					<c:if test="${product.chanpinName != tag.chanpinName }">
 						<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>

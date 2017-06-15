@@ -66,7 +66,7 @@ body,
     margin: 0 auto;
     margin-top: 60px;
     cursor: pointer;
-    img{
+    img {
         width: 160px;
     }
 }
@@ -101,13 +101,23 @@ body,
 
 .infoCard {
     height: auto;
-    width: 600px;
     background: white;
     border-radius: 4px;
     text-align: left;
     padding-left: 30px;
     padding-right: 30px;
-    margin: 0 auto;
+    display: inline-block;
+    vertical-align: top;
+    width: 450px;
+    padding-left: 30px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width: 500px;
+        padding-left: 100px;
+    }
+    @media screen and (min-width: 1500px) {
+        width: 600px;
+        padding-left: 100px;
+    }
     .closeX {
         position: absolute;
         right: 26px;
@@ -133,6 +143,7 @@ body,
         position: relative;
         padding-left: 15px;
         margin-bottom: 8px;
+        line-height: 15px;
         &:after {
             content: "";
             position: absolute;
@@ -217,7 +228,7 @@ body,
 
 .progress-bar {
     background-color: #337ab7;
-    background-image:none !important;
+    background-image: none !important;
 }
 
 .upIng {
@@ -340,8 +351,8 @@ body,
             font-size: $font-size-base;
             color: $red-base;
             cursor: pointer;
-            &:hover{
-                text-decoration:underline;
+            &:hover {
+                text-decoration: underline;
             }
         }
         .upBanner {
@@ -543,9 +554,8 @@ body,
         margin-left: -340px;
         background: #f0f2f5;
         border-radius: 4px;
-
     }
-    .top{
+    .top {
         height: 33px;
         border-bottom: 1px solid $border-line;
     }
@@ -558,14 +568,14 @@ body,
         background: url(/resources/images/icons/close.png);
         position: absolute;
         right: 15px;
-        top:10px;
+        top: 10px;
         &:hover {
             background-position: 0px -14px;
         }
     }
     .imgContent {
         padding: 14px;
-        img{
+        img {
             border-radius: 4px;
         }
     }

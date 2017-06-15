@@ -132,7 +132,22 @@
 						<div class="grayWord">不得上传具有色情诱导性内容的视频。</div>
 						<div class="grayWord">不得在标题、简介和标签中出现任何具有低俗色情含义的字眼。</div>
 						<div class="grayWord">不含有涉及版权问题的影视片段。</div>
-						<div class="botWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+						<div class="midWord">如果有违上述内容，我们将一律予以删除，我们希望我们最珍贵的客户及供应商，理解并监督我们。</div>
+					</div>
+					<div class="infoCard">
+						   <div class="title">上传视频要求：</div>
+			               <div class="redWord">视频格式 : MP4格式</div>
+						   <div class="redWord">视频编码 : H264编码</div>
+						   <div class="redWord">音频编码 : MP3编码</div>
+						   <div class="redWord">文件大小 : 200Mb以下</div>
+						   <div class="redWord">分辨率 : 1920x1080、1280x720、960x540</div>
+						   <div class="redWord">比特率 : 3000kb/s(1920x1080)、1400kb/s(1280x720)、900kb/s(960x540)</div>
+						   <div class="redWord">帧速率 : 24fps</div>
+						   <div class="redWord">色彩空间 : yuv420p</div>
+						   <div class="midWord">我们建议您使用以下转码软件</div>
+						   <div class="grayWord">Windows系统 : 格式工厂</div>
+			               <div class="grayWord">Mac系统：Any Video Converter</div>
+			               <div class="midWord">如果您对此有疑问,您可以拨打(010-59005319)与我们联系。</div>
 					</div>
 				</div>
 			</c:if>

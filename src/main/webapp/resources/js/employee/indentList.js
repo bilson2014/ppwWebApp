@@ -153,7 +153,6 @@ function submitEventCreate(){
 		var cSRecomment = $(tr).find('.cSRecomment');
 		var indentType = $(tr).find('.indentType');
 		var position = $(tr).find('.position');
-		
 		var data_indentName = $(id).attr('data-indentName');
 
 		$('#formId').val($(id).text().trim());

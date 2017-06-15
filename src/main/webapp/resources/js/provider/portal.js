@@ -214,9 +214,22 @@ var videoListProtal = {
 					 $('body').find("#maxLength").text("最多一次上传10个视频");
 				 }
 			});
+			
 			upload_Video.on('fileQueued', function(file) {
 				$("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
 			});
+			
+			$('.picker').on('click',function(){
+				$('.titleWarn').hide();
+				$('.titleInfo').show();
+				$('#video-container').show();
+			});
+			$('.titleInfo').on('click',function(){
+				$('.titleWarn').show();
+				$('.titleInfo').hide();
+				$('#video-container').show();
+			});
+			
 			// 文件上传过程中创建进度条实时显示。
 			upload_Video.on('uploadProgress',function(file, percentage) {
 				var $li = $('#' + file.id), $percent = $li

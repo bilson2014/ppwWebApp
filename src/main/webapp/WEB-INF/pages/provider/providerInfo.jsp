@@ -195,7 +195,7 @@
 		
 		<div class="infoBottom ">
 		  <div class="buChong"></div>
-		   <div class="bottomWord ">
+		   <div class="bottomWord ">	   
                                              35800+导演/编剧/摄影师/影视服务专家为您服务,
                  <br/>专业一站式视频服务/全流程质量监管
 		   </div>

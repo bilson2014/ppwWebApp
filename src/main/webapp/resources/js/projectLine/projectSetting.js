@@ -189,6 +189,7 @@ function createMustMod(obj,num,price){
 	if(price == 0){
 		hasDes="(免费)";
 	   }  
+	
 		var html = ['<li class="s_item packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
 					'    <div class="pTitle">'+obj.moduleName+'</div>',
