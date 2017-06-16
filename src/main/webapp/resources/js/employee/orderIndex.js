@@ -5,6 +5,7 @@ var initM = 3;
 var TimeFn = null;
 var pageSize = 20;
 var now_order = 0;
+var nowPage = 1;
 /**
  * 新订单
  */
@@ -66,13 +67,13 @@ var orderIndex = {
 					$(this).addClass('active');
 					now_order = $(this).attr('data-value');
 					if(now_order == 0){
-						orderIndex.readMore(1);
+						orderIndex.readMore(nowPage);
 					}
 					if(now_order == 1){
-						orderIndex.readSub(1);
+						orderIndex.readSub(nowPage);
 					}
 					if(now_order == 2){
-						orderIndex.readUnAle(1);
+						orderIndex.readUnAle(nowPage);
 					}
 				}else{
 					newOrderEven(1);
@@ -161,23 +162,30 @@ var orderIndex = {
 		pagination:function(total){
 			$(".pagination").createPage({
 				pageCount: Math.ceil(total / pageSize),
-				current: 1,
+				current: nowPage,
 				backFn:function(p){
-					orderIndex.readMore(p,ORDER_HANDLING);
-					// 点击 翻页，查询符合条件的视频
-//					loadProduction((p - 1) * pageSize);
-//					currentSize = (p - 1) * pageSize;
+					nowPage = p;
+					var loadData = $('.active').attr('data-value');
+					if(loadData == 0){
+						orderIndex.readMore(p,nowPage);
+					}
+					if(loadData == 1){
+						orderIndex.readSub(p,nowPage);
+					}
+					if(loadData == 2){
+						orderIndex.readUnAle(p,nowPage);
+					}
 				}
 			});
 		},
 		controlSelect:function(){
-			$('.orderSelect').on('click',function(){
+			$('.orderSelect').off('click').on('click',function(){
 				$('.oSelect').slideUp();
 				$(this).find('.oSelect').slideDown();
 				$(this).addClass('selectColor');
 				event.stopPropagation();
 			});
-			$('.oSelect li').on('click',function(){
+			$('.oSelect li').off('click').on('click',function(){
 			   	 $(this).parent().parent().find('div').text($(this).text());
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
@@ -186,6 +194,7 @@ var orderIndex = {
 			$('body').on('click',function(){
 				 $('.oSelect').slideUp();
 				 $('.orderSelect').removeClass('selectColor');
+				 event.stopPropagation();
 			});
 		},
 		controlModel:function(){	
@@ -337,37 +346,32 @@ var orderIndex = {
 			return html;
 		}
 };
+
+//触发修改事件
+function infoEven(){
+		$('.info').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			loadData(function (res){
+				newOrderEven(2,res);
+			}, getContextPath() + '/order/info?indentId='+id, null);
+		});
+}
+//触发新建事件
+function orderNewEven(){
+		$('.orderNew').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			loadData(function (res){
+				newOrderEven(1,res);
+			}, getContextPath() + '/order/info?indentId='+id, null);
+		});
+}
 //新建 修改事件
 function newOrderEven(check,item){
-	if(check == 1){
-		$('#orderName').text('新建订单');
-	}else{
-		var orderNo = item.rows[0].id;
-		var orderDate = item.rows[0].orderDate;
-		var telName = item.rows[0].realName;
-		var companyName = item.rows[0].userCompany;
-		var teles = item.rows[0].indent_tele;
-		var orderInfo = $('#orderComeInfo').attr('data-value');
-		$('#orderName').text('订单信息修改');
-		$('#orderNo').text(orderNo);
-		$('#orderDate').text(orderDate);
-		$('#telName').val(telName);
-		$('#companyName').val(companyName);
-		$('#teles').val(teles);
-		$('.sureBtn btn-c-r').off('click').on('click',function(){	
-			var data = {id:orderNo,orderDate:orderDate,realName:telName,userCompany:companyName,indent_tele:teles};
-			$.ajax({
-				  type: 'POST',
-				  url: getContextPath()+'/order/submit',
-				  data: data,
-				  success: success,
-				  dataType: dataType
-				});
-		});
-	}
 	$('#NewOrder').show();
 	$('#showHelper').hide();
-	$('#orderCome li').on('click',function(){
+	$('#orderCome li').on('click',function(e){
 		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-value')));
 	  	if($(this).hasClass('showHelper')){
 	   		$('#showHelper').show();
@@ -375,49 +379,109 @@ function newOrderEven(check,item){
 	   		$('#showHelper').hide();
 	   }
 	});
-	$('.sureBtn btn-c-g').off('click').on('click',function(){	
+	$('#cancleEdit').off('click').on('click',function(){	
 		$('#NewOrder').hide();
+	});
+
+	//填充联系人
+	loadData(function (res){
+		var body = $('#orderComePeople');
+		if(res != null && res != undefined){
+			for (var int = 0; int < res.length; int++) {
+				    if(int == 0){
+				    	$('#orderP').text(res[int].employeeRealName);
+				    	$('#orderP').attr('data-value',res[int].employeeId);
+				    }
+					var html = [
+						           '<li data-value="'+res[int].employeeId+'">'+res[int].employeeRealName+'</li>',
+						].join('');
+				body.append(html);
+			};
+		}
+		bangSelect();
+	}, getContextPath() + '/employee/getEmployeeList',null);
+	if(check == 1){
+		$('#orderName').text('新建订单');
+	}else{
+		editEvenFunction(item);
+	}
+}
+
+function bangSelect(){
+	$('#orderComePeople').off('click').on('click',function(){
+		$('.oSelect').slideUp();
+		$(this).find('.oSelect').slideDown();
+		$(this).addClass('selectColor');
+		event.stopPropagation();
+	});
+	$('#orderComePeople li').off('click').on('click',function(){
+	   	 $(this).parent().parent().find('div').text($(this).text());
+	   	 $(this).parent().slideUp();
+	   	 $('.orderSelect').removeClass('selectColor');
+	   	 event.stopPropagation();
+	});
+}
+//修改事件方法
+function editEvenFunction(item){
+	//初始化值
+	var orderNo = item.result.id;
+	var orderDate = item.result.orderDate;
+	var telName = item.result.realName;
+	var companyName = item.result.userCompany;
+	var teles = item.result.indent_tele;
+	var orderInfo = $('#orderComeInfo').attr('data-value');
+	$('#orderName').text('订单信息修改');
+	$('#orderNo').text(orderNo);
+	$('#orderDate').text(orderDate);
+	$('#telName').val(telName);
+	$('#companyName').val(companyName);
+	$('#teles').val(teles);
+	var orderC = $('#orderCome li');
+	for (var int = 0; int < orderC.length; int++) {
+		var num = $(orderC[int]).attr('data-value');
+		var name = $(orderC[int]).text();
+		if(num == item.result.indentSource){
+			$('#orderComeInfo').text(name);
+			$('#orderComeInfo').attr('data-value',num);
+			if(num == 5){
+				$('#showHelper').show();
+			}
+		}
+   };
+	var orderCPeople = $('#orderComePeople li');
+	for (var int = 0; int < orderCPeople.length; int++) {
+		var num = $(orderCPeople[int]).attr('data-value');
+		var name = $(orderCPeople[int]).text();
+		if(num == item.result.referrerId){
+			$('#orderComePeople').text(name);
+			$('#orderComePeople').attr('data-value',num);
+		}
+   };
+    
+    //提交
+	$('#submitEdit').off('click').on('click',function(){
+		var subId = $('#orderNo').text();
+		var subData = $('#orderDate').text();
+		var subName =$('#telName').val();
+		var subCompany =$('#companyName').val();
+		var subTel =$('#teles').val();
+		var subInfo = $('#orderComeInfo').attr('data-value');
+		var subInfoPeople = $('#orderComeInfo').attr('data-value');
+		var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople};
+		$.ajax({
+			  type: 'POST',
+			  url: getContextPath()+'/order/updateOrSave',
+			  data: data,
+			  success:function(data){
+				  $('#NewOrder').hide();
+				  orderIndex.readMore(nowPage);
+				},
+			  dataType: 'json'
+			});
 	});
 }
 
-function infoEven(){
-
-		$('.info').off('click').on('click',function(){
-			var id = $(this).parent().find('.id').text();
-			$('#NewOrder').show();
-			loadData(function (res){
-				newOrderEven(2,res);
-			}, getContextPath() + '/order/list/page', $.toJSON({
-				"id":id 
-			}));
-			
-			
-//			var tr = $(this).parent();
-//			var id = $(tr).find('.id');
-//			var realName = $(tr).find('.realName');
-//			var indent_tele = $(tr).find('.indent_tele');
-//			var userCompany = $(tr).find('.userCompany');
-//			var wechat = $(tr).find('.wechat');
-//			var orderDate = $(tr).find('.orderDate');
-//			var cSRecomment = $(tr).find('.cSRecomment');
-//			var indentType = $(tr).find('.indentType');
-//			var position = $(tr).find('.position');
-//			var data_indentName = $(id).attr('data-indentName');
-//			
-//			$('#formId').val($(id).text().trim());
-//			$('#formrealName').val($(realName).text().trim());
-//			$('#formindent_tele').val($(indent_tele).text().trim());
-//			$('#formuserCompany').val($(userCompany).text().trim());
-//			$('#formwechat').val($(wechat).text().trim());
-//			$('#formorderDate').val($(orderDate).text().trim());
-//			$('#formcSRecomment').val($(cSRecomment).text().trim());
-//			$('#formindentType').val($(indentType).text().trim());
-//			$('#formposition').val($(position).text().trim());
-//			$('#indentName').val(data_indentName);
-		});
-	
-}
-
+//成功后倒计时
 function showSuccess(){
 	if (initM < 0) {
 		$('#last3').text('0');

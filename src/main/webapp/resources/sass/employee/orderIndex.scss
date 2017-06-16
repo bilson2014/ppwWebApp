@@ -341,9 +341,12 @@
                 margin-left: 30px;
             }
             .itemInfo {
-                width: 200px;
+                width: 190px;
                 color: $gray;
                 font-size: $font-size-base;
+            }
+            .orderSelect{
+                 width: 190px !important;
             }
             .itemInput,
             .itemInputMax {

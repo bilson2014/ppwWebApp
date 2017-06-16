@@ -188,14 +188,14 @@
                        <div class="infoItem">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上 - 网站</div>
+	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
                                         <li data-value="1">线上-网站</li>
 					                    <li data-value="2">线上-活动</li>
 					                    <li data-value="3">线上-新媒体</li>
 					                    <li data-value="4">线下-电销</li>
-					                    <li class="showHelper" data-value="5">线下-直销（推荐人）</li>
+					                    <li class="showHelper" data-value="5">线下-直销</li>
 					                    <li data-value="6">线下-活动</li>
 					                    <li data-value="7">线下-渠道</li>
 					                    <li data-value="8">复购</li>
@@ -210,18 +210,17 @@
                      <div class="infoItem" id="showHelper">  
                           <div class="itemTitile">推荐人</div>
 	                      <div class="orderSelect">
-	                            <div data-value="0">线上 - 网站</div>
+	                            <div data-value="" id="orderP"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect">
-	                                    <li data-value="0">线上 - 网站</li>
-					                    <li data-value="1">线上 - 活动</li>
+	                            <ul class="oSelect" id='orderComePeople'>
+	                                  
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
                     </div>
                 <div class="sureBtn">
-                   <div class="btn-c-g">取消</div>
-		           <div class="btn-c-r">确定</div>
+                   <div class="btn-c-g" id="cancleEdit">取消</div>
+		           <div class="btn-c-r" id="submitEdit">确定</div>
 		        </div>
             </div>
       </div>
