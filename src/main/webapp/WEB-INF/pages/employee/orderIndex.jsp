@@ -163,17 +163,7 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">新建订单</div>
               <div class="itemContent">
-                  <div class="infoItem">
-                  
-                          <div class="itemTitile">订单编号</div>
-                          <div class="itemInfo" id="orderNo"></div>
-                          <div class="must"> </div>
-                          <div class="itemTitile">下单时间</div>
-                          <div class="itemInfo" id="orderDate"></div>
-                          <div class="must"> </div>
-                          
-                    </div>  
-                  
+ 
                     <div class="infoItem">
                           <div class="itemTitile">联系人</div>
                           <input class="itemInput" id="telName">
@@ -186,6 +176,73 @@
                    
                     </div>
                        <div class="infoItem">
+                          <div class="itemTitile">订单来源</div>
+	                      <div class="orderSelect">
+	                            <div data-value="" id="orderComeInfo">请选择</div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderCome'>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+					                    <li data-value="3">线上-新媒体</li>
+					                    <li data-value="4">线下-电销</li>
+					                    <li class="showHelper" data-value="5">线下-直销</li>
+					                    <li data-value="6">线下-活动</li>
+					                    <li data-value="7">线下-渠道</li>
+					                    <li data-value="8">复购</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                          
+                          <div class="itemTitile">联系电话</div>
+                          <input class="itemInput" id="teles">
+                          <div class="must">*</div>
+                    </div>
+                     <div class="infoItem" id="showHelper">  
+                          <div class="itemTitile">推荐人</div>
+	                      <div class="orderSelect">
+	                            <div data-value="" id="orderP"></div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderComePeople'>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                    </div>
+                <div class="sureBtn">
+                   <div class="btn-c-g" id="cancleEdit">取消</div>
+		           <div class="btn-c-r" id="submitEdit">确定</div>
+		        </div>
+            </div>
+      </div>
+      
+      
+          <div class="modelPage">
+              <div class="findInfo cusInfo">
+                    <div class="closeBtn"></div>
+                    <div class="infoTitle" id="orderName">客户信息修改</div>
+              <div class="itemContent">
+                     
+                    <div class="infoItem">
+                          <div class="itemTitile">订单编号</div>
+                          <div class="itemInfo" id="telName"></div>
+                          <div class="must"></div>
+                          
+                          <div class="itemTitile">下单时间</div>
+                          <div class="itemInfo" id="companyName"></div>
+                          <div class="must"></div>
+                    </div> 
+                     
+                    <div class="infoItem">
+                          <div class="itemTitile">联系人</div>
+                          <input class="itemInput" id="telName">
+                          <div class="must">*</div>
+                          
+                          <div class="itemTitile">公司名称</div>
+                          <input class="itemInput" id="companyName">
+                          <div class="must">*</div>
+                    </div>
+                   
+                    </div>
+                    <div class="infoItem">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
 	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
@@ -213,17 +270,91 @@
 	                            <div data-value="" id="orderP"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderComePeople'>
-	                                  
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
                     </div>
+                    <div class="borderline"></div>
+                    <div class="infoItem">
+                          <div class="itemTitile">微信</div>
+                          <input class="itemInput" id="telName">
+                          <div class="must"></div>
+                          
+                          <div class="itemTitile">邮件</div>
+                          <input class="itemInput" id="companyName">
+                          <div class="must"></div>
+                    </div>
+                    <div class="infoItem">
+                          <div class="itemTitile">网址</div>
+                          <input class="itemWeb" id="telName">
+                          <div class="must"></div>
+                    </div>
+                        <div class="borderline"></div>
+                     <div class="infoItem">
+                          <div class="itemTitile">购买频次</div>
+	                      <div class="orderSelect">
+	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderCome'>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                          
+                          <div class="itemTitile">购买价格</div>
+	                      <div class="orderSelect">
+	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderCome'>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                      </div> 
+                      
+                      <div class="infoItem">
+                          <div class="itemTitile">客户规模</div>
+	                      <div class="orderSelect">
+	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderCome'>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                          
+                          <div class="itemTitile">高层背书</div>
+	                      <div class="orderSelect">
+	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderCome'>
+                                        <li data-value="1">线上-网站</li>
+					                    <li data-value="2">线上-活动</li>
+	                            </ul>                
+	                       </div>
+                          <div class="must">*</div>
+                      </div>  
+                      
+                       <div class="borderline"></div> 
+                       
+                     <div class="infoItem">
+                          <div class="itemTitile">备注</div>
+                          <textarea></textarea>
+                          <div class="must"></div>
+                    </div>    
+                          
+                         
                 <div class="sureBtn">
                    <div class="btn-c-g" id="cancleEdit">取消</div>
 		           <div class="btn-c-r" id="submitEdit">确定</div>
 		        </div>
             </div>
       </div>
+      
+      
       
       
       <div class="modelPage" id="userInfo">
@@ -397,6 +528,7 @@
                    <th>提交</th>
                    <th>作废</th>
                </tr>
+   
  		       <c:if test="${ ! empty indentList.rows }">
 					<c:forEach items="${indentList.rows }" var="item" varStatus="status">
 						<tr>
@@ -404,7 +536,32 @@
 							<td class="userCompany"><c:out value="${item.userCompany }"/></td>
 							<td class="realName"><c:out value="${item.realName }"/></td>
 							<td class="indent_tele"><c:out value="${item.indent_tele }"/></td>
-							<td ></td>
+							<td >
+							          <c:if test="${item.indentSource == 1}">
+							                               线上-网站
+							          </c:if>
+							          <c:if test="${item.indentSource == 2}">
+							                             线上-活动
+							          </c:if>
+							          <c:if test="${item.indentSource == 3}">
+							                            线上-新媒体 
+							          </c:if>
+							          <c:if test="${item.indentSource == 4}">
+							                           线下-电销
+							          </c:if>
+							          <c:if test="${item.indentSource == 5}">
+							                           线下-直销
+							          </c:if>
+							          <c:if test="${item.indentSource == 6}">
+							                          线下-活动
+							          </c:if>
+							          <c:if test="${item.indentSource == 7}">
+							                          线下-渠道
+							          </c:if>
+							          <c:if test="${item.indentSource == 8}">
+							                             复购
+							          </c:if>
+							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>
 							<td class="info"><div></div></td>
 							<td class="edit"><div></div></td>

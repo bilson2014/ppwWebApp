@@ -222,20 +222,26 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/updateOrSave", produces = "application/json; charset=UTF-8")
-	public BaseMsg updateIndent(PmsIndent indent) {
+	public BaseMsg updateIndent(PmsIndent indent, HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("处理失败！");
 
-		if (indent != null && indent.getId() != null &&indent.getId() > 0) {
+		if (indent != null && indent.getId() != null && indent.getId() > 0) {
 			long update = pmsIndentFacade.update(indent);
 			if (update > 0) {
 				baseMsg.setCode(BaseMsg.NORMAL);
 				baseMsg.setErrorMsg("更新成功！");
 			}
 		} else {
-			long save = pmsIndentFacade.save(indent);
-			if (save > 0) {
+			SessionInfo currentInfo = getCurrentInfo(request);
+			if (currentInfo != null) {
+				Long reqiureId = currentInfo.getReqiureId();
+				indent.setEmployeeId(reqiureId);
+			}
+			indent.setIndentType(PmsIndent.ORDER_NEW);
+			boolean save = pmsIndentFacade.saveOrder(indent);
+			if (save) {
 				baseMsg.setCode(BaseMsg.NORMAL);
 				baseMsg.setErrorMsg("新增成功！");
 			}
@@ -369,7 +375,7 @@ public class IndentController extends BaseController {
 		baseMsg.setResult(res);
 		String nowTime = DateUtils.nowTime();
 		res.put("time", nowTime);
-		res.put("userName", "User-"+IndentUtil.generateShortUuid());
+		res.put("userName", "User-" + IndentUtil.generateShortUuid());
 		return baseMsg;
 	}
 }

@@ -91,11 +91,11 @@
     }
     th:nth-child(2),
     td:nth-child(2) {
-        width: 15%;
+        width: 23%;
     }
     th:nth-child(3),
     td:nth-child(3) {
-        width: 10%;
+        width: 12%;
     }
     th:nth-child(4),
     td:nth-child(4) {
@@ -111,18 +111,14 @@
     }
     th:nth-child(7),
     td:nth-child(7) {
-        width: 10%;
+        width: 5%;
     }
     th:nth-child(8),
     td:nth-child(8) {
         width: 5%;
     }
-    th:nth-child(9),
-    td:nth-child(9) {
-        width: 5%;
-    }
     tr {
-        td:nth-child(9) {
+        td:nth-child(8) {
             div {
                 font-size: $font-size-sm;
                 color: $gray;
@@ -139,7 +135,7 @@
                 }
             }
         }
-        td:nth-child(8) {
+        td:nth-child(7) {
             div {
                 font-size: $font-size-sm;
                 color: $gray;
@@ -166,7 +162,7 @@
     }
     th:nth-child(2),
     td:nth-child(2) {
-        width: 15%;
+        width: 23%;
     }
     th:nth-child(3),
     td:nth-child(3) {
@@ -178,26 +174,23 @@
     }
     th:nth-child(5),
     td:nth-child(5) {
-        width: 10%;
+        width: 12%;
     }
     th:nth-child(6),
     td:nth-child(6) {
         width: 15%;
     }
+
     th:nth-child(7),
     td:nth-child(7) {
-        width: 10%;
+        width: 5%;
     }
     th:nth-child(8),
     td:nth-child(8) {
         width: 5%;
     }
-    th:nth-child(9),
-    td:nth-child(9) {
-        width: 5%;
-    }
     tr {
-        td:nth-child(9) {
+        td:nth-child(8) {
             div {
                 font-size: $font-size-sm;
                 color: $gray;
@@ -214,7 +207,7 @@
                 }
             }
         }
-        td:nth-child(8) {
+        td:nth-child(7) {
             .lie {
                 background: $red-base;
             }
@@ -273,6 +266,11 @@
     z-index: 110;
     display: none;
     border-radius: 6px;
+
+    .cusInfo{
+        top:80px !important;
+    }
+
     .findInfo {
         width: 720px;
         height: auto;
@@ -322,6 +320,14 @@
                 height: auto
             }
         }
+        .borderline{
+             width: 640px;
+             height: 1px;
+             background: $f0;
+             margin: 0 auto;
+             margin-top: 10px;
+             margin-bottom: 10px;
+        }
         .infoItem {
             min-width: 290px;
             display: inline-block;
@@ -347,6 +353,22 @@
             }
             .orderSelect{
                  width: 190px !important;
+            }
+            .orderSelect:nth-child(5) {
+                width: 250px;
+            }
+            .itemWeb{
+                width: 555px !important;
+            }
+            .textarea{
+                width: 555px !important;
+                height: 80px;
+                border: 1px solid $border-line;
+                border-radius: 4px;
+                line-height: 25px;
+                font-size: $font-size-base;
+                color: $gray;
+                padding: 10px;
             }
             .itemInput,
             .itemInputMax {
