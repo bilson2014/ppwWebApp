@@ -163,17 +163,7 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">新建订单</div>
               <div class="itemContent">
-                  <div class="infoItem">
-                  
-                          <div class="itemTitile">订单编号</div>
-                          <div class="itemInfo" id="orderNo"></div>
-                          <div class="must"> </div>
-                          <div class="itemTitile">下单时间</div>
-                          <div class="itemInfo" id="orderDate"></div>
-                          <div class="must"> </div>
-                          
-                    </div>  
-                  
+ 
                     <div class="infoItem">
                           <div class="itemTitile">联系人</div>
                           <input class="itemInput" id="telName">
@@ -213,7 +203,6 @@
 	                            <div data-value="" id="orderP"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderComePeople'>
-	                                  
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
