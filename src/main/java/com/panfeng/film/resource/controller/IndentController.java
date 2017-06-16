@@ -221,15 +221,39 @@ public class IndentController extends BaseController {
 		return new DataGrid<PmsIndent>();
 	}
 
-	@RequestMapping(value = "/update", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/updateOrSave", produces = "application/json; charset=UTF-8")
 	public BaseMsg updateIndent(PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
-		baseMsg.setErrorMsg("更新失败！");
-		long update = pmsIndentFacade.update(indent);
-		if (update > 0) {
-			baseMsg.setCode(BaseMsg.NORMAL);
-			baseMsg.setErrorMsg("更新成功");
+		baseMsg.setErrorMsg("处理失败！");
+
+		if (indent != null && indent.getId() > 0) {
+			long update = pmsIndentFacade.update(indent);
+			if (update > 0) {
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setErrorMsg("更新成功！");
+			}
+		} else {
+			long save = pmsIndentFacade.save(indent);
+			if (save > 0) {
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setErrorMsg("新增成功！");
+			}
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping(value = "/checkuser")
+	public BaseMsg checkUser(String indent_tele) {
+		BaseMsg baseMsg = new BaseMsg();
+		int count = pmsUserFacade.validationPhone(indent_tele, null);
+		if (count != 0) {
+			baseMsg.setErrorCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("用户已经存在！");
+			baseMsg.setResult(false);
+		} else {
+			baseMsg.setErrorCode(BaseMsg.NORMAL);
+			baseMsg.setResult(true);
 		}
 		return baseMsg;
 	}
@@ -322,6 +346,7 @@ public class IndentController extends BaseController {
 		return baseMsg;
 	}
 
+	// ------------------------------------------------------------------------------
 	@RequestMapping(value = "/info")
 	public BaseMsg indentInfo(Long indentId) {
 		BaseMsg baseMsg = new BaseMsg();
