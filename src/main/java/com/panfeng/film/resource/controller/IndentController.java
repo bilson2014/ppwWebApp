@@ -227,7 +227,7 @@ public class IndentController extends BaseController {
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("处理失败！");
 
-		if (indent != null && indent.getId() > 0) {
+		if (indent != null && indent.getId() != null &&indent.getId() > 0) {
 			long update = pmsIndentFacade.update(indent);
 			if (update > 0) {
 				baseMsg.setCode(BaseMsg.NORMAL);
