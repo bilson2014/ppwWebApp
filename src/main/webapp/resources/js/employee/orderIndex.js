@@ -346,6 +346,27 @@ var orderIndex = {
 			return html;
 		}
 };
+
+//触发修改事件
+function infoEven(){
+		$('.info').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			loadData(function (res){
+				newOrderEven(2,res);
+			}, getContextPath() + '/order/info?indentId='+id, null);
+		});
+}
+//触发新建事件
+function orderNewEven(){
+		$('.orderNew').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			loadData(function (res){
+				newOrderEven(1,res);
+			}, getContextPath() + '/order/info?indentId='+id, null);
+		});
+}
 //新建 修改事件
 function newOrderEven(check,item){
 	$('#NewOrder').show();
@@ -367,6 +388,10 @@ function newOrderEven(check,item){
 		var body = $('#orderComePeople');
 		if(res != null && res != undefined){
 			for (var int = 0; int < res.length; int++) {
+				    if(int == 0){
+				    	$('#orderP').text(res[int].employeeRealName);
+				    	$('#orderP').attr('data-value',res[int].employeeId);
+				    }
 					var html = [
 						           '<li data-value="'+res[int].employeeId+'">'+res[int].employeeRealName+'</li>',
 						].join('');
@@ -399,13 +424,12 @@ function bangSelect(){
 //修改事件方法
 function editEvenFunction(item){
 	//初始化值
-	var orderNo = item.rows[0].id;
-	var orderDate = item.rows[0].orderDate;
-	var telName = item.rows[0].realName;
-	var companyName = item.rows[0].userCompany;
-	var teles = item.rows[0].indent_tele;
+	var orderNo = item.result.id;
+	var orderDate = item.result.orderDate;
+	var telName = item.result.realName;
+	var companyName = item.result.userCompany;
+	var teles = item.result.indent_tele;
 	var orderInfo = $('#orderComeInfo').attr('data-value');
-	var orderCInfo;
 	$('#orderName').text('订单信息修改');
 	$('#orderNo').text(orderNo);
 	$('#orderDate').text(orderDate);
@@ -416,12 +440,24 @@ function editEvenFunction(item){
 	for (var int = 0; int < orderC.length; int++) {
 		var num = $(orderC[int]).attr('data-value');
 		var name = $(orderC[int]).text();
-		if(num == item.rows[0].indentSource){
+		if(num == item.result.indentSource){
 			$('#orderComeInfo').text(name);
 			$('#orderComeInfo').attr('data-value',num);
-			orderCInfo = num;
+			if(num == 5){
+				$('#showHelper').show();
+			}
 		}
    };
+	var orderCPeople = $('#orderComePeople li');
+	for (var int = 0; int < orderCPeople.length; int++) {
+		var num = $(orderCPeople[int]).attr('data-value');
+		var name = $(orderCPeople[int]).text();
+		if(num == item.result.referrerId){
+			$('#orderComePeople').text(name);
+			$('#orderComePeople').attr('data-value',num);
+		}
+   };
+    
     //提交
 	$('#submitEdit').off('click').on('click',function(){
 		var subId = $('#orderNo').text();
@@ -430,7 +466,8 @@ function editEvenFunction(item){
 		var subCompany =$('#companyName').val();
 		var subTel =$('#teles').val();
 		var subInfo = $('#orderComeInfo').attr('data-value');
-		var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo};
+		var subInfoPeople = $('#orderComeInfo').attr('data-value');
+		var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople};
 		$.ajax({
 			  type: 'POST',
 			  url: getContextPath()+'/order/updateOrSave',
@@ -444,21 +481,7 @@ function editEvenFunction(item){
 	});
 }
 
-
-function infoEven(){
-
-		$('.info').off('click').on('click',function(){
-			var id = $(this).parent().find('.id').text();
-			$('#NewOrder').show();
-			loadData(function (res){
-				newOrderEven(2,res);
-			}, getContextPath() + '/order/list/page', $.toJSON({
-				"id":id 
-			}));
-		});
-	
-}
-
+//成功后倒计时
 function showSuccess(){
 	if (initM < 0) {
 		$('#last3').text('0');

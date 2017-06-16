@@ -210,10 +210,10 @@
                      <div class="infoItem" id="showHelper">  
                           <div class="itemTitile">推荐人</div>
 	                      <div class="orderSelect">
-	                            <div data-value="0">线上 - 网站</div>
+	                            <div data-value="" id="orderP"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderComePeople'>
-	                            
+	                                  
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
