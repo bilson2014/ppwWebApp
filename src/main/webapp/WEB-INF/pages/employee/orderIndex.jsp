@@ -163,19 +163,24 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">新建订单</div>
               <div class="itemContent">
- 
                     <div class="infoItem">
-                          <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="telName">
-                          <div class="must">*</div>
+                         <div class="setError" id="telNameError" data-content="">
+	                          <div class="itemTitile">联系人</div>
+	                          <input class="itemInput" id="telName">
+	                          <div class="must">*</div>
+                         </div>  
                           
+                        <div class="setError" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="companyName">
+                          <input class="itemInput" id="companyName" id="companyName">
                           <div class="must">*</div>
+                        </div>  
                     </div>
                    
                     </div>
                        <div class="infoItem">
+                       
+                       <div class="setError" id="orderComeInfoError" data-content="">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
 	                            <div data-value="" id="orderComeInfo">请选择</div>
@@ -192,20 +197,26 @@
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
-                          
+                       </div>
+                       
+                       <div class="setError" id="telesError" data-content="">   
                           <div class="itemTitile">联系电话</div>
                           <input class="itemInput" id="teles">
                           <div class="must">*</div>
+                      </div>    
+                      
                     </div>
                      <div class="infoItem" id="showHelper">  
-                          <div class="itemTitile">推荐人</div>
-	                      <div class="orderSelect">
-	                            <div data-value="" id="orderP"></div>
-	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='orderComePeople'>
-	                            </ul>                
-	                       </div>
-                          <div class="must">*</div>
+                        <div class="setError" id="orderPError" data-content="">
+	                          <div class="itemTitile">推荐人</div>
+		                      <div class="orderSelect">
+		                            <div data-value="" id="orderP"></div>
+		                            <img src="${imgPath}/orderManager/select.png">
+		                            <ul class="oSelect" id='orderComePeople'>
+		                            </ul>                
+		                       </div>
+	                          <div class="must">*</div>
+                        </div>  
                     </div>
                 <div class="sureBtn">
                    <div class="btn-c-g" id="cancleEdit">取消</div>
@@ -213,8 +224,7 @@
 		        </div>
             </div>
       </div>
-      
-      
+
           <div class="modelPage">
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
@@ -232,20 +242,24 @@
                     </div> 
                      
                     <div class="infoItem">
+                        <div class="setError" >
                           <div class="itemTitile">联系人</div>
                           <input class="itemInput" id="telName">
                           <div class="must">*</div>
-                          
+                        </div>  
+                        
+                        <div class="setError" >  
                           <div class="itemTitile">公司名称</div>
                           <input class="itemInput" id="companyName">
                           <div class="must">*</div>
+                        </div>  
                     </div>
                    
                     </div>
                     <div class="infoItem">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <div data-value="" id="orderComeInfo"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
                                         <li data-value="1">线上-网站</li>

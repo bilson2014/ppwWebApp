@@ -33,8 +33,7 @@ var  ORDER_SUBMIT = 7;
 
 $().ready(function(){
 	submitEventCreate();
-	editEvent();
-	
+	editEvent();	
 	var title = $('#tableTitle');
 	$('#new').on('click',function(){
 		readMore(ORDER_NEW); // 新订单
@@ -121,8 +120,7 @@ function TRCreate(obj){
 		btn = '<td><button class="edit">编辑</button> <button class="editRequire" data-id="'+obj.id +'">填写需求</button></td>';
 	}else{
 		btn = '';
-	}
-	
+	}	
 	var html = [
 				'<tr>',
 					'<td class="id" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>',

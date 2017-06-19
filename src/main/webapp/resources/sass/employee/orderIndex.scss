@@ -180,7 +180,6 @@
     td:nth-child(6) {
         width: 15%;
     }
-
     th:nth-child(7),
     td:nth-child(7) {
         width: 5%;
@@ -214,14 +213,20 @@
             .true {
                 background: #7ED321;
             }
+            img{
+                    top: 9px !important;
+                    right: 0px !important;
+            }
             div {
                 font-size: $font-size-sm;
                 color: white;
-                width: 50px;
+                width: 90%;
                 height: 18px;
+                padding-left: 0 !important;
                 margin: 0 auto;
                 line-height: 18px;
                 border-radius: 20px;
+                text-align: center;
             }
         }
     }
@@ -266,11 +271,9 @@
     z-index: 110;
     display: none;
     border-radius: 6px;
-
-    .cusInfo{
-        top:80px !important;
+    .cusInfo {
+        top: 80px !important;
     }
-
     .findInfo {
         width: 720px;
         height: auto;
@@ -320,13 +323,13 @@
                 height: auto
             }
         }
-        .borderline{
-             width: 640px;
-             height: 1px;
-             background: $f0;
-             margin: 0 auto;
-             margin-top: 10px;
-             margin-bottom: 10px;
+        .borderline {
+            width: 640px;
+            height: 1px;
+            background: $f0;
+            margin: 0 auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .infoItem {
             min-width: 290px;
@@ -339,6 +342,18 @@
             input {
                 display: inline-block;
                 vertical-align: middle;
+                position: relative;
+            }
+            .setError {
+                position: relative;
+            }
+            .setError:after {
+                content:attr(data-content);
+                color: $red-base;
+                font-size: 1.2rem;
+                position: absolute;
+                left: 110px;
+                top: 40px;
             }
             .itemTitile {
                 font-size: $font-size-base;
@@ -351,16 +366,16 @@
                 color: $gray;
                 font-size: $font-size-base;
             }
-            .orderSelect{
-                 width: 190px !important;
+            .orderSelect {
+                width: 190px !important;
             }
             .orderSelect:nth-child(5) {
                 width: 250px;
             }
-            .itemWeb{
+            .itemWeb {
                 width: 555px !important;
             }
-            .textarea{
+            .textarea {
                 width: 555px !important;
                 height: 80px;
                 border: 1px solid $border-line;
@@ -472,7 +487,7 @@
                 text-align: center;
                 margin-bottom: 15px;
                 font-size: $font-size-base;
-                color:$gray;
+                color: $gray;
             }
             ul {
                 padding-left: 30px;
@@ -515,7 +530,7 @@
                 border-right: 1px solid $border-line;
             }
         }
-        .sureBtn{
+        .sureBtn {
             padding-top: 40px !important;
         }
     }

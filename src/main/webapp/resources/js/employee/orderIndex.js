@@ -136,6 +136,7 @@ var orderIndex = {
 		readUnAle:function(num){
 			var page = num;
 			var rows = pageSize;
+			$('table').attr('class','toUnBle');
 			var root = $("#setTable");
 			root.html("");
 			root.append(orderIndex.createTableUnableTitle());
@@ -215,6 +216,12 @@ var orderIndex = {
 			});
 			$('.edit').on('click',function(){
 				$('.orderModel').show();
+				$('#indentId').text($(this).parent().find('.id').text());
+				 initView();
+			});
+			//需求保存
+			$('.headerSave').on('click',function(){
+				getNeedValue();
 			});
 			$('#noReal').on('click',function(){
 				$('.modelPage').hide();
@@ -242,19 +249,6 @@ var orderIndex = {
 			$('.btnDiv btn-c-g').on('orderModel',function(){
 				$('.modelPage').hide();
 			});
-			
-			
-			
-		//双击
-		/*	$('tr').dblclick(function () {
-			     // 取消上次延时未执行的方法
-			    clearTimeout(TimeFn);
-			    $(this).css('background','red');
-			    //双击事件的执行代码
-			})*/
-//			$('.findInfo').on('click',function(){
-//			//	$('#userInfo').show();
-//			});
 		},
 		createTableTitle:function(){
 			var html = [
@@ -372,13 +366,60 @@ var orderIndex = {
 		               '    <td></td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfo" data-id="'+obj.id +'"><div class="true">真实</div></td>' ,
+		               '    <td class="findInfo" data-id="'+obj.id +'">',
+					     '  <div class="orderSelect">                                         ',
+			             '         <div data-value="" class="true">真实</div>         ',
+			             '         <img src="/resources/images/orderManager/select.png">             ',
+			             '         <ul class="oSelect">                        ',
+			             '               <li data-value="1">真实</li>                  ',
+					     '               <li data-value="2">虚假</li>                    ',
+			             '         </ul>                                                      ',
+			             '    </div>                                                          ',
+		               '     </td>                                                           ',
 		               '    <td class="cancle" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
 		}
 };
+
+//新建修改验证
+
+function checkUpdateEven(){	    
+	var hasName = $('#telName').val();
+	var hasCompany = $('#companyName').val();
+	var hasOrder = $('#orderComeInfo').attr('data-value');
+	var hasTel = $('#teles').val();
+	var hasPeople = $('#orderP').attr('data-value');
+	$('.setError').attr('data-content','');
+	if(hasName == undefined || hasName == "" || hasName ==null ){
+		$('#telNameError').attr('data-content','请填写联系人');
+		$('#telName').focus();
+		return false;
+	}
+	if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
+		$('#companyNameError').attr('data-content','请填写公司名');
+		$('#companyName').focus();
+		return false;
+	}
+	if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
+		$('#orderComeInfoError').attr('data-content','请填写订单来源');
+		return false;
+		
+	}
+	if(!checkMobile(hasTel)){
+		$('#telesError').attr('data-content','手机号不正确');
+		$('#telName').focus();
+		return false;
+	}
+	if(hasOrder == 5){
+		if(hasPeople == undefined || hasPeople == "" || hasPeople ==null ){
+			$('#orderPError').attr('data-content','请填写推荐人');
+			return false;
+		}
+	}
+	return true;
+}
 
 //触发修改事件
 function infoEven(){
@@ -420,10 +461,6 @@ function newOrderEven(check,item){
 		var body = $('#orderComePeople');
 		if(res != null && res != undefined){
 			for (var int = 0; int < res.length; int++) {
-				    if(int == 0){
-				    	$('#orderP').text(res[int].employeeRealName);
-				    	$('#orderP').attr('data-value',res[int].employeeId);
-				    }
 					var html = [
 						           '<li data-value="'+res[int].employeeId+'">'+res[int].employeeRealName+'</li>',
 						].join('');
@@ -503,32 +540,35 @@ function initUpdateInfo(){
 function submitSaveOrCreate(check,item){
 	//提交
 	$('#submitEdit').off('click').on('click',function(){
-		var subName =$('#telName').val();
-		var subCompany =$('#companyName').val();
-		var subTel =$('#teles').val();
-		var subInfo = $('#orderComeInfo').attr('data-value');
-		var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
-		var dataIndentName = '';
-		if(item != null && item !='' && item !=undefined){
-		  var subId = item.result.id;
-		  var subData =item.result.orderDate;
-		  dataIndentName = item.result.indentName;
+		if(checkUpdateEven()){
+			var subName =$('#telName').val();
+			var subCompany =$('#companyName').val();
+			var subTel =$('#teles').val();
+			var subInfo = $('#orderComeInfo').attr('data-value');
+			var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
+			var dataIndentName = '';
+			if(item != null && item !='' && item !=undefined){
+			  var subId = item.result.id;
+			  var subData =item.result.orderDate;
+			  dataIndentName = item.result.indentName;
+			}
+			if(check == 1){
+				var data = {realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1'};
+			}else{
+				var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName};
+			}
+			$.ajax({
+				  type: 'POST',
+				  url: getContextPath()+'/order/updateOrSave',
+				  data: data,
+				  success:function(data){
+					  $('#NewOrder').hide();
+					  orderIndex.readMore(nowPage);
+					},
+				  dataType: 'json'
+				});  
 		}
-		if(check == 1){
-			var data = {realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1'};
-		}else{
-			var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName};
-		}
-		$.ajax({
-			  type: 'POST',
-			  url: getContextPath()+'/order/updateOrSave',
-			  data: data,
-			  success:function(data){
-				  $('#NewOrder').hide();
-				  orderIndex.readMore(nowPage);
-				},
-			  dataType: 'json'
-			});
+		
 	});
 }
 
@@ -543,6 +583,182 @@ function showSuccess(){
 	} else {
 		$('#last3').text(initM--);
 	}
+}
+
+
+//需求文档
+var rowType = {
+		select : "select",
+		datepicker : "datepicker",
+		textarea :"textarea",
+		multselect :"multselect"
+		};
+
+var optionType = {
+		checkbox:"checkbox",
+		text:"text"
+		};
+function initView(){
+	var view = $('#setListInfo');
+	view.html('');
+	syncLoadData(function (res){
+		var obj = $.evalJSON(res.result);
+		var rows = obj.rows;
+		if(rows != null && rows.length > 0){
+			for (var int = 0; int < rows.length; int++) {
+				var row = rows[int];
+				var type = row.type;
+				var html = '';
+				switch (type) {
+				case rowType.select:
+					html = buildSelect(row,1);
+					break;
+				case rowType.multselect:
+					html = buildSelect(row,2);
+					break;
+				case rowType.datepicker:
+					html = buildDatepicker(row);
+					break;
+				case rowType.textarea:
+					html = buildTextarea(row);
+					break;
+				}
+				view.append(html);
+			}
+			$("._datepicker").datepicker({
+				language: 'zh',
+				dateFormat:'yyyy-MM-dd' 
+			});
+			initNeedEven();
+		}
+	}, getContextPath() + '/require/config', null);
+}
+
+function buildSelect(obj,isMult){
+	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	if(isMult == 1){
+		var items = $('<div class="optionItem"></div>');
+	}
+	else{
+		var items = $('<div class="optionItemMult"></div>');
+	}
+	var options = obj.options;
+	if(options != null && options.length > 0){
+		for (var int = 0; int < options.length; int++) {
+			var option = options[int];
+			var type = option.type;
+			switch (type) {
+			case optionType.checkbox:
+				items.append('<div class="itemDiv" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
+				break;
+			case optionType.text:
+				items.append(option.text + '<div class="other itemDiv" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><input></div>');
+				break;
+			}
+		}
+	}
+	html.append(items);
+	return html;
+}
+function buildDatepicker(obj){
+	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	var setItem = $('<div class="optionItem"></div>');
+	var items = $('<div><input class="_datepicker activeNeed" value="日期" name="'+obj.name+'" /></div>');
+	setItem.append(items);
+	html.append(setItem);
+	return html;
+}
+function buildTextarea(obj){
+	var html = $('<div class="qItem" data-id="'+obj.id+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+	html.append(items);
+	return html;
+}
+function initNeedEven(){
+	$('.optionItem .itemDiv').on('click',function(){
+		$(this).parent().find('.itemDiv').removeClass('activeNeed');
+		$(this).parent().parent().find('.otherInfo').hide();
+		$(this).addClass('activeNeed');
+	});
+	$('.optionItemMult .itemDiv').on('click',function(){
+		if($(this).hasClass('activeNeed')){
+			$(this).removeClass('activeNeed');
+		}else{
+			$(this).addClass('activeNeed');
+		}
+	});
+	$('.other').on('click',function(){
+		$(this).parent().parent().find('.otherInfo').show();
+	});
+}
+var setData = new Array();
+function getNeedValue(){
+	     var rows= $('.optionItem');
+		 for (var int = 0; int < rows.length; int++) {
+			 var getNowItem = $(rows[int]) ;
+			 if(getNowItem.find('.activeNeed')){
+				 itemValues = getNowItem.find('.activeNeed').text();
+			 }
+			 if(getNowItem.find('.activeNeed').hasClass('other')){
+				 itemValues =  $(rows[int]).find('input').val();
+			 }
+			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
+				 itemValues =  $(rows[int]).find('div').find('input').val();
+			 }
+			 if(getNowItem.find('textarea').hasClass('isArea')){
+				 itemValues=  $(rows[int]).find('textarea').val();
+			 }
+
+//			  console.info("id"+itemId);
+//			  console.info(itemValues);
+			  var itemId =  $(rows[int]).parent().attr('data-id')			
+			  setData.push(new optEntity(itemId, itemValues));
+			}
+		 var rowsMult= $('.optionItemMult');
+		 for (var int = 0; int < rowsMult.length; int++) {
+			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
+			 var checkActive = $(rowsMult[int]).find('.activeNeed');
+			 var setMultData = new Array();
+			 for (var int = 0; int < checkActive.length; int++){
+				 if($(checkActive[int]).hasClass('other')){
+					var itemValues =  $(checkActive[int]).parent().find('input').val();
+				 }else{
+					var itemValues =  $(checkActive[int]).text();
+				 }
+				  console.info("id"+itemId);
+				  console.info(itemValues);
+				  setMultData.push(new optEntity(itemId, itemValues));
+			     }
+			 setData.push(setMultData);
+		} 
+		 
+		 $.ajax({
+			  type: 'POST',
+			  url: getContextPath() + '/require/save',
+			  data: {"indentId":indentId,
+					"requireJson": $.toJSON(require),
+					"requireFlag" : 0,
+					"indentId" : $('#indentId').val()
+					},
+			  success: function (res) {
+				  if(res.errorCode == 200){
+					  console.info(res.errorMsg);
+				  }else{
+					  console.info(res.errorMsg);
+				  }
+			  }
+		});		 
+}
+
+/**
+ * key / value
+ */
+function optEntity(key,value){
+	this.key = key;
+	this.value = value;
 }
 
 
