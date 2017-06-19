@@ -636,7 +636,6 @@ function searchInit(){
 	});
 }
 
-<<<<<<< HEAD
 
 //需求文档
 var rowType = {
@@ -812,10 +811,6 @@ function optEntity(key,value){
 	this.key = key;
 	this.value = value;
 }
-
-
-
-=======
 function search(){
 	nowPage = 1; 
 	// 信息收集 ---> 发起查询   --->加载结果
