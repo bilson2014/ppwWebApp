@@ -20,11 +20,11 @@
          </div>
          <div class="searchInfo">
             <div>公司名称</div>
-            <input value="1312312312">
+            <input value="">
             <div>联系人</div>
-            <input value="1312312312">
+            <input value="">
             <div>联系电话</div>
-            <input value="182103">
+            <input value="">
             <div>订单来源</div>
             <div class="orderSelect">
                 <div>测试</div>

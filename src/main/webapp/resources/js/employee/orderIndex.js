@@ -180,9 +180,13 @@ var orderIndex = {
 		},
 		controlSelect:function(){
 			$('.orderSelect').off('click').on('click',function(){
-				$('.oSelect').slideUp();
-				$(this).find('.oSelect').slideDown();
-				$(this).addClass('selectColor');
+				if($(this).hasClass('selectColor')){
+					$('.oSelect').slideUp();
+					$(this).removeClass('selectColor');
+				}else{
+					$(this).find('.oSelect').slideDown();
+					$(this).addClass('selectColor');
+				}
 				event.stopPropagation();
 			});
 			$('.oSelect li').off('click').on('click',function(){
