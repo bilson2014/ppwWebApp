@@ -20,25 +20,25 @@
          </div>
          <div class="searchInfo">
             <div>公司名称</div>
-            <input value="">
+            <input value="" id="sUserCompany">
             <div>联系人</div>
-            <input value="">
+            <input value="" id="sRealName">
             <div>联系电话</div>
-            <input value="">
+            <input value="" id="sIndent_tele">
             <div>订单来源</div>
-            <div class="orderSelect">
-                <div>测试</div>
+            <div class="orderSelect" >
+                <div id="sIndentSource"></div>
                 <img src="${imgPath}/orderManager/select.png">
                 <ul class="oSelect" id="orderCome">
-                    <li>线上 - 网站</li>
-                    <li>线上 - 活动</li>
-                    <li>线上 - 新媒体</li>
-                    <li>线下 - 电销</li>
-                    <li>线下 - 直销</li>
-                    <li>线下 - 活动</li>
-                    <li>线下 - 渠道</li>
-                    <li>复购</li>
-                </ul>                
+                    <li data-id="1">线上 - 网站</li>
+                    <li data-id="2">线上 - 活动</li>
+                    <li data-id="3">线上 - 新媒体</li>
+                    <li data-id="4">线下 - 电销</li>
+                    <li data-id="5">线下 - 直销</li>
+                    <li data-id="6">线下 - 活动</li>
+                    <li data-id="7">线下 - 渠道</li>
+                    <li data-id="8">复购</li>
+                </ul>    
 	        </div>
             <div>日期查询</div>
             <input class="time" readonly id="timeOld" name="time" value="">

@@ -42,15 +42,18 @@ var  ORDER_SUBMIT = 7;
  * 当前页
  */
 var nowNum = 1;
-
+var sUserCompany = '',sRealName = '',sIndent_tele = '',sIndentSource = -1,timeOld = '',timeNew = '';
 $().ready(function() {
 	$("input[name$='time']").datepicker({
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
-		minDate: new Date() 
+		onSelect:function(){
+			search();
+		}
      });
 	$('.orderIndex').addClass('active');
 	orderIndex.init();
+	searchInit();
 });
 
 var orderIndex = {
@@ -63,6 +66,7 @@ var orderIndex = {
 		initOrderTitle:function(){
 			$('.showStatus div').on('click',function(){
 				if(!$(this).hasClass('orderNew')){
+					clearSearch();
 					$('.showStatus div').removeClass('active');
 					$(this).addClass('active');
 					now_order = $(this).attr('data-value');
@@ -83,7 +87,6 @@ var orderIndex = {
 		},
 		readMore:function(num){
 			var page = num;
-			var rows = pageSize;
 			$('table').attr('class','toDoing');
 			var root = $("#setTable");
 			root.html("");
@@ -92,7 +95,7 @@ var orderIndex = {
 				if(res != null && res != undefined){
 					var rows =  res.rows;
 					// 数据填充！
-
+					orderIndex.pagination(res.total);
 					for (var int = 0; int < rows.length; int++) {
 						var row = rows[int];
 						var html = orderIndex.createTable(row);
@@ -103,13 +106,18 @@ var orderIndex = {
 				orderIndex.controlModel();
 			}, getContextPath() + '/order/list/page', $.toJSON({
 				"page":page,
-				"rows" : rows,
-				"types" : [ORDER_NEW,ORDER_HANDLING]
+				"rows" : pageSize,
+				"types" : [ORDER_NEW,ORDER_HANDLING],
+				"userCompany":sUserCompany,
+				"realName":sRealName,
+				"indent_tele":sIndent_tele,
+				"beginTime":timeOld,
+				"endTime":timeNew,
+				"indentSource":sIndentSource
 			}));
 		},
 		readSub:function(num){
 			var page = num;
-			var rows = pageSize;
 			$('table').attr('class','toSubmit');
 			var root = $("#setTable");
 			root.html("");
@@ -117,7 +125,7 @@ var orderIndex = {
 			loadData(function (res){
 				if(res != null && res != undefined){
 					var rows =  res.rows;
-					orderIndex.pagination(rows.total);
+					orderIndex.pagination(res.total);
 					// 数据填充！
 					for (var int = 0; int < rows.length; int++) {
 						var row = rows[int];
@@ -129,13 +137,18 @@ var orderIndex = {
 				orderIndex.controlModel();
 			}, getContextPath() + '/order/list/page', $.toJSON({
 				"page":page,
-				"rows" : rows,
-				"types" : [ORDER_SUBMIT]
+				"rows" : pageSize,
+				"types" : [ORDER_SUBMIT],
+				"userCompany":sUserCompany,
+				"realName":sRealName,
+				"indent_tele":sIndent_tele,
+				"beginTime":timeOld,
+				"endTime":timeNew,
+				"indentSource":sIndentSource
 			}));
 		},
-		readUnAle:function(num){
+		readUnAle:function(num,b){
 			var page = num;
-			var rows = pageSize;
 			var root = $("#setTable");
 			root.html("");
 			root.append(orderIndex.createTableUnableTitle());
@@ -143,7 +156,7 @@ var orderIndex = {
 				if(res != null && res != undefined){
 					var rows =  res.rows;
 					// 数据填充！
-
+					orderIndex.pagination(res.total);
 					for (var int = 0; int < rows.length; int++) {
 						var row = rows[int];
 						var html = orderIndex.createUnableTable(row);
@@ -154,12 +167,20 @@ var orderIndex = {
 				orderIndex.controlModel();
 			}, getContextPath() + '/order/list/page', $.toJSON({
 				"page":page,
-				"rows" : rows,
-				"types" : [ORDER_SHAM]
+				"rows" : pageSize,
+				"types" : [ORDER_SHAM],
+				"userCompany":sUserCompany,
+				"realName":sRealName,
+				"indent_tele":sIndent_tele,
+				"beginTime":timeOld,
+				"endTime":timeNew,
+				"indentSource":sIndentSource
 			}));
 		},
 		
 		pagination:function(total){
+			$(".pagination").html('');
+			$(".pagination").initPage()
 			$(".pagination").createPage({
 				pageCount: Math.ceil(total / pageSize),
 				current: nowPage,
@@ -167,13 +188,13 @@ var orderIndex = {
 					nowPage = p;
 					var loadData = $('.active').attr('data-value');
 					if(loadData == 0){
-						orderIndex.readMore(p,nowPage);
+						orderIndex.readMore(nowPage);
 					}
 					if(loadData == 1){
-						orderIndex.readSub(p,nowPage);
+						orderIndex.readSub(nowPage);
 					}
 					if(loadData == 2){
-						orderIndex.readUnAle(p,nowPage);
+						orderIndex.readUnAle(nowPage);
 					}
 				}
 			});
@@ -190,9 +211,12 @@ var orderIndex = {
 				event.stopPropagation();
 			});
 			$('.oSelect li').off('click').on('click',function(){
+				 var id = $(this).attr('data-id');
 			   	 $(this).parent().parent().find('div').text($(this).text());
+			   	 $(this).parent().parent().find('div').attr('data-id',id);
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
+			   	 search();
 			   	 event.stopPropagation();
 			});
 			$('body').on('click',function(){
@@ -544,6 +568,71 @@ function showSuccess(){
 		$('#last3').text(initM--);
 	}
 }
+/**
+ * 初始化搜索
+ */
+function searchInit(){
+	var sUserCompany = document.getElementById('sUserCompany');
+	var sRealName = document.getElementById('sRealName');
+	var sIndent_tele = document.getElementById('sIndent_tele');
+	$(sUserCompany).on('keypress',function(event){ 
+        if(event.keyCode == 13)      
+        {  
+        	search();  
+        }  
+    });
+	$(sRealName).on('keypress',function(event){ 
+		if(event.keyCode == 13)      
+		{
+			search();
+		}  
+	});
+	$(sIndent_tele).on('keypress',function(event){ 
+		if(event.keyCode == 13)      
+		{  
+			search();  
+		}  
+	});
+}
 
-
-
+function search(){
+	nowPage = 1; 
+	// 信息收集 ---> 发起查询   --->加载结果
+	sUserCompany = $('#sUserCompany').val();
+	sRealName = $('#sRealName').val();
+	sIndent_tele = $('#sIndent_tele').val();
+	var ss = $('#sIndentSource').attr('data-id');
+	if(ss == null || ss == '' || ss == undefined)
+		sIndentSource = null;
+	else
+		sIndentSource = parseInt(ss);
+	timeOld = $('#timeOld').val();
+	timeNew = $('#timeNew').val();
+	
+	if(now_order == 0){
+		orderIndex.readMore(nowPage);
+	}
+	if(now_order == 1){
+		orderIndex.readSub(nowPage);
+	}
+	if(now_order == 2){
+		orderIndex.readUnAle(nowPage);
+	}
+	
+}
+function clearSearch(){
+	sUserCompany = '';
+	sRealName = '';
+	sIndent_tele = '';
+	sIndentSource = -1;
+	timeOld = '';
+	timeNew = '';
+	
+	$('#sUserCompany').val('');
+	$('#sRealName').val('');
+	$('#sIndent_tele').val('');
+	$('#sIndentSource').text('');
+	$('#sIndentSource').attr('data-id',-1);
+	$('#timeOld').val('');
+	$('#timeNew').val('');
+}
