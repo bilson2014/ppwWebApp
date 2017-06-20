@@ -251,6 +251,9 @@ var orderIndex = {
 			$('.headerSave').off('click').on('click',function(){
 				getNeedValue();
 			});
+			$('.cancleOrderList').off('click').on('click',function(){
+				$('.orderModel').hide();
+			});
 			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
 				$('#checkSureModel').show();
@@ -695,18 +698,18 @@ function initView(hasReques){
 }
 
 //回显需求表
-function ReShowView(item){
-	
+function ReShowView(item){	
 	var keys = item.result.requireJson;
 	var jsKeys = $.evalJSON(keys);
 	for (var int = 0; int < jsKeys.length; int++){
 		 var getKey =  jsKeys[int].key;
 		 var getValue =  jsKeys[int].value;
-		 setValueToNeedList(getKey,getValue);
+		 var getType =  jsKeys[int].type;
+		 setValueToNeedList(getKey,getValue,getType);
 	}
 }
 
-function setValueToNeedList(keys,values){
+function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      console.info(keys+values);
 	 for (var int = 0; int < rows.length; int++) {
@@ -721,35 +724,33 @@ function setValueToNeedList(keys,values){
 				 break;
 			 }
 			 if($(rows[int]).hasClass('Mult')){
-				 $(rows[int]).find('.optionItemMult').find('div').each(function(index){
+				 var lastIndex = values.length - 1;
+				 $(rows[int]).find('.optionItemMult').find('.itemDiv').each(function(index){
 	                    var thisDiv = $(this);
-	           		    var test = thisDiv.text();
-	           		    var test = values;
 					    if(thisDiv.text()==values[index]){
 					    	thisDiv.addClass('activeNeed');
 					    }
 					});
+				 if(type == 'input'){
+					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
+				  }
 				 break;
 			 }
-			 $(rows[int]).find('.optionItem').find('div').each(function(){
-                    var thisDiv = $(this);
-           		    var test = thisDiv.text();
-           		    var test = values;
-				    if(thisDiv.text()==values){
-				    	thisDiv.addClass('activeNeed');
+			 var nowItem = $(rows[int]).find('.optionItem').find('.itemDiv');
+			 for (var int = 0; int < nowItem.length; int++){
+				    if($(nowItem[int]).text()==values){
+				    	$(nowItem[int]).addClass('activeNeed');
 				    }
-				});
-			 break;
-		    }
+				 }
+			 if(type == 'input'){
+				 getNowItem.find('.optionItem').find('.other').addClass('activeNeed');
+				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(values);
+				 getNowItem.find('.optionItem').find('.otherInfo').show();
+			  }
+		}
 	 }
-}
-
-function getHsonLength(json){
-    var jsonLength=0;
-    for (var i in json) {
-        jsonLength++;
-    }
-    return jsonLength;
 }
 
 function buildSelect(obj,isMult){
@@ -774,7 +775,7 @@ function buildSelect(obj,isMult){
 				items.append('<div class="itemDiv" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
 				break;
 			case optionType.text:
-				items.append(option.text + '<div class="other itemDiv" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><input></div>');
+				items.append(option.text + '<div class="itemDiv other" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><input></div>');
 				break;
 			}
 		}
@@ -803,6 +804,10 @@ function initNeedEven(){
 		$(this).parent().find('.itemDiv').removeClass('activeNeed');
 		$(this).parent().parent().find('.otherInfo').hide();
 		$(this).addClass('activeNeed');
+		if($(this).hasClass('other')){
+		$(this).parent().parent().find('.otherInfo').show();
+		}
+		
 	});
 	$('.optionItemMult .itemDiv').off('click').on('click',function(){
 		if($(this).hasClass('activeNeed')){
@@ -810,9 +815,9 @@ function initNeedEven(){
 		}else{
 			$(this).addClass('activeNeed');
 		}
-	});
-	$('.other').off('click').on('click',function(){
-		$(this).parent().parent().find('.otherInfo').show();
+		if($(this).hasClass('other')){
+			$(this).parent().parent().find('.otherInfo').show();
+		}
 	});
 }
 var setData = new Array();
@@ -820,11 +825,13 @@ function getNeedValue(){
 	     var rows= $('.optionItem');
 		 for (var int = 0; int < rows.length; int++) {
 			 var getNowItem = $(rows[int]) ;
+			 var setType = '';
 			 if(getNowItem.find('.activeNeed')){
 				 itemValues = getNowItem.find('.activeNeed').text();
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
 				 itemValues =  $(rows[int]).find('input').val();
+				 setType = "input"
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val();
@@ -833,22 +840,24 @@ function getNeedValue(){
 				 itemValues=  $(rows[int]).find('textarea').val();
 			 }
 			  var itemId =  $(rows[int]).parent().attr('data-id')			
-			  setData.push(new optEntity(itemId, itemValues));
+			  setData.push(new optEntity(itemId,itemValues,setType));
 			}
 		 var rowsMult= $('.optionItemMult');
 		 for (var int = 0; int < rowsMult.length; int++) {
 			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
 			 var checkActive = $(rowsMult[int]).find('.activeNeed');
 			 var setMultData = new Array();
+			 var setType = '';
 			 for (var int = 0; int < checkActive.length; int++){
 				 if($(checkActive[int]).hasClass('other')){
 					var itemValues =  $(checkActive[int]).parent().find('input').val();
+					setType = "input"
 				 }else{
 					var itemValues =  $(checkActive[int]).text();
 				 }
 				  setMultData.push(itemValues);
 			     }
-			 setData.push(new optEntity(itemId, setMultData));
+			 setData.push(new optEntity(itemId, setMultData,setType));
 		} 
 		 $.ajax({
 			  type: 'POST',
@@ -871,9 +880,10 @@ function getNeedValue(){
 /**
  * key / value
  */
-function optEntity(key,value){
+function optEntity(key,value,type){
 	this.key = key;
 	this.value = value;
+	this.type = type;
 }
 function search(){
 	nowPage = 1; 
@@ -901,6 +911,7 @@ function search(){
 	
 }
 function clearSearch(){
+	
 	sUserCompany = '';
 	sRealName = '';
 	sIndent_tele = '';
