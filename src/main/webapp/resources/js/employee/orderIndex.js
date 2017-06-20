@@ -243,6 +243,7 @@ var orderIndex = {
 			});
 			$('.edit').off('click').on('click',function(){
 				$('.orderModel').show();
+				$('#indentId').attr('data-value', $(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
 				 initView(hasReques);
 			});
@@ -855,7 +856,7 @@ function getNeedValue(){
 			  data: {
 					"requireJson": $.toJSON(setData),
 					"requireFlag" : 0,
-					"indentId" : $('#indentId').text()
+					"indentId" : $('#indentId').attr('data-value')
 					},
 			  success: function (res) {
 				  if(res.errorCode == 200){
