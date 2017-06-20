@@ -131,7 +131,7 @@
            </div>
       </div>
       
-      <div class="modelPage">
+      <div class="modelPage" id="smodelPage">
            <div class="submitModel" >
                <div class="closeBtn"></div>
                <div class="submitTitle">订单提交信息验证</div>
@@ -143,15 +143,15 @@
                    <div class="title">客户信息</div>
                    <ul>
                       <li>联系人</li>
-                      <li>的名字</li>
+                      <li id="mprealName">的名字</li>
                       <li>联系电话</li>
-                      <li>18210367466</li>
+                      <li id="mpindent_tele">18210367466</li>
                       <li>公司名称</li>
-                      <li>什么什么的公司</li>
+                      <li id="mpuserCompany">什么什么的公司</li>
                    </ul>
                </div>
                <div class="sureBtn">
-			           <div class="btn-c-r" id="tModel">确定</div>
+			           <div class="btn-c-r" id="mptModel">确定</div>
 			           <div class="btn-c-g" id="cModel">取消</div>
 		       </div>
            </div>
