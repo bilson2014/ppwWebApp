@@ -6,6 +6,7 @@ var TimeFn = null;
 var pageSize = 20;
 var now_order = 0;
 var nowPage = 1;
+var LookList = 0;
 /**
  * 新订单
  */
@@ -245,12 +246,26 @@ var orderIndex = {
 				var hasReques = $(this).parent().find('.id').attr('data-value');
 				$('#indentId').attr('data-content',hasReques);
 				initView(hasReques);
+				$('.needBtn').show();
+				LookList = 0;
+			});
+			//查看需求文档
+			$('.LookNeedList').off('click').on('click',function(){
+				$('.orderModel').show();
+				var hasReques = $(this).parent().find('.id').attr('data-value');
+				$('#indentId').attr('data-content',hasReques);
+				initView(hasReques);
+				$('#needBtn').hide();
+				LookList = 1;
 			});
 			//需求保存
 			$('.headerSave').off('click').on('click',function(){
 				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('.cancleOrderList').off('click').on('click',function(){
+				$('.orderModel').hide();
+			});
+			$('.listHeader').off('click').on('click',function(){
 				$('.orderModel').hide();
 			});
 			$('#noReal').off('click').on('click',function(){
@@ -382,14 +397,14 @@ var orderIndex = {
 		createSubTable:function(obj){
 			var html = [
 			           ' <tr> ' ,
-		               '    <td class="id" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
+		               '    <td class="id" data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "":obj.realName) +'</td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="findInfo" data-id="'+obj.id +'"><div>查看</div></td>' ,
-		               '    <td class="cancle" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -535,7 +550,6 @@ function bangSelect(){
 //修改事件方法
 function editEvenFunction(item){
 	//初始化值
-	
 	var telName = item.result.realName;
 	var companyName = item.result.userCompany;
 	var teles = item.result.indent_tele;
@@ -649,8 +663,6 @@ function searchInit(){
 		}  
 	});
 }
-
-
 //需求文档
 var rowType = {
 		select : "select",
@@ -658,7 +670,6 @@ var rowType = {
 		textarea :"textarea",
 		multselect :"multselect"
 		};
-
 var optionType = {
 		checkbox:"checkbox",
 		text:"text"
@@ -715,6 +726,8 @@ function ReShowView(item){
 		 setValueToNeedList(getKey,getValue,getType);
 	}
 }
+
+//如果LookList=1 去除多余选项
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      console.info(keys+values);
@@ -723,10 +736,16 @@ function setValueToNeedList(keys,values,type){
 		 if($(rows[int]).attr('data-id')==keys){
 			 if($(rows[int]).hasClass('isData')){
 				 $(rows[int]).find('.optionItem').find('input').val(values);
+				 if(LookList == 1){
+					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
+				 }
 				 break;
 			 }
 			 if($(rows[int]).hasClass('isTextArea')){
 				 $(rows[int]).find('.optionItem').find('textarea').val(values);
+				 if(LookList == 1){
+					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
+			    	}
 				 break;
 			 }
 			 if($(rows[int]).hasClass('Mult')){
@@ -736,11 +755,19 @@ function setValueToNeedList(keys,values,type){
 					    if(thisDiv.text()==values[index]){
 					    	thisDiv.addClass('activeNeed');
 					    }
+					    else{
+					    	if(LookList == 1){
+					    		thisDiv.remove();
+					    	}
+					    }
 					});
 				 if(type == 'input'){
 					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
 					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
 					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
+					 if(LookList == 1){
+						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
+				    	}
 				  }
 				 break;
 			 }
@@ -748,12 +775,19 @@ function setValueToNeedList(keys,values,type){
 			 for (var int = 0; int < nowItem.length; int++){
 				    if($(nowItem[int]).text()==values){
 				    	$(nowItem[int]).addClass('activeNeed');
+				    }else{
+				    	if(LookList == 1){
+				    		$(nowItem[int]).remove();
+				    	}
 				    }
 				 }
 			 if(type == 'input'){
 				 getNowItem.find('.optionItem').find('.other').addClass('activeNeed');
 				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(values);
 				 getNowItem.find('.optionItem').find('.otherInfo').show();
+				 if(LookList == 1){
+					 getNowItem.find('.optionItem').find('.otherInfo').find('input').attr("readonly","readonly");
+			     }
 			  }
 		}
 	 }
@@ -978,14 +1012,12 @@ function submitOrder(){
 	}
 }
 function checkOrder(obj){
-	var tr = $(obj).parent();
-	
+	var tr = $(obj).parent();	
 	var userCompany = $(tr).find('.userCompany').text();
 	var realName = $(tr).find('.realName').text();
 	var indent_tele = $(tr).find('.indent_tele').text();
 	var indentSource = $(tr).find('.indentSource').attr('data-source');
 	var requireId = $(tr).find('.submit').attr('data-requireid');
-	
 	if(userCompany != '' && userCompany != null){
 		if(realName != '' && realName !=  null){
 			if(indent_tele != '' && indent_tele != null){
