@@ -64,7 +64,7 @@ var orderIndex = {
 			orderIndex.initOrderTitle();
 		},
 		initOrderTitle:function(){
-			$('.showStatus div').on('click',function(){
+			$('.showStatus div').off('click').on('click',function(){
 				if(!$(this).hasClass('orderNew')){
 					clearSearch();
 					$('.showStatus div').removeClass('active');
@@ -221,7 +221,7 @@ var orderIndex = {
 			   	 search();
 			   	 event.stopPropagation();
 			});
-			$('body').on('click',function(){
+			$('body').off('click').on('click',function(){
 				 $('.oSelect').slideUp();
 				 $('.orderSelect').removeClass('selectColor');
 				 event.stopPropagation();
@@ -232,46 +232,48 @@ var orderIndex = {
 			infoEven();
 		    //新建
 			orderNewEven();
-			$('.submit').on('click',function(){
+			$('.submit').off('click').on('click',function(){
 				$('#successModel').show();
+				var cc = checkOrder(this);
+				alert(cc);
 				InterValObj = window.setInterval(showSuccess, 1000);
 			});
-			$('.cancle').on('click',function(){
+			$('.cancle').off('click').on('click',function(){
 				$('#sureModel').show();
 			});
-			$('.edit').on('click',function(){
+			$('.edit').off('click').on('click',function(){
 				$('.orderModel').show();
 				var hasReques = $(this).parent().find('.id').attr('data-value');
 				 initView(hasReques);
 			});
 			//需求保存
-			$('.headerSave').on('click',function(){
-				  getNeedValue();
+			$('.headerSave').off('click').on('click',function(){
+				getNeedValue();
 			});
-			$('#noReal').on('click',function(){
+			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
 				$('#checkSureModel').show();
 				$('#setColor').removeClass('greenColor');
 				$('#setColor').addClass('redColor');
 				$('#setColor').text('虚假');
 			});
-			$('#real').on('click',function(){
+			$('#real').off('click').on('click',function(){
 				$('.modelPage').hide();
 				$('#checkSureModel').show();
 				$('#setColor').removeClass('redColor');
 				$('#setColor').addClass('greenColor');
 				$('#setColor').text('真实');
 			});			
-			$('.closeBtn').on('click',function(){
+			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
 			});
-			$('.descBot').on('click',function(){
+			$('.descBot').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
 			});
 			
-			$('.btnDiv btn-c-g').on('orderModel',function(){
+			$('.btnDiv btn-c-g').off('click').on('orderModel',function(){
 				$('.modelPage').hide();
 			});
 		},
@@ -350,7 +352,8 @@ var orderIndex = {
 				name = '复购';
 			}
 			
-			var setName ='<td>'+name +'</td>' ;
+			var setName ='<td class="indentSource">'+name +'</td>' ;
+			var ok = checkOrder(obj);
 			var html = [
 			           ' <tr> ' ,
 		               '    <td class="id" data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
@@ -361,7 +364,7 @@ var orderIndex = {
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "--":obj.orderDate) +'</td>' ,
 		               '    <td class="info" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="edit" data-id="'+obj.id +'"><div></div></td>' ,
-		               '    <td class="submit" data-id="'+obj.id +'"><div></div></td>' ,
+		               '    <td class="submit" data-requireid="'+obj.requireId+'" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="cancle" data-id="'+obj.id +'"><div></div></td>' ,
 		               ' </tr>' ,
 			].join('');
@@ -468,7 +471,7 @@ function orderNewEven(){
 function newOrderEven(check,item){
 	$('#NewOrder').show();
 	$('#showHelper').hide();
-	$('#orderCome li').on('click',function(e){
+	$('#orderCome li').off('click').on('click',function(e){
 		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-value')));
 	  	if($(this).hasClass('showHelper')){
 	   		$('#showHelper').show();
@@ -616,19 +619,19 @@ function searchInit(){
 	var sUserCompany = document.getElementById('sUserCompany');
 	var sRealName = document.getElementById('sRealName');
 	var sIndent_tele = document.getElementById('sIndent_tele');
-	$(sUserCompany).on('keypress',function(event){ 
+	$(sUserCompany).off('click').on('keypress',function(event){ 
         if(event.keyCode == 13)      
         {  
         	search();  
         }  
     });
-	$(sRealName).on('keypress',function(event){ 
+	$(sRealName).off('click').on('keypress',function(event){ 
 		if(event.keyCode == 13)      
 		{
 			search();
 		}  
 	});
-	$(sIndent_tele).on('keypress',function(event){ 
+	$(sIndent_tele).off('click').on('keypress',function(event){ 
 		if(event.keyCode == 13)      
 		{  
 			search();  
@@ -795,19 +798,19 @@ function buildTextarea(obj){
 	return html;
 }
 function initNeedEven(){
-	$('.optionItem .itemDiv').on('click',function(){
+	$('.optionItem .itemDiv').off('click').on('click',function(){
 		$(this).parent().find('.itemDiv').removeClass('activeNeed');
 		$(this).parent().parent().find('.otherInfo').hide();
 		$(this).addClass('activeNeed');
 	});
-	$('.optionItemMult .itemDiv').on('click',function(){
+	$('.optionItemMult .itemDiv').off('click').on('click',function(){
 		if($(this).hasClass('activeNeed')){
 			$(this).removeClass('activeNeed');
 		}else{
 			$(this).addClass('activeNeed');
 		}
 	});
-	$('.other').on('click',function(){
+	$('.other').off('click').on('click',function(){
 		$(this).parent().parent().find('.otherInfo').show();
 	});
 }
@@ -913,3 +916,29 @@ function clearSearch(){
 	$('#timeNew').val('');
 }
 
+function submitOrder(){
+	
+}
+function checkOrder(obj){
+	var tr = $(obj).parent();
+	
+	var userCompany = $(tr).find('.userCompany').text();
+	var realName = $(tr).find('.realName').text();
+	var indent_tele = $(tr).find('.indent_tele').text();
+	var indentSource = $(tr).find('.indentSource').attr('data-source');
+	var requireId = $(tr).find('.submit').attr('data-requireid');
+	
+	if(userCompany != '' && userCompany != null){
+		if(realName != '' && realName !=  null){
+			if(indent_tele != '' && indent_tele != null){
+				if(indentSource != null && indentSource > 0){
+					if(requireId != null && requireId > 0){
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+	
+}

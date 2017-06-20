@@ -550,12 +550,12 @@
 							<td class="userCompany"><c:out value="${item.userCompany }"/></td>
 							<td class="realName"><c:out value="${item.realName }"/></td>
 							<td class="indent_tele"><c:out value="${item.indent_tele }"/></td>
-							<td >
+							<td class="indentSource" data-source = ${item.indentSource }>
 							          <c:if test="${item.indentSource == 1}">
-							                               线上-网站
+							                           线上-网站
 							          </c:if>
 							          <c:if test="${item.indentSource == 2}">
-							                             线上-活动
+							                            线上-活动
 							          </c:if>
 							          <c:if test="${item.indentSource == 3}">
 							                            线上-新媒体 
@@ -567,19 +567,19 @@
 							                           线下-直销
 							          </c:if>
 							          <c:if test="${item.indentSource == 6}">
-							                          线下-活动
+							                           线下-活动
 							          </c:if>
 							          <c:if test="${item.indentSource == 7}">
-							                          线下-渠道
+							                           线下-渠道
 							          </c:if>
 							          <c:if test="${item.indentSource == 8}">
-							                             复购
+							                           复购
 							          </c:if>
 							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>
 							<td class="info"><div></div></td>
 							<td class="edit"><div></div></td>
-							<td class="submit"><div></div></td>
+							<td class="submit sbtn" data-requireId="${item.requireId }"><div></div></td>
 							<td class="cancle"><div></div></td>
 						</tr>
 					</c:forEach>
