@@ -1,15 +1,14 @@
 @import "common";
 @import "buttons";
 @import "video";
-
-.orderModel{
+.orderModel {
     width: 100%;
     height: 100%;
-    background:rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     position: absolute;
-    top:0;
-    left:0;
-    z-index:15;
+    top: 0;
+    left: 0;
+    z-index: 15;
     display: none;
 }
 
@@ -54,10 +53,19 @@
         text-align: center;
         line-height: 36px;
     }
+    .closeBtn {
+        width: 12px;
+        height: 12px;
+        background: url(/resources/images/common/close.png) no-repeat;
+        position: absolute;
+        right: 30px;
+        top: 25px;
+        cursor: pointer;
+    }
 }
 
 .listTitle {
-    padding-top:100px;
+    padding-top: 100px;
     font-size: $font-size-lgest;
     color: $gray-dark;
     font-weight: bold;
@@ -148,7 +156,7 @@
         border-radius: 4px;
         display: inline-block;
         vertical-align: top;
-        color:white;
+        color: white;
     }
     div:nth-child(1) {
         margin-right: 10px;

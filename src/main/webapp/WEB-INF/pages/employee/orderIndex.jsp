@@ -368,9 +368,6 @@
             </div>
       </div>
       
-      
-      
-      
       <div class="modelPage" id="userInfo">
               <div class="findInfo">
                     <div class="closeBtn"></div>
