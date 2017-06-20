@@ -3,7 +3,6 @@
 
 
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<spring:url value="/resources/js/order/orderList.js" var="orderListJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 
 <!DOCTYPE html>
@@ -37,137 +36,14 @@
             
             <div class="listTItleE">Client Briefing Document</div>
             <div id="setListInfo">
-            <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                 </div>
-            </div>
-            <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-             <div class="qItem">
-                 <div class="qTitle">1、阿达大大三大</div>
-                 <div class="nameItem">啥啥啥啥</div>
-                 <div class="optionItem">
-                     <div class="active">内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div>内容</div>
-                     <div class="other">其它</div>
-                 </div>
-                 <div class="otherInfo">
-                 <input>
-                 </div>
-            </div>
-            <div class="btnDiv">
-                <div class="btn-c-g">取消</div>
-                <div class="btn-c-r">保存</div>
-            </div>
+	            <div class="btnDiv">
+	                <div class="btn-c-g">取消</div>
+	                <div class="btn-c-r">保存</div>
+	            </div>
             </div>
        </div> 
       </div> 
     <script type="text/javascript" src="${jqueryJs}"></script>
-    <script type="text/javascript" src="${orderListJs}"></script>
 </body>
 
 </html>
