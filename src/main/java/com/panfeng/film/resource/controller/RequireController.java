@@ -103,7 +103,7 @@ public class RequireController extends BaseController {
 			PmsRequire require = pmsRequireFacade.getRequireInfo(requireId);
 			model.addAttribute("require", require);
 		}
-		return new ModelAndView("/standardized/requireForm", model);
+		return new ModelAndView("/employee/orderIndex", model);
 	}
 
 	@RequestMapping("/require/config")
@@ -114,5 +114,4 @@ public class RequireController extends BaseController {
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
 	}
-
 }
