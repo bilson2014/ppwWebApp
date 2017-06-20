@@ -491,8 +491,7 @@ function newOrderEven(check,item){
 	});
 	$('#cancleEdit').off('click').on('click',function(){	
 		$('#NewOrder').hide();
-	});
-	
+	});	
 	initUpdateInfo();
 	//填充联系人
 	loadData(function (res){
@@ -547,6 +546,8 @@ function editEvenFunction(item){
 	$('#teles').val(teles);
 	var orderC = $('#orderCome li');
 	for (var int = 0; int < orderC.length; int++) {
+		var num = $(orderC[int]).attr('data-value');
+		var name = $(orderC[int]).text();
 		if(num == item.result.indentSource){
 			$('#orderComeInfo').text(name);
 			$('#orderComeInfo').attr('data-value',num);
@@ -559,7 +560,6 @@ function editEvenFunction(item){
 	for (var int = 0; int < orderCPeople.length; int++) {
 		var num = $(orderCPeople[int]).attr('data-value');
 		var name = $(orderCPeople[int]).text();
-		var nn =  item.result.referrerId;
 		if(num == item.result.referrerId){
 			$('#orderP').text(name);
 			$('#orderP').attr('data-value',num);
@@ -715,7 +715,6 @@ function ReShowView(item){
 		 setValueToNeedList(getKey,getValue,getType);
 	}
 }
-
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      console.info(keys+values);
@@ -760,8 +759,7 @@ function setValueToNeedList(keys,values,type){
 	 }
 }
 
-function buildSelect(obj,isMult){
-	
+function buildSelect(obj,isMult){	
 	if(isMult == 1){
 		var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
 		html.append('<div class="qTitle">'+obj.title+'</div>');
