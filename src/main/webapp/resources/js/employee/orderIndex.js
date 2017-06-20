@@ -232,12 +232,7 @@ var orderIndex = {
 			infoEven();
 		    //新建
 			orderNewEven();
-			$('.submit').off('click').on('click',function(){
-				$('#successModel').show();
-				var cc = checkOrder(this);
-				alert(cc);
-				InterValObj = window.setInterval(showSuccess, 1000);
-			});
+			$('.submit').off('click').on('click',submitOrder);
 			$('.cancle').off('click').on('click',function(){
 				$('#sureModel').show();
 			});
@@ -275,6 +270,7 @@ var orderIndex = {
 			$('.descBot').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
+				refresh();
 			});
 			
 			$('.btnDiv btn-c-g').off('click').on('orderModel',function(){
@@ -356,8 +352,7 @@ var orderIndex = {
 				name = '复购';
 			}
 			
-			var setName ='<td class="indentSource">'+name +'</td>' ;
-			var ok = checkOrder(obj);
+			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
 		               '    <td class="id" data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
@@ -609,9 +604,10 @@ function submitSaveOrCreate(check,item){
 function showSuccess(){
 	if (initM < 0) {
 		$('#last3').text('0');
-		clearInterval(successIntervalObj);
+		clearInterval(InterValObj);
 		$('#successModel').hide();
 		initM = 3;
+		refresh();
 	} else {
 		$('#last3').text(initM--);
 	}
@@ -929,7 +925,23 @@ function clearSearch(){
 }
 
 function submitOrder(){
-	
+	var ok = checkOrder(this);
+	if(ok){
+		var tr = $(this).parent();
+		var id = $(tr).find('.id').text().trim();
+		loadData(function(msg){
+			if(msg.code == 200){
+				$('#successModel').show();
+				InterValObj = window.setInterval(showSuccess, 1000);
+			}else{
+				alert('提交失败');
+			}
+		}, getContextPath()+'/order/submit', $.toJSON({
+			id : id
+		}));
+	}else{
+		alert('请补全信息！');
+	}
 }
 function checkOrder(obj){
 	var tr = $(obj).parent();
@@ -952,5 +964,16 @@ function checkOrder(obj){
 		}
 	}
 	return false;
-	
+}
+
+function refresh(){
+	if(now_order == 0){
+		orderIndex.readMore(nowPage);
+	}
+	if(now_order == 1){
+		orderIndex.readSub(nowPage);
+	}
+	if(now_order == 2){
+		orderIndex.readUnAle(nowPage);
+	}
 }
