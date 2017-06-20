@@ -82,6 +82,22 @@ public class RequireController extends BaseController {
 		return baseMsg;
 	}
 
+	@RequestMapping("/require/update")
+	public BaseMsg updateRequire(PmsRequire require) {
+		BaseMsg baseMsg = new BaseMsg();
+		PmsRequire requireInfo = pmsRequireFacade.getRequireInfo(require.getRequireId());
+		requireInfo.setRequireJson(require.getRequireJson());
+		long update = pmsRequireFacade.update(requireInfo);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("更新成功");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("更新失败！");
+		}
+		return baseMsg;
+	}
+
 	@RequestMapping("/require/info")
 	public BaseMsg requireView(Long indentId, Long requireId) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -93,7 +109,7 @@ public class RequireController extends BaseController {
 			PmsRequire require = pmsRequireFacade.getRequireInfo(requireId);
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setResult(require);
-		}else{
+		} else {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("需求信息不存在！");
 		}
