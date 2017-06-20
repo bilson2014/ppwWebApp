@@ -248,10 +248,16 @@ var orderIndex = {
 			});
 			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
-				$('#checkSureModel').show();
-				$('#setColor').removeClass('greenColor');
-				$('#setColor').addClass('redColor');
-				$('#setColor').text('虚假');
+//				$('#checkSureModel').show();
+//				$('#setColor').removeClass('greenColor');
+//				$('#setColor').addClass('redColor');
+//				$('#setColor').text('虚假');
+				var id = $(this).parent().find('.id').text();
+				loadData(function(res){
+					refresh();
+				}, getContextPath() + '/order/shamOrder', $.toJSON({
+					id : id
+				}));
 			});
 			$('#real').off('click').on('click',function(){
 				$('.modelPage').hide();
