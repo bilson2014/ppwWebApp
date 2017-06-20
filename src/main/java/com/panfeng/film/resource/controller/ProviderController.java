@@ -511,7 +511,6 @@ public class ProviderController extends BaseController {
 			final long fileSize = file.getSize(); // 上传文件大小
 			final long maxSize = Long.parseLong(PublicConfig.IMAGE_MAX_SIZE);
 			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
-
 			if (fileSize > maxSize * 1024) {
 				// 文件大小超出规定范围
 				SessionInfo sessionInfo = getCurrentInfo(request);

@@ -206,7 +206,9 @@ var orderIndex = {
 				if($(this).hasClass('selectColor')){
 					$('.oSelect').slideUp();
 					$(this).removeClass('selectColor');
-				}else{
+				}
+				else
+				{
 					$(this).find('.oSelect').slideDown();
 					$(this).addClass('selectColor');
 				}
@@ -238,13 +240,15 @@ var orderIndex = {
 			});
 			$('.edit').off('click').on('click',function(){
 				$('.orderModel').show();
+				$('#setErrorList').hide();
 				$('#indentId').attr('data-value', $(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
-				 initView(hasReques);
+				$('#indentId').attr('data-content',hasReques);
+				initView(hasReques);
 			});
 			//需求保存
 			$('.headerSave').off('click').on('click',function(){
-				getNeedValue();
+				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('.cancleOrderList').off('click').on('click',function(){
 				$('.orderModel').hide();
@@ -472,6 +476,7 @@ function newOrderEven(check,item){
 	$('#showHelper').hide();
 	$('#orderCome li').off('click').on('click',function(e){
 		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-value')));
+		$(this).parent().parent().find('div').text(($(this).text()));
 	  	if($(this).hasClass('showHelper')){
 	   		$('#showHelper').show();
 	   	 }else{
@@ -516,7 +521,7 @@ function bangSelect(){
 	});
 	$('#orderComePeople li').off('click').on('click',function(){
 	   	 $(this).parent().parent().find('div').text($(this).text());
-	   	$(this).parent().parent().find('div').attr('data-value',$(this).attr('data-value'));
+	   	 $(this).parent().parent().find('div').attr('data-value',$(this).attr('data-value'));
 	   	 $(this).parent().slideUp();
 	   	 $('.orderSelect').removeClass('selectColor');
 	   	 event.stopPropagation();
@@ -817,11 +822,13 @@ function initNeedEven(){
 	});
 }
 var setData = new Array();
-function getNeedValue(){
+function getNeedValue(requireId){
 	     var rows= $('.optionItem');
+	     var isCheck = true;
 		 for (var int = 0; int < rows.length; int++) {
 			 var getNowItem = $(rows[int]) ;
 			 var setType = '';
+			 var itemValues = '';
 			 if(getNowItem.find('.activeNeed')){
 				 itemValues = getNowItem.find('.activeNeed').text();
 			 }
@@ -835,7 +842,10 @@ function getNeedValue(){
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 				 itemValues=  $(rows[int]).find('textarea').val();
 			 }
-			  var itemId =  $(rows[int]).parent().attr('data-id')			
+			  var itemId =  $(rows[int]).parent().attr('data-id')
+			  if(itemValues == ""||itemValues == null){
+				  isCheck = false;
+			  }
 			  setData.push(new optEntity(itemId,itemValues,setType));
 			}
 		 var rowsMult= $('.optionItemMult');
@@ -851,26 +861,46 @@ function getNeedValue(){
 				 }else{
 					var itemValues =  $(checkActive[int]).text();
 				 }
+				  if(itemValues == ""||itemValues == null){
+					  isCheck = false;
+				  }
 				  setMultData.push(itemValues);
 			     }
 			 setData.push(new optEntity(itemId, setMultData,setType));
 		} 
-		 $.ajax({
-			  type: 'POST',
-			  url: getContextPath() + '/require/save',
-			  data: {
-					"requireJson": $.toJSON(setData),
-					"requireFlag" : 0,
-					"indentId" : $('#indentId').attr('data-value')
-					},
-			  success: function (res) {
-				  if(res.errorCode == 200){
-					  console.info(res.errorMsg);
-				  }else{
-					  console.info(res.errorMsg);
+		 
+		 if(isCheck){
+		 if(requireId!=null&&requireId!=""){
+			 $.ajax({
+				  type: 'POST',
+				  url: getContextPath() + ' /require/update',
+				  data: {
+					    "requireId":requireId,
+						"requireJson":$.toJSON(setData),
+						},
+				  success: function (res) {
+						  $('.orderModel').hide();
+						  refresh();
 				  }
-			  }
-		});		 
+			});	
+		 }else{
+			 $.ajax({
+				  type: 'POST',
+				  url: getContextPath() + '/require/save',
+				  data: {
+						"requireJson": $.toJSON(setData),
+						"requireFlag" : 0,
+						"indentId" : $('#indentId').attr('data-value')
+						},
+				  success: function (res) {
+					  $('.orderModel').hide();
+					  refresh();
+				  }
+			});				 
+		 }
+		}else{
+			$('#setErrorList').show();
+		}
 }
 
 /**

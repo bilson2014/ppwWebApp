@@ -107,19 +107,19 @@
 				<c:forEach items="${caseList.rows }" var="tag">
 					<a href='/play/${tag.product.teamId }_${tag.productId }.html'>
 						<div class="listCard">
-			             <div class="imgContent">
-			               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}" />
-			             </div>
-			             <div class="cardContent">
-			                    <div class="contentTitle">${tag.pName}</div>
-						        <div class="contentContent">
-						                <%--  <div>客户   :  <span>${tag.user.userName}</span></div> --%>
-						                 <div>时长   :  <span>${tag.mcoms}秒</span></div>
-						                 <div>周期   :  <span>${tag.pProductionCycle}天</span></div>
-						                 <div>应用场景   :  <span>${tag.pScene}</span></div>
-						                 <div class="contentDes">${tag.customerRestimonial}</div>
-						        </div>
-			              </div>
+				             <div class="imgContent">
+				               	  <img src="${file_locate_storage_path }${tag.product.picLDUrl}" />
+				             </div>
+				             <div class="cardContent">
+				                    <div class="contentTitle">${tag.pName}</div>
+							        <div class="contentContent">
+							                <%--  <div>客户   :  <span>${tag.user.userName}</span></div> --%>
+							                 <div>时长   :  <span>${tag.mcoms}秒</span></div>
+							                 <div>周期   :  <span>${tag.pProductionCycle}天</span></div>
+							                 <div>应用场景   :  <span>${tag.pScene}</span></div>
+							                 <div class="contentDes">${tag.customerRestimonial}</div>
+							        </div>
+				              </div>
 						</div>
 					</a>
 				</c:forEach>
