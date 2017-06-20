@@ -16,7 +16,5 @@ var orderList = {
 			$('.other').on('click',function(){
 				$(this).parent().parent().find('.otherInfo').show();
 			});
-			
-			
 		},
 };

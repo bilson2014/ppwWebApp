@@ -599,13 +599,11 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 		roleImgUrl = "/resources/images/play/rolePlay.png";
 		isHide = '';
 	}
-	
-	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
+	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
 	if(numFlag == 4){
 		htmlAdd = "";
 	}
-	
 	var html = [
 	    	    '<div class="swiper-slide noInfoCard">',
 	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',

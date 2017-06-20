@@ -66,13 +66,13 @@ body {
         border-top-left-radius: 100px;
         border-bottom-left-radius: 100px;
     }
-    div:last-child{
+    div:last-child {
         border-top-right-radius: 100px;
         border-bottom-right-radius: 100px;
-        border:none;
+        border: none;
         border-left: 2px solid white;
         position: absolute;
-        right:5px;
+        right: 5px;
     }
 }
 
@@ -260,7 +260,7 @@ th {
     width: 80%;
     margin: 0 auto;
     font-size: 0;
-    margin-top: 40px;
+    padding-top: 20px;
     .qTitle {
         font-size: $font-size-base;
         color: $gray-dark;
@@ -285,23 +285,28 @@ th {
         padding-left: 20px;
         display: none;
         input {
-            width: 100%;
+            width: 100% !important;
             font-size: $font-size-base;
-            color: $red-base;
-            border: none;
-            border-bottom: 1px solid $border-line;
-            margin-top: 30px;
+            color: $red-base !important;
+            border-radius: 0!important;
+            border:none !important;
+            border-bottom: 1px solid $border-line !important;
+            margin-top: 10px;
             outline: none;
+            margin-left: 0 !important;
+            text-align: left !important;
         }
     }
-    .optionItem {
+    .optionItem,.optionItemMult {
         padding-left: 10px;
-        .active {
-            border: 1px solid $red-base;
+        .activeNeed {
+            border: 1px solid $red-base !important;
             background: $red-base;
-            color: white;
+            color: white !important;
         }
-        div {
+        .itemDiv,
+        input,
+        textarea {
             margin-top: 20px;
             width: 140px;
             height: 36px;
@@ -314,6 +319,14 @@ th {
             display: inline-block;
             vertical-align: top;
             margin-left: 10px;
+            outline: none;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px !important;
+            text-align: left !important;
         }
     }
 }

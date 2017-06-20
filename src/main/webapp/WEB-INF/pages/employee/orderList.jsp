@@ -29,11 +29,14 @@
       <div class="orderModel">
        <div class="orderList">
             <div class="listHeader">
-                 <div class="orderNum">订单编号<span>111232</span></div>
+                 <div class="orderNum" id="indentId">订单编号<span></span></div>
                  <div class="headerSave btn-c-r">保存</div>
             </div>
             <div class="listTitle">客户需求调查问卷</div>
+            
+            
             <div class="listTItleE">Client Briefing Document</div>
+            <div id="setListInfo">
             <div class="qItem">
                  <div class="qTitle">1、阿达大大三大</div>
                  <div class="optionItem">
@@ -159,6 +162,7 @@
             <div class="btnDiv">
                 <div class="btn-c-g">取消</div>
                 <div class="btn-c-r">保存</div>
+            </div>
             </div>
        </div> 
       </div> 
