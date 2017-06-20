@@ -97,7 +97,9 @@ public class RequireController extends BaseController {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("需求信息不存在！");
 		}
+
 		return baseMsg;
+
 	}
 
 	@RequestMapping("/require/config")
@@ -108,5 +110,4 @@ public class RequireController extends BaseController {
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
 	}
-
 }

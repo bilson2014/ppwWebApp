@@ -725,7 +725,7 @@ function buildDatepicker(obj){
 	return html;
 }
 function buildTextarea(obj){
-	var html = $('<div class="qItem" data-id="'+obj.id+'"></div>');
+	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
 	html.append(items);
@@ -765,9 +765,6 @@ function getNeedValue(){
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 				 itemValues=  $(rows[int]).find('textarea').val();
 			 }
-
-//			  console.info("id"+itemId);
-//			  console.info(itemValues);
 			  var itemId =  $(rows[int]).parent().attr('data-id')			
 			  setData.push(new optEntity(itemId, itemValues));
 			}
@@ -782,20 +779,17 @@ function getNeedValue(){
 				 }else{
 					var itemValues =  $(checkActive[int]).text();
 				 }
-				  console.info("id"+itemId);
-				  console.info(itemValues);
-				  setMultData.push(new optEntity(itemId, itemValues));
+				  setMultData.push(itemValues);
 			     }
-			 setData.push(setMultData);
+			 setData.push(new optEntity(itemId, setMultData));
 		} 
-		 
 		 $.ajax({
 			  type: 'POST',
 			  url: getContextPath() + '/require/save',
-			  data: {"indentId":indentId,
+			  data: {
 					"requireJson": $.toJSON(setData),
 					"requireFlag" : 0,
-					"indentId" : $('#indentId').val()
+					"indentId" : $('#indentId').text()
 					},
 			  success: function (res) {
 				  if(res.errorCode == 200){
