@@ -234,7 +234,10 @@ var orderIndex = {
 			orderNewEven();
 			$('.submit').off('click').on('click',submitOrder);
 			$('.cancle').off('click').on('click',function(){
+				var id = $(this).parent().find('.id').text();
 				$('#sureModel').show();
+				var noReal = $('#sureModel').find('#noReal');
+				$(noReal).attr('data-id',id);
 			});
 			$('.edit').off('click').on('click',function(){
 				$('.orderModel').show();
@@ -255,7 +258,7 @@ var orderIndex = {
 //				$('#setColor').removeClass('greenColor');
 //				$('#setColor').addClass('redColor');
 //				$('#setColor').text('虚假');
-				var id = $(this).parent().find('.id').text();
+				var id = $(this).attr('data-id');
 				loadData(function(res){
 					refresh();
 				}, getContextPath() + '/order/shamOrder', $.toJSON({
@@ -292,7 +295,7 @@ var orderIndex = {
 		             '      <th>联系电话</th>   ',
 		             '      <th>订单来源</th>   ',
 		             '      <th>下单时间</th>   ',
-		             '      <th>客户信息</th>   ',
+		             '      <th>编辑订单</th>   ',
 		             '      <th>编辑</th>       ',
 		             '      <th>提交</th>       ',
 		             '      <th>作废</th>       ',
@@ -384,13 +387,14 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfo" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="findInfo" data-id="'+obj.id +'"><div onclick="">查看</div></td>' ,
 		               '    <td class="cancle" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
 		},
 		createUnableTable:function(obj){
+			var vv = obj.indentType == 6 ?'虚假':'真实';
 			var html = [
 			           ' <tr> ' ,
 		               '    <td class="id" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
@@ -401,7 +405,7 @@ var orderIndex = {
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="findInfo" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
-			             '         <div data-value="" class="true">真实</div>         ',
+			             '         <div data-value="'+obj.indentType+'" class="true">'+vv+'</div>         ',
 			             '         <img src="/resources/images/orderManager/select.png">             ',
 			             '         <ul class="oSelect">                        ',
 			             '               <li data-value="1">真实</li>                  ',
@@ -931,20 +935,29 @@ function clearSearch(){
 }
 
 function submitOrder(){
+	// 验证完整性
 	var ok = checkOrder(this);
+	var tr = $(this).parent();
 	if(ok){
-		var tr = $(this).parent();
-		var id = $(tr).find('.id').text().trim();
-		loadData(function(msg){
-			if(msg.code == 200){
-				$('#successModel').show();
-				InterValObj = window.setInterval(showSuccess, 1000);
+		var indent_tele = $(tr).find('.indent_tele').text();
+		// 验证用户是否重复
+		loadData(function(ssr){
+			if(ssr.errorCode == 200){
+				var id = $(tr).find('.id').text().trim();
+				loadData(function(msg){
+					if(msg.code == 200){
+						$('#successModel').show();
+						InterValObj = window.setInterval(showSuccess, 1000);
+					}else{
+						alert('提交失败');
+					}
+				}, getContextPath()+'/order/submit', $.toJSON({
+					id : id
+				}));
 			}else{
-				alert('提交失败');
+				alert('用户冲突');
 			}
-		}, getContextPath()+'/order/submit', $.toJSON({
-			id : id
-		}));
+		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
 	}else{
 		alert('请补全信息！');
 	}
@@ -982,4 +995,8 @@ function refresh(){
 	if(now_order == 2){
 		orderIndex.readUnAle(nowPage);
 	}
+}
+
+function updateUser(){
+	
 }
