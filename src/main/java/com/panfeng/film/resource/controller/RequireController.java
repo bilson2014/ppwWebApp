@@ -84,26 +84,24 @@ public class RequireController extends BaseController {
 		return baseMsg;
 	}
 
-	/**
-	 * 跳转需求表单页。新增和修改和查看 这代码只有老天懂
-	 * 
-	 * @param indentId
-	 * @param requireId
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/require")
-	public ModelAndView requireView(Long indentId, Long requireId, ModelMap model) {
-		model.addAttribute("indentId", indentId);
+	@RequestMapping("/require/info")
+	public BaseMsg requireView(Long indentId, Long requireId) {
+		BaseMsg baseMsg = new BaseMsg();
 		if (!ValidateUtil.isValid(requireId)) {
 			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
 			requireId = indent.getRequireId();
 		}
 		if (ValidateUtil.isValid(requireId)) {
 			PmsRequire require = pmsRequireFacade.getRequireInfo(requireId);
-			model.addAttribute("require", require);
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setResult(require);
+		}else{
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("需求信息不存在！");
 		}
-		return new ModelAndView("/employee/orderIndex", model);
+
+		return baseMsg;
+
 	}
 
 	@RequestMapping("/require/config")
