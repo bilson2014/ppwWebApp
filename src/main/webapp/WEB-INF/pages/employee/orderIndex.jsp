@@ -546,7 +546,7 @@
  		       <c:if test="${ ! empty indentList.rows }">
 					<c:forEach items="${indentList.rows }" var="item" varStatus="status">
 						<tr>
-							<td class="id" data-indentName = "${item.indentName }"><c:out value="${item.id }"/></td>
+							<td class="id" data-value="${item.requireId}" data-indentName = "${item.indentName }"><c:out value="${item.id }"/></td>
 							<td class="userCompany"><c:out value="${item.userCompany }"/></td>
 							<td class="realName"><c:out value="${item.realName }"/></td>
 							<td class="indent_tele"><c:out value="${item.indent_tele }"/></td>

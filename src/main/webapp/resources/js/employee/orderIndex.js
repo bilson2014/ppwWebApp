@@ -241,12 +241,12 @@ var orderIndex = {
 			});
 			$('.edit').on('click',function(){
 				$('.orderModel').show();
-				$('#indentId').text($(this).parent().find('.id').text());
-				 initView();
+				var hasReques = $(this).parent().find('.id').attr('data-value');
+				 initView(hasReques);
 			});
 			//需求保存
 			$('.headerSave').on('click',function(){
-				getNeedValue();
+				  getNeedValue();
 			});
 			$('#noReal').on('click',function(){
 				$('.modelPage').hide();
@@ -353,7 +353,7 @@ var orderIndex = {
 			var setName ='<td>'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
-		               '    <td class="id" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
+		               '    <td class="id" data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "--":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "--":obj.realName) +'</td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "--":obj.indent_tele) +'</td>' ,
@@ -649,7 +649,7 @@ var optionType = {
 		checkbox:"checkbox",
 		text:"text"
 		};
-function initView(){
+function initView(hasReques){
 	var view = $('#setListInfo');
 	view.html('');
 	syncLoadData(function (res){
@@ -681,17 +681,83 @@ function initView(){
 				dateFormat:'yyyy-MM-dd' 
 			});
 			initNeedEven();
+			if(hasReques !=null && hasReques!=''){
+				loadData(function (getRes){
+					      ReShowView(getRes);
+				}, getContextPath() + '/require/info?requireId='+hasReques,null);
+			}
 		}
 	}, getContextPath() + '/require/config', null);
 }
 
+//回显需求表
+function ReShowView(item){
+	
+	var keys = item.result.requireJson;
+	var jsKeys = $.evalJSON(keys);
+	for (var int = 0; int < jsKeys.length; int++){
+		 var getKey =  jsKeys[int].key;
+		 var getValue =  jsKeys[int].value;
+		 setValueToNeedList(getKey,getValue);
+	}
+}
+
+function setValueToNeedList(keys,values){
+     var rows= $('.qItem');
+     console.info(keys+values);
+	 for (var int = 0; int < rows.length; int++) {
+		 var getNowItem = $(rows[int]);
+		 if($(rows[int]).attr('data-id')==keys){
+			 if($(rows[int]).hasClass('isData')){
+				 $(rows[int]).find('.optionItem').find('input').val(values);
+				 break;
+			 }
+			 if($(rows[int]).hasClass('isTextArea')){
+				 $(rows[int]).find('.optionItem').find('textarea').val(values);
+				 break;
+			 }
+			 if($(rows[int]).hasClass('Mult')){
+				 $(rows[int]).find('.optionItemMult').find('div').each(function(index){
+	                    var thisDiv = $(this);
+	           		    var test = thisDiv.text();
+	           		    var test = values;
+					    if(thisDiv.text()==values[index]){
+					    	thisDiv.addClass('activeNeed');
+					    }
+					});
+				 break;
+			 }
+			 $(rows[int]).find('.optionItem').find('div').each(function(){
+                    var thisDiv = $(this);
+           		    var test = thisDiv.text();
+           		    var test = values;
+				    if(thisDiv.text()==values){
+				    	thisDiv.addClass('activeNeed');
+				    }
+				});
+			 break;
+		    }
+	 }
+}
+
+function getHsonLength(json){
+    var jsonLength=0;
+    for (var i in json) {
+        jsonLength++;
+    }
+    return jsonLength;
+}
+
 function buildSelect(obj,isMult){
-	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
-	html.append('<div class="qTitle">'+obj.title+'</div>');
+	
 	if(isMult == 1){
+		var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
 		var items = $('<div class="optionItem"></div>');
 	}
 	else{
+		var html = $('<div class="qItem Mult" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
 		var items = $('<div class="optionItemMult"></div>');
 	}
 	var options = obj.options;
@@ -713,7 +779,7 @@ function buildSelect(obj,isMult){
 	return html;
 }
 function buildDatepicker(obj){
-	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+	var html = $('<div class="qItem isData"  data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var setItem = $('<div class="optionItem"></div>');
 	var items = $('<div><input class="_datepicker activeNeed" value="日期" name="'+obj.name+'" /></div>');
@@ -722,7 +788,7 @@ function buildDatepicker(obj){
 	return html;
 }
 function buildTextarea(obj){
-	var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+	var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
 	html.append(items);
