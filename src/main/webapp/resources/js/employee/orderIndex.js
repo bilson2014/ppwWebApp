@@ -437,19 +437,46 @@ var orderIndex = {
 		               '    <td class="info" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="edit" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="submit" data-requireid="'+obj.requireId+'" data-id="'+obj.id +'"><div></div></td>' ,
-		               '    <td class="cancle" data-id="'+obj.id +'"><div></div></td>' ,
+		               '    <td data-id="'+obj.id +'"><div></div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
 		},
 		createSubTable:function(obj){
+			var name = '--';
+			var num =obj.indentSource;
+			if(num == 1){
+				name = '线上-网站';
+			}
+			if(num == 2){
+				name = '线上-活动';
+			}
+			if(num == 3){
+				name = '线上-新媒体 ';
+			}
+			if(num == 4){
+				name = '线下-电销';
+			}
+			if(num == 5){
+				name = '线下-直销';
+			}
+			if(num == 6){
+				name = '线下-活动';
+			}
+			if(num == 7){
+				name = '线下-渠道';
+			}
+			if(num == 8){
+				name = '复购';
+			}
+			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
 		               '    <td class="id" data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "":obj.realName) +'</td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
-		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
+		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>修改</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
@@ -460,14 +487,40 @@ var orderIndex = {
 		createUnableTable:function(obj){
 			var setToF = obj.indentType == 6 ?'虚假':'真实';
 			var setClass = obj.indentType == 6 ?'lie':'true';
-			var isFInd = obj.indentType == 6 ?'notFind':'isFind';
+			var isFInd = obj.indentType == 6 ?'notFind':'isFind';			var name = '--';
+			var num =obj.indentSource;
+			if(num == 1){
+				name = '线上-网站';
+			}
+			if(num == 2){
+				name = '线上-活动';
+			}
+			if(num == 3){
+				name = '线上-新媒体 ';
+			}
+			if(num == 4){
+				name = '线下-电销';
+			}
+			if(num == 5){
+				name = '线下-直销';
+			}
+			if(num == 6){
+				name = '线下-活动';
+			}
+			if(num == 7){
+				name = '线下-渠道';
+			}
+			if(num == 8){
+				name = '复购';
+			}
+			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
 		               '    <td class="id"  data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "":obj.realName) +'</td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
-		               '    <td></td>' ,
+		               setName,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
