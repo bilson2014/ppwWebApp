@@ -224,10 +224,8 @@ var orderIndex = {
 			   	 if($(this).parent().hasClass('searchSelect')){
 				   	 search();
 			   	 }
-			 	 if($(this).parent().hasClass('isTrueOrLie')){
-			 		updateRealInfo(id);
+			 	 if($(this).parent().hasClass('isTrueOrLie')){			 
 			   	 }
-			   	
 			   	 event.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
@@ -244,9 +242,13 @@ var orderIndex = {
 			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
+				var phone = $(this).parent().find('.indent_tele').text();
 				$('#sureModel').show();
 				var noReal = $('#sureModel').find('#noReal');
+				var Real = $('#sureModel').find('#real');
 				$(noReal).attr('data-id',id);
+				$(Real).attr('data-id',id);
+				$(Real).attr('data-content',phone);
 			});
 			$('.edit').off('click').on('click',function(){
 				$('.orderModel').show();
@@ -275,6 +277,8 @@ var orderIndex = {
 			});
 			$('.isFind').off('click').on('click',function(){
 				$('#modifyUserInfo').show();
+				var id = $(this).attr('data-id');
+				initUserView(id);
 			});
 			//需求保存
             
@@ -304,10 +308,13 @@ var orderIndex = {
 			});
 			$('#real').off('click').on('click',function(){
 				$('.modelPage').hide();
-				$('#checkSureModel').show();
-				$('#setColor').removeClass('redColor');
-				$('#setColor').addClass('greenColor');
-				$('#setColor').text('真实');
+//				$('#checkSureModel').show();
+//				$('#setColor').removeClass('redColor');
+//				$('#setColor').addClass('greenColor');
+//				$('#setColor').text('真实');
+				var phone = $(this).attr('data-content');
+				var id = $(this).attr('data-id');
+				checkUbListUser(phone,id);
 			});			
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -319,9 +326,6 @@ var orderIndex = {
 			$('.btn-c-g').off('click').on('click',function(){
 				$('.modelPage').hide();
 				$('.orderModel').hide();
-			});
-			$('#mptModel').off('click').on('click',function(){
-				submitOrder();
 			});
 			$('.descBot').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -407,8 +411,7 @@ var orderIndex = {
 			}
 			if(num == 8){
 				name = '复购';
-			}
-			
+			}		
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
@@ -435,7 +438,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>查看</div></td>' ,
+		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>修改</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
@@ -450,8 +453,8 @@ var orderIndex = {
 		               '    <td class="id"  data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "":obj.realName) +'</td>' ,
-		               '    <td></td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
+		               '    <td></td>' ,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
@@ -463,7 +466,7 @@ var orderIndex = {
 			             '         </ul>                                                      ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
-		               '    <td class="cancle" data-id="'+obj.id +'"><div class="'+isFInd+'">修改</div></td>' ,
+		               '    <td class="cancle"><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -948,7 +951,7 @@ function getNeedValue(requireId){
 		} 
 		 
 		 if(isCheck){
-		 if(requireId!= null && requireId!="" && requireId != '"null"'){
+		 if(requireId!= null && requireId!="" && requireId != "null"){
 			 $.ajax({
 				  type: 'POST',
 				  url: getContextPath() + ' /require/update',
@@ -1041,13 +1044,29 @@ function submitOrder(){
 		if(msg.code == 200){
 			$('#successModel').show();
 			InterValObj = window.setInterval(showSuccess, 1000);
+			refresh();
 		}else{
-			alert('提交失败');
 		}
 	}, getContextPath()+'/order/submit', $.toJSON({
 		id : id
 	}));
 }
+
+function submitToFOrder(id){
+	var id = $('#mptModel').attr('data-id');
+	loadData(function(msg){
+		$('#smodelPage').hide();
+		if(msg.code == 200){
+			refresh();
+		}else{
+			
+		}
+	}, getContextPath()+'/order/realOrder', $.toJSON({
+		id : id
+	}));
+
+}
+
 function checkUser(){
 	// 验证完整性
 	var ok = checkOrder(this);
@@ -1063,6 +1082,9 @@ function checkUser(){
 			}else{
 				// alert('用户冲突');
 				$('#smodelPage').show();
+				$('#mptModel').off('click').on('click',function(){
+					submitOrder();
+				});
 				var root = $('#smodelPage');
 				var mprealName = $(root).find('#mprealName');
 				var mpindent_tele = $(root).find('#mpindent_tele');
@@ -1076,6 +1098,31 @@ function checkUser(){
 	}else{
 		alert('请补全信息！');
 	}
+}
+
+//废弃订单验证
+function checkUbListUser(item){
+	// 验证完整性
+		var indent_tele = item;
+		// 验证用户是否重复
+		loadData(function(ssr){
+			if(ssr.errorCode == 200){
+				submitToFOrder();
+			}else{
+				$('#smodelPage').show();
+				$('#mptModel').off('click').on('click',function(){
+					submitToFOrder();
+				});
+				var root = $('#smodelPage');
+				var mprealName = $(root).find('#mprealName');
+				var mpindent_tele = $(root).find('#mpindent_tele');
+				var mpuserCompany = $(root).find('#mpuserCompany');
+				var ss = ssr.result;
+				$(mprealName).text(ss.realName);
+				$(mpindent_tele).text(ss.telephone);
+				$(mpuserCompany).text(ss.userCompany);
+			}
+		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
 }
 
 //验证用户信息完整性
