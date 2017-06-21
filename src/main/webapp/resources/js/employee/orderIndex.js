@@ -406,13 +406,8 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-<<<<<<< HEAD
 		               '    <td class="findInfo" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
-=======
-		               '    <td class="findInfo" data-id="'+obj.id +'"><div onclick="">查看</div></td>' ,
-		               '    <td class="cancle" data-id="'+obj.id +'"><div>查看</div></td>' ,
->>>>>>> 29eb5bfb08c403390ac54a605db575f386c877a6
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -571,12 +566,14 @@ function editEvenFunction(item){
 	for (var int = 0; int < orderC.length; int++) {
 		var num = $(orderC[int]).attr('data-value');
 		var name = $(orderC[int]).text();
+		if(item.result.indentSource != null){
 		if(num == item.result.indentSource){
 			$('#orderComeInfo').text(name);
 			$('#orderComeInfo').attr('data-value',num);
 			if(num == 5){
 				$('#showHelper').show();
 			}
+		}
 		}
    };
 	var orderCPeople = $('#orderComePeople li');
@@ -736,7 +733,7 @@ function ReShowView(item){
 	}
 }
 
-//如果LookList=1 去除多余选项
+//如果LookList=1 去除多余选项     需求表回显
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      console.info(keys+values);
@@ -881,7 +878,7 @@ function getNeedValue(requireId){
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
 				 itemValues =  $(rows[int]).find('input').val();
-				 setType = "input"
+				 setType = "input";
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val();
@@ -904,7 +901,7 @@ function getNeedValue(requireId){
 			 for (var int = 0; int < checkActive.length; int++){
 				 if($(checkActive[int]).hasClass('other')){
 					var itemValues =  $(checkActive[int]).parent().find('input').val();
-					setType = "input"
+					setType = "input";
 				 }else{
 					var itemValues =  $(checkActive[int]).text();
 				 }
@@ -926,6 +923,7 @@ function getNeedValue(requireId){
 						"requireJson":$.toJSON(setData),
 						},
 				  success: function (res) {
+					      console.info('修改');
 						  $('.orderModel').hide();
 						  refresh();
 				  }
@@ -940,6 +938,7 @@ function getNeedValue(requireId){
 						"indentId" : $('#indentId').attr('data-value')
 						},
 				  success: function (res) {
+					  console.info('新建');
 					  $('.orderModel').hide();
 					  refresh();
 				  }
