@@ -279,10 +279,6 @@ var orderIndex = {
 			});
 			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
-//				$('#checkSureModel').show();
-//				$('#setColor').removeClass('greenColor');
-//				$('#setColor').addClass('redColor');
-//				$('#setColor').text('虚假');
 				var id = $(this).attr('data-id');
 				loadData(function(res){
 					refresh();
