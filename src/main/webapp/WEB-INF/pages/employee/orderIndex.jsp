@@ -225,7 +225,7 @@
             </div>
       </div>
 
-          <div class="modelPage">
+          <div class="modelPage" id="modifyUserInfo">
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
