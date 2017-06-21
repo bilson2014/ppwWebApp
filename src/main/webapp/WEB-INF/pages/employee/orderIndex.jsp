@@ -269,7 +269,7 @@
 	                            <ul class="oSelect" id=''>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                     </div>
                     <div class="borderline"></div>
                     <div class="infoItem">
@@ -297,7 +297,7 @@
 					                    <li data-value="2">线上-活动</li>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                           
                           <div class="itemTitile">购买价格</div>
 	                      <div class="orderSelect">
@@ -308,7 +308,7 @@
 					                    <li data-value="2">线上-活动</li>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                       </div> 
                       
                       <div class="infoItem">
@@ -321,7 +321,7 @@
 					                    <li data-value="2">线上-活动</li>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                           
                           <div class="itemTitile">高层背书</div>
 	                      <div class="orderSelect">
@@ -332,7 +332,7 @@
 					                    <li data-value="2">线上-活动</li>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                       </div>  
                       
                        <div class="borderline"></div> 
