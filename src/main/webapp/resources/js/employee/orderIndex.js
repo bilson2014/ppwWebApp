@@ -235,7 +235,7 @@ var orderIndex = {
 			infoEven();
 		    //新建
 			orderNewEven();
-			$('.submit').off('click').on('click',submitOrder);
+			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
 				$('#sureModel').show();
@@ -294,6 +294,12 @@ var orderIndex = {
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
+			});
+			$('.btn-c-g').off('click').on('click',function(){
+				$('.modelPage').hide();
+			});
+			$('#mptModel').off('click').on('click',function(){
+				submitOrder();
 			});
 			$('.descBot').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -914,7 +920,7 @@ function getNeedValue(requireId){
 		} 
 		 
 		 if(isCheck){
-		 if(requireId!=null&&requireId!=""){
+		 if(requireId!= null && requireId!="" && requireId != '"null"'){
 			 $.ajax({
 				  type: 'POST',
 				  url: getContextPath() + ' /require/update',
@@ -1001,33 +1007,49 @@ function clearSearch(){
 }
 
 function submitOrder(){
+	var id = $('#mptModel').attr('data-id');
+	loadData(function(msg){
+		$('#smodelPage').hide();
+		if(msg.code == 200){
+			$('#successModel').show();
+			InterValObj = window.setInterval(showSuccess, 1000);
+		}else{
+			alert('提交失败');
+		}
+	}, getContextPath()+'/order/submit', $.toJSON({
+		id : id
+	}));
+}
+function checkUser(){
 	// 验证完整性
 	var ok = checkOrder(this);
 	var tr = $(this).parent();
+	var id = $(tr).find('.id').text().trim();
+	$('#mptModel').attr('data-id',id);
 	if(ok){
 		var indent_tele = $(tr).find('.indent_tele').text();
 		// 验证用户是否重复
 		loadData(function(ssr){
 			if(ssr.errorCode == 200){
-				var id = $(tr).find('.id').text().trim();
-				loadData(function(msg){
-					if(msg.code == 200){
-						$('#successModel').show();
-						InterValObj = window.setInterval(showSuccess, 1000);
-					}else{
-						alert('提交失败');
-					}
-				}, getContextPath()+'/order/submit', $.toJSON({
-					id : id
-				}));
+				submitOrder();
 			}else{
-				alert('用户冲突');
+				// alert('用户冲突');
+				$('#smodelPage').show();
+				var root = $('#smodelPage');
+				var mprealName = $(root).find('#mprealName');
+				var mpindent_tele = $(root).find('#mpindent_tele');
+				var mpuserCompany = $(root).find('#mpuserCompany');
+				var ss = ssr.result;
+				$(mprealName).text(ss.realName);
+				$(mpindent_tele).text(ss.telephone);
+				$(mpuserCompany).text(ss.userCompany);
 			}
 		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
 	}else{
 		alert('请补全信息！');
 	}
 }
+
 function checkOrder(obj){
 	var tr = $(obj).parent();	
 	var userCompany = $(tr).find('.userCompany').text();

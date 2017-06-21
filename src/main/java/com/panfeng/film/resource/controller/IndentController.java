@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
 import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
@@ -254,7 +255,7 @@ public class IndentController extends BaseController {
 		PmsUser user = new PmsUser();
 		user.setTelephone(indent_tele);
 		user = pmsUserFacade.findUserByAttr(user);
-		if (user != null && user.getId() !=null && user.getId() >0) {
+		if (user != null && user.getId() != null && user.getId() > 0) {
 			baseMsg.setErrorCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("用户已经存在！");
 			baseMsg.setResult(user);
@@ -268,18 +269,85 @@ public class IndentController extends BaseController {
 	@RequestMapping(value = "/submit", produces = "application/json; charset=UTF-8")
 	public BaseMsg submit(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
-		boolean changeIndentsType = pmsIndentFacade.changeIndentsType(new long[] { indent.getId() },
-				PmsIndent.ORDER_SUBMIT);
-		if (!changeIndentsType) {
-			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("提交失败！");
+		indent = pmsIndentFacade.findIndentById(indent.getId());
+		String indent_tele = indent.getIndent_tele();
+		int count = pmsUserFacade.validationPhone(indent_tele, null);
+		PmsUser user = null;
+		// 用户操作
+		if (count != 0) {
+			// 更新用户
+			PmsUser temp = new PmsUser();
+			temp.setTelephone(indent_tele);
+			user = pmsUserFacade.findUserByAttr(temp);
+
+//			if (ValidateUtil.isValid(indent.getUserCompany())) {
+//				user.setUserCompany(indent.getUserCompany());
+//			}
+//
+//			if (ValidateUtil.isValid(indent.getRealName())) {
+//				user.setRealName(indent.getRealName());
+//			}
+//
+//			if (ValidateUtil.isValid(indent.getWechat())) {
+//				user.setWeChat(indent.getWechat());
+//			}
+//
+//			if (indent.getPosition() != null) {
+//				user.setPosition(indent.getPosition());
+//			}
+//
+//			long userUpdate = pmsUserFacade.update(user);
+//			if (userUpdate <= 0) {
+//				baseMsg.setCode(BaseMsg.ERROR);
+//				baseMsg.setErrorMsg("用户更新失败！");
+//				return baseMsg;
+//			}
 		} else {
+			// 插入用户
+			user = new PmsUser();
+			user.setUserName("User-" + IndentUtil.generateShortUuid());
+			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
+			user.setTelephone(indent_tele);
+			if (ValidateUtil.isValid(indent.getUserCompany())) {
+				user.setUserCompany(indent.getUserCompany());
+			}
+
+			if (ValidateUtil.isValid(indent.getRealName())) {
+				user.setRealName(indent.getRealName());
+			}
+
+			if (ValidateUtil.isValid(indent.getWechat())) {
+				user.setWeChat(indent.getWechat());
+			}
+
+			if (indent.getPosition() != null) {
+				user.setPosition(indent.getPosition());
+			}
+
+			Map<String, Object> save = pmsUserFacade.save(user);
+			Object objUserId = save.get(BaseEntity.SAVE_MAP_ID);
+
+			if (objUserId != null) {
+				Long userId = Long.valueOf(objUserId.toString());
+				user.setId(userId);
+			} else {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setErrorMsg("用户更新失败！");
+				return baseMsg;
+			}
+		}
+		indent.setUserId(user.getId());
+		indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
 		}
 		return baseMsg;
 	}
-	
 
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
 	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
@@ -295,7 +363,7 @@ public class IndentController extends BaseController {
 		}
 		return baseMsg;
 	}
-	
+
 	// ------------------------------------------------------------------------------
 	@RequestMapping(value = "/info")
 	public BaseMsg indentInfo(Long indentId) {
