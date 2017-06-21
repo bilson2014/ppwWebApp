@@ -225,13 +225,14 @@
       </div>
 
 
-          <div class="modelPage">
+         <div class="modelPage" id="modifyUserInfo">
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
               <div class="itemContent">
                      
                     <div class="infoItem">
+                    
                           <div class="itemTitile">订单编号</div>
                           <div class="itemInfo" id="telName"></div>
                           <div class="must"></div>
@@ -239,6 +240,7 @@
                           <div class="itemTitile">下单时间</div>
                           <div class="itemInfo" id="companyName"></div>
                           <div class="must"></div>
+                          
                     </div> 
                      
                     <div class="infoItem">
