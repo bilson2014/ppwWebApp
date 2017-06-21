@@ -270,6 +270,20 @@ public class IndentController extends BaseController {
 	public BaseMsg submit(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
 		indent = pmsIndentFacade.findIndentById(indent.getId());
+		indent.setUserId(saveUser(indent));
+		indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
+		}
+		return baseMsg;
+	}
+
+	private long saveUser(PmsIndent indent){
 		String indent_tele = indent.getIndent_tele();
 		int count = pmsUserFacade.validationPhone(indent_tele, null);
 		PmsUser user = null;
@@ -308,25 +322,11 @@ public class IndentController extends BaseController {
 			if (objUserId != null) {
 				Long userId = Long.valueOf(objUserId.toString());
 				user.setId(userId);
-			} else {
-				baseMsg.setCode(BaseMsg.ERROR);
-				baseMsg.setErrorMsg("用户更新失败！");
-				return baseMsg;
 			}
 		}
-		indent.setUserId(user.getId());
-		indent.setIndentType(PmsIndent.ORDER_SUBMIT);
-		long update = pmsIndentFacade.update(indent);
-		if (update > 0) {
-			baseMsg.setCode(BaseMsg.NORMAL);
-			baseMsg.setErrorMsg("提交成功！");
-		} else {
-			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("提交失败！");
-		}
-		return baseMsg;
+		return user.getId();
 	}
-
+	
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
 	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -338,6 +338,23 @@ public class IndentController extends BaseController {
 		} else {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
+		}
+		return baseMsg;
+	}
+	
+	@RequestMapping(value = "/realOrder", produces = "application/json; charset=UTF-8")
+	public BaseMsg realOrder(@RequestBody PmsIndent indent) {
+		BaseMsg baseMsg = new BaseMsg();
+		indent = pmsIndentFacade.findIndentById(indent.getId());
+		indent.setUserId(saveUser(indent));
+		indent.setIndentType(PmsIndent.ORDER_REAL);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
 		}
 		return baseMsg;
 	}
