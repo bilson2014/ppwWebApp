@@ -532,7 +532,7 @@ var orderIndex = {
 			             '         </ul>                                                      ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
-		               '    <td class="cancle"><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
+		               '    <td ><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
