@@ -29,7 +29,7 @@
        <div class="orderList">
             <div class="listHeader">
                  <div class="orderNum" id="indentId">需求文档<span></span></div>
-                 <div class="cancleOrderList closeBtn" id="cancleOrderList"></div>
+                 <div class="cancleOrderList closeBtn" ></div>
                  <div class="setErrorList" id="setErrorList">信息不完整</div>
             </div>
             <div class="listTitle">客户需求调查问卷</div>
@@ -39,7 +39,7 @@
             <div id="setListInfo">
             </div>
              <div class="btnDiv" id="needBtn">
-	                <div class="btn-c-g cancleOrderList">取消</div>
+	                <div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
 	                <div class="btn-c-r headerSave">保存</div>
 	          </div>
        </div> 
