@@ -76,7 +76,8 @@ var login = {
 			loadData(function(result){
 				if(result.ret){
 					// 跳转
-					$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
+					//$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
+					$('#login-form').attr('action',getContextPath() + '/order/ongoing').submit();
 					$('#pwdId').addClass('hide');
 				}else {
 					$('#pwdId').text(result.message);
