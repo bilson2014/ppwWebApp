@@ -260,16 +260,16 @@ var orderIndex = {
 				initView(hasReques);
 				$('#needBtn').hide();
 				LookList = 1;
+
+				
 			});
 			//需求保存
-			$('.headerSave').off('click').on('click',function(){
-				getNeedValue($('#indentId').attr('data-content'));
-			});
-			$('.cancleOrderList').off('click').on('click',function(){
-				$('.orderModel').hide();
-			});
+
 			$('.listHeader').off('click').on('click',function(){
 				$('.orderModel').hide();
+			});
+			$('.headerSave').off('click').on('click',function(){
+				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -297,6 +297,7 @@ var orderIndex = {
 			});
 			$('.btn-c-g').off('click').on('click',function(){
 				$('.modelPage').hide();
+				$('.orderModel').hide();
 			});
 			$('#mptModel').off('click').on('click',function(){
 				submitOrder();
@@ -422,7 +423,7 @@ var orderIndex = {
 			var vv = obj.indentType == 6 ?'虚假':'真实';
 			var html = [
 			           ' <tr> ' ,
-		               '    <td class="id" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
+		               '    <td class="id"  data-value="'+obj.requireId+'" data-indentName = "'+obj.indentName+'">'+obj.id+'</td>' ,
 		               '    <td class="userCompany">'+(obj.userCompany == null ? "":obj.userCompany) +'</td>' ,
 		               '    <td class="realName">'+(obj.realName == null ? "":obj.realName) +'</td>' ,
 		               '    <td></td>' ,
@@ -764,13 +765,17 @@ function setValueToNeedList(keys,values,type){
 				 var lastIndex = values.length - 1;
 				 $(rows[int]).find('.optionItemMult').find('.itemDiv').each(function(index){
 	                    var thisDiv = $(this);
-					    if(thisDiv.text()==values[index]){
+	                    var thisDivs = thisDiv.text();
+	                    var thiss = values[index];
+	                    for(var j = 0; j < values.length; j++){
+					    if(thisDiv.text()==values[j]){
 					    	thisDiv.addClass('activeNeed');
 					    }
 					    else{
 					    	if(LookList == 1){
 					    		thisDiv.remove();
 					    	}
+					    }
 					    }
 					});
 				 if(type == 'input'){
@@ -779,7 +784,7 @@ function setValueToNeedList(keys,values,type){
 					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
 					 if(LookList == 1){
 						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
-				    	}
+				     }
 				  }
 				 break;
 			 }
