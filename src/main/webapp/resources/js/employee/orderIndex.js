@@ -263,6 +263,10 @@ var orderIndex = {
 
 				
 			});
+			//查看需求文档
+			$('.findInfo').off('click').on('click',function(){
+				$('#modifyUserInfo').show();
+			});
 			//需求保存
 
 			$('.listHeader').off('click').on('click',function(){
@@ -429,7 +433,7 @@ var orderIndex = {
 		               '    <td></td>' ,
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfo" data-id="'+obj.id +'">',
+		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
 			             '         <div data-value="'+obj.indentType+'" class="true">'+vv+'</div>         ',
 			             '         <img src="/resources/images/orderManager/select.png">             ',
