@@ -265,9 +265,7 @@ var orderIndex = {
 				$('#indentId').attr('data-content',hasReques);
 				initView(hasReques);
 				$('#needBtn').hide();
-				LookList = 1;
-
-				
+				LookList = 1;				
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
@@ -1147,5 +1145,17 @@ function updateUser(){
 }
 
 function updateRealInfo(id){
-	alert(id);
+	
+}
+
+function selectSetView(id,value){
+	var orderLi = $(id).parent().find('ul').find('li');
+	for (var int = 0; int < orderLi.length; int++) {
+		    var name = $(orderLi[int]).text();
+		    var num  = $(orderLi[int]).attr('data-value');
+		    if($(orderLi[int]).attr('data-value')== value){
+			$(id).text(name);
+			$(id).attr('data-value',num);
+		   }
+   };
 }

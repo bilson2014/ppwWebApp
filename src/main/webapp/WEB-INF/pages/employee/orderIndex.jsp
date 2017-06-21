@@ -300,7 +300,7 @@
                         <div class="setError" >
                           <div class="itemTitile">购买频次</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <div data-value="1" id="">线上-网站</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
                                         <li data-value="1">线上-网站</li>
