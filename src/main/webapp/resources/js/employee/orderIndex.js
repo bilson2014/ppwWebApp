@@ -280,7 +280,11 @@ var orderIndex = {
             
 			//用户需求保存
 			$('#submitEditCus').off('click').on('click',function(){
-				checkUserInfo();
+				var res = checkUserInfo();
+				var id = $(this).attr('data-id');
+				if(res){
+					updateUser(id);
+				}
 			});
 			
 			$('.listHeader').off('click').on('click',function(){
@@ -1079,9 +1083,9 @@ function checkUserInfo(){
 	$('.setError').attr('data-content','');
 	var cusTelName = $('#muRealName').val();
 	var cusCompanyName = $('#muUserCompany').val();
-	var cusType = $('#muCustomerType').attr('data-value');
+	var cusType = $('#muCustomerType').attr('data-id');
 	var cusTeles = $('#muTelephone').val();
-	var cusWork = $('#muPosition').attr('data-value');
+	var cusWork = $('#muPosition').attr('data-id');
 	if(cusTelName == undefined || cusTelName == "" || cusTelName == null ){
 		$('#cusTelNameError').attr('data-content','请填写联系人');
 		$('#muRealName').focus();
@@ -1142,11 +1146,11 @@ function refresh(){
 	}
 }
 
-function updateUser(){
+function updateUser(id){
 	
 	var realName = $('#muRealName').val();
 	var userCompany = $('#muUserCompany').val();
-	var customerType = $('#uCustomerType').attr('data-id');
+	var customerType = $('#muCustomerType').attr('data-id');
 	var telephone = $('#muTelephone').val();
 	var position = $('#muPosition').attr('data-id');
 	var weChat = $('#muWeChat').val();
@@ -1158,8 +1162,8 @@ function updateUser(){
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
 	loadData(function(res){
-		var aa = res;
-		alert($.evalJSON(aa));
+		$('#modifyUserInfo').hide();
+		refresh();
 	}, getContextPath() +'/user/update', $.toJSON({
 		"userCompany":userCompany,
 		"realName":realName,
@@ -1173,11 +1177,14 @@ function updateUser(){
 		"purchasePrice":purchasePrice,
 		"customerSize":customerSize,
 		"endorse":endorse,
-		"note":note
+		"note":note,
+		"id":id
 	}));
 }
 
 function initUserView(id){
+	
+	$('#submitEditCus').attr('data-id',id);
 	// 加载下拉框信息
 	loadData(function(res){
 		var rr = res.result;
@@ -1196,17 +1203,17 @@ function initUserView(id){
 			$('#muRealName').val(rr.realName);
 			$('#muUserCompany').val(rr.userCompany);
 			$('#muTelephone').val(rr.telephone);
-			selectSetView('muCustomerType',rr.customerType);
-			selectSetView('muPosition',rr.position);
+			selectSetView('#muCustomerType',rr.customerType);
+			selectSetView('#muPosition',rr.position);
 			
 			$('#muWeChat').val(rr.weChat);
 			$('#muEmail').val(rr.email);
 			$('#muOfficialSite').val(rr.officialSite);
 			
-			selectSetView('muPosition',rr.position);
-			selectSetView('muPosition',rr.position);
-			selectSetView('muPosition',rr.position);
-			selectSetView('muPosition',rr.position);
+			selectSetView('#muPurchaseFrequency',rr.purchaseFrequency);
+			selectSetView('#muPurchasePrice',rr.purchasePrice);
+			selectSetView('#muCustomerSize',rr.customerSize);
+			selectSetView('#muEndorse',rr.endorse);
 			
 			$('#muNote').val(rr.note);
 			
@@ -1215,6 +1222,7 @@ function initUserView(id){
 }
 
 function fillUl(obj,view){
+	$(view).html('');
 	for (var int = 0; int < obj.length; int++) {
 		var oo = obj[int];
 		var li = createLi(oo.id, oo.text);
@@ -1232,10 +1240,10 @@ function selectSetView(id,value){
 	var orderLi = $(id).parent().find('ul').find('li');
 	for (var int = 0; int < orderLi.length; int++) {
 		    var name = $(orderLi[int]).text();
-		    var num  = $(orderLi[int]).attr('data-value');
-		    if($(orderLi[int]).attr('data-value')== value){
+		    var num  = $(orderLi[int]).attr('data-id');
+		    if($(orderLi[int]).attr('data-id')== value){
 			$(id).text(name);
-			$(id).attr('data-value',num);
+			$(id).attr('data-id',num);
 		   }
    };
 }
