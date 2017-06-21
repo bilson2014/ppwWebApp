@@ -264,7 +264,7 @@ var orderIndex = {
 				
 			});
 			//查看需求文档
-			$('.findInfo').off('click').on('click',function(){
+			$('.userinfox').off('click').on('click',function(){
 				$('#modifyUserInfo').show();
 			});
 			//需求保存
@@ -277,10 +277,6 @@ var orderIndex = {
 			});
 			$('#noReal').off('click').on('click',function(){
 				$('.modelPage').hide();
-//				$('#checkSureModel').show();
-//				$('#setColor').removeClass('greenColor');
-//				$('#setColor').addClass('redColor');
-//				$('#setColor').text('虚假');
 				var id = $(this).attr('data-id');
 				loadData(function(res){
 					refresh();
@@ -417,7 +413,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfo" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="findInfo userinfox" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
