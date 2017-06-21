@@ -412,13 +412,8 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-<<<<<<< HEAD
 		               '    <td class="findInfo" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
-=======
-		               '    <td class="findInfo" data-id="'+obj.id +'"><div onclick="">查看</div></td>' ,
-		               '    <td class="cancle" data-id="'+obj.id +'"><div>查看</div></td>' ,
->>>>>>> 29eb5bfb08c403390ac54a605db575f386c877a6
 		               ' </tr>' ,
 			].join('');
 			return html;

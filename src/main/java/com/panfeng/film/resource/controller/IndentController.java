@@ -279,29 +279,6 @@ public class IndentController extends BaseController {
 			PmsUser temp = new PmsUser();
 			temp.setTelephone(indent_tele);
 			user = pmsUserFacade.findUserByAttr(temp);
-
-//			if (ValidateUtil.isValid(indent.getUserCompany())) {
-//				user.setUserCompany(indent.getUserCompany());
-//			}
-//
-//			if (ValidateUtil.isValid(indent.getRealName())) {
-//				user.setRealName(indent.getRealName());
-//			}
-//
-//			if (ValidateUtil.isValid(indent.getWechat())) {
-//				user.setWeChat(indent.getWechat());
-//			}
-//
-//			if (indent.getPosition() != null) {
-//				user.setPosition(indent.getPosition());
-//			}
-//
-//			long userUpdate = pmsUserFacade.update(user);
-//			if (userUpdate <= 0) {
-//				baseMsg.setCode(BaseMsg.ERROR);
-//				baseMsg.setErrorMsg("用户更新失败！");
-//				return baseMsg;
-//			}
 		} else {
 			// 插入用户
 			user = new PmsUser();
