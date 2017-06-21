@@ -230,13 +230,13 @@
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="cusTelName">
+                          <input class="itemInput" id="muRealName">
                           <div class="must">*</div>
                         </div>  
                         
                         <div class="setError longItem" id="cusCompanyNameError" >  
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="cusCompanyName">
+                          <input class="itemInput" id="muUserCompany">
                           <div class="must">*</div>
                         </div>  
                     </div>
@@ -246,10 +246,10 @@
                     
                        <div class="setError" id="cusTypeError">
                           <div class="itemTitile">客户类型</div>
-	                      <div class="orderSelect" >
-	                            <div data-value="" id="cusType"></div>
+	                      <div class="orderSelect">
+	                            <div data-value="" id="muCustomerType"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id=''>
+	                            <ul class="oSelect" id='uCustomerType'>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
@@ -257,7 +257,7 @@
                         
                        <div class="setError longItem" id="cusTelesError" >    
                           <div class="itemTitile">联系电话</div>
-                          <input class="itemInput" id="cusTeles">
+                          <input class="itemInput" id="muTelephone">
                           <div class="must">*</div>
                        </div>
                           
@@ -266,9 +266,9 @@
                         <div class="setError" id="cusWorkError" > 
                           <div class="itemTitile">职位</div>
 	                      <div class="orderSelect">
-	                            <div data-value="" id="cusWork"></div>
+	                            <div data-value="" id="muPosition"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id=''>
+	                            <ul class="oSelect" id='uPosition'>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
@@ -278,20 +278,20 @@
                     <div class="infoItem">
                         <div class="setError" >
                           <div class="itemTitile">微信</div>
-                          <input class="itemInput" id="telName">
+                          <input class="itemInput" id="muWeChat">
                           <div class="must"></div>
                         </div>  
                          
                         <div class="setError longItem" >     
                           <div class="itemTitile">邮件</div>
-                          <input class="itemInput" id="companyName">
+                          <input class="itemInput" id="muEmail">
                           <div class="must"></div>
                         </div>  
                     </div>
                     <div class="infoItem">
                         <div class="setError" >
                           <div class="itemTitile">网址</div>
-                          <input class="itemWeb" id="telName">
+                          <input class="itemWeb" id="muOfficialSite">
                           <div class="must"></div>
                         </div>  
                     </div>
@@ -300,11 +300,9 @@
                         <div class="setError" >
                           <div class="itemTitile">购买频次</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="">线上-网站</div>
+	                            <div data-value="1" id="muPurchaseFrequency"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="1">线上-网站</li>
-					                    <li data-value="2">线上-活动</li>
+	                            <ul class="oSelect" id='uPurchaseFrequency'>
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
@@ -313,11 +311,9 @@
                        <div class="setError longItem" > 
                           <div class="itemTitile">购买价格</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <div data-value="1" id="muPurchasePrice"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="1">线上-网站</li>
-					                    <li data-value="2">线上-活动</li>
+	                            <ul class="oSelect" id='uPurchasePrice'>
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
@@ -328,11 +324,9 @@
                          <div class="setError" > 
                           <div class="itemTitile">客户规模</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <div data-value="1" id="muCustomerSize"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="1">线上-网站</li>
-					                    <li data-value="2">线上-活动</li>
+	                            <ul class="oSelect" id='uCustomerSize'>
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
@@ -341,11 +335,9 @@
                         <div class="setError longItem" >  
                           <div class="itemTitile">高层背书</div>
 	                      <div class="orderSelect">
-	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
+	                            <div data-value="1" id="muEndorse"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="1">线上-网站</li>
-					                    <li data-value="2">线上-活动</li>
+	                            <ul class="oSelect" id='uEndorse'>
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
@@ -357,7 +349,7 @@
                      <div class="infoItem">
                          <div class="setError" > 
                           <div class="itemTitile" style="top:-70px;">备注</div>
-                          <textarea></textarea>
+                          <textarea id="muNote"></textarea>
                           <div class="must"></div>
                         </div>  
                     </div>    

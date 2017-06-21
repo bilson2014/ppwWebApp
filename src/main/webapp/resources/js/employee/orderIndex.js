@@ -269,6 +269,8 @@ var orderIndex = {
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
+				var id = $(this).attr('data-id');
+				initUserView(id);
 				$('#modifyUserInfo').show();
 			});
 			$('.isFind').off('click').on('click',function(){
@@ -278,7 +280,11 @@ var orderIndex = {
             
 			//用户需求保存
 			$('#submitEditCus').off('click').on('click',function(){
-				checkUserInfo();
+				var res = checkUserInfo();
+				var id = $(this).attr('data-id');
+				if(res){
+					updateUser(id);
+				}
 			});
 			
 			$('.listHeader').off('click').on('click',function(){
@@ -429,7 +435,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfoNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
@@ -1075,19 +1081,19 @@ function checkUser(){
 //验证用户信息完整性
 function checkUserInfo(){
 	$('.setError').attr('data-content','');
-	var cusTelName = $('#cusTelName').val();
-	var cusCompanyName = $('#cusCompanyName').val();
-	var cusType = $('#cusType').attr('data-value');
-	var cusTeles = $('#cusTeles').val();
-	var cusWork = $('#cusWork').attr('data-value');
+	var cusTelName = $('#muRealName').val();
+	var cusCompanyName = $('#muUserCompany').val();
+	var cusType = $('#muCustomerType').attr('data-id');
+	var cusTeles = $('#muTelephone').val();
+	var cusWork = $('#muPosition').attr('data-id');
 	if(cusTelName == undefined || cusTelName == "" || cusTelName == null ){
 		$('#cusTelNameError').attr('data-content','请填写联系人');
-		$('#cusTelName').focus();
+		$('#muRealName').focus();
 		return false;
 	}
 	if(cusCompanyName == undefined || cusCompanyName == "" || cusCompanyName ==null ){
 		$('#cusCompanyNameError').attr('data-content','请填写公司名');
-		$('#cusCompanyName').focus();
+		$('#muUserCompany').focus();
 		return false;
 	}
 	if(cusType == undefined || cusType == "" || cusType ==null ){
@@ -1096,7 +1102,7 @@ function checkUserInfo(){
 	}
 	if(!checkMobile(cusTeles)){
 		$('#cusTelesError').attr('data-content','手机号不正确');
-		$('#cusTeles').focus();
+		$('#muTelephone').focus();
 		return false;
 	}
 	if(cusWork == undefined || cusWork == "" || cusType ==null ){
@@ -1140,22 +1146,104 @@ function refresh(){
 	}
 }
 
-function updateUser(){
+function updateUser(id){
 	
+	var realName = $('#muRealName').val();
+	var userCompany = $('#muUserCompany').val();
+	var customerType = $('#muCustomerType').attr('data-id');
+	var telephone = $('#muTelephone').val();
+	var position = $('#muPosition').attr('data-id');
+	var weChat = $('#muWeChat').val();
+	var email = $('#muEmail').val();
+	var officialSite = $('#muOfficialSite').val();
+	var purchaseFrequency = $('#muPurchaseFrequency').attr('data-id');
+	var purchasePrice = $('#muPurchasePrice').attr('data-id');
+	var customerSize = $('#muCustomerSize').attr('data-id');
+	var endorse = $('#muEndorse').attr('data-id');
+	var note = $('#muNote').val();
+	loadData(function(res){
+		$('#modifyUserInfo').hide();
+		refresh();
+	}, getContextPath() +'/user/update', $.toJSON({
+		"userCompany":userCompany,
+		"realName":realName,
+		"telephone":telephone,
+		"customerType":customerType,
+		"position":position,
+		"weChat":weChat,
+		"email":email,
+		"officialSite":officialSite,
+		"purchaseFrequency":purchaseFrequency,
+		"purchasePrice":purchasePrice,
+		"customerSize":customerSize,
+		"endorse":endorse,
+		"note":note,
+		"id":id
+	}));
 }
 
+function initUserView(id){
+	
+	$('#submitEditCus').attr('data-id',id);
+	// 加载下拉框信息
+	loadData(function(res){
+		var rr = res.result;
+		
+		fillUl(rr.customerType,$('#uCustomerType'));
+		fillUl(rr.position,$('#uPosition'));
+		fillUl(rr.purchaseFrequency,$('#uPurchaseFrequency'));
+		fillUl(rr.purchasePrice,$('#uPurchasePrice'));
+		fillUl(rr.customerSize,$('#uCustomerSize'));
+		fillUl(rr.endorse,$('#uEndorse'));
+		orderIndex.controlSelect();
+		
+		// 加载用户信息
+		loadData(function(res){
+			var rr = res.result;
+			$('#muRealName').val(rr.realName);
+			$('#muUserCompany').val(rr.userCompany);
+			$('#muTelephone').val(rr.telephone);
+			selectSetView('#muCustomerType',rr.customerType);
+			selectSetView('#muPosition',rr.position);
+			
+			$('#muWeChat').val(rr.weChat);
+			$('#muEmail').val(rr.email);
+			$('#muOfficialSite').val(rr.officialSite);
+			
+			selectSetView('#muPurchaseFrequency',rr.purchaseFrequency);
+			selectSetView('#muPurchasePrice',rr.purchasePrice);
+			selectSetView('#muCustomerSize',rr.customerSize);
+			selectSetView('#muEndorse',rr.endorse);
+			
+			$('#muNote').val(rr.note);
+			
+		}, getContextPath()+'/user/get/info?userId='+id, null);
+	}, getContextPath() +'/user/option', null);
+}
+
+function fillUl(obj,view){
+	$(view).html('');
+	for (var int = 0; int < obj.length; int++) {
+		var oo = obj[int];
+		var li = createLi(oo.id, oo.text);
+		$(view).append(li);
+	}
+}
+function createLi(value,text){
+	var html = '<li data-id="'+ value +'">'+text+'</li>';
+	return html;
+}
 function updateRealInfo(id){
 	
 }
-
 function selectSetView(id,value){
 	var orderLi = $(id).parent().find('ul').find('li');
 	for (var int = 0; int < orderLi.length; int++) {
 		    var name = $(orderLi[int]).text();
-		    var num  = $(orderLi[int]).attr('data-value');
-		    if($(orderLi[int]).attr('data-value')== value){
+		    var num  = $(orderLi[int]).attr('data-id');
+		    if($(orderLi[int]).attr('data-id')== value){
 			$(id).text(name);
-			$(id).attr('data-value',num);
+			$(id).attr('data-id',num);
 		   }
    };
 }
