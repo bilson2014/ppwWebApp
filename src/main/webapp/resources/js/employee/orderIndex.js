@@ -267,6 +267,8 @@ var orderIndex = {
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
+				var id = $(this).attr('data-id');
+				initUserView(id);
 				$('#modifyUserInfo').show();
 			});
 			//需求保存
@@ -418,7 +420,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfoNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
@@ -1095,4 +1097,79 @@ function refresh(){
 
 function updateUser(){
 	
+	var realName = $('#muRealName').val();
+	var userCompany = $('#muUserCompany').val();
+	var customerType = $('#uCustomerType').attr('data-id');
+	var telephone = $('#muTelephone').val();
+	var position = $('#muPosition').attr('data-id');
+	var weChat = $('#muWeChat').val();
+	var email = $('#muEmail').val();
+	var officialSite = $('#muOfficialSite').val();
+	var purchaseFrequency = $('#muPurchaseFrequency').attr('data-id');
+	var purchasePrice = $('#muPurchasePrice').attr('data-id');
+	var customerSize = $('#muCustomerSize').attr('data-id');
+	var endorse = $('#muEndorse').attr('data-id');
+	var note = $('#muNote').val();
+	loadData(function(res){
+		var aa = res;
+		alert($.evalJSON(aa));
+	}, getContextPath() +'/user/update', $.toJSON({
+		"userCompany":userCompany,
+		"realName":realName,
+		"telephone":telephone,
+		"customerType":customerType,
+		"position":position,
+		"weChat":weChat,
+		"email":email,
+		"officialSite":officialSite,
+		"purchaseFrequency":purchaseFrequency,
+		"purchasePrice":purchasePrice,
+		"customerSize":customerSize,
+		"endorse":endorse,
+		"note":note
+	}));
 }
+
+function initUserView(id){
+	// 加载下拉框信息
+	loadData(function(res){
+		var rr = res.result;
+		
+		fillUl(rr.customerType,$('#uCustomerType'));
+		fillUl(rr.position,$('#uPosition'));
+		fillUl(rr.purchaseFrequency,$('#uPurchaseFrequency'));
+		fillUl(rr.purchasePrice,$('#uPurchasePrice'));
+		fillUl(rr.customerSize,$('#uCustomerSize'));
+		fillUl(rr.endorse,$('#uEndorse'));
+		orderIndex.controlSelect();
+		
+		// 加载用户信息
+		loadData(function(res){
+			var rr = res.result;
+			$('#muRealName').val(rr.realName);
+			$('#muUserCompany').val(rr.userCompany);
+			$('#muTelephone').val(rr.telephone);
+			
+			$('#muWeChat').val(rr.weChat);
+			$('#muEmail').val(rr.email);
+			$('#muOfficialSite').val(rr.officialSite);
+			
+			$('#muNote').val(rr.note);
+			
+		}, getContextPath()+'/user/get/info?userId='+id, null);
+	}, getContextPath() +'/user/option', null);
+}
+
+function fillUl(obj,view){
+	for (var int = 0; int < obj.length; int++) {
+		var oo = obj[int];
+		var li = createLi(oo.id, oo.text);
+		$(view).append(li);
+	}
+}
+
+function createLi(value,text){
+	var html = '<li data-id="'+ value +'">'+text+'</li>';
+	return html;
+}
+
