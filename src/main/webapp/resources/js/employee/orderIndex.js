@@ -171,7 +171,7 @@ var orderIndex = {
 			}, getContextPath() + '/order/list/page', $.toJSON({
 				"page":page,
 				"rows" : pageSize,
-				"types" : [ORDER_SHAM],
+				"types" : [ORDER_REAL,ORDER_SHAM],
 				"userCompany":sUserCompany,
 				"realName":sRealName,
 				"indent_tele":sIndent_tele,
@@ -216,16 +216,29 @@ var orderIndex = {
 				event.stopPropagation();
 			});
 			$('.oSelect li').off('click').on('click',function(){
+			   	 if($(this).parent().hasClass('searchSelect')){
+				   	 search();
+			   	 }
+			 	 if($(this).parent().hasClass('isTrueOrLie')){	
+			 		var id = $(this).attr('data-id');
+			 		var tel = $(this).attr('data-content');
+			 		 if($(this).attr('data-value')=='2'){
+						loadData(function(res){
+							refresh();
+						}, getContextPath() + '/order/shamOrder', $.toJSON({
+							id : id
+						}));
+						return;
+			 		 }else{
+			 			checkUbListUser(tel,id);
+			 			return;
+			 		 }
+			   	 }
 				 var id = $(this).attr('data-id');
 			   	 $(this).parent().parent().find('div').text($(this).text());
 			   	 $(this).parent().parent().find('div').attr('data-id',id);
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
-			   	 if($(this).parent().hasClass('searchSelect')){
-				   	 search();
-			   	 }
-			 	 if($(this).parent().hasClass('isTrueOrLie')){			 
-			   	 }
 			   	 event.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
@@ -461,8 +474,8 @@ var orderIndex = {
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
 			             '         <img src="/resources/images/orderManager/select.png">             ',
 			             '         <ul class="oSelect isTrueOrLie">                        ',
-			             '               <li data-value="1">真实</li>                  ',
-					     '               <li data-value="2">虚假</li>                    ',
+			             '               <li data-value="1" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">真实</li>                  ',
+					     '               <li data-value="2" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">虚假</li>                    ',
 			             '         </ul>                                                      ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
@@ -1053,7 +1066,6 @@ function submitOrder(){
 }
 
 function submitToFOrder(id){
-	var id = $('#mptModel').attr('data-id');
 	loadData(function(msg){
 		$('#smodelPage').hide();
 		if(msg.code == 200){
@@ -1072,7 +1084,8 @@ function checkUser(){
 	var ok = checkOrder(this);
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
-	$('#mptModel').attr('data-id',id);
+    $('#mptModel').attr('data-id',id);
+    $('#mptModel').attr('data-id',ids);
 	if(ok){
 		var indent_tele = $(tr).find('.indent_tele').text();
 		// 验证用户是否重复
@@ -1101,17 +1114,16 @@ function checkUser(){
 }
 
 //废弃订单验证
-function checkUbListUser(item){
+function checkUbListUser(tel,id){
 	// 验证完整性
-		var indent_tele = item;
 		// 验证用户是否重复
 		loadData(function(ssr){
 			if(ssr.errorCode == 200){
-				submitToFOrder();
+				submitToFOrder(id);
 			}else{
 				$('#smodelPage').show();
 				$('#mptModel').off('click').on('click',function(){
-					submitToFOrder();
+					submitToFOrder(id);
 				});
 				var root = $('#smodelPage');
 				var mprealName = $(root).find('#mprealName');
@@ -1122,7 +1134,7 @@ function checkUbListUser(item){
 				$(mpindent_tele).text(ss.telephone);
 				$(mpuserCompany).text(ss.userCompany);
 			}
-		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
+		}, getContextPath() + '/order/checkuser?indent_tele='+tel, null);
 }
 
 //验证用户信息完整性
