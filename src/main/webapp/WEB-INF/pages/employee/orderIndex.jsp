@@ -168,7 +168,6 @@
 	                          <input class="itemInput" id="telName">
 	                          <div class="must">*</div>
                          </div>  
-                          
                         <div class="setError" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
                           <input class="itemInput" id="companyName" id="companyName">
@@ -178,7 +177,6 @@
                    
                     </div>
                        <div class="infoItem">
-                       
                        <div class="setError" id="orderComeInfoError" data-content="">
                           <div class="itemTitile">订单来源</div>
 	                      <div class="orderSelect">
@@ -229,64 +227,77 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
               <div class="itemContent">
-                     
-                     
                     <div class="infoItem">
-                        <div class="setError" >
+                        <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="telName">
+                          <input class="itemInput" id="cusTelName">
                           <div class="must">*</div>
                         </div>  
                         
-                        <div class="setError" >  
+                        <div class="setError longItem" id="cusCompanyNameError" >  
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="companyName">
+                          <input class="itemInput" id="cusCompanyName">
                           <div class="must">*</div>
                         </div>  
                     </div>
                    
                     </div>
                     <div class="infoItem">
+                    
+                       <div class="setError" id="cusTypeError">
                           <div class="itemTitile">客户类型</div>
-	                      <div class="orderSelect">
-	                            <div data-value="" id="orderComeInfo"></div>
+	                      <div class="orderSelect" >
+	                            <div data-value="" id="cusType"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id=''>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
-                          
+                       </div>   
+                        
+                       <div class="setError longItem" id="cusTelesError" >    
                           <div class="itemTitile">联系电话</div>
-                          <input class="itemInput" id="teles">
+                          <input class="itemInput" id="cusTeles">
                           <div class="must">*</div>
+                       </div>
+                          
                     </div>
-                     <div class="infoItem" id="showHelper">  
+                     <div class="infoItem" id="showHelper"> 
+                        <div class="setError" id="cusWorkError" > 
                           <div class="itemTitile">职位</div>
 	                      <div class="orderSelect">
-	                            <div data-value="" id="orderP"></div>
+	                            <div data-value="" id="cusWork"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id=''>
 	                            </ul>                
 	                       </div>
-                          <div class="must"></div>
+                          <div class="must">*</div>
+                        </div>  
                     </div>
                     <div class="borderline"></div>
                     <div class="infoItem">
+                        <div class="setError" >
                           <div class="itemTitile">微信</div>
                           <input class="itemInput" id="telName">
                           <div class="must"></div>
-                          
+                        </div>  
+                         
+                        <div class="setError longItem" >     
                           <div class="itemTitile">邮件</div>
                           <input class="itemInput" id="companyName">
                           <div class="must"></div>
+                        </div>  
                     </div>
                     <div class="infoItem">
+                        <div class="setError" >
                           <div class="itemTitile">网址</div>
                           <input class="itemWeb" id="telName">
                           <div class="must"></div>
+                        </div>  
                     </div>
                         <div class="borderline"></div>
                      <div class="infoItem">
+                        <div class="setError" >
                           <div class="itemTitile">购买频次</div>
 	                      <div class="orderSelect">
 	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
@@ -297,7 +308,9 @@
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
-                          
+                        </div> 
+                         
+                       <div class="setError longItem" > 
                           <div class="itemTitile">购买价格</div>
 	                      <div class="orderSelect">
 	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
@@ -308,9 +321,11 @@
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
+                        </div>  
                       </div> 
                       
                       <div class="infoItem">
+                         <div class="setError" > 
                           <div class="itemTitile">客户规模</div>
 	                      <div class="orderSelect">
 	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
@@ -321,7 +336,9 @@
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
-                          
+                         </div>
+                         
+                        <div class="setError longItem" >  
                           <div class="itemTitile">高层背书</div>
 	                      <div class="orderSelect">
 	                            <div data-value="1" id="orderComeInfo">线上-网站</div>
@@ -332,20 +349,23 @@
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
+                        </div>  
                       </div>  
                       
                        <div class="borderline"></div> 
                        
                      <div class="infoItem">
-                          <div class="itemTitile">备注</div>
+                         <div class="setError" > 
+                          <div class="itemTitile" style="top:-70px;">备注</div>
                           <textarea></textarea>
                           <div class="must"></div>
+                        </div>  
                     </div>    
                           
                          
                 <div class="sureBtn">
                    <div class="btn-c-g" id="cancleEdit">取消</div>
-		           <div class="btn-c-r" id="submitEdit">确定</div>
+		           <div class="btn-c-r" id="submitEditCus">确定</div>
 		        </div>
             </div>
       </div>

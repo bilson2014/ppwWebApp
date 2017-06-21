@@ -190,6 +190,10 @@
     }
     tr {
         td:nth-child(8) {
+            .isFInd {
+                color: #50E3C2 !important;
+                border: 1px solid #50E3C2 !important;
+            }
             div {
                 font-size: $font-size-sm;
                 color: $gray;
@@ -200,10 +204,6 @@
                 margin: 0 auto;
                 line-height: 28px;
                 cursor: pointer;
-                &:hover {
-                    color: #50E3C2;
-                    border: 1px solid #50E3C2;
-                }
             }
         }
         td:nth-child(7) {
@@ -215,7 +215,7 @@
             }
             img {
                 top: 9px !important;
-                right: 0px !important;
+                right: 4px !important;
             }
             div {
                 font-size: $font-size-sm;
@@ -227,6 +227,7 @@
                 line-height: 18px;
                 border-radius: 20px;
                 text-align: center;
+                border: none;
             }
         }
     }
@@ -272,7 +273,13 @@
     display: none;
     border-radius: 6px;
     .cusInfo {
-        top: 300px !important;
+        top: 200px !important;
+        @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            top: 250px !important;
+        }
+        @media screen and (min-width: 1500px) {
+            top: 300px !important;
+        }
     }
     .findInfo {
         width: 720px;
@@ -328,8 +335,8 @@
             height: 1px;
             background: $f0;
             margin: 0 auto;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
         .infoItem {
             min-width: 290px;
@@ -338,6 +345,14 @@
             font-size: 0;
             margin-bottom: 20px;
             padding-left: 5px;
+            .longItem {
+                .itemInput {
+                    width: 250px !important;
+                }
+                .orderSelect {
+                    width: 250px !important;
+                }
+            }
             div,
             input {
                 display: inline-block;
@@ -368,9 +383,6 @@
             }
             .orderSelect {
                 width: 190px !important;
-            }
-            .orderSelect:nth-child(5) {
-                width: 250px;
             }
             .itemWeb {
                 width: 555px !important;
@@ -404,9 +416,6 @@
                 color: $gray;
                 padding-left: 10px;
                 outline: none;
-            }
-            .itemInput:nth-child(5) {
-                width: 250px;
             }
             .itemInputMax {
                 width: 536px;
