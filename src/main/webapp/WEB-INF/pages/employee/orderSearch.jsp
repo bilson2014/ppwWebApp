@@ -29,7 +29,7 @@
             <div class="orderSelect" >
                 <div id="sIndentSource"></div>
                 <img src="${imgPath}/orderManager/select.png">
-                <ul class="oSelect" id="orderCome">
+                <ul class="oSelect searchSelect" id="orderCome">
                     <li data-id="1">线上 - 网站</li>
                     <li data-id="2">线上 - 活动</li>
                     <li data-id="3">线上 - 新媒体</li>

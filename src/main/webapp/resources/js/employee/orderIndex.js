@@ -221,7 +221,9 @@ var orderIndex = {
 			   	 $(this).parent().parent().find('div').attr('data-id',id);
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
-			   	 search();
+			   	 if($(this).parent().hasClass('searchSelect')){
+				   	 search();
+			   	 }
 			   	 event.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
@@ -264,7 +266,7 @@ var orderIndex = {
 				
 			});
 			//查看需求文档
-			$('.userinfox').off('click').on('click',function(){
+			$('.findInfoNeedList').off('click').on('click',function(){
 				$('#modifyUserInfo').show();
 			});
 			//需求保存
@@ -294,6 +296,9 @@ var orderIndex = {
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
+			});
+			$('#cancleEdit').off('click').on('click',function(){
+				$('.modelPage').hide();
 			});
 			$('.btn-c-g').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -413,7 +418,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfo userinfox" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="findInfoNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
