@@ -40,7 +40,7 @@
        <div class="orderList">
             <div class="listHeader">
                  <div class="orderNum" id="indentId">需求文档<span></span></div>
-                 <div class="cancleOrderList closeBtn" ></div>
+                 <div class="cancleOrderList closeBtn hide" ></div>
                  <div class="setErrorList" id="setErrorList">信息不完整</div>
             </div>
             <div class="listTitle">客户需求调查问卷</div>
