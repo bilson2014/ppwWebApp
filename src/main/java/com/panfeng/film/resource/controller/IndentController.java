@@ -132,7 +132,7 @@ public class IndentController extends BaseController {
 	}
 
 	// ---------------------------------------------客服接口------------------------------------------------------------------
-	@RequestMapping(value = "/ongoing", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/myOrder", produces = "application/json; charset=UTF-8")
 	public ModelAndView ongoing(ModelMap modelMap, HttpServletRequest request) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		List<Integer> types = new ArrayList<>();
@@ -146,12 +146,10 @@ public class IndentController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-					Long reqiureId = currentInfo.getReqiureId();
-					paramMap.put("employeeId", reqiureId);
-					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-					modelMap.addAttribute("indentList", listWithPagination);
-				}
+				Long reqiureId = currentInfo.getReqiureId();
+				paramMap.put("employeeId", reqiureId);
+				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+				modelMap.addAttribute("indentList", listWithPagination);
 			}
 		}
 
@@ -172,12 +170,10 @@ public class IndentController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-					Long reqiureId = currentInfo.getReqiureId();
-					paramMap.put("employeeId", reqiureId);
-					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-					modelMap.addAttribute("indentList", listWithPagination);
-				}
+				Long reqiureId = currentInfo.getReqiureId();
+				paramMap.put("employeeId", reqiureId);
+				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+				modelMap.addAttribute("indentList", listWithPagination);
 			}
 		}
 
@@ -210,11 +206,9 @@ public class IndentController extends BaseController {
 			if (currentInfo != null) {
 				String sessionType = currentInfo.getSessionType();
 				if (ValidateUtil.isValid(sessionType)) {
-					if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-						Long reqiureId = currentInfo.getReqiureId();
-						paramMap.put("employeeId", reqiureId);
-						return pmsIndentFacade.listWithPagination(pageParam, paramMap);
-					}
+					Long reqiureId = currentInfo.getReqiureId();
+					paramMap.put("employeeId", reqiureId);
+					return pmsIndentFacade.listWithPagination(pageParam, paramMap);
 				}
 			}
 		}
