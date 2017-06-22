@@ -336,6 +336,9 @@ var orderIndex = {
 			$('#cancleEdit').off('click').on('click',function(){
 				$('.modelPage').hide();
 			});
+			$('#checkError').off('click').on('click',function(){
+				$('.modelPage').hide();
+			});
 			$('.btn-c-g').off('click').on('click',function(){
 				$('.modelPage').hide();
 				$('.orderModel').hide();
@@ -437,7 +440,7 @@ var orderIndex = {
 		               '    <td class="info" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="edit" data-id="'+obj.id +'"><div></div></td>' ,
 		               '    <td class="submit" data-requireid="'+obj.requireId+'" data-id="'+obj.id +'"><div></div></td>' ,
-		               '    <td data-id="'+obj.id +'"><div></div></td>' ,
+		               '    <td class="cancle" data-id="'+obj.id +'"><div></div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -478,7 +481,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
-		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>修改</div></td>' ,
+		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>完善</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
 		               ' </tr>' ,
 			].join('');
@@ -1138,7 +1141,6 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
-    $('#mptModel').attr('data-id',ids);
 	if(ok){
 		var indent_tele = $(tr).find('.indent_tele').text();
 		// 验证用户是否重复
