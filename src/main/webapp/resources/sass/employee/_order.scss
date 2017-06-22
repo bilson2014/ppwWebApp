@@ -255,6 +255,7 @@ th {
     .qTitle {
         font-size: $font-size-base;
         color: $gray-dark;
+        font-weight: bold;
     }
     .nameItem {
         background: $gray-light;
@@ -309,7 +310,7 @@ th {
             line-height: 34px;
             text-align: center;
             color: $gray-light;
-            font-size: $font-size;
+            font-size: $font-size-base;
             display: inline-block;
             vertical-align: top;
             margin-left: 10px;

@@ -280,11 +280,6 @@ var orderIndex = {
 				initUserView(id);
 				$('#modifyUserInfo').show();
 			});
-			$('.isFind').off('click').on('click',function(){
-				$('#modifyUserInfo').show();
-				var id = $(this).attr('data-id');
-				initUserView(id);
-			});
 			//需求保存
             
 			//用户需求保存
@@ -520,11 +515,6 @@ var orderIndex = {
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
-			             '         <img src="/resources/images/orderManager/select.png">             ',
-			             '         <ul class="oSelect isTrueOrLie">                        ',
-			             '               <li data-value="1" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">真实</li>                  ',
-					     '               <li data-value="2" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">虚假</li>                    ',
-			             '         </ul>                                                      ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
 		               '    <td ><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
