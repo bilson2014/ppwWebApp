@@ -117,6 +117,7 @@ function setValueToNeedList(keys,values,type){
 	                    for(var j = 0; j < values.length; j++){
 					    if(thisDiv.text()==values[j]){
 					    	thisDiv.addClass('activeNeed');
+					    	return;
 					    }
 					    else{
 					    	if(LookList == 1){
