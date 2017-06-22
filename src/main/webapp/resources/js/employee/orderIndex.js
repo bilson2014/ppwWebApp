@@ -216,6 +216,12 @@ var orderIndex = {
 				event.stopPropagation();
 			});
 			$('.oSelect li').off('click').on('click',function(){
+				 var id = $(this).attr('data-id');
+			   	 $(this).parent().parent().find('div').text($(this).text());
+			   	 $(this).parent().parent().find('div').attr('data-id',id);
+			   	 $(this).parent().slideUp();
+			   	 $('.orderSelect').removeClass('selectColor');
+				
 			   	 if($(this).parent().hasClass('searchSelect')){
 				   	 search();
 			   	 }
@@ -234,11 +240,7 @@ var orderIndex = {
 			 			return;
 			 		 }
 			   	 }
-				 var id = $(this).attr('data-id');
-			   	 $(this).parent().parent().find('div').text($(this).text());
-			   	 $(this).parent().parent().find('div').attr('data-id',id);
-			   	 $(this).parent().slideUp();
-			   	 $('.orderSelect').removeClass('selectColor');
+			
 			   	 event.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
