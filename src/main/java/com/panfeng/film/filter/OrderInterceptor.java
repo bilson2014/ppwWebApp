@@ -9,7 +9,7 @@ import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.panfeng.film.util.Log;
 
-public class ProductCaseInterceptor extends HandlerInterceptorAdapter {
+public class OrderInterceptor extends HandlerInterceptorAdapter {
 
 	public boolean preHandle(HttpServletRequest req,
 			HttpServletResponse resp, Object handler) throws Exception {

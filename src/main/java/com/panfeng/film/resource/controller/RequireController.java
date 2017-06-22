@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
 import com.paipianwang.pat.common.entity.PageParam;
@@ -38,15 +37,13 @@ public class RequireController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-					long page = param.getPage();
-					long rows = param.getRows();
-					param.setBegin((page - 1) * rows);
-					param.setLimit(rows);
-					Map<String, Object> paramMap = new HashMap<String, Object>();
-					DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
-					return dataGrid;
-				}
+				long page = param.getPage();
+				long rows = param.getRows();
+				param.setBegin((page - 1) * rows);
+				param.setLimit(rows);
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
+				return dataGrid;
 			}
 		}
 		return new DataGrid<>();
