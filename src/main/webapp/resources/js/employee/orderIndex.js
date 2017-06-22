@@ -264,23 +264,19 @@ var orderIndex = {
 				$(Real).attr('data-content',phone);
 			});
 			$('.edit').off('click').on('click',function(){
-				$('.orderModel').show();
-				$('#setErrorList').hide();
-				$('#indentId').attr('data-value', $(this).parent().find('.id').text());
+				$('#indentId').val($(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
-				$('#indentId').attr('data-content',hasReques);
-				initView(hasReques);
-				$('.needBtn').show();
-				LookList = 0;
+				$('#requireId').val(hasReques);
+				$('#flag').val(0);
+				$('#toListForm').submit();
 			});
 			//查看需求文档
 			$('.LookNeedList').off('click').on('click',function(){
-				$('.orderModel').show();
+				$('#indentId').val($(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
-				$('#indentId').attr('data-content',hasReques);
-				initView(hasReques);
-				$('#needBtn').hide();
-				LookList = 1;				
+				$('#requireId').val(hasReques);
+				$('#flag').val(1);
+				$('#toListForm').submit();			
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){

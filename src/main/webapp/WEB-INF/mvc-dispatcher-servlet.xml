@@ -48,9 +48,8 @@
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
-    <mvc:view-controller path="/orderList" view-name="/order/orderList" />
-
-     <!-- end --> 
+    <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
+    <!-- end --> 
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
