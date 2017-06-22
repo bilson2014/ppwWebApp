@@ -46,6 +46,7 @@
             <span>~</span>
             <input class="time" readonly id="timeNew" name="time" value="">
             <div class="btn-c-r searchBtn" id="toSearch">搜索</div>
+            <div class="btn-c-g searchBtn" id="toClean">清空</div>
          </div>
 </body>
 

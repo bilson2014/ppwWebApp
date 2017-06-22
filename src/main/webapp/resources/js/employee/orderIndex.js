@@ -203,7 +203,7 @@ var orderIndex = {
 			});
 		},
 		controlSelect:function(){
-			$('.orderSelect').off('click').on('click',function(){
+			$('.orderSelect').off('click').on('click',function(e){
 				if($(this).hasClass('selectColor')){
 					$('.oSelect').slideUp();
 					$(this).removeClass('selectColor');
@@ -213,15 +213,14 @@ var orderIndex = {
 					$(this).find('.oSelect').slideDown();
 					$(this).addClass('selectColor');
 				}
-				event.stopPropagation();
+				e.stopPropagation();
 			});
-			$('.oSelect li').off('click').on('click',function(){
+			$('.oSelect li').off('click').on('click',function(e){
 				 var id = $(this).attr('data-id');
 			   	 $(this).parent().parent().find('div').text($(this).text());
 			   	 $(this).parent().parent().find('div').attr('data-id',id);
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
-				
 			   	 if($(this).parent().hasClass('searchSelect')){
 				   	 search();
 			   	 }
@@ -240,8 +239,7 @@ var orderIndex = {
 			 			return;
 			 		 }
 			   	 }
-			
-			   	 event.stopPropagation();
+			   	 e.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
 				 $('.oSelect').slideUp();
@@ -281,6 +279,11 @@ var orderIndex = {
 				$('#modifyUserInfo').show();
 			});
 			//需求保存
+			$('.isFind').off('click').on('click',function(){
+				var id = $(this).attr('data-id');
+				initUserView(id);
+				$('#modifyUserInfo').show();
+			});
             
 			//用户需求保存
 			$('#submitEditCus').off('click').on('click',function(){
@@ -339,7 +342,15 @@ var orderIndex = {
 			$('.btnDiv btn-c-g').off('click').on('orderModel',function(){
 				$('.modelPage').hide();
 			});
-			
+			//清空搜索
+			$('#toClean').off('click').on('orderModel',function(){
+                  $('#sUserCompany').val('');
+                  $('#sRealName').val('');
+                  $('#sIndent_tele').val('');
+                  $('#sIndentSource').text('');
+                  $('#sIndentSource').attr('data-id','');
+                  refresh();
+			});
 		},
 		createTableTitle:function(){
 			var html = [
@@ -351,7 +362,7 @@ var orderIndex = {
 		             '      <th>订单来源</th>   ',
 		             '      <th>下单时间</th>   ',
 		             '      <th>编辑订单</th>   ',
-		             '      <th>编辑</th>       ',
+		             '      <th>需求文档</th>       ',
 		             '      <th>提交</th>       ',
 		             '      <th>作废</th>       ',
 		             '  </tr>                   ',
@@ -382,8 +393,8 @@ var orderIndex = {
 		             '      <th>联系电话</th>    ',
 		             '      <th>订单来源</th>    ',
 		             '      <th>下单时间</th>    ',
-		             '      <th>真伪</th>        ',
-		             '      <th>客户信息</th>    ',
+		             '      <th>客户信息</th>',
+		             '      <th>修改</th>    ',
 		             '  </tr>                   ',
 			].join('');
 			return html;
@@ -705,7 +716,11 @@ function submitSaveOrCreate(check,item){
 				  data: data,
 				  success:function(data){
 					  $('#NewOrder').hide();
-					  orderIndex.readMore(nowPage);
+					  if(check == 1){
+						  $('.orderIndex').click();
+					  }else{
+						  orderIndex.readMore(nowPage);
+					  }
 					},
 				  dataType: 'json'
 				});  
