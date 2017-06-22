@@ -359,6 +359,46 @@ public class IndentController extends BaseController {
 		return baseMsg;
 	}
 
+	@RequestMapping(value = "/checkOrder")
+	public BaseMsg checkOrder(Long indentId) {
+		BaseMsg baseMsg = new BaseMsg();
+		List<String> errorItem = new ArrayList<>();
+		if (indentId != null) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			String userCompany = indent.getUserCompany();
+			if(!ValidateUtil.isValid(userCompany)){
+				errorItem.add("userCompany");
+			}
+			String realName = indent.getRealName();
+			if(!ValidateUtil.isValid(realName)){
+				errorItem.add("realName");
+			}
+			String indent_tele = indent.getIndent_tele();
+			if(!ValidateUtil.isValid(indent_tele)){
+				errorItem.add("indent_tele");
+			}
+			Integer indentSource = indent.getIndentSource();
+			if(indentSource == null){
+				errorItem.add("indentSource");
+			}
+			Long requireId = indent.getRequireId();
+			if(!ValidateUtil.isValid(requireId)){
+				errorItem.add("requireId");
+			}
+			
+			if(errorItem.size() == 0){
+				baseMsg.setCode(BaseMsg.NORMAL);
+			}else{
+				baseMsg.setCode(BaseMsg.WARNING);
+				baseMsg.setResult(errorItem);
+			}
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("订单ID不能为空！");
+		}
+		return baseMsg;
+	}
+	
 	// ------------------------------------------------------------------------------
 	@RequestMapping(value = "/info")
 	public BaseMsg indentInfo(Long indentId) {

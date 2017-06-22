@@ -1137,35 +1137,61 @@ function submitToFOrder(id){
 
 function checkUser(){
 	// 验证完整性
-	var ok = checkOrder(this);
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
-	if(ok){
-		var indent_tele = $(tr).find('.indent_tele').text();
-		// 验证用户是否重复
-		loadData(function(ssr){
-			if(ssr.errorCode == 200){
-				submitOrder();
-			}else{
-				// alert('用户冲突');
-				$('#smodelPage').show();
-				$('#mptModel').off('click').on('click',function(){
-					submitOrder();
-				});
-				var root = $('#smodelPage');
-				var mprealName = $(root).find('#mprealName');
-				var mpindent_tele = $(root).find('#mpindent_tele');
-				var mpuserCompany = $(root).find('#mpuserCompany');
-				var ss = ssr.result;
-				$(mprealName).text(ss.realName);
-				$(mpindent_tele).text(ss.telephone);
-				$(mpuserCompany).text(ss.userCompany);
+    loadData(function (res){
+    	if(res.code == 200){
+    		var indent_tele = $(tr).find('.indent_tele').text();
+    		// 验证用户是否重复
+    		loadData(function(ssr){
+    			if(ssr.errorCode == 200){
+    				submitOrder();
+    			}else{
+    				// alert('用户冲突');
+    				$('#smodelPage').show();
+    				$('#mptModel').off('click').on('click',function(){
+    					submitOrder();
+    				});
+    				var root = $('#smodelPage');
+    				var mprealName = $(root).find('#mprealName');
+    				var mpindent_tele = $(root).find('#mpindent_tele');
+    				var mpuserCompany = $(root).find('#mpuserCompany');
+    				var ss = ssr.result;
+    				$(mprealName).text(ss.realName);
+    				$(mpindent_tele).text(ss.telephone);
+    				$(mpuserCompany).text(ss.userCompany);
+    			}
+    		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
+    	}else if(res.code == 300){
+    		var rrr = res.result;
+    		$('#showErrorInfoWin').show();
+    		var errorView = $('#showErrorInfoWin').find('.serErrorDiv');
+    		errorView.html('');
+    		for (var int = 0; int < rrr.length; int++) {
+    			var es = rrr[int];
+    			switch (es) {
+				case 'userCompany':
+					$(errorView).append('<div>用公司信息不完整</div>');
+					break;
+				case 'realName':
+					$(errorView).append('<div>联系人信息不完整</div>');
+					break;
+				case 'indent_tele':
+					$(errorView).append('<div>电话信息不完整</div>');
+					break;
+				case 'indentSource':
+					$(errorView).append('<div>订单来源信息不完整</div>');
+					break;
+				case 'requireId':
+					$(errorView).append('<div>需求文档未填写</div>');
+					break;
+				}
 			}
-		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
-	}else{
-		alert('请补全信息！');
-	}
+    	}else{
+    		alert(res.errorMsg);
+    	}
+	}, getContextPath() + '/order/checkOrder?indentId='+id, null);
 }
 
 //废弃订单验证
@@ -1227,26 +1253,26 @@ function checkUserInfo(){
 	return true;
 }
 
-function checkOrder(obj){
-	var tr = $(obj).parent();	
-	var userCompany = $(tr).find('.userCompany').text();
-	var realName = $(tr).find('.realName').text();
-	var indent_tele = $(tr).find('.indent_tele').text();
-	var indentSource = $(tr).find('.indentSource').attr('data-source');
-	var requireId = $(tr).find('.submit').attr('data-requireid');
-	if(userCompany != '' && userCompany != null){
-		if(realName != '' && realName !=  null){
-			if(indent_tele != '' && indent_tele != null){
-				if(indentSource != null && indentSource > 0){
-					if(requireId != null && requireId > 0){
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
+//function checkOrder(obj){
+//	var tr = $(obj).parent();	
+//	var userCompany = $(tr).find('.userCompany').text();
+//	var realName = $(tr).find('.realName').text();
+//	var indent_tele = $(tr).find('.indent_tele').text();
+//	var indentSource = $(tr).find('.indentSource').attr('data-source');
+//	var requireId = $(tr).find('.submit').attr('data-requireid');
+//	if(userCompany != '' && userCompany != null){
+//		if(realName != '' && realName !=  null){
+//			if(indent_tele != '' && indent_tele != null){
+//				if(indentSource != null && indentSource > 0){
+//					if(requireId != null && requireId > 0){
+//						return true;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return false;
+//}
 
 function refresh(){
 	if(now_order == 0){
