@@ -47,7 +47,7 @@
 		 <div class="outSideDiv">
 		         <div class="loginDiv">
 		            <h1>内部员工登录</h1>
-		              <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="login-form">
+		              <form role="form" method="GET" autocomplete="off" accept-charset="UTF-8" id="login-form">
 		            <div class="loginContent input-group">
 		                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName"></input>
 		                 <div class="otherDiv"></div>

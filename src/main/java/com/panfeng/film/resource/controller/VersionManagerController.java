@@ -130,7 +130,21 @@ public class VersionManagerController extends BaseController {
 						if (ret) {
 							addCookies(request, response);
 						}
+						int rrr = 0; // 0 代表主页  1代表客服页  2代表项目页
+						
+						if(ValidateUtil.isValid(roles)){
+							for (PmsRole pmsRole : roles) {
+								if(pmsRole.getRoleName().equals("客服")){
+									rrr = 1;
+									break;
+								}
+								if(pmsRole.getRoleName().equals("销售")){
+									rrr = 2;
+								}
+							}
+						}
 						result.setRet(ret);
+						result.setMessage(rrr+"");
 					}
 				} catch (Exception e) {
 					SessionInfo sessionInfo = getCurrentInfo(request);
