@@ -1148,26 +1148,26 @@ function checkUser(){
     		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele+'&indentId='+id, null);
     	}else if(res.code == 300){
     		var rrr = res.result;
-    		$('#showErrorInfoWin').show();
-    		var errorView = $('#showErrorInfoWin').find('.serErrorDiv');
-    		errorView.html('');
+    		//$('#showErrorInfoWin').show();
+//    		var errorView = $('#showErrorInfoWin').find('.serErrorDiv');
+//    		errorView.html('');
     		for (var int = 0; int < rrr.length; int++) {
     			var es = rrr[int];
     			switch (es) {
 				case 'userCompany':
-					$(errorView).append('<div>用公司信息不完整</div>');
-					break;
+					
+					
 				case 'realName':
-					$(errorView).append('<div>联系人信息不完整</div>');
-					break;
+					
+					
 				case 'indent_tele':
-					$(errorView).append('<div>电话信息不完整</div>');
-					break;
+				
+					
 				case 'indentSource':
-					$(errorView).append('<div>订单来源信息不完整</div>');
+					$('#setErrorInfoWord').text('订单');
 					break;
 				case 'requireId':
-					$(errorView).append('<div>需求文档未填写</div>');
+					$('#setErrorInfoWord').text('需求');
 					break;
 				}
 			}
