@@ -29,8 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<title>拍片网</title>
-	
+	<title>拍片网</title>	
     <link rel="stylesheet" href="${orderCss }">
     <link rel="stylesheet" href="${datepickerCss }">
 	<!--[if lt IE 9]>
@@ -67,11 +66,10 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
-	 
 	 <form method="post" action="/require" id="toListForm" class="hide">
-            <input type='hidden' id="indentId" />
-            <input type='hidden' id="requireId"/>
-            <input type='hidden' id="flag"/>
+            <input type='hidden' name="indentId" id="indentId" />
+            <input type='hidden' name="requireId" id="requireId"/>
+            <input type='hidden' name="flag" id="flag"/>
      </form>
 	 
  	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
@@ -136,24 +134,27 @@
            </div>
       </div>
       
-      <div class="modelPage" id="smodelPage">
+      <div class="modelPage" id="smodelPage" style="display:block">
            <div class="submitModel" >
                <div class="closeBtn"></div>
                <div class="submitTitle">订单提交信息验证</div>
                <div class="infoWarn">
-                   <div>用户已存在请确认是否为以下用户?</div>
-                   <div>是请确认，非以下用户请取消提交</div>
+                   <img src="${imgPath}/orderManager/waring.png">
+                   <div>注意:您输入的联系人手机已存在,且与当前联系人信息不一致。已存在的信息为：</div>
                </div>
                <div class="showInfomotion">
-                   <div class="title">客户信息</div>
-                   <ul>
-                      <li>联系人</li>
-                      <li id="mprealName">的名字</li>
-                      <li>联系电话</li>
-                      <li id="mpindent_tele">18210367466</li>
-                      <li>公司名称</li>
-                      <li id="mpuserCompany">什么什么的公司</li>
-                   </ul>
+                       <div class="showItem">
+                           <div>联系人</div>
+                           <div id="mprealName"></div>
+                       </div>
+                        <div class="showItem">
+                           <div>联系电话</div>
+                           <div id="mpindent_tele"></div>
+                       </div>
+                        <div class="showItem">
+                           <div>公司名称</div>
+                           <div id="mpuserCompany"></div>
+                       </div>
                </div>
                <div class="sureBtn">
 			           <div class="btn-c-r" id="mptModel">确定</div>
@@ -518,7 +519,6 @@
     
       <div class="tableList">
          <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
-         <jsp:include flush="true" page="orderList.jsp"></jsp:include> 
          <table class="toDoing" id="setTable">
               <tr>
                    <th>订单编号</th>

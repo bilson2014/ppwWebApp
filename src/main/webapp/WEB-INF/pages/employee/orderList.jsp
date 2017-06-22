@@ -1,9 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/css/employee/orderList.css" var="orderListCss"/>
+<spring:url value="/resources/js/employee/orderList.js" var="orderListJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
+<spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
+<spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -21,14 +27,15 @@
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
       <link rel="stylesheet" href="${orderListCss}">
+      <link rel="stylesheet" href="${datepickerCss}">
 </head>
 
 <body>
-
-      <input type='hidden' id="indentId" />
-      <input type='hidden' id="requireId"/>
-      <input type='hidden' id="flag"/>
-
+      <input type='hidden' id="indentId"  value="${indentId}" />
+      <input type='hidden' id="requireId" value="${requireId}" />
+      <input type='hidden' id="flag"      value="${flag}" />
+      <jsp:include flush="true" page="../header.jsp"></jsp:include> 
+      <div class="showModelMeng"></div>
       <div class="orderModel">
        <div class="orderList">
             <div class="listHeader">
@@ -40,12 +47,17 @@
             <div class="listTItleE">Client Briefing Document</div>
             <div id="setListInfo"></div>
             <div class="btnDiv" id="needBtn">
-	                <div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
+	                <div class="btn-c-g cancleOrderList hide" id="cancleOrderList">取消</div>
 	                <div class="btn-c-r headerSave">保存</div>
 	        </div>
        </div> 
       </div> 
     <script type="text/javascript" src="${jqueryJs}"></script>
+    <script type="text/javascript" src="${commonJs}"></script>
+    <script type="text/javascript" src="${jsonJs}"></script>
+    <script type="text/javascript" src="${datepickerJs}"></script>
+    <script type="text/javascript" src="${datepickerZhJs}"></script>
+    <script type="text/javascript" src="${orderListJs}"></script>
 </body>
 
 </html>

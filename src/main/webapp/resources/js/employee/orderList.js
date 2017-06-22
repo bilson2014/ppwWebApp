@@ -1,8 +1,14 @@
 
-var LookList = 0;
-
 $().ready(function() {
 	initView();
+	orderIndex.init();
+	if($('#flag').val() == 1){
+		$('#needBtn').hide();
+	}
+	$('#cancleOrderList').off('click').on('click',function(){
+		 window.location.href=getContextPath()+'/order/ongoing';
+	});
+	
 });
 
 var orderIndex = {
@@ -11,7 +17,7 @@ var orderIndex = {
 		},
 		controlModel:function(){
 			$('.headerSave').off('click').on('click',function(){
-				getNeedValue($('#indentId').attr('data-content'));
+				getNeedValue($('#requireId').val());
 			});
 		},
 };
@@ -27,7 +33,8 @@ var optionType = {
 		checkbox:"checkbox",
 		text:"text"
 		};
-function initView(hasReques){
+function initView(){
+	var hasReques = $('#requireId').val();
 	var view = $('#setListInfo');
 	view.html('');
 	syncLoadData(function (res){
@@ -83,7 +90,7 @@ function ReShowView(item){
 //如果LookList=1 去除多余选项     需求表回显
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
-     console.info(keys+values);
+     var LookList = $('#flag').val();
 	 for (var int = 0; int < rows.length; int++) {
 		 var getNowItem = $(rows[int]);
 		 if($(rows[int]).attr('data-id')==keys){
@@ -92,14 +99,14 @@ function setValueToNeedList(keys,values,type){
 				 if(LookList == 1){
 					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
 				 }
-				 break;
+				 continue ;
 			 }
 			 if($(rows[int]).hasClass('isTextArea')){
 				 $(rows[int]).find('.optionItem').find('textarea').val(values);
 				 if(LookList == 1){
 					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
 			    	}
-				 break;
+				 continue ;
 			 }
 			 if($(rows[int]).hasClass('Mult')){
 				 var lastIndex = values.length - 1;
@@ -126,15 +133,15 @@ function setValueToNeedList(keys,values,type){
 						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
 				     }
 				  }
-				 break;
+				 continue ;
 			 }
 			 var nowItem = $(rows[int]).find('.optionItem').find('.itemDiv');
-			 for (var int = 0; int < nowItem.length; int++){
-				    if($(nowItem[int]).text()==values){
-				    	$(nowItem[int]).addClass('activeNeed');
+			 for (var intj = 0; intj < nowItem.length; intj++){
+				    if($(nowItem[intj]).text()==values){
+				    	$(nowItem[intj]).addClass('activeNeed');
 				    }else{
 				    	if(LookList == 1){
-				    		$(nowItem[int]).remove();
+				    		$(nowItem[intj]).remove();
 				    	}
 				    }
 				 }
@@ -183,7 +190,7 @@ function buildDatepicker(obj){
 	var html = $('<div class="qItem isData"  data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var setItem = $('<div class="optionItem"></div>');
-	var items = $('<div><input class="_datepicker activeNeed" value="日期" name="'+obj.name+'" /></div>');
+	var items = $('<div><input class="_datepicker activeNeed" value="选择日期" name="'+obj.name+'" /></div>');
 	setItem.append(items);
 	html.append(setItem);
 	return html;
@@ -203,7 +210,6 @@ function initNeedEven(){
 		if($(this).hasClass('other')){
 		$(this).parent().parent().find('.otherInfo').show();
 		}
-		
 	});
 	$('.optionItemMult .itemDiv').off('click').on('click',function(){
 		if($(this).hasClass('activeNeed')){
@@ -242,28 +248,30 @@ function getNeedValue(requireId){
 				  isCheck = false;
 			  }
 			  setData.push(new optEntity(itemId,itemValues,setType));
-			}
+		}
 		 var rowsMult= $('.optionItemMult');
 		 for (var int = 0; int < rowsMult.length; int++) {
+			 if(!$(rowsMult[int]).find('.itemDiv').hasClass('activeNeed')){
+				 isCheck = false;
+			 }
 			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
 			 var checkActive = $(rowsMult[int]).find('.activeNeed');
 			 var setMultData = new Array();
 			 var setType = '';
-			 for (var int = 0; int < checkActive.length; int++){
-				 if($(checkActive[int]).hasClass('other')){
-					var itemValues =  $(checkActive[int]).parent().find('input').val();
+			 for (var ui = 0; ui < checkActive.length; ui++){
+				 if($(checkActive[ui]).hasClass('other')){
+					var itemValues =  $(checkActive[ui]).parent().find('input').val();
 					setType = "input";
+					  if(itemValues == ""||itemValues == null){
+						  isCheck = false;
+					  }
 				 }else{
-					var itemValues =  $(checkActive[int]).text();
+					var itemValues =  $(checkActive[ui]).text();
 				 }
-				  if(itemValues == ""||itemValues == null){
-					  isCheck = false;
-				  }
-				  setMultData.push(itemValues);
-			     }
+				 setMultData.push(itemValues);
+			  }
 			 setData.push(new optEntity(itemId, setMultData,setType));
 		} 
-		 
 		 if(isCheck){
 		 if(requireId!= null && requireId!="" && requireId != "null"){
 			 $.ajax({
@@ -276,7 +284,7 @@ function getNeedValue(requireId){
 				  success: function (res) {
 					      console.info('修改');
 						  $('.orderModel').hide();
-						  refresh();
+						  window.location.href=getContextPath()+'/order/ongoing';
 				  }
 			});	
 		 }else{
@@ -286,12 +294,12 @@ function getNeedValue(requireId){
 				  data: {
 						"requireJson": $.toJSON(setData),
 						"requireFlag" : 0,
-						"indentId" : $('#indentId').attr('data-value')
+						"indentId" : $('#indentId').val()
 						},
 				  success: function (res) {
 					  console.info('新建');
 					  $('.orderModel').hide();
-					  refresh();
+					  window.location.href=getContextPath()+'/order/ongoing';
 				  }
 			});				 
 		 }
@@ -299,7 +307,6 @@ function getNeedValue(requireId){
 			$('#setErrorList').show();
 		}
 }
-
 /**
  * key / value
  */

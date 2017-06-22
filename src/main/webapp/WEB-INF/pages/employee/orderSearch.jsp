@@ -45,6 +45,7 @@
             <input class="time" readonly id="timeOld" name="time" value="">
             <span>~</span>
             <input class="time" readonly id="timeNew" name="time" value="">
+            <div class="btn-c-r searchBtn" id="toSearch">搜索</div>
          </div>
 </body>
 

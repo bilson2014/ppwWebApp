@@ -254,6 +254,8 @@ var orderIndex = {
 			infoEven();
 		    //新建
 			orderNewEven();
+			//触发查询
+			$('#toSearch').off('click').on('click',search);
 			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
@@ -273,23 +275,10 @@ var orderIndex = {
 				$('#toListForm').submit();
 			});
 			//查看需求文档
-			$('.LookNeedList').off('click').on('click',function(){
-				$('#indentId').val($(this).parent().find('.id').text());
-				var hasReques = $(this).parent().find('.id').attr('data-value');
-				$('#requireId').val(hasReques);
-				$('#flag').val(1);
-				$('#toListForm').submit();			
-			});
-			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
 				var id = $(this).attr('data-id');
 				initUserView(id);
 				$('#modifyUserInfo').show();
-			});
-			$('.isFind').off('click').on('click',function(){
-				$('#modifyUserInfo').show();
-				var id = $(this).attr('data-id');
-				initUserView(id);
 			});
 			//需求保存
             
@@ -480,7 +469,7 @@ var orderIndex = {
 		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>完善</div></td>' ,
-		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div><a href="/require/'+obj.requireId+'" target="_blank" >查看</></div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -526,11 +515,6 @@ var orderIndex = {
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
-			             '         <img src="/resources/images/orderManager/select.png">             ',
-			             '         <ul class="oSelect isTrueOrLie">                        ',
-			             '               <li data-value="1" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">真实</li>                  ',
-					     '               <li data-value="2" data-id="'+obj.id +'" data-content="'+obj.indent_tele+'">虚假</li>                    ',
-			             '         </ul>                                                      ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
 		               '    <td ><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
