@@ -29,7 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<title>拍片网</title>	
+	<title>我的订单</title>	
     <link rel="stylesheet" href="${orderCss }">
     <link rel="stylesheet" href="${datepickerCss }">
 	<!--[if lt IE 9]>
@@ -53,9 +53,6 @@
 </head>
 
 <body>
-
-     
-     
      <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />              
 	 </r:identity>
@@ -90,7 +87,6 @@
 		   </div>
            </div>
       </div>
-      
       <div class="modelPage" id="sureModel">
            <div class="successModel">
                <div class="closeBtn"></div>
@@ -120,7 +116,7 @@
            </div>
       </div>
       
-      <div class="modelPage" id="showErrorInfoWin" style="display:block">
+      <div class="modelPage" id="showErrorInfoWin">
            <div class="successModel">
                <div class="closeBtn"></div>
 		   <div class="checkListContent">
