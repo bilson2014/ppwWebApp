@@ -6,7 +6,7 @@ $().ready(function() {
 		$('#needBtn').hide();
 	}
 	$('#cancleOrderList').off('click').on('click',function(){
-		 window.location.href=getContextPath()+'/order/ongoing';
+		 window.location.href=getContextPath()+'/order/myOrder';
 	});
 	
 });
@@ -284,7 +284,7 @@ function getNeedValue(requireId){
 				  success: function (res) {
 					      console.info('修改');
 						  $('.orderModel').hide();
-						  window.location.href=getContextPath()+'/order/ongoing';
+						  window.location.href=getContextPath()+'/order/myOrder';
 				  }
 			});	
 		 }else{
@@ -299,7 +299,7 @@ function getNeedValue(requireId){
 				  success: function (res) {
 					  console.info('新建');
 					  $('.orderModel').hide();
-					  window.location.href=getContextPath()+'/order/ongoing';
+					  window.location.href=getContextPath()+'/order/myOrder';
 				  }
 			});				 
 		 }

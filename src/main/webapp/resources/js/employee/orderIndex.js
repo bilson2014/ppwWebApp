@@ -270,6 +270,8 @@ var orderIndex = {
 			$('.edit').off('click').on('click',function(){
 				$('#indentId').val($(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
+				if(hasReques == null || hasReques == "null")
+					hasReques = "";
 				$('#requireId').val(hasReques);
 				$('#flag').val(0);
 				$('#toListForm').submit();
