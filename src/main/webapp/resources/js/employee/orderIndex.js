@@ -1138,7 +1138,6 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
-    $('#mptModel').attr('data-id',ids);
 	if(ok){
 		var indent_tele = $(tr).find('.indent_tele').text();
 		// 验证用户是否重复
