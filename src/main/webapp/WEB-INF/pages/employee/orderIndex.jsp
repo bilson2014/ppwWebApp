@@ -134,24 +134,27 @@
            </div>
       </div>
       
-      <div class="modelPage" id="smodelPage">
+      <div class="modelPage" id="smodelPage" style="display:block">
            <div class="submitModel" >
                <div class="closeBtn"></div>
                <div class="submitTitle">订单提交信息验证</div>
                <div class="infoWarn">
-                   <div>用户已存在请确认是否为以下用户?</div>
-                   <div>是请确认，非以下用户请取消提交</div>
+                   <img src="${imgPath}/orderManager/waring.png">
+                   <div>注意:您输入的联系人手机已存在,且与当前联系人信息不一致。已存在的信息为：</div>
                </div>
                <div class="showInfomotion">
-                   <div class="title">客户信息</div>
-                   <ul>
-                      <li>联系人</li>
-                      <li id="mprealName">的名字</li>
-                      <li>联系电话</li>
-                      <li id="mpindent_tele">18210367466</li>
-                      <li>公司名称</li>
-                      <li id="mpuserCompany">什么什么的公司</li>
-                   </ul>
+                       <div class="showItem">
+                           <div>联系人</div>
+                           <div id="mprealName"></div>
+                       </div>
+                        <div class="showItem">
+                           <div>联系电话</div>
+                           <div id="mpindent_tele"></div>
+                       </div>
+                        <div class="showItem">
+                           <div>公司名称</div>
+                           <div id="mpuserCompany"></div>
+                       </div>
                </div>
                <div class="sureBtn">
 			           <div class="btn-c-r" id="mptModel">确定</div>
