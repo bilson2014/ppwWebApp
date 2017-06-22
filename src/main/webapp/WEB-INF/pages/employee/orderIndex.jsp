@@ -114,17 +114,17 @@
            </div>
       </div>
       
-      <div class="modelPage">
+      <div class="modelPage" id="showErrorInfoWin">
            <div class="successModel">
                <div class="closeBtn"></div>
 		   <div class="checkListContent">
-		         <div class="lList">请完成如下订单</div>
+		         <div class="lList">请完善如下订单信息?</div>
 		         <div class="serErrorDiv">
 		             <div>错误</div>
 		             <div>错误</div>
 		             <div>错误</div>
 		         </div>
-		         <div class="checkBtn btn-c-r">
+		         <div class="checkBtn btn-c-r" id="checkError">
 		                                     确认
 		         </div>
 		   </div>
@@ -512,12 +512,9 @@
 		        </div>
             </div>
       </div>
-    
 
-    
     
       <div class="tableList">
-
          <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
          <jsp:include flush="true" page="orderList.jsp"></jsp:include> 
          <table class="toDoing" id="setTable">
