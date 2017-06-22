@@ -1,0 +1,311 @@
+
+var LookList = 0;
+
+$().ready(function() {
+	initView();
+});
+
+var orderIndex = {
+		init:function(){
+			orderIndex.controlModel();
+		},
+		controlModel:function(){
+			$('.headerSave').off('click').on('click',function(){
+				getNeedValue($('#indentId').attr('data-content'));
+			});
+		},
+};
+
+//需求文档
+var rowType = {
+		select : "select",
+		datepicker : "datepicker",
+		textarea :"textarea",
+		multselect :"multselect"
+		};
+var optionType = {
+		checkbox:"checkbox",
+		text:"text"
+		};
+function initView(hasReques){
+	var view = $('#setListInfo');
+	view.html('');
+	syncLoadData(function (res){
+		var obj = $.evalJSON(res.result);
+		var rows = obj.rows;
+		if(rows != null && rows.length > 0){
+			for (var int = 0; int < rows.length; int++) {
+				var row = rows[int];
+				var type = row.type;
+				var html = '';
+				switch (type) {
+				case rowType.select:
+					html = buildSelect(row,1);
+					break;
+				case rowType.multselect:
+					html = buildSelect(row,2);
+					break;
+				case rowType.datepicker:
+					html = buildDatepicker(row);
+					break;
+				case rowType.textarea:
+					html = buildTextarea(row);
+					break;
+				}
+				view.append(html);
+			}
+			$("._datepicker").datepicker({
+				language: 'zh',
+				dateFormat:'yyyy-MM-dd' 
+			});
+			initNeedEven();
+			if(hasReques !=null && hasReques!=''){
+				loadData(function (getRes){
+					      ReShowView(getRes);
+				}, getContextPath() + '/require/info?requireId='+hasReques,null);
+			}
+		}
+	}, getContextPath() + '/require/config', null);
+}
+
+//回显需求表
+function ReShowView(item){	
+	var keys = item.result.requireJson;
+	var jsKeys = $.evalJSON(keys);
+	for (var int = 0; int < jsKeys.length; int++){
+		 var getKey =  jsKeys[int].key;
+		 var getValue =  jsKeys[int].value;
+		 var getType =  jsKeys[int].type;
+		 setValueToNeedList(getKey,getValue,getType);
+	}
+}
+
+//如果LookList=1 去除多余选项     需求表回显
+function setValueToNeedList(keys,values,type){
+     var rows= $('.qItem');
+     console.info(keys+values);
+	 for (var int = 0; int < rows.length; int++) {
+		 var getNowItem = $(rows[int]);
+		 if($(rows[int]).attr('data-id')==keys){
+			 if($(rows[int]).hasClass('isData')){
+				 $(rows[int]).find('.optionItem').find('input').val(values);
+				 if(LookList == 1){
+					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
+				 }
+				 break;
+			 }
+			 if($(rows[int]).hasClass('isTextArea')){
+				 $(rows[int]).find('.optionItem').find('textarea').val(values);
+				 if(LookList == 1){
+					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
+			    	}
+				 break;
+			 }
+			 if($(rows[int]).hasClass('Mult')){
+				 var lastIndex = values.length - 1;
+				 $(rows[int]).find('.optionItemMult').find('.itemDiv').each(function(index){
+	                    var thisDiv = $(this);
+	                    var thisDivs = thisDiv.text();
+	                    var thiss = values[index];
+	                    for(var j = 0; j < values.length; j++){
+					    if(thisDiv.text()==values[j]){
+					    	thisDiv.addClass('activeNeed');
+					    }
+					    else{
+					    	if(LookList == 1){
+					    		thisDiv.remove();
+					    	}
+					    }
+					    }
+					});
+				 if(type == 'input'){
+					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
+					 if(LookList == 1){
+						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
+				     }
+				  }
+				 break;
+			 }
+			 var nowItem = $(rows[int]).find('.optionItem').find('.itemDiv');
+			 for (var int = 0; int < nowItem.length; int++){
+				    if($(nowItem[int]).text()==values){
+				    	$(nowItem[int]).addClass('activeNeed');
+				    }else{
+				    	if(LookList == 1){
+				    		$(nowItem[int]).remove();
+				    	}
+				    }
+				 }
+			 if(type == 'input'){
+				 getNowItem.find('.optionItem').find('.other').addClass('activeNeed');
+				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(values);
+				 getNowItem.find('.optionItem').find('.otherInfo').show();
+				 if(LookList == 1){
+					 getNowItem.find('.optionItem').find('.otherInfo').find('input').attr("readonly","readonly");
+			     }
+			  }
+		}
+	 }
+}
+
+function buildSelect(obj,isMult){	
+	if(isMult == 1){
+		var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
+		var items = $('<div class="optionItem"></div>');
+	}
+	else{
+		var html = $('<div class="qItem Mult" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
+		var items = $('<div class="optionItemMult"></div>');
+	}
+	var options = obj.options;
+	if(options != null && options.length > 0){
+		for (var int = 0; int < options.length; int++) {
+			var option = options[int];
+			var type = option.type;
+			switch (type) {
+			case optionType.checkbox:
+				items.append('<div class="itemDiv" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
+				break;
+			case optionType.text:
+				items.append(option.text + '<div class="itemDiv other" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><input></div>');
+				break;
+			}
+		}
+	}
+	html.append(items);
+	return html;
+}
+function buildDatepicker(obj){
+	var html = $('<div class="qItem isData"  data-id="'+obj.name+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	var setItem = $('<div class="optionItem"></div>');
+	var items = $('<div><input class="_datepicker activeNeed" value="日期" name="'+obj.name+'" /></div>');
+	setItem.append(items);
+	html.append(setItem);
+	return html;
+}
+function buildTextarea(obj){
+	var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+	html.append(items);
+	return html;
+}
+function initNeedEven(){
+	$('.optionItem .itemDiv').off('click').on('click',function(){
+		$(this).parent().find('.itemDiv').removeClass('activeNeed');
+		$(this).parent().parent().find('.otherInfo').hide();
+		$(this).addClass('activeNeed');
+		if($(this).hasClass('other')){
+		$(this).parent().parent().find('.otherInfo').show();
+		}
+		
+	});
+	$('.optionItemMult .itemDiv').off('click').on('click',function(){
+		if($(this).hasClass('activeNeed')){
+			$(this).removeClass('activeNeed');
+		}else{
+			$(this).addClass('activeNeed');
+		}
+		if($(this).hasClass('other')){
+			$(this).parent().parent().find('.otherInfo').show();
+		}
+	});
+}
+var setData = new Array();
+function getNeedValue(requireId){
+	     var rows= $('.optionItem');
+	     var isCheck = true;
+		 for (var int = 0; int < rows.length; int++) {
+			 var getNowItem = $(rows[int]) ;
+			 var setType = '';
+			 var itemValues = '';
+			 if(getNowItem.find('.activeNeed')){
+				 itemValues = getNowItem.find('.activeNeed').text();
+			 }
+			 if(getNowItem.find('.activeNeed').hasClass('other')){
+				 itemValues =  $(rows[int]).find('input').val();
+				 setType = "input";
+			 }
+			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
+				 itemValues =  $(rows[int]).find('div').find('input').val();
+			 }
+			 if(getNowItem.find('textarea').hasClass('isArea')){
+				 itemValues=  $(rows[int]).find('textarea').val();
+			 }
+			  var itemId =  $(rows[int]).parent().attr('data-id')
+			  if(itemValues == ""||itemValues == null){
+				  isCheck = false;
+			  }
+			  setData.push(new optEntity(itemId,itemValues,setType));
+			}
+		 var rowsMult= $('.optionItemMult');
+		 for (var int = 0; int < rowsMult.length; int++) {
+			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
+			 var checkActive = $(rowsMult[int]).find('.activeNeed');
+			 var setMultData = new Array();
+			 var setType = '';
+			 for (var int = 0; int < checkActive.length; int++){
+				 if($(checkActive[int]).hasClass('other')){
+					var itemValues =  $(checkActive[int]).parent().find('input').val();
+					setType = "input";
+				 }else{
+					var itemValues =  $(checkActive[int]).text();
+				 }
+				  if(itemValues == ""||itemValues == null){
+					  isCheck = false;
+				  }
+				  setMultData.push(itemValues);
+			     }
+			 setData.push(new optEntity(itemId, setMultData,setType));
+		} 
+		 
+		 if(isCheck){
+		 if(requireId!= null && requireId!="" && requireId != "null"){
+			 $.ajax({
+				  type: 'POST',
+				  url: getContextPath() + ' /require/update',
+				  data: {
+					    "requireId":requireId,
+						"requireJson":$.toJSON(setData),
+						},
+				  success: function (res) {
+					      console.info('修改');
+						  $('.orderModel').hide();
+						  refresh();
+				  }
+			});	
+		 }else{
+			 $.ajax({
+				  type: 'POST',
+				  url: getContextPath() + '/require/save',
+				  data: {
+						"requireJson": $.toJSON(setData),
+						"requireFlag" : 0,
+						"indentId" : $('#indentId').attr('data-value')
+						},
+				  success: function (res) {
+					  console.info('新建');
+					  $('.orderModel').hide();
+					  refresh();
+				  }
+			});				 
+		 }
+		}else{
+			$('#setErrorList').show();
+		}
+}
+
+/**
+ * key / value
+ */
+function optEntity(key,value,type){
+	this.key = key;
+	this.value = value;
+	this.type = type;
+}
+
