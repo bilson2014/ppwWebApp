@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/css/employee/orderList.css" var="orderListCss"/>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -25,6 +25,10 @@
 
 <body>
 
+      <input type='hidden' id="indentId" />
+      <input type='hidden' id="requireId"/>
+      <input type='hidden' id="flag"/>
+
       <div class="orderModel">
        <div class="orderList">
             <div class="listHeader">
@@ -33,15 +37,12 @@
                  <div class="setErrorList" id="setErrorList">信息不完整</div>
             </div>
             <div class="listTitle">客户需求调查问卷</div>
-            
-            
             <div class="listTItleE">Client Briefing Document</div>
-            <div id="setListInfo">
-            </div>
-             <div class="btnDiv" id="needBtn">
+            <div id="setListInfo"></div>
+            <div class="btnDiv" id="needBtn">
 	                <div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
 	                <div class="btn-c-r headerSave">保存</div>
-	          </div>
+	        </div>
        </div> 
       </div> 
     <script type="text/javascript" src="${jqueryJs}"></script>

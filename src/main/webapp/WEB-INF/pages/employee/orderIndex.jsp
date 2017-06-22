@@ -54,6 +54,8 @@
 </head>
 
 <body>
+
+     
      
      <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />              
@@ -65,6 +67,12 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
+	 
+	 <form method="post" action="/require" id="toListForm" class="hide">
+            <input type='hidden' id="indentId" />
+            <input type='hidden' id="requireId"/>
+            <input type='hidden' id="flag"/>
+     </form>
 	 
  	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
     <input type='hidden' value="${indentList.total}" id="total">
