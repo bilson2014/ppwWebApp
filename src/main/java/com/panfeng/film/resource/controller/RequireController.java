@@ -6,8 +6,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
@@ -125,5 +127,12 @@ public class RequireController extends BaseController {
 		baseMsg.setCode(BaseMsg.NORMAL);
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
+	}
+	@RequestMapping("/require")
+	public ModelAndView requireView(Long indentId,Long requireId,Integer flag,ModelMap map){
+		map.addAttribute("indentId", indentId);
+		map.addAttribute("requireId", requireId);
+		map.addAttribute("flag", flag);
+		return new ModelAndView("/employee/orderList",map);
 	}
 }

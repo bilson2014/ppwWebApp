@@ -128,9 +128,6 @@
 		   <div class="checkListContent">
 		         <div class="lList">请完善如下订单信息?</div>
 		         <div class="serErrorDiv">
-		             <div>错误</div>
-		             <div>错误</div>
-		             <div>错误</div>
 		         </div>
 		         <div class="checkBtn btn-c-r" id="checkError">
 		                                     确认
