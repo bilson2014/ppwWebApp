@@ -252,6 +252,8 @@ var orderIndex = {
 			infoEven();
 		    //新建
 			orderNewEven();
+			//触发查询
+			$('#toSearch').off('click').on('click',search);
 			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
@@ -269,14 +271,6 @@ var orderIndex = {
 				$('#requireId').val(hasReques);
 				$('#flag').val(0);
 				$('#toListForm').submit();
-			});
-			//查看需求文档
-			$('.LookNeedList').off('click').on('click',function(){
-				$('#indentId').val($(this).parent().find('.id').text());
-				var hasReques = $(this).parent().find('.id').attr('data-value');
-				$('#requireId').val(hasReques);
-				$('#flag').val(1);
-				$('#toListForm').submit();			
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
@@ -478,7 +472,7 @@ var orderIndex = {
 		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
 		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>完善</div></td>' ,
-		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div>查看</div></td>' ,
+		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div><a href="/require/'+obj.requireId+'" target="_blank" >查看</></div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;

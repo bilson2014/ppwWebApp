@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -135,4 +136,13 @@ public class RequireController extends BaseController {
 		map.addAttribute("flag", flag);
 		return new ModelAndView("/employee/orderList",map);
 	}
+	
+	@RequestMapping("/require/{requireId}")
+	public ModelAndView requireView(@PathVariable("requireId")Long requireId,ModelMap map){
+		map.addAttribute("indentId", -1);
+		map.addAttribute("requireId", requireId);
+		map.addAttribute("flag", 1);
+		return new ModelAndView("/employee/orderList",map);
+	}
+	
 }

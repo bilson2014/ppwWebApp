@@ -29,8 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<title>拍片网</title>
-	
+	<title>拍片网</title>	
     <link rel="stylesheet" href="${orderCss }">
     <link rel="stylesheet" href="${datepickerCss }">
 	<!--[if lt IE 9]>
@@ -67,11 +66,10 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
-	 
 	 <form method="post" action="/require" id="toListForm" class="hide">
-            <input type='hidden' id="indentId" />
-            <input type='hidden' id="requireId"/>
-            <input type='hidden' id="flag"/>
+            <input type='hidden' name="indentId" id="indentId" />
+            <input type='hidden' name="requireId" id="requireId"/>
+            <input type='hidden' name="flag" id="flag"/>
      </form>
 	 
  	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
@@ -521,7 +519,6 @@
     
       <div class="tableList">
          <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
-         <jsp:include flush="true" page="orderList.jsp"></jsp:include> 
          <table class="toDoing" id="setTable">
               <tr>
                    <th>订单编号</th>
