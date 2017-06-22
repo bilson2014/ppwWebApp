@@ -186,9 +186,6 @@
 	                            <div data-value="" id="orderComeInfo">请选择</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
-                                        <li data-value="1">线上-网站</li>
-					                    <li data-value="2">线上-活动</li>
-					                    <li data-value="3">线上-新媒体</li>
 					                    <li data-value="4">线下-电销</li>
 					                    <li class="showHelper" data-value="5">线下-直销</li>
 					                    <li data-value="6">线下-活动</li>

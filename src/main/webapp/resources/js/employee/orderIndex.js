@@ -216,6 +216,12 @@ var orderIndex = {
 				event.stopPropagation();
 			});
 			$('.oSelect li').off('click').on('click',function(){
+				 var id = $(this).attr('data-id');
+			   	 $(this).parent().parent().find('div').text($(this).text());
+			   	 $(this).parent().parent().find('div').attr('data-id',id);
+			   	 $(this).parent().slideUp();
+			   	 $('.orderSelect').removeClass('selectColor');
+				
 			   	 if($(this).parent().hasClass('searchSelect')){
 				   	 search();
 			   	 }
@@ -234,11 +240,7 @@ var orderIndex = {
 			 			return;
 			 		 }
 			   	 }
-				 var id = $(this).attr('data-id');
-			   	 $(this).parent().parent().find('div').text($(this).text());
-			   	 $(this).parent().parent().find('div').attr('data-id',id);
-			   	 $(this).parent().slideUp();
-			   	 $('.orderSelect').removeClass('selectColor');
+			
 			   	 event.stopPropagation();
 			});
 			$('body').off('click').on('click',function(){
@@ -1135,13 +1137,14 @@ function checkUser(){
     		var indent_tele = $(tr).find('.indent_tele').text();
     		// 验证用户是否重复
     		loadData(function(ssr){
-    			if(ssr.errorCode == 200){
+    			if(ssr.code == 200){
     				submitOrder();
     			}else{
     				// alert('用户冲突');
     				$('#smodelPage').show();
     				$('#mptModel').off('click').on('click',function(){
-    					submitOrder();
+    					$('.modelPage').hide();
+    					$('.orderModel').hide();
     				});
     				var root = $('#smodelPage');
     				var mprealName = $(root).find('#mprealName');
@@ -1152,7 +1155,7 @@ function checkUser(){
     				$(mpindent_tele).text(ss.telephone);
     				$(mpuserCompany).text(ss.userCompany);
     			}
-    		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele, null);
+    		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele+'&indentId='+id, null);
     	}else if(res.code == 300){
     		var rrr = res.result;
     		$('#showErrorInfoWin').show();
@@ -1194,7 +1197,9 @@ function checkUbListUser(tel,id){
 			}else{
 				$('#smodelPage').show();
 				$('#mptModel').off('click').on('click',function(){
-					submitToFOrder(id);
+					//submitToFOrder(id);
+					$('.modelPage').hide();
+					$('.orderModel').hide();
 				});
 				var root = $('#smodelPage');
 				var mprealName = $(root).find('#mprealName');
@@ -1205,7 +1210,7 @@ function checkUbListUser(tel,id){
 				$(mpindent_tele).text(ss.telephone);
 				$(mpuserCompany).text(ss.userCompany);
 			}
-		}, getContextPath() + '/order/checkuser?indent_tele='+tel, null);
+		}, getContextPath() + '/order/checkuser?indent_tele='+tel+'&indentId='+id, null);
 }
 
 //验证用户信息完整性

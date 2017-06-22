@@ -250,19 +250,38 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/checkuser")
-	public BaseMsg checkUser(String indent_tele) {
+	public BaseMsg checkUser(String indent_tele, Long indentId) {
 		BaseMsg baseMsg = new BaseMsg();
 		PmsUser user = new PmsUser();
 		user.setTelephone(indent_tele);
 		user = pmsUserFacade.findUserByAttr(user);
-		if (user != null && user.getId() != null && user.getId() > 0) {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("用户已经存在！");
-			baseMsg.setResult(user);
+
+		if (user != null && user.getId() > 0) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			// check
+			String iUserCompany = indent.getUserCompany();
+			String iRealName = indent.getRealName();
+
+			String uUserCompany = user.getUserCompany();
+			String uRealName = user.getRealName();
+
+			if (uUserCompany != null && !uUserCompany.equals(iUserCompany)) {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setResult(user);
+				return baseMsg;
+			}
+
+			if (uRealName != null && !uRealName.equals(iRealName)) {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setResult(user);
+				return baseMsg;
+			}
+
+			baseMsg.setCode(BaseMsg.NORMAL);
 		} else {
-			baseMsg.setErrorCode(BaseMsg.NORMAL);
-			baseMsg.setResult(true);
+			baseMsg.setCode(BaseMsg.NORMAL);
 		}
+
 		return baseMsg;
 	}
 
@@ -283,7 +302,7 @@ public class IndentController extends BaseController {
 		return baseMsg;
 	}
 
-	private long saveUser(PmsIndent indent){
+	private long saveUser(PmsIndent indent) {
 		String indent_tele = indent.getIndent_tele();
 		int count = pmsUserFacade.validationPhone(indent_tele, null);
 		PmsUser user = null;
@@ -326,7 +345,7 @@ public class IndentController extends BaseController {
 		}
 		return user.getId();
 	}
-	
+
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
 	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -341,7 +360,7 @@ public class IndentController extends BaseController {
 		}
 		return baseMsg;
 	}
-	
+
 	@RequestMapping(value = "/realOrder", produces = "application/json; charset=UTF-8")
 	public BaseMsg realOrder(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
@@ -366,29 +385,29 @@ public class IndentController extends BaseController {
 		if (indentId != null) {
 			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
 			String userCompany = indent.getUserCompany();
-			if(!ValidateUtil.isValid(userCompany)){
+			if (!ValidateUtil.isValid(userCompany)) {
 				errorItem.add("userCompany");
 			}
 			String realName = indent.getRealName();
-			if(!ValidateUtil.isValid(realName)){
+			if (!ValidateUtil.isValid(realName)) {
 				errorItem.add("realName");
 			}
 			String indent_tele = indent.getIndent_tele();
-			if(!ValidateUtil.isValid(indent_tele)){
+			if (!ValidateUtil.isValid(indent_tele)) {
 				errorItem.add("indent_tele");
 			}
 			Integer indentSource = indent.getIndentSource();
-			if(indentSource == null){
+			if (indentSource == null) {
 				errorItem.add("indentSource");
 			}
 			Long requireId = indent.getRequireId();
-			if(!ValidateUtil.isValid(requireId)){
+			if (!ValidateUtil.isValid(requireId)) {
 				errorItem.add("requireId");
 			}
-			
-			if(errorItem.size() == 0){
+
+			if (errorItem.size() == 0) {
 				baseMsg.setCode(BaseMsg.NORMAL);
-			}else{
+			} else {
 				baseMsg.setCode(BaseMsg.WARNING);
 				baseMsg.setResult(errorItem);
 			}
@@ -398,7 +417,7 @@ public class IndentController extends BaseController {
 		}
 		return baseMsg;
 	}
-	
+
 	// ------------------------------------------------------------------------------
 	@RequestMapping(value = "/info")
 	public BaseMsg indentInfo(Long indentId) {
