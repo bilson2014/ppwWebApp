@@ -222,8 +222,8 @@
                         </div>  
                     </div>
                 <div class="sureBtn">
+                   <div class="btn-c-r" id="submitEdit">确定</div>
                    <div class="btn-c-g" id="cancleEdit">取消</div>
-		           <div class="btn-c-r" id="submitEdit">确定</div>
 		        </div>
             </div>
       </div>
@@ -360,10 +360,9 @@
                         </div>  
                     </div>    
                           
-                         
                 <div class="sureBtn">
+                   <div class="btn-c-r" id="submitEditCus">确定</div>
                    <div class="btn-c-g" id="cancleEdit">取消</div>
-		           <div class="btn-c-r" id="submitEditCus">确定</div>
 		        </div>
             </div>
       </div>
@@ -513,12 +512,11 @@
                     </div>
                   </div>  
                 <div class="sureBtn">
+                   <div class="btn-c-r">确定</div>
                    <div class="btn-c-g">取消</div>
-		           <div class="btn-c-r">确定</div>
 		        </div>
             </div>
       </div>
-
     
       <div class="tableList">
          <jsp:include flush="true" page="orderSearch.jsp"></jsp:include> 
