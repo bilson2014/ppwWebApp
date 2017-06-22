@@ -120,21 +120,19 @@
            </div>
       </div>
       
-      <div class="modelPage" id="showErrorInfoWin">
+      <div class="modelPage" id="showErrorInfoWin" style="display:block">
            <div class="successModel">
                <div class="closeBtn"></div>
 		   <div class="checkListContent">
-		         <div class="lList">请完善如下订单信息?</div>
-		         <div class="serErrorDiv">
-		         </div>
-		         <div class="checkBtn btn-c-r" id="checkError">
-		                                     确认
-		         </div>
+		         <img src="${imgPath}/orderManager/waring.png">  
+		         <div class="lList">您提供的<span id="setErrorInfoWord"></span>信息不完整,</br>请填写完成之后再提交</div>
+		         <div class="serErrorDiv"></div>
+		         <div class="checkBtn btn-c-r" id="checkError">确认</div>
 		   </div>
            </div>
       </div>
       
-      <div class="modelPage" id="smodelPage" style="display:block">
+      <div class="modelPage" id="smodelPage">
            <div class="submitModel" >
                <div class="closeBtn"></div>
                <div class="submitTitle">订单提交信息验证</div>
@@ -155,6 +153,11 @@
                            <div>公司名称</div>
                            <div id="mpuserCompany"></div>
                        </div>
+               </div>
+               <div class="setWord">
+                    <div>再次提交前,您需要:</div>
+                    <div>1.核实订单中客户信息是否填写准确。</div>
+                    <div>2.如已存在的客户信息有误,请联系CRM专员更新客户信息。</div>
                </div>
                <div class="sureBtn">
 			           <div class="btn-c-r" id="mptModel">确定</div>
