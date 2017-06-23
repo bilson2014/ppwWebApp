@@ -7,7 +7,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
-import com.panfeng.film.util.Log;
 
 public class OrderInterceptor extends HandlerInterceptorAdapter {
 
@@ -22,9 +21,7 @@ public class OrderInterceptor extends HandlerInterceptorAdapter {
 				return true;
 		}
 		
-		// 未登录
-		Log.error("没有权限，请先登录", null);
-		resp.sendRedirect(contextPath + "/error");
+		resp.sendRedirect(contextPath + "/mgr/login");
 		return false;
 	}
 }

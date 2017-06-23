@@ -189,5 +189,11 @@
 			<bean class="com.panfeng.film.filter.ProductCaseInterceptor" />
 		</mvc:interceptor>
 		
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**"/>
+			<mvc:exclude-mapping path="/order/deliver"/>
+			<bean class="com.panfeng.film.filter.OrderInterceptor" />
+		</mvc:interceptor>
+		
 	</mvc:interceptors>
 </beans>

@@ -259,13 +259,13 @@ public class IndentController extends BaseController {
 			String uUserCompany = user.getUserCompany();
 			String uRealName = user.getRealName();
 
-			if (uUserCompany != null && !uUserCompany.trim().equals(iUserCompany.trim())) {
+			if (ValidateUtil.isValid(uUserCompany ) && !uUserCompany.trim().equals(iUserCompany.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
 			}
 
-			if (uRealName != null && !uRealName.trim().equals(iRealName.trim())) {
+			if (ValidateUtil.isValid(uRealName) && !uRealName.trim().equals(iRealName.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
