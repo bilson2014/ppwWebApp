@@ -52,6 +52,8 @@
     <!-- end --> 
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/" mapping="/robots.txt" />
+	<mvc:resources location="/" mapping="/sitemap.xml" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
 

@@ -282,15 +282,8 @@ public class VersionManagerController extends BaseController {
 			final HttpServletRequest request) {
 
 		if (ValidateUtil.isValid(phoneNumber)) {
-			final String url = PublicConfig.URL_PREFIX + "portal/manager/static/checkNumber/" + phoneNumber;
-			final String json = HttpUtil.httpGet(url, request);
-			if (ValidateUtil.isValid(json)) {
-				Long count = JsonUtil.toBean(json, Long.class);
-				if (count > 0) {
-					return true;
-				}
-
-			}
+			final long count = pmsEmployeeFacade.checkPhoneNumber(phoneNumber);
+			return count == 1 ? true : false;
 		}
 
 		return false;
@@ -313,22 +306,27 @@ public class VersionManagerController extends BaseController {
 					final String password = AESUtil.Decrypt(e.getEmployeePassword(), PmsConstant.UNIQUE_KEY);
 					// MD5 加密
 					e.setEmployeePassword(DataUtil.md5(password));
-					final String url = PublicConfig.URL_PREFIX + "portal/manager/static/editPwd";
-					String str = HttpUtil.httpPost(url, e, request);
-					Boolean result = null;
-					if (str != null && !"".equals(str)) {
-						result = JsonUtil.toBean(str, Boolean.class);
-						// 添加 session
-						session.removeAttribute("code"); // 移除验证码
-						info.setKey(result);
-						return info;
-					} else {
-						// 注册失败
-						info.setKey(false);
-						info.setValue("服务器繁忙，请稍候再试...");
-						return info;
+					
+					// 在视频管家范围内查找该手机号码的人员
+					boolean result = false;
+					final List<PmsEmployee> list = pmsEmployeeFacade.findEmployeesByPhoneNumber(e.getPhoneNumber());
+					if (ValidateUtil.isValid(list)) {
+						if (list.size() == 1) {
+							final PmsEmployee originalEmployee = list.get(0);
+							originalEmployee.setEmployeePassword(e.getEmployeePassword());
+							final long ret = pmsEmployeeFacade.updatePwdById(originalEmployee);
+							if (ret > 0)
+								result = true;
+						} 
 					}
-
+					
+					if(result) {
+						session.removeAttribute("code"); // 移除验证码
+					}
+					info.setKey(result);
+					info.setValue(result == true ? null : "服务器繁忙，请稍候再试...");
+					return info;
+					
 				} else {
 					// 验证码不匹配
 					info.setKey(false);

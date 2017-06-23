@@ -599,8 +599,9 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 		roleImgUrl = "/resources/images/play/rolePlay.png";
 		isHide = '';
 	}
+	
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
-	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></div></a>';
+	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'" alt="拍片网"><div>'+name+'</div></div></a>';
 	if(numFlag == 4){
 		htmlAdd = "";
 	}
@@ -661,7 +662,7 @@ if(loginTel!=null && loginTel!= "" ){
 	}
 }
 
-	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'"><div>'+name+'</div></a>';
+	var htmlAdd = '<a href="'+teamIdUrl+'"><img src="'+getDfsHostName()+sUrl+'" alt="拍片网"><div>'+name+'</div></a>';
 	if(numFlag == 4){
 		htmlAdd ='';
 	}

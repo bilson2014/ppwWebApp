@@ -27,7 +27,6 @@ public class SearchResourceInterceptor implements HandlerInterceptor {
 
 		// 判断身份
 		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-
 		boolean flag = false;
 		String solrUrl = null;
 		// 如果是供应商和没有分类的用户，则只有首页推荐视频

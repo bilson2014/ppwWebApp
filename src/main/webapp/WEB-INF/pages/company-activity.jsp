@@ -86,8 +86,8 @@
 		        <div>2017年2月27日 北京海淀新世纪日航</div>
 		        <div>由拍片网主办，千位视频行业龙头聚首在北京，一场有关“共享未来”的视频行业争锋一触即发。多位顶级创投圈、影视行业名人和全国各地的视频行业领袖，聚首“共享未来”的高峰交流，
 共同讨论互联网时代下的影视行业资源共享及连接资源等于连接未来的观点。</div>
-                <img  class="active1" src="${imgPath }/introduce/activity/activity1-1.jpg">
-                <img  class="active1-2" src="${imgPath }/introduce/activity/activity1-2.jpg">
+                <img  class="active1" src="${imgPath }/introduce/activity/activity1-1.jpg" alt="拍片网合伙人">
+                <img  class="active1-2" src="${imgPath }/introduce/activity/activity1-2.jpg" alt="视频行业领袖峰会">
 		    </div>
 		     <div class="infoTitle">
 		        <div>视频营销大会</div>
@@ -96,11 +96,11 @@
 这是一次企业互联网营销方式的变革大会，视频时代的到来彻底点燃万千企业营销创意的新思想，新媒体与视频的结合成为互联网营销新风口。
 				</div>
                 <div class="active2Top">
-	                 <img src="${imgPath }/introduce/activity/activity2-1.jpg">
-	                 <img src="${imgPath }/introduce/activity/activity2-2.jpg">
-	                 <img src="${imgPath }/introduce/activity/activity2-3.jpg">
+	                 <img src="${imgPath }/introduce/activity/activity2-1.jpg" alt="拍片网夏攀">
+	                 <img src="${imgPath }/introduce/activity/activity2-2.jpg" alt="视频营销大会">
+	                 <img src="${imgPath }/introduce/activity/activity2-3.jpg" alt="拍片网张立虎">
                 </div>
-                <img class="active2Bottom" src="${imgPath }/introduce/activity/activity2-4.jpg">
+                <img class="active2Bottom" src="${imgPath }/introduce/activity/activity2-4.jpg" alt="拍片网投资人">
 	
 		    </div>
 		    <div class="infoTitle">
@@ -109,10 +109,10 @@
 		        <div>《MOVIE2.0论坛》是每周举办的线下影视人聚集的社群论坛，以主创见面会，创作分享会，项目推介会等为内容，打造影视行业纯净的资源生态圈；先后有黄国宾、邢健、冷小张、上官凌月、冯悦、郑来志等影视人到场参与《MOVIE2.0论坛》中国影视人沙龙。至今已经成功举办29期。
 				</div>
 				 <div class="active3Top">
-	                 <img src="${imgPath }/introduce/activity/activity3-1.jpg">
-	                 <img src="${imgPath }/introduce/activity/activity3-2.jpg">
+	                 <img src="${imgPath }/introduce/activity/activity3-1.jpg" alt="拍片网孙彬">
+	                 <img src="${imgPath }/introduce/activity/activity3-2.jpg" alt="拍片网movie2.0论坛">
                 </div>
-                <img class="active3Bottom" src="${imgPath }/introduce/activity/activity3-3.jpg">
+                <img class="active3Bottom" src="${imgPath }/introduce/activity/activity3-3.jpg" alt="movie2.0论坛活动视频">
 		    </div>
 		     <div class="infoTitle">
 		        <div>创业邦－创新中国</div>
@@ -140,10 +140,10 @@
 		        <div>2015年至今</div>
 		        <div>我们是一个充满正能量的团队，热爱电影，热爱网络，热爱户外活动。公司成立以来，组织了多次外出郊游，踏青采风，感受自然赋予我们的无穷能量。</div>
                 <div class="active6Top">
-	                 <img class="leftImg" src="${imgPath }/introduce/activity/activity6-1.jpg">
+	                 <img class="leftImg" src="${imgPath }/introduce/activity/activity6-1.jpg" alt="公司活动宣传片">
 	                 <div class="rightImg">
-	                   <img  src="${imgPath }/introduce/activity/activity6-2.jpg">
-	                   <img  src="${imgPath }/introduce/activity/activity6-3.jpg">
+	                   <img  src="${imgPath }/introduce/activity/activity6-2.jpg" alt="团队建设宣传片">
+	                   <img  src="${imgPath }/introduce/activity/activity6-3.jpg" alt="公司活动视频">
 	                 </div>
                 </div>
 		    </div>
@@ -152,8 +152,8 @@
 		        <div>2015年~2017年</div>
 		        <div>我们又是一群年轻，热情，才华横溢的文艺青年。每逢公司组织的聚餐，联欢会，年会等活动，大家拿出看家本领，当然各种奖项也是人人有份啦。</div>
                 <div class="active7Top">
-	                   <img  src="${imgPath }/introduce/activity/activity7-1.jpg">
-	                   <img  src="${imgPath }/introduce/activity/activity7-2.jpg">
+	                   <img  src="${imgPath }/introduce/activity/activity7-1.jpg" alt="公司年会宣传片">
+	                   <img  src="${imgPath }/introduce/activity/activity7-2.jpg" alt="生日会视频">
                 </div>
 		    </div>
 		</div>		

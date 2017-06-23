@@ -381,6 +381,9 @@ function checkEmail(str){
 		return false;
 }
 
+/*
+ * 验证 数字
+ */
 function checkNumber(str){
 	reg = /^[1-9]+[0-9]*]*$/;
 	if(str.match(reg))

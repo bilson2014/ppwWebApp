@@ -49,14 +49,6 @@ $().ready(function() {
 		}
 	});
 	
-//	$("#add-user").click(function() {
-//		$('#toolbar-modal').modal('show');
-//	});
-	
-//	$("#hide-btn").click(function() {
-//		$('#toolbar-modal').modal('hide');
-//	});
-	
 	$("input[id$='time']").datepicker({
 			language: 'zh',
 			dateFormat:'yyyy-MM-dd',

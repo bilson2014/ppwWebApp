@@ -259,13 +259,13 @@ public class IndentController extends BaseController {
 			String uUserCompany = user.getUserCompany();
 			String uRealName = user.getRealName();
 
-			if (uUserCompany != null && !uUserCompany.equals(iUserCompany)) {
+			if (uUserCompany != null && !uUserCompany.trim().equals(iUserCompany.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
 			}
 
-			if (uRealName != null && !uRealName.equals(iRealName)) {
+			if (uRealName != null && !uRealName.trim().equals(iRealName.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
@@ -324,7 +324,8 @@ public class IndentController extends BaseController {
 			user = new PmsUser();
 			user.setSex(2);
 			user.setKindlySend(true);
-			user.setUserName(indent.getUserCompany() + findUserByName.size() + 1 );
+			int x = findUserByName == null ? 0:findUserByName.size();
+			user.setUserName(indent.getUserCompany() + x + 1 );
 			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
 			user.setTelephone(indent_tele);
 			if (ValidateUtil.isValid(indent.getUserCompany())) {

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
-import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.util.SolrUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
@@ -41,7 +40,29 @@ public class SolrController extends BaseController {
 			final String price, final boolean isMore, final ModelMap model, final HttpServletRequest request)
 			throws Exception {
 
-		q = q.replaceAll("“+", "\"").replaceAll("”+", "\"");
+		// 检查 参数q 是否为空
+		if(ValidateUtil.isValid(q)) {
+			// 处理停词问题
+			if(q.contains("宣传片") || q.contains("广告")) {
+				final StringBuffer sb = new StringBuffer();
+				q = q.replaceAll("“+", "\"").replaceAll("”+", "\"").replaceAll(",", " ").replaceAll(" +", " ");
+				String[] tags = q.split(" ");
+				for (int i = 0;i < tags.length;i ++) {
+					String tag = tags[i];
+					if("宣传片".equals(tags[i]) || "广告".equals(tags[i])) {
+						tag = "*" + tag;
+					}
+					if(i < tags.length - 1)
+						sb.append(tag).append(" ");
+					else
+						sb.append(tag);
+				}
+				q = sb.toString();
+			}
+		}
+		else 
+			q = "*";
+		
 		model.addAttribute("q", q);
 		model.addAttribute("price", price);
 		model.addAttribute("production", production);
@@ -130,9 +151,8 @@ public class SolrController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/get/news/tag/{newsId}")
-	public BaseMsg searchNewByTagsView(String q, @PathVariable("newsId") final Integer newsId, final PageParam pageParam, HttpServletRequest request) throws Exception {
+	public BaseMsg searchNewByTagsView(String q, @PathVariable("newsId") final Integer newsId,@RequestBody final SolrView view, HttpServletRequest request) throws Exception {
 		BaseMsg baseMsg = new BaseMsg();
-		final SolrView view = new SolrView();
 		if ("最热资讯".equals(q)) {
 			// 筛选 推荐值大于0 的新闻
 			view.setRecomendFq("[1 TO *]");
@@ -140,8 +160,6 @@ public class SolrController extends BaseController {
 		}
 		
 		view.setCondition(q);
-		view.setBegin(pageParam.getBegin());
-		view.setLimit(pageParam.getLimit());
 		view.setIdFq(newsId + "");
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);
 		if (ValidateUtil.isValid(list)) {

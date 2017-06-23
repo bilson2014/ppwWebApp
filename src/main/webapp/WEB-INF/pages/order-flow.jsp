@@ -81,7 +81,7 @@
                           <br>A video specialist will then collect your requirements. 
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之需求沟通"></div>
             </div>
             <div class="icon icon2 LeftIcon">
                 <div>
@@ -92,7 +92,7 @@
 Within your budget, <br>the specialist will find the best match from 5208 experienced directors all over the world.
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之创意策划"></div>
             </div>
             <div class="icon icon3 RightIcon">
                 <div>
@@ -101,7 +101,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                     <label>Once the deposit is settled, the project is on! 
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之商务流程"></div>
             </div>
             <div class="icon icon4 LeftIcon">
                 <div>
@@ -110,7 +110,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                     <label>Casting,locations,shooting,production,dubbing... The specialist cares all of them. 
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之执行方案"></div>
             </div>
             <div class="icon icon5 RightIcon">
                 <div>
@@ -121,7 +121,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
 <br>We always believe in "great work talks"! 
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之影片制作"></div>
             </div>
             <div class="icon6 LeftIcon">
                 <div>
@@ -132,7 +132,7 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
                           Otherwise, you will be fully refunded or your video will be reproduced. 
                     </label>
                 </div>
-                <div></div>
+                <div alt="宣传片制作流程之影片交付"></div>
             </div>
         </div>
 <!-- foot -->
