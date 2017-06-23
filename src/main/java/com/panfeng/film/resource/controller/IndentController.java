@@ -306,10 +306,25 @@ public class IndentController extends BaseController {
 			PmsUser temp = new PmsUser();
 			temp.setTelephone(indent_tele);
 			user = pmsUserFacade.findUserByAttr(temp);
+
+			if (!ValidateUtil.isValid(user.getUserCompany())) {
+				user.setUserCompany(indent.getUserCompany());
+			}
+
+			if (!ValidateUtil.isValid(user.getRealName())) {
+				user.setRealName(indent.getRealName());
+			}
+			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
 			user = new PmsUser();
-			user.setUserName("User-" + IndentUtil.generateShortUuid());
+			user.setUserName(indent.getUserCompany());
+			List<PmsUser> findUserByName = pmsUserFacade.findUserByName(user);
+			
+			user = new PmsUser();
+			user.setSex(2);
+			user.setKindlySend(true);
+			user.setUserName(indent.getUserCompany() + findUserByName.size() + 1 );
 			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
 			user.setTelephone(indent_tele);
 			if (ValidateUtil.isValid(indent.getUserCompany())) {
