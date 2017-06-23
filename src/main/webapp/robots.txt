@@ -1,0 +1,10 @@
+User-agent:*
+Disallow:/login
+Disallow:/register
+Disallow:/mgr/login
+Disallow:/mgr/recover
+Disallow:8088
+Disallow:8080
+
+
+Sitemap:http://www.apaipian.com/sitemap.xml

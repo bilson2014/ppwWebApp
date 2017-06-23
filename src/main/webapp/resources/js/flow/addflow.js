@@ -49,14 +49,6 @@ $().ready(function() {
 		}
 	});
 	
-//	$("#add-user").click(function() {
-//		$('#toolbar-modal').modal('show');
-//	});
-	
-//	$("#hide-btn").click(function() {
-//		$('#toolbar-modal').modal('hide');
-//	});
-	
 	$("input[id$='time']").datepicker({
 			language: 'zh',
 			dateFormat:'yyyy-MM-dd',
@@ -1037,7 +1029,7 @@ function dateCompare(date1, date2) {
 //20160509 卢涛添加
 function showRecommend(){
 	$("#projectSource").on('change',function(){
-		 if($("#projectSource").val().trim()=='推荐'){
+		 if($("#projectSource").val().trim()=='自主开发'){
 			 $("#div-friendship").removeClass('hide');
 		 }
 		 else{
@@ -1085,7 +1077,7 @@ function disableSubmitBtnEnent(check){
 	
 }
 function getReferrer() {
-	if($("#projectSource").val().trim()=='推荐'){
+	if($("#projectSource").val().trim()=='自主开发'){
 		 return  $("#referrer-Id-hidden").val();
 	 }
 	 else{

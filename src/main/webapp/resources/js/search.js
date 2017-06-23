@@ -646,6 +646,7 @@ function loadProduction(start){
 		condition : $('#q').val().trim(),
 		industry : $('#industry').val().trim(),
 		genre : $('#genre').val().trim(),
+		production : $('#production').val().trim(),
 		priceFq : $('#price').val(),
 		lengthFq : $('#length').val()
 	}));

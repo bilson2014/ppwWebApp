@@ -275,8 +275,8 @@ var homePage = {
 			if(flag == '宣传片')
 				flag = '*宣传片';
 			if (flag == '广告片')
-				flag = '广告';
-			window.location.href='/search?q=&industry='+flag;
+				flag = '*广告';
+			window.location.href='/search?q='+flag;
 		})
 	},
 	deliverOrder:function(){
@@ -467,9 +467,9 @@ var homePage_tpl = {
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
  			'            <div class="bg"></div>' ,
 			'{@if item.picLDUrl!= null && item.picLDUrl!= "" && item.picLDUrl!= undefined }',
-			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'			<img src="'+getDfsHostName()+'${item.picLDUrl}" alt="拍片网">',
 			'{@else}',
-			'           <img src="/resources/images/index/noImg.jpg"> ',
+			'           <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
 			'{@/if}',
 			'			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',
@@ -493,9 +493,9 @@ var homePage_tpl = {
 			'	<div class="videoCard">',
 			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
 			'{@if item.picLDUrl!= null && item.picLDUrl!= "" && item.picLDUrl!= undefined }',
-			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+			'			<img src="'+getDfsHostName()+'${item.picLDUrl}" alt="拍片网">',
 			'{@else}',
-			'           <img src="/resources/images/index/noImg.jpg"> ',
+			'           <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
 			'{@/if}',
 			'				{@if item.teamFlag == 1 && item.indentProjectId != 0}',
 			'					 <img class="roleImg" src="/resources/images/play/roleOur.png">',
@@ -523,7 +523,7 @@ var homePage_tpl = {
 			'			</div>',
 			'           <a href="'+getHostName()+'/provider/info_${item.teamId}.html">',
 			'           <div class="videoProvider">',
-			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}" alt="拍片网">',
 			'               <div>${item.teamName}</div>',
 			'           </div>',
 			'           </a>',
@@ -545,9 +545,9 @@ var homePage_tpl = {
                   			'	<div class="videoCard">',
                   			'		<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">',
                   			'{@if item.picLDUrl!= null && item.picLDUrl!= "" && item.picLDUrl!= undefined }',
-                  			'			<img src="'+getDfsHostName()+'${item.picLDUrl}">',
+                  			'			<img src="'+getDfsHostName()+'${item.picLDUrl}" alt="拍片网">',
                   			'{@else}',
-                  			'           <img src="/resources/images/index/noImg.jpg"> ',
+                  			'           <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
                   			'{@/if}',
                   			'       <div class="cardShadow">',
                   			'			<div class="videoContet">',
@@ -566,7 +566,7 @@ var homePage_tpl = {
                   			'			</div>',
                   			'           <a href="'+getHostName()+'/provider/info_${item.teamId}.html">',
                   			'           <div class="videoProvider">',
-                  			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+                  			'               <img src="'+getDfsHostName()+'${item.teamPhotoUrl}" alt="拍片网">',
                   			'               <div>${item.teamName}</div>',
                   			'           </div>',
                   			'           </a>',
@@ -586,7 +586,7 @@ var homePage_tpl = {
 			'	<div class="b"></div>',
 			'	<div class="directorContent">',
 			'		<a href="/provider/info_${item.teamId}.html" target="_blank">',
-			'			<img src="'+getDfsHostName()+'${item.teamPhotoUrl}">',
+			'			<img src="'+getDfsHostName()+'${item.teamPhotoUrl}" alt=${item.teamName}>',
 			'			<div class="title">${item.teamName}</div>',
 			'			<div class="line"></div>',
 			'			<div class="content dContent">${item.description}</div>',

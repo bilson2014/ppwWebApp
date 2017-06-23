@@ -117,10 +117,11 @@ public class HomePageController extends BaseController {
 	 * 首页获取新闻推荐
 	 */
 	@RequestMapping(value = "/news/recommend", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public BaseMsg getRecommendNews(final HttpServletRequest request, PageParam pageParam) {
+	public BaseMsg getRecommendNews(final HttpServletRequest request,@RequestBody final PageParam pageParam) {
 		BaseMsg baseMsg = new BaseMsg();
 
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
 		// 首页显示
 		paramMap.put("status", 1);
 		// 可见

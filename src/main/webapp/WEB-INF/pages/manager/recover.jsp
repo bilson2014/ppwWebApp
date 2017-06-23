@@ -24,10 +24,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="title" content="视频管家登陆页面">
+	<meta name="title" content="内部员工密码找回页面">
 	<meta name="keywords" content="拍片网,视频制作,拍广告,找导演,拍片">
 	<meta name="description" content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-	<title>视频营销-拍片网</title>
+	<title>内部员工密码找回页面-拍片网</title>
 	<link rel="stylesheet" href="${bootstrapCss }">
 	<link rel="stylesheet" href="${recoverCss }">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
@@ -41,7 +41,7 @@
 		
 		 <div class="outSideDiv">
 		         <div class="loginDiv">
-		            <h1>视频管家密码找回</h1>
+		            <h1>内部员工密码找回</h1>
 		            <form role="form" method="POST" autocomplete="off" accept-charset="UTF-8" id="recover-form">
 				            <div class="loginContent input-group">
 				                 <input class="fontSizeBaseLight" type="text" autofocus="autofocus" autocomplete="off" tabindex="1" maxlength="11"  placeholder="手机号" id="recover_phone"></input>

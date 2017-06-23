@@ -317,8 +317,6 @@ public class PCController extends BaseController {
 			view.setCondition(URLEncoder.encode("*", "UTF-8"));
 			view.setLimit(20l);
 			List<PmsProductSolr> list = solrService.listWithPagination(view, request);
-			/*String abc = "a";
-			abc.indexOf("a");*/
 			long total = 0l;
 			if (ValidateUtil.isValid(list)) {
 				final PmsProductSolr s = list.get(0);

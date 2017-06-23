@@ -87,7 +87,7 @@
 		        <ul>
 		           <li>
 		                  <div class="infoHeadSide">
-			                 <img class="infoHead" id="infoHead" src="${provider.teamPhotoUrl }">
+			                 <img class="infoHead" id="infoHead" src="${provider.teamPhotoUrl }" alt="${provider.teamName }logo">
 			                 <div class="isPass">
 			                     <c:if test="${provider.flag == 2}">
 										<img src="/resources/images/provder/noPass.png"><div class="noPass">未审核</div>

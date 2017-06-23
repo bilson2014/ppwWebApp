@@ -88,7 +88,7 @@
 				</r:identity>
 				<r:identity role="employee">
 					<a href="<spring:url value='/mgr/index'/>" class="header-item" >项目<span></span></a>
-					<a href="<spring:url value='/product/MotionGraphicsforPublicPresentation/main'/>" class="header-item" >产品<span></span></a>
+					<a href="<spring:url value='/product/EnterprisePromotionalVideo/main'/>" class="header-item" >产品<span></span></a>
 					<a href="<spring:url value='/cost/cal'/>" class="header-item">估算成本<span></span></a>
 				</r:identity>				
 				<r:noLogin>
@@ -170,7 +170,6 @@
 				<video preload="auto" loop="" autoplay
 					poster="/resources/images/banner/host.JPG" class="video-bg">
 					<source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
-					<!-- <source src="/resources/out.mp4" type="video/mp4"> -->
 				</video>
 			</div>
 			<div class="swiper-container swiper-banner flexslider">
@@ -460,42 +459,42 @@
 					<ul>
 						<li>
 							<div>
-								<img src="/resources/images/index/service1.png">
+								<img src="/resources/images/index/service1.png" alt="宣传片制作">
 								1.需求沟通
 							</div>
 							<div>1对1沟通详细了解您的拍片需求</div>
 						</li>
 						<li>
 							<div>
-								<img src="/resources/images/index/service2.png">
+								<img src="/resources/images/index/service2.png" alt="宣传片制作">
 								2.创意策划
 							</div>
 							<div>为您提供免费的创意策划提出合理建议</div>
 						</li>
 						<li>
 							<div>
-								<img src="/resources/images/index/service3.png">
+								<img src="/resources/images/index/service3.png" alt="宣传片制作">
 								3.商务流程
 							</div>
 							<div>签订合作协议，制作费托管到平台</div>
 						</li>
 						<li>
 							<div>
-								<img src="/resources/images/index/service4.png">
+								<img src="/resources/images/index/service4.png" alt="宣传片制作">
 								4.执行方案
 							</div>
 							<div>制定详细脚本，为您甄选最佳执行导演</div>
 						</li>
 						<li>
 							<div>
-								<img src="/resources/images/index/service5.png">
+								<img src="/resources/images/index/service5.png" alt="宣传片制作">
 								5.拍摄制作
 							</div>
 							<div>前期拍摄和后期制作，视频管家全程监管</div>
 						</li>
 						<li>
 							<div>
-								<img src="/resources/images/index/service6.png">
+								<img src="/resources/images/index/service6.png" alt="宣传片制作">
 								6.影片交付
 							</div>
 							<div>验收影片，不满意全额退款或重拍</div>
