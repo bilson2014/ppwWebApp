@@ -674,11 +674,11 @@ function editEvenFunction(item){
 		if(item.result.indentSource != null){
 		if(num == item.result.indentSource){
 			$('#orderComeInfo').text(name);
-			$('#orderComeInfo').attr('data-value',num);
+			$('#orderComeInfo').attr('data-id',num);
 			if(num == 5){
 				$('#showHelper').show();
 			}
-		}
+		  }
 		}
    };
 	var orderCPeople = $('#orderComePeople li');
