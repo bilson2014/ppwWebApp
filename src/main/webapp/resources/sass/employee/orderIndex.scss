@@ -64,23 +64,38 @@
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 17%;
+        width: 13%;
+          @media screen and (min-width: 1500px) {
+            width: 17%;
+        }
     }
     th:nth-child(7),
     td:nth-child(7) {
         width: 7%;
+        @media screen and (min-width: 1500px) {
+            width: 6%;
+        }
     }
     th:nth-child(8),
     td:nth-child(8) {
         width: 7%;
+        @media screen and (min-width: 1500px) {
+            width: 6%;
+        }
     }
     th:nth-child(9),
     td:nth-child(9) {
         width: 7%;
+        @media screen and (min-width: 1500px) {
+            width: 6%;
+        }
     }
     th:nth-child(10),
     td:nth-child(10) {
         width: 7%;
+        @media screen and (min-width: 1500px) {
+            width: 6%;
+        }
     }
 }
 
@@ -163,10 +178,10 @@
 
 .toUnBle {
     .isFind {
-         border: 1px solid $gray-light !important;
-        &:hover{
-        color: #50E3C2 !important;
-        border: 1px solid #50E3C2 !important;
+        border: 1px solid $gray-light !important;
+        &:hover {
+            color: #50E3C2 !important;
+            border: 1px solid #50E3C2 !important;
         }
     }
     th:nth-child(1),
@@ -457,7 +472,7 @@
         padding-top: 20px;
         width: 265px;
         margin: 0 auto;
-        #mptModel{
+        #mptModel {
             margin: 0 auto;
         }
         div {
