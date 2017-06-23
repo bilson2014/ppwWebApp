@@ -2,11 +2,11 @@ $().ready(function() {
 	
 	initView();
 	
-	
 	var require = $('#require').text();
 	if(require != undefined && require != '' && require != null){
 		alert('没做回显处理！~~  ' + require.trim());
 	}
+	
 	$('#submit').on('click', function() {
 		// 适用场景
 		var scene = new Array();

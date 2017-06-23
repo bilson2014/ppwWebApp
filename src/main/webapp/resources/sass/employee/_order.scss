@@ -1,0 +1,393 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "pagination";
+body {
+    background: white !important;
+}
+
+.page {
+    top: 60px;
+}
+
+.userHeader {
+    font-size: 0;
+    img,
+    .name {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    img {
+        width: 80px;
+        height: 80px;
+        padding: 1px;
+        border-radius: 50%;
+    }
+    .name {
+        margin-left: 20px;
+        div:nth-child(1) {
+            font-size: $font-size;
+            color: $gray-dark;
+        }
+        div:nth-child(2) {
+            font-size: $font-size-base;
+            color: $gray;
+            margin-top: 10px;
+        }
+    }
+}
+
+.showStatus {
+    width: 100%;
+    height: 40px;
+    background: $d9;
+    border-radius: 100px;
+    margin-bottom: 30px;
+    font-size: 0;
+    cursor: pointer;
+    position: relative;
+    .active {
+        background: $red-base;
+        color: white !important;
+    }
+    div {
+        vertical-align: top;
+        display: inline-block;
+        width: 182px;
+        height: 40px;
+        border-right: 2px solid white;
+        text-align: center;
+        line-height: 40px;
+        color: $gray-dark;
+        font-size: $font-size-base;
+    }
+    div:nth-child(1) {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }
+    div:last-child {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        border: none;
+        border-left: 2px solid white;
+        position: absolute;
+        right: 5px;
+    }
+}
+
+.searchInfo {
+    font-size: 0;
+    margin-bottom: 25px;
+    div {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $font-size-sm;
+        color: $gray;
+        margin-right: 10px;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $font-size-sm;
+        color: $gray;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .orderSelect {
+        width: 130px !important;
+        height: 30px !important;
+        line-height: 28px !important;
+    }
+    .time {
+        width: 85px!important;
+        margin-right: 0 !important;
+    }
+    input {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 20px;
+        width: 90px !important;
+        @media screen and (min-width: 1276px) {
+            width: 130px !important;
+        }
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        font-size: $font-size-sm;
+        color: $gray;
+        border-radius: 4px;
+        border: none;
+        border: 1px solid $border-line;
+        outline: none;
+        &:focus {
+            background: $f6;
+        }
+    }
+}
+
+.selectColor {
+    background: $f6;
+}
+
+//表格
+//表格
+table {
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid $border-line;
+    position: relative;
+}
+
+tr {
+    background: $f8;
+    input {
+        text-align: center;
+        border: none;
+        outline: line;
+        background: transparent;
+    }
+    &:hover {
+        background: #F6F9F9;
+        ;
+    }
+    td:nth-child(3) {
+        padding: 0px 10px 0px 10px !important;
+    }
+}
+
+tr:nth-child(1) {
+    background: $f0 !important;
+}
+
+tr:nth-child(2n) {
+    background: white;
+    &:hover {
+        background: #F6F9F9;
+        ;
+    }
+}
+
+td,
+th {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    line-height: 20px;
+}
+
+.tableList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    padding-top: 40px;
+    min-height: 300px;
+}
+
+//需求表
+.orderModel {}
+
+.orderList {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    padding-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    height: auto;
+}
+
+.listHeader {
+    height: 61px;
+    @include media_screen_width_beta3();
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    position: fixed;
+    border-bottom: 1px solid $border-line;
+    line-height: 60px;
+    background: white;
+    .orderNum {
+        font-size: $font-size;
+        color: $gray-dark;
+        padding-left: 30px;
+        span {
+            margin-left: 15px;
+        }
+    }
+    .headerSave {
+        width: 120px;
+        height: 36px;
+        border-radius: 4px;
+        color: white;
+        font-size: $font-size-base;
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        background: $red-base;
+        text-align: center;
+        line-height: 36px;
+    }
+}
+
+.listTitle {
+    padding-top: 100px;
+    font-size: $font-size-lgest;
+    color: $gray-dark;
+    font-weight: bold;
+    text-align: center;
+}
+
+.listTItleE {
+    padding-top: 10px;
+    font-size: $font-size-base;
+    color: $gray-dark;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qItem {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 0;
+    padding-top: 20px;
+    .qTitle {
+        font-size: $font-size-base;
+        color: $gray-dark;
+        font-weight: bold;
+    }
+    .nameItem {
+        background: $gray-light;
+        font-size: $font-size;
+        color: white;
+        border-top-right-radius: 22px;
+        border-bottom-right-radius: 22px;
+        width: auto;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    .otherInfo {
+        padding-left: 20px;
+        display: none;
+        input {
+            width: 100% !important;
+            font-size: $font-size-base;
+            color: $red-base !important;
+            border-radius: 0!important;
+            border: none !important;
+            border-bottom: 1px solid $border-line !important;
+            margin-top: 10px;
+            outline: none;
+            margin-left: 0 !important;
+            text-align: left !important;
+        }
+    }
+    .optionItem,
+    .optionItemMult {
+        padding-left: 10px;
+        .activeNeed {
+            border: 1px solid $red-base !important;
+            background: $red-base;
+            color: white !important;
+        }
+        .itemDiv,
+        input,
+        textarea {
+            margin-top: 20px;
+            min-width: 140px;
+            height: 36px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border: 1px solid $gray-light;
+            border-radius: 22px;
+            line-height: 34px;
+            text-align: center;
+            color: $gray-light;
+            font-size: $font-size-base;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            outline: none;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px !important;
+            text-align: left !important;
+        }
+    }
+}
+
+.btnDiv {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 60px;
+    font-size: 0;
+    div {
+        width: 180px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-size: $font-size-base;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: top;
+        color: white;
+    }
+    div:nth-child(1) {
+        margin-right: 10px;
+    }
+}
+
+.showModelMeng {
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    top: 50px;
+    background: $f0;
+}
+
+.setErrorList {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    font-size: $font-size-base;
+    text-align: center;
+    background: $red-base;
+    display: none;
+}
+
+.closeBtn {
+    width: 12px;
+    height: 12px;
+    background: url(/resources/images/common/close.png) no-repeat;
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    cursor: pointer;
+}
+
+.searchBtn {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: white !important;
+    font-size: $font-size-base;
+    margin-left: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    @media screen and (min-width: 1500px) {
+        margin-top: 0px;
+    }
+}

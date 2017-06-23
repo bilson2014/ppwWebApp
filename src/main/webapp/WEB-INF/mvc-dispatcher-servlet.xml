@@ -48,14 +48,14 @@
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
-    <mvc:view-controller path="/orderList" view-name="/order/orderList" />
-     <!-- end --> 
+    <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
+    <!-- end --> 
+     
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-			 p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />
 
@@ -86,6 +86,9 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
 			<mvc:exclude-mapping path="/user/repwd" />
+			<mvc:exclude-mapping path="/user/option" />
+			<mvc:exclude-mapping path="/user/update" />
+			<mvc:exclude-mapping path="/user/get/info" />
 			<bean class="com.panfeng.film.filter.UserInfoInterceptor" />
 		</mvc:interceptor>
 		

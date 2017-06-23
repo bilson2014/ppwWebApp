@@ -128,9 +128,11 @@ function initModel(id){
 			if(productModule != null && productModule.length > 0){
 				for (var int2 = 0; int2 < productModule.length; int2++) {
 					var mod = productModule[int2];
+					var price =productModule[int2].pinConfiguration_ProductModule.cpmModulePrice;
+
 					var type = mod.pinConfiguration_ProductModule.cpmModuleType;
 					if(type == 0){
-						v1.append(createMustMod(mod,int2));
+						v1.append(createMustMod(mod,int2,price));
 					}else{
 						v2.append(createSubjoinMod(mod));
 					}
@@ -181,11 +183,13 @@ function initModel(id){
 	initTab();
 }
 
-function createMustMod(obj,num){
+function createMustMod(obj,num,price){
 	var hasDes="";
-	if(num<2){
-		hasDes="(赠送)";
+	
+	if(price == 0){
+		hasDes="(免费)";
 	   }  
+	
 		var html = ['<li class="s_item packItem">',
 					'    <img src="'+getDfsHostName() +obj.pic +'">',
 					'    <div class="pTitle">'+obj.moduleName+'</div>',
@@ -310,9 +314,9 @@ function buildCar1(obj){
 				'<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 				'    <div class="card">',
 				'         <div class="cardTop">',
-				'             <div class="pName">标准版产品</div>',
-				'             <div>(基础价)</div>',
-				'             <div><span  class="price">'+obj.basePrice+'</span>元</div>',
+				'             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
+				'             <div></div>',
+				'             <div><span  class="price">'+obj.basePrice+'</span>元起</div>',
 				'         </div>',
 				'         <div class="cardBottom">',
 				'              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
@@ -344,9 +348,9 @@ function buildCar2(obj){
 	             '<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 	             '    <div class="card">',
 	             '         <div class="cardTop">',
-	             '             <div class="pName">增强版产品</div>',
-	             '             <div>(基础价)</div>',
-	             '             <div><span class="price">'+obj.basePrice+'</span>元</div>',
+	             '             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
+	             '             <div></div>',
+	             '             <div><span class="price">'+obj.basePrice+'</span>元起</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
@@ -378,9 +382,9 @@ function buildCar3(obj){
 	             '<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 	             '    <div class="card">',
 	             '         <div class="cardTop">',
-	             '             <div class="pName">尊享版产品</div>',
-	             '             <div>(基础价)</div>',
-	             '             <div><span class="price">'+obj.basePrice+'</span>元</div>',
+	             '             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
+	             '             <div></div>',
+	             '             <div><span class="price">'+obj.basePrice+'</span>元起</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',

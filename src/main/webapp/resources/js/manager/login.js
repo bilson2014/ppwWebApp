@@ -76,7 +76,15 @@ var login = {
 			loadData(function(result){
 				if(result.ret){
 					// 跳转
-					$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
+					
+					var go = result.message;
+					if(go == 2){
+						$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
+					}else if(go  == 1){
+						$('#login-form').attr('action',getContextPath() + '/order/myOrder').submit();
+					}else {
+						$('#login-form').attr('action',getContextPath() + '/').submit();
+					}
 					$('#pwdId').addClass('hide');
 				}else {
 					$('#pwdId').text(result.message);

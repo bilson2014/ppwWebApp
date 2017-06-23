@@ -32,6 +32,7 @@ import com.paipianwang.pat.facade.right.entity.PmsRole;
 import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.paipianwang.pat.facade.right.service.PmsRoleFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
+import com.paipianwang.pat.facade.user.entity.Grade.Option;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.model.PhotoCutParam;
@@ -77,6 +78,28 @@ public class UserController extends BaseController {
 			}
 		}
 		return false;
+	}
+
+	@RequestMapping("/update")
+	public BaseMsg updateUserInfo(@RequestBody final PmsUser user, final HttpServletRequest request) {
+		BaseMsg baseMsg = new BaseMsg();
+		// 修改 用户基本信息
+		if (user != null) {
+			if (user.getId() != 0) {
+				int computeScore = pmsUserFacade.computeScore(user);
+				user.setClientLevel(computeScore);
+				pmsUserFacade.update(user);
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setErrorMsg("更新成功！");
+			} else {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setErrorMsg("更新失败！");
+			}
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("更新失败！");
+		}
+		return baseMsg;
 	}
 
 	@RequestMapping("/modify/password")
@@ -496,4 +519,22 @@ public class UserController extends BaseController {
 		session.setAttribute(PmsConstant.SESSION_INFO, info);
 		return true;
 	}
+
+	@RequestMapping("/option")
+	public BaseMsg getSelectOption() {
+		Map<String, Option[]> selectOption = pmsUserFacade.getSelectOption();
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(selectOption);
+		return baseMsg;
+	}
+	@RequestMapping("/get/info")
+	public BaseMsg getUser(Long userId){
+		BaseMsg baseMsg = new BaseMsg();
+		PmsUser user = pmsUserFacade.findUserById(userId);
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(user);
+		return baseMsg;
+	}
+
 }

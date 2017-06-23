@@ -343,7 +343,8 @@ function loginOrder(){
 			csrftoken : $('#csrftoken').val(),
 			phoneCode :'',
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
-			indent_tele : telephone
+			indent_tele : telephone,
+			indentSource:1
 			});
 
 }
@@ -366,7 +367,8 @@ function noLoginOrder(){
 			csrftoken : $('#csrftoken').val(),
 			phoneCode : $('#verificationCodeValue').val(),
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
-			indent_tele : telephone
+			indent_tele : telephone,
+			indentSource:1
 		});
 	}
 }
@@ -598,12 +600,11 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 		isHide = '';
 	}
 	
-	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'" alt="拍片网"><div>'+name+'</div></div></a>';
 	var teamIdUrl = getHostName()+"/provider/info_"+teamId+".html";
+	var htmlAdd = '<a href="'+teamIdUrl+'"><div class="videoProvider"><img src="'+getDfsHostName()+sUrl+'" alt="拍片网"><div>'+name+'</div></div></a>';
 	if(numFlag == 4){
 		htmlAdd = "";
 	}
-	
 	var html = [
 	    	    '<div class="swiper-slide noInfoCard">',
 	    	    '   <img class="roleImg ',isHide,'" src="',roleImgUrl,'">',

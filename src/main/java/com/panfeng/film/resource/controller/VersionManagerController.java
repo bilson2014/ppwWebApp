@@ -130,7 +130,21 @@ public class VersionManagerController extends BaseController {
 						if (ret) {
 							addCookies(request, response);
 						}
+						int rrr = 0; // 0 代表主页  1代表客服页  2代表项目页
+						
+						if(ValidateUtil.isValid(roles)){
+							for (PmsRole pmsRole : roles) {
+								if(pmsRole.getRoleName().equals("客服")){
+									rrr = 1;
+									break;
+								}
+								if(pmsRole.getRoleName().equals("销售")){
+									rrr = 2;
+								}
+							}
+						}
 						result.setRet(ret);
+						result.setMessage(rrr+"");
 					}
 				} catch (Exception e) {
 					SessionInfo sessionInfo = getCurrentInfo(request);
@@ -1015,44 +1029,24 @@ public class VersionManagerController extends BaseController {
 		indentComment.setIcUserType(info.getSessionType());
 	}
 
-	static final String CUSTOMERSERVICE = "客服";
-
 	/**
 	 * 初始化 sessionInfo 信息
 	 */
 	public boolean initSessionInfo(final PmsEmployee e, final HttpServletRequest request) {
-		/* 验证客服身份 */
-		boolean isCustomerService = false;
-		List<PmsRole> ro = e.getRoles();
-		if (ValidateUtil.isValid(ro)) {
-			for (PmsRole pmsRole : ro) {
-				String roleName = pmsRole.getRoleName();
-				if (CUSTOMERSERVICE.equals(roleName)) {
-					isCustomerService = true;
-					break;
-				}
-			}
-		}
-
 		// 存入session中
 		final String sessionId = request.getSession().getId();
 		final SessionInfo info = new SessionInfo();
 		info.setLoginName(e.getEmployeeLoginName());
 		info.setRealName(e.getEmployeeRealName());
-		if (isCustomerService) {
-			info.setSessionType(PmsConstant.ROLE_CUSTOMER_SERVICE);
-		} else {
-			info.setSessionType(PmsConstant.ROLE_EMPLOYEE);
-		}
+		info.setSessionType(PmsConstant.ROLE_EMPLOYEE);
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(e.getEmployeeId());
 		info.setPhoto(e.getEmployeeImg());
-		info.setTelephone(e.getPhoneNumber());
 
 		// 计算权限码
 		// 替换带有权限的角色
 		final List<PmsRole> roles = new ArrayList<PmsRole>();
-		for (final PmsRole r : ro) {
+		for (final PmsRole r : e.getRoles()) {
 			final PmsRole role = pmsRoleFacade.findRoleById(r.getRoleId());
 			roles.add(role);
 		}
@@ -1070,6 +1064,7 @@ public class VersionManagerController extends BaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(PmsConstant.SESSION_INFO, info);
 		request.getSession().setAttribute(PmsConstant.SESSION_INFO, info);
+		// return infoService.addSessionSeveralTime(request, map, 60*60*24*7);
 		return true;
 	}
 

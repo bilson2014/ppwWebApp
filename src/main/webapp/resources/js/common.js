@@ -144,6 +144,7 @@ function getData(Func,url){
 	$.ajax({
 		url : url,
 		type : 'GET',
+		cache:false,
 		dataType : 'json',
 		success : function(data){
 			Func(data);
@@ -163,6 +164,7 @@ function loadData(Func,url,param){
 		type : 'POST',
 		data : param,
 		dataType : 'json',
+		cache:false,
 		contentType : 'application/json; charset=UTF-8',
 		success : function(data){
 			Func(data);
@@ -179,6 +181,7 @@ function loadData2(Func,url,param){
 	$.ajax({
 		url : url,
 		type : 'POST',
+		cache:false,
 		data : param,
 		dataType : 'json',
 		success : function(data){
@@ -207,6 +210,7 @@ function submitForm(Func,url,param,checkElement){
 			url : url,
 			type : 'POST',
 			data : param,
+			cache:false,
 			dataType : 'json',
 			contentType : 'application/json; charset=UTF-8',
 			success : function(data){
@@ -762,6 +766,7 @@ function initOrderClick(){
 						teamId:-1,
 						serviceId:-1,
 						phoneCode : $('#phoneCode').val(),
+						indentSource:1
 					});	
 				}
 		}

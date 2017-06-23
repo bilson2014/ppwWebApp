@@ -380,7 +380,10 @@ public class ChanPinController extends BaseController {
 				String head = "";
 				head += dimension.getRowName();
 				head = formatRow(head);
-				head += "价格：" + PmsChanPinConfiguration.computePrice(configuration) + "";
+				BigDecimal b1 = new BigDecimal(PmsChanPinConfiguration.computePrice(configuration));
+				BigDecimal b2 = new BigDecimal(dimension.getRowValue());
+				b1 = b1.add(b2);
+				head += "价格：" + b1.doubleValue() + "";
 				sb.append(head);
 				sb.append("<br>");
 			}

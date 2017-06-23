@@ -97,6 +97,7 @@ function loadData(Func,url,param){
 		type : 'POST',
 		data : param,
 		dataType : 'json',
+		cache:false,
 		contentType : 'application/json; charset=UTF-8',
 		success : function(data){
 			Func(data);

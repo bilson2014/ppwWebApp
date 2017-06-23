@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
 import com.paipianwang.pat.common.entity.DataGrid;
 import com.paipianwang.pat.common.entity.PageParam;
@@ -38,15 +38,13 @@ public class RequireController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_EMPLOYEE.equals(sessionType)) {
-					long page = param.getPage();
-					long rows = param.getRows();
-					param.setBegin((page - 1) * rows);
-					param.setLimit(rows);
-					Map<String, Object> paramMap = new HashMap<String, Object>();
-					DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
-					return dataGrid;
-				}
+				long page = param.getPage();
+				long rows = param.getRows();
+				param.setBegin((page - 1) * rows);
+				param.setLimit(rows);
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
+				return dataGrid;
 			}
 		}
 		return new DataGrid<>();
@@ -84,35 +82,64 @@ public class RequireController extends BaseController {
 		return baseMsg;
 	}
 
-	/**
-	 * 跳转需求表单页。新增和修改和查看 这代码只有老天懂
-	 * 
-	 * @param indentId
-	 * @param requireId
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/require")
-	public ModelAndView requireView(Long indentId, Long requireId, ModelMap model) {
-		model.addAttribute("indentId", indentId);
+	@RequestMapping("/require/update")
+	public BaseMsg updateRequire(PmsRequire require) {
+		BaseMsg baseMsg = new BaseMsg();
+		PmsRequire requireInfo = pmsRequireFacade.getRequireInfo(require.getRequireId());
+		requireInfo.setRequireJson(require.getRequireJson());
+		long update = pmsRequireFacade.update(requireInfo);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("更新成功");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("更新失败！");
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping("/require/info")
+	public BaseMsg requireView(Long indentId, Long requireId) {
+		BaseMsg baseMsg = new BaseMsg();
 		if (!ValidateUtil.isValid(requireId)) {
 			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
 			requireId = indent.getRequireId();
 		}
 		if (ValidateUtil.isValid(requireId)) {
 			PmsRequire require = pmsRequireFacade.getRequireInfo(requireId);
-			model.addAttribute("require", require);
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setResult(require);
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("需求信息不存在！");
 		}
-		return new ModelAndView("/standardized/requireForm", model);
+
+		return baseMsg;
+
 	}
 
-/*	@RequestMapping("/require/config")
+	@RequestMapping("/require/config")
 	public BaseMsg getRequireConfig() {
 		String requireConfig = pmsRequireFacade.getRequireConfig();
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.NORMAL);
 		baseMsg.setResult(requireConfig);
 		return baseMsg;
-	}*/
-
+	}
+	@RequestMapping("/require")
+	public ModelAndView requireView(Long indentId,Long requireId,Integer flag,ModelMap map){
+		map.addAttribute("indentId", indentId);
+		map.addAttribute("requireId", requireId);
+		map.addAttribute("flag", flag);
+		return new ModelAndView("/employee/orderList",map);
+	}
+	
+	@RequestMapping("/require/{requireId}")
+	public ModelAndView requireView(@PathVariable("requireId")Long requireId,ModelMap map){
+		map.addAttribute("indentId", -1);
+		map.addAttribute("requireId", requireId);
+		map.addAttribute("flag", 1);
+		return new ModelAndView("/employee/orderList",map);
+	}
+	
 }

@@ -13,6 +13,7 @@ $().ready(function() {
     window.onresize = function(){
     	getVideoHeight();
     };
+    $('#header').removeClass('headerMove');
     
 });
 
@@ -133,7 +134,8 @@ function loginOrder(){
 			teamId:-1,
 			serviceId:-1,
 			sendToStaff:true,
-			sendToUser:false
+			sendToUser:false,
+			indentSource:1
 		},
 		dataType : 'json',
 		success : function(data){
@@ -180,7 +182,8 @@ function noLoginOrder(){
 				serviceId:-1,
 				sendToStaff:true,
 				sendToUser:false,
-				phoneCode:getCheckCodes
+				phoneCode:getCheckCodes,
+				indentSource:1
 			},
 			dataType : 'json',
 			success : function(data){
@@ -227,9 +230,7 @@ function verificationCodeBtn(){
 	if(curCount == 0){
 		var telephone = $('#help-phone').val().trim();
 		if(telephone !=''){
-		
 		curCount = count;
-		
 		$('#sendCode').text('已发送('+ curCount +')');
 		$('#sendCode').attr('disabled','disabled');
 		InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒钟执行一次
@@ -253,7 +254,6 @@ function verificationCodeBtn(){
 
 var homePage = {
 	init:function(){
-		
 		//点击帮我推荐提交订单
 		this.clickHelpYou();
 		//获取热门爆款和经典案例
@@ -298,11 +298,9 @@ var homePage = {
 							noLoginOrder();
 						}
 						else{
-							
 							$('.isShowItem').show();
 							$(".helpYou").addClass('active');
 						}
-			
 					}
 		})
 	},

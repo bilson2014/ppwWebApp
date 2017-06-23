@@ -18,7 +18,7 @@ public class ProductCaseInterceptor extends HandlerInterceptorAdapter {
 		final SessionInfo info = (SessionInfo) req.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		if(info != null){
 			final String identity = info.getSessionType();
-			if(PmsConstant.ROLE_EMPLOYEE.equals(identity) || PmsConstant.ROLE_CUSTOMER_SERVICE.equals(identity)) 
+			if(PmsConstant.ROLE_EMPLOYEE.equals(identity)) 
 				return true;
 		}
 		

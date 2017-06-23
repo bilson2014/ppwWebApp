@@ -1,7 +1,9 @@
 package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,7 @@ import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
+import com.panfeng.film.util.IndentUtil;
 
 @RestController
 @RequestMapping("/order")
@@ -129,11 +132,13 @@ public class IndentController extends BaseController {
 	}
 
 	// ---------------------------------------------客服接口------------------------------------------------------------------
-	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
-	public ModelAndView indentView(ModelMap modelMap, HttpServletRequest request) {
+	@RequestMapping(value = "/myOrder", produces = "application/json; charset=UTF-8")
+	public ModelAndView ongoing(ModelMap modelMap, HttpServletRequest request) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("indentType", 0);
-
+		List<Integer> types = new ArrayList<>();
+		types.add(0);
+		types.add(1);
+		paramMap.put("types", types);
 		PageParam pageParam = new PageParam();
 		pageParam.setBegin(0);
 		pageParam.setLimit(20);
@@ -141,12 +146,34 @@ public class IndentController extends BaseController {
 		if (currentInfo != null) {
 			String sessionType = currentInfo.getSessionType();
 			if (ValidateUtil.isValid(sessionType)) {
-				if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-					Long reqiureId = currentInfo.getReqiureId();
-					paramMap.put("employeeId", reqiureId);
-					DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-					modelMap.addAttribute("indentList", listWithPagination);
-				}
+				Long reqiureId = currentInfo.getReqiureId();
+				paramMap.put("employeeId", reqiureId);
+				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+				modelMap.addAttribute("indentList", listWithPagination);
+			}
+		}
+
+		return new ModelAndView("/employee/orderIndex", modelMap);
+	}
+
+	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
+	public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		List<Integer> types = new ArrayList<>();
+		types.add(0);
+		types.add(1);
+		paramMap.put("types", types);
+		PageParam pageParam = new PageParam();
+		pageParam.setBegin(0);
+		pageParam.setLimit(20);
+		SessionInfo currentInfo = getCurrentInfo(request);
+		if (currentInfo != null) {
+			String sessionType = currentInfo.getSessionType();
+			if (ValidateUtil.isValid(sessionType)) {
+				Long reqiureId = currentInfo.getReqiureId();
+				paramMap.put("employeeId", reqiureId);
+				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
+				modelMap.addAttribute("indentList", listWithPagination);
 			}
 		}
 
@@ -164,14 +191,10 @@ public class IndentController extends BaseController {
 			Object object = paramMap.get("page");
 			Object object2 = paramMap.get("rows");
 			if (object != null && object2 != null) {
-				Long begin = Long.valueOf(object.toString());
-				Long limit = Long.valueOf(object2.toString());
-				pageParam.setBegin(begin);
-				pageParam.setLimit(limit);
+				Long page = Long.valueOf(object.toString());
+				Long rows = Long.valueOf(object2.toString());
 				paramMap.remove("page");
 				paramMap.remove("rows");
-				long page = pageParam.getPage();
-				long rows = pageParam.getRows();
 				pageParam.setBegin((page - 1) * rows);
 				pageParam.setLimit(rows);
 			} else {
@@ -183,40 +206,99 @@ public class IndentController extends BaseController {
 			if (currentInfo != null) {
 				String sessionType = currentInfo.getSessionType();
 				if (ValidateUtil.isValid(sessionType)) {
-					if (PmsConstant.ROLE_CUSTOMER_SERVICE.equals(sessionType)) {
-						Long reqiureId = currentInfo.getReqiureId();
-						paramMap.put("employeeId", reqiureId);
-						return pmsIndentFacade.listWithPagination(pageParam, paramMap);
-					}
+					Long reqiureId = currentInfo.getReqiureId();
+					paramMap.put("employeeId", reqiureId);
+					return pmsIndentFacade.listWithPagination(pageParam, paramMap);
 				}
 			}
 		}
 		return new DataGrid<PmsIndent>();
 	}
 
-	@RequestMapping(value = "/update", produces = "application/json; charset=UTF-8")
-	public BaseMsg updateIndent(PmsIndent indent) {
+	@RequestMapping(value = "/updateOrSave", produces = "application/json; charset=UTF-8")
+	public BaseMsg updateIndent(PmsIndent indent, HttpServletRequest request) {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
-		baseMsg.setErrorMsg("更新失败！");
-		long update = pmsIndentFacade.update(indent);
-		if (update > 0) {
-			baseMsg.setCode(BaseMsg.NORMAL);
-			baseMsg.setErrorMsg("更新成功");
+		baseMsg.setErrorMsg("处理失败！");
+
+		if (indent != null && indent.getId() != null && indent.getId() > 0) {
+			long update = pmsIndentFacade.update(indent);
+			if (update > 0) {
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setErrorMsg("更新成功！");
+			}
+		} else {
+			SessionInfo currentInfo = getCurrentInfo(request);
+			if (currentInfo != null) {
+				Long reqiureId = currentInfo.getReqiureId();
+				indent.setEmployeeId(reqiureId);
+			}
+			indent.setIndentType(PmsIndent.ORDER_NEW);
+			boolean save = pmsIndentFacade.saveOrder(indent);
+			if (save) {
+				baseMsg.setCode(BaseMsg.NORMAL);
+				baseMsg.setErrorMsg("新增成功！");
+			}
 		}
 		return baseMsg;
 	}
 
-	@RequestMapping(value = "/submit", produces = "application/json; charset=UTF-8")
-	public BaseMsg submit(PmsIndent indent, Boolean update) {
+	@RequestMapping(value = "/checkuser")
+	public BaseMsg checkUser(String indent_tele, Long indentId) {
 		BaseMsg baseMsg = new BaseMsg();
+		PmsUser user = new PmsUser();
+		user.setTelephone(indent_tele);
+		user = pmsUserFacade.findUserByAttr(user);
+
+		if (user != null && user.getId() > 0) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			// check
+			String iUserCompany = indent.getUserCompany();
+			String iRealName = indent.getRealName();
+
+			String uUserCompany = user.getUserCompany();
+			String uRealName = user.getRealName();
+
+			if (uUserCompany != null && !uUserCompany.equals(iUserCompany)) {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setResult(user);
+				return baseMsg;
+			}
+
+			if (uRealName != null && !uRealName.equals(iRealName)) {
+				baseMsg.setCode(BaseMsg.ERROR);
+				baseMsg.setResult(user);
+				return baseMsg;
+			}
+
+			baseMsg.setCode(BaseMsg.NORMAL);
+		} else {
+			baseMsg.setCode(BaseMsg.NORMAL);
+		}
+
+		return baseMsg;
+	}
+
+	@RequestMapping(value = "/submit", produces = "application/json; charset=UTF-8")
+	public BaseMsg submit(@RequestBody PmsIndent indent) {
+		BaseMsg baseMsg = new BaseMsg();
+		indent = pmsIndentFacade.findIndentById(indent.getId());
+		indent.setUserId(saveUser(indent));
+		indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
+		}
+		return baseMsg;
+	}
+
+	private long saveUser(PmsIndent indent) {
 		String indent_tele = indent.getIndent_tele();
 		int count = pmsUserFacade.validationPhone(indent_tele, null);
-		if (count != 0 && (update ==null || !update)) {
-			baseMsg.setErrorCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("用户已经存在，是否更新？");
-			return baseMsg;
-		}
 		PmsUser user = null;
 		// 用户操作
 		if (count != 0) {
@@ -225,31 +307,24 @@ public class IndentController extends BaseController {
 			temp.setTelephone(indent_tele);
 			user = pmsUserFacade.findUserByAttr(temp);
 
-			if (ValidateUtil.isValid(indent.getUserCompany())) {
+			if (!ValidateUtil.isValid(user.getUserCompany())) {
 				user.setUserCompany(indent.getUserCompany());
 			}
 
-			if (ValidateUtil.isValid(indent.getRealName())) {
+			if (!ValidateUtil.isValid(user.getRealName())) {
 				user.setRealName(indent.getRealName());
 			}
-
-			if (ValidateUtil.isValid(indent.getWechat())) {
-				user.setWeChat(indent.getWechat());
-			}
-
-			if (indent.getPosition() != null) {
-				user.setPosition(indent.getPosition());
-			}
-
-			long userUpdate = pmsUserFacade.update(user);
-			if (userUpdate <= 0) {
-				baseMsg.setCode(BaseMsg.ERROR);
-				baseMsg.setErrorMsg("用户更新失败！");
-				return baseMsg;
-			}
+			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
 			user = new PmsUser();
+			user.setUserName(indent.getUserCompany());
+			List<PmsUser> findUserByName = pmsUserFacade.findUserByName(user);
+			
+			user = new PmsUser();
+			user.setSex(2);
+			user.setKindlySend(true);
+			user.setUserName(indent.getUserCompany() + findUserByName.size() + 1 );
 			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
 			user.setTelephone(indent_tele);
 			if (ValidateUtil.isValid(indent.getUserCompany())) {
@@ -267,32 +342,115 @@ public class IndentController extends BaseController {
 			if (indent.getPosition() != null) {
 				user.setPosition(indent.getPosition());
 			}
-
+			int computeScore = pmsUserFacade.computeScore(user);
+			user.setClientLevel(computeScore);
 			Map<String, Object> save = pmsUserFacade.save(user);
 			Object objUserId = save.get(BaseEntity.SAVE_MAP_ID);
 
 			if (objUserId != null) {
 				Long userId = Long.valueOf(objUserId.toString());
 				user.setId(userId);
-			} else {
-				baseMsg.setCode(BaseMsg.ERROR);
-				baseMsg.setErrorMsg("用户更新失败！");
-				return baseMsg;
 			}
 		}
-		// 订单操作
-		//indent.setIndentType(PmsIndent.ORDER_SUBMIT);
+		return user.getId();
+	}
 
-		long updateIndent = pmsIndentFacade.update(indent);
-		indent.setUserId(user.getId());
-		if (updateIndent > 0) {
-			baseMsg.setCode(BaseMsg.NORMAL);
-			baseMsg.setErrorMsg("更新成功");
-		} else {
+	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
+	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
+		BaseMsg baseMsg = new BaseMsg();
+		boolean changeIndentsType = pmsIndentFacade.changeIndentsType(new long[] { indent.getId() },
+				PmsIndent.ORDER_SHAM);
+		if (!changeIndentsType) {
 			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("订单更新失败！");
+			baseMsg.setErrorMsg("提交失败！");
+		} else {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("提交成功！");
 		}
 		return baseMsg;
 	}
 
+	@RequestMapping(value = "/realOrder", produces = "application/json; charset=UTF-8")
+	public BaseMsg realOrder(@RequestBody PmsIndent indent) {
+		BaseMsg baseMsg = new BaseMsg();
+		indent = pmsIndentFacade.findIndentById(indent.getId());
+		indent.setUserId(saveUser(indent));
+		indent.setIndentType(PmsIndent.ORDER_REAL);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping(value = "/checkOrder")
+	public BaseMsg checkOrder(Long indentId) {
+		BaseMsg baseMsg = new BaseMsg();
+		List<String> errorItem = new ArrayList<>();
+		if (indentId != null) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			String userCompany = indent.getUserCompany();
+			if (!ValidateUtil.isValid(userCompany)) {
+				errorItem.add("userCompany");
+			}
+			String realName = indent.getRealName();
+			if (!ValidateUtil.isValid(realName)) {
+				errorItem.add("realName");
+			}
+			String indent_tele = indent.getIndent_tele();
+			if (!ValidateUtil.isValid(indent_tele)) {
+				errorItem.add("indent_tele");
+			}
+			Integer indentSource = indent.getIndentSource();
+			if (indentSource == null) {
+				errorItem.add("indentSource");
+			}
+			Long requireId = indent.getRequireId();
+			if (!ValidateUtil.isValid(requireId)) {
+				errorItem.add("requireId");
+			}
+
+			if (errorItem.size() == 0) {
+				baseMsg.setCode(BaseMsg.NORMAL);
+			} else {
+				baseMsg.setCode(BaseMsg.WARNING);
+				baseMsg.setResult(errorItem);
+			}
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("订单ID不能为空！");
+		}
+		return baseMsg;
+	}
+
+	// ------------------------------------------------------------------------------
+	@RequestMapping(value = "/info")
+	public BaseMsg indentInfo(Long indentId) {
+		BaseMsg baseMsg = new BaseMsg();
+		if (indentId != null) {
+			PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+			baseMsg.setCode(BaseMsg.NORMAL);
+			baseMsg.setResult(indent);
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("订单ID不能为空！");
+		}
+		return baseMsg;
+	}
+
+	@RequestMapping(value = "/generate")
+	public BaseMsg generate() {
+		BaseMsg baseMsg = new BaseMsg();
+		Map<String, String> res = new HashMap<>();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(res);
+		String nowTime = DateUtils.nowTime();
+		res.put("time", nowTime);
+		res.put("userName", "User-" + IndentUtil.generateShortUuid());
+		return baseMsg;
+	}
 }
