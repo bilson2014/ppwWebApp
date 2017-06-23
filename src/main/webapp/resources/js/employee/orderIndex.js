@@ -650,6 +650,7 @@ function bangSelect(){
 	   	 $(this).parent().parent().find('div').text($(this).text());
 	   	 $(this).parent().parent().find('div').attr('data-value',$(this).attr('data-value'));
 	   	 $('.orderSelect').removeClass('selectColor');
+	   	$('#orderComePeople').hide(); 
 	   	 e.stopPropagation();
 	});
 }

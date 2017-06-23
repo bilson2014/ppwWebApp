@@ -163,6 +163,7 @@
 
 .toUnBle {
     .isFind {
+         border: 1px solid $gray-light !important;
         &:hover{
         color: #50E3C2 !important;
         border: 1px solid #50E3C2 !important;
@@ -205,7 +206,7 @@
             div {
                 font-size: $font-size-sm;
                 color: $gray;
-                border: 1px solid $gray-light;
+                border: 1px solid $border-line;
                 border-radius: 4px;
                 width: 40%;
                 height: 30px;
@@ -281,7 +282,7 @@
     display: none;
     border-radius: 6px;
     .cusInfo {
-        top: 200px !important;
+        top: 250px !important;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             top: 250px !important;
         }
@@ -327,12 +328,12 @@
             padding-left: 30px;
             margin-bottom: 30px;
         }
-        .itemContent {
+        .itemContents {
             position: relative;
             overflow: auto;
-            height: 250px;
+            height: 450px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                height: 350px;
+                height: 650px;
             }
             @media screen and (min-width: 1500px) {
                 height: auto
