@@ -95,8 +95,8 @@
 		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的</div>
 		        <div class="sDes">潜在客户?</div>
 		        <div class="sureBtn">
-		           <div class="" id="real">真实</div>
-		           <div class="btn-c-r" id="noReal">虚假</div>
+		           <div class="" id="real">潜在客户</div>
+		           <div class="btn-c-r" id="noReal">虚假消息</div>
 		        </div>
 		   </div>
            </div>
@@ -230,7 +230,7 @@
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
-              <div class="itemContent">
+              <div class="itemContents">
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
@@ -245,7 +245,7 @@
                         </div>  
                     </div>
                    
-                    </div>
+               
                     <div class="infoItem">
                     
                        <div class="setError " id="cusTelesError" >    
@@ -358,8 +358,8 @@
                     </div>    
                           
                 <div class="sureBtn">
-                   <div class="btn-c-r" id="submitEditCus">确定</div>
                    <div class="btn-c-g" id="cancleEdit">取消</div>
+                   <div class="btn-c-r" id="submitEditCus">确定</div>
 		        </div>
             </div>
       </div>
@@ -512,6 +512,7 @@
                    <div class="btn-c-r">确定</div>
                    <div class="btn-c-g">取消</div>
 		        </div>
+		         </div>
             </div>
       </div>
     

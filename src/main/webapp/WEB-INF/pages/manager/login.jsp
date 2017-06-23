@@ -62,8 +62,8 @@
 		            
 		            <div class="redBtn" id="loginbtn">登录</div> 
 		              <a href="/mgr/recover"><h2 id="forget">忘记密码？</h2></a>
-		            <div class="infoWord fontSizeBaseLight">第三方登录</div>
-		            <div class="footer-content-three">
+		            <div class="infoWord fontSizeBaseLight hide">第三方登录</div>
+		            <div class="footer-content-three hide">
 							<ul>
 								<li >
 									<a href="javascript:void(0);" id="webcat">
