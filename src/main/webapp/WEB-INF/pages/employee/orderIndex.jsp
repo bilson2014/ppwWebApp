@@ -188,6 +188,9 @@
 	                            <div data-value="" id="orderComeInfo">请选择</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
+	                                    <li class="removeLi" data-id="1">线上-网站</li>
+					                    <li class="removeLi" data-id="2">线上-活动</li>
+					                    <li class="removeLi" data-id="3">线上-新媒体</li>
 					                    <li data-value="4">线下-电销</li>
 					                    <li class="showHelper" data-value="5">线下-直销</li>
 					                    <li data-value="6">线下-活动</li>
@@ -246,22 +249,21 @@
                     </div>
                     <div class="infoItem">
                     
-                       <div class="setError" id="cusTypeError">
-                          <div class="itemTitile">客户类型</div>
-	                      <div class="orderSelect">
-	                            <div data-value="" id="muCustomerType"></div>
-	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='uCustomerType'>
-	                            </ul>                
-	                       </div>
-                          <div class="must">*</div>
-                       </div>   
-                        
-                       <div class="setError longItem" id="cusTelesError" >    
+                       <div class="setError " id="cusTelesError" >    
                           <div class="itemTitile">联系电话</div>
                           <input class="itemInput" id="muTelephone">
                           <div class="must">*</div>
                        </div>
+                    
+                       <div class="setError longItem" id="cusTypeError">
+                          <div class="itemTitile">客户类型</div>
+	                      <div class="orderSelect">
+	                            <div data-value="" id="muCustomerType"></div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='uCustomerType'></ul>                
+	                       </div>
+                          <div class="must"></div>
+                       </div>   
                           
                     </div>
                      <div class="infoItem" id="showHelper"> 
@@ -273,7 +275,7 @@
 	                            <ul class="oSelect" id='uPosition'>
 	                            </ul>                
 	                       </div>
-                          <div class="must">*</div>
+                          <div class="must"></div>
                         </div>  
                     </div>
                     <div class="borderline"></div>
@@ -291,9 +293,9 @@
                         </div>  
                     </div>
                     <div class="infoItem">
-                        <div class="setError" >
+                        <div class="setError" id="muOfficialSiteError" >
                           <div class="itemTitile">网址</div>
-                          <input class="itemWeb" id="muOfficialSite">
+                          <input class="itemWeb" id="muOfficialSite" placeholder="例如:http://www.example.com">
                           <div class="must"></div>
                         </div>  
                     </div>

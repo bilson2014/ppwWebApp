@@ -81,6 +81,7 @@ var orderIndex = {
 						orderIndex.readUnAle(nowPage);
 					}
 				}else{
+					$('.removeLi').addClass('hide');
 					newOrderEven(1);
 				}
 				
@@ -341,11 +342,11 @@ var orderIndex = {
 				refresh();
 			});
 			
-			$('.btnDiv btn-c-g').off('click').on('orderModel',function(){
+			$('.btnDiv btn-c-g').off('click').on('click',function(){
 				$('.modelPage').hide();
 			});
 			//清空搜索
-			$('#toClean').off('click').on('orderModel',function(){
+			$('#toClean').off('click').on('click',function(){
                   $('#sUserCompany').val('');
                   $('#sRealName').val('');
                   $('#sIndent_tele').val('');
@@ -490,7 +491,8 @@ var orderIndex = {
 		createUnableTable:function(obj){
 			var setToF = obj.indentType == 6 ?'虚假':'真实';
 			var setClass = obj.indentType == 6 ?'lie':'true';
-			var isFInd = obj.indentType == 6 ?'notFind':'isFind';			var name = '--';
+			var isFInd = obj.indentType == 6 ?'notFind':'isFind';			
+			var hasEdit = obj.indentType == 6 ?'不可修改':'修改';			
 			var num =obj.indentSource;
 			if(num == 1){
 				name = '线上-网站';
@@ -530,7 +532,7 @@ var orderIndex = {
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
 			             '    </div>                                                          ',
 		               '     </td>                                                           ',
-		               '    <td ><div data-id="'+obj.userId +'" class="'+isFInd+'">修改</div></td>' ,
+		               '    <td ><div data-id="'+obj.userId +'" class="'+isFInd+'">'+hasEdit+'</div></td>' ,
 		               ' </tr>' ,
 			].join('');
 			return html;
@@ -579,6 +581,7 @@ function infoEven(){
 		$('.info').off('click').on('click',function(){
 			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
+			$('.removeLi').removeClass('hide');
 			loadData(function (res){
 				newOrderEven(2,res);
 			}, getContextPath() + '/order/info?indentId='+id, null);
@@ -586,11 +589,12 @@ function infoEven(){
 }
 //触发新建事件
 function orderNewEven(){
-		$('.orderNew').off('click').on('click',function(){
-			var id = $(this).parent().find('.id').text();
-			$('#NewOrder').show();
-		    newOrderEven(1);
-		});
+//		$('.orderNew').off('click').on('click',function(){
+//			var id = $(this).parent().find('.id').text();
+//			$('#NewOrder').show();
+//			$('.removeLi').addClass('hide');
+//		    newOrderEven(1);
+//		});
 }
 //新建 修改事件
 function newOrderEven(check,item){
@@ -660,6 +664,10 @@ function editEvenFunction(item){
 	$('#companyName').val(companyName);
 	$('#teles').val(teles);
 	var orderC = $('#orderCome li');
+	if(item.result.indentSource == null || item.result.indentSource == ''){
+		$('#orderComeInfo').text('请选择');
+		$('#orderComeInfo').attr('data-value','');
+	}
 	for (var int = 0; int < orderC.length; int++) {
 		var num = $(orderC[int]).attr('data-value');
 		var name = $(orderC[int]).text();
@@ -1245,6 +1253,7 @@ function checkUserInfo(){
 	var cusType = $('#muCustomerType').attr('data-id');
 	var cusTeles = $('#muTelephone').val();
 	var cusWork = $('#muPosition').attr('data-id');
+	var webUrl = $('#muOfficialSite').val();
 	if(cusTelName == undefined || cusTelName == "" || cusTelName == null ){
 		$('#cusTelNameError').attr('data-content','请填写联系人');
 		$('#muRealName').focus();
@@ -1255,23 +1264,28 @@ function checkUserInfo(){
 		$('#muUserCompany').focus();
 		return false;
 	}
-	if(cusType == undefined || cusType == "" || cusType ==null ){
-		$('#cusTypeError').attr('data-content','请填写用户类型');
-		return false;
-	}
 	if(!checkMobile(cusTeles)){
 		$('#cusTelesError').attr('data-content','手机号不正确');
 		$('#muTelephone').focus();
 		return false;
 	}
-	if(cusWork == undefined || cusWork == "" || cusType ==null ){
-		$('#cusWorkError').attr('data-content','请填写用户类型');
+	if(webUrl != undefined || webUrl != "" || webUrl != null ){
+	if(IsUrl(webUrl)){
+		$('#muOfficialSiteError').attr('data-content','网址不正确');
+		$('#muOfficialSite').focus();
 		return false;
 	}
-
+	}
+	
 	return true;
 }
-
+//网址验证
+function IsUrl(str){   
+    var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;   
+    var result = str.match(regUrl);   
+    if(result!=null) {return true;}   
+    else{return false;}   
+}
 //function checkOrder(obj){
 //	var tr = $(obj).parent();	
 //	var userCompany = $(tr).find('.userCompany').text();
@@ -1292,7 +1306,6 @@ function checkUserInfo(){
 //	}
 //	return false;
 //}
-
 function refresh(){
 	if(now_order == 0){
 		orderIndex.readMore(nowPage);

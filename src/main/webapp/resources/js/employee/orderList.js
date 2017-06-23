@@ -113,17 +113,16 @@ function setValueToNeedList(keys,values,type){
 				 $(rows[int]).find('.optionItemMult').find('.itemDiv').each(function(index){
 	                    var thisDiv = $(this);
 	                    var thisDivs = thisDiv.text();
-	                    var thiss = values[index];
+	                    var hasValue = false;
 	                    for(var j = 0; j < values.length; j++){
-					    if(thisDiv.text()==values[j]){
-					    	thisDiv.addClass('activeNeed');
-					    	return;
+						    if(thisDiv.text()==values[j]){
+						    	thisDiv.addClass('activeNeed');
+						    	 var thisDivs = thisDiv.text();
+						    	 hasValue = true;
+						    }
 					    }
-					    else{
-					    	if(LookList == 1){
-					    		thisDiv.remove();
-					    	}
-					    }
+	                    if(LookList == 1 && !hasValue){
+					    	  thisDiv.remove();
 					    }
 					});
 				 if(type == 'input'){
@@ -231,23 +230,29 @@ function getNeedValue(requireId){
 			 var getNowItem = $(rows[int]) ;
 			 var setType = '';
 			 var itemValues = '';
-			 if(getNowItem.find('.activeNeed')){
+			 if(getNowItem.find('.activeNeed')&&!getNowItem.find('.activeNeed').hasClass('_datepicker')&&!getNowItem.find('textarea').hasClass('isArea')){
 				 itemValues = getNowItem.find('.activeNeed').text();
+				  if(itemValues == ""||itemValues == null){
+					  isCheck = false;
+				  }
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
 				 itemValues =  $(rows[int]).find('input').val();
 				 setType = "input";
+				  if(itemValues == ""||itemValues == null){
+					  isCheck = false;
+				  }
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val();
+				  if(itemValues == ""||itemValues == null){
+					  isCheck = false;
+				  }
 			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
-				 itemValues=  $(rows[int]).find('textarea').val();
-			 }
-			  var itemId =  $(rows[int]).parent().attr('data-id')
-			  if(itemValues == ""||itemValues == null){
-				  isCheck = false;
+					 itemValues=  $(rows[int]).find('textarea').val();
 			  }
+			  var itemId =  $(rows[int]).parent().attr('data-id')
 			  setData.push(new optEntity(itemId,itemValues,setType));
 		}
 		 var rowsMult= $('.optionItemMult');
