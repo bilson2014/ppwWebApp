@@ -110,7 +110,6 @@
 		        <div class="tDes">是否确认"此联系人为<span class="redColor" id="setColor"></span>客户?"</div>
 		        <div class="sureBtn">
 		           <div class="btn-c-r" id="tModel">确定</div>
-		           <div class="btn-c-g" id="cModel">取消</div>
 		        </div>
 		   </div>
            </div>

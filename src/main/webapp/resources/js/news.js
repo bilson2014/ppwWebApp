@@ -10,9 +10,9 @@ $().ready(function() {
 	initLike();
     controlRightPos();
     initPath();
-     
+    $('#headerTitleH1').text($('#newsTitle').text());
+    $('#keywords').attr('content',$('#tagsContent').text().trim());
 });
-
 //右侧是否悬浮
 function controlRightPos(){
 	  $(window).scroll(function() {

@@ -601,7 +601,7 @@ function newOrderEven(check,item){
 	$('#NewOrder').show();
 	$('#showHelper').hide();
 	$('#orderCome li').off('click').on('click',function(e){
-		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-value')));
+		$(this).parent().parent().find('div').attr('data-value',($(this).attr('data-id')));
 		$(this).parent().parent().find('div').text(($(this).text()));
 	  	if($(this).hasClass('showHelper')){
 	   		$('#showHelper').show();
@@ -674,11 +674,11 @@ function editEvenFunction(item){
 		if(item.result.indentSource != null){
 		if(num == item.result.indentSource){
 			$('#orderComeInfo').text(name);
-			$('#orderComeInfo').attr('data-id',num);
+			$('#orderComeInfo').attr('data-value',num);
 			if(num == 5){
 				$('#showHelper').show();
 			}
-		  }
+		}
 		}
    };
 	var orderCPeople = $('#orderComePeople li');
