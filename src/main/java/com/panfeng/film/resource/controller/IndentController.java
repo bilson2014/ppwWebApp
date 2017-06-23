@@ -156,30 +156,6 @@ public class IndentController extends BaseController {
 		return new ModelAndView("/employee/orderIndex", modelMap);
 	}
 
-	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
-	public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		List<Integer> types = new ArrayList<>();
-		types.add(0);
-		types.add(1);
-		paramMap.put("types", types);
-		PageParam pageParam = new PageParam();
-		pageParam.setBegin(0);
-		pageParam.setLimit(20);
-		SessionInfo currentInfo = getCurrentInfo(request);
-		if (currentInfo != null) {
-			String sessionType = currentInfo.getSessionType();
-			if (ValidateUtil.isValid(sessionType)) {
-				Long reqiureId = currentInfo.getReqiureId();
-				paramMap.put("employeeId", reqiureId);
-				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-				modelMap.addAttribute("indentList", listWithPagination);
-			}
-		}
-
-		return new ModelAndView("/employee/indentList", modelMap);
-	}
-
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
 	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
@@ -440,18 +416,6 @@ public class IndentController extends BaseController {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("订单ID不能为空！");
 		}
-		return baseMsg;
-	}
-
-	@RequestMapping(value = "/generate")
-	public BaseMsg generate() {
-		BaseMsg baseMsg = new BaseMsg();
-		Map<String, String> res = new HashMap<>();
-		baseMsg.setCode(BaseMsg.NORMAL);
-		baseMsg.setResult(res);
-		String nowTime = DateUtils.nowTime();
-		res.put("time", nowTime);
-		res.put("userName", "User-" + IndentUtil.generateShortUuid());
 		return baseMsg;
 	}
 }
