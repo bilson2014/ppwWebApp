@@ -244,10 +244,10 @@ var orderIndex = {
 			   	 }
 			   	 e.stopPropagation();
 			});
-			$('body').off('click').on('click',function(){
+			$('body').off('click').on('click',function(e){
 				 $('.oSelect').slideUp();
 				 $('.orderSelect').removeClass('selectColor');
-				 event.stopPropagation();
+				 e.stopPropagation();
 			});
 		},
 		controlModel:function(){
@@ -640,18 +640,17 @@ function newOrderEven(check,item){
 }
 
 function bangSelect(){
-	$('#orderComePeople').off('click').on('click',function(){
-		$('.oSelect').slideUp();
-		$(this).find('.oSelect').slideDown();
-		$(this).addClass('selectColor');
-		event.stopPropagation();
+	$('#orderComePeople').off('click').on('click',function(e){
+//		$('.oSelect').hide();
+//		$(this).find('.oSelect').slideDown();
+//		$(this).addClass('selectColor');
+		e.stopPropagation();
 	});
-	$('#orderComePeople li').off('click').on('click',function(){
+	$('#orderComePeople li').off('click').on('click',function(e){
 	   	 $(this).parent().parent().find('div').text($(this).text());
 	   	 $(this).parent().parent().find('div').attr('data-value',$(this).attr('data-value'));
-	   	 $(this).parent().slideUp();
 	   	 $('.orderSelect').removeClass('selectColor');
-	   	 event.stopPropagation();
+	   	 e.stopPropagation();
 	});
 }
 //修改事件方法
@@ -671,7 +670,7 @@ function editEvenFunction(item){
 		$('#orderComeInfo').attr('data-value','');
 	}
 	for (var int = 0; int < orderC.length; int++) {
-		var num = $(orderC[int]).attr('data-value');
+		var num = $(orderC[int]).attr('data-id');
 		var name = $(orderC[int]).text();
 		if(item.result.indentSource != null){
 		if(num == item.result.indentSource){
