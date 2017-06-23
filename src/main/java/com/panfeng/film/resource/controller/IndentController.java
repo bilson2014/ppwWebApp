@@ -343,7 +343,7 @@ public class IndentController extends BaseController {
 			if (indent.getPosition() != null) {
 				user.setPosition(indent.getPosition());
 			}
-			int computeScore = pmsUserFacade.computeScore(user);
+			Integer computeScore = pmsUserFacade.computeScore(user);
 			user.setClientLevel(computeScore);
 			Map<String, Object> save = pmsUserFacade.save(user);
 			Object objUserId = save.get(BaseEntity.SAVE_MAP_ID);
