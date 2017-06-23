@@ -110,6 +110,7 @@
 		        <div class="tDes">是否确认"此联系人为<span class="redColor" id="setColor"></span>客户?"</div>
 		        <div class="sureBtn">
 		           <div class="btn-c-r" id="tModel">确定</div>
+		           <div class="btn-c-g" id="cModel">取消</div>
 		        </div>
 		   </div>
            </div>
@@ -156,7 +157,6 @@
                </div>
                <div class="sureBtn">
 			           <div class="btn-c-r" id="mptModel">确定</div>
-			           <div class="btn-c-g" id="cModel">取消</div>
 		       </div>
            </div>
       </div>
@@ -172,7 +172,7 @@
 	                          <input class="itemInput" id="telName">
 	                          <div class="must">*</div>
                          </div>  
-                        <div class="setError" id="companyNameError">
+                        <div class="setError longItem" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
                           <input class="itemInput" id="companyName" id="companyName">
                           <div class="must">*</div>
@@ -190,17 +190,17 @@
 	                                    <li class="removeLi" data-id="1">线上-网站</li>
 					                    <li class="removeLi" data-id="2">线上-活动</li>
 					                    <li class="removeLi" data-id="3">线上-新媒体</li>
-					                    <li data-value="4">线下-电销</li>
-					                    <li class="showHelper" data-value="5">线下-直销</li>
-					                    <li data-value="6">线下-活动</li>
-					                    <li data-value="7">线下-渠道</li>
-					                    <li data-value="8">复购</li>
+					                    <li data-id="4">线下-电销</li>
+					                    <li class="showHelper" data-id="5">线下-直销</li>
+					                    <li data-id="6">线下-活动</li>
+					                    <li data-id="7">线下-渠道</li>
+					                    <li data-id="8">复购</li>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
                        </div>
                        
-                       <div class="setError" id="telesError" data-content="">   
+                       <div class="setError longItem" id="telesError" data-content="">   
                           <div class="itemTitile">联系电话</div>
                           <input class="itemInput" id="teles">
                           <div class="must">*</div>
@@ -220,7 +220,7 @@
                         </div>  
                     </div>
                 <div class="sureBtn">
-                   <div class="btn-c-r" id="submitEdit">确定</div>
+                   <div class="btn-c-r" id="submitEdit">保存</div>
                    <div class="btn-c-g" id="cancleEdit">取消</div>
 		        </div>
             </div>
@@ -573,7 +573,7 @@
 					</c:forEach>
 				</c:if> 
          </table>
-         
+
          <!-- pagination start -->
 		<div class="page-section">
 			<div class="page-wrap">

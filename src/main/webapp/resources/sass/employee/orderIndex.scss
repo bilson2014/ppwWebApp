@@ -163,8 +163,10 @@
 
 .toUnBle {
     .isFind {
+        &:hover{
         color: #50E3C2 !important;
         border: 1px solid #50E3C2 !important;
+        }
     }
     th:nth-child(1),
     td:nth-child(1) {
@@ -203,9 +205,9 @@
             div {
                 font-size: $font-size-sm;
                 color: $gray;
-                border: 1px solid $border-line;
+                border: 1px solid $gray-light;
                 border-radius: 4px;
-                width: 90%;
+                width: 40%;
                 height: 30px;
                 margin: 0 auto;
                 line-height: 28px;
@@ -454,7 +456,7 @@
         padding-top: 20px;
         width: 265px;
         margin: 0 auto;
-        #tModel{
+        #mptModel{
             margin: 0 auto;
         }
         div {
@@ -529,7 +531,7 @@
             .showItem {
                 width: 100%;
                 margin-bottom: 10px;
-                padding-left: 270px;
+                padding-left: 235px;
                 div {
                     display: inline-block;
                     vertical-align: top;

@@ -205,12 +205,14 @@ var orderIndex = {
 		},
 		controlSelect:function(){
 			$('.orderSelect').off('click').on('click',function(e){
+				$('.oSelect').hide();
 				if($(this).hasClass('selectColor')){
 					$('.oSelect').slideUp();
 					$(this).removeClass('selectColor');
 				}
 				else
 				{
+					$('.orderSelect').removeClass('selectColor');
 					$(this).find('.oSelect').slideDown();
 					$(this).addClass('selectColor');
 				}
@@ -489,10 +491,10 @@ var orderIndex = {
 			return html;
 		},
 		createUnableTable:function(obj){
-			var setToF = obj.indentType == 6 ?'虚假':'真实';
+			var setToF = obj.indentType == 6 ?'虚假信息':'潜在客户';
 			var setClass = obj.indentType == 6 ?'lie':'true';
 			var isFInd = obj.indentType == 6 ?'notFind':'isFind';			
-			var hasEdit = obj.indentType == 6 ?'不可修改':'修改';			
+			var hasEdit = obj.indentType == 6 ?'修改':'修改';			
 			var num =obj.indentSource;
 			if(num == 1){
 				name = '线上-网站';

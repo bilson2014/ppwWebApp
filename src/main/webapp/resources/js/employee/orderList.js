@@ -91,6 +91,9 @@ function ReShowView(item){
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      var LookList = $('#flag').val();
+     if(LookList == 1){
+    	 $('.itemDiv').off('click');
+     }
 	 for (var int = 0; int < rows.length; int++) {
 		 var getNowItem = $(rows[int]);
 		 if($(rows[int]).attr('data-id')==keys){
@@ -117,17 +120,23 @@ function setValueToNeedList(keys,values,type){
 	                    for(var j = 0; j < values.length; j++){
 						    if(thisDiv.text()==values[j]){
 						    	thisDiv.addClass('activeNeed');
-						    	 var thisDivs = thisDiv.text();
-						    	 hasValue = true;
+						    	var thisDivs = thisDiv.text();
+						    	hasValue = true;
 						    }
 					    }
 	                    if(LookList == 1 && !hasValue){
-					    	  thisDiv.remove();
+	                    	 if(type == 'input'&&thisDiv.hasClass('other')){
+	                    		 thisDiv.addClass('activeNeed');
+	                    	 }else{
+	                    		 thisDiv.remove();
+	                    	 }
+					    	  
 					    }
 					});
 				 if(type == 'input'){
+					 var setValue = getNowItem.find('.optionItemMult').find('.other').text();
 					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
-					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(setValue+":"+values[lastIndex]);
 					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
 					 if(LookList == 1){
 						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
@@ -141,13 +150,18 @@ function setValueToNeedList(keys,values,type){
 				    	$(nowItem[intj]).addClass('activeNeed');
 				    }else{
 				    	if(LookList == 1){
-				    		$(nowItem[intj]).remove();
+				    		 if(type == 'input'&&$(nowItem[intj]).hasClass('other')){
+				    			 $(nowItem[intj]).addClass('activeNeed');
+	                    	 }else{
+				    		    $(nowItem[intj]).remove();
+	                    	 }
 				    	}
 				    }
 				 }
 			 if(type == 'input'){
+				 var setValue = getNowItem.find('.optionItem').find('.other').text();
 				 getNowItem.find('.optionItem').find('.other').addClass('activeNeed');
-				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(values);
+				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(setValue+" : "+values);
 				 getNowItem.find('.optionItem').find('.otherInfo').show();
 				 if(LookList == 1){
 					 getNowItem.find('.optionItem').find('.otherInfo').find('input').attr("readonly","readonly");
@@ -245,7 +259,7 @@ function getNeedValue(requireId){
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val();
-				  if(itemValues == ""||itemValues == null){
+				  if(itemValues == "选择日期"||itemValues == null||itemValues == ''){
 					  isCheck = false;
 				  }
 			 }
