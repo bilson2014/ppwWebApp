@@ -40,7 +40,6 @@ import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
-import com.panfeng.film.util.IndentUtil;
 
 @RestController
 @RequestMapping("/order")
@@ -235,7 +234,7 @@ public class IndentController extends BaseController {
 			String uUserCompany = user.getUserCompany();
 			String uRealName = user.getRealName();
 
-			if (ValidateUtil.isValid(uUserCompany ) && !uUserCompany.trim().equals(iUserCompany.trim())) {
+			if (ValidateUtil.isValid(uUserCompany) && !uUserCompany.trim().equals(iUserCompany.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
@@ -296,12 +295,16 @@ public class IndentController extends BaseController {
 			user = new PmsUser();
 			user.setUserName(indent.getUserCompany());
 			List<PmsUser> findUserByName = pmsUserFacade.findUserByName(user);
-			
+
 			user = new PmsUser();
 			user.setSex(2);
 			user.setKindlySend(true);
-			int x = findUserByName == null ? 0:findUserByName.size();
-			user.setUserName(indent.getUserCompany() + x + 1 );
+			int x = findUserByName == null ? 0 : findUserByName.size();
+			String ss = "";
+			if (x != 0) {
+				ss = x + "";
+			}
+			user.setUserName(indent.getUserCompany() + ss);
 			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
 			user.setTelephone(indent_tele);
 			if (ValidateUtil.isValid(indent.getUserCompany())) {

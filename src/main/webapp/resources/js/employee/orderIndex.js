@@ -711,7 +711,7 @@ function submitSaveOrCreate(check,item){
 			var subTel =$('#teles').val();
 			var subInfo = $('#orderComeInfo').attr('data-value');
 			var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
-			var dataIndentName = '';
+			var dataIndentName = '自主研发';
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
@@ -1237,7 +1237,28 @@ function checkUbListUser(tel,id){
 	                    $('#showErrorInfoWin').show();
 	                    return;
 	                case 'requireId':
-	                	submitToFOrder(id);
+	                	var indent_tele = tel;
+	    	            // 验证用户是否重复
+	    	            loadData(function(ssr){
+	    	                if(ssr.code == 200){
+	    	                	submitToFOrder(id);
+	    	                }else{
+	    	                    // alert('用户冲突');
+	    	                    $('#smodelPage').show();
+	    	                    $('#mptModel').off('click').on('click',function(){
+	    	                        $('.modelPage').hide();
+	    	                        $('.orderModel').hide();
+	    	                    });
+	    	                    var root = $('#smodelPage');
+	    	                    var mprealName = $(root).find('#mprealName');
+	    	                    var mpindent_tele = $(root).find('#mpindent_tele');
+	    	                    var mpuserCompany = $(root).find('#mpuserCompany');
+	    	                    var ss = ssr.result;
+	    	                    $(mprealName).text(ss.realName);
+	    	                    $(mpindent_tele).text(ss.telephone);
+	    	                    $(mpuserCompany).text(ss.userCompany);
+	    	                }
+	    	            }, getContextPath() + '/order/checkuser?indent_tele='+indent_tele+'&indentId='+id, null);
 	                	return;
 	                }
 	            }
@@ -1411,6 +1432,8 @@ function updateRealInfo(id){
 	
 }
 function selectSetView(id,value){
+	$(id).text('');
+	$(id).attr('data-id','');
 	var orderLi = $(id).parent().find('ul').find('li');
 	for (var int = 0; int < orderLi.length; int++) {
 		    var name = $(orderLi[int]).text();
