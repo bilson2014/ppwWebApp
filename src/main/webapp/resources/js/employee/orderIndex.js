@@ -349,11 +349,12 @@ var orderIndex = {
 			});
 			//清空搜索
 			$('#toClean').off('click').on('click',function(){
-                  $('#sUserCompany').val('');
-                  $('#sRealName').val('');
-                  $('#sIndent_tele').val('');
-                  $('#sIndentSource').text('');
-                  $('#sIndentSource').attr('data-id','');
+//                  $('#sUserCompany').val('');
+//                  $('#sRealName').val('');
+//                  $('#sIndent_tele').val('');
+//                  $('#sIndentSource').text('');
+//                  $('#sIndentSource').attr('data-id','');
+				  clearSearch();
                   refresh();
 			});
 		},
@@ -367,7 +368,7 @@ var orderIndex = {
 		             '      <th>订单来源</th>   ',
 		             '      <th>下单时间</th>   ',
 		             '      <th>编辑订单</th>   ',
-		             '      <th>需求文档</th>       ',
+		             '      <th>需求文档</th>   ',
 		             '      <th>提交</th>       ',
 		             '      <th>作废</th>       ',
 		             '  </tr>                   ',
@@ -630,13 +631,14 @@ function newOrderEven(check,item){
 		if(check == 1){
 			$('#orderName').text('新建订单');
 			$('#submitEdit').text('确定');
+			$('#orderComeInfo').text('');
+			$('#orderComeInfo').attr('data-value','');
 		}else{
 			editEvenFunction(item);
 			$('#submitEdit').text('保存');
 		}
 		submitSaveOrCreate(check,item);
 	}, getContextPath() + '/employee/getEmployeeList',null);
-	
 }
 
 function bangSelect(){
@@ -1399,17 +1401,14 @@ function initUserView(id){
 			$('#muUserCompany').val(rr.userCompany);
 			$('#muTelephone').val(rr.telephone);
 			selectSetView('#muCustomerType',rr.customerType);
-			selectSetView('#muPosition',rr.position);
-			
+			selectSetView('#muPosition',rr.position);			
 			$('#muWeChat').val(rr.weChat);
 			$('#muEmail').val(rr.email);
-			$('#muOfficialSite').val(rr.officialSite);
-			
+			$('#muOfficialSite').val(rr.officialSite);		
 			selectSetView('#muPurchaseFrequency',rr.purchaseFrequency);
 			selectSetView('#muPurchasePrice',rr.purchasePrice);
 			selectSetView('#muCustomerSize',rr.customerSize);
-			selectSetView('#muEndorse',rr.endorse);
-			
+			selectSetView('#muEndorse',rr.endorse);		
 			$('#muNote').val(rr.note);
 			
 		}, getContextPath()+'/user/get/info?userId='+id, null);
@@ -1428,19 +1427,17 @@ function createLi(value,text){
 	var html = '<li data-id="'+ value +'">'+text+'</li>';
 	return html;
 }
-function updateRealInfo(id){
-	
-}
+
 function selectSetView(id,value){
-	$(id).text('');
+	$(id).text('请选择');
 	$(id).attr('data-id','');
 	var orderLi = $(id).parent().find('ul').find('li');
 	for (var int = 0; int < orderLi.length; int++) {
 		    var name = $(orderLi[int]).text();
 		    var num  = $(orderLi[int]).attr('data-id');
 		    if($(orderLi[int]).attr('data-id')== value){
-			$(id).text(name);
-			$(id).attr('data-id',num);
+				$(id).text(name);
+			  	$(id).attr('data-id',num);
 		   }
    };
 }

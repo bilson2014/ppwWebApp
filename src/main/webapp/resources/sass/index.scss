@@ -6,6 +6,13 @@
 @import "mixins/indexScreen";
 @import "compass/typography/text/ellipsis";
 @import "normalize";
+//
+.headerMove {
+    .showInfo {
+        top: 50px !important;
+    }
+}
+
 //头部 start
 .hotLogo {
     width: 300px;
@@ -34,7 +41,7 @@
 }
 
 .showInfo {
-    top:55px !important;
+    top: 55px !important;
 }
 
 .tel {
@@ -702,7 +709,8 @@ input:focus {
     height: 25px;
     background: url(/resources/images/index/classicalLogo.svg) no-repeat !important;
 }
-.videoCard{
+
+.videoCard {
     position: relative;
 }
 
@@ -792,8 +800,6 @@ input:focus {
                 color: $gray-dark !important;
             }
         }
-
-
     }
 }
 
