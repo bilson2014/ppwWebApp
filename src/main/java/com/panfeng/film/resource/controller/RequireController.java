@@ -32,24 +32,6 @@ public class RequireController extends BaseController {
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade;
 
-	@RequestMapping("/require/list")
-	public DataGrid<PmsRequire> getAll(final PageParam param, HttpServletRequest request) {
-		SessionInfo currentInfo = getCurrentInfo(request);
-		if (currentInfo != null) {
-			String sessionType = currentInfo.getSessionType();
-			if (ValidateUtil.isValid(sessionType)) {
-				long page = param.getPage();
-				long rows = param.getRows();
-				param.setBegin((page - 1) * rows);
-				param.setLimit(rows);
-				Map<String, Object> paramMap = new HashMap<String, Object>();
-				DataGrid<PmsRequire> dataGrid = pmsRequireFacade.listWithPagination(param, paramMap);
-				return dataGrid;
-			}
-		}
-		return new DataGrid<>();
-	}
-
 	@RequestMapping("/require/save")
 	public BaseMsg save(final PmsRequire require, Long indentId) {
 		BaseMsg baseMsg = new BaseMsg();
