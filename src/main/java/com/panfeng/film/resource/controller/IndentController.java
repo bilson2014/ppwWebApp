@@ -295,7 +295,6 @@ public class IndentController extends BaseController {
 			user = new PmsUser();
 			user.setUserName(indent.getUserCompany());
 			List<PmsUser> findUserByName = pmsUserFacade.findUserByName(user);
-
 			user = new PmsUser();
 			user.setSex(2);
 			user.setKindlySend(true);
