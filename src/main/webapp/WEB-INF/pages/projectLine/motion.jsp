@@ -108,8 +108,7 @@
 			<div class="LiveApp">
 	            <div class="LiveContent">
 	                 <div class="title">应用场景</div>
-	                 <div class="imgContent">
-	                         <center id="sceneView"></center>  
+	        		 <div class="imgContent" id="sceneView">
 	        		 </div>
 			    </div>   
 			</div>

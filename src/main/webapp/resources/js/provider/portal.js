@@ -177,7 +177,6 @@ var videoListProtal = {
 				$('.selectVideo').hide(); 
 				$('.showwarn').show(); 
 			})
-
 			$('.closewarn').off("click").on("click",function(){
 				$('.tooltip-warn-up').hide();
 				window.location.reload();
@@ -221,14 +220,23 @@ var videoListProtal = {
 			
 			$('.picker').on('click',function(){
 				$('.titleWarn').hide();
-				$('.titleInfo').show();
 				$('#video-container').show();
+				$('#changWord').text('了解详情');
 			});
 			$('.titleInfo').on('click',function(){
-				$('.titleWarn').show();
-				$('.titleInfo').hide();
+				
+				var cw = $('#changWord').text();
+				if(cw == '了解详情'){
+					$('.titleWarn').show();
+					$('#video-container').show();
+					$('#changWord').text('收起详情');
+				}else{
+					$('.titleWarn').hide();
+					$('#changWord').text('了解详情');
+				}
 				$('#video-container').show();
 			});
+			$('.titleInfo').show();
 			
 			// 文件上传过程中创建进度条实时显示。
 			upload_Video.on('uploadProgress',function(file, percentage) {
