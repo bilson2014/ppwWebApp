@@ -179,7 +179,7 @@
 .toUnBle {
     .isFind {
         border: 1px solid $gray-light !important;
-        color:$gray;
+        color:$gray !important;
         &:hover {
             color: #50E3C2 !important;
             border: 1px solid #50E3C2 !important;
