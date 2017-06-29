@@ -127,7 +127,7 @@
 		 <!-- 应用案例 -->
 		 <div class="wordCase">
 		    <div class="title">
-		                    ${product.chanpinName}
+		                    案例展示
 		    </div>
 		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">
