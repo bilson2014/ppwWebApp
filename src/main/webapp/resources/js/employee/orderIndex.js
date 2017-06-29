@@ -260,6 +260,12 @@ var orderIndex = {
 			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
+				loadData(function (res){
+					$('#setTextArea').val(res.result.cSRecomment);
+				}, getContextPath() + '/order/info?indentId='+id, null);
+				$('#setTextArea').removeClass('setError');
+				$('#setInfoError').hide();
+				
 				var phone = $(this).parent().find('.indent_tele').text();
 				$('#sureModel').show();
 				var noReal = $('#sureModel').find('#noReal');
@@ -306,8 +312,7 @@ var orderIndex = {
 				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('#noReal').off('click').on('click',function(){
-				$('#setTextArea').removeClass('setError');
-				$('#setInfoError').hide();
+
 				if(checkUbListUserDes()){
 					$('.modelPage').hide();
 					var id = $(this).attr('data-id');
@@ -320,8 +325,7 @@ var orderIndex = {
 			});
 			//确认真实
 			$('#real').off('click').on('click',function(){
-				$('#setTextArea').removeClass('setError');
-				$('#setInfoError').hide();
+
 				var phone = $(this).attr('data-content');
 				var id = $(this).attr('data-id');
 				if(checkUbListUserDes()){
@@ -389,6 +393,7 @@ var orderIndex = {
 		              '     <th>联系电话</th>    ' ,
 		              '     <th>订单来源</th>    ' ,
 		              '     <th>下单时间</th>    ' ,
+			             '      <th>备注</th>    ',
 		              '     <th>客户信息</th>    ' ,
 		              '     <th>需求文档</th>    ' ,
 		             '  </tr>                   ',
@@ -404,6 +409,7 @@ var orderIndex = {
 		             '      <th>联系电话</th>    ',
 		             '      <th>订单来源</th>    ',
 		             '      <th>下单时间</th>    ',
+		             '      <th>备注</th>    ',
 		             '      <th>客户信息</th>',
 		             '      <th>修改</th>    ',
 		             '  </tr>                   ',
@@ -490,6 +496,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
+		               '    <td >'+(obj.cSRecomment == null ? "":obj.cSRecomment) +'</td>' ,
 		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>完善</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div><a href="/require/'+obj.requireId+'" target="_blank" >查看</></div></td>' ,
 		               ' </tr>' ,
@@ -535,6 +542,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               setName,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
+		               '    <td >'+(obj.cSRecomment == null ? "":obj.cSRecomment) +'</td>' ,
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
@@ -641,8 +649,8 @@ function newOrderEven(check,item){
 			$('#orderNote').val('');
 			$('#orderComeInfo').attr('data-value','');
 		}else{
-			editEvenFunction(item);
 			$('#orderNote').val('');
+			editEvenFunction(item);
 			$('#submitEdit').text('保存');
 		}
 		submitSaveOrCreate(check,item);
@@ -724,7 +732,7 @@ function submitSaveOrCreate(check,item){
 			var subInfo = $('#orderComeInfo').attr('data-value');
 			var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
 			var dataIndentName = '自主研发';
-			var textArea = $('##orderNote').val();
+			var textArea = $('#orderNote').val();
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
@@ -1144,6 +1152,7 @@ function submitOrder(){
 }
 
 function submitToFOrder(id){
+	var testArea = $('#setTextArea').val();
 	loadData(function(msg){
 		$('#smodelPage').hide();
 		if(msg.code == 200){
@@ -1152,7 +1161,8 @@ function submitToFOrder(id){
 			
 		}
 	}, getContextPath()+'/order/realOrder', $.toJSON({
-		id : id
+		id : id,
+		cSRecomment:testArea
 	}));
 
 }

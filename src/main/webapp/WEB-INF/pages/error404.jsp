@@ -9,6 +9,7 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/error404.js" var="errorJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/js/common.js" var="commonJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -46,6 +47,7 @@
 </script>
 
 	<script type="text/javascript" src="${jqueryJs}"></script>
+	<script type="text/javascript" src="${commonJs}"></script>
 	<script type="text/javascript" src="${errorJs}"></script>
 	
 </head>

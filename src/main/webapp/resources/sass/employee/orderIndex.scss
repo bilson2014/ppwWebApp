@@ -106,7 +106,7 @@
     }
     th:nth-child(2),
     td:nth-child(2) {
-        width: 23%;
+        width: 18%;
     }
     th:nth-child(3),
     td:nth-child(3) {
@@ -122,18 +122,22 @@
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 15%;
+        width: 12%;
     }
     th:nth-child(7),
     td:nth-child(7) {
-        width: 5%;
+        width: 10%;
     }
     th:nth-child(8),
     td:nth-child(8) {
         width: 5%;
     }
+    th:nth-child(9),
+    td:nth-child(9) {
+        width: 5%;
+    }
     tr {
-        td:nth-child(8) {
+        td:nth-child(9) {
             a {
                 color: $gray !important;
                 &:hover {
@@ -156,7 +160,7 @@
                 }
             }
         }
-        td:nth-child(7) {
+        td:nth-child(8) {
             div {
                 font-size: $font-size-sm;
                 color: $gray;
@@ -191,7 +195,7 @@
     }
     th:nth-child(2),
     td:nth-child(2) {
-        width: 19%;
+        width: 14%;
     }
     th:nth-child(3),
     td:nth-child(3) {
@@ -207,18 +211,22 @@
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 15%;
+        width: 12%;
     }
     th:nth-child(7),
     td:nth-child(7) {
-        width: 7%;
+        width: 12%;
     }
     th:nth-child(8),
     td:nth-child(8) {
         width: 7%;
     }
+    th:nth-child(9),
+    td:nth-child(9) {
+        width: 10%;
+    }
     tr {
-        td:nth-child(8) {
+        td:nth-child(9) {
             div {
                 font-size: $font-size-sm;
                 color: $border-line;
@@ -231,7 +239,7 @@
                 cursor: pointer;
             }
         }
-        td:nth-child(7) {
+        td:nth-child(8) {
             .lie {
                 background: $red-base;
             }
