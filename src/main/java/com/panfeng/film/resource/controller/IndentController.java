@@ -338,14 +338,15 @@ public class IndentController extends BaseController {
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
 	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
 		BaseMsg baseMsg = new BaseMsg();
-		boolean changeIndentsType = pmsIndentFacade.changeIndentsType(new long[] { indent.getId() },
-				PmsIndent.ORDER_SHAM);
-		if (!changeIndentsType) {
-			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("提交失败！");
-		} else {
+		indent = pmsIndentFacade.findIndentById(indent.getId());
+		indent.setIndentType(PmsIndent.ORDER_SHAM);
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
 		}
 		return baseMsg;
 	}
