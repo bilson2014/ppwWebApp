@@ -260,6 +260,12 @@ var orderIndex = {
 			$('.submit').off('click').on('click',checkUser);
 			$('.cancle').off('click').on('click',function(){
 				var id = $(this).parent().find('.id').text();
+				loadData(function (res){
+					$('#setTextArea').val(res.result.cSRecomment);
+				}, getContextPath() + '/order/info?indentId='+id, null);
+				$('#setTextArea').removeClass('setError');
+				$('#setInfoError').hide();
+				
 				var phone = $(this).parent().find('.indent_tele').text();
 				$('#sureModel').show();
 				var noReal = $('#sureModel').find('#noReal');
@@ -306,23 +312,26 @@ var orderIndex = {
 				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('#noReal').off('click').on('click',function(){
-				$('.modelPage').hide();
-				var id = $(this).attr('data-id');
-				loadData(function(res){
-					refresh();
-				}, getContextPath() + '/order/shamOrder', $.toJSON({
-					id : id
-				}));
+
+				if(checkUbListUserDes()){
+					$('.modelPage').hide();
+					var id = $(this).attr('data-id');
+					loadData(function(res){
+						refresh();
+					}, getContextPath() + '/order/shamOrder', $.toJSON({
+						id : id
+					}));
+				}
 			});
+			//确认真实
 			$('#real').off('click').on('click',function(){
-				$('.modelPage').hide();
-//				$('#checkSureModel').show();
-//				$('#setColor').removeClass('redColor');
-//				$('#setColor').addClass('greenColor');
-//				$('#setColor').text('真实');
+
 				var phone = $(this).attr('data-content');
 				var id = $(this).attr('data-id');
-				checkUbListUser(phone,id);
+				if(checkUbListUserDes()){
+					$('.modelPage').hide();
+					checkUbListUser(phone,id);
+				}
 			});			
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -384,6 +393,7 @@ var orderIndex = {
 		              '     <th>联系电话</th>    ' ,
 		              '     <th>订单来源</th>    ' ,
 		              '     <th>下单时间</th>    ' ,
+			             '      <th>备注</th>    ',
 		              '     <th>客户信息</th>    ' ,
 		              '     <th>需求文档</th>    ' ,
 		             '  </tr>                   ',
@@ -399,6 +409,7 @@ var orderIndex = {
 		             '      <th>联系电话</th>    ',
 		             '      <th>订单来源</th>    ',
 		             '      <th>下单时间</th>    ',
+		             '      <th>备注</th>    ',
 		             '      <th>客户信息</th>',
 		             '      <th>修改</th>    ',
 		             '  </tr>                   ',
@@ -485,6 +496,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               setName,
 		               '    <td class="orderDate">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
+		               '    <td >'+(obj.cSRecomment == null ? "":obj.cSRecomment) +'</td>' ,
 		               '    <td class="findInfoNeedList" data-id="'+obj.userId +'"><div>完善</div></td>' ,
 		               '    <td class="LookNeedList" data-id="'+obj.id +'"><div><a href="/require/'+obj.requireId+'" target="_blank" >查看</></div></td>' ,
 		               ' </tr>' ,
@@ -530,6 +542,7 @@ var orderIndex = {
 		               '    <td class="indent_tele">'+(obj.indent_tele == null ? "":obj.indent_tele) +'</td>' ,
 		               setName,
 		               '    <td class="orderDate" data-id="'+obj.id +'">'+(obj.orderDate == null ? "":obj.orderDate) +'</td>' ,
+		               '    <td >'+(obj.cSRecomment == null ? "":obj.cSRecomment) +'</td>' ,
 		               '    <td class="" data-id="'+obj.id +'">',
 					     '  <div class="orderSelect">                                         ',
 			             '         <div data-value="'+obj.indentType+'" class="'+setClass+'">'+setToF+'</div>         ',
@@ -628,12 +641,15 @@ function newOrderEven(check,item){
 			};
 		}
 		bangSelect();
+		
 		if(check == 1){
 			$('#orderName').text('新建订单');
 			$('#submitEdit').text('确定');
 			$('#orderComeInfo').text('');
+			$('#orderNote').val('');
 			$('#orderComeInfo').attr('data-value','');
 		}else{
+			$('#orderNote').val('');
 			editEvenFunction(item);
 			$('#submitEdit').text('保存');
 		}
@@ -662,11 +678,13 @@ function editEvenFunction(item){
 	var telName = item.result.realName;
 	var companyName = item.result.userCompany;
 	var teles = item.result.indent_tele;
+	var orderNote = item.result.cSRecomment;
 	var orderInfo = $('#orderComeInfo').attr('data-value');
 	$('#orderName').text('订单信息修改');
 	$('#telName').val(telName);
 	$('#companyName').val(companyName);
 	$('#teles').val(teles);
+	$('#orderNote').val(orderNote);
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');
@@ -714,15 +732,16 @@ function submitSaveOrCreate(check,item){
 			var subInfo = $('#orderComeInfo').attr('data-value');
 			var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
 			var dataIndentName = '自主研发';
+			var textArea = $('#orderNote').val();
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
 			  dataIndentName = item.result.indentName;
 			}
 			if(check == 1){
-				var data = {realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1'};
+				var data = {realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1',cSRecomment:textArea};
 			}else{
-				var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName};
+				var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,cSRecomment:textArea};
 			}
 			$.ajax({
 				  type: 'POST',
@@ -1133,6 +1152,7 @@ function submitOrder(){
 }
 
 function submitToFOrder(id){
+	var testArea = $('#setTextArea').val();
 	loadData(function(msg){
 		$('#smodelPage').hide();
 		if(msg.code == 200){
@@ -1141,7 +1161,8 @@ function submitToFOrder(id){
 			
 		}
 	}, getContextPath()+'/order/realOrder', $.toJSON({
-		id : id
+		id : id,
+		cSRecomment:testArea
 	}));
 
 }
@@ -1200,6 +1221,16 @@ function checkUser(){
 	}, getContextPath() + '/order/checkOrder?indentId='+id, null);
 }
 
+//废弃订单验证备注
+function checkUbListUserDes(){
+	var textVal = $('#setTextArea').val();
+	if(textVal == null ||textVal == '' || textVal == undefined ){
+		$('#setTextArea').addClass('setError');
+		$('#setInfoError').show();
+		return false;
+	}
+	return true;
+}
 //废弃订单验证
 function checkUbListUser(tel,id){
 		loadData(function (res){
@@ -1295,7 +1326,7 @@ function checkUserInfo(){
 		return false;
 	}
 	if(webUrl != undefined || webUrl != "" || webUrl != null ){
-	if(IsUrl(webUrl)){
+	if(!IsUrl(webUrl)){
 		$('#muOfficialSiteError').attr('data-content','网址不正确');
 		$('#muOfficialSite').focus();
 		return false;
@@ -1306,10 +1337,18 @@ function checkUserInfo(){
 }
 //网址验证
 function IsUrl(str){   
-    var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;   
-    var result = str.match(regUrl);   
-    if(result!=null) {return true;}   
-    else{return false;}   
+	var Url=str;
+	//在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
+	//判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+	//下面的代码中应用了转义字符"\"输出一个字符"/"
+	var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+	var objExp=new RegExp(Expression);
+	if(objExp.test(Url)==true){
+	return true;
+	}else{
+	return false;
+	}
+	 
 }
 //function checkOrder(obj){
 //	var tr = $(obj).parent();	
@@ -1395,6 +1434,7 @@ function initUserView(id){
 		orderIndex.controlSelect();
 		
 		// 加载用户信息
+		$('#muOfficialSite').val('');	
 		loadData(function(res){
 			var rr = res.result;
 			$('#muRealName').val(rr.realName);

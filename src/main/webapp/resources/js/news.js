@@ -10,7 +10,7 @@ $().ready(function() {
 	initLike();
     controlRightPos();
     initPath();
-    $('#headerTitleH1').text($('#newsTitle').text());
+    $('#headerTitleH1').remove();
     $('#keywords').attr('content',$('#tagsContent').text().trim());
 });
 //右侧是否悬浮

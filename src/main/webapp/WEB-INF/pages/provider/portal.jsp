@@ -123,7 +123,7 @@
 		     <div class="top">
 		       <div class="closeX closewarn"></div>
 		       <div class="title">批量上传作品</div>
-		       <div class="titleInfo">视频上传格式要求<span>了解详情</span><span id='maxLength'></span></div>
+		       <div class="titleInfo">视频上传格式要求<span id="changWord">收起</span><span id='maxLength'></span></div>
 		       <div class="titleWarn">
 			       <div class="redWord">视频格式 : MP4格式</div>
 				   <div class="redWord">视频编码 : H264编码</div>
@@ -139,9 +139,7 @@
 	               <div class="WordBot">如果您对此有疑问,您可以拨打(010-59005319)与我们联系。</div>
 		       </div>
 		     </div>
-		     <div class="mid" id='video-container'>
-		        
-		     </div>
+		     <div class="mid" id='video-container'></div>
 		     
 		     <div class="bottom">
 		        <div class="picker" id='picker'>选择文件</div>

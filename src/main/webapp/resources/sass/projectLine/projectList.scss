@@ -101,6 +101,19 @@
                                         color: $gray-dark;
                                     }
                                 }
+                                .priceContent {
+                                    font-size: $font-size-sm;
+                                    color: $gray-dark;
+                                    margin-top: 30px;
+                                    span:nth-child(1) {
+                                        color: $red-base;
+                                    }
+                                    span:nth-child(2) {
+                                        color: $red-base;
+                                        margin-left: 10px;
+                                        font-size: $font-size-lger !important;
+                                    }
+                                }
                                 .contentDes {
                                     margin-top: 25px;
                                     font-size: $font-size-base;

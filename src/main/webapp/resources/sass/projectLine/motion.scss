@@ -9,9 +9,8 @@
             @import "plCommon";
             .page {
                 background: black !important;
-                top:61px !important;
+                top: 61px !important;
             }
-     
             
             //场景应用
             .LiveApp {
@@ -125,55 +124,54 @@
                     .title {
                         text-align: center;
                         color: $gray-dark;
-                        font-size: $font-size-lg24;
+                        font-size: $font-size-lg26;
                     }
                     .imgContent {
                         font-size: 0;
+                        text-align: center;
+                        padding-top: 80px;
+                        padding-bottom: 130px;
+                        .cItem:nth-child(6n) {
+                            .setline {
+                                display: none;
+                            }
+                        }
+                        .cItem:last-child {
+                            .setline {
+                                display: none;
+                            }
+                        }
                         .cItem {
                             display: inline-block;
                             vertical-align: top;
-                            // @include media_motion_img();
-                            margin-bottom: 10px;
+                            margin-bottom: 20px;
                             position: relative;
-                            &:hover {
-                                div {
-                                    top: 0 !important;
-                                    opacity: 1 !important;
-                                    height: 100% !important;
-                                }
+                            img {
+                                width: 150px;
+                                height: 150px;
+                                margin-bottom: 20px;
                             }
-                            div {
-                                width: 100%;
-                                height: 0;
-                                position: absolute;
-                                top: 0px;
-                                background-color: rgba(0, 0, 0, 0.5);
-                                color: white;
+                            .setWord {
                                 font-size: $font-size;
-                                top: 100%;
-                                text-align: center;
-                                transition: all .3s ease-in-out .2s;
-                                -moz-transition: all .3s ease-in-out .2s;
-                                /* Firefox 4 */
-                                -webkit-transition: all .3s ease-in-out .2s;
-                                /* Safari 和 Chrome */
-                                -o-transition: all .3s ease-in-out .2s;
-                                /* Opera */
-                                opacity: 0;
-                                img {
-                                    width: 301px !important;
-                                    height: 124px !important;
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    margin-top: -62px;
-                                    margin-left: -150px;
-                                }
+                                color: $gray-dark;
+                                height: 45px;
+                                line-height: 45px;
                             }
-                        }
-                        img {
-                            width: 100%;
-                            height: 100%;
+                            .setline {
+                                height: 45px;
+                                width: 1px;
+                                border: 1px solid $border-line;
+                                position: absolute;
+                                right: 0;
+                                bottom: 0px;
+                            }
+                            width:$width-min/6 !important;
+                            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+                                width: $width-middle /6 !important;
+                            }
+                            @media screen and (min-width: 1500px) {
+                                width: $width-lg3/6!important;
+                            }
                         }
                     }
                 }
