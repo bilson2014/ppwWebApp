@@ -289,6 +289,20 @@ public class IndentController extends BaseController {
 			if (!ValidateUtil.isValid(user.getRealName())) {
 				user.setRealName(indent.getRealName());
 			}
+			
+			if(!ValidateUtil.isValid(user.getUserName())){
+				PmsUser temp2 = new PmsUser();
+				temp2.setUserName(indent.getUserCompany());
+				List<PmsUser> findUserByName = pmsUserFacade.findUserByName(temp2);
+				int x = findUserByName == null ? 0 : findUserByName.size();
+				String ss = "";
+				if (x != 0) {
+					ss = x + "";
+				}
+				user.setUserName(indent.getUserCompany() + ss);
+			}
+			
+			
 			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
