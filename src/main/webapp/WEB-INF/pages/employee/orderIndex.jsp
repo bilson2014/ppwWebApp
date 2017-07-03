@@ -172,12 +172,12 @@
                     <div class="infoItem">
                          <div class="setError" id="telNameError" data-content="">
 	                          <div class="itemTitile">联系人</div>
-	                          <input class="itemInput" id="telName">
+	                          <input class="itemInput" id="telName" maxLength="10">
 	                          <div class="must">*</div>
                          </div>  
                         <div class="setError longItem" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="companyName" id="companyName">
+                          <input class="itemInput" id="companyName" id="companyName" maxLength="30">
                           <div class="must">*</div>
                         </div>  
                     </div>
@@ -246,13 +246,13 @@
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="muRealName">
+                          <input class="itemInput" id="muRealName" maxLength="10">
                           <div class="must">*</div>
                         </div>  
                         
                         <div class="setError longItem" id="cusCompanyNameError" >  
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="muUserCompany">
+                          <input class="itemInput" id="muUserCompany" maxLength="30">
                           <div class="must">*</div>
                         </div>  
                     </div>
