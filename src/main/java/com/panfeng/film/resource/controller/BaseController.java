@@ -19,7 +19,7 @@ import com.panfeng.film.util.Log;
  */
 public abstract class BaseController {
 
-	// get current user
+	// get current user 
 	protected User getUser (final HttpServletRequest request){
 		
 		User user = null;
