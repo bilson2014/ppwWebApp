@@ -788,8 +788,7 @@ public class ProviderController extends BaseController {
 				pmsProductFacade.save(service);
 			}
 			// 加入文件转换队列
-			// fileConvertMQService.sendMessage(product.getProductId(),
-			// product.getVideoUrl());
+			fileConvertMQService.sendMessage(product.getProductId(),product.getVideoUrl());
 			if (proId > 0) {
 				Log.error("Provider Save Product success,productId:" + proId + " ,productName:"
 						+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);

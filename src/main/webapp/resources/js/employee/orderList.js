@@ -141,13 +141,14 @@ function setValueToNeedList(keys,values,type){
 				 if(type == 'input'){
 					 var setValue = getNowItem.find('.optionItemMult').find('.other').text();
 					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
-					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(setValue+":"+values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('.setOtherTitle').text(setValue+":");
 					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
 					 if(LookList == 1){
 						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
 				     }
 				  }
-				 continue ;
+				 continue;
 			 }
 			 var nowItem = $(rows[int]).find('.optionItem').find('.itemDiv');
 			 for (var intj = 0; intj < nowItem.length; intj++){
@@ -197,7 +198,7 @@ function buildSelect(obj,isMult){
 				items.append('<div class="itemDiv" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
 				break;
 			case optionType.text:
-				items.append(option.text + '<div class="itemDiv other" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><input></div>');
+				items.append(option.text + '<div class="itemDiv other" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><div class="setOtherTitle"></div><input></div>');
 				break;
 			}
 		}
@@ -262,12 +263,12 @@ function getNeedValue(requireId){
 					  isCheck = false;
 				  }
 			 }
-//			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
-//				 itemValues =  $(rows[int]).find('div').find('input').val();
-//				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
-//					  isCheck = false;
-//				  }
-//			 }
+			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
+				 itemValues =  $(rows[int]).find('div').find('input').val();
+				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
+					 // isCheck = false;
+				  }
+			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val();
 			  }
