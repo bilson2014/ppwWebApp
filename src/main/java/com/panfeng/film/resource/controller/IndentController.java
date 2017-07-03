@@ -195,7 +195,7 @@ public class IndentController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("处理失败！");
-
+		indent.setIndentType(PmsIndent.ORDER_HANDLING);
 		if (indent != null && indent.getId() != null && indent.getId() > 0) {
 			long update = pmsIndentFacade.update(indent);
 			if (update > 0) {
@@ -208,7 +208,6 @@ public class IndentController extends BaseController {
 				Long reqiureId = currentInfo.getReqiureId();
 				indent.setEmployeeId(reqiureId);
 			}
-			indent.setIndentType(PmsIndent.ORDER_HANDLING);
 			boolean save = pmsIndentFacade.saveOrder(indent);
 			if (save) {
 				baseMsg.setCode(BaseMsg.NORMAL);
