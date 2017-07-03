@@ -56,10 +56,10 @@
 	<div class="page">
 	   <div class="errorDiv">
 	       <div class="centerDiv">
-	        <div><a href="/"><img src="${imgPath }/icons/error404.png"></a></img></div>
-	        <div class="en">Oops. The page you were looking for doesn’t exist</div>
-	        <div class="centerWord">诶呀!您要找的页面不存在...</div>
-	         <a href="/"><div class="backIndex btn-c-r">返回主页</div></a>
+		        <div><a href="/"><img src="${imgPath }/icons/error404.png"></a></img></div>
+		        <div class="en">Oops. The page you were looking for doesn’t exist</div>
+		        <div class="centerWord">诶呀!您要找的页面不存在...</div>
+		        <a href="/"><div class="backIndex btn-c-r">返回主页</div></a>
 	       </div>
 	   </div>
 	</div>
