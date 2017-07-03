@@ -335,10 +335,11 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
-	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
+	public BaseMsg shamOrder(@RequestBody PmsIndent pmsindent) {
 		BaseMsg baseMsg = new BaseMsg();
-		indent = pmsIndentFacade.findIndentById(indent.getId());
+		PmsIndent indent = pmsIndentFacade.findIndentById(pmsindent.getId());
 		indent.setIndentType(PmsIndent.ORDER_SHAM);
+		indent.setcSRecomment(pmsindent.getcSRecomment());
 		long update = pmsIndentFacade.update(indent);
 		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
@@ -351,11 +352,12 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/realOrder", produces = "application/json; charset=UTF-8")
-	public BaseMsg realOrder(@RequestBody PmsIndent indent) {
+	public BaseMsg realOrder(@RequestBody PmsIndent pmsindent) {
 		BaseMsg baseMsg = new BaseMsg();
-		indent = pmsIndentFacade.findIndentById(indent.getId());
+		PmsIndent indent = pmsIndentFacade.findIndentById(pmsindent.getId());
 		indent.setUserId(saveUser(indent));
 		indent.setIndentType(PmsIndent.ORDER_REAL);
+		indent.setcSRecomment(pmsindent.getcSRecomment());
 		long update = pmsIndentFacade.update(indent);
 		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
