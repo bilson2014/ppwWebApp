@@ -7,7 +7,6 @@
 <%-- import JS --%>
 <spring:url value="/resources/lib/requireJs/require.js" var="requireJs"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<spring:url value="/resources/js/error404.js" var="errorJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <!DOCTYPE html>
@@ -48,7 +47,6 @@
 
 	<script type="text/javascript" src="${jqueryJs}"></script>
 	<script type="text/javascript" src="${commonJs}"></script>
-	<script type="text/javascript" src="${errorJs}"></script>
 	
 </head>
 <body>
@@ -61,7 +59,6 @@
 	        <div><a href="/"><img src="${imgPath }/icons/error404.png"></a></img></div>
 	        <div class="en">Oops. The page you were looking for doesn’t exist</div>
 	        <div class="centerWord">诶呀!您要找的页面不存在...</div>
-	        <div class="autoBack">自动返回主页 <span id="last3">3</span>秒</div>
 	         <a href="/"><div class="backIndex btn-c-r">返回主页</div></a>
 	       </div>
 	   </div>

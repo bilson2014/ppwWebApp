@@ -312,14 +312,15 @@ var orderIndex = {
 				getNeedValue($('#indentId').attr('data-content'));
 			});
 			$('#noReal').off('click').on('click',function(){
-
+				var testArea = $('#setTextArea').val();
 				if(checkUbListUserDes()){
 					$('.modelPage').hide();
 					var id = $(this).attr('data-id');
 					loadData(function(res){
 						refresh();
 					}, getContextPath() + '/order/shamOrder', $.toJSON({
-						id : id
+						id : id,
+					    cSRecomment:testArea
 					}));
 				}
 			});

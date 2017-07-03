@@ -98,7 +98,12 @@ function setValueToNeedList(keys,values,type){
 		 var getNowItem = $(rows[int]);
 		 if($(rows[int]).attr('data-id')==keys){
 			 if($(rows[int]).hasClass('isData')){
-				 $(rows[int]).find('.optionItem').find('input').val(values);
+				 if(values == '' || values ==null){
+					 $(rows[int]).find('.optionItem').find('input').val('未选择');
+				 }else{
+					 $(rows[int]).find('.optionItem').find('input').val(values);
+				 }
+				
 				 if(LookList == 1){
 					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
 				 }
@@ -204,7 +209,7 @@ function buildDatepicker(obj){
 	var html = $('<div class="qItem isData"  data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var setItem = $('<div class="optionItem"></div>');
-	var items = $('<div><input class="_datepicker activeNeed" value="选择日期" name="'+obj.name+'" /></div>');
+	var items = $('<div><input class="_datepicker activeNeed" value="未选择" name="'+obj.name+'" /></div>');
 	setItem.append(items);
 	html.append(setItem);
 	return html;
@@ -257,12 +262,12 @@ function getNeedValue(requireId){
 					  isCheck = false;
 				  }
 			 }
-			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
-				 itemValues =  $(rows[int]).find('div').find('input').val();
-				  if(itemValues == "选择日期"||itemValues == null||itemValues == ''){
-					  isCheck = false;
-				  }
-			 }
+//			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
+//				 itemValues =  $(rows[int]).find('div').find('input').val();
+//				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
+//					  isCheck = false;
+//				  }
+//			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val();
 			  }
