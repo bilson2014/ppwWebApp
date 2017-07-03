@@ -170,7 +170,7 @@ $().ready(function() {
 						loadData(function(info){
 							$(".errorDiv").addClass("hide");
 							if(info.key){
-								window.location.href=getContextPath()+'/login';
+								window.location.href=getContextPath()+'/mgr/index';
 							}else{
 								add = true;
 								$("#code_error_info_user").text(info.value).removeClass("hide");

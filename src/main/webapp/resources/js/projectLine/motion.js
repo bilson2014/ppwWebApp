@@ -18,7 +18,6 @@ function getBannerHeight() {
 		$('.swiper-banner').css('height', videoHeight);
 		$('.swiper-banner').css('width', '100%');
 	}
-
 }
 
 function banner() {
@@ -94,27 +93,27 @@ function initScene() {
 						case 1:
 						case 2:
 						case 3:
-							v.addClass('content3');
+						//	v.addClass('content3');
 							break;
 						case 4:
-							v.addClass('content4');
+						//	v.addClass('content4');
 							break;
 						case 5:
 						case 6:
-							v.addClass('content56');
+					    //	v.addClass('content56');
 							break;
 						default:
-							v.addClass('content78');
+						//	v.addClass('content78');
 						}
 						for (var int = 0; int < rows.length; int++) {
 							var rr = rows[int];
 							var html = [
 									'<div class="cItem">',
 									'	<img src="' + getDfsHostName()+ rr.scenenPicLDUrl + '">',
-									'	<div>',
-									'		<img src="/resources/images/projectLine/motion/cardBack.png">',
-									'		<span>' + rr.sceneDescription + '</span>',
-									'	</div>', '</div>' ].join('');
+
+									'		<div class="setWord">' + rr.sceneDescription + '</div>',
+									'		<div class="setline"></div>',
+									'	</div>'].join('');
 							view.append(html);
 						}
 					}
@@ -142,6 +141,7 @@ function initProduct(){
 							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'天</span></div>',
 							            '           <div>应用场景   :  <span>'+rr.pScene+'</span></div>',
 							            '           <div class="contentDes">'+rr.customerRestimonial+'</div>',
+							            '           <div class="priceContent">总价格   <span>￥</span><span>'+rr.product.servicePrice+'</span></div>',
 							            '       </div>',
 										'	</div>', '</div>','</a>' ].join('');
 								view.append(html);

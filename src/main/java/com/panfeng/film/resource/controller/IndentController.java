@@ -40,7 +40,6 @@ import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
-import com.panfeng.film.util.IndentUtil;
 
 @RestController
 @RequestMapping("/order")
@@ -156,30 +155,6 @@ public class IndentController extends BaseController {
 		return new ModelAndView("/employee/orderIndex", modelMap);
 	}
 
-	@RequestMapping(value = "/index", produces = "application/json; charset=UTF-8")
-	public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		List<Integer> types = new ArrayList<>();
-		types.add(0);
-		types.add(1);
-		paramMap.put("types", types);
-		PageParam pageParam = new PageParam();
-		pageParam.setBegin(0);
-		pageParam.setLimit(20);
-		SessionInfo currentInfo = getCurrentInfo(request);
-		if (currentInfo != null) {
-			String sessionType = currentInfo.getSessionType();
-			if (ValidateUtil.isValid(sessionType)) {
-				Long reqiureId = currentInfo.getReqiureId();
-				paramMap.put("employeeId", reqiureId);
-				DataGrid<PmsIndent> listWithPagination = pmsIndentFacade.listWithPagination(pageParam, paramMap);
-				modelMap.addAttribute("indentList", listWithPagination);
-			}
-		}
-
-		return new ModelAndView("/employee/indentList", modelMap);
-	}
-
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
 	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
@@ -233,7 +208,7 @@ public class IndentController extends BaseController {
 				Long reqiureId = currentInfo.getReqiureId();
 				indent.setEmployeeId(reqiureId);
 			}
-			indent.setIndentType(PmsIndent.ORDER_NEW);
+			indent.setIndentType(PmsIndent.ORDER_HANDLING);
 			boolean save = pmsIndentFacade.saveOrder(indent);
 			if (save) {
 				baseMsg.setCode(BaseMsg.NORMAL);
@@ -259,13 +234,13 @@ public class IndentController extends BaseController {
 			String uUserCompany = user.getUserCompany();
 			String uRealName = user.getRealName();
 
-			if (uUserCompany != null && !uUserCompany.trim().equals(iUserCompany.trim())) {
+			if (ValidateUtil.isValid(uUserCompany) && !uUserCompany.trim().equals(iUserCompany.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
 			}
 
-			if (uRealName != null && !uRealName.trim().equals(iRealName.trim())) {
+			if (ValidateUtil.isValid(uRealName) && !uRealName.trim().equals(iRealName.trim())) {
 				baseMsg.setCode(BaseMsg.ERROR);
 				baseMsg.setResult(user);
 				return baseMsg;
@@ -320,12 +295,15 @@ public class IndentController extends BaseController {
 			user = new PmsUser();
 			user.setUserName(indent.getUserCompany());
 			List<PmsUser> findUserByName = pmsUserFacade.findUserByName(user);
-			
 			user = new PmsUser();
 			user.setSex(2);
 			user.setKindlySend(true);
-			int x = findUserByName == null ? 0:findUserByName.size();
-			user.setUserName(indent.getUserCompany() + x + 1 );
+			int x = findUserByName == null ? 0 : findUserByName.size();
+			String ss = "";
+			if (x != 0) {
+				ss = x + "";
+			}
+			user.setUserName(indent.getUserCompany() + ss);
 			user.setPassword("E10ADC3949BA59ABBE56E057F20F883E");
 			user.setTelephone(indent_tele);
 			if (ValidateUtil.isValid(indent.getUserCompany())) {
@@ -343,7 +321,7 @@ public class IndentController extends BaseController {
 			if (indent.getPosition() != null) {
 				user.setPosition(indent.getPosition());
 			}
-			int computeScore = pmsUserFacade.computeScore(user);
+			Integer computeScore = pmsUserFacade.computeScore(user);
 			user.setClientLevel(computeScore);
 			Map<String, Object> save = pmsUserFacade.save(user);
 			Object objUserId = save.get(BaseEntity.SAVE_MAP_ID);
@@ -357,26 +335,29 @@ public class IndentController extends BaseController {
 	}
 
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")
-	public BaseMsg shamOrder(@RequestBody PmsIndent indent) {
+	public BaseMsg shamOrder(@RequestBody PmsIndent pmsindent) {
 		BaseMsg baseMsg = new BaseMsg();
-		boolean changeIndentsType = pmsIndentFacade.changeIndentsType(new long[] { indent.getId() },
-				PmsIndent.ORDER_SHAM);
-		if (!changeIndentsType) {
-			baseMsg.setCode(BaseMsg.ERROR);
-			baseMsg.setErrorMsg("提交失败！");
-		} else {
+		PmsIndent indent = pmsIndentFacade.findIndentById(pmsindent.getId());
+		indent.setIndentType(PmsIndent.ORDER_SHAM);
+		indent.setcSRecomment(pmsindent.getcSRecomment());
+		long update = pmsIndentFacade.update(indent);
+		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
+		} else {
+			baseMsg.setCode(BaseMsg.ERROR);
+			baseMsg.setErrorMsg("提交失败！");
 		}
 		return baseMsg;
 	}
 
 	@RequestMapping(value = "/realOrder", produces = "application/json; charset=UTF-8")
-	public BaseMsg realOrder(@RequestBody PmsIndent indent) {
+	public BaseMsg realOrder(@RequestBody PmsIndent pmsindent) {
 		BaseMsg baseMsg = new BaseMsg();
-		indent = pmsIndentFacade.findIndentById(indent.getId());
+		PmsIndent indent = pmsIndentFacade.findIndentById(pmsindent.getId());
 		indent.setUserId(saveUser(indent));
 		indent.setIndentType(PmsIndent.ORDER_REAL);
+		indent.setcSRecomment(pmsindent.getcSRecomment());
 		long update = pmsIndentFacade.update(indent);
 		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
@@ -440,18 +421,6 @@ public class IndentController extends BaseController {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("订单ID不能为空！");
 		}
-		return baseMsg;
-	}
-
-	@RequestMapping(value = "/generate")
-	public BaseMsg generate() {
-		BaseMsg baseMsg = new BaseMsg();
-		Map<String, String> res = new HashMap<>();
-		baseMsg.setCode(BaseMsg.NORMAL);
-		baseMsg.setResult(res);
-		String nowTime = DateUtils.nowTime();
-		res.put("time", nowTime);
-		res.put("userName", "User-" + IndentUtil.generateShortUuid());
 		return baseMsg;
 	}
 }

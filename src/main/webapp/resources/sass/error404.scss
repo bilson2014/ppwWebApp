@@ -1,0 +1,64 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "image";
+@import "compass/typography/text/ellipsis";
+body {
+    background: $white;
+}
+
+.page {
+    background: $white;
+}
+
+.errorDiv {
+    background: $white;
+    text-align: center;
+    height: 900px;
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        //  height: 0px;
+    }
+    @media screen and (min-width:1500px) {
+        //  height: 800px;
+    }
+    margin: 0 auto;
+    a {
+        color: $red-base;
+        font-size: $font-size-lger;
+        text-decoration: none;
+    }
+    .centerWord {
+        position: relative;
+        color: $red-base;
+        font-size: $font-size-lg;
+        margin-bottom: 50px;
+    }
+    .en {
+        font-size: $font-size-base;
+        color: $gray;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .autoBack {
+        margin-top: 15px;
+        margin-bottom: 45px;
+        font-size: $font-size-sm;
+        color: $gray-dark;
+    }
+    .backIndex {
+        width: 200px;
+        height: 36px;
+        line-height: 36px;
+        margin: 0 auto;
+        border-radius: 26px;
+        color: white;
+        font-size:$font-size-base;
+    }
+}
+
+.centerDiv {
+    margin: 0px auto;
+    text-align: center;
+    padding-top: 135px;
+}

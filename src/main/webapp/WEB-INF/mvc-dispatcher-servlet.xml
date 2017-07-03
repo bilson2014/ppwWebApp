@@ -31,9 +31,7 @@
 	
 	<mvc:view-controller path="/payment/success" view-name="/payment/success" />
 	
-	<mvc:view-controller path="/error" view-name="/error" />
-	
-	<mvc:view-controller path="/errorS" view-name="/errorS" />
+	<mvc:view-controller path="/404" view-name="/404" />
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
@@ -49,6 +47,10 @@
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
     <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
+    <!-- end --> 
+    
+    <!-- 订单管理系统 -->
+   <!--  <mvc:view-controller path="/error404" view-name="/error404" /> -->
     <!-- end --> 
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
@@ -187,6 +189,13 @@
 			<mvc:mapping path="/product/LectureVideo/order"/>
 			
 			<bean class="com.panfeng.film.filter.ProductCaseInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**"/>
+			<mvc:mapping path="/require/**"/>
+			<mvc:exclude-mapping path="/order/deliver"/>
+			<bean class="com.panfeng.film.filter.OrderInterceptor" />
 		</mvc:interceptor>
 		
 	</mvc:interceptors>

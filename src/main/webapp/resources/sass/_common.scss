@@ -1741,7 +1741,7 @@ a {
             color: $gray;
         }
         li {
-            padding-left: 60px;
+            padding-left:50px;
             height: 36px;
             line-height: 36px;
             position: relative;
@@ -1749,7 +1749,6 @@ a {
                 background: $f0;
             }
         }
-
         .showName {
             height: 41px;
             border-bottom: 1px solid $e;
@@ -1761,7 +1760,7 @@ a {
         }
 
         .sameStyle{
-        	left: 30px;
+        	left: 20px;
         }
 
         .toSet:before {

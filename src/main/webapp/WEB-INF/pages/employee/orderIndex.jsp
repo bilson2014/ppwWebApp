@@ -92,11 +92,13 @@
                <div class="closeBtn"></div>
 		   <div class="oSContent">
 		        <div class="sTitle">订单将作废</div>
-		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的</div>
-		        <div class="sDes">潜在客户?</div>
+		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的潜在客户?</div>
+		        <div class="sSDes">备注(请注明具体原因)</div>
+		        <textarea class="setTextArea" id="setTextArea"></textarea>
+		        <div class="infoError" id="setInfoError">请填写备注信息</div>
 		        <div class="sureBtn">
-		           <div class="" id="real">真实</div>
-		           <div class="btn-c-r" id="noReal">虚假</div>
+		           <div class="" id="real">潜在客户</div>
+		           <div class="btn-c-r" id="noReal">虚假消息</div>
 		        </div>
 		   </div>
            </div>
@@ -108,8 +110,10 @@
 		   <div class="oSContent">
 		        <div class="tdDes">正式验证客户手机是否已经存在</div>
 		        <div class="tDes">是否确认"此联系人为<span class="redColor" id="setColor"></span>客户?"</div>
+		        <div class="t2"></div>
 		        <div class="sureBtn">
 		           <div class="btn-c-r" id="tModel">确定</div>
+		           <div class="btn-c-g" id="cModel">取消</div>
 		        </div>
 		   </div>
            </div>
@@ -156,7 +160,6 @@
                </div>
                <div class="sureBtn">
 			           <div class="btn-c-r" id="mptModel">确定</div>
-			           <div class="btn-c-g" id="cModel">取消</div>
 		       </div>
            </div>
       </div>
@@ -172,7 +175,7 @@
 	                          <input class="itemInput" id="telName">
 	                          <div class="must">*</div>
                          </div>  
-                        <div class="setError" id="companyNameError">
+                        <div class="setError longItem" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
                           <input class="itemInput" id="companyName" id="companyName">
                           <div class="must">*</div>
@@ -190,17 +193,17 @@
 	                                    <li class="removeLi" data-id="1">线上-网站</li>
 					                    <li class="removeLi" data-id="2">线上-活动</li>
 					                    <li class="removeLi" data-id="3">线上-新媒体</li>
-					                    <li data-value="4">线下-电销</li>
-					                    <li class="showHelper" data-value="5">线下-直销</li>
-					                    <li data-value="6">线下-活动</li>
-					                    <li data-value="7">线下-渠道</li>
-					                    <li data-value="8">复购</li>
+					                    <li data-id="4">线下-电销</li>
+					                    <li class="showHelper" data-id="5">线下-直销</li>
+					                    <li data-id="6">线下-活动</li>
+					                    <li data-id="7">线下-渠道</li>
+					                    <li data-id="8">复购</li>
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
                        </div>
                        
-                       <div class="setError" id="telesError" data-content="">   
+                       <div class="setError longItem" id="telesError" data-content="">   
                           <div class="itemTitile">联系电话</div>
                           <input class="itemInput" id="teles">
                           <div class="must">*</div>
@@ -219,8 +222,17 @@
 	                          <div class="must">*</div>
                         </div>  
                     </div>
+                    
+                     <div class="infoItem">
+                         <div class="setError" > 
+                          <div class="itemTitile" style="top:-70px;">备注</div>
+                          <textarea id="orderNote"></textarea>
+                          <div class="must"></div>
+                        </div>  
+                    </div> 
+                    
                 <div class="sureBtn">
-                   <div class="btn-c-r" id="submitEdit">确定</div>
+                   <div class="btn-c-r" id="submitEdit">保存</div>
                    <div class="btn-c-g" id="cancleEdit">取消</div>
 		        </div>
             </div>
@@ -230,7 +242,7 @@
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
-              <div class="itemContent">
+              <div class="itemContents">
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
@@ -245,7 +257,7 @@
                         </div>  
                     </div>
                    
-                    </div>
+               
                     <div class="infoItem">
                     
                        <div class="setError " id="cusTelesError" >    
@@ -512,6 +524,7 @@
                    <div class="btn-c-r">确定</div>
                    <div class="btn-c-g">取消</div>
 		        </div>
+		         </div>
             </div>
       </div>
     
@@ -573,7 +586,7 @@
 					</c:forEach>
 				</c:if> 
          </table>
-         
+
          <!-- pagination start -->
 		<div class="page-section">
 			<div class="page-wrap">

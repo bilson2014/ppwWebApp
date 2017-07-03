@@ -91,11 +91,19 @@ function ReShowView(item){
 function setValueToNeedList(keys,values,type){
      var rows= $('.qItem');
      var LookList = $('#flag').val();
+     if(LookList == 1){
+    	 $('.itemDiv').off('click');
+     }
 	 for (var int = 0; int < rows.length; int++) {
 		 var getNowItem = $(rows[int]);
 		 if($(rows[int]).attr('data-id')==keys){
 			 if($(rows[int]).hasClass('isData')){
-				 $(rows[int]).find('.optionItem').find('input').val(values);
+				 if(values == '' || values ==null){
+					 $(rows[int]).find('.optionItem').find('input').val('未选择');
+				 }else{
+					 $(rows[int]).find('.optionItem').find('input').val(values);
+				 }
+				
 				 if(LookList == 1){
 					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
 				 }
@@ -117,17 +125,23 @@ function setValueToNeedList(keys,values,type){
 	                    for(var j = 0; j < values.length; j++){
 						    if(thisDiv.text()==values[j]){
 						    	thisDiv.addClass('activeNeed');
-						    	 var thisDivs = thisDiv.text();
-						    	 hasValue = true;
+						    	var thisDivs = thisDiv.text();
+						    	hasValue = true;
 						    }
 					    }
 	                    if(LookList == 1 && !hasValue){
-					    	  thisDiv.remove();
+	                    	 if(type == 'input'&&thisDiv.hasClass('other')){
+	                    		 thisDiv.addClass('activeNeed');
+	                    	 }else{
+	                    		 thisDiv.remove();
+	                    	 }
+					    	  
 					    }
 					});
 				 if(type == 'input'){
+					 var setValue = getNowItem.find('.optionItemMult').find('.other').text();
 					 getNowItem.find('.optionItemMult').find('.other').addClass('activeNeed');
-					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(values[lastIndex]);
+					 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').val(setValue+":"+values[lastIndex]);
 					 getNowItem.find('.optionItemMult').find('.otherInfo').show();
 					 if(LookList == 1){
 						 getNowItem.find('.optionItemMult').find('.otherInfo').find('input').attr("readonly","readonly");
@@ -141,13 +155,18 @@ function setValueToNeedList(keys,values,type){
 				    	$(nowItem[intj]).addClass('activeNeed');
 				    }else{
 				    	if(LookList == 1){
-				    		$(nowItem[intj]).remove();
+				    		 if(type == 'input'&&$(nowItem[intj]).hasClass('other')){
+				    			 $(nowItem[intj]).addClass('activeNeed');
+	                    	 }else{
+				    		    $(nowItem[intj]).remove();
+	                    	 }
 				    	}
 				    }
 				 }
 			 if(type == 'input'){
+				 var setValue = getNowItem.find('.optionItem').find('.other').text();
 				 getNowItem.find('.optionItem').find('.other').addClass('activeNeed');
-				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(values);
+				 getNowItem.find('.optionItem').find('.otherInfo').find('input').val(setValue+" : "+values);
 				 getNowItem.find('.optionItem').find('.otherInfo').show();
 				 if(LookList == 1){
 					 getNowItem.find('.optionItem').find('.otherInfo').find('input').attr("readonly","readonly");
@@ -190,7 +209,7 @@ function buildDatepicker(obj){
 	var html = $('<div class="qItem isData"  data-id="'+obj.name+'"></div>');
 	html.append('<div class="qTitle">'+obj.title+'</div>');
 	var setItem = $('<div class="optionItem"></div>');
-	var items = $('<div><input class="_datepicker activeNeed" value="选择日期" name="'+obj.name+'" /></div>');
+	var items = $('<div><input class="_datepicker activeNeed" value="未选择" name="'+obj.name+'" /></div>');
 	setItem.append(items);
 	html.append(setItem);
 	return html;
@@ -243,12 +262,12 @@ function getNeedValue(requireId){
 					  isCheck = false;
 				  }
 			 }
-			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
-				 itemValues =  $(rows[int]).find('div').find('input').val();
-				  if(itemValues == ""||itemValues == null){
-					  isCheck = false;
-				  }
-			 }
+//			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
+//				 itemValues =  $(rows[int]).find('div').find('input').val();
+//				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
+//					  isCheck = false;
+//				  }
+//			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val();
 			  }

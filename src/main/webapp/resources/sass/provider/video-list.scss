@@ -4,10 +4,9 @@
 $green:#79d018;
 $yellow:#f5a623;
 $blue:#30CBFB;
-
-html{
+html {
     overflow: hidden;
-    background:white;
+    background: white;
 }
 
 body {
@@ -19,9 +18,9 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
-html{
+html {
     overflow: hidden;
-     background:white;
+    background: white;
 }
 
 .proInfo {
@@ -198,7 +197,6 @@ html{
             @media screen and (min-width: 700px) and (max-width: 893px) {
                 width: 130px !important;
             }
-
             @include ellipsis;
         }
     }
@@ -575,4 +573,11 @@ html{
 
 .setCloseSize {
     right: -310px !important;
+}
+
+#videoRoata {
+    top: 235px !important;
+    @media screen and (min-width: 1250px) {
+        top: 300px !important;
+    }
 }

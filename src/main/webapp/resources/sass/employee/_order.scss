@@ -181,7 +181,7 @@ th {
 .tableList {
     @include media_screen_width_beta3();
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 10px;
     min-height: 300px;
 }
 
@@ -385,7 +385,8 @@ th {
     color: white !important;
     font-size: $font-size-base;
     margin-left: 10px;
-    border-radius: 8px;
+    margin-right: 0px !important;
+    border-radius: 4px;
     margin-top: 10px;
     @media screen and (min-width: 1500px) {
         margin-top: 0px;

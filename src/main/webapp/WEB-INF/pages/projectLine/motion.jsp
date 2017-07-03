@@ -108,8 +108,7 @@
 			<div class="LiveApp">
 	            <div class="LiveContent">
 	                 <div class="title">应用场景</div>
-	                 <div class="imgContent">
-	                         <center id="sceneView"></center>  
+	        		 <div class="imgContent" id="sceneView">
 	        		 </div>
 			    </div>   
 			</div>
@@ -128,7 +127,7 @@
 		 <!-- 应用案例 -->
 		 <div class="wordCase">
 		    <div class="title">
-		                    ${product.chanpinName}
+		                    案例展示
 		    </div>
 		   <div class="setWidth"> 
 		 	<div class="swiper-container swiper-product flexslider">

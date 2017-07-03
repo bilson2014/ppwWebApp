@@ -276,6 +276,20 @@ $smWidth:400px;
                 font-style: italic;
                 line-height: 20px;
             }
+            .priceContent {
+                font-size: $font-size-sm;
+                color: $gray-dark;
+                margin-top: 30px;
+                span:nth-child(1) {
+                    color: $red-base;
+                    margin-left: 10px;
+                }
+                span:nth-child(2) {
+                    color: $red-base;
+                    margin-left: 10px;
+                    font-size: $font-size-lg30 !important;
+                }
+            }
         }
     }
 }
