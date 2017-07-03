@@ -225,11 +225,11 @@ function buildTextarea(obj){
 function initNeedEven(){
 	$('.optionItem .itemDiv').off('click').on('click',function(){
 		$(this).parent().find('.itemDiv').removeClass('activeNeed');
-		$(this).parent().parent().find('.otherInfo').hide();
+//		$(this).parent().parent().find('.otherInfo').hide();
 		$(this).addClass('activeNeed');
-		if($(this).hasClass('other')){
-		$(this).parent().parent().find('.otherInfo').show();
-		}
+//		if($(this).hasClass('other')){
+//		$(this).parent().parent().find('.otherInfo').show();
+//		}
 	});
 	$('.optionItemMult .itemDiv').off('click').on('click',function(){
 		if($(this).hasClass('activeNeed')){
@@ -237,7 +237,17 @@ function initNeedEven(){
 		}else{
 			$(this).addClass('activeNeed');
 		}
-		if($(this).hasClass('other')){
+//		if($(this).hasClass('other')){
+//			$(this).parent().parent().find('.otherInfo').show();
+//		}s
+	});
+	$('.other').off('click').on('click',function(){
+		var thisDiv = $(this);
+		if($(this).hasClass('activeNeed')){
+			thisDiv.attr('class','itemDiv other');
+			thisDiv.parent().parent().find('.otherInfo').hide();
+		}else{
+			$(this).addClass('activeNeed');
 			$(this).parent().parent().find('.otherInfo').show();
 		}
 	});
