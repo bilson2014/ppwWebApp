@@ -208,7 +208,7 @@ public class IndentController extends BaseController {
 				Long reqiureId = currentInfo.getReqiureId();
 				indent.setEmployeeId(reqiureId);
 			}
-			indent.setIndentType(PmsIndent.ORDER_NEW);
+			indent.setIndentType(PmsIndent.ORDER_HANDLING);
 			boolean save = pmsIndentFacade.saveOrder(indent);
 			if (save) {
 				baseMsg.setCode(BaseMsg.NORMAL);
