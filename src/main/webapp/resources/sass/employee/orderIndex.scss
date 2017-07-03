@@ -356,10 +356,10 @@
             position: relative;
             overflow: auto;
             height: 350px;
-            @media screen and (min-width: 1276px) and (max-width: 1500px) {
+            @media screen and (min-width: 1276px) and (max-width: 1600px) {
                 height: 450px;
             }
-            @media screen and (min-width: 1500px) {
+            @media screen and (min-width: 1600px) {
                 height: auto
             }
         }
