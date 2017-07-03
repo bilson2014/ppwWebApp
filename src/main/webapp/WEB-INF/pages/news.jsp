@@ -64,12 +64,12 @@
 		                <div>></div>
 		                <a href="/news-list.html"><div>新闻资讯</div></a>
 		                <div>></div>
-		                <h1 class="newsTitle">${news.title}</h1>
+		              
 		            </div>
 		        </div>
             <div class="contentWidth">
                 <div class="leftContent">
-                    <div class="title" id="newsTitle">${news.title}</div>
+                     <h1 class="title" id="newsTitle">${news.title}</h1>
                        <div class="tags">
                             <img class="tagImg" src="${imgPath}/provder/videoTag.png">
 	                        <div class="tagsContent" id="tagsContent">	                               

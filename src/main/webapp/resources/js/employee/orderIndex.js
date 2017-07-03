@@ -293,10 +293,20 @@ var orderIndex = {
 			$('.isFind').off('click').on('click',function(){
 				var id = $(this).attr('data-id');
 				initUserView(id);
+				//用户需求保存
+				$('#submitEditCus').off('click').on('click',function(){
+					var res = checkUserInfo();
+					var id = $(this).attr('data-id');
+					if(res){
+						updateUser(id);
+					}
+				});
+				$('#cancleEdit').off('click').on('click',function(){
+					$('.modelPage').hide();
+				});
 				$('#modifyUserInfo').show();
 			});
-            
-			//用户需求保存
+			
 			$('#submitEditCus').off('click').on('click',function(){
 				var res = checkUserInfo();
 				var id = $(this).attr('data-id');
@@ -304,7 +314,7 @@ var orderIndex = {
 					updateUser(id);
 				}
 			});
-			
+
 			$('.listHeader').off('click').on('click',function(){
 				$('.orderModel').hide();
 			});
@@ -394,7 +404,7 @@ var orderIndex = {
 		              '     <th>联系电话</th>    ' ,
 		              '     <th>订单来源</th>    ' ,
 		              '     <th>下单时间</th>    ' ,
-			             '      <th>备注</th>    ',
+			             '  <th>CRM备注</th>    ',
 		              '     <th>客户信息</th>    ' ,
 		              '     <th>需求文档</th>    ' ,
 		             '  </tr>                   ',
@@ -410,7 +420,7 @@ var orderIndex = {
 		             '      <th>联系电话</th>    ',
 		             '      <th>订单来源</th>    ',
 		             '      <th>下单时间</th>    ',
-		             '      <th>备注</th>    ',
+		             '      <th>CRM备注</th>    ',
 		             '      <th>客户信息</th>',
 		             '      <th>修改</th>    ',
 		             '  </tr>                   ',
@@ -1326,7 +1336,7 @@ function checkUserInfo(){
 		$('#muTelephone').focus();
 		return false;
 	}
-	if(webUrl != undefined || webUrl != "" || webUrl != null ){
+	if(webUrl != undefined && webUrl != "" && webUrl != null ){
 	if(!IsUrl(webUrl)){
 		$('#muOfficialSiteError').attr('data-content','网址不正确');
 		$('#muOfficialSite').focus();
