@@ -734,7 +734,7 @@ function initUpdateInfo(){
 }
 
 function submitSaveOrCreate(check,item){
-	//提交
+	//提交submit
 	$('#submitEdit').off('click').on('click',function(){
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
@@ -1183,6 +1183,7 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
+
     loadData(function (res){
     	if(res.code == 200){
     		var indent_tele = $(tr).find('.indent_tele').text();
@@ -1408,24 +1409,42 @@ function updateUser(id){
 	var customerSize = $('#muCustomerSize').attr('data-id');
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
-	loadData(function(res){
-		$('#modifyUserInfo').hide();
-		refresh();
-	}, getContextPath() +'/user/update', $.toJSON({
-		"userCompany":userCompany,
-		"realName":realName,
-		"telephone":telephone,
-		"customerType":customerType,
-		"position":position,
-		"weChat":weChat,
-		"email":email,
-		"officialSite":officialSite,
-		"purchaseFrequency":purchaseFrequency,
-		"purchasePrice":purchasePrice,
-		"customerSize":customerSize,
-		"endorse":endorse,
-		"note":note,
-		"id":id
+	loadData(function(flag){		
+		if(flag.errorCode == 200){
+			//  未注册
+			//用户修改
+			loadData(function(res){
+				$('#modifyUserInfo').hide();
+				refresh();
+			}, getContextPath() +'/user/update', $.toJSON({
+				"userCompany":userCompany,
+				"realName":realName,
+				"telephone":telephone,
+				"customerType":customerType,
+				"position":position,
+				"weChat":weChat,
+				"email":email,
+				"officialSite":officialSite,
+				"purchaseFrequency":purchaseFrequency,
+				"purchasePrice":purchasePrice,
+				"customerSize":customerSize,
+				"endorse":endorse,
+				"note":note,
+				"id":id
+			}));
+			
+		}else if(flag.errorCode == 500){
+			if(flag.result == false){
+				// 已经注册
+				$('#cusTelesError').attr('data-content','该手机号已经注册');
+				$('#muTelephone').focus();
+			}else{
+				$('#cusTelesError').attr('data-content',flag.errorMsg);
+				$('#muTelephone').focus();
+			}
+		}
+	}, getContextPath() + '/login/validation/phone', $.toJSON({
+		telephone : telephone
 	}));
 }
 
