@@ -305,5 +305,7 @@ var providerInfo = {
 function openOrder(){
 	$('#withIt').on('click',function(){
 		showOrder('宣传片');
+		$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));
+		$('#order-btn').attr('data-comment',$(this).attr('data-comment'));
 	});
 }

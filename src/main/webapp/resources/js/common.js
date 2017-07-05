@@ -738,6 +738,16 @@ function showOrder(typeName) {
 function initOrderClick(){
 	var flag = true;
 	$('#order-btn').off("click").on("click",function(){
+		var xx = $(this).attr('data-xaioyu');
+		var comment = $(this).attr('data-comment');
+		var sir = $("#submit-indent-recomment").text();
+		
+		var indentName = '网站-PC-直接下单';
+		if('provider' == xx){
+			indentName = '网站-PC-供应商首页下单';
+			sir += ' ';
+			sir += comment;
+		}
 		if(checkDatas(1)){ // 检查数据完整性
 				showError($('#indent_tele_error'),'');
 				
@@ -760,8 +770,8 @@ function initOrderClick(){
 						csrftoken:$("#csrftoken").val(),
 						indent_tele:$("#indent_tele").val(),
 						phoneCode:'-1',
-						indent_recomment:$("#submit-indent-recomment").text(),
-						indentName:'网站-PC-直接下单',
+						indent_recomment:sir,
+						indentName:indentName,
 						productId:-1,
 						teamId:-1,
 						serviceId:-1,

@@ -1395,6 +1395,7 @@ function refresh(){
 
 function updateUser(id){
 	
+	var userName = $('#userName').val();
 	var realName = $('#muRealName').val();
 	var userCompany = $('#muUserCompany').val();
 	var customerType = $('#muCustomerType').attr('data-id');
@@ -1412,6 +1413,7 @@ function updateUser(id){
 		$('#modifyUserInfo').hide();
 		refresh();
 	}, getContextPath() +'/user/update', $.toJSON({
+		"userName":userName,
 		"userCompany":userCompany,
 		"realName":realName,
 		"telephone":telephone,
@@ -1448,6 +1450,7 @@ function initUserView(id){
 		$('#muOfficialSite').val('');	
 		loadData(function(res){
 			var rr = res.result;
+			$('#userName').val(rr.userName);
 			$('#muRealName').val(rr.realName);
 			$('#muUserCompany').val(rr.userCompany);
 			$('#muTelephone').val(rr.telephone);

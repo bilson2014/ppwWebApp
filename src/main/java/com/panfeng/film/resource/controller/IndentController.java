@@ -301,7 +301,6 @@ public class IndentController extends BaseController {
 				user.setUserName(indent.getUserCompany() + ss);
 			}
 			
-			
 			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
