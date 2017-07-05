@@ -197,6 +197,7 @@
 					                    <li data-id="6">线下-活动</li>
 					                    <li data-id="7">线下-渠道</li>
 					                    <li data-id="9">线下-400</li>
+					                    <li data-id="10">线下-商桥</li>
 					                    <li data-id="8">复购</li>
 	                            </ul>                
 	                       </div>
