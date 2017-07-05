@@ -79,6 +79,24 @@ public class IndentController extends BaseController {
 			// 登录之后，不需要判断验证码
 			indent.setIndent_tele(info.getTelephone());
 			flag = true;
+			String sessionType = info.getSessionType();
+			String in = indent.getIndent_recomment();
+			if(ValidateUtil.isValid(sessionType)){
+				switch (sessionType) {
+				case PmsConstant.ROLE_CUSTOMER:
+					in = "客户   "+in;
+					break;
+				case PmsConstant.ROLE_PROVIDER:
+					in = "供应商   "+in;
+					break;
+				case PmsConstant.ROLE_EMPLOYEE:
+					in = "内部员工   "+in;
+					break;
+				}
+			}else{
+				in = "未知角色   "+in;
+			}
+			indent.setIndent_recomment(in);
 		} else {
 			// 未登录，需要判断验证码
 			String code = (String) session.getAttribute("code");
