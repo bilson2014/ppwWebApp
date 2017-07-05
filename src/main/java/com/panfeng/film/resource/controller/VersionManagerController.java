@@ -1042,7 +1042,8 @@ public class VersionManagerController extends BaseController {
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(e.getEmployeeId());
 		info.setPhoto(e.getEmployeeImg());
-
+		info.setTelephone(e.getPhoneNumber());
+		
 		// 计算权限码
 		// 替换带有权限的角色
 		final List<PmsRole> roles = new ArrayList<PmsRole>();
