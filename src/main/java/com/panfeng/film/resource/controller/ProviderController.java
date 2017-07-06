@@ -1252,13 +1252,7 @@ public class ProviderController extends BaseController {
 			// 加载导演标签
 			String strtags = result.getBusiness();
 			if (ValidateUtil.isValid(strtags)) {
-				String[] tagsarray = strtags.split("\\,");
-				List<Integer> ids = new ArrayList<>();
-				for (int i = 0; i < tagsarray.length; i++) {
-					ids.add(Integer.parseInt(tagsarray[i]));
-				}
-				List<String> tags = pmsTeamFacade.getTags(ids);
-				modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
+				modelMap.addAttribute("providerTags", JsonUtil.toJson(strtags.split(",")));
 			} else {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("provider business is null ...", sessionInfo);

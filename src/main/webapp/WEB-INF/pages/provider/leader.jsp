@@ -214,64 +214,64 @@
   	      					      <div class="checkbox" id="business-checkbox">
 										<ul class="ul-step-two">
 											<li>	
-												<div class="getTag" name="business" data-value="0"> 广告</div>
+												<div class="getTag" name="business" data-value="广告"> 广告</div>
 									    	</li>
 									    	<li>	
-												<div class="getTag" name="business" data-value="16" /> TVC</div>
+												<div class="getTag" name="business" data-value="TVC" /> TVC</div>
 									    	</li>
 									    	<li>
-												<div class="getTag" name="business" data-value="1"/> 宣传片</div>
+												<div class="getTag" name="business" data-value="宣传片"/> 宣传片</div>
 									   	 	</li>
 									    	<li>
-												<div class="getTag" name="business" data-value="2"/> 真人秀</div>
+												<div class="getTag" name="business" data-value="真人秀"/> 真人秀</div>
 									    	</li>
 									    	<li>
-												<div class="getTag" name="business" data-value="3"/> 纪录片</div>
+												<div class="getTag" name="business" data-value="纪录片"/> 纪录片</div>
 									    	</li>
 									    
 											<li>
-												<div class="getTag" name="business" data-value="4"/> 病毒视频</div>
+												<div class="getTag" name="business" data-value="病毒视频"/> 病毒视频</div>
 									  	  	</li>
 									    	<li>
-												<div class="getTag" name="business" data-value="5"/> 电视栏目</div>
+												<div class="getTag" name="business" data-value="电视栏目"/> 电视栏目</div>
 									    	</li>
 									    	<li>
-												<div class="getTag" name="business" data-value="17"/> MV</div>
+												<div class="getTag" name="business" data-value="MV"/> MV</div>
 									    	</li>
 									   	 	<li>
-												<div class="getTag" name="business" data-value="6"/> 三维动画</div>
+												<div class="getTag" name="business" data-value="三维动画"/> 三维动画</div>
 									   		</li>
 									   		<li>
-												<div class="getTag" name="business" data-value="7"/> MG动画</div>
+												<div class="getTag" name="business" data-value="MG动画"/> MG动画</div>
 									  		</li>
 									   
 									    	<li>
-												<div class="getTag" name="business" data-value="8"/> 体育赛事</div>
+												<div class="getTag" name="business" data-value="体育赛事"/> 体育赛事</div>
 										    </li>
 										    <li>
-												<div class="getTag" name="business" data-value="9"/> 专题片</div>
+												<div class="getTag" name="business" data-value="专题片"/> 专题片</div>
 											</li>
                                              <li> 
-												<div class="getTag" name="business" data-value="10"/> VR拍摄</div>
+												<div class="getTag" name="business" data-value="VR拍摄"/> VR拍摄</div>
 											</li>
 											<li>
-												<div class="getTag" name="business" data-value="11"/> 产品拍摄</div>
+												<div class="getTag" name="business" data-value="产品拍摄"/> 产品拍摄</div>
 										    </li>
 										    <li>
-												<div class="getTag" name="business" data-value="12"/> 微电影</div>
+												<div class="getTag" name="business" data-value="微电影"/> 微电影</div>
 										    </li>
 										
 										    <li>
-												<div class="getTag" name="business" data-value="13"/> 航拍</div>
+												<div class="getTag" name="business" data-value="航拍"/> 航拍</div>
 										    </li>
 										    <li>
-												<div class="getTag" name="business" data-value="14"/> 活动视频</div>
+												<div class="getTag" name="business" data-value="活动视频"/> 活动视频</div>
 										    </li>
 										    <li>
-												<div class="getTag" name="business" data-value="15"/> 后期制作</div>
+												<div class="getTag" name="business" data-value="后期制作"/> 后期制作</div>
 										    </li>
 										    <li>
-												<div class="getTag" name="business" data-value="18"/> 包装</div>
+												<div class="getTag" name="business" data-value="包装"/> 包装</div>
 										    </li>
 										 </ul>   
 										  
