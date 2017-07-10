@@ -112,7 +112,6 @@
 			<mvc:exclude-mapping path="/provider/checkExisting" />
 			<mvc:exclude-mapping path="/provider/checkPhoneExisting" />
 			<mvc:exclude-mapping path="/provider/info/register" />
-			<mvc:exclude-mapping path="/provider/info/recover" />
 			<mvc:exclude-mapping path="/provider/login/**" />
 			<mvc:exclude-mapping path="/provider/upload/teamPhoto" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />

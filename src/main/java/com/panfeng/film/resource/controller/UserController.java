@@ -249,36 +249,6 @@ public class UserController extends BaseController {
 	}
 
 	/**
-	 * 使用系统提供的头像，修改用户头像
-	 * 
-	 * @throws MalformedURLException
-	 */
-	/*
-	 * @RequestMapping(value = "/directModify/photo", method =
-	 * RequestMethod.POST) public boolean changePhotoWithClick(@RequestBody
-	 * final User user, final HttpServletRequest request) throws
-	 * MalformedURLException {
-	 * 
-	 * if (user != null) { String imgPath =
-	 * request.getServletContext().getRealPath(user.getImgUrl());
-	 * 
-	 * File original = new File(imgPath); String path =
-	 * DFSservice.upload(original, user.getImgUrl()); SessionInfo sessionInfo =
-	 * getCurrentInfo(request); Log.error("User id is " + user.getId() +
-	 * " upload photo by system path is" + path, sessionInfo); // 更新数据库 if (user
-	 * != null) { user.setImgUrl(path); final String url = URL_PREFIX +
-	 * "portal/user/modify/photo"; final String json = HttpUtil.httpPost(url,
-	 * user, request); final Boolean result = JsonUtil.toBean(json,
-	 * Boolean.class);
-	 * 
-	 * Log.error("User id is " + user.getId() +
-	 * " update photo by system -success=" + result, sessionInfo); //
-	 * updateUserInSession(request); return result; } }
-	 * 
-	 * return false; }
-	 */
-
-	/**
 	 * 删除 取消的自定义上传文件
 	 */
 	@RequestMapping("/delete/photo")
