@@ -91,10 +91,9 @@
            <div class="successModel">
                <div class="closeBtn"></div>
 		   <div class="oSContent">
-		        <div class="sTitle">订单将作废</div>
-		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的潜在客户?</div>
-		        <div class="sSDes">备注(请注明具体原因)</div>
+		        <div class="sTitle">订单将作废,请注明具体原因</div>
 		        <textarea class="setTextArea" id="setTextArea"></textarea>
+		        <div class="sDes">此联系人信息是否真实可靠，是否为我们的潜在客户?</div>
 		        <div class="infoError" id="setInfoError">请填写备注信息</div>
 		        <div class="sureBtn">
 		           <div class="" id="real">潜在客户</div>
@@ -107,15 +106,15 @@
       <div class="modelPage" id="checkSureModel">
            <div class="successModel">
                <div class="closeBtn"></div>
-		   <div class="oSContent">
-		        <div class="tdDes">正式验证客户手机是否已经存在</div>
-		        <div class="tDes">是否确认"此联系人为<span class="redColor" id="setColor"></span>客户?"</div>
-		        <div class="t2"></div>
-		        <div class="sureBtn">
-		           <div class="btn-c-r" id="tModel">确定</div>
-		           <div class="btn-c-g" id="cModel">取消</div>
-		        </div>
-		   </div>
+			   <div class="oSContent">
+			        <div class="tdDes">正式验证客户手机是否已经存在</div>
+			        <div class="tDes">是否确认"此联系人为<span class="redColor" id="setColor"></span>客户?"</div>
+			        <div class="t2"></div>
+			        <div class="sureBtn">
+			           <div class="btn-c-r" id="tModel">确定</div>
+			           <div class="btn-c-g" id="cModel">取消</div>
+			        </div>
+			   </div>
            </div>
       </div>
       
@@ -172,12 +171,12 @@
                     <div class="infoItem">
                          <div class="setError" id="telNameError" data-content="">
 	                          <div class="itemTitile">联系人</div>
-	                          <input class="itemInput" id="telName">
+	                          <input class="itemInput" id="telName" maxLength="10">
 	                          <div class="must">*</div>
                          </div>  
                         <div class="setError longItem" id="companyNameError">
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="companyName" id="companyName">
+                          <input class="itemInput" id="companyName" id="companyName" maxLength="30">
                           <div class="must">*</div>
                         </div>  
                     </div>
@@ -190,13 +189,15 @@
 	                            <div data-value="" id="orderComeInfo">请选择</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
-	                                    <li class="removeLi" data-id="1">线上-网站</li>
+	                                    <li class="" data-id="1">线上-网站</li>
 					                    <li class="removeLi" data-id="2">线上-活动</li>
 					                    <li class="removeLi" data-id="3">线上-新媒体</li>
 					                    <li data-id="4">线下-电销</li>
 					                    <li class="showHelper" data-id="5">线下-直销</li>
 					                    <li data-id="6">线下-活动</li>
 					                    <li data-id="7">线下-渠道</li>
+					                    <li data-id="9">线下-400</li>
+					                    <li data-id="10">线下-商桥</li>
 					                    <li data-id="8">复购</li>
 	                            </ul>                
 	                       </div>
@@ -225,7 +226,7 @@
                     
                      <div class="infoItem">
                          <div class="setError" > 
-                          <div class="itemTitile" style="top:-70px;">备注</div>
+                          <div class="itemTitile" style="top:-70px;">CRM备注</div>
                           <textarea id="orderNote"></textarea>
                           <div class="must"></div>
                         </div>  
@@ -243,16 +244,17 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
               <div class="itemContents">
+              		<input type="text" id="userName">
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
-                          <input class="itemInput" id="muRealName">
+                          <input class="itemInput" id="muRealName" maxLength="10">
                           <div class="must">*</div>
                         </div>  
                         
                         <div class="setError longItem" id="cusCompanyNameError" >  
                           <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="muUserCompany">
+                          <input class="itemInput" id="muUserCompany" maxLength="30">
                           <div class="must">*</div>
                         </div>  
                     </div>
@@ -516,7 +518,7 @@
                     </div>
                     <div class="itemLine"></div>
                     <div class="infoItem">
-                          <div class="itemTitile textareaTitle">备注</div>
+                          <div class="itemTitile textareaTitle">CRM备注</div>
                           <textarea></textarea>
                     </div>
                   </div>  

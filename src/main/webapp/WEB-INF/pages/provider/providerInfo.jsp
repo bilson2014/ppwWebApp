@@ -104,7 +104,7 @@
 		           <li class="providerName">${provider.teamName }</li>
 		           <li class="providerPlace"><img class="place" src="${imgPath}/provder/place.png"></li>
 		           <li class="provinceCity"><div id="province">${provider.teamProvinceName }</div><div class="circle"></div><div id="city">${provider.teamCityName }</div></li>
-		           <li><div class="withIt btn-c-r" id="withIt">与TA沟通</div></li>
+		           <li><div class="withIt btn-c-r" data-xaioyu="provider" data-comment="${provider.teamName }" id="withIt">与TA沟通</div></li>
 		        </ul>
 		     </div>
 		     

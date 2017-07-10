@@ -276,8 +276,17 @@ th {
     .otherInfo {
         padding-left: 20px;
         display: none;
+        .setOtherTitle {
+            font-size: $font-size-base;
+            color: $red-base !important;
+            width: 100px;
+            vertical-align: bottom;
+            display: inline-block;
+        }
         input {
-            width: 100% !important;
+            vertical-align: bottom;
+            display: inline-block;
+            width: 80% !important;
             font-size: $font-size-base;
             color: $red-base !important;
             border-radius: 0!important;

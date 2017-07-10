@@ -246,7 +246,7 @@ var videoListProtal = {
 				if (!$percent.length) {
 					$percent = $(
 							'<div class="progress progress-striped active">'
-									+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+									+ '<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" style="width: 0%">'
 									+ '</div>' + '</div>')
 							.appendTo($li).find('.progress-bar');
 				}

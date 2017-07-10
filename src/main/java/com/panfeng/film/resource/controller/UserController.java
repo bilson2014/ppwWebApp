@@ -86,7 +86,7 @@ public class UserController extends BaseController {
 		// 修改 用户基本信息
 		if (user != null) {
 			if (user.getId() != 0) {
-				int computeScore = pmsUserFacade.computeScore(user);
+				Integer computeScore = pmsUserFacade.computeScore(user);
 				user.setClientLevel(computeScore);
 				pmsUserFacade.update(user);
 				baseMsg.setCode(BaseMsg.NORMAL);

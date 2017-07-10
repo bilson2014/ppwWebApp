@@ -428,6 +428,14 @@ public class ChanPinController extends BaseController {
 		return result;
 	}
 
+	@RequestMapping("/product/mail")
+	public void test(){
+		Map<String, String[]> parser = new HashMap<String, String[]>();
+		String key = "1300792971@qq.com";
+		parser.put(key, new String[0]);
+		mailMQService.sendMailsByType("testsubmit", parser);
+	}
+	
 	/**
 	 * 临时解决方案
 	 */

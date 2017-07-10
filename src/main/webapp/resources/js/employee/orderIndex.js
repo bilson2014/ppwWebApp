@@ -293,10 +293,20 @@ var orderIndex = {
 			$('.isFind').off('click').on('click',function(){
 				var id = $(this).attr('data-id');
 				initUserView(id);
+				//用户需求保存
+				$('#submitEditCus').off('click').on('click',function(){
+					var res = checkUserInfo();
+					var id = $(this).attr('data-id');
+					if(res){
+						updateUser(id);
+					}
+				});
+				$('#cancleEdit').off('click').on('click',function(){
+					$('.modelPage').hide();
+				});
 				$('#modifyUserInfo').show();
 			});
-            
-			//用户需求保存
+			
 			$('#submitEditCus').off('click').on('click',function(){
 				var res = checkUserInfo();
 				var id = $(this).attr('data-id');
@@ -304,7 +314,7 @@ var orderIndex = {
 					updateUser(id);
 				}
 			});
-			
+
 			$('.listHeader').off('click').on('click',function(){
 				$('.orderModel').hide();
 			});
@@ -394,7 +404,7 @@ var orderIndex = {
 		              '     <th>联系电话</th>    ' ,
 		              '     <th>订单来源</th>    ' ,
 		              '     <th>下单时间</th>    ' ,
-			             '      <th>备注</th>    ',
+			             '  <th>CRM备注</th>    ',
 		              '     <th>客户信息</th>    ' ,
 		              '     <th>需求文档</th>    ' ,
 		             '  </tr>                   ',
@@ -410,7 +420,7 @@ var orderIndex = {
 		             '      <th>联系电话</th>    ',
 		             '      <th>订单来源</th>    ',
 		             '      <th>下单时间</th>    ',
-		             '      <th>备注</th>    ',
+		             '      <th>CRM备注</th>    ',
 		             '      <th>客户信息</th>',
 		             '      <th>修改</th>    ',
 		             '  </tr>                   ',
@@ -724,7 +734,7 @@ function initUpdateInfo(){
 }
 
 function submitSaveOrCreate(check,item){
-	//提交
+	//提交submit
 	$('#submitEdit').off('click').on('click',function(){
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
@@ -1173,6 +1183,7 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
+
     loadData(function (res){
     	if(res.code == 200){
     		var indent_tele = $(tr).find('.indent_tele').text();
@@ -1326,7 +1337,7 @@ function checkUserInfo(){
 		$('#muTelephone').focus();
 		return false;
 	}
-	if(webUrl != undefined || webUrl != "" || webUrl != null ){
+	if(webUrl != undefined && webUrl != "" && webUrl != null ){
 	if(!IsUrl(webUrl)){
 		$('#muOfficialSiteError').attr('data-content','网址不正确');
 		$('#muOfficialSite').focus();
@@ -1385,6 +1396,7 @@ function refresh(){
 
 function updateUser(id){
 	
+	var userName = $('#userName').val();
 	var realName = $('#muRealName').val();
 	var userCompany = $('#muUserCompany').val();
 	var customerType = $('#muCustomerType').attr('data-id');
@@ -1398,24 +1410,43 @@ function updateUser(id){
 	var customerSize = $('#muCustomerSize').attr('data-id');
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
-	loadData(function(res){
-		$('#modifyUserInfo').hide();
-		refresh();
-	}, getContextPath() +'/user/update', $.toJSON({
-		"userCompany":userCompany,
-		"realName":realName,
-		"telephone":telephone,
-		"customerType":customerType,
-		"position":position,
-		"weChat":weChat,
-		"email":email,
-		"officialSite":officialSite,
-		"purchaseFrequency":purchaseFrequency,
-		"purchasePrice":purchasePrice,
-		"customerSize":customerSize,
-		"endorse":endorse,
-		"note":note,
-		"id":id
+	loadData(function(flag){		
+		if(flag.errorCode == 200){
+			//  未注册
+			//用户修改
+			loadData(function(res){
+				$('#modifyUserInfo').hide();
+				refresh();
+			}, getContextPath() +'/user/update', $.toJSON({
+				"userName":userName,
+				"userCompany":userCompany,
+				"realName":realName,
+				"telephone":telephone,
+				"customerType":customerType,
+				"position":position,
+				"weChat":weChat,
+				"email":email,
+				"officialSite":officialSite,
+				"purchaseFrequency":purchaseFrequency,
+				"purchasePrice":purchasePrice,
+				"customerSize":customerSize,
+				"endorse":endorse,
+				"note":note,
+				"id":id
+			}));
+			
+		}else if(flag.errorCode == 500){
+			if(flag.result == false){
+				// 已经注册
+				$('#cusTelesError').attr('data-content','该手机号已经注册');
+				$('#muTelephone').focus();
+			}else{
+				$('#cusTelesError').attr('data-content',flag.errorMsg);
+				$('#muTelephone').focus();
+			}
+		}
+	}, getContextPath() + '/login/validation/phone', $.toJSON({
+		telephone : telephone
 	}));
 }
 
@@ -1438,6 +1469,7 @@ function initUserView(id){
 		$('#muOfficialSite').val('');	
 		loadData(function(res){
 			var rr = res.result;
+			$('#userName').val(rr.userName);
 			$('#muRealName').val(rr.realName);
 			$('#muUserCompany').val(rr.userCompany);
 			$('#muTelephone').val(rr.telephone);

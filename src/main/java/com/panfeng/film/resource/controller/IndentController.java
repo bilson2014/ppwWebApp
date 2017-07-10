@@ -79,6 +79,24 @@ public class IndentController extends BaseController {
 			// 登录之后，不需要判断验证码
 			indent.setIndent_tele(info.getTelephone());
 			flag = true;
+			String sessionType = info.getSessionType();
+			String in = indent.getIndent_recomment();
+			if(ValidateUtil.isValid(sessionType)){
+				switch (sessionType) {
+				case PmsConstant.ROLE_CUSTOMER:
+					in = "客户   "+in;
+					break;
+				case PmsConstant.ROLE_PROVIDER:
+					in = "供应商   "+in;
+					break;
+				case PmsConstant.ROLE_EMPLOYEE:
+					in = "内部员工   "+in;
+					break;
+				}
+			}else{
+				in = "未知角色   "+in;
+			}
+			indent.setIndent_recomment(in);
 		} else {
 			// 未登录，需要判断验证码
 			String code = (String) session.getAttribute("code");
@@ -201,7 +219,7 @@ public class IndentController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		baseMsg.setCode(BaseMsg.ERROR);
 		baseMsg.setErrorMsg("处理失败！");
-
+		indent.setIndentType(PmsIndent.ORDER_HANDLING);
 		if (indent != null && indent.getId() != null && indent.getId() > 0) {
 			long update = pmsIndentFacade.update(indent);
 			if (update > 0) {
@@ -214,7 +232,6 @@ public class IndentController extends BaseController {
 				Long reqiureId = currentInfo.getReqiureId();
 				indent.setEmployeeId(reqiureId);
 			}
-			indent.setIndentType(PmsIndent.ORDER_HANDLING);
 			boolean save = pmsIndentFacade.saveOrder(indent);
 			if (save) {
 				baseMsg.setCode(BaseMsg.NORMAL);
@@ -295,6 +312,19 @@ public class IndentController extends BaseController {
 			if (!ValidateUtil.isValid(user.getRealName())) {
 				user.setRealName(indent.getRealName());
 			}
+			
+			if(!ValidateUtil.isValid(user.getUserName())){
+				PmsUser temp2 = new PmsUser();
+				temp2.setUserName(indent.getUserCompany());
+				List<PmsUser> findUserByName = pmsUserFacade.findUserByName(temp2);
+				int x = findUserByName == null ? 0 : findUserByName.size();
+				String ss = "";
+				if (x != 0) {
+					ss = x + "";
+				}
+				user.setUserName(indent.getUserCompany() + ss);
+			}
+			
 			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
