@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.BaseEntity;
@@ -32,13 +36,18 @@ import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
+import com.paipianwang.pat.facade.product.entity.PmsRequire;
 import com.paipianwang.pat.facade.product.entity.PmsService;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
+import com.paipianwang.pat.facade.product.service.PmsRequireFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
+import com.paipianwang.pat.facade.right.entity.PmsEmployee;
+import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
+import com.panfeng.film.mq.service.MailMQService;
 import com.panfeng.film.mq.service.SmsMQService;
 
 @RestController
@@ -62,6 +71,15 @@ public class IndentController extends BaseController {
 	@Autowired
 	private PmsUserFacade pmsUserFacade;
 
+	@Autowired
+	private MailMQService mailMQService;
+
+	@Autowired
+	private PmsRequireFacade pmsRequireFacade;
+
+	@Autowired
+	private final PmsEmployeeFacade pmsEmployeeFacade = null;
+
 	/**
 	 * PC端-ajax 提交订单
 	 */
@@ -79,24 +97,6 @@ public class IndentController extends BaseController {
 			// 登录之后，不需要判断验证码
 			indent.setIndent_tele(info.getTelephone());
 			flag = true;
-			String sessionType = info.getSessionType();
-			String in = indent.getIndent_recomment();
-			if(ValidateUtil.isValid(sessionType)){
-				switch (sessionType) {
-				case PmsConstant.ROLE_CUSTOMER:
-					in = "客户   "+in;
-					break;
-				case PmsConstant.ROLE_PROVIDER:
-					in = "供应商   "+in;
-					break;
-				case PmsConstant.ROLE_EMPLOYEE:
-					in = "内部员工   "+in;
-					break;
-				}
-			}else{
-				in = "未知角色   "+in;
-			}
-			indent.setIndent_recomment(in);
 		} else {
 			// 未登录，需要判断验证码
 			String code = (String) session.getAttribute("code");
@@ -176,7 +176,6 @@ public class IndentController extends BaseController {
 	@RequestMapping(value = "/list/page", produces = "application/json; charset=UTF-8")
 	public DataGrid<PmsIndent> listWithPagination(@RequestBody Map<String, Object> paramMap,
 			HttpServletRequest request) {
-
 		if (ValidateUtil.isValid(paramMap)) {
 
 			// 设置分页
@@ -281,6 +280,7 @@ public class IndentController extends BaseController {
 		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
+			sendMail(indent.getId());
 		} else {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("提交失败！");
@@ -306,8 +306,8 @@ public class IndentController extends BaseController {
 			if (!ValidateUtil.isValid(user.getRealName())) {
 				user.setRealName(indent.getRealName());
 			}
-			
-			if(!ValidateUtil.isValid(user.getUserName())){
+
+			if (!ValidateUtil.isValid(user.getUserName())) {
 				PmsUser temp2 = new PmsUser();
 				temp2.setUserName(indent.getUserCompany());
 				List<PmsUser> findUserByName = pmsUserFacade.findUserByName(temp2);
@@ -318,7 +318,7 @@ public class IndentController extends BaseController {
 				}
 				user.setUserName(indent.getUserCompany() + ss);
 			}
-			
+
 			pmsUserFacade.update(user);
 		} else {
 			// 插入用户
@@ -437,6 +437,109 @@ public class IndentController extends BaseController {
 			baseMsg.setErrorMsg("订单ID不能为空！");
 		}
 		return baseMsg;
+	}
+
+	public void sendMail(Long indentId) {
+
+		String[] value = new String[] { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+				"", "", "", "", "", "" };
+		PmsIndent indent = pmsIndentFacade.findIndentById(indentId);
+		if (indent != null) {
+			value[0] = "";
+			Long employeeId = indent.getEmployeeId();
+			if (employeeId != null) {
+				PmsEmployee employee = pmsEmployeeFacade.findEmployeeById(employeeId);
+				if (employee != null) {
+					value[0] = employee.getEmployeeRealName();
+				}
+			}
+			value[1] = indent.getId() + "";
+			value[2] = indent.getOrderDate();
+
+			Long userId = indent.getUserId();
+			if (userId != null) {
+				PmsUser user = pmsUserFacade.findUserById(userId);
+				if (user != null) {
+					value[3] = user.getRealName();
+					value[4] = user.getTelephone();
+					value[5] = user.getUserCompany();
+				}
+			}
+			Integer indentSource = indent.getIndentSource();
+			switch (indentSource) {
+			case 1:
+				value[6] = "线上-网站";
+				break;
+			case 2:
+				value[6] = "线上-活动";
+				break;
+			case 3:
+				value[6] = "线上-新媒体";
+				break;
+			case 4:
+				value[6] = "线下-电销";
+				break;
+			case 5:
+				value[6] = "线下-直销";
+				break;
+			case 6:
+				value[6] = "线下-活动";
+				break;
+			case 7:
+				value[6] = "线下-渠道";
+				break;
+			case 8:
+				value[6] = "复购";
+				break;
+			case 9:
+				value[6] = "线下-400";
+				break;
+			case 10:
+				value[6] = "线下-商桥";
+				break;
+			default:
+				break;
+			}
+			value[7] = indent.getcSRecomment();
+
+			Long requireId = indent.getRequireId();
+			if (requireId != null) {
+				PmsRequire require = pmsRequireFacade.getRequireInfo(requireId);
+				String requireJson = require.getRequireJson();
+				String requireConfig = pmsRequireFacade.getRequireConfig();
+				JsonParser jsonParser = new JsonParser();
+
+				JsonElement jeRc = jsonParser.parse(requireConfig);
+				JsonObject jo = jeRc.getAsJsonObject();
+				JsonArray asJsonArray = jo.getAsJsonArray("rows");
+
+				jsonParser = new JsonParser();
+				JsonElement jeRc2 = jsonParser.parse(requireJson);
+				JsonArray asJsonArray2 = jeRc2.getAsJsonArray();
+				int index = 7;
+				for (int i = 0; i < asJsonArray.size(); i++) {
+					JsonObject ijs = asJsonArray.get(i).getAsJsonObject();
+					String title = ijs.get("title").getAsString();
+					index++;
+					value[index] = title;
+					String name = ijs.get("name").getAsString();
+					index++;
+					for (int j = 0; j < asJsonArray2.size(); j++) {
+						JsonObject ijs2 = asJsonArray2.get(j).getAsJsonObject();
+						String key = ijs2.get("key").getAsString();
+						String value1 = ijs2.get("value").getAsString();
+						if (key.equals(name)) {
+							value[index] = value1;
+							break;
+						}
+					}
+				}
+			}
+		}
+		Map<String, String[]> parser = new HashMap<String, String[]>();
+		String key = "1300792971@qq.com";
+		parser.put(key, value);
+		mailMQService.sendMailsByType("testsubmit", parser);
 	}
 
 	// ------------------------------------------------------------------------------

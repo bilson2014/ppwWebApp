@@ -123,7 +123,7 @@
                <div class="closeBtn"></div>
 		   <div class="checkListContent">
 		         <img src="${imgPath}/orderManager/waring.png">  
-		         <div class="lList">您提供的<span id="setErrorInfoWord"></span>信息不完整,</br>请填写完成之后再提交</div>
+		         <div class="lList">您提供的<span id="setErrorInfoWord"></span>信息不完整,<br/>请填写完成之后再提交</div>
 		         <div class="serErrorDiv"></div>
 		         <div class="checkBtn btn-c-r" id="checkError">确认</div>
 		   </div>
@@ -167,6 +167,7 @@
               <div class="findInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">新建订单</div>
+                    <input type="hidden" id="indent_recomment">
               <div class="itemContent">
                     <div class="infoItem">
                          <div class="setError" id="telNameError" data-content="">
@@ -570,13 +571,19 @@
 							                           线下-直销
 							          </c:if>
 							          <c:if test="${item.indentSource == 6}">
-							                           线下-活动
+							          线下-活动
 							          </c:if>
 							          <c:if test="${item.indentSource == 7}">
 							                           线下-渠道
 							          </c:if>
 							          <c:if test="${item.indentSource == 8}">
 							                           复购
+							          </c:if>
+							          <c:if test="${item.indentSource == 9}">
+							                           线下-400
+							          </c:if>
+							          <c:if test="${item.indentSource == 10}">
+							                           线下-商桥
 							          </c:if>
 							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>

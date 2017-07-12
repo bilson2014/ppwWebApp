@@ -453,7 +453,14 @@ var orderIndex = {
 			}
 			if(num == 8){
 				name = '复购';
-			}		
+			}
+			if(num == 9){
+				name = '线下-400';
+			}
+			if(num == 10){
+				name = '线下-商桥';
+			}
+			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
@@ -498,6 +505,13 @@ var orderIndex = {
 			if(num == 8){
 				name = '复购';
 			}
+			if(num == 9){
+				name = '线下-400';
+			}
+			if(num == 10){
+				name = '线下-商桥';
+			}
+			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
@@ -544,6 +558,13 @@ var orderIndex = {
 			if(num == 8){
 				name = '复购';
 			}
+			if(num == 9){
+				name = '线下-400';
+			}
+			if(num == 10){
+				name = '线下-商桥';
+			}
+			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
 			           ' <tr> ' ,
@@ -690,12 +711,14 @@ function editEvenFunction(item){
 	var companyName = item.result.userCompany;
 	var teles = item.result.indent_tele;
 	var orderNote = item.result.cSRecomment;
+	var indent_recomment = item.result.indent_recomment;
 	var orderInfo = $('#orderComeInfo').attr('data-value');
 	$('#orderName').text('订单信息修改');
 	$('#telName').val(telName);
 	$('#companyName').val(companyName);
 	$('#teles').val(teles);
 	$('#orderNote').val(orderNote);
+	$('#indent_recomment').val(indent_recomment);
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');
@@ -744,15 +767,16 @@ function submitSaveOrCreate(check,item){
 			var subInfoPeople = $('#orderP').attr('data-value') == ''?null : $('#orderP').attr('data-value');
 			var dataIndentName = '自主研发';
 			var textArea = $('#orderNote').val();
+			var indent_recomment = $('#indent_recomment').val();
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
 			  dataIndentName = item.result.indentName;
 			}
 			if(check == 1){
-				var data = {realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1',cSRecomment:textArea};
+				var data = {indent_recomment:indent_recomment,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,serviceId:'-1',cSRecomment:textArea};
 			}else{
-				var data = {id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,cSRecomment:textArea};
+				var data = {indent_recomment:indent_recomment,id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,cSRecomment:textArea};
 			}
 			$.ajax({
 				  type: 'POST',

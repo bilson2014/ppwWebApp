@@ -1,5 +1,7 @@
 package com.panfeng.film.resource.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -589,34 +591,30 @@ public class VersionManagerController extends BaseController {
 
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {
-		// final String url = PublicConfig.URL_PREFIX + "project/get/report";
+		final String url = PublicConfig.URL_PREFIX + "project/get/report";
 		try {
 			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);
+			Object[] objArrayObjects = HttpUtil.httpPostFile(url, indentProject, request);
 
-			// TODO HTTP 通讯方式更改为 dubbo 方式
-			// Object[] objArrayObjects = HttpUtil.httpPostFile(url,
-			// indentProject, request);
-			// Object[] objArrayObjects = null;
-			//
-			// response.reset();
-			// response.setCharacterEncoding("utf-8");
-			// if (objArrayObjects[1] != null) {
-			// File inputFile = (File) objArrayObjects[1];
-			// response.setContentType("application/octet-stream");
-			// response.setContentLength((int) inputFile.length());
-			// response.setHeader("Content-Disposition", objArrayObjects[0] +
-			// "");
-			// ServletOutputStream ouputStream = response.getOutputStream();
-			// InputStream is = new FileInputStream(inputFile);
-			// // send file
-			// HttpUtil.saveTo(is, ouputStream);
-			// inputFile.delete();
-			// }
+			response.reset();
+			response.setCharacterEncoding("utf-8");
+			if (objArrayObjects[1] != null) {
+				File inputFile = (File) objArrayObjects[1];
+				response.setContentType("application/octet-stream");
+				response.setContentLength((int) inputFile.length());
+				response.setHeader("Content-Disposition", objArrayObjects[0] + "");
+				ServletOutputStream ouputStream = response.getOutputStream();
+				InputStream is = new FileInputStream(inputFile);
+				// send file
+				HttpUtil.saveTo(is, ouputStream);
+				inputFile.delete();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 
 	/**
 	 * 跳转项目信息页面

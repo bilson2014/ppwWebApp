@@ -138,7 +138,7 @@
 								aria-labelledby="dropdownMenu1">
 								<li>宣传片</li>
 								<li>广告片</li>
-								<li>动画片</li>
+								<li>MG动画</li>
 								<li>病毒视频</li>
 								<li>微电影</li>
 								<li>证言影片</li>

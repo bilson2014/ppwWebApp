@@ -24,8 +24,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片">
-	<meta name="description" content="拍片网汇聚了入驻导演原创精品视频案例，覆盖了宣传片、广告片，微电影，病毒视频，纪录片，动画片，MV，预告片，证言影片等各种类型，创意免费，价格透明，不满意可退款">
+	<meta name="keywords" content="宣传片，广告片，微电影，病毒视频，纪录片，MG动画，MV，预告片，证言影片">
+	<meta name="description" content="拍片网汇聚了入驻导演原创精品视频案例，覆盖了宣传片、广告片，微电影，病毒视频，纪录片，MG动画，MV，预告片，证言影片等各种类型，创意免费，价格透明，不满意可退款">
 	<title>精品案例-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${listCss }">
