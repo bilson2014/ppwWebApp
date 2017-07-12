@@ -223,12 +223,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four4"></div>
-							<div class="home-search" data-text="病毒视频">病毒视频</div>
-							<div class="home-search" data-text="病毒视频">VIRAL VIDEOS</div>
+							<div class="home-search" data-text="MG动画">MG动画</div>
+							<div class="home-search" data-text="MG动画">MOTION GRAPHICS</div>
 						</div>
 						<div class="typeBottom">
-							<span class="home-search" data-text="病毒视频">通过案例找创意>></span>
-							 <span class="home-order" data-text="病毒视频">立即下单</span>
+							<span class="home-search" data-text="MG动画">通过案例找创意>></span>
+							 <span class="home-order" data-text="MG动画">立即下单</span>
 						</div>
 					</div>
 				</div>
