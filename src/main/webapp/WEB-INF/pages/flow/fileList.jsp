@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<h1>看看吧兄弟_${teamId }</h1>  <br/>
-		<a href="${flowExecutionUrl}&_eventId=uploadFile">文件上传</a> <br/>
+		<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=0">文件上传</a> <br/>
 		
 		<table >
 			<tr>

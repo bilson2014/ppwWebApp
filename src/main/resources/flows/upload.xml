@@ -4,8 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
  http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 	
-	<view-state id="uploadFile" view="/flow/uploadFile">
-		<transition on="save" to="endFile" />
+	<var name="product" class="com.panfeng.film.model.Product"/>
+	
+	<on-start>
+		<set name="flowScope.productId" value="requestParameters.productId"></set>
+	</on-start>
+	
+	<view-state id="uploadFile" view="/flow/upload" model="product">
+		<transition on="save" to="endFile" >
+			<evaluate expression="productService.updateInfo(product)" />
+		</transition>
 		<transition on="cancel" to="endFile" />
 	</view-state>
 	
