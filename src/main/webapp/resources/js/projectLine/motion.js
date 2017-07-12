@@ -141,7 +141,7 @@ function initProduct(){
 							            '           <div>制作周期   :  <span>'+rr.pProductionCycle+'天</span></div>',
 							            '           <div>应用场景   :  <span>'+rr.pScene+'</span></div>',
 							            '           <div class="contentDes">'+rr.customerRestimonial+'</div>',
-							            '           <div class="priceContent">总价格   <span>￥</span><span>'+rr.product.servicePrice+'</span></div>',
+							            '           <div class="priceContent">总价格   <span>￥</span><span>'+rr.product.serviceRealPrice+'</span></div>',
 							            '       </div>',
 										'	</div>', '</div>','</a>' ].join('');
 								view.append(html);

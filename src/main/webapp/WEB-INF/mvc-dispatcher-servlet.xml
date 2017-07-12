@@ -9,6 +9,8 @@
 
 	<mvc:view-controller path="/" view-name="/index" />
 	
+	<mvc:view-controller path="/flow" view-name="/flow/index" />
+	
 	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
 	
 	<mvc:view-controller path="/list" view-name="/standardized/requireList" />
@@ -41,14 +43,14 @@
     
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
-    
     <!-- 订单管理系统 -->
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
     <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
     <!-- end --> 
-    
+    <mvc:view-controller path="/test1" view-name="/providerFlow/providerAgree" />
+    <mvc:view-controller path="/test2" view-name="/providerFlow/infoStepOne" />
     <!-- 订单管理系统 -->
    <!--  <mvc:view-controller path="/error404" view-name="/error404" /> -->
     <!-- end --> 
@@ -57,7 +59,7 @@
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />
 
@@ -112,7 +114,6 @@
 			<mvc:exclude-mapping path="/provider/checkExisting" />
 			<mvc:exclude-mapping path="/provider/checkPhoneExisting" />
 			<mvc:exclude-mapping path="/provider/info/register" />
-			<mvc:exclude-mapping path="/provider/info/recover" />
 			<mvc:exclude-mapping path="/provider/login/**" />
 			<mvc:exclude-mapping path="/provider/upload/teamPhoto" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />

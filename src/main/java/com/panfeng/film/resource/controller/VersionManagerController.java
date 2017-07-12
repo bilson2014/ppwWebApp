@@ -60,7 +60,6 @@ import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
 import com.panfeng.film.resource.model.IndentResource;
 import com.panfeng.film.resource.model.Info;
-import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
@@ -573,16 +572,6 @@ public class VersionManagerController extends BaseController {
 		// fill userinfo
 		final String url = PublicConfig.URL_PREFIX + "portal/user/search/info";
 		String str = HttpUtil.httpPost(url, user, request);
-		if (str != null && !"".equals(str)) {
-			return JsonUtil.toList(str);
-		}
-		return new ArrayList<>();
-	}
-
-	@RequestMapping("/projects/staff/static/list")
-	public List<Staff> getStaffList(final HttpServletRequest request) {
-		final String url = PublicConfig.URL_PREFIX + "/portal/staff/static/list";
-		String str = HttpUtil.httpGet(url, request);
 		if (str != null && !"".equals(str)) {
 			return JsonUtil.toList(str);
 		}

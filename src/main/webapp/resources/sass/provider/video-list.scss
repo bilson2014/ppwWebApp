@@ -188,7 +188,7 @@ html {
             line-height: $font-size-base;
         }
         span:nth-child(2) {
-            font-size: $font-size-sm;
+            font-size: $font-size-base;
             color: $gray-dark;
             width: 300px;
             @media screen and (min-width: 970px) {

@@ -25,9 +25,7 @@ $().ready(function(){
 							// 消息发送成功
 							$('#modal-dd-second').empty();
 							$('#modal-h3-first').text('视频营销专家正火速与您联系!');
-							/*$('.modal-message').empty();
-							$('.modal-message').text('亲!我们的视频专家将马上与您致电,请耐心等候!');
-							$('.modal-message').show('normal');*/
+							
 						}else{
 							// 消息发送失败
 							$('.modal-message').empty();

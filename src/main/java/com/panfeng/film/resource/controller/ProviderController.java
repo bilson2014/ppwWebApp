@@ -1,9 +1,7 @@
 package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -52,14 +49,11 @@ import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
-import com.panfeng.film.resource.model.Wechat;
-import com.panfeng.film.service.ProviderThirdLogin;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
-import com.panfeng.film.util.WechatUtils;
 
 /**
  * 供应商模块 控制器
@@ -71,8 +65,6 @@ import com.panfeng.film.util.WechatUtils;
 @RequestMapping("/provider")
 public class ProviderController extends BaseController {
 
-	@Autowired
-	private ProviderThirdLogin providerThirdLogin;
 	@Autowired
 	private PmsTeamFacade pmsTeamFacade = null;
 	@Autowired
@@ -244,37 +236,6 @@ public class ProviderController extends BaseController {
 		}
 	}
 
-	@RequestMapping("/thirdLogin")
-	public ModelAndView thirdLogin(String json, final HttpServletRequest request, ModelMap modelMap) {
-		if (!ValidateUtil.isValid(json))
-			return new ModelAndView("/register");
-		Team original = JsonUtil.toBean(json, Team.class);
-		boolean isBind = providerThirdLogin.login(original, request);
-		if (isBind) {
-			return new ModelAndView("/provider/portal");
-		} else {
-			HttpSession httpSession = request.getSession();
-			String unique = "";
-			switch (original.getThirdLoginType()) {
-			case Team.LTYPE_QQ:
-				unique = original.getQqUnique();
-				break;
-			case Team.LTYPE_WECHAT:
-				unique = original.getWechatUnique();
-				break;
-			case Team.LTYPE_WEIBO:
-				unique = original.getWbUnique();
-				break;
-			}
-			httpSession.setAttribute(UNIQUE, unique);
-			httpSession.setAttribute(LINKMAN, original.getLinkman());
-			httpSession.setAttribute(LTYPE, original.getThirdLoginType());
-			modelMap.put("linkMan", original.getLinkman());
-			modelMap.put("LType", original.getThirdLoginType());
-			return new ModelAndView("/provider/threeLogin", modelMap);
-		}
-	}
-
 	/**
 	 * 检测登录名是否可用
 	 * 
@@ -357,63 +318,6 @@ public class ProviderController extends BaseController {
 			info.setValue("请重新获取验证码!");
 		}
 		return info;
-	}
-
-	/**
-	 * 更改密码
-	 * 
-	 * @param original
-	 *            供应商信息
-	 * @return 成功返回 true, 失败返回 false
-	 */
-	@RequestMapping("/info/recover")
-	public Info recoverPassword(final HttpServletRequest request, @RequestBody final Team original) {
-
-		final String code = (String) request.getSession().getAttribute("code");
-		Info info = new Info(); // 信息载体
-		// 判断验证码
-		if (!"".equals(code) && code != null) {
-			if (code.equals(original.getVerification_code())) {
-				if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
-					try {
-						// AES 解密
-						final String password = AESUtil.Decrypt(original.getPassword(), PmsConstant.UNIQUE_KEY);
-
-						// MD5 加密
-						original.setPassword(DataUtil.md5(password));
-
-						// 转码
-						original.setPassword(URLEncoder.encode(original.getPassword(), "UTF-8"));
-
-						// 连接远程服务器，传输数据
-						final String url = PublicConfig.URL_PREFIX + "portal/team/static/recoverPassword";
-						final String json = HttpUtil.httpPost(url, original, request);
-						if (json != null && !"".equals(json)) {
-							final boolean flag = JsonUtil.toBean(json, Boolean.class);
-							info.setKey(flag);
-							return info;
-						}
-					} catch (Exception e) {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error(
-								"ProviderController method:recoverPassword() Provider Password Decrypt Error On Provider Register ...",
-								sessionInfo);
-						e.printStackTrace();
-					}
-				}
-				info.setKey(false);
-				return info;
-			} else {
-				info.setKey(false);
-				info.setValue("短信验证码不正确");
-				return info;
-			}
-		} else {
-			info.setKey(false);
-			info.setValue("短信验证码错误");
-			return info;
-		}
-
 	}
 
 	/**
@@ -502,6 +406,13 @@ public class ProviderController extends BaseController {
 		return msg;
 	}
 
+	/**
+	 * 上传供应商Logo
+	 * @param request
+	 * @param response
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/upload/teamPhoto")
 	public String uploadLogo(final HttpServletRequest request, final HttpServletResponse response,
 			@PathParam("file") final MultipartFile file) {
@@ -532,91 +443,6 @@ public class ProviderController extends BaseController {
 		}
 
 		return null;
-	}
-
-	/**
-	 * 上传 供应商 logo 地址
-	 * 
-	 * @param file
-	 *            上传的图片文件
-	 * @param team
-	 *            团队信息
-	 * @return 成功返回 true, 失败返回 false
-	 */
-	@RequestMapping("/update/teamPhotoPath")
-	public String updateTeamPhotoPath(final HttpServletRequest request, final HttpServletResponse response,
-			@PathParam("file") final MultipartFile file, final Team team) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");
-		// 如果文件为空，则不更新图片路径;反之亦然
-		if (!file.isEmpty()) {
-
-			final long fileSize = file.getSize(); // 上传文件大小
-			final long maxSize = Long.parseLong(PublicConfig.IMAGE_MAX_SIZE);
-			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
-
-			if (fileSize > maxSize * 1024) {
-				// 文件大小超出规定范围
-				SessionInfo sessionInfo = getCurrentInfo(request);
-				Log.error("upload provider photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
-						+ "...", sessionInfo);
-				return "false@error=1";
-			} else {
-				if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
-					// 修改为DFs上传 begin
-					// 2016-10-20 14:25:02
-					final String fileId = FastDFSClient.uploadFile(file);
-					// 修改为DFs上传 end
-
-					// 删除 原文件
-					final String originalTeamUrl = PublicConfig.URL_PREFIX + "portal/team/static/data/"
-							+ team.getTeamId();
-					final String originalJson = HttpUtil.httpGet(originalTeamUrl, request);
-					if (originalJson != null && !"".equals(originalJson)) {
-						final Team originalTeam = JsonUtil.toBean(originalJson, Team.class);
-						final String originalPath = originalTeam.getTeamPhotoUrl();
-						if (null != originalPath && !originalPath.equals("")) {
-							FastDFSClient.deleteFile(originalPath);
-						}
-					}
-					team.setTeamPhotoUrl(fileId);
-					// save photo path
-					final String updateTeamUrl = PublicConfig.URL_PREFIX
-							+ "portal/team/static/data/updateTeamPhotoPath";
-					final String json = HttpUtil.httpPost(updateTeamUrl, team, request);
-					final boolean flag = JsonUtil.toBean(json, Boolean.class);
-					if (flag) {
-						SessionInfo sessionInfo = getCurrentInfo(request);
-						Log.error("upload provider photo success,photoUrl:" + fileId, sessionInfo);
-						return fileId;
-					}
-				} else {
-					// 文件格式不正确
-					SessionInfo sessionInfo = getCurrentInfo(request);
-					Log.error("upload provider photo error,becase the photo type error...", sessionInfo);
-					return "false@error=2";
-				}
-			}
-
-		}
-
-		return null;
-	}
-
-	/**
-	 * 更新 供应商审核状态为 审核中
-	 * 
-	 * @param team
-	 *            包含 供应商唯一编号
-	 */
-	@RequestMapping("/change/status")
-	public boolean updateStatus(final HttpServletRequest request, @RequestBody final Team team) {
-		if (team != null) {
-			final String url = PublicConfig.URL_PREFIX + "portal/team/static/data/updateStatus";
-			final String json = HttpUtil.httpPost(url, team, request);
-			final boolean flag = JsonUtil.toBean(json, Boolean.class);
-			return flag;
-		}
-		return false;
 	}
 
 	/**
@@ -1024,6 +850,7 @@ public class ProviderController extends BaseController {
 		}
 	}
 
+	// 获取当前登录的供应商
 	public PmsTeam getCurrentTeam(final HttpServletRequest request) {
 		final SessionInfo info = getCurrentInfo(request);
 		final PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
@@ -1100,46 +927,6 @@ public class ProviderController extends BaseController {
 		return false;
 	}
 
-	@RequestMapping("/wechat/callback.do")
-	public ModelAndView loginWithWeChat(@RequestParam("code") String code, final HttpServletRequest request,
-			ModelMap modelMap) {
-		Wechat wechat = WechatUtils.decodeWechatToken(code, request);
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		if (wechat == null)
-			return new ModelAndView("/provider/threeLogin");
-		Team original = new Team();
-		if (null != sessionInfo && ValidateUtil.isValid(sessionInfo.getReqiureId())) {// 用户已经登录,个人资料页绑定
-			original.setUniqueId(wechat.getUnionid());
-			original.setThirdLoginType(Team.LTYPE_WECHAT);
-			original.setTeamId(sessionInfo.getReqiureId());
-			final String url = PublicConfig.URL_PREFIX + "portal/team/info/bind";
-			String s = HttpUtil.httpPost(url, original, request);
-			Boolean b = JsonUtil.toBean(s, Boolean.class);
-			if (b) {
-				modelMap.addAttribute("msg", "绑定成功");// 返回页面用作提示绑定成功
-			} else
-				modelMap.addAttribute("msg", "该账号已经存在绑定");
-			return new ModelAndView("redirect:/provider/portal");
-		} else {
-			original.setLinkman(wechat.getNickname());
-			// 这个是微信的唯一标识么?唯一标识不是token.getOpenid吗? 提出by wanglc
-			original.setWechatUnique(wechat.getUnionid());
-			original.setTeamPhotoUrl(wechat.getHeadimgurl());
-			original.setThirdLoginType(Team.LTYPE_WECHAT);
-			boolean isBind = providerThirdLogin.login(original, request);
-			if (isBind) {
-				return new ModelAndView("/provider/portal");
-			} else {
-				HttpSession httpSession = request.getSession();
-				String unique = original.getWechatUnique();
-				httpSession.setAttribute(UNIQUE, unique);
-				modelMap.put("linkMan", original.getLinkman());
-				modelMap.put("LType", original.getThirdLoginType());
-				return new ModelAndView("/provider/threeLogin", modelMap);
-			}
-		}
-	}
-
 	@RequestMapping("/repwd")
 	public ModelAndView repwd(ModelMap modelMap) {
 		return new ModelAndView("/rePwdPro", modelMap);
@@ -1157,56 +944,6 @@ public class ProviderController extends BaseController {
 			baseMsg.setResult("设置失败");
 		}
 		return baseMsg;
-	}
-
-	/**
-	 * 第三方绑定状态
-	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping("/third/status")
-	public Map<String, Object> thirdBindStatus(HttpServletRequest request) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		Team team = new Team();
-		team.setTeamId(sessionInfo.getReqiureId());
-		final String url = PublicConfig.URL_PREFIX + "portal/team/third/status";
-		final String json = HttpUtil.httpPost(url, team, request);
-		result = JsonUtil.toBean(json, Map.class);
-		return result;
-	}
-
-	/**
-	 * 个人中心绑定第三方 如果第三方账号已经存在,不允许绑定
-	 */
-	@RequestMapping("/bind/third")
-	public BaseMsg bindThird(final HttpServletRequest request, final HttpServletResponse response,
-			@RequestBody final Team team) {
-		BaseMsg baseMsg = new BaseMsg(0, "绑定失败");
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		team.setTeamId(sessionInfo.getReqiureId());// 填充用户id
-		final String url = PublicConfig.URL_PREFIX + "portal/team/info/bind";
-		String str = HttpUtil.httpPost(url, team, request);
-		Boolean b = JsonUtil.toBean(str, Boolean.class);
-		if (b) {
-			baseMsg.setCode(1);
-			baseMsg.setResult("绑定成功");
-		} else
-			baseMsg.setResult("账号存在绑定");
-		return baseMsg;
-	}
-
-	/**
-	 * 个人中心解除第三方绑定
-	 */
-	@RequestMapping("/unbind/third")
-	public boolean unBindThird(@RequestBody final Team team, final HttpServletRequest request) {
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		team.setTeamId(sessionInfo.getReqiureId());// 填充用户id
-		// 查询该用户是否存在
-		final String url = PublicConfig.URL_PREFIX + "portal/team/info/unbind";
-		String str = HttpUtil.httpPost(url, team, request);
-		Boolean b = JsonUtil.toBean(str, Boolean.class);
-		return b;
 	}
 
 	/**
@@ -1252,13 +989,7 @@ public class ProviderController extends BaseController {
 			// 加载导演标签
 			String strtags = result.getBusiness();
 			if (ValidateUtil.isValid(strtags)) {
-				String[] tagsarray = strtags.split("\\,");
-				List<Integer> ids = new ArrayList<>();
-				for (int i = 0; i < tagsarray.length; i++) {
-					ids.add(Integer.parseInt(tagsarray[i]));
-				}
-				List<String> tags = pmsTeamFacade.getTags(ids);
-				modelMap.addAttribute("providerTags", JsonUtil.toJson(tags));
+				modelMap.addAttribute("providerTags", JsonUtil.toJson(strtags.split(",")));
 			} else {
 				SessionInfo sessionInfo = getCurrentInfo(request);
 				Log.error("provider business is null ...", sessionInfo);

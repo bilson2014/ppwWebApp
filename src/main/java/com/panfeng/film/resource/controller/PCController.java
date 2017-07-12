@@ -406,15 +406,6 @@ public class PCController extends BaseController {
 		return product;
 	}
 
-	/**
-	 * 双十二活动页面 视图
-	 */
-	@RequestMapping("/active/12")
-	public ModelAndView d12View(final HttpServletRequest request) {
-
-		return new ModelAndView("/active/d12");
-	}
-
 	// 百度 推广
 	@RequestMapping("/baidu_verify_xwk5yhHcpk.html")
 	public ModelAndView popularize(final ModelMap model) {

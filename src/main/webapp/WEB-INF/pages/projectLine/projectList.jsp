@@ -118,7 +118,7 @@
 							                 <div>周期   :  <span>${tag.pProductionCycle}天</span></div>
 							                 <div>应用场景   :  <span>${tag.pScene}</span></div>
 							                 <div class="contentDes">${tag.customerRestimonial}</div>
-							                 <div class="priceContent">总价格   <span>￥</span><span>${tag.product.servicePrice}</span></div>
+							                 <div class="priceContent">总价格   <span>￥</span><span>${tag.product.serviceRealPrice}</span></div>
 							        </div>
 				              </div>
 						</div>
