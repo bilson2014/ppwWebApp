@@ -43,11 +43,11 @@
 		<transition on="editFile" to="editFileFlow" />
 	</view-state>
 	
-	<subflow-state id="uploadFileFlow" subflow="uploadFile">
+	<subflow-state id="uploadFileFlow" subflow="upload">
 		<transition on="endFile" to="fileList" />
 	</subflow-state>
 	
-	<subflow-state id="editFileFlow" subflow="editFile">
+	<subflow-state id="editFileFlow" subflow="edit">
 		<transition on="endEdit" to="fileList" />
 	</subflow-state>
 	

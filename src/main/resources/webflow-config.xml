@@ -14,10 +14,10 @@
 		flow-builder-services="flowBuilderServices">
 		<webflow:flow-location path="classpath:flows/register.xml"
 			id="registerflow" />
-		<webflow:flow-location path="classpath:flows/uploadFile.xml"
-			id="uploadFile" />
-		<webflow:flow-location path="classpath:flows/editFile.xml"
-			id="editFile" />
+		<webflow:flow-location path="classpath:flows/upload.xml"
+			id="upload" />
+		<webflow:flow-location path="classpath:flows/edit.xml"
+			id="edit" />
 	</webflow:flow-registry>
 
 	<!--Web Flow 中的视图通过 MVC 框架的视图技术来呈现 -->
