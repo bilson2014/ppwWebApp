@@ -9,6 +9,8 @@
 
 	<mvc:view-controller path="/" view-name="/index" />
 	
+	<mvc:view-controller path="/flow" view-name="/flow/index" />
+	
 	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
 	
 	<mvc:view-controller path="/list" view-name="/standardized/requireList" />
@@ -57,7 +59,7 @@
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />
 
