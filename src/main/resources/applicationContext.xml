@@ -12,15 +12,16 @@
 		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 
-	<context:property-placeholder
-		location="classpath:jdbc.properties,classpath:redis.properties,classpath:mq.properties" />
+	<context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties,classpath:mq.properties" />
 
 	<context:annotation-config />
 
 	<tx:annotation-driven />
-
+	
+	<import resource="webmvc-spring-config.xml"/>
 	<import resource="dubbo/dubbo-consumer.xml" />
 	<import resource="spring-mq.xml" />
+	<import resource="webflow-config.xml"/>
 
 	<!-- 扫描service -->
 	<context:component-scan

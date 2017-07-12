@@ -406,7 +406,7 @@ public class LoginController extends BaseController {
 				
 				boolean result = pmsUserFacade.modifyUserLoginName(user) > 0 ? true : false;
 				if (result) {
-					return new BaseMsg(BaseMsg.NORMAL, "请求正常", result);
+					return new BaseMsg(BaseMsg.NORMAL, "请求正常", true);
 				} else {
 					return new BaseMsg(BaseMsg.ERROR, "服务器繁忙，请稍候再试...", false);
 				}

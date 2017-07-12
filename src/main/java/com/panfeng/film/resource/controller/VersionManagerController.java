@@ -58,7 +58,6 @@ import com.panfeng.film.resource.model.IndentFlow;
 import com.panfeng.film.resource.model.IndentProject;
 import com.panfeng.film.resource.model.IndentResource;
 import com.panfeng.film.resource.model.Info;
-import com.panfeng.film.resource.model.Staff;
 import com.panfeng.film.resource.model.Team;
 import com.panfeng.film.resource.model.User;
 import com.panfeng.film.resource.model.Wechat;
@@ -577,19 +576,8 @@ public class VersionManagerController extends BaseController {
 		return new ArrayList<>();
 	}
 
-	@RequestMapping("/projects/staff/static/list")
-	public List<Staff> getStaffList(final HttpServletRequest request) {
-		final String url = PublicConfig.URL_PREFIX + "/portal/staff/static/list";
-		String str = HttpUtil.httpGet(url, request);
-		if (str != null && !"".equals(str)) {
-			return JsonUtil.toList(str);
-		}
-		return new ArrayList<>();
-	}
-
 	@RequestMapping("/projects/get/report")
 	public void getReport(final HttpServletResponse response, final HttpServletRequest request) {
-		// final String url = PublicConfig.URL_PREFIX + "project/get/report";
 		try {
 			IndentProject indentProject = new IndentProject();
 			fillUserInfo(request, indentProject);

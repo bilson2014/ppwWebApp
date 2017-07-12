@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+	
+	<!-- flow 作用域的变量，注册流程的模型对象 -->
+	<var name="team" class="com.panfeng.film.model.Team" />
+	
+	<on-start>
+		<set name="flowScope.teamId" value="requestParameters.teamId"></set>
+	</on-start>
+	
+	<view-state id="protocol" view="/flow/protocol">
+		<transition on="agree" to="register" />
+	</view-state>
+	
+	<view-state id="register" model="team" view="/flow/register">
+		<on-render>
+			<evaluate expression="teamService.findTeamById(teamId)" result="flowScope.team" />
+		</on-render>
+		<transition on="doRegister" to="doRegister" />
+	</view-state>
+	
+	<decision-state id="doRegister">
+		<if test="teamService.updateInfoStep1(team)" 
+			then="registerBaseInfo" 
+			else="register" />
+	</decision-state>
+	
+	<view-state id="registerBaseInfo" model="team" view="/flow/BaseInfo">
+		<transition on="doRegister" to="fileList" >
+			<evaluate expression="teamService.updateInfoStep2(team)" />
+		</transition>
+	</view-state>
+	
+	<view-state id="fileList" view="/flow/fileList">
+		<on-render>
+			<evaluate expression="productService.findProductList(teamId)" result="viewScope.products" />
+		</on-render>
+		<transition on="checkUploadFile" to="checkUploadFile" />
+		<transition on="uploadFile" to="uploadFileFlow" />
+		<transition on="editFile" to="editFileFlow" />
+	</view-state>
+	
+	<subflow-state id="uploadFileFlow" subflow="upload">
+		<transition on="endFile" to="fileList" />
+	</subflow-state>
+	
+	<subflow-state id="editFileFlow" subflow="edit">
+		<transition on="endEdit" to="fileList" />
+	</subflow-state>
+	
+	<decision-state id="checkUploadFile">
+		<if test="teamService.checkUploadFile()"
+			then="complete" 
+			else="fileList" />
+	</decision-state>
+	
+	<view-state id="complete" model="team" view="/flow/complete">
+		<transition on="login" to="end" />
+	</view-state>
+	
+	<end-state id="end" view="externalRedirect:/flow/index" />
+	
+	<global-transitions>
+		<transition on="cancel" to="end" />
+	</global-transitions>
+	
+</flow>
