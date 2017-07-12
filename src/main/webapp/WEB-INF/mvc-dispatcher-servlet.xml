@@ -43,14 +43,14 @@
     
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
-    
     <!-- 订单管理系统 -->
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
     <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
     <!-- end --> 
-    
+    <mvc:view-controller path="/test1" view-name="/providerFlow/providerAgree" />
+    <mvc:view-controller path="/test2" view-name="/providerFlow/infoStepOne" />
     <!-- 订单管理系统 -->
    <!--  <mvc:view-controller path="/error404" view-name="/error404" /> -->
     <!-- end --> 

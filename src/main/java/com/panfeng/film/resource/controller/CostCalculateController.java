@@ -16,21 +16,19 @@ import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DateUtils;
-import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
 import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.CostCalculate;
 import com.panfeng.film.service.CostCalculateService;
 import com.panfeng.film.util.Log;
-
 /**
- * 成本计算控制器
+ *成本计算控制器
  */
 @RestController
 @RequestMapping("/calculate")
-public class CostCalculateController extends BaseController {
-
+public class CostCalculateController extends BaseController{
+	
 	@Autowired
 	private CostCalculateService calculateService;
 	@Autowired
@@ -38,14 +36,16 @@ public class CostCalculateController extends BaseController {
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade;
 	/**
-	 * 视频类别 专业级导演团队（3-5）默认 广告级导演团队（5-8） 电影级导演团队（8-10） 活动视频1 ￥ 30,000.00 ￥
-	 * 60,000.00 ￥ 100,000.00 产品广告 ￥ 60,000.00 ￥ 100,000.00 ￥ 200,000.00 企业宣传 ￥
-	 * 30,000.00 ￥ 60,000.00 ￥ 100,000.00 微电影 ￥ 60,000.00 ￥ 100,000.00 ￥
-	 * 200,000.00 融资路演 ￥ 30,000.00 ￥ 60,000.00 ￥ 100,000.00 众筹视频 ￥ 30,000.00 ￥
-	 * 60,000.00 ￥ 100,000.00
+	视频类别	专业级导演团队（3-5）默认	广告级导演团队（5-8）	电影级导演团队（8-10）
+	活动视频1	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
+	产品广告	￥ 60,000.00			￥ 100,000.00	￥ 200,000.00
+	企业宣传	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
+	微电影	￥ 60,000.00			￥ 100,000.00	￥ 200,000.00
+	融资路演	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
+	众筹视频	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
 	 */
-	public static int[][] typeAddTeam = new int[6][3];// 初始化6行3列的 视频+导演价格表
-	static {
+	public static int[][] typeAddTeam = new int[6][3];//初始化6行3列的 视频+导演价格表
+	static{
 		typeAddTeam[0][0] = 30000;
 		typeAddTeam[0][1] = 60000;
 		typeAddTeam[0][2] = 100000;
@@ -65,31 +65,33 @@ public class CostCalculateController extends BaseController {
 		typeAddTeam[5][1] = 60000;
 		typeAddTeam[5][2] = 100000;
 	}
-
-	@RequestMapping(value = "/cost")
-	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate, HttpServletRequest request) {
+	
+	
+	@RequestMapping(value="/cost")
+	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate,
+			HttpServletRequest request){
 		Map<String, Object> map = new HashMap<>();
-
+		
 		final HttpSession session = request.getSession();
 		// 判断该用户是否登录
 		final SessionInfo info = (SessionInfo) session.getAttribute(PmsConstant.SESSION_INFO);
-
-		if (calculate.getIndentId() == 0) {// 首次计算
-			if (info == null) {
+		
+		if(calculate.getIndentId() == 0){//首次计算
+			if(info == null) {
 				// 未登录，则需要验证短信验证码
 				final String code = (String) request.getSession().getAttribute("code");
 				final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-				if (StringUtils.isBlank(code) || StringUtils.isBlank(codeOfphone)) {
+				if(StringUtils.isBlank(code) || StringUtils.isBlank(codeOfphone)){
 					map.put("code", 0);
 					map.put("msg", "请重新获取验证码");
 					return map;
 				}
-				if (!code.equals(calculate.getVerification_code())) {
+				if(!code.equals(calculate.getVerification_code())){
 					map.put("code", 0);
 					map.put("msg", "验证码错误");
 					return map;
 				}
-				if (!codeOfphone.equals(calculate.getPhone())) {
+				if(!codeOfphone.equals(calculate.getPhone())){
 					map.put("code", 0);
 					map.put("msg", "手机号不匹配");
 					return map;
@@ -97,10 +99,11 @@ public class CostCalculateController extends BaseController {
 			}
 		}
 		map.put("code", 1);
-		int cost = calculateService.dealCost(typeAddTeam, calculate);
+		int cost = calculateService.dealCost(typeAddTeam,calculate);
 		map.put("cost", cost);
-		// 提交订单
+		//提交订单
 		PmsIndent indent = new PmsIndent();
+		
 		indent.setIndent_tele(calculate.getPhone());
 		indent.setIndentId(calculate.getIndentId());
 		indent.setId(calculate.getIndentId());
@@ -114,46 +117,29 @@ public class CostCalculateController extends BaseController {
 		indent.setSecond(0l);
 		indent.setProductId(-1l);
 		indent.setIndentNum(" ");
-
-		if (info == null) {
+		
+		if(info == null){
 			final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
 			indent.setIndent_tele(codeOfphone == null ? calculate.getPhone() : codeOfphone);
-		} else {
+		}else{
 			final String telephone = info.getTelephone();
 			indent.setIndent_tele(telephone == null ? calculate.getPhone() : telephone);
 		}
-		String sessionType = info.getSessionType();
-		String in = null;
-		if (ValidateUtil.isValid(sessionType)) {
-			switch (sessionType) {
-			case PmsConstant.ROLE_CUSTOMER:
-				in = "客户   ";
-				break;
-			case PmsConstant.ROLE_PROVIDER:
-				in = "供应商   ";
-				break;
-			case PmsConstant.ROLE_EMPLOYEE:
-				in = "内部员工   ";
-				break;
-			}
-		} else {
-			in = "未知角色   ";
-		}
-		indent.setIndent_recomment(in + "  " + calculate.getDescription() + ",预期金额:" + cost);
+
+		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
 		SessionInfo sessionInfo = getCurrentInfo(request);
 		long ret = 0l;
-		if (indent.getIndentId() == 0) {
+		if(indent.getIndentId()==0){
 			ret = pmsIndentFacade.save(indent);
 			indent.setIndentId(ret);
 			Log.error("add new order ...", sessionInfo);
 			String eTele = PublicConfig.PHONENUMBER_ORDER;
-			smsMQService.sendMessage("131844", eTele,
-					new String[] { indent.getIndent_tele(), DateUtils.nowTime(), "【未指定具体影片】" });
-		} else {// 更新操作
+			smsMQService.sendMessage("131844", eTele, new String[]{indent.getIndent_tele(),DateUtils.nowTime(),"【未指定具体影片】"});
+		}else{//更新操作
 			ret = pmsIndentFacade.updateForCalculate(indent);
 			Log.error("update order ...", sessionInfo);
 		}
 		map.put("indentId", indent.getIndentId());
-		return map;
+ 		return map;
 	}
 }

@@ -671,7 +671,7 @@ function showOrder(typeName) {
             '<ul class="dropdown-menu dropdown-menus" id="commonOrderUl" role="menu" aria-labelledby="dropdownMenu1">' +
             '<li data-content="0">宣传片</li>' +
             '<li data-content="1">广告片</li>' +
-            '<li data-content="2">动画片</li>' +
+            '<li data-content="2">MG动画</li>' +
             '<li data-content="3">病毒视频</li>' +
             '<li data-content="4">微电影</li>' +
             '<li data-content="5">证言影片</li>' +

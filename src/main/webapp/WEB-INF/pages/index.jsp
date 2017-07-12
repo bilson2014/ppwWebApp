@@ -138,7 +138,7 @@
 								aria-labelledby="dropdownMenu1">
 								<li>宣传片</li>
 								<li>广告片</li>
-								<li>动画片</li>
+								<li>MG动画</li>
 								<li>病毒视频</li>
 								<li>微电影</li>
 								<li>证言影片</li>
@@ -223,12 +223,12 @@
 					<div class="FourContent">
 						<div class="typeHover">
 							<div class="four4"></div>
-							<div class="home-search" data-text="病毒视频">病毒视频</div>
-							<div class="home-search" data-text="病毒视频">VIRAL VIDEOS</div>
+							<div class="home-search" data-text="MG动画">MG动画</div>
+							<div class="home-search" data-text="MG动画">MOTION GRAPHICS</div>
 						</div>
 						<div class="typeBottom">
-							<span class="home-search" data-text="病毒视频">通过案例找创意>></span>
-							 <span class="home-order" data-text="病毒视频">立即下单</span>
+							<span class="home-search" data-text="MG动画">通过案例找创意>></span>
+							 <span class="home-order" data-text="MG动画">立即下单</span>
 						</div>
 					</div>
 				</div>
