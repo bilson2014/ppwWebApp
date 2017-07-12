@@ -245,7 +245,7 @@
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
               <div class="itemContents">
-              		<input type="text" id="userName">
+              		<input type="hidden" id="userName">
                     <div class="infoItem">
                         <div class="setError" id="cusTelNameError" >
                           <div class="itemTitile">联系人</div>
@@ -266,6 +266,7 @@
                        <div class="setError " id="cusTelesError" >    
                           <div class="itemTitile">联系电话</div>
                           <input class="itemInput" id="muTelephone">
+                          <input class="itemInput" type="hidden" id="oldmuTelephone">
                           <div class="must">*</div>
                        </div>
                     

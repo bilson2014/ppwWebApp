@@ -1425,6 +1425,7 @@ function updateUser(id){
 	var userCompany = $('#muUserCompany').val();
 	var customerType = $('#muCustomerType').attr('data-id');
 	var telephone = $('#muTelephone').val();
+	var oldmuTelephone = $('#oldmuTelephone').val();
 	var position = $('#muPosition').attr('data-id');
 	var weChat = $('#muWeChat').val();
 	var email = $('#muEmail').val();
@@ -1434,44 +1435,70 @@ function updateUser(id){
 	var customerSize = $('#muCustomerSize').attr('data-id');
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
-	loadData(function(flag){		
-		if(flag.errorCode == 200){
-			//  未注册
-			//用户修改
-			loadData(function(res){
-				$('#modifyUserInfo').hide();
-				refresh();
-			}, getContextPath() +'/user/update', $.toJSON({
-				"userName":userName,
-				"userCompany":userCompany,
-				"realName":realName,
-				"telephone":telephone,
-				"customerType":customerType,
-				"position":position,
-				"weChat":weChat,
-				"email":email,
-				"officialSite":officialSite,
-				"purchaseFrequency":purchaseFrequency,
-				"purchasePrice":purchasePrice,
-				"customerSize":customerSize,
-				"endorse":endorse,
-				"note":note,
-				"id":id
-			}));
-			
-		}else if(flag.errorCode == 500){
-			if(flag.result == false){
-				// 已经注册
-				$('#cusTelesError').attr('data-content','该手机号已经注册');
-				$('#muTelephone').focus();
-			}else{
-				$('#cusTelesError').attr('data-content',flag.errorMsg);
-				$('#muTelephone').focus();
+	
+	if(oldmuTelephone == telephone){
+		//  未注册
+		//用户修改
+		loadData(function(res){
+			$('#modifyUserInfo').hide();
+			refresh();
+		}, getContextPath() +'/user/update', $.toJSON({
+			"userName":userName,
+			"userCompany":userCompany,
+			"realName":realName,
+			"telephone":telephone,
+			"customerType":customerType,
+			"position":position,
+			"weChat":weChat,
+			"email":email,
+			"officialSite":officialSite,
+			"purchaseFrequency":purchaseFrequency,
+			"purchasePrice":purchasePrice,
+			"customerSize":customerSize,
+			"endorse":endorse,
+			"note":note,
+			"id":id
+		}));
+	}else{
+		loadData(function(flag){		
+			if(flag.errorCode == 200){
+				//  未注册
+				//用户修改
+				loadData(function(res){
+					$('#modifyUserInfo').hide();
+					refresh();
+				}, getContextPath() +'/user/update', $.toJSON({
+					"userName":userName,
+					"userCompany":userCompany,
+					"realName":realName,
+					"telephone":telephone,
+					"customerType":customerType,
+					"position":position,
+					"weChat":weChat,
+					"email":email,
+					"officialSite":officialSite,
+					"purchaseFrequency":purchaseFrequency,
+					"purchasePrice":purchasePrice,
+					"customerSize":customerSize,
+					"endorse":endorse,
+					"note":note,
+					"id":id
+				}));
+				
+			}else if(flag.errorCode == 500){
+				if(flag.result == false){
+					// 已经注册
+					$('#cusTelesError').attr('data-content','该手机号已经注册');
+					$('#muTelephone').focus();
+				}else{
+					$('#cusTelesError').attr('data-content',flag.errorMsg);
+					$('#muTelephone').focus();
+				}
 			}
-		}
-	}, getContextPath() + '/login/validation/phone', $.toJSON({
-		telephone : telephone
-	}));
+		}, getContextPath() + '/login/validation/phone', $.toJSON({
+			telephone : telephone
+		}));
+	}
 }
 
 function initUserView(id){
@@ -1497,6 +1524,7 @@ function initUserView(id){
 			$('#muRealName').val(rr.realName);
 			$('#muUserCompany').val(rr.userCompany);
 			$('#muTelephone').val(rr.telephone);
+			$('#oldmuTelephone').val(rr.telephone);
 			selectSetView('#muCustomerType',rr.customerType);
 			selectSetView('#muPosition',rr.position);			
 			$('#muWeChat').val(rr.weChat);
