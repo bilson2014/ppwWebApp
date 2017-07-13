@@ -73,4 +73,13 @@ public class TeamServiceImpl implements TeamService {
 		return false;
 	}
 
+	/**
+	 * 注册-提交
+	 */
+	@Override
+	public boolean submitted(long teamId) {
+		long res = facade.updateFlag(teamId,1);
+		return res > 0 ? true : false;
+	}
+
 }

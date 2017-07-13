@@ -92,7 +92,7 @@ $().ready(function(){
 			uploader_Pic = WebUploader.create({
 				auto:false,
 				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/provider/update/product/info',
+				server : '/provider/update/product/flow/info',
 				pick : {
 					id:'#upBtn-pic',
 					multiple :false//弹窗选文件时，不允许多选
@@ -137,7 +137,7 @@ $().ready(function(){
 					$(".step3").removeClass("hide");
 					SetLastTime();
 					$('#toPortal').off('click').on('click',function(){
-						window.location.href=getContextPath() + '/provider/portal';
+						window.location.href=getContextPath() + $('#flowExecutionUrl').val() + '&_eventId=save';
 					});
 				}else{
 					$("#img-error").text(response.result);
@@ -166,8 +166,7 @@ $().ready(function(){
 						uploader_Pic.option('formData',{
 							productId:$("#productId").val(),
 							productName:$("#video-name").val(),
-							creationTime:$("#creationTime").val(),
-							tags:delTag()
+							creationTime:$("#creationTime").val()
 						});
 						uploader_Pic.upload();
 					}
@@ -176,13 +175,12 @@ $().ready(function(){
 		},
 		modifyProduct:function(){
 			$.ajax({
-				url : '/provider/update/product/info',
+				url : '/provider/update/product/flow/info',
 				type : 'POST',
 				data : {
 					productId:$("#productId").val(),
 					productName:$("#video-name").val(),
-					creationTime:$("#creationTime").val(),
-					tags:delTag()
+					creationTime:$("#creationTime").val()
 				},
 				dataType : 'json',
 				success : function(data){
@@ -190,7 +188,7 @@ $().ready(function(){
 					$(".step3").removeClass("hide");
 					SetLastTime();
 					$('#toPortal').off('click').on('click',function(){
-						window.location.href=getContextPath() + '/provider/portal';
+						window.location.href=getContextPath() + $('#flowExecutionUrl').val() + '&_eventId=save';
 					});
 				},
 				error : function() {
@@ -201,17 +199,6 @@ $().ready(function(){
 	}
 	upload.init();
 });
-//提取标签
-function delTag(){
-	var t = $("#text_tags").val();
-	if(t){
-		t = t.trim();
-		var re2='(\\s+)';
-	    var p = new RegExp(re2,["gm"]);
-	    t = t.replace(p, ' ');
-	}
-	return t;
-}
 
 function checkData(){
 	var productId = $("#productId").val();
@@ -219,17 +206,10 @@ function checkData(){
 	var creationTime = $("#creationTime").val();
 	var picLDChange = $("#pic-LD-url").attr("data-change");
 	var picImgUrl = $("#pic-LD-url").val();
-	var tagsinput = $("#text_tags").val();
 	resumeCommonError($(".proItem"),'');
 	if(productName == null || productName == undefined || productName == ''){
 		showCommonError($('#video-name-error'),"请输入作品名称");
 		return false;
-	}
-	if($("#flag").val() == 4){//ghost账户需要填写标签
-		if(tagsinput == null || tagsinput == undefined || tagsinput == ''){
-			$('#tagLabel').show().text("请填写作品标签！");
-			return false;
-		}
 	}
 	if(creationTime == null || creationTime == undefined || creationTime == ''){
 		showCommonError($('#creationTime-error'),"请输入创作时间");
@@ -253,7 +233,7 @@ function SetLastTime(){
 function SetRemainTime(){
 if(curCount == 0){
 	window.clearInterval(InterValObj); // 停止计时器
-	window.location.href=getContextPath() + '/provider/portal';
+	window.location.href = getContextPath() + $('#flowExecutionUrl').val() + '&_eventId=save';
 }
 else{
 	  curCount--;

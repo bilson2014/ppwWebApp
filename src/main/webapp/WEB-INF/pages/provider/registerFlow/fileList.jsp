@@ -54,7 +54,7 @@
 <script src="${leaderJs}"></script>
 </head>
 <body>
-	<jsp:include flush="true" page="../header.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
 	<div class="page">
 
 		<div class="step">
@@ -127,7 +127,7 @@
 						</c:if>
 						
 						<c:if test="${!empty products}">
-							<c:forEach var="product" items="products">
+							<c:forEach var="product" items="${products }">
 								<div class="productCard">
 									<c:if test="${empty product.picLDUrl }">
 										<img class="media-object playCBtn"
@@ -160,16 +160,13 @@
 							</c:forEach>
 							
 						</c:if>
-						
-						
+  						
 					</div>
 					<div class="bottom-div">
-						<Button class="gy-btn" id="step3Pre">上一步</Button>
-						<Button class="red-btn btn-c-r" id="step3Next">下一步</Button>
 						<sf:form>
 				   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
+				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_backspace" value="上一步" />
 				   		 	<input type="submit" class="gy-btn" name="_eventId_checkUploadFile" value="下一步" />
-				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_cancel" value="取消" />
 				   		 </sf:form>
 					</div>
 				</div>
@@ -180,7 +177,7 @@
 
 	</div>
 	<!-- foot -->
-	<jsp:include flush="true" page="../foot.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../foot.jsp"></jsp:include>
 	<!--新版底部-->
 
 

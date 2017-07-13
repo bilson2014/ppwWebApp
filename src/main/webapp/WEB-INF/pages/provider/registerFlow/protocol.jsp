@@ -30,9 +30,7 @@
 	<script src="${protocolJs}"></script>
 </head>
 <body>
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-  	<input id="unqiueId" value="${unqiueId}" />
-    <jsp:include flush="true" page="../header.jsp"></jsp:include> 
+    <jsp:include flush="true" page="../../header.jsp"></jsp:include> 
 	<div class="page" >
 	  
 	      <div class="agreement" id="agreement">
@@ -138,7 +136,7 @@
 	      </div>
 	
 	<!-- foot -->
-         					 <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
+         					 <jsp:include flush="true" page="../../foot.jsp"></jsp:include> 
                             <!--新版底部-->
 </body>
 </html>

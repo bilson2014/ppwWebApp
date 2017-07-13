@@ -11,15 +11,16 @@
 		<set name="flowScope.teamId" value="requestParameters.teamId"></set>
 	</on-start>
 	
-	<view-state id="protocol" view="/flow/protocol">
+	<view-state id="protocol" view="/provider/registerFlow/protocol">
 		<transition on="agree" to="register" />
 	</view-state>
 	
-	<view-state id="register" model="team" view="/flow/register">
+	<view-state id="register" model="team" view="/provider/registerFlow/register">
 		<on-render>
 			<evaluate expression="teamService.findTeamById(teamId)" result="flowScope.team" />
 		</on-render>
 		<transition on="doRegister" to="doRegister" />
+		<transition on="backspace" to="protocol" />
 	</view-state>
 	
 	<decision-state id="doRegister">
@@ -28,19 +29,20 @@
 			else="register" />
 	</decision-state>
 	
-	<view-state id="registerBaseInfo" model="team" view="/flow/BaseInfo">
+	<view-state id="registerBaseInfo" model="team" view="/provider/registerFlow/BaseInfo">
 		<transition on="doRegister" to="fileList" >
 			<evaluate expression="teamService.updateInfoStep2(team)" />
 		</transition>
+		<transition on="backspace" to="register" />
 	</view-state>
 	
-	<view-state id="fileList" view="/flow/fileList">
+	<view-state id="fileList" view="/provider/registerFlow/fileList">
 		<on-render>
 			<evaluate expression="productService.findProductList(teamId)" result="viewScope.products" />
 		</on-render>
 		<transition on="checkUploadFile" to="checkUploadFile" />
 		<transition on="uploadFile" to="uploadFileFlow" />
-		<transition on="editFile" to="editFileFlow" />
+		<transition on="backspace" to="registerBaseInfo" />
 	</view-state>
 	
 	<subflow-state id="uploadFileFlow" subflow="upload">
@@ -57,11 +59,16 @@
 			else="fileList" />
 	</decision-state>
 	
-	<view-state id="complete" model="team" view="/flow/complete">
-		<transition on="login" to="end" />
+	<view-state id="complete" model="team" view="/provider/registerFlow/complete">
+		<transition on="submitted" to="information" >
+			<evaluate expression="teamService.submitted(teamId)" />
+		</transition>
+		<transition on="backspace" to="fileList" />
 	</view-state>
 	
 	<end-state id="end" view="externalRedirect:/flow/index" />
+	
+	<end-state id="information" view="externalRedirect:/provider/information" />
 	
 	<global-transitions>
 		<transition on="cancel" to="end" />

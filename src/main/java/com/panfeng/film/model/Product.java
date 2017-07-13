@@ -23,7 +23,7 @@ public class Product implements Serializable {
 
 	/** 创作时间 */
 	private String creationTime = null;
-
+	
 	public String getProductName() {
 		return productName;
 	}

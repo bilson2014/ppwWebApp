@@ -11,14 +11,12 @@
 		<set name="flowScope.teamId" value="requestParameters.teamId"></set>
 	</on-start>
 	
-	<view-state id="uploadFile" view="/flow/upload" model="product">
+	<view-state id="uploadFile" view="/provider/registerFlow/upload" model="product">
 	
 		<on-render>
 			<evaluate expression="productService.findProductById(productId)" result="viewScope.product"/>
 		</on-render>
-		<transition on="save" to="endFile" >
-			<evaluate expression="productService.updateInfo(product)" />
-		</transition>
+		<transition on="save" to="endFile"  />
 		<transition on="cancel" to="endFile" />
 	</view-state>
 	

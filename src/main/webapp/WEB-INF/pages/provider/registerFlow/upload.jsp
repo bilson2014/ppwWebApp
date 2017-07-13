@@ -32,7 +32,7 @@
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/lib/webuploader/webuploader.js"
 	var="webuploaderJs" />
-<spring:url value="/resources/js/provider/upload.js"
+<spring:url value="/resources/js/provider/registerFlow/upload.js"
 	var="providerUploadJs" />
 <spring:url
 	value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js"
@@ -75,7 +75,7 @@
 	
 </head>
 <body>
-	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
+	<jsp:include flush="true" page="../../header.jsp"></jsp:include> 
 	
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
@@ -150,9 +150,9 @@
 					</div>
 				</c:if>
 				
-				<sf:form commandName="product">
-					<sf:input type="text" name="productId" path="productId" id="productId" />
-					<input type="text" name="teamId" value="${teamId }" />
+				<sf:form commandName="product" method="post">
+					<sf:input type="hidden" name="productId" path="productId" id="productId" />
+					<input type="hidden" name="teamId" value="${teamId }" id="teamId" />
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<sf:input type="text" class="" id="video-name" path="productName"
@@ -172,7 +172,7 @@
 						</li>
 						<li>
 							<c:if test="${not empty product.picLDUrl}">
-								<img id="LDimg" src="${file_locate_storage_path }${product.picLDUrl}">
+								<img id="LDimg" src="http://resource.apaipian.com/resource/${product.picLDUrl}">
 								<sf:input type="hidden" path="picLDUrl" id='pic-LD-url' data-change="0" />
 							</c:if>
 							<c:if test="${empty product.picLDUrl}">
@@ -191,9 +191,10 @@
 					<c:if test='${product.productId == 0}'>
 						<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					</c:if>
-		   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-		   		 	<input type="submit" name="_eventId_save" value="保存" />
-		   		 	<input type="submit" name="_eventId_cancel" value="取消" />
+		   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" id="flowExecutionKey"/>
+		   		 	<input type="hidden" value="${flowExecutionUrl}" id="flowExecutionUrl" />
+		   		 	<div class="btn-c-r submit" id="infoBt">提交审核</div>
+		   		 	<div class="btn-c-g cancle" onclick="window.location.href='${flowExecutionUrl}&_eventId=save'">取消</div>
 				</div>
 		   		 </sf:form>
 			</div>
