@@ -25,4 +25,18 @@ public interface TeamService {
 	 * @return
 	 */
 	public boolean updateInfoStep2(Team team);
+	
+	/**
+	 * 检测
+	 * @param teamId
+	 * @return
+	 */
+	public boolean checkUploadFile(long teamId);
+	
+	/**
+	 * 注册提交
+	 * @param teamId
+	 * @return
+	 */
+	public boolean submitted(long teamId);
 }

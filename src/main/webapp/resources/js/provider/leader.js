@@ -61,6 +61,10 @@ function Province(self){
 		provinceId : ProvinceId
 	}))
 }
+
+
+
+
 function SetLastTime(){
         $('#lasttime').text(curCount); 
         $('#lasttime').attr('disabled','disabled');
