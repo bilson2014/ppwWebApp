@@ -18,7 +18,6 @@
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/images" var="path" />
 
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -69,7 +68,7 @@
 						<sf:form>
 							<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
 							<input type="submit" class="btn-c-g" name="_eventId_backspace" value="上一步" />
-				   		 	<input type="submit" class="btn-c-r" name="_eventId_checkUploadFile" value="提交审核" />
+				   		 	<input type="submit" class="btn-c-r" name="_eventId_submitted" value="提交审核" />
 						</sf:form>
 					</div>
 				</div>

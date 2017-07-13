@@ -79,6 +79,7 @@
 			</div>
 			<div class="step-one-div" id="step1" data-step="1">
 				<form:form method="post" commandName="team" id="toLeaderForm">
+					<input type="hidden" value="${teamId }" name="teamId" />
 					<div class="updateLogo">
 						<div class="title">公司LOGO</div>
 						<div class="user-img-content" id="user-img-content">
@@ -410,8 +411,6 @@
 					<div class="getTag" name="business" data-value="0">影片策略</div>
 				</li>
 			</ul>
-
-
 		</div>
 		<div class="checkTitle">创作团队(必填)</div>
 		<div class="checkbox" id="business-checkbox">
@@ -456,9 +455,6 @@
 			type="button" id="step1Next" name="_eventId_doRegister" value="下一步">
 	</div>
 	</form:form>
-	</div>
-	</div>
-	</div>
 
 	<!-- photo Modal start -->
 	<div class="modal" id="errorModal">
