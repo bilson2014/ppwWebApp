@@ -63,7 +63,7 @@
 </head>
 
 <body>
-	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../header.jsp" />
 	<div class="page">
 
 		<div class="step">
@@ -87,8 +87,7 @@
 					</div>
 					<div class="input-group-div" id="company-email-error">
 						<span class="title-word">邮箱</span>
-						<form:input path="email" class="form-control step-one-input"
-							id="company-email" placeholder="请填写邮箱" />
+						<form:input path="email" class="form-control step-one-input" id="company-email" placeholder="请填写邮箱" />
 					</div>
 					<div class="input-group-div noStar" id="company-webchat-error">
 						<span class="title-word">微信</span>
