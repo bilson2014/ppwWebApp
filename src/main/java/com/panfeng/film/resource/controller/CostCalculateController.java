@@ -124,6 +124,18 @@ public class CostCalculateController extends BaseController{
 		}else{
 			final String telephone = info.getTelephone();
 			indent.setIndent_tele(telephone == null ? calculate.getPhone() : telephone);
+			
+			String sessionType = info.getSessionType();
+			String indent_recomment = indent.getIndent_recomment();
+			switch (sessionType) {
+			case PmsConstant.ROLE_PROVIDER:
+				indent_recomment = "供应商  " + indent_recomment;
+				break;
+			case PmsConstant.ROLE_EMPLOYEE:
+				indent_recomment = "内部员工   "+ indent_recomment;
+			}
+			indent.setIndent_recomment(indent_recomment);
+			
 		}
 
 		indent.setIndent_recomment(calculate.getDescription()+",预期金额:"+cost);
