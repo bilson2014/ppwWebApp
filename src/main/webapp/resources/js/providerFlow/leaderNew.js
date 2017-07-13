@@ -116,6 +116,7 @@ function showStepOne(){
 
      $('#step-1').addClass('step-1');
      $('#step-2').removeClass('step-1');
+     
 }
 
 function showStepTwo(){

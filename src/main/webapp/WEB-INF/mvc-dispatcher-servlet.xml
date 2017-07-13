@@ -51,6 +51,8 @@
     <!-- end --> 
     <mvc:view-controller path="/test1" view-name="/providerFlow/providerAgree" />
     <mvc:view-controller path="/test2" view-name="/providerFlow/infoStepOne" />
+    <mvc:view-controller path="/test3" view-name="/providerFlow/infoStepUpLoad" />
+    <mvc:view-controller path="/test4" view-name="/providerFlow/infoStepEnd" />
     <!-- 订单管理系统 -->
    <!--  <mvc:view-controller path="/error404" view-name="/error404" /> -->
     <!-- end --> 

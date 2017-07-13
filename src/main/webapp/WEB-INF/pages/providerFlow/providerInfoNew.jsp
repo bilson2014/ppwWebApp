@@ -483,8 +483,6 @@
 												<div class="getTag" name="business" data-value="0"> 影片策略</div>
 									    	</li>
 										 </ul>
-								
-										    
 								  </div>
 								  <div class="checkTitle">创作团队(必填)</div>	
   	      					      <div class="checkbox" id="business-checkbox">
@@ -728,9 +726,6 @@
 		                           	 <Button class="red-btn btn-c-r" id="step3Next">下一步</Button>    
 		                           </div>
 	                        </div>
-	                        
-	                        
-	                    
 	                    
 	                        <!--批量 END-->
 							   <div class="upVideoCard" id="upVideoCard">
