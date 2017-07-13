@@ -52,7 +52,7 @@
 	</subflow-state>
 	
 	<decision-state id="checkUploadFile">
-		<if test="teamService.checkUploadFile()"
+		<if test="teamService.checkUploadFile(teamId)"
 			then="complete" 
 			else="fileList" />
 	</decision-state>
