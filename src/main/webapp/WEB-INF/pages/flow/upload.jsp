@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/normalize/normalize.css"
 	var="normalizeCss" />
@@ -77,9 +76,8 @@
 </head>
 <body>
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
-	<input type="hidden" value="${cKey}" id="teamId">
-	<input type="hidden" value="${product.productId}" id="productId">
-	<input type="hidden" value="${flag}" id="flag">
+	<input type="hidden" value="${teamId}" id="teamId">
+	<input type="hidden" value="${productId}" id="productId">
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
 		<div class="top">
@@ -95,7 +93,7 @@
 	<div class="page">
 		<div class="upVideoCard">
 			<div class="titleInfo">作品上传</div>
-			<c:if test="${product.productId == 0}">
+			<c:if test="${productId == 0}">
 				<div class="step1">
 					<div class="upImg">
 						<img src="/resources/images/provider/upLoad.png" />
@@ -134,7 +132,7 @@
 					</div>
 				</div>
 			</c:if>
-			<div class="step2 <c:if test='${product.productId == 0}'>hide</c:if>">
+			<div class="step2 <c:if test='${productId == 0}'>hide</c:if>">
 				<c:if test="${product.productId == 0}">
 					<div class="upProgress">
 						<div class="proTitle">上传进度</div>
@@ -152,36 +150,18 @@
 						</div>
 					</div>
 				</c:if>
+				
+				<sf:form commandName="product">
+					<sf:input text="text" name="productId" path="productId" />
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
-					<input type="text" class="" id="video-name"
-						maxlength="30" placeholder="视频标题为必填字段"
-						value="${product.productName }">
+					<sf:input type="text" class="" id="video-name" path="productName"
+						maxlength="30" placeholder="视频标题为必填字段" />
 				</div>
-				<c:if test="${flag == 4}">
-					<div class="proItem">
-						<div for="video-tag" class="control-label itemTitle">标签</div>
-						<div class="tagArea">
-							<div class="upload_filed_area">
-								<div class="mod_keyword">
-									<span class="keyword_input"> <input type="text" value='${product.tags }'
-										class="input_inner" id="text_tags" />
-									</span>
-								</div>
-								<div class="alert alert-danger" id="tagLabel"
-									style="display: none;">每个标签最多8个汉字或16个字母！</div>
-							     </div>
-							     <span class="keyword_placeholder"
-									style="color: rgb(153, 153, 153); height: 12px; vertical-align: middle; font-size: 12px; display: none;">准确的标签将有利于您的视频被推荐和曝光哦~<span style="color:#fe5453!important">标签之间以空格分割</span></span>
-							<span style="color: red;">*</span>
-						</div>
-					</div>
-				</c:if>
 				<div class="proItem" id="creationTime-error">
 					<div class="itemTitle">创作时间</div>
-					<input type="text" class="" id="creationTime"
-						placeholder="请选择作品创作时间" readonly="readonly"
-						value="${product.creationTime }">
+					<sf:input type="text" id="creationTime" path="creationTime"
+						placeholder="请选择作品创作时间" readonly="readonly" />
 				</div>
 				<div class="proItem noItem">
 					<div class="itemTitle">视频封面</div>
@@ -193,7 +173,7 @@
 						<li>
 							<c:if test="${not empty product.picLDUrl}">
 								<img id="LDimg" src="${file_locate_storage_path }${product.picLDUrl}">
-								<input type="hidden" value="${product.picLDUrl}" id='pic-LD-url' data-change="0">
+								<sf:input type="hidden" path="picLDUrl" id='pic-LD-url' data-change="0" />
 							</c:if>
 							<c:if test="${empty product.picLDUrl}">
 								<img id="LDimg" src="/resources/images/index/noImg.jpg">
@@ -211,9 +191,11 @@
 					<c:if test='${product.productId == 0}'>
 						<div class="stateInfo">视频上传中 请勿刷新页面或者提交审核</div>
 					</c:if>
-					<div class="btn-c-r submit" id="infoBt">提交审核</div>
-					<div class="btn-c-g cancle" onclick="window.location.href='/provider/portal'">取消</div>
+		   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
+		   		 	<input type="submit" name="_eventId_save" value="保存" />
+		   		 	<input type="submit" name="_eventId_cancel" value="取消" />
 				</div>
+		   		 </sf:form>
 			</div>
 			<div class="step3 hide">
 				<div class="show-zero2 zeromodal-icon zeromodal-success">

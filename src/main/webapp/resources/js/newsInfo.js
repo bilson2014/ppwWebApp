@@ -74,9 +74,9 @@ function loadNews(page) {
 			   	 
 			   	  var $body = '<li class="videoModel">' +
 			                     '<a href="'+hrefs+'">'+	  
-			   	              '<img src='+getDfsHostName()+news.picLDUrl+'>'+
-			   	              '<div class="tagDiv">';
-			   	             
+			   	              '<img src='+getDfsHostName()+news.picLDUrl+'>';
+			      $body += '<div class="title">'+getTitleIndex(news.title)+'</div>';
+			      $body += '<div class="tagDiv">';
 			   		for(var i=0;i<tagsList.length;i++){
 			   			if(i>0){
 			   				 $body += '<div class="tags">'+"/"+tagsList[i]+'</div>';
@@ -86,7 +86,7 @@ function loadNews(page) {
 			   			
 			   		}
 			   		$body += '</div>';
-			   		$body += '<div class="title">'+getTitleIndex(news.title)+'</div>';
+			   		
 			   		$body += '<div class="content">'+getContentIndex(news.discription)+'</div>';
 			   		$body += '<div class="time">发表于 '+getTime(news.creationTime)+'</div>';
 			   		$body +='</a></li>';		 

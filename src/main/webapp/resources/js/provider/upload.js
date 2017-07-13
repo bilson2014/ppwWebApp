@@ -85,58 +85,7 @@ $().ready(function(){
 			if(!$("#creationTime").val()){
 				$("#creationTime").val(new Date().Format("yyyy-MM-dd"));
 			}
-			// 注册 标签输入 监听
-		/*	$('.input_inner').bind('keypress',function(event){
-				// 如果含有, 或者 空格 ，则添加标签，然后清空input
-				e = event ? event :(window.event ? window.event : null);
-				var code = e.keyCode||e.which||e.charCode;
-				if(code == 32 || code == 44){
-					var tag = $(this).val().replace (/,/g,'').trim();
-					// 检查是否 汉字或是 全角
-					if(tag != null && tag != '' && tag != undefined){
-						var count = tag.replace(/[^\x00-\xff]/g,"**").length;
-						if(count > 16){
-							// 提示错误信息
-							$('#tagLabel').show().text("每个标签最多8个汉字或16个字母！");
-						}else {
-							$('#tagLabel').hide();
-							addTags(tag); // 增加标签
-						}
-					}
-				}
-			});
-			// 注册 标签输入框 的失去焦点事件
-			/*$('.input_inner').blur(function(){
-				var tag = $(this).val().replace (/,/g,'').trim();
-				if(tag == null || tag == '' || tag == undefined){
-					// 为空时，查看是否有标签，如果没有，则显示 placeholder 提示
-					var tagName = mergeTag();
-					if(tagName == null || tagName == '' || tagName == undefined){
-						$('.keyword_placeholder').show('fast');
-					}
-				}else {
-					// 检查是否 汉字或是 全角
-					if(tag != null && tag != '' && tag != undefined){
-						var count = tag.replace(/[^\x00-\xff]/g,"**").length;
-						if(count > 16){
-							// 提示错误信息
-							$('#tagLabel').show().text("每个标签最多8个汉字或16个字母！");
-						}else {
-							$('#tagLabel').hide();
-							addTags(tag); // 增加标签
-						}
-					}
-				}
-				$('.btn_keyword_del').unbind('click');
-				$('.btn_keyword_del').bind('click',function(){
-					removeTags($(this));
-				});
-			});
-			// 激活 x 
-			$('.btn_keyword_del').unbind('click');
-			$('.btn_keyword_del').bind('click',function(){
-				removeTags($(this));
-			});*/
+			
 		},
 		uploaderPic:function(){
 			var _this = this;
