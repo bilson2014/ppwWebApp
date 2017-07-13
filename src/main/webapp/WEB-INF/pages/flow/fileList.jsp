@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<h1>看看吧兄弟_${teamId }</h1>  <br/>
-		<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=0">文件上传</a> <br/>
+		<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=0&teamId=${teamId}">文件上传</a> <br/>
 		
 		<table >
 			<tr>
@@ -20,7 +20,7 @@
 			<c:forEach var="product" items="${products}">
                 <tr>
 					<td>${product.productName} </td>
-					<td><a href="${flowExecutionUrl}&_eventId=editFile&productId=${product.id}">修改</a></td>
+					<td><a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">修改</a></td>
 				</tr>
                 </c:forEach>
 		</table>

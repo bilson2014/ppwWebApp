@@ -76,8 +76,7 @@
 </head>
 <body>
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
-	<input type="hidden" value="${teamId}" id="teamId">
-	<input type="hidden" value="${productId}" id="productId">
+	
 	<div class="tooltip-warn-banner" id="tooltip-warn-banner">
 		<div class="card">
 		<div class="top">
@@ -152,7 +151,8 @@
 				</c:if>
 				
 				<sf:form commandName="product">
-					<sf:input text="text" name="productId" path="productId" />
+					<sf:input type="text" name="productId" path="productId" id="productId" />
+					<input type="text" name="teamId" value="${teamId }" />
 				<div class="proItem" id="video-name-error">
 					<div class="itemTitle">作品名称</div>
 					<sf:input type="text" class="" id="video-name" path="productName"

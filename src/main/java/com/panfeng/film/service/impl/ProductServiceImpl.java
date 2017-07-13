@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paipianwang.pat.common.util.JsonUtil;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
 import com.paipianwang.pat.facade.product.service.PmsProductFacade;
 import com.panfeng.film.model.Product;
@@ -30,6 +31,18 @@ public class ProductServiceImpl implements ProductService {
 		System.err.println(product);
 		// update product
 		return true;
+	}
+	
+	public Product findProductById(long productId) {
+		
+		if(productId > 0) {
+			PmsProduct pmsProduct = facade.findProductById(productId);
+			String json = JsonUtil.toJson(pmsProduct);
+			Product product = JsonUtil.toBean(json, Product.class);
+			return product;
+		}
+		
+		return null;
 	}
 
 }

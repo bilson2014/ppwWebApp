@@ -2,15 +2,20 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
- http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+ 	http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 	
 	<var name="product" class="com.panfeng.film.model.Product"/>
 	
 	<on-start>
 		<set name="flowScope.productId" value="requestParameters.productId"></set>
+		<set name="flowScope.teamId" value="requestParameters.teamId"></set>
 	</on-start>
 	
 	<view-state id="uploadFile" view="/flow/upload" model="product">
+	
+		<on-render>
+			<evaluate expression="productService.findProductById(productId)" result="viewScope.product"/>
+		</on-render>
 		<transition on="save" to="endFile" >
 			<evaluate expression="productService.updateInfo(product)" />
 		</transition>

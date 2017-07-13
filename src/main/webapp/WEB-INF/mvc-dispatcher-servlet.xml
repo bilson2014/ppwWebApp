@@ -79,14 +79,6 @@
 			<bean class="com.panfeng.film.filter.ValidateTokenInterceptor" />
 		</mvc:interceptor>
 		
-		<!-- 匹配URL路径，如果不配置或配置 /**,将拦截所有的controller -->
-		<!-- 验证是否是cookie登录 -->
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/resources/**" />
-			<bean class="com.panfeng.film.filter.LoginInterceptor"/>
-		</mvc:interceptor> -->
-		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
 			<mvc:exclude-mapping path="/user/repwd" />
