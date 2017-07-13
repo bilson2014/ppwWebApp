@@ -119,7 +119,7 @@
   	      				  </div> 
   	      				  
 			  	      	  <div class="input-group-div" id="cityError">
-			  	      	        <form:input path="teamProvince" type="hidden" id="company-priceRange-value" value=""/>	
+			  	      	        <form:input path="teamProvince" type="hidden" id="getProvince-value" value=""/>	
 			  	      			<span for="company-city" class="title-word">所在省</span>	
 										<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 													<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
@@ -132,12 +132,11 @@
 										</div>
 												
 								<span for="company-city" class="title-word-city">所在城市</span>	
-								        <form:input path="teamCity" type="hidden" id="company-priceRange-value" value=""/>	
+								        <form:input path="teamCity" type="hidden" id="getCity-value" value=""/>	
 										<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 													<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 														id="dropdownMenu1" data-toggle="dropdown">
-
-																			<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
+																			<span id='getCity' data-value =""></span>
 																			<div class="carets"></div>
 																		</button>
 																		<ul class="dropdown-menu" id="selectUlCity" role="menu"
