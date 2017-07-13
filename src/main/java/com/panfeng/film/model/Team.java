@@ -75,70 +75,29 @@ public class Team implements Serializable {
 	private Integer recommendSort;
 	private long teamId = 0l;
 	private int city = 0; // 城市
-	//性质
-	private int teamNature;
-	
-	private String skill;
-	
-	private String telNumber;
-	
-	private String certificateUrl;
-	
-	private String idCardfrontUrl;
-	
-	private String idCardbackUrl;
-	
-	
-	
-	
-	public String getIdCardfrontUrl() {
-		return idCardfrontUrl;
-	}
 
-	public void setIdCardfrontUrl(String idCardfrontUrl) {
-		this.idCardfrontUrl = idCardfrontUrl;
-	}
-
-	public String getIdCardbackUrl() {
-		return idCardbackUrl;
-	}
-
-	public void setIdCardbackUrl(String idCardbackUrl) {
-		this.idCardbackUrl = idCardbackUrl;
-	}
-
-	public String getTelNumber() {
-		return telNumber;
-	}
-
-	public void setTelNumber(String telNumber) {
-		this.telNumber = telNumber;
-	}
-	
-	public String getSkill() {
-		return skill;
-	}
-
-	public void setSkill(String skill) {
-		this.skill = skill;
-	}
-
-	public String getCertificateUrl() {
-		return certificateUrl;
-	}
-
-	public void setCertificateUrl(String certificateUrl) {
-		this.certificateUrl = certificateUrl;
-	}
-
-	
 
 	/** 业务范围 **/
 	private String business = null;
+	/** 业务技能**/
+	private String skill=null;
 
 	private String teamCity = null; // 城市ID
 
 	private String teamProvince = null; // 省ID
+	
+	/**产品线 - 多个以‘,’分隔**/
+	private String productLine=null;
+	/**公司性质 0-公司 1-工作室**/
+	private int teamNature;
+	/**营业执照（公司）/身份证（工作室）**/
+	private String certificateUrl=null;
+	/**法人手持身份证-正面**/
+	private String idCardfrontUrl=null;
+	/**法人手持身份证-反面**/
+	private String idCardbackUrl=null;
+	/**固定电话**/
+	private String telNumber=null;
 
 	// 冗余字段
 	private String teamProvinceName = null;// 省名
@@ -317,14 +276,6 @@ public class Team implements Serializable {
 		return demand;
 	}
 
-	public int getTeamNature() {
-		return teamNature;
-	}
-
-	public void setTeamNature(int teamNature) {
-		this.teamNature = teamNature;
-	}
-
 	public void setDemand(String demand) {
 		this.demand = demand;
 	}
@@ -463,6 +414,62 @@ public class Team implements Serializable {
 
 	public void setTeamCityName(String teamCityName) {
 		this.teamCityName = teamCityName;
+	}
+
+	public String getProductLine() {
+		return productLine;
+	}
+
+	public void setProductLine(String productLine) {
+		this.productLine = productLine;
+	}
+
+	public int getTeamNature() {
+		return teamNature;
+	}
+
+	public void setTeamNature(int teamNature) {
+		this.teamNature = teamNature;
+	}
+
+	public String getCertificateUrl() {
+		return certificateUrl;
+	}
+
+	public void setCertificateUrl(String certificateUrl) {
+		this.certificateUrl = certificateUrl;
+	}
+
+	public String getIdCardfrontUrl() {
+		return idCardfrontUrl;
+	}
+
+	public void setIdCardfrontUrl(String idCardfrontUrl) {
+		this.idCardfrontUrl = idCardfrontUrl;
+	}
+
+	public String getIdCardbackUrl() {
+		return idCardbackUrl;
+	}
+
+	public void setIdCardbackUrl(String idCardbackUrl) {
+		this.idCardbackUrl = idCardbackUrl;
+	}
+
+	public String getTelNumber() {
+		return telNumber;
+	}
+
+	public void setTelNumber(String telNumber) {
+		this.telNumber = telNumber;
+	}
+
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
 	}
 
 }
