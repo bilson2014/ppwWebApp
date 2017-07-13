@@ -75,8 +75,6 @@ public class Team implements Serializable {
 	private Integer recommendSort;
 	private long teamId = 0l;
 	private int city = 0; // 城市
-
-
 	/** 业务范围 **/
 	private String business = null;
 	/** 业务技能**/

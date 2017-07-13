@@ -66,7 +66,7 @@
 			      <div class="first" id="step-3" data-content="资质审核">4</div>
 			  </div>
 	      		 <div class="step-one-div" id="step1" data-step="1">
-	      		         <form:form  method="post" commandName="team" id="toLeaderForm">     
+	      		         <form:form  method="post" commandName="team" id="toLeaderForm" >     
 	      		                     <div class="updateLogo">   
 	      		                    <div class="title">公司LOGO</div>
 		      		                <div class="user-img-content" id="user-img-content">
@@ -80,7 +80,7 @@
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
 											<div id="uploadBt">上传LOGO</div>
-											<input type="file" name="file" id="file" style="display: none;"/> 
+											<input type="file" id="file" style="display: none;"/>
 										</div>
 									</div>
 							</div>
@@ -100,15 +100,14 @@
   	      				  
   	      				 <div class="input-group-div" id="company-scale-error">
   	      		       	 	  <span for="company-priceRange" class="title-word">规模</span>
-  	      		       	 	  <form:input path="scale" type="hidden" id="0"/>	
+  	      		       	 	  <form:input path="scale" type="hidden" id="scale"/>	
 									<div class="dropdown leaderSelect" id="company-priceRange-value">
 										<button class="btn btn-default dropdown-toggle step-two-select" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
 											<span id='indent_scale' data-value="">请选择...</span>
 											<div class="carets"></div>
 										</button>
-										<ul class="dropdown-menu" id="selectUl" role="menu"
-											aria-labelledby="dropdownMenu1">
+										<ul class="dropdown-menu scaleUl"  id="selectUl" role="menu"aria-labelledby="dropdownMenu1">
 											<li data-value="0" >5人以下</li>
 											<li data-value="1" >5-10人</li>
 				            				<li data-value="2" >11-50人</li>
@@ -176,7 +175,7 @@
 											<div class="findLogo" id="theInfo">查看示例</div>
 											<div class="upload-btn">
 												<div id="uploadYE">上传营业执照</div>
-												<input type="file" name="file" id="file" style="display: none;"/> 
+												<input type="file" id="file" style="display:none;"/> 
 											</div>
 										</div>	
 										 <div class="logoItem"> 
@@ -187,7 +186,7 @@
 											<div class="findLogo" id="theZ">查看示例</div>
 											<div class="upload-btn">
 												<div id="uploadZCard">身份证正面</div>
-												<input type="file" name="file" id="file" style="display: none;"/> 
+												<input type="file" style="display:none;" /> 
 											</div>
 										</div>	
 										
@@ -199,7 +198,7 @@
 											<div class="findLogo" id="theB">查看示例</div>
 											<div class="upload-btn">
 												<div id="uploadBCard">身份证背面</div>
-												<input type="file" name="file" id="file" style="display: none;"/> 
+												<input type="file" id="file" style="display:none;" /> 
 											</div>
 										</div>	
 									</div>
