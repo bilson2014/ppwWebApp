@@ -87,7 +87,7 @@
   	      				  </div>
   	      				   <div class="input-group-div noStar" id="company-phone-errors">
   	      		       	 	  <span class="title-word">座机</span>
-  	      		       	 	  <form:input path="phoneNumber" class="form-control step-one-input" id="company-phone" placeholder="请填写座机"/>			
+  	      		       	 	  <form:input path="telNumber" class="form-control step-one-input" id="company-phone" placeholder="请填写座机"/>			
   	      				  </div>
                   </form:form>
                            <div class="bottom-div">

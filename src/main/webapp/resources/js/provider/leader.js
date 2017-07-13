@@ -61,6 +61,28 @@ function Province(self){
 		provinceId : ProvinceId
 	}))
 }
+
+
+function City(){
+	loadData(function(msg){
+		if(msg != null && msg.length >0 ){
+			var select = $("#selectUlCity");
+		    $('#getCity').text('');
+		    $('#getCity').attr('data-value','');
+			select.empty();
+			msg.forEach(function(city){
+				var html = '<li data-value = "' + city.cityID + '" >'+city.city+'</li>';
+				select.append(html);
+			});
+			initUl();
+		}
+	}, getContextPath() + '/get/citys', $.toJSON({
+		provinceId : ProvinceId
+	}))
+}
+
+
+
 function SetLastTime(){
         $('#lasttime').text(curCount); 
         $('#lasttime').attr('disabled','disabled');

@@ -75,6 +75,42 @@ public class Team implements Serializable {
 	private Integer recommendSort;
 	private long teamId = 0l;
 	private int city = 0; // 城市
+	//性质
+	private int teamNature;
+	
+	private String skill;
+	
+	private String telNumber;
+	
+	public String getTelNumber() {
+		return telNumber;
+	}
+
+	public void setTelNumber(String telNumber) {
+		this.telNumber = telNumber;
+	}
+
+
+
+	private String certificateUrl;
+	
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
+	}
+
+	public String getCertificateUrl() {
+		return certificateUrl;
+	}
+
+	public void setCertificateUrl(String certificateUrl) {
+		this.certificateUrl = certificateUrl;
+	}
+
+	
 
 	/** 业务范围 **/
 	private String business = null;
@@ -258,6 +294,14 @@ public class Team implements Serializable {
 
 	public String getDemand() {
 		return demand;
+	}
+
+	public int getTeamNature() {
+		return teamNature;
+	}
+
+	public void setTeamNature(int teamNature) {
+		this.teamNature = teamNature;
 	}
 
 	public void setDemand(String demand) {
