@@ -72,7 +72,7 @@
 		      		                <div class="user-img-content" id="user-img-content">
 										<div class="user-icon">
 											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img"/>
-											<input type="hidden" id="user_img_url" value="">
+											<form:input type="hidden"  path="teamPhotoUrl" id="user_img_url"/>
 										</div>
 										<div class="upload-info">
 											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过250KB</label>
@@ -87,7 +87,7 @@
 							
 								   <div class="input-group-div" id="company-name-error">
 		  	      		       	 	  <span class="title-word">公司名称</span>	
-		  	      					  <form:input class="form-control step-one-input" path="teamName" id="teamName" placeholder="请填写公司名称"/>
+		  	      					  <form:input class="form-control step-one-input" path="teamName" id="teamName" placeholder="请填写公司名称" value=""/>
 		  	      				  </div>
 					      	      				  
   	      				  <div class="input-group-div" id="company-nature-error">
@@ -125,22 +125,11 @@
 										<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 													<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 														id="dropdownMenu1" data-toggle="dropdown">
-														<c:if test="${!empty provinces}">
-															<c:forEach items="${provinces }" var="source" varStatus="status">
-																<c:if test="${ status.index == 0}">
-																		<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
+																		<span data-value =""  id='getProvince'></span>
 																			<div class="carets"></div>
 																		</button>
-																		<ul class="dropdown-menu id="selectUl" role="menu"
-																			aria-labelledby="dropdownMenu1">
-																</c:if>
-																  <li class="Province" data-value ="${source.provinceID }"
-																  	<c:if test="${provider.teamProvince == source.provinceID }">
-																  		selected="selected"
-																  	</c:if> >${source.provinceName }</li>
-																</c:forEach>
-															</c:if>									
-													</ul>
+												  <ul class="dropdown-menu" id="selectUlProvince" role="menu"aria-labelledby="dropdownMenu1">
+												  </ul>
 										</div>
 												
 								<span for="company-city" class="title-word-city">所在城市</span>	
@@ -148,22 +137,13 @@
 										<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
 													<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
 														id="dropdownMenu1" data-toggle="dropdown">
-														<c:if test="${!empty citys}">
-																<c:forEach items="${citys }" var="source" varStatus="status">
-																  <c:if test="${ status.index == 0}">
+
 																			<span id='getCity' data-value ="${source.cityID }">${source.city}</span>
 																			<div class="carets"></div>
 																		</button>
 																		<ul class="dropdown-menu" id="selectUlCity" role="menu"
 																			aria-labelledby="dropdownMenu1">
-															      </c:if>
-																  <li data-value ="${source.cityID }"
-																  	<c:if test="${provider.teamCity == source.cityID }">
-																  		selected="selected"
-													  				</c:if> >${source.city }</li>
-																</c:forEach>
-															</c:if>										
-													</ul>
+																		</ul>
 												</div>
 			  	      		</div>
 			  	      		
@@ -201,8 +181,8 @@
 										</div>	
 										 <div class="logoItem"> 
 											<div class="user-icon">
-												<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img-z"/>
-												<form:input path="certificateUrl" type="hidden" id="user_img_url_Z"/>
+												<img alt="身份证正面" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img-z"/>
+												<form:input path="idCardfrontUrl" type="hidden" id="user_img_url_Z"/>
 											</div>
 											<div class="findLogo" id="theZ">查看示例</div>
 											<div class="upload-btn">
@@ -213,8 +193,8 @@
 										
 										 <div class="logoItem"> 
 											<div class="user-icon">
-												<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img-b"/>
-												<form:input path="certificateUrl" type="hidden" id="user_img_url_B"/>
+												<img alt="身份证背面" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img-b"/>
+												<form:input path="idCardbackUrl" type="hidden" id="user_img_url_B"/>
 											</div>
 											<div class="findLogo" id="theB">查看示例</div>
 											<div class="upload-btn">
@@ -412,9 +392,6 @@
           </div>    	
   	 </div>
   	      		 
-
-               
-
 		<!-- photo Modal start -->
 	<div class="modal" id="errorModal">
 		<div class="modal-dialog">

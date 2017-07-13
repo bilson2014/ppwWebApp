@@ -82,6 +82,31 @@ public class Team implements Serializable {
 	
 	private String telNumber;
 	
+	private String certificateUrl;
+	
+	private String idCardfrontUrl;
+	
+	private String idCardbackUrl;
+	
+	
+	
+	
+	public String getIdCardfrontUrl() {
+		return idCardfrontUrl;
+	}
+
+	public void setIdCardfrontUrl(String idCardfrontUrl) {
+		this.idCardfrontUrl = idCardfrontUrl;
+	}
+
+	public String getIdCardbackUrl() {
+		return idCardbackUrl;
+	}
+
+	public void setIdCardbackUrl(String idCardbackUrl) {
+		this.idCardbackUrl = idCardbackUrl;
+	}
+
 	public String getTelNumber() {
 		return telNumber;
 	}
@@ -89,10 +114,6 @@ public class Team implements Serializable {
 	public void setTelNumber(String telNumber) {
 		this.telNumber = telNumber;
 	}
-
-
-
-	private String certificateUrl;
 	
 	public String getSkill() {
 		return skill;
