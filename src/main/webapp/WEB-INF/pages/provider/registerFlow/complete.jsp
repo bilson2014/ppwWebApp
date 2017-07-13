@@ -9,7 +9,6 @@
 <spring:url value="/resources/css/provider/step-dc-style2.css"
 	var="providerStepCss2" />
 
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
 	var="jqueryJs" />
@@ -46,7 +45,7 @@
 <spring:url value="/resources/images" var="imgPath" />
 </head>
 <body>
-	<jsp:include flush="true" page="../header.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
 	<div class="page">
 
 		<div class="step">
@@ -74,28 +73,11 @@
 						</sf:form>
 					</div>
 				</div>
-
-				<div class="success" id="success">
-					<ul class="ul-step-three">
-						<li>
-							<div class="show-zero2 zeromodal-icon zeromodal-success">
-								<span class="line tip"></span> <span class="line long"></span>
-								<div class="placeholder"></div>
-							</div>
-						</li>
-						<li class="title">恭喜您注册成功，已进入审核阶段</li>
-						<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
-						</li>
-						<li class="stepThreeLi"><a href="/"><div class="btn-c-r">返回首页</div></a>
-						</li>
-					</ul>
-				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- foot -->
-	<jsp:include flush="true" page="../foot.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../foot.jsp"></jsp:include>
 	<!--新版底部-->
 
 

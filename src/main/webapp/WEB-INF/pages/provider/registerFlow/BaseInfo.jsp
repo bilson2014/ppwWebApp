@@ -18,8 +18,8 @@
 	                <td><sf:input type="text" path="email" size="25" maxlength="16" cssErrorClass="error"/></td>  
 	            </tr>  
 	            <tr>  
+	                <td align="center"><input type="submit" name="_eventId_backspace" value="上一步"></td>
 	                <td align="center"><input type="submit" name="_eventId_doRegister" value="下一步"></td>  
-	                <td align="center"><input type="submit" name="_eventId_cancel" value="取消"></td>  
 	            </tr>
 			</table>
 		</sf:form>

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
@@ -8,7 +7,6 @@
 	var="providerLeaderCss" />
 <spring:url value="/resources/css/provider/step-dc-style2.css"
 	var="providerStepCss2" />
-
 
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
@@ -48,50 +46,20 @@
 <body>
 	<jsp:include flush="true" page="../header.jsp"></jsp:include>
 	<div class="page">
-
-		<div class="step">
-			<div class="step-bar" id="step-bar">
-				<div class="first" id="step-1" data-content="填写基本信息">1</div>
-				<div class="line"></div>
-				<div class="first" id="step-2" data-content="填写详细信息">2</div>
-				<div class="line"></div>
-				<div class="first " id="step-3" data-content="上传作品">3</div>
-				<div class="line"></div>
-				<div class="first step-1" id="step-3" data-content="资质审核">4</div>
-			</div>
-
-			<div class="step-four-div" id="step4" data-step="4">
-				<div class="successCheck" id="successCheck">
-					<img src="${imgPath}/provider/infoPage.png" />
-					<div class="checkInfo">
-						请确认提交信息的真实性，所有上传的作品均为注册公司真实作品。<br> 确认无误请点击提交审核，完成注册进入审核阶段。
+		<div class="success" id="success">
+			<ul class="ul-step-three">
+				<li>
+					<div class="show-zero2 zeromodal-icon zeromodal-success">
+						<span class="line tip"></span> <span class="line long"></span>
+						<div class="placeholder"></div>
 					</div>
-					<div class="scDiv">
-						<sf:form>
-							<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-							<input type="submit" class="btn-c-g" name="_eventId_backspace" value="上一步" />
-				   		 	<input type="submit" class="btn-c-r" name="_eventId_checkUploadFile" value="提交审核" />
-						</sf:form>
-					</div>
-				</div>
-
-				<div class="success" id="success">
-					<ul class="ul-step-three">
-						<li>
-							<div class="show-zero2 zeromodal-icon zeromodal-success">
-								<span class="line tip"></span> <span class="line long"></span>
-								<div class="placeholder"></div>
-							</div>
-						</li>
-						<li class="title">恭喜您注册成功，已进入审核阶段</li>
-						<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
-						</li>
-						<li class="stepThreeLi"><a href="/"><div class="btn-c-r">返回首页</div></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
+				</li>
+				<li class="title">恭喜您注册成功，已进入审核阶段</li>
+				<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
+				</li>
+				<li class="stepThreeLi"><a href="/"><div class="btn-c-r">返回首页</div></a>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<!-- foot -->

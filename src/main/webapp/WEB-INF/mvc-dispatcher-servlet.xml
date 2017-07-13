@@ -9,7 +9,9 @@
 
 	<mvc:view-controller path="/" view-name="/index" />
 	
-	<mvc:view-controller path="/flow" view-name="/flow/index" />
+	<mvc:view-controller path="/flow" view-name="/provider/registerFlow/index" />
+	
+	<mvc:view-controller path="/provider/information" view-name="/provider/information" />
 	
 	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
 	
@@ -48,14 +50,7 @@
     <mvc:view-controller path="/sub" view-name="/order/orderSub" />
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
     <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
-    <!-- end --> 
-    <mvc:view-controller path="/test1" view-name="/providerFlow/providerAgree" />
-    <mvc:view-controller path="/test2" view-name="/providerFlow/infoStepOne" />
-    <mvc:view-controller path="/test3" view-name="/providerFlow/infoStepUpLoad" />
-    <mvc:view-controller path="/test4" view-name="/providerFlow/infoStepEnd" />
-    <!-- 订单管理系统 -->
-   <!--  <mvc:view-controller path="/error404" view-name="/error404" /> -->
-    <!-- end --> 
+    <!-- 订单管理系统 end --> 
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />

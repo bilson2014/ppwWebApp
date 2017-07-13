@@ -7,7 +7,8 @@
 		<title>注册完成</title>
 	</head>
 	<body>
-		<h1>恭喜  ${user.name} 完成注册</h1>
-		<a href="${flowExecutionUrl}&_eventId=login">去登陆</a>
+		<h1>恭喜  ${team.productName} 完成注册</h1>
+		<a href="${flowExecutionUrl}&_eventId=backspace">上一步</a>
+		<a href="${flowExecutionUrl}&_eventId=submitted">提交审核</a>
 	</body>
 </html>

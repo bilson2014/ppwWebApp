@@ -672,6 +672,45 @@ public class ProviderController extends BaseController {
 				+ " ,flag:" + product.getFlag(), sessionInfo);
 		return new BaseMsg(1, "success");
 	}
+	
+	
+	/**
+	 * 供应商注册流程的视频信息修改
+	 */
+	@RequestMapping(value = "/update/product/flow/info", method = RequestMethod.POST)
+	public BaseMsg updateProductByFlow(final HttpServletRequest request, final HttpServletResponse response,
+			final Product product) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+
+		if (request instanceof MultipartRequest) {// 指出对象是否是特定类的一个实例
+			MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
+			MultipartFile file = multipartRquest.getFiles("file").get(0);
+			final long img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
+			if (file.getSize() > img_MaxSize * 1024) {
+				return new BaseMsg(0, "图片文件超过250K上限");
+			}
+			String fileId = FastDFSClient.uploadFile(file);
+			product.setPicLDUrl(fileId);
+		}
+		final long productId = product.getProductId();
+		
+		PmsProduct oldProduct = pmsProductFacade.findProductById(product.getProductId());
+		oldProduct.setProductName(product.getProductName());
+		oldProduct.setCreationTime(product.getCreationTime());
+		oldProduct.setFlag(0);// 设置审核中状态
+		if (StringUtils.isNotBlank(product.getPicLDUrl())) {
+			oldProduct.setPicLDUrl(product.getPicLDUrl());
+			if (StringUtils.isNotBlank(oldProduct.getPicLDUrl())
+					&& !product.getPicLDUrl().equals(oldProduct.getPicLDUrl())) {
+				FastDFSClient.deleteFile(oldProduct.getPicLDUrl());
+			}
+		}
+		pmsProductFacade.updateProductInfoAtFlow(oldProduct); // 更新视频信息
+		Log.error("update flow product ... ", sessionInfo);
+		Log.error("Provider Update Product success,productId:" + productId + " ,productName:" + product.getProductName()
+				+ " ,flag:" + product.getFlag(), sessionInfo);
+		return new BaseMsg(1, "success");
+	}
 
 	@RequestMapping(value = "/multipUploadFile", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {

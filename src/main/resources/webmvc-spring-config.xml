@@ -20,7 +20,9 @@
 	<bean id="viewMappings"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
-			<value>/registerflow.html=flowController</value>
+			<props>
+				<prop key="/registerflow.html">flowController</prop>
+			</props>
 		</property>
 
 		<property name="defaultHandler">
