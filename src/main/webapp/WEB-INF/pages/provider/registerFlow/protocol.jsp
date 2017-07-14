@@ -125,8 +125,8 @@
             <div class="agreeBtn">
              <sf:form>
 	   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-	   		 	<input type="button" name="_eventId_agree" class="btn-c-g" id="agree" value="同意" onclick="checkAgree()"/>
-	   		 	<input type="submit" name="_eventId_cancel" class="btn-c-r" value="取消" />
+	   		 	<input type="submit" name="_eventId_cancel" class="btn-c-g" value="取消" />
+	   		 	<input type="button" name="_eventId_agree" class="btn-c-r" id="agree" value="同意" onclick="checkAgree()"/>
 	   		 </sf:form>
 	   		</div>
              

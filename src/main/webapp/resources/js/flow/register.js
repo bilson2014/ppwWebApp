@@ -149,7 +149,7 @@ function getTagValue(){
 	var getStr = getTeam.split(",");
 	var getStrSkill = getSkill.split(",");
 	
-	if(getStr != '' || getStr != null || getStr != undefined){
+	if(getStr != "" || getStr != null || getStr != undefined){
 		for (var int = 0; int < getValue.length; int++) {
 			 var nowValue = $(getValue[int]).text().trim();
 			 for (var j = 0; j < getStr.length; j++) {
@@ -160,7 +160,7 @@ function getTagValue(){
 		}
 	}
 	
-	if(getStrSkill != '' || getStrSkill != null || getStrSkill != undefined){
+	if(getStrSkill != "" || getStrSkill != null || getStrSkill != undefined){
 		for (var int = 0; int < getValue.length; int++) {
 			 var nowValue = $(getValue[int]).text().trim();
 			 for (var j = 0; j < getStrSkill.length; j++) {
@@ -175,29 +175,29 @@ function getTagValue(){
 	var infoZ = $('#user_img_url_Z').val();
 	var infoB = $('#user_img_url_B').val();
 	
-	if(logo != '' || logo != null || logo != undefined){
+	if(logo != "" || logo != null || logo != undefined){
 	 $('#user-img').attr('src',imgUrl+logo);
 	}
-	if(info != '' || info != null || info != undefined){
+	if(info != "" || info != null || info != undefined){
 		$('#user-img-info').attr('src',imgUrl+info);
 	}
 	
-	if(infoZ != '' || infoZ != null || infoZ != undefined){
+	if(infoZ != "" || infoZ != null || infoZ != undefined){
 		$('#user-img-z').attr('src',imgUrl+infoZ);
 	}
 	
-	if(infoB != '' || infoB != null || infoB != undefined){
+	if(infoB != "" || infoB != null || infoB != undefined){
 		$('#user-img-b').attr('src',imgUrl+infoB);
 	}
 	
-	var scale = $('#scale').val();
-	var scaleUl = $('.scaleUl li');
-	if(scale != '' || scale != null || scale != undefined){
+	var scale = $('#company-scale').val();
+	var scaleUl = $('#scaleUlZZ li');
+	if(scale != "" || scale != null || scale != undefined){
 		for (var int = 0; int < scaleUl.length; int++) {
-			 var nowValue = $(getValue[int]).attr('data-value');
-			 var nowText = $(getValue[int]).text();
-				   if(getStrSkill[j]==nowValue){
-					  $('#indent_scale').attr('value',scale);
+			 var nowValue = $(scaleUl[int]).attr('data-value');
+			 var nowText = $(scaleUl[int]).text();
+				   if(scale==nowValue){
+					  $('#indent_scale').attr('data-value',scale);
 					  $('#indent_scale').text(nowText);
 				   }
 		}
@@ -208,7 +208,7 @@ function getTagValue(){
 		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
 		showWho = 0;
 	}else{
-		$('#uploadYE').find('.webuploader-pick').text('身份证正面');
+		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
 		showWho = 1;
 	}
 }
@@ -243,7 +243,7 @@ function initEven(){
 		showWho = 0;
 	});
 	$('#checkWorkRoom').off('click').on('click',function(){
-		$('#uploadYE').find('.webuploader-pick').text('身份证正面');
+		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
 		showWho = 1;
 	});
 	
@@ -290,40 +290,40 @@ function checkStepOne(){
 	var lastVal = getLastVal();
 	var companyTeamDesc = $('#company-teamDesc').val().trim();
 	resumeError();
-	if(user_img_url == '' || user_img_url == null || user_img_url == undefined){
+	if(user_img_url == "" || user_img_url == null || user_img_url == undefined){
 		showErrorLeader($('#user-img-content'),'请选择头像!');
 		return false;
 	}
-	if(companyName == '' || companyName == null || companyName == undefined){
+	if(companyName == "" || companyName == null || companyName == undefined){
 		showErrorLeader($('#company-name-error'),'请输入公司名称!');
 		$('#teamName').focus();
 		return false;
 	}
 
-	if(indent_scale == '' || indent_scale == null || indent_scale == undefined){
+	if(indent_scale == "" || indent_scale == null || indent_scale == undefined){
 		showErrorLeader($('#company-scale-error'),'请输入公司规模!');
 		return false;
 	}else{
 		$('#company-scale').val(indent_scale);
 	}
 	
-	if(teamProvince == '' || teamProvince == null || teamProvince == undefined){
+	if(teamProvince == "" || teamProvince == null || teamProvince == undefined){
 		showErrorLeader($('#cityError'),'请输入省');
 		return false;
 	}
 	$('#getProvince-value').val($('#getProvince').attr('data-value'));
-	if(infoResource == '' || infoResource == null || infoResource == undefined){
+	if(infoResource == "" || infoResource == null || infoResource == undefined){
 		showErrorLeader($('#cityError'),'请输入市');
 		return false;
 	}
 	$('#getCity-value').val($('#getCity').attr('data-value'));
 
-	if(companyAddress == '' || companyAddress == null || companyAddress == undefined){
+	if(companyAddress == "" || companyAddress == null || companyAddress == undefined){
 		showErrorLeader($('#addressError'),'请输入详细地址');
 		$('#company-address').focus();
 		return false;
 	}
-	if(companyWeb != '' && companyWeb != null && companyWeb != undefined){
+	if(companyWeb != "" && companyWeb != null && companyWeb != undefined){
 		if(!IsUrl(companyWeb)){
 			$('#webError').attr('data-content','网址不正确');
 			$('#companyWeb').focus();
@@ -331,47 +331,44 @@ function checkStepOne(){
 		}
 	}
 	
-	if(companyData == '' || companyData == null || companyData == undefined){
+	if(companyData == "" || companyData == null || companyData == undefined){
 		showErrorLeader($('#companyDataError'),'请输入日期');
 		$('#company-data').focus();
 		return false;
 	}
 	
-	if(user_img_url_Info == '' || user_img_url_Info == null || user_img_url_Info == undefined){
+	if(user_img_url_Info == "" || user_img_url_Info == null || user_img_url_Info == undefined){
 		 showErrorLeader($('#user-img-contentInfo'),'请选择营业执照');
 		return false;
 	}
 	
-	if(user_img_url_Z == '' || user_img_url_Z == null || user_img_url_Z == undefined){
+	if(user_img_url_Z == "" || user_img_url_Z == null || user_img_url_Z == undefined){
 		 showErrorLeader($('#user-img-contentInfo'),'请选择身份证正面');
 		return false;
 	}
 	
-	if(user_img_url_B == '' || user_img_url_B == null || user_img_url_B == undefined){
+	if(user_img_url_B == "" || user_img_url_B == null || user_img_url_B == undefined){
 		 showErrorLeader($('#user-img-contentInfo'),'请选择身份证背面');
 		return false;
 	}
 	
-	if(companyTeamDesc == '' || companyTeamDesc == null || companyTeamDesc == undefined){
+	if(companyTeamDesc == "" || companyTeamDesc == null || companyTeamDesc == undefined){
 		 showErrorLeader($('#company-teamDesc-error'),'请填写公司简介');
 		 $('#company-teamDesc').focus();
 		return false;
 	}
 	
-	if(businessVal == '' || businessVal == null || businessVal == undefined){
+	if(businessVal == "" || businessVal == null || businessVal == undefined){
 		 showErrorLeader($('#business-checkbox-error'),'请选择影片类型');
 		return false;
 	}
 	
-	if(teamVal == '' || teamVal == null || teamVal == undefined){
+	if(teamVal == "" || teamVal == null || teamVal == undefined){
 		 showErrorLeader($('#checkbox-error'),'请选择创作团队');
 		return false;
 	}
 	$('#businessSkill').val(businessVal);
     $('#skill').val(dreamVal+','+teamVal+','+lastVal);
-    
-    
-    
 	return true;
 }
 

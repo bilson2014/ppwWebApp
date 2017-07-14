@@ -117,14 +117,14 @@
 
 					<div class="input-group-div" id="company-scale-error">
 						<span for="company-priceRange" class="title-word">规模</span>
-						<form:input path="scale" type="hidden" id="scale" />
+						<form:input path="scale" type="hidden" id="company-scale" />
 						<div class="dropdown leaderSelect" id="company-priceRange-value">
 							<button class="btn btn-default dropdown-toggle step-two-select"
 								type="button" id="dropdownMenu1" data-toggle="dropdown">
-								<span id='indent_scale' data-value="">请选择...</span>
+								<span id="indent_scale" data-value="">请选择...</span>
 								<div class="carets"></div>
 							</button>
-							<ul class="dropdown-menu scaleUl" id="selectUl" role="menu"
+							<ul class="dropdown-menu scaleUlZZ" id="scaleUlZZ" role="menu"
 								aria-labelledby="dropdownMenu1">
 								<li data-value="0">5人以下</li>
 								<li data-value="1">5-10人</li>
@@ -138,7 +138,7 @@
 
 					<div class="input-group-div" id="cityError">
 						<form:input path="teamProvince" type="hidden"
-							id="company-priceRange-value" value="" />
+							id="getProvince-value" value="" />
 						<span for="company-city" class="title-word">所在省</span>
 						<div class="dropdown leaderSelect select-city"
 							id="company-priceRange-value">
@@ -155,7 +155,7 @@
 
 						<span for="company-city" class="title-word-city">所在城市</span>
 						<form:input path="teamCity" type="hidden"
-							id="company-priceRange-value" value="" />
+							id="getCity-value" value="" />
 						<div class="dropdown leaderSelect select-city"
 							id="company-priceRange-value">
 							<button
@@ -455,6 +455,8 @@
 			type="button" id="step1Next" name="_eventId_doRegister" value="下一步">
 	</div>
 	</form:form>
+	</div>	
+</div>	
 
 	<!-- photo Modal start -->
 	<div class="modal" id="errorModal">

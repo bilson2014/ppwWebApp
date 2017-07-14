@@ -82,11 +82,11 @@ function multipUploadFile(){
 	});
 	upload_Video.on('uploadSuccess', function(file,response) {
 		if(response._raw == 'success'){
-			$('body').find( '#'+file.id ).find('.videoState').text('已上传');
-			$('body').find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
+			$('body').find('#'+file.id ).find('.videoState').text('已上传');
+			$('body').find('#'+file.id ).find('.videoState').addClass("showUpSuccess");
 			$('body').find('#' + file.id).find('.progress').fadeOut();
 		}else{
-			$('body').find( '#'+file.id ).find('.videoState').text('上传失败');
+			$('body').find('#'+file.id ).find('.videoState').text('上传失败');
 			$('body').find('#' + file.id).find('.progress').fadeOut();
 		}
 		

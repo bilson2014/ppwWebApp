@@ -5,6 +5,10 @@ var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var curCount = 3;
 var InterValObj;
 $().ready(function(){
+	
+	$('#checkbtn').off('click').on('click',function(){
+		 window.history.go(-1);
+	});
 	var upload = {
 		init:function(){
 			//初始化上传视频
@@ -13,6 +17,9 @@ $().ready(function(){
 			this.initPage();
 			//初始化上传图片
 			this.uploaderPic();
+			$('#upBtnImg').off('click').on('click',function(){
+				  $('#upBtn').click();
+			});
 		},
 		uploaderVideo:function(){
 			var _this = this;
@@ -198,6 +205,7 @@ $().ready(function(){
 		}
 	}
 	upload.init();
+	
 });
 
 function checkData(){

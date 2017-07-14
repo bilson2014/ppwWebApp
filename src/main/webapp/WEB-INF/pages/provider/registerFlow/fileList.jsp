@@ -5,7 +5,7 @@
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
-<spring:url value="/resources/css/providerFlow/infoStepUpLoad.css"
+<spring:url value="/resources/css/flow/infoStepUpLoad.css"
 	var="providerLeaderCss" />
 <spring:url value="/resources/css/provider/step-dc-style2.css"
 	var="providerStepCss2" />
@@ -19,8 +19,8 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
-<spring:url value="/resources/js/providerFlow/infoStepUpLoad.js"
-	var="leaderJs" />
+<spring:url value="/resources/js/flow/infoStepUpLoad.js"
+	var="infoStepUpLoadJs" />
 <spring:url value="/resources/images" var="path" />
 <spring:url value="/resources/lib/webuploader/webuploader.js"
 	var="webuploaderJs" />
@@ -45,13 +45,8 @@
 <link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
 <link rel="stylesheet" type="text/css" href="${webuploaderCss}">
-<script src="${jqueryJs }"></script>
-<script src="${pluginJs }"></script>
-<script src="${jsonJs }"></script>
-<script src="${commonJs}"></script>
-<script src="${juicerJs}"></script>
-<script src="${webuploaderJs}"></script>
-<script src="${leaderJs}"></script>
+
+
 </head>
 <body>
 	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
@@ -72,33 +67,6 @@
 				<!--批量 -->
 				<div class="multUpload" id="multUpload">
 					<div class="setItem" id="video-container">
-						<div class='videoCard'>
-							<div class='videoContent'>
-								<div id='' class='item'>
-									<div class='videoName'>名字</div>
-									<div class='videoState'>等待上传</div>
-									<div class="progress progress-striped active">
-										<div
-											class="progress-bar progress-bar-danger progress-bar-striped"
-											role="progressbar" style="width: 50%"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class='videoCard'>
-							<div class='videoContent'>
-								<div id='' class='item'>
-									<div class='videoName'>名字</div>
-									<div class='videoState'>等待上传</div>
-									<div class="progress progress-striped active">
-										<div
-											class="progress-bar progress-bar-danger progress-bar-striped"
-											role="progressbar" style="width: 50%"></div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="showErrorUp"></div>
 					<div class="multDiv">
@@ -112,16 +80,19 @@
 				<!--作品列表 -->
 				<div class="uploadChoose" id="uploadChoose">
 					<div class="ucTitle">作品列表</div>
+					<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=0&teamId=${teamId}">
 					<div class="newProduct" id="newProduct">
 						<div></div>
-						<span><a href="${flowExecutionUrl}&_eventId=uploadFile&productId=0&teamId=${teamId}">新建作品</a></span>
+						<span>新建作品</span>
 					</div>
+					</a>
 					<div class="moreUp" id="moreUp">
 						<div></div>
 						<span>批量上传作品</span>
 					</div>
 					<div class="uploadLine"></div>
 					<div class="setContent">
+					
 						<c:if test="${empty products}">
 							<div class="noProduct">暂无作品</div>
 						</c:if>
@@ -147,10 +118,24 @@
 										</div>
 									</div>
 									<div class="lastContent">
+									<c:if test="${product.flag==0}">
+							<div class="state yellow">审核中</div>
+						</c:if>
+						<c:if test="${product.flag==1}">
+							<div class="state green">审核通过</div>
+						</c:if>
+						<c:if test="${product.flag==2}">
+							<div class="state red">未通过</div>
+						</c:if>
+						<c:if test="${product.flag==3}">
+							<div class="state blue">编辑中</div>
+						</c:if>
+									<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">
 										<div class="edit btn-c-r product-edit" data-id="${product.productId }">
 											<div></div>
-											<div><a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">编辑</a></div>
+											<div>编辑</div>
 										</div>
+									</a>	
 										<div class="del btn-c-g" data-id="${product.productId }">
 											<div></div>
 											<div>删除</div>
@@ -165,8 +150,8 @@
 					<div class="bottom-div">
 						<sf:form>
 				   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_backspace" value="上一步" />
-				   		 	<input type="submit" class="gy-btn" name="_eventId_checkUploadFile" value="下一步" />
+				   		 	<input type="submit" class="gy-btn btn-c-g" name="_eventId_backspace" value="上一步" />
+				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_checkUploadFile" value="下一步" />
 				   		 </sf:form>
 					</div>
 				</div>
@@ -179,7 +164,24 @@
 	<!-- foot -->
 	<jsp:include flush="true" page="../../foot.jsp"></jsp:include>
 	<!--新版底部-->
-
+	
+		<div class="tooltip-check" id="tooltip-check" >
+	     <div class="checkCard">
+	          <div class="closeCheck" id='closeCheck'></div>
+	          <div class="checkInfo" id="checkInfo">error</div>
+	          <div class="checkBottom">
+	                 <div class="sureCheck" id="sureCheck">确认</div>
+	                 <div class="falseCheck" id="falseCheck">取消</div>
+	          </div>
+	     </div>
+	</div>
+<script src="${jqueryJs }"></script>
+<script src="${pluginJs }"></script>
+<script src="${jsonJs }"></script>
+<script src="${commonJs}"></script>
+<script src="${juicerJs}"></script>
+<script src="${webuploaderJs}"></script>	
+<script src="${infoStepUpLoadJs}"></script>
 
 </body>
 
