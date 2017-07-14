@@ -45,4 +45,12 @@ public interface TeamService {
 	 * 	删除session，退出登录
 	 */
 	public void cancel();
+	
+	/**
+	 * 保存或者通过
+	 * 	该方法用来保存数据库，并且返回供应商ID
+	 * @param teamId
+	 * @return
+	 */
+	public long saveOrPass(long teamId);
 }

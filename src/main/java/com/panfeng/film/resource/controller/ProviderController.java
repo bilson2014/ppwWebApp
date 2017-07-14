@@ -355,7 +355,7 @@ public class ProviderController extends BaseController {
 					// 注册完成之后的手机号码存储在session中，保持供应商身份的登陆状态
 					httpSession.removeAttribute(PmsConstant.SESSION_INFO);
 					SessionInfo sessionInfo = new SessionInfo();
-					sessionInfo.setTelephone(original.getPassword());
+					sessionInfo.setTelephone(original.getPhoneNumber());
 					sessionInfo.setSessionType(PmsConstant.ROLE_PROVIDER);
 					httpSession.setAttribute(PmsConstant.SESSION_INFO, sessionInfo);
 					info.setKey(true);
@@ -1215,6 +1215,8 @@ public class ProviderController extends BaseController {
 		info.setToken(DataUtil.md5(sessionId));
 		info.setReqiureId(team.getTeamId());
 		info.setPhoto(team.getTeamPhotoUrl());
+		// 供应商审核状态位
+		info.setProviderFlag(team.getFlag());
 
 		if (team.getFlag() == 1)
 			info.setIsIdentification(true);

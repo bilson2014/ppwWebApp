@@ -42,7 +42,28 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 			final ServletContext sc = req.getServletContext();
 			final String uri = UrlResourceUtils.URLResolver(url, sc.getContextPath());
 			final PmsRight right = pmsRightFacade.getRightFromRedis(uri);
-			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){ 
+			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){
+				// 即使有权限，那么判断当前供应商是否已经审核通过了
+				if("/provider/portal".equals(uri)) {
+					if(info.getProviderFlag() == 3) {
+						// 未提交审核
+						Log.error("请先完成审核", info);
+						resp.sendRedirect(contextPath + "/registerflow.html?teamId=" + info.getReqiureId());
+						return false;
+					}
+					
+					if(info.getProviderFlag() == 0 || info.getProviderFlag() == 2) {
+						// 正在审核  或者 审核未通过
+						Log.error("正在审核，请稍候", info);
+						resp.sendRedirect(contextPath + "/provider/information");
+						return false;
+					}
+					
+					if(info.getProviderFlag() == 1) {
+						// 正在审核  或者 审核未通过
+						return true;
+					}
+				}
 				return true;
 			} else {
 				// 没有权限
@@ -52,5 +73,4 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 	}
-	
 }
