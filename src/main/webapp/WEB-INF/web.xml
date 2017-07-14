@@ -53,6 +53,17 @@
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- <servlet>
+		<servlet-name>flow-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>flow-dispatcher</servlet-name>
+		<url-pattern>/registerflow.html</url-pattern>
+	</servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>Kaptcha</servlet-name>
