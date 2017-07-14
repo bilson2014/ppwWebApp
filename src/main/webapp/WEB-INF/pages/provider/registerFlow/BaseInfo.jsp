@@ -58,7 +58,7 @@
 <script src="${commonJs}"></script>
 <script src="${datepickerJs}"></script>
 <script src="${datepickerZhJs}"></script>
-<script src="${registerJs}"></script>
+<script src="${BaseInfoJs}"></script>
 <script src="${webuploaderJs}"></script>
 </head>
 

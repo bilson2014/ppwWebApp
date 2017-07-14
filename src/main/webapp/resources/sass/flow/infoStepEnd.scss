@@ -130,7 +130,7 @@
         
         //审核
         .success {
-            display: none;
+          
         }
         
         .successCheck {
@@ -150,7 +150,9 @@
                 width: 270px;
                 font-size: 0;
                 margin: 0 auto;
-                div {
+                input {
+                    border:none;
+                    outline: none;
                     width: 120px;
                     height: 36px;
                     text-align: center;
@@ -161,7 +163,7 @@
                     vertical-align: top;
                     display: inline-block;
                 }
-                div:first-child {
+                input:nth-child(2) {
                     margin-right: 30px;
                 }
             }

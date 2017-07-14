@@ -208,7 +208,7 @@ function getTagValue(){
 		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
 		showWho = 0;
 	}else{
-		$('#uploadYE').find('.webuploader-pick').text('身份证正面');
+		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
 		showWho = 1;
 	}
 }
@@ -243,7 +243,7 @@ function initEven(){
 		showWho = 0;
 	});
 	$('#checkWorkRoom').off('click').on('click',function(){
-		$('#uploadYE').find('.webuploader-pick').text('身份证正面');
+		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
 		showWho = 1;
 	});
 	

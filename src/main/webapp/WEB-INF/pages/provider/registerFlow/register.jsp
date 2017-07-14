@@ -137,7 +137,7 @@
 
 					<div class="input-group-div" id="cityError">
 						<form:input path="teamProvince" type="hidden"
-							id="company-priceRange-value" value="" />
+							id="getProvince-value" value="" />
 						<span for="company-city" class="title-word">所在省</span>
 						<div class="dropdown leaderSelect select-city"
 							id="company-priceRange-value">
@@ -154,7 +154,7 @@
 
 						<span for="company-city" class="title-word-city">所在城市</span>
 						<form:input path="teamCity" type="hidden"
-							id="company-priceRange-value" value="" />
+							id="getCity-value" value="" />
 						<div class="dropdown leaderSelect select-city"
 							id="company-priceRange-value">
 							<button
