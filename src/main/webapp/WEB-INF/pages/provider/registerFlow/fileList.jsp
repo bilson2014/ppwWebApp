@@ -118,6 +118,18 @@
 										</div>
 									</div>
 									<div class="lastContent">
+									<c:if test="${product.flag==0}">
+							<div class="state yellow">审核中</div>
+						</c:if>
+						<c:if test="${product.flag==1}">
+							<div class="state green">审核通过</div>
+						</c:if>
+						<c:if test="${product.flag==2}">
+							<div class="state red">未通过</div>
+						</c:if>
+						<c:if test="${product.flag==3}">
+							<div class="state blue">编辑中</div>
+						</c:if>
 									<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">
 										<div class="edit btn-c-r product-edit" data-id="${product.productId }">
 											<div></div>
@@ -138,8 +150,8 @@
 					<div class="bottom-div">
 						<sf:form>
 				   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_backspace" value="上一步" />
-				   		 	<input type="submit" class="gy-btn" name="_eventId_checkUploadFile" value="下一步" />
+				   		 	<input type="submit" class="gy-btn btn-c-g" name="_eventId_backspace" value="上一步" />
+				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_checkUploadFile" value="下一步" />
 				   		 </sf:form>
 					</div>
 				</div>

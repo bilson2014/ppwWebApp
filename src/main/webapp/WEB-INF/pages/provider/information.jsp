@@ -56,6 +56,7 @@
 				<div class="line"></div>
 				<div class="first " id="step-3" data-content="上传作品">3</div>
 				<div class="line"></div>
+				<div class="first step-1" id="step-3" data-content="资质审核">4</div>
 			</div>	
 	<div class="step-four-div" id="step4" data-step="4">
 		<div class="success" id="success">
