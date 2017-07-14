@@ -108,7 +108,7 @@
 				<div class="bottom-div">
 					<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" /> 
 					<input class="gy-btn" type="submit" name="_eventId_backspace" id="step2Pre" value="上一步">
-					<input class="red-btn btn-c-r" id="step2Next" type="submit" name="_eventId_doRegister" value="下一步">
+					<input class="red-btn btn-c-r" id="step2Next" type="button" name="_eventId_doRegister" value="下一步">
 				</div>
 				</form:form>
 			</div>

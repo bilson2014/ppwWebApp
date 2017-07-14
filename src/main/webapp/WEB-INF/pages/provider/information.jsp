@@ -46,6 +46,18 @@
 <body>
 	<jsp:include flush="true" page="../header.jsp"></jsp:include>
 	<div class="page">
+	
+	
+		<div class="step">
+			<div class="step-bar" id="step-bar">
+				<div class="first" id="step-1" data-content="填写基本信息">1</div>
+				<div class="line"></div>
+				<div class="first" id="step-2" data-content="填写详细信息">2</div>
+				<div class="line"></div>
+				<div class="first " id="step-3" data-content="上传作品">3</div>
+				<div class="line"></div>
+			</div>	
+	<div class="step-four-div" id="step4" data-step="4">
 		<div class="success" id="success">
 			<ul class="ul-step-three">
 				<li>
@@ -61,6 +73,8 @@
 				</li>
 			</ul>
 		</div>
+	</div>	
+	</div>	
 	</div>
 	<!-- foot -->
 	<jsp:include flush="true" page="../foot.jsp"></jsp:include>

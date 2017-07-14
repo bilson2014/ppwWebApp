@@ -46,13 +46,13 @@ function checkStepTwo(){
 	var companyQQ = $('#company-qq').val().trim();
 	var companyPhone = $('#company-phone').val().trim();
 	
-	if(companyLinkman == '' || companyLinkman == null || companyLinkman == undefined){
+	if(companyLinkman == "" || companyLinkman == null || companyLinkman == undefined){
 		 showErrorLeader($('#company-linkman-error'),'请填写联系人');
 		 $('#company-linkman').focus();
 		return false;
 	}
 
-	if(companyEmail == '' || companyEmail == null || companyEmail == undefined){
+	if(companyEmail == "" || companyEmail == null || companyEmail == undefined){
 		showErrorLeader($('#company-email-error'),'请输入公司邮箱');
 		 $('#company-email').focus();
 		return false;
@@ -64,7 +64,7 @@ function checkStepTwo(){
 		return false;
 	}
 	
-	if(companyQQ != '' || companyQQ != null || companyQQ != undefined){
+	if(companyQQ != "" && companyQQ != null && companyQQ != undefined){
 		var reg = /^[1-9]\d{4,9}$/;
 		if(!companyQQ.match(reg)){
 			showErrorLeader($('#company-qq-error'),'QQ号码有误!');

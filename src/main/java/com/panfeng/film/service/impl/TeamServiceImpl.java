@@ -82,4 +82,10 @@ public class TeamServiceImpl implements TeamService {
 		return res > 0 ? true : false;
 	}
 
+	@Override
+	public void cancel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

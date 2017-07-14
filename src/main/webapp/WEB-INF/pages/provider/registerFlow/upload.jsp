@@ -8,7 +8,7 @@
 <spring:url value="/resources/css/commons.css" var="commonCss" />
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
-<spring:url value="/resources/css/provider/upload.css"
+<spring:url value="/resources/css/flow/upload.css"
 	var="providerUploadCss" />
 <spring:url value="/resources/lib/webuploader/webuploader.css"
 	var="webuploaderCss" />
@@ -94,8 +94,8 @@
 			<div class="titleInfo">作品上传</div>
 			<c:if test="${productId == 0}">
 				<div class="step1">
-					<div class="upImg">
-						<img src="/resources/images/provider/upLoad.png" />
+					<div class="upImg" id="upBtnImg">
+						<img src="/resources/images/provider/upLoadNew.png" />
 					</div>
 					<div class="upBtn btn-c-r" id="upBtn">上传视频</div>
 					<div class="error_upload"></div>
@@ -129,6 +129,9 @@
 			               <div class="grayWord">Mac系统：Any Video Converter</div>
 			               <div class="midWord">如果您对此有疑问,您可以拨打(010-59005319)与我们联系。</div>
 					</div>
+					<div class="setMid"> 
+					    <input type="submit" class="gy-btn btn-c-r " id="checkbtn" name="_eventId_backspace" value="上一步" />
+					</div>	
 				</div>
 			</c:if>
 			<div class="step2 <c:if test='${productId == 0}'>hide</c:if>">
