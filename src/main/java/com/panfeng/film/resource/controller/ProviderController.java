@@ -1192,6 +1192,37 @@ public class ProviderController extends BaseController {
 		}
 		return baseMsg;
 	}
+	
+	/**
+	 * 跳转至注册信息提示页面
+	 * @return
+	 */
+	@RequestMapping("/information")
+	public ModelAndView informationView(HttpServletRequest request, ModelMap model) {
+		
+		// 查询供应商审核状态
+		SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
+		if(info != null && info.getReqiureId() != null) {
+			PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
+			model.addAttribute("flag", team.getFlag());
+			model.addAttribute("recommendation", team.getRecommendation());
+			model.addAttribute("teamId", info.getReqiureId());
+		}
+		return new ModelAndView("provider/information");
+	}
+	
+	/**
+	 * 返回至首页，需退出登录
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/backToPortal")
+	public ModelAndView backToPortal(HttpServletRequest request) {
+		// 清空session
+		final HttpSession session = request.getSession();
+		session.removeAttribute(PmsConstant.SESSION_INFO);
+		return new ModelAndView("redirect:/");
+	}
 
 	/**
 	 * 初始化 sessionInfo 信息

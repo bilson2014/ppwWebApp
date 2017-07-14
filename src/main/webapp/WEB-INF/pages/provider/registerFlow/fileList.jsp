@@ -67,10 +67,11 @@
 				<!--批量 -->
 				<div class="multUpload" id="multUpload">
 					<div class="setItem" id="video-container">
+					          <div class="setWord">请选择作品</div>
 					</div>
 					<div class="showErrorUp"></div>
 					<div class="multDiv">
-						<div class="btn-c-g" id="cancleMult">取消</div>
+						<div class="btn-c-g" id="cancleMult">返回</div>
 						<div class="btn-c-r" id="submit-multip">开始上传</div>
 						<div class="picker" id='picker'>选择文件</div>
 					</div>
@@ -170,8 +171,8 @@
 	          <div class="closeCheck" id='closeCheck'></div>
 	          <div class="checkInfo" id="checkInfo">error</div>
 	          <div class="checkBottom">
-	                 <div class="sureCheck" id="sureCheck">确认</div>
 	                 <div class="falseCheck" id="falseCheck">取消</div>
+	                 <div class="sureCheck" id="sureCheck">确认</div>
 	          </div>
 	     </div>
 	</div>

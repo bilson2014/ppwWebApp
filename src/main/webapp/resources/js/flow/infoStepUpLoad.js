@@ -17,9 +17,9 @@ function initEven(){
 		 $('#upVideoCard').show();
 	});
 	$('#cancleMult').off('click').on('click',function(){
-		$('#multUpload').hide();
+/*		$('#multUpload').hide();
 		$('#uploadChoose').show();
-		$('#video-container').html();
+		$('#video-container').html();*/
 		window.location.reload();
 	});
 	$('#upBtn').off('click').on('click',function(){
@@ -41,7 +41,7 @@ function delProduct(){
 	$('.del').off("click").on('click',function(){
 		var pKey = $(this).data('id');
 		$('#tooltip-check').show();
-		$('#checkInfo').text('确定要删除此条记录吗？');
+		$('#checkInfo').text('确定要删除此作品吗？');
 		$('#falseCheck').off('click').on('click',function(){
 			$('#tooltip-check').hide();
 		});
@@ -107,6 +107,7 @@ function multipUploadFile(){
 	});
 	
 	upload_Video.on('fileQueued', function(file) {
+		$('.setWord').remove();
 		$("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
 	});
 	

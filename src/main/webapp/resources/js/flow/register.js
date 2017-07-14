@@ -149,7 +149,7 @@ function getTagValue(){
 	var getStr = getTeam.split(",");
 	var getStrSkill = getSkill.split(",");
 	
-	if(getStr != "" || getStr != null || getStr != undefined){
+	if(getStr != "" && getStr != null && getStr != undefined){
 		for (var int = 0; int < getValue.length; int++) {
 			 var nowValue = $(getValue[int]).text().trim();
 			 for (var j = 0; j < getStr.length; j++) {
@@ -160,7 +160,7 @@ function getTagValue(){
 		}
 	}
 	
-	if(getStrSkill != "" || getStrSkill != null || getStrSkill != undefined){
+	if(getStrSkill != "" && getStrSkill != null && getStrSkill != undefined){
 		for (var int = 0; int < getValue.length; int++) {
 			 var nowValue = $(getValue[int]).text().trim();
 			 for (var j = 0; j < getStrSkill.length; j++) {
@@ -175,24 +175,24 @@ function getTagValue(){
 	var infoZ = $('#user_img_url_Z').val();
 	var infoB = $('#user_img_url_B').val();
 	
-	if(logo != "" || logo != null || logo != undefined){
+	if(logo != "" && logo != null && logo != undefined){
 	 $('#user-img').attr('src',imgUrl+logo);
 	}
-	if(info != "" || info != null || info != undefined){
+	if(info != "" && info != null && info != undefined){
 		$('#user-img-info').attr('src',imgUrl+info);
 	}
 	
-	if(infoZ != "" || infoZ != null || infoZ != undefined){
+	if(infoZ != "" && infoZ != null && infoZ != undefined){
 		$('#user-img-z').attr('src',imgUrl+infoZ);
 	}
 	
-	if(infoB != "" || infoB != null || infoB != undefined){
+	if(infoB != "" && infoB != null && infoB != undefined){
 		$('#user-img-b').attr('src',imgUrl+infoB);
 	}
 	
 	var scale = $('#company-scale').val();
 	var scaleUl = $('#scaleUlZZ li');
-	if(scale != "" || scale != null || scale != undefined){
+	if(scale != "" && scale != null && scale != undefined){
 		for (var int = 0; int < scaleUl.length; int++) {
 			 var nowValue = $(scaleUl[int]).attr('data-value');
 			 var nowText = $(scaleUl[int]).text();
@@ -352,11 +352,7 @@ function checkStepOne(){
 		return false;
 	}
 	
-	if(companyTeamDesc == "" || companyTeamDesc == null || companyTeamDesc == undefined){
-		 showErrorLeader($('#company-teamDesc-error'),'请填写公司简介');
-		 $('#company-teamDesc').focus();
-		return false;
-	}
+
 	
 	if(businessVal == "" || businessVal == null || businessVal == undefined){
 		 showErrorLeader($('#business-checkbox-error'),'请选择影片类型');
@@ -367,6 +363,13 @@ function checkStepOne(){
 		 showErrorLeader($('#checkbox-error'),'请选择创作团队');
 		return false;
 	}
+	
+	if(companyTeamDesc == "" || companyTeamDesc == null || companyTeamDesc == undefined){
+		 showErrorLeader($('#company-teamDesc-error'),'请填写公司简介');
+		 $('#company-teamDesc').focus();
+		return false;
+	}
+	
 	$('#businessSkill').val(businessVal);
     $('#skill').val(dreamVal+','+teamVal+','+lastVal);
 	return true;
