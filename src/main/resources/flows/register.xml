@@ -12,7 +12,9 @@
 	</on-start>
 	
 	<view-state id="protocol" view="/provider/registerFlow/protocol">
-		<transition on="agree" to="register" />
+		<transition on="agree" to="register" >
+			<evaluate expression="teamService.saveOrPass(teamId)" result="flowScope.teamId" />
+		</transition>
 	</view-state>
 	
 	<view-state id="register" model="team" view="/provider/registerFlow/register">
