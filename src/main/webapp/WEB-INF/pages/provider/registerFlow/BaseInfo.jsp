@@ -63,7 +63,7 @@
 </head>
 
 <body>
-	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
+	<jsp:include flush="true" page="../../header.jsp" />
 	<div class="page">
 
 		<div class="step">
@@ -87,8 +87,7 @@
 					</div>
 					<div class="input-group-div" id="company-email-error">
 						<span class="title-word">邮箱</span>
-						<form:input path="email" class="form-control step-one-input"
-							id="company-email" placeholder="请填写邮箱" />
+						<form:input path="email" class="form-control step-one-input" id="company-email" placeholder="请填写邮箱" />
 					</div>
 					<div class="input-group-div noStar" id="company-webchat-error">
 						<span class="title-word">微信</span>
@@ -105,14 +104,13 @@
 						<form:input path="telNumber" class="form-control step-one-input"
 							id="company-phone" placeholder="请填写座机" />
 					</div>
-				</form:form>
+				
 				<div class="bottom-div">
-					<input type="hidden" name="_flowExecutionKey"
-						value="${flowExecutionKey}" /> <input class="gy-btn"
-						type="submit" name="_eventId_cancel" id="step2Pre" value="上一步">
-					<input class="red-btn btn-c-r" id="step2Next" type="button"
-						name="_eventId_doRegister" value="下一步">
+					<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" /> 
+					<input class="gy-btn" type="submit" name="_eventId_backspace" id="step2Pre" value="上一步">
+					<input class="red-btn btn-c-r" id="step2Next" type="submit" name="_eventId_doRegister" value="下一步">
 				</div>
+				</form:form>
 			</div>
 		</div>
 		<!-- foot -->

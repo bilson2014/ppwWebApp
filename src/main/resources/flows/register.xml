@@ -66,12 +66,14 @@
 		<transition on="backspace" to="fileList" />
 	</view-state>
 	
-	<end-state id="end" view="externalRedirect:/flow/index" />
+	<end-state id="end" view="externalRedirect:/login?role=director" />
 	
 	<end-state id="information" view="externalRedirect:/provider/information" />
 	
 	<global-transitions>
-		<transition on="cancel" to="end" />
+		<transition on="cancel" to="end" >
+			<evaluate expression="teamService.cancel()" />
+		</transition>
 	</global-transitions>
 	
 </flow>

@@ -39,4 +39,10 @@ public interface TeamService {
 	 * @return
 	 */
 	public boolean submitted(long teamId);
+	
+	/**
+	 * 取消操作
+	 * 	删除session，退出登录
+	 */
+	public void cancel();
 }

@@ -277,7 +277,7 @@ public class ProviderController extends BaseController {
 	 *            供应商信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	@RequestMapping("/info/register")
+	/*@RequestMapping("/info/register")
 	public Info register(@RequestBody final PmsTeam original, final HttpServletRequest request) {
 
 		// 判断手机号是否能注册
@@ -302,6 +302,63 @@ public class ProviderController extends BaseController {
 						httpSession.setAttribute(TYPE, REGISTER_KET);
 						info.setKey(true);
 					}
+				} else {
+					// 手机号错误
+					info.setKey(false);
+					info.setValue("手机号不正确!");
+				}
+			} else {
+				// 验证码过期
+				info.setKey(false);
+				info.setValue("验证码输入错误!");
+			}
+		} else {
+			// session 过期
+			info.setKey(false);
+			info.setValue("请重新获取验证码!");
+		}
+		return info;
+	}*/
+	
+	
+	
+	/**
+	 * 注册
+	 * 
+	 * @param original
+	 *            供应商信息
+	 * @return 成功返回 true, 失败返回 false
+	 */
+	@RequestMapping("/info/register")
+	public Info register(@RequestBody final PmsTeam original, final HttpServletRequest request) {
+
+		// 判断手机号是否能注册
+		final long count = pmsTeamFacade.checkExist(original);
+		if (ValidateUtil.isValid(count)) {
+			if (count > 0) {
+				return new Info(false, "手机号已经注册");
+			}
+		}
+		final String code = (String) request.getSession().getAttribute("code");
+		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
+		Info info = new Info(); // 信息载体
+		// 判断验证码
+		if ((!"".equals(code) && code != null)) {
+			if (code.equals(original.getVerification_code())) {
+				if (null != codeOfphone && original != null && codeOfphone.equals(original.getPhoneNumber())) {
+					final HttpSession httpSession = request.getSession();
+					Gson gson = new Gson();
+					String json = gson.toJson(original);
+					httpSession.setAttribute(ORIGINAL, json); // session
+					httpSession.setAttribute(TYPE, REGISTER_KET);
+					
+					// 注册完成之后的手机号码存储在session中，保持供应商身份的登陆状态
+					httpSession.removeAttribute(PmsConstant.SESSION_INFO);
+					SessionInfo sessionInfo = new SessionInfo();
+					sessionInfo.setTelephone(original.getPassword());
+					sessionInfo.setSessionType(PmsConstant.ROLE_PROVIDER);
+					httpSession.setAttribute(PmsConstant.SESSION_INFO, sessionInfo);
+					info.setKey(true);
 				} else {
 					// 手机号错误
 					info.setKey(false);

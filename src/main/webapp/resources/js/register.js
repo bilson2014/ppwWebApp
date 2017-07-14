@@ -421,7 +421,7 @@ $().ready(function() {
 						loadData(function(info){
 							$(".errorDiv").addClass("hide");
 							if(info.key){
-								window.location.href=getContextPath()+'/provider/leader';
+								window.location.href = getContextPath() + '/registerflow.html?teamId=0';
 							}else{
 								add = true;
 								$("#code_error_info_team").text(info.value).removeClass("hide");
@@ -429,7 +429,6 @@ $().ready(function() {
 							}
 						},  getContextPath() + '/provider/info/register', $.toJSON({
 								phoneNumber : phoneNumber,
-								password : Encrypt("123456"),
 								verification_code : veri_code
 						}));
 					}

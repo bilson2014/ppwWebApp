@@ -105,6 +105,7 @@
 			<mvc:exclude-mapping path="/provider/info/register" />
 			<mvc:exclude-mapping path="/provider/login/**" />
 			<mvc:exclude-mapping path="/provider/upload/teamPhoto" />
+			<mvc:exclude-mapping path="/provider/information" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />
 		</mvc:interceptor>
 		
