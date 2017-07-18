@@ -24,6 +24,7 @@
 <spring:url value="/resources/images" var="path" />
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
+<spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
 
 	
 <!DOCTYPE html>
@@ -70,15 +71,15 @@
 		value="${file_locate_storage_path }" />
 	<input type="hidden" value="${cKey}" id="company-key" />
 	<input type="hidden" value="${cType}" id="company-type" />
-	<input type="hidden" value="46" id="total"/>
+	<input type="hidden" value="${total}" id="total"/>
 	<div class="proInfo">
 		<c:if test="${empty list }">
 			<div class="noProduct">
 				<div>暂无作品</div>
 			</div>
 		</c:if>
-
-		<c:if test="${!empty list}">
+		<div class="ProductContent" id='ProductContent'></div>
+<%-- 		<c:if test="${!empty list}">
 			<div class="ProductContent" id='ProductContent'>
 				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
@@ -167,16 +168,17 @@
 					</div>
 				</c:forEach>
 			</div>
-		</c:if>
+		</c:if> --%>
 		
 				<!-- pagination start -->
-		<div class="page-section">
-			<div class="page-wrap">
-				<div class="pagination">
-					
+		<c:if test="${!empty list }">
+			<div class="page-section">
+				<div class="page-wrap">
+					<div class="pagination"></div>
 				</div>
 			</div>
-		</div>
+		</c:if>
+		
 		<!-- pagination end -->
 		
 	</div>
@@ -184,13 +186,13 @@
 </body>
 <!-- script here -->
 <script src="${jqueryJs }"></script>
+<script src="${jqueryPageJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${webuploaderJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${productListJs }"></script>
 <script src="${juicerJs }"></script>
-
 
 <!-- 加载Mob share 控件 -->
 <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>

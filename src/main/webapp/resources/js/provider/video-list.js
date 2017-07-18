@@ -1,13 +1,132 @@
-var pageSize = 5;
+var pageSize = 8;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var parent = window.parent.document;
 var win = window;
+var currentSize = 1;
 $().ready(function() {
 	$(parent).find('.tooltip-wati').hide();
-	loadProduction(1);
-	var videoList = {
+	loadProduction();
+});
+
+function pagination(){
+	$(".pagination").html('');
+	$(".pagination").initPage();
+	$(".pagination").createPage({
+		pageCount: Math.ceil($('#total').val() / pageSize),
+		current: currentSize,
+		backFn:function(p){
+			// 点击 翻页，查询符合条件的视频
+			loadProduction();
+			currentSize = p;
+		}
+	});
+}
+
+//加载视频
+function loadProduction(){
+	// 清空 videowrap
+	$('#video-content').empty();
+	loadData(function(list){
+		    $body = '';
+			$('#ProductContent').empty(); // 清空区域
+			if(list.rows != null && list.rows.length > 0){
+				var $body = '';
+				$('#total').val(list.total);
+				$.each(list.rows,function(i,solr){
+					var num = parseInt(solr.indentProjectId);
+					var imgPath = '/resources/images/index/noImg.jpg';
+					var imageUrl = solr.picLDUrl;
+					var itemflag = parseInt(solr.flag);
+					var cType = $('#cType').val();
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<div class="productCard">';
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
+					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';
+					$body += '<input type="hidden" id="media-video" value="'+solr.videoUrl+'" />';
+					$body += '<div class="mid nC">';
+					$body += '<div class="title">';
+						$body += '<span>标题：</span> ';
+						$body += '<span>'+solr.productName +'</span> ';
+					    if(itemflag == 0){
+					    	$body += '<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>';
+					    }
+					    if(itemflag == 1){
+					    	$body += '<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>';
+					    }
+					    if(itemflag == 2){
+					    	$body += '<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>';
+					    }
+					    if(itemflag == 3){
+					    	$body += '<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>';
+					    }
+					    $body += '<div/>';
+					    if(cType == 4){
+					    	 $body += '<div class="shareVideo">';
+					    	 $body += '<div class="wechat -mob-share-weixin share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qq share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-weibo share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qzone share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '</div>';
+					    }
+					    $body += '</div>';
+						$body +='</div>';
+					    if(solr.checkDetails!=''&&itemflag==2){
+					    	$body += '<div class="content">';
+					    	$body += '<div class="cTitle">建议：</div>';
+					    	$body += '<div class="cContent">'+solr.checkDetails+'</div>';
+					    	$body += '<div/>';
+					    }
+					    $body += '<div class="lastContent">';
+					    if(itemflag == 1){
+					    	   if(solr.visible == 1){
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct noneUs">';
+					    	   }else{
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct">';
+					    	   }
+					    	       $body +='<div>作品可见</div></div>';
+						    		    if(cType == 4){
+						    		    	$body +='<div class="master-flag setMaster gStar>';
+						    		    }else{
+						    		    	$body +='<div class="master-flag setMaster>';
+						    		    }
+						    		    if(rows.masterWork == 1){
+						    		    	 $body +='<div class="master-title">取消代表作</div>';
+						    		    }else{
+						    		    	 $body +='<div class="master-title">设为代表作</div>';
+						    		    }
+						    		    $body +='<div class="star" data-id="'+solr.productId+'" data-master="'+solr.masterWork+'"></div>';
+						    		    $body +='</div>';
+					    }
+					    if(itemflag == 3 ||cType == 4){
+					    	 $body +='<div class="edit product-edit" data-id="'+solr.productId+'">';
+					    	 $body +='<div>编辑作品</div>';
+					    	 $body +='</div>';
+					    }
+					    $body +='<div class="del" data-id="'+solr.productId+'">';
+				    	$body +='<div>删除作品</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    
+				});
+				$('#ProductContent').append($body); // 填充数据
+				videoList.init();
+				pagination();
+			}
+	}, getContextPath() + '/provider/video-pagination', $.toJSON({
+		begin : currentSize,
+		limit : pageSize
+	}));
+}
+
+var videoList = {
 		init : function() {
 			//新建作品
 			//this.addProduct();
@@ -234,7 +353,7 @@ $().ready(function() {
 			});
 		}*/
 	}	
-	videoList.init();
+
 	var videoList_tpl = {
 			upload_Tpl:[
 			" <div class='videoCard'>                            "+
@@ -246,156 +365,3 @@ $().ready(function() {
 			" </div>                                              "      
 			].join("")
 	}
-});
-
-function pagination(){
-	$(".pagination").createPage({
-		pageCount: Math.ceil($('#total').val() / pageSize),
-		current: 1,
-		backFn:function(p){
-			// 点击 翻页，查询符合条件的视频
-			loadProduction((p - 1) * pageSize);
-			currentSize = (p - 1) * pageSize;
-		}
-	});
-}
-
-//加载视频
-function loadProduction(start){
-	// 清空 videowrap
-	$('#video-content').empty();
-	loadData(function(list){
-		$body = '';
-		if(list != null && list.length > 0){
-			 // 此布局是一行4个
-			$('#video-content').empty(); // 清空区域
-			if(list != null && list.length > 0){
-				var $body = '';
-				$.each(list,function(i,solr){
-					var num = parseInt(solr.indentProjectId);
-					var imgPath = '/resources/images/index/noImg.jpg';
-					var imageUrl = solr.picLDUrl;
-					var itemflag = parseInt(solr.teamFlag);
-					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = getDfsHostName() + imageUrl;
-					}
-					$body += '<div class="productCard">';
-					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = getDfsHostName() + imageUrl;
-					}
-					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
-					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';
-					$body += '<input type="hidden" id="media-video" value="product.videoUrl" />';
-					$body += '<div class="mid nC">';
-					$body += '<div class="title">';
-					$body += '<span>标题：</span> ';
-				
-					/*<span><c:out value="${product.productName }" /></span>
-					<c:if test="${product.flag==0}">
-						<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>
-					</c:if>
-					<c:if test="${product.flag==1}">
-						<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>
-					</c:if>
-					<c:if test="${product.flag==2}">
-						<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>
-					</c:if>
-					<c:if test="${product.flag==3}">
-						<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>
-					</c:if>
-				</div>
-					*/
-						
-				});
-
-				$('#video-content').append($body); // 填充数据
-			}else {
-				// 如果没有数据，则显示 "对不起，没有查询到您想要的数据"
-				$('#video-content').append('<div class="prompt-word">您找的影片遗落在外星球了！快 登录 拍片网飞船吧！</div>');
-			}
-		}
-	}, getContextPath() + '/provider/video-pagination', $.toJSON({
-		begin : start,
-		limit : pageSize
-	}));
-}
-
-/*
-
-
-<div class="mid nC">
-	<div class="title">
-		<span>标题：</span> 
-		<span><c:out value="${product.productName }" /></span>
-		<c:if test="${product.flag==0}">
-			<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>
-		</c:if>
-		<c:if test="${product.flag==1}">
-			<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>
-		</c:if>
-		<c:if test="${product.flag==2}">
-			<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>
-		</c:if>
-		<c:if test="${product.flag==3}">
-			<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>
-		</c:if>
-	</div>
-
-	
-	<c:if test="${cType == 4 }">
-		<div class="shareVideo">
-		    <div>分享：</div>
-		    <div class="wechat -mob-share-weixin share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
-		    <div class="qq -mob-share-qq share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
-		    <div class="wb -mob-share-weibo share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
-		    <div class="zone -mob-share-qzone share" data-name='<c:out value="${product.productName }" />' data-no='<c:out value="${product.productId }" />'></div>
-		</div>
-	</c:if>
-</div>
-
-	<div class="content <c:if test="${empty product.checkDetails || product.flag != 2}">hide</c:if>">
-		<div class="cTitle">建议：</div>
-		<div class="cContent">
-		<c:if test="${not empty product.checkDetails and product.flag == 2}">
-			${product.checkDetails }
-		</c:if>
-		</div>
-	</div>
-
-<div class="lastContent">
-
-   <c:if test="${product.flag==1}">
-       <div data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visible visibleProduct <c:if test="${product.visible==1}">noneUse</c:if>">
-          <div>作品可见</div>
-       </div>
-   </c:if>
-
-	<c:if test="${product.flag==1}">
-		<c:if test="${product.masterWork==1}">
-			<div class="master-flag setMaster <c:if test="${cType==4}">gStar</c:if>">
-				<div class="master-title">取消代表作</div>
-				<div class="star"
-				 data-id='<c:out value="${product.productId }"/>'
-				 data-master='<c:out value="${product.masterWork }" />'></div>
-			</div>
-		</c:if>
-	<c:if test="${product.masterWork==0}">
-			<div class="master-flag noMaster <c:if test="${cType==4}">gStar</c:if>">
-				<div class="master-title">设为代表作</div>
-				<div class="star" 
-				data-id='<c:out value="${product.productId }" />'
-				data-master='<c:out value="${product.masterWork }" />'></div>
-			</div>
-		</c:if>
-	</c:if>
-	<c:if test="${product.flag==3 || cType == 4}">
-		<div class="edit product-edit"  data-id='<c:out value="${product.productId }" />'>
-		     <div>编辑作品</div>
-		</div>
-	</c:if>
-	    <div class="del" data-id='<c:out value="${product.productId }"/>'>
-	        <div>删除作品</div>
-	    </div>
-</div>
-</div>
-*/

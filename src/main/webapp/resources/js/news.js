@@ -11,7 +11,7 @@ $().ready(function() {
     controlRightPos();
     initPath();
     $('#headerTitleH1').remove();
-    $('#keywords').attr('content',$('#tagsContent').text().trim());
+   //$('#keywords').attr('content',$('#tagsContent').text().trim());
 });
 //右侧是否悬浮
 function controlRightPos(){
