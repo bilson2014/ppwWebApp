@@ -28,9 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<PmsProduct> findProductList(long teamId) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("teamId", teamId);
-		List<PmsProduct> list = facade.findProductsByCondition(paramMap);
+		List<PmsProduct> list = facade.loadProductByProviderId(teamId);
 		return list;
 	}
 
