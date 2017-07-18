@@ -141,6 +141,7 @@ public class ProviderController extends BaseController {
 		model.addAttribute("list", list);
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("cType", team.getFlag());
+		model.addAttribute("total",list.size());
 		return new ModelAndView("provider/video-list", model);
 	}
 	
