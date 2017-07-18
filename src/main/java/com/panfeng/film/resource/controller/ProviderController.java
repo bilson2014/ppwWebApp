@@ -141,6 +141,7 @@ public class ProviderController extends BaseController {
 		model.addAttribute("list", list);
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("cType", team.getFlag());
+		model.addAttribute("total",list.size());
 		return new ModelAndView("provider/video-list", model);
 	}
 	
@@ -148,7 +149,7 @@ public class ProviderController extends BaseController {
 	 * 视频列表分页
 	 */
 	@RequestMapping("/video-pagination")
-	public DataGrid<PmsProduct> searchPagination(final Pagination pageView, final HttpServletRequest request)
+	public DataGrid<PmsProduct> searchPagination(@RequestBody final Pagination pageView, final HttpServletRequest request)
 			throws Exception {
 		final PmsTeam team = getCurrentTeam(request);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
