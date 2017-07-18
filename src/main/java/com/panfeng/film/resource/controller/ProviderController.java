@@ -2,6 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.DataGrid;
+import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.enums.LoginType;
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -49,6 +52,7 @@ import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.view.Pagination;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
@@ -138,6 +142,25 @@ public class ProviderController extends BaseController {
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("cType", team.getFlag());
 		return new ModelAndView("provider/video-list", model);
+	}
+	
+	/**
+	 * 视频列表分页
+	 */
+	@RequestMapping("/video-pagination")
+	public DataGrid<PmsProduct> searchPagination(final Pagination pageView, final HttpServletRequest request)
+			throws Exception {
+		final PmsTeam team = getCurrentTeam(request);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("teamId", team.getTeamId());
+		
+		PageParam param=new PageParam();
+		param.setBegin(pageView.getBegin());
+		param.setLimit(pageView.getLimit());
+		
+		DataGrid<PmsProduct> dataGrid=pmsProductFacade.loadPageByProviderId(param, paramMap);
+		
+		return dataGrid;
 	}
 
 	/**
@@ -1191,6 +1214,37 @@ public class ProviderController extends BaseController {
 			baseMsg.setResult("供应商未登录");
 		}
 		return baseMsg;
+	}
+	
+	/**
+	 * 跳转至注册信息提示页面
+	 * @return
+	 */
+	@RequestMapping("/information")
+	public ModelAndView informationView(HttpServletRequest request, ModelMap model) {
+		
+		// 查询供应商审核状态
+		SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
+		if(info != null && info.getReqiureId() != null) {
+			PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
+			model.addAttribute("flag", team.getFlag());
+			model.addAttribute("recommendation", team.getRecommendation());
+			model.addAttribute("teamId", info.getReqiureId());
+		}
+		return new ModelAndView("provider/information");
+	}
+	
+	/**
+	 * 返回至首页，需退出登录
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/backToPortal")
+	public ModelAndView backToPortal(HttpServletRequest request) {
+		// 清空session
+		final HttpSession session = request.getSession();
+		session.removeAttribute(PmsConstant.SESSION_INFO);
+		return new ModelAndView("redirect:/");
 	}
 
 	/**

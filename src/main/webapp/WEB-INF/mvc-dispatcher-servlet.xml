@@ -11,8 +11,6 @@
 	
 	<mvc:view-controller path="/flow" view-name="/provider/registerFlow/index" />
 	
-	<mvc:view-controller path="/provider/information" view-name="/provider/information" />
-	
 	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
 	
 	<mvc:view-controller path="/list" view-name="/standardized/requireList" />
@@ -105,7 +103,7 @@
 			<mvc:exclude-mapping path="/provider/info/register" />
 			<mvc:exclude-mapping path="/provider/login/**" />
 			<mvc:exclude-mapping path="/provider/upload/teamPhoto" />
-			<mvc:exclude-mapping path="/provider/information" />
+			<mvc:exclude-mapping path="/provider/backToPortal" />
 			<bean class="com.panfeng.film.filter.ProviderInterceptor" />
 		</mvc:interceptor>
 		

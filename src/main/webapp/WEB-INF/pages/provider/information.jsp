@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
@@ -47,32 +48,43 @@
 	<div class="page">
 	
 	
-		<div class="step">	
+
+		<div class="step">
 	<div class="step-four-div" id="step4" data-step="4">
 		<div class="success" id="success">
 		
-		 	<ul class="ul-step-three">
-				<li style="text-align:center;margin-bottom:20px;">
-					<img src="/resources/images/provider/linkTimeOut.png">
-				</li>
-				<li class="title">供应商审核未通过,请修改后再次提交</li>
-				<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。</li>
-				<li class="stepThreeLi"><a href="/"><div class="btn-c-r">确认</div></a></li>
-			</ul>				
-		
-		
-<!-- 			<ul class="ul-step-three">
-				<li>
-					<div class="show-zero2 zeromodal-icon zeromodal-success">
-						<span class="line tip"></span> <span class="line long"></span>
-						<div class="placeholder"></div>
-					</div>
-				</li>
-				<li class="title">恭喜您注册成功，已进入审核阶段</li>
-				<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
-				</li>
-				<li class="stepThreeLi"><a href="/"><div class="btn-c-r">返回首页</div></a></li>
-			</ul> -->
+			<c:if test="${flag == 0 }">
+				<ul class="ul-step-three">
+					<li>
+						<div class="show-zero2 zeromodal-icon zeromodal-success">
+							<span class="line tip"></span> <span class="line long"></span>
+							<div class="placeholder"></div>
+						</div>
+					</li>
+					<li class="title">恭喜您注册成功，已进入审核阶段</li>
+					<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
+					</li>
+					<li class="stepThreeLi">
+						<div class="btn-c-r" >
+							<form action="/provider/backToProtal" method="post">
+								<input type="submit" value="返回首页" />
+							</form>	
+						</div>
+					</li>
+				</ul>
+			</c:if>
+			
+			<c:if test="${flag == 2 }">
+				<ul class="ul-step-three">
+					<li style="text-align:center;margin-bottom:20px;">
+						<img src="/resources/images/provider/linkTimeOut.png">
+					</li>
+					<li class="title">供应商审核未通过,请修改后再次提交</li>
+					<li class="info">${recommendation }<br>审核结果将以邮件和短信的形式告知，请耐心等待。</li>
+					<li class="stepThreeLi"><a href="/registerflow.html?teamId=${teamId }"><div class="btn-c-r">确认</div></a></li>
+				</ul>
+			</c:if>
+
 		</div>
 	</div>	
 	</div>	
@@ -81,10 +93,11 @@
 	<jsp:include flush="true" page="../foot.jsp"></jsp:include>
 	<!--新版底部-->
 
-
-
-
-
+	<script type="text/javascript">
+		$('#backToPortal').click(function() {
+			$('<form action="/provider/backToProtal"></form>').appendTo('body').submit().remove();
+		});
+	</script>
 </body>
-
+	
 </html>
