@@ -68,9 +68,9 @@
 
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	<input type="hidden" value="${cKey }" id="company-key" />
-	<input type="hidden" value="${cType }" id="company-type" />
-	<input type="hidden" value="${total }" id="total"/>
+	<input type="hidden" value="${cKey}" id="company-key" />
+	<input type="hidden" value="${cType}" id="company-type" />
+	<input type="hidden" value="46" id="total"/>
 	<div class="proInfo">
 		<c:if test="${empty list }">
 			<div class="noProduct">
