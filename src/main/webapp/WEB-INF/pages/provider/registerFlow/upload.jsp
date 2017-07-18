@@ -196,8 +196,9 @@
 					</c:if>
 		   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" id="flowExecutionKey"/>
 		   		 	<input type="hidden" value="${flowExecutionUrl}" id="flowExecutionUrl" />
-		   		 	<div class="btn-c-r submit" id="infoBt">提交审核</div>
+		   		 	
 		   		 	<div class="btn-c-g cancle" onclick="window.location.href='${flowExecutionUrl}&_eventId=save'">取消</div>
+		   		 	<div class="btn-c-r submit" id="infoBt">保存</div>
 				</div>
 		   		 </sf:form>
 			</div>

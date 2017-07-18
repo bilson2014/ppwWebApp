@@ -67,10 +67,11 @@
 				<!--批量 -->
 				<div class="multUpload" id="multUpload">
 					<div class="setItem" id="video-container">
+					          <div class="setWord">请选择作品</div>
 					</div>
 					<div class="showErrorUp"></div>
 					<div class="multDiv">
-						<div class="btn-c-g" id="cancleMult">取消</div>
+						<div class="btn-c-g" id="cancleMult">返回</div>
 						<div class="btn-c-r" id="submit-multip">开始上传</div>
 						<div class="picker" id='picker'>选择文件</div>
 					</div>
@@ -99,49 +100,56 @@
 						
 						<c:if test="${!empty products}">
 							<c:forEach var="product" items="${products }">
-								<div class="productCard">
-									<c:if test="${empty product.picLDUrl }">
-										<img class="media-object playCBtn"
-										src="/resources/images/index/noImg.jpg">
-									</c:if>
-									<c:if test="${! empty product.picLDUrl }">
-										<img class="media-object playCBtn"
-										src="http://resource.apaipian.com/resource/${product.picLDUrl}">
-									</c:if>
-										
-									<img class="playIcon playCBtn"
-										src="/resources/images/index/play-icon.png">
-									<input type="hidden" id="media-video" value="http://resource.apaipian.com/resource/${product.videoUrl}">
-									<div class="mid  nC">
-										<div class="title">
-											<span></span> <span>${product.productName }</span>
-										</div>
-									</div>
-									<div class="lastContent">
-									<c:if test="${product.flag==0}">
-							<div class="state yellow">审核中</div>
+	                             					<div class="productCard">
+						<c:if test="${empty product.picLDUrl}">
+							<img class='media-object playCBtn' src="/resources/images/index/noImg.jpg" />
 						</c:if>
-						<c:if test="${product.flag==1}">
-							<div class="state green">审核通过</div>
+						<c:if test="${not empty product.picLDUrl}">
+							<img class='media-object playCBtn' src='${file_locate_storage_path }${product.picLDUrl }' />
 						</c:if>
-						<c:if test="${product.flag==2}">
-							<div class="state red">未通过</div>
-						</c:if>
-						<c:if test="${product.flag==3}">
-							<div class="state blue">编辑中</div>
-						</c:if>
-									<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">
-										<div class="edit btn-c-r product-edit" data-id="${product.productId }">
-											<div></div>
-											<div>编辑</div>
-										</div>
-									</a>	
-										<div class="del btn-c-g" data-id="${product.productId }">
-											<div></div>
-											<div>删除</div>
-										</div>
-									</div>
-								</div>	
+						    <img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>
+						<input type="hidden" id="media-video" value='${product.videoUrl }' />
+						<div
+						
+							class="mid nC">
+							<div class="title">
+								<span>标题：</span> 
+								<span><c:out value="${product.productName }" /></span>
+								<c:if test="${product.flag==0}">
+									<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>
+								</c:if>
+								<c:if test="${product.flag==1}">
+									<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>
+								</c:if>
+								<c:if test="${product.flag==2}">
+									<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>
+								</c:if>
+								<c:if test="${product.flag==3}">
+									<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>
+								</c:if>
+							</div>
+						</div>
+						
+							<div class="content <c:if test="${empty product.checkDetails || product.flag != 2}">hide</c:if>">
+								<div class="cTitle">建议：</div>
+								<div class="cContent">
+								<c:if test="${not empty product.checkDetails and product.flag == 2}">
+									${product.checkDetails }
+								</c:if>
+								</div>
+							</div>
+						
+						<div class="lastContent">
+							<c:if test="${product.flag==3 || cType == 4}">
+								<div class="edit product-edit"  data-id='<c:out value="${product.productId }" />'>
+								     <div>编辑作品</div>
+								</div>
+							</c:if>
+							    <div class="del" data-id='<c:out value="${product.productId }"/>'>
+							        <div>删除作品</div>
+							    </div>
+						</div>
+					</div>	
 							</c:forEach>
 							
 						</c:if>
@@ -151,7 +159,7 @@
 						<sf:form>
 				   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
 				   		 	<input type="submit" class="gy-btn btn-c-g" name="_eventId_backspace" value="上一步" />
-				   		 	<input type="submit" class="red-btn btn-c-r" name="_eventId_checkUploadFile" value="下一步" />
+				   		 	<input type="button" id="checkStep3" class="red-btn btn-c-r" name="_eventId_checkUploadFile" value="下一步" />
 				   		 </sf:form>
 					</div>
 				</div>
@@ -171,7 +179,6 @@
 	          <div class="checkInfo" id="checkInfo">error</div>
 	          <div class="checkBottom">
 	                 <div class="sureCheck" id="sureCheck">确认</div>
-	                 <div class="falseCheck" id="falseCheck">取消</div>
 	          </div>
 	     </div>
 	</div>

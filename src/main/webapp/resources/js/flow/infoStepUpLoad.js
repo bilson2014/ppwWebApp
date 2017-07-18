@@ -7,6 +7,12 @@ $().ready(function(){
 
 function initEven(){
 	//上传
+	$('#checkStep3').off('click').on('click',function(){
+	   	 if(checkState()){
+	   		 $('#checkStep3').prop("type","submit");
+	   	 }
+	});
+	
 	$('#moreUp').off('click').on('click',function(){
 		 $('#uploadChoose').hide();
 		 $('#multUpload').show();
@@ -17,9 +23,9 @@ function initEven(){
 		 $('#upVideoCard').show();
 	});
 	$('#cancleMult').off('click').on('click',function(){
-		$('#multUpload').hide();
+/*		$('#multUpload').hide();
 		$('#uploadChoose').show();
-		$('#video-container').html();
+		$('#video-container').html();*/
 		window.location.reload();
 	});
 	$('#upBtn').off('click').on('click',function(){
@@ -37,11 +43,48 @@ function initEven(){
 	playProduct();
 }
 
+function checkState(){
+	
+	if($('div').hasClass('blue')){
+		$('#tooltip-check').show();
+		$('#checkInfo').text('请完善所有作品信息后再提交');
+		$('#falseCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#closeCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#sureCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		return false;
+	}
+	
+	if(!$('div').hasClass('productCard')){
+		$('#tooltip-check').show();
+		$('#checkInfo').text('请上传作品');
+		$('#falseCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#closeCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#sureCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		return false;
+	}
+	
+	return true;
+	
+	
+}
+
 function delProduct(){
 	$('.del').off("click").on('click',function(){
 		var pKey = $(this).data('id');
 		$('#tooltip-check').show();
-		$('#checkInfo').text('确定要删除此条记录吗？');
+		$('#checkInfo').text('确定要删除此作品吗？');
 		$('#falseCheck').off('click').on('click',function(){
 			$('#tooltip-check').hide();
 		});
@@ -61,7 +104,7 @@ function playProduct(){
 	$('.playCBtn').off("click").on('click',function() {
 		var videoUrl = $(this).parent().find('input').val();
 		var picUrl = $(this).attr('src');
-		var videoPath = getDfsHostName() + videoUrl;
+		var videoPath = videoUrl;
 		$('#playVideo').removeClass('hide');
 		$(".openVideo") && $(".openVideo").remove();
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
@@ -107,6 +150,7 @@ function multipUploadFile(){
 	});
 	
 	upload_Video.on('fileQueued', function(file) {
+		$('.setWord').remove();
 		$("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
 	});
 	

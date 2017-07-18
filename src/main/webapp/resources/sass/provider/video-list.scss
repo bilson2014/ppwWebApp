@@ -160,10 +160,41 @@ html {
     }
 }
 
+.content {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 33px;
+    div {
+        display: inline-block;
+        vertical-align: top;
+        font-size: $font-size-sm;
+        color: $red-base;
+    }
+    div:nth-child(2) {
+        display: inline-block;
+        margin-left: 8px;
+        height: 64px;
+        width: 80px;
+        overflow: hidden;
+        font-size: $font-size-sm;
+        color: $red-base;
+        line-height: 13px;
+        @media screen and (min-width: 761px) and (max-width: 893px) {
+            width: 100px;
+        }
+        @media screen and (min-width: 970px) {
+            width: 200px;
+        }
+    }
+}
+
+
+
 .nC {
     .title {
         position: relative;
-        top: 50px;
+        top: 30px;
         z-index: 5;
     }
     .content {
@@ -190,41 +221,17 @@ html {
         span:nth-child(2) {
             font-size: $font-size-base;
             color: $gray-dark;
-            width: 300px;
-            @media screen and (min-width: 970px) {
-                width: 250px !important;
+            width: 100px;
+            @media screen and (min-width: 761px) and (max-width: 893px) {
+                width: 100px;
             }
-            @media screen and (min-width: 700px) and (max-width: 893px) {
-                width: 130px !important;
+            @media screen and (min-width: 970px) {
+                width: 200px;
             }
             @include ellipsis;
         }
     }
-    .content {
-        margin-top: 8px;
-        div {
-            display: inline-block;
-            vertical-align: top;
-            font-size: $font-size-sm;
-            color: $red-base;
-        }
-        div:nth-child(2) {
-            display: inline-block;
-            margin-left: 8px;
-            height: 64px;
-            width: 100px;
-            overflow: hidden;
-            font-size: $font-size-sm;
-            color: $red-base;
-            line-height: 13px;
-            @media screen and (min-width: 761px) and (max-width: 893px) {
-                width: 210px;
-            }
-            @media screen and (min-width: 970px) {
-                width: 310px;
-            }
-        }
-    }
+
     .noneUse {
         li {
             left: -45px !important;
@@ -321,7 +328,7 @@ html {
 }
 
 .state {
-    width: 60px;
+    width: 75px;
     height: 20px;
     color: white;
     font-size: $font-size-sm;
@@ -330,31 +337,79 @@ html {
     text-align: center;
     line-height: 20px;
     position: absolute;
-    right: 200px;
-    top: 57px;
+    left: 0px;
+    top: 35px;
     border-radius: 4px;
+    img {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: 2px;
+        margin-right: 10px;
+    }
 }
 
 .red {
-    background: $red-base;
+    color: $red-base;
 }
 
 .green {
-    background: $green;
+    color: $green;
 }
 
 .blue {
-    background: $blue;
+    color: $blue;
 }
 
 .yellow {
-    background: $yellow;
+    color: $yellow;
 }
 
 .lastContent {
     position: absolute;
     right: 0px;
     top: 0px;
+    .visible {
+        background: url(/resources/images/provider/isShow.png);
+        background-size: 16px 32px;
+        height: 16px;
+        width: 16px;
+        margin-right: 5px;
+        top: 2px;
+        position: absolute;
+        right: 0px;
+        cursor: pointer;
+        line-height: 36px;
+        text-align: center;
+        right: 110px;
+        top: 50px;
+        background-position: 0px -16px;
+        &:hover{
+            div{
+                 opacity: 1 !important;
+            }
+        }
+        div {
+            background: url(/resources/images/provider/pao.png);
+            width: 90px;
+            height: 38px;
+            text-align: center;
+            line-height: 28px;
+            opacity: 0;
+            position: absolute;
+            top: -44px;
+            left: -36px;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            -webkit-transition: all .4s linear .4s;
+            -o-transition: all .4s linear .4s;
+        }
+    }
+
+    .noneUse {
+        background-position: 0px 0px !important;
+    }
+
     .gStar {
         right: 130px !important;
     }
@@ -369,11 +424,11 @@ html {
     .noMaster {
         font-size: $font-size-sm;
         color: $gray-dark;
-        width: 88px;
+        width: 57px;
         text-align: center;
         position: relative;
-        right: 70px;
-        top: 11px;
+        right: 58px;
+        top: 7px;
         cursor: pointer;
         &:hover {
             div:nth-child(1) {
@@ -382,11 +437,13 @@ html {
         }
         div:nth-child(1) {
             background: url(/resources/images/provider/pao.png);
-            width: 88px;
+            width: 90px;
             height: 38px;
             text-align: center;
             line-height: 28px;
             opacity: 0;
+            position: relative;
+            left: -15px;
             transition: all .4s linear .4s;
             -moz-transition: all .4s linear .4s;
             /* Firefox 4 */
@@ -397,21 +454,22 @@ html {
         .star {
             margin-top: 10px;
             background: url(/resources/images/provider/star.png);
-            width: 25px;
-            height: 25px;
+            width: 16px;
+            height: 16px;
             margin: 0 auto;
             margin-top: 5px;
-            background-position: 0px -25px;
+            background-size: 16px 32px;
+            background-position: 0px 0px;
         }
     }
     .setMaster {
         font-size: $font-size-sm;
         color: $gray-dark;
-        width: 88px;
+        width: 60px;
         text-align: center;
         position: relative;
-        right: 70px;
-        top: 11px;
+        right: 58px;
+        top: 7px;
         cursor: pointer;
         &:hover {
             div:nth-child(1) {
@@ -420,7 +478,7 @@ html {
         }
         div:nth-child(1) {
             background: url(/resources/images/provider/pao.png);
-            width: 88px;
+            width: 90px;
             height: 38px;
             text-align: center;
             line-height: 28px;
@@ -435,94 +493,85 @@ html {
         .star {
             margin-top: 10px;
             background: url(/resources/images/provider/star.png);
-            width: 25px;
-            height: 25px;
+            width: 16px;
+            height: 16px;
             margin: 0 auto;
             margin-top: 5px;
+            background-size: 16px 32px;
+            background-position: 0px -16px;
         }
     }
     .edit {
-        width: 70px;
-        height: 36px;
-        border-radius: 4px;
-        font-size: 0;
-        border: 1px solid $gray-light;
+        background: url(/resources/images/provider/edit.png);
+        background-size: 16px 32px;
+        height: 16px;
+        width: 16px;
+        margin-right: 5px;
+        top: 2px;
+        position: absolute;
+        right: 0px;
         cursor: pointer;
         line-height: 36px;
         text-align: center;
-        position: absolute;
-        right: 80px;
+        right: 40px;
         top: 50px;
-        background: transparent !important;
         &:hover {
-            background: $red-base !important;
-            border: 1px solid $red-base;
-            div:nth-child(1) {
-                background-position: 0px -14px;
-            }
-            div:nth-child(2) {
-                color: white;
+            background-position: 0px -16px;
+            div {
+                opacity: 1 !important;
             }
         }
         div {
-            display: inline-block;
-            overflow: top;
-        }
-        div:nth-child(1) {
-            background: url(/resources/images/provider/edit.png);
-            background-size: 14px 28px;
-            height: 14px;
-            width: 14px;
-            margin-right: 5px;
-            position: relative;
-            top: 2px;
-        }
-        div:nth-child(2) {
-            font-size: $font-size-base;
-            color: $gray-dark;
+            background: url(/resources/images/provider/pao.png);
+            width: 90px;
+            height: 38px;
+            text-align: center;
+            line-height: 28px;
+            opacity: 0;
+            position: absolute;
+            top: -44px;
+            left: -36px;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            -webkit-transition: all .4s linear .4s;
+            -o-transition: all .4s linear .4s;
         }
     }
+
     .del {
-        width: 70px;
-        height: 36px;
-        border-radius: 4px;
-        font-size: 0;
+        background: url(/resources/images/provider/del.png);
+        background-size: 16px 32px;
+        height: 16px;
+        width: 16px;
+        margin-right: 5px;
+        top: 2px;
         position: absolute;
         right: 0px;
-        border: 1px solid $gray-light;
         cursor: pointer;
         line-height: 36px;
         text-align: center;
         right: 0px;
         top: 50px;
-        background: transparent !important;
-        color: $gray;
         &:hover {
-            background: $gray-light !important;
-            div:nth-child(1) {
-                background-position: 0px -14px;
-            }
-            div:nth-child(2) {
-                color: white !important;
+            background-position: 0px -16px;
+            div {
+                opacity: 1 !important;
             }
         }
         div {
-            display: inline-block;
-            overflow: top;
-        }
-        div:nth-child(1) {
-            background: url(/resources/images/provider/del.png);
-            background-size: 14px 28px;
-            height: 14px;
-            width: 14px;
-            margin-right: 5px;
-            position: relative;
-            top: 2px;
-        }
-        div:nth-child(2) {
-            font-size: $font-size-base;
-            color: $gray-dark;
-            background: transparent !important;
+            background: url(/resources/images/provider/pao.png);
+            width: 90px;
+            height: 38px;
+            text-align: center;
+            line-height: 28px;
+            opacity: 0;
+            position: absolute;
+            top: -44px;
+            left: -36px;
+            transition: all .4s linear .4s;
+            -moz-transition: all .4s linear .4s;
+            -webkit-transition: all .4s linear .4s;
+            -o-transition: all .4s linear .4s;
         }
     }
 }
@@ -532,6 +581,17 @@ html {
     height: 4px;
     background: $border-line;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*定义滚动条轨道 内阴影+圆角*/
@@ -544,6 +604,17 @@ html {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 /*定义滑块 内阴影+圆角*/
 
 ::-webkit-scrollbar-thumb:vertical {
@@ -554,8 +625,7 @@ html {
 
 ::-webkit-scrollbar-thumb:horizontal {
     background-color: $gray-dark;
-    border-radius: 120px;
-    // background: url(../../images/biao/scrollH.png) no-repeat right;
+    border-radius: 120px; // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
 
