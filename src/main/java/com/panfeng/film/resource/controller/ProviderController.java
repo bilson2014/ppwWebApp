@@ -156,7 +156,7 @@ public class ProviderController extends BaseController {
 		paramMap.put("teamId", team.getTeamId());
 		
 		PageParam param=new PageParam();
-		param.setBegin(pageView.getBegin());
+		param.setBegin((pageView.getBegin()-1)*pageView.getLimit());
 		param.setLimit(pageView.getLimit());
 		
 		DataGrid<PmsProduct> dataGrid=pmsProductFacade.loadPageByProviderId(param, paramMap);
