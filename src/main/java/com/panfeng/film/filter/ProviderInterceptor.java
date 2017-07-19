@@ -44,7 +44,7 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 			final PmsRight right = pmsRightFacade.getRightFromRedis(uri);
 			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){
 				// 即使有权限，那么判断当前供应商是否已经审核通过了
-				if("/provider/portal".equals(uri)) {
+				if("/provider/portal".equals(uri) || "/mgr/index".equals(uri)) {
 					if(info.getProviderFlag() == 3) {
 						// 未提交审核
 						Log.error("请先完成审核", info);

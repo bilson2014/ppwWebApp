@@ -24,6 +24,12 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
 		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		
 		if(info != null){
+			if(PmsConstant.ROLE_PROVIDER.equals(info.getSessionType())) {
+				if(info.getProviderFlag() != 1) {
+					response.sendRedirect(contextPath + "/provider/information");
+					return false;
+				}
+			}
 			return true;
 		}
 		
