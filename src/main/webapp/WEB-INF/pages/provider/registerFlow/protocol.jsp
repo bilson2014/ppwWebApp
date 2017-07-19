@@ -10,7 +10,7 @@
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/flow/protocol.js" var="protocolJs"/>
+<spring:url value="/resources/js/provider/registerFlow/protocol.js" var="protocolJs"/>
 <spring:url value="/resources/images" var="path" />
 
 <!DOCTYPE html>

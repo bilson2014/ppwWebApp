@@ -18,9 +18,14 @@ $().ready(function() {
 	$(window.parent.document).find('#content-frame').css('height',$('.proInfo').height() + 300);
 	userpicInfo();
 	initUl();
-	setBusinessVal($('#Tags').val());
 	updateProvider();
+	getReturnValue();//回显
 	
+});
+
+function getReturnValue(){
+	setBusinessVal($('#Tags').val());
+	setBusinessVal($('#skill').val());
 	var index = $('.priceRangeSelect').find('span').attr('data-value');
 	var lis = $('.priceRangeSelect').find('ul li');
 	for ( var li in lis) {
@@ -40,7 +45,20 @@ $().ready(function() {
 			break;
 		}
 	}
-});
+	//公司规模
+	var index = $('.priceScaleSelect').find('span').attr('data-value');
+	var lis = $('.priceScaleSelect').find('ul li');
+	for ( var li in lis) {
+		var liid = $(lis[li]).attr('data-value');
+		if(index == liid){
+			console.info($(lis[li]).text())
+			$('.priceScaleSelect').find('span').text($(lis[li]).text());
+			break;
+		}
+	}
+	
+}
+
 
 function verifyData() {
 	
@@ -95,25 +113,14 @@ function verifyData() {
 		return false;
 	}
 
-	var webchat = $('#company-webchat').val().trim(); // 微信
-	if (webchat == '' || webchat == null || webchat == undefined) {
-		showCommonError($('#company-webchat-error'),"请输入微信号码!");
-		$('#company-webchat').focus();
-		return false;
-	}
-
 	var qq = $('#company-qq').val().trim(); // QQ
-	if (qq == '' || qq == null || qq == undefined) {
-		showCommonError($('#company-qq-error'),"请输入QQ号码!");
-		$('#company-qq').focus();
-		return false;
-	}
-	
-	var reg = /^[1-9]\d{4,9}$/;
-	if(!qq.match(reg)){
-		showCommonError($('#company-qq-error'),"QQ号码有误!");
-		$('#company-qq').focus();
-			return false;
+		if (qq != '' && qq != null && qq != undefined) {
+			var reg = /^[1-9]\d{4,9}$/;
+			if(!qq.match(reg)){
+				showCommonError($('#company-qq-error'),"QQ号码有误!");
+				$('#company-qq').focus();
+					return false;
+			}
 	}
 	
 	var province = $('#getProvince').attr('data-value'); // 所在城市
@@ -130,11 +137,25 @@ function verifyData() {
 		return false;
 		
 	}
+	
+	var companyWeb = $('#company-officialSite').val();
+	if(companyWeb != "" && companyWeb != null && companyWeb != undefined){
+		if(!IsUrl(companyWeb)){
+			$('#web-error').attr('data-content','网址不正确');
+			$('#company-officialSite').focus();
+			return false;
+		}
+	}
 
 	var business = getBusinessVal(); // 业务范围
 	if (business == '' || business == null || business == undefined) {
 		showCommonError($('#Tags-error'),"请选择业务范围!");
-		$('#business-checkbox').focus();
+		return false;
+	}
+	
+	var skill = checkSkillVal();
+	if (skill == '' || skill == null || skill == undefined) {
+		showCommonError($('#skill-error"'),"请选择创作团队!");
 		return false;
 	}
 
@@ -145,20 +166,13 @@ function verifyData() {
 		return false;
 	}
 
-	var scale = $('#company-scale').val().trim(); // 公司规模
+	var scale = $('#company-scale').attr('data-value'); // 公司规模
 	if (scale == '' || scale == null || scale == undefined) {
 		showCommonError($('#company-scale-error'),"请填写公司规模信息!");
 		$('#company-scale').focus();
 		return false;
 	}
 
-	var company_demand = $('#company-demand').val();
-	if (company_demand == '' || company_demand == null
-			|| company_demand == undefined) {
-		showCommonError($('#company-demand-error'),"必须填写对客户的要求!");
-		$('#company-demand').focus();
-		return false;
-	}
 	return true;
 }
 
@@ -171,11 +185,46 @@ function popshow(id, error) {
 	}
 }
 
+function IsUrl(str){   
+	var Url=str;
+	var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+	var objExp=new RegExp(Expression);
+	if(objExp.test(Url)==true){
+	return true;
+	}else{
+	return false;
+	}	 
+}
+
 
 
 function getBusinessVal() {
 	var busArr = '';
-	var tags = $('.redTag');
+	var tags = $('#businessSkill .redTag');
+	for (var int = 0; int < tags.length; int++) {
+		if (int == 0)
+			busArr = $(tags[int]).attr('data-value');
+		else
+			busArr += ',' + $(tags[int]).attr('data-value');
+	}
+	return busArr;
+}
+
+function getSkillVal() {
+	var busArr = '';
+	var tags = $('.businessSkill .redTag');
+	for (var int = 0; int < tags.length; int++) {
+		if (int == 0)
+			busArr = $(tags[int]).attr('data-value');
+		else
+			busArr += ',' + $(tags[int]).attr('data-value');
+	}
+	return busArr;
+}
+
+function checkSkillVal(){
+	var busArr = '';
+	var tags = $('#getTeamSkill .redTag');
 	for (var int = 0; int < tags.length; int++) {
 		if (int == 0)
 			busArr = $(tags[int]).attr('data-value');
@@ -340,15 +389,14 @@ function updateProviderInfo() {
 		priceRange : $('#priceRange').attr('data-value'),
 		infoResource : $('#infoResource').attr('data-value'),
 		business : getBusinessVal(),
-		scale : $('#company-scale').val().trim(),
-		businessDesc : $('#company-businessDesc').val().trim(),
-		demand : $('#company-demand').val().trim(),
+		scale : $('#company-scale').attr('data-value'),
 		description : $('#company-description').val().trim(),
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
 		teamPhotoUrl : $('#user_img_url').val(),
-		flag : $('#bean-flag').val()
+		flag : $('#bean-flag').val(),
+		skill:getSkillVal()
 	}));
 }
 function dealTeamTmpAndUpdateTeamDesc(){
@@ -377,15 +425,14 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		priceRange : $('#priceRange').attr('data-value'),
 		infoResource : $('#infoResource').attr('data-value'),
 		business : getBusinessVal(),
-		scale : $('#company-scale').val().trim(),
-		businessDesc : $('#company-businessDesc').val().trim(),
-		demand : $('#company-demand').val().trim(),
+		scale : $('#company-scale').attr('data-value'),
 		description : $('#company-description').val().trim(),
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
 		teamPhotoUrl : $('#user_img_url').val(),
-		flag : $('#bean-flag').val()
+		flag : $('#bean-flag').val(),
+		skill:getSkillVal()
 	}));
 }
 function updateProvider(){
@@ -422,14 +469,13 @@ function updateProvider(){
 					priceRange : $('#priceRange').attr('data-value'),
 					infoResource : $('#infoResource').attr('data-value'),
 					business : getBusinessVal(),
-					scale : $('#company-scale').val().trim(),
-					businessDesc : $('#company-businessDesc').val().trim(),
-					demand : $('#company-demand').val().trim(),
+					scale : $('#company-scale').attr('data-value'),
 					description : $('#company-description').val().trim(),
 					phoneNumber : $('#company-phoneNumber').val().trim(),
 					teamProvince : $('#getProvince').attr('data-value'),
 					teamCity : $("#getCity").attr('data-value'),
-					teamPhotoUrl : $('#user_img_url').val()
+					teamPhotoUrl : $('#user_img_url').val(),
+					skill:getSkillVal()
 				}));
 			}
 		}

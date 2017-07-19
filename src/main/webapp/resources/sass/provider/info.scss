@@ -2,9 +2,9 @@
 @import "normalize";
 
 
-html{
+html {
     overflow: hidden;
-    background:white;
+    background: white;
 }
 
 .page {
@@ -119,7 +119,7 @@ html{
                 vertical-align: top;
                 margin-bottom: 10px;
                 div {
-                    width: 100px;
+                    width: 127px;
                     height: 30px;
                     line-height: 28px;
                     color: $gray;
@@ -136,6 +136,32 @@ html{
             }
         }
     }
+}
+
+.marLeft{
+	margin-left: 90px;
+}
+
+.checkInfo {
+    font-size: $font-size-sm;
+    color: $gray-light;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 5px;
+    padding-top: 7px;
+}
+
+.checkbox {
+    display: inline-block;
+    margin-bottom: -10px;
+}
+
+.checkTitle {
+    font-size: $font-size-base;
+    color: $gray-dark;
+    margin-left: 90px;
+    margin-top: 10px;
 }
 
 .infoSubmit {
@@ -247,8 +273,7 @@ html{
     width: 650px;
     margin-bottom: 30px;
     margin-left: 90px;
-    margin-top: 40px;
-    // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    margin-top: 40px; // @media screen and (min-width: 1276px) and (max-width: 1500px) {
     //     margin-left: 190px !important;
     // }
     // @media screen and (min-width:1500px) {
@@ -372,6 +397,8 @@ html{
 }
 
 
+
+
 /*定义滚动条轨道 内阴影+圆角*/
 
 ::-webkit-scrollbar-track {
@@ -380,6 +407,8 @@ html{
     background-color: $border-line;
     height: 6px;
 }
+
+
 
 
 /*定义滑块 内阴影+圆角*/
@@ -392,10 +421,6 @@ html{
 
 ::-webkit-scrollbar-thumb:horizontal {
     background-color: $gray-dark;
-    border-radius: 120px;
-    // background: url(../../images/biao/scrollH.png) no-repeat right;
+    border-radius: 120px; // background: url(../../images/biao/scrollH.png) no-repeat right;
     // background-size:100%; 
 }
-
-
-

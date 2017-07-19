@@ -19,7 +19,7 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
 <spring:url value="/resources/js/common.js" var="commonJs" />
-<spring:url value="/resources/js/flow/infoStepUpLoad.js"
+<spring:url value="/resources/js/provider/registerFlow/infoStepUpLoad.js"
 	var="infoStepUpLoadJs" />
 <spring:url value="/resources/images" var="path" />
 <spring:url value="/resources/lib/webuploader/webuploader.js"
