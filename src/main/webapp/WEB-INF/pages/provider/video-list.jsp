@@ -22,9 +22,11 @@
 <spring:url value="/resources/js/provider/video-list.js"
 	var="productListJs" />
 <spring:url value="/resources/images" var="path" />
-<spring:url value="/resources/lib/webuploader/webuploader.js"
-	var="webuploaderJs" />
-	<spring:url value="/resources/js/juicer.js" var="juicerJs" />
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
+<spring:url value="/resources/js/juicer.js" var="juicerJs" />
+<spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
+
+	
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -67,17 +69,17 @@
 
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-	<input type="hidden" value="${cKey }" id="company-key" />
-	<input type="hidden" value="${cType }" id="company-type" />
+	<input type="hidden" value="${cKey}" id="company-key" />
+	<input type="hidden" value="${cType}" id="company-type" />
+	<input type="hidden" value="${total}" id="total"/>
 	<div class="proInfo">
-
 		<c:if test="${empty list }">
 			<div class="noProduct">
 				<div>暂无作品</div>
 			</div>
 		</c:if>
-
-		<c:if test="${!empty list}">
+		<div class="ProductContent" id='ProductContent'></div>
+<%-- 		<c:if test="${!empty list}">
 			<div class="ProductContent" id='ProductContent'>
 				<c:forEach items="${list }" var="product" varStatus="status">
 					<div class="productCard">
@@ -89,27 +91,24 @@
 						</c:if>
 						    <img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
-						<div
-							class="mid <c:if test="${empty product.checkDetails || product.flag != 2}"> nC</c:if>">
+						<div class="mid nC">
 							<div class="title">
-								<span>标题：</span> <span><c:out
-										value="${product.productName }" /></span>
-							</div>
-							<div class="content">
-								<div class="cTitle">建议：</div>
-								<div class="cContent">
-								<c:if test="${not empty product.checkDetails and product.flag == 2}">
-									${product.checkDetails }
+								<span>标题：</span> 
+								<span><c:out value="${product.productName }" /></span>
+								<c:if test="${product.flag==0}">
+									<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>
 								</c:if>
-								</div>
+								<c:if test="${product.flag==1}">
+									<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>
+								</c:if>
+								<c:if test="${product.flag==2}">
+									<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>
+								</c:if>
+								<c:if test="${product.flag==3}">
+									<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>
+								</c:if>
 							</div>
-							<c:if test="${product.flag==1}">
-								<ul data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visibleProduct <c:if test="${product.visible==1}">noneUse</c:if>">
-									<li>可见</li>
-									<li></li>
-									<li>不可见</li>
-								</ul>
-							</c:if>
+						
 							
 							<c:if test="${cType == 4 }">
 								<div class="shareVideo">
@@ -122,20 +121,23 @@
 							</c:if>
 						</div>
 						
-
+							<div class="content <c:if test="${empty product.checkDetails || product.flag != 2}">hide</c:if>">
+								<div class="cTitle">建议：</div>
+								<div class="cContent">
+								<c:if test="${not empty product.checkDetails and product.flag == 2}">
+									${product.checkDetails }
+								</c:if>
+								</div>
+							</div>
+						
 						<div class="lastContent">
-						<c:if test="${product.flag==0}">
-							<div class="state yellow">审核中</div>
-						</c:if>
-						<c:if test="${product.flag==1}">
-							<div class="state green">审核通过</div>
-						</c:if>
-						<c:if test="${product.flag==2}">
-							<div class="state red">未通过</div>
-						</c:if>
-						<c:if test="${product.flag==3}">
-							<div class="state blue">编辑中</div>
-						</c:if>
+						
+						   <c:if test="${product.flag==1}">
+						       <div data-id="<c:out value="${product.productId }"/>" data-visible="<c:out value="${product.visible }"/>" class="visible visibleProduct <c:if test="${product.visible==1}">noneUse</c:if>">
+						          <div>作品可见</div>
+						       </div>
+						   </c:if>
+						
 							<c:if test="${product.flag==1}">
 								<c:if test="${product.masterWork==1}">
 									<div class="master-flag setMaster <c:if test="${cType==4}">gStar</c:if>">
@@ -155,33 +157,43 @@
 								</c:if>
 							</c:if>
 							<c:if test="${product.flag==3 || cType == 4}">
-								<div class="edit btn-c-r product-edit" 
-									data-id='<c:out value="${product.productId }" />'>
-									<div></div>
-									<div>编辑</div>
+								<div class="edit product-edit"  data-id='<c:out value="${product.productId }" />'>
+								     <div>编辑作品</div>
 								</div>
 							</c:if>
-							<div class="del btn-c-g"
-								data-id='<c:out value="${product.productId }"/>'>
-								<div></div>
-								<div>删除</div>
-							</div>
+							    <div class="del" data-id='<c:out value="${product.productId }"/>'>
+							        <div>删除作品</div>
+							    </div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
+		</c:if> --%>
+		
+				<!-- pagination start -->
+		<c:if test="${!empty list }">
+			<div class="page-section">
+				<div class="page-wrap">
+					<div class="pagination"></div>
+				</div>
+			</div>
 		</c:if>
+		
+		<!-- pagination end -->
+		
 	</div>
 
 </body>
 <!-- script here -->
 <script src="${jqueryJs }"></script>
+<script src="${jqueryPageJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${webuploaderJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${commonJs }"></script>
 <script src="${productListJs }"></script>
 <script src="${juicerJs }"></script>
+
 <!-- 加载Mob share 控件 -->
 <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <!-- script here -->

@@ -1,12 +1,21 @@
+var pageSize = 8;
+var currentSize = 1;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function(){
 	initEven();
+	loadProduction();
 });
 
 function initEven(){
 	//上传
+	$('#checkStep3').off('click').on('click',function(){
+	   	 if(checkState()){
+	   		 $('#checkStep3').prop("type","submit");
+	   	 }
+	});
+	
 	$('#moreUp').off('click').on('click',function(){
 		 $('#uploadChoose').hide();
 		 $('#multUpload').show();
@@ -17,9 +26,6 @@ function initEven(){
 		 $('#upVideoCard').show();
 	});
 	$('#cancleMult').off('click').on('click',function(){
-/*		$('#multUpload').hide();
-		$('#uploadChoose').show();
-		$('#video-container').html();*/
 		window.location.reload();
 	});
 	$('#upBtn').off('click').on('click',function(){
@@ -37,6 +43,39 @@ function initEven(){
 	playProduct();
 }
 
+function checkState(){
+	if($('div').hasClass('blue')){
+		$('#tooltip-check').show();
+		$('#checkInfo').text('请完善所有作品信息后再提交');
+		$('#falseCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#closeCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#sureCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		return false;
+	}
+	
+	if(!$('div').hasClass('productCard')){
+		$('#tooltip-check').show();
+		$('#checkInfo').text('请上传作品');
+		$('#falseCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#closeCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		$('#sureCheck').off('click').on('click',function(){
+			$('#tooltip-check').hide();
+		});
+		return false;
+	}
+	return true;
+}
+
 function delProduct(){
 	$('.del').off("click").on('click',function(){
 		var pKey = $(this).data('id');
@@ -50,7 +89,7 @@ function delProduct(){
 		});
 		$('#sureCheck').off('click').on('click',function(){
 			loadData(function(){
-				window.location.reload();
+				loadProduction();
 			}, '/provider/delete/product/' + pKey, null);
 			$('#tooltip-check').hide();
 		});
@@ -61,7 +100,7 @@ function playProduct(){
 	$('.playCBtn').off("click").on('click',function() {
 		var videoUrl = $(this).parent().find('input').val();
 		var picUrl = $(this).attr('src');
-		var videoPath = getDfsHostName() + videoUrl;
+		var videoPath = videoUrl;
 		$('#playVideo').removeClass('hide');
 		$(".openVideo") && $(".openVideo").remove();
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
@@ -162,6 +201,126 @@ var videoList_tpl = {
 		"	</div>                                           "+
 		" </div>                                             "      
 		].join("")
+}
+
+
+
+function pagination(){
+	$(".pagination").html('');
+	$(".pagination").initPage();
+	$(".pagination").createPage({
+		pageCount: Math.ceil($('#total').val() / pageSize),
+		current: currentSize,
+		backFn:function(p){
+			// 点击 翻页，查询符合条件的视频
+			currentSize = p;
+			loadProduction();
+		}
+	});
+}
+
+//加载视频
+function loadProduction(){
+	// 清空 videowrap
+	$('#video-content').empty();
+	loadData(function(list){
+		    $body = '';
+			$('#ProductContent').empty(); // 清空区域
+			if(list.rows != null && list.rows.length > 0){
+				var $body = '';
+				$('#total').val(list.total);
+				$.each(list.rows,function(i,solr){
+					var num = parseInt(solr.indentProjectId);
+					var imgPath = '/resources/images/index/noImg.jpg';
+					var imageUrl = solr.picLDUrl;
+					var itemflag = parseInt(solr.flag);
+					var cType = $('#company-type').val();
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<div class="productCard">';
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
+					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';
+					$body += '<input type="hidden" id="media-video" value="'+solr.videoUrl+'" />';
+					$body += '<div class="mid nC">';
+					$body += '<div class="title">';
+						$body += '<span>标题：</span> ';
+						$body += '<span>'+solr.productName +'</span> ';
+					    if(itemflag == 0){
+					    	$body += '<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>';
+					    }
+					    if(itemflag == 1){
+					    	$body += '<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>';
+					    }
+					    if(itemflag == 2){
+					    	$body += '<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>';
+					    }
+					    if(itemflag == 3){
+					    	$body += '<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>';
+					    }
+					    $body += '<div/>';
+					    if(cType == 4){
+					    	 $body += '<div class="shareVideo">';
+					    	 $body += '<div class="wechat -mob-share-weixin share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qq share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-weibo share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qzone share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '</div>';
+					    }
+					    $body += '</div>';
+						$body +='</div>';
+					    if(solr.checkDetails!=''&&itemflag==2){
+					    	$body += '<div class="content">';
+					    	$body += '<div class="cTitle">建议：</div>';
+					    	$body += '<div class="cContent">'+solr.checkDetails+'</div>';
+					    	$body += '</div>';
+					    }
+					    $body += '<div class="lastContent">';
+					    if(itemflag == 1){
+					    	   if(solr.visible == 1){
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct noneUs">';
+					    	   }else{
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct">';
+					    	   }
+					    	       $body +='<div>作品可见</div></div>';
+						    		    if(cType == 4){
+						    		    	$body +='<div class="master-flag setMaster gStar">';
+						    		    }else{
+						    		    	$body +='<div class="master-flag setMaster">';
+						    		    }
+						    		    if(solr.masterWork == 1){
+						    		    	 $body +='<div class="master-title">取消代表作</div>';
+						    		    }else{
+						    		    	 $body +='<div class="master-title">设为代表作</div>';
+						    		    }
+						    		    $body +='<div class="star" data-id="'+solr.productId+'" data-master="'+solr.masterWork+'"></div>';
+						    		    $body +='</div>';
+					    }
+					    if(itemflag == 3 ||cType == 4){
+					    	 $body +='<a href="'+$('#flowExecutionUrl').val()+'&_eventId=uploadFile&productId='+solr.productId+'&teamId='+$('#teamId').val()+'">';
+					    	 $body +='<div class="edit product-edit" data-id="'+solr.productId+'">';
+					    	 $body +='<div>编辑作品</div>';
+					    	 $body +='</div></a>';
+					    }
+					    $body +='<div class="del" data-id="'+solr.productId+'">';
+				    	$body +='<div>删除作品</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    
+				});
+				$('#ProductContent').append($body); // 填充数据
+				delProduct();
+				playProduct();
+				pagination();
+			}
+	}, getContextPath() + '/provider/video-pagination', $.toJSON({
+		begin : currentSize,
+		limit : pageSize
+	}));
 }
 
 

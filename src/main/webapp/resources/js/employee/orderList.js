@@ -159,7 +159,7 @@ function setValueToNeedList(keys,values,type){
 				    		 if(type == 'input'&&$(nowItem[intj]).hasClass('other')){
 				    			 $(nowItem[intj]).addClass('activeNeed');
 	                    	 }else{
-				    		    $(nowItem[intj]).remove();
+				    		     $(nowItem[intj]).remove();
 	                    	 }
 				    	}
 				    }
@@ -239,7 +239,7 @@ function initNeedEven(){
 		}
 //		if($(this).hasClass('other')){
 //			$(this).parent().parent().find('.otherInfo').show();
-//		}s
+//		}
 	});
 	$('.other').off('click').on('click',function(){
 		var thisDiv = $(this);
@@ -261,26 +261,26 @@ function getNeedValue(requireId){
 			 var setType = '';
 			 var itemValues = '';
 			 if(getNowItem.find('.activeNeed')&&!getNowItem.find('.activeNeed').hasClass('_datepicker')&&!getNowItem.find('textarea').hasClass('isArea')){
-				 itemValues = getNowItem.find('.activeNeed').text();
+				 itemValues = getNowItem.find('.activeNeed').text().trim();
 				  if(itemValues == ""||itemValues == null){
 					  isCheck = false;
 				  }
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
-				 itemValues =  $(rows[int]).find('input').val();
+				 itemValues =  $(rows[int]).find('input').val().trim();
 				 setType = "input";
 				  if(itemValues == ""||itemValues == null){
 					  isCheck = false;
 				  }
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
-				 itemValues =  $(rows[int]).find('div').find('input').val();
+				 itemValues =  $(rows[int]).find('div').find('input').val().trim();
 				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
 					 // isCheck = false;
 				  }
 			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
-					 itemValues=  $(rows[int]).find('textarea').val();
+					 itemValues=  $(rows[int]).find('textarea').val().trim();
 			  }
 			  var itemId =  $(rows[int]).parent().attr('data-id')
 			  setData.push(new optEntity(itemId,itemValues,setType));
@@ -296,13 +296,14 @@ function getNeedValue(requireId){
 			 var setType = '';
 			 for (var ui = 0; ui < checkActive.length; ui++){
 				 if($(checkActive[ui]).hasClass('other')){
-					var itemValues =  $(checkActive[ui]).parent().find('input').val();
-					setType = "input";
+					  var itemValues =  $(checkActive[ui]).parent().find('input').val().trim();
 					  if(itemValues == ""||itemValues == null){
 						  isCheck = false;
+					  }else{
+						  setType = "input";
 					  }
 				 }else{
-					var itemValues =  $(checkActive[ui]).text();
+					var itemValues =  $(checkActive[ui]).text().trim();
 				 }
 				 setMultData.push(itemValues);
 			  }

@@ -1,12 +1,134 @@
+var pageSize = 8;
+var currentSize = 1;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var parent = window.parent.document;
 var win = window;
+
 $().ready(function() {
 	$(parent).find('.tooltip-wati').hide();
-	
-	var videoList = {
+	loadProduction();
+});
+
+function pagination(){
+	$(".pagination").html('');
+	$(".pagination").initPage();
+	$(".pagination").createPage({
+		pageCount: Math.ceil($('#total').val() / pageSize),
+		current: currentSize,
+		backFn:function(p){
+			// 点击 翻页，查询符合条件的视频
+			currentSize = p;
+			loadProduction();
+			
+		}
+	});
+}
+
+//加载视频
+function loadProduction(){
+	// 清空 videowrap
+	$('#video-content').empty();
+	loadData(function(list){
+		    $body = '';
+			$('#ProductContent').empty(); // 清空区域
+			if(list.rows != null && list.rows.length > 0){
+				var $body = '';
+				$('#total').val(list.total);
+				$.each(list.rows,function(i,solr){
+					var num = parseInt(solr.indentProjectId);
+					var imgPath = '/resources/images/index/noImg.jpg';
+					var imageUrl = solr.picLDUrl;
+					var itemflag = parseInt(solr.flag);
+					var cType = $('#company-type').val();
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<div class="productCard">';
+					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
+						imgPath = getDfsHostName() + imageUrl;
+					}
+					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
+					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';
+					$body += '<input type="hidden" id="media-video" value="'+solr.videoUrl+'" />';
+					$body += '<div class="mid nC">';
+					$body += '<div class="title">';
+						$body += '<span>标题：</span> ';
+						$body += '<span>'+solr.productName +'</span> ';
+					    if(itemflag == 0){
+					    	$body += '<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>';
+					    }
+					    if(itemflag == 1){
+					    	$body += '<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>';
+					    }
+					    if(itemflag == 2){
+					    	$body += '<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>';
+					    }
+					    if(itemflag == 3){
+					    	$body += '<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>';
+					    }
+					    $body += '<div/>';
+					    if(cType == 4){
+					    	 $body += '<div class="shareVideo">';
+					    	 $body += '<div class="wechat -mob-share-weixin share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qq share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-weibo share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '<div class="qq -mob-share-qzone share" data-name="'+solr.productName+'" data-no="'+solr.productId +'"></div>';
+					    	 $body += '</div>';
+					    }
+					    $body += '</div>';
+						$body +='</div>';
+					    if(solr.checkDetails!=''&&itemflag==2){
+					    	$body += '<div class="content">';
+					    	$body += '<div class="cTitle">建议：</div>';
+					    	$body += '<div class="cContent">'+solr.checkDetails+'</div>';
+					    	$body += '</div>';
+					    }
+					    $body += '<div class="lastContent">';
+					    if(itemflag == 1){
+					    	   if(solr.visible == 1){
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct noneUs">';
+					    	   }else{
+					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct">';
+					    	   }
+					    	       $body +='<div>作品可见</div></div>';
+						    		    if(cType == 4){
+						    		    	$body +='<div class="master-flag setMaster gStar">';
+						    		    }else{
+						    		    	$body +='<div class="master-flag setMaster">';
+						    		    }
+						    		    if(solr.masterWork == 1){
+						    		    	 $body +='<div class="master-title">取消代表作</div>';
+						    		    }else{
+						    		    	 $body +='<div class="master-title">设为代表作</div>';
+						    		    }
+						    		    $body +='<div class="star" data-id="'+solr.productId+'" data-master="'+solr.masterWork+'"></div>';
+						    		    $body +='</div>';
+					    }
+					    if(itemflag == 3 ||cType == 4){
+					    	 $body +='<div class="edit product-edit" data-id="'+solr.productId+'">';
+					    	 $body +='<div>编辑作品</div>';
+					    	 $body +='</div>';
+					    }
+					    $body +='<div class="del" data-id="'+solr.productId+'">';
+				    	$body +='<div>删除作品</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    	$body +='</div>';
+				    
+				});
+				$('#ProductContent').append($body); // 填充数据
+				videoList.init();
+				pagination();
+			}
+	}, getContextPath() + '/provider/video-pagination', $.toJSON({
+		begin : currentSize,
+		limit : pageSize
+	}));
+}
+
+var videoList = {
 		init : function() {
 			//新建作品
 			//this.addProduct();
@@ -46,12 +168,11 @@ $().ready(function() {
 				$(parent).find('#checkInfo').text('确定要删除此条记录吗？');
 				$(parent).find('#sureCheck').off('click').on('click',function(){
 					loadData(function(){
-						window.location.reload();
+						loadProduction();
 					}, '/provider/delete/product/' + pKey, null);
 					$(parent).find('#tooltip-check').hide();
 				});
-			}); 
-			
+			}); 		
 		},
 		shareProduct:function(){
 			$('.share').on('click',function(){
@@ -87,10 +208,10 @@ $().ready(function() {
 		},
 		visibleProduct:function(){
 			var _this = this;
-			$(".visibleProduct li").off("click").on("click",function(){
-				var ul = $(this).parent();
+			$(".visibleProduct").off("click").on("click",function(){
+				var ul = $(this);
 				var visible = $(ul).data('visible');
-				var id = $(this).parent().data('id');
+				var id = $(this).data('id');
 				if(visible==0){//可见状态下关闭
 					$(parent).find('#tooltip-check').show();
 					$(parent).find('#checkInfo').text('"关闭"会导致您的影片不能在官网显示，确定"关闭"吗？');
@@ -98,8 +219,6 @@ $().ready(function() {
 						_this.visibleAction(1,id,ul);
 						$(parent).find('#tooltip-check').hide();
 					});
-					
-					
 				}else{
 					_this.visibleAction(0,id,ul);
 				}
@@ -110,7 +229,6 @@ $().ready(function() {
 				if(data.code==1){
 					if(visible==1){
 						$(doc).addClass("noneUse");
-						
 					}else{
 						$(doc).removeClass("noneUse");
 					}
@@ -149,6 +267,7 @@ $().ready(function() {
 				}));
 			})
 		},
+
 		/*multipUploadFile:function(){
 			$(".moreUp").off("click").on("click",function(){
 				 $(parent).find("#maxLength").text("");
@@ -236,7 +355,7 @@ $().ready(function() {
 			});
 		}*/
 	}	
-	videoList.init();
+
 	var videoList_tpl = {
 			upload_Tpl:[
 			" <div class='videoCard'>                            "+
@@ -248,4 +367,3 @@ $().ready(function() {
 			" </div>                                              "      
 			].join("")
 	}
-});

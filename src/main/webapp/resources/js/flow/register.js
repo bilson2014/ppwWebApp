@@ -149,6 +149,7 @@ function getTagValue(){
 	var getStr = getTeam.split(",");
 	var getStrSkill = getSkill.split(",");
 	
+	
 	if(getStr != "" && getStr != null && getStr != undefined){
 		for (var int = 0; int < getValue.length; int++) {
 			 var nowValue = $(getValue[int]).text().trim();
@@ -203,6 +204,20 @@ function getTagValue(){
 		}
 	}
 	
+	var getPrice = $('#company-priceRange').val();
+	var scaleUlPrice = $('#scaleUlZZPrice li');
+	if(getPrice != "" && getPrice != null && getPrice != undefined){
+		for (var int = 0; int < scaleUlPrice.length; int++) {
+			 var nowValue = $(scaleUlPrice[int]).attr('data-value');
+			 var nowText = $(scaleUlPrice[int]).text();
+				   if(getPrice==nowValue){
+					  $('#priceRange').attr('data-value',getPrice);
+					  $('#priceRange').text(nowText);
+				   }
+		}
+	}
+	
+	
 	var showWho = $('input:radio:checked').val();	
 	if(showWho == 0){
 		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
@@ -228,7 +243,6 @@ function initEven(){
       if(checkStepOne()){
     	  $('#step1Next').prop("type","submit");
       }
-		
 	});
 	
 	$('#company-data').datepicker({
@@ -288,7 +302,8 @@ function checkStepOne(){
 	var dreamVal = getDreamVal();
 	var teamVal = getTeamVal();
 	var lastVal = getLastVal();
-	var companyTeamDesc = $('#company-teamDesc').val().trim();
+	var companyTeamDesc = $('#company-teamDesc').val();
+	var priceRange = $('#priceRange').attr('data-value');
 	resumeError();
 	if(user_img_url == "" || user_img_url == null || user_img_url == undefined){
 		showErrorLeader($('#user-img-content'),'请选择头像!');
@@ -298,6 +313,13 @@ function checkStepOne(){
 		showErrorLeader($('#company-name-error'),'请输入公司名称!');
 		$('#teamName').focus();
 		return false;
+	}
+	
+	if(priceRange == "" || priceRange == null || priceRange == undefined){
+		showErrorLeader($('#company-priceRange-error'),'请输入价格范围!');
+		return false;
+	}else{
+		$('#company-priceRange').val(priceRange);
 	}
 
 	if(indent_scale == "" || indent_scale == null || indent_scale == undefined){

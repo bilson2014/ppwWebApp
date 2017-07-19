@@ -2,6 +2,7 @@ package com.panfeng.film.resource.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.DataGrid;
+import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.enums.LoginType;
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -49,6 +52,7 @@ import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Info;
 import com.panfeng.film.resource.model.Product;
 import com.panfeng.film.resource.model.Team;
+import com.panfeng.film.resource.view.Pagination;
 import com.panfeng.film.util.DataUtil;
 import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
@@ -137,7 +141,27 @@ public class ProviderController extends BaseController {
 		model.addAttribute("list", list);
 		model.addAttribute("cKey", team.getTeamId());
 		model.addAttribute("cType", team.getFlag());
+		model.addAttribute("total", list.size());
 		return new ModelAndView("provider/video-list", model);
+	}
+
+	/**
+	 * 视频列表分页
+	 */
+	@RequestMapping("/video-pagination")
+	public DataGrid<PmsProduct> searchPagination(@RequestBody final Pagination pageView,
+			final HttpServletRequest request) throws Exception {
+		final PmsTeam team = getCurrentTeam(request);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("teamId", team.getTeamId());
+
+		PageParam param = new PageParam();
+		param.setBegin((pageView.getBegin() - 1) * pageView.getLimit());
+		param.setLimit(pageView.getLimit());
+
+		DataGrid<PmsProduct> dataGrid = pmsProductFacade.loadPageByProviderId(param, paramMap);
+
+		return dataGrid;
 	}
 
 	/**
@@ -277,58 +301,6 @@ public class ProviderController extends BaseController {
 	 *            供应商信息
 	 * @return 成功返回 true, 失败返回 false
 	 */
-	/*@RequestMapping("/info/register")
-	public Info register(@RequestBody final PmsTeam original, final HttpServletRequest request) {
-
-		// 判断手机号是否能注册
-		final long count = pmsTeamFacade.checkExist(original);
-		if (ValidateUtil.isValid(count)) {
-			if (count > 0) {
-				return new Info(false, "手机号已经注册");
-			}
-		}
-		final String code = (String) request.getSession().getAttribute("code");
-		final String codeOfphone = (String) request.getSession().getAttribute("codeOfphone");
-		Info info = new Info(); // 信息载体
-		// 判断验证码
-		if ((!"".equals(code) && code != null)) {
-			if (code.equals(original.getVerification_code())) {
-				if (null != codeOfphone && codeOfphone.equals(original.getPhoneNumber())) {
-					if (original != null && original.getPassword() != null && !"".equals(original.getPassword())) {
-						HttpSession httpSession = request.getSession();
-						Gson gson = new Gson();
-						String json = gson.toJson(original);
-						httpSession.setAttribute(ORIGINAL, json); // session
-						httpSession.setAttribute(TYPE, REGISTER_KET);
-						info.setKey(true);
-					}
-				} else {
-					// 手机号错误
-					info.setKey(false);
-					info.setValue("手机号不正确!");
-				}
-			} else {
-				// 验证码过期
-				info.setKey(false);
-				info.setValue("验证码输入错误!");
-			}
-		} else {
-			// session 过期
-			info.setKey(false);
-			info.setValue("请重新获取验证码!");
-		}
-		return info;
-	}*/
-	
-	
-	
-	/**
-	 * 注册
-	 * 
-	 * @param original
-	 *            供应商信息
-	 * @return 成功返回 true, 失败返回 false
-	 */
 	@RequestMapping("/info/register")
 	public Info register(@RequestBody final PmsTeam original, final HttpServletRequest request) {
 
@@ -351,7 +323,7 @@ public class ProviderController extends BaseController {
 					String json = gson.toJson(original);
 					httpSession.setAttribute(ORIGINAL, json); // session
 					httpSession.setAttribute(TYPE, REGISTER_KET);
-					
+
 					// 注册完成之后的手机号码存储在session中，保持供应商身份的登陆状态
 					httpSession.removeAttribute(PmsConstant.SESSION_INFO);
 					SessionInfo sessionInfo = new SessionInfo();
@@ -465,6 +437,7 @@ public class ProviderController extends BaseController {
 
 	/**
 	 * 上传供应商Logo
+	 * 
 	 * @param request
 	 * @param response
 	 * @param file
@@ -671,7 +644,7 @@ public class ProviderController extends BaseController {
 				pmsProductFacade.save(service);
 			}
 			// 加入文件转换队列
-			fileConvertMQService.sendMessage(product.getProductId(),product.getVideoUrl());
+			fileConvertMQService.sendMessage(product.getProductId(), product.getVideoUrl());
 			if (proId > 0) {
 				Log.error("Provider Save Product success,productId:" + proId + " ,productName:"
 						+ product.getProductName() + " ,flag:" + product.getFlag(), sessionInfo);
@@ -729,8 +702,7 @@ public class ProviderController extends BaseController {
 				+ " ,flag:" + product.getFlag(), sessionInfo);
 		return new BaseMsg(1, "success");
 	}
-	
-	
+
 	/**
 	 * 供应商注册流程的视频信息修改
 	 */
@@ -750,7 +722,7 @@ public class ProviderController extends BaseController {
 			product.setPicLDUrl(fileId);
 		}
 		final long productId = product.getProductId();
-		
+
 		PmsProduct oldProduct = pmsProductFacade.findProductById(product.getProductId());
 		oldProduct.setProductName(product.getProductName());
 		oldProduct.setCreationTime(product.getCreationTime());
@@ -1192,17 +1164,18 @@ public class ProviderController extends BaseController {
 		}
 		return baseMsg;
 	}
-	
+
 	/**
 	 * 跳转至注册信息提示页面
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/information")
 	public ModelAndView informationView(HttpServletRequest request, ModelMap model) {
-		
+
 		// 查询供应商审核状态
 		SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
-		if(info != null && info.getReqiureId() != null) {
+		if (info != null && info.getReqiureId() != null) {
 			PmsTeam team = pmsTeamFacade.findTeamById(info.getReqiureId());
 			model.addAttribute("flag", team.getFlag());
 			model.addAttribute("recommendation", team.getRecommendation());
@@ -1210,9 +1183,10 @@ public class ProviderController extends BaseController {
 		}
 		return new ModelAndView("provider/information");
 	}
-	
+
 	/**
 	 * 返回至首页，需退出登录
+	 * 
 	 * @param request
 	 * @return
 	 */

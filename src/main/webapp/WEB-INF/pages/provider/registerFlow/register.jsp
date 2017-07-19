@@ -89,7 +89,7 @@
 								<form:input type="hidden" path="teamPhotoUrl" id="user_img_url" />
 							</div>
 							<div class="upload-info">
-								<label>您上可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
 							</div>
 							<div class="upload-btn">
 								<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -114,6 +114,31 @@
 							</label>
 						</div>
 					</div>
+					
+				<div class="input-group-div" id="company-priceRange-error">
+						<span for="company-priceRange" class="title-word">价格范围</span>
+						<form:input path="priceRange" type="hidden" id="company-priceRange" />
+						<div class="dropdown leaderSelect" id="company-priceRange-value">
+							<button class="btn btn-default dropdown-toggle step-two-select"
+								type="button" id="dropdownMenu1" data-toggle="dropdown">
+								<span id="priceRange" data-value="">请选择...</span>
+								<div class="carets"></div>
+							</button>
+							<ul class="dropdown-menu scaleUlZZ" id="scaleUlZZPrice" role="menu"
+								aria-labelledby="dropdownMenu1">
+								<li data-value="8">5千以内</li>
+								<li data-value="7">5千-1万</li>
+								<li data-value="6">1-3万</li>
+								<li data-value="5">3-5万</li>
+								<li data-value="4">5-10万</li>
+								<li data-value="3">10-20万</li>
+								<li data-value="2">20-50万</li>
+								<li data-value="1">50万以上</li>
+							</ul>
+						</div>
+					</div>
+					
+					
 
 					<div class="input-group-div" id="company-scale-error">
 						<span for="company-priceRange" class="title-word">规模</span>

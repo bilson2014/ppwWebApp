@@ -30,7 +30,6 @@ var search = {
 				q.replace(production,'');
 			}
 		}
-		
 		$('#search-q').val(q == '*' ? '' : q);
 	},
 	initCrumbs : function() {

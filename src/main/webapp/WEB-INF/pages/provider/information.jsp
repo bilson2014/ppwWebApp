@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%-- import CSS --%>
 <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css"
 	var="bootstrapCss" />
@@ -30,10 +31,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
-<meta name="description"
-	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>供应商引导页-拍片网</title>
+
+<title>供应商审核结果</title>
 <link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 <link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
@@ -49,6 +48,7 @@
 	<div class="page">
 	
 	
+
 		<div class="step">
 	<div class="step-four-div" id="step4" data-step="4">
 		<div class="success" id="success">
@@ -80,6 +80,7 @@
 					<li class="stepThreeLi"><a href="/registerflow.html?teamId=${teamId }"><div class="btn-c-r">确认</div></a></li>
 				</ul>
 			</c:if>
+
 		</div>
 	</div>	
 	</div>	
