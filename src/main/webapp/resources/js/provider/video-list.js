@@ -1,10 +1,11 @@
 var pageSize = 8;
+var currentSize = 1;
 var upload_Video;
 var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var parent = window.parent.document;
 var win = window;
-var currentSize = 1;
+
 $().ready(function() {
 	$(parent).find('.tooltip-wati').hide();
 	loadProduction();
@@ -18,8 +19,9 @@ function pagination(){
 		current: currentSize,
 		backFn:function(p){
 			// 点击 翻页，查询符合条件的视频
-			loadProduction();
 			currentSize = p;
+			loadProduction();
+			
 		}
 	});
 }
@@ -39,7 +41,7 @@ function loadProduction(){
 					var imgPath = '/resources/images/index/noImg.jpg';
 					var imageUrl = solr.picLDUrl;
 					var itemflag = parseInt(solr.flag);
-					var cType = $('#cType').val();
+					var cType = $('#company-type').val();
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
 						imgPath = getDfsHostName() + imageUrl;
 					}
@@ -81,7 +83,7 @@ function loadProduction(){
 					    	$body += '<div class="content">';
 					    	$body += '<div class="cTitle">建议：</div>';
 					    	$body += '<div class="cContent">'+solr.checkDetails+'</div>';
-					    	$body += '<div/>';
+					    	$body += '</div>';
 					    }
 					    $body += '<div class="lastContent">';
 					    if(itemflag == 1){
@@ -92,11 +94,11 @@ function loadProduction(){
 					    	   }
 					    	       $body +='<div>作品可见</div></div>';
 						    		    if(cType == 4){
-						    		    	$body +='<div class="master-flag setMaster gStar>';
+						    		    	$body +='<div class="master-flag setMaster gStar">';
 						    		    }else{
-						    		    	$body +='<div class="master-flag setMaster>';
+						    		    	$body +='<div class="master-flag setMaster">';
 						    		    }
-						    		    if(rows.masterWork == 1){
+						    		    if(solr.masterWork == 1){
 						    		    	 $body +='<div class="master-title">取消代表作</div>';
 						    		    }else{
 						    		    	 $body +='<div class="master-title">设为代表作</div>';
@@ -166,7 +168,7 @@ var videoList = {
 				$(parent).find('#checkInfo').text('确定要删除此条记录吗？');
 				$(parent).find('#sureCheck').off('click').on('click',function(){
 					loadData(function(){
-						window.location.reload();
+						loadProduction();
 					}, '/provider/delete/product/' + pKey, null);
 					$(parent).find('#tooltip-check').hide();
 				});

@@ -2,6 +2,7 @@
         @import "buttons";
         @import "video";
         @import "bootstrap-grid";
+        @import "pagination";
         $green:#2AD2AE;
         $yellow:#f5a623;
         $blue:#30CBFB;
@@ -980,6 +981,7 @@
                     -moz-transition: all .4s linear .4s;
                     -webkit-transition: all .4s linear .4s;
                     -o-transition: all .4s linear .4s;
+                    color:$gray-dark !important;
                 }
             }
 
@@ -1456,3 +1458,31 @@ background-image: none !important; */
                 }
             }
         }
+
+
+.page-section {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 60px;
+}
+
+.page-wrap {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.page-wrap .pagination {
+    @include pagination();
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.video-row>.video-card {
+    margin-right: 19px;
+    vertical-align: top;
+    &:last-child {
+        margin-right: -20px;
+    }
+}

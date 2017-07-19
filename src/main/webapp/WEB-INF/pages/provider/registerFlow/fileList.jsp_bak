@@ -25,7 +25,6 @@
 <spring:url value="/resources/lib/webuploader/webuploader.js"
 	var="webuploaderJs" />
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
-<spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -50,14 +49,9 @@
 
 </head>
 <body>
-	<input type="hidden" value="${cType}" id="company-type" />
-	<input type="hidden" value="${total}" id="total"/>
-	<input type="hidden" value="${total}" id="total"/>
-	<input type="hidden" value="${total}" id="total"/>
-	<input type="hidden" value="${flowExecutionUrl}" id="flowExecutionUrl"/>
-	<input type="hidden" value="${teamId}" id="teamId"/>
 	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
 	<div class="page">
+
 		<div class="step">
 			<div class="step-bar" id="step-bar">
 				<div class="first" id="step-1" data-content="填写基本信息">1</div>
@@ -98,80 +92,60 @@
 						<span>批量上传作品</span>
 					</div>
 					<div class="uploadLine"></div>
-					<div class="setContent" id="ProductContent">
+					<div class="setContent">
 					
 						<c:if test="${empty products}">
 							<div class="noProduct">暂无作品</div>
 						</c:if>
 						
-						<%-- <c:if test="${!empty products}">
+						<c:if test="${!empty products}">
 							<c:forEach var="product" items="${products }">
-	                             					<div class="productCard">
-						<c:if test="${empty product.picLDUrl}">
-							<img class='media-object playCBtn' src="/resources/images/index/noImg.jpg" />
+								<div class="productCard">
+									<c:if test="${empty product.picLDUrl }">
+										<img class="media-object playCBtn"
+										src="/resources/images/index/noImg.jpg">
+									</c:if>
+									<c:if test="${! empty product.picLDUrl }">
+										<img class="media-object playCBtn"
+										src="http://resource.apaipian.com/resource/${product.picLDUrl}">
+									</c:if>
+									<img class="playIcon" src="/resources/images/index/play-icon.png">
+									<input type="hidden" id="media-video" value="http://resource.apaipian.com/resource/${product.videoUrl}">
+									<div class="mid  nC">
+										<div class="title">
+											<span></span> <span>${product.productName }</span>
+										</div>
+									</div>
+									<div class="lastContent">
+									<c:if test="${product.flag==0}">
+							<div class="state yellow">审核中</div>
 						</c:if>
-						<c:if test="${not empty product.picLDUrl}">
-							<img class='media-object playCBtn' src='${file_locate_storage_path }${product.picLDUrl }' />
+						<c:if test="${product.flag==1}">
+							<div class="state green">审核通过</div>
 						</c:if>
-						    <img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>
-						<input type="hidden" id="media-video" value='${product.videoUrl }' />
-						<div
-						
-							class="mid nC">
-							<div class="title">
-								<span>标题：</span> 
-								<span><c:out value="${product.productName }" /></span>
-								<c:if test="${product.flag==0}">
-									<div class="state yellow"><img src="/resources/images/provider/toWait.png">审核中</div>
-								</c:if>
-								<c:if test="${product.flag==1}">
-									<div class="state green"><img src="/resources/images/provider/toPass.png">审核通过</div>
-								</c:if>
-								<c:if test="${product.flag==2}">
-									<div class="state red"><img src="/resources/images/provider/toError.png">未通过</div>
-								</c:if>
-								<c:if test="${product.flag==3}">
-									<div class="state blue"><img src="/resources/images/provider/toEdit.png">编辑中</div>
-								</c:if>
-							</div>
-						</div>
-						
-							<div class="content <c:if test="${empty product.checkDetails || product.flag != 2}">hide</c:if>">
-								<div class="cTitle">建议：</div>
-								<div class="cContent">
-								<c:if test="${not empty product.checkDetails and product.flag == 2}">
-									${product.checkDetails }
-								</c:if>
-								</div>
-							</div>
-						
-						<div class="lastContent">
-							<c:if test="${product.flag==3 || cType == 4}">
-								<div class="edit product-edit"  data-id='<c:out value="${product.productId }" />'>
-								     <div>编辑作品</div>
-								</div>
-							</c:if>
-							    <div class="del" data-id='<c:out value="${product.productId }"/>'>
-							        <div>删除作品</div>
-							    </div>
-						</div>
-					</div>	
+						<c:if test="${product.flag==2}">
+							<div class="state red">未通过</div>
+						</c:if>
+						<c:if test="${product.flag==3}">
+							<div class="state blue">编辑中</div>
+						</c:if>
+									<a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">
+										<div class="edit btn-c-r product-edit" data-id="${product.productId }">
+											<div></div>
+											<div>编辑</div>
+										</div>
+									</a>	
+										<div class="del btn-c-g" data-id="${product.productId }">
+											<div></div>
+											<div>删除</div>
+										</div>
+									</div>
+								</div>	
 							</c:forEach>
 							
-						</c:if> --%>
+						</c:if>
   						
 					</div>
-					
-       <!-- pagination start -->
-		<c:if test="${!empty products }">
-			<div class="page-section">
-				<div class="page-wrap">
-					<div class="pagination"></div>
-				</div>
-			</div>
-		</c:if>
-		<!-- pagination end -->
-					
 					<div class="bottom-div">
 						<sf:form>
 				   		 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
@@ -200,14 +174,12 @@
 	     </div>
 	</div>
 <script src="${jqueryJs }"></script>
-<script src="${jqueryPageJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${commonJs}"></script>
 <script src="${juicerJs}"></script>
 <script src="${webuploaderJs}"></script>	
 <script src="${infoStepUpLoadJs}"></script>
-
 
 </body>
 
