@@ -298,7 +298,6 @@ function checkStepOne(){
 	var user_img_url_Info = $('#user_img_url_Info').val().trim();//营业执照
 	var user_img_url_Z = $('#user_img_url_Z').val().trim();//正面
 	var user_img_url_B = $('#user_img_url_B').val().trim();//背面
-	var price = $('#user_img_url_B').val().trim();//背面
 	var businessVal = getBusinessVal();
 	var dreamVal = getDreamVal();
 	var teamVal = getTeamVal();

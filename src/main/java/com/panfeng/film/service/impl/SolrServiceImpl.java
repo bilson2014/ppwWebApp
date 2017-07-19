@@ -10,6 +10,9 @@ import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.springframework.stereotype.Service;
 
+import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
 import com.paipianwang.pat.common.web.service.impl.BaseSolrServiceImpl;
@@ -25,6 +28,7 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 	@Override
 	public List<PmsProductSolr> listWithPagination(final SolrView view, final HttpServletRequest request) {
 		final ResourceToken token = (ResourceToken) request.getAttribute("resourceToken"); // 访问资源库令牌
+		final SessionInfo info = (SessionInfo) request.getSession().getAttribute(PmsConstant.SESSION_INFO);
 		String condition = view.getCondition();
 
 		// 组装 行业 和 类型 业务逻辑
@@ -61,7 +65,19 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 				}
 			}
 			
-			query.setQuery(KeywordUtils.mergeQConcition(view));
+			// 判断当前如果是供应商的话，那么看到公共的和自己的作品
+			String search_words = KeywordUtils.mergeQConcition(view);
+			if(info != null) {
+				if(PmsConstant.ROLE_PROVIDER.equals(info.getSessionType()) && PublicConfig.SOLR_URL.equals(token.getSolrUrl())) {
+					StringBuffer buffer = new StringBuffer(search_words);
+					buffer.append(" AND (recommend:[1 TO *] OR ");
+					buffer.append("teamId:" + info.getReqiureId());
+					buffer.append(")");
+					search_words = buffer.toString();
+				}
+			}
+			
+			query.setQuery(search_words);
 			query.set("pf", "productName tags teamName");
 			query.set("tie", "0.1");
 			

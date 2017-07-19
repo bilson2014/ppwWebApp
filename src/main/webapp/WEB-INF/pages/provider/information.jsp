@@ -62,14 +62,10 @@
 						</div>
 					</li>
 					<li class="title">恭喜您注册成功，已进入审核阶段</li>
-					<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。<br>审核结果将以邮件和短信的形式告知，请耐心等待。
+					<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。
 					</li>
 					<li class="stepThreeLi">
-						<div class="btn-c-r" >
-							<form action="/provider/backToProtal" method="post">
-								<input type="submit" value="返回首页" />
-							</form>	
-						</div>
+						<div class="btn-c-r" id="backToPortal">返回首页</div>
 					</li>
 				</ul>
 			</c:if>
@@ -95,7 +91,7 @@
 
 	<script type="text/javascript">
 		$('#backToPortal').click(function() {
-			$('<form action="/provider/backToProtal"></form>').appendTo('body').submit().remove();
+			$('<form action="/provider/backToPortal"></form>').appendTo('body').submit().remove();
 		});
 	</script>
 </body>
