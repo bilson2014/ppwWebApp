@@ -116,7 +116,7 @@
 					</div>
 					
 				<div class="input-group-div" id="company-priceRange-error">
-						<span for="company-priceRange" class="title-word">价格范围</span>
+						<span for="company-priceRange" class="title-word">价格区间</span>
 						<form:input path="priceRange" type="hidden" id="company-priceRange" />
 						<div class="dropdown leaderSelect" id="company-priceRange-value">
 							<button class="btn btn-default dropdown-toggle step-two-select"
@@ -138,8 +138,6 @@
 						</div>
 					</div>
 					
-					
-
 					<div class="input-group-div" id="company-scale-error">
 						<span for="company-priceRange" class="title-word">规模</span>
 						<form:input path="scale" type="hidden" id="company-scale" />
@@ -273,137 +271,41 @@
 						<div class="checkInfo">请选择公司/工作室所能创作的影片类型（多选）</div>
 						<div class="checkbox" id="business-checkbox">
 							<ul class="ul-step-two" id="getBussiness">
-								<li>
-									<div class="getTag" name="business" data-value="0">宣传片</div>
-								</li>
-								<li>
-									<div class="getTag" name="business" data-value="16" />活动视频
+                                     <li><div class="getTag" name="business" data-value="宣传片">宣传片</div></li>
+									 <li><div class="getTag" name="business" data-value="活动视频">活动视频</div></li>
+							         <li><div class="getTag" name="business" data-value="病毒视频">病毒视频</div></li>
+							         <li><div class="getTag" name="business" data-value="微电影">微电影</div></li>
+									 <li><div class="getTag" name="business" data-value="MG动画">MG动画</div></li>
+									 <li><div class="getTag" name="business" data-value="广告TVC">广告TVC</div></li>
+								     <li><div class="getTag" name="business" data-value="真人秀节目">真人秀节目</div></li>
+								     <li><div class="getTag" name="business" data-value="VR视频">VR视频</div></li>
+								     <li><div class="getTag" name="business" data-value="教学视频"> 教学视频</div></li>
+								     <li><div class="getTag" name="business" data-value="网络节目">网络节目</div></li>
+								     <li><div class="getTag" name="business" data-value="网络剧">网络剧</div></li>
+								     <li><div class="getTag" name="business" data-value="网络电影">网络电影</div></li>
+								     <li><div class="getTag" name="business" data-value="MV">MV</div></li>
+								     <li><div class="getTag" name="business" data-value="实验影片">实验影片</div></li>
+								     <li><div class="getTag" name="business" data-value="电影预告片">电影预告片</div></li>
+							         <li><div class="getTag" name="business" data-value="花絮">花絮</div></li>
+								     <li><div class="getTag" name="business" data-value="演播室栏目">演播室栏目</div></li>
+								     <li><div class="getTag" name="business" data-value="真人秀节目">真人秀节目</div></li>
+									 <li><div class="getTag" name="business" data-value="综艺节目" >综艺节目</div></li>
+									<li><div class="getTag" name="business" data-value="访谈" >访谈</div></li>
+									<li><div class="getTag" name="business" data-value="三维建筑漫游动画" >三维建筑漫游动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维产品动画" >三维产品动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维角色动画" >三维角色动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维特效影片" >三维特效影片</div></li>
+									<li><div class="getTag" name="business" data-value="Flash角色动画" >Flash角色动画</div></li>
+									<li><div class="getTag" name="business" data-value="定格动画" >定格动画</div></li>
+									<li><div class="getTag" name="business" data-value="二维逐帧动画" >二维逐帧动画</div></li>
+									<li><div class="getTag" name="business" data-value="博物馆视频" >博物馆视频</div></li>
+									<li><div class="getTag" name="business" data-value="展览视频" >展览视频</div></li>
+									<li><div class="getTag" name="business" data-value="体验馆视频" >体验馆视频</div></li>
+									<li><div class="getTag" name="business" data-value="异形投影视频" >异形投影视频</div></li>
+									<li><div class="getTag" name="business" data-value="AR视频" >AR视频</div></li>                   	 
+						 	</ul>
 						</div>
-						</li>
-						<li>
-							<div class="getTag" name="business" data-value="1" />病毒视频
 					</div>
-					</li>
-					<li>
-						<div class="getTag" name="business" data-value="2" />微电影
-			</div>
-			</li>
-			<li>
-				<div class="getTag" name="business" data-value="3" />MG动画
-		</div>
-		</li>
-		<li>
-			<div class="getTag" name="business" data-value="4" />广告TVC
-	</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="5" />真人秀节目
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="17" />VR视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="6" /> 教学视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="7" />网络节目
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="8" />网络剧
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="9" />网络电影
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="10" />MV
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="11" />实验影片
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="12" />电影预告片
-		</div>
-	</li>
-
-	<li>
-		<div class="getTag" name="business" data-value="13" />花絮
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="14" />演播室栏目
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="15" />真人秀节目
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />综艺节目
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />访谈
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />三维建筑漫游动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />三维产品动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />三维角色动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />三维特效影片
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />Flash角色动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />定格动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />二维逐帧动画
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />博物馆视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />展览视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />体验馆视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />异形投影视频
-		</div>
-	</li>
-	<li>
-		<div class="getTag" name="business" data-value="18" />AR视频
-		</div>
-	</li>
-	</ul>
-	</div>
-	</div>
 
 	<div class="borderLine"></div>
 

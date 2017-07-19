@@ -137,19 +137,19 @@
                                 <div class="title">手机号</div>
                                 <input type="text" readonly class="noBorderInput" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
-                            <div class="infoItem" id="company-webchat-error">
+                            <div class="infoItem noImportant" id="company-webchat-error">
                                 <div class="title">微信号</div>
-                                <input type="text" class=" " id="company-webchat" placeholder="微信号是必填项" value="${provider.webchat }">
+                                <input type="text" class=" " id="company-webchat" placeholder="微信号是非必填项" value="${provider.webchat }">
                             </div>
-                            <div class="infoItem" id="company-qq-error">
+                            <div class="infoItem noImportant" id="company-qq-error">
                                 <div class="title">QQ</div>
-                               <input type="text" class=" " id="company-qq" placeholder="QQ号码是必填项" value="${provider.qq }">
+                               <input type="text" class=" " id="company-qq" placeholder="QQ号码是非必填项" value="${provider.qq }">
                             </div>
                             <div class="infoItem noImportant">
                                 <div class="title">成立时间</div>
                                 <input type="text" class=" " id="company-establishDate" placeholder="请选择公司成立时间" readonly="readonly" value="${provider.establishDate }">
                             </div>
-                            <div class="infoItem noImportant">
+                            <div class="infoItem noImportant" id="web-error">
                                 <div class="title">公司官网</div>
                                <input type="text" class=" " id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
                             </div>
@@ -205,17 +205,38 @@
 											<span id='priceRange' data-value="${provider.priceRange }"></span>
 											<div class="carets"></div>
 										</button>
-										<ul class="dropdown-menu" id="selectUl" role="menu"
-											aria-labelledby="dropdownMenu1">
-											<li data-value="0">看情况</li>
-											<li data-value="1">1万元及以上</li>
-											<li data-value="2">2万元及以上</li>
-											<li data-value="3">3万元及以上</li>
-											<li data-value="4">5万元及以上</li>
-											<li data-value="5">10万元及以上</li>
+										<ul class="dropdown-menu" id="selectUl" role="menu" aria-labelledby="dropdownMenu1">
+										    <li data-value="8">5千以内</li>
+											<li data-value="7">5千-1万</li>
+											<li data-value="6">1-3万</li>
+											<li data-value="5">3-5万</li>
+											<li data-value="4">5-10万</li>
+											<li data-value="3">10-20万</li>
+											<li data-value="2">20-50万</li>
+											<li data-value="1">50万以上</li>
 										</ul>
 									</div>
                             </div>
+                            
+                             <div class="infoItem" id="company-scale-error">
+                                <div class="title">公司规模</div>
+                                 <div class="dropdown infoSelect priceScaleSelect" id="company-priceRange-value">
+										<button class="btn dropdown-toggle" type="button"
+											id="dropdownMenu1" data-toggle="dropdown">
+											<span id='company-scale' data-value="${provider.scale }">请选择</span>
+											<div class="carets"></div>
+										</button>
+										<ul class="dropdown-menu" id="selectUl" role="menu" aria-labelledby="dropdownMenu1">
+										    <li data-value="0">5人以下</li>
+											<li data-value="1">5-10人</li>
+											<li data-value="2">11-50人</li>
+											<li data-value="3">51-100人</li>
+											<li data-value="4">101-500人</li>
+											<li data-value="5">500人以上</li>
+										</ul>
+									</div>
+                            </div>
+                            
                             <div class="infoItem">
                                 <div class="title">获知渠道</div>
                                 <div class="dropdown infoSelect infoResourceSelect" id="company-priceRange-value">
@@ -237,84 +258,111 @@
                             </div>
                             <div class="infoItem" id="Tags-error">
                                 <div class="title">业务范围</div>
-                                <input type="hidden" id="Tags" value="${provider.business }">
-                                 <ul class="ul-step-two">
-                                     <li>  
-                                        <div class="getTag" name="business" data-value="广告"> 广告</div>
-                                      </li>
-                                      <li>  
-                                        <div class="getTag" name="business" data-value="TVC" > TVC</div>
-                                      </li>
-                                      <li>
-                                        <div class="getTag" name="business" data-value="宣传片"> 宣传片</div>
-                                      </li>
-                                      <li>
-                                        <div class="getTag" name="business" data-value="真人秀"> 真人秀</div>
-                                      </li>
-                                      <li>
-                                        <div class="getTag" name="business" data-value="纪录片"> 纪录片</div>
-                                      </li>
-                                    <li>
-                                      <div class="getTag" name="business" data-value="病毒视频"> 病毒视频</div>
-                                        </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="电视栏目"> 电视栏目</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="MV"> MV</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="三维动画"> 三维动画</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="MG动画"> MG动画</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="体育赛事"> 体育赛事</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="专题片"> 专题片</div>
-                                    </li>
-                                      <li> 
-                                      <div class="getTag" name="business" data-value="VR拍摄"> VR拍摄</div>
-                                    </li>
-                                    <li>
-                                      <div class="getTag" name="business" data-value="产品拍摄"> 产品拍摄</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="微电影"> 微电影</div>
-                                      </li>
-                                  
-                                      <li>
-                                      <div class="getTag" name="business" data-value="航拍"> 航拍</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="活动视频"> 活动视频</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="后期制作"> 后期制作</div>
-                                      </li>
-                                      <li>
-                                      <div class="getTag" name="business" data-value="包装"> 包装</div>
-                                      </li>     
+                                <div class="checkInfo">请选择公司/工作室所能创作的影片类型（多选）</div>
+                                <input type="hidden" id="Tags" value="${provider.business}">
+                              <ul class="ul-step-two marLeft businessSkill" id="businessSkill" style="margin-top:10px">
+	                                 <li><div class="getTag" name="business" data-value="宣传片">宣传片</div></li>
+									 <li><div class="getTag" name="business" data-value="活动视频">活动视频</div></li>
+							         <li><div class="getTag" name="business" data-value="病毒视频">病毒视频</div></li>
+							         <li><div class="getTag" name="business" data-value="微电影">微电影</div></li>
+									 <li><div class="getTag" name="business" data-value="MG动画">MG动画</div></li>
+									 <li><div class="getTag" name="business" data-value="广告TVC">广告TVC</div></li>
+								     <li><div class="getTag" name="business" data-value="真人秀节目">真人秀节目</div></li>
+								     <li><div class="getTag" name="business" data-value="VR视频">VR视频</div></li>
+								     <li><div class="getTag" name="business" data-value="教学视频"> 教学视频</div></li>
+								     <li><div class="getTag" name="business" data-value="网络节目">网络节目</div></li>
+								     <li><div class="getTag" name="business" data-value="网络剧">网络剧</div></li>
+								     <li><div class="getTag" name="business" data-value="网络电影">网络电影</div></li>
+								     <li><div class="getTag" name="business" data-value="MV">MV</div></li>
+								     <li><div class="getTag" name="business" data-value="实验影片">实验影片</div></li>
+								     <li><div class="getTag" name="business" data-value="电影预告片">电影预告片</div></li>
+							         <li><div class="getTag" name="business" data-value="花絮">花絮</div></li>
+								     <li><div class="getTag" name="business" data-value="演播室栏目">演播室栏目</div></li>
+								     <li><div class="getTag" name="business" data-value="真人秀节目">真人秀节目</div></li>
+									 <li><div class="getTag" name="business" data-value="综艺节目" >综艺节目</div></li>
+									<li><div class="getTag" name="business" data-value="访谈" >访谈</div></li>
+									<li><div class="getTag" name="business" data-value="三维建筑漫游动画" >三维建筑漫游动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维产品动画" >三维产品动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维角色动画" >三维角色动画</div></li>
+									<li><div class="getTag" name="business" data-value="三维特效影片" >三维特效影片</div></li>
+									<li><div class="getTag" name="business" data-value="Flash角色动画" >Flash角色动画</div></li>
+									<li><div class="getTag" name="business" data-value="定格动画" >定格动画</div></li>
+									<li><div class="getTag" name="business" data-value="二维逐帧动画" >二维逐帧动画</div></li>
+									<li><div class="getTag" name="business" data-value="博物馆视频" >博物馆视频</div></li>
+									<li><div class="getTag" name="business" data-value="展览视频" >展览视频</div></li>
+									<li><div class="getTag" name="business" data-value="体验馆视频" >体验馆视频</div></li>
+									<li><div class="getTag" name="business" data-value="异形投影视频" >异形投影视频</div></li>
+									<li><div class="getTag" name="business" data-value="AR视频" >AR视频</div></li>
                                  </ul>   
                             </div>
+ 
+                            	<div class="infoItem" id="skill-error">
+											<input type="hidden" id="skill" value="${provider.skill}"/>
+											<div class="title">业务技能</div>
+											<div class="checkInfo">请选择公司/工作室所能承担的专业工作（多选）</div>
+											<div class="checkTitle" style="margin-bottom: 12px;">创意策划</div>
+											<div class="checkbox" id="business-checkbox">
+												<ul class="ul-step-two marLeft businessSkill" id="getDream">
+													<li>
+														<div class="getTag" name="business" data-value="解说词">解说词</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="广告语">广告语</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="故事">故事</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="贴图分镜">贴图分镜</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="手绘分镜">手绘分镜</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="美术设计">美术设计</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="影片策略">影片策略</div>
+													</li>
+												</ul>
+											</div>
+											<div class="checkTitle">创作团队(必填)</div>
+											<div class="checkbox" id="business-checkbox">
+												<ul class="ul-step-two marLeft businessSkill" id="getTeamSkill">
+													<li>
+														<div class="getTag" name="business" data-value="导演">导演</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="制片">制片</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="摄影">摄影</div>
+													</li>
+												</ul>
+											</div>
+											<div class="checkTitle">后期制作</div>
+											<div class="checkbox" id="business-checkbox">
+												<ul class="ul-step-two marLeft businessSkill" id="getLast">
+													<li>
+														<div class="getTag" name="business" data-value="剪辑">剪辑</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="包装">包装</div>
+													</li>
+													<li>
+														<div class="getTag" name="business" data-value="调色">调色</div>
+													</li>
+												</ul>
+											</div>
+	                        </div>
+                            
+                            
+                            
                             <div class="infoItem" id="company-teamDesc-error">
                                 <div class="title">公司简介</div>
                                 <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
-                            <div class="infoItem" id="company-scale-error">
-                                <div class="title">公司规模</div>
-                                <textarea class=" " id="company-scale" rows="5" maxlength="200" placeholder="请填写坐班人数及坐班导演或合作导演，坐班后期等信息">${provider.scale }</textarea>
-                            </div>
-                            <div class="infoItem noImportant">
-                                <div class="title">主要客户</div>
-                                <textarea class=" " id="company-businessDesc" rows="5" maxlength="200" placeholder="请填写主要客户/作品及价格">${provider.businessDesc }</textarea>
-                            </div>
-                             <div class="infoItem" id="company-demand-error">
-                                <div class="title">对客户要求</div>
-                               <textarea class=" " id="company-demand" rows="5" maxlength="200" placeholder="请填写对客户的要求">${provider.demand }</textarea>
-                            </div>
+                           
                              <div class="infoItem noImportant">
                                 <div class="title">备注</div>
                                <textarea class=" " id="company-description" rows="5" maxlength="200" placeholder="再次填写备注信息">${provider.description }</textarea>
