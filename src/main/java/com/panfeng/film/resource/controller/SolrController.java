@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.activiti.engine.impl.util.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.util.SolrUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
+import com.paipianwang.pat.common.web.seo.util.SEOUtil;
 import com.paipianwang.pat.facade.information.entity.PmsNewsSolr;
 import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SolrService;
-import com.panfeng.film.util.SEOUtil;
 
 @RestController
 public class SolrController extends BaseController {
