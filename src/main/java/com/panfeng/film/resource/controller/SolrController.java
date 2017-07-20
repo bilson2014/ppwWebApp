@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.activiti.engine.impl.util.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SolrService;
+import com.panfeng.film.util.SEOUtil;
 
 @RestController
 public class SolrController extends BaseController {
@@ -37,7 +39,7 @@ public class SolrController extends BaseController {
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String production,
-			final String price, final boolean isMore, final ModelMap model, final HttpServletRequest request)
+			final String price, final boolean isMore, final String target,final ModelMap model, final HttpServletRequest request)
 			throws Exception {
 
 		// 检查 参数q 是否为空
@@ -79,6 +81,18 @@ public class SolrController extends BaseController {
 		// 设置是否是从相关性推荐过来的
 		view.setMore(isMore);
 		view.setLimit(20l);
+		
+		//设置tdk
+		JSONObject obj=null;
+		if(ValidateUtil.isValid(target)){
+			obj=SEOUtil.getByKey(target);
+		}else{
+			obj=SEOUtil.getDefault();
+		}
+		
+		model.addAttribute("title",obj==null?"企业宣传视频_产品广告视频_活动视频制作案例大全-拍片网":obj.get(SEOUtil.ITEMS_TITLE_NAME));
+		model.addAttribute("description",obj==null?"企业宣传视频,产品广告视频,活动视频制作案例":obj.get(SEOUtil.ITEMS_DESCRIPTION_NAME));
+		model.addAttribute("keywords",obj==null?"拍片网汇聚各种企业宣传类视频、产品广告类视频以及活动类视频，涵盖各种类型的商业视频案例。":obj.get(SEOUtil.ITEMS_KEYWORDS_NAME));
 
 		final List<PmsProductSolr> list = solrService.listWithPagination(view, request);
 
