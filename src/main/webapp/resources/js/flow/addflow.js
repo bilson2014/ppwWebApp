@@ -1089,14 +1089,14 @@ function getReferrer() {
 //add Synergy by laowang begin 2016-5-25 12:35
 function addSynergy(name,ratio,userid,synergyid){
 	var currCount=$("div[id^=Synergy-info]").length;
-	if(currCount<3){
+	if(currCount<10){
 		var html = createSynergyView(name == undefined ? "" : name,
 				ratio == undefined ? "" : ratio,userid == undefined ? "" : userid,
 				synergyid == undefined ? "" : synergyid);
 		$("#Synergy-root").append(html);
 		setSynergyEvent();
 	}else{
-		$('#error-Synergy').text('不能多于3个协同人');
+		$('#error-Synergy').text('不能多于10个协同人');
 		$('#error-Synergy').show();
 	}
 }
