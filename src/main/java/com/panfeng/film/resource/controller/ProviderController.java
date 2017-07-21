@@ -160,7 +160,6 @@ public class ProviderController extends BaseController {
 		param.setLimit(pageView.getLimit());
 
 		DataGrid<PmsProduct> dataGrid = pmsProductFacade.loadPageByProviderId(param, paramMap);
-
 		return dataGrid;
 	}
 

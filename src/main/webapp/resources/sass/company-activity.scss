@@ -9,11 +9,11 @@
         position: relative;
         top: 1px;
     }
-    
+
     body {
         background: white !important;
     }
-    
+
     .page {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -23,13 +23,13 @@
         top: 0px !important;
         padding-top: 30px;
     }
-    
+
     .logoImg {
         margin-top: 60px;
         margin-bottom: 30px;
         text-align: left !important;
     }
-    
+
     .activeTitle {
         div:nth-child(1) {
             color: $red-base;
@@ -43,7 +43,7 @@
             margin-bottom: 30px;
         }
     }
-    
+
     .infoTitle {
         div:nth-child(1) {
             color: $red-base;
@@ -66,20 +66,20 @@
             margin-bottom: 100px !important;
         }
     }
-    
 
-    
+
+
     .active1 {
         width: 100%;
         margin-top: 30px;
         margin-bottom: 10px;
     }
-    
+
     .active1-2 {
         width: 100%;
         margin-bottom: 80px;
     }
-    
+
     .active2Top {
         img {
             display: inline-block;
@@ -112,12 +112,12 @@
         }
         margin-top: 30px;
     }
-    
+
     .active2Bottom {
         width: 100%;
         margin-bottom: 80px;
     }
-    
+
     .active3Top {
         img {
             display: inline-block;
@@ -148,40 +148,44 @@
         }
         margin-top: 30px;
     }
-    
+
     .active3Bottom {
         width: 100%;
         margin-bottom: 80px;
     }
-    
+
+
     .active4Top {
         height: 564px;
+        font-size: 0 !important;
         img {
             display: inline-block;
             height: 100%;
         }
         img:nth-child(2) {
-            margin-left: 9px;
-            margin-right: 9px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             height: 1212px*564/1300;
             img:nth-child(2) {
-                margin-left: 8px;
-                margin-right: 8px;
+                margin-left: 5px;
+                margin-right: 5px;
             }
         }
         @media screen and (max-width: 1275px) {
             height: 960px*564/1300;
             img:nth-child(2) {
-                margin-left: 6px;
-                margin-right: 7px;
+                margin-left: 5px;
+                margin-right: 5px;
             }
         }
         margin-top: 30px;
         margin-bottom: 80px;
     }
-    
+
+
+
     .active5Top {
         height: 736px;
         img {
@@ -206,9 +210,10 @@
         margin-top: 30px;
         margin-bottom: 80px;
     }
-    
+
     .active6Top {
         height: 509px;
+        font-size: 0 !important;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
             height: 1212px*509/1300;
         }
@@ -225,7 +230,7 @@
             vertical-align: top;
             width: 488px;
             height: 100%;
-            margin-left: 10px;
+            margin-left: 8px;
             margin-top: 0px !important;
             margin-bottom: 0px !important;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
@@ -252,7 +257,7 @@
         margin-top: 30px;
         margin-bottom: 80px;
     }
-    
+
     .active7Top {
         margin-top: 30px;
         margin-bottom: 100px;
@@ -268,9 +273,7 @@
                 margin-bottom: 8px;
             }
         }
-    }
-    
-    // .area-top {
+    } // .area-top {
     //   @include media_screen_width($about-us-width-min,$about-us-width-middle,$about-us-width-lg);
     //   margin: auto;
     //   p {
