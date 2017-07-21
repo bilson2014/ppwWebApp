@@ -147,8 +147,8 @@
                                <input type="text" class=" " id="company-qq" placeholder="QQ号码是非必填项" value="${provider.qq }">
                             </div>
                             <div class="infoItem noImportant" id="company-phoneNumber-error">
-                                <div class="title" id="telNumber">座机</div>
-                                <input type="text" readonly class="noBorderInput" id="company-phoneNumber" placeholder="座机" value="${provider.telNumber }">
+                                <div class="title" id="">座机</div>
+                                <input type="text"  class="" id="telNumber" placeholder="座机" value="${provider.telNumber }">
                             </div>
                             <div class="infoItem noImportant">
                                 <div class="title">从业时间</div>
