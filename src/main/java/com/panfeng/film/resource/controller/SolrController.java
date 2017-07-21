@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.util.SolrUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
-import com.paipianwang.pat.common.web.seo.util.SEOUtil;
 import com.paipianwang.pat.facade.information.entity.PmsNewsSolr;
 import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
 import com.paipianwang.pat.facade.product.entity.TdkItem;
@@ -39,7 +37,7 @@ public class SolrController extends BaseController {
 	@Autowired
 	private SolrService solrService = null;
 	@Autowired
-	private PmsProductFacade PmsProductFacade=null;
+	private PmsProductFacade pmsProductFacade=null;
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String production,
@@ -87,7 +85,7 @@ public class SolrController extends BaseController {
 		view.setLimit(20l);
 		
 		//设置tdk
-		TdkItem tdk=PmsProductFacade.getTDKByKey(ValidateUtil.isValid(target)?target:"jpal");
+		TdkItem tdk=pmsProductFacade.getTDKByKey(ValidateUtil.isValid(target)?target:"jpal");
 		
 		model.addAttribute("title",tdk==null?"企业宣传视频_产品广告视频_活动视频制作案例大全-拍片网":tdk.getTitle());
 		model.addAttribute("description",tdk==null?"企业宣传视频,产品广告视频,活动视频制作案例":tdk.getDescription());
