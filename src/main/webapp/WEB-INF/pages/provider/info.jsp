@@ -260,7 +260,7 @@
                                 <div class="title">业务范围</div>
                                 <div class="checkInfo">请选择公司/工作室所能创作的影片类型（多选）</div>
                                 <input type="hidden" id="Tags" value="${provider.business}">
-                              <ul class="ul-step-two marLeft businessSkill" id="businessSkill" style="margin-top:10px">
+                              <ul class="ul-step-two marLeft" id="businessSkill" style="margin-top:10px">
 	                                 <li><div class="getTag" name="business" data-value="宣传片">宣传片</div></li>
 									 <li><div class="getTag" name="business" data-value="活动视频">活动视频</div></li>
 							         <li><div class="getTag" name="business" data-value="病毒视频">病毒视频</div></li>
