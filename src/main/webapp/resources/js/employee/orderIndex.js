@@ -455,10 +455,10 @@ var orderIndex = {
 				name = '复购';
 			}
 			if(num == 9){
-				name = '线下-400';
+				name = '线上-400';
 			}
 			if(num == 10){
-				name = '线下-商桥';
+				name = '线上-商桥';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
