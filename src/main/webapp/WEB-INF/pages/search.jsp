@@ -30,9 +30,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="企业宣传片,产品宣传片,形象宣传片,招商宣传片,品牌宣传片,tvc广告片,微电影">
-	<meta name="description" content="拍片网精品案例覆盖企业形象宣传片、产品tvc广告片、品牌微电影、病毒视频、mg动画、专题片等各种视频。创意免费，价格透明，不满意可退款！">
-	<title>企业产品宣传片_tvc广告片_企业微电影视频案例-拍片网</title>
+	<meta name="keywords" content="${keywords}">
+	<meta name="description" content="${description}">
+	<title>${title}</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${searchCss }">
 	

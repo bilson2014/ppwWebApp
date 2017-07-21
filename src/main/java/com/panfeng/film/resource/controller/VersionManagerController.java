@@ -415,7 +415,8 @@ public class VersionManagerController extends BaseController {
 	 */
 	@RequestMapping(value = "/projects/get/reffers", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public List<PmsEmployee> getReffers(@RequestBody BizBean bizBean, final HttpServletRequest request) {
-
+		
+		// 根据名字获取 在职状态下的所有员工
 		List<PmsEmployee> refers = pmsEmployeeFacade.findEmployeeByRealNameWithinVersionManager(bizBean.getName());
 		return refers;
 	}
