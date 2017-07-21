@@ -121,36 +121,41 @@
                                 <div class="title">公司名称</div>
                                 <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
                             </div>
-                             <div class="infoItem" id="company-email-error">
-                                <div class="title">公司邮件</div>
-                                <input type="email" class=" " id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
-                            </div>
+               
                              <div class="infoItem" id="company-address-error">
-                                <div class="title">公司地址</div>
-                                <input type="text" class=" " id="company-address" placeholder="请填写公司地址" value="${provider.address }">
+                                <div class="title">详细地址</div>
+                                <input type="text" class=" " id="company-address" placeholder="请填写详细地址" value="${provider.address }">
                             </div>
                             <div class="infoItem" id="company-linkman-error">
-                                <div class="title">联系人</div>
-                                <input type="text" class=" " id="company-linkman" placeholder="联系人是必填项" value="${provider.linkman }">
+                                <div class="title">联系人姓名</div>
+                                <input type="text" class=" " id="company-linkman" placeholder="联系人姓名是必填项" value="${provider.linkman }">
                             </div>
                             <div class="infoItem" id="company-phoneNumber-error">
                                 <div class="title">手机号</div>
                                 <input type="text" readonly class="noBorderInput" id="company-phoneNumber" placeholder="手机号是必填项" value="${provider.phoneNumber }">
                             </div>
+                            <div class="infoItem" id="company-email-error">
+                                <div class="title">邮箱</div>
+                                <input type="email" class=" " id="company-email" placeholder="请填写公司邮箱" value="${provider.email }">
+                            </div>
                             <div class="infoItem noImportant" id="company-webchat-error">
-                                <div class="title">微信号</div>
-                                <input type="text" class=" " id="company-webchat" placeholder="微信号是非必填项" value="${provider.webchat }">
+                                <div class="title">微信</div>
+                                <input type="text" class=" " id="company-webchat" placeholder="微信是非必填项" value="${provider.webchat }">
                             </div>
                             <div class="infoItem noImportant" id="company-qq-error">
                                 <div class="title">QQ</div>
                                <input type="text" class=" " id="company-qq" placeholder="QQ号码是非必填项" value="${provider.qq }">
                             </div>
+                            <div class="infoItem noImportant" id="company-phoneNumber-error">
+                                <div class="title" id="telNumber">座机</div>
+                                <input type="text" readonly class="noBorderInput" id="company-phoneNumber" placeholder="座机" value="${provider.telNumber }">
+                            </div>
                             <div class="infoItem noImportant">
-                                <div class="title">成立时间</div>
-                                <input type="text" class=" " id="company-establishDate" placeholder="请选择公司成立时间" readonly="readonly" value="${provider.establishDate }">
+                                <div class="title">从业时间</div>
+                                <input type="text" class=" " id="company-establishDate" placeholder="请选择从业时间" readonly="readonly" value="${provider.establishDate }">
                             </div>
                             <div class="infoItem noImportant" id="web-error">
-                                <div class="title">公司官网</div>
+                                <div class="title">官网网址</div>
                                <input type="text" class=" " id="company-officialSite" placeholder="格式:http://www.example.com" value="${provider.officialSite }">
                             </div>
                             <div class="infoItem inline" id='getProvince-error'>
@@ -219,7 +224,7 @@
                             </div>
                             
                              <div class="infoItem" id="company-scale-error">
-                                <div class="title">公司规模</div>
+                                <div class="title">规模</div>
                                  <div class="dropdown infoSelect priceScaleSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
 											id="dropdownMenu1" data-toggle="dropdown">
@@ -237,7 +242,7 @@
 									</div>
                             </div>
                             
-                            <div class="infoItem">
+                        <%--     <div class="infoItem">
                                 <div class="title">获知渠道</div>
                                 <div class="dropdown infoSelect infoResourceSelect" id="company-priceRange-value">
 										<button class="btn dropdown-toggle" type="button"
@@ -255,7 +260,7 @@
 											<li data-value="4">电销</li>
 										</ul>
 									</div>
-                            </div>
+                            </div> --%>
                             <div class="infoItem" id="Tags-error">
                                 <div class="title">业务范围</div>
                                 <div class="checkInfo">请选择公司/工作室所能创作的影片类型（多选）</div>

@@ -36,7 +36,7 @@ function getReturnValue(){
 		}
 	}
 	
-	var index = $('.infoResourceSelect').find('span').attr('data-value');
+/*	var index = $('.infoResourceSelect').find('span').attr('data-value');
 	var lis = $('.infoResourceSelect').find('ul li');
 	for ( var li in lis) {
 		var liid = $(lis[li]).attr('data-value');
@@ -44,7 +44,7 @@ function getReturnValue(){
 			$('.infoResourceSelect').find('span').text($(lis[li]).text());
 			break;
 		}
-	}
+	}*/
 	//公司规模
 	var index = $('.priceScaleSelect').find('span').attr('data-value');
 	var lis = $('.priceScaleSelect').find('ul li');
@@ -387,7 +387,7 @@ function updateProviderInfo() {
 		officialSite : $('#company-officialSite').val(),
 		city : $('#company-city option:selected').val(),
 		priceRange : $('#priceRange').attr('data-value'),
-		infoResource : $('#infoResource').attr('data-value'),
+		/*infoResource : $('#infoResource').attr('data-value'),*/
 		business : getBusinessVal(),
 		scale : $('#company-scale').attr('data-value'),
 		description : $('#company-description').val().trim(),
@@ -396,6 +396,7 @@ function updateProviderInfo() {
 		teamCity : $("#getCity").attr('data-value'),
 		teamPhotoUrl : $('#user_img_url').val(),
 		flag : $('#bean-flag').val(),
+		telNumber : $('#telNumber').val(),
 		skill:getSkillVal()
 	}));
 }
@@ -423,7 +424,7 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		officialSite : $('#company-officialSite').val(),
 		city : $('#company-city option:selected').val(),
 		priceRange : $('#priceRange').attr('data-value'),
-		infoResource : $('#infoResource').attr('data-value'),
+		/*infoResource : $('#infoResource').attr('data-value'),*/
 		business : getBusinessVal(),
 		scale : $('#company-scale').attr('data-value'),
 		description : $('#company-description').val().trim(),
@@ -432,6 +433,7 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		teamCity : $("#getCity").attr('data-value'),
 		teamPhotoUrl : $('#user_img_url').val(),
 		flag : $('#bean-flag').val(),
+		telNumber : $('#telNumber').val(),
 		skill:getSkillVal()
 	}));
 }
@@ -467,7 +469,7 @@ function updateProvider(){
 					officialSite : $('#company-officialSite').val(),
 					city : $('#company-city option:selected').val(),
 					priceRange : $('#priceRange').attr('data-value'),
-					infoResource : $('#infoResource').attr('data-value'),
+				/*	infoResource : $('#infoResource').attr('data-value'),*/
 					business : getBusinessVal(),
 					scale : $('#company-scale').attr('data-value'),
 					description : $('#company-description').val().trim(),
@@ -475,6 +477,7 @@ function updateProvider(){
 					teamProvince : $('#getProvince').attr('data-value'),
 					teamCity : $("#getCity").attr('data-value'),
 					teamPhotoUrl : $('#user_img_url').val(),
+					telNumber : $('#telNumber').val(),
 					skill:getSkillVal()
 				}));
 			}
