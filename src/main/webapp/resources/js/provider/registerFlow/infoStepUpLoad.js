@@ -5,7 +5,10 @@ var video_max_size = 200*1024*1024; // 200MB
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 $().ready(function(){
 	initEven();
-	loadProduction();
+	//loadProduction();
+	delProduct();
+	playProduct();
+	pagination();
 });
 
 function initEven(){

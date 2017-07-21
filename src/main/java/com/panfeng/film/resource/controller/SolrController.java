@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.util.SolrUtil;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
+import com.paipianwang.pat.common.web.seo.util.SEOUtil;
 import com.paipianwang.pat.facade.information.entity.PmsNewsSolr;
 import com.paipianwang.pat.facade.information.entity.PmsProductSolr;
+import com.paipianwang.pat.facade.product.entity.TdkItem;
+import com.paipianwang.pat.facade.product.service.PmsProductFacade;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.view.SolrView;
 import com.panfeng.film.service.SolrService;
@@ -34,10 +38,12 @@ public class SolrController extends BaseController {
 
 	@Autowired
 	private SolrService solrService = null;
+	@Autowired
+	private PmsProductFacade PmsProductFacade=null;
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String production,
-			final String price, final boolean isMore, final ModelMap model, final HttpServletRequest request)
+			final String price, final boolean isMore, final String target,final ModelMap model, final HttpServletRequest request)
 			throws Exception {
 
 		// 检查 参数q 是否为空
@@ -79,6 +85,13 @@ public class SolrController extends BaseController {
 		// 设置是否是从相关性推荐过来的
 		view.setMore(isMore);
 		view.setLimit(20l);
+		
+		//设置tdk
+		TdkItem tdk=PmsProductFacade.getTDKByKey(ValidateUtil.isValid(target)?target:"jpal");
+		
+		model.addAttribute("title",tdk==null?"企业宣传视频_产品广告视频_活动视频制作案例大全-拍片网":tdk.getTitle());
+		model.addAttribute("description",tdk==null?"企业宣传视频,产品广告视频,活动视频制作案例":tdk.getDescription());
+		model.addAttribute("keywords",tdk==null?"拍片网汇聚各种企业宣传类视频、产品广告类视频以及活动类视频，涵盖各种类型的商业视频案例。":tdk.getKeywords());
 
 		final List<PmsProductSolr> list = solrService.listWithPagination(view, request);
 

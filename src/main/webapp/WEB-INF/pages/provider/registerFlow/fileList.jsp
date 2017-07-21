@@ -104,7 +104,7 @@
 							<div class="noProduct">暂无作品</div>
 						</c:if>
 						
-						<%-- <c:if test="${!empty products}">
+						 <c:if test="${!empty products}">
 							<c:forEach var="product" items="${products }">
 	                             					<div class="productCard">
 						<c:if test="${empty product.picLDUrl}">
@@ -147,9 +147,11 @@
 						
 						<div class="lastContent">
 							<c:if test="${product.flag==3 || cType == 4}">
+							  <a href="${flowExecutionUrl}&_eventId=uploadFile&productId=${product.productId}&teamId=${teamId}">
 								<div class="edit product-edit"  data-id='<c:out value="${product.productId }" />'>
 								     <div>编辑作品</div>
 								</div>
+							  </a>	
 							</c:if>
 							    <div class="del" data-id='<c:out value="${product.productId }"/>'>
 							        <div>删除作品</div>
@@ -158,18 +160,18 @@
 					</div>	
 							</c:forEach>
 							
-						</c:if> --%>
+						</c:if>
   						
 					</div>
 					
        <!-- pagination start -->
-		<c:if test="${!empty products }">
+<%-- 		<c:if test="${!empty products }">
 			<div class="page-section">
 				<div class="page-wrap">
 					<div class="pagination"></div>
 				</div>
 			</div>
-		</c:if>
+		</c:if> --%>
 		<!-- pagination end -->
 					
 					<div class="bottom-div">
