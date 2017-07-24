@@ -160,6 +160,16 @@ function loginOrder(){
 		}
 	});
 }
+//just 
+function loginNoOrder(){
+	var word = $("#indent_recomment").text();
+	if(word == '宣传片')
+		word = '*宣传片';
+	if(word == '广告片')
+		word = '*广告';
+	window.location.href='/search?q=' + word;
+}
+
 
 function noLoginOrder(){
 	var phone = $("#help-phone").val();
@@ -332,7 +342,13 @@ var homePage = {
 			
 				  	var loginTel = $('#rolephone').val();
 					if(loginTel!=null && loginTel!= "" ){
-						loginOrder();
+						var roletype=$('#roletype').val();
+						if(roletype=='provider' || roletype=='employee'){
+							loginNoOrder();
+						}else{
+							loginOrder();
+						}
+						
 					}else{
 						
 						if($(".helpYou").hasClass('active')){

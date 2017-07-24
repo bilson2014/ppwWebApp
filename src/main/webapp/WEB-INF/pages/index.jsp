@@ -62,14 +62,17 @@
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
      <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="provider">              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="customer">
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>
 	<div class="page">
 		<div class="advanBack"></div>

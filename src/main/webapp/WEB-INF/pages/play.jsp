@@ -59,16 +59,18 @@
      
      <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="role" value="供应商" />              
+	    <input type="hidden" id="role" value="供应商" />  
+	    <input type="hidden" id="roletype" value="provider">             
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    
+	    <input type="hidden" id="roletype" value="customer">
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="role" value="管家" />
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>
 	 
 	<r:identity role="employee">
