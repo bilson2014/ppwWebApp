@@ -322,8 +322,19 @@ var homePage = {
 	},
 	deliverOrder:function(){
 		$(".home-order").off("click").on("click",function(){
-			var flag = $(this).attr("data-text");
-			showOrder(flag);
+			var role = $('#role').val();
+			var loginTel = $('#rolephone').val();
+			if(loginTel!=null && loginTel!= "" && role !='客户' ){
+				//loginOrder();
+				var setInfo = "您现在以"+role+"身份登陆，不能下单，请退出登陆后重新下单，或联系我们400-660-9728"
+				$('#tooltip-check').show();
+				$('#checkInfo').text(setInfo);
+			}else{
+				var flag = $(this).attr("data-text");
+				showOrder(flag);
+			}
+			
+
 		})
 	},
 	clickHelpYou:function(){

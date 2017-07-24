@@ -4,7 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
-<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs" />
 <spring:url value="/resources/css/modelTool.css" var="modelTool"/>
 <spring:url value="/resources/js/modelTool.js" var="modelToolJs"/>
 <!-- imgPath -->
@@ -16,7 +15,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
 <link rel="stylesheet" href="${modelTool}">
-<script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${modelToolJs}"></script>
 </head>
 <body> 

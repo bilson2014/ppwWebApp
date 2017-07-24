@@ -306,8 +306,9 @@ function openOrder(){
 	$('#withIt').on('click',function(){
 		
 		var loginTel = $('#rolephone').val();
-		if(loginTel!=null && loginTel!= "" ){
-			var role = $('#role').val();
+		var role = $('#role').val();
+		if(loginTel!=null && loginTel!= "" && role!='客户' ){
+	
 			var setInfo = "您现在以"+role+"身份登陆，不能下单，请退出登陆后重新下单，或联系我们400-660-9728"
 			$('#tooltip-check').show();
 			$('#checkInfo').text(setInfo);

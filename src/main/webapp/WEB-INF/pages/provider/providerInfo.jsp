@@ -78,13 +78,13 @@
 	<input type="hidden" id="action" value="${action }"/>
 	<input type="hidden" id="thirdLoginType" value="${thirdLoginType }"/>
 	<input type="hidden" id="uniqueId" value="${uniqueId }"/>
-	     <r:identity role="provider">
+	 <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="role" value="供应商" />              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    
+	    <input type="hidden" id="role" value="客户" />         
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="role" value="管家" />
@@ -92,7 +92,7 @@
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
-    <jsp:include flush="true" page="../modelTool.jsp"></jsp:include>     
+ 
         
 		<div class="page">
 			<input type="hidden" id="teamId" value="${product.teamId }">
@@ -224,6 +224,7 @@
 		<!-- foot -->
          					 <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
                             <!--新版底部-->
+                                <jsp:include flush="true" page="../modelTool.jsp"></jsp:include>    
 	</div>
 </body>
 </html>
