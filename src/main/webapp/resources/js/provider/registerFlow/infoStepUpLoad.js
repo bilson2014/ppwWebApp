@@ -103,7 +103,7 @@ function playProduct(){
 	$('.playCBtn').off("click").on('click',function() {
 		var videoUrl = $(this).parent().find('input').val();
 		var picUrl = $(this).attr('src');
-		var videoPath = videoUrl;
+		var videoPath = 'http://resource.apaipian.com/resource/' + videoUrl;
 		$('#playVideo').removeClass('hide');
 		$(".openVideo") && $(".openVideo").remove();
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
@@ -239,11 +239,11 @@ function loadProduction(){
 					var itemflag = parseInt(solr.flag);
 					var cType = $('#company-type').val();
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = getDfsHostName() + imageUrl;
+						imgPath = 'http://resource.apaipian.com/resource/' + imageUrl;
 					}
 					$body += '<div class="productCard">';
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = getDfsHostName() + imageUrl;
+						imgPath = 'http://resource.apaipian.com/resource/' + imageUrl;
 					}
 					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
 					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';

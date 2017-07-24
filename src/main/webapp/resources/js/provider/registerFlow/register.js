@@ -393,7 +393,18 @@ function checkStepOne(){
 	}
 	
 	$('#businessSkill').val(businessVal);
-    $('#skill').val(dreamVal+','+teamVal+','+lastVal);
+	
+	var skill = '';
+	
+	if(dreamVal != "" && dreamVal != undefined){
+		skill += dreamVal + ',';
+	}
+	skill += teamVal;
+	if(lastVal != "" && lastVal != undefined){
+		skill += ',' + lastVal;
+	}
+	
+    $('#skill').val(skill);
 	return true;
 }
 

@@ -139,12 +139,24 @@ function loginOrder(){
 		},
 		dataType : 'json',
 		success : function(data){
-			var word = $("#indent_recomment").text();
-			if(word == '宣传片')
+			var flag = $("#indent_recomment").text();
+/*			if(word == '宣传片')
 				word = '*宣传片';
 			if(word == '广告片')
 				word = '*广告';
-			window.location.href='/search?q=' + word;
+			window.location.href='/search?q=' + word;*/
+			if(flag == '宣传片'){
+				window.location.href='list-qyxcp/';
+			}
+			if(flag == '微电影'){
+				window.location.href='list-wdy/';
+			}
+			if(flag == '广告片'){
+				window.location.href='list-cpgg/';
+			}
+			if(flag == 'MG动画'){
+				window.location.href='list-mg/';
+			}
 		}
 	});
 }
@@ -190,12 +202,24 @@ function noLoginOrder(){
 			dataType : 'json',
 			success : function(data){
 				if(data.ret){
-					var word = $("#indent_recomment").text();
-					if(word == '宣传片')
+					var flag = $("#indent_recomment").text();
+/*					if(word == '宣传片')
 						word = '*宣传片';
 					if(word == '广告片')
 						word = '*广告';
-				window.location.href='/search?q=' + word;
+				window.location.href='/search?q=' + word;*/
+					if(flag == '宣传片'){
+						window.location.href='list-qyxcp/';
+					}
+					if(flag == '微电影'){
+						window.location.href='list-wdy/';
+					}
+					if(flag == '广告片'){
+						window.location.href='list-cpgg/';
+					}
+					if(flag == 'MG动画'){
+						window.location.href='list-mg/';
+					}
 				$("#help-phone").val('');
 				$("#getCheckCodes").val('');
 				count = 120 ; 
@@ -276,11 +300,24 @@ var homePage = {
 	search:function(){
 		$(".home-search").off("click").on("click",function(){
 			var flag = $(this).attr("data-text");
-			if(flag == '宣传片')
+			/*if(flag == '宣传片')
 				flag = '*宣传片';
 			if (flag == '广告片')
 				flag = '*广告';
-			window.location.href='/search?q='+flag;
+			window.location.href='/search?q='+flag;*/
+			
+			if(flag == '宣传片'){
+				window.location.href='list-qyxcp/';
+			}
+			if(flag == '微电影'){
+				window.location.href='list-wdy/';
+			}
+			if(flag == '广告片'){
+				window.location.href='list-cpgg/';
+			}
+			if(flag == 'MG动画'){
+				window.location.href='list-mg/';
+			}
 		})
 	},
 	deliverOrder:function(){

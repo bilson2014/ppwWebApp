@@ -58,12 +58,15 @@
 <body>
      
      <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="role" value="供应商" />              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    
 	 </r:identity>
 	 <r:identity role="employee">
+	    <input type="hidden" id="role" value="管家" />
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
@@ -85,8 +88,8 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="tags" value="${product.tags }" />
+	<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
  	<jsp:include flush="true" page="header.jsp"></jsp:include> 
-    
     <div class="page">
         <div class="videoArea">
             <div class="videoContent">
