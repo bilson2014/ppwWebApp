@@ -61,6 +61,7 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
+<<<<<<< HEAD
      <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="roletype" value="provider">              
@@ -68,15 +69,27 @@
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="roletype" value="customer">
+=======
+	 
+	 <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="role" value="供应商" />              
+	 </r:identity>
+	 <r:identity role="customer">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="role" value="客户" />         
+>>>>>>> 8111d86d5de2f6c8ecd1bebfd5314d800d46bc62
 	 </r:identity>
 	 <r:identity role="employee">
+	    <input type="hidden" id="role" value="管家" />
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>
+	 
 	<div class="page">
 		<div class="advanBack"></div>
-
+	     
 	     <jsp:include flush="true" page="header.jsp"></jsp:include> 
 	     
 		<!-- 轮播 start -->
@@ -530,6 +543,7 @@
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/index.js"></script>
+	<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 
 </html>

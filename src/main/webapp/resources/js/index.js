@@ -171,6 +171,34 @@ function loginNoOrder(){
 }
 
 
+
+/**
+ * 主页业务处理部分
+ */
+function loginOrderFType(info){
+	$.ajax({
+		url : '/order/deliver',
+		type : 'POST',
+		data : {
+			csrftoken:$("#csrftoken").val(),
+			indent_tele:'',
+			phoneCode:'-1',
+			indent_recomment:info,
+			indentName:'网站-PC-首页banner',
+			productId:-1,
+			teamId:-1,
+			serviceId:-1,
+			sendToStaff:true,
+			sendToUser:false,
+			indentSource:1
+		},
+		dataType : 'json',
+		success : function(data){
+			showSuccess();
+		}
+	});
+}
+
 function noLoginOrder(){
 	var phone = $("#help-phone").val();
 	var getCheckCodes = $("#getCheckCodes").val();
@@ -332,8 +360,23 @@ var homePage = {
 	},
 	deliverOrder:function(){
 		$(".home-order").off("click").on("click",function(){
-			var flag = $(this).attr("data-text");
-			showOrder(flag);
+			var role = $('#role').val();
+			var loginTel = $('#rolephone').val();
+			var nowCheck = $(this);
+			if(loginTel!=null && loginTel!= "" && role !="客户" ){
+				//loginOrder();
+				var setInfo = "您现在以"+role+"身份登陆，不能下单，请退出登陆后重新下单，或联系我们400-660-9728"
+				$('#tooltip-check').show();
+				$('#checkInfo').text(setInfo);
+			}
+			if(role == "客户"){
+				var flag = nowCheck.attr("data-text");
+				loginOrderFType(flag);
+			}
+			else{
+				var flag = nowCheck.attr("data-text");
+				showOrder(flag);
+			}
 		})
 	},
 	clickHelpYou:function(){

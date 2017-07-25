@@ -57,7 +57,7 @@
 
 <body>
      
-     <r:identity role="provider">
+	 <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="role" value="供应商" />  
 	    <input type="hidden" id="roletype" value="provider">             
@@ -65,6 +65,7 @@
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="roletype" value="customer">
+	    <input type="hidden" id="role" value="客户" />         
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="role" value="管家" />
@@ -90,7 +91,7 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="tags" value="${product.tags }" />
-	<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
+
  	<jsp:include flush="true" page="header.jsp"></jsp:include> 
     <div class="page">
         <div class="videoArea">
@@ -328,6 +329,7 @@
     <!-- 加载Mob share 控件 -->
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+		<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 
 </html>
