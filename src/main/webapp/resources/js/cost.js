@@ -19,7 +19,7 @@ $().ready(function() {
 			this.clearForm()
 		},
 		initPage : function() {
-			$('li').on('click',function() {
+			$('.dropdown-menu li').on('click',function() {
 				$(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
 				var info = parseInt($(this).attr('data-info'));
 				$(this).parent().parent().find('.dropdown-toggle').find('span').attr("data-content",($(this).attr('data-content')));
