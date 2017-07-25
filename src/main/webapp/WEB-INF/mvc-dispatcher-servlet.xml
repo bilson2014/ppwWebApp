@@ -49,6 +49,8 @@
     <mvc:view-controller path="/cancle" view-name="/order/orderCancle" />
     <mvc:view-controller path="/orderList" view-name="/employee/orderList" />
     <!-- 订单管理系统 end --> 
+    
+    <mvc:view-controller path="/text" view-name="/textFlow" />
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
