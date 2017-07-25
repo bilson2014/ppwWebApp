@@ -90,7 +90,7 @@
 					<div class="showInfo">
 				           <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
-					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">公司信息</li></a>
+					         <a href="<spring:url value="/provider/portal?company-info" />"><li class="toSet">创作团队信息</li></a>
 					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
