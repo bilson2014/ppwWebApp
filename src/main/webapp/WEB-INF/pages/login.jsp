@@ -90,7 +90,7 @@
                 <div class="setImagePro"></div>
                 <div class="setInfo">
                        <div class="infoTop">
-                               <label>让每个导演都能</label>
+                               <label>让每个创作团队都能</label>
                                <label>拍出优秀作品!</label>
                        </div>
                          <div class="infoItem">
@@ -121,7 +121,7 @@
             <div class="showArea">
                 <div class="title">
                     <div id="toDir">客户登录</div>
-                    <div id="toCus">导演登录</div>
+                    <div id="toCus">创作团队登录</div>
                     <div id="moveLine"></div>
                 </div>
 
