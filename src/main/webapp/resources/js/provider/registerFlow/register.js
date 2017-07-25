@@ -220,10 +220,10 @@ function getTagValue(){
 	
 	var showWho = $('input:radio:checked').val();	
 	if(showWho == 0){
-		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
+		$('#uploadYE').find('.webuploader-pick').text('营业执照照片');
 		showWho = 0;
 	}else{
-		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
+		$('#uploadYE').find('.webuploader-pick').text('手持身份证照片');
 		showWho = 1;
 	}
 }
@@ -253,7 +253,7 @@ function initEven(){
 	});
 	var showWho = 0;
 	$('#checkCompany').off('click').on('click',function(){
-		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
+		$('#uploadYE').find('.webuploader-pick').text('营业执照照片');
 		showWho = 0;
 	});
 	$('#checkWorkRoom').off('click').on('click',function(){

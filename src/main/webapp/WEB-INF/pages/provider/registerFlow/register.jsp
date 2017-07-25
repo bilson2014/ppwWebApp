@@ -89,7 +89,7 @@
 								<form:input type="hidden" path="teamPhotoUrl" id="user_img_url" />
 							</div>
 							<div class="upload-info">
-								<label>您可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
 							</div>
 							<div class="upload-btn">
 								<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -218,7 +218,7 @@
 						<div class="title">上传资质</div>
 						<div class="user-img-content" id="user-img-contentInfo">
 							<div class="upload-info">
-								<label>您上可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
 							</div>
 							<div class="logoItem">
 								<div class="user-icon">
@@ -229,7 +229,7 @@
 								</div>
 								<div class="findLogo" id="theInfo">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadYE">上传营业执照</div>
+									<div id="uploadYE">营业执照照片”</div>
 									<input type="file" id="file" style="display: none;" />
 								</div>
 							</div>
@@ -242,7 +242,7 @@
 								</div>
 								<div class="findLogo" id="theZ">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadZCard">身份证正面</div>
+									<div id="uploadZCard">身份证正面照片</div>
 									<input type="file" style="display: none;" />
 								</div>
 							</div>
@@ -256,7 +256,7 @@
 								</div>
 								<div class="findLogo" id="theB">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadBCard">身份证背面</div>
+									<div id="uploadBCard">身份证背面照片</div>
 									<input type="file" id="file" style="display: none;" />
 								</div>
 							</div>

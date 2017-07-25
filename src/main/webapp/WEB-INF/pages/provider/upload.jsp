@@ -132,6 +132,11 @@
 			               <div class="grayWord">Mac系统：Any Video Converter</div>
 			               <div class="midWord">如果您对此有疑问,您可以拨打(010-59005319)与我们联系。</div>
 					</div>
+					
+					<div class="setMid"> 
+					    <input type="button" onclick="history.go(-1)"  class="gy-btn btn-c-g " id="checkbtn"  value="返回" />
+					</div>	
+					
 				</div>
 			</c:if>
 			<div class="step2 <c:if test='${product.productId == 0}'>hide</c:if>">

@@ -290,8 +290,18 @@
 	                            <ul class="oSelect" id='uPosition'>
 	                            </ul>                
 	                       </div>
+                          <div class="must"> </div>
+                        </div>
+                         <div class="setError longItem" id="showHelperEdit" style="display:none"> 
+                          <div class="itemTitile">推荐人</div>
+	                      <div class="orderSelect">
+	                            <div data-id="" id="referrerId"></div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderEdit'>
+	                            </ul>                
+	                       </div>
                           <div class="must"></div>
-                        </div>  
+                        </div>    
                     </div>
                     <div class="borderline"></div>
                     <div class="infoItem">
