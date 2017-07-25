@@ -62,7 +62,7 @@
 				<div class="successCheck" id="successCheck">
 					<img src="${imgPath}/provider/infoPage.png" />
 					<div class="checkInfo">
-						请确认提交信息的真实性，所有上传的作品均为注册公司真实作品。<br> 确认无误请点击提交审核，完成注册进入审核阶段。
+						请确认提交信息的真实性，所有上传的作品均为注册创作团队真实作品。<br> 确认无误请点击提交审核，完成注册进入审核阶段。
 					</div>
 					<div class="scDiv">
 						<sf:form>
