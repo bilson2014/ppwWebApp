@@ -178,16 +178,16 @@
                     </div>
                     <div class="userName">${provider.teamName }</div>
                                  <c:if test="${provider.flag == 2}">
-										 <div class="userProduct showInfo" data-content="您的资质未通过审核，暂时无法查看，请完善相关资质重新提交审核！" >公司主页
+										 <div class="userProduct showInfo" data-content="您的资质未通过审核，暂时无法查看，请完善相关资质重新提交审核！" >创作团队主页
 										 </div>
 								 </c:if>
 								 <c:if test="${provider.flag == 0}">
-										 <div class="userProduct showInfo" data-content="您的资质正在审核中，暂时无法查看！">公司主页
+										 <div class="userProduct showInfo" data-content="您的资质正在审核中，暂时无法查看！">创作团队主页
 										 </div>
 								 </c:if> 
 								 <c:if test="${provider.flag == 1 || provider.flag == 4}">
 										                     <a href="/provider/info_${provider.teamId }.html">
-                    	                                           <div class="userProduct">公司主页</div>
+                    	                                           <div class="userProduct">创作团队主页</div>
                                                              </a>
 								 </c:if>
 
@@ -196,7 +196,7 @@
                                 <div class="product" data-action="video-list">作品列表</div>
                          </div>  
                           <div class="infoItem" id="clickCompany">
-                                <div class="info" data-action="company-info">公司信息</div>
+                                <div class="info" data-action="company-info">创作团队信息</div>
                          </div>
                           <div class="infoItem" id="clickSafe">
                                  <div class="safeInfo" data-action="safe-info">安全设置</div>
