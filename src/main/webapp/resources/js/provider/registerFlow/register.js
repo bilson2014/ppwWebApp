@@ -253,7 +253,7 @@ function initEven(){
 	});
 	var showWho = 0;
 	$('#checkCompany').off('click').on('click',function(){
-		$('#uploadYE').find('.webuploader-pick').text('上传营业执照');
+		$('#uploadYE').find('.webuploader-pick').text('营业执照照片');
 		showWho = 0;
 	});
 	$('#checkWorkRoom').off('click').on('click',function(){
