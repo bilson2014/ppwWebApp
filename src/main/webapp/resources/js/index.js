@@ -715,14 +715,14 @@ function getContentIndex(string){
 
 function colorEgg(){
     var p = "%c *******\n" +
-	"/**////** \n" +
-	"/**   /** \n" +
-	"/******* \n" +
-	"/**////  \n" +
-	"/**  \n" +
-	"/**  \n" +
-	"/** \n" +
-	"// "
-console.info(p,"color:red");
+			"/**////** \n" +
+			"/**   /** \n" +
+			"/******* \n" +
+			"/**////  \n" +
+			"/**  \n" +
+			"/**  \n" +
+			"/** \n" +
+			"// "
+console.info(p,"color:#fe5453;font-size:28px");
 console.info('欢迎加入拍片网');
 }
