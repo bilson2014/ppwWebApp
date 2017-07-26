@@ -250,10 +250,13 @@ function showDiv(){
 		var setInfo = "您现在登陆角色是"+role+"</br>请退出登陆后重新下单，或联系我们400-660-9728"
 		$('#tooltip-check').show();
 		$('#checkInfo').html(setInfo);
-	}else{
+	}
+	
+	else{
 	    $('#price').removeClass('showPrice');
 	    $('#price').addClass('noShow');
 	    $('#order').addClass('showOrder');
+	    $('#oootitlte').text('立即下单，为您定制专属影片');
 	}
     });
     $('#closeBtn').on('click',function(){

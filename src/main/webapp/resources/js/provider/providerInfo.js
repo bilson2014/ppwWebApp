@@ -312,15 +312,41 @@ function openOrder(){
 			$('#tooltip-check').show();
 			$('#checkInfo').html(setInfo);
 		}
-		if(role!='客户'){
-			showOrder('宣传片');
+		if(role=='客户'){
 			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));
-			$('#order-btn').attr('data-comment',$(this).attr('data-comment'));	
+			$('#order-btn').attr('data-comment',$(this).attr('data-comment'));
+            loginOrderFType('宣传片');
 		}
 		else{
 			showOrder('宣传片');
 			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));
 			$('#order-btn').attr('data-comment',$(this).attr('data-comment'));
+		    $('#selectType').remove();
+		    $('.cOrderTitle').text('请留下手机号码，专业创作团队为您服务');
+		}
+	});
+}
+
+function loginOrderFType(info) {
+	$.ajax({
+		url : '/order/deliver',
+		type : 'POST',
+		data : {
+			csrftoken : $("#csrftoken").val(),
+			indent_tele : '',
+			phoneCode : '-1',
+			indent_recomment : info,
+			indentName : '网站-PC-首页banner',
+			productId : -1,
+			teamId : -1,
+			serviceId : -1,
+			sendToStaff : true,
+			sendToUser : false,
+			indentSource : 1
+		},
+		dataType : 'json',
+		success : function(data) {
+			showSuccess();
 		}
 	});
 }

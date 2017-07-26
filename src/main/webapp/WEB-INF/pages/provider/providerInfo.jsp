@@ -91,6 +91,7 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
+	<jsp:include flush="true" page="../modelTool.jsp"></jsp:include> 
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
  
         

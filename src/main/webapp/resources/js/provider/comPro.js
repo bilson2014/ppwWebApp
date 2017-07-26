@@ -648,6 +648,8 @@ function chickShowOrder() {
 	});
 }
 
+
+
 function showOrder(typeName) {
 
     if ($('div').hasClass('comOrder')) {

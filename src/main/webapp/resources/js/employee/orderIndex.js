@@ -752,6 +752,7 @@ function editEvenFunction(item){
 	$('#teles').val(teles);
 	$('#orderNote').val(orderNote);
 	$('#indent_recomment').val(indent_recomment);
+	$('.noUse').off('click');
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');

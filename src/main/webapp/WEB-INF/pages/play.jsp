@@ -194,7 +194,7 @@
 							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
 												
 	                        <div class="closeBtn" id="closeBtn"></div>
-	                        <div class="orderTitle">立即下单,对接制作团队</div>
+	                        <div class="orderTitle" id="oootitlte">立即下单,对接制作团队</div>
 	                        <div class="orderItem" id="phoneError">
 	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
 	                        </div>
@@ -204,7 +204,7 @@
 	                        </div>
 	                         <a href="javascript:void(0);" id="order-btn1" ><div class="order-btn btn-c-r">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
-	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
+	                        <div class="orderBotTitle"></div>
                         </form>
                     </div>
                 </div>
