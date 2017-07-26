@@ -1580,7 +1580,8 @@ function initUserView(id){
 			$('#muNote').val(rr.note);
 			if(rr.customerType == '18'){
 				$('#showHelperEdit').show();
-				selectSetView(rr.referrerId,$('#orderEdit'));
+//				selectSetView(rr.referrerId,$('#orderEdit'));
+				selectSetView('#orderEdit',rr.referrerId);
 			}
 			
 		}, getContextPath()+'/user/get/info?userId='+id, null);
