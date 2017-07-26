@@ -309,9 +309,9 @@ function openOrder(){
 		var role = $('#role').val();
 		if(loginTel!=null && loginTel!= "" && role!='客户' ){
 	
-			var setInfo = "您现在以"+role+"身份登陆，不能下单，请退出登陆后重新下单，或联系我们400-660-9728"
+			var setInfo = "您现在登陆角色是"+role+"</br>请退出登陆后重新下单，或联系我们400-660-9728"
 			$('#tooltip-check').show();
-			$('#checkInfo').text(setInfo);
+			$('#checkInfo').html(setInfo);
 		}else{
 			showOrder('宣传片');
 			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));

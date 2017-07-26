@@ -21,6 +21,7 @@
 	 <div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
 	          <div class="closeCheck" id='closeCheck'></div>
+	          <img src="${imgPath}/orderManager/waring.png">
 	          <div class="checkInfo" id="checkInfo">error</div>
 	          <div class="checkBottom">
 	                 <div class="sureCheck" id="sureCheck">确认</div>

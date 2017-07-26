@@ -14,8 +14,10 @@ $().ready(function() {
     	getVideoHeight();
     };
     $('#header').removeClass('headerMove');
-    
+    colorEgg();
 });
+
+
 
 function getVideoHeight(){
 	    var screenWidth = document.documentElement.clientWidth;
@@ -355,9 +357,9 @@ var homePage = {
 			var nowCheck = $(this);
 			if(loginTel!=null && loginTel!= "" && role !="客户" ){
 				//loginOrder();
-				var setInfo = "您现在以"+role+"身份登陆，不能下单，请退出登陆后重新下单，或联系我们400-660-9728"
+				var setInfo = "您现在登陆角色是"+role+"</br>请退出登陆后重新下单，或联系我们400-660-9728"
 				$('#tooltip-check').show();
-				$('#checkInfo').text(setInfo);
+				$('#checkInfo').html(setInfo);
 			}
 			if(role == "客户"){
 				var flag = nowCheck.attr("data-text");
@@ -709,4 +711,18 @@ function getContentIndex(string){
 		var content = string.substr(1,num) +"[...]"
 	}
 	return  content;
+}
+
+function colorEgg(){
+    var p = "%c *******\n" +
+	"/**////** \n" +
+	"/**   /** \n" +
+	"/******* \n" +
+	"/**////  \n" +
+	"/**  \n" +
+	"/**  \n" +
+	"/** \n" +
+	"// "
+console.info(p,"color:red");
+console.info('欢迎加入拍片网');
 }
