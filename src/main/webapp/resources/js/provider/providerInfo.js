@@ -308,10 +308,14 @@ function openOrder(){
 		var loginTel = $('#rolephone').val();
 		var role = $('#role').val();
 		if(loginTel!=null && loginTel!= "" && role!='客户' ){
-	
 			var setInfo = "您现在登陆角色是"+role+"</br>请退出登陆后重新下单，或联系我们400-660-9728"
 			$('#tooltip-check').show();
 			$('#checkInfo').html(setInfo);
+		}
+		if(role!='客户'){
+			showOrder('宣传片');
+			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));
+			$('#order-btn').attr('data-comment',$(this).attr('data-comment'));	
 		}else{
 			showOrder('宣传片');
 			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));

@@ -275,7 +275,7 @@
 	                      <div class="orderSelect">
 	                            <div data-value="" id="muCustomerType"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='uCustomerType'></ul>                
+	                            <ul class="oSelect uCustomerType" id='uCustomerType'></ul>                
 	                       </div>
                           <div class="must"></div>
                        </div>   

@@ -61,24 +61,16 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-<<<<<<< HEAD
-     <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="roletype" value="provider">              
-	 </r:identity>
-	 <r:identity role="customer">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="roletype" value="customer">
-=======
-	 
+
 	 <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="provider">  
 	    <input type="hidden" id="role" value="创作团队" />              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="customer">
 	    <input type="hidden" id="role" value="客户" />         
->>>>>>> 8111d86d5de2f6c8ecd1bebfd5314d800d46bc62
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="role" value="内部员工" />

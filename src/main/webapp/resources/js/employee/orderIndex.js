@@ -55,6 +55,7 @@ $().ready(function() {
 	$('.orderIndex').addClass('active');
 	orderIndex.init();
 	searchInit();
+	getHelp();
 });
 
 var orderIndex = {
@@ -224,6 +225,15 @@ var orderIndex = {
 			   	 $(this).parent().parent().find('div').attr('data-id',id);
 			   	 $(this).parent().slideUp();
 			   	 $('.orderSelect').removeClass('selectColor');
+				  var checkShow = $(this).attr('data-id');
+				  if($(this).parent().hasClass('uCustomerType')){  
+				  	if(checkShow == '18'){
+				   		$('#showHelperEdit').show();
+				   	 }else{
+				   		$('#showHelperEdit').hide();
+				   }
+				  }
+			   	 
 			   	 if($(this).parent().hasClass('searchSelect')){
 				   	 search();
 			   	 }
@@ -285,11 +295,11 @@ var orderIndex = {
 			});
 			//查看需求文档
 			$('.findInfoNeedList').off('click').on('click',function(){
-				getHelp();
 				$('#referrerId').attr('data-id','');
 				$('#referrerId').text();
 				$('#modifyUserInfo').show();
 			    $('#showHelperEdit').hide();
+				orderIndex.controlSelect();
 				var id = $(this).attr('data-id');
 				initUserView(id);
 			});
@@ -711,21 +721,21 @@ function bangSelect(){
 	});
 	
 	$('#orderEdit li').off('click').on('click',function(e){
-/*	     $(this).parent().parent().find('div').text($(this).text());
+	     $(this).parent().parent().find('div').text($(this).text());
 	   	 $(this).parent().parent().find('div').attr('data-id',$(this).attr('data-value'));
 	   	 $('.orderSelect').removeClass('selectColor');
-	     $('#orderEdit').hide();*/
+	     $('#orderEdit').hide();
 	   	 e.stopPropagation();
 	});
 	
-	$('#uCustomerType li').off('click').on('click',function(e){
+/*	$('#uCustomerType li').off('click').on('click',function(e){
 		var checkShow = $(this).attr('data-id');
 	  	if(checkShow == '18'){
 	   		$('#showHelperEdit').show();
 	   	 }else{
 	   		$('#showHelperEdit').hide();
 	   }
-	});
+	});*/
 }
 //修改事件方法
 function editEvenFunction(item){
@@ -1545,12 +1555,12 @@ function updateUser(id){
 }
 
 function initUserView(id){
-	
+	$('#referrerId').attr('data-id','');
+	$('#referrerId').text('');
 	$('#submitEditCus').attr('data-id',id);
 	// 加载下拉框信息
 	loadData(function(res){
 		var rr = res.result;
-		
 		fillUl(rr.customerType,$('#uCustomerType'));
 		fillUl(rr.position,$('#uPosition'));
 		fillUl(rr.purchaseFrequency,$('#uPurchaseFrequency'));
@@ -1558,7 +1568,6 @@ function initUserView(id){
 		fillUl(rr.customerSize,$('#uCustomerSize'));
 		fillUl(rr.endorse,$('#uEndorse'));
 		orderIndex.controlSelect();
-		
 		// 加载用户信息
 		$('#muOfficialSite').val('');	
 		loadData(function(res){
@@ -1580,8 +1589,7 @@ function initUserView(id){
 			$('#muNote').val(rr.note);
 			if(rr.customerType == '18'){
 				$('#showHelperEdit').show();
-//				selectSetView(rr.referrerId,$('#orderEdit'));
-				selectSetView('#orderEdit',rr.referrerId);
+				selectSetView($('#referrerId'),rr.referrerId);
 			}
 			
 		}, getContextPath()+'/user/get/info?userId='+id, null);
