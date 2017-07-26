@@ -779,9 +779,9 @@ function initUpdateInfo(){
 	$('#orderP').attr('data-value','');
 }
 
-function submitSaveOrCreate(check,item){
-	//提交submit
+function bangSubmit(check,item){
 	$('#submitEdit').off('click').on('click',function(){
+		$('#submitEdit').off('click');
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
 			var subCompany =$('#companyName').val();
@@ -807,17 +807,25 @@ function submitSaveOrCreate(check,item){
 				  data: data,
 				  success:function(data){
 					  $('#NewOrder').hide();
+						bangSubmit(check,item);
 					  if(check == 1){
 						  $('.orderIndex').click();
 					  }else{
 						  orderIndex.readMore(nowPage);
 					  }
 					},
+				error:function(data){
+					bangSubmit(check,item);
+					}	,
 				  dataType: 'json'
 				});  
 		}
-		
 	});
+}
+
+function submitSaveOrCreate(check,item){
+	//提交submit
+	bangSubmit(check,item);
 }
 
 
