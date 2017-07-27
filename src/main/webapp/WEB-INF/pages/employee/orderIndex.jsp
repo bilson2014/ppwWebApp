@@ -607,6 +607,39 @@
 							          <c:if test="${item.indentSource == 10}">
 							                           线下-商桥
 							          </c:if>
+							          <c:if test="${item.indentSource == 11}">
+							                          线上-PC-首页banner
+							          </c:if>
+							          <c:if test="${item.indentSource == 12}">
+							                           线上-PC-直接下单
+							          </c:if>
+							          <c:if test="${item.indentSource == 13}">
+							                           线上-PC-成本计算器
+							          </c:if>
+							          <c:if test="${item.indentSource == 14}">
+							                           线上-PC-供应商首页下单
+							          </c:if>
+							          <c:if test="${item.indentSource == 15}">
+							                          线上-PC-作品
+							          </c:if>
+							          <c:if test="${item.indentSource == 16}">
+							                           线上-移动-首页banner
+							          </c:if>
+							          <c:if test="${item.indentSource == 17}">
+							                           线上-移动-成本计算器
+							          </c:if>
+							          <c:if test="${item.indentSource == 18}">
+							                           线上-移动-作品
+							          </c:if>
+							          <c:if test="${item.indentSource == 19}">
+							                           线上-公众号-成本计算器
+							          </c:if>
+							           <c:if test="${item.indentSource == 20}">
+							                           线上-公众号-直接下单
+							          </c:if>
+							           <c:if test="${item.indentSource == 21}">
+							                        线上-公众号-作品
+							          </c:if>
 							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>
 							<td class="info"><div></div></td>
