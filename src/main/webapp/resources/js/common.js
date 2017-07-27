@@ -687,7 +687,7 @@ function showOrder(typeName) {
             '<div class="cCloseBtn" id="closeBtn">' +
             ' 	<div></div>' +
             '</div>' +
-            '<div class="cOrderTitle">立即下单,对接制作团队</div>' +
+            '<div class="cOrderTitle">立即下单，专业团队为您服务</div>' +
             '<form id="cOrder-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">'+
             ' <div class="cOrderItem">' +
             '<div class="dropdown dropdowns" id="selectType">' +

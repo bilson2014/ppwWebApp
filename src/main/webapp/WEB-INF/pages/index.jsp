@@ -136,7 +136,7 @@
 						</div>
 					</div>
 							
-						<div class="dropdown" id="selectType">
+						<div class="dropdown" id="">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown">
 								<span id='indent_recomment'>宣传片</span>

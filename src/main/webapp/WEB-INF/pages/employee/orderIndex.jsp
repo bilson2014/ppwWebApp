@@ -186,7 +186,7 @@
                        <div class="infoItem">
                        <div class="setError" id="orderComeInfoError" data-content="">
                           <div class="itemTitile">订单来源</div>
-	                      <div class="orderSelect">
+	                      <div class="orderSelect noUse">
 	                            <div data-value="" id="orderComeInfo">请选择</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
@@ -215,7 +215,7 @@
                      <div class="infoItem" id="showHelper">  
                         <div class="setError" id="orderPError" data-content="">
 	                          <div class="itemTitile">推荐人</div>
-		                      <div class="orderSelect">
+		                      <div class="orderSelect noUse">
 		                            <div data-value="" id="orderP"></div>
 		                            <img src="${imgPath}/orderManager/select.png">
 		                            <ul class="oSelect" id='orderComePeople'>
