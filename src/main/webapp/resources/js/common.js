@@ -740,11 +740,13 @@ function initOrderClick(){
 		var comment = $(this).attr('data-comment');
 		var sir = $("#submit-indent-recomment").text();
 		
-		var indentName = '网站-PC-直接下单';
+		var indentName = '网站-PC-首页banner';
+		var indentSour = '11';
 		if('provider' == xx){
 			indentName = '网站-PC-供应商首页下单';
 			sir += ' ';
 			sir += comment;
+			var indentSour = '14';
 		}
 		if(checkDatas(1)){ // 检查数据完整性
 				showError($('#indent_tele_error'),'');
@@ -774,7 +776,7 @@ function initOrderClick(){
 						teamId:-1,
 						serviceId:-1,
 						phoneCode : $('#phoneCode').val(),
-						indentSource:1
+						indentSource:indentSour
 					});	
 				}
 		}
