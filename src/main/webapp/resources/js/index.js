@@ -143,7 +143,7 @@ function loginOrder() {
 			serviceId : -1,
 			sendToStaff : true,
 			sendToUser : false,
-			indentSource : 1
+			indentSource : 11
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -196,7 +196,7 @@ function loginOrderFType(info) {
 			serviceId : -1,
 			sendToStaff : true,
 			sendToUser : false,
-			indentSource : 1
+			indentSource : 11
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -241,7 +241,7 @@ function noLoginOrder() {
 				sendToStaff : true,
 				sendToUser : false,
 				phoneCode : getCheckCodes,
-				indentSource : 1
+				indentSource : 11
 			},
 			dataType : 'json',
 			success : function(data) {
@@ -391,49 +391,6 @@ var homePage = {
 		$(".helpYou").off("click").on("click", function() {
 
 			var loginTel = $('#rolephone').val();
-<<<<<<< HEAD
-			var nowCheck = $(this);
-			if(loginTel!=null && loginTel!= "" && role !="客户" ){
-				//loginOrder();
-				var setInfo = "您现在登陆角色是"+role+"</br>请退出登陆后重新下单，或联系我们400-660-9728"
-				$('#tooltip-check').show();
-				$('#checkInfo').html(setInfo);
-			}else if(role == "客户"){
-				var flag = nowCheck.attr("data-text");
-				loginOrderFType(flag);
-			}else{
-				var flag = nowCheck.attr("data-text");
-				showOrder(flag);
-			}
-		})
-	},
-	clickHelpYou:function(){
-		$('#sendCode').off('click').on('click',verificationCodeBtn);
-		$(".helpYou").off("click").on("click",function(){
-			
-				  	var loginTel = $('#rolephone').val();
-					if(loginTel!=null && loginTel!= "" ){
-						var roletype=$('#roletype').val();
-						if(roletype=='provider' || roletype=='employee'){
-							loginNoOrder();
-						}else{
-							loginOrder();
-						}
-						
-					}else{
-						
-						if($(".helpYou").hasClass('active')){
-							noLoginOrder();
-						}
-						else{
-							$('.isShowItem').show();
-							$(".helpYou").addClass('active');
-						}
-					}
-		})
-	},
-	getRecommendProduct:function(){
-=======
 			if (loginTel != null && loginTel != "") {
 				loginOrder();
 			} else {
@@ -448,7 +405,6 @@ var homePage = {
 		})
 	},
 	getRecommendProduct : function() {
->>>>>>> f1606ee5e8fb20ce4e1c8cd2d331cebd13d73eba
 		var _this = this;
 		loadData(function(data) {
 			if (data.code == 1) {

@@ -740,8 +740,8 @@ function initOrderClick(){
 		var comment = $(this).attr('data-comment');
 		var sir = $("#submit-indent-recomment").text();
 		
-		var indentName = '网站-PC-首页banner';
-		var indentSour = '11';
+		var indentName = '网站-PC-直接下单';
+		var indentSour = '12';
 		if('provider' == xx){
 			indentName = '网站-PC-供应商首页下单';
 			sir += ' ';
