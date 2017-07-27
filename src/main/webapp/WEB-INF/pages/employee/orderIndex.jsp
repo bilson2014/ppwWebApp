@@ -200,7 +200,7 @@
 					                    <li data-id="9">线上-400</li>
 					                    <li data-id="10">线上-商桥</li>
 					                    <li data-id="8">复购</li>
-					                    <li data-id="11">线上-PC-首页banner</li>
+					              		<li data-id="11">线上-PC-首页banner</li>
 					                    <li data-id="12">线上-PC-直接下单</li>
 					                    <li data-id="13">线上-PC-成本计算器</li>
 					                    <li data-id="14">线上-PC-供应商首页下单</li>
@@ -208,9 +208,9 @@
 					                    <li data-id="16">线上-移动-首页banner</li>
 					                    <li data-id="17">线上-移动-成本计算器</li>
 					                    <li data-id="18">线上-移动-作品</li>
-					                    <li data-id="19">线上-新媒体-拍片网公众号-成本计算器 </li>
-					                    <li data-id="20">线上-新媒体-拍片网公众号-直接下单</li>
-					                    <li data-id="21">线上-新媒体-拍片网公众号-作品</li>					                    
+					                    <li data-id="19">线上-公众号-成本计算器 </li>
+					                    <li data-id="20">线上-公众号-直接下单</li>
+					                    <li data-id="21">线上-公众号-作品</li>					                    
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>

@@ -23,7 +23,7 @@
             <input value="" id="sUserCompany">
             <div>联系人</div>
             <input value="" id="sRealName">
-            <div>联系电话</div>
+            <div>电话</div>
             <input value="" id="sIndent_tele">
             <div>订单来源</div>
             <div class="orderSelect" >
@@ -49,9 +49,9 @@
                     <li data-id="16">线上-移动-首页banner</li>
                     <li data-id="17">线上-移动-成本计算器</li>
                     <li data-id="18">线上-移动-作品</li>
-                    <li data-id="19">线上-新媒体-拍片网公众号-成本计算器 </li>
-                    <li data-id="20">线上-新媒体-拍片网公众号-直接下单</li>
-                    <li data-id="21">线上-新媒体-拍片网公众号-作品</li>	
+                    <li data-id="19">线上-公众号-成本计算器 </li>
+                    <li data-id="20">线上-公众号-直接下单</li>
+                    <li data-id="21">线上-公众号-作品</li>	
                 </ul>    
 	        </div>
             <div>日期查询</div>
