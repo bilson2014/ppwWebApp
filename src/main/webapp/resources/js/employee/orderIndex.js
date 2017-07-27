@@ -474,6 +474,40 @@ var orderIndex = {
 			if(num == 10){
 				name = '线上-商桥';
 			}
+			if(num == 11){
+				name = '线上-PC-首页banner';
+			}
+			if(num == 12){
+				name = '线上-PC-直接下单';
+			}
+			if(num == 13){
+				name = '线上-PC-成本计算器';
+			}
+			if(num == 14){
+				name = '线上-PC-供应商首页下单';
+			}
+			if(num == 15){
+				name = '线上-PC-作品';
+			}
+			if(num == 16){
+				name = '线上-移动-首页banner';
+			}
+			if(num == 17){
+				name = '线上-移动-成本计算器';
+			}
+			if(num == 18){
+				name = '线上-移动-作品';
+			}
+			if(num == 19){
+				name = '线上-新媒体-拍片网公众号-成本计算器';
+			}
+			if(num == 20){
+				name = '线上-新媒体-拍片网公众号-直接下单';
+			}
+			if(num == 21){
+				name = '线上-新媒体-拍片网公众号-作品';
+			}
+
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
