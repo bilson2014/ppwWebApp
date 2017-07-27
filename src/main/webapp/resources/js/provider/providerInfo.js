@@ -342,7 +342,7 @@ function loginOrderFType(info) {
 			serviceId : -1,
 			sendToStaff : true,
 			sendToUser : false,
-			indentSource : 1
+			indentSource : 14
 		},
 		dataType : 'json',
 		success : function(data) {

@@ -351,7 +351,7 @@ function loginOrder(){
 			phoneCode :'',
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
 			indent_tele : telephone,
-			indentSource:1
+			indentSource:15
 			});
 
 }
