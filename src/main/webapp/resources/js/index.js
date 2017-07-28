@@ -143,7 +143,7 @@ function loginOrder() {
 			serviceId : -1,
 			sendToStaff : true,
 			sendToUser : false,
-			indentSource : 1
+			indentSource : 11
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -167,6 +167,16 @@ function loginOrder() {
 		}
 	});
 }
+//just 
+function loginNoOrder(){
+	var word = $("#indent_recomment").text();
+	if(word == '宣传片')
+		word = '*宣传片';
+	if(word == '广告片')
+		word = '*广告';
+	window.location.href='/search?q=' + word;
+}
+
 
 /**
  * 主页业务处理部分
@@ -186,7 +196,7 @@ function loginOrderFType(info) {
 			serviceId : -1,
 			sendToStaff : true,
 			sendToUser : false,
-			indentSource : 1
+			indentSource : 11
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -231,7 +241,7 @@ function noLoginOrder() {
 				sendToStaff : true,
 				sendToUser : false,
 				phoneCode : getCheckCodes,
-				indentSource : 1
+				indentSource : 11
 			},
 			dataType : 'json',
 			success : function(data) {
@@ -383,7 +393,12 @@ var homePage = {
 
 			var loginTel = $('#rolephone').val();
 			if (loginTel != null && loginTel != "") {
-				loginOrder();
+				var roletype=$('#roletype').val();
+				if(roletype!=null && ( roletype=='provider'|| roletype=='employee')){
+					loginNoOrder();
+				}else{
+					loginOrder();
+				}
 			} else {
 
 				if ($(".helpYou").hasClass('active')) {

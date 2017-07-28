@@ -1587,7 +1587,7 @@ function updateUser(id){
 	var customerSize = $('#muCustomerSize').attr('data-id');
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
-	var referrerId = $('#referrerId').val();
+	var referrerId = $('#referrerId').attr('data-id');
 	
 	if(oldmuTelephone == telephone){
 		//  未注册

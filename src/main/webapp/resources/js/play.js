@@ -244,6 +244,7 @@ function devicesSize() {
 function showDiv(){
     $('#needOrder').on('click',function(){
   	var loginTel = $('#rolephone').val();
+
 	var role = $('#role').val();
 	if(loginTel!=null && loginTel!= "" && role !='客户' ){
 		//loginOrder();
@@ -374,7 +375,7 @@ function noLoginOrder(){
 			phoneCode : $('#verificationCodeValue').val(),
 			indent_recomment:'样片名称:'+$("#indentName").val()+',价格:'+$("#vPrice").val(),
 			indent_tele : telephone,
-			indentSource:1
+			indentSource:15
 		});
 	}
 }

@@ -84,6 +84,10 @@ $().ready(function() {
 				var loginTel = $('#rolephone').val();
 				
 				if(loginTel!=null && loginTel!= "" ){
+					var roletype=$('#roletype').val();
+					if(roletype=='provider' || roletype=='employee'){
+						
+					}
 					loginOrder();
 				}else{
 					noLoginOrder();

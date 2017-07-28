@@ -128,11 +128,13 @@ public class CostCalculateController extends BaseController{
 			String sessionType = info.getSessionType();
 			String indent_recomment = indent.getIndent_recomment();
 			switch (sessionType) {
+			//供应商和内部员工角色不添加订单
 			case PmsConstant.ROLE_PROVIDER:
 				indent_recomment = "供应商  " + indent_recomment;
-				break;
+				return map;
 			case PmsConstant.ROLE_EMPLOYEE:
 				indent_recomment = "内部员工   "+ indent_recomment;
+				return map;
 			}
 			indent.setIndent_recomment(indent_recomment);
 			
