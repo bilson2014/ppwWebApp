@@ -46,7 +46,7 @@
 <meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>供应商引导页-拍片网</title>
+<title>团队注册引导  - 拍片网 - 第二步</title>
 <link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 <link rel="stylesheet" type="text/css" href="${registerCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
@@ -81,7 +81,7 @@
 				<form:form method="post" commandName="team" id="toLeaderForm">
 					<input type="hidden" value="${teamId }" name="teamId" />
 					<div class="updateLogo">
-						<div class="title">公司LOGO</div>
+						<div class="title">创作团队LOGO</div>
 						<div class="user-img-content" id="user-img-content">
 							<div class="user-icon">
 								<img alt="用户头像" src="/resources/images/provider/initLogo.png"
@@ -89,7 +89,7 @@
 								<form:input type="hidden" path="teamPhotoUrl" id="user_img_url" />
 							</div>
 							<div class="upload-info">
-								<label>您可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
 							</div>
 							<div class="upload-btn">
 								<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -100,13 +100,13 @@
 					</div>
 
 					<div class="input-group-div" id="company-name-error">
-						<span class="title-word">公司名称</span>
+						<span class="title-word">创作团队名称</span>
 						<form:input class="form-control step-one-input" path="teamName"
-							id="teamName" placeholder="请填写公司名称" value="" />
+							id="teamName" placeholder="请填写创作团队名称" value="" />
 					</div>
 
 					<div class="input-group-div" id="company-nature-error">
-						<span class="title-word">公司性质</span>
+						<span class="title-word">创作团队性质</span>
 						<div class="radioDiv">
 							<label><form:radiobutton path="teamNature" class="radio"
 									value="0" id="checkCompany" />公司 </label> <label><form:radiobutton
@@ -218,7 +218,7 @@
 						<div class="title">上传资质</div>
 						<div class="user-img-content" id="user-img-contentInfo">
 							<div class="upload-info">
-								<label>您上可以上传JPG、 GIF或PNG格式的文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
 							</div>
 							<div class="logoItem">
 								<div class="user-icon">
@@ -229,7 +229,7 @@
 								</div>
 								<div class="findLogo" id="theInfo">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadYE">上传营业执照</div>
+									<div id="uploadYE">营业执照照片”</div>
 									<input type="file" id="file" style="display: none;" />
 								</div>
 							</div>
@@ -242,7 +242,7 @@
 								</div>
 								<div class="findLogo" id="theZ">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadZCard">身份证正面</div>
+									<div id="uploadZCard">身份证正面照片</div>
 									<input type="file" style="display: none;" />
 								</div>
 							</div>
@@ -256,7 +256,7 @@
 								</div>
 								<div class="findLogo" id="theB">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadBCard">身份证背面</div>
+									<div id="uploadBCard">身份证背面照片</div>
 									<input type="file" id="file" style="display: none;" />
 								</div>
 							</div>
@@ -370,10 +370,10 @@
 	</div>
 
 	<div class="input-group-div" id="company-teamDesc-error">
-		<span class="title-checkbox-word" for="company-teamDesc">公司简介</span>
+		<span class="title-checkbox-word" for="company-teamDesc">创作团队简介</span>
 		<form:textarea path="teamDescription" class="form-control step-area"
 			id="company-teamDesc" rows="4" maxlength="200"
-			placeholder="公司简介为必填字段" />
+			placeholder="创作团队简介为必填字段" />
 	</div>
 
 	<div class="setMid">

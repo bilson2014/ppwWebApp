@@ -33,6 +33,7 @@ import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
+import com.paipianwang.pat.facade.indent.entity.IndentSource;
 import com.paipianwang.pat.facade.indent.entity.PmsIndent;
 import com.paipianwang.pat.facade.indent.service.PmsIndentFacade;
 import com.paipianwang.pat.facade.product.entity.PmsProduct;
@@ -43,6 +44,7 @@ import com.paipianwang.pat.facade.product.service.PmsRequireFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
 import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
+import com.paipianwang.pat.facade.user.entity.Grade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
 import com.panfeng.film.domain.BaseMsg;
@@ -368,6 +370,13 @@ public class IndentController extends BaseController {
 			if (indent.getPosition() != null) {
 				user.setPosition(indent.getPosition());
 			}
+			//客户类型默认订单来源
+			if(indent.getIndentSource()!=null){
+				user.setCustomerType(getCustomerType(indent.getIndentSource()));
+			}
+			if(indent.getReferrerId()!=null){
+				user.setReferrerId(indent.getReferrerId());
+			}
 			Integer computeScore = pmsUserFacade.computeScore(user);
 			user.setClientLevel(computeScore);
 			Map<String, Object> save = pmsUserFacade.save(user);
@@ -379,6 +388,27 @@ public class IndentController extends BaseController {
 			}
 		}
 		return user.getId();
+	}
+	
+	/**
+	 * 根据订单来源对应客户类型
+	 * @param indentSource
+	 * @return
+	 */
+	private Integer getCustomerType(Integer indentSource){		
+		//先找到indentSource
+		IndentSource source=IndentSource.enumOf(indentSource);
+		if(source==null){
+			return null;
+		}
+		//根据名称找type	
+		for(int i=0;i<Grade.customerType.length;i++){
+			if(Grade.customerType[i].getText().equals("直客-"+source.getName())){
+				return Grade.customerType[i].getId();
+			}
+		}
+		
+		return null;
 	}
 
 	@RequestMapping(value = "/shamOrder", produces = "application/json; charset=UTF-8")

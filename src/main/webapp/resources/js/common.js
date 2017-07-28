@@ -687,7 +687,7 @@ function showOrder(typeName) {
             '<div class="cCloseBtn" id="closeBtn">' +
             ' 	<div></div>' +
             '</div>' +
-            '<div class="cOrderTitle">立即下单,对接制作团队</div>' +
+            '<div class="cOrderTitle">立即下单，专业团队为您服务</div>' +
             '<form id="cOrder-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">'+
             ' <div class="cOrderItem">' +
             '<div class="dropdown dropdowns" id="selectType">' +
@@ -741,10 +741,12 @@ function initOrderClick(){
 		var sir = $("#submit-indent-recomment").text();
 		
 		var indentName = '网站-PC-直接下单';
+		var indentSour = '12';
 		if('provider' == xx){
 			indentName = '网站-PC-供应商首页下单';
 			sir += ' ';
 			sir += comment;
+			var indentSour = '14';
 		}
 		if(checkDatas(1)){ // 检查数据完整性
 				showError($('#indent_tele_error'),'');
@@ -774,7 +776,7 @@ function initOrderClick(){
 						teamId:-1,
 						serviceId:-1,
 						phoneCode : $('#phoneCode').val(),
-						indentSource:1
+						indentSource:indentSour
 					});	
 				}
 		}

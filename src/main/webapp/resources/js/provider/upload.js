@@ -13,6 +13,7 @@ $().ready(function(){
 			this.initPage();
 			//初始化上传图片
 			this.uploaderPic();
+			
 		},
 		uploaderVideo:function(){
 			var _this = this;

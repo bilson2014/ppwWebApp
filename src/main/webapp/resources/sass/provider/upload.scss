@@ -227,7 +227,7 @@ body,
 }
 
 .progress-bar {
-/*     background-color: #337ab7;
+    /*     background-color: #337ab7;
 background-image: none !important; */
 }
 
@@ -586,4 +586,28 @@ background-image: none !important; */
     font-size: $font-size-base;
     position: absolute;
     left: 90px;
+}
+
+.setMid {
+    width: 120px;
+    margin: 0 auto;
+}
+
+.gy-btn {
+    width: 120px;
+    height: 36px;
+    background-color: $gray-light;
+    border-color: $white;
+    border-radius: 4px;
+    border: none;
+    color: $white;
+    line-height: 34px;
+    font-size: $font-size-base;
+    margin-right: 30px;
+    text-align: center;
+    &:hover {
+        background-color: darken($gray-light, 10%);
+        color: #fff;
+        cursor: pointer;
+    }
 }

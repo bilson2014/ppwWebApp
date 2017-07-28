@@ -57,15 +57,21 @@
 
 <body>
      
-     <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	 <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="provider">             
+	    <input type="hidden" id="role" value="创作团队" />              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="customer">
+	    <input type="hidden" id="role" value="客户" />         
 	 </r:identity>
 	 <r:identity role="employee">
+	    <input type="hidden" id="role" value="内部员工" />
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>
 	 
 	<r:identity role="employee">
@@ -85,8 +91,8 @@
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="tags" value="${product.tags }" />
+
  	<jsp:include flush="true" page="header.jsp"></jsp:include> 
-    
     <div class="page">
         <div class="videoArea">
             <div class="videoContent">
@@ -191,7 +197,7 @@
 							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
 												
 	                        <div class="closeBtn" id="closeBtn"></div>
-	                        <div class="orderTitle">立即下单,对接制作团队</div>
+	                        <div class="orderTitle" id="oootitlte">立即下单,对接制作团队</div>
 	                        <div class="orderItem" id="phoneError">
 	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
 	                        </div>
@@ -201,7 +207,7 @@
 	                        </div>
 	                         <a href="javascript:void(0);" id="order-btn1" ><div class="order-btn btn-c-r">确认提交</div></a>
 	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
-	                        <div class="orderBotTitle">立即下单,对接制作团队</div>
+	                        <div class="orderBotTitle"></div>
                         </form>
                     </div>
                 </div>
@@ -323,6 +329,7 @@
     <!-- 加载Mob share 控件 -->
 	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+		<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 
 </html>

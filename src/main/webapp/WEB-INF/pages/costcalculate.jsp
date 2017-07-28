@@ -54,13 +54,16 @@
     <div class="page">
     
      <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="provider">              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="customer">
 	 </r:identity>
 	 <r:identity role="employee">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>  
     
         <div class="costBackguound">

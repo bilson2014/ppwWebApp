@@ -100,7 +100,7 @@
 	<input type="hidden" id="recommendation" value="${provider.recommendation }">
     <div class="proInfo">
      					  <div class="updateLogo">   
-	      		                    <div class="title">公司LOGO</div>
+	      		                    <div class="title">创作团队LOGO</div>
 		      		                <div class="user-img-content">
 										<div class="user-icon">
 											<img alt="用户头像" src="/resources/images/provider/initLogo.png" data-value="${provider.teamPhotoUrl }" class="img-circle" id="user-img"/>
@@ -118,8 +118,8 @@
 									</div>
 							</div>	
                             <div class="infoItem" id="company-name-error">
-                                <div class="title">公司名称</div>
-                                <input type="text" class=" " id="company-name" maxlength="32" placeholder="公司名称为必填字段" value="${provider.teamName }">
+                                <div class="title">创作团队名称</div>
+                                <input type="text" class=" " id="company-name" maxlength="32" placeholder="创作团队名称为必填字段" value="${provider.teamName }">
                             </div>
                
                              <div class="infoItem" id="company-address-error">
@@ -161,8 +161,7 @@
                             <div class="infoItem inline" id='getProvince-error'>
                             <div class="title">所在省</div>	
 								<div class="dropdown leaderSelect select-city" id="company-priceRange-value">
-										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button"
-											id="dropdownMenu1" data-toggle="dropdown">
+										<button class="btn btn-default dropdown-toggle step-two-select-city" type="button" id="dropdownMenu1" data-toggle="dropdown">
 											<span data-value ="${source.provinceID }"  id='getProvince'>${source.provinceName }</span>
 											<div class="carets"></div>
 										</button>
@@ -364,8 +363,8 @@
                             
                             
                             <div class="infoItem" id="company-teamDesc-error">
-                                <div class="title">公司简介</div>
-                                <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="公司简介为必填字段">${provider.teamDescription }</textarea>
+                                <div class="title">创作团队简介</div>
+                                <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="创作团队简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
                            
                              <div class="infoItem noImportant">

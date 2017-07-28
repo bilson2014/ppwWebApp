@@ -186,7 +186,7 @@
                        <div class="infoItem">
                        <div class="setError" id="orderComeInfoError" data-content="">
                           <div class="itemTitile">订单来源</div>
-	                      <div class="orderSelect">
+	                      <div class="orderSelect noUse">
 	                            <div data-value="" id="orderComeInfo">请选择</div>
 	                            <img src="${imgPath}/orderManager/select.png">
 	                            <ul class="oSelect" id='orderCome'>
@@ -200,6 +200,17 @@
 					                    <li data-id="9">线上-400</li>
 					                    <li data-id="10">线上-商桥</li>
 					                    <li data-id="8">复购</li>
+					              		<li data-id="11">线上-PC-首页banner</li>
+					                    <li data-id="12">线上-PC-直接下单</li>
+					                    <li data-id="13">线上-PC-成本计算器</li>
+					                    <li data-id="14">线上-PC-供应商首页下单</li>
+					                    <li data-id="15">线上-PC-作品</li>
+					                    <li data-id="16">线上-移动-首页banner</li>
+					                    <li data-id="17">线上-移动-成本计算器</li>
+					                    <li data-id="18">线上-移动-作品</li>
+					                    <li data-id="19">线上-公众号-成本计算器 </li>
+					                    <li data-id="20">线上-公众号-直接下单</li>
+					                    <li data-id="21">线上-公众号-作品</li>					                    
 	                            </ul>                
 	                       </div>
                           <div class="must">*</div>
@@ -215,7 +226,7 @@
                      <div class="infoItem" id="showHelper">  
                         <div class="setError" id="orderPError" data-content="">
 	                          <div class="itemTitile">推荐人</div>
-		                      <div class="orderSelect">
+		                      <div class="orderSelect noUse">
 		                            <div data-value="" id="orderP"></div>
 		                            <img src="${imgPath}/orderManager/select.png">
 		                            <ul class="oSelect" id='orderComePeople'>
@@ -275,7 +286,7 @@
 	                      <div class="orderSelect">
 	                            <div data-value="" id="muCustomerType"></div>
 	                            <img src="${imgPath}/orderManager/select.png">
-	                            <ul class="oSelect" id='uCustomerType'></ul>                
+	                            <ul class="oSelect uCustomerType" id='uCustomerType'></ul>                
 	                       </div>
                           <div class="must"></div>
                        </div>   
@@ -290,8 +301,18 @@
 	                            <ul class="oSelect" id='uPosition'>
 	                            </ul>                
 	                       </div>
+                          <div class="must"> </div>
+                        </div>
+                         <div class="setError longItem" id="showHelperEdit" style="display:none"> 
+                          <div class="itemTitile">推荐人</div>
+	                      <div class="orderSelect">
+	                            <div data-id="" id="referrerId"></div>
+	                            <img src="${imgPath}/orderManager/select.png">
+	                            <ul class="oSelect" id='orderEdit'>
+	                            </ul>                
+	                       </div>
                           <div class="must"></div>
-                        </div>  
+                        </div>    
                     </div>
                     <div class="borderline"></div>
                     <div class="infoItem">
@@ -585,6 +606,39 @@
 							          </c:if>
 							          <c:if test="${item.indentSource == 10}">
 							                           线下-商桥
+							          </c:if>
+							          <c:if test="${item.indentSource == 11}">
+							                          线上-PC-首页banner
+							          </c:if>
+							          <c:if test="${item.indentSource == 12}">
+							                           线上-PC-直接下单
+							          </c:if>
+							          <c:if test="${item.indentSource == 13}">
+							                           线上-PC-成本计算器
+							          </c:if>
+							          <c:if test="${item.indentSource == 14}">
+							                           线上-PC-供应商首页下单
+							          </c:if>
+							          <c:if test="${item.indentSource == 15}">
+							                          线上-PC-作品
+							          </c:if>
+							          <c:if test="${item.indentSource == 16}">
+							                           线上-移动-首页banner
+							          </c:if>
+							          <c:if test="${item.indentSource == 17}">
+							                           线上-移动-成本计算器
+							          </c:if>
+							          <c:if test="${item.indentSource == 18}">
+							                           线上-移动-作品
+							          </c:if>
+							          <c:if test="${item.indentSource == 19}">
+							                           线上-公众号-成本计算器
+							          </c:if>
+							           <c:if test="${item.indentSource == 20}">
+							                           线上-公众号-直接下单
+							          </c:if>
+							           <c:if test="${item.indentSource == 21}">
+							                           线上-公众号-作品
 							          </c:if>
 							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>

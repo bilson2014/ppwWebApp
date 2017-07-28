@@ -115,13 +115,13 @@
 						<label class="returnInit rightLabel" id="cusToInit">不是客户？</label>
 					</div>
 					<div class="loginDiv right">
-						   <h1>导演</h1>
-                           <h2>成为拍片网导演，接单更容易</h2>
+						   <h1>创作团队</h1>
+                           <h2>成为拍片网创作团队，接单更容易</h2>
                            <div class="hoverAll">
 	                           <div class="setImgPro proImg"></div>
 	                           <div class="toIwant" id="toProRe">入驻拍片网</div>
 	                       </div>    
-                           <label class="returnInit leftLabel" id="proToInit">不是导演？</label>
+                           <label class="returnInit leftLabel" id="proToInit">不是创作团队？</label>
 					</div>
 
 					<div class="loginDiv right borderLeft">

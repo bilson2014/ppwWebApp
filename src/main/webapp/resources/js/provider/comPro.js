@@ -648,6 +648,8 @@ function chickShowOrder() {
 	});
 }
 
+
+
 function showOrder(typeName) {
 
     if ($('div').hasClass('comOrder')) {
@@ -737,7 +739,7 @@ function initOrderClick(){
 						teamId:-1,
 						serviceId:-1,
 						phoneCode : $('#phoneCode').val(),
-						indentSource:1
+						indentSource:12
 					});	
 				}
 		}

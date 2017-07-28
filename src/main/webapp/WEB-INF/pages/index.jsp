@@ -61,19 +61,27 @@
 <body>
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
-     <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />              
+
+	 <r:identity role="provider">
+	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="provider">  
+	    <input type="hidden" id="role" value="创作团队" />              
 	 </r:identity>
 	 <r:identity role="customer">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="customer">
+	    <input type="hidden" id="role" value="客户" />         
 	 </r:identity>
 	 <r:identity role="employee">
+	    <input type="hidden" id="role" value="内部员工" />
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
+	    <input type="hidden" id="roletype" value="employee">
 	 </r:identity>
+	 
 	<div class="page">
 		<div class="advanBack"></div>
-
+	     
 	     <jsp:include flush="true" page="header.jsp"></jsp:include> 
 	     
 		<!-- 轮播 start -->
@@ -128,7 +136,7 @@
 						</div>
 					</div>
 							
-						<div class="dropdown" id="selectType">
+						<div class="dropdown" id="">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown">
 								<span id='indent_recomment'>宣传片</span>
@@ -451,7 +459,13 @@
 					</li>
 				</ul>
 				<div class="joinBtn">
-					<div onclick="showOrder('宣传片');">我要拍片</div>
+					 <r:identity role="customer">
+                        <div onclick="showOrder('宣传片');">我要拍片</div>
+	                 </r:identity>
+	                 <r:noLogin>
+                        <div onclick="showOrder('宣传片');">我要拍片</div>
+	                 </r:noLogin>
+					
 					<div onclick="window.location.href='/register'">入驻拍片网</div>
 				</div>
 			</div>
@@ -527,6 +541,7 @@
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/index.js"></script>
+	<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 
 </html>

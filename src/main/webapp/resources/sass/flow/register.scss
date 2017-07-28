@@ -496,6 +496,7 @@
                 width: 90px;
                 font-size: $font-size-base;
                 color: $gray-dark;
+                line-height: 20px;
             }
             .logoItem {
                 vertical-align: top;
@@ -552,6 +553,7 @@
                 border-radius: 4px;
                 text-align: center;
                 background: transparent !important;
+                padding: 10px 5px !important;
             }
             .webuploader-pick-hover {
                 color: white;
