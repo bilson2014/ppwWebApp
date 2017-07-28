@@ -458,10 +458,10 @@
 				<div class="joinBtn">
 					 <r:identity role="customer">
                         <div onclick="showOrder('宣传片');">我要拍片</div>
-	                  </r:identity>
-	                   <r:noLogin>
+	                 </r:identity>
+	                 <r:noLogin>
                         <div onclick="showOrder('宣传片');">我要拍片</div>
-	                  </r:noLogin>
+	                 </r:noLogin>
 					
 					<div onclick="window.location.href='/register'">入驻拍片网</div>
 				</div>
