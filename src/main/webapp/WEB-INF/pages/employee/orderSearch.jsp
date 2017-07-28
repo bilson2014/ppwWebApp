@@ -31,11 +31,11 @@
                 <img src="${imgPath}/orderManager/select.png">
                 <ul class="oSelect searchSelect" id="orderCome">
                     <li data-id="">全部</li>
-                    <li data-id="8">复购</li>
                     <li data-id="4">线下-电销</li>
                     <li data-id="5">线下-直销</li>
                     <li data-id="6">线下-活动</li>
                     <li data-id="7">线下-渠道</li>
+                    <li data-id="8">复购</li>
                     <li data-id="1">线上-网站</li>
                     <li data-id="2">线上-活动</li>
                     <li data-id="3">线上-新媒体</li>
