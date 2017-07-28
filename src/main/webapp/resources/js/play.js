@@ -252,7 +252,6 @@ function showDiv(){
 		$('#tooltip-check').show();
 		$('#checkInfo').html(setInfo);
 	}
-	
 	else{
 	    $('#price').removeClass('showPrice');
 	    $('#price').addClass('noShow');
