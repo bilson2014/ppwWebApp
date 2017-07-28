@@ -464,9 +464,10 @@
 	                 </r:identity>
 	                 <r:noLogin>
                         <div onclick="showOrder('宣传片');">我要拍片</div>
+                        <div onclick="window.location.href='/register'">入驻拍片网</div>
 	                 </r:noLogin>
 					
-					<div onclick="window.location.href='/register'">入驻拍片网</div>
+					
 				</div>
 			</div>
 		</div>

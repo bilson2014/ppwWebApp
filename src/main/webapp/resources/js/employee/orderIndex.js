@@ -786,7 +786,6 @@ function newOrderEven(check,item){
 			};
 		}
 		bangSelect();
-		
 		if(check == 1){
 			$('#orderP').text('');
 			$('#orderP').attr('data-value','');
@@ -795,6 +794,8 @@ function newOrderEven(check,item){
 			$('#orderComeInfo').text('');
 			$('#orderNote').val('');
 			$('#orderComeInfo').attr('data-value','');
+			orderIndex.controlSelect();
+			$('.noUse').removeClass('setGray');
 		}else{
 			$('#orderNote').val('');
 			editEvenFunction(item);
@@ -852,6 +853,7 @@ function editEvenFunction(item){
 	$('#orderNote').val(orderNote);
 	$('#indent_recomment').val(indent_recomment);
 	$('.noUse').off('click');
+	$('.noUse').addClass('setGray');
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');

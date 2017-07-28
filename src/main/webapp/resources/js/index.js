@@ -383,7 +383,7 @@ var homePage = {
 						showOrder(flag);
 					}
 					
-					$('#selectType').hide();
+					$('#selectType').remove();
 					$('.cOrderTitle').text('请留下手机号码，专业顾问为您免费咨询');
 				})
 	},
