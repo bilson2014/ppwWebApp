@@ -393,7 +393,12 @@ var homePage = {
 
 			var loginTel = $('#rolephone').val();
 			if (loginTel != null && loginTel != "") {
-				loginOrder();
+				var roletype=$('#roletype').val();
+				if(roletype!=null && ( roletype=='provider'|| roletype=='employee')){
+					loginNoOrder();
+				}else{
+					loginOrder();
+				}
 			} else {
 
 				if ($(".helpYou").hasClass('active')) {
