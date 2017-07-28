@@ -365,13 +365,14 @@ var homePage = {
 						$('#tooltip-check').show();
 						$('#checkInfo').html(setInfo);
 					}
-					if (role == "客户") {
+					else if (role == "客户") {
 						var flag = nowCheck.attr("data-text");
 						loginOrderFType(flag);
 					} else {
 						var flag = nowCheck.attr("data-text");
 						showOrder(flag);
 					}
+					
 					$('#selectType').hide();
 					$('.cOrderTitle').text('请留下手机号码，专业顾问为您免费咨询');
 				})

@@ -312,7 +312,7 @@ function openOrder(){
 			$('#tooltip-check').show();
 			$('#checkInfo').html(setInfo);
 		}
-		if(role=='客户'){
+		else if(role=='客户'){
 			$('#order-btn').attr('data-xaioyu',$(this).attr('data-xaioyu'));
 			$('#order-btn').attr('data-comment',$(this).attr('data-comment'));
             loginOrderFType('宣传片');
