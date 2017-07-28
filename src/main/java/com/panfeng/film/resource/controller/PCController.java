@@ -331,6 +331,9 @@ public class PCController extends BaseController {
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			Log.error("PCController method:listView() encode failue,q=*", sessionInfo);
 		}
+		model.addAttribute("title", "企业宣传视频_产品广告视频_活动视频制作案例大全-拍片网");
+		model.addAttribute("keywords", "企业宣传视频,产品广告视频,活动视频制作案例");
+		model.addAttribute("description", "拍片网汇聚各种企业宣传类视频、产品广告类视频以及活动类视频，涵盖各种类型的商业视频案例。");
 		return new ModelAndView("search", model);
 	}
 
