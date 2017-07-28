@@ -484,7 +484,7 @@ var orderIndex = {
 				name = '线上-PC-成本计算器';
 			}
 			if(num == 14){
-				name = '线上-PC-供应商首页下单';
+				name = '线上-PC-供应商首页';
 			}
 			if(num == 15){
 				name = '线上-PC-作品';
@@ -568,7 +568,7 @@ var orderIndex = {
 				name = '线上-PC-成本计算器';
 			}
 			if(num == 14){
-				name = '线上-PC-供应商首页下单';
+				name = '线上-PC-供应商首页';
 			}
 			if(num == 15){
 				name = '线上-PC-作品';
@@ -654,7 +654,7 @@ var orderIndex = {
 				name = '线上-PC-成本计算器';
 			}
 			if(num == 14){
-				name = '线上-PC-供应商首页下单';
+				name = '线上-PC-供应商首页';
 			}
 			if(num == 15){
 				name = '线上-PC-作品';
