@@ -4,6 +4,10 @@
     min-height: 500px;
 }
 
+.setGray{
+    background: $gray-light;
+}
+
 .toDoing {
     tr {
         td:nth-child(7),
