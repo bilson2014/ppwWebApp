@@ -619,9 +619,15 @@ function loadProduction(start){
 					}
 					
 					$body +='<div class="videoProvider">';
+					
+					
 					if(itemflag != 4 ) {
 						$body +='<a href="'+getHostName()+'/provider/info_'+solr.teamId+'.html">';
-						$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
+						if(solr.teamPhotoUrl!=null && solr.teamPhotoUrl!=''){
+							$body +=' <img src="'+getDfsHostName()+''+solr.teamPhotoUrl+'">';
+						}else{
+							$body +=' <img src="/resources/images/user/default.png">';
+						}
 						$body +=' <div>'+solr.teamName+'</div>';
 						$body +='</a>';
 					}

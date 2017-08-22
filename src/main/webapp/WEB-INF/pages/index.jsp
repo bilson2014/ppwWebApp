@@ -81,8 +81,7 @@
 	 
 	<div class="page">
 		<div class="advanBack"></div>
-	     
-	     <jsp:include flush="true" page="header.jsp"></jsp:include> 
+	    <jsp:include flush="true" page="header.jsp"></jsp:include> 
 	     
 		<!-- 轮播 start -->
 		<div class="flex-wrap">
@@ -98,20 +97,20 @@
 				<div class="swiper-wrapper swiper-banner-slide">
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerTitleAn1">专业的商业视频服务平台</li>
-							<li class="desc" id="DescAn1">35800+ 导演 / 编剧 / 摄影师 /影视专家为您服务</li>
+							<li class="title" id="bannerTitleAn1">专业的商业视频制作平台</li>
+							<li class="desc" id="DescAn1">35800+签约导演团队 56个城市 72小时极速出片</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerTitleAn2">免费创意策划 72小时极速出片</li>
-							<li class="desc" id="DescAn2">专业视频管家 一站式视频服务 全流程质量监管</li>
+							<li class="title" id="bannerTitleAn2">商业视频拍片量遥遥领先</li>
+							<li class="desc" id="DescAn2">成立一年 拍片量突破1000条</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerLast">低预算拍大片 不满意全额退款</li>
-							<li class="desc" id="DescLast">低于行业均价30%以上 平台托管制作费</li>
+							<li class="title" id="bannerLast">免费创意策划 不满意可重拍</li>
+							<li class="desc" id="DescLast">再好的推销员也比不过一条视频</li>
 						</ul>
 					</div>
 				</div>

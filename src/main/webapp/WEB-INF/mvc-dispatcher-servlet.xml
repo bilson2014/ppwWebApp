@@ -52,10 +52,14 @@
     
     <mvc:view-controller path="/text" view-name="/newFlow/textFlow" />
     <mvc:view-controller path="/textI" view-name="/newFlow/flowInfo" />
+    <mvc:view-controller path="/textC" view-name="/newFlow/createFlow" />
      
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
+	
+	 <!-- 流程管理end -->
+	   <mvc:view-controller path="/running" view-name="/flow/textFlow" />
 
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 
