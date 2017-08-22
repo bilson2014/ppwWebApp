@@ -124,6 +124,29 @@
 			</c:if>
 		</div>
 		
+		
+ <--添加部分-->
+    <div class="menbox">
+        <div class="mem">
+     <c:if test="${!empty list}">
+				<c:forEach items="${list }" var="staff" varStatus="status">
+					<ul>
+					  <li>
+                    	<div class="box">
+                      		<img alt="${staff.staffName}_拍片网" src="<spring:url value="${file_locate_storage_path }${staff.staffImageUrl }"/>">
+                       		<p>${staff.staffName}</p>
+                    	</div>
+                	   </li>
+                	</ul>	
+				</c:forEach>
+			</c:if>
+        </div>
+    </div>
+		
+		
+		
+		
+		
 			<div class="introduce" >
 				<div class="logoImg">
 			    	<img src="${imgPath}/introduce/member/fuli.svg">

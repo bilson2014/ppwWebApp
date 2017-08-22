@@ -55,7 +55,34 @@
 		})();
 	})();
 </script>
+<style>
+.calssical {
+    width: 100%;
+    background-color: #fff;
+    
+}
 
+.calssical .classicalArea {
+    width:80%;
+    padding-top: 120px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+.calssical .classicalArea .classlist .thumbnail a>img, .thumbnail>img {
+   	width:308px;
+	height:174px;
+	@media screen and (max-width: 1275px) {
+    	width:223px;
+		height:126px;
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        width:286px;
+		height:162px;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -243,6 +270,20 @@
 			</div>
 		</div>
 		<!--  宣传片 end -->
+		<!-- myself 获取后台数据的模板展示页面 -->
+		<div class="calssical">
+        <div class="classicalArea">
+            <div class="example"></div>
+            <a href="#">更多案例</a>
+            <div class="classlist">
+                <div class="row" id='card' >
+                </div>
+            </div>
+        </div>
+
+    </div>
+		
+		
 		<div class="backgroundCover">
 			<div class="swiper-container swiperCover">
 				<div class="hotLogo"></div>
