@@ -627,8 +627,6 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	    		'</div>',
 	    		'</div>'
 	    	].join('');
-	
-
 	return html;
 }
 
