@@ -26,6 +26,7 @@ $().ready(function() {
 				//新手机保存事件
 				this.bindNewPhone();
 			},
+			
 			initPage:function(){
 				var noraml = $('#normal');
 				var userName = $('#userName');

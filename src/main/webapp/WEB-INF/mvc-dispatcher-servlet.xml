@@ -27,6 +27,8 @@
 	
 	<mvc:view-controller path="/mgr/recover" view-name="/manager/recover" />
 	
+	<mvc:view-controller path="/mgr/safe" view-name="/manager/safeInfo" />
+	
 	<mvc:view-controller path="/provider/leader" view-name="/provider/leader" />
 	
 	<mvc:view-controller path="/payment/payList" view-name="/payment/payList" />

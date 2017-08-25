@@ -20,7 +20,7 @@ function initMenuEven(){
 		 }
 	});
 	
-/*	$('#myOrder').off('click').on('click',function(){
+	$('#myOrder').off('click').on('click',function(){
 		var nThis = $(this);
 		 if($(this).hasClass('open')){
 			 nThis.removeClass('open');
@@ -31,7 +31,7 @@ function initMenuEven(){
 			 $('#productList').slideUp();
 			 $('#orderList').slideDown();
 		 }
-	});*/
+	});
 
 /*	$('.productList li').off('click').on('click',function(){
                $('.productList li').removeClass('checkLi');
@@ -40,6 +40,10 @@ function initMenuEven(){
 	
 	//特换到小菜单
 	$('#toMin').off('click').on('click',function(){
+//	$($('.frame').prop('contentWindow').document).find('.cardItem').css('width','292px');
+		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardBig');
+	$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardSmall');
+	
 		$('.flowMenu').addClass('changeMenu');
 		$('.page').addClass('toMinLeft');
 		if($('#myPro').hasClass('open')){
@@ -47,15 +51,25 @@ function initMenuEven(){
 		}else{
 			$('#minMyPro').removeClass('open');
 		}
+		
+		
+
+		
+		
 	});
 	
 	//切换回大菜单
 	$('#menuHead').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
+		$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardBig');
+		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardSmall');
+
+	
+		
+	
 	});
-	
-	
+
 	$('#minMyPro').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
@@ -64,5 +78,7 @@ function initMenuEven(){
 			$('#nowDoing').addClass('checkLi');
 		}
 		$('#productList').slideDown();
+		
+		
 	});
 }

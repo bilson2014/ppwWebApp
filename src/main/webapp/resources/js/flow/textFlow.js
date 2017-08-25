@@ -3,6 +3,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 $().ready(function() {
 	initMenuEven();
+	
 /*	doing();
 	doPasue();
 	doFinish();*/
@@ -20,7 +21,7 @@ $().ready(function() {
 	if(url != null && url !=""  && url !=undefined)
 	$('#newMenuLogo').attr('src',getDfsHostName()+url );
 	
-	$('.frame').attr('src',"/mgr/favourites");
+	$('.frame').attr('src',"/mgr/safe");
 });
 
 function initMenuEven(){
@@ -47,12 +48,20 @@ function initMenuEven(){
 		}else{
 			$('#minMyPro').removeClass('open');
 		}
+		$('.cardItem').addClass('rightsize');
+		
+		
 	});
+	
 	
 	//切换回大菜单
 	$('#menuHead').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
+		
+		
+	
+		
 	});
 	
 }
