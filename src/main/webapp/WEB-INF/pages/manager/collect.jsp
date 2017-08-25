@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/manager/collect.css" var="collectCss"/>
-<spring:url value="/resources/js/manager/collect.js" var="collectJs"/>
+
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -16,6 +16,7 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="/resources/js/manager/collect.js" var="collectJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -43,7 +44,7 @@
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
+
 		
 		 <div class="page">
 		         <div class="managerPgae">
@@ -53,7 +54,7 @@
 		                   <div class="setCard">
 		                      <c:if test="${!empty productList}">
 		                         <c:forEach items="${productList }" var="solr" varStatus="status">
-					                      <div class="cardItem">
+					                      <div class="cardItem cardBig">
 							                         <div class="modCheck">
 						                                  <div class="delItem" id="${solr.productId}"></div>
 						                                  <div class="cancle"></div>
@@ -113,9 +114,9 @@
 		                   </div>
 		              </div>
 		         </div>
+	
 		 </div>
 		   
-		   <jsp:include flush="true" page="../foot.jsp"></jsp:include> 
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>

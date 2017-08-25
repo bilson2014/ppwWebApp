@@ -1,0 +1,123 @@
+            @import "common";
+            @import "buttons";
+            @import "video";
+            @import "compass/typography/text/ellipsis";
+
+            body {
+                background: #F0F2F5 !important;
+            }
+
+            @mixin anmotion {
+                transition: all .3s ease-in-out .2s;
+                -moz-transition: all .3s ease-in-out .2s;
+                /* Firefox 4 */
+                -webkit-transition: all .3s ease-in-out .2s;
+                /* Safari 和 Chrome */
+                -o-transition: all .3s ease-in-out .2s;
+            }
+
+            .page {
+                @include media_screen_width_beta3();
+                margin: 0 auto;
+                background: transparent !important;
+                position: relative;
+                padding-left: 190px;
+                padding-top: 30px;
+                padding-bottom: 50px;
+                @include anmotion;
+            }
+
+            .frame {
+                width: 100%;
+            }
+
+
+            .productListArea {
+                width: 100%;
+                height: auto;
+                background: white;
+                border-radius: 6px;
+                min-height: 300px;
+                @include anmotion;
+                position: relative;
+            }
+
+            .waitWork {
+                .titleName {
+                    font-size: $font-size;
+                    color: $gray-dark;
+                    height: 55px;
+                    line-height: 55px;
+                }
+            }
+
+
+            .titleNameWork {
+                height: 55px;
+                position: relative;
+                padding-top: 12px;
+                .name {
+                    font-size: $font-size-sm;
+                    color: $gray;
+                }
+                .search {
+                    width: 56px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: $font-size-sm;
+                    color: white;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+                .createPro {
+                    position: absolute;
+                    right: 30px;
+                    width: 120px;
+                    height: 30px;
+                    border: 1px solid $gray-light;
+                    border-radius: 4px;
+                    text-align: center;
+                    color: $gray-dark;
+                    font-size: $font-size-base;
+                    padding-top: 6px;
+                    cursor: pointer;
+                    .newAdd {
+                        width: 14px;
+                        height: 14px;
+                        margin-right: 5px;
+                        background: url(/resources/images/provider/add.png);
+                        background-size: 14px 28px;
+                    }
+                    &:hover {
+                        background: $red-base;
+                        color: white;
+                        border: 1px solid $red-base;
+                        .newAdd {
+                            background-position-y: -14px;
+                        }
+                    }
+                }
+                input {
+                    background: #F6F9F9;
+                    border: none;
+                    border: 1px solid $gray-light;
+                    border-radius: 4px;
+                    width: 120px;
+                    height: 30px;
+                    line-height: 30px;
+                    padding-left: 5px;
+                    font-size: $font-size-sm;
+                    color: $gray-dark;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+                div,
+                img,
+                input {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+
+
+          

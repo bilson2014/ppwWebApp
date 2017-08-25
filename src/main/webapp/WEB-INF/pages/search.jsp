@@ -201,8 +201,13 @@
 							</r:identity>								   					
 								<div class="videoProvider">
 									<c:if test="${solr.teamFlag != 4 }">
-									   <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">			
-									    <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+									   <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">	
+									   <c:if test="${!empty solr.teamPhotoUrl}">		
+									     <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
+									   </c:if> 
+									   <c:if test="${empty solr.teamPhotoUrl}">		
+									     <img src="/resources/images/user/default.png">
+									   </c:if> 
 									    <div>${solr.teamName}</div>
 									   </a>
 							        </c:if>
