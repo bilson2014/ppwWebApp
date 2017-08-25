@@ -2,6 +2,12 @@ var InterValObj; // timer变量，控制时间
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
 $().ready(function() {
+	
+
+
+	
+ 
+  
 	initMenuEven();
 /*	doing();
 	doPasue();
@@ -21,6 +27,8 @@ $().ready(function() {
 	$('#newMenuLogo').attr('src',getDfsHostName()+url );
 	
 	$('.frame').attr('src',"/mgr/favourites");
+	
+	
 });
 
 function initMenuEven(){
