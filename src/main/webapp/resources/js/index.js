@@ -15,8 +15,63 @@ $().ready(function() {
 	};
 	$('#header').removeClass('headerMove');
 	colorEgg();
+	loadData(function(data) {
+//		myself card 生成的数据获取
+		var src = data.result.length;
+		var arr='';
+		for (var i=0;i<src;i++){
+			var obj=data.result;
+ 			peopleMes(obj,i);
+		}	
+   console.log(data.result);
+	}, getContextPath() + '/home/product/loadProduct', $.toJSON({
+		sort : "supportCount"
+	}));
 });
 
+//新建方法生成card的数据
+function peopleMes(obj,i){
+	var head='<div class="row" id="card" ><div class="col-sm-6 col-md-3 col-lg-3">';
+	var foot=' </div></div>';
+	var item='';
+		if ((i+1)%4==0&&i!=0){
+				item+=head+'<div class="thumbnail">';
+				 item+=' <img src="http://123.59.86.252:8888/'+obj[i].picLDUrl+'" alt="">';
+				 item+=' <div class="caption">';
+				 item+=' <h3>'+obj[i].productName+'</h3>';   
+				 item+='<p>'+obj[i].tags+'</p></div></div>'+foot;		 
+		}else{	
+				item+='<div class="col-sm-6 col-md-3 col-lg-3"><div class="thumbnail">';
+				item+=' <img src="http://123.59.86.252:8888/'+obj[i].picLDUrl+'" alt="">';
+				item+=' <div class="caption">';
+				item+=' <h3>'+obj[i].productName+'</h3>';   
+				item+='<p>'+obj[i].tags+'</p></div></div>'+foot;	
+		}
+	$('#card').append(item);	
+}
+function loginOrderFType(info) {
+	$.ajax({
+		url : '/order/deliver',
+		type : 'POST',
+		data : {
+			csrftoken : $("#csrftoken").val(),
+			indent_tele : '',
+			phoneCode : '-1',
+			indent_recomment : info,
+			indentName : '网站-PC-首页banner',
+			productId : -1,
+			teamId : -1,
+			serviceId : -1,
+			sendToStaff : true,
+			sendToUser : false,
+			indentSource : 11
+		},
+		dataType : 'json',
+		success : function(data) {
+			showSuccess();
+		}
+	});
+}
 function getVideoHeight() {
 	var screenWidth = document.documentElement.clientWidth;
 	var videoHeight = screenWidth / 16 * 9 * 0.6;

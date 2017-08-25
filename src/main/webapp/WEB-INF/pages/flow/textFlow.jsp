@@ -56,8 +56,8 @@
 	
 	<div class="productListArea">
 	           <div class="waitWork">
-	               
-	                <iframe class="frame" style="height:1000px" id="content-frame" class="iframe" src="<spring:url value='/mgr/favourites'/>"></iframe>
+
+	                <iframe class="frame" style="height:1000px" id="content-frame" class="iframe" src="<spring:url value='/mgr/safe'/>"></iframe>
 <!-- 	                <div class="lineTop"></div>
 	                <div id="hideDiv">
 	                <div class="title">

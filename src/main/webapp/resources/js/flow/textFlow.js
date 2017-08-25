@@ -9,6 +9,7 @@ $().ready(function() {
  
   
 	initMenuEven();
+	
 /*	doing();
 	doPasue();
 	doFinish();*/
@@ -25,10 +26,8 @@ $().ready(function() {
 	var url = $('#photo').val();
 	if(url != null && url !=""  && url !=undefined)
 	$('#newMenuLogo').attr('src',getDfsHostName()+url );
-	
 	$('.frame').attr('src',"/mgr/favourites");
-	
-	
+
 });
 
 function initMenuEven(){
@@ -55,12 +54,20 @@ function initMenuEven(){
 		}else{
 			$('#minMyPro').removeClass('open');
 		}
+		$('.cardItem').addClass('rightsize');
+		
+		
 	});
+	
 	
 	//切换回大菜单
 	$('#menuHead').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
+		
+		
+	
+		
 	});
 	
 }

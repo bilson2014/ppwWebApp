@@ -7,7 +7,6 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
@@ -90,10 +89,12 @@
 		                  <div class="title">收藏列表</div>
 		             </div>
 	             </a>
-	              <div class="treeitem hide">
+	              <a href="http://www.apaipian.com/mgr/safe">
+	              <div class="treeitem ">
 	                  <div class="safe"></div>
 	                  <div class="title">安全设置</div>
 	             </div>
+	             </a>
 	              <a href="http://www.apaipian.com/login/loginout">
 	             <div class="treeitem">
 	                  <div class="line"></div>
