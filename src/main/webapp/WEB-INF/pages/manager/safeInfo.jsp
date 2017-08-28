@@ -4,6 +4,7 @@
 <%-- import CSS --%>
 <spring:url value="/resources/css/manager/safeInfo.css" var="safeCss"/>
 <%-- import JS --%>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <%--去除底部客服 --%>
@@ -29,6 +30,7 @@
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
+<script src="${jsonJs }"></script>
 <script type="text/javascript" src="${safeInfoJs}"></script>
 
 
@@ -157,7 +159,7 @@
                 </div>
                 <div class="phone">
                     <span>原手机号</span>
-                    <span>181****6793</span>
+                    <span id='conceal'>18210367466</span>
                 </div>
                 <!-- <div class="verifyphone">
                     <span>验证手机</span>

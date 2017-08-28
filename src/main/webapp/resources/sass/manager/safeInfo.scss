@@ -25,7 +25,9 @@
             .tooltip-check {
                 z-index: 999999 !important;
             }
-            
+            #uploadBt {
+                   cursor: pointer;
+            }
             .tooltip-check .checkCard {
                 height: 235px;
                 width: 500px;
