@@ -350,6 +350,18 @@ public class VersionManagerController extends BaseController {
 		}
 	}
 	/**
+	 * 安全设置页
+	 * @return
+	 */
+	@RequestMapping("/safeInfo")
+	public ModelAndView safeInfoView(final HttpServletRequest request,ModelMap modelMap) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		PmsEmployee employee=pmsEmployeeFacade.findEmployeeById(sessionInfo.getReqiureId());
+		modelMap.put("employee", employee);
+		return new ModelAndView("/manager/safeInfo");
+	}
+	
+	/**
 	 * 修改个人登陆密码
 	 * @param request
 	 * @param e
@@ -523,7 +535,7 @@ public class VersionManagerController extends BaseController {
 	}
 	
 	/**
-	 * 登陆员工修改个人信息
+	 * 登陆员工修改个人信息--TODO 是否需要待定
 	 * @param employee
 	 * @param request
 	 * @return
