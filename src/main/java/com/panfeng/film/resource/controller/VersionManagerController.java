@@ -350,6 +350,18 @@ public class VersionManagerController extends BaseController {
 		}
 	}
 	/**
+	 * 安全设置页
+	 * @return
+	 */
+	@RequestMapping("/safeInfo")
+	public ModelAndView safeInfoView(final HttpServletRequest request,ModelMap modelMap) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		PmsEmployee employee=pmsEmployeeFacade.findEmployeeById(sessionInfo.getReqiureId());
+		modelMap.put("employee", employee);
+		return new ModelAndView("/manager/safeInfo");
+	}
+	
+	/**
 	 * 修改个人登陆密码
 	 * @param request
 	 * @param e
@@ -418,7 +430,7 @@ public class VersionManagerController extends BaseController {
 	@RequestMapping("/modify/phone")
 	public Info modifyPhone(@RequestBody final Employee e, final HttpServletRequest request) {
 		Info info = new Info(); // 信息载体
-		if(validateCode(info, request, e.getVerification_code())){
+		if(validateCode(info, request,e.getPhoneNumber(), e.getVerification_code())){
 			SessionInfo sessionInfo = getCurrentInfo(request);
 			// 修改员工手机 TODO 员工手机是否需要唯一
 			if (e != null && ValidateUtil.isValid(e.getPhoneNumber())) {
@@ -484,14 +496,15 @@ public class VersionManagerController extends BaseController {
 		return info;
 	}
 	
-	private boolean validateCode(Info info,HttpServletRequest request,String verification_code){
+	private boolean validateCode(Info info,HttpServletRequest request,String phoneNumber,String verification_code){
 		final HttpSession session = request.getSession();
 		final String code = (String) session.getAttribute("code");
+		final String phone= (String) session.getAttribute("codeOfphone");
 		// 是否是测试程序
 		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
 		// 判断验证码
 		if (!"".equals(code) && code != null) {
-			if (isTest || code.equals(verification_code)) {
+			if (isTest || (code.equals(verification_code) && phone.equals(phoneNumber))) {
 				return true;
 			} else {
 				// 验证码不匹配
@@ -522,7 +535,7 @@ public class VersionManagerController extends BaseController {
 	}
 	
 	/**
-	 * 登陆员工修改个人信息
+	 * 登陆员工修改个人信息--TODO 是否需要待定
 	 * @param employee
 	 * @param request
 	 * @return
