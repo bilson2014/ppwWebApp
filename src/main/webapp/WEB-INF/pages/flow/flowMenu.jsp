@@ -66,7 +66,7 @@
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
 	              <ul class="productList" id="productList">
-	                  <li id="nowDoing" class="checkLi">进行中<div id="cardNum"></div></li>
+	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
@@ -82,15 +82,17 @@
 	                  <li>处理中</li>
 	                  <li>已提交</li>
 	                  <li>无效订单</li>
-	              </ul> -->
+	              </ul>
+	              -->
 	              <a class="treeA" href="http://www.apaipian.com/mgr/favourites">
 		              <div class="treeitem">
 		                  <div class="save"></div>
 		                  <div class="title">收藏列表</div>
 		             </div>
 	             </a>
-	              <a href="http://www.apaipian.com/mgr/safe">
-	              <div class="treeitem ">
+	            <!-- 	  <a href="http://www.apaipian.com/mgr/safe">   -->
+	              <a href="#">
+	              <div class="treeitem " id='safe'>
 	                  <div class="safe"></div>
 	                  <div class="title">安全设置</div>
 	             </div>

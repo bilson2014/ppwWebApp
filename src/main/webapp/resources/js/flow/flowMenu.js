@@ -32,6 +32,10 @@ function initMenuEven(){
 			 $('#orderList').slideDown();
 		 }
 	});
+	$('#safe').off('click').on('click',function(){
+		$('#safe .safe').attr('style','background-position:0 14px');
+		$('#safe .title').addClass('checkLi');
+	})
 
 /*	$('.productList li').off('click').on('click',function(){
                $('.productList li').removeClass('checkLi');
