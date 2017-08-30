@@ -484,6 +484,7 @@ public class VersionManagerController extends BaseController {
 					initSessionInfo(newEmployee, request);
 					
 					info.setKey(true);
+					info.setValue(fileId);
 					return info;
 				} else {
 					// 文件格式不正确
