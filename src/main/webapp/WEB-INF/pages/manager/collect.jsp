@@ -123,8 +123,8 @@
 	<script src="${jsonJs }"></script>
 	<script src="${aesJs }"></script>
 	<script src="${padJs }"></script>
-	<script src="${collectJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${loginJs }"></script>
+	<script src="${collectJs }"></script>
 </body>
 </html>
