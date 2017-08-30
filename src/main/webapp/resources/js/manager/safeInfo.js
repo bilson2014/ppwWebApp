@@ -3,27 +3,23 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var uploader;
 var sendCodeFlag = true;
-var oldphones;
+var nowphone;
 var iphone;//保存新的手机号 避免重复
 
 $().ready(function(){
-//	loadData(function(result){
-//		console.log(result);
-//	}, getContextPath() + '/mgr/safeInfo', $.toJSON({					
-//
-//		: $('#nowphone').val(),
-//		: $('#nowmail').val(),
-//		:$('#loginName').val(),
-//		:$('#trueName').val()
-//		
-//	}));
+	  
 	
 	
-	userpicInfo();
+	
+	userpicInfo();	
+	//提前保存原来手机号之后便于处理比较
+	var nowphone=$('#nowphone').text();
+	//处理手机号(先处理 )
+	startphone($('#nowphone').text());
+	//给2号添加(不处理)
+	$('#conceal').text(nowphone);
 	//弹框的事件
 	init();	
-	oldphones=$('#conceal').text();
-	startphone($('#conceal').text());
     //弹框
     $('#orderlist').addClass('hide');
     $('#projectlist').addClass('hide');
@@ -40,15 +36,24 @@ $().ready(function(){
     emilbind();
     veremil();
 });
-//手机号加星星(参数是要修改的手机号)
+//手机号加星星(参数是要修改的手机号)1号和2号
 function startphone (phone){
 	var mynum=phone.substr(3,4);
 	var newnum=phone.replace(mynum,'****');
-	$('#conceal').text(newnum);
 	$('#nowphone').text(newnum);
+}
+function endphone (phone){
+	var mynum=phone.substr(3,4);
+	var newnum=phone.replace(mynum,'****');
+	$('#conceal').text(newnum);
 }
 //设置手机绑定
 function phonebind() {
+	//提前摘取出来
+	var phones=$('#conceal').text();
+	var allphone;
+	//处理2号
+	endphone($('#conceal').text());
     $('#phone').click(function() {
         $('#pho').toggleClass('show');
         $('#infos').addClass('hide');     
@@ -65,10 +70,6 @@ function phonebind() {
         $('#pho .verifynewphone p').text('');
         $('#pho .newphone p').text(''); 
     })
-    	//输入手机号的提示样式改变
-        $('#inputnewpho').click(function() {
-            $('#pho .verifynewphone p').hide();
-        })
         //输入手机号焦点的改变
         $('#inputnewpho').blur(function() {
             var inputnewpho = this.value;  
@@ -78,26 +79,25 @@ function phonebind() {
    			 	$('#pho .newphone p').text("*手机号码不能为空");
                 $('#pho .verifynewphone p').text('');
                 return false;
-            }else if (inputnewpho==oldphones){
-            	$('#pho .newphone p').text("*请输入新的手机号");
+            }else if (inputnewpho==phones||inputnewpho==allphone){
+            	$('#pho .newphone p').text("*请输入新的手机号码");
             	return false;
             }else {
-            	if(!rge.test(pho )){
+            	if(!rge.test(pho)){
             		$('#pho .newphone p').text("*请输入正确的手机码");
             		return false;
             	}else 
-   			 	$('#pho .newphone p').hide();
+            		$('#pho .newphone p').text('');
             }
         })
         $('#inputvernewpho').blur(function() {
-            $('#pho .verifynewphone p').show();
             var inputvernewpho = this.value;
             if (inputvernewpho.length <= 0) {
                 $('#pho .verifynewphone p').text("*验证码不能为空");
                 $('#pho .newphone p').text('');
                 return false;
             } else {
-                $('#pho .verifynewphone p').hide();
+                $('#pho .verifynewphone p').text('');
             }
         })
 	   //验证按钮点击事件
@@ -107,28 +107,20 @@ function phonebind() {
            $('#pho .verifynewphone p').hide();
            var inputnewpho = $('#inputnewpho').val();
            var pho = $('#inputnewpho').val();
-           //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）
-           
-           console.log(inputnewpho);        
-           console.log(iphone);
-           
+           //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）          
            var rge = /^1[34578]\d{9}$/; 
-           var oldphone=$('#conceal').val();
            if (inputnewpho.length <= 0) {
-        	   $('#pho .newphone p').show();
                $('#pho .newphone p').text("*手机号码不能为空");
                $('#pho .verifynewphone p').text('');
                return false;
            } else if (!rge.test(pho)) {
-        	   $('#pho .newphone p').show();
                $('#pho .newphone p').text("*请输入正确的手机码");
                return false;
-           }else if (inputnewpho==iphone){
-        	   $('#pho .newphone p').show();
-           	$('#pho .newphone p').text("*请输入新的手机号码");
-           	 return false;
+           }else if (inputnewpho==phones||inputnewpho==allphone){
+           	  $('#pho .newphone p').text("*请输入新的手机号码");
+           	  return false;
            }else {
-               $('#pho .newphone p').hide();
+               $('#pho .newphone p').text('');
                //输入成功 发送验证码的方法
                verification(inputnewpho);           
            }
@@ -139,28 +131,25 @@ function phonebind() {
 	       var rge = /^1[34578]\d{9}$/; 
 	       var oldCode = $("#inputvernewpho").val();
 	       if (inputnewpho.length <= 0) {
-	    	   $('#pho .newphone p').show();
 	           $('#pho .newphone p').text("*手机号码不能为空");
 	           $('#pho .verifynewphone p').text('');
 	           return false;
 	       } else if (!rge.test(pho)) {
-	    	   $('#pho .newphone p').show();
 	           $('#pho .newphone p').text("*请输入正确的手机码");
 	           return false;
-	       }else if (inputnewpho==iphone){
-	    	   $('#pho .newphone p').show();
+	       }else if (inputnewpho==phones||inputnewpho==allphone){
 	       	$('#pho .newphone p').text("*请输入新的手机号码");
 	       	 return false;
 	       }else if (oldCode.length<=0){
-	    	   $('#pho .newphone p').hide();
+	    	   $('#pho .newphone p').text('');
 				$('#pho .verifynewphone p').show();
 				$('#pho .verifynewphone p').text("*验证码不能为空");	
 				return false;
 			}   
 	       else {
-	    	   $('#pho .verifynewphone p').text("");       
+	    	   $('#pho .verifynewphone p').hide();       
 	       }
-				loadData(function(result){
+				loadData(function(result){	
 					if(result.key){	
 						$('#pho .verifynewphone p').text("");
 						//清空点击按钮的提示
@@ -180,8 +169,9 @@ function phonebind() {
        		})
        $('#sureCheck').click(function() {
            if ($('#checkInfo').text().trim() == '手机绑定成功！！！') {
-        	   iphone=$('#inputnewpho').val();
-               $('#nowphone').text(startphone($('#inputnewpho').val()));
+        	   allphone=$("#inputnewpho").val();
+        	   startphone($('#inputnewpho').val());
+        	   endphone($('#inputnewpho').val());
                $('#pho').toggleClass('show');
                $('#infos').toggleClass('hide');
                $('#inputvernewpho').val('');
@@ -267,14 +257,9 @@ function phonebind() {
                 $('#emils .newemil p').hide();
             }
         })
-//        $('#orderSelect').blur(function(){
-//			$('#orderSelect ul').hide();
-//		})
         $('#orderSelect div').click(function(){
 			$('#orderSelect ul').show();
-//。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
-		})
-		
+		})		
 		$('#orderSelect ul li').click(function(){
 			$('#orderSelect ul').hide();
 			var change=$('#orderSelect div').text();
@@ -297,8 +282,7 @@ function phonebind() {
 		                $('.tooltip-check').show();
 		                //弹框中的内容部分
 		                $('#checkInfo').text('新邮箱设置成功！！！');
-		                $('#oldemails').text($('#inputnewemi').val() + $('#orderSelect div').text());
-		                
+		                $('#oldemails').text($('#inputnewemi').val() + $('#orderSelect div').text());	                
 				}
             }, getContextPath() + '/mgr/modify/email', $.toJSON({
 				email: $('#inputnewemi').val() + $('#orderSelect div').text()
@@ -388,15 +372,13 @@ function phonebind() {
             }
         })
     }
-
-
   //图片上传
     function userpicInfo() {
     	uploader && uploader.destroy();
     	uploader = WebUploader.create({
     		auto : true,
     		swf : '/resources/lib/webuploader/Uploader.swf',
-    		server : '/provider/upload/teamPhoto',
+    		server : '/mgr/modify/photo',
     		pick : '.upload-btn',
     		accept : {
     			title : 'Images',
@@ -410,6 +392,7 @@ function phonebind() {
     	// 允许重复上传同一个
     	});
     	uploader.on('uploadSuccess', function(file, response) {
+    		console.log(response);
     		var path = response._raw;
     		if (path != '' && path != null) {
     			if (path.indexOf('false@error') > -1) {
@@ -422,6 +405,7 @@ function phonebind() {
     				$('#user_img_url').val(path);
     				var img = getDfsHostName() + path;
     				$('#user-img').attr('src', img);
+    				console.log('6666');
     				$('#safeError').text("");
     			}
     		} else {
@@ -432,8 +416,15 @@ function phonebind() {
     		if (type == "Q_TYPE_DENIED") {
     			$('#safeError').text("格式不正确");
     		} else if (type == "F_EXCEED_SIZE") {
-    			$('#safeError').text("文件超过最大限制");
-    			
+    			$('#safeError').text("文件超过最大限制");   			
     		}
     	});
     }
+    
+    
+    
+    var url = $('#user-img').attr('data-value');
+	if(url!=null && url !='' && url.indexOf("../resources/") == -1){
+		$('#user-img').attr('src',getDfsHostName()+url);
+		$('#user_img_url').val(url);
+	}

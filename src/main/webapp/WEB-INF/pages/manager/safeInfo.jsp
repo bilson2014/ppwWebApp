@@ -101,9 +101,9 @@
             <div class="infos" id="infos">
                 <div class="first">
                     <span class="text">员工头像</span>    
-                    <div class="user-icon">
-                        <img alt="用户头像" src="../resources/images/provider/initLogo.png" class="img-circle" id="user-img" width=120 height=120/>
-                        <input type="hidden" id="user_img_url" value="">
+                    <div class="user-icon" > 
+                        <img alt="用户头像" src="../resources/images/provider/initLogo.png" data-value="${employee.employeeImg}"  class="img-circle" id="user-img" width=120 height=120/>
+                      	<input type="hidden" id="user_img_url" value="../resources/images/provider/initLogo.png">
                     </div>                 
                     <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
                     
@@ -116,8 +116,6 @@
                     <div class="name">
                         <span>员工姓名</span>
                         <span id='trueName'>${employee.employeeRealName}</span>
-                        <input value=${employee.employeeRealName}/>
-                      
                     </div>
                 </div>
                 <div class="second">
@@ -140,7 +138,7 @@
                     </div>
                     <div class="oldphone">
                         <span>原手机号</span>
-                        <span id="nowphone">${employee.phoneNumber}</span>
+                        <span id="nowphone">${employee.phoneNumber}</span> 
                     </div>
                     <div class="but" id="phone">
                         设置
@@ -203,7 +201,7 @@
                 </div>
                 <div class="phone">
                     <span>原手机号</span>
-                    <span id='conceal'>18210367466</span>
+                    <span id='conceal'></span>
                 </div>
                 <!-- <div class="verifyphone">
                     <span>验证手机</span>

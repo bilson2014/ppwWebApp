@@ -21,7 +21,7 @@ $().ready(function() {
 	if(url != null && url !=""  && url !=undefined)
 	$('#newMenuLogo').attr('src',getDfsHostName()+url );
 	
-	$('.frame').attr('src',"/mgr/safe");
+	$('.frame').attr('src',"/mgr/safeInfo");
 });
 
 function initMenuEven(){
