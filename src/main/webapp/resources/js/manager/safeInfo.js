@@ -7,10 +7,7 @@ var nowphone;
 var iphone;//保存新的手机号 避免重复
 
 $().ready(function(){
-	  
-	
-	
-	
+	starpic();
 	userpicInfo();	
 	//提前保存原来手机号之后便于处理比较
 	var nowphone=$('#nowphone').text();
@@ -36,6 +33,15 @@ $().ready(function(){
     emilbind();
     veremil();
 });
+
+//头像的显示
+function starpic(){
+	 var url = $('#user-img').attr('data-value');
+	 if(url!=null && url !='' && url.indexOf("../resources/") == -1){
+		$('#user-img').attr('src',getDfsHostName()+url);
+		$('#user_img_url').val(url);
+	} 
+}
 //手机号加星星(参数是要修改的手机号)1号和2号
 function startphone (phone){
 	var mynum=phone.substr(3,4);
@@ -249,12 +255,12 @@ function phonebind() {
         $('#inputnewemi').blur(function() {
             var inputnewemi = $('#inputnewemi').val().trim();
             if (inputnewemi == '' || inputnewemi == null) {
-//            	$('.main .right .emil .newemil input').addClass('bordercolor');
+            	$("#inputnewemi").attr("style","border-color:#FE5453");
             	$('#emils .newemil p').show();
                 $('#emils .newemil p').text("*邮箱不能为空");
             } else {
-//            	$('#inputnewemi').removeClass('bordercolor');
-                $('#emils .newemil p').hide();
+            	$("#inputnewemi").removeAttr("style");        	
+                $('#emils .newemil p').text('');
             }
         })
         $('#orderSelect div').click(function(){
@@ -270,14 +276,14 @@ function phonebind() {
             $('#emils .newemil p').show();
             var inputnewemi = $('#inputnewemi').val().trim();
             if (inputnewemi == '' || inputnewemi == null) {
-//            	$('.main .right .emil .newemil input').addClass('bordercolor');
+            	 $("#inputnewemi").attr("style","border-color:#FE5453");
                 $('#emils .newemil p').text("*邮箱不能为空");
                 return false;
             }
             loadData(function(result){   
 				if(result.key){	  
-//					$('#inputnewemi').removeClass('bordercolor');
-					  $('#emils .newemil p').hide();
+					$("#inputnewemi").removeAttr("style");  
+					  $('#emils .newemil p').text('');
 		                //弹框显示
 		                $('.tooltip-check').show();
 		                //弹框中的内容部分
@@ -303,6 +309,8 @@ function phonebind() {
             $('#pas').toggleClass('show');
             $('#mistakeagn').hide();
             $('#infos').addClass('hide');
+            $("#inputpas").removeAttr("style"); 
+            $('#inputrep').removeAttr("style"); 
         })
         $('#pascancel').click(function() {
             $('#pas').toggleClass('show');
@@ -312,6 +320,8 @@ function phonebind() {
             $('#correctagn').hide();
             $('#mistakeagn').hide();
             $('#mistakeagn').show();
+            $("#inputpas").removeAttr("style");  
+            $('#inputrep').removeAttr("style");  
             $('#pas .newpas p').text('');
         })
     }
@@ -320,39 +330,46 @@ function phonebind() {
         $('#inputpas').blur(function() {
             var newpas = this.value;
             if (newpas.length <= 0) {
+            	$("#inputpas").attr("style","border-color:#FE5453");
                 $('#pas .newpas p').text('*新密码不能为空');
                 $('#mistakeagn').hide();
                 $('#correctagn').hide();
                 return false;
             } else {
+            	$("#inputpas").removeAttr("style");  
                 $('#pas .newpas p').text('');
             }
         })
         $('#inputrep').blur(function() {
             var inputrep = this.value;
             if (inputrep.length > 0) {
+            	$('#inputrep').removeAttr("style"); 
             	$('#mistakeagn').hide();
                 $('#correctagn').show();
                 return false;
             } else {
+            	$('#inputrep').attr("style","border-color:#FE5453");
                 $('#correctagn').toggleClass('.hide');
                 $('#mistakeagn').toggleClass('.show');
             }
         })
         $('#saverep').click(function() {
             if ($('#inputpas').val().trim() == '' || $('#inputpas').val().trim() == null) {
+            	$("#inputpas").attr("style","border-color:#FE5453");
                 $('#pas .newpas p').text('*新密码不能为空');
                 return false;
             }
             if ($('#inputpas').val() != $('#inputrep').val()) {
+            	$("#inputpas").attr("style","border-color:#FE5453");
                 $('#mistakeagn').show();
                 return false;
             }
             loadData(function(result){
-            	console.log(result);
+//            	console.log(result);
             	if(result.key){
+            		$("#inputpas").removeAttr("style");
+            		$('#inputrep').removeAttr("style");
             	     //弹框显示
-            		console.log(result.key);
                     $('.tooltip-check').show();
                     //弹框中的内容部分
                     $('#checkInfo').text('登录密码设置成功！！！');
@@ -369,6 +386,8 @@ function phonebind() {
                 $('#inputrep').val('');
                 $('#correctagn').hide();
                 $('#mistakeagn').hide();
+                $("#inputpas").removeAttr("style"); 
+                $('#inputrep').removeAttr("style");
             }
         })
     }
@@ -392,8 +411,7 @@ function phonebind() {
     	// 允许重复上传同一个
     	});
     	uploader.on('uploadSuccess', function(file, response) {
-    		console.log(response);
-    		var path = response._raw;
+    		var path = response.value;
     		if (path != '' && path != null) {
     			if (path.indexOf('false@error') > -1) {
     				if (path.indexOf("error=1") > -1) {
@@ -405,7 +423,6 @@ function phonebind() {
     				$('#user_img_url').val(path);
     				var img = getDfsHostName() + path;
     				$('#user-img').attr('src', img);
-    				console.log('6666');
     				$('#safeError').text("");
     			}
     		} else {
@@ -423,8 +440,4 @@ function phonebind() {
     
     
     
-    var url = $('#user-img').attr('data-value');
-	if(url!=null && url !='' && url.indexOf("../resources/") == -1){
-		$('#user-img').attr('src',getDfsHostName()+url);
-		$('#user_img_url').val(url);
-	}
+   

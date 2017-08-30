@@ -9,7 +9,7 @@
 
 
 
- 
+
             body {
                 background: #F0F2F5 !important;
             }
@@ -319,34 +319,41 @@
                             line-height: 16px;
                             top: 10px;
                         }
+                    }
 
+
+
+
+                    a {
+                        position: relative;
                         &:after {
                             content: '';
                             width: 10px;
                             height: 1px;
                             position: absolute;
-                            left: 0;
-                            top: 17px;
+                            left: 1;
+                            top: -18px;
                             background: $border-line;
                         }
-                        /*                         &:hover {
-    background: $f8;
-    color: $red-base;
-} */
                     }
-                    li:first-child {
+
+
+                    a:first-child {
                         &:before {
                             content: '';
                             width: 1px;
                             height: 30px;
                             position: absolute;
-                            left: -1px;
+                            left: 0px;
                             top: -20px;
                             background: $border-line;
                         }
                     }
-                    li:last-child {
-                        border: none !important;
+                    a:last-child {
+                        li {
+                            border: none !important;
+                        }
+
                         &:before {
                             content: '';
                             width: 1px;
@@ -357,5 +364,14 @@
                             background: $border-line;
                         }
                     }
+                }
+            }
+
+            .treeitemRed {
+                .title {
+                    color: $red-base !important;
+                }
+                .save {
+                    background-position-y: 14px !important;
                 }
             }

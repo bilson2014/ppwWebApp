@@ -237,11 +237,11 @@
                 </div>
                 <div class="newemil">
                     <span>新邮箱</span>
-                    <input id="inputnewemi"></input>
-             <!-- <span> 
+                    <input id="inputnewemi" ></input>
+             <!-- <span> style="border-color:red" 
                     <select>
                          <option selected>@paipianwang.com</option>
-                         <option >@paipianwang.cn</option>
+                         <option>@paipianwang.cn</option>
                      </select>
                      
                 </span>

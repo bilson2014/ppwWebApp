@@ -1,6 +1,8 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
+//var Url = "http://www.apaipian.com:8087/";
+//var Url = "http://localhost:8080/";
 $().ready(function() {
 	initMenuEven();
 });
@@ -37,29 +39,16 @@ function initMenuEven(){
 		$('#safe .title').addClass('checkLi');
 	})
 
-/*	$('.productList li').off('click').on('click',function(){
-               $('.productList li').removeClass('checkLi');
-               $(this).addClass('checkLi');
-	});*/
 	
 	//特换到小菜单
 	$('#toMin').off('click').on('click',function(){
-//	$($('.frame').prop('contentWindow').document).find('.cardItem').css('width','292px');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardBig');
-	$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardSmall');
-	
+	    $($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardSmall');
 		$('.flowMenu').addClass('changeMenu');
 		$('.page').addClass('toMinLeft');
-		if($('#myPro').hasClass('open')){
-			$('#minMyPro').addClass('open');
-		}else{
-			$('#minMyPro').removeClass('open');
+		if($('#toSave').hasClass('treeitemRed')){
+			$('#minSave').addClass('open');
 		}
-		
-		
-
-		
-		
 	});
 	
 	//切换回大菜单
@@ -68,10 +57,6 @@ function initMenuEven(){
 		$('.page').removeClass('toMinLeft');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardBig');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardSmall');
-
-	
-		
-	
 	});
 
 	$('#minMyPro').off('click').on('click',function(){

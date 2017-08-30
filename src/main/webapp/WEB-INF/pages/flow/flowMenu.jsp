@@ -9,6 +9,9 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+<spring:url value="http://localhost:8080/" var="url" />
+<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -16,7 +19,6 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
@@ -47,10 +49,10 @@
 	    <div class="flowMenu">
 	        <div id="shortMenu">
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
-	                <div class="menuItem"><div class="createIcon"></div></div>
+	                <a href="${url}/project/running-task"><div class="menuItem"><div class="createIcon"></div></div></a>
 	                <div class="menuItem"><div class="myPro" id="minMyPro"></div></div>
-	                <div class="menuItem"><div class="orderList"></div></div>
-	                <div class="menuItem"><div class="save"></div></div>
+	                <div class="menuItem hide"><div class="orderList"></div></div>
+	                <div class="menuItem"><div class="save" id="minSave"></div></div>
 	                <!-- <div class="menuItem"><div class="safe"></div></div> -->
 	                <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
@@ -66,9 +68,9 @@
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
 	              <ul class="productList" id="productList">
-	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
-	                  <li id="pause">暂停</li>
-	                  <li id="finish">完成/取消</li>
+	                  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
+	                  <a href="${url}/project/running-task?pause"><li id="pause">暂停</li></a>
+	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a>
 	              </ul>
 	              
 	              <a href="http://www.apaipian.com/order/myOrder">
@@ -82,27 +84,22 @@
 	                  <li>处理中</li>
 	                  <li>已提交</li>
 	                  <li>无效订单</li>
-	              </ul>
-	              -->
-	              <a class="treeA" href="http://www.apaipian.com/mgr/favourites">
-		              <div class="treeitem">
+
+	              </ul> -->
+		         <div class="treeitem" id="toSave">
 		                  <div class="save"></div>
 		                  <div class="title">收藏列表</div>
-		             </div>
-	             </a>
-	            <!-- 	  <a href="http://www.apaipian.com/mgr/safe">   -->
-	              <a href="#">
+		         </div>
 	              <div class="treeitem " id='safe'>
 	                  <div class="safe"></div>
 	                  <div class="title">安全设置</div>
 	             </div>
-	             </a>
-	              <a href="http://www.apaipian.com/login/loginout">
-	             <div class="treeitem">
-	                  <div class="line"></div>
-	                  <div class="loginOut"></div>
-	                 <div class="title">退出登录</div>
-	             </div>
+	             <a href="http://www.apaipian.com/login/loginout">
+		             <div class="treeitem">
+		                  <div class="line"></div>
+		                  <div class="loginOut"></div>
+		                  <div class="title">退出登录</div>
+		             </div>
 	             </a>
 	        </div>
 	   </div>

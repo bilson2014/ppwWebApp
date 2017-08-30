@@ -1,28 +1,35 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
+//var Url = "http://www.apaipian.com:8087/";
+var Url = "http://localhost:8080/";
 $().ready(function() {
 	initMenuEven();
-	
-/*	doing();
-	doPasue();
-	doFinish();*/
-	var carNum = $('.cardNum');
-	if(carNum.length == null || carNum.length=="" ){
-		$('#cardNum').hide();
-	}else{
-		$('#cardNum').text(carNum.length);
-	}
-	$('#productList').show();
+	$('#productList').hide();
 	$('#myPro').addClass('open');
 	$('#nowDoing').addClass('checkLi');
 	$('#setRealName').text($('#realName').val());
 	var url = $('#photo').val();
 	if(url != null && url !=""  && url !=undefined)
 	$('#newMenuLogo').attr('src',getDfsHostName()+url );
-	
-	$('.frame').attr('src',"/mgr/safeInfo");
+
+	$('#myPro').removeClass('open');
+	//autoTime();
+	toSave();
+
 });
+
+function checkState(){
+	
+	 var href = window.location.href;
+	 var state = href.substr(href.lastIndexOf("?")+1,href.length);
+	    if(state.trim() == "save"){
+	    	toSave();
+	    }
+}
+
+
+
 
 function initMenuEven(){
 	
@@ -49,19 +56,12 @@ function initMenuEven(){
 			$('#minMyPro').removeClass('open');
 		}
 		$('.cardItem').addClass('rightsize');
-		
-		
 	});
-	
 	
 	//切换回大菜单
 	$('#menuHead').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
-		
-		
-	
-		
 	});
 	
 }
@@ -73,7 +73,8 @@ function doing(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').show();
-        $('.frame').attr('src',"http://www.apaipian.com:8087/project/running-doing");
+      //  $('.frame').attr('src',Url + "project/running-doing");
+        
 	});
 }
 
@@ -112,7 +113,7 @@ function doPasue(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').hide();
-        $('.frame').attr('src',"http://www.apaipian.com:8087/project/suspend-task");
+      //  $('.frame').attr('src',Url + "project/suspend-task");
 	});
 }
 
@@ -142,7 +143,7 @@ function doFinish(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').show();
-        $('.frame').attr('src',"http://www.apaipian.com:8087/project/finished/list");
+    //    $('.frame').attr('src', Url + "project/finished/list");
 	});
 }
 
@@ -153,6 +154,20 @@ function loadFinifsh(){
 	}, getContextPath() + '/finished/list',null);
 	
 }
+
+
+function toSave(){
+	$('.treeitem').removeClass('treeitemRed');
+	$('#toSave').addClass('treeitemRed');
+	$('.frame').attr('src',"/mgr/safeInfo");
+	$('#toSave').off('click').on('click',function(){
+		$('.treeitem').removeClass('treeitemRed');
+		$(this).addClass('treeitemRed');
+        $('.frame').attr('src',"/mgr/favourites");
+	});
+	
+}
+
 
 function createWaitCard(res){
 	

@@ -25,7 +25,6 @@
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title></title>
 <link rel="stylesheet" href="${textCss}">
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <script type="text/javascript" src="${textFlowJs}"></script>
@@ -33,7 +32,6 @@
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
-
 
 </head>
 
@@ -55,114 +53,10 @@
 							</c:forEach>
 			</c:if> 
 	
-	<div class="productListArea">
-	           <div class="waitWork">
-
-	                <iframe class="frame" style="height:1000px" id="content-frame" class="iframe" src="<spring:url value='/mgr/safeInfo'/>"></iframe>
-<!-- 	                <div class="lineTop"></div>
-	                <div id="hideDiv">
-	                <div class="title">
-	                     <div class="titleName" id="upName">待办任务</div>
-	                </div>
-	                <div class="setCard" id="setCard">
-	                        <div class="waitCard">
-	                             <div class="cardH">
-	                                 <div class="title">这里是卡片的标题啊啊啊啊</div>
-	                                 <div class="point">
-	                                      <div class="showPoint">SA</div>
-	                                      <div class="showDeil">
-	                                            <div class="proPoint">项目评级<span>S</span></div>
-	                                            <div class="cusPoint">客户评级<span>A</span></div>
-	                                      </div>
-	                                 </div>
-	                                 <div class="your">负责项目</div>
-	                             </div>
-	                             <div class="cardContent">
-	                                  <img src="/resources/images/flow/demoG.png">
-	                                  <div class="setContent">
-	                                      <div class="listName">上传周期表</div>
-	                                      <div class="lastTime">已超时 24h 5min 45s</div>
-	                                  </div>
-	                             </div>
-	                        </div>
-	                        <div class="waitCard">
-	                             <div class="cardH">
-	                                 <div class="title">这里是卡片的标题啊啊啊啊</div>
-	                                 <div class="point">
-	                                      <div class="showPoint">SA</div>
-	                                      <div class="showDeil">
-	                                            <div class="proPoint">项目评级<span>S</span></div>
-	                                            <div class="cusPoint">客户评级<span>A</span></div>
-	                                      </div>
-	                                 </div>
-	                                 <div class="user">负责人<span>她她她</span></div>
-	                             </div>
-	                             <div class="cardContent">
-	                                  <img src="/resources/images/flow/demoY.png">
-	                                  <div class="setContent">
-	                                      <div class="listName">上传周期表</div>
-	                                      <div class="lastTime">已超时 24h 5min 45s</div>
-	                                  </div>
-	                             </div>
-	                        </div>
-	                       <div class="waitCard">
-	                             <div class="cardH">
-	                                 <div class="title">这里是卡片的标题啊啊啊啊</div>
-	                                 <div class="point">
-	                                      <div class="showPoint">SA</div>
-	                                      <div class="showDeil">
-	                                            <div class="proPoint">项目评级<span>S</span></div>
-	                                            <div class="cusPoint">客户评级<span>A</span></div>
-	                                      </div>
-	                                 </div>
-	                                 <div class="user">负责人<span>她她她</span></div>
-	                             </div>
-	                             <div class="cardContent">
-	                                  <img src="/resources/images/flow/demoR.png">
-	                                  <div class="setContent">
-	                                      <div class="listName">上传周期表</div>
-	                                      <div class="lastTime">已超时 24h 5min 45s</div>
-	                                  </div>
-	                             </div>
-	                        </div>
-	                        <div class="waitCard"></div>
-	                        <div class="waitCard"></div>
-	                        <div class="waitCard"></div>
-	                </div>
-	           </div>
-	           <div class="cardLine"><div></div></div>
-	           </div>
-	           <div class="otherWork">
-	                <div class="title">
-	                     <div class="titleName" id="downName">其它任务</div>
-	                </div>
-	           <div class="setCard" id="otherCard">
-	                        <div class="otherCard">
-	                             <div class="cardH">
-	                                 <div class="title">这里是卡片的标题啊啊啊啊</div>
-	                                 <div class="point">
-	                                      <div class="showPoint">SA</div>
-	                                      <div class="showDeil">
-	                                            <div class="proPoint">项目评级<span>S</span></div>
-	                                            <div class="cusPoint">客户评级<span>A</span></div>
-	                                      </div>
-	                                 </div>
-	                                 <div class="user">负责人<span>她她她</span></div>
-	                             </div>
-	                             <div class="cardContent">
-	                                  <div class="setContent">
-	                                      <div class="lastTime">您于 24h 5min 45s完成了这个那个还有这个这个那个还有这个</div>
-	                                  </div>
-	                                  <img src="/resources/images/flow/newFinish.png">
-	                             </div>
-	                        </div>
-	                        <div class="otherCard"></div>
-	           </div>   
-	            </div>      -->    
-	           
-	</div> 
-	
-</div>	  
+			<div class="productListArea">
+		 <iframe class="frame" id="content-frame" class="iframe" src="/mgr/safeInfo"></iframe>
+		     </div>	  
+   </div>   
 
 	<!-- video-->
 </body>
