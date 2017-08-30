@@ -1,13 +1,42 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 <spring:url value="/resources/css/manager/safeInfo.css" var="safeCss"/>
 <%-- import JS --%>
-<spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
-<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
-<%--去除底部客服 --%>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
+<%-- --%>
+<spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
+	var="jqueryJs" />
+<spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs" />
+<spring:url value="/resources/lib/jquery.blockui/jquery.blockUI.js"
+	var="blockUIJs" />
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
+	var="jsonJs" />
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js"
+	var="bootstrapJs" />
+<spring:url value="/resources/lib/webuploader/webuploader.js"
+	var="webuploaderJs" />
+<spring:url
+	value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js"
+	var="datepickerJs" />
+<spring:url
+	value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js"
+	var="datepickerZHJs" />
+<spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
+<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
+<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
+
+
+
+<%-- --%>
+<spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
+<%--去除底部客服 --%>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,10 +58,21 @@
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
+<script src="${jsonJs }"></script>
 <script type="text/javascript" src="${safeInfoJs}"></script>
 
 
-
+<script src="${jqueryJs }"></script>
+<script src="${pluginJs }"></script>
+<script src="${blockUIJs }"></script>
+<script src="${jsonJs }"></script>
+<script src="${bootstrapJs }"></script>
+<script src="${webuploaderJs }"></script>
+<script src="${datepickerJs }"></script>
+<script src="${datepickerZHJs }"></script>
+<script src="${aesJs }"></script>
+<script src="${padJs }"></script>
+<script src="${commonJs }"></script>
 
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -62,20 +102,22 @@
                 <div class="first">
                     <span class="text">员工头像</span>    
                     <div class="user-icon">
-                        <img alt="用户头像" src="../resources/images/provider/initLogo.png" class="img-circle" id="user-img" />
-                        <form:input type="hidden" path="teamPhotoUrl" id="user_img_url" />
+                        <img alt="用户头像" src="../resources/images/provider/initLogo.png" class="img-circle" id="user-img" width=120 height=120/>
+                        <input type="hidden" id="user_img_url" value="">
                     </div>                 
-                    <p>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
-                    <!-- <div class="btn"> 上传头像</div> -->
+                    <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
+                    
                     <div class="upload-btn">
-                        <!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
                         <div id="uploadBt">上传头像</div>
-                        <input type="file" id="file" style="display: none;" />
+                      <input type="file" name="file" id="file" style="display: none;"/>
+                     <p id='safeError'></p> 
                     </div>
 
                     <div class="name">
                         <span>员工姓名</span>
-                        <span>${team.phoneNumber }</span>
+                        <span id='trueName'>${employee.employeeRealName}</span>
+                        <input value=${employee.employeeRealName}/>
+                      
                     </div>
                 </div>
                 <div class="second">
@@ -85,7 +127,7 @@
                     </div>
                     <div class="username">
                         <span>用户名</span>
-                        <span>未设置</span>
+                        <span id='loginName'>${employee.employeeLoginName}</span>
                     </div>
                     <div class="but" id="password">
                         设置
@@ -98,7 +140,7 @@
                     </div>
                     <div class="oldphone">
                         <span>原手机号</span>
-                        <span id="nowphone">181****6793</span>
+                        <span id="nowphone">${employee.phoneNumber}</span>
                     </div>
                     <div class="but" id="phone">
                         设置
@@ -111,7 +153,7 @@
                     </div>
                     <div class="oldmail">
                         <span>现用邮箱</span>
-                        <span id='nowmail'>dahfkdfakj@163.com</span>
+                        <span id='nowmail'>${employee.email}</span>
                     </div>
                     <div class="but" id='emil'>
                         设置
@@ -135,8 +177,12 @@
                 <div class="reppas">
                     <span>确认密码</span>
                     <input id='inputrep' type="password"></input>
-                    <div id="correctagn">√</div>
-                    <div id='mistakeagn'>×</div>
+                    <div id="correctagn">
+                    <img src='../resources/images/provider/sure.png'>
+                    </div>
+                    <div id='mistakeagn'>
+                    <img src='../resources/images/provider/error.png'>
+                    </div>
                 </div>
                 <!-- <div class="verify">
                     <span>验证码</span>
@@ -157,7 +203,7 @@
                 </div>
                 <div class="phone">
                     <span>原手机号</span>
-                    <span>181****6793</span>
+                    <span id='conceal'>18210367466</span>
                 </div>
                 <!-- <div class="verifyphone">
                     <span>验证手机</span>
@@ -189,18 +235,28 @@
                 </div>
                 <div class="oldemil">
                     <span>原邮箱</span>
-                    <span>dahfkdfakj@163.com</span>
+                    <span id='oldemails'>dahfkdfakj@163.com</span>
                 </div>
                 <div class="newemil">
                     <span>新邮箱</span>
                     <input id="inputnewemi"></input>
-                    <span> <select>
+             <!-- <span> 
+                    <select>
                          <option selected>@paipianwang.com</option>
-                           <option >@paipianwang.cn</option>
-                          
-                       </select>
-                    
+                         <option >@paipianwang.cn</option>
+                     </select>
+                     
                 </span>
+                
+                 --> 
+                <div id='orderSelect'>
+                	<div>@paipianwang.com</div>
+                	<img src='/resources/images/orderManager/select.png'>
+                	<ul>
+                		<li>@paipianwang.cn</li>
+                	</ul>
+                </div>
+                
                     <!-- <span>.cn .com</span> -->
 
                     <p></p>

@@ -53,10 +53,10 @@
 							</c:forEach>
 			</c:if> 
 	
-	<div class="productListArea">
-	                <iframe class="frame" id="content-frame" class="iframe" src=""></iframe>
-     </div>	  
-  </div>   
+			<div class="productListArea">
+			                <iframe class="frame" id="content-frame" class="iframe" src=""></iframe>
+		     </div>	  
+   </div>   
 
 	<!-- video-->
 </body>

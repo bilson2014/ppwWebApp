@@ -84,23 +84,22 @@
 	                  <li>处理中</li>
 	                  <li>已提交</li>
 	                  <li>无效订单</li>
+<<<<<<< HEAD
 	              </ul> -->
 		         <div class="treeitem" id="toSave">
 		                  <div class="save"></div>
 		                  <div class="title">收藏列表</div>
 		         </div>
-	              <a href="http://www.apaipian.com/mgr/safe">
-	              <div class="treeitem ">
+	              <div class="treeitem " id='safe'>
 	                  <div class="safe"></div>
 	                  <div class="title">安全设置</div>
 	             </div>
-	             </a>
-	              <a href="http://www.apaipian.com/login/loginout">
-	             <div class="treeitem">
-	                  <div class="line"></div>
-	                  <div class="loginOut"></div>
-	                 <div class="title">退出登录</div>
-	             </div>
+	             <a href="http://www.apaipian.com/login/loginout">
+		             <div class="treeitem">
+		                  <div class="line"></div>
+		                  <div class="loginOut"></div>
+		                  <div class="title">退出登录</div>
+		             </div>
 	             </a>
 	        </div>
 	   </div>

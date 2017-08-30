@@ -34,6 +34,10 @@ function initMenuEven(){
 			 $('#orderList').slideDown();
 		 }
 	});
+	$('#safe').off('click').on('click',function(){
+		$('#safe .safe').attr('style','background-position:0 14px');
+		$('#safe .title').addClass('checkLi');
+	})
 
 	
 	//特换到小菜单
