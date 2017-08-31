@@ -7,7 +7,13 @@ var nowphone;
 var iphone;//保存新的手机号 避免重复
 
 $().ready(function(){
+<<<<<<< HEAD
 	document.domain = getUrl();	
+=======
+	$(window.parent.document).find('.frame').css('height',$('.infos').height() + 300);
+	console.info($('.infos').height() + 300);
+	
+>>>>>>> 3140cbc34f8f416a96384d085b93af7c195f7c88
 	starpic();
 	userpicInfo();	
 	//提前保存原来手机号之后便于处理比较
@@ -194,7 +200,7 @@ function phonebind() {
 //	                    //弹框显示
 	                    $('.tooltip-check').show();
 //	                    //弹框中的内容部
-	                    $('#checkInfo').text('手机绑定成功！！！');
+	                    $('#checkInfo').text('手机绑定成功！');
 					}else{
 						$('#inputvernewpho').attr("style","border-color:#FE5453");
 						$('#pho .verifynewphone p').show();
@@ -206,7 +212,7 @@ function phonebind() {
 				}));
        		})
        $('#sureCheck').click(function() {
-           if ($('#checkInfo').text().trim() == '手机绑定成功！！！') {
+           if ($('#checkInfo').text().trim() == '手机绑定成功！') {
         	   allphone=$("#inputnewpho").val();
         	   startphone($('#inputnewpho').val());
         	   endphone($('#inputnewpho').val());
@@ -321,7 +327,7 @@ function phonebind() {
 		                //弹框显示
 		                $('.tooltip-check').show();
 		                //弹框中的内容部分
-		                $('#checkInfo').text('新邮箱设置成功！！！');
+		                $('#checkInfo').text('新邮箱设置成功！');
 		                $('#oldemails').text($('#inputnewemi').val() + $('#orderSelect div').text());	                
 				}
             }, getContextPath() + '/mgr/modify/email', $.toJSON({
@@ -329,7 +335,7 @@ function phonebind() {
 			}));  
         })
         $('#sureCheck').click(function() {
-            if ($('#checkInfo').text().trim() == '新邮箱设置成功！！！') {
+            if ($('#checkInfo').text().trim() == '新邮箱设置成功！') {
                 $('#nowmail').text($('#inputnewemi').val() + $('#orderSelect div').text());
                 $('#emils').toggleClass('show');
                 $('#infos').toggleClass('hide');
@@ -418,14 +424,14 @@ function phonebind() {
             	     //弹框显示
                     $('.tooltip-check').show();
                     //弹框中的内容部分
-                    $('#checkInfo').text('登录密码设置成功！！！');
+                    $('#checkInfo').text('登录密码设置成功！');
             	}
 			}, getContextPath() + '/mgr/modify/pwd', $.toJSON({
 				employeePassword: Encrypt($('#inputrep').val())			
 			}));
         })
         $('#sureCheck').click(function() {
-            if ($('#checkInfo').text().trim() == '登录密码设置成功！！！') {
+            if ($('#checkInfo').text().trim() == '登录密码设置成功！') {
                 $('#pas').toggleClass('show');
                 $('#infos').toggleClass('hide');
                 $('#inputpas').val('');
