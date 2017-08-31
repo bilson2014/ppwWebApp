@@ -291,6 +291,10 @@ function phonebind() {
     	$('#inputnewemi').click(function(){
     		$('#orderSelect ul').hide();
     	})
+//    	$('#orderSelect  ').mouseout(function(){
+//    		$('#orderSelect ul').hide();
+//    		console.log('66');
+//    	})
     	  $('#orderSelect ul li ').mouseout(function(){
     		$('#orderSelect ul').hide();
     		console.log('66');
