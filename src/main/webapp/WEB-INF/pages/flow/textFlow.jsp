@@ -23,7 +23,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title></title>
+<title>我的项目Beta</title>
 <link rel="stylesheet" href="${textCss}">
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>

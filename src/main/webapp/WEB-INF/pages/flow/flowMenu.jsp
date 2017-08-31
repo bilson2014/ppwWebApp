@@ -59,8 +59,8 @@
 	       
 	       <div id="mainMenu">
 	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
-	        <div class="logoDiv"><img class="logo" id="newMenuLogo" src="/resources/images/flow/def.png"></div>
-	        <div class="userName" id="setRealName">用户名</div>
+	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
+	        <div class="userName" id="setRealName"><r:outName /></div>
 	        <div class="flowTree">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>

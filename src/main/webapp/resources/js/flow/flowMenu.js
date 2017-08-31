@@ -5,6 +5,12 @@ var curCount; // 当前剩余秒数
 //var Url = "http://localhost:8080/";
 $().ready(function() {
 	initMenuEven();
+	var p = $('#getImgUrlMenu').attr('data-value');
+	if(p!=null && p!=''){
+		if(p.indexOf("/resources/") == -1){
+			$('#getImgUrlMenu').attr('src',getDfsHostName() + p);
+		}
+	}
 });
 
 function initMenuEven(){

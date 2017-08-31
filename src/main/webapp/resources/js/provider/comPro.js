@@ -16,7 +16,7 @@ $().ready(function(){
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
-			keyboard: false
+			keyboard:false
 		})
 		$('#modal-call').on('click',function(){
 			// 检测手机号码
