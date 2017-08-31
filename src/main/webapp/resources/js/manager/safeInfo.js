@@ -7,6 +7,7 @@ var nowphone;
 var iphone;//保存新的手机号 避免重复
 
 $().ready(function(){
+	document.domain = getUrl();	
 	starpic();
 	userpicInfo();	
 	//提前保存原来手机号之后便于处理比较
