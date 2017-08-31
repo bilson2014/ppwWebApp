@@ -282,8 +282,8 @@ function phonebind() {
             $('#infos').toggleClass('hide');
             $('#emils .newemil p').hide();
             $('#inputnewemi').val('');
-            $('#orderSelect div').text('@paipianwang.com');
-            $('#orderSelect ul li').text('@paipianwang.cn');
+            $('#orderSelect div').text('paipianwang.com');
+            $('#orderSelect ul li').text('paipianwang.cn');
         })
     }
     //验证邮箱
@@ -311,7 +311,7 @@ function phonebind() {
                 $('#emils .newemil p').text('');
             }
         })
-        $('#orderSelect div').click(function(){
+        $('#orderSelect').click(function(){
 			$('#orderSelect ul').show();
 		})		
 		$('#orderSelect ul li').click(function(){
@@ -337,15 +337,15 @@ function phonebind() {
 		                $('.tooltip-check').show();
 		                //弹框中的内容部分
 		                $('#checkInfo').text('新邮箱设置成功！');
-		                $('#oldemails').text($('#inputnewemi').val() + $('#orderSelect div').text());	                
+		                $('#oldemails').text($('#inputnewemi').val() +'@'+ $('#orderSelect div').text());	                
 				}
             }, getContextPath() + '/mgr/modify/email', $.toJSON({
-				email: $('#inputnewemi').val() + $('#orderSelect div').text()
+				email: $('#inputnewemi').val()+'@'+ $('#orderSelect div').text()
 			}));  
         })
         $('#sureCheck').click(function() {
             if ($('#checkInfo').text().trim() == '新邮箱设置成功！') {
-                $('#nowmail').text($('#inputnewemi').val() + $('#orderSelect div').text());
+                $('#nowmail').text($('#inputnewemi').val() +'@'+ $('#orderSelect div').text());
                 $('#emils').toggleClass('show');
                 $('#infos').toggleClass('hide');
                 $('#inputnewemi').val('');
