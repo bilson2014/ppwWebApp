@@ -6,6 +6,9 @@ var initM = 3;
 var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
+//var UrlDo = "www.apaipian.com";
+var UrlDo = "localhost";
+
 $().ready(function(){
 	getImgUrl();
 	controlInput();
@@ -13,7 +16,7 @@ $().ready(function(){
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
-			keyboard: false
+			keyboard:false
 		})
 		$('#modal-call').on('click',function(){
 			// 检测手机号码
@@ -119,6 +122,10 @@ $().ready(function(){
 		}
 	}
 });
+
+function getUrl(){
+	return UrlDo;
+}
 
 function debug(obj) {
 
@@ -841,15 +848,7 @@ function checkDatas(type) {
 	return flag;
 }
 
-// 验证 手机号
-function checkMobile(str) {
-	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
-	if (str.match(reg)) {
-		return true;
-	} else {
-		return false;
-	}
-}
+
 
 function showError(id, error) {
 	if (error == "" || error == null) {

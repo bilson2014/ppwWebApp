@@ -49,9 +49,9 @@
 	    <div class="flowMenu">
 	        <div id="shortMenu">
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
-	                <a href="${url}/project/running-task"><div class="menuItem"><div class="createIcon"></div></div></a>
-	                <div class="menuItem"><div class="myPro" id="minMyPro"></div></div>
-	                <div class="menuItem"><div class="orderList"></div></div>
+	                <div class="menuItem hide"><div class="createIcon"></div></div>
+	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
+	                <div class="menuItem hide"><div class="orderList"></div></div>
 	                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 	                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                <div class="bottom"><div class="loginOut"></div></div>
@@ -59,8 +59,8 @@
 	       
 	       <div id="mainMenu">
 	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
-	        <div class="logoDiv"><img class="logo" id="newMenuLogo" src="/resources/images/flow/def.png"></div>
-	        <div class="userName" id="setRealName">用户名</div>
+	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
+	        <div class="userName" id="setRealName"><r:outName /></div>
 	        <div class="flowTree">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
@@ -68,13 +68,16 @@
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
 	              <ul class="productList" id="productList">
-	                  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
+	                 <%--  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
 	                  <a href="${url}/project/running-task?pause"><li id="pause">暂停</li></a>
-	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a>
+	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a> --%>
+	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
+	                  <li id="pause">暂停</li>
+	                  <li id="finish">完成/取消</li>
 	              </ul>
 	              
 	              <a href="http://www.apaipian.com/order/myOrder">
-		              <div class="treeitem" id="myOrder">
+		              <div class="treeitem hide" id="myOrder">
 		                <div class="orderList"></div>
 		                <div class="title">我的订单</div>
 		                <%--   <img src="${imgPath}/flow/more.png"> --%>
