@@ -44,13 +44,11 @@
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-
-		
 		 <div class="page">
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
 		              <div class="managerCard">
-		                   <div class="title">收藏列表</div>
+		                   <div class="title">收藏sssssss列表</div>
 		                   <div class="setCard">
 		                      <c:if test="${!empty productList}">
 		                         <c:forEach items="${productList }" var="solr" varStatus="status">
@@ -100,7 +98,8 @@
 						                              <div class="line"><div></div></div>
 									                       <div class="videoProvider">
 									                        <c:if test="${solr.teamFlag != 4 }"> 
-										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
+									                      
+										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>"target="_blank">
 														              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
 														              <div>${solr.teamName}</div>
 													             </a> 

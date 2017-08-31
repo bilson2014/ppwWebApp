@@ -54,7 +54,7 @@
 			</c:if> 
 	
 			<div class="productListArea">
-			                <iframe class="frame" id="content-frame" class="iframe" src=""></iframe>
+		 <iframe class="frame" id="content-frame" class="iframe" src="mgr/favourites"></iframe>
 		     </div>	  
    </div>   
 
