@@ -75,6 +75,11 @@ function phonebind() {
         $('#inputnewpho').val('');
         $('#pho .verifynewphone p').text('');
         $('#pho .newphone p').text(''); 
+        $("#inputnewpho").removeAttr("style");  
+    })
+    $('#inputnewpho').click(function(){
+    	 $('#inputvernewpho').removeAttr("style");  
+         $('#pho .verifynewphone p').text('');
     })
         //输入手机号焦点的改变
         $('#inputnewpho').blur(function() {
@@ -82,27 +87,38 @@ function phonebind() {
             var pho = $('#inputnewpho').val();
             var rge = /^1[34578]\d{9}$/;
             if (inputnewpho.length<=0){
+            	$("#inputnewpho").attr("style","border-color:#FE5453");	
    			 	$('#pho .newphone p').text("*手机号码不能为空");
                 $('#pho .verifynewphone p').text('');
                 return false;
             }else if (inputnewpho==phones||inputnewpho==allphone){
+            	$("#inputnewpho").attr("style","border-color:#FE5453");
             	$('#pho .newphone p').text("*请输入新的手机号码");
             	return false;
             }else {
             	if(!rge.test(pho)){
+            		$("#inputnewpho").attr("style","border-color:#FE5453");
             		$('#pho .newphone p').text("*请输入正确的手机码");
             		return false;
             	}else 
+            		$("#inputnewpho").removeAttr("style");  
             		$('#pho .newphone p').text('');
             }
+        })
+        $('#inputvernewpho').click(function(){
+        	 $('#inputvernewpho').removeAttr("style");  
+             $('#pho .verifynewphone p').text('');
         })
         $('#inputvernewpho').blur(function() {
             var inputvernewpho = this.value;
             if (inputvernewpho.length <= 0) {
+            	 $('#inputvernewpho').attr("style","border-color:#FE5453");
                 $('#pho .verifynewphone p').text("*验证码不能为空");
-                $('#pho .newphone p').text('');
+                $("#inputnewpho").removeAttr("style");  
+        		$('#pho .newphone p').text('');
                 return false;
             } else {
+            	 $('#inputvernewpho').removeAttr("style");  
                 $('#pho .verifynewphone p').text('');
             }
         })
@@ -111,21 +127,26 @@ function phonebind() {
     	   $('#send').text('发送验证码');
           	window.clearInterval(InterValObj); // 停止计时器
            $('#pho .verifynewphone p').hide();
+           
            var inputnewpho = $('#inputnewpho').val();
            var pho = $('#inputnewpho').val();
            //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）          
            var rge = /^1[34578]\d{9}$/; 
            if (inputnewpho.length <= 0) {
+        	   $("#inputnewpho").attr("style","border-color:#FE5453");
                $('#pho .newphone p').text("*手机号码不能为空");
                $('#pho .verifynewphone p').text('');
                return false;
            } else if (!rge.test(pho)) {
+        	   $("#inputnewpho").attr("style","border-color:#FE5453");
                $('#pho .newphone p').text("*请输入正确的手机码");
                return false;
            }else if (inputnewpho==phones||inputnewpho==allphone){
+        	   $("#inputnewpho").attr("style","border-color:#FE5453");
            	  $('#pho .newphone p').text("*请输入新的手机号码");
            	  return false;
            }else {
+        	   $("#inputnewpho").removeAttr("style");
                $('#pho .newphone p').text('');
                //输入成功 发送验证码的方法
                verification(inputnewpho);           
@@ -136,27 +157,36 @@ function phonebind() {
 	       var pho = $('#inputnewpho').val();
 	       var rge = /^1[34578]\d{9}$/; 
 	       var oldCode = $("#inputvernewpho").val();
+	       $("#inputnewpho").removeAttr("style");
+	       $('#inputvernewpho').removeAttr("style");  
 	       if (inputnewpho.length <= 0) {
+	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
 	           $('#pho .newphone p').text("*手机号码不能为空");
 	           $('#pho .verifynewphone p').text('');
 	           return false;
 	       } else if (!rge.test(pho)) {
+	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
 	           $('#pho .newphone p').text("*请输入正确的手机码");
 	           return false;
 	       }else if (inputnewpho==phones||inputnewpho==allphone){
+	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
 	       	$('#pho .newphone p').text("*请输入新的手机号码");
 	       	 return false;
 	       }else if (oldCode.length<=0){
 	    	   $('#pho .newphone p').text('');
 				$('#pho .verifynewphone p').show();
+				$('#inputvernewpho').attr("style","border-color:#FE5453");
 				$('#pho .verifynewphone p').text("*验证码不能为空");	
 				return false;
 			}   
 	       else {
+	    	   $('#inputvernewpho').removeAttr("style");
 	    	   $('#pho .verifynewphone p').hide();       
 	       }
 				loadData(function(result){	
 					if(result.key){	
+						$("#inputnewpho").removeAttr("style");
+						$('#inputvernewpho').removeAttr("style");
 						$('#pho .verifynewphone p').text("");
 						//清空点击按钮的提示
 	                	$('#send').text('发送验证码');
@@ -165,6 +195,7 @@ function phonebind() {
 //	                    //弹框中的内容部
 	                    $('#checkInfo').text('手机绑定成功！！！');
 					}else{
+						$('#inputvernewpho').attr("style","border-color:#FE5453");
 						$('#pho .verifynewphone p').show();
 						 $('#pho .verifynewphone p').text("*"+result.value);
 					}
@@ -183,6 +214,8 @@ function phonebind() {
                $('#inputvernewpho').val('');
                $('#inputnewpho').val('');
                $('#send').text('发送验证码');
+               $("#inputnewpho").removeAttr("style");
+               $('#inputvernewpho').removeAttr("style");
            	window.clearInterval(InterValObj); // 停止计时器
            }
        })
@@ -327,11 +360,16 @@ function phonebind() {
     }
     //验证密码
     function verpassword() {
+    	 $('#inputpas').click(function(){
+    		 $('#inputrep').removeAttr("style"); 
+         	$('#mistakeagn').hide();
+    	 })
         $('#inputpas').blur(function() {
             var newpas = this.value;
             if (newpas.length <= 0) {
             	$("#inputpas").attr("style","border-color:#FE5453");
                 $('#pas .newpas p').text('*新密码不能为空');
+                $('#inputrep').removeAttr("style"); 
                 $('#mistakeagn').hide();
                 $('#correctagn').hide();
                 return false;
@@ -343,26 +381,33 @@ function phonebind() {
         $('#inputrep').blur(function() {
             var inputrep = this.value;
             if (inputrep.length > 0) {
-            	$('#inputrep').removeAttr("style"); 
             	$('#mistakeagn').hide();
                 $('#correctagn').show();
-                return false;
-            } else {
-            	$('#inputrep').attr("style","border-color:#FE5453");
-                $('#correctagn').toggleClass('.hide');
-                $('#mistakeagn').toggleClass('.show');
+            }else {    
+            	$('#correctagn').hide();
+                $('#mistakeagn').show();
+            }
+            if ($('#mistakeagn').show()){
+            	$('#inputrep').attr("style","border-color:#FE5453");     
+            }else {
+            	$('#inputrep').removeAttr("style"); 
+            	$('#mistakeagn').hide();
             }
         })
         $('#saverep').click(function() {
             if ($('#inputpas').val().trim() == '' || $('#inputpas').val().trim() == null) {
             	$("#inputpas").attr("style","border-color:#FE5453");
                 $('#pas .newpas p').text('*新密码不能为空');
+                $('#inputrep').removeAttr("style"); 
+            	$('#mistakeagn').hide();  
+            	return false;
+            }else if ($('#inputpas').val() != $('#inputrep').val()) {
+            	$("#inputpas").removeAttr("style"); 
+                $('#mistakeagn').show();    
                 return false;
-            }
-            if ($('#inputpas').val() != $('#inputrep').val()) {
-            	$("#inputpas").attr("style","border-color:#FE5453");
-                $('#mistakeagn').show();
-                return false;
+            }else {
+            	$("#inputpas").removeAttr("style"); 
+            	 $('#mistakeagn').hide();   
             }
             loadData(function(result){
 //            	console.log(result);

@@ -34,9 +34,18 @@ function initMenuEven(){
 			 $('#orderList').slideDown();
 		 }
 	});
+	//部分頁面切換
 	$('#safe').off('click').on('click',function(){
-		$('#safe .safe').attr('style','background-position:0 14px');
-		$('#safe .title').addClass('checkLi');
+		$('#safe').addClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		 $('.frame').attr('src',"/mgr/safeInfo");
+		
+	})
+	$('#toSave').off('click').on('click',function(){
+		$('#toSave').addClass('treeitemRed');
+		$('#safe').removeClass('treeitemRed');
+		 $('.frame').attr('src',"/mgr/favourites");
+		
 	})
 
 	

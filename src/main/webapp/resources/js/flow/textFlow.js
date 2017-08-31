@@ -20,7 +20,6 @@ $().ready(function() {
 });
 
 function checkState(){
-	
 	 var href = window.location.href;
 	 var state = href.substr(href.lastIndexOf("?")+1,href.length);
 	    if(state.trim() == "save"){
@@ -159,7 +158,7 @@ function loadFinifsh(){
 function toSave(){
 	$('.treeitem').removeClass('treeitemRed');
 	$('#toSave').addClass('treeitemRed');
-	$('.frame').attr('src',"/mgr/safeInfo");
+	 $('.frame').attr('src',"/mgr/favourites");
 	$('#toSave').off('click').on('click',function(){
 		$('.treeitem').removeClass('treeitemRed');
 		$(this).addClass('treeitemRed');
