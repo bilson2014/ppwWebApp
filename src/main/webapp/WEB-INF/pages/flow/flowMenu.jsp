@@ -49,8 +49,7 @@
 	    <div class="flowMenu">
 	        <div id="shortMenu">
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
-	                <a href="${url}/project/running-task"><div class="menuItem"><div class="createIcon"></div></div></a>
-	                <div class="menuItem"><div class="myPro" id="minMyPro"></div></div>
+	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
 	                <div class="menuItem hide"><div class="orderList"></div></div>
 	                <div class="menuItem"><div class="save" id="minSave"></div></div>
 	                <!-- <div class="menuItem"><div class="safe"></div></div> -->

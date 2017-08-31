@@ -67,7 +67,14 @@ function initMenuEven(){
 			$('#nowDoing').addClass('checkLi');
 		}
 		$('#productList').slideDown();
-		
-		
 	});
+	
+	$('#minSave').off('click').on('click',function(){
+	    $('.menuItem div').removeClass('open');
+        $(this).addClass('open');
+        $('.frame').attr('src',"/mgr/favourites");
+    });
+	
+	
+	
 }
