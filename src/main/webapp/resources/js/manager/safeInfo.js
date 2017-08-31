@@ -273,6 +273,7 @@ function phonebind() {
         $('#emil').click(function() {
             $('#emils').addClass('show');
             $('#infos').addClass('hide');
+            $('#oldemails').text($('#nowmail').text());
         })
         $('#emilcancel').click(function() {
             $('#emils').toggleClass('show');
@@ -288,6 +289,11 @@ function phonebind() {
     	$('#inputnewemi').click(function(){
     		$('#orderSelect ul').hide();
     	})
+    	  $('#orderSelect ul li ').mouseout(function(){
+    		$('#orderSelect ul').hide();
+    		console.log('66');
+    	})
+//    	onmouseout
         $('#inputnewemi').blur(function() {
             var inputnewemi = $('#inputnewemi').val().trim();
             if (inputnewemi == '' || inputnewemi == null) {
@@ -308,6 +314,7 @@ function phonebind() {
 			$('#orderSelect div').text($('#orderSelect ul li').text());
 			$('#orderSelect ul li').text(change);
 		})
+		
         $('#saveem').click(function() {
             $('#emils .newemil p').show();
             var inputnewemi = $('#inputnewemi').val().trim();

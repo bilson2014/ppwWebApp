@@ -9,6 +9,7 @@ $().ready(function(){
 var showCollect = {
      init:function(){
     	this.control();   
+    	
      },
      control:function(){
     		$('.delBtn').off('click').on('click',function(){
