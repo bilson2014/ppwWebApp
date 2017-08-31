@@ -34,20 +34,38 @@ function initMenuEven(){
 			 $('#orderList').slideDown();
 		 }
 	});
-	//部分頁面切換
+	//收藏和安全頁面高亮和切換
 	$('#safe').off('click').on('click',function(){
 		$('#safe').addClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		 $('.frame').attr('src',"/mgr/safeInfo");
+		 $('#shortMenu .safe').addClass('open');
+		 $('#shortMenu .save').removeClass('open');
 		
 	})
 	$('#toSave').off('click').on('click',function(){
 		$('#toSave').addClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed');
 		 $('.frame').attr('src',"/mgr/favourites");
+		 $('#shortMenu .safe').removeClass('open');
+		 $('#shortMenu .save').addClass('open');
 		
 	})
+	$('#minsave').off('click').on('click',function(){
+		$('#toSave').addClass('treeitemRed');
+		$('#safe').removeClass('treeitemRed');
+		 $('.frame').attr('src',"/mgr/favourites");
+		 $('#shortMenu .safe').removeClass('open');
+		 $('#shortMenu .save').addClass('open');
+	})
 
+	$('#minsafe').off('click').on('click',function(){
+		$('#safe').addClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		 $('.frame').attr('src',"/mgr/safeInfo");
+		 $('#shortMenu .safe').addClass('open');
+		 $('#shortMenu .save').removeClass('open');
+	})
 	
 	//特换到小菜单
 	$('#toMin').off('click').on('click',function(){

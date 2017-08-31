@@ -98,7 +98,8 @@
 						                              <div class="line"><div></div></div>
 									                       <div class="videoProvider">
 									                        <c:if test="${solr.teamFlag != 4 }"> 
-										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>">
+									                      
+										                         <a href="<spring:url value='/provider/info_${solr.teamId }.html'/>"target="_blank">
 														              <img src="${file_locate_storage_path }${solr.teamPhotoUrl }">
 														              <div>${solr.teamName}</div>
 													             </a> 
