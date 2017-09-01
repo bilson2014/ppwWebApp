@@ -52,11 +52,13 @@
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
+
 	                <div class="menuItem hide"><div class="orderList"></div></div>
 	                <r:identity role="employee">
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                </r:identity>
+
 	                <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
 	       

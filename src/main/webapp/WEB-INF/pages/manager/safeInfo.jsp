@@ -248,10 +248,11 @@
                 
                  --> 
                 <div id='orderSelect'>
-                	<div>@paipianwang.com</div>
+                <span id='biao'>@</span>
+                	<div>paipianwang.com</div>
                 	<img src='/resources/images/orderManager/select.png'>
                 	<ul>
-                		<li>@paipianwang.cn</li>
+                		<li>paipianwang.cn</li>
                 	</ul>
                 </div>
                 
