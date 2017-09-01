@@ -68,7 +68,7 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    <%--  <r:permission uri="/mgr/index"> --%>
+	    <r:permission uri="/mgr/index">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -82,7 +82,7 @@
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
-	      <%--  </r:permission>  --%>      
+	      </r:permission>  
 	              
 	              <a href="/order/myOrder">
 		              <div class="treeitem" id="myOrder">
