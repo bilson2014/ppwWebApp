@@ -24,6 +24,7 @@ $().ready(function() {
 	toSave();
 	$('#toCreate').attr('href',getUrlTask() + "project/start/project")
 	$('.frame').attr('src',getUrlTask() + "project/running-doing");
+	
 });
 
 function checkState(){

@@ -65,7 +65,7 @@
 	       <div id="mainMenu">
 	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
-	        <div class="userName" id="setRealName"><r:outName /></div>
+	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
