@@ -41,7 +41,7 @@
 <meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>团队注册引导  - 拍片网 - 第四步</title>
+<title>供应商引导页-拍片网</title>
 <link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 <link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
@@ -57,6 +57,8 @@
 	<input type="hidden" value="${flowExecutionUrl}" id="flowExecutionUrl"/>
 	<input type="hidden" value="${teamId}" id="teamId"/>
 	<jsp:include flush="true" page="../../header.jsp"></jsp:include>
+	<c:set value="http://resource.apaipian.com/resource/" var="file_path" />
+	<input type="hidden" value="${file_path }" id="file_path" />
 	<div class="page">
 		<div class="step">
 			<div class="step-bar" id="step-bar">
@@ -111,7 +113,7 @@
 							<img class='media-object playCBtn' src="/resources/images/index/noImg.jpg" />
 						</c:if>
 						<c:if test="${not empty product.picLDUrl}">
-							<img class='media-object playCBtn' src='http://resource.apaipian.com/resource/${product.picLDUrl }' />
+							<img class='media-object playCBtn' src='${file_path}${product.picLDUrl }' />
 						</c:if>
 						    <img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>
 						<input type="hidden" id="media-video" value='${product.videoUrl }' />
@@ -192,7 +194,7 @@
 	<jsp:include flush="true" page="../../foot.jsp"></jsp:include>
 	<!--新版底部-->
 	
-	<div class="tooltip-check" id="tooltip-check" >
+		<div class="tooltip-check" id="tooltip-check" >
 	     <div class="checkCard">
 	          <div class="closeCheck" id='closeCheck'></div>
 	          <div class="checkInfo" id="checkInfo">error</div>

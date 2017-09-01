@@ -564,6 +564,12 @@
 		<!-- Zookeeper relation jar end -->
 	</dependencies>
 	<build>
+		<resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

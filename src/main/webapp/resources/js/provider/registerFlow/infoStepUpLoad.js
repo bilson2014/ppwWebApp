@@ -103,13 +103,13 @@ function playProduct(){
 	$('.playCBtn').off("click").on('click',function() {
 		var videoUrl = $(this).parent().find('input').val();
 		var picUrl = $(this).attr('src');
-		var videoPath = 'http://resource.apaipian.com/resource/' + videoUrl;
+		var videoPath = videoUrl;
 		$('#playVideo').removeClass('hide');
 		$(".openVideo") && $(".openVideo").remove();
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
 				+   '<div class="openVideoCommon"></div>'
 				+ '<div class="setOpi" id="videoRoata"><div class="videoClose setCloseSize" id="commonCloseVideo"></div><video class="setSize" autoplay controls loop poster="'+picUrl+'"  name="media" id="header3Video"> '
-				+'<source  src="'+videoPath+'"  id="source" type="video/mp4">'
+				+'<source  src="'+ $('#file_path').val() + videoPath+'"  id="source" type="video/mp4">'
 				+ '</video></div>';
 		$body += '</div>';
 		$("body").append($body);
@@ -239,11 +239,11 @@ function loadProduction(){
 					var itemflag = parseInt(solr.flag);
 					var cType = $('#company-type').val();
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = 'http://resource.apaipian.com/resource/' + imageUrl;
+						imgPath = getDfsHostName() + imageUrl;
 					}
 					$body += '<div class="productCard">';
 					if(imageUrl != undefined && imageUrl != null && imageUrl != ""){
-						imgPath = 'http://resource.apaipian.com/resource/' + imageUrl;
+						imgPath = getDfsHostName() + imageUrl;
 					}
 					$body += '<img class="media-object playCBtn" src="'+imgPath+'" />';
 					$body += '<img class="playIcon playCBtn" src="/resources/images/index/play-icon.png"/>';
