@@ -11,6 +11,7 @@ $().ready(function() {
 			$('#getImgUrlMenu').attr('src',getDfsHostName() + p);
 		}
 	}
+	$('#setRealName').text($('#setRealName').attr('data-value'));
 });
 
 function initMenuEven(){

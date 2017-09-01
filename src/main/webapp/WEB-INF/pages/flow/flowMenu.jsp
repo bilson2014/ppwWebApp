@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="r" uri="/mytaglib" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/flow/flowMenu.css" var="flowMenuCss"/>
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
@@ -51,16 +52,21 @@
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
+
+
 	                <div class="menuItem hide"><div class="orderList"></div></div>
-	                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
-	                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
+	                <r:identity role="employee">
+		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
+		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
+	                </r:identity>
+
 	                <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
 	       
 	       <div id="mainMenu">
 	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
-	        <div class="userName" id="setRealName"><r:outName /></div>
+	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
@@ -87,16 +93,17 @@
 	                  <li>处理中</li>
 	                  <li>已提交</li>
 	                  <li>无效订单</li>
-
-	              </ul> -->
-		         <div class="treeitem" id="toSave">
-		                  <div class="save"></div>
-		                  <div class="title">收藏列表</div>
-		         </div>
-	              <div class="treeitem " id='safe'>
-	                  <div class="safe"></div>
-	                  <div class="title">安全设置</div>
-	             </div>
+	                  </ul> -->
+	             <r:identity role="employee">
+			         <div class="treeitem" id="toSave">
+			                  <div class="save"></div>
+			                  <div class="title">收藏列表</div>
+			         </div>
+		              <div class="treeitem " id='safe'>
+		                  <div class="safe"></div>
+		                  <div class="title">安全设置</div>
+		             </div>
+		         </r:identity>    
 	             <a href="http://www.apaipian.com/login/loginout">
 		             <div class="treeitem">
 		                  <div class="line"></div>
