@@ -167,6 +167,7 @@
                     position: absolute;
                     right: 14px;
                     top: 20px;
+                    cursor: pointer;
                 }
 
                 .logoDiv {
@@ -368,5 +369,21 @@
                 &:hover {
                     background: transparent!important;
                 }
+            }
+            #toSave{
+            .treebtu {
+          		color: $red-base;
+           }
+           .treepic {
+               background-position-y: 14px;
+           }
+            }
+              #safe{
+            .treebtu {
+          		color: $red-base;
+           }
+           .treepic {
+               background-position-y: 14px;
+           }
             }
            

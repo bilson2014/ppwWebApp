@@ -16,6 +16,16 @@ $().ready(function() {
 function initMenuEven(){
 	
 	$('#myPro').off('click').on('click',function(){
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+//		 $('.frame').attr('src',"/mgr/safeInfo");
+		 $('#shortMenu .safe').removeClass('open');
+		 $('#shortMenu .save').removeClass('open');
+		 $('#safe .title').removeClass('treebtu');
+		 $('#toSave .title').removeClass('treebtu');
+		 $('#safe .safe').removeClass('treepic ');
+		 $('#toSave .save').removeClass('treepic ');
+		 
 		var nThis = $(this);
 		 if($(this).hasClass('open')){
 			 nThis.removeClass('open');
@@ -26,6 +36,7 @@ function initMenuEven(){
 			 $('#orderList').slideUp();
 			 $('#productList').slideDown();
 		 }
+
 	});
 	
 	$('#myOrder').off('click').on('click',function(){
@@ -47,6 +58,10 @@ function initMenuEven(){
 		 $('.frame').attr('src',"/mgr/safeInfo");
 		 $('#shortMenu .safe').addClass('open');
 		 $('#shortMenu .save').removeClass('open');
+		 $('#safe .title').addClass('treebtu');
+		 $('#toSave .title').removeClass('treebtu');
+		 $('#safe .safe').addClass('treepic ');
+		 $('#toSave .save').removeClass('treepic ');
 		
 	})
 	$('#toSave').off('click').on('click',function(){
@@ -54,7 +69,11 @@ function initMenuEven(){
 		$('#safe').removeClass('treeitemRed');
 		 $('.frame').attr('src',"/mgr/favourites");
 		 $('#shortMenu .safe').removeClass('open');
-		 $('#shortMenu .save').addClass('open');
+		 $('#shortMenu .save').addClass('open');		 
+		 $('#safe .title').removeClass('treebtu');
+		 $('#toSave .title').addClass('treebtu');
+		 $('#safe .safe').removeClass('treepic ');
+		 $('#toSave .save').addClass('treepic ');
 		
 	})
 	$('#minsave').off('click').on('click',function(){
@@ -63,6 +82,10 @@ function initMenuEven(){
 		 $('.frame').attr('src',"/mgr/favourites");
 		 $('#shortMenu .safe').removeClass('open');
 		 $('#shortMenu .save').addClass('open');
+		 $('#safe .title').removeClass('treebtu');
+		 $('#toSave .title').addClass('treebtu');
+		 $('#safe .safe').removeClass('treepic ');
+		 $('#toSave .save').addClass('treepic ');
 	})
 
 	$('#minsafe').off('click').on('click',function(){
@@ -71,6 +94,10 @@ function initMenuEven(){
 		 $('.frame').attr('src',"/mgr/safeInfo");
 		 $('#shortMenu .safe').addClass('open');
 		 $('#shortMenu .save').removeClass('open');
+		 $('#safe .title').addClass('treebtu');
+		 $('#toSave .title').removeClass('treebtu');
+		 $('#safe .safe').addClass('treepic ');
+		 $('#toSave .save').removeClass('treepic ');
 	})
 	
 	//特换到小菜单
@@ -93,6 +120,15 @@ function initMenuEven(){
 	});
 
 	$('#minMyPro').off('click').on('click',function(){
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		 $('#shortMenu .safe').removeClass('open');
+		 $('#shortMenu .save').removeClass('open');
+		 $('#safe .title').removeClass('treebtu');
+		 $('#toSave .title').removeClass('treebtu');
+		 $('#safe .safe').removeClass('treepic ');
+		 $('#toSave .save').removeClass('treepic ');
+		 
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
 		if(!$('.productList li').hasClass('checkLi')){
