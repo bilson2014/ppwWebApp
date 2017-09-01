@@ -24,9 +24,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网融资,拍片网简介,拍片网愿景,拍片网社区,拍片网团队">
-	<meta name="description" content="拍片网平台简介，拍片网是一个开放、共享、透明、公正的一个视频制作服务平台，了解更多拍片网平台服务和拍片网平台愿景">
-	<title>拍片网融资_拍片网简介_了解拍片网平台－拍片网</title>
+	<meta name="keywords" content="宣传片制作公司,宣传片拍摄公司,tvc广告片制作,短视频制作平台">
+	<meta name="description" content="拍片网是综合性PGC广告短视频制作服务平台，独创“制作费托管”模式，立足北京，服务全国。企业宣传片制作，产品宣传片拍摄，tvc广告片制作，一站式服务，上拍片网。">
+	<title>宣传片制作公司_tvc广告片拍摄公司_短视频制作平台-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${aboutUsCss }">
 	<!--[if lt IE 9]>

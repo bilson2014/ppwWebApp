@@ -43,9 +43,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片网招聘,拍片网团队,拍片网怎么样">
-	<meta name="description" content="拍片网是一个温暖和谐的大家庭，成员全部来自于影视和互联网行业的精英，致力于打造“影视工业化”流程规范">
-	<title>拍片网招聘_拍片网团队_拍片网怎么样-拍片网</title>
+	<meta name="keywords" content="宣传片拍摄团队, mg动画制作公司, tvc广告创意,品牌微电影策划">
+	<meta name="description" content="专业的pgc商业短视频制作团队，拍片网致力于为企业提供宣传片拍摄、mg动画制作、tvc广告创意、品牌微电影策划等服务。如果你想做点足够酷的事，就加入我们吧！">
+	<title>宣传片拍摄团队_mg动画制作公司_tvc广告创意_品牌微电影策划-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${memberCss }">
 	

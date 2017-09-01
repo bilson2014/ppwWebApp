@@ -32,7 +32,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>团队注册引导  - 拍片网 - 审核结果</title>
+<title>供应商审核结果</title>
 <link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 <link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
@@ -62,7 +62,8 @@
 						</div>
 					</li>
 					<li class="title">恭喜您注册成功，已进入审核阶段</li>
-					<li class="info">注册信息审核需要5个工作日，作品审核需要10个工作日。</li>
+					<li class="info">公司信息审核需要5个工作日，作品审核需要10个工作日。
+					</li>
 					<li class="stepThreeLi">
 						<div class="btn-c-r" id="backToPortal">返回首页</div>
 					</li>
