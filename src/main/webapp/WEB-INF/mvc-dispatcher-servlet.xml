@@ -63,7 +63,7 @@
 	<mvc:resources location="/" mapping="/sitemap.xml" />
 	
 	 <!-- 流程管理end -->
-	   <mvc:view-controller path="/running" view-name="/flow/textFlow" />
+	   <mvc:view-controller path="/project/running" view-name="/flow/textFlow" />
 
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 

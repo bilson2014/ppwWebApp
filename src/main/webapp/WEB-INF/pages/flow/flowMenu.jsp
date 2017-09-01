@@ -10,8 +10,8 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
-<spring:url value="http://localhost:8080/" var="url" />
-<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
+<%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
+<spring:url value="http://www.apaipian.com:8087/" var="url" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -53,8 +53,8 @@
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
 
+	                <a href="/order/myOrder"><div class="menuItem"><div class="orderList"></div></div></a>
 
-	                <div class="menuItem hide"><div class="orderList"></div></div>
 	                <r:identity role="employee">
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
@@ -68,6 +68,7 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
+	     <r:permission uri="/mgr/index">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -81,9 +82,10 @@
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
+	       </r:permission>       
 	              
-	              <a href="http://www.apaipian.com/order/myOrder">
-		              <div class="treeitem hide" id="myOrder">
+	              <a href="/order/myOrder">
+		              <div class="treeitem" id="myOrder">
 		                <div class="orderList"></div>
 		                <div class="title">我的订单</div>
 		                <%--   <img src="${imgPath}/flow/more.png"> --%>
