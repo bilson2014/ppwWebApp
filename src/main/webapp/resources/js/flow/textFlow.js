@@ -23,16 +23,32 @@ $().ready(function() {
 	doFinish();
 	toSave();
 	$('#toCreate').attr('href',getUrlTask() + "project/start/project")
-	$('.frame').attr('src',getUrlTask() + "project/running-doing");
-	
+	checkState();
 });
 
 function checkState(){
 	 var href = window.location.href;
 	 var state = href.substr(href.lastIndexOf("?")+1,href.length);
+	       $('.frame').attr('src',getUrlTask() + "project/running-doing");
 		    if(state.trim() == "save"){
-		    	toSave();
+		    	checkClear(0);
 		    }
+		    if(state.trim() == "safe"){
+		    	checkClear(1);
+		    }
+}
+
+function checkClear(who){
+	$('.treeitem').removeClass('treeitemRed');
+	$('#toSave').addClass('treeitemRed');
+	$('#productList').hide();
+	$('#myPro').removeClass('open');
+	$('#nowDoing').removeClass('checkLi');
+	if(who == 0){
+		 $('.frame').attr('src',"/mgr/favourites");
+	}else{
+		$('.frame').attr('src',"/mgr/safeInfo");
+	}
 }
 
 function initMenuEven(){
@@ -111,4 +127,6 @@ function toSave(){
         $('.frame').attr('src',"/mgr/favourites");
 	});	
 }
+
+
 

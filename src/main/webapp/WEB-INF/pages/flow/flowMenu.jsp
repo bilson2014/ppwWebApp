@@ -10,8 +10,8 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
-<spring:url value="http://localhost:8080/" var="url" />
-<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
+<%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
+<spring:url value="http://www.apaipian.com:8087/" var="url" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -52,8 +52,7 @@
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
-
-	                <div class="menuItem hide"><div class="orderList"></div></div>
+	                <a href="/order/myOrder"><div class="menuItem"><div class="orderList"></div></div></a>
 	                <r:identity role="employee">
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
@@ -81,8 +80,8 @@
 	                  <li id="finish">完成/取消</li>
 	              </ul>
 	              
-	              <a href="http://www.apaipian.com/order/myOrder">
-		              <div class="treeitem hide" id="myOrder">
+	              <a href="/order/myOrder">
+		              <div class="treeitem" id="myOrder">
 		                <div class="orderList"></div>
 		                <div class="title">我的订单</div>
 		                <%--   <img src="${imgPath}/flow/more.png"> --%>
