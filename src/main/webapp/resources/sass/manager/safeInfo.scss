@@ -108,6 +108,10 @@
                         line-height: 30px;
                         border-radius: 4px;
                         cursor: pointer;
+                        &:hover {
+                            background:#fe2220;
+                        }
+
                     }
                     .falseCheck {
                         width: 70px;
@@ -494,6 +498,9 @@
                 @media screen and (min-width: 1276px) and (max-width: 1500px) {
                     right: 130px;
                 }
+                &:hover {
+                background:#fe2220;
+                }
             }
             
             .main .right .infos .third {
@@ -545,6 +552,10 @@
                 @media screen and (min-width: 1276px) and (max-width: 1500px) {
                     right: 130px;
                 }
+                 &:hover {
+                background:#fe2220;
+                }
+
             }
             
             .main .right .infos .four {
@@ -596,6 +607,11 @@
                 @media screen and (min-width: 1276px) and (max-width: 1500px) {
                     right: 130px;
                 }
+                 &:hover {
+                background:#fe2220;
+                }
+
+
             }
             
             // 密码模块
@@ -877,6 +893,10 @@
                 @media screen and (min-width: 775px) and (max-width: 1025px) {
                     left: 330px;
                 }
+                 &:hover {
+                background:#fe2220;
+                }
+
                
             }
             
@@ -1182,6 +1202,10 @@
                  @media screen and (min-width: 775px) and (max-width: 1025px) {
                     left: 320px;
                 }
+
+                &:hover {
+                    background:#fe2220;
+                }
               
             }
             
@@ -1427,6 +1451,10 @@
                 }
                  @media screen and (min-width: 775px) and (max-width: 1025px) {
                     left: 320px;
+                }
+                &:hover {
+                background:#fe2220;
+
                 }
              
             }
