@@ -32,7 +32,7 @@
 <meta name="keywords" content="拍片网,视频制作,视频营销,供应商,拍片">
 <meta name="description"
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
-<title>团队注册引导  - 拍片网 - 提交审核</title>
+<title>供应商引导页-拍片网</title>
 <link rel="stylesheet" type="text/css" href="${bootstrapCss}">
 <link rel="stylesheet" type="text/css" href="${providerLeaderCss}">
 <link rel="stylesheet" type="text/css" href="${providerStepCss2}">
@@ -62,7 +62,7 @@
 				<div class="successCheck" id="successCheck">
 					<img src="${imgPath}/provider/infoPage.png" />
 					<div class="checkInfo">
-						请确认提交信息的真实性，所有上传的作品均为注册创作团队真实作品。<br> 确认无误请点击提交审核，完成注册进入审核阶段。
+						请确认提交信息的真实性，所有上传的作品均为注册公司真实作品。<br> 确认无误请点击提交审核，完成注册进入审核阶段。
 					</div>
 					<div class="scDiv">
 						<sf:form>

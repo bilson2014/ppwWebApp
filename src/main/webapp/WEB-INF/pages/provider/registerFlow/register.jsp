@@ -242,7 +242,7 @@
 								</div>
 								<div class="findLogo" id="theZ">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadZCard">身份证正面照片</div>
+									<div id="uploadZCard">法人身份证正面</div>
 									<input type="file" style="display: none;" />
 								</div>
 							</div>
@@ -256,7 +256,7 @@
 								</div>
 								<div class="findLogo" id="theB">查看示例</div>
 								<div class="upload-btn">
-									<div id="uploadBCard">身份证背面照片</div>
+									<div id="uploadBCard">法人身份证背面</div>
 									<input type="file" id="file" style="display: none;" />
 								</div>
 							</div>

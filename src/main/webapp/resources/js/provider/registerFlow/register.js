@@ -221,9 +221,13 @@ function getTagValue(){
 	var showWho = $('input:radio:checked').val();	
 	if(showWho == 0){
 		$('#uploadYE').find('.webuploader-pick').text('营业执照照片');
+		$('#uploadZCard').find('.webuploader-pick').text('法人身份证正面');
+		$('#uploadBCard').find('.webuploader-pick').text('法人身份证背面');
 		showWho = 0;
 	}else{
 		$('#uploadYE').find('.webuploader-pick').text('手持身份证照片');
+		$('#uploadZCard').find('.webuploader-pick').text('身份证正面');
+		$('#uploadBCard').find('.webuploader-pick').text('身份证背面');
 		showWho = 1;
 	}
 }
@@ -254,10 +258,14 @@ function initEven(){
 	var showWho = 0;
 	$('#checkCompany').off('click').on('click',function(){
 		$('#uploadYE').find('.webuploader-pick').text('营业执照照片');
+		$('#uploadZCard').find('.webuploader-pick').text('法人身份证正面');
+		$('#uploadBCard').find('.webuploader-pick').text('法人身份证背面');
 		showWho = 0;
 	});
 	$('#checkWorkRoom').off('click').on('click',function(){
 		$('#uploadYE').find('.webuploader-pick').text('手持身份证');
+		$('#uploadZCard').find('.webuploader-pick').text('身份证正面');
+		$('#uploadBCard').find('.webuploader-pick').text('身份证背面');
 		showWho = 1;
 	});
 	
