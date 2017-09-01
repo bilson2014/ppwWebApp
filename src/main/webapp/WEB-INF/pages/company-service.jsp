@@ -24,9 +24,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="拍片服务协议,视频制作服务协议,拍片服务合同">
-	<meta name="description" content="拍片网平台针对客户的服务协议以及拍片服务合同">
-	<title>拍片服务协议_视频制作服务协议－拍片网</title>
+	<meta name="keywords" content="宣传片制作协议, tvc广告片拍摄协议, 网站使用协议">
+	<meta name="description" content="宣传片制作，tvc广告片拍摄，签署正规协议，100%法律保障，不满意退款或重拍。拍片网汇聚影视行业导演、编剧、摄影师、演员等顶尖人才3W+，专注商业短视频内容制作。">
+	<title>企业宣传片制作协议_tvc广告片拍摄协议_网站使用协议-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${companyServiceCss }">
 	<!--[if lt IE 9]>

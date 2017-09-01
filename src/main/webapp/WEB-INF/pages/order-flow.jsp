@@ -14,10 +14,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="宣传片制作流程,广告片制作流程,微电影制作流程,拍片服务流程">
-    <meta name="description" content="拍片网平台宣传片、广告片、微电影等制作服务流程规范，整个视频制作流程全部由视频管家负责">
+    <meta name="keywords" content="宣传片策划,宣传片制作流程, tvc广告片创意策划, 微电影拍摄方案">
+    <meta name="description" content="PGC商业视频制作平台，视频管家一对一接洽，创意策划完全免费，72小时极速出片。宣传片、tvc广告片、品牌微电影，上拍片网。作品如人品，我们认证创作每一条影片！">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title>宣传片制作流程_广告制作流程_微电影制作流程_拍片服务流程-拍片网</title>
+    <title>宣传片制作流程_tvc广告片创意策划_微电影拍摄执行方案-拍片网</title>
     <spring:url value="/resources/css/order-flow.css" var="serviceToCss"/>
     <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>

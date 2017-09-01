@@ -22,9 +22,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="团队活动,公司活动,拍片网">
-	<meta name="description" content="拍片网团队线上线下的活动简介">
-	<title>拍片网团队活动_拍片网公司活动－拍片网</title>
+	<meta name="keywords" content="视频制作团队,商业视频,视频营销">
+	<meta name="description" content="建设顶级广告视频制作团队，引领商业视频行业风尚，汇聚视频营销的力量。视频时代点燃万千企业赢下创意新思想。拍片网，打造影视行业纯净的资源生态圈，建立一站式综合服务平台。">
+	<title>视频制作团队建设_商业视频行业峰会_视频营销大会-拍片网</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${companyActivityCss }">
 	<!--[if lt IE 9]>
