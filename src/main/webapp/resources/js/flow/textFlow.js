@@ -22,7 +22,7 @@ $().ready(function() {
 	doPasue();
 	doFinish();
 	toSave();
-	$('#toCreate').attr('href',getUrlTask() + "project/start/project")
+	$('#toCreate').parent().attr('href',getUrlTask() + "project/start/project")
 	checkState();
 });
 
