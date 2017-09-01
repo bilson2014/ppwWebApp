@@ -37,8 +37,7 @@
 
 <body>
 
-     <a href="/project/start/project"><div id="toCreate"></div></a>
-     
+    <a ><div id="toCreate"></div></a> 
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="realName" value="${realName}" />
 	<input type="hidden" id="photo" value="${photo}" />

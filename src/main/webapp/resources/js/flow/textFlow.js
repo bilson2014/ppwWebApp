@@ -1,8 +1,6 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
-//var Url = "http://www.apaipian.com:8087/";
-var Url = "http://localhost:8080/";
 $().ready(function() {	
 	document.domain = getUrl();	
 	var carNum = $('.cardNum');
@@ -24,7 +22,8 @@ $().ready(function() {
 	doPasue();
 	doFinish();
 	toSave();
-	$('.frame').attr('src',Url + "project/running-doing");
+	$('#toCreate').attr('href',getUrlTask() + "project/start/project")
+	$('.frame').attr('src',getUrlTask() + "project/running-doing");
 });
 
 function checkState(){
@@ -81,30 +80,26 @@ function doing(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').show();
-        $('.frame').attr('src',Url + "project/running-doing");
+        $('.frame').attr('src',getUrlTask() + "project/running-doing");
         
 	});
 }
-
-
 
 function doPasue(){
 	$('#pause').off('click').on('click',function(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').hide();
-        $('.frame').attr('src',Url + "project/suspend-task");
+        $('.frame').attr('src',getUrlTask() + "project/suspend-task");
 	});
 }
-
-
 
 function doFinish(){
 	$('#finish').off('click').on('click',function(){
 		$('.productList li').removeClass('checkLi');
         $(this).addClass('checkLi');
         $('#hideDiv').show();
-        $('.frame').attr('src', Url + "project/finished/list");
+        $('.frame').attr('src', getUrlTask() + "project/finished/list");
 	});
 }
 
@@ -113,7 +108,6 @@ function toSave(){
 		$('.treeitem').removeClass('treeitemRed');
 		$(this).addClass('treeitemRed');
         $('.frame').attr('src',"/mgr/favourites");
-	});
-	
+	});	
 }
 
