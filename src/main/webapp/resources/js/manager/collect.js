@@ -4,6 +4,7 @@ $().ready(function(){
 	showCollect.init();
 	$(window.parent.document).find('.frame').css('height',$('.page').height() + 300);
 	console.info($('.page').height() + 300);
+	$('.managerCard').css('height',$('.page').height()+300);
 	
 });
 

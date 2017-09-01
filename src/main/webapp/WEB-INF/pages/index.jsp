@@ -55,34 +55,7 @@
 		})();
 	})();
 </script>
-<style>
-.calssical {
-    width: 100%;
-    background-color: #fff;
-    
-}
 
-.calssical .classicalArea {
-    width:80%;
-    padding-top: 120px;
-    margin: 0 auto;
-    height: 100%;
-    position: relative;
-}
-.calssical .classicalArea .classlist .thumbnail a>img, .thumbnail>img {
-   	width:308px;
-	height:174px;
-	@media screen and (max-width: 1275px) {
-    	width:223px;
-		height:126px;
-    }
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width:286px;
-		height:162px;
-    }
-}
-
-</style>
 </head>
 
 <body>
@@ -108,7 +81,8 @@
 	 
 	<div class="page">
 		<div class="advanBack"></div>
-	    <jsp:include flush="true" page="header.jsp"></jsp:include> 
+	     
+	     <jsp:include flush="true" page="header.jsp"></jsp:include> 
 	     
 		<!-- 轮播 start -->
 		<div class="flex-wrap">
@@ -124,20 +98,20 @@
 				<div class="swiper-wrapper swiper-banner-slide">
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerTitleAn1">专业的商业视频制作平台</li>
-							<li class="desc" id="DescAn1">35800+签约导演团队 56个城市 72小时极速出片</li>
+							<li class="title" id="bannerTitleAn1">专业的商业视频服务平台</li>
+							<li class="desc" id="DescAn1">35800+ 导演 / 编剧 / 摄影师 /影视专家为您服务</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerTitleAn2">商业视频拍片量遥遥领先</li>
-							<li class="desc" id="DescAn2">成立一年 拍片量突破1000条</li>
+							<li class="title" id="bannerTitleAn2">免费创意策划 72小时极速出片</li>
+							<li class="desc" id="DescAn2">专业视频管家 一站式视频服务 全流程质量监管</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
 						<ul>
-							<li class="title" id="bannerLast">免费创意策划 不满意可重拍</li>
-							<li class="desc" id="DescLast">再好的推销员也比不过一条视频</li>
+							<li class="title" id="bannerLast">低预算拍大片 不满意全额退款</li>
+							<li class="desc" id="DescLast">低于行业均价30%以上 平台托管制作费</li>
 						</ul>
 					</div>
 				</div>
@@ -269,20 +243,6 @@
 			</div>
 		</div>
 		<!--  宣传片 end -->
-		<!-- myself 获取后台数据的模板展示页面 -->
-		<div class="calssical">
-        <div class="classicalArea">
-            <div class="example"></div>
-            <a href="#">更多案例</a>
-            <div class="classlist">
-                <div class="row" id='card' >
-                </div>
-            </div>
-        </div>
-
-    </div>
-		
-		
 		<div class="backgroundCover">
 			<div class="swiper-container swiperCover">
 				<div class="hotLogo"></div>
