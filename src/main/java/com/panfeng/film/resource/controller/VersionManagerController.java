@@ -16,6 +16,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -66,6 +67,7 @@ import com.panfeng.film.resource.model.Wechat;
 import com.panfeng.film.service.EmployeeThirdLogin;
 import com.panfeng.film.service.ResourceService;
 import com.panfeng.film.util.DataUtil;
+import com.panfeng.film.util.FileUtils;
 import com.panfeng.film.util.HttpUtil;
 import com.panfeng.film.util.JsonUtil;
 import com.panfeng.film.util.Log;
@@ -329,7 +331,7 @@ public class VersionManagerController extends BaseController {
 					return info;
 					
 				} else {
-					// 验证码不匹配
+					// 密码为空
 					info.setKey(false);
 					info.setValue("密码为空!");
 					return info;
@@ -347,6 +349,177 @@ public class VersionManagerController extends BaseController {
 			return info;
 		}
 	}
+	/**
+	 * 安全设置页
+	 * @return
+	 */
+	@RequestMapping("/safeInfo")
+	public ModelAndView safeInfoView(final HttpServletRequest request,ModelMap modelMap) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		PmsEmployee employee=pmsEmployeeFacade.findEmployeeById(sessionInfo.getReqiureId());
+		modelMap.put("employee", employee);
+		return new ModelAndView("/manager/safeInfo");
+	}
+	
+	/**
+	 * 修改个人登陆密码
+	 * @param request
+	 * @param e
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/modify/pwd")
+	public Info modifyPwd(final HttpServletRequest request, @RequestBody final Employee e) throws Exception {
+		Info info = new Info(); // 信息载体
+		if (e.getEmployeePassword() != null && !"".equals(e.getEmployeePassword())) {
+			// AES 密码解密
+			final String password = AESUtil.Decrypt(e.getEmployeePassword(), PmsConstant.UNIQUE_KEY);
+			// MD5 加密
+			e.setEmployeePassword(DataUtil.md5(password));
+
+			// 在视频管家范围内查找该手机号码的人员
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			PmsEmployee pmsEmployee = new PmsEmployee();
+			pmsEmployee.setEmployeeId(sessionInfo.getReqiureId());
+			pmsEmployee.setEmployeePassword(e.getEmployeePassword());
+			pmsEmployeeFacade.updatePwdById(pmsEmployee);
+			
+			info.setKey(true);
+			return info;
+
+		} else {
+			// 密码为空
+			info.setKey(false);
+			info.setValue("密码为空!");
+			return info;
+		}
+	}
+	/**
+	 * 修改个人邮箱
+	 * @param e
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/modify/email")
+	public Info modifyEmail(@RequestBody final Employee e, final HttpServletRequest request) {
+		Info info = new Info(); // 信息载体
+
+//		if(validateCode(info, request, e.getVerification_code())){
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		// 修改员工邮箱
+		if (e != null && ValidateUtil.isValid(e.getEmail())) {
+			PmsEmployee pmsEmployee = new PmsEmployee();
+			pmsEmployee.setEmployeeId(sessionInfo.getReqiureId());
+			pmsEmployee.setEmail(e.getEmail());
+			pmsEmployeeFacade.updateEmailById(pmsEmployee);
+			Log.error(" update employee-" + pmsEmployee.getEmployeeId() + "(email) -success", sessionInfo);
+			info.setKey(true);
+			return info;
+		}
+//		}
+		info.setKey(false);
+		info.setValue("信息不完整");
+		return info;
+	}
+	/**
+	 * 修改个人手机号
+	 * @param e
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/modify/phone")
+	public Info modifyPhone(@RequestBody final Employee e, final HttpServletRequest request) {
+		Info info = new Info(); // 信息载体
+		if(validateCode(info, request,e.getPhoneNumber(), e.getVerification_code())){
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			// 修改员工手机 TODO 员工手机是否需要唯一
+			if (e != null && ValidateUtil.isValid(e.getPhoneNumber())) {
+				PmsEmployee pmsEmployee = new PmsEmployee();
+				pmsEmployee.setEmployeeId(sessionInfo.getReqiureId());
+				pmsEmployee.setPhoneNumber(e.getPhoneNumber());
+				
+				pmsEmployeeFacade.updatePhoneById(pmsEmployee);
+				
+				PmsEmployee newEmployee = pmsEmployeeFacade.findEmployeeById(pmsEmployee.getEmployeeId());
+				initSessionInfo(newEmployee, request);
+				
+				Log.error(" update employee-"+newEmployee.getEmployeeId()+"(phone) -success",
+						sessionInfo);
+				info.setKey(true);
+				return info;	
+			}
+		}
+		return info;
+	}
+	/**
+	 * 修改个人头像
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("/modify/photo")
+	public Info modefyPhoto(final HttpServletRequest request,@PathParam("file") final MultipartFile file) {
+		Info info = new Info(); // 信息载体
+		if (!file.isEmpty()) {
+			final long fileSize = file.getSize(); // 上传文件大小
+			final long maxSize = Long.parseLong(PublicConfig.IMAGE_MAX_SIZE);
+			final String extName = FileUtils.getExtName(file.getOriginalFilename(), "."); // 后缀名
+			SessionInfo sessionInfo = getCurrentInfo(request);
+			if (fileSize > maxSize * 1024) {
+				// 文件大小超出规定范围
+				Log.error("upload employee photo error,becase the photo (size:" + fileSize + ") more than " + maxSize
+						+ "...", sessionInfo);
+				info.setKey(false);
+				info.setValue("图片大小超出规定范围"+maxSize+"kb");
+				return info;
+			} else {
+				if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					final String fileId = FastDFSClient.uploadFile(file);
+					PmsEmployee employee=new PmsEmployee();
+					employee.setEmployeeId(sessionInfo.getReqiureId());
+					employee.setEmployeeImg(fileId);
+					pmsEmployeeFacade.updateImagePath(employee);
+					
+					PmsEmployee newEmployee = pmsEmployeeFacade.findEmployeeById(employee.getEmployeeId());
+					initSessionInfo(newEmployee, request);
+					
+					info.setKey(true);
+					info.setValue(fileId);
+					return info;
+				} else {
+					// 文件格式不正确
+					Log.error("upload employee photo error,filetype:"+extName, sessionInfo);
+					info.setKey(false);
+					info.setValue("文件格式不正确");
+				}
+			}
+		}
+		return info;
+	}
+	
+	private boolean validateCode(Info info,HttpServletRequest request,String phoneNumber,String verification_code){
+		final HttpSession session = request.getSession();
+		final String code = (String) session.getAttribute("code");
+		final String phone= (String) session.getAttribute("codeOfphone");
+		// 是否是测试程序
+		boolean isTest = PublicConfig.IS_AUTO_TEST.equals("yes") ? true : false;
+		// 判断验证码
+		if (!"".equals(code) && code != null) {
+			if (isTest || (code.equals(verification_code) && phone.equals(phoneNumber))) {
+				return true;
+			} else {
+				// 验证码不匹配
+				info.setKey(false);
+				info.setValue("短信验证码不正确!");
+				return false;
+			}
+		} else {
+			// 验证码为空
+			info.setKey(false);
+			info.setValue("点击获取验证码!");
+			return false;
+		}
+	}
 
 	/**
 	 * 跳转至流程首页
@@ -360,6 +533,40 @@ public class VersionManagerController extends BaseController {
 			model.put("userId", info.getReqiureId());
 		}
 		return new ModelAndView("/manager/index");
+	}
+	
+	/**
+	 * 登陆员工修改个人信息--TODO 是否需要待定
+	 * @param employee
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/modify/info")
+	public boolean modifiedUserInfo(@RequestBody final PmsEmployee employee, final HttpServletRequest request) {
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		// 修改员工基本信息
+		if (employee != null) {
+			if (employee.getEmployeeId() > 0) {
+				if (ValidateUtil.isValid(employee.getEmployeePassword() )) {
+					// AES 密码解密
+					String password=null;
+					try {
+						password = AESUtil.Decrypt(employee.getEmployeePassword(), PmsConstant.UNIQUE_KEY);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					// MD5 加密
+					employee.setEmployeePassword(DataUtil.md5(password));
+				}
+				pmsEmployeeFacade.updateSelf(employee);
+				PmsEmployee e = pmsEmployeeFacade.findEmployeeById(employee.getEmployeeId());
+				initSessionInfo(e, request);
+				Log.error(" update employee-"+employee.getEmployeeId()+"(employeeImg,phoneNumber,email,employeePassword) -success",
+						sessionInfo);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// ------------------------------ project ------------------------------

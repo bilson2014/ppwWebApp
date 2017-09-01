@@ -77,7 +77,7 @@
 	      		                    <div class="title">公司LOGO</div>
 		      		                <div class="user-img-content" id="user-img-content">
 										<div class="user-icon">
-											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img"/>
+											<img alt="用户头像" src="/resources/images/provider/initLogo.png" class="img-circle" id="user-img" />
 											<input type="hidden" id="user_img_url" value="">
 										</div>
 										<div class="upload-info">

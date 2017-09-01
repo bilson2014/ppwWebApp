@@ -204,7 +204,7 @@
 						<span class="title-word">官网网址</span>
 						<form:input path="officialSite"
 							class="form-control step-one-input" id="companyWeb"
-							placeholder="例如：http://ww.example.com" />
+							placeholder="例如：http://www.example.com" />
 					</div>
 
 					<div class="input-group-div" id="companyDataError">

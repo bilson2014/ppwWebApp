@@ -38,6 +38,7 @@ import com.paipianwang.pat.facade.product.service.PmsSceneFacade;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
 import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
 import com.panfeng.film.domain.BaseMsg;
+import com.panfeng.film.model.ChanpinSelection;
 import com.panfeng.film.mq.service.MailMQService;
 import com.panfeng.film.util.Log;
 
@@ -455,6 +456,102 @@ public class ChanPinController extends BaseController {
 						Log.error("send mail fail ...", null, e);
 					}
 				}
+			}
+		}
+	}
+	
+	/**
+	 * 获取产品线下拉列表值-产品、配置、可选包、时长维度
+	 * @return
+	 */
+	@RequestMapping("/product/productSelection")
+	public BaseMsg getChanPinSelection() {
+		Map<String,Object> result=new HashMap<>();
+		//产品
+		DataGrid<PmsChanPin> allScene = pmsChanPinFacade.getAllChanPin();
+		List<ChanpinSelection> chanpin=new ArrayList<>();
+		for(PmsChanPin pmsChanpin:allScene.getRows()){
+			chanpin.add(new ChanpinSelection(pmsChanpin.getChanpinId()+"", pmsChanpin.getChanpinName()));
+		}
+		result.put("chanpin", chanpin);
+		//产品配置-第一条产品下
+//		setConfigByChanpinAndConfig(result,allScene.getRows().get(0).getChanpinId(),null);
+		
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(result);
+		return baseMsg;
+	}
+	
+	/**
+	 * 根据产品获取其下配置详情-配置、可选包、时长维度
+	 * @param chanpinId
+	 * @return
+	 */
+	@RequestMapping("/product/ConfigSelection/{chanpinId}")
+	public BaseMsg getConfigSelection(@PathVariable("chanpinId") Long chanpinId) {
+		Map<String,Object> result=new HashMap<>();
+		//产品配置
+		setConfigByChanpinAndConfig(result,chanpinId,null);
+		
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(result);
+		return baseMsg;
+	}
+	/**
+	 * 根据产品配置取其下配置详情-可选包、时长维度
+	 * @param configId
+	 * @return
+	 */
+	@RequestMapping("/product/detailSelection/{configId}")
+	public BaseMsg getConfigItemSelection(@PathVariable("configId") Long configId) {
+		Map<String,Object> result=new HashMap<>();
+		//产品配置
+		setConfigByChanpinAndConfig(result,null,configId);
+		
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		baseMsg.setResult(result);
+		return baseMsg;
+	}
+	
+	
+	private void setConfigByChanpinAndConfig(Map<String,Object> result,Long chanpinId,Long configId){
+		if(chanpinId!=null){
+			List<ChanpinSelection> chanpinConfig=new ArrayList<>();
+			result.put("config",chanpinConfig);
+			List<PmsChanPinConfiguration> allConfig = pmsChanPinConfigurationFacade.getSimpleChanPinConfigurationByChanPinId(chanpinId);		
+			for(PmsChanPinConfiguration config:allConfig){
+				chanpinConfig.add(new ChanpinSelection(config.getChanpinconfigurationId()+"", config.getChanpinconfigurationName()));	
+			}
+//			configId=allConfig.get(0).getChanpinconfigurationId();//第一条产品配置
+			return ;
+			
+		}
+			
+		//产品配置项
+		PmsChanPinConfiguration defConfig=pmsChanPinConfigurationFacade.getChanPinConfigurationInfo(configId);
+		result.put("basePrice", defConfig.computePrice());
+		//配置附加包
+		List<ChanpinSelection> modules=new ArrayList<>();
+		result.put("modules",modules);
+		List<PmsProductModule> productModules = defConfig.getPmsProductModule();
+		if (ValidateUtil.isValid(productModules)) {
+			for (PmsProductModule pmsProductModule : productModules) {
+				PmsChanPinConfiguration_ProductModule p = pmsProductModule.getPinConfiguration_ProductModule();
+				if (p != null && p.getCpmModuleType().equals(1)) {
+					modules.add(new ChanpinSelection(pmsProductModule.getProductModuleId()+"", pmsProductModule.getModuleName(),"",p.getCpmModulePrice()));
+				}
+			}
+		}
+		//配置时长
+		List<ChanpinSelection> dimension=new ArrayList<>();
+		result.put("dimension",dimension);
+		List<PmsDimension> pmsDimensions=defConfig.getPmsDimensions();
+		if(ValidateUtil.isValid(pmsDimensions)){
+			for(PmsDimension pmsDimension:pmsDimensions){
+				dimension.add(new ChanpinSelection(pmsDimension.getDimensionId()+"", pmsDimension.getRowName(),pmsDimension.getComputeType()+"",pmsDimension.getRowValue()));
 			}
 		}
 	}

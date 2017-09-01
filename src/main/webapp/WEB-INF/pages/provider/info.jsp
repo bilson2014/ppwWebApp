@@ -367,7 +367,7 @@
                                 <textarea class=" " id="company-teamDesc" rows="5" maxlength="200" placeholder="创作团队简介为必填字段">${provider.teamDescription }</textarea>
                             </div>
                            
-                             <div class="infoItem noImportant">
+                             <div class="infoItem noImportant hide">
                                 <div class="title">备注</div>
                                <textarea class=" " id="company-description" rows="5" maxlength="200" placeholder="再次填写备注信息">${provider.description }</textarea>
                             </div>

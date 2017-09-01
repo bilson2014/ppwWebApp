@@ -6,33 +6,74 @@
 body {
     background: $f0 !important;
 }
+ .setCard {
+ width:100%;
 
-.page {
-    padding-top: 60px;
-    background: $f0 !important;
+  .vail {
+    font-size: 1.6rem;
+    color: #666;
+    position: absolute;
+    top: 200px;
+    left: 43%;
 }
+ }
 
+    .cardSmall {
+        width:292px;
+        
+        @media screen and (max-width: 1151px) {
+       
+             width:274px;
+        }
+        @media screen and (min-width: 1151px) and (max-width: 1200px) {
+      
+             width:270px;
+        }
+    }
+
+
+.cardBig{
+	  width: 255px;
+	@media screen and (max-width: 775px) {
+    width: 232px;
+    
+    }
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
+    width: 238px;
+      
+    }
+}
+              
+.page {
+    background: $f0 !important;
+      position: relative;
+    top: 0px;
+
+}
 .managerPgae {
-    @include media_screen_width_beta3();
+    width:100%;
     margin: 0 auto;
+    margin:0;
     position: relative;
 }
 
 .managerCard {
     padding-top: 20px;
-    width: 100%px;
+    
     min-height: 600px;
     background: white;
     border-radius: 6px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: 160px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
     font-size: 0;
     .title {
+    
         font-size: $font-size;
         color: $gray;
         margin-bottom: 40px;
     }
+    
 }
 
 .lineHead {
@@ -41,22 +82,25 @@ body {
     background: $e;
     position: absolute;
     top: 55px;
+    display:none;
 }
 
 $twoPad:70px;
 $threeMar:60px;
 .cardItem:nth-child(4n) {
-    margin-right: 0;
+    margin-right: 5px;
 }
 
 .cardItem {
     font-size: 0;
     border-radius: 4px;
-    width: ($width-min - $threeMar - $twoPad)/4;
+    
+  
     position: relative;
     display: inline-block;
     vertical-align: top;
-    margin-right: 20px;
+    margin-right: 5px;
+    margin-left:5px;
     cursor: pointer;
     -moz-box-shadow: 10px 10px 5px $border-line;
     box-shadow: 0px 0px 10px $border-line;
@@ -64,13 +108,9 @@ $threeMar:60px;
     &:hover {
         border: solid 1px #b8b8b8;
     }
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: ($width-middle - $threeMar - $twoPad)/4;
-    }
-    @media screen and (min-width: 1500px) {
-        width: ($width-lg3 - $threeMar - $twoPad)/4;
-    }
-    margin-bottom: 30px;
+   
+   
+    margin-bottom: 10px;
     height: auto;
     .modCheck {
         background-color: rgba(51, 51, 51, 0.8);
@@ -114,12 +154,12 @@ $threeMar:60px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         width: 100%;
-        height: ($width-min - $threeMar - $twoPad)/4*(9/16);
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            height: ($width-middle - $threeMar - $twoPad)/4*(9/16);
+        height:146.3px;
+     @media screen and (max-width: 775px) {
+            height: 140px;
         }
-        @media screen and (min-width: 1500px) {
-            height: ($width-lg3 - $threeMar - $twoPad)/4*(9/16);
+       @media screen and (min-width: 775px) and (max-width: 1025px) {
+            height: 141px;
         }
     }
     .cardContent {
@@ -131,6 +171,7 @@ $threeMar:60px;
         margin-top: 0px !important;
         margin-bottom: 10px;
         padding-left: 18px;
+        display:block;
         &:hover {
             color: $red-base;
         }
@@ -138,14 +179,14 @@ $threeMar:60px;
     .tags {
         font-size: $font-size-sm;
         color: $gray-light;
-        margin-bottom: 30px;
+        margin-bottom: 31px;
         padding-left: 18px;
     }
     .price {
         position: relative;
         height: 20px;
         padding-left: 18px;
-        margin-bottom: 20px;
+        margin-bottom: 21px;
         div:nth-child(1) {
             font-size: $font-size-base;
             color: $red-base;
@@ -171,6 +212,7 @@ $threeMar:60px;
         }
     }
     .videoProvider {
+        height: 70px;
         position: relative;
         .delBtn {
             width: 16px !important;
@@ -185,6 +227,9 @@ $threeMar:60px;
             &:hover {
                 background-position-y: 0px;
             }
+        }
+        img {
+        line-height:70px;
         }
     }
 }

@@ -400,6 +400,7 @@ $().ready(function() {
 							add = true;
 							return false;
 						}
+						
 						if(!checkMobile(phoneNumber.trim())){
 							$('#phone_error_team').removeClass('hide').text('手机号不正确');
 							$('#team_phoneNumber').focus();

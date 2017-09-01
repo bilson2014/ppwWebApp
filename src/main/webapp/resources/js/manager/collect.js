@@ -1,10 +1,18 @@
+
 $().ready(function(){
+	document.domain = getUrl();
 	showCollect.init();
+	$(window.parent.document).find('.frame').css('height',$('.page').height() + 300);
+	console.info($('.page').height() + 300);
+	$('.managerCard').css('height',$('.page').height()+300);
+	
 });
+
 
 var showCollect = {
      init:function(){
     	this.control();   
+    	
      },
      control:function(){
     		$('.delBtn').off('click').on('click',function(){

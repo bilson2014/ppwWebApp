@@ -462,7 +462,7 @@ var orderIndex = {
 				name = '线上-新媒体 ';
 			}
 			if(num == 4){
-				name = '线下-电销';
+				name = '线上-电销';
 			}
 			if(num == 5){
 				name = '线下-直销';
@@ -546,7 +546,7 @@ var orderIndex = {
 				name = '线上-新媒体 ';
 			}
 			if(num == 4){
-				name = '线下-电销';
+				name = '线上-电销';
 			}
 			if(num == 5){
 				name = '线下-直销';
@@ -632,7 +632,7 @@ var orderIndex = {
 				name = '线上-新媒体 ';
 			}
 			if(num == 4){
-				name = '线下-电销';
+				name = '线上-电销';
 			}
 			if(num == 5){
 				name = '线下-直销';

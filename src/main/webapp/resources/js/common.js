@@ -6,6 +6,13 @@ var initM = 3;
 var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
+
+//var UrlDo = "www.apaipian.com";
+var UrlDo = "localhost";
+
+//var Url = "http://www.apaipian.com:8087/";
+var Url = "http://localhost:8080/";
+
 $().ready(function(){
 	getImgUrl();
 	controlInput();
@@ -13,7 +20,7 @@ $().ready(function(){
 	// 弹出电话预约界面
 	$('.common-icons-tele-client').click(function(){
 		$('#toolbar-modal').modal({
-			keyboard: false
+			keyboard:false
 		})
 		$('#modal-call').on('click',function(){
 			// 检测手机号码
@@ -117,6 +124,18 @@ $().ready(function(){
 		}
 	}
 });
+
+
+function getUrl(){
+	return UrlDo;
+}
+
+function getUrlTask(){
+	return Url;
+}
+
+
+
 
 function debug(obj) {
 
@@ -878,16 +897,6 @@ function checkDatas(type) {
 	return flag;
 }
 
-// 验证 手机号
-function checkMobile(str) {
-	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
-	if (str.match(reg)) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
 function showError(id, error) {
 	if (error == "" || error == null) {
 		id.attr('data-content', "");
@@ -1055,4 +1064,38 @@ function controlMenu(){
 		    });  
 	}		
 }
+
+//自定义复选框
+function initSelect(){
+	
+	$('.orderSelect').off('click').on('click',function(e){
+		$('.oSelect').hide();
+		if($(this).hasClass('selectColor')){
+			$('.oSelect').slideUp();
+			$(this).removeClass('selectColor');
+		}
+		else
+		{
+			$('.orderSelect').removeClass('selectColor');
+			$(this).find('.oSelect').slideDown();
+			$(this).addClass('selectColor');
+		}
+		e.stopPropagation();
+	});
+	$('.oSelect li').off('click').on('click',function(e){
+		 var id = $(this).attr('data-id');
+	   	 $(this).parent().parent().find('div').text($(this).text());
+	   	 $(this).parent().parent().find('div').attr('data-id',id);
+	   	 $(this).parent().slideUp();
+	   	 $('.orderSelect').removeClass('selectColor');
+	     e.stopPropagation();
+	});
+	$('body').off('click').on('click',function(e){
+		 $('.oSelect').slideUp();
+		 $('.orderSelect').removeClass('selectColor');
+		 e.stopPropagation();
+	});
+	
+}
+
 

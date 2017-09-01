@@ -120,7 +120,7 @@ $().ready(function() {
 			var photoUrl =infoHead.attr('src');
 			if(photoUrl == null || photoUrl == '' || photoUrl == undefined){
 				var fileName ="default.png";
-				infoHead.attr('src','/team/img/'+fileName);
+				infoHead.attr('src','/resources/images/user/'+fileName);
 			}else {
 				infoHead.attr('src',getDfsHostName()+photoUrl);
 			}

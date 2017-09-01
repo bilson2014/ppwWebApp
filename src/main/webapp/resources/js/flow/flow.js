@@ -95,16 +95,14 @@ $().ready(function() {
 	loadprojecctlist();
 	$(".flowbtn").on("click", function() {
 		// $('#toolbar-check').modal({backdrop: 'static', keyboard: false});
-	
 		// initModalBtn();
 		// $("#toolbar-check").modal('show');
-	
 		// $(".sure-margin").on('click');
 		// $(".check-step").removeClass("hide");
 		// $("#listLoadCheck").addClass("hide");
 		// $(".check-step").html("请确认本阶段所有步骤已经完成<br/>即将进入下个阶段,您确定吗？");
 		checkList();
-			// setModalEvent(checkList);
+		// setModalEvent(checkList);
 	});
 	$(".cancle-margin").on("click", function() {
 		$("#toolbar-check").modal('hide');
