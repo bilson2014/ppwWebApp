@@ -51,7 +51,7 @@
 		                   <div class="title">收藏列表</div>
 		                   <div class="setCard">
 		                    <c:if test="${empty productList}">
-		                    <div id>您还没有收藏作品</div>
+		                    <div class='vail'>您还没有收藏作品</div>
 		                    </c:if>
 		                      <c:if test="${!empty productList}">
 		                         <c:forEach items="${productList }" var="solr" varStatus="status">
