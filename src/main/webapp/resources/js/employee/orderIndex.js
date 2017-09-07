@@ -57,13 +57,7 @@ $().ready(function() {
 	orderIndex.init();
 	searchInit();
 	getHelp();
-	
-
-
-	
 });
-
-
 var orderIndex = {
 		init:function(){
 			orderIndex.controlSelect();
@@ -76,7 +70,6 @@ var orderIndex = {
 			var use=adress.indexOf('?');
 			var useadress=adress.substring(use+1);
 			if (useadress==1){
-				
 				$('#orderNew').attr('data-value',useadress);
 				orderIndex.readMore(nowPage);
 			}
@@ -749,28 +742,21 @@ function checkUpdateEven(){
 	$('.setError').attr('data-content','');
 	if(hasName == undefined || hasName == "" || hasName ==null ){
 		$('#telNameError').attr('data-content','请填写联系人');
-		$('#telName').focus();
-		return false;
+		$('#telName').focus();		
 	}
 	else if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
 		$('#companyNameError').attr('data-content','请填写公司名');
 		$('#companyName').focus();
-		return false;
 	}
 	else if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
 		$('#orderComeInfoError').attr('data-content','请填写订单来源');
-		return false;
 	}
 	else if(!checkMobile(hasTel)){
 		$('#telesError').attr('data-content','手机号不正确');
 		$('#telName').focus();
-		return false;
 	}
-	else if(hasOrder == 5){
-		if(hasPeople == undefined || hasPeople == "" || hasPeople ==null ){
+	else if(hasOrder == 5&&(hasPeople == undefined || hasPeople == "" || hasPeople ==null)){
 			$('#orderPError').attr('data-content','请填写推荐人');
-			return false;
-		}
 	}
 	else {
 		$('#telNameError').attr('data-content','');
