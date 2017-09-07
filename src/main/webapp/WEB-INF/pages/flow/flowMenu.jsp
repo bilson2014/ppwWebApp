@@ -6,10 +6,12 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/css/datepicker.min.css" var="datepickerCss" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
+
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
+
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
 <spring:url value="http://www.apaipian.com:8087/" var="url" />
 
@@ -32,9 +34,10 @@
 <link rel="stylesheet" href="${datepickerCss}">
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
-<%-- <script type="text/javascript" src="${datepickerJs}"></script>
-<script type="text/javascript" src="${datepickerZhJs}"></script> --%>
+<script type="text/javascript" src="${datepickerJs}"></script>
+<script type="text/javascript" src="${datepickerZhJs}"></script> 
 <script type="text/javascript" src="${flowMenuJs}"></script>
+
 
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -53,9 +56,10 @@
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
 
-	                <a href="/order/myOrder"><div class="menuItem"><div class="orderList"></div></div></a>
+	                
 
 	                <r:identity role="employee">
+	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                </r:identity>
@@ -84,19 +88,21 @@
 	              </ul>
 	      </r:permission>  
 	              
-	              <a href="/order/myOrder">
+	               <r:identity role="employee">
 		              <div class="treeitem" id="myOrder">
 		                <div class="orderList"></div>
 		                <div class="title">我的订单</div>
-		                <%--   <img src="${imgPath}/flow/more.png"> --%>
+		                <img src="${imgPath}/flow/more.png">
 		             </div>
-	              </a>
-<!-- 	              <ul class="productList" id="orderList">
-	                  <li>处理中</li>
-	                  <li>已提交</li>
-	                  <li>无效订单</li>
-	                  </ul> -->
-	             <r:identity role="employee">
+	              
+                  <ul class="productList" id="orderList">
+	                  <li id='orderIndex' data-value="0">处理中</li>
+	                  <li id='orderSub' data-value="1">已提交</li>
+	                  <li id='orderCancle' data-value="2">无效订单</li>
+	              </ul>
+	              
+	              
+	           
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
 			                  <div class="title">收藏列表</div>

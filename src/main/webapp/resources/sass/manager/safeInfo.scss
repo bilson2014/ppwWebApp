@@ -16,7 +16,7 @@
                 background-color: #fff;
             }
             body{
-            height:1000px;
+                height:1000px;
             }
             
             //弹框信息
@@ -359,9 +359,7 @@
             
             // 信息模块
             .main .right .infos {
-             
                 margin: 0 auto;
-                // display: none;
             }
             
             .main .right .infos .first {
@@ -615,11 +613,9 @@
             }
             
             // 密码模块
-            .main .right .pas {
-                
+            .main .right .pas {           
                 margin: 0 auto;
-                display: none;
-               
+                display: none;       
             }
 
             
@@ -807,8 +803,6 @@
                 top: 250px;
                 padding-left: 10px;
                 outline: none;
-               
-
                 @media screen and (max-width: 775px) {
                     width: 200px;
                     left: 100px;
@@ -895,9 +889,7 @@
                 }
                  &:hover {
                 background:#fe2220;
-                }
-
-               
+                }              
             }
             
             //手机模块

@@ -9,7 +9,7 @@
 <spring:url value="/resources/css/employee/orderIndex.css" var="orderCss"/>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
-<spring:url value="/resources/js/common.js" var="commonJs"/>
+
 <spring:url value="/resources/js/employee/orderIndex.js" var="orderIndexJs"/>
 <spring:url value="/resources/lib/jquery/jquery.page.js" var="jqueryPageJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs" />
@@ -17,6 +17,9 @@
 <spring:url value="/resources/lib/AirDatepicker/dist/js/datepicker.min.js" var="datepickerJs" />
 <spring:url value="/resources/lib/AirDatepicker/dist/js/i18n/datepicker.zh.js" var="datepickerZhJs" />
 <spring:url value="/resources/images" var="imgPath" />
+
+
+<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -63,13 +66,13 @@
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
 	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
 	 </r:identity>
-	 <form method="post" action="/require" id="toListForm" class="hide">
+	 <form method="post" action="/require" id="toListForm" class="hide" target="_blank">
             <input type='hidden' name="indentId" id="indentId" />
             <input type='hidden' name="requireId" id="requireId"/>
             <input type='hidden' name="flag" id="flag"/>
      </form>
 	 
- 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
+
     <input type='hidden' value="${indentList.total}" id="total">
     <input type='hidden' value="0" id="role">
     <div class="page">
@@ -371,8 +374,7 @@
 	                            </ul>                
 	                       </div>
                           <div class="must"></div>
-                         </div>
-                         
+                         </div> 
                         <div class="setError longItem" >  
                           <div class="itemTitile">高层背书</div>
 	                      <div class="orderSelect">
@@ -664,9 +666,7 @@
       </div>   
     </div>
 
-    <!-- foot -->
-	 <jsp:include flush="true" page="../foot.jsp"></jsp:include>
-    <!--新版底部-->
+   
     
     <script type="text/javascript" src="${jqueryJs}"></script>
     <script type="text/javascript" src="${jqueryPageJs}"></script>

@@ -5,13 +5,9 @@ var uploader;
 var sendCodeFlag = true;
 var nowphone;
 var iphone;//保存新的手机号 避免重复
-
 $().ready(function(){
-
 	document.domain = getUrl();	
-
 	$(window.parent.document).find('.frame').css('height',$('.infos').height() + 300);
-
 	starpic();
 	userpicInfo();	
 	//提前保存原来手机号之后便于处理比较
@@ -27,7 +23,7 @@ $().ready(function(){
     $('#projectlist').addClass('hide');
     $('#projectlist').toggleClass('hide');
     $('#orderlist').addClass('hide');
-  //切换弹出框
+    //切换弹出框
     $('#order').click(function() {
         $('#orderlist').toggleClass('hide');
         $('#projectlist').addClass('hide');
@@ -123,16 +119,15 @@ function phonebind() {
         		$('#pho .newphone p').text('');
                 return false;
             } else {
-            	 $('#inputvernewpho').removeAttr("style");  
+            	$('#inputvernewpho').removeAttr("style");  
                 $('#pho .verifynewphone p').text('');
             }
         })
 	   //验证按钮点击事件
        $('#send').click(function() {
     	   $('#send').text('发送验证码');
-          	window.clearInterval(InterValObj); // 停止计时器
+           window.clearInterval(InterValObj); // 停止计时器
            $('#pho .verifynewphone p').hide();
-           
            var inputnewpho = $('#inputnewpho').val();
            var pho = $('#inputnewpho').val();
            //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）          
@@ -195,9 +190,9 @@ function phonebind() {
 						$('#pho .verifynewphone p').text("");
 						//清空点击按钮的提示
 	                	$('#send').text('发送验证码');
-//	                    //弹框显示
+	                	//弹框显示
 	                    $('.tooltip-check').show();
-//	                    //弹框中的内容部
+	                    //弹框中的内容部
 	                    $('#checkInfo').text('手机绑定成功！');
 					}else{
 						$('#inputvernewpho').attr("style","border-color:#FE5453");
@@ -268,8 +263,7 @@ function phonebind() {
         $('#sureCheck').off('click').on('click', function() {
             $('.tooltip-check').hide();
         });
-    }
-// -----------------------------------------------------------------------------   
+    }  
     //设置邮箱绑定
     function emilbind() {
         $('#emil').click(function() {
@@ -291,15 +285,9 @@ function phonebind() {
     	$('#inputnewemi').click(function(){
     		$('#orderSelect ul').hide();
     	})
-//    	$('#orderSelect  ').mouseout(function(){
-//    		$('#orderSelect ul').hide();
-//    		console.log('66');
-//    	})
     	  $('#orderSelect ul li ').mouseout(function(){
     		$('#orderSelect ul').hide();
-    		console.log('66');
     	})
-//    	onmouseout
         $('#inputnewemi').blur(function() {
             var inputnewemi = $('#inputnewemi').val().trim();
             if (inputnewemi == '' || inputnewemi == null) {
@@ -319,8 +307,7 @@ function phonebind() {
 			var change=$('#orderSelect div').text();
 			$('#orderSelect div').text($('#orderSelect ul li').text());
 			$('#orderSelect ul li').text(change);
-		})
-		
+		})	
         $('#saveem').click(function() {
             $('#emils .newemil p').show();
             var inputnewemi = $('#inputnewemi').val().trim();
@@ -378,7 +365,7 @@ function phonebind() {
     function verpassword() {
     	 $('#inputpas').click(function(){
     		 $('#inputrep').removeAttr("style"); 
-         	$('#mistakeagn').hide();
+         	 $('#mistakeagn').hide();
     	 })
         $('#inputpas').blur(function() {
             var newpas = this.value;
@@ -426,7 +413,6 @@ function phonebind() {
             	 $('#mistakeagn').hide();   
             }
             loadData(function(result){
-//            	console.log(result);
             	if(result.key){
             		$("#inputpas").removeAttr("style");
             		$('#inputrep').removeAttr("style");

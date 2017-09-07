@@ -2,6 +2,7 @@
 @import "order";
 .page {
     min-height: 500px;
+    background:#fff;
 }
 
 .setGray{
@@ -10,6 +11,11 @@
 
 .toDoing {
     tr {
+        td {
+            padding: 15px 0px 15px 0px;
+            line-height: 20px;
+
+        }
         td:nth-child(7),
         td:nth-child(8),
         td:nth-child(9),
@@ -34,6 +40,7 @@
             div {
                 background: url(/resources/images/orderManager/edit.png)no-repeat;
             }
+           
         }
         td:nth-child(9) {
             div {
@@ -75,14 +82,14 @@
     }
     th:nth-child(7),
     td:nth-child(7) {
-        width: 7%;
+        width: 8%;
         @media screen and (min-width: 1500px) {
             width: 6%;
         }
     }
     th:nth-child(8),
     td:nth-child(8) {
-        width: 7%;
+        width: 8%;
         @media screen and (min-width: 1500px) {
             width: 6%;
         }
@@ -104,6 +111,18 @@
 }
 
 .toSubmit {
+    tr{
+        th{ 
+            line-height: 20px;
+        }
+        td{
+            text-align: center;
+            padding: 0;
+            line-height: 20px;
+        }
+    }
+    
+    
     th:nth-child(1),
     td:nth-child(1) {
         width: 10%;
@@ -111,34 +130,60 @@
     th:nth-child(2),
     td:nth-child(2) {
         width: 18%;
+        @media screen and (max-width: 775px) {
+            width: 11%;
+        }
     }
     th:nth-child(3),
     td:nth-child(3) {
         width: 12%;
+        @media screen and (max-width: 775px) {
+            width: 8;
+        }
     }
     th:nth-child(4),
     td:nth-child(4) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 7%;
+        }
     }
     th:nth-child(5),
     td:nth-child(5) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(6),
     td:nth-child(6) {
         width: 12%;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(7),
     td:nth-child(7) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 5%;
+        }
     }
     th:nth-child(8),
     td:nth-child(8) {
-        width: 5%;
+        width: 7%;
+        padding:9px 0 9px 0;
+        @media screen and (max-width: 775px) {
+            width: 9%;
+        }
     }
     th:nth-child(9),
     td:nth-child(9) {
-        width: 5%;
+        width: 7%;
+        padding:9px 0 9px 0;
+        @media screen and (max-width: 775px) {
+            width: 9%;
+        }
     }
     tr {
         td:nth-child(9) {
@@ -156,7 +201,7 @@
                 width: 40px;
                 height: 30px;
                 margin: 0 auto;
-                line-height: 28px;
+                line-height: 30px;
                 cursor: pointer;
                 &:hover {
                     color: #F6A623;
@@ -173,7 +218,7 @@
                 width: 40px;
                 height: 30px;
                 margin: 0 auto;
-                line-height: 28px;
+                line-height: 30px;
                 cursor: pointer;
                 &:hover {
                     color: #50E3C2;
@@ -224,6 +269,9 @@
     th:nth-child(8),
     td:nth-child(8) {
         width: 7%;
+        @media screen and (max-width: 775px) {
+            width: 8%;
+        }
     }
     th:nth-child(9),
     td:nth-child(9) {
@@ -273,13 +321,25 @@
 .page-section {
     position: relative;
     width: 100%;
-    margin: 0 auto 60px;
+   
+
 }
 
 .page-wrap {
-    @include media_screen_width_beta3();
+  width:1074px;
     margin: auto;
     text-align: center;
+    @media screen and (max-width: 775px) {
+        width: 667px;
+    }
+    @media screen and (min-width: 775px) and (max-width: 850px) {
+        width: 739px;
+
+    }
+    @media screen and (min-width: 850px) and (max-width: 1025px) {
+        width: 854px;
+
+    }
 }
 
 .page-wrap .pagination {
@@ -322,7 +382,7 @@
         width: 720px;
         height: auto;
         position: absolute;
-        top: 50%;
+        top: 328px;
         left: 50%;
         margin-top: -200px;
         margin-left: -360px;
@@ -509,7 +569,7 @@
         width: 665px !important;
         height: 500px !important;
         position: absolute;
-        top: 50%;
+        top: 260px;
         left: 50%;
         margin-top: -250px !important;
         margin-left: -332px !important;
@@ -583,7 +643,7 @@
         width: 450px;
         height: 310px;
         position: absolute;
-        top: 50%;
+        top: 270px;
         left: 50%;
         margin-top: -155px;
         margin-left: -225px;

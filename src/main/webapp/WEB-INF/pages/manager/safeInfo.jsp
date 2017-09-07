@@ -30,15 +30,8 @@
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
 <spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
-
-
-
-<%-- --%>
 <spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
 <%--去除底部客服 --%>
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -49,19 +42,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title></title>
-
+<title>安全信息页</title>
 <link rel="stylesheet" href="${safeCss}">
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <script src="${jsonJs }"></script>
 <script type="text/javascript" src="${safeInfoJs}"></script>
-
-
 <script src="${jqueryJs }"></script>
 <script src="${pluginJs }"></script>
 <script src="${blockUIJs }"></script>
@@ -80,33 +67,31 @@
 </head>
 <body>
 
-
   <!-- 弹出框 -->
     <div class="tooltip-check" id="tooltip-check">
         <div class="checkCard">
             <div class="hint">提示</div>
             <div class="line"></div>
-            <div class="closeCheck" id='closeCheck'>X</div>
-            <!-- <img src="/resources/images/orderManager/waring.png"> -->
-            <div class="checkInfo" id="checkInfo">lalalalal</div>
+            <div class="closeCheck" id='closeCheck'>X</div>      
+            <div class="checkInfo" id="checkInfo"></div>
             <div class="checkBottom">
                 <div class="sureCheck" id="sureCheck">确认</div>
             </div>
         </div>
     </div>
-  <!--main部分  -->
-<div class="main">
+    
+  	<!--main部分  -->
+	<div class="main">
         <div class="right" id="right">
             <!--信息模块  -->
             <div class="infos" id="infos">
                 <div class="first">
-                    <span class="text">员工头像</span>    
+                    <span class="text">员工头像</span>
                     <div class="user-icon" > 
                         <img alt="用户头像" src="../resources/images/provider/initLogo.png" data-value="${employee.employeeImg}"  class="img-circle" id="user-img" width=120 height=120/>
-                      	<input type="hidden" id="user_img_url" value="../resources/images/provider/initLogo.png">
+                      	<input type="hidden" id="user_img_url" value="<spring:url url='/resources/images/provider/initLogo.png'/>">
                     </div>                 
                     <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
-                    
                     <div class="upload-btn">
                         <div id="uploadBt">上传头像</div>
                       <input type="file" name="file" id="file" style="display: none;"/>
@@ -127,9 +112,7 @@
                         <span>用户名</span>
                         <span id='loginName'>${employee.employeeLoginName}</span>
                     </div>
-                    <div class="but" id="password">
-                        设置
-                    </div>
+                    <div class="but" id="password">设置</div>
                 </div>
                 <div class="third">
                     <div class="phone">
@@ -140,9 +123,7 @@
                         <span>原手机号</span>
                         <span id="nowphone">${employee.phoneNumber}</span> 
                     </div>
-                    <div class="but" id="phone">
-                        设置
-                    </div>
+                    <div class="but" id="phone">设置</div>
                 </div>
                 <div class="four">
                     <div class="mail">
@@ -153,9 +134,7 @@
                         <span>现用邮箱</span>
                         <span id='nowmail'>${employee.email}</span>
                     </div>
-                    <div class="but" id='emil'>
-                        设置
-                    </div>
+                    <div class="but" id='emil'>设置</div>
                 </div>
             </div>
             <!--密码模块  -->
@@ -168,9 +147,6 @@
                     <span>新密码</span>
                     <input id='inputpas' type="password"></input>
                     <p></p>
-                    <!-- <div id="correct">√</div>
-                    <div id='mistake'>×</div> -->
-
                 </div>
                 <div class="reppas">
                     <span>确认密码</span>
@@ -182,12 +158,6 @@
                     <img src='../resources/images/provider/error.png'>
                     </div>
                 </div>
-                <!-- <div class="verify">
-                    <span>验证码</span>
-                    <input id="inputver"></input>
-                    <span>发送验证码</span>
-                    <p>*验证码错误</p>
-                </div> -->
                 <div class="btn">
                     <span id="pascancel">取消</span>
                     <span id="saverep">保存</span>
@@ -203,12 +173,6 @@
                     <span>原手机号</span>
                     <span id='conceal'></span>
                 </div>
-                <!-- <div class="verifyphone">
-                    <span>验证手机</span>
-                    <input id="inputverpho"></input>
-                    <span>发送验证码</span>
-                    <p></p>
-                </div> -->
                 <div class="newphone">
                     <span>新手机号</span>
                     <input id="inputnewpho"></input>
@@ -233,20 +197,11 @@
                 </div>
                 <div class="oldemil">
                     <span>原邮箱</span>
-                    <span id='oldemails'>dahfkdfakj@163.com</span>
+                    <span id='oldemails'></span>
                 </div>
                 <div class="newemil">
                     <span>新邮箱</span>
                     <input id="inputnewemi" ></input>
-             <!-- <span> style="border-color:red" 
-                    <select>
-                         <option selected>@paipianwang.com</option>
-                         <option>@paipianwang.cn</option>
-                     </select>
-                     
-                </span>
-                
-                 --> 
                 <div id='orderSelect'>
                 <span id='biao'>@</span>
                 	<div>paipianwang.com</div>
@@ -255,17 +210,8 @@
                 		<li>paipianwang.cn</li>
                 	</ul>
                 </div>
-                
-                    <!-- <span>.cn .com</span> -->
-
                     <p></p>
-                </div>
-                <!-- <div class="verifyemil">
-                    <span>验证码</span>
-                    <input id="inputveremi"></input>
-                    <span>发送验证码</span>
-                    <p></p>
-                </div> -->
+                </div>    
                 <div class="btn">
                     <span id="emilcancel">取消</span>
                     <span id="saveem">保存</span>

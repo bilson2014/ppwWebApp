@@ -6,7 +6,10 @@ $().ready(function() {
 		$('#needBtn').hide();
 	}
 	$('#cancleOrderList').off('click').on('click',function(){
-		 window.location.href=getContextPath()+'/order/myOrder';
+	
+		 window.location.href=getContextPath()+'/project/running';
+//		 $('.frame').attr('src',"/order/myOrder?1");	
+	
 	});
 	
 });
@@ -17,7 +20,8 @@ var orderIndex = {
 		},
 		controlModel:function(){
 			$('.headerSave').off('click').on('click',function(){
-				getNeedValue($('#requireId').val());
+				 window.location.href=getContextPath()+'/project/running';
+//				getNeedValue($('#requireId').val());
 			});
 		},
 };

@@ -6,8 +6,17 @@
             .datepickers-container {
                 z-index: 9999 !important;
             }
+.tableLists {
+background:pink;
+   width:1190px;
+    @media screen and (max-width: 900px) {
+        width: 848px;
+    }
+     @media screen and (min-width: 900px) and (max-width: 1152px) {
+        width: 1116px;
 
-
+    }
+}
 
 
             body {

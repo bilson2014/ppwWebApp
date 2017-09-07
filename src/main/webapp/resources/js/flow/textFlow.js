@@ -22,8 +22,10 @@ $().ready(function() {
 	doPasue();
 	doFinish();
 	toSave();
+	
 	$('#toCreate').parent().attr('href',getUrlTask() + "project/start/project")
 	checkState();
+	
 });
 
 function checkState(){
@@ -36,6 +38,9 @@ function checkState(){
 		    if(state.trim() == "safe"){
 		    	checkClear(1);
 		    }
+		    if(state.trim() == "order"){
+		    	checkClear(2);
+		    }
 }
 
 function checkClear(who){
@@ -46,8 +51,23 @@ function checkClear(who){
 	$('#nowDoing').removeClass('checkLi');
 	if(who == 0){
 		 $('.frame').attr('src',"/mgr/favourites");
-	}else{
+	}else if (who==1){
 		$('.frame').attr('src',"/mgr/safeInfo");
+	}else{
+		$('.frame').attr('src',"/order/myOrder?1");
+		$('#orderIndex').addClass('checkLi');
+		$('#orderSub').removeClass('checkLi');
+		$('#orderCancle').removeClass('checkLi');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe').removeClass('treeitemRed ');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').addClass('open');
+		
 	}
 }
 
@@ -127,6 +147,7 @@ function toSave(){
         $('.frame').attr('src',"/mgr/favourites");
 	});	
 }
+
 
 
 

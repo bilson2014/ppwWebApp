@@ -45,6 +45,7 @@ var  ORDER_SUBMIT = 7;
 var nowNum = 1;
 var sUserCompany = '',sRealName = '',sIndent_tele = '',sIndentSource = -1,timeOld = '',timeNew = '';
 $().ready(function() {
+	document.domain = getUrl();
 	$("input[name$='time']").datepicker({
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
@@ -56,7 +57,12 @@ $().ready(function() {
 	orderIndex.init();
 	searchInit();
 	getHelp();
+	
+
+
+	
 });
+
 
 var orderIndex = {
 		init:function(){
@@ -66,27 +72,43 @@ var orderIndex = {
 			orderIndex.initOrderTitle();
 		},
 		initOrderTitle:function(){
-			$('.showStatus div').off('click').on('click',function(){
-				if(!$(this).hasClass('orderNew')){
-					clearSearch();
-					$('.showStatus div').removeClass('active');
-					$(this).addClass('active');
-					now_order = $(this).attr('data-value');
-					if(now_order == 0){
-						orderIndex.readMore(nowPage);
-					}
-					if(now_order == 1){
-						orderIndex.readSub(nowPage);
-					}
-					if(now_order == 2){
-						orderIndex.readUnAle(nowPage);
-					}
-				}else{
-					$('.removeLi').addClass('hide');
-					newOrderEven(1);
-				}
+			var adress=window.location.href;
+			var use=adress.indexOf('?');
+			var useadress=adress.substring(use+1);
+			if (useadress==1){
 				
-			});
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readMore(nowPage);
+			}
+			if (useadress==2){
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readSub(nowPage);
+			}
+			if (useadress==3){
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readUnAle(nowPage);
+			}
+//			$('.showStatus div').off('click').on('click',function(){
+//				if(!$(this).hasClass('orderNew')){
+//					clearSearch();
+//					$('.showStatus div').removeClass('active');
+//					$(this).addClass('active');
+//					now_order = $(this).attr('data-value');
+//					if(now_order == 0){
+//						orderIndex.readMore(nowPage);
+//					}
+//					if(now_order == 1){
+//						orderIndex.readSub(nowPage);
+//					}
+//					if(now_order == 2){
+//						orderIndex.readUnAle(nowPage);
+//					}
+//				}else{
+//					$('.removeLi').addClass('hide');
+//					newOrderEven(1);
+//				}
+//				
+//			});
 		},
 		readMore:function(num){
 			var page = num;
@@ -94,7 +116,9 @@ var orderIndex = {
 			var root = $("#setTable");
 			root.html("");
 			root.append(orderIndex.createTableTitle());
+			//创建表头
 			loadData(function (res){
+				//res有数据的数量total和 数组rows
 				if(res != null && res != undefined){
 					var rows =  res.rows;
 					// 数据填充！
@@ -107,6 +131,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -138,6 +163,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -170,6 +196,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -185,20 +212,23 @@ var orderIndex = {
 		
 		pagination:function(total){
 			$(".pagination").html('');
+			
 			$(".pagination").initPage()
 			$(".pagination").createPage({
 				pageCount: Math.ceil(total / pageSize),
 				current: nowPage,
 				backFn:function(p){
 					nowPage = p;
-					var loadData = $('.active').attr('data-value');
-					if(loadData == 0){
+					var loadData = $('#orderNew').attr('data-value');
+
+					
+					if(loadData == 1){
 						orderIndex.readMore(nowPage);
 					}
-					if(loadData == 1){
+					if(loadData == 2){
 						orderIndex.readSub(nowPage);
 					}
-					if(loadData == 2){
+					if(loadData == 3){
 						orderIndex.readUnAle(nowPage);
 					}
 				}
@@ -722,27 +752,36 @@ function checkUpdateEven(){
 		$('#telName').focus();
 		return false;
 	}
-	if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
+	else if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
 		$('#companyNameError').attr('data-content','请填写公司名');
 		$('#companyName').focus();
 		return false;
 	}
-	if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
+	else if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
 		$('#orderComeInfoError').attr('data-content','请填写订单来源');
 		return false;
 	}
-	if(!checkMobile(hasTel)){
+	else if(!checkMobile(hasTel)){
 		$('#telesError').attr('data-content','手机号不正确');
 		$('#telName').focus();
 		return false;
 	}
-	if(hasOrder == 5){
+	else if(hasOrder == 5){
 		if(hasPeople == undefined || hasPeople == "" || hasPeople ==null ){
 			$('#orderPError').attr('data-content','请填写推荐人');
 			return false;
 		}
 	}
-	return true;
+	else {
+		$('#telNameError').attr('data-content','');
+		$('#companyNameError').attr('data-content','');
+		$('#orderComeInfoError').attr('data-content','');
+		$('#telesError').attr('data-content','');
+		$('#orderPError').attr('data-content','');
+		return true;
+		
+	}
+	
 }
 
 //触发修改事件
@@ -758,12 +797,12 @@ function infoEven(){
 }
 //触发新建事件
 function orderNewEven(){
-//		$('.orderNew').off('click').on('click',function(){
-//			var id = $(this).parent().find('.id').text();
-//			$('#NewOrder').show();
-//			$('.removeLi').addClass('hide');
-//		    newOrderEven(1);
-//		});
+		$('.orderNew').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			$('.removeLi').addClass('hide');
+		    newOrderEven(1);
+		});
 }
 //新建 修改事件
 function newOrderEven(check,item){
@@ -903,7 +942,7 @@ function initUpdateInfo(){
 
 function bangSubmit(check,item){
 	$('#submitEdit').off('click').on('click',function(){
-		$('#submitEdit').off('click');
+		console.log('1');
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
 			var subCompany =$('#companyName').val();
@@ -913,6 +952,8 @@ function bangSubmit(check,item){
 			var dataIndentName = '自主研发';
 			var textArea = $('#orderNote').val();
 			var indent_recomment = $('#indent_recomment').val();
+			
+			console.log('2');
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
@@ -1294,14 +1335,14 @@ function search(){
 		sIndentSource = parseInt(ss);
 	timeOld = $('#timeOld').val();
 	timeNew = $('#timeNew').val();
-	
-	if(now_order == 0){
+	var loadData = $('#orderNew').attr('data-value');
+	if(loadData == 1){
 		orderIndex.readMore(nowPage);
 	}
-	if(now_order == 1){
+	if(loadData == 2){
 		orderIndex.readSub(nowPage);
 	}
-	if(now_order == 2){
+	if(loadData == 3){
 		orderIndex.readUnAle(nowPage);
 	}
 	
@@ -1569,13 +1610,14 @@ function IsUrl(str){
 //	return false;
 //}
 function refresh(){
-	if(now_order == 0){
+	var loadData = $('#orderNew').attr('data-value');
+	if(loadData == 1){
 		orderIndex.readMore(nowPage);
 	}
-	if(now_order == 1){
+	if(loadData == 2){
 		orderIndex.readSub(nowPage);
 	}
-	if(now_order == 2){
+	if(loadData == 3){
 		orderIndex.readUnAle(nowPage);
 	}
 }
