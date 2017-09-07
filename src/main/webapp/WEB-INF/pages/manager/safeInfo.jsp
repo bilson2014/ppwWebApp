@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
 <%-- import CSS --%>
 <spring:url value="/resources/css/manager/safeInfo.css" var="safeCss"/>
@@ -31,6 +30,7 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
 <spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
 <spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
+<spring:url value="/resources/images" var="imgPath" />
 <%--去除底部客服 --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -87,9 +87,9 @@
             <div class="infos" id="infos">
                 <div class="first">
                     <span class="text">员工头像</span>
-                    <div class="user-icon" > 
-                        <img alt="用户头像" src="../resources/images/provider/initLogo.png" data-value="${employee.employeeImg}"  class="img-circle" id="user-img" width=120 height=120/>
-                      	<input type="hidden" id="user_img_url" value="<spring:url url='/resources/images/provider/initLogo.png'/>">
+                    <div class="user-icon" >          
+                        <img alt="用户头像" src="${imgPath}/provider/initLogo.png" data-value="${employee.employeeImg}"  class="img-circle" id="user-img" width=120 height=120/>
+                      	<input type="hidden" id="user_img_url" value="<spring:url url='${imgPath}/provider/initLogo.png'/>">
                     </div>                 
                     <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
                     <div class="upload-btn">
@@ -152,10 +152,10 @@
                     <span>确认密码</span>
                     <input id='inputrep' type="password"></input>
                     <div id="correctagn">
-                    <img src='../resources/images/provider/sure.png'>
+                    <img src='${imgPath}/provider/sure.png'>
                     </div>
                     <div id='mistakeagn'>
-                    <img src='../resources/images/provider/error.png'>
+                    <img src='${imgPath}/provider/error.png'>
                     </div>
                 </div>
                 <div class="btn">
@@ -205,7 +205,7 @@
                 <div id='orderSelect'>
                 <span id='biao'>@</span>
                 	<div>paipianwang.com</div>
-                	<img src='/resources/images/orderManager/select.png'>
+                	<img src='${imgPath}/orderManager/select.png'>
                 	<ul>
                 		<li>paipianwang.cn</li>
                 	</ul>

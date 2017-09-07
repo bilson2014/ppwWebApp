@@ -5,8 +5,9 @@ var uploader;
 var sendCodeFlag = true;
 var nowphone;
 var iphone;//保存新的手机号 避免重复
+
 $().ready(function(){
-	document.domain = getUrl();	
+	document.domain = getUrl();
 	$(window.parent.document).find('.frame').css('height',$('.infos').height() + 300);
 	starpic();
 	userpicInfo();	
@@ -65,6 +66,7 @@ function phonebind() {
         $('#pho').toggleClass('show');
         $('#infos').addClass('hide');     
     })
+    //弹出框取消事件
     $('#phocancel').click(function() {
     	$('#send').text('发送验证码');
     	window.clearInterval(InterValObj); // 停止计时器
@@ -78,132 +80,136 @@ function phonebind() {
         $('#pho .newphone p').text(''); 
         $("#inputnewpho").removeAttr("style");  
     })
+    
     $('#inputnewpho').click(function(){
-    	 $('#inputvernewpho').removeAttr("style");  
-         $('#pho .verifynewphone p').text('');
+    	$('#inputvernewpho').removeAttr("style");  
+        $('#pho .verifynewphone p').text('');
     })
-        //输入手机号焦点的改变
-        $('#inputnewpho').blur(function() {
-            var inputnewpho = this.value;  
-            var pho = $('#inputnewpho').val();
-            var rge = /^1[34578]\d{9}$/;
-            if (inputnewpho.length<=0){
-            	$("#inputnewpho").attr("style","border-color:#FE5453");	
-   			 	$('#pho .newphone p').text("*手机号码不能为空");
-                $('#pho .verifynewphone p').text('');
-                return false;
-            }else if (inputnewpho==phones||inputnewpho==allphone){
-            	$("#inputnewpho").attr("style","border-color:#FE5453");
-            	$('#pho .newphone p').text("*请输入新的手机号码");
-            	return false;
-            }else {
-            	if(!rge.test(pho)){
-            		$("#inputnewpho").attr("style","border-color:#FE5453");
-            		$('#pho .newphone p').text("*请输入正确的手机码");
-            		return false;
-            	}else 
-            		$("#inputnewpho").removeAttr("style");  
-            		$('#pho .newphone p').text('');
-            }
-        })
-        $('#inputvernewpho').click(function(){
-        	 $('#inputvernewpho').removeAttr("style");  
-             $('#pho .verifynewphone p').text('');
-        })
-        $('#inputvernewpho').blur(function() {
-            var inputvernewpho = this.value;
-            if (inputvernewpho.length <= 0) {
-            	 $('#inputvernewpho').attr("style","border-color:#FE5453");
-                $('#pho .verifynewphone p').text("*验证码不能为空");
-                $("#inputnewpho").removeAttr("style");  
-        		$('#pho .newphone p').text('');
-                return false;
-            } else {
-            	$('#inputvernewpho').removeAttr("style");  
-                $('#pho .verifynewphone p').text('');
-            }
-        })
-	   //验证按钮点击事件
-       $('#send').click(function() {
-    	   $('#send').text('发送验证码');
-           window.clearInterval(InterValObj); // 停止计时器
-           $('#pho .verifynewphone p').hide();
-           var inputnewpho = $('#inputnewpho').val();
-           var pho = $('#inputnewpho').val();
-           //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）          
-           var rge = /^1[34578]\d{9}$/; 
-           if (inputnewpho.length <= 0) {
-        	   $("#inputnewpho").attr("style","border-color:#FE5453");
-               $('#pho .newphone p').text("*手机号码不能为空");
-               $('#pho .verifynewphone p').text('');
-               return false;
-           } else if (!rge.test(pho)) {
-        	   $("#inputnewpho").attr("style","border-color:#FE5453");
-               $('#pho .newphone p').text("*请输入正确的手机码");
-               return false;
-           }else if (inputnewpho==phones||inputnewpho==allphone){
-        	   $("#inputnewpho").attr("style","border-color:#FE5453");
-           	  $('#pho .newphone p').text("*请输入新的手机号码");
-           	  return false;
-           }else {
-        	   $("#inputnewpho").removeAttr("style");
-               $('#pho .newphone p').text('');
-               //输入成功 发送验证码的方法
-               verification(inputnewpho);           
-           }
-       }) 
-       $('#savepho').click(function() {
-		   var inputnewpho = $('#inputnewpho').val();
-	       var pho = $('#inputnewpho').val();
-	       var rge = /^1[34578]\d{9}$/; 
-	       var oldCode = $("#inputvernewpho").val();
-	       $("#inputnewpho").removeAttr("style");
-	       $('#inputvernewpho').removeAttr("style");  
-	       if (inputnewpho.length <= 0) {
-	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
-	           $('#pho .newphone p').text("*手机号码不能为空");
-	           $('#pho .verifynewphone p').text('');
-	           return false;
-	       } else if (!rge.test(pho)) {
-	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
-	           $('#pho .newphone p').text("*请输入正确的手机码");
-	           return false;
-	       }else if (inputnewpho==phones||inputnewpho==allphone){
-	    	   $("#inputnewpho").attr("style","border-color:#FE5453");
-	       	$('#pho .newphone p').text("*请输入新的手机号码");
+    //输入手机号焦点的改变
+    $('#inputnewpho').blur(function() {
+    	var inputnewpho = this.value;  
+        var pho = $('#inputnewpho').val();
+        var rge = /^1[34578]\d{9}$/;
+        if (inputnewpho.length<=0){
+        	$("#inputnewpho").attr("style","border-color:#FE5453");	
+        	$('#pho .newphone p').text("*手机号码不能为空");
+        	$('#pho .verifynewphone p').text('');
+            return false;
+        }else if (inputnewpho==phones||inputnewpho==allphone){
+        	$("#inputnewpho").attr("style","border-color:#FE5453");
+        	$('#pho .newphone p').text("*请输入新的手机号码");
+        	return false;
+        }else {
+        	if(!rge.test(pho)){
+        		$("#inputnewpho").attr("style","border-color:#FE5453");
+        		$('#pho .newphone p').text("*请输入正确的手机码");
+        		return false;
+        	}else {
+        		$("#inputnewpho").removeAttr("style");  
+        	    $('#pho .newphone p').text('');
+        	}
+        		
+        }
+    })
+        
+    $('#inputvernewpho').click(function(){
+    	$('#inputvernewpho').removeAttr("style");  
+        $('#pho .verifynewphone p').text('');
+    })
+    $('#inputvernewpho').blur(function() {
+        var inputvernewpho = this.value;
+        if (inputvernewpho.length <= 0) {
+            $('#inputvernewpho').attr("style","border-color:#FE5453");
+            $('#pho .verifynewphone p').text("*验证码不能为空");
+            $("#inputnewpho").removeAttr("style");  
+            $('#pho .newphone p').text('');
+            return false;
+        } else {
+        	$('#inputvernewpho').removeAttr("style");  
+            $('#pho .verifynewphone p').text('');
+        }
+    })
+	//验证按钮点击事件
+    $('#send').click(function() {
+    	$('#send').text('发送验证码');
+        window.clearInterval(InterValObj); // 停止计时器
+        $('#pho .verifynewphone p').hide();
+        var inputnewpho = $('#inputnewpho').val();
+        var pho = $('#inputnewpho').val();
+        //再次验证的手机号 确保与之前的不一样（此处的获取到的手机号是加密）          
+        var rge = /^1[34578]\d{9}$/; 
+        if (inputnewpho.length <= 0) {
+        	$("#inputnewpho").attr("style","border-color:#FE5453");
+            $('#pho .newphone p').text("*手机号码不能为空");
+            $('#pho .verifynewphone p').text('');
+            return false;
+        } else if (!rge.test(pho)) {
+        	$("#inputnewpho").attr("style","border-color:#FE5453");
+            $('#pho .newphone p').text("*请输入正确的手机码");
+            return false;
+        } else if (inputnewpho==phones||inputnewpho==allphone){
+        	$("#inputnewpho").attr("style","border-color:#FE5453");
+           	$('#pho .newphone p').text("*请输入新的手机号码");
+           	return false;
+        } else {
+        	$("#inputnewpho").removeAttr("style");
+            $('#pho .newphone p').text('');
+            //输入成功 发送验证码的方法
+            verification(inputnewpho);           
+        }
+     }) 
+     $('#savepho').click(function() {
+    	 var inputnewpho = $('#inputnewpho').val();
+	     var pho = $('#inputnewpho').val();
+	     var rge = /^1[34578]\d{9}$/; 
+	     var oldCode = $("#inputvernewpho").val();
+	     $("#inputnewpho").removeAttr("style");
+	     $('#inputvernewpho').removeAttr("style");  
+	     if (inputnewpho.length <= 0) {
+	    	 $("#inputnewpho").attr("style","border-color:#FE5453");
+	         $('#pho .newphone p').text("*手机号码不能为空");
+	         $('#pho .verifynewphone p').text('');
+	         return false;
+	     } else if (!rge.test(pho)) {
+	    	 $("#inputnewpho").attr("style","border-color:#FE5453");
+	         $('#pho .newphone p').text("*请输入正确的手机码");
+	         return false;
+	     } else if (inputnewpho==phones||inputnewpho==allphone) {
+	    	 $("#inputnewpho").attr("style","border-color:#FE5453");
+	       	 $('#pho .newphone p').text("*请输入新的手机号码");
 	       	 return false;
-	       }else if (oldCode.length<=0){
-	    	   $('#pho .newphone p').text('');
-				$('#pho .verifynewphone p').show();
-				$('#inputvernewpho').attr("style","border-color:#FE5453");
-				$('#pho .verifynewphone p').text("*验证码不能为空");	
-				return false;
-			}   
-	       else {
-	    	   $('#inputvernewpho').removeAttr("style");
-	    	   $('#pho .verifynewphone p').hide();       
-	       }
-				loadData(function(result){	
-					if(result.key){	
-						$("#inputnewpho").removeAttr("style");
-						$('#inputvernewpho').removeAttr("style");
-						$('#pho .verifynewphone p').text("");
-						//清空点击按钮的提示
-	                	$('#send').text('发送验证码');
-	                	//弹框显示
-	                    $('.tooltip-check').show();
-	                    //弹框中的内容部
-	                    $('#checkInfo').text('手机绑定成功！');
-					}else{
-						$('#inputvernewpho').attr("style","border-color:#FE5453");
-						$('#pho .verifynewphone p').show();
-						 $('#pho .verifynewphone p').text("*"+result.value);
-					}
-				}, getContextPath() + '/mgr/modify/phone', $.toJSON({					
-					phoneNumber: $("#inputnewpho").val(),
-					verification_code: oldCode						
-				}));
-       		})
+	     } else if ( oldCode.length<=0 ) {
+	    	 $('#pho .newphone p').text('');
+	    	 $('#pho .verifynewphone p').show();
+			 $('#inputvernewpho').attr("style","border-color:#FE5453");
+		     $('#pho .verifynewphone p').text("*验证码不能为空");	
+			 return false;
+		 }   
+	     else {
+	    	 $('#inputvernewpho').removeAttr("style");
+	    	 $('#pho .verifynewphone p').hide();       
+	     }
+		 loadData(function(result){	
+			 if(result.key){	
+			     $("#inputnewpho").removeAttr("style");
+				 $('#inputvernewpho').removeAttr("style");
+				 $('#pho .verifynewphone p').text("");
+				//清空点击按钮的提示
+	             $('#send').text('发送验证码');
+	             //弹框显示
+	             $('.tooltip-check').show();
+	             //弹框中的内容部
+	             $('#checkInfo').text('手机绑定成功！');
+			 }else{
+				 $('#inputvernewpho').attr("style","border-color:#FE5453");
+				 $('#pho .verifynewphone p').show();
+				 $('#pho .verifynewphone p').text("*"+result.value);
+			 }
+		 }, getContextPath() + '/mgr/modify/phone', $.toJSON({					
+			phoneNumber: $("#inputnewpho").val(),
+			verification_code: oldCode						
+		}));
+       })
        $('#sureCheck').click(function() {
            if ($('#checkInfo').text().trim() == '手机绑定成功！') {
         	   allphone=$("#inputnewpho").val();

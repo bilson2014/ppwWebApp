@@ -65,11 +65,13 @@ var orderIndex = {
 			orderIndex.pagination($('#total').val());
 			orderIndex.initOrderTitle();
 		},
-		initOrderTitle:function(){
-			var adress=window.location.href;
-			var use=adress.indexOf('?');
-			var useadress=adress.substring(use+1);
-			if (useadress==1){
+		initOrderTitle : function(){
+			//在 地址跳转的之前 每个 地址 之后 添加？数字 以便 对于右边内容的跳转
+			//获取左侧状态的iframe的url的值  以便右边内容的跳转  对当前页面内容的获取加载
+			var adress = window.location.href;
+			var use = adress.indexOf('?');
+			var useadress = adress.substring(use+1);
+			if (useadress == 1){
 				$('#orderNew').attr('data-value',useadress);
 				orderIndex.readMore(nowPage);
 			}
@@ -103,6 +105,7 @@ var orderIndex = {
 //				
 //			});
 		},
+		//每个跳转的页面内容的加载(处理)
 		readMore:function(num){
 			var page = num;
 			$('table').attr('class','toDoing');
@@ -137,6 +140,7 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
+		//已提交的内容加载
 		readSub:function(num){
 			var page = num;
 			$('table').attr('class','toSubmit');
@@ -169,6 +173,7 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
+		//无效订单的内容加载
 		readUnAle:function(num,b){
 			var page = num;
 			var rows = pageSize;
@@ -202,10 +207,9 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
-		
+		//页面跳转的数据加载
 		pagination:function(total){
-			$(".pagination").html('');
-			
+			$(".pagination").html('');	
 			$(".pagination").initPage()
 			$(".pagination").createPage({
 				pageCount: Math.ceil(total / pageSize),
@@ -213,8 +217,6 @@ var orderIndex = {
 				backFn:function(p){
 					nowPage = p;
 					var loadData = $('#orderNew').attr('data-value');
-
-					
 					if(loadData == 1){
 						orderIndex.readMore(nowPage);
 					}
@@ -315,6 +317,7 @@ var orderIndex = {
 				$(Real).attr('data-id',id);
 				$(Real).attr('data-content',phone);
 			});
+			//需求文档事件
 			$('.edit').off('click').on('click',function(){
 				$('#indentId').val($(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
@@ -381,7 +384,6 @@ var orderIndex = {
 			});
 			//确认真实
 			$('#real').off('click').on('click',function(){
-
 				var phone = $(this).attr('data-content');
 				var id = $(this).attr('data-id');
 				if(checkUbListUserDes()){
@@ -1595,6 +1597,7 @@ function IsUrl(str){
 //	}
 //	return false;
 //}
+//清空按钮之后的重新加载事件
 function refresh(){
 	var loadData = $('#orderNew').attr('data-value');
 	if(loadData == 1){
@@ -1607,9 +1610,8 @@ function refresh(){
 		orderIndex.readUnAle(nowPage);
 	}
 }
-
+//添加用户的事件
 function updateUser(id){
-	
 	var userName = $('#userName').val();
 	var realName = $('#muRealName').val();
 	var userCompany = $('#muUserCompany').val();
@@ -1626,9 +1628,8 @@ function updateUser(id){
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
 	var referrerId = $('#referrerId').attr('data-id');
-	
 	if(oldmuTelephone == telephone){
-		//  未注册
+		//未注册
 		//用户修改
 		loadData(function(res){
 			$('#modifyUserInfo').hide();
