@@ -431,6 +431,7 @@ function phonebind() {
 				employeePassword: Encrypt($('#inputrep').val())			
 			}));
         })
+        //弹框确定按钮判断值   
         $('#sureCheck').click(function() {
             if ($('#checkInfo').text().trim() == '登录密码设置成功！') {
                 $('#pas').toggleClass('show');
@@ -444,7 +445,7 @@ function phonebind() {
             }
         })
     }
-  //图片上传
+    //图片上传
     function userpicInfo() {
     	uploader && uploader.destroy();
     	uploader = WebUploader.create({
