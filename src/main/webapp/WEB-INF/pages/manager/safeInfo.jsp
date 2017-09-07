@@ -89,7 +89,7 @@
                     <span class="text">员工头像</span>
                     <div class="user-icon" >          
                         <img alt="用户头像" data-value="${employee.employeeImg}" src="${imgPath}/provider/initLogo.png"   class="img-circle" id="user-img" width=120 height=120/>
-                      	<input type="hidden" id="user_img_url" value="../resources/images/provider/initLogo.png">
+                      	<input type="hidden" id="user_img_url" value="${imgPath}/provider/initLogo.png">
                     </div>                 
                     <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
                     <div class="upload-btn">
