@@ -16,7 +16,7 @@
               <div class="orderIndex active hide" data-value="0">处理中</div>
               <div class="orderSub hide" data-value="1">已提交</div>
               <div class="orderCancle hide" data-value="2">无效订单</div>
-              <div class="orderNew" id='orderNew'>  &nbsp;&nbsp; &nbsp;新建订单</div>
+              <div class="orderNew" id='orderNew'> <span id='picAdd'></span> &nbsp;&nbsp; &nbsp;新建订单</div>
          </div>   
          <div class="searchInfo">
             <div>公司名称</div>

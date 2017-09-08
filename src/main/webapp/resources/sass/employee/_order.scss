@@ -78,20 +78,29 @@ body {
         position: absolute;
         right: 5px;
         top:67px;
-        background: #FFFFFF;
-        border: 1px solid #999999;
+        background: #fe2220;
+        color: #fff;
         border-radius: 4px;
-        font-size: 14px;
-        background: url(/resources/images/provider/add.png) no-repeat;
-        background-position-y: 8px;
-        background-position-x: 15px;
-        background-size: 14px;
+        font-size: 14px;  
         @media screen and (max-width: 775px) {
             top:68px;
         }
+
     }
 }
 
+   #picAdd{
+        width: 20px;
+        height: 15px;
+        display: inline-block;
+        background: url(/resources/images/provider/add.png) no-repeat;
+        background-position-y: -15px;
+        background-position-x: 3px;
+        background-size: 15px;
+        position: absolute;
+        top: 7px;
+        left: 10px;    
+        }
 .searchInfo {
     #sUserCompany{
         @media screen and (min-width: 775px) and (max-width: 1025px) {

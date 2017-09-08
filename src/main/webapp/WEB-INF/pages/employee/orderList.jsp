@@ -48,8 +48,9 @@
             <div class="listTItleE">Client Briefing Document</div>
             <div id="setListInfo"></div>
             <div class="btnDiv" id="needBtn">
-                    <div class="btn-c-r headerSave" id='saveOrderList'>保存</div>
-	                <div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
+            	<div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
+                <div class="btn-c-r headerSave" id='saveOrderList'>保存</div>
+	                
 	        </div>
        </div> 
       </div> 
