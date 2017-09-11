@@ -240,7 +240,7 @@
                     
                      <div class="infoItem">
                          <div class="setError" > 
-                          <div class="itemTitile" style="top:-70px;">CRM备注</div>
+                          <div class="itemTitile" style="top:-62px;">CRM备注</div>
                           <textarea id="orderNote"></textarea>
                           <div class="must"></div>
                         </div>  

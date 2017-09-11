@@ -68,9 +68,13 @@ function checkClear(who){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').addClass('open');
 		
+		//点击右侧 出现
+		$('#myOrder').addClass('open');
+		$('#myPro').removeClass('open');
+		$('#productList').slideUp();
+		$('#orderList').slideDown();		
 	}
 }
-
 function initMenuEven(){
 	
 	$('#myPro').off('click').on('click',function(){

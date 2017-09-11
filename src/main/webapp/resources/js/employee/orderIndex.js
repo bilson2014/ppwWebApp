@@ -775,6 +775,7 @@ function checkUpdateEven(){
 //触发修改事件
 function infoEven(){
 		$('.info').off('click').on('click',function(){
+		
 			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
 			$('.removeLi').removeClass('hide');
@@ -831,6 +832,9 @@ function newOrderEven(check,item){
 			$('#orderComeInfo').attr('data-id','');
 			orderIndex.controlSelect();
 			$('.noUse').removeClass('setGray');
+			//修改的樣式cxx
+			$('.noUse img').removeClass('hide');
+			$('.must').removeClass('hides');
 			$('.setError ').attr('data-content','');
 		}else{
 			$('#orderNote').val('');
@@ -891,6 +895,8 @@ function editEvenFunction(item){
 	$('#indent_recomment').val(indent_recomment);
 	$('.noUse').off('click');
 	$('.noUse').addClass('setGray');
+	$('.noUse img').addClass('hide');
+	$('.must').addClass('hides');
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');
