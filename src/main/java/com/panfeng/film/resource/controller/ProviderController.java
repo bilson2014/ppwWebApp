@@ -1052,6 +1052,13 @@ public class ProviderController extends BaseController {
 		PmsTeam result = pmsTeamFacade.getTeamInfo(teamId);
 		if (result != null) {
 			result.setTeamId(result.getId());
+			//优先使用昵称
+			if(ValidateUtil.isValid(result.getDisplayName())){
+				result.setTeamName(result.getDisplayName());
+			}
+			if(ValidateUtil.isValid(result.getDisplayImg())){
+				result.setTeamPhotoUrl(result.getDisplayImg());
+			}
 			modelMap.addAttribute("provider", result);
 			// 加载导演标签
 			String strtags = result.getBusiness();

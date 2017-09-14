@@ -2,26 +2,38 @@
 @import "order";
 .page {
     min-height: 500px;
+    background:#fff;
 }
 
 .setGray{
-    background: $gray-light;
+    border: 0px !important;
 }
-
+.hides{
+    opacity: 0;
+}
 .toDoing {
     tr {
+        td {
+            padding: 13px 0px 13px 0px;
+            line-height: 18px;
+
+        }
         td:nth-child(7),
         td:nth-child(8),
         td:nth-child(9),
         td:nth-child(10) {
+            cursor: pointer;
             div {
                 width: 18px;
                 height: 18px;
                 margin: 0 auto;
                 background-size: 18px 36px !important;
-                cursor: pointer;
-                &:hover {
-                    background-position-y: -18px;
+                
+                
+            }
+            &:hover {
+                div {
+                   background-position-y: -18px;
                 }
             }
         }
@@ -34,6 +46,7 @@
             div {
                 background: url(/resources/images/orderManager/edit.png)no-repeat;
             }
+           
         }
         td:nth-child(9) {
             div {
@@ -48,11 +61,11 @@
     }
     th:nth-child(1),
     td:nth-child(1) {
-        width: 9%;
+        width: 8%;
     }
     th:nth-child(2),
     td:nth-child(2) {
-        width: 11%;
+        width: 15%;
     }
     th:nth-child(3),
     td:nth-child(3) {
@@ -68,21 +81,21 @@
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 13%;
+        width: 15%;
         @media screen and (min-width: 1500px) {
             width: 17%;
         }
     }
     th:nth-child(7),
     td:nth-child(7) {
-        width: 7%;
+        width: 8%;
         @media screen and (min-width: 1500px) {
             width: 6%;
         }
     }
     th:nth-child(8),
     td:nth-child(8) {
-        width: 7%;
+        width: 8%;
         @media screen and (min-width: 1500px) {
             width: 6%;
         }
@@ -104,6 +117,19 @@
 }
 
 .toSubmit {
+    tr{
+        th{ 
+            line-height: 20px;
+        }
+        td{
+            text-align: center;
+            padding: 0;
+            line-height: 20px;
+            padding:13px 0px 13px 0px;
+        }
+    }
+    
+    
     th:nth-child(1),
     td:nth-child(1) {
         width: 10%;
@@ -111,34 +137,60 @@
     th:nth-child(2),
     td:nth-child(2) {
         width: 18%;
+        @media screen and (max-width: 775px) {
+            width: 11%;
+        }
     }
     th:nth-child(3),
     td:nth-child(3) {
         width: 12%;
+        @media screen and (max-width: 775px) {
+            width: 8;
+        }
     }
     th:nth-child(4),
     td:nth-child(4) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 7%;
+        }
     }
     th:nth-child(5),
     td:nth-child(5) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 12%;
+        width: 15%;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(7),
     td:nth-child(7) {
         width: 10%;
+        @media screen and (max-width: 775px) {
+            width: 5%;
+        }
     }
     th:nth-child(8),
     td:nth-child(8) {
-        width: 5%;
+        width: 7%;
+        padding:7px 0 7px 0;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(9),
     td:nth-child(9) {
-        width: 5%;
+        width: 7%;
+        padding:7px 0 7px 0;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     tr {
         td:nth-child(9) {
@@ -156,7 +208,7 @@
                 width: 40px;
                 height: 30px;
                 margin: 0 auto;
-                line-height: 28px;
+                line-height: 30px;
                 cursor: pointer;
                 &:hover {
                     color: #F6A623;
@@ -173,7 +225,7 @@
                 width: 40px;
                 height: 30px;
                 margin: 0 auto;
-                line-height: 28px;
+                line-height: 30px;
                 cursor: pointer;
                 &:hover {
                     color: #50E3C2;
@@ -185,6 +237,13 @@
 }
 
 .toUnBle {
+    tr{
+        td{
+            line-height:15px;
+            padding:8px 0 8px 0;
+
+        }
+    }
     .isFind {
         border: 1px solid $gray-light !important;
         color: $gray !important;
@@ -200,6 +259,9 @@
     th:nth-child(2),
     td:nth-child(2) {
         width: 14%;
+        @media screen and (max-width: 775px) {
+            width: 10%;
+        }
     }
     th:nth-child(3),
     td:nth-child(3) {
@@ -215,7 +277,7 @@
     }
     th:nth-child(6),
     td:nth-child(6) {
-        width: 12%;
+        width: 15%;
     }
     th:nth-child(7),
     td:nth-child(7) {
@@ -224,6 +286,9 @@
     th:nth-child(8),
     td:nth-child(8) {
         width: 7%;
+        @media screen and (max-width: 775px) {
+            width: 9%;
+        }
     }
     th:nth-child(9),
     td:nth-child(9) {
@@ -237,7 +302,7 @@
                 border: 1px solid $border-line;
                 border-radius: 4px;
                 width: 40%;
-                height: 30px;
+                height: 28px;
                 margin: 0 auto;
                 line-height: 28px;
                 cursor: pointer;
@@ -273,13 +338,25 @@
 .page-section {
     position: relative;
     width: 100%;
-    margin: 0 auto 60px;
+   
+
 }
 
 .page-wrap {
-    @include media_screen_width_beta3();
+  width:1074px;
     margin: auto;
     text-align: center;
+    @media screen and (max-width: 775px) {
+        width: 667px;
+    }
+    @media screen and (min-width: 775px) and (max-width: 850px) {
+        width: 739px;
+
+    }
+    @media screen and (min-width: 850px) and (max-width: 1025px) {
+        width: 854px;
+
+    }
 }
 
 .page-wrap .pagination {
@@ -322,7 +399,7 @@
         width: 720px;
         height: auto;
         position: absolute;
-        top: 50%;
+        top: 242px;
         left: 50%;
         margin-top: -200px;
         margin-left: -360px;
@@ -442,6 +519,7 @@
                 font-size: $font-size-base;
                 color: $gray;
                 padding: 10px;
+                outline: none;
             }
             .itemInput,
             .itemInputMax {
@@ -464,7 +542,7 @@
                 top: 10px;
             }
             textarea {
-                padding: 10px;
+                padding: 0 10px 0 10px;
                 width: 560px;
                 height: 80px;
                 border: 1px solid $border-line;
@@ -473,6 +551,7 @@
                 font-size: $font-size-base;
                 color: $gray;
                 resize: none;
+                outline:none;
             }
             .must {
                 font-size: $font-size-base;
@@ -509,7 +588,7 @@
         width: 665px !important;
         height: 500px !important;
         position: absolute;
-        top: 50%;
+        top: 260px;
         left: 50%;
         margin-top: -250px !important;
         margin-left: -332px !important;
@@ -583,7 +662,7 @@
         width: 450px;
         height: 310px;
         position: absolute;
-        top: 50%;
+        top: 270px;
         left: 50%;
         margin-top: -155px;
         margin-left: -225px;
@@ -696,6 +775,7 @@
             border-radius: 4px;
             border: 1px solid $border-line;
             resize: none;
+            outline:none;
         }
         #real {
             background: #7ED321;

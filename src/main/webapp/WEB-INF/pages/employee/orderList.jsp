@@ -31,10 +31,11 @@
 </head>
 
 <body>
+
       <input type='hidden' id="indentId"  value="${indentId}" />
       <input type='hidden' id="requireId" value="${requireId}" />
       <input type='hidden' id="flag"      value="${flag}" />
-      <jsp:include flush="true" page="../header.jsp"></jsp:include> 
+     
       <div class="showModelMeng"></div>
       <div class="orderModel">
        <div class="orderList">
@@ -47,8 +48,9 @@
             <div class="listTItleE">Client Briefing Document</div>
             <div id="setListInfo"></div>
             <div class="btnDiv" id="needBtn">
-                    <div class="btn-c-r headerSave">保存</div>
-	                <div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
+            	<div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
+                <div class="btn-c-r headerSave" id='saveOrderList'>保存</div>
+	                
 	        </div>
        </div> 
       </div> 

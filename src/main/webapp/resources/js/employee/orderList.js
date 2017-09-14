@@ -1,14 +1,13 @@
-
 $().ready(function() {
 	initView();
 	orderIndex.init();
 	if($('#flag').val() == 1){
 		$('#needBtn').hide();
 	}
-	$('#cancleOrderList').off('click').on('click',function(){
-		 window.location.href=getContextPath()+'/order/myOrder';
-	});
-	
+	//需求文档的取消跳转
+	$('#cancleOrderList').off('click').on('click',function(){	
+		 window.location.href=getContextPath()+'/project/running?order';
+	});	
 });
 
 var orderIndex = {
@@ -16,8 +15,9 @@ var orderIndex = {
 			orderIndex.controlModel();
 		},
 		controlModel:function(){
+//			需求文档确认跳转
 			$('.headerSave').off('click').on('click',function(){
-				getNeedValue($('#requireId').val());
+				 window.location.href=getContextPath()+'/project/running?order';
 			});
 		},
 };

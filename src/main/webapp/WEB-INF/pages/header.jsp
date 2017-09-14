@@ -106,7 +106,7 @@
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <r:permission uri="/order/myOrder">
-					                <a href="<spring:url value="/order/myOrder" />"><li class="toCancle">我的订单</li></a>
+					                <a href="<spring:url value="/project/running?order" />"><li class="toCancle">我的订单</li></a>
 					         </r:permission>
 					         <r:permission uri="/mgr/index">
 					                  <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
