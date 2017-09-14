@@ -240,8 +240,18 @@ public class PCController extends BaseController {
 			final PmsTeam team = pmsTeamFacade.findTeamById(product.getTeamId());
 			if (team != null) {
 				product.setTeamDescription(team.getTeamDescription());
-				product.setTeamName(team.getTeamName());
-				product.setTeamPhotoUrl(team.getTeamPhotoUrl());
+				//优先使用昵称
+				if(ValidateUtil.isValid(team.getDisplayName())){
+					product.setTeamName(team.getDisplayName());
+				}else{
+					product.setTeamName(team.getTeamName());
+				}
+				if(ValidateUtil.isValid(team.getDisplayImg())){
+					product.setTeamPhotoUrl(team.getDisplayImg());
+				}else{
+					product.setTeamPhotoUrl(team.getTeamPhotoUrl());
+				}
+				
 			}
 		}
 		model.addAttribute("product", product);
