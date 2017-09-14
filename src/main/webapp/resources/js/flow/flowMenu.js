@@ -10,6 +10,8 @@ $().ready(function() {
 		if(p.indexOf("/resources/") == -1){
 			$('#getImgUrlMenu').attr('src',getDfsHostName() + p);
 		}
+	}else{
+		$('#getImgUrlMenu').attr('src','/resources/images/flow/def.png');
 	}
 	$('#setRealName').text($('#setRealName').attr('data-value'));
 });
