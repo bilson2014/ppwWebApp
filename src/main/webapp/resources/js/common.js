@@ -15,6 +15,7 @@ var UrlDo = "test.apaipian.com";
 //var Url = "http://localhost:8080/";
 var Url = "http://test.apaipian.com:8087/";
 
+
 $().ready(function(){
 	getImgUrl();
 	controlInput();

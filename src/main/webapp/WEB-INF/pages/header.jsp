@@ -106,12 +106,12 @@
 				       <div class="showInfoList">
 					         <li class="showName"><r:outName /></li>
 					         <r:permission uri="/order/myOrder">
-					                <a href="<spring:url value="/order/myOrder" />"><li class="toCancle">我的订单</li></a>
+					                <a href="<spring:url value="/project/running?order" />"><li class="toCancle">我的订单</li></a>
 					         </r:permission>
-					          <%-- <r:permission uri="/mgr/index"> --%>
+					         <r:permission uri="/mgr/index">
 					                  <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					                  <a href="<spring:url value="/project/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
-					         <%-- </r:permission> --%>
+					         </r:permission>
 					         <a href="<spring:url value="/project/running?save" />"><li class="toCollect">收藏列表</li></a>
 					         <a href="<spring:url value="/project/running?safe" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>

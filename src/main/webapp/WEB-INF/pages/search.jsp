@@ -121,19 +121,20 @@
 						<span>更多</span>
 					</div> -->
 				</div>
-				
-				<div class="classify-price ">
-					<dt>价格：</dt>
-					<dd id="price-item">
-						<ul class="list-inline" id="price-list">
-							<li><a href="javascript:void(0)" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>
-							<li><a href="javascript:void(0)" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>
-							<li><a href="javascript:void(0)" data-price="[60000 TO 100000]" class="priceAll">6~10万</a></li>
-							<li><a href="javascript:void(0)" data-price="[100000 TO *]" class="priceAll">10万以上</a></li>
-							<li><div class="price-section"><input type="text" id="start-price" />万 ~ <input type="text" id="end-price" />万<a href="javascript:void(0);"><button class="btn btn-primary disabled" id="price-btn">确定</button></a></div></li>
-						</ul>
-					</dd>
-				</div>
+				<r:identity role="employee">
+					<div class="classify-price ">
+						<dt>价格：</dt>
+						<dd id="price-item">
+							<ul class="list-inline" id="price-list">
+								<li><a href="javascript:void(0)" data-price="[0 TO 30000]" class="priceAll">0~3万</a></li>
+								<li><a href="javascript:void(0)" data-price="[30000 TO 60000]" class="priceAll">3~6万</a></li>
+								<li><a href="javascript:void(0)" data-price="[60000 TO 100000]" class="priceAll">6~10万</a></li>
+								<li><a href="javascript:void(0)" data-price="[100000 TO *]" class="priceAll">10万以上</a></li>
+								<li><div class="price-section"><input type="text" id="start-price" />万 ~ <input type="text" id="end-price" />万<a href="javascript:void(0);"><button class="btn btn-primary disabled" id="price-btn">确定</button></a></div></li>
+							</ul>
+						</dd>
+					</div>
+				</r:identity>
 			</div>
 		</div>
 		<!-- 搜索条件模块 end -->

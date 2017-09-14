@@ -194,6 +194,7 @@ public class SolrController extends BaseController {
 		if ("最热资讯".equals(condition)) {
 			// 筛选 推荐值大于0 的新闻
 			view.setRecomendFq("[1 TO *]");
+			view.setCondition(null);
 		}
 
 		final List<PmsNewsSolr> list = solrService.queryNewDocs(PublicConfig.SOLR_NEWS_URL, view);

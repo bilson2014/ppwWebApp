@@ -103,6 +103,16 @@ public class HomePageController extends BaseController {
 		BaseMsg baseMsg = new BaseMsg();
 		List<PmsTeam> teamRecommendList = pmsTeamFacade.teamRecommendList();
 		if (null != teamRecommendList) {
+			//优先使用昵称
+			for(PmsTeam team:teamRecommendList){
+				if(ValidateUtil.isValid(team.getDisplayName())){
+					team.setTeamName(team.getDisplayName());
+				}
+				if(ValidateUtil.isValid(team.getDisplayImg())){
+					team.setTeamPhotoUrl(team.getDisplayImg());
+				}
+			}
+			
 			baseMsg.setCode(1);
 			baseMsg.setResult(teamRecommendList);
 		} else {

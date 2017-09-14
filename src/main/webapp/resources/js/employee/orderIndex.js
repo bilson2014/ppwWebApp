@@ -45,6 +45,7 @@ var  ORDER_SUBMIT = 7;
 var nowNum = 1;
 var sUserCompany = '',sRealName = '',sIndent_tele = '',sIndentSource = -1,timeOld = '',timeNew = '';
 $().ready(function() {
+	document.domain = getUrl();
 	$("input[name$='time']").datepicker({
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
@@ -57,7 +58,6 @@ $().ready(function() {
 	searchInit();
 	getHelp();
 });
-
 var orderIndex = {
 		init:function(){
 			orderIndex.controlSelect();
@@ -65,36 +65,56 @@ var orderIndex = {
 			orderIndex.pagination($('#total').val());
 			orderIndex.initOrderTitle();
 		},
-		initOrderTitle:function(){
-			$('.showStatus div').off('click').on('click',function(){
-				if(!$(this).hasClass('orderNew')){
-					clearSearch();
-					$('.showStatus div').removeClass('active');
-					$(this).addClass('active');
-					now_order = $(this).attr('data-value');
-					if(now_order == 0){
-						orderIndex.readMore(nowPage);
-					}
-					if(now_order == 1){
-						orderIndex.readSub(nowPage);
-					}
-					if(now_order == 2){
-						orderIndex.readUnAle(nowPage);
-					}
-				}else{
-					$('.removeLi').addClass('hide');
-					newOrderEven(1);
-				}
-				
-			});
+		initOrderTitle : function(){
+			//在 地址跳转的之前 每个 地址 之后 添加？数字 以便 对于右边内容的跳转
+			//获取左侧状态的iframe的url的值  以便右边内容的跳转  对当前页面内容的获取加载
+			var adress = window.location.href;
+			var use = adress.indexOf('?');
+			var useadress = adress.substring(use+1);
+			if (useadress == 1){
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readMore(nowPage);
+			}
+			if (useadress==2){
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readSub(nowPage);
+			}
+			if (useadress==3){
+				$('#orderNew').attr('data-value',useadress);
+				orderIndex.readUnAle(nowPage);
+			}
+//			$('.showStatus div').off('click').on('click',function(){
+//				if(!$(this).hasClass('orderNew')){
+//					clearSearch();
+//					$('.showStatus div').removeClass('active');
+//					$(this).addClass('active');
+//					now_order = $(this).attr('data-value');
+//					if(now_order == 0){
+//						orderIndex.readMore(nowPage);
+//					}
+//					if(now_order == 1){
+//						orderIndex.readSub(nowPage);
+//					}
+//					if(now_order == 2){
+//						orderIndex.readUnAle(nowPage);
+//					}
+//				}else{
+//					$('.removeLi').addClass('hide');
+//					newOrderEven(1);
+//				}
+//				
+//			});
 		},
+		//每个跳转的页面内容的加载(处理)
 		readMore:function(num){
 			var page = num;
 			$('table').attr('class','toDoing');
 			var root = $("#setTable");
 			root.html("");
 			root.append(orderIndex.createTableTitle());
+			//创建表头
 			loadData(function (res){
+				//res有数据的数量total和 数组rows
 				if(res != null && res != undefined){
 					var rows =  res.rows;
 					// 数据填充！
@@ -107,6 +127,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -119,6 +140,7 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
+		//已提交的内容加载
 		readSub:function(num){
 			var page = num;
 			$('table').attr('class','toSubmit');
@@ -138,6 +160,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -150,6 +173,7 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
+		//无效订单的内容加载
 		readUnAle:function(num,b){
 			var page = num;
 			var rows = pageSize;
@@ -170,6 +194,7 @@ var orderIndex = {
 				}
 				orderIndex.controlSelect();
 				orderIndex.controlModel();
+				$(window.parent.document).find('.frame').css('height',$('.page').height());
 			}, getContextPath() + '/order/list/page?t='+new Date().getTime(), $.toJSON({
 				"page":page,
 				"rows" : pageSize,
@@ -182,23 +207,23 @@ var orderIndex = {
 				"indentSource":sIndentSource
 			}));
 		},
-		
+		//页面跳转的数据加载
 		pagination:function(total){
-			$(".pagination").html('');
+			$(".pagination").html('');	
 			$(".pagination").initPage()
 			$(".pagination").createPage({
 				pageCount: Math.ceil(total / pageSize),
 				current: nowPage,
 				backFn:function(p){
 					nowPage = p;
-					var loadData = $('.active').attr('data-value');
-					if(loadData == 0){
+					var loadData = $('#orderNew').attr('data-value');
+					if(loadData == 1){
 						orderIndex.readMore(nowPage);
 					}
-					if(loadData == 1){
+					if(loadData == 2){
 						orderIndex.readSub(nowPage);
 					}
-					if(loadData == 2){
+					if(loadData == 3){
 						orderIndex.readUnAle(nowPage);
 					}
 				}
@@ -292,6 +317,7 @@ var orderIndex = {
 				$(Real).attr('data-id',id);
 				$(Real).attr('data-content',phone);
 			});
+			//需求文档事件
 			$('.edit').off('click').on('click',function(){
 				$('#indentId').val($(this).parent().find('.id').text());
 				var hasReques = $(this).parent().find('.id').attr('data-value');
@@ -358,7 +384,6 @@ var orderIndex = {
 			});
 			//确认真实
 			$('#real').off('click').on('click',function(){
-
 				var phone = $(this).attr('data-content');
 				var id = $(this).attr('data-id');
 				if(checkUbListUserDes()){
@@ -719,35 +744,38 @@ function checkUpdateEven(){
 	$('.setError').attr('data-content','');
 	if(hasName == undefined || hasName == "" || hasName ==null ){
 		$('#telNameError').attr('data-content','请填写联系人');
-		$('#telName').focus();
-		return false;
+		$('#telName').focus();		
 	}
-	if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
+	else if(hasCompany == undefined || hasCompany == "" || hasCompany ==null ){
 		$('#companyNameError').attr('data-content','请填写公司名');
 		$('#companyName').focus();
-		return false;
 	}
-	if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
+	else if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
 		$('#orderComeInfoError').attr('data-content','请填写订单来源');
-		return false;
 	}
-	if(!checkMobile(hasTel)){
+	else if(!checkMobile(hasTel)){
 		$('#telesError').attr('data-content','手机号不正确');
 		$('#telName').focus();
-		return false;
 	}
-	if(hasOrder == 5){
-		if(hasPeople == undefined || hasPeople == "" || hasPeople ==null ){
+	else if(hasOrder == 5&&(hasPeople == undefined || hasPeople == "" || hasPeople ==null)){
 			$('#orderPError').attr('data-content','请填写推荐人');
-			return false;
-		}
 	}
-	return true;
+	else {
+		$('#telNameError').attr('data-content','');
+		$('#companyNameError').attr('data-content','');
+		$('#orderComeInfoError').attr('data-content','');
+		$('#telesError').attr('data-content','');
+		$('#orderPError').attr('data-content','');
+		return true;
+		
+	}
+	
 }
 
 //触发修改事件
 function infoEven(){
 		$('.info').off('click').on('click',function(){
+		
 			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
 			$('.removeLi').removeClass('hide');
@@ -758,12 +786,12 @@ function infoEven(){
 }
 //触发新建事件
 function orderNewEven(){
-//		$('.orderNew').off('click').on('click',function(){
-//			var id = $(this).parent().find('.id').text();
-//			$('#NewOrder').show();
-//			$('.removeLi').addClass('hide');
-//		    newOrderEven(1);
-//		});
+		$('.orderNew').off('click').on('click',function(){
+			var id = $(this).parent().find('.id').text();
+			$('#NewOrder').show();
+			$('.removeLi').addClass('hide');
+		    newOrderEven(1);
+		});
 }
 //新建 修改事件
 function newOrderEven(check,item){
@@ -804,6 +832,9 @@ function newOrderEven(check,item){
 			$('#orderComeInfo').attr('data-id','');
 			orderIndex.controlSelect();
 			$('.noUse').removeClass('setGray');
+			//修改的樣式cxx
+			$('.noUse img').removeClass('hide');
+			$('.must').removeClass('hides');
 			$('.setError ').attr('data-content','');
 		}else{
 			$('#orderNote').val('');
@@ -864,6 +895,8 @@ function editEvenFunction(item){
 	$('#indent_recomment').val(indent_recomment);
 	$('.noUse').off('click');
 	$('.noUse').addClass('setGray');
+	$('.noUse img').addClass('hide');
+	$('.must').addClass('hides');
 	var orderC = $('#orderCome li');
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');
@@ -903,7 +936,7 @@ function initUpdateInfo(){
 
 function bangSubmit(check,item){
 	$('#submitEdit').off('click').on('click',function(){
-		$('#submitEdit').off('click');
+		console.log('1');
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
 			var subCompany =$('#companyName').val();
@@ -913,6 +946,8 @@ function bangSubmit(check,item){
 			var dataIndentName = '自主研发';
 			var textArea = $('#orderNote').val();
 			var indent_recomment = $('#indent_recomment').val();
+			
+			console.log('2');
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
@@ -1294,14 +1329,14 @@ function search(){
 		sIndentSource = parseInt(ss);
 	timeOld = $('#timeOld').val();
 	timeNew = $('#timeNew').val();
-	
-	if(now_order == 0){
+	var loadData = $('#orderNew').attr('data-value');
+	if(loadData == 1){
 		orderIndex.readMore(nowPage);
 	}
-	if(now_order == 1){
+	if(loadData == 2){
 		orderIndex.readSub(nowPage);
 	}
-	if(now_order == 2){
+	if(loadData == 3){
 		orderIndex.readUnAle(nowPage);
 	}
 	
@@ -1568,20 +1603,21 @@ function IsUrl(str){
 //	}
 //	return false;
 //}
+//清空按钮之后的重新加载事件
 function refresh(){
-	if(now_order == 0){
+	var loadData = $('#orderNew').attr('data-value');
+	if(loadData == 1){
 		orderIndex.readMore(nowPage);
 	}
-	if(now_order == 1){
+	if(loadData == 2){
 		orderIndex.readSub(nowPage);
 	}
-	if(now_order == 2){
+	if(loadData == 3){
 		orderIndex.readUnAle(nowPage);
 	}
 }
-
+//添加用户的事件
 function updateUser(id){
-	
 	var userName = $('#userName').val();
 	var realName = $('#muRealName').val();
 	var userCompany = $('#muUserCompany').val();
@@ -1598,9 +1634,8 @@ function updateUser(id){
 	var endorse = $('#muEndorse').attr('data-id');
 	var note = $('#muNote').val();
 	var referrerId = $('#referrerId').attr('data-id');
-	
 	if(oldmuTelephone == telephone){
-		//  未注册
+		//未注册
 		//用户修改
 		loadData(function(res){
 			$('#modifyUserInfo').hide();

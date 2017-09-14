@@ -81,7 +81,7 @@ var login = {
 					if(go == 2){
 						$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
 					}else if(go  == 1){
-						$('#login-form').attr('action',getContextPath() + '/order/myOrder').submit();
+						$('#login-form').attr('action',getContextPath() + '/project/running').submit();
 					}else {
 						$('#login-form').attr('action',getContextPath() + '/').submit();
 					}

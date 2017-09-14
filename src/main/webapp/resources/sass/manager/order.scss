@@ -1,0 +1,235 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "bootstrap-grid";
+@import "fontSize";
+body {
+    background: $f0 !important;
+}
+ .setCard {
+ width:100%;
+
+  .vail {
+    font-size: 1.6rem;
+    color: #666;
+    position: absolute;
+    top: 200px;
+    left: 43%;
+}
+ }
+
+    .cardSmall {
+        width:292px;
+        
+        @media screen and (max-width: 1151px) {
+       
+             width:274px;
+        }
+        @media screen and (min-width: 1151px) and (max-width: 1200px) {
+      
+             width:270px;
+        }
+    }
+
+
+.cardBig{
+	  width: 255px;
+	@media screen and (max-width: 775px) {
+    width: 232px;
+    
+    }
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
+    width: 238px;
+      
+    }
+}
+              
+.page {
+    background: $f0 !important;
+      position: relative;
+    top: 0px;
+
+}
+.managerPgae {
+    width:100%;
+    margin: 0 auto;
+    margin:0;
+    position: relative;
+}
+
+.managerCard {
+    padding-top: 20px;
+    
+    min-height: 600px;
+    background: white;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    font-size: 0;
+    .title {
+    
+        font-size: $font-size;
+        color: $gray;
+        margin-bottom: 40px;
+    }
+    
+}
+
+.lineHead {
+    width: 100%;
+    height: 1px;
+    background: $e;
+    position: absolute;
+    top: 55px;
+    display:none;
+}
+
+$twoPad:70px;
+$threeMar:60px;
+.cardItem:nth-child(4n) {
+    margin-right: 5px;
+}
+
+.cardItem {
+    font-size: 0;
+    border-radius: 4px;
+    
+  
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+    margin-left:5px;
+    cursor: pointer;
+    -moz-box-shadow: 10px 10px 5px $border-line;
+    box-shadow: 0px 0px 10px $border-line;
+    border: solid 1px transparent;
+    &:hover {
+        border: solid 1px #b8b8b8;
+    }
+   
+   
+    margin-bottom: 10px;
+    height: auto;
+    .modCheck {
+        background-color: rgba(51, 51, 51, 0.8);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        display: none;
+        border-radius: 4px;
+        div {
+            cursor: pointer;
+            background-position-y: -40px !important;
+            &:hover {
+                background-position-y: 0px !important;
+            }
+        }
+        div:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            background: url(/resources/images/manager/sureManager.png);
+            background-size: 40px 80px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            left: 30%;
+        }
+        div:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            background: url(/resources/images/manager/cancleManager.png);
+            background-size: 40px 80px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            right: 30%;
+        }
+    }
+    .cardImg {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 100%;
+        height:146.3px;
+     @media screen and (max-width: 775px) {
+            height: 140px;
+        }
+       @media screen and (min-width: 775px) and (max-width: 1025px) {
+            height: 141px;
+        }
+    }
+    .cardContent {
+        padding-top: 20px;
+    }
+    .title {
+        font-size: $font-size-base;
+        color: $gray-dark;
+        margin-top: 0px !important;
+        margin-bottom: 10px;
+        padding-left: 18px;
+        display:block;
+        &:hover {
+            color: $red-base;
+        }
+    }
+    .tags {
+        font-size: $font-size-sm;
+        color: $gray-light;
+        margin-bottom: 31px;
+        padding-left: 18px;
+    }
+    .price {
+        position: relative;
+        height: 20px;
+        padding-left: 18px;
+        margin-bottom: 21px;
+        div:nth-child(1) {
+            font-size: $font-size-base;
+            color: $red-base;
+        }
+        div:nth-child(2) {
+            font-size: $font-size-sm;
+            color: $gray;
+            text-decoration: line-through;
+            position: absolute;
+            right: 18px;
+            top: 1px;
+        }
+    }
+    .line {
+        width: 100%;
+        height: 1px;
+        padding-left: 18px;
+        padding-right: 18px;
+        div {
+            width: 100%;
+            height: 100%;
+            background: $border-line;
+        }
+    }
+    .videoProvider {
+        height: 70px;
+        position: relative;
+        .delBtn {
+            width: 16px !important;
+            height: 16px !important;
+            background: url(/resources/images/manager/delBtn.png) no-repeat;
+            background-size: 16px 32px;
+            position: absolute;
+            right: 18px;
+            top: 31px;
+            cursor: pointer;
+            background-position-y: -16px;
+            &:hover {
+                background-position-y: 0px;
+            }
+        }
+        img {
+        line-height:70px;
+        }
+    }
+}
