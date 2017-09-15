@@ -45,16 +45,20 @@ function checkState(){
 
 function checkClear(who){
 	$('.treeitem').removeClass('treeitemRed');
-	$('#toSave').addClass('treeitemRed');
 	$('#productList').hide();
 	$('#myPro').removeClass('open');
 	$('#nowDoing').removeClass('checkLi');
 	if(who == 0){
-		 $('.frame').attr('src',"/mgr/favourites");
+		$('#toSave').addClass('treeitemRed');
+		$('.frame').attr('src',"/mgr/favourites");
+		 
 	}else if (who==1){
 		$('.frame').attr('src',"/mgr/safeInfo");
+		$('#safe').addClass('treeitemRed');
+		
 	}else{
 		$('.frame').attr('src',"/order/myOrder?1");
+		
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
