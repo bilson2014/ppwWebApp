@@ -157,7 +157,7 @@
 	                            <div class="toHover">作品集</div>
 	                        </div>
 	                         </a>
-	                        <div class="teamDescription">
+	                        <div class="teamDescription hide">
 	                        	${product.teamDescription}
 	                        </div>
 	                    </div>
@@ -176,6 +176,9 @@
                     </div> 
                     
                     <div class="price showPrice" id="price">
+                    
+                    
+                    <r:identity role="employee">
                      	<c:if test="${product.servicePrice != 0 || product.serviceRealPrice != 0}">
 	                     	<c:if test="${product.servicePrice > product.serviceRealPrice}">
 		                      <div class="orPrice" ><span>￥</span><span id="servicePrice">${product.servicePrice }</span></div>
@@ -186,6 +189,18 @@
 	                    <c:if test="${product.servicePrice == 0 && product.serviceRealPrice == 0}">
 	                    	 <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                    </c:if>
+	                </r:identity>
+	                
+	                	<r:identity role="provider">
+	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
+	                	</r:identity>   
+	                	<r:identity role="provider">
+	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
+	                	</r:identity>
+	                    <r:noLogin>
+	                	     <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
+	                	</r:noLogin>
+	                    
 	                    <div class="afterPriceTitle">影片价格</div>
                         <div class="btn-c-r" id="needOrder">我要下单</div>
                      </div>

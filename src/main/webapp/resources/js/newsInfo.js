@@ -62,7 +62,7 @@ var newsInfo = {
 function loadNews(page) {
 	
 	loadData(function(list){
-		
+		console.info(page + ":" + pageSize);
 		$("#pageInfo").empty();
 		if(list != null && list.length > 0) {
 			 $.each(list, function(i,news) {	
@@ -95,11 +95,11 @@ function loadNews(page) {
 		}else {
 			// 没有新闻
 			var $no_body = '<div class="prompt-background">';
-			$no_body += '<img alt="未找到相关作品_拍片网" src="'+ getContextPath() +'/search/airship.png">';
+			$no_body += '<img alt="未找到相关作品_拍片网" src="'+ getContextPath() +'/resources/images/search/airship.png">';
 			$no_body += '</div>';
 			$no_body += '<div class="prompt-word">您找的新闻遗落在外星球了！</div>';
 			
-			$("#pageInfo").append($body);
+			$("#pageInfo").append($no_body);
 		}
 	}, getContextPath() + '/search/news/pagination',$.toJSON({
 		begin : page,
