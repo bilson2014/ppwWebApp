@@ -1361,6 +1361,7 @@ function clearSearch(){
 
 function submitOrder(){
 	var id = $('#mptModel').attr('data-id');
+	
 	loadData(function(msg){
 		$('#smodelPage').hide();
 		if(msg.code == 200){
@@ -1368,6 +1369,7 @@ function submitOrder(){
 			InterValObj = window.setInterval(showSuccess, 1000);
 			refresh();
 		}else{
+			
 		}
 	}, getContextPath()+'/order/submit', $.toJSON({
 		id : id
@@ -1395,7 +1397,7 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
-
+    $('.submit').off('click');
     loadData(function (res){
     	if(res.code == 200){
     		var indent_tele = $(tr).find('.indent_tele').text();
@@ -1421,6 +1423,7 @@ function checkUser(){
     			}
     		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele+'&indentId='+id, null);
     	}else if(res.code == 300){
+    		$('.submit').off('click').on('click',checkUser);
     		var rrr = res.result;
     		$('#showErrorInfoWin').show();
 //    		var errorView = $('#showErrorInfoWin').find('.serErrorDiv');
