@@ -1479,11 +1479,11 @@ input:focus {
 
 .scrollDiv {
     position: relative;
-    top: 100px;
-    -webkit-animation: hideShow 8s infinite linear;
-    -moz-animation: hideShow 8s infinite linear;
-    -o-animation: hideShow 8s infinite linear;
-    animation: hideShow 8s infinite linear;
+/*     top: 100px;
+-webkit-animation: hideShow 8s infinite linear;
+-moz-animation: hideShow 8s infinite linear;
+-o-animation: hideShow 8s infinite linear;
+animation: hideShow 8s infinite linear; */
 }
 
 
@@ -1531,18 +1531,16 @@ input:focus {
     z-index: 5;
 }
 
-$sImg:960px;
-$mImg:1031px;
-$bImg:1100px;
+$sImg:860px;
+$mImg:931px;
+$bImg:1000px;
 
 .ourFriends {
     @include media_screen_width_beta3();
     margin: 0 auto;
     height: auto;
     font-size: 0;
-    @media screen and (min-width: 1211px) {
-        padding: 0px 100px 0px 100px;
-    }
+    padding: 0px 150px 0px 150px;
     a {
         display: inline-block;
         vertical-align: top;
