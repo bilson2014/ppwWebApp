@@ -80,7 +80,7 @@
 					         <a href="<spring:url value="/user/info" />"><li class="toSet">个人信息</li></a>
 					         <a href="<spring:url value="/user/info?safeInfo" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
-					         <a href="<spring:url value="/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
+					         <a href="<spring:url value="/project/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
 					   </div>
 					</div>
@@ -95,7 +95,7 @@
 					         <a href="<spring:url value="/provider/portal?safe-info" />"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/provider/portal" />"><li class="toList">作品列表</li></a>
 					         <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
-					         <a href="<spring:url value="/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
+					         <a href="<spring:url value="/project/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
 					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
 					       </div>
 					</div>

@@ -23,7 +23,7 @@ $rightWidth:320px;
     position: relative;
     padding-top: 60px;
     @media screen and (min-width: 1276px) {
-        height: 900px;
+        height: 860px;
     }
     .videoContent {
         @include media_screen_width_beta3();

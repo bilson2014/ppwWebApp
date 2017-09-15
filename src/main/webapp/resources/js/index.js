@@ -680,11 +680,10 @@ var homePage_tpl = {
 			'	<div class="b"></div>',
 			'	<div class="directorContent">',
 			'		<a href="/provider/info_${item.teamId}.html" target="_blank">',
-			'			<img src="' + getDfsHostName()
-					+ '${item.teamPhotoUrl}" alt=${item.teamName}>',
+			'			<img src="' + getDfsHostName()+ '${item.teamPhotoUrl}" alt=${item.teamName}>',
 			'			<div class="title">${item.teamName}</div>',
 			'			<div class="line"></div>',
-			'			<div class="content dContent">${item.description}</div>',
+			'			<div class="content dContent"><div class="scrollDiv">${item.business}</div></div>',
 			'			<div class="toProduct">作品集</div>', '		</a>', '	</div>',
 			'</div>', '{@/each}' ].join(""),
 	news_resommend : [

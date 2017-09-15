@@ -157,8 +157,8 @@
 	                            <div class="toHover">作品集</div>
 	                        </div>
 	                         </a>
-	                        <div class="teamDescription hide">
-	                        	${product.teamDescription}
+	                        <div class="teamDescription">
+	                        	<%-- ${product.teamDescription} --%>
 	                        </div>
 	                    </div>
                     </c:if>

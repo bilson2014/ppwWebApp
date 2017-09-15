@@ -471,6 +471,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="ourFriendsColor">
+			<div class="ourFriends">
+			   <a href="http://www.plusx.cn/"><img src="/resources/images/index/friend1.png"></a>
+			   <a href="http://www.techuangyi.com"><img src="/resources/images/index/friend2.png"></a>
+			   <a href="http://www.cubead.com/"><img src="/resources/images/index/friend3.png"></a>
+			   <a href="http://www.bjjfsd.com/"><img src="/resources/images/index/friend4.png"></a>
+			</div>
+		</div>	
 		<!-- 入驻end-->
 <!-- foot -->
           
