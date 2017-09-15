@@ -17,7 +17,8 @@ var orderIndex = {
 		controlModel:function(){
 //			需求文档确认跳转
 			$('.headerSave').off('click').on('click',function(){
-				 window.location.href=getContextPath()+'/project/running?order';
+				getNeedValue($('#requireId').val());
+				// window.location.href=getContextPath()+'/project/running?order';
 			});
 		},
 };

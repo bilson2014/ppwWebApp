@@ -965,11 +965,11 @@ function bangSubmit(check,item){
 				  success:function(data){
 					  $('#NewOrder').hide();
 						bangSubmit(check,item);
-					  if(check == 1){
+					 /* if(check == 1){
 						  $('.orderIndex').click();
-					  }else{
-						  orderIndex.readMore(nowPage);
-					  }
+					  }else{*/
+						orderIndex.readMore(nowPage);
+					  //}
 					},
 				error:function(data){
 					bangSubmit(check,item);
