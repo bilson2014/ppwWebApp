@@ -1479,7 +1479,7 @@ input:focus {
 
 .scrollDiv {
     position: relative;
-/*     top: 100px;
+    /*     top: 100px;
 -webkit-animation: hideShow 8s infinite linear;
 -moz-animation: hideShow 8s infinite linear;
 -o-animation: hideShow 8s infinite linear;
@@ -1529,6 +1529,16 @@ animation: hideShow 8s infinite linear; */
     background: white;
     position: relative;
     z-index: 5;
+    .logo {
+        @include media_screen_width_beta3();
+        position: relative;
+        margin: 0 auto;
+        img {
+            position: absolute;
+            top: 60px;
+            left: 0px;
+        }
+    }
 }
 
 $sImg:860px;
@@ -1536,25 +1546,37 @@ $mImg:931px;
 $bImg:1000px;
 
 .ourFriends {
-    @include media_screen_width_beta3();
+    position: relative;
+    width: 890px;
     margin: 0 auto;
     height: auto;
     font-size: 0;
-    padding: 0px 150px 0px 150px;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    /*   padding: 0px 150px 0px 150px; */
     a {
         display: inline-block;
         vertical-align: top;
+        img {
+            width: 134px;
+            /*         height: $sImg/4;
+width: $sImg/4;
+@media screen and (min-width: 1275px) and (max-width: 1500px) {
+    height:$mImg/4;
+    width: $mImg/4;
+}
+@media screen and (min-width: 1501px) {
+    height: $bImg/4;
+    width: $bImg/4;
+} */
+        }
     }
-    img {
-        height: $sImg/4;
-        width: $sImg/4;
-        @media screen and (min-width: 1275px) and (max-width: 1500px) {
-            height:$mImg/4;
-            width: $mImg/4;
-        }
-        @media screen and (min-width: 1501px){
-            height: $bImg/4;
-            width: $bImg/4;
-        }
+
+    a:nth-child(2) {
+        margin-left: 115px;
+    }
+    a:nth-child(3) {
+        margin-left: 115px;
+        margin-right: 115px;
     }
 }

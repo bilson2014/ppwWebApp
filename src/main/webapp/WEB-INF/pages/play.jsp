@@ -194,7 +194,7 @@
 	                	<r:identity role="provider">
 	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                	</r:identity>   
-	                	<r:identity role="provider">
+	                	<r:identity role="customer">
 	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                	</r:identity>
 	                    <r:noLogin>
