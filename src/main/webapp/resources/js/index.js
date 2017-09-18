@@ -586,7 +586,7 @@ var homePage_tpl = {
 			'           <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
 			'{@/if}', '			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',
-			'				{@if item.price == 0}', '					<div>￥欢迎询价</div>',
+			'				{@if item.price == 0}', '<div>￥欢迎询价</div>',
 			'				{@else}', '					<div>￥${item.price|thousandCount}</div>',
 			'				{@/if}', '			</div>', '		</a>', '	</div>', '</div>',
 			'{@/each}' ].join(""),
