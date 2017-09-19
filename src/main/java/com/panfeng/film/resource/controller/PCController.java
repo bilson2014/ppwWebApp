@@ -24,11 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.DataUtil;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
+import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.employee.entity.PmsJob;
 import com.paipianwang.pat.facade.employee.entity.PmsStaff;
 import com.paipianwang.pat.facade.employee.service.PmsJobFacade;
@@ -46,6 +48,7 @@ import com.paipianwang.pat.facade.team.entity.PmsTeam;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
+import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
 import com.panfeng.film.resource.model.Product;
@@ -578,6 +581,24 @@ public class PCController extends BaseController {
 		final PmsTeam team = pmsTeamFacade.findLatestTeamById(info.getReqiureId());
 		team.setPassword(null);
 		return team;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/getToken")
+	public Result getToken(final HttpServletRequest request){
+		Result result=new Result();
+		String token=null;
+		try {
+			token = AESUtil.Encrypt("mganimation", PmsConstant.ORDER_TOKEN_UNIQUE_KEY);
+		} catch (Exception e) {
+		}
+		request.getSession().setAttribute("csrftoken",token);
+		result.setMessage(token);
+		return result;
 	}
 
 }
