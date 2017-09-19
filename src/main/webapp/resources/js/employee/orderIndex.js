@@ -540,6 +540,12 @@ var orderIndex = {
 			if(num == 21){
 				name = '线上-公众号-作品';
 			}
+			if(num == 21){
+				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
+			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
@@ -623,6 +629,9 @@ var orderIndex = {
 			}
 			if(num == 21){
 				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
@@ -709,6 +718,9 @@ var orderIndex = {
 			}
 			if(num == 21){
 				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
