@@ -1,7 +1,7 @@
 /* CSS Document */
 
 *{ margin:0; padding:0;}
-html,body{ font-size:14px; color:#333; background:#fff; font-family:"Microsoft Yahei"; height:100%; min-width:1320px;}
+html,body{ font-size:14px; color:#333; background:#fff; font-family:"Microsoft Yahei"; height:"auto !important"; min-width:1320px;overflow: hidden;}
 ul li{ list-style:none; vertical-align:bottom;}
 a{ text-decoration:none; color:#000;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
 a:hover{ text-decoration:none;}

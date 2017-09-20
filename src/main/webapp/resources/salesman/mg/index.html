@@ -8,11 +8,12 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 </head>
 
-<body  oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
+<!-- <body  oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'> -->
+<body style="height: auto !important;">
 	<input type="hidden" id="csrftoken">
 	<div class="top">
     	<div class="container">
-        	<a href="http://www.apaipian.com" target="_blank" title="拍片就上拍片网"><img class="logo fl" src="images/logo.png" alt="拍片网"></a>
+        	<a href="http://www.paipianle.com" target="_blank" title="拍片就上拍片网"><img class="logo fl" src="images/logo.png" alt="拍片网"></a>
             <ul class="nav fl">
             	<li><a href="javascript:void(0);">企业宣传片</a></li>
             	<li class="curr"><a href="javascript:void(0);">MG动画</a></li>
@@ -112,7 +113,7 @@
         <img src="images/bg.png" class="beijig">
         <img src="images/feiji.gif" class="feiji">
         <div class="tijiao">
-        	<form action="" enctype="" method="post" id="liuyan_form" name="liuyan_form" onsubmit="return beforeSubmit(this);">
+        	<form action="" enctype="" method="post" id="liuyan_form" name="liuyan_form" >
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 	<tr><td colspan="2"><input type="hidden" name="laiyuan" value="MG" />
                     <tr><td style="position: relative;" colspan="2">
@@ -141,7 +142,8 @@
     				color: red;
     				left: 5px;
     				display: none;">error</div><input type="text" name="code" id="code" onfocus="javascript:if(this.value=='验证码'){this.value=''};" placeholder="验证码" onblur="javascript:if(this.value==''){this.value='验证码'};" class="tab4"/></td></tr>
-                    <tr><td style="position: relative;" colspan="2"><input  name="submit" value="立即申请" class="tab5" id="submit"/>
+                    <tr><td style="position: relative;" colspan="2">
+                    <input  value="立即申请" class="tab5" name="submit" id="submit"  href="javascript:void(0);"/>
                     <div id="sendResult" style="
     				position: absolute;
     				font-size: 12px;
@@ -169,23 +171,33 @@
         </div>
     </div>
     <script>
+   // document.domain = "apaipian.com";
+   //var urlContext="http://www.apaipian.com";
+   var urlContext="http://www.paipianle.com";
+  // var urlContext="http://localhost:8080";
+    
+    
     var InterValObj; // timer变量，控制时间 - 注册
     var InterValRecoverObj; // timer变量，控制时间 - 密码找回
-    var count = 10; // 间隔函数，1秒执行
+    var count = 120; // 间隔函数，1秒执行
     var curCount = 0; // 当前剩余秒数 - 注册
+    var sendCode;
+    var sendResult=true;
     
 		$(document).ready(function(e) {
+			 $(window.parent.document).find('.frame').css('height',$('body').height());
 			//token
 			$.ajax({
 				  type: 'POST',
-				  url: 'http://www.apaipian.com/getToken',
+				  url: urlContext+'/getToken',
 				  //data: data,
 				  success:function(data){
 					  $("#csrftoken").val(data.message);
 				  },
 				error:function(data){
-				},
-				dataType: 'json'
+				}, 
+				dataType: 'json',
+				//jsonpCallback:"cb"
 			}); 
 
 			$("#cpxcp").click(function(){
@@ -238,11 +250,11 @@
 					}
 					curCount = count;
 					$('#sendCode').val('已发送(' + curCount + ')');
-					$('#sendCode').attr('disabled', 'disabled');
+					$('#sendCode').attr('disabled', true);
 					InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，
-					$.ajax({
+					 $.ajax({
 						  type: 'POST',
-						  url: 'http://www.apaipian.com/login/verification/'+$('#mob').val(),
+						  url: urlContext+'/login/verification/'+$('#mob').val(),
 						  //data: data,
 						  success:function(data){
 							  if(data){
@@ -257,11 +269,13 @@
 						  },
 						error:function(data){
 						},
-						dataType: 'json'
-					}); 
-				}
-					 
+						dataType: 'json',
+						//jsonpCallback:"cb"
+					});  
+				}			 
 			});
+			 
+		
 			$("#submit").click(function(){
 				$('#noUserError').hide();
 				$('#sendPhoneError').hide();
@@ -293,8 +307,14 @@
 					$('#sendCodeError').text('请输入验证码');
 					return false;
 				}
+				if(sendResult && checkCode==sendCode){
+					return false;
+				}
+				$("#submit").attr('disabled', true);
+				sendCode=checkCode;
+				sendResult=false;
 				$.ajax({
-					url : 'http://www.apaipian.com/order/deliver',
+					url : urlContext+'/order/deliver',
 					type : 'POST',
 					data : {
 						csrftoken : $("#csrftoken").val(),
@@ -312,10 +332,13 @@
 						indentSource : 22
 					},
 					dataType : 'json',
+					/* jsonpCallback:"cb", */
 					success : function(data) {
+						$("#submit").attr('disabled', false);
 						if(data.ret){
 							$('#sendResult').show();
 							$('#sendResult').text('申请成功');
+							sendResult=true;
 						}else{
 							$('#sendResult').show();
 							$('#sendResult').text('申请失败');
@@ -325,7 +348,7 @@
 				});
 			});
 		
-		});
+		}); 
 		
 		function checkMobile(str) {
 			var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
@@ -340,11 +363,12 @@
 				window.clearInterval(InterValObj); // 停止计时器
 				sendCode = true;
 				$('#sendCode').val('重新获取');
-				$('#sendCode').removeAttr('disabled')
+				//$('#sendCode').removeAttr('disabled')
+				$("#sendCode").attr('disabled', false);
 				// 清除session code
 				getData(function(data) {
 					// 清除session code
-				}, getContextPath() + '/login/clear/code');
+				}, urlContext + '/login/clear/code');
 			} else {
 				curCount--;
 				$("#sendCode").val('已发送(' + curCount + ')');
