@@ -87,21 +87,22 @@
 	                  <li id="finish">完成/取消</li>
 	              </ul>
 	      </r:permission>  
-	               <r:identity role="employee">
-		              <div class="treeitem" id="myOrder">
-		                <div class="orderList"></div>
-		                <div class="title">我的订单</div>
-		                <img src="${imgPath}/flow/more.png">
-		             </div>
+	               
+	              <r:permission uri="">
+			              <div class="treeitem" id="myOrder">
+			                <div class="orderList"></div>
+			                <div class="title">我的订单</div>
+			                <img src="${imgPath}/flow/more.png">
+			            </div>
+	                  <ul class="productList" id="orderList">
+		                  <li id='orderIndex' data-value="0">处理中</li>
+		                  <li id='orderSub' data-value="1">已提交</li>
+		                  <li id='orderCancle' data-value="2">无效订单</li>
+		              </ul>
+	            </r:permission>  
 	              
-                  <ul class="productList" id="orderList">
-	                  <li id='orderIndex' data-value="0">处理中</li>
-	                  <li id='orderSub' data-value="1">已提交</li>
-	                  <li id='orderCancle' data-value="2">无效订单</li>
-	              </ul>
 	              
-	              
-	           
+	           <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
 			                  <div class="title">收藏列表</div>
