@@ -474,12 +474,17 @@ public class VersionManagerController extends BaseController {
 				return info;
 			} else {
 				if (PublicConfig.ALLOW_IMAGE_TYPE.indexOf(extName.toLowerCase()) > -1) { // 文件格式正确
+					final PmsEmployee old = pmsEmployeeFacade.findEmployeeById(sessionInfo.getReqiureId());
+					//上传新文件
 					final String fileId = FastDFSClient.uploadFile(file);
 					PmsEmployee employee=new PmsEmployee();
 					employee.setEmployeeId(sessionInfo.getReqiureId());
 					employee.setEmployeeImg(fileId);
 					pmsEmployeeFacade.updateImagePath(employee);
-					
+					//删除老文件
+					if (old!=null && ValidateUtil.isValid(old.getEmployeeImg())) {
+						FastDFSClient.deleteFile(old.getEmployeeImg());
+					}
 					PmsEmployee newEmployee = pmsEmployeeFacade.findEmployeeById(employee.getEmployeeId());
 					initSessionInfo(newEmployee, request);
 					

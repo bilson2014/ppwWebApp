@@ -126,12 +126,12 @@
 		     </div>
 		     
 		     <div class="providerIntroduction">
-		         <div class="content">
+		         <div class="content hide">
 		             <div class="name">
 		                <div><img src="${imgPath}/provder/providerIcon.png" ></div><div class="cn">导演简介</div><div class="en">Director profile</div>
 		             </div>
 		             <div class="textTxt">
-		             	${provider.teamDescription }
+		             <%-- 	${provider.teamDescription } --%>
 		             </div>
 		         </div>
 		        <c:if test="${!empty providerTags}">

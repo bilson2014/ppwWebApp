@@ -540,6 +540,12 @@ var orderIndex = {
 			if(num == 21){
 				name = '线上-公众号-作品';
 			}
+			if(num == 21){
+				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
+			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
@@ -623,6 +629,9 @@ var orderIndex = {
 			}
 			if(num == 21){
 				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
@@ -709,6 +718,9 @@ var orderIndex = {
 			}
 			if(num == 21){
 				name = '线上-公众号-作品';
+			}
+			if(num == 22){
+				name = '线上-SEM';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
@@ -965,11 +977,11 @@ function bangSubmit(check,item){
 				  success:function(data){
 					  $('#NewOrder').hide();
 						bangSubmit(check,item);
-					  if(check == 1){
+					 /* if(check == 1){
 						  $('.orderIndex').click();
-					  }else{
-						  orderIndex.readMore(nowPage);
-					  }
+					  }else{*/
+						orderIndex.readMore(nowPage);
+					  //}
 					},
 				error:function(data){
 					bangSubmit(check,item);
@@ -1361,6 +1373,7 @@ function clearSearch(){
 
 function submitOrder(){
 	var id = $('#mptModel').attr('data-id');
+	
 	loadData(function(msg){
 		$('#smodelPage').hide();
 		if(msg.code == 200){
@@ -1368,6 +1381,7 @@ function submitOrder(){
 			InterValObj = window.setInterval(showSuccess, 1000);
 			refresh();
 		}else{
+			
 		}
 	}, getContextPath()+'/order/submit', $.toJSON({
 		id : id
@@ -1395,7 +1409,7 @@ function checkUser(){
 	var tr = $(this).parent();
 	var id = $(tr).find('.id').text().trim();
     $('#mptModel').attr('data-id',id);
-
+    $('.submit').off('click');
     loadData(function (res){
     	if(res.code == 200){
     		var indent_tele = $(tr).find('.indent_tele').text();
@@ -1421,6 +1435,7 @@ function checkUser(){
     			}
     		}, getContextPath() + '/order/checkuser?indent_tele='+indent_tele+'&indentId='+id, null);
     	}else if(res.code == 300){
+    		$('.submit').off('click').on('click',checkUser);
     		var rrr = res.result;
     		$('#showErrorInfoWin').show();
 //    		var errorView = $('#showErrorInfoWin').find('.serErrorDiv');

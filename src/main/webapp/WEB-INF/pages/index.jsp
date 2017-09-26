@@ -466,11 +466,18 @@
                         <div onclick="showOrder('宣传片');">我要拍片</div>
                         <div onclick="window.location.href='/register'">入驻拍片网</div>
 	                 </r:noLogin>
-					
-					
 				</div>
 			</div>
 		</div>
+		<div class="ourFriendsColor">
+		  <div class="logo" ><img src="/resources/images/index/friendTitile.svg"></div>
+			<div class="ourFriends">
+			   <a  href="http://www.plusx.cn/" target="_blank"><img alt="图片直播" src="/resources/images/index/friend1.png"></a>
+			   <a  href="http://www.techuangyi.com" target="_blank"><img alt="特创易LOGO设计" src="/resources/images/index/friend2.png"></a>
+			   <a  href="http://www.cubead.com/" target="_blank"><img alt="大数据整合营销" src="/resources/images/index/friend3.png"></a>
+			   <a  href="http://www.bjjfsd.com/" target="_blank"><img alt="北京网站制作" src="/resources/images/index/friend4.png"></a>
+			</div>
+		</div>	
 		<!-- 入驻end-->
 <!-- foot -->
           
