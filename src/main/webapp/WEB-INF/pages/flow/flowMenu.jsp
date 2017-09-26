@@ -13,7 +13,8 @@
 <spring:url value="/resources/images" var="imgPath" />
 
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
-<spring:url value="http://www.apaipian.com:8087/" var="url" />
+<spring:url value="http://test.apaipian.com:7070/" var="url" />
+<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

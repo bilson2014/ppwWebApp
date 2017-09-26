@@ -148,10 +148,6 @@ function loginOrder() {
 		dataType : 'json',
 		success : function(data) {
 			var flag = $("#indent_recomment").text();
-			/*
-			 * if(word == '宣传片') word = '*宣传片'; if(word == '广告片') word = '*广告';
-			 * window.location.href='/search?q=' + word;
-			 */
 			if (flag == '宣传片') {
 				window.location.href = 'list-qyxcp/';
 			}
