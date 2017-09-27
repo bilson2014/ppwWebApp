@@ -1,6 +1,8 @@
 var InterValObj; // timer变量，控制时间  
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
+
+
 //var Url = "http://www.apaipian.com:8087/";
 //var Url = "http://localhost:7070/";
 var Url = "http://test.apaipian.com:7070/";
@@ -143,6 +145,7 @@ function initMenuEven(){
 	})
 	//特换到小菜单 以及对应的相应式的类
 	$('#toMin').off('click').on('click',function(){
+		$($('.frame').prop('contentWindow').document).find('.pages').addClass('toChange');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardBig');
 	    $($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardSmall');
 		$('.flowMenu').addClass('changeMenu');
@@ -160,6 +163,7 @@ function initMenuEven(){
 	});
 	//切换回大菜单 以及对应的相应式的类
 	$('#menuHead').off('click').on('click',function(){
+		$($('.frame').prop('contentWindow').document).find('.pages').removeClass('toChange');
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardBig');
@@ -174,6 +178,7 @@ function initMenuEven(){
 	});
 	//小的 项目样式改变 以及响应式
 	$('#minMyPro').off('click').on('click',function(){
+		
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#shortMenu .safe').removeClass('open');
