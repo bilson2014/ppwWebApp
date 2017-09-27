@@ -48,6 +48,8 @@ public class HomePageController extends BaseController {
 	
 	@Autowired
 	private SolrService solrService = null;
+	
+	
 
 	/**
 	 * 加载 主页 视频列表
@@ -104,6 +106,14 @@ public class HomePageController extends BaseController {
 		}
 		
 		Log.error("Load portal page products", sessionInfo);
+		
+		// ----------------- Redis Begin --------------
+		
+		
+		
+		
+		// ----------------- Redis End ----------------
+		
 		return baseMsg;
 	}
 

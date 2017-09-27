@@ -167,7 +167,7 @@ function loginOrder() {
 function loginNoOrder(){
 	var word = $("#indent_recomment").text();
 	if(word == '宣传片')
-		word = '*宣传片';
+		word = '*宣传';
 	if(word == '广告片')
 		word = '*广告';
 	window.location.href='/search?q=' + word;

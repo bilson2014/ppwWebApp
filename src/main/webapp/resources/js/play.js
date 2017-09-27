@@ -385,8 +385,12 @@ function initView(){
 	var hret = $('#yk-play').val();
 	
 	if(hret != '' && hret != null && hret != undefined){
+		// 隐藏原生浏览器
+		$('#playId').attr('src','');
+		$('#playId').remove();
 		makePlayer('player-wrap', hret); // 创建视频浏览器
 	}
+	
 	// -> 注册 分享按钮 
 	$('.share').click(function(){
 		var title = $('#pName').text();

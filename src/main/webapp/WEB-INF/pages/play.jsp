@@ -86,8 +86,8 @@
 			 </c:if>
 	</r:identity>	
 	 
-	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
-	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
+	<input type="hidden" id="picPath" value='<spring:url value="${product.picLDUrl }"/>' />
+	<input type="hidden" id="yk-play" value='<spring:url value="${product.hret}"/>' />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="tags" value="${product.tags }" />
