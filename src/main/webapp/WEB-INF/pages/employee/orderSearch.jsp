@@ -52,6 +52,7 @@
                     <li data-id="19">线上-公众号-成本计算器 </li>
                     <li data-id="20">线上-公众号-直接下单</li>
                     <li data-id="21">线上-公众号-作品</li>	
+                    <li data-id="22">线上-SEM</li>
                 </ul>    
 	        </div>
             <div id='daySearch'>日期查询</div>

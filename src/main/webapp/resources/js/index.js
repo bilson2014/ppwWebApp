@@ -148,10 +148,6 @@ function loginOrder() {
 		dataType : 'json',
 		success : function(data) {
 			var flag = $("#indent_recomment").text();
-			/*
-			 * if(word == '宣传片') word = '*宣传片'; if(word == '广告片') word = '*广告';
-			 * window.location.href='/search?q=' + word;
-			 */
 			if (flag == '宣传片') {
 				window.location.href = 'list-qyxcp/';
 			}
@@ -171,7 +167,7 @@ function loginOrder() {
 function loginNoOrder(){
 	var word = $("#indent_recomment").text();
 	if(word == '宣传片')
-		word = '*宣传片';
+		word = '*宣传';
 	if(word == '广告片')
 		word = '*广告';
 	window.location.href='/search?q=' + word;
@@ -586,7 +582,7 @@ var homePage_tpl = {
 			'           <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
 			'{@/if}', '			<div class="coverContent">',
 			'				<div class="">${item.productName}</div>',
-			'				{@if item.price == 0}', '					<div>￥欢迎询价</div>',
+			'				{@if item.price == 0}', '<div>￥欢迎询价</div>',
 			'				{@else}', '					<div>￥${item.price|thousandCount}</div>',
 			'				{@/if}', '			</div>', '		</a>', '	</div>', '</div>',
 			'{@/each}' ].join(""),
@@ -680,11 +676,10 @@ var homePage_tpl = {
 			'	<div class="b"></div>',
 			'	<div class="directorContent">',
 			'		<a href="/provider/info_${item.teamId}.html" target="_blank">',
-			'			<img src="' + getDfsHostName()
-					+ '${item.teamPhotoUrl}" alt=${item.teamName}>',
+			'			<img src="' + getDfsHostName()+ '${item.teamPhotoUrl}" alt=${item.teamName}>',
 			'			<div class="title">${item.teamName}</div>',
 			'			<div class="line"></div>',
-			'			<div class="content dContent">${item.description}</div>',
+			'			<div class="content dContent"><div class="scrollDiv">${item.business}</div></div>',
 			'			<div class="toProduct">作品集</div>', '		</a>', '	</div>',
 			'</div>', '{@/each}' ].join(""),
 	news_resommend : [

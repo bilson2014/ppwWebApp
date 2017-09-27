@@ -86,8 +86,8 @@
 			 </c:if>
 	</r:identity>	
 	 
-	<input type="hidden" id="picPath" value="<spring:url value="${product.picLDUrl }"/>" />
-	<input type="hidden" id="yk-play" value="<spring:url value="${product.hret}"/>" />
+	<input type="hidden" id="picPath" value='<spring:url value="${product.picLDUrl }"/>' />
+	<input type="hidden" id="yk-play" value='<spring:url value="${product.hret}"/>' />
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<input type="hidden" id="vPrice" value="${product.serviceRealPrice }"/>
 	<input type="hidden" id="tags" value="${product.tags }" />
@@ -157,8 +157,8 @@
 	                            <div class="toHover">作品集</div>
 	                        </div>
 	                         </a>
-	                        <div class="teamDescription hide">
-	                        	${product.teamDescription}
+	                        <div class="teamDescription">
+	                        	<%-- ${product.teamDescription} --%>
 	                        </div>
 	                    </div>
                     </c:if>
@@ -194,7 +194,7 @@
 	                	<r:identity role="provider">
 	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                	</r:identity>   
-	                	<r:identity role="provider">
+	                	<r:identity role="customer">
 	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
 	                	</r:identity>
 	                    <r:noLogin>

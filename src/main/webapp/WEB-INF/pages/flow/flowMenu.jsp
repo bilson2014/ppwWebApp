@@ -13,7 +13,8 @@
 <spring:url value="/resources/images" var="imgPath" />
 
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
-<spring:url value="http://www.apaipian.com:8087/" var="url" />
+<spring:url value="http://test.apaipian.com:7070/" var="url" />
+<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -72,7 +73,7 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    <r:permission uri="/mgr/index">
+	    <r:permission uri="/project/running">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -87,22 +88,22 @@
 	                  <li id="finish">完成/取消</li>
 	              </ul>
 	      </r:permission>  
+	               
+	              <r:permission uri="">
+			              <div class="treeitem" id="myOrder">
+			                <div class="orderList"></div>
+			                <div class="title">我的订单</div>
+			                <img src="${imgPath}/flow/more.png">
+			            </div>
+	                  <ul class="productList" id="orderList">
+		                  <li id='orderIndex' data-value="0">处理中</li>
+		                  <li id='orderSub' data-value="1">已提交</li>
+		                  <li id='orderCancle' data-value="2">无效订单</li>
+		              </ul>
+	            </r:permission>  
 	              
-	               <r:identity role="employee">
-		              <div class="treeitem" id="myOrder">
-		                <div class="orderList"></div>
-		                <div class="title">我的订单</div>
-		                <img src="${imgPath}/flow/more.png">
-		             </div>
 	              
-                  <ul class="productList" id="orderList">
-	                  <li id='orderIndex' data-value="0">处理中</li>
-	                  <li id='orderSub' data-value="1">已提交</li>
-	                  <li id='orderCancle' data-value="2">无效订单</li>
-	              </ul>
-	              
-	              
-	           
+	           <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
 			                  <div class="title">收藏列表</div>

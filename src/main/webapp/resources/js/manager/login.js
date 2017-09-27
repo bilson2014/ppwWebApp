@@ -76,7 +76,6 @@ var login = {
 			loadData(function(result){
 				if(result.ret){
 					// 跳转
-					
 					var go = result.message;
 					if(go == 2){
 						$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();

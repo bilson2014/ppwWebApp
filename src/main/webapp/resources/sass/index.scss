@@ -227,8 +227,7 @@ input:focus {
     margin: 50px auto 50px;
     width: 620px;
     height: 90px;
-    z-index: 10;
-    // .bannerOut::after {
+    z-index: 10; // .bannerOut::after {
     //     content: attr(data-content);
     //     position: absolute;
     //     color: $red-base;
@@ -240,7 +239,7 @@ input:focus {
     // }
     .search-box {
         text-align: center;
-        & > form {
+        &>form {
             display: inline-block;
             position: relative;
             .helpYou {
@@ -339,7 +338,7 @@ input:focus {
     background: black;
 }
 
-.tele-wrap > .tele-section {
+.tele-wrap>.tele-section {
     @include media_screen_width();
     margin: auto;
     height: 100%;
@@ -443,8 +442,7 @@ input:focus {
             /* Safari 和 Chrome */
             -o-transition: all .3s ease-in-out .2s;
             /* Opera */
-            opacity: 1;
-            //@include index-Screen-width();
+            opacity: 1; //@include index-Screen-width();
             width: 310px;
             background-size: 310px 180px !important;
             @media screen and (max-width: 1275px) {
@@ -1357,13 +1355,13 @@ input:focus {
 }
 
 .join {
-    background: url(/resources/images/index/joinS.jpg) no-repeat !important;
-    @media screen and (min-width: 1276px) and (max-width: 1460px) {
-        background: url(/resources/images/index/joinM.jpg) no-repeat !important;
-    }
-    @media screen and (max-width: 1461px) {
-        background: url(/resources/images/index/joinL.jpg) no-repeat !important;
-    }
+    background: white !important;
+    /*     @media screen and (min-width: 1276px) and (max-width: 1460px) {
+    background: url(/resources/images/index/joinM.jpg) no-repeat !important;
+}
+@media screen and (max-width: 1461px) {
+    background: url(/resources/images/index/joinL.jpg) no-repeat !important;
+} */
     background-size: cover !important;
     background-position: center 0;
     height: 307px;
@@ -1372,6 +1370,9 @@ input:focus {
     .joinContent {
         @include media_screen_width_beta3();
         margin: 0 auto;
+        height: 100%;
+        border-top: 1px dashed $border-line;
+        border-bottom: 1px dashed $border-line;
         ul {
             padding-top: 80px;
             display: block !important;
@@ -1474,4 +1475,108 @@ input:focus {
     height: 30px;
     width: 30px;
     border-radius: 90px;
+}
+
+.scrollDiv {
+    position: relative;
+    /*     top: 100px;
+-webkit-animation: hideShow 8s infinite linear;
+-moz-animation: hideShow 8s infinite linear;
+-o-animation: hideShow 8s infinite linear;
+animation: hideShow 8s infinite linear; */
+}
+
+
+@-webkit-keyframes hideShow {
+    0% {
+        top: 100px;
+    }
+    100% {
+        top: -100px;
+    }
+}
+
+@-moz-keyframes hideShow {
+    0% {
+        top: 100px;
+    }
+    100% {
+        top: -100px;
+    }
+}
+
+@-o-keyframes hideShow {
+    0% {
+        top: 100px;
+    }
+    100% {
+        top: -100px;
+    }
+}
+
+@keyframes hideShow {
+    0% {
+        top: 100px;
+    }
+    100% {
+        top: -100px;
+    }
+}
+
+
+.ourFriendsColor {
+    width: 100%;
+    background: white;
+    position: relative;
+    z-index: 5;
+    .logo {
+        @include media_screen_width_beta3();
+        position: relative;
+        margin: 0 auto;
+        img {
+            position: absolute;
+            top: 60px;
+            left: 0px;
+        }
+    }
+}
+
+$sImg:860px;
+$mImg:931px;
+$bImg:1000px;
+
+.ourFriends {
+    position: relative;
+    width: 890px;
+    margin: 0 auto;
+    height: auto;
+    font-size: 0;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    /*   padding: 0px 150px 0px 150px; */
+    a {
+        display: inline-block;
+        vertical-align: top;
+        img {
+            width: 134px;
+            /*         height: $sImg/4;
+width: $sImg/4;
+@media screen and (min-width: 1275px) and (max-width: 1500px) {
+    height:$mImg/4;
+    width: $mImg/4;
+}
+@media screen and (min-width: 1501px) {
+    height: $bImg/4;
+    width: $bImg/4;
+} */
+        }
+    }
+
+    a:nth-child(2) {
+        margin-left: 115px;
+    }
+    a:nth-child(3) {
+        margin-left: 115px;
+        margin-right: 115px;
+    }
 }

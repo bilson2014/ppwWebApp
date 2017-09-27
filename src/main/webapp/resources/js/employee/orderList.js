@@ -1,13 +1,14 @@
+
 $().ready(function() {
 	initView();
 	orderIndex.init();
 	if($('#flag').val() == 1){
 		$('#needBtn').hide();
 	}
-	//需求文档的取消跳转
-	$('#cancleOrderList').off('click').on('click',function(){	
+	$('#cancleOrderList').off('click').on('click',function(){
 		 window.location.href=getContextPath()+'/project/running?order';
-	});	
+	});
+	
 });
 
 var orderIndex = {
@@ -15,9 +16,8 @@ var orderIndex = {
 			orderIndex.controlModel();
 		},
 		controlModel:function(){
-//			需求文档确认跳转
 			$('.headerSave').off('click').on('click',function(){
-				 window.location.href=getContextPath()+'/project/running?order';
+				getNeedValue($('#requireId').val());
 			});
 		},
 };
@@ -321,7 +321,7 @@ function getNeedValue(requireId){
 				  success: function (res) {
 					      console.info('修改');
 						  $('.orderModel').hide();
-						  window.location.href=getContextPath()+'/order/myOrder';
+						  window.location.href=getContextPath()+'/project/running?order';
 				  }
 			});	
 		 }else{
@@ -336,7 +336,7 @@ function getNeedValue(requireId){
 				  success: function (res) {
 					  console.info('新建');
 					  $('.orderModel').hide();
-					  window.location.href=getContextPath()+'/order/myOrder';
+					  window.location.href=getContextPath()+'project/running?order';
 				  }
 			});				 
 		 }
