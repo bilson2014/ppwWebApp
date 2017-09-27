@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paipianwang.pat.common.config.PublicConfig;
+import com.paipianwang.pat.common.constant.PmsConstant;
 import com.paipianwang.pat.common.entity.PageParam;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
@@ -47,6 +48,8 @@ public class HomePageController extends BaseController {
 	
 	@Autowired
 	private SolrService solrService = null;
+	
+	
 
 	/**
 	 * 加载 主页 视频列表
@@ -67,6 +70,18 @@ public class HomePageController extends BaseController {
 		if (null != solrView.getSort()) {
 			query.setSort(solrView.getSort(), ORDER.desc);
 		}
+		
+		String solrUrl = PublicConfig.SOLR_PORTAL_URL;
+		SessionInfo sessionInfo = getCurrentInfo(request);
+		if(sessionInfo != null) {
+			String sessionType = sessionInfo.getSessionType();
+			if(StringUtils.isNotBlank(sessionType)) {
+				if(PmsConstant.ROLE_EMPLOYEE.equals(sessionType))
+					// 替换成 员工首页数据源
+					solrUrl = PublicConfig.SOLR_EMPLOYEE_URL;
+			}
+		}
+		
 		final List<PmsProductSolr> list = solrService.queryDocs(PublicConfig.SOLR_PORTAL_URL, query);
 		if (null != list) {
 			// 处理标签
@@ -90,8 +105,15 @@ public class HomePageController extends BaseController {
 			baseMsg.setErrorMsg("null list");
 		}
 		
-		SessionInfo sessionInfo = getCurrentInfo(request);
 		Log.error("Load portal page products", sessionInfo);
+		
+		// ----------------- Redis Begin --------------
+		
+		
+		
+		
+		// ----------------- Redis End ----------------
+		
 		return baseMsg;
 	}
 

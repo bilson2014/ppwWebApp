@@ -30,9 +30,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="宣传片样片, tvc广告片案例, mg动画制作创意, 微电影策划">
-	<meta name="description" content="企业宣传片样片、tvc广告片案例500+，mg动画创意策划，微电影拍摄制作找灵感，就来拍片网。汇聚企业宣传类、产品广告类以及活动类视频，涵盖各种类型的商业视频案例。">
-	<title>宣传片样片_tvc广告片案例_mg动画制作创意_微电影策划灵感-拍片网</title>
+	<meta name="keywords" content="${keywords }">
+	<meta name="description" content="${description }">
+	<title>${title }</title>
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<link rel="stylesheet" href="${searchCss }">
 	

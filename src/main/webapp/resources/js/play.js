@@ -383,11 +383,14 @@ function initView(){
 	// -> 如果视频有优酷地址，那么使用UK播放器
 	var hret = $('#yk-play').val();
 	
+	// 隐藏原生浏览器
 	if(hret != '' && hret != null && hret != undefined){
+		
 		$('#playId').attr('src','');
 		$('#playId').remove();
 		makePlayer('player-wrap', hret); // 创建视频浏览器
 	}
+	
 	// -> 注册 分享按钮 
 	$('.share').click(function(){
 		var title = $('#pName').text();

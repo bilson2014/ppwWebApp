@@ -47,13 +47,17 @@ public class SolrController extends BaseController {
 		// 检查 参数q 是否为空
 		if(ValidateUtil.isValid(q)) {
 			// 处理停词问题
-			if(q.contains("宣传片") || q.contains("广告")) {
+			if(q.contains("宣传片") || q.contains("广告") || q.contains("动画")) {
 				final StringBuffer sb = new StringBuffer();
 				q = q.replaceAll("“+", "\"").replaceAll("”+", "\"").replaceAll(",", " ").replaceAll(" +", " ");
 				String[] tags = q.split(" ");
 				for (int i = 0;i < tags.length;i ++) {
 					String tag = tags[i];
-					if("宣传片".equals(tags[i]) || "广告".equals(tags[i])) {
+					if("宣传片".equals(tags[i]) || "广告".equals(tags[i]) || "广告片".equals(tags[i]) || "动画".equals(tags[i]) || "动画片".equals(tags[i])) {
+						if (tag.equals("广告片"))
+							tag = "广告";
+						if (tag.equals("动画片"))
+							tag = "动画";
 						tag = "*" + tag;
 					}
 					if(i < tags.length - 1)
