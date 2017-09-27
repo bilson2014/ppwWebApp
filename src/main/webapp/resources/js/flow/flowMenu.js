@@ -2,8 +2,8 @@ var InterValObj; // timer变量，控制时间
 var count = 120; // 间隔函数，1秒执行  
 var curCount; // 当前剩余秒数 
 //var Url = "http://www.apaipian.com:8087/";
-var Url = "http://localhost:7070/";
-//var Url = "http://test.apaipian.com:7070/";
+//var Url = "http://localhost:7070/";
+var Url = "http://test.apaipian.com:7070/";
 
 $().ready(function() {
 	document.domain = getUrl();
