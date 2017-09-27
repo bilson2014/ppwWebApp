@@ -476,6 +476,7 @@
 			   <a  href="http://www.techuangyi.com" target="_blank"><img alt="特创易LOGO设计" src="/resources/images/index/friend2.png"></a>
 			   <a  href="http://www.cubead.com/" target="_blank"><img alt="大数据整合营销" src="/resources/images/index/friend3.png"></a>
 			   <a  href="http://www.bjjfsd.com/" target="_blank"><img alt="北京网站制作" src="/resources/images/index/friend4.png"></a>
+			   <a  href="http://www.qiqueqiao.com/" target="_blank"><img alt="企鹊桥" src="/resources/images/index/friend5.png"></a>
 			</div>
 		</div>	
 		<!-- 入驻end-->
