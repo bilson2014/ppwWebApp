@@ -22,12 +22,9 @@ $().ready(function() {
 	doPasue();
 	doFinish();
 	toSave();
-	
 	$('#toCreate').parent().attr('href',getUrlTask() + "project/start/project")
 	checkState();
-	
 });
-
 function checkState(){
 	 var href = window.location.href;
 	 var state = href.substr(href.lastIndexOf("?")+1,href.length);
@@ -42,17 +39,18 @@ function checkState(){
 		    	checkClear(2);
 		    }
 }
-
+//右侧地址方法的判断
 function checkClear(who){
 	$('.treeitem').removeClass('treeitemRed');
-	$('#toSave').addClass('treeitemRed');
 	$('#productList').hide();
 	$('#myPro').removeClass('open');
 	$('#nowDoing').removeClass('checkLi');
 	if(who == 0){
-		 $('.frame').attr('src',"/mgr/favourites");
+		$('#toSave').addClass('treeitemRed');
+		$('.frame').attr('src',"/mgr/favourites"); 
 	}else if (who==1){
 		$('.frame').attr('src',"/mgr/safeInfo");
+		$('#safe').addClass('treeitemRed');
 	}else{
 		$('.frame').attr('src',"/order/myOrder?1");
 		$('#orderIndex').addClass('checkLi');
@@ -67,7 +65,6 @@ function checkClear(who){
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').addClass('open');
-		
 		//点击右侧 出现
 		$('#myOrder').addClass('open');
 		$('#myPro').removeClass('open');
@@ -76,7 +73,6 @@ function checkClear(who){
 	}
 }
 function initMenuEven(){
-	
 	$('#myPro').off('click').on('click',function(){
 		var nThis = $(this);
 		 if($(this).hasClass('open')){
@@ -89,13 +85,11 @@ function initMenuEven(){
 			 $('#productList').slideDown();
 		 }
 	});
-	
 	$('#minSave').off('click').on('click',function(){
-		    $('.menuItem div').removeClass('open');
-            $(this).addClass('open');
-            $('.frame').attr('src',"/mgr/favourites");
+		$('.menuItem div').removeClass('open');
+		$(this).addClass('open');
+        $('.frame').attr('src',"/mgr/favourites");
 	});
-	
 	//特换到小菜单
 	$('#toMin').off('click').on('click',function(){
 		$('.flowMenu').addClass('changeMenu');
@@ -107,7 +101,6 @@ function initMenuEven(){
 		}
 		$('.cardItem').addClass('rightsize');
 	});
-	
 	//切换回大菜单
 	$('#menuHead').off('click').on('click',function(){
 		$('.flowMenu').removeClass('changeMenu');

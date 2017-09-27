@@ -8,12 +8,12 @@ var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
 
 //var UrlDo = "www.apaipian.com";
-var UrlDo = "test.apaipian.com";
-//var UrlDo = "localhost";
+//var UrlDo = "test.apaipian.com";
+var UrlDo = "localhost";
 
 //var Url = "http://www.apaipian.com:8087/";
-//var Url = "http://localhost:8080/";
-var Url = "http://test.apaipian.com:8087/";
+var Url = "http://localhost:7070/";
+//var Url = "http://test.apaipian.com:8087/";
 
 
 $().ready(function(){
