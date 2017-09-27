@@ -28,6 +28,7 @@
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <script type="text/javascript" src="${textFlowJs}"></script>
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>

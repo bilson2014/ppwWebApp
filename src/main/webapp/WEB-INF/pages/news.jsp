@@ -17,6 +17,7 @@
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypoints" />
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 
 <!DOCTYPE html>
 <html class="no-js">

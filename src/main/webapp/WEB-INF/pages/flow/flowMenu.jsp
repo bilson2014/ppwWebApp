@@ -32,7 +32,6 @@
 <title></title>
 <link rel="stylesheet" href="${flowMenuCss}">
 <link rel="stylesheet" href="${datepickerCss}">
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${datepickerJs}"></script>
 <script type="text/javascript" src="${datepickerZhJs}"></script> 
@@ -54,16 +53,12 @@
 	        <div id="shortMenu">
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
-	                <a href="${url}/project/running-task"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
-
-	                
-
+	                <a href="/project/running"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
 	                <r:identity role="employee">
 	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                </r:identity>
-
 	                <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
 	       

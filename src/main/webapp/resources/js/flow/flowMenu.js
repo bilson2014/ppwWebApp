@@ -145,6 +145,7 @@ function initMenuEven(){
 	})
 	//特换到小菜单 以及对应的相应式的类
 	$('#toMin').off('click').on('click',function(){
+		$($('.frame').prop('contentWindow').document).find('.pages').addClass('toChange');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').removeClass('cardBig');
 	    $($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardSmall');
 		$('.flowMenu').addClass('changeMenu');
@@ -162,6 +163,7 @@ function initMenuEven(){
 	});
 	//切换回大菜单 以及对应的相应式的类
 	$('#menuHead').off('click').on('click',function(){
+		$($('.frame').prop('contentWindow').document).find('.pages').removeClass('toChange');
 		$('.flowMenu').removeClass('changeMenu');
 		$('.page').removeClass('toMinLeft');
 		$($('.frame').prop('contentWindow').document).find('.cardItem').addClass('cardBig');
@@ -176,6 +178,7 @@ function initMenuEven(){
 	});
 	//小的 项目样式改变 以及响应式
 	$('#minMyPro').off('click').on('click',function(){
+		
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#shortMenu .safe').removeClass('open');

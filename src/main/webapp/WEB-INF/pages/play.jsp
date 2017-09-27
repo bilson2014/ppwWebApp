@@ -18,7 +18,7 @@
 <spring:url value="/resources/lib/jquery/jquery.base64.js" var="jquerybase64Js" />
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
 <spring:url value="/resources/lib/swiper/swiper.js" var="swiperJs" />
-
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
