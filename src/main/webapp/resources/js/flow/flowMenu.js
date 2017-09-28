@@ -3,7 +3,8 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 
 
-//var Url = "http://www.apaipian.com:8087/";
+
+//var Url = "http://apaipian.com:8087/";
 var Url = "http://localhost:7070/";
 //var Url = "http://test.apaipian.com:7070/";
 
@@ -91,11 +92,7 @@ function initMenuEven(){
 	})
 	//左侧变小之后订单页面的样式改变  按钮样式   响应式
 	$('#minorder').off('click').on('click',function(){
-		
 		$('.frame').attr('src',"/order/myOrder?1");	
-	
-
-		
 		$($('.frame').prop('contentWindow').document).find('.tableList').addClass('tableLists');
 		$($('.frame').prop('contentWindow').document).find('.tableList').removeClass('tableList');
 		$($('.frame').prop('contentWindow').document).find('#toClean').addClass('btnclen');
