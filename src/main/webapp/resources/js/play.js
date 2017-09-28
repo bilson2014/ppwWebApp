@@ -27,7 +27,6 @@ $().ready(function() {
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
     saveVideo();
-
 });
 
 function saveVideo(){	
@@ -384,8 +383,9 @@ function initView(){
 	// -> 如果视频有优酷地址，那么使用UK播放器
 	var hret = $('#yk-play').val();
 	
+	// 隐藏原生浏览器
 	if(hret != '' && hret != null && hret != undefined){
-		// 隐藏原生浏览器
+		
 		$('#playId').attr('src','');
 		$('#playId').remove();
 		makePlayer('player-wrap', hret); // 创建视频浏览器
@@ -636,7 +636,6 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 
 function createCard(productName,productId,teamId,imageUrl,price,sUrl,name,teamId,teamFlag){
 var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
-
 var ImageUrl = '/resources/images/index/noImg.jpg';
 
 if(imageUrl != null && imageUrl != "" && imageUrl != undefined){

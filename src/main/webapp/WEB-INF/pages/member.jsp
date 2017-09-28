@@ -14,7 +14,7 @@
 <spring:url value="/resources/js/member.js" var="memberJs"/>
 <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
-
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <!-- import img path -->
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
