@@ -21,8 +21,7 @@
          <div class="searchInfo">
          <!-- cxx -->
          	<div class='banner'>
-         		<span>处理中订单</span>
-         		
+         		<span></span>
          	</div>
             <div>公司名称</div>
             <input value="" id="sUserCompany">

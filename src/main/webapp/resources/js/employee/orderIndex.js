@@ -46,7 +46,6 @@ var nowNum = 1;
 var sUserCompany = '',sRealName = '',sIndent_tele = '',sIndentSource = -1,timeOld = '',timeNew = '';
 $().ready(function() {
 	
-	
 	document.domain = getUrl();
 	$("input[name$='time']").datepicker({
 		language: 'zh',
@@ -76,15 +75,20 @@ var orderIndex = {
 			if (useadress == 1){
 				$('#orderNew').attr('data-value',useadress);
 				orderIndex.readMore(nowPage);
+				$('.searchInfo .banner span').text('处理中订单');
 
 			}
 			if (useadress==2){
 				$('#orderNew').attr('data-value',useadress);
 				orderIndex.readSub(nowPage);
+				$('.searchInfo .banner span').text('已提交订单');
+
 			}
 			if (useadress==3){
 				$('#orderNew').attr('data-value',useadress);
 				orderIndex.readUnAle(nowPage);
+				$('.searchInfo .banner span').text('无效订单');
+
 			}
 //			$('.showStatus div').off('click').on('click',function(){
 //				if(!$(this).hasClass('orderNew')){

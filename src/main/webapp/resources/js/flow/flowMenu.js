@@ -4,8 +4,8 @@ var curCount; // 当前剩余秒数
 
 
 //var Url = "http://www.apaipian.com:8087/";
-//var Url = "http://localhost:7070/";
-var Url = "http://test.apaipian.com:7070/";
+var Url = "http://localhost:7070/";
+//var Url = "http://test.apaipian.com:7070/";
 
 $().ready(function() {
 	document.domain = getUrl();
@@ -93,9 +93,9 @@ function initMenuEven(){
 	$('#minorder').off('click').on('click',function(){
 		
 		$('.frame').attr('src',"/order/myOrder?1");	
-		console.log("5555");
+	
 
-		console.log($($('.frame').prop('contentWindow').document).find('.searchInfo .banner span').text('处理中订单'));
+		
 		$($('.frame').prop('contentWindow').document).find('.tableList').addClass('tableLists');
 		$($('.frame').prop('contentWindow').document).find('.tableList').removeClass('tableList');
 		$($('.frame').prop('contentWindow').document).find('#toClean').addClass('btnclen');
@@ -212,7 +212,6 @@ function initMenuEven(){
 	//小的 订单  处理中  样式改变 以及响应式
 	$('#orderIndex').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?1");	
-		$($('.frame').prop('contentWindow').document).find('.searchInfo .banner span').text('处理中订单');
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -229,7 +228,6 @@ function initMenuEven(){
 	//小的 订单  已提交  样式改变 以及响应式
 	$('#orderSub').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?2");
-		$($('.frame').prop('contentWindow').document).find('.searchInfo .banner span').text('已提交订单');
 		$('#orderSub').addClass('checkLi');
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -246,7 +244,6 @@ function initMenuEven(){
 	//小的 订单  无效订单  样式改变 以及响应式
 	$('#orderCancle').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?3");
-		$($('.frame').prop('contentWindow').document).find('.searchInfo .banner span').text('无效订单');
 		$('#orderCancle').addClass('checkLi');
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
