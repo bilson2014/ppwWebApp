@@ -19,6 +19,11 @@
               <div class="orderNew" id='orderNew'> <span id='picAdd'></span> &nbsp;&nbsp; &nbsp;新建订单</div>
          </div>   
          <div class="searchInfo">
+         <!-- cxx -->
+         	<div class='banner'>
+         		<span>处理中订单</span>
+         		
+         	</div>
             <div>公司名称</div>
             <input value="" id="sUserCompany">
             <div>联系人</div>
@@ -55,14 +60,14 @@
                     <li data-id="22">线上-SEM</li>
                 </ul>    
 	        </div>
+	        <br/>
             <div id='daySearch'>日期查询</div>
             <input class="time" readonly id="timeOld" name="time" value="">
             <span>~</span>
             <input class="time" readonly id="timeNew" name="time" value="">
-            <br/>
             
-            <div class="btn-c-g searchBtn" id="toClean">清空</div>
-            <div class="btn-c-r searchBtn" id="toSearch">搜索</div>
+            <div class=" searchBtn" id="toClean">清空</div>
+            <div class=" searchBtn" id="toSearch">搜索</div>
          </div>
 </body>
 

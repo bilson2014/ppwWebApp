@@ -73,7 +73,7 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    <r:permission uri="/project/running">
+	    	<r:permission uri="/project/running">
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -87,9 +87,10 @@
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
-	      </r:permission>  
+	     	</r:permission>  
 	               
-	              <r:permission uri="">
+	             
+	             <r:permission uri="">
 			              <div class="treeitem" id="myOrder">
 			                <div class="orderList"></div>
 			                <div class="title">我的订单</div>
@@ -100,9 +101,9 @@
 		                  <li id='orderSub' data-value="1">已提交</li>
 		                  <li id='orderCancle' data-value="2">无效订单</li>
 		              </ul>
-	            </r:permission>  
+	            
 	              
-	              
+	       </r:permission>
 	           <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
