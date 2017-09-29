@@ -90,6 +90,8 @@ function initMenuEven(){
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
 	})
+	//左侧变小之后项目页面的样式改变  按钮样式   响应式
+	$('#minpro').off('click').on('click',function(){})
 	//左侧变小之后订单页面的样式改变  按钮样式   响应式
 	$('#minorder').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?1");	

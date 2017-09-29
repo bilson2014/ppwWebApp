@@ -24,7 +24,12 @@ $().ready(function() {
 	toSave();
 	$('#toCreate').parent().attr('href',getUrlTask() + "project/start/project")
 	checkState();
+//	numberfont();
 });
+//function numberfont(){
+//	var num=$('.otherWork .setCard .otherCard .cardContent .setContent .listName').val();
+//	console.log(num);
+//}
 function checkState(){
 	 var href = window.location.href;
 	 var state = href.substr(href.lastIndexOf("?")+1,href.length);
@@ -47,15 +52,12 @@ function checkClear(who){
 	$('#nowDoing').removeClass('checkLi');
 	if(who == 0){
 		$('#toSave').addClass('treeitemRed');
-
 		$('.frame').attr('src',"/mgr/favourites"); 
 	}else if (who==1){
 		$('.frame').attr('src',"/mgr/safeInfo");
 		$('#safe').addClass('treeitemRed');
-
 	}else{
 		$('.frame').attr('src',"/order/myOrder?1");
-		
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
