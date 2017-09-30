@@ -131,6 +131,7 @@ function doing(){
 		$('#shortMenu .myPro').addClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
@@ -155,6 +156,7 @@ function doPasue(){
 		$('#shortMenu .myPro').addClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
@@ -178,6 +180,7 @@ function doFinish(){
 		$('#shortMenu .myPro').addClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');
+		$('#shortMenu .orderList ').removeClass('open');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
