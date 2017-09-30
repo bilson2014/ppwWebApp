@@ -55,7 +55,7 @@
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
 	                <!--<a href="/project/running">   </a>-->
-	                	<div class="menuItem" id='minpro'><div class="myPro" id="minMyPro"></div></div>
+	                	<div class="menuItem" id='minMyPro'><div class="myPro"></div></div>
 	               
 	                <r:identity role="employee">
 	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
@@ -70,7 +70,8 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    	<r:permission uri="/project/running">
+	    	
+	    	<!--<r:permission uri="/project/running">      -->
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -85,8 +86,8 @@
 	                  <li id="finish">完成/取消</li>
 	              </ul>
 	     	</r:permission>  	                       
-	     		          
-	           <r:permission uri="">   
+	     		 <!--  <r:permission uri="">  </r:permission>   -->         
+	          
 			              <div class="treeitem" id="myOrder">
 			                <div class="orderList"></div>
 			                <div class="title">我的订单</div>
@@ -99,7 +100,7 @@
 		              </ul>
 	            
 	              
-	     </r:permission> 
+	     
 	           <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>

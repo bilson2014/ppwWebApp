@@ -522,14 +522,14 @@ th {
     border-radius: 4px;
     border: 1px solid #999;
     position: absolute;
-    top: 117px;
-    right: 27px;
+    top: 109px;
+    left: 320px;
     cursor: pointer;
     @media screen and (max-width: 775px) {
-        right: 93px;
+        left: 315px;
     }
     @media screen and (min-width: 775px) and (max-width: 1025px) {
-        right: 93px;
+        left: 360px;
     }
     &:hover {
         color: #333;
@@ -542,14 +542,14 @@ th {
     border-radius: 4px;
     border: 1px solid #999;
     position: absolute;
-    top: 117px;
-    right: 92px;
+    top: 109px;
+    left: 260px;
     cursor: pointer;
     @media screen and (max-width: 775px) {
-        right: 27px;
+        left: 255px;
     }
     @media screen and (min-width: 775px) and (max-width: 1025px) {
-        right: 27px;
+        left: 300px;
     }
     &:hover {
         color: #333;
