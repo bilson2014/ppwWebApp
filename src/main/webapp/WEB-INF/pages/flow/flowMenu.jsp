@@ -13,7 +13,7 @@
 <spring:url value="/resources/images" var="imgPath" />
 
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
-<spring:url value="http://test.apaipian.com:7070/" var="url" />
+<%-- <spring:url value="http://test.apaipian.com:7070/" var="url" /> --%>
 <%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
 	              </ul>
 	      </r:permission>  
 	               
-	              <r:permission uri="">
+	              <r:permission uri="/order/myOrder">
 			              <div class="treeitem" id="myOrder">
 			                <div class="orderList"></div>
 			                <div class="title">我的订单</div>
