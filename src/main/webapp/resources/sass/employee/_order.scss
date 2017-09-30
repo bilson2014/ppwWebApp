@@ -38,8 +38,6 @@ body {
     }
 }
 
-
-
 .showStatus {
     width: 100%;
     height: 0px;
@@ -68,7 +66,7 @@ body {
         border-bottom-left-radius: 100px;
     }
     div:last-child {
-        width:120px;
+        width: 120px;
         height: 30px;
         line-height: 30px;
         border-top-right-radius: 100px;
@@ -77,59 +75,68 @@ body {
         border-left: 2px solid white;
         position: absolute;
         right: 5px;
-        top:67px;
+        top: 12px;
         border-radius: 4px;
-        font-size: 14px;  
-        border: 1px solid #999999;
-        @media screen and (max-width: 775px) {
-            top:68px;
+        font-size: 14px;
+        background-color: #fe5453;
+        color: #fff;
+        &:hover {
+            background-color: #fe2220;
         }
-        &:hover{
-            background: #fe2220;
-            border: 0px ;
-            color:#fff;
-            #picAdd{
-                 background-position-y: -15px;
-            }
-        }
-
     }
 }
 
-   #picAdd{
-        width: 20px;
-        height: 15px;
-        display: inline-block;
-        background: url(/resources/images/provider/add.png) no-repeat;
-        background-position-y: 0px;
-        background-position-x: 3px;
-        background-size: 15px;
-        position: absolute;
-        top: 7px;
-        left: 16px;    
-        }
+#picAdd {
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    background: url(/resources/images/provider/add.png) no-repeat;
+    background-position-y: -15px;
+    background-position-x: 3px;
+    background-size: 15px;
+    position: absolute;
+    top: 7px;
+    left: 16px;
+}
+
 .searchInfo {
-    #sUserCompany{
-        @media screen and (min-width: 775px) and (max-width: 1025px) {
-            width: 130px !important;
-
+    .banner {
+        display: block;
+        height: 54px;
+        border-bottom: 1px solid #eeeeee;
+        margin-top: 0;
+        span {
+            color: #333;
+            font-size: $font-size-base;
+            font-weight: 500;
         }
     }
-    #sRealName{
-        @media screen and (min-width: 775px) and (max-width: 1025px) {
-            width: 130px !important;
-
+    #sUserCompany {
+        width: 240px !important;
+        @media screen and (max-width: 775px) {
+            width: 120px !important;
         }
-        
-    }
-    #sIndent_tele{
         @media screen and (min-width: 775px) and (max-width: 1025px) {
-            width: 130px !important;
-
+            width: 200px !important;
         }
     }
-    .searchBtn{
-        color:red;
+    #sRealName {
+        width: 160px !important;
+        @media screen and (max-width: 775px) {
+            width: 90px !important;
+        }
+        @media screen and (min-width: 775px) and (max-width: 1025px) {
+            width: 120px !important;
+        }
+    }
+    #sIndent_tele {
+        width: 160px !important;
+        @media screen and (max-width: 775px) {
+            width: 100px !important;
+        }
+        @media screen and (min-width: 775px) and (max-width: 1025px) {
+            width: 120px !important;
+        }
     }
     font-size: 0;
     margin-bottom: 25px;
@@ -154,17 +161,17 @@ body {
         margin-top: 20px;
     }
     .orderSelect {
-        width: 155px !important;
+        width: 160px !important;
         height: 30px !important;
         line-height: 28px !important;
-        ul li{
+        ul li {
             font-size: $font-size-sm !important;
         }
         @media screen and (min-width: 775px) and (max-width: 1025px) {
-            margin-right:18px;
+            margin-right: 18px;
         }
-        #sIndentSource{
-            margin-top:0px;
+        #sIndentSource {
+            margin-top: 0px;
         }
     }
     .time {
@@ -210,9 +217,6 @@ body {
 //表格
 table {
     width: 100%;
-    @media screen and (min-width: 1025px){
-        margin-top: 66px;
-    }
 }
 
 th,
@@ -256,37 +260,38 @@ th {
     padding: 10px 0px 10px 0px;
     line-height: 20px;
 }
+
 .tableLists {
     width: 850px;
     margin: 0 auto;
     padding-top: 10px;
     min-height: 300px;
     @media screen and (min-width: 1152px) {
-        width:1190px;
+        width: 1190px;
     }
     @media screen and (min-width: 1000px) and (max-width: 1152px) {
         width: 1116px;
     }
 }
+
 .tableList {
-    width:1074px;
+    width: 1074px;
     margin: 0 auto;
     padding-top: 10px;
     min-height: 300px;
     @media screen and (max-width: 775px) {
         width: 729px;
     }
-     @media screen and (min-width: 775px) and (max-width: 1025px) {
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
         width: 970px;
     }
 }
-
 
 //需求表
 .orderModel {}
 
 .orderList {
-    width:1074px;
+    width: 1074px;
     margin: 0 auto;
     background: white;
     border-radius: 8px;
@@ -296,14 +301,14 @@ th {
     @media screen and (max-width: 775px) {
         width: 739px;
     }
-    @media screen and (min-width: 775px) and (max-width: 1025px)        {
-        width: 988px;  
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
+        width: 988px;
     }
 }
 
 .listHeader {
     height: 61px;
-    width:1074px;
+    width: 1074px;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     position: fixed;
@@ -311,9 +316,9 @@ th {
     line-height: 60px;
     background: white;
     @media screen and (max-width: 775px) {
-        width: 739px;   
+        width: 739px;
     }
-    @media screen and (min-width: 775px) and (max-width: 1025px){
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
         width: 988px;
     }
     .orderNum {
@@ -432,14 +437,14 @@ th {
             vertical-align: top;
             margin-left: 10px;
             outline: none;
-            cursor:pointer;
+            cursor: pointer;
         }
         textarea {
             width: 100%;
             height: 100px;
             padding: 10px;
             border-radius: 8px !important;
-            text-align: left !important;   
+            text-align: left !important;
         }
     }
 }
@@ -509,41 +514,49 @@ th {
         margin-top: 0px;
     }
 }
-#toSearch{
-    margin-left:10px;
-    margin-top: 17px;
-    color:#fff;
-    position: absolute;
-    top:10px;
-    right: 27px;
-  
-    @media screen and (max-width: 775px) {
-        top: 54px;
-        right: 347px;
-    }
-    @media screen and (min-width: 775px) and (max-width: 1025px){
-        top: 54px;
-        left: 368px;
-    }
 
+#toSearch {
+    margin-left: 10px;
+    margin-top: 17px;
+    color: #666;
+    border-radius: 4px;
+    border: 1px solid #999;
+    position: absolute;
+    top: 109px;
+    left: 320px;
+    cursor: pointer;
+    @media screen and (max-width: 775px) {
+        left: 315px;
+    }
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
+        left: 360px;
+    }
+    &:hover {
+        color: #333;
+    }
 }
+
 #toClean {
     margin-top: 17px;
-    background:#999;
-    color:#fff;
+    color: #666;
+    border-radius: 4px;
+    border: 1px solid #999;
     position: absolute;
-    top: 9px;
-    right:92px;
+    top: 109px;
+    left: 260px;
+    cursor: pointer;
     @media screen and (max-width: 775px) {
-        top: 54px;
-        left: 297px;
+        left: 255px;
     }
-    @media screen and (min-width: 775px) and (max-width: 1025px){
-        top: 54px;
+    @media screen and (min-width: 775px) and (max-width: 1025px) {
         left: 300px;
     }
+    &:hover {
+        color: #333;
+    }
 }
-.btnclen{
+
+.btnclen {
     @media screen and (max-width: 900px) {
         position: absolute;
         top: 55px;
@@ -554,8 +567,8 @@ th {
         top: 11px;
         right: 28px;
     }
-    
 }
+
 .btnsearch {
     @media screen and (max-width: 900px) {
         position: absolute;
@@ -568,27 +581,31 @@ th {
         right: 99px;
     }
 }
-.searchIn{
-    div {
+
+.searchIn {
+    #sUserCompany {
         @media screen and (max-width: 900px) {
-            margin-right: 19px;
-        }   
+            width: 180px !important;
+        }
     }
-    input {
-        width: 109px;
+    #sRealName {
+        @media screen and (max-width: 900px) {
+            width: 100px !important;
+        }
+    }
+    #sIndent_tele {
+        @media screen and (max-width: 900px) {
+            width: 100px !important;
+        }
     }
 }
-.daySearch{
+
+.daySearch {
     @media screen and (max-width: 900px) {
         margin-left: 0px;
-    }  
+    }
 }
+
 .serInp {
-        width: 109px;
-}
-.mTop{
-    @media screen and (min-width: 1230px) {
-        margin-top:71px;
-   }
-    
+    width: 109px;
 }

@@ -1048,7 +1048,7 @@
 	    <div id="showshowExecutive">分配监制</div>
 	    
              	    	    <jsp:include flush="true" page="../header.jsp"></jsp:include>
-	                        <jsp:include flush="true" page="flowMenu.jsp"></jsp:include>  
+	                        <jsp:include flush="true" page="../flow/flowMenu.jsp"></jsp:include>  
 	           <div class="productInfo">
 	                <div class="infoTitle">
 	                     <div class="titleName">项目详情标题</div>

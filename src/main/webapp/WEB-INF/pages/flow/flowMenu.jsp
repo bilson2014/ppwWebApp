@@ -12,8 +12,13 @@
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 
+
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
 <%-- <spring:url value="http://test.apaipian.com:7070/" var="url" /> --%>
+
+ <spring:url value="http://localhost:8080/" var="url" /> 
+<%--<spring:url value="http://test.apaipian.com:7070/" var="url" />--%>
+
 <%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
 
 <!DOCTYPE html>
@@ -54,7 +59,9 @@
 	        <div id="shortMenu">
 	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
 	                <div class="menuItem hide"><div class="createIcon"></div></div>
-	                <a href="/project/running"><div class="menuItem"><div class="myPro" id="minMyPro"></div></div></a>
+	                <!--<a href="/project/running">   </a>-->
+	                	<div class="menuItem" id='minMyPro'><div class="myPro"></div></div>
+	               
 	                <r:identity role="employee">
 	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
@@ -68,7 +75,8 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    <r:permission uri="/project/running">
+	    	
+	    	<!--<r:permission uri="/project/running">      -->
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>
@@ -82,6 +90,7 @@
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
+
 	      </r:permission>  
 	               
 	              <r:permission uri="/order/myOrder">
@@ -95,9 +104,9 @@
 		                  <li id='orderSub' data-value="1">已提交</li>
 		                  <li id='orderCancle' data-value="2">无效订单</li>
 		              </ul>
-	            </r:permission>  
+	               	</r:permission>  	
 	              
-	              
+	     
 	           <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
