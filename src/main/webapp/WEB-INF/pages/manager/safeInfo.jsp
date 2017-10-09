@@ -30,6 +30,7 @@
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
 <spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
 <spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
+<spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <%--去除底部客服 --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +45,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>安全信息页</title>
 <link rel="stylesheet" href="${safeCss}">
-<script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
+<script type="text/javascript" src="${clampJs}"></script>
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <script src="${jsonJs }"></script>

@@ -141,6 +141,7 @@ a:visited {
     .tag {
         @include media_screen_width_beta3();
         margin: 0 auto;
+        margin-top: 60px;
         padding-bottom: 38px;
         div {
             display: inline-block;
@@ -792,6 +793,7 @@ a:visited {
 .videoTag {
     margin: 10px 0 40px 0;
     color: $gray-light;
+    line-height: 18px;
     div {
         display: inline-block;
         color: $gray-light;

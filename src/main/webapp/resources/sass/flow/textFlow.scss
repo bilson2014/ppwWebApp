@@ -2,11 +2,10 @@
             @import "buttons";
             @import "video";
             @import "compass/typography/text/ellipsis";
-
             body {
                 background: #F0F2F5 !important;
             }
-
+            
             @mixin anmotion {
                 transition: all .3s ease-in-out .2s;
                 -moz-transition: all .3s ease-in-out .2s;
@@ -15,7 +14,15 @@
                 /* Safari 和 Chrome */
                 -o-transition: all .3s ease-in-out .2s;
             }
-
+            
+            .right-part .showInfo {
+                width: 155px;
+            }
+            
+            .right-part .showInfo .showInfoList a li {
+                padding-left: 55px;
+            }
+            
             .page {
                 @include media_screen_width_beta3();
                 margin: 0 auto;
@@ -26,12 +33,12 @@
                 padding-bottom: 50px;
                 @include anmotion;
             }
-
+            
             .frame {
                 width: 100%;
                 height: 1000px;
             }
-
+            
             .productListArea {
                 width: 100%;
                 height: auto;
@@ -41,7 +48,7 @@
                 @include anmotion;
                 position: relative;
             }
-
+            
             .waitWork {
                 .titleName {
                     font-size: $font-size;
@@ -50,8 +57,7 @@
                     line-height: 55px;
                 }
             }
-
-
+            
             .titleNameWork {
                 height: 55px;
                 position: relative;
@@ -118,6 +124,3 @@
                     vertical-align: middle;
                 }
             }
-
-
-          
