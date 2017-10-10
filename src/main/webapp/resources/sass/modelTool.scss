@@ -2,10 +2,20 @@
 
 @import "compass/css3";
 @import "common";
+.tooltip-check {
+    z-index: 999999 !important;
+}
 
+.videoProvider {
+    height: 60px;
+}
 
-.tooltip-check{
-   z-index: 999999 !important;
+.videoProvider .videoProvider {
+    margin-left: 0px;
+}
+
+.videoProvider .videoProvider div {
+    margin-left: 10px;
 }
 
 .tooltip-check .checkCard {
@@ -18,11 +28,9 @@
     position: relative;
     background: white;
     border-radius: 6px;
-
-    img{
-    	margin-top: 20px;
+    img {
+        margin-top: 20px;
     }
- 
     .closeCheck {
         width: 14px;
         height: 14px;
@@ -84,8 +92,6 @@
 .tooltip-wati,
 .tooltip-check,
 .tooltip-warn-up {
-
-
     background: rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 100%;
