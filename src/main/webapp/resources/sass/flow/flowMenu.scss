@@ -2,27 +2,25 @@
             @import "buttons";
             @import "video";
             @import "compass/typography/text/ellipsis";
-
             .datepickers-container {
                 z-index: 9999 !important;
             }
-.tableLists {
-background:pink;
-   width:1190px;
-    @media screen and (max-width: 900px) {
-        width: 848px;
-    }
-     @media screen and (min-width: 900px) and (max-width: 1152px) {
-        width: 1116px;
-
-    }
-}
-
-
+            
+            .tableLists {
+                background: pink;
+                width: 1190px;
+                @media screen and (max-width: 900px) {
+                    width: 848px;
+                }
+                @media screen and (min-width: 900px) and (max-width: 1152px) {
+                    width: 1116px;
+                }
+            }
+            
             body {
                 background: #F0F2F5 !important;
             }
-
+            
             @mixin anmotion {
                 transition: all .3s ease-in-out .2s;
                 -moz-transition: all .3s ease-in-out .2s;
@@ -31,9 +29,8 @@ background:pink;
                 /* Safari 和 Chrome */
                 -o-transition: all .3s ease-in-out .2s;
             }
-
+            
             .page {
-
                 @include media_screen_width_beta3();
                 margin: 0 auto;
                 background: transparent !important;
@@ -42,15 +39,15 @@ background:pink;
                 padding-top: 30px;
                 @include anmotion;
             }
-
+            
             .checkLi {
                 color: $red-base !important;
             }
-
+            
             .toMinLeft {
                 padding-left: 60px;
             }
-
+            
             .open {
                 img {
                     transform: rotate(90deg);
@@ -63,7 +60,7 @@ background:pink;
                     -o-transform: rotate(90deg);
                 }
             }
-
+            
             .changeMenu {
                 width: 50px !important;
                 #shortMenu {
@@ -148,8 +145,7 @@ background:pink;
                     }
                 }
             }
-
-
+            
             .flowMenu {
                 width: 180px;
                 background: white;
@@ -166,7 +162,6 @@ background:pink;
                 #mainMenu {
                     position: relative;
                 }
-
                 #shortMenu {
                     display: none;
                 }
@@ -178,13 +173,11 @@ background:pink;
                     top: 20px;
                     cursor: pointer;
                 }
-
                 .logoDiv {
                     width: 100%;
                     text-align: center;
                     padding-top: 30px;
                 }
-
                 .logo {
                     width: 80px;
                     height: 80px;
@@ -201,20 +194,17 @@ background:pink;
                     @include ellipsis;
                 }
             }
-
+            
             .flowTree {
                 @include anmotion;
-
                 .treeA {
                     margin-top: 20px;
                     height: 40px !important;
                     padding-top: 15px !important;
-
                     .treeitem {
                         margin-bottom: 10px;
                     }
                 }
-
                 .treeitem {
                     .loginOut {
                         width: 14px;
@@ -223,7 +213,6 @@ background:pink;
                         background-size: 14px 28px;
                     }
                 }
-
                 .treeitem {
                     height: 36px;
                     font-size: 0;
@@ -281,7 +270,6 @@ background:pink;
                         background: url(/resources/images/flow/safe.png);
                         background-size: 14px 28px;
                     }
-
                     .title {
                         margin-left: 15px;
                         color: $gray-dark;
@@ -295,7 +283,6 @@ background:pink;
                         background: $f8;
                     }
                 }
-
                 .productList {
                     font-size: 0;
                     padding-left: 36px;
@@ -314,7 +301,6 @@ background:pink;
                         &:hover {
                             background: $f8;
                         }
-
                         div {
                             width: 16px;
                             height: 16px;
@@ -328,7 +314,6 @@ background:pink;
                             line-height: 16px;
                             top: 10px;
                         }
-
                         &:after {
                             content: '';
                             width: 10px;
@@ -368,8 +353,7 @@ background:pink;
                     }
                 }
             }
-
-
+            
             #toSave {
                 .treebtu {
                     color: $red-base;
@@ -378,7 +362,7 @@ background:pink;
                     background-position-y: 14px;
                 }
             }
-
+            
             #safe {
                 .treebtu {
                     color: $red-base;
@@ -387,9 +371,8 @@ background:pink;
                     background-position-y: 14px;
                 }
             }
-
+            
             .treeitemRed {
-
                 div:first-child {
                     background-position-y: 14px !important;
                 }
