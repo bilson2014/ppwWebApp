@@ -30,7 +30,6 @@
 	<script src="${protocolJs}"></script>
 </head>
 <body>
-    <jsp:include flush="true" page="../../header.jsp"></jsp:include>
 	<div class="page" >
 	  
 	      <div class="agreement" id="agreement">

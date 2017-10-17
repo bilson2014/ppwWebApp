@@ -152,7 +152,7 @@ $().ready(function(){
 				
 			});
 			uploader_Pic.on('error', function(type) {
-				 if (type=="Q_TYPE_DENIED"){
+				if (type=="Q_TYPE_DENIED"){
 					$("#img-error").text('格式不正确');
 				}else if(type=="F_EXCEED_SIZE"){
 					$("#img-error").text(image_err_msg);
