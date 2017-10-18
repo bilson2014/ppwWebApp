@@ -81,6 +81,13 @@
 		    <div class="logoImg">
 		    	<img src="${imgPath}/introduce/member/company.svg">
 		      </div>
+		       <div class="infoTitle">
+		        <div>视频·无界——2017第二届中国商业视频大会</div>
+		        <div>2017年10月12日 杭州梦想小镇</div>
+		        <div>由拍片网、南方梦立方主办，联想之星、星云加速器联合主办的「视频·无界」在杭州隆重开幕。作为国内年度商业视频出品量第一的平台，拍片网始终关注商业视频的发展趋势，围绕视频营销聚焦三大关键词：视频+、营销升级、视频内容消费，致力向全行业呈现新趋势下【视频】 的商业能量。</div>
+                <img  class="active1" src="${imgPath }/introduce/activity/activity8-1.jpg" alt="2017 双十大会1">
+                <img  class="active1-2" src="${imgPath }/introduce/activity/activity8-2.jpg" alt="2017 双十大会2">
+		    </div>
 		    <div class="infoTitle">
 		        <div>共享未来－中国视频行业领袖峰会</div>
 		        <div>2017年2月27日 北京海淀新世纪日航</div>

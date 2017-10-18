@@ -9,11 +9,11 @@
         position: relative;
         top: 1px;
     }
-
+    
     body {
         background: white !important;
     }
-
+    
     .page {
         @include media_screen_width_beta3();
         margin: 0 auto;
@@ -23,13 +23,13 @@
         top: 0px !important;
         padding-top: 30px;
     }
-
+    
     .logoImg {
         margin-top: 60px;
         margin-bottom: 30px;
         text-align: left !important;
     }
-
+    
     .activeTitle {
         div:nth-child(1) {
             color: $red-base;
@@ -43,7 +43,7 @@
             margin-bottom: 30px;
         }
     }
-
+    
     .infoTitle {
         div:nth-child(1) {
             color: $red-base;
@@ -66,20 +66,18 @@
             margin-bottom: 100px !important;
         }
     }
-
-
-
+    
     .active1 {
         width: 100%;
         margin-top: 30px;
         margin-bottom: 10px;
     }
-
+    
     .active1-2 {
         width: 100%;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
+    
     .active2Top {
         img {
             display: inline-block;
@@ -112,12 +110,12 @@
         }
         margin-top: 30px;
     }
-
+    
     .active2Bottom {
         width: 100%;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
+    
     .active3Top {
         img {
             display: inline-block;
@@ -148,13 +146,12 @@
         }
         margin-top: 30px;
     }
-
+    
     .active3Bottom {
         width: 100%;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
-
+    
     .active4Top {
         height: 564px;
         font-size: 0 !important;
@@ -181,11 +178,9 @@
             }
         }
         margin-top: 30px;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
-
-
+    
     .active5Top {
         height: 736px;
         img {
@@ -208,9 +203,9 @@
             }
         }
         margin-top: 30px;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
+    
     .active6Top {
         height: 509px;
         font-size: 0 !important;
@@ -255,9 +250,9 @@
             }
         }
         margin-top: 30px;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
-
+    
     .active7Top {
         margin-top: 30px;
         margin-bottom: 100px;
