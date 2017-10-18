@@ -30,7 +30,7 @@ public class PortalController extends BaseController {
 	 * 首页跳转
 	 * @return
 	 */
-	@RequestMapping
+	@RequestMapping("/")
 	public ModelAndView portal(final HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("index");
 		

@@ -7,8 +7,6 @@
 		                   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<mvc:view-controller path="/" view-name="/index" />
-	
 	<mvc:view-controller path="/flow" view-name="/provider/registerFlow/index" />
 	
 	<mvc:view-controller path="/wang" view-name="/standardized/requireForm" />
