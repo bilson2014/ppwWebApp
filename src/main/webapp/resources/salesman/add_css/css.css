@@ -34,6 +34,9 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 
 /*------------------------------------MAIN-----------------------------------------*/
 
+.main_index ul li{ padding-bottom:5px;}
+.main_index ul li img{ width:100%; height:auto; vertical-align: bottom;}
+
 .main_1{ background:#f0f2f5; padding:30px 0;}
 .content{ background:#fff; border-radius:8px; width:870px; padding:20px 0; min-height:994px;}
 .tit{ font-size:20px; padding-left:25px; line-height:30px; color:#000;}
@@ -41,6 +44,7 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .video_list li{ width:260px; padding:0 10px 24px; float:left;}
 .video_list li div.kuang{ width:260px; height:160px; overflow:hidden; border-radius:5px;}
 .video_list li div.kuang img{ width:260px; height:160px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+
 .video_list li h3{ font-size:16px; color:#000; line-height:36px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
 .video_list li p{ font-size:12px; color:#ccc;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
 .video_list li a:hover img{transform:scale(1.1);}
@@ -92,7 +96,7 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .data li{ display:inline-block; text-align:left; width:300px; font-size:14px; line-height:240%;}
 .data li span{ font-weight:bold; font-size:42px;}
 
-
+.menu{ display:none;}
 
 /*------------------------------------MAIN-----------------------------------------*/
 
@@ -100,11 +104,73 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .foot span{ font-size:16px;}
 .foot img{ margin-bottom:30px;}
 
+.min_banner2{ display:none;}
 
 
 
+.wap-nav{ display:none;}
+
+/*在线客服*/
+.OnlineService_Bg {width:100px;overflow:hidden;position:fixed;right:10px;bottom:20px;z-index:10;}
+.OnlineService_Box {width:100%;overflow:hidden;}
+.OnlineService_Phone {width:90px;height:90px;margin-bottom:5px;}
+.OnlineService_Phone a {display:block;width:90px;height:33px;background-color:#e33043;padding-top:57px;line-height:30px;font-size:16px;text-align:center;color:#fff;background-image:url(icon_Online.png);background-repeat:no-repeat;background-position:center 8px;cursor:pointer;text-decoration:none;color:#fff}
+.OnlineService_Sign {width:90px;height:90px;margin-bottom:5px;}
+.OnlineService_Sign a{display:block;width:90px;height:33px;background-color:#e33043;padding-top:57px;line-height:30px;font-size:16px;text-align:center;color:#fff;background-image:url(icon_Sign.png);background-repeat:no-repeat;background-position:center 8px;cursor:pointer;text-decoration:none;color:#fff}
+.OnlineService_Top {width:90px;height:90px;margin-bottom:5px;}
+.OnlineService_Top a {display:block;width:90px;height:33px;background-color:#e33043;padding-top:57px;line-height:30px;font-size:16px;text-align:center;color:#fff;background-image:url(icon_Top.png);background-repeat:no-repeat;background-position:center 8px;cursor:pointer;text-decoration:none;color:#fff}
 
 
+@media only screen and (max-width: 640px) {
+
+.container{ width:100%;}
+.logo{ margin-left:8px; float:left;}
+.nav{ display:none;}
+.fl,.fr{ float:none;}
+
+.main_1{ padding:10px 0;}
+.content{ width:100%; border-radius:0; margin-bottom:10px;}	
+.video_list{ zoom:1; overflow:hidden; padding:20px 15px 0;}
+.video_list li{ width:100%; padding:0 0 30px 0; float:none;}
+.video_list li a{ display:block; width:100%; height:auto;}
+.video_list li div.kuang{overflow:hidden; width:100%; height:auto; padding:0 0 5px 0; border-radius:5px;}
+.video_list li div.kuang img{ width:100%; height:auto;}
+.video_list li h3{ font-size:14px; color:#000; line-height:36px;}
+.video_list li p{ font-size:12px; color:#ccc;}
+
+.sidebar{ width:100%;}
+.brief,.hot{ border-radius:0;}
+
+.min_banner{ display:none;}
+.main_2{ background:#fff; height:auto;}
+
+.four_project{ zoom:1; overflow:hidden; border-bottom:none; padding:32px 0 32px 12%;}
+
+
+.four_project li:last-child{float:left; margin:0 auto 0;}
+.four_project li{ width:50%; float:none; margin:0 0 36px; float:left;}
+.data{ display:none;}
+
+.foot{padding:50px 10% 30px;}
+
+.min_banner2{ display:block; margin-top:10px;}
+.min_banner2 img{ vertical-align:bottom; width:100%;}
+
+.menu{ display:block; float:right; margin:3px 8px 0 0;}
+
+
+.wap-nav{ width:100%; height:100%; position:fixed; bottom:0; left:0; background:rgba(0,0,0,.9); z-index:99; overflow:hidden;}
+.wrap{ padding:60px 24px;}
+.sec_nav{ zoom:1; overflow:hidden;}
+.sec_nav li{ width:50%; float:left;}
+.sec_nav li a{ display:block; margin:3px; line-height:36px; text-align:center; font-size:14px; background:rgba(255,255,255,.95);}
+.wrap p{ color:#fff; font-size:18px; text-align:center; padding-top:100px;}
+.wrap p a{ color:#fff; font-weight:bold;}
+.close{ position:absolute; bottom:30px; left:50%; margin-left:-20px;}
+
+.OnlineService_Bg{ display:none;}
+
+}
 
 
 

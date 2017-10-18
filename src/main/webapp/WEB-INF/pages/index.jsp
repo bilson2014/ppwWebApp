@@ -2,6 +2,7 @@
 <%@ page import="com.panfeng.film.resource.model.User"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/index.css" var="indexCss"/>
 <%-- import JS --%>
@@ -25,8 +26,7 @@
 <title>拍片网_商业视频制作平台, 宣传片,tvc广告拍摄,品牌微电影, mg动画,短视频</title>
 <link rel="stylesheet" href="/resources/css/index.css">
 <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
-<link rel="stylesheet"
-	href="resources/lib/Bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/lib/Bootstrap/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
@@ -60,8 +60,7 @@
 </head>
 
 <body>
-	<input type="hidden" id="storage_node"
-		value="${file_locate_storage_path }" />
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 
 	 <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
@@ -250,7 +249,38 @@
 				
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
-				<div id='product-container' class="swiper-wrapper"></div>
+				<div id='product-container' class="swiper-wrapper">
+				   <c:if test="${!empty list}">
+                        <c:forEach items="${list}" var="item">
+                          <div class="swiper-slide coverSlide">
+							<div class="scaleDiv">
+								<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">
+			            			<div class="bg"></div>
+			            			   <c:choose>
+										   		<c:when test="${!empty item.picLDUrl">   
+										   		  <img src="' + getDfsHostName() + '${item.picLDUrl}" alt="拍片网">',
+										   		</c:when>
+										   		<c:otherwise>  
+										   		  <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
+										   		</c:otherwise>
+									  </c:choose>
+									  <div class="coverContent">
+										    <div class="">${item.productName}</div>
+										     <c:choose>
+											   		<c:when test="${item.price == 0}">   
+											   		  <div>￥欢迎询价</div>
+											   		</c:when>
+											   		<c:otherwise>  
+											   		   <div>￥${item.price|thousandCount}</div>
+											   		</c:otherwise>
+										     </c:choose>
+									    </div>
+									 </a>
+								</div>
+				              </div>
+                        </c:forEach>
+	               </c:if>
+				</div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
@@ -263,9 +293,68 @@
 						<div class="directorWants">更多案例</div>
 					</a>
 					<div class="cardUl">
-					</ul>
-				</div>
-			</div>
+						<c:if test="${!empty list}">
+	                         <c:forEach items="${list}" var="item">
+	                             <c:if test="${item.index % 4 == 0 }">
+	                                <div class="flow-div">
+	                             </c:if>
+							     <div class="topAnimaltion oneFlow">
+									<div class="videoCard">
+										<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">
+								           <c:choose>
+										   		<c:when test="${!empty item.picLDUrl}">   
+										   		  <img src="' + getDfsHostName() + '${item.picLDUrl}" alt="拍片网">
+										   		</c:when>
+										   		<c:otherwise>  
+										   		  <img src="/resources/images/index/noImg.jpg" alt="拍片网">
+										   		</c:otherwise>
+											</c:choose>
+											 <r:identity role="employee">
+												 <c:if test="${item.teamFlag == 1 && item.indentProjectId != 0}">
+					                                <img class="roleImg" src="/resources/images/play/roleOur.png">
+					                             </c:if>
+					                             <c:if test="${item.teamFlag == 4}">
+					                                <img class="roleImg" src="/resources/images/play/rolePlay.png">
+					                             </c:if>
+					                             <c:if test="${item.teamFlag == 1 && item.indentProjectId == 0}">
+					                                <img class="roleImg" src="/resources/images/play/rolePro.png">
+					                             </c:if>
+				                             </r:identity>
+				                          </a>   
+									       <div class="cardShadow">
+									        <a href="/play/${item.teamId}_${item.productId}.html" target="_blank"> 
+												<div class="videoContet">
+													<div class="title">${item.productName}</div>
+													<div class="type">${item.tags}</div>
+													<c:choose>
+											   			<c:when test="${item.price == 0}">   
+												   		  <div  class="price">￥欢迎询价</div>
+												   		</c:when>
+												   		<c:otherwise>  
+												   		 <div  class="price">￥${item.price|thousandCount}</div>
+												   		</c:otherwise>
+													</c:choose>
+													<c:if test="${ !empty item.orignalPrice }">
+						                               <div class="realPrice">原价￥${item.orignalPrice|thousandCount}</div>
+						                            </c:if>
+								                	 <div class="videoCardLine"></div>
+								             	</div>
+								              </a>  
+								              <a href="' + getHostName()+ '/provider/info_${item.teamId}.html">              
+												<div class="videoProvider">
+												   <img src="' + getDfsHostName()+ '${item.teamPhotoUrl}" alt="拍片网">
+												   <div>${item.teamName}</div>
+												</div>
+										      </a>
+										   </div>
+									   </div>
+									   <c:if test="${ !empty item.index % 4 == 3 }">
+									     </div>
+									   </c:if>   
+								     </c:forEach>
+								   </c:if>     
+					           </div>
+						  </div>
 		</div>	
 		<!-- 导演工作室-->
 		<div class="director">

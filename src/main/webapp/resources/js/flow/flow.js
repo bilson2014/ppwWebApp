@@ -903,21 +903,21 @@ function loadfiledata(more) {
 				}
 				var lookA = $("<a href='javascript:void(0);' target='_blank' ></a>");
 				var chakan = $("<img class=\"qrcode-img div-table img-look\""
-						+ "src=\"/resources/images/flow/look.png\" data-state='"
+						+ "src=\"/resources/images/flow/lookbg.png\" data-state='"
 						+ msg[i].state + "'  data-url='" + msg[i].irId
 						+ "'  id='chakan" + msg[i].irId + "'>");
 				lookA.append(chakan);
 				var fenxiang = $("<img class=\"qrcode-img div-table img-margin img-share \""
-						+ "src=\"/resources/images/flow/share.png\" data-state='"
+						+ "src=\"/resources/images/flow/sharebg.png\" data-state='"
 						+ msg[i].state + "' data-url='" + msg[i].irId + "' />");
-				var xiazai = $("<img src=\"/resources/images/flow/download.png\"/>");
+				var xiazai = $("<img src=\"/resources/images/flow/downloadbg.png\"/>");
 				lookA.on("mouseenter", function() {
 					jQuery(this).find("img").attr("src",
 							'/resources/images/flow/lookbg.png');
 				});
 				lookA.on("mouseleave", function() {
 					jQuery(this).find("img").attr("src",
-							'/resources/images/flow/look.png');
+							'/resources/images/flow/lookbg.png');
 				});
 				// chakan.unbind('click');
 				chakan.bind('click', function() {
@@ -969,7 +969,7 @@ function loadfiledata(more) {
 				});
 				fenxiang.on("mouseleave", function() {
 					jQuery(this).attr("src",
-							'/resources/images/flow/share.png');
+							'/resources/images/flow/sharebg.png');
 				});
 				fenxiang.on("click", function() {
 					var self = jQuery(this);
@@ -1013,7 +1013,7 @@ function loadfiledata(more) {
 						});
 				xiazai.on("mouseleave", function() {
 							jQuery(this).attr("src",
-									'/resources/images/flow/download.png');
+									'/resources/images/flow/downloadbg.png');
 						});
 
 				var div3 = $("<div class=\"div-table \"><p class=\"file-user-name\">"

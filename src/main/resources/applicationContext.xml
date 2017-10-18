@@ -19,7 +19,7 @@
 	<tx:annotation-driven />
 	
 	<import resource="webmvc-spring-config.xml"/>
-	<import resource="dubbo/dubbo-consumer.xml" />
+	<import resource="dubbo/dubbo-consumer-redirect.xml" />
 	<import resource="spring-mq.xml" />
 	<import resource="webflow-config.xml"/>
 
