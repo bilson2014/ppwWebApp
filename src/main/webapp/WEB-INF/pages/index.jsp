@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="r" uri="/mytaglib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/index.css" var="indexCss"/>
 <%-- import JS --%>
@@ -60,7 +61,6 @@
 </head>
 
 <body>
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 
 	 <r:identity role="provider">
 	    <input type="hidden" id="rolephone" value="1314520ppw" />
@@ -121,7 +121,6 @@
 			<div class="new-banner">
 				<div class="search-box" id="banner-search">
 					<form method="" action="" id="s-form" class="bannerOut">
-					
 					<div class="isShowItem">
 					    <div class="itemInput">
 						 <input id="csrftoken" type="hidden"
@@ -246,34 +245,33 @@
 		<div class="backgroundCover">
 			<div class="swiper-container swiperCover">
 				<div class="hotLogo"></div>
-				
 			 <div class="leftClick "></div>
 				<div class="rightClick"></div>
 				<div id='product-container' class="swiper-wrapper">
-				   <c:if test="${!empty list}">
-                        <c:forEach items="${list}" var="item">
+				    <c:if test="${not empty hot_section}">
+                        <c:forEach items="${hot_section}" var="item" varStatus="itemIndex">
                           <div class="swiper-slide coverSlide">
 							<div class="scaleDiv">
 								<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">
 			            			<div class="bg"></div>
-			            			   <c:choose>
-										   		<c:when test="${!empty item.picLDUrl">   
-										   		  <img src="' + getDfsHostName() + '${item.picLDUrl}" alt="拍片网">',
+			            			<c:choose>
+										   		<c:when test="${not empty item.picLDUrl}">   
+										   		  <img src="${file_locate_storage_path }${item.picLDUrl}" alt="拍片网">
 										   		</c:when>
 										   		<c:otherwise>  
-										   		  <img src="/resources/images/index/noImg.jpg" alt="拍片网"> ',
+										   		  <img src="/resources/images/index/noImg.jpg" alt="拍片网">
 										   		</c:otherwise>
-									  </c:choose>
+								    </c:choose>		   		
 									  <div class="coverContent">
 										    <div class="">${item.productName}</div>
-										     <c:choose>
-											   		<c:when test="${item.price == 0}">   
+										    <c:choose>
+												   <c:when test="${item.price == 0}">   
 											   		  <div>￥欢迎询价</div>
 											   		</c:when>
 											   		<c:otherwise>  
-											   		   <div>￥${item.price|thousandCount}</div>
+											   		   <div>￥<fmt:formatNumber value="${item.price }" pattern="#,#00"/></div>
 											   		</c:otherwise>
-										     </c:choose>
+											</c:choose>
 									    </div>
 									 </a>
 								</div>
@@ -290,20 +288,20 @@
 				<div class="classicalArea">
 					<div class="classicalLogo"></div>
 					<a href="<spring:url value='/list.html'/>">
-						<div class="directorWants">更多案例</div>
+					     <span class="directorWants">更多案例</span>
 					</a>
 					<div class="cardUl">
-						<c:if test="${!empty list}">
-	                         <c:forEach items="${list}" var="item">
-	                             <c:if test="${item.index % 4 == 0 }">
-	                                <div class="flow-div">
+					 	<c:if test="${not empty classical_section}">
+	                         <c:forEach items="${classical_section}" var="item" varStatus="itemIndex">
+	                             <c:if test="${itemIndex.index % 4 == 0 }">
+	                                <span class="flow-div">
 	                             </c:if>
 							     <div class="topAnimaltion oneFlow">
-									<div class="videoCard">
+									<div class="videoCard ${item.picLDUrl}">
 										<a href="/play/${item.teamId}_${item.productId}.html" target="_blank">
 								           <c:choose>
-										   		<c:when test="${!empty item.picLDUrl}">   
-										   		  <img src="' + getDfsHostName() + '${item.picLDUrl}" alt="拍片网">
+										   		<c:when test="${not empty item.picLDUrl}">   
+										   		  <img src="${file_locate_storage_path }${item.picLDUrl}" alt="拍片网">
 										   		</c:when>
 										   		<c:otherwise>  
 										   		  <img src="/resources/images/index/noImg.jpg" alt="拍片网">
@@ -331,28 +329,29 @@
 												   		  <div  class="price">￥欢迎询价</div>
 												   		</c:when>
 												   		<c:otherwise>  
-												   		 <div  class="price">￥${item.price|thousandCount}</div>
+												   		 <div  class="price">￥<fmt:formatNumber value="${item.price }" pattern="#,#00"/></div>
 												   		</c:otherwise>
 													</c:choose>
 													<c:if test="${ !empty item.orignalPrice }">
-						                               <div class="realPrice">原价￥${item.orignalPrice|thousandCount}</div>
+						                               <div class="realPrice">原价￥<fmt:formatNumber value="${item.orignalPrice}" pattern="#,#00"/></div>
 						                            </c:if>
 								                	 <div class="videoCardLine"></div>
 								             	</div>
 								              </a>  
-								              <a href="' + getHostName()+ '/provider/info_${item.teamId}.html">              
-												<div class="videoProvider">
-												   <img src="' + getDfsHostName()+ '${item.teamPhotoUrl}" alt="拍片网">
+								              <a href="/provider/info_${item.teamId}.html">              
+												<span class="videoProvider">
+												   <img src="${file_locate_storage_path }${item.teamPhotoUrl}" alt="拍片网">
 												   <div>${item.teamName}</div>
-												</div>
+												</span>
 										      </a>
 										   </div>
-									   </div>
-									   <c:if test="${ !empty item.index % 4 == 3 }">
-									     </div>
+									    </div>
+									  </div> 
+									   <c:if test="${itemIndex.index % 4 == 4}">
+									       </span>
 									   </c:if>   
 								     </c:forEach>
-								   </c:if>     
+								   </c:if>    
 					           </div>
 						  </div>
 		</div>	
@@ -363,7 +362,26 @@
 				<a href="/register?role=director">
 					<div class="directorWant">我要入驻</div>
 				</a>
-				<div class="swiper-wrapper" id="directorContent"></div>
+				<div class="swiper-wrapper" id="directorContent">
+				<c:if test="${not empty teamList}">
+	                         <c:forEach items="${teamList}" var="item" varStatus="itemIndex">
+							        <div class="swiper-slide">
+										<div class="m"></div>
+										<div class="b"></div>
+										<div class="directorContent">
+											<a href="/provider/info_${item.teamId}.html" target="_blank">
+												<img src="${file_locate_storage_path }${item.teamPhotoUrl}" alt="${item.teamName}">
+												<div class="title">${item.teamName}</div>
+												<div class="line"></div>
+												<div class="content dContent"><div class="scrollDiv">${item.business}</div></div>
+												<div class="toProduct">作品集</div>
+										    </a>
+										</div>
+									</div>
+	                         </c:forEach>
+	             </c:if>            
+
+				</div>
 			</div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
@@ -521,6 +539,19 @@
 			<div class="newsContent">
 				<div class="newsLogo"></div>
 				<ul id='news-container'>
+				 	<c:if test="${not empty newsList}">
+	                         <c:forEach items="${newsList}" var="item" varStatus="itemIndex">
+	                           <li data-id="${item.id}">
+									<div class="get-new-detail newsTitle">${item.title}</div>
+									<div class="newsLine"></div>
+										<div class="Content getNewsContent" >${item.discription}</div>
+										<div class="get-new-detail newsMore"><span>了解更多</span>
+											<div class="moreIcon"></div>
+										</div>
+								</li>
+	                         </c:forEach>
+	                 </c:if> 
+			
 				</ul>
 			</div>
 		</div>

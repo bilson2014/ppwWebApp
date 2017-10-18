@@ -316,13 +316,13 @@ function verificationCodeBtn() {
 		}
 	}
 }
-
+//静态修改
 var homePage = {
 	init : function() {
 		// 点击帮我推荐提交订单
 		this.clickHelpYou();
 		// 获取热门爆款和经典案例
-		this.getRecommendProduct();
+     	this.getRecommendProduct();
 		// 获取首页推荐导演
 		this.getRecommendTeam();
 		// 获取推荐新闻
@@ -408,7 +408,8 @@ var homePage = {
 	},
 	getRecommendProduct : function() {
 		var _this = this;
-		loadData(function(data) {
+		_this.cover();
+	/*	loadData(function(data) {
 			if (data.code == 1) {
 				var result = data.result;
 				var hot_section = new Array(); // 第一区域
@@ -445,7 +446,7 @@ var homePage = {
 			}
 		}, getContextPath() + '/home/product/loadProduct', $.toJSON({
 			sort : "supportCount"
-		}));
+		}));*/
 	},
 	cover : function() {
 		var statues = true;
@@ -478,7 +479,8 @@ var homePage = {
 	},
 	getRecommendTeam : function() {
 		var _this = this;
-		loadData(function(data) {
+		_this.director();
+	/*	loadData(function(data) {
 			if (data.code == 1) {
 				$("#directorContent").empty().html(
 						juicer(homePage_tpl.team_recommend, data));
@@ -488,7 +490,7 @@ var homePage = {
 				// TODO
 				console.log("数据加载错误")
 			}
-		}, getContextPath() + '/home/team/recommend', null);
+		}, getContextPath() + '/home/team/recommend', null);*/
 	},
 	director : function() {
 
@@ -535,7 +537,13 @@ var homePage = {
 	},
 	getRecommendNews : function() {
 		var _this = this;
-		loadData(function(data) {
+		_this.getNewsDetail();
+		var newsContent = $('.getNewsContent');
+		for (var int = 0; int < newsContent.length; int++) {
+			var content = $(newsContent[int]).text();
+			$(newsContent[int]).text(getContentIndex(content));
+		}
+	/*	loadData(function(data) {
 			if (data.code == 1) {
 				juicer.register("getContentIndex", getContentIndex);
 				$("#news-container").empty().html(
@@ -548,7 +556,7 @@ var homePage = {
 		}, getContextPath() + '/home/news/recommend', $.toJSON({
 			begin : 0,
 			limit : 6
-		}));
+		}));*/
 	},
 	getNewsDetail : function() {
 		$(".get-new-detail").off("click").on("click", function() {
