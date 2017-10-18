@@ -22,7 +22,7 @@
 	content="拍片网，汇聚千万影视行业创作者，是中国最大的视频交易平台。产品：宣传片、广告、微电影、动画、三维演示等视频，优势：创意免费、选择多、价格低、不满意无条件退款">
 <title>注册-拍片网</title>
 <link rel="stylesheet" href="/resources/css/register.css">
-
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <script src="${jqueryJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${aesJs }"></script>
