@@ -124,14 +124,14 @@
 	}
 }
 
-.classify-wrap > .classify-type,.classify-business,.classify-price,.classify-length{
+.classify-wrap > .classify-type,.classify-business,.classify-price,.classify-length,.classify-source{
 	padding: 30px 10px 20px 10px;
 	border-bottom: dashed $width-border $gray-border;
 	margin: auto;
 	@extend %classify-item;
 }
 
-.classify-wrap > .classify-price,.classify-length {
+.classify-wrap > .classify-price,.classify-length,.classify-source {
 	height: 92px;
 }
 

@@ -23,10 +23,6 @@
 <title>注册-拍片网</title>
 <link rel="stylesheet" href="/resources/css/register.css">
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
-<<<<<<< HEAD
-
-=======
->>>>>>> 018c5a3eca31fd16efaf5db1d394ef68108092c1
 <script src="${jqueryJs }"></script>
 <script src="${jsonJs }"></script>
 <script src="${aesJs }"></script>
