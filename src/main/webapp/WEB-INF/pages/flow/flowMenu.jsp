@@ -15,11 +15,8 @@
 
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
 <%-- <spring:url value="http://test.apaipian.com:7070/" var="url" /> --%>
+<spring:url value="http://localhost:8080/" var="url" /> 
 
- <spring:url value="http://localhost:8080/" var="url" /> 
-<%--<spring:url value="http://test.apaipian.com:7070/" var="url" />--%>
-
-<%-- <spring:url value="http://www.apaipian.com:8087/" var="url" /> --%>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -75,8 +72,8 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    	
-	    	<!--<r:permission uri="/project/running">      -->
+	    
+	    <r:permission uri="/project/running">     
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
 	                  <div class="title">我的项目<span> Beta</span></div>

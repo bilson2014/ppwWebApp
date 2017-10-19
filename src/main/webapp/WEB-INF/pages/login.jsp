@@ -22,6 +22,8 @@
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>拍片网－登录</title>
     <link rel="stylesheet" href="/resources/css/login.css">
+ 
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
     <script src="${jqueryJs }"></script>
 	<script src="${jsonJs }"></script>
 	<script src="${aesJs }"></script>
