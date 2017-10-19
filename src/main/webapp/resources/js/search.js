@@ -16,6 +16,7 @@ $().ready(function(){
 	search.loadItem(); // 装配 功能、行业、制作维度
 	search.itemToggle(); // 注册 行业分类 点击事件
 	search.loadPrice(); // 装配价格
+	search.loadSource(); // 装配来源
 	search.pagination(); // 分页
 });
 
@@ -146,6 +147,19 @@ var search = {
 			
 		}
 		
+		// 来源
+		var source = $('#source').val();
+		if(source != undefined  && source != '') {
+			source = parseSource(source);
+			if(source != null) {
+				$tagBody += '<div class="tag" id="tagType">';
+				$tagBody +='<div class="controlCard">';
+				$tagBody +='<span>'+ source +'</span><span class="tagX" id="tagContentX" data-type="source">x</span></div>';
+				$tagBody += '</div>';
+			}
+			
+		}
+		
 		// 写入页面
 		$("#videoTag").append($tagBody);
 		
@@ -167,11 +181,17 @@ var search = {
 			var production = $('#production').val();
 			
 			var price = $('#price').val();
+			var source = $('#source').val();
 			
 			q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 			var param = '?q=' + q;
+			
 			if(price != null && price != undefined && price != ''){
 				param += '&price=' + price;
+			}
+			
+			if(source != null && source != undefined && source != ''){
+				param += '&source=' + source;
 			}
 			
 			var tParam = '&industry=@_@';
@@ -270,6 +290,7 @@ var search = {
 		var production = $('#production').val();
 		var industry = $('#industry').val(); // 行业
 		var genre = $('#genre').val(); // 类型
+		var source = $('#source').val(); // 来源
 		
 		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 		var param = '?q=' + q;
@@ -284,6 +305,10 @@ var search = {
 		
 		if(production != null && production != undefined && production != '') {
 			param += '&production=' + production.trim();
+		}
+		
+		if(source != null && source != undefined && source != '') {
+			param += '&source=' + source;
 		}
 		
 		var $priceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&price=' + '[1 TO *]' +'" data-price="[1 TO *]" class="priceAll">有价格</a></li>';
@@ -336,6 +361,36 @@ var search = {
 		});
 		
 	},
+	loadSource : function() {
+		// 装配来源
+		$('#source-list').empty();
+		var q = $('#q').val();
+		var production = $('#production').val();
+		var industry = $('#industry').val(); // 行业
+		var genre = $('#genre').val(); // 类型
+		
+		q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
+		var param = '?q=' + q;
+		
+		if(industry != null && industry != undefined && industry != '') {
+			param += '&industry=' + industry.trim();
+		}
+		
+		if(genre != null && genre != undefined && genre != '') {
+			param += '&genre=' + genre.trim();
+		}
+		
+		if(production != null && production != undefined && production != '') {
+			param += '&production=' + production.trim();
+		}
+		
+		var $sourceLi = '<li><a href="'+ getContextPath() + '/search' + param + '&source=paipianwang' +'" class="priceAll">拍片网</a></li>';
+		$sourceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&source=team' +'" class="priceAll">供应商</a></li>';
+		$sourceLi += '<li><a href="'+ getContextPath() + '/search' + param + '&source=case' +'" class="priceAll">案例</a></li>';
+		$('#source-list').append($sourceLi);
+		
+		
+	}, 
 	pagination : function(){
 		$(".pagination").createPage({
 			pageCount: Math.ceil($('#total').val() / pageSize),
@@ -371,6 +426,7 @@ function crumbsClick() {
 	q = q.replace(/"/g,'&quot').replace(/“/g,'&quot').replace(/”/g,'&quot');
 	
 	var price = $('#price').val();
+	var source = $('#source').val();
 	
 	var industry = $('#industry').val(); // 行业
 	var genre = $('#genre').val(); // 类型
@@ -384,31 +440,34 @@ function crumbsClick() {
 			if(strText != undefined && strText != '' && strText != null) {
 				q = q.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, production,price);
+			param = recombineSearchCondition(q, industry, genre, production,price, source);
 		} else if (strType == 'indy') {
 			// 取消行业标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				industry = industry.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, production,price);
+			param = recombineSearchCondition(q, industry, genre, production,price, source);
 		} else if(strType == 'gen') {
 			// 取消类型标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				genre = genre.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, production, price);
+			param = recombineSearchCondition(q, industry, genre, production, price, source);
 		} else if(strType == 'pro') {
 			// 取消类型标签时
 			// 点击标签时，移除这个标签
 			if(strText != undefined && strText != '' && strText != null) {
 				production = production.replace(strText,'');
 			}
-			param = recombineSearchCondition(q, industry, genre, production, price);
+			param = recombineSearchCondition(q, industry, genre, production, price, source);
 		} else if(strType == 'price') {
 			// 取消价格时
-			param = recombineSearchCondition(q, industry, genre, production, '');
+			param = recombineSearchCondition(q, industry, genre, production, '', source);
+		} else if(strType == 'source') {
+			// 取消来源时
+			param = recombineSearchCondition(q, industry, genre, production, price, '');
 		}
 	}else {
 		// 类型为空时，则证明是“全部”，不做任何处理
@@ -419,7 +478,7 @@ function crumbsClick() {
 }
 
 // 重组url
-function recombineSearchCondition(q,industry,genre,production,price) {
+function recombineSearchCondition(q,industry,genre,production,price,source) {
 	var param = '';
 	if(q != null && q != undefined && q != '') {
 		param = '?q=' + q;
@@ -462,6 +521,10 @@ function recombineSearchCondition(q,industry,genre,production,price) {
 	
 	if(price != null && price != undefined && price != '') {
 		param += '&price=' + price;
+	}
+	
+	if(source != null && source != undefined && source != '') {
+		param += '&source=' + source;
 	}
 	
 	// 判断param中是否含有q
@@ -653,7 +716,8 @@ function loadProduction(start){
 		genre : $('#genre').val().trim(),
 		production : $('#production').val().trim(),
 		priceFq : $('#price').val(),
-		lengthFq : $('#length').val()
+		lengthFq : $('#length').val(),
+		sourceFq : $('#source').val()
 	}));
 }
 
@@ -710,5 +774,18 @@ var searchVideo= {
 				
 			});
 		}
+}
+
+// 解析来源
+function parseSource (source) {
+	if(source != '' && source != null && source != undefined) {
+		if(source == 'paipianwang')
+			source = '拍片网';
+		else if(source == 'case')
+			source = '案例';
+		else if(source == 'team')
+			source = '供应商';
+		return source;
+	}
 }
 

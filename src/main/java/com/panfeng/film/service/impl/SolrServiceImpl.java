@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -37,17 +38,17 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			query.set("defType", "edismax");
 			query.set("qf", "productName^80 tags^70 teamName^10");
 			query.set("q.alt", "*:*");
-			
+
 			// 整合bf，增强搜索字段的权重
-			if(ValidateUtil.isValid(condition)) {
+			if (ValidateUtil.isValid(condition)) {
 				// 分词
 				String freq = condition.replaceAll(",", " ").replaceAll(" +", " ");
 				List<String> words = this.getAnalysis(token.getSolrUrl(), freq);
-				if(ValidateUtil.isValid(words)) {
+				if (ValidateUtil.isValid(words)) {
 					StringBuffer sb = new StringBuffer();
 					for (int i = 0; i < words.size(); i++) {
 						String str = words.get(i);
-						if(ValidateUtil.isValid(str)) {
+						if (ValidateUtil.isValid(str)) {
 							sb.append("termfreq(productName,*");
 							sb.append(str);
 							sb.append("*),");
@@ -59,16 +60,17 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 								sb.append("*),");
 						}
 					}
-					
+
 					// query 注入 termfreq 函数
-					query.set("bf", "sum("+ sb.toString() +")^1500");
+					query.set("bf", "sum(" + sb.toString() + ")^1500");
 				}
 			}
-			
+
 			// 判断当前如果是供应商的话，那么看到公共的和自己的作品
 			String search_words = KeywordUtils.mergeQConcition(view);
-			if(info != null) {
-				if(PmsConstant.ROLE_PROVIDER.equals(info.getSessionType()) && PublicConfig.SOLR_URL.equals(token.getSolrUrl())) {
+			if (info != null) {
+				if (PmsConstant.ROLE_PROVIDER.equals(info.getSessionType())
+						&& PublicConfig.SOLR_URL.equals(token.getSolrUrl())) {
 					StringBuffer buffer = new StringBuffer(search_words);
 					buffer.append(" AND (recommend:[1 TO *] OR ");
 					buffer.append("teamId:" + info.getReqiureId());
@@ -76,15 +78,16 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 					search_words = buffer.toString();
 				}
 			}
-			
+
 			query.setQuery(search_words);
 			query.set("pf", "productName tags teamName");
 			query.set("tie", "0.1");
-			
+
 			if (view.getIdFq() != null && !"".equals(view.getIdFq())) {
 				query.addFilterQuery("-id:" + view.getIdFq());
 			}
-			query.setFields("teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl,teamFlag");
+			query.setFields(
+					"teamId,teamName,productId,productName,orignalPrice,price,picLDUrl,tags,indentProjectId,teamPhotoUrl,teamFlag");
 
 			query.setStart(Integer.parseInt(String.valueOf(view.getBegin())));
 			query.setRows(Integer.parseInt(String.valueOf(view.getLimit())));
@@ -94,6 +97,20 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 				query.addFilterQuery("price:" + view.getPriceFq());
 			}
 
+			// 如果来源不为空，则设置为全部
+			final String source = view.getSourceFq();
+			if (StringUtils.isNotBlank(source)) {
+				if("paipianwang".equals(source)) {
+					query.addFilterQuery("teamFlag:1");
+					query.addFilterQuery("-indentProjectId:0");
+				} else if("case".equals(source)) {
+					query.addFilterQuery("teamFlag:4");
+				} else if("team".equals(source)) {
+					query.addFilterQuery("teamFlag:1");
+					query.addFilterQuery("indentProjectId:0");
+				}
+			}
+
 			// 开启高亮
 			query.setHighlight(true);
 			query.set("hl.highlightMultiTerm", true);
@@ -101,7 +118,7 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 			query.setHighlightFragsize(30);
 			query.setHighlightSimplePre("<font color=\"red\">");
 			query.setHighlightSimplePost("</font>");
-			
+
 			final List<PmsProductSolr> list = this.queryDocs(token.getSolrUrl(), query);
 			return list;
 		} catch (UnsupportedEncodingException e) {
@@ -137,7 +154,7 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 		if (view.getRecomendFq() != null && !"".equals(view.getRecomendFq())) {
 			query.addFilterQuery("recommend:" + view.getRecomendFq());
 		}
-		
+
 		// 设置ID区间
 		if (view.getIdFq() != null && !"".equals(view.getIdFq())) {
 			query.addFilterQuery("-id:" + view.getIdFq());

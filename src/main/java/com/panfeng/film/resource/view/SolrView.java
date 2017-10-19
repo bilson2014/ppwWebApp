@@ -1,36 +1,37 @@
 package com.panfeng.film.resource.view;
 
-public class SolrView extends Pagination{
+public class SolrView extends Pagination {
 
 	private static final long serialVersionUID = -3365175562854271223L;
 
 	private String priceFq = null; // 价格区间筛选
-	
+
 	private String idFq = null; // ID区间筛选
-	
+
 	private String lengthFq = null; // 时长区间筛选
-	
+
 	private String itemFq = null; // 视频类型
-	
+
 	private String tagsFq = null; // 标签类型
-	
+
+	private String sourceFq = null; // 来源类型
+
 	private String condition = null; // 搜索条件
-	
+
 	private int sortord = 0; // 0：升序 1：降序
-	
+
 	private String sequence = null; // 排序字段
-	
+
 	private String industry = null; // 行业
-	
+
 	private String genre = null; // 类型
-	
+
 	private String production = null; // 制作
-	
+
 	private boolean more = false; // 是否相关性推荐
-	
+
 	private String recomendFq = null; // 推荐值筛选字段
 
-	
 	public String getIdFq() {
 		return idFq;
 	}
@@ -70,7 +71,7 @@ public class SolrView extends Pagination{
 	public void setItemFq(String itemFq) {
 		this.itemFq = itemFq;
 	}
-	
+
 	public int getSortord() {
 		return sortord;
 	}
@@ -95,6 +96,14 @@ public class SolrView extends Pagination{
 		this.tagsFq = tagsFq;
 	}
 
+	public String getSourceFq() {
+		return sourceFq;
+	}
+
+	public void setSourceFq(String sourceFq) {
+		this.sourceFq = sourceFq;
+	}
+
 	public String getIndustry() {
 		return industry;
 	}
@@ -110,7 +119,7 @@ public class SolrView extends Pagination{
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
+
 	public String getProduction() {
 		return production;
 	}

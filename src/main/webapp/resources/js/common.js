@@ -9,18 +9,12 @@ var InterValObj; // timer变量，控制时间 - 注册
 
 
 //var UrlDo = "apaipian.com";
-
-var UrlDo = "localhost";
-//var UrlDo = "www.apaipian.com";
-//var Url = "http://www.apaipian.com:8087/";
-var Url = "http://localhost:8080/";
-
-//var UrlDo = "test.apaipian.com";
-var UrlDo = "localhost";
+//var UrlDo = "localhost";
+var UrlDo = "test.apaipian.com";
 
 
 //var Url = "http://www.apaipian.com:8087/";
-//var Url = "http://test.apaipian.com:7070/";
+var Url = "http://test.apaipian.com:7070/";
 //var Url = "http://localhost:7070/";
 
 $().ready(function(){

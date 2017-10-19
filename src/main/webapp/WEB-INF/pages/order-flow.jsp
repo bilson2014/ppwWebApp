@@ -24,9 +24,11 @@
     <spring:url value="/resources/js/common.js" var="commonJs"/>
     <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
     <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
-
+<spring:url value="/resources/images" var="imgPath" />
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <link rel="stylesheet" href="${serviceToCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
+
    
    <script type="text/javascript">
 	var _vds = _vds || [];

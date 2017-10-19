@@ -41,7 +41,7 @@ public class SolrController extends BaseController {
 
 	@RequestMapping("/search")
 	public ModelAndView searchView(String q, final String industry, final String genre, final String production,
-			final String price, final boolean isMore, final String target,final ModelMap model, final HttpServletRequest request)
+			final String price, final String source, final boolean isMore, final String target,final ModelMap model, final HttpServletRequest request)
 			throws Exception {
 
 		// 检查 参数q 是否为空
@@ -73,6 +73,7 @@ public class SolrController extends BaseController {
 		
 		model.addAttribute("q", q);
 		model.addAttribute("price", price);
+		model.addAttribute("source", source);
 		model.addAttribute("production", production);
 		model.addAttribute("industry", industry);
 		model.addAttribute("genre", genre);
@@ -84,6 +85,7 @@ public class SolrController extends BaseController {
 		view.setGenre(genre);
 		view.setProduction(production);
 		view.setPriceFq(price);
+		view.setSourceFq(source);
 		// 设置是否是从相关性推荐过来的
 		view.setMore(isMore);
 		view.setLimit(20l);
