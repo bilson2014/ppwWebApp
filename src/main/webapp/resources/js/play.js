@@ -438,7 +438,7 @@ function loadRecommendProduct(){
 								continue;
 							}
 							hasCount ++;
-							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag);
+							var card = createCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag,res[i].indentProjectId);
 							v1.append(card);
 							if(hasCount == 8)
 								break;
@@ -516,7 +516,7 @@ function loadRecommendProductIfNo(){
 						if(res[i].productId == productId)
 							continue;
 						hasCount ++;
-						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag);
+						var card = createNoInfoCard(res[i].productName,res[i].productId,res[i].teamId,res[i].picLDUrl,res[i].price,res[i].teamPhotoUrl,res[i].teamName,res[i].teamId,res[i].teamFlag,res[i].indentProjectId);
 						v1.append(card);
 						if(hasCount == 8)
 							break;
@@ -582,9 +582,10 @@ function initMoreInfo(num){
     });
 }
 
-function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,teamId,teamFlag){
+function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,teamId,teamFlag,indentProjectId){
 	var url = getContextPath() +'/play/'+teamId+'_'+productId+'.html';
 	var ImageUrl = '/resources/images/index/noImg.jpg';
+	var loginTel = $('#rolephoneImg').val();
 	if(imageUrl != null && imageUrl != "" && imageUrl != undefined){
 		ImageUrl = getDfsHostName() + imageUrl;
 	}
@@ -597,18 +598,19 @@ function createNoInfoCard(productName,productId,teamId,imageUrl,price,sUrl,name,
 	var num =$('#roleNum').val();
 	var isHide = "hide";
 	var numFlag = parseInt(teamFlag);
-	
-	if(numFlag == 1 && num != 0){
-		roleImgUrl = "/resources/images/play/roleOur.png";
-		isHide = '';
-	}
-	if(numFlag == 1 && num == 0) {
-		roleImgUrl = "/resources/images/play/rolePro.png";
-		isHide = '';
-	}
-	if(numFlag == 4){
-		roleImgUrl = "/resources/images/play/rolePlay.png";
-		isHide = '';
+	if(loginTel!=null && loginTel!= "" ){
+		if(numFlag == 1 && indentProjectId != 0){
+			roleImgUrl = "/resources/images/play/roleOur.png";
+			isHide = '';
+		}
+		if(numFlag == 1 && indentProjectId == 0) {
+			roleImgUrl = "/resources/images/play/rolePro.png";
+			isHide = '';
+		}
+		if(numFlag == 4){
+			roleImgUrl = "/resources/images/play/rolePlay.png";
+			isHide = '';
+		}
 	}
 	var headUrl = getDfsHostName()+sUrl;
 	   if(sUrl==null || sUrl== "" ){
@@ -660,11 +662,11 @@ var loginTel = $('#rolephoneImg').val();
 var numFlag = parseInt(teamFlag);
 if(loginTel!=null && loginTel!= "" ){
 	
-	if(numFlag == 1 && num != 0){
+	if(numFlag == 1 && indentProjectId != 0){
 		roleImgUrl = "/resources/images/play/roleOur.png";
 		isHide = '';
 	}
-	if(numFlag == 1 && num == 0) {
+	if(numFlag == 1 && indentProjectId == 0) {
 		roleImgUrl = "/resources/images/play/rolePro.png";
 		isHide = '';
 	}
