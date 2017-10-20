@@ -72,12 +72,8 @@
         </div>
 
 	<div class="page">
-		 
-
 		<div class="nav-shadow"></div>
-		
 		<div class="page">
-
 		    <div class="logoImg">
 		    	<img src="${imgPath}/introduce/member/company.svg">
 		      </div>
