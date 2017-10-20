@@ -67,12 +67,12 @@
 	                <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
 	       
-	       <div id="mainMenu">
-	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
+	     <div id="mainMenu">
+	         <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-	    
+
 	    <r:permission uri="/project/running">     
 	              <div class="treeitem" id="myPro">
 	                  <div class="myPro"></div>
@@ -80,14 +80,13 @@
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
 	              <ul class="productList" id="productList">
-	                 <%--  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
+	                  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
 	                  <a href="${url}/project/running-task?pause"><li id="pause">暂停</li></a>
-	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a> --%>
+	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a>
 	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
 	              </ul>
-
 	      </r:permission>  
 	               
 	              <r:permission uri="/order/myOrder">
@@ -121,7 +120,7 @@
 		                  <div class="title">退出登录</div>
 		             </div>
 	             </a>
-	        </div>
+	        </div> 
 	   </div>
 	</div> 
   

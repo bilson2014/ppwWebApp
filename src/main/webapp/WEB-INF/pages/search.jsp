@@ -63,6 +63,7 @@
 	<input type="hidden" value="${industry }" id="industry"/>
 	<input type="hidden" value="${genre }" id="genre"/>
 	<input type="hidden" value="${price }" id="price"/>
+	<input type="hidden" value="${source }" id="source"/>
 	<input type="hidden" value="${production}" id="production"/>
 	<input type="hidden" value="${total }" id="total"/>
 	<input type="hidden" value="${isMore }" id="isMore"/>
@@ -121,7 +122,17 @@
 						<span>更多</span>
 					</div> -->
 				</div>
+				
 				<r:identity role="employee">
+					<div class="classify-source">
+						<dt>来源：</dt>
+						<dd id="classify-item">
+							<ul class="list-inline" id="source-list">
+								<!-- 来源分类 -->
+							</ul>
+						</dd>
+					</div>
+					
 					<div class="classify-price ">
 						<dt>价格：</dt>
 						<dd id="price-item">

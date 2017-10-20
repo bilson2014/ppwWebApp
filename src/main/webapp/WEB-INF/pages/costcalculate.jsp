@@ -91,7 +91,7 @@
                                 <div class="title" >视频类别</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span data-content="0" id="videoType">活动视频</span>
+                                        <span data-content="2" id="videoType">企业宣传</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >

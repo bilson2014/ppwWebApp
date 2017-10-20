@@ -39,7 +39,7 @@ public class PortalServiceImpl implements PortalService {
 		query.set("qf", "productName^4 tags^3 teamName^2 pDescription^1");
 		query.setQuery("*:*");
 		query.setFields(
-				"teamId,productId,productName,teamName,orignalPrice,price,picLDUrl,recommend,supportCount,tags,teamFlag,teamPhotoUrl");
+				"teamId,productId,productName,teamName,orignalPrice,price,picLDUrl,recommend,indentProjectId,supportCount,tags,teamFlag,teamPhotoUrl");
 		query.setStart(0);
 		query.setRows(30);
 		query.setSort("supportCount", ORDER.desc);
