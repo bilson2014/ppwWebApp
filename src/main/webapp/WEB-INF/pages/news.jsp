@@ -26,7 +26,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" id="keywords" content="<c:if test="${not empty fn:trim(news.seoKeywords) }"><c:forEach items="${fn:split(fn:trim(news.tags),' ') }" var="tag" end="2" varStatus="stat">${tag} <c:if test="${!stat.last }"></c:if></c:forEach></c:if>">
+    <meta name="keywords" id="keywords" content="<c:if test="${not empty fn:trim(news.seoKeywords) }"><c:forEach items="${fn:split(fn:trim(news.seoKeywords),' ') }" var="tag" end="2" varStatus="stat">${tag} <c:if test="${!stat.last }"></c:if></c:forEach></c:if>">
     <meta name="description" content="${news.seoDescription}">
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>${news.seoTitle}-拍片网</title>
