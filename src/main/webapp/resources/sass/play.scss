@@ -23,7 +23,7 @@ $rightWidth:320px;
     position: relative;
     padding-top: 60px;
     @media screen and (min-width: 1276px) {
-        height: 860px;
+        height: 840px;
     }
     .videoContent {
         @include media_screen_width_beta3();
@@ -101,10 +101,12 @@ $rightWidth:320px;
 
 .videoContent .videoTop {
     position: relative;
-    margin-bottom: 16px;
+    margin-top: 5px;
+    margin-bottom: 18px;
     div:nth-child(1) {
-        color: white;
+        color: $body-color;
         font-size: 26px;
+        font-weight: bold;
         margin-bottom: 40px;
         @include ellipsis;
     }
@@ -116,15 +118,14 @@ $rightWidth:320px;
             top: -2px;
         }
         span {
-            color: $gray-light;
+            color: $e3;
             font-size: $font-size-base;
         }
         span:nth-child(2) {
-            position: relative;
-            top: -6px;
+            color: $e3;
         }
         label {
-            color: $gray-light;
+            color: $e3;
             font-size: $font-size-base;
             margin-left: 5px;
             font-weight: 100 !important;
@@ -148,19 +149,27 @@ $rightWidth:320px;
             border-radius: 6px;
         }
         .save {
-            background-position-y: -18px !important;
+            background-position-y: -21px !important;
             top: 0px !important;
             &:hover {
-                background-position-y: -18px !important;
+                background-position-y: 0px !important;
             }
         }
         li:nth-child(1) {
+            width: 24px;
+            height: 21px;
             background: url(/resources/images/play/saveBtn.png) no-repeat;
-            background-size: 20px 40px !important;
-            background-position-y: 6px;
+            background-size: 24px 42px !important;
             position: relative;
-            top: -3px;
-            margin-right: 25px;
+            left: 10px;
+            span {
+                font-size: $font-size-base;
+                width: 42px;
+                margin-left: -46px;
+                margin-top: 5px;
+                display: inline-block;
+                color: $e3;
+            }
             div {
                 width: 56px;
                 height: 30px;
@@ -180,86 +189,49 @@ $rightWidth:320px;
             }
         }
         li:nth-child(2) {
-            background: url(/resources/images/block/share.png) no-repeat;
-            background-position-y: 4px;
-            background-size: 18px 18px;
-            &:hover {
-                background-position-y: 4px !important;
-            }
+            width: 25px;
         }
         li:nth-child(3) {
-            color: $gray-light;
+            color: $e3;
             font-size: $font-size-base;
-            width: auto !important;
-            margin-left: 0px;
+            width: 52px;
+            padding-left: 14px;
             line-height: 26px;
         }
         li:nth-child(4) {
-            background: url(/resources/images/block/qq.png) no-repeat;
-            margin-left: 16px;
-            border: 1px solid $gray;
-            background-position: 0px 0px;
+            background: url(/resources/images/block/wx.png) no-repeat;
+            margin-left: 11px;
             background-size: 24px 48px;
-            transition: all .4s linear 0s;
-            -moz-transition: all .4s linear 0s;
-            /* Firefox 4 */
-            -webkit-transition: all .4s linear 0s;
-            /* Safari 和 Chrome */
-            -o-transition: all .4s linear 0s;
+            height: 24px;
             &:hover {
-                background-position-y: -24px !important;
-                border: none;
+                background-position-y: -24px;
             }
         }
         li:nth-child(5) {
-            background: url(/resources/images/block/zoom.png) no-repeat;
-            margin-left: 14px;
-            border: 1px solid $gray;
-            background-position: 0px 0px;
+            background: url(/resources/images/block/q.png) no-repeat;
+            margin-left: 11px;
             background-size: 24px 48px;
-            transition: all .4s linear 0s;
-            -moz-transition: all .4s linear 0s;
-            /* Firefox 4 */
-            -webkit-transition: all .4s linear 0s;
-            /* Safari 和 Chrome */
-            -o-transition: all .4s linear 0s;
+            height: 24px;
             &:hover {
-                background-position-y: -24px !important;
-                border: none;
+                background-position-y: -24px;
             }
         }
         li:nth-child(6) {
-            background: url(/resources/images/block/wb.png) no-repeat;
-            margin-left: 14px;
-            border: 1px solid $gray;
-            background-position: 0px 0px;
+            background: url(/resources/images/block/w.png) no-repeat;
+            margin-left: 11px;
             background-size: 24px 48px;
-            transition: all .4s linear 0s;
-            -moz-transition: all .4s linear 0s;
-            /* Firefox 4 */
-            -webkit-transition: all .4s linear 0s;
-            /* Safari 和 Chrome */
-            -o-transition: all .4s linear 0s;
+            height: 24px;
             &:hover {
-                background-position-y: -24px !important;
-                border: none;
+                background-position-y: -24px;
             }
         }
         li:nth-child(7) {
-            background: url(/resources/images/block/wechat.png) no-repeat;
-            margin-left: 14px;
-            border: 1px solid $gray;
-            background-position: 0px 0px;
+            background: url(/resources/images/block/kj.png) no-repeat;
+            margin-left: 11px;
             background-size: 24px 48px;
-            transition: all .4s linear 0s;
-            -moz-transition: all .4s linear 0s;
-            /* Firefox 4 */
-            -webkit-transition: all .4s linear 0s;
-            /* Safari 和 Chrome */
-            -o-transition: all .4s linear 0s;
+            height: 24px;
             &:hover {
-                background-position-y: -24px !important;
-                border: none;
+                background-position-y: -24px;
             }
         }
     }
@@ -335,7 +307,7 @@ $rightWidth:320px;
 
 .videoContent .videoPrice {
     position: absolute;
-    top: 102px;
+    top: 98px;
     right: 0px;
     background: black;
     padding-left: 15px;
@@ -349,7 +321,7 @@ $rightWidth:320px;
         height: ($width-lg3 - $order-width) * (9 / 16);
     }
     .wordContent {
-        margin-top: 40px;
+        margin-top: 34px;
         padding-left: 15px;
         padding-right: 15px;
         @media screen and (max-width: 1275px) {
@@ -367,13 +339,16 @@ $rightWidth:320px;
         }
         div:nth-child(1) {
             margin-bottom: 20px;
-            font-size: $font-size-base;
+            font-size: $font-size-lg;
+            color: #fff !important;
+            font-weight: 500;
         }
         div:nth-child(2) {
-            height: 75px;
+            height: 96px;
             overflow: hidden;
-            font-size: $font-size-sm;
-            line-height: 15px;
+            font-size: $font-size-base;
+            line-height: 24px;
+            color: #fff !important;
             @media screen and (max-width: 1275px) {
                 height: 45px;
             }
@@ -405,15 +380,15 @@ $rightWidth:320px;
         -o-transition: all .6s linear 0s;
         .orPrice {
             color: $gray-light;
-            font-size: $font-size-base;
-            margin-bottom: 5px;
+            font-size: $font-size-lg;
+            margin-bottom: 6px;
             text-decoration: line-through;
         }
         .orPriceTitle {
             color: $gray-light;
             font-size: $font-size-sm;
-            margin-left: 10px;
-            margin-bottom: 30px;
+            margin-left: 5px;
+            margin-bottom: 36px;
             @media screen and (max-width: 1275px) {
                 margin-bottom: 10px;
             }
@@ -429,10 +404,10 @@ $rightWidth:320px;
         .afterPriceTitle {
             color: $gray-light;
             font-size: $font-size-sm;
-            margin-left: 10px;
+            margin-left: 5px;
         }
         #needOrder {
-            margin-top: 60px;
+            margin-top: 90px;
             color: white;
             font-size: $font-size-base;
             width: 100%;
@@ -669,7 +644,7 @@ $rightWidth:320px;
 
 .contentWidth {
     @include media_screen_width_beta3();
-    padding-top: 60px;
+    padding-top: 50px;
     margin-bottom: 80px;
     margin: 0 auto;
     font-size: 0;

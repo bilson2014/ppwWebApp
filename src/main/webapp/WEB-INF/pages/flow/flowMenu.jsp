@@ -80,9 +80,11 @@
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
 	              <ul class="productList" id="productList">
+                      <!--  
 	                  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
 	                  <a href="${url}/project/running-task?pause"><li id="pause">暂停</li></a>
 	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a>
+	                   -->	          
 	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
