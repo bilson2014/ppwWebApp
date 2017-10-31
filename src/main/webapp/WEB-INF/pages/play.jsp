@@ -100,7 +100,7 @@
             <div class="videoContent">
                 <div class="videoTop">
                         <div id="pName">${product.productName }</div>
-                        <div><span><img src="/resources/images/block/tag.png"></span>
+                        <div><span>标签 : </span>
                        		<span>
 								<c:if test="${! empty product.tags}">
 									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">
@@ -112,23 +112,25 @@
                         <div>
                             <ul>
                             <r:identity role="employee">
-                                <li class="save" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                <li class="save" id="managerCollect"><span>收藏 : </span><div id="showSave">已收藏</div></li>
                              </r:identity>
                               <r:identity role="customer">
-                                <li class="save hide" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                <li class="save hide" id="managerCollect"><span>收藏 : </span><div id="showSave">已收藏</div></li>
                              </r:identity>  
                               <r:identity role="provider">
-                                <li class="save hide" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                <li class="save hide" id="managerCollect"><span>收藏 : </span><div id="showSave">已收藏</div></li>
                              </r:identity>
                              <r:noLogin>
-                                <li class="save hide" id="managerCollect"><div id="showSave">已收藏</div></li>
+                                <li class="save hide" id="managerCollect"><span>收藏 : </span><div id="showSave">已收藏</div></li>
                              </r:noLogin>      
                                 <li></li>
-                                <li>分享到 : </li>
-                                <li class="-mob-share-qq share"></li>
-                                <li class="-mob-share-qzone share"></li>
-                                <li class="-mob-share-weibo share"></li>
+                                <li>分享 : </li>
                                 <li class="-mob-share-weixin share"></li>
+                                <li class="-mob-share-qq share"></li>
+                                <li class="-mob-share-weibo share"></li>
+                                <li class="-mob-share-qzone share"></li>
+                                
+                                
                             </ul>
                         </div>
                     </div>

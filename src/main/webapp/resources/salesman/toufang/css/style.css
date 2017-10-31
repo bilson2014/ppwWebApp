@@ -1,0 +1,166 @@
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+html,body{ font-size:14px; color:#333; background:#fff; font-family:"Microsoft YaHei"; width:100%;}
+ul li{ list-style:none; vertical-align:bottom;}
+a{ text-decoration:none; color:#000;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+a:hover{ text-decoration:none;}
+img{ border:none; vertical-align:middle;}
+table{ border:none; padding:0; margin:0; border-collapse:collapse; overflow:hidden;}
+table tr{ white-space:0;}
+table tr td{ vertical-align:middle;}
+.clear{ clear:both;}
+h1,h2,h3,h4{line-height:100%;}
+:focus { outline: none; }
+a,area { blr:expression(this.onFocus=this.blur()) }
+
+.container{ width:1320px; margin:0 auto;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clear {clear:both;}
+.hide{ display:none;}
+
+
+/*------------------------------------HEAD-----------------------------------------*/
+
+.up{ width:80px; height:80px; background:url(../images/up.png) no-repeat center center; position:fixed; left:50%; margin-left:-40px; bottom:0; z-index:99;}
+
+.top{ width:100%; height:52px; position:fixed; top:0; left:0; z-index:999; background:#fff; box-shadow:0 0 5px rgba(0,0,0,.5);}
+.top2{ height:52px;}
+
+.nav{ height:52px; zoom:1; overflow:hidden; padding-left:60px;}
+.nav li{ display:inline-block; line-height:52px; margin:0 20px; position:relative;}
+.nav li a{ display:block; background:url(../images/navbg.png) no-repeat center 40px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s; background-size:0 2px;}
+.nav li a:hover{ color:#ff2142; background-size:100% 2px;}
+
+.tel{ font-size:16px; color:#ff2142; background:url(../images/tel.png) no-repeat left center; padding-left:36px; line-height:52px; font-weight:bold;}
+
+.jsq{ width:100%; height:820px; position:relative; overflow:hidden;}
+.jsq iframe{ position:absolute; left:0; top:-100px;}
+
+.tit{ padding:50px 0 36px;}
+.tit h1{ text-align:center; font-size:24px; line-height:40px; padding-bottom:10px;}
+.tit p{ font-size:14px; text-align:center; color:#999; line-height:24px;}
+
+.xcp,.mg,.tvc,.vdy{ border-bottom:1px solid #ccc; padding-bottom:20px; margin-bottom:40px;}
+.type{ width:300px; height:500px; background-size:100% 100%; position:relative;}
+.bg01{ background:url(../images/bg01.jpg) no-repeat center center;}
+.bg02{ background:url(../images/bg02.jpg) no-repeat center center;}
+.bg03{ background:url(../images/bg03.jpg) no-repeat center center;}
+.bg04{ background:url(../images/bg04.jpg) no-repeat center center;}
+
+.talk{ position:absolute; width:100%; height:36px; text-align:center; bottom:100px; left:0;}
+.talk a{ display:inline-block; background:#ff2142; line-height:36px; margin:0 5px; color:#fff; font-size:14px; padding:0 25px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+.talk a:hover{ background:#f00;}
+
+
+
+.cvlist{ width:1020px; zoom:1; overflow:hidden;}
+.cvlist li{ width:320px; height:240px; margin-left:18px; margin-bottom:16px; border:1px solid #ccc; float:left; position:relative;}
+.cvlist li img{ width:320px; height:180px; vertical-align:bottom;}
+.cvlist li a.kuang{ display:block; position:relative;}
+.cvlist li a.kuang p{ height:32px; padding:0 2px; line-height:32px; position:absolute; bottom:0; left:0; width:316px; background:rgba(0,0,0,.8); color:#fff;}
+.cvlist li a.kuang p span{ display:block; float:left; width:254px; text-indent:3px;}
+.cvlist li a.kuang p font{ display:block; background:url(../images/hot.png) no-repeat left center; text-indent:20px; font-size:12px; float:right; width:60px;}
+
+.zixun{ height:32px; padding-top:14px; text-align:center;}
+.zixun a{ display:inline-block; line-height:32px; font-size:14px; margin:0 4px; color:#fff; border-radius:5px; padding:0 24px; background:#ff2142;}
+.zixun a:hover{ background:#f00;}
+
+.cvlistrr li{ margin-left:0; margin-right:18px;}
+
+.data{ padding:40px 0 50px 220px;}
+.data li{ display:inline-block; text-align:left; width:360px; font-size:14px; line-height:240%;}
+.data li span{ font-weight:bold; font-size:42px;}
+
+.foot{ text-align:center; padding:50px 0 30px; background:#000; color:#fff; line-height:24px; font-size:12px;}
+.foot span{ font-size:16px;}
+.foot img{ margin-bottom:30px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
