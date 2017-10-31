@@ -7,6 +7,7 @@ var count = 120; // 间隔函数，1秒执行
 var curCount; // 当前剩余秒数 
 var add = true;
 $().ready(function() {
+	merchantBridge();
 	var cost = {
 		init : function() {
 			// 初始化页面

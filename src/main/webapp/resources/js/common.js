@@ -8,6 +8,8 @@ var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
 
 
+
+
 //var UrlDo = "apaipian.com";
 var UrlDo = "localhost";
 //var UrlDo = "192.168.0.101";
@@ -18,6 +20,7 @@ var UrlDo = "localhost";
 //var Url = "http://test.apaipian.com:7070/";
 var Url = "http://localhost:7070/";
 //var Url = "http://192.168.0.101:7070/";
+
 
 $().ready(function(){
 	getImgUrl();
@@ -139,9 +142,6 @@ function getUrl(){
 function getUrlTask(){
 	return Url;
 }
-
-
-
 
 function debug(obj) {
 
@@ -385,7 +385,7 @@ var htmlSpecialCharsPlaceHolders = {
  * @param str
  */
 function checkMobile(str) {
-	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+	var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0135678]|18[0-9]|14[57])[0-9]{8}$/;
 	if(str.match(reg)){
 		return true;
 	} else{
@@ -604,13 +604,37 @@ var share = {
 		}
 }
 
+//商桥
 var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?93ab42264ae7c05828fe3f88b039b7a6";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+function merchantBridge(){
+	
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?93ab42264ae7c05828fe3f88b039b7a6";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+	
+/*	(function(){
+		var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?6f047b449704b8f5df222e8ded8d80f6":"https://jspassport.ssl.qhimg.com/11.0.1.js?6f047b449704b8f5df222e8ded8d80f6";
+		document.write('<script src="' + src + '" id="sozz"><\/script>');
+	})();*/
+}
+
+
 
 //3.0
 function playVideo() {

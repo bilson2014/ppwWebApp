@@ -18,6 +18,7 @@ $().ready(function() {
 			this.phoneCodeValidate();
 			//点击设置完密码，点击完成修改
 			this.finishModify();
+			merchantBridge();
 	    },
 	    teamPhoneChange:function(){
 			$('#team_phoneNumber').off("change").on('change',function(){

@@ -10,11 +10,13 @@ $().ready(function() {
 	initLike();
     controlRightPos();
     initPath();
+    merchantBridge();
     $('#headerTitleH1').remove();
    //$('#keywords').attr('content',$('#tagsContent').text().trim());
 });
 //右侧是否悬浮
 function controlRightPos(){
+	   merchantBridge();
 	  $(window).scroll(function() {
 		  var divTop = $('.foot3').offset().top;
 		  var screenHeight = $(window).height();

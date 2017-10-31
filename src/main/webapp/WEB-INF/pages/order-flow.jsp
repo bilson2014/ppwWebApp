@@ -22,6 +22,7 @@
     <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
     <spring:url value="/resources/js/common.js" var="commonJs"/>
+    <spring:url value="/resources/js/orderFlow.js" var="orderFlowJs"/>
     <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
     <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
 <spring:url value="/resources/images" var="imgPath" />
@@ -146,6 +147,6 @@ Within your budget, <br>the specialist will find the best match from 5208 experi
     <script type="text/javascript" src="${waypointsJs }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
     <script type="text/javascript" src="${bootstrapJs }"></script>
-    
+    <script type="text/javascript" src="${orderFlowJs}"></script>
     
 </html>

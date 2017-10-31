@@ -15,6 +15,7 @@ $().ready(function() {
 	};
 	$('#header').removeClass('headerMove');
 	colorEgg();
+	merchantBridge();
 });
 
 function getVideoHeight() {

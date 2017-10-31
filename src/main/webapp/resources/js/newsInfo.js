@@ -6,9 +6,9 @@ $().ready(function() {
 	// 格式化标题和介绍
 	newsInfo.formatContent();
 	// TODO 窗口大小监听，format title and description
-	
 	// 初始化page
 	newsInfo.initPagination();
+	merchantBridge();
 });
 var newsInfo = {
 		// 分类高亮

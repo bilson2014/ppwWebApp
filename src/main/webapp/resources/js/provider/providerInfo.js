@@ -1,5 +1,6 @@
 var nowInt = 0;
 $().ready(function() {
+	merchantBridge();
 	providerInfo.init();
 	openOrder();
 	var ProductTree = {
