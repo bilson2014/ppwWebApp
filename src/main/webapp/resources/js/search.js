@@ -18,6 +18,7 @@ $().ready(function(){
 	search.loadPrice(); // 装配价格
 	search.loadSource(); // 装配来源
 	search.pagination(); // 分页
+	merchantBridge();
 });
 
 var search = {

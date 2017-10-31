@@ -1,7 +1,6 @@
 $().ready(function(){
 	// 搜索智能提示
-	suggest.smartSuggest();
-	
+	suggest.smartSuggest();	
 	// 如果 搜索栏为空，则隐藏提示栏
 	suggest.prototypeChange();
 });

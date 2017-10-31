@@ -4,6 +4,7 @@ var curCount; // 当前剩余秒数
 $().ready(function() {
 	
 	checkState();
+	merchantBridge();
 	
 	var login = {
 		// 方法都在init中

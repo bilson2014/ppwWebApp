@@ -13,7 +13,6 @@ var ImgObj=new Image(); //建立一个图像对象
 var AllowExt=".jpg|.gif" //允许上传的文件类型 ŀ为无限制 每个扩展名后边要加一个"|" 小写字母表示
 var AllowImgFileSize=70;  //允许上传图片文件的大小 0为无限制  单位：KB
 var FileObj,ImgFileSize,FileExt,ErrMsg,FileMsg,HasCheked,IsImg//全局变量 图片相关属性
-
 var parent = $(window.parent.document);
 var uploader;
 

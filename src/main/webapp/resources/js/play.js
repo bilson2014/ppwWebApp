@@ -27,6 +27,7 @@ $().ready(function() {
     var servicePrice = $('#servicePrice').text();
     $('#servicePrice').text(thousandCount(servicePrice));
     saveVideo();
+    merchantBridge();
 });
 
 function saveVideo(){	

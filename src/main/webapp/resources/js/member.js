@@ -24,6 +24,7 @@ $().ready(function() {
 	window.onresize = function(){
 		 setMemberActive();
 	};
+	merchantBridge();
 });
 
 function setMemberActive(){

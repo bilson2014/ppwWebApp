@@ -2,6 +2,7 @@ $().ready(function() {
 	
 	initVideo();
 	initImg();
+	merchantBridge();
 	window.onresize = function(){
 		 initVideo();
 	    };
