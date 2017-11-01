@@ -7,6 +7,7 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/jquery.SuperSlide.2.1.1.js"></script>
 <script src="js/leftTime.js"></script>
+<spring src="js/common.js" />
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -162,6 +163,7 @@ var _hmt = _hmt || [];
         <li></li>
     </ul>
     <script src="js/bplayer.js"></script>
+   
     <script language="javascript">
     <!--
     function openwin() {
@@ -201,9 +203,9 @@ var _hmt = _hmt || [];
     </script>
     <script>
    // document.domain = "apaipian.com";
-   var urlContext="http://www.apaipian.com";
+    var urlContext="http://www.apaipian.com";
    // var urlContext="http://www.paipianle.com";
-  // var urlContext="http://localhost:8080";
+  //var urlContext="http://localhost:7070";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -267,7 +269,8 @@ var _hmt = _hmt || [];
 					$('#sendCode').val('已发送(' + curCount + ')');
 					$('#sendCode').attr('disabled', true);
 					InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，
-					 $.ajax({
+					
+					  $.ajax({
 						  type: 'POST',
 						  url: urlContext+'/login/verification/'+$('#mob').val(),
 						  //data: data,
@@ -283,10 +286,11 @@ var _hmt = _hmt || [];
 							  }
 						  },
 						error:function(data){
+							console.log(data);
 						},
 						dataType: 'json',
 						//jsonpCallback:"cb"
-					});  
+					});   
 				}			 
 			});
 			 
@@ -328,12 +332,39 @@ var _hmt = _hmt || [];
 				$("#submit").attr('disabled', true);
 				sendCode=checkCode;
 				sendResult=false;
-				$.ajax({
+				
+				
+				/* loadData(function(result){	
+					console.log(result);
+					 if (!result.ret){
+						$('#sendResult').show();
+						$('#sendResult').text('申请失败');
+						return false;
+					 }else{
+						
+						$('#sendResult').show();
+						$('#sendResult').text('申请成功');
+						sendResult=true;					 					 
+					 }	 
+				 }, getContextPath() + '/order/deliver', 
+				 {	
+					csrftoken:$("#code").val(),
+					indent_tele:$('#mob').val(),
+					indentName:'拍片网视频名片',//订单名称
+					productId:-1,
+					teamId:-1,
+					serviceId:-1,
+					phoneCode:$('#num').val(),
+					target:'Pbusinesscard',
+					indentSource : 2//订单来源编号			
+				  }); */
+				
+				
+			 $.ajax({
 					url : urlContext+'/order/deliver',
 					type : 'POST',
 					data : {
 						csrftoken : $("#csrftoken").val(),
-
 						indent_tele : phone,
 						phoneCode : '-1',
 						indent_recomment : '线上-SEM-品牌套餐',
@@ -348,7 +379,7 @@ var _hmt = _hmt || [];
 						indentSource : 22
 					},
 					dataType : 'json',
-					/* jsonpCallback:"cb", */
+					/* jsonpCallback:"cb",  */
 					success : function(data) {
 						$("#submit").attr('disabled', false);
 						if(data.ret){
@@ -359,9 +390,10 @@ var _hmt = _hmt || [];
 							$('#sendResult').show();
 							$('#sendResult').text('申请失败');
 						}
-						
-					}
-				});
+					 }
+					
+					
+				}); 
 			});
 		
 		}); 

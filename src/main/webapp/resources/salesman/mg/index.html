@@ -183,7 +183,7 @@ var _hmt = _hmt || [];
    // document.domain = "apaipian.com";
    var urlContext="http://www.apaipian.com";
    // var urlContext="http://www.paipianle.com";
-  // var urlContext="http://localhost:8080";
+  //var urlContext="http://localhost:7070";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -277,6 +277,7 @@ var _hmt = _hmt || [];
 							  }
 						  },
 						error:function(data){
+							
 						},
 						dataType: 'json',
 						//jsonpCallback:"cb"
@@ -375,9 +376,9 @@ var _hmt = _hmt || [];
 				//$('#sendCode').removeAttr('disabled')
 				$("#sendCode").attr('disabled', false);
 				// 清除session code
-				getData(function(data) {
+				/* getData(function(data) {
 					// 清除session code
-				}, urlContext + '/login/clear/code');
+				}, urlContext + '/login/clear/code'); */
 			} else {
 				curCount--;
 				$("#sendCode").val('已发送(' + curCount + ')');
