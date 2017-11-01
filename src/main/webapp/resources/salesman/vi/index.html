@@ -332,34 +332,6 @@ var _hmt = _hmt || [];
 				$("#submit").attr('disabled', true);
 				sendCode=checkCode;
 				sendResult=false;
-				
-				
-				/* loadData(function(result){	
-					console.log(result);
-					 if (!result.ret){
-						$('#sendResult').show();
-						$('#sendResult').text('申请失败');
-						return false;
-					 }else{
-						
-						$('#sendResult').show();
-						$('#sendResult').text('申请成功');
-						sendResult=true;					 					 
-					 }	 
-				 }, getContextPath() + '/order/deliver', 
-				 {	
-					csrftoken:$("#code").val(),
-					indent_tele:$('#mob').val(),
-					indentName:'拍片网视频名片',//订单名称
-					productId:-1,
-					teamId:-1,
-					serviceId:-1,
-					phoneCode:$('#num').val(),
-					target:'Pbusinesscard',
-					indentSource : 2//订单来源编号			
-				  }); */
-				
-				
 			 $.ajax({
 					url : urlContext+'/order/deliver',
 					type : 'POST',
@@ -368,7 +340,7 @@ var _hmt = _hmt || [];
 						indent_tele : phone,
 						phoneCode : '-1',
 						indent_recomment : '线上-SEM-品牌套餐',
-						indentName : '线上-SEM',
+						indentName : '拍片网-众智诚橙',
 						productId : -1,
 						teamId : -1,
 						serviceId : -1,
@@ -391,13 +363,9 @@ var _hmt = _hmt || [];
 							$('#sendResult').text('申请失败');
 						}
 					 }
-					
-					
 				}); 
 			});
-		
 		}); 
-		
 		function checkMobile(str) {
 			var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
 			if(str.match(reg)){
