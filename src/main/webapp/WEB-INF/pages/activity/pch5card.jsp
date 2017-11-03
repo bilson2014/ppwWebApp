@@ -70,68 +70,7 @@
             			<div class='fonts'>中飞艾维</div>	
             		</div>
             		
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play1.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
-            			<div class='fonts'>拍片网</div>
-            		</div>
-            		<div class="cardItem">
-            			<img  src="${imgPath}/activity/play2.jpg">
-            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
-            			<div class='fonts'>中飞艾维</div>	
-            		</div>
-            	
-            	
+            		
             		
             		
             	</div>
