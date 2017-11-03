@@ -5,10 +5,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
-<spring:url value="/resources/css/salesMan/mc.css" var="mcCss"/>
+<spring:url value="/resources/css/activity/pch5card.css" var="pch5cardCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/js/common.js" var="commonJs"/>
-<spring:url value="/resources/js/salesMan/mc.js" var="mcJS"/>
+<spring:url value="/resources/js/activity/pch5card.js" var="pch5cardJS"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -25,15 +25,15 @@
 <meta name="keywords" content="宣传片,宣传片制作, 品牌微电影,tvc广告片,广告片拍摄, mg动画,短视频,商业视频">
 <meta name="description" content="拍片网是专业的商业视频服务平台，提供：宣传片、产品tvc广告拍摄、品牌微电影、mg动画等短视频内容制作。成本托管，免费创意策划，海量样片，价格透明。拍片就上拍片网！">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title></title>
+<title>企业视频名片-拍片网</title>
 
-    <link rel="stylesheet" href="${mcCss}">
+    <link rel="stylesheet" href="${pch5cardCss}">
     <link rel="shortcut icon" href="${imgPath}/favicon.ico" >
 
 <script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+	src="/resources/lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+	src="/resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
 
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <!--[if lt IE 9]>
@@ -43,105 +43,142 @@
 
 <body>
 
-	 <r:identity role="provider">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="roletype" value="provider">  
-	    <input type="hidden" id="role" value="创作团队" />              
-	 </r:identity>
-	 <r:identity role="customer">
-	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="roletype" value="customer">
-	    <input type="hidden" id="role" value="客户" />         
-	 </r:identity>
-	 <r:identity role="employee">
-	    <input type="hidden" id="role" value="内部员工" />
-	    <input type="hidden" id="rolephone" value="1314520ppw" />
-	    <input type="hidden" id="rolephoneImg" value="1314520ppw" />
-	    <input type="hidden" id="roletype" value="employee">
-	 </r:identity>
-	<jsp:include flush="true" page="../header.jsp"></jsp:include> 
-	<div class="page" style="height:300px;background:black">
-	     <div class="pageTop">
-	         <div class="topContent">
-	               <div class="price showPrice" id="price">
-	                    	<div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
-	                	    <div class="afterPrice" ><span>￥</span><span>欢迎询价</span></div>
-	                    <div class="afterPriceTitle">影片价格</div>
-                        <div class="btn-c-r" id="needOrder">我要下单</div>
-                    </div>
-                    <div class="order" id="order">
-                    	<form id="order-form" role="form" method="post" autocomplete="off" accept-charset="UTF-8">
-							<input type="hidden" id="indentName" name="indentName" value="${product.productName }">
-							<input type="hidden" id="company-unique" name="teamId" value="${teamId }"/>
-							<input type="hidden" id="play-unique" name="productId" value="${productId }"/>
-							<input type="hidden" id="service-unique" name="serviceId" value="${product.serviceId }"/>
-												
-	                        <div class="closeBtn" id="closeBtn"></div>
-	                        <div class="orderTitle" id="oootitlte">立即下单,对接制作团队</div>
-	                        <div class="orderItem" id="phoneError">
-	                            <input placeholder="您的电话号" name="indent_tele" id="phoneNumber">
-	                        </div>
-	                        <div class="orderItem" id="phoneCodeError">
-	                            <input placeholder="输入手机验证码"  id="verificationCodeValue" name="phoneCode">
-	                            <div class="btn-c-r" id="verification_code_recover_btn">获取验证码</div>
-	                        </div>
-	                         <a href="javascript:void(0);" id="order-btn1" ><div class="order-btn btn-c-r">确认提交</div></a>
-	                     	  <!--  <div class="orderBtn" id="confirmBtn">确认下单</div>  -->
-	                        <div class="orderBotTitle"></div>
-                        </form>
-                    </div>
-	         </div>
-	     </div>
+	<div>
+		<div class='top'><img src="${imgPath}/activity/pch1.jpg"></div>
+		<div class='basscard'>
+			<img src="${imgPath}/activity/pch2.jpg">
+			<img class='picstyle' src="${imgPath}/activity/pchs.gif">
+			<a href='#check'><img class='tiaostyle' src="${imgPath}/activity/party.png"></a>
+			
+		</div>
+		<div class='picmuch'>
+			<img src="${imgPath}/activity/pch3.jpg">
+			<img class='pics' src="${imgPath}/activity/pch4.jpg">
+		</div>
+		<div class='moves'>
+			<img src="${imgPath}/activity/pch5.jpg">
+			<div class='cente'>
+				<div class="codeCard">
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play1.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play1er.png"></div>
+            			<div class='fonts'>拍片网</div>
+            		</div>
+            		<div class="cardItem">
+            			<img  src="${imgPath}/activity/play2.jpg">
+            			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
+            			<div class='fonts'>中飞艾维</div>	
+            		</div>
+            	
+            	
+            		
+            		
+            	</div>
+			</div>
+		</div>
+		<div class='check' id='check'>
+			<img src="${imgPath}/activity/pch6.jpg">
+			<div class="orderBot">
+				<div class='name'>
+					<input class="input" type="text" maxlength="20" id="name" placeholder='请填写您的姓名'/>
+					<p class="error" id='nameerror'></p>
+				</div>
+				<div class='phone'>
+					<input class="input" type="text" maxlength="20" id="phone" placeholder='请填写您的手机号'/>
+					<div class="var" id='varnum' >获取验证码</div>
+					<p class="error" id='phoneerror'></p>
+				</div>
+				<div class='num'>
+					<input class="input"  type="text" maxlength="10"  id="num"  placeholder='请填写验证码'/>
+					<p class="error" id='numerror'></p>
+				</div>  
+				<div class='button' id='button'>
+					<p class="error" id='best'></p>
+					<img src="${imgPath}/activity/name.png">
+				</div>   			                  
+			</div>
+		</div>
+		<div class='last'>
+			<img src="${imgPath}/activity/pch7.jpg">
+		</div>
+	</div>
+	
+	 
+
 	
 	   
-                    
-                    <!-- 投资利器 -->
-                    <div>
-                    
-                    </div>
-                    <!-- 裂变 -->
-                    <div>
-                    
-                    </div>
+                   
                      <!-- 卡片 -->
-                    <div class="codeCard">
-                        <div class="cardItem">
-                               <div class="readCode"></div>
-                        </div>
-                        <div class="cardItem">
-                               <div class="readCode"></div>
-                        </div>
-                        <div class="cardItem">
-                               <div class="readCode"></div>
-                        </div>
-                        <div class="cardItem">
-                               <div class="readCode"></div>
-                        </div>
-                        <div class="cardItem">
-                               <div class="readCode"></div>
-                        </div>
-                    </div>
-                      <div class="orderBot">
-					             <div class='phone'>
-					                  <input class="input" type="text" maxlength="20" id="phone" placeholder='请输入您的手机号'/>
-					                  <div class="var" id='varnum' >获取验证码</div>
-					                  <p class="error" id='phoneerror'></p>
-					              </div>
-					              <div class='phone'>
-					                   <input class="input"  type="text" maxlength="10"  id="num"  placeholder='请输入验证码'/>
-					                   <p class="error" id='numerror'></p>
-					              </div>  
-					               <div class='phone'>
-					                   <input type="button" class="btnSub"  id='btnSub' value="现在下单"></input>
-					               </div>   			                  
-					  </div>		
+                
+              	
                     
 	 
 	 
-	</div>
+	
     <%-- <jsp:include flush="true" page="../foot.jsp"></jsp:include>  --%>
 	<!-- video-->
-    <script type="text/javascript" src="${mcJS }"></script>
+    <script type="text/javascript" src="${pch5cardJS}"></script>
     <script type="text/javascript" src="${commonJs }"></script>
 
 	

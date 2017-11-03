@@ -20,6 +20,7 @@ var _hmt = _hmt || [];
 </head>
 
 <body>
+<input type='hidden' id='csrftoken'>
 	<div class="top">
     	<div class="container">
             <a href="http://www.apaipian.com"></a>
@@ -203,9 +204,9 @@ var _hmt = _hmt || [];
     </script>
     <script>
    // document.domain = "apaipian.com";
-    var urlContext="http://www.apaipian.com";
+    //var urlContext="http://www.apaipian.com";
    // var urlContext="http://www.paipianle.com";
-  //var urlContext="http://localhost:7070";
+  var urlContext="http://localhost:7070";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -286,7 +287,7 @@ var _hmt = _hmt || [];
 							  }
 						  },
 						error:function(data){
-							console.log(data);
+						
 						},
 						dataType: 'json',
 						//jsonpCallback:"cb"

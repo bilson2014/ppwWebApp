@@ -5,257 +5,203 @@
 @import "compass/typography/text/ellipsis";
 @import "mixins/indexScreen";
 @import "normalize";
-
-
-.noshow {
-    bottom: 300px !important;
-    opacity: 0 !important;
-}
-
-.showPrice {
-    bottom: 30px !important;
-    opacity: 1 !important;
-}
-
-.pageTop {
-    width: 100%;
-    background: black;
-    height: 100%;
-    .topContent {
-        @include media_screen_width_beta3();
-        margin: 0 auto;
-        position: relative;
-        height: 100%;
-    }
-}
-
-.price {
-    position: absolute;
-    width: 300px;
-    bottom: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
-    opacity: 0;
-    transition: all .6s linear 0s;
-    -moz-transition: all .6s linear 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .6s linear 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .6s linear 0s;
-    .orPrice {
-        color: $gray-light;
-        font-size: $font-size-base;
-        margin-bottom: 5px;
-        text-decoration: line-through;
-    }
-    .orPriceTitle {
-        color: $gray-light;
-        font-size: $font-size-sm;
-        margin-left: 10px;
-        margin-bottom: 30px;
-        @media screen and (max-width: 1275px) {
-            margin-bottom: 10px;
-        }
-    }
-    .afterPrice {
-        color: $red-base;
-        font-size: 3.6rem;
-        margin-bottom: 11px;
-        .small {
-            font-size: $font-size-base;
-        }
-    }
-    .afterPriceTitle {
-        color: $gray-light;
-        font-size: $font-size-sm;
-        margin-left: 10px;
-    }
-    #needOrder {
-        margin-top: 60px;
-        color: white;
-        font-size: $font-size-base;
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        background: $red-base;
-        text-align: center;
-        border-radius: 4px;
-        cursor: pointer;
-        @media screen and (max-width: 1275px) {
-            margin-top: 40px;
-        }
-        &:active {
-            background: darken($red-base, 20%);
-        }
-    }
-}
-
-.showOrder {
-    bottom: 0px !important;
-    opacity: 1 !important;
-}
-
-.order-btn {
-    height: 35px;
-    width: 100%;
-    color: white;
-    font-size: $font-size-base;
-    line-height: 35px;
-    background: $red-base;
-    margin-bottom: 20px;
-    text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative;
-    top: 5px;
-    &:active {
-        background: darken($red-base, 20%);
-    }
-}
-
-.order {
-    position: absolute;
-    width: 300px;
-    bottom: -300px;
-    border: 1px solid $gray-light;
-    border-radius: 4px;
-    padding: 30px 20px 30px 20px;
-    transition: all .6s linear 0s;
-    -moz-transition: all .6s linear 0s;
-    /* Firefox 4 */
-    -webkit-transition: all .6s linear 0s;
-    /* Safari 和 Chrome */
-    -o-transition: all .6s linear 0s;
-    opacity: 0;
-    .orderTitle {
-        color: white;
-        font-size: $font-size;
-        margin-bottom: 20px;
-    }
-    .closeBtn {
-        width: 24px;
-        height: 24px;
-        background: url(/resources/images/block/close.png) no-repeat;
-        background-size: 24px 48px !important;
-        position: absolute;
-        top: -12px;
-        right: -12px;
-        &:hover {
-            background-position-y: -24px;
-        }
-    }
-    .orderItem {
-        position: relative;
-        margin-bottom: 20px;
-        input {
-            height: 35px;
-            background: rgba(51, 51, 51, 0.8);
-            border: 1px solid white;
-            border-radius: 4px;
-            color: white;
-            font-size: $font-size-base;
-            outline: none;
-            padding-right: 110px;
-            padding-left: 10px;
-            width: 100%;
-        }
-        div {
-            height: 35px;
-            line-height: 35px;
-            width: 106px;
-            background: $red-base;
-            color: white;
-            font-size: $font-size-base;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-            text-align: center;
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            &:active {
-                background: darken($red-base, 20%);
-            }
-        }
-    }
-    .orderItem::after {
-        content: attr(data-content);
-        position: absolute;
-        color: $red-base;
-        font-size: $font-size-sm;
-        top: 38px;
-        right: 0px;
-        bottom: 0px;
-        left: 15px;
-    }
-    .orderBotTitle {
-        color: #d1d1d1;
-        font-size: $font-size-sm;
-    }
-}
-
-
-
-.codeCard {
-    @include media_screen_width_beta3();
-    margin: 0 auto;
-    background: black;
-    height: 300px;
-    font-size: 0;
-}
-
-.cardItem {
-    width: 200px;
-    height: 100px;
-    background: blue;
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: top;
-    width: ($width-min - 100px)/5;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width:($width-middle - 80px)/5;
-    }
-    @media screen and (min-width: 1500px) {
-        width: ($width-lg3 - 100px)/5;
-    }
-
-
-
-    &:hover {
-        .readCode {
-            top: 0 !important;
-        }
-    }
-    .readCode {
-        width: 200px;
-        height: 100px;
-        background: red;
-        position: absolute;
-        top: 100%;
-        transition: all .6s linear 0s;
-        -moz-transition: all .6s linear 0s;
-        /* Firefox 4 */
-        -webkit-transition: all .6s linear 0s;
-        /* Safari 和 Chrome */
-        -o-transition: all .6s linear 0s;
-    }
-}
-
-
 .orderBot {
+    height: 230px;
     @include media_screen_width_beta3();
     margin: 0 auto;
+    margin-top: -231px;
     position: relative;
-    background: black;
     .phone {
         display: inline-block;
         vertical-align: top;
         color: white;
         position: relative;
         width: 20%;
-        #varnum {
+    }
+}
+
+.picmuch {
+    position: relative;
+    top: -2px;
+    .pics {
+        position: relative;
+        top: -2px;
+    }
+}
+
+.basscard {
+    position: relative;
+    .picstyle {
+        position: absolute;
+        top: 141px;
+        left: 1177px;
+        width: 225px;
+    }
+    .tiaostyle {
+        position: absolute;
+        top: 475px;
+        left: 349px;
+        cursor: pointer;
+    }
+}
+
+.moves {
+    position: relative;
+    top: -6px;
+    .cente {
+        margin: 0 auto;
+        background: #fff;
+    }
+    .codeCard {
+        margin: 0 auto;
+        font-size: 0;
+        margin-top: -530px;
+    }
+    .cardItem {
+        position: relative;
+        width: 200px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 20px;
+        margin-right: 20px;
+        box-shadow: 0 0 15px #ececec;
+        ;
+        margin-bottom: 172px;
+        img {
+            width: 100%;
+        }
+        &:hover {
+            .readCode {
+                top: 0% !important;
+            }
+        }
+        .readCode {
+            width: 200px;
+            height: 312px;
+            background: rgba(0, 0, 0, 0.7);
             position: absolute;
-            right: 0;
+            top: 89%;
+            transition: all .6s linear 0s;
+            -moz-transition: all .6s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .6s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .6s linear 0s;
+            img {
+                width: 80%;
+                display: block;
+                margin: 0 auto;
+                margin-top: 38%;
+            }
+        }
+    }
+    .fonts {
+        color: #000;
+        background: #fff;
+        box-shadow: 0px 2px 7px 0px #ececec;
+        ;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: normal;
+        position: absolute;
+        top: 316px;
+    }
+    .bai {
+        width: 200px;
+        background: #fff;
+        // height: 206px;
+        height: 300px;
+        position: absolute;
+    }
+}
+
+.check {
+    position: relative;
+    .orderBot {
+        .name {
+            display: inline-block;
+            #name {
+                margin-left: 150px;
+                width: 320px;
+                height: 50px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 18px;
+            }
+            #nameerror {
+                position: absolute;
+                left: 148px;
+                color: #000;
+                top: 59px;
+            }
+        }
+        .phone {
+            display: inline-block;
+            #phone {
+                margin-left: 25px;
+                width: 320px;
+                height: 50px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 18px;
+            }
+            #varnum {
+                position: absolute;
+                right: -85px;
+                top: 0px;
+                background: #f84e4e;
+                height: 50px;
+                line-height: 50px;
+                width: 120px;
+                text-align: center;
+                font-size: 15px;
+                cursor: pointer;
+            }
+            #phoneerror {
+                position: absolute;
+                left: 23px;
+                top: 59px;
+                color: #000;
+            }
+        }
+        .num {
+            display: inline-block;
+            #num {
+                margin-left: 110px;
+                width: 320px;
+                height: 50px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 18px;
+            }
+            #numerror {
+                position: absolute;
+                left: 866px;
+                top: 59px;
+                color: #000;
+            }
+        }
+        .button {
+            text-align: center;
+            margin-top: 47px;
+            margin-left: 20px;
+            #best {
+                position: absolute;
+                color: #000;
+                text-align: center;
+                left: 626px;
+                top: 84px;
+            }
         }
     }
 }

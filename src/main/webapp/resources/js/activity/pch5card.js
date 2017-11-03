@@ -4,11 +4,28 @@ var InterValRecoverObj; // timer变量，控制时间 - 密码找回
 var count = 120; // 间隔函数，1秒执行 
 var curCount = 0;
 var countBot = 120;
+var sendCodeFlag=true;
 
 $().ready(function() {
 	showDiv();
 	orderBottom();
+	init();
+	
 });
+//按钮跳转
+function init(){	
+	
+	//内容居中
+	var nums=$('.cardItem').length;
+	if (nums<=5){
+		$('.codeCard').css('width',nums*250);
+	}else {
+		$('.codeCard').css('width',1250);
+	}
+	
+	
+         	
+}
 function noLoginOrder(){
 	var verificationCodeValue =	$("#verificationCodeValue").val().trim();
 	var telephone = $('#phoneNumber').val().trim();
@@ -129,7 +146,14 @@ function SetRemainTime(){
 
 //底部下单
 function varphone(){
+	 $('#best').text('');
+	var name=$('#name').val();
 	var phone=$('#phone').val();
+	if (name==''||name==null||name==undefined){
+		$('#nameerror').text('*姓名不能为空');
+		return false;
+	}
+	$('#nameerror').text('');
 	if (phone==''||phone==null||phone==undefined){
 		$('#phoneerror').text('*手机号不能为空');
 		return false;
@@ -143,38 +167,43 @@ function varphone(){
 }
 function orderBottom(){
 	//立即报名
-	$('#btnSub').on('click',function(){
+	$('#button').on('click',function(){
 		if (varphone()){
 			var num=$('#num').val();
 			if (num==''||num==null||num==undefined){
 				 $('#numerror').text('*验证码不能为空');
 				 return false;
 			}else {
-				loadData(function(result){	
+				loadData2(function(result){	
 					console.log(result);
 					 if (!result.ret){
 						$('#numerror').text('*'+ result.message);
 						return false;
 					 }else{
-						 $('#orderSuccess').attr('style','display:block;');	
+						 $('#best').text('报名成功');
 						 $('#numerror').text('');
 						 window.clearInterval(InterValObj);
 						 $('#varnum').text('获取验证码');
 						 $('#phone').val('');
 						 $('#num').val('');
+						 $('#name').val('');
 						 sendCodeFlag = true;						 					 
 					 }	 
 				 }, getContextPath() + '/order/deliver', 
 				 {	
 					csrftoken:$("#csrftoken").val(),
 					indent_tele:$('#phone').val(),
-					indentName:'拍片网视频名片',//订单名称
+					indent_recomment : '企业名片-pc落地页',
+					indentName:'线上-活动',//订单名称
 					productId:-1,
 					teamId:-1,
 					serviceId:-1,
+					sendToStaff : true,
+					sendToUser : false,
+					realName:$('#name').val(),
 					phoneCode:$('#num').val(),
-					target:'Pbusinesscard',
-					indentSource : 2//订单来源编号			
+//					target:'Pbusinesscard',
+					indentSource : 2//订单来源编号
 				  });	
 			}			 
 		}				 
@@ -224,6 +253,5 @@ function verification(phone,ID){
 			$('#'+ID).text('重新获取');
 			$('#'+ID).removeAttr('disabled');
 		}			
-	}, getContextPath() + '/login/verification/' + phone, null);		
-		
+	}, getContextPath() + '/login/verification/' + phone, null);				
 }
