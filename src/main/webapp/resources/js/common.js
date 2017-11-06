@@ -18,7 +18,7 @@ var UrlDo = "localhost";
 
 //var Url = "http://www.apaipian.com:8087/";
 //var Url = "http://test.apaipian.com:7070/";
-var Url = "http://localhost:7070/";
+var Url = "http://localhost:8080/";
 //var Url = "http://192.168.0.101:7070/";
 
 
