@@ -44,10 +44,14 @@
 <body>
 
 	<div>
-		<div class='top'><img src="${imgPath}/activity/pch1.jpg"></div>
+		<jsp:include flush="true" page="../header.jsp"></jsp:include> 
+		<%-- <div class='top'><img src="${imgPath}/activity/pch1.jpg"></div> --%>
 		<div class='basscard'>
-			<img src="${imgPath}/activity/pch2.jpg">
+			<img id='firstbb' src="${imgPath}/activity/pch2.jpg">
 			<img class='picstyle' src="${imgPath}/activity/pchs.gif">
+			<!-- <video class='picstyle' playsinline="true" webkit-playsinline="true"  id="toPlayVideo"  loop="loop" x-webkit-airplay="true" webkit-playsinline="" playsinline="true" preload="auto" poster="" style="width:100%;  margin-top: -1px;"> 
+				 <source type="video/mp4" src="http://106.75.77.53:8888/group1/M00/00/78/CgpsbFnwLOOAIZKwAA7fUpvV37A429.mp4"> 
+			</video>   -->
 			<a href='#check'><img class='tiaostyle' src="${imgPath}/activity/party.png"></a>
 			
 		</div>
@@ -77,7 +81,7 @@
 			</div>
 		</div>
 		<div class='check' id='check'>
-			<img src="${imgPath}/activity/pch6.jpg">
+			<img id='forbai' src="${imgPath}/activity/pch6.jpg">
 			<div class="orderBot">
 				<div class='name'>
 					<input class="input" type="text" maxlength="20" id="name" placeholder='请填写您的姓名'/>
@@ -94,13 +98,14 @@
 				</div>  
 				<div class='button' id='button'>
 					<p class="error" id='best'></p>
-					<img src="${imgPath}/activity/name.png">
+					<img id='ppshou' src="${imgPath}/activity/name.png">
 				</div>   			                  
 			</div>
 		</div>
-		<div class='last'>
+		<jsp:include flush="true" page="../foot.jsp"></jsp:include> 
+		<%-- <div class='last'>
 			<img src="${imgPath}/activity/pch7.jpg">
-		</div>
+		</div> --%>
 	</div>
 	
 	 
