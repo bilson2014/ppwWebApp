@@ -100,7 +100,8 @@
             <div class="videoContent">
                 <div class="videoTop">
                         <div id="pName">${product.productName }</div>
-                        <div><span>标签 : </span>
+                        <div>
+                        <span>标签 : </span>
                        		<span>
 								<c:if test="${! empty product.tags}">
 									<c:forEach items="${fn:split(product.tags,' ') }" var="tag">

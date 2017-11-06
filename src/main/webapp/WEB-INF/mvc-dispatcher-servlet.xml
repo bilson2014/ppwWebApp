@@ -41,6 +41,8 @@
 	
     <mvc:view-controller path="/threeLogin" view-name="/threeLogin"/>
     
+    <mvc:view-controller path="/activity/Pbusinesscard" view-name="/activity/pch5card" />
+    
     <!--成本计算器-->
     <mvc:view-controller path="/cost/cal" view-name="/costcalculate" />
     <mvc:view-controller path="/safe" view-name="/provider/safeInfo" />

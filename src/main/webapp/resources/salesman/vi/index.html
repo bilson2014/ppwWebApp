@@ -1,0 +1,397 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>品牌视觉升级套餐</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="js/leftTime.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?93ab42264ae7c05828fe3f88b039b7a6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+<input type='hidden' id='csrftoken'>
+	<div class="top">
+    	<div class="container">
+            <a href="http://www.apaipian.com"></a>
+            <img src="images/ju.gif">
+        </div>
+    </div>
+    <div class="banner slideBox" id="slideBox">
+    		<div class="hd">
+				<ul><li></li><li></li><li></li></ul>
+			</div>
+			<div class="bd">
+				<ul>
+					<li><img src="images/banner3.jpg" /></li>
+					<li><img src="images/banner2.jpg" /></li>
+					<li><img src="images/banner1.jpg" /></li>
+				</ul>
+			</div>
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+    </div>
+    <div class="djs">
+    
+    	距&nbsp;本&nbsp;次&nbsp;活&nbsp;动&nbsp;结&nbsp;束&nbsp;仅&nbsp;剩&nbsp;&nbsp;
+	    				<font class="data-show-box" id="dateShow1">
+	    					<span class="date-tiem-span d">00</span>&nbsp;天&nbsp;
+	    					<span class="date-tiem-span h">00</span>&nbsp;时&nbsp;
+	    					<span class="date-tiem-span m">00</span>&nbsp;分&nbsp;
+	    					<span class="date-s-span s">00</span>&nbsp;秒
+	    				</font>
+	    		<script type="text/javascript">
+	    			$(function(){
+	    				//日期倒计时
+						$.leftTime("2017/11/30 23:59:59",function(d){
+							if(d.status){
+								var $dateShow1=$("#dateShow1");
+								$dateShow1.find(".d").html(d.d);
+								$dateShow1.find(".h").html(d.h);
+								$dateShow1.find(".m").html(d.m);
+								$dateShow1.find(".s").html(d.s);
+							}
+						});
+	    			});
+	    		</script>
+
+    </div>
+    <script type="text/javascript">
+		jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:1000,});
+	</script>
+    <div class="main_1"></div>
+    <div class="main_2"></div>
+    <div class="main_3" id="baoming">
+    	<div class="container">
+        	<div class="zxbox">
+                <div class="inpbox">
+                    <div class="box-1">
+                        <input type="text" name="user_name" id="user_name" placeholder="您的称呼" class="tab1"/>
+                        <div id="noUserError" class="noUserError">error</div>
+                    </div>
+                    <div class="box-2">
+                        <input type="text" type="text" name="mob" id="mob" placeholder="手机号码" class="tab2"/>
+                        <div id="sendPhoneError" class="sendPhoneError">error</div>
+                        <input value="获取验证码" type="button" class="tab3" id="sendCode"/>
+                    </div>
+                    
+                    <div class="box-3">
+                        <input type="text" name="code" id="code" placeholder="验证码" class="tab4"/>
+                        <div id="sendCodeError" class="sendCodeError">error</div>                            
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="tijiao">
+                    <input  value="" class="tab5" name="submit" id="submit"  href="javascript:void(0);"/>
+                    <div id="sendResult" class="sendResult">error</div>
+                </div>
+            </div>	
+        </div>
+    </div>
+    <div class="main_4">
+    	<div class="container">
+            <video controls poster="images/001.jpg" src="images/ppw.mp4" width="460">
+                您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
+        </div>
+    </div>
+    <div class="mian_5 container">
+    	<ul class="case_list" id="case_list">
+        	<li><img src="images/1.jpg"><span>观看样片</span></li>
+        	<li><img src="images/2.jpg"><span>观看样片</span></li>
+        	<li><img src="images/3.jpg"><span>观看样片</span></li>
+        </ul>
+        <div class="zixun" id="zixun">
+        	<a href="javascript:void(0)" onclick="openwin()">在线咨询</a>
+            <a href="#baoming" class="adv_active">立即报名</a>
+        </div>
+    </div>
+    <div class="foot">
+    	<div class="container">
+            <ul>
+                <li><a href="http://www.apaipian.com/cost/cal" target="_blank">估算成本</a></li>
+                <li><a href="http://www.apaipian.com/about-us.html" target="_blank">了解拍片网</a></li>
+                <li><a href="http://www.apaipian.com/list.html" target="_blank">案例样片</a></li>
+                <li><a href="http://www.apaipian.com/order-flow.html" target="_blank">服务流程</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="video hide" id="video">
+    	<div class="video_wrap">
+            <video controls poster="images/1.jpg"  src="http://106.75.14.109:8888/group1/M00/00/1C/CgpsbFiBDwiAF6EXBJzyrI8QQR0640.mp4" class="hide">
+            您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
+            <video controls poster="images/2.jpg"  src="http://106.75.77.53:8888/group1/M00/00/02/CgpsbFhfoJiAc37mAbir209g1Fs380.mp4" class="hide">
+            您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
+            <video controls poster="images/3.jpg"  src="http://106.75.14.109:8888/group1/M00/00/AC/Cgpw7FnLqAiAELUTAG9s7kqmTbQ166.mp4" class="hide">
+            您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
+        </div>
+        <img src="images/close.png" class="close" id="close"></div>
+    </div>
+    <ul class="myjQueryNav" id="myJJ">
+    	<li><p><span>恭喜！</span><br>北京 133****3009 宋经理<br>已成功领取2000元现金红包</p></li>
+    	<li><p><span>恭喜！</span><br>北京 188****3366 闫晓月<br>已成功抢占优惠名额</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>杭州 170****7143 王子斌<br>已成功领取2000元现金红包</p></li>
+    	<li><p><span>恭喜！</span><br>上海 138****2372 康康<br>已成功抢占优惠名额</p></li>
+    	<li><p><span>恭喜！</span><br>雄安 177****1779 功夫熊猫<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>廊坊 177****9375 李女士<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>北京 153****4226 马晓波<br>已成功抢占优惠名额</p></li>
+    	<li><p><span>恭喜！</span><br>苏州 180****3985 程煜<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>天津 185****0268 冯老师<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>杭州 137****5144 章嘉华<br>已成功抢占优惠名额</p></li>
+    	<li><p><span>恭喜！</span><br>北京 136****5912 王春龙<br>已成功领取2000元现金红包</p></li>
+    	<li><p><span>恭喜！</span><br>无锡 185****5209 simen<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>南京 132****2044 一树芳华<br>已成功领取2000元现金红包</p></li>
+        <li></li>
+    	<li><p><span>恭喜！</span><br>北京 187****5328 贾克强<br>已成功领取2000元现金红包</p></li>
+    	<li><p><span>恭喜！</span><br>宁波 176****8234 刘芳芳<br>已成功抢占优惠名额</p></li>
+        <li></li>
+    </ul>
+    <script src="js/bplayer.js"></script>
+   
+    <script language="javascript">
+    <!--
+    function openwin() {
+    window.open("http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165","newwindow","width=600,height=600,left=400,top=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no")
+    }
+	
+	$(document).ready(function(e){
+        var subNav_active = $(".adv_active");
+        var subNav_scroll = function(target){
+            subNav_active = target.parent();
+        };
+        $("#zixun a").click(function(){
+            subNav_scroll($(this));
+            var target = $(this).attr("href");
+            var targetScroll = $(target).offset().top;
+            $("html,body").animate({scrollTop:targetScroll},300);
+            return false;
+        });
+		
+		var winwith=document.body.clientWidth;
+		var imgheight=winwith/3;
+		$(".slideBox").height(imgheight);
+		$(".slideBox .bd").height(imgheight);
+		$(".slideBox .bd img").width(winwith);
+		
+		$(window).resize(function(){
+			var winwith=document.body.clientWidth;
+			var imgheight=winwith/3;
+			$(".slideBox").height(imgheight);
+			$(".slideBox .bd").height(imgheight);
+			$(".slideBox .bd img").width(winwith);
+		});
+
+    }());
+	
+    //-->
+    </script>
+    <script>
+   // document.domain = "apaipian.com";
+    //var urlContext="http://www.apaipian.com";
+   // var urlContext="http://www.paipianle.com";
+  var urlContext="http://localhost:7070";
+    
+    
+    var InterValObj; // timer变量，控制时间 - 注册
+    var InterValRecoverObj; // timer变量，控制时间 - 密码找回
+    var count = 120; // 间隔函数，1秒执行
+    var curCount = 0; // 当前剩余秒数 - 注册
+    var sendCode;
+    var sendResult=true;
+    
+		$(document).ready(function(e) {
+			 $(window.parent.document).find('.frame').css('height',$('body').height());
+			//token
+			$.ajax({
+				  type: 'POST',
+				  url: urlContext+'/getToken',
+				  //data: data,
+				  success:function(data){
+					  $("#csrftoken").val(data.message);
+				  },
+				error:function(data){
+				}, 
+				dataType: 'json',
+				//jsonpCallback:"cb"
+			});
+			
+			$("#case_list li").click(function(){
+				var i = $(this).index();
+				$("#video").show();
+				$("#video video:eq("+i+")").show();	 
+			});
+			
+			$("#close").click(function(){
+				for(var i=0;i<4;i++){
+					var myVideo = document.getElementsByTagName('video')[i];
+					myVideo.pause();
+        		}
+				$("#video").hide();
+				$("#video video").hide();	 
+			});
+			
+			$(".tab3").click(function(){
+				
+				if (curCount == 0) {
+					$('#noUserError').hide();
+					$('#sendPhoneError').hide();
+					$('#sendPhoneError').hide();
+					$('#sendCodeError').hide();
+					$('#sendResult').hide();
+					var phone=$("#mob").val();
+					if (phone == '') {
+						$('#sendPhoneError').show();
+						$('#sendPhoneError').text('* 请填写手机号');
+						return false;
+					}
+					if (!checkMobile(phone)) {
+						$('#sendPhoneError').show();
+						$('#sendPhoneError').text('* 手机格式不正确');
+						return false;
+					}
+					curCount = count;
+					$('#sendCode').val('已发送(' + curCount + ')');
+					$('#sendCode').attr('disabled', true);
+					InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，
+					
+					  $.ajax({
+						  type: 'POST',
+						  url: urlContext+'/login/verification/'+$('#mob').val(),
+						  //data: data,
+						  success:function(data){
+							  if(data){
+								  //验证码发送成功
+								  $('#sendCodeError').show();
+								  $('#sendCodeError').text('验证码发送成功');
+							  }else{
+								  //验证码发送失败
+								  $('#sendCodeError').show();
+								  $('#sendCodeError').text('验证码发送失败');
+							  }
+						  },
+						error:function(data){
+						
+						},
+						dataType: 'json',
+						//jsonpCallback:"cb"
+					});   
+				}			 
+			});
+			 
+		
+			$("#submit").click(function(){
+				$('#noUserError').hide();
+				$('#sendPhoneError').hide();
+				$('#sendPhoneError').hide();
+				$('#sendCodeError').hide();
+				$('#sendResult').hide();
+				var phone=$("#mob").val();
+				
+				var checkCode =$('#code').val();
+				var realName=$('#user_name').val();
+				if (realName == '') {
+					$('#noUserError').show();
+					$('#noUserError').text('* 请填写您的称呼');
+					return false;
+				}
+				if (phone == '') {
+					$('#sendPhoneError').show();
+					$('#sendPhoneError').text('* 请填写手机号');
+					return false;
+				}
+				if (!checkMobile(phone)) {
+					$('#sendPhoneError').show();
+					$('#sendPhoneError').text('* 手机格式不正确');
+					return false;
+				}
+
+				if (checkCode == '') {
+					$('#sendCodeError').show();
+					$('#sendCodeError').text('* 请输入验证码');
+					return false;
+				}
+				if(sendResult && checkCode==sendCode){
+					return false;
+				}
+				$("#submit").attr('disabled', true);
+				sendCode=checkCode;
+				sendResult=false;
+			 $.ajax({
+					url : urlContext+'/order/deliver',
+					type : 'POST',
+					data : {
+						csrftoken : $("#csrftoken").val(),
+						indent_tele : phone,
+						phoneCode : '-1',
+						indent_recomment : '拍片网+众智诚橙品牌套餐',
+						indentName : '线上-活动',
+						productId : -1,
+						teamId : -1,
+						serviceId : -1,
+						sendToStaff : true,
+						sendToUser : false,
+						phoneCode :checkCode,
+						realName:realName,
+						indentSource : 2
+					},
+					dataType : 'json',
+					/* jsonpCallback:"cb",  */
+					success : function(data) {
+						$("#submit").attr('disabled', false);
+						if(data.ret){
+							$('#sendResult').show();
+							$('#sendResult').text('申请成功');
+							sendResult=true;
+						}else{
+							$('#sendResult').show();
+							$('#sendResult').text('申请失败');
+						}
+					 }
+				}); 
+			});
+		}); 
+		function checkMobile(str) {
+			var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+			if(str.match(reg)){
+				return true;
+			} else{
+				return false;
+			}
+		}
+		function SetRemainTime() {
+			if (curCount == 0) {
+				window.clearInterval(InterValObj); // 停止计时器
+				sendCode = true;
+				$('#sendCode').val('重新获取');
+				//$('#sendCode').removeAttr('disabled')
+				$("#sendCode").attr('disabled', false);
+				// 清除session code
+				getData(function(data) {
+					// 清除session code
+				}, urlContext + '/login/clear/code');
+			} else {
+				curCount--;
+				$("#sendCode").val('已发送(' + curCount + ')');
+			}
+		}
+    </script>
+
+</body>
+</html>

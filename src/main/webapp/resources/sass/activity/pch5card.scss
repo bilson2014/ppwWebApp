@@ -1,0 +1,232 @@
+@import "common";
+@import "buttons";
+@import "video";
+@import "flexslider";
+@import "compass/typography/text/ellipsis";
+@import "mixins/indexScreen";
+@import "normalize";
+.orderBot {
+    height: 100%;
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    margin-top: -12%;
+    position: relative;
+    .phone {
+        display: inline-block;
+        vertical-align: top;
+        color: white;
+        position: relative;
+        width: 20%;
+    }
+}
+
+.picmuch {
+    position: relative;
+    top: -2px;
+    .pics {
+        position: relative;
+        top: -2px;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+.basscard {
+    position: relative;
+    margin-top: 49px;
+    #firstbb {
+        width: 100%;
+    }
+    .picstyle {
+        position: absolute;
+        top: 22%;
+        left: 61.25%;
+        width: 12%;
+    }
+    .tiaostyle {
+        position: absolute;
+        top: 73%;
+        left: 18%;
+        cursor: pointer;
+        width: 20%;
+    }
+}
+
+.moves {
+    position: relative;
+    top: -6px;
+    img {
+        width: 100%;
+    }
+    .cente {
+        margin: 0 auto;
+        background: #fff;
+    }
+    .codeCard {
+        margin: 0 auto;
+        font-size: 0;
+        margin-top: -27%;
+    }
+    .cardItem {
+        position: relative;
+        width: 41%;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 4%;
+        margin-right: 4%;
+        box-shadow: 0 0 15px #ececec;
+        margin-bottom: 25%;
+        img {
+            width: 100%;
+        }
+        &:hover {
+            .readCode {
+                top: 0% !important;
+            }
+        }
+        .readCode {
+            width: 100%;
+            height: 312px;
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 89%;
+            transition: all .6s linear 0s;
+            -moz-transition: all .6s linear 0s;
+            /* Firefox 4 */
+            -webkit-transition: all .6s linear 0s;
+            /* Safari 和 Chrome */
+            -o-transition: all .6s linear 0s;
+            img {
+                width: 80%;
+                display: block;
+                margin: 0 auto;
+                margin-top: 38%;
+            }
+        }
+    }
+    .fonts {
+        color: #000;
+        background: #fff;
+        box-shadow: 0px 2px 7px 0px #ececec;
+        ;
+        width: 100%;
+        height: 14%;
+        line-height: 40px;
+        font-size: 16px;
+        border-top: 1px solid #ececec;
+        text-align: center;
+        font-weight: normal;
+        position: absolute;
+        top: 89%;
+    }
+    .bai {
+        width: 200px;
+        background: #fff;
+        // height: 206px;
+        height: 300px;
+        position: absolute;
+    }
+}
+
+.check {
+    position: relative;
+    height: 100%;
+    #forbai {
+        width: 100%;
+    }
+    .orderBot {
+        .name {
+            display: inline-block;
+            height: 20%;
+            width: 25%;
+            #name {
+                margin-left: 39%;
+                width: 100%;
+                height: 35px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 5%;
+            }
+            #nameerror {
+                position: absolute;
+                left: 10%;
+                color: #000;
+                top: 36%;
+            }
+        }
+        .phone {
+            display: inline-block;
+            height: 20%;
+            width: 25%;
+            #phone {
+                margin-left: 50%;
+                width: 100%;
+                height: 35px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 5%;
+            }
+            #varnum {
+                position: absolute;
+                right: -51%;
+                width: 35%;
+                top: 0px;
+                background: #f84e4e;
+                height: 100%;
+                padding-top: 3%;
+                text-align: center;
+                font-size: 15px;
+                cursor: pointer;
+            }
+            #phoneerror {
+                position: absolute;
+                left: 50%;
+                top: 131%;
+                color: #000;
+            }
+        }
+        .num {
+            display: inline-block;
+            height: 20%;
+            width: 25%;
+            #num {
+                margin-left: 61%;
+                width: 100%;
+                height: 35px;
+                border: none;
+                color: #000;
+                box-shadow: 0px 0px 5px #000;
+                font-size: 16px;
+                padding-left: 5%;
+            }
+            #numerror {
+                position: absolute;
+                left: 66%;
+                top: 36%;
+                color: #000;
+            }
+        }
+        .button {
+            text-align: center;
+            margin-top: 2%;
+            margin-left: 1%;
+            #best {
+                position: absolute;
+                color: #000;
+                text-align: center;
+                left: 48%;
+                top: 36%;
+            }
+            #ppshou {
+                cursor: pointer;
+                width: 25%;
+            }
+        }
+    }
+}
