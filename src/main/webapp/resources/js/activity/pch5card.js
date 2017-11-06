@@ -14,7 +14,7 @@ $().ready(function() {
 });
 //按钮跳转
 function init(){	
-	
+	document.getElementById('toPlayVideo').play();
 	//内容居中
 	var nums=$('.cardItem').length;
 	if (nums<=5){
