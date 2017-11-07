@@ -6,7 +6,7 @@
 <spring:url value="/resources/css/manager/safeInfo.css" var="safeCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
-<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <%-- --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
@@ -28,7 +28,6 @@
 	var="datepickerZHJs" />
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
-<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
 <spring:url value="/resources/js/manager/safeInfo.js" var="safeInfoJs"/>
 <spring:url value="/resources/lib/Clamp/clamp.js" var="clampJs"/>
 <spring:url value="/resources/images" var="imgPath" />
