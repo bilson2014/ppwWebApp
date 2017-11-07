@@ -48,10 +48,10 @@
 		<%-- <div class='top'><img src="${imgPath}/activity/pch1.jpg"></div> --%>
 		<div class='basscard'>
 			<img id='firstbb' src="${imgPath}/activity/pch2.jpg">
-			<img class='picstyle' src="${imgPath}/activity/pchs.gif">
-			<!-- <video class='picstyle' playsinline="true" webkit-playsinline="true"  id="toPlayVideo"  loop="loop" x-webkit-airplay="true" webkit-playsinline="" playsinline="true" preload="auto" poster="" style="width:100%;  margin-top: -1px;"> 
-				 <source type="video/mp4" src="http://106.75.77.53:8888/group1/M00/00/78/CgpsbFnwLOOAIZKwAA7fUpvV37A429.mp4"> 
-			</video>   -->
+		<%-- 	<img class='picstyle' src="${imgPath}/activity/pchs.gif"> --%>
+			<video class='picstyle' playsinline="true" webkit-playsinline="true"  id="toPlayVideo"  loop="loop" x-webkit-airplay="true" webkit-playsinline="" playsinline="true" preload="auto" poster="" style=""> 
+				 <source type="video/mp4" src="http://106.75.77.53:8888/group1/M00/00/79/CgpsbFoAN6-AA59QAAzzC7kngrY524.mp4"> 
+			</video> 
 			<a href='#check'><img class='tiaostyle' src="${imgPath}/activity/party.png"></a>
 			
 		</div>
@@ -73,10 +73,6 @@
             			<div class="readCode"><img  src="${imgPath}/activity/play2er.png"></div>
             			<div class='fonts'>中飞艾维</div>	
             		</div>
-            		
-            		
-            		
-            		
             	</div>
 			</div>
 		</div>
@@ -107,25 +103,9 @@
 			<img src="${imgPath}/activity/pch7.jpg">
 		</div> --%>
 	</div>
-	
-	 
-
-	
-	   
-                   
-                     <!-- 卡片 -->
-                
-              	
-                    
-	 
-	 
-	
     <%-- <jsp:include flush="true" page="../foot.jsp"></jsp:include>  --%>
 	<!-- video-->
     <script type="text/javascript" src="${pch5cardJS}"></script>
     <script type="text/javascript" src="${commonJs }"></script>
-
-	
 </body>
-
 </html>
