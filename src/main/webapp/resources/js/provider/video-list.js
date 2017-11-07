@@ -93,6 +93,7 @@ function loadProduction(){
 					    		   $body +='<div data-id="'+solr.productId+'" data-visible="'+solr.checkDetails+'" class="visible visibleProduct">';
 					    	   }
 					    	       $body +='<div>作品可见</div></div>';
+					    	      
 						    		    if(cType == 4){
 						    		    	$body +='<div class="master-flag setMaster gStar">';
 						    		    }else{
@@ -111,9 +112,9 @@ function loadProduction(){
 					    	 $body +='<div>编辑作品</div>';
 					    	 $body +='</div>';
 					    }
-					    $body +='<div class="del" data-id="'+solr.productId+'">';
+					   /* $body +='<div class="del" data-id="'+solr.productId+'">';
 				    	$body +='<div>删除作品</div>';
-				    	$body +='</div>';
+				    	$body +='</div>';*/
 				    	$body +='</div>';
 				    	$body +='</div>';
 				    

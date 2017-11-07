@@ -190,8 +190,6 @@ html {
     }
 }
 
-
-
 .nC {
     .title {
         position: relative;
@@ -232,7 +230,6 @@ html {
             @include ellipsis;
         }
     }
-
     .noneUse {
         li {
             left: -45px !important;
@@ -382,12 +379,12 @@ html {
         cursor: pointer;
         line-height: 36px;
         text-align: center;
-        right: 110px;
+        right: 45px;
         top: 50px;
         background-position: 0px -16px;
-        &:hover{
-            div{
-                 opacity: 1 !important;
+        &:hover {
+            div {
+                opacity: 1 !important;
             }
         }
         div {
@@ -406,11 +403,9 @@ html {
             -o-transition: all .4s linear .4s;
         }
     }
-
     .noneUse {
         background-position: 0px 0px !important;
     }
-
     .gStar {
         right: 130px !important;
     }
@@ -469,7 +464,8 @@ html {
         width: 60px;
         text-align: center;
         position: relative;
-        right: 58px;
+        // right: 58px;
+        right: 0px;
         top: 7px;
         cursor: pointer;
         &:hover {
@@ -510,11 +506,11 @@ html {
         margin-right: 5px;
         top: 2px;
         position: absolute;
-        right: 0px;
+        right: -10px;
         cursor: pointer;
         line-height: 36px;
         text-align: center;
-        right: 40px;
+        // right: 40px;
         top: 50px;
         &:hover {
             background-position: 0px -16px;
@@ -538,7 +534,6 @@ html {
             -o-transition: all .4s linear .4s;
         }
     }
-
     .del {
         background: url(/resources/images/provider/del.png);
         background-size: 16px 32px;
@@ -584,17 +579,6 @@ html {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /*定义滚动条轨道 内阴影+圆角*/
 
 ::-webkit-scrollbar-track {
@@ -603,17 +587,6 @@ html {
     background-color: $border-line;
     height: 6px;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*定义滑块 内阴影+圆角*/
