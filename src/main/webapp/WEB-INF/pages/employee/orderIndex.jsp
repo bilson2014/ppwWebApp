@@ -17,7 +17,7 @@
 <spring:url value="/resources/images" var="imgPath" />
 
 
-<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

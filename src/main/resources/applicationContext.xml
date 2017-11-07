@@ -33,11 +33,11 @@
 					  com.paipianwang.pat" />
 
 	<!-- log here -->
-	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />
+<!-- 	<bean id="callMonitor" class="com.panfeng.film.util.CallMonitor" />
 
 	<aop:aspectj-autoproxy>
 		<aop:include name="callMonitor" />
-	</aop:aspectj-autoproxy>
+	</aop:aspectj-autoproxy> -->
 
 	<!-- kaptcha -->
 	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
