@@ -34,7 +34,7 @@
 	var="datepickerZHJs" />
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
-<spring:url value="/resources/js/provider/comPro.js" var="commonJs" />
+<spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/provider/safeInfo.js" var="safeInfoJs" />
 
 <spring:url value="/resources/images" var="path" />

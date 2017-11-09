@@ -65,19 +65,31 @@
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 	
     
 	<div class="projectType">
-		<div class="pTContent">
-			<c:if test="${! empty productList}">
-				<c:forEach items="${productList }" var="tag">
-					<c:if test="${product.chanpinName == tag.chanpinName }">
-						<a><div class="active">${tag.chanpinName}</div></a>
-					</c:if>
-					<c:if test="${product.chanpinName != tag.chanpinName }">
-						<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
-					</c:if>
-				</c:forEach>
-			</c:if>
-		</div>
-	</div>
+			 <div class="pTContent">
+				<div class="swiper-container swiper-title-container">
+			        	<div class="swiper-wrapper">
+							<c:if test="${! empty productList}">
+								<c:forEach items="${productList }" var="tag">
+										<c:if test="${product.chanpinName == tag.chanpinName }">
+										   <div class="swiper-slide swiper-title-slide">
+												<a><div class="active">${tag.chanpinName}</div></a>
+										   </div>	
+										</c:if>
+										<c:if test="${product.chanpinName != tag.chanpinName }">
+										  <div class="swiper-slide swiper-title-slide">
+											<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+										  </div>
+											
+										</c:if>		
+								</c:forEach>
+							</c:if>
+					  </div>	
+					    <!-- Add Pagination -->
+			    </div> 
+				    <div class="swiper-button-next swiper-button-title-next"></div>
+					<div class="swiper-button-prev swiper-button-title-prev"></div>	   	
+	        </div>
+    </div>
     
 	<div class="page">
        <div class="motionTitles">
@@ -135,8 +147,8 @@
 					<a></a>
 				</div>
 			</div>
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next swiper-button-next-case"></div>
+			<div class="swiper-button-prev swiper-button-prev-case"></div>
 		   </div>	
 		</div>	
 		
