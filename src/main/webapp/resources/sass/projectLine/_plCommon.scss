@@ -1,118 +1,117 @@
+.page {
+    top: 72px !important;
+}
 
-                          .page {
-                              top: 72px !important;
-                          }
-                          
-                          .header {
-                              position: relative !important;
-                          }
+.header {
+    position: relative !important;
+}
 
-                          .projectType {
-                              position: relative !important;
-                          }
-                          
+.projectType {
+    position: relative !important;
+}
 
-                          .projectType {
-                              position: relative;
-                              width: 100%;
-                              min-width: 960px;
-                              height: 50px;
-                              background: $f0;
-                              line-height: 50px;
-                              position: relative;
-                              z-index: 50;
-                              font-size: 0;
-                              text-align: center;
-                              border-bottom: 1px solid #d1d1d1;
-                              .pTContent {
-                                  position: relative;
-                                  @include media_screen_width_beta3();
-                                  margin: 0 auto;
-                                  font-size: 0;
-                              }
-                              div {
-                                  font-size: $font-size-base;
-                                  color: $gray;
-                              }
-                              .active {
-                                  color: $red-base;
-                                  border-bottom: 1px solid $red-base;
-                              }
-                              a {
-                                  display: inline-block;
-                                  vertical-align: top;
-                                  width: 100%;
-                                  position: relative;
-                                  top: -1px;
-                              }
-                              a:last-child {
-                                  margin-right: 0px !important;
-                              }
-                          }
-                          
-                          .motionTitles {
-                              background-color: rgba(255, 255, 255, 0.8);
-                              width: 100%;
-                              height: 60px;
-                              position: fixed;
-                              top:100px;
-                              z-index: 50;
-                          }
-                          
-                          .motionContent {
-                              @include media_screen_width_beta3();
-                              margin: 0 auto;
-                              position: relative;
-                              .motionIcon {
-                                  position: absolute;
-                                  width: 100%;
-                                  line-height: 55px;
-                                  left: 0;
-                                  border-bottom: 1px solid $border-line;
-                                  div {
-                                      color: $gray-dark;
-                                      font-size: $font-size-lg24;
-                                      display: inline-block;
-                                      vertical-align: baseline;
-                                  }
-                                  div:nth-child(2) {
-                                      color: $gray-dark;
-                                      font-size: $font-size-base;
-                                  }
-                              }
-                              .motionType {
-                                  position: absolute;
-                                  height: 100%;
-                                  right: 0;
-                                  top:-5px;
-                                  div {
-                                      width: 80px;
-                                      height: 30px;
-                                      color: $gray-dark;
-                                      font-size: $font-size-base;
-                                      border-radius: 4px;
-                                      margin-top: 20px;
-                                      line-height: 30px;
-                                      text-align: center;
-                                      &:hover {
-                                          color: $red-base;
-                                      }
-                                  }
-                                  a {
-                                      display: inline-block;
-                                      vertical-align: top;
-                                      margin-left: 5px;
-                                  }
-                              }
-                              .active {
-                                  background: $red-base;
-                                  color: white !important;
-                                  &:hover {
-                                      background: darken($red-base, 10%)!important;
-                                  }
-                              }
-                          }
-                          
-                          .setMargin {
-                              // margin-top: 140px;
-                          }
+.projectType {
+    width: 100%;
+    min-width: 960px;
+    height: 50px;
+    background: $f0;
+    line-height: 50px;
+    position: relative;
+    z-index: 50;
+    font-size: 0;
+    text-align: center;
+    border-bottom: 1px solid #d1d1d1;
+    .pTContent {
+        @include media_screen_width_beta3();
+        margin: 0 auto;
+        font-size: 0;
+    }
+    div {
+        font-size: $font-size-base;
+        color: $gray;
+    }
+    .active {
+        color: $red-base;
+        border-bottom: 1px solid $red-base;
+    }
+    a {
+        display: inline-block;
+        vertical-align: top;
+        width: 12%;
+        width: 15%;
+        position: relative;
+        top: -1px;
+    }
+    a:last-child {
+        margin-right: 0px !important;
+    }
+}
+
+.motionTitles {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 100px;
+    // top: 149px;
+    z-index: 50;
+}
+
+.motionContent {
+    @include media_screen_width_beta3();
+    margin: 0 auto;
+    position: relative;
+    .motionIcon {
+        position: absolute;
+        width: 100%;
+        line-height: 55px;
+        left: 0;
+        border-bottom: 1px solid $border-line;
+        div {
+            color: $gray-dark;
+            font-size: $font-size-lg24;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+        div:nth-child(2) {
+            color: $gray-dark;
+            font-size: $font-size-base;
+        }
+    }
+    .motionType {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        top: -5px;
+        div {
+            width: 80px;
+            height: 30px;
+            color: $gray-dark;
+            font-size: $font-size-base;
+            border-radius: 4px;
+            margin-top: 20px;
+            line-height: 30px;
+            text-align: center;
+            &:hover {
+                color: $red-base;
+            }
+        }
+        a {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 5px;
+        }
+    }
+    .active {
+        background: $red-base;
+        color: white !important;
+        &:hover {
+            background: darken($red-base, 10%)!important;
+        }
+    }
+}
+
+.setMargin {
+    // margin-top: 140px;
+}
+

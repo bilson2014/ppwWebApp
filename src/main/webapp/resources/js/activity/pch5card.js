@@ -10,7 +10,7 @@ $().ready(function() {
 	showDiv();
 	orderBottom();
 	init();
-	
+	merchantBridge();
 });
 //按钮跳转
 function init(){	
