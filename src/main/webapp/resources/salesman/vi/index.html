@@ -100,7 +100,7 @@ var _hmt = _hmt || [];
     </div>
     <div class="main_4">
     	<div class="container">
-            <video controls poster="images/001.jpg" src="images/ppw.mp4" width="460">
+            <video controls poster="images/001.jpg" id="video4" src="" width="460">
                 您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
         </div>
     </div>
@@ -128,11 +128,11 @@ var _hmt = _hmt || [];
     
     <div class="video hide" id="video">
     	<div class="video_wrap">
-            <video controls poster="images/1.jpg"  src="http://106.75.14.109:8888/group1/M00/00/1C/CgpsbFiBDwiAF6EXBJzyrI8QQR0640.mp4" class="hide">
+            <video controls poster="images/1.jpg" id="video1"  src="" class="hide">
             您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
-            <video controls poster="images/2.jpg"  src="http://106.75.77.53:8888/group1/M00/00/02/CgpsbFhfoJiAc37mAbir209g1Fs380.mp4" class="hide">
+            <video controls poster="images/2.jpg" id="video2" src="" class="hide">
             您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
-            <video controls poster="images/3.jpg"  src="http://106.75.14.109:8888/group1/M00/00/AC/Cgpw7FnLqAiAELUTAG9s7kqmTbQ166.mp4" class="hide">
+            <video controls poster="images/3.jpg" id="video3"  src="" class="hide">
             您的浏览器不支持 video 标签。请更新浏览器版本，或使用谷歌浏览器播放。</video>
         </div>
         <img src="images/close.png" class="close" id="close"></div>
@@ -204,9 +204,8 @@ var _hmt = _hmt || [];
     </script>
     <script>
    // document.domain = "apaipian.com";
-    //var urlContext="http://www.apaipian.com";
-   // var urlContext="http://www.paipianle.com";
-  var urlContext="http://localhost:7070";
+    var urlContext="http://www.apaipian.com";
+   // var urlContext="http://localhost:8081";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -218,6 +217,23 @@ var _hmt = _hmt || [];
     
 		$(document).ready(function(e) {
 			 $(window.parent.document).find('.frame').css('height',$('body').height());
+			 
+			 $.ajax({
+				  type: 'POST',
+				  url: urlContext+'/getStorageUrl',
+				  //data: data,
+				  success:function(data){
+				
+					  $('#video1').attr('src',data.message+'/group1/M00/00/1C/CgpsbFiBDwiAF6EXBJzyrI8QQR0640.mp4');
+					  $('#video2').attr('src',data.message+'/group1/M00/00/02/CgpsbFhfoJiAc37mAbir209g1Fs380.mp4');
+					  $('#video3').attr('src',data.message+'/group1/M00/00/AC/Cgpw7FnLqAiAELUTAG9s7kqmTbQ166.mp4');
+					  $('#video4').attr('src',data.message+'/group1/M00/00/B4/Cgpw7FoFXt-AP4z7AGj7aRh6ppc907.mp4');
+				  },
+				error:function(data){
+				}, 
+				dataType: 'json',
+				//jsonpCallback:"cb"
+			});
 			//token
 			$.ajax({
 				  type: 'POST',
