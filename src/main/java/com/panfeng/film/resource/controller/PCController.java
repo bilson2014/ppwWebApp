@@ -30,6 +30,7 @@ import com.paipianwang.pat.common.util.DataUtil;
 import com.paipianwang.pat.common.util.DateUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.domain.ResourceToken;
+import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.paipianwang.pat.common.web.security.AESUtil;
 import com.paipianwang.pat.facade.employee.entity.PmsJob;
 import com.paipianwang.pat.facade.employee.entity.PmsStaff;
@@ -48,6 +49,7 @@ import com.paipianwang.pat.facade.team.entity.PmsTeam;
 import com.paipianwang.pat.facade.team.service.PmsTeamFacade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
+import com.panfeng.film.dao.StorageLocateDao;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.SmsMQService;
 import com.panfeng.film.resource.model.Indent;
@@ -99,6 +101,8 @@ public class PCController extends BaseController {
 	
 	@Autowired
 	private PmsNewsFacade pmsNewsFacade = null;
+	@Autowired
+	private final StorageLocateDao storageDao = null;
 
 	/**
 	 * 获取本地ip地址+端口号
@@ -601,4 +605,31 @@ public class PCController extends BaseController {
 		return result;
 	}
 
+	@RequestMapping(value="/getStorageUrl",method=RequestMethod.POST)
+	public Result getStorageUrl(final HttpServletRequest request){
+		Result result=new Result();
+		final Map<String, String> nodeMap = storageDao.getStorageFromRedis(PmsConstant.STORAGE_NODE_RELATIONSHIP);
+		// 获取最优Storage节点
+		final String serviceIP = FastDFSClient.locateSource();
+		String ip = "";
+		final StringBuffer sbf = new StringBuffer();
+		sbf.append("http://");
+		
+		if(ValidateUtil.isValid(serviceIP)) {
+			ip = nodeMap.get(serviceIP);
+			if(ValidateUtil.isValid(ip)) {
+				sbf.append(ip);
+				sbf.append(":8888/");
+			} else {
+				sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
+			}
+		} else {
+			sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
+		}
+		
+//		mv.addObject(PmsConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
+		result.setMessage(sbf.toString());
+		
+		return result;
+	}
 }
