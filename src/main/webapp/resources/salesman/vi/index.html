@@ -204,8 +204,8 @@ var _hmt = _hmt || [];
     </script>
     <script>
    // document.domain = "apaipian.com";
-    var urlContext="http://www.apaipian.com";
-   // var urlContext="http://localhost:8081";
+   // var urlContext="http://www.apaipian.com";
+    var urlContext="http://localhost:8081";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -223,7 +223,6 @@ var _hmt = _hmt || [];
 				  url: urlContext+'/getStorageUrl',
 				  //data: data,
 				  success:function(data){
-				
 					  $('#video1').attr('src',data.message+'/group1/M00/00/1C/CgpsbFiBDwiAF6EXBJzyrI8QQR0640.mp4');
 					  $('#video2').attr('src',data.message+'/group1/M00/00/02/CgpsbFhfoJiAc37mAbir209g1Fs380.mp4');
 					  $('#video3').attr('src',data.message+'/group1/M00/00/AC/Cgpw7FnLqAiAELUTAG9s7kqmTbQ166.mp4');

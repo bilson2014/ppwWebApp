@@ -181,9 +181,9 @@ var _hmt = _hmt || [];
     </div>
     <script>
    // document.domain = "apaipian.com";
-   var urlContext="http://www.apaipian.com";
+  var urlContext="http://www.apaipian.com";
    // var urlContext="http://www.paipianle.com";
-  //var urlContext="http://localhost:7070";
+  //var urlContext="http://localhost:8081";
     
     
     var InterValObj; // timer变量，控制时间 - 注册
@@ -200,7 +200,6 @@ var _hmt = _hmt || [];
 				  url: urlContext+'/getStorageUrl',
 				  //data: data,
 				  success:function(data){
-					  alert(data.message);
 					  $('#video1').attr('src',data.message+'/group1/M00/00/83/Cgpw7FlSLKaAa1k1ANbsAA4RwzI545.mp4');
 					  $('#video2').attr('src',data.message+'/group1/M00/00/02/CgpsbFhfoJiAc37mAbir209g1Fs380.mp4');
 					  $('#video3').attr('src',data.message+'/group1/M00/00/8F/Cgpw7FlXtm2AZDKdAHQJVCm_xnM779.mp4');
