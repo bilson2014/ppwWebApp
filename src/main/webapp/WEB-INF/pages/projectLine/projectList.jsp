@@ -62,16 +62,18 @@
 	})();
 </script>
 <link rel="stylesheet"  href="${projectListCss}" >
+<link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <script type="text/javascript" src="${projectListJs}"></script>
 <script type="text/javascript" src="${waypointsJs}"></script>
+<script type="text/javascript" src="/resources/lib/swiper/swiper.js"></script>
 </head>
 
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<jsp:include flush="true" page="../header.jsp"></jsp:include> 	
-	<div class="projectType">
+<%-- 	<div class="projectType">
 		<div class="pTContent">
 			<c:if test="${! empty productList}">
 				<c:forEach items="${productList }" var="tag">
@@ -84,7 +86,33 @@
 				</c:forEach>
 			</c:if>
 		</div> 
-	</div>
+	</div> --%>
+	<div class="projectType">
+			 <div class="pTContent">
+				<div class="swiper-container swiper-title-container">
+			        	<div class="swiper-wrapper">
+							<c:if test="${! empty productList}">
+								<c:forEach items="${productList }" var="tag">
+										<c:if test="${product.chanpinName == tag.chanpinName }">
+										   <div class="swiper-slide swiper-title-slide">
+												<a><div class="active">${tag.chanpinName}</div></a>
+										   </div>	
+										</c:if>
+										<c:if test="${product.chanpinName != tag.chanpinName }">
+										  <div class="swiper-slide swiper-title-slide">
+											<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+										  </div>
+										
+										</c:if>		
+								</c:forEach>
+							</c:if>
+					  </div>	
+					    <!-- Add Pagination -->
+			    </div> 
+				    <div class="swiper-button-next swiper-button-title-next"></div>
+					<div class="swiper-button-prev swiper-button-title-prev"></div>	   	
+	        </div>
+    </div>
 	<div class="page">
         <div class="motionTitles">
           <div class="motionContent">

@@ -4,6 +4,13 @@ var InterValObj;
 var initM = 3;
 $().ready(function() {
 	pOrder.init();
+	var title = new Swiper('.swiper-title-container', {
+        slidesPerView: 8,
+        paginationClickable: true,
+        spaceBetween:0,
+        nextButton : '.swiper-button-title-next',
+		prevButton : '.swiper-button-title-prev'
+    });
 	//initProduct();
 });
 

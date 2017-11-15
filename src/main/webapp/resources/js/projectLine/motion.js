@@ -28,8 +28,6 @@ function banner() {
 		paginationClickable : true,
 		loop : true,
 		grabCursor : true,
-		nextButton : '.swiper-button-next',
-		prevButton : '.swiper-button-prev',
 		autoplay : 5000,
 		pagination : '.swiper-pagination',
 		paginationClickable : true,
@@ -37,15 +35,25 @@ function banner() {
 			var number = swiper.activeIndex; // 每次切换时，提示现在是第几个slide
 		},
 	});
+	
+	var title = new Swiper('.swiper-title-container', {
+        slidesPerView: 8,
+        paginationClickable: true,
+        spaceBetween:0,
+        loop:true,
+        nextButton : '.swiper-button-title-next',
+		prevButton : '.swiper-button-title-prev'
+    });
 }
 
 function product() {
 	var product = new Swiper('.swiper-product', {
 		loop : true,
 		grabCursor : true,
-		nextButton : '.swiper-button-next',
-		prevButton : '.swiper-button-prev',
+		nextButton : '.swiper-button-next-case',
+		prevButton : '.swiper-button-prev-case',
 	});
+	
 }
 
 /**

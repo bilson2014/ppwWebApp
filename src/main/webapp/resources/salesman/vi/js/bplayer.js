@@ -1,11 +1,13 @@
 // JavaScript Document
 
 jQuery(function($){
+	
+	
+	
+	
 	var index = 0;
 	var maximg = 23;
 	//$('<div id="flow"></div>').appendTo("#myjQuery");
-
-
 	//自动播放
 	var MyTime = setInterval(function(){
 		ShowjQueryFlash(index);
