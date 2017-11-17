@@ -34,7 +34,8 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 
 /*------------------------------------MAIN-----------------------------------------*/
 
-.main_index ul li{ padding-bottom:5px;}
+.main_index ul{ zoom:1; overflow:hidden; padding-top:16px;}
+.main_index ul li{ width:588px; margin:0 5px 10px; border:1px solid #ccc; float:left;}
 .main_index ul li img{ width:100%; height:auto; vertical-align: bottom;}
 
 .main_1{ background:#f0f2f5; padding:30px 0;}
@@ -169,6 +170,8 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .close{ position:absolute; bottom:30px; left:50%; margin-left:-20px;}
 
 .OnlineService_Bg{ display:none;}
+
+.main_index ul li{ width:100%; float:none; border:none; padding-bottom:5px; margin:0;}
 
 }
 
