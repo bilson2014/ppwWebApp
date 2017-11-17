@@ -337,7 +337,7 @@ function loginOrderFType(info) {
 			indent_tele : '',
 			phoneCode : '-1',
 			indent_recomment : info,
-			indentName : '网站-PC-首页banner',
+			indentName : '网站-PC-供应商首页下单',
 			productId : -1,
 			teamId : -1,
 			serviceId : -1,
