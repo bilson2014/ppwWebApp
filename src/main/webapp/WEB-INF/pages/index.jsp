@@ -21,10 +21,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="宣传片,宣传片制作, 品牌微电影,tvc广告片,广告片拍摄, mg动画,短视频,商业视频">
-<meta name="description" content="拍片网是专业的商业视频服务平台，提供：宣传片、产品tvc广告拍摄、品牌微电影、mg动画等短视频内容制作。成本托管，免费创意策划，海量样片，价格透明。拍片就上拍片网！">
+<meta name="keywords" content="宣传片,企业宣传片,宣传片制作,宣传片拍摄,tvc广告,产品广告片,广告片拍摄,广告片制作,mg动画,品牌微电影">
+<meta name="description" content="拍片网是专业的商业视频服务平台，提供：企业宣传片、产品tvc广告片拍摄、品牌微电影、mg动画等拍摄制作。成本托管，免费创意策划，案例样片，价格透明。拍片就上拍片网！">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>拍片网_商业视频制作平台, 宣传片,tvc广告拍摄,品牌微电影, mg动画,短视频</title>
+<title>拍片网_商业视频制作平台,宣传片,mg动画,产品广告片,tvc广告,品牌微电影</title>
 <link rel="stylesheet" href="/resources/css/index.css">
 <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <link rel="stylesheet" href="resources/lib/Bootstrap/css/bootstrap.min.css">
