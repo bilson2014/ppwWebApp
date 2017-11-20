@@ -129,7 +129,7 @@ public class SolrServiceImpl extends BaseSolrServiceImpl implements SolrService 
 
 	@Override
 	public List<String> suggestDocs(String solrUrl, SolrQuery query) {
-		return this.suggestDocs(solrUrl, query);
+		return this.suggestProductDocs(solrUrl, query);
 	}
 
 	@Override
