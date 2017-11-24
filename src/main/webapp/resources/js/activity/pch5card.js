@@ -203,7 +203,9 @@ function orderBottom(){
 					realName:$('#name').val(),
 					phoneCode:$('#num').val(),
 //					target:'Pbusinesscard',
-					indentSource : 2//订单来源编号
+					indentSource: 2,//订单来源编号
+					salesmanUniqueId:'pch5card'
+					
 				  });	
 			}			 
 		}				 
