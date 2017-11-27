@@ -132,15 +132,6 @@ var _hmt = _hmt || [];
     
     <jsp:include flush="true" page="../../../WEB-INF/pages/foot.jsp"></jsp:include> 
     
- <!--    <div class="foot">
-        <img src="../add_img/code.jpg"><br>
-    	<span>版权信息</span><br>
-        本站视频作品采用知识共享署名-非商业性使用 本站不提供任何视听上传服务<br>
-        所有内容均来自视频分享站点所提供的公开引用资源<br>
-        © COPYRIGHT 2017 北京拍片乐科技有限公司 ALL RIGHTS RESERVED. 京ICP备16066831号-1
-    </div>
-    -->
-    
  
     <script>
    // document.domain = "apaipian.com";
