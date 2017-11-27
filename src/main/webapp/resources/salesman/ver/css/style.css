@@ -344,7 +344,7 @@ area {
 
 .main_2 .twobox .left {
     width: 24%;
-    height: 113%;
+    height: 110%;
     display: inline-block;
     border: 1px solid #E7E7E7;
 }
@@ -377,7 +377,7 @@ area {
     width: 100%;
     height: 79%;
     position: relative;
-    top: -13%;
+    top: -16%;
     background: url(../images/num1.png) no-repeat top center;
 }
 
