@@ -28,12 +28,9 @@
 <link rel="stylesheet" href="/resources/css/index.css">
 <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <link rel="stylesheet" href="resources/lib/Bootstrap/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery/waypoints.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery/waypoints.min.js"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >

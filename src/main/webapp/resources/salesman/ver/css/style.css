@@ -72,7 +72,7 @@ h4 {
 
 a,
 area {
-    blr: expression(this.onFocus=this.blur())
+    blr: expression(this.onFocus=this.blur());
 }
 
 .container {
@@ -98,7 +98,66 @@ area {
 }
 
 
-/*------------------------------------HEAD-----------------------------------------*/
+/*-------=调用head 与foot 公共的部分样式的修改---------------------------*/
+
+.header-item {
+    font-size: 1rem !important;
+}
+
+.headerMove .menu-bar .middle-part input {
+    font-size: 0.2rem !important;
+}
+
+.menu-bar>.right-part {
+    right: 56px !important;
+}
+
+.foot3 .footContent .contentTop .topItem .smWord {
+    font-size: 0.2rem;
+}
+
+.foot3 .title a {
+    font-size: 1.2rem;
+}
+
+.foot3 .footContent .contentTop .topItem {
+    font-size: 0.2rem;
+}
+
+.foot3 .footContent .contentBottom div {
+    font-size: 0.2rem;
+}
+
+.foot3 .footContent .contentBottom div:first-child {
+    font-size: 1.2rem;
+}
+
+.cOrder .cOrderTitle {
+    font-size: 1.2rem;
+}
+
+.dropdowns span {
+    font-size: 1rem;
+}
+
+.cOrder .cOrderItem input {
+    font-size: 1rem;
+}
+
+.cOrder .cOrderItem div {
+    font-size: 1rem;
+}
+
+.cOrder .cOrderBtn {
+    font-size: 1.2rem;
+}
+
+.cOrder .cOrderBotTitle {
+    font-size: 1rem;
+}
+
+
+/* ------------head部分的样式-------------- */
 
 .top {
     height: 40px;
@@ -264,7 +323,7 @@ area {
 }
 
 .main_2 {
-    height: 1010px;
+    height: 1070px;
     /* background: url(../images/main_2.jpg) no-repeat top center; */
 }
 
@@ -273,25 +332,25 @@ area {
     margin: 0 auto;
     height: 100px;
     background: url(../images/boxtitle.png) no-repeat top center;
-    margin-top: 20px;
+    margin-top: 36px;
 }
 
 .main_2 .twobox {
     width: 1038px;
     margin: 0 auto;
     height: 640px;
-    margin-top: 9%;
+    margin-top: 6%;
 }
 
 .main_2 .twobox .left {
     width: 24%;
-    height: 100%;
+    height: 113%;
     display: inline-block;
     border: 1px solid #E7E7E7;
 }
 
 .main_2 .twobox .left:hover {
-    box-shadow: 0px 0px 44px #f6b843;
+    box-shadow: 0px 0px 15px #f6b843;
 }
 
 .main_2 .twobox .left .topp {

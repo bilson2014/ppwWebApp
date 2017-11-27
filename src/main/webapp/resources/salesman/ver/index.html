@@ -9,6 +9,7 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/jquery.SuperSlide.2.1.1.js"></script>
 <script src="js/leftTime.js"></script>
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 
 <script>
 var _hmt = _hmt || [];
@@ -56,22 +57,23 @@ var _hmt = _hmt || [];
     	 	<div class='left'>
     	 		<div class='topp'></div>
     	 		<div class='center'></div>
-    	 		<div class='bot'><a href='http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165' target='_blank'></a></div>
+    	 		<div class='bot'><a href="javascript:void(0)" onclick="openwin()"></a></div>	        	
     	 	</div>
     	 	<div class='left'>
     	 		<div class='topp' ></div>
     	 		<div class='center'></div>
-    	 		<div class='bot'><a href='http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165' target='_blank'></a></div>
+    	 		<div class='bot'><a href="javascript:void(0)" onclick="openwin()"></a></div>
     	 	</div>
     	 	<div class='left'>
     	 		<div class='topp'></div>
     	 		<div class='center'></div>
-    	 		<div class='bot'><a href='http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165' target='_blank'></a></div>
+    	 		<div class='bot'><a href="javascript:void(0)" onclick="openwin()"></a></div>	
     	 	</div>
     	 	<div class='left'>
     	 		<div class='topp'></div>
     	 		<div class='center'></div>
-    	 		<div class='bot'><a href='http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165' target='_blank'></a></div>
+    	 		<div class='bot'><a href="javascript:void(0)" onclick="openwin()"></a></div>
+    	 		<!-- <div class='bot'><a href='http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165' target='_blank'></a></div> -->
     	 	</div>
     	</div>
     
@@ -119,9 +121,11 @@ var _hmt = _hmt || [];
         </div>
         
           <div class="zixun" id="zixun">
-        	<a href="http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165" target='_blank'></a>
+          	<a href="javascript:void(0)" onclick="openwin()"></a>
+        	<!-- <a href="http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165" target='_blank'></a> -->
             <a href="#baoming" class="adv_active"></a>
         </div>
+        
     </div>
     
     
@@ -340,6 +344,39 @@ var _hmt = _hmt || [];
 				$("#sendCode").val('已发送(' + curCount + ')');
 			}
 		}
+		
+		function openwin() {
+	        window.open("http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165","newwindow","width=600,height=600,left=400,top=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no")
+	        }
+	    	
+	    $(document).ready(function(e){
+	            var subNav_active = $(".adv_active");
+	            var subNav_scroll = function(target){
+	                subNav_active = target.parent();
+	            };
+	            $("#zixun a").click(function(){
+	                subNav_scroll($(this));
+	                var target = $(this).attr("href");
+	                var targetScroll = $(target).offset().top;
+	                $("html,body").animate({scrollTop:targetScroll},300);
+	                return false;
+	            });
+	    		
+	    		var winwith=document.body.clientWidth;
+	    		var imgheight=winwith/3;
+	    		$(".slideBox").height(imgheight);
+	    		$(".slideBox .bd").height(imgheight);
+	    		$(".slideBox .bd img").width(winwith);
+	    		
+	    		$(window).resize(function(){
+	    			var winwith=document.body.clientWidth;
+	    			var imgheight=winwith/3;
+	    			$(".slideBox").height(imgheight);
+	    			$(".slideBox .bd").height(imgheight);
+	    			$(".slideBox .bd img").width(winwith);
+	    		});
+
+	        }());
     </script>
 
 </body>
