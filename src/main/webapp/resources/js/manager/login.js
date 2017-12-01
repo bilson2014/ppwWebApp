@@ -78,11 +78,11 @@ var login = {
 					// 跳转
 					var go = result.message;
 					if(go == 2){
-						$('#login-form').attr('action',getContextPath() + '/mgr/index').submit();
+						location.href  ='/project/running';
 					}else if(go  == 1){
-						$('#login-form').attr('action',getContextPath() + '/project/running').submit();
+						location.href  ='/project/running?order';
 					}else {
-						$('#login-form').attr('action',getContextPath() + '/').submit();
+						location.href  ='/';
 					}
 					$('#pwdId').addClass('hide');
 				}else {

@@ -139,10 +139,10 @@ public class VersionManagerController extends BaseController {
 							for (PmsRole pmsRole : roles) {
 								if(pmsRole.getRoleName().equals("BD专员")){
 									rrr = 1;
-									break;
 								}
 								if(pmsRole.getRoleName().equals("销售")){
 									rrr = 2;
+									break;
 								}
 							}
 						}
