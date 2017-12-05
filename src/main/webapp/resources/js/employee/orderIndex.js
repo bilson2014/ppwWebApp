@@ -47,6 +47,8 @@ var sUserCompany = '',sRealName = '',sIndent_tele = '',sIndentSource = -1,timeOl
 $().ready(function() {
 	
 	document.domain = getUrl();
+	
+	$('#teles').attr('placeholder','请输入手机号');
 	$("input[name$='time']").datepicker({
 		language: 'zh',
 		dateFormat:'yyyy-MM-dd',
@@ -272,6 +274,11 @@ var orderIndex = {
 					   	 }else{
 					   		$('#showHelper').hide();
 					      }
+					  	if(checkShow == '9'||checkShow == '10'||checkShow == '4'){
+							$('#teles').attr('placeholder','请输入手机号或者座机号');
+					  	}else {
+							$('#teles').attr('placeholder','请输入手机号');
+					  	}
 					  }
 			   	 
 			   	 if($(this).parent().hasClass('searchSelect')){
@@ -401,6 +408,7 @@ var orderIndex = {
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
+				$('.submit').off('click').on('click',checkUser);
 			});
 			$('#cancleEdit').off('click').on('click',function(){
 				$('.modelPage').hide();
@@ -781,12 +789,42 @@ function checkUpdateEven(){
 	else if(hasOrder == undefined || hasOrder == "" || hasOrder ==null ){
 		$('#orderComeInfoError').attr('data-content','请填写订单来源');
 	}
-	else if(!checkMobile(hasTel)){
+	else if(hasOrder == 5&&(hasPeople == undefined || hasPeople == "" || hasPeople ==null)){
+		$('#orderPError').attr('data-content','请填写推荐人');
+	}else if(hasOrder == 4||hasOrder == 9||hasOrder == 10){
+		if (hasTel == undefined ||hasTel == "" ||hasTel ==null ){
+			$('#telesError').attr('data-content','手机号或座机号不能为空');
+			$('#telName').focus();
+			return false;
+		}else if (hasTel.substring(0, 1) == 1){
+			 if(!checkMobile(hasTel)){
+				 $('#telesError').attr('data-content','手机号不正确');
+				 $('#telName').focus();
+			 }else {
+					$('#telNameError').attr('data-content','');
+					$('#companyNameError').attr('data-content','');
+					$('#orderComeInfoError').attr('data-content','');
+					$('#telesError').attr('data-content','');
+					$('#orderPError').attr('data-content','');
+					$('#teles').attr('placeholder','请输入手机号');
+					return true;
+				}
+		}else if (!checkphone(hasTel)){
+			$('#telesError').attr('data-content','座机号不正确(例如:0123-4567890)');
+			$('#telName').focus();
+			return false;
+		}else {
+			$('#telNameError').attr('data-content','');
+			$('#companyNameError').attr('data-content','');
+			$('#orderComeInfoError').attr('data-content','');
+			$('#telesError').attr('data-content','');
+			$('#orderPError').attr('data-content','');
+			$('#teles').attr('placeholder','请输入手机号');
+			return true;
+		}
+	}else if(!checkMobile(hasTel)){
 		$('#telesError').attr('data-content','手机号不正确');
 		$('#telName').focus();
-	}
-	else if(hasOrder == 5&&(hasPeople == undefined || hasPeople == "" || hasPeople ==null)){
-			$('#orderPError').attr('data-content','请填写推荐人');
 	}
 	else {
 		$('#telNameError').attr('data-content','');
@@ -794,16 +832,16 @@ function checkUpdateEven(){
 		$('#orderComeInfoError').attr('data-content','');
 		$('#telesError').attr('data-content','');
 		$('#orderPError').attr('data-content','');
+		$('#teles').attr('placeholder','请输入手机号');
 		return true;
 		
 	}
 	
 }
 
-//触发修改事件
+//触发修改事件和
 function infoEven(){
 		$('.info').off('click').on('click',function(){
-		
 			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
 			$('.removeLi').removeClass('hide');
@@ -811,10 +849,13 @@ function infoEven(){
 				newOrderEven(2,res);
 			}, getContextPath() + '/order/info?indentId='+id, null);
 		});
+		
 }
+
 //触发新建事件
 function orderNewEven(){
 		$('.orderNew').off('click').on('click',function(){
+			$('#teles').attr('placeholder','请输入手机号');
 			var id = $(this).parent().find('.id').text();
 			$('#NewOrder').show();
 			$('.removeLi').addClass('hide');
@@ -926,6 +967,8 @@ function editEvenFunction(item){
 	$('.noUse img').addClass('hide');
 	$('.must').addClass('hides');
 	var orderC = $('#orderCome li');
+	$('#teles').attr('placeholder','请输入手机号');
+	
 	if(item.result.indentSource == null || item.result.indentSource == ''){
 		$('#orderComeInfo').text('请选择');
 		$('#orderComeInfo').attr('data-value','');
@@ -939,6 +982,10 @@ function editEvenFunction(item){
 			$('#orderComeInfo').attr('data-id',num);
 			if(num == 5){
 				$('#showHelper').show();
+			}else if(num ==9||num==10||num==4){
+				$('#teles').attr('placeholder','请输入手机号或者座机号');
+			}else{
+				$('#teles').attr('placeholder','请输入手机号');
 			}
 		}
 		}
@@ -964,7 +1011,6 @@ function initUpdateInfo(){
 
 function bangSubmit(check,item){
 	$('#submitEdit').off('click').on('click',function(){
-		console.log('1');
 		if(checkUpdateEven()){
 			var subName =$('#telName').val();
 			var subCompany =$('#companyName').val();
@@ -974,8 +1020,6 @@ function bangSubmit(check,item){
 			var dataIndentName = '自主研发';
 			var textArea = $('#orderNote').val();
 			var indent_recomment = $('#indent_recomment').val();
-			
-			console.log('2');
 			if(item != null && item !='' && item !=undefined){
 			  var subId = item.result.id;
 			  var subData =item.result.orderDate;
@@ -1439,6 +1483,7 @@ function checkUser(){
     				$('#mptModel').off('click').on('click',function(){
     					$('.modelPage').hide();
     					$('.orderModel').hide();
+    					$('.submit').off('click').on('click',checkUser);
     				});
     				var root = $('#smodelPage');
     				var mprealName = $(root).find('#mprealName');
@@ -1501,6 +1546,7 @@ function checkUbListUser(tel,id){
 	                    $('#mptModel').off('click').on('click',function(){
 	                        $('.modelPage').hide();
 	                        $('.orderModel').hide();
+	                        $('.submit').off('click').on('click',checkUser);
 	                    });
 	                    var root = $('#smodelPage');
 	                    var mprealName = $(root).find('#mprealName');
@@ -1536,6 +1582,7 @@ function checkUbListUser(tel,id){
 	    	                    $('#mptModel').off('click').on('click',function(){
 	    	                        $('.modelPage').hide();
 	    	                        $('.orderModel').hide();
+	    	                        $('.submit').off('click').on('click',checkUser);
 	    	                    });
 	    	                    var root = $('#smodelPage');
 	    	                    var mprealName = $(root).find('#mprealName');
@@ -1750,6 +1797,22 @@ function initUserView(id){
 		$('#muOfficialSite').val('');	
 		loadData(function(res){
 			var rr = res.result;
+			var deng=rr.clientLevel;
+			var best;
+			if(deng == 0){
+				best="A";
+			} else if( deng == 1){
+				best="B";
+			} else if( deng == 2){
+				best="C";
+			} else if( deng == 3){
+				best="S";
+			} else if( deng == 4){
+				best="D";
+			}else{
+				best="未分级";
+			}
+			$('#small').text(best);
 			$('#userName').val(rr.userName);
 			$('#muRealName').val(rr.realName);
 			$('#muUserCompany').val(rr.userCompany);

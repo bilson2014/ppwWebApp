@@ -383,3 +383,10 @@
                     background: transparent!important;
                 }
             }
+            
+            .flowTree .treeitem .boxs {
+                width: 14px;
+                height: 14px;
+                background: url(/resources/images/flow/boxs.png);
+                background-size: 14px 28px;
+            }

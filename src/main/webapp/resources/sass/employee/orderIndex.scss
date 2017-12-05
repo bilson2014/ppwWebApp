@@ -424,10 +424,24 @@
             padding-left: 30px;
             margin-bottom: 30px;
         }
+        #newtitle {
+            border-bottom: none;
+            display: inline-block;
+            position: absolute;
+            right: 10%;
+            top: 0%;
+            font-size: 1.6rem;
+            width: 20%;
+            .small {
+                color: #fe5453;
+                margin-left: 10%;
+            }
+        }
         .itemContents {
             position: relative;
             overflow: auto;
-            height: 350px;
+            // height: 350px;
+            height: 430px;
             @media screen and (min-width: 1276px) and (max-width: 1600px) {
                 height: 450px;
             }

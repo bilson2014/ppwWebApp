@@ -64,7 +64,10 @@
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
 	
-	 <!-- 流程管理end -->
+	<!-- 价格计算  -->
+	<mvc:view-controller path="/count/numcount" view-name="/count/numcount" />
+	
+	<!-- 流程管理end -->
 	<mvc:view-controller path="/project/running" view-name="/flow/textFlow" />
     
     <mvc:view-controller path="/mc" view-name="/salesMan/mc" />

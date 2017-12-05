@@ -105,9 +105,21 @@
 		                  <li id='orderCancle' data-value="2">无效订单</li>
 		              </ul>
 	               	</r:permission>  	
-	              
-	     
-	           <r:identity role="employee">
+	       <!-- 工具箱 -->    
+	    <%--   <r:permission uri="/order/myOrder"> --%>
+			              <div class="treeitem" id="myboxs">
+			                <div class="boxs"></div>
+			                <div class="title">工具箱</div>
+			                <img src="${imgPath}/flow/more.png">
+			            </div>
+	                  <ul class="productList" id="boxsList">
+		                  <li id='boxsIndex' data-value="0">报价单生成器</li>
+		                  <li id='boxsSub' data-value="1">烟火</li>
+		                  <li id='boxsCancle' data-value="2">星光喽</li>
+		              </ul>
+	   		<%-- </r:permission>   --%>
+	               	
+	       <r:identity role="employee">
 			         <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
 			                  <div class="title">收藏列表</div>
