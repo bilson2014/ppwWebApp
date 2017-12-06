@@ -4,7 +4,6 @@ var InterValRecoverObj; // timer变量，控制时间 - 密码找回
 var count = 120; // 间隔函数，1秒执行
 var curCount = 0; // 当前剩余秒数 - 注册
 $().ready(function() {
-	if(window.top!==window.self){window.top.location=window.location};
 	originTool();
 	banner();
 	client();
@@ -716,7 +715,7 @@ function getContentIndex(string) {
 	if (string.length <= num) {
 		var content = string
 	} else {
-		var content = string.substr(0, num) + "[...]"
+		var content = string.substr(1, num) + "[...]"
 	}
 	return content;
 }
