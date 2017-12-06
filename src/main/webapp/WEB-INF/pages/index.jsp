@@ -329,9 +329,11 @@
 												   		 <div  class="price">￥<fmt:formatNumber value="${item.price }" pattern="#,#00"/></div>
 												   		</c:otherwise>
 													</c:choose>
-													<c:if test="${ !empty item.orignalPrice }">
+													
+													<%--  <c:if test="${ !empty item.orignalPrice }">
 						                               <div class="realPrice">原价￥<fmt:formatNumber value="${item.orignalPrice}" pattern="#,#00"/></div>
-						                            </c:if>
+						                            </c:if> --%>
+						                             
 								                	 <div class="videoCardLine"></div>
 								             	</div>
 								              </a>  

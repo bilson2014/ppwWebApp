@@ -98,12 +98,12 @@
                         }
                         ul {
                             li {
-                                width: 120px;
+                                width: 200px;
                                 @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                                    width: 150px;
+                                    width: 240px;
                                 }
                                 @media screen and (min-width: 1500px) {
-                                    width: 178px;
+                                    width: 240px;
                                 }
                                 display: inline-block;
                                 vertical-align: top;

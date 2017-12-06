@@ -91,16 +91,29 @@
                                 <div class="title" >视频类别</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span data-content="2" id="videoType">企业宣传</span>
+                                        <span data-content="0" id="videoType">企业宣传</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0">活动视频</li>
+                                       <!--  <li data-content="0">活动视频</li>
                                         <li data-content="1">产品广告(TVC)</li>
                                         <li data-content="2">企业宣传</li>
                                         <li data-content="3">微电影</li>
                                         <li data-content="4">融资路演</li>
-                                        <li data-content="5">众筹视频</li>
+                                        <li data-content="5">众筹视频</li> -->
+                                        
+                                        
+                                        
+                                        <li data-content="0">企业宣传</li>
+                                        <li data-content="1">广告TVC</li>
+                                        <li data-content="2">微电影</li>
+                                        <li data-content="3">MG动画</li>
+                                        <li data-content="4">三维展示</li> 
+                                        <li data-content="5">视频名片</li> 
+                                        <li data-content="6">电商视频</li>
+                                        <li data-content="7">活动及课件</li>
+                                        
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -156,30 +169,35 @@
                                 <div class="title" >演员</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span data-content="0" id='actor'>无演员</span>
+                                        <span data-content="0" id='actor'>自有演员</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0">无演员</li>
-                                        <li data-content="1">自有演员</li>
-                                        <li data-content="2">普通演员</li>
-                                        <li data-content="3">专业演员</li>
+                                        <li data-content="0">自有演员</li>
+                                        <li data-content="1">普通演员</li>
+                                        <li data-content="2">专业演员</li>
+                                        
                                     </ul>
                                 </div>
                             </div>
 
                              <div class="calItem">
-                                <div class="title"  >动画</div>
+                                <div class="title"  >配音</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span id="animation" data-content="0">无动画</span>
+                                        <span id="animation" data-content="0">无配音</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0">无动画</li>
+                                        <!-- <li data-content="0">无动画</li>
                                         <li data-content="1">三维动画</li>
                                         <li data-content="2">二维动画</li>
-                                        <li data-content="3">MG动画</li>
+                                        <li data-content="3">MG动画</li> -->
+                                        
+                                       	<li data-content="0">无配音</li>
+                                        <li data-content="1">专业配音</li>
+                                        <li data-content="2">广播级配音</li>
+                                        <li data-content="3">广告级配音</li> 
                                     </ul>
                                 </div>
                             </div>

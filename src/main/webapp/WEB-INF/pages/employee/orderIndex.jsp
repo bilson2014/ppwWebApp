@@ -315,27 +315,7 @@
                         </div>    
                     </div>
                     <div class="borderline"></div>
-                    <div class="infoItem">
-                        <div class="setError" >
-                          <div class="itemTitile">微信</div>
-                          <input class="itemInput" id="muWeChat">
-                          <div class="must"></div>
-                        </div>  
-                         
-                        <div class="setError longItem" >     
-                          <div class="itemTitile">邮件</div>
-                          <input class="itemInput" id="muEmail">
-                          <div class="must"></div>
-                        </div>  
-                    </div>
-                    <div class="infoItem">
-                        <div class="setError" id="muOfficialSiteError" >
-                          <div class="itemTitile">网址</div>
-                          <input class="itemWeb" id="muOfficialSite" placeholder="例如:http://www.example.com">
-                          <div class="must"></div>
-                        </div>  
-                    </div>
-                        <div class="borderline"></div>
+                   
                      <div class="infoItem">
                         <div class="setError" >
                           <div class="itemTitile">购买频次</div>
@@ -384,7 +364,27 @@
                       </div>  
                       
                        <div class="borderline"></div> 
-                       
+                        <div class="infoItem">
+                        <div class="setError" >
+                          <div class="itemTitile">微信</div>
+                          <input class="itemInput" id="muWeChat">
+                          <div class="must"></div>
+                        </div>  
+                         
+                        <div class="setError longItem" >     
+                          <div class="itemTitile">邮件</div>
+                          <input class="itemInput" id="muEmail">
+                          <div class="must"></div>
+                        </div>  
+                    </div>
+                    <div class="infoItem">
+                        <div class="setError" id="muOfficialSiteError" >
+                          <div class="itemTitile">网址</div>
+                          <input class="itemWeb" id="muOfficialSite" placeholder="例如:http://www.example.com">
+                          <div class="must"></div>
+                        </div>  
+                    </div>
+                    <div class="borderline"></div>
                      <div class="infoItem">
                          <div class="setError" > 
                           <div class="itemTitile" style="top:-70px;">备注</div>
