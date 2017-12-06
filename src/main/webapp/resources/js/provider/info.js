@@ -390,7 +390,6 @@ function updateProviderInfo() {
 		/*infoResource : $('#infoResource').attr('data-value'),*/
 		business : getBusinessVal(),
 		scale : $('#company-scale').attr('data-value'),
-		description : $('#company-description').val().trim(),
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
@@ -427,7 +426,6 @@ function dealTeamTmpAndUpdateTeamDesc(){
 		/*infoResource : $('#infoResource').attr('data-value'),*/
 		business : getBusinessVal(),
 		scale : $('#company-scale').attr('data-value'),
-		description : $('#company-description').val().trim(),
 		phoneNumber : $('#company-phoneNumber').val().trim(),
 		teamProvince : $('#getProvince').attr('data-value'),
 		teamCity : $("#getCity").attr('data-value'),
@@ -472,7 +470,6 @@ function updateProvider(){
 				/*	infoResource : $('#infoResource').attr('data-value'),*/
 					business : getBusinessVal(),
 					scale : $('#company-scale').attr('data-value'),
-					description : $('#company-description').val().trim(),
 					phoneNumber : $('#company-phoneNumber').val().trim(),
 					teamProvince : $('#getProvince').attr('data-value'),
 					teamCity : $("#getCity").attr('data-value'),
