@@ -3,45 +3,36 @@
 @import "video";
 @import "model";
 @import "compass/typography/text/ellipsis";
-
-  .foot3{
-    top:75px;
-  }
-
+.foot3 {
+    top: 75px;
+}
 
 .page {
     margin: auto;
     width: $width-min;
     top: 75px;
-
-
-
-
-    @media screen and (min-width:1500px) {
-       width: $width-middle;
+    @media screen and (min-width: 1500px) {
+        width: $width-middle;
     }
-
-
     //左侧树形
     .left-page {
         display: inline-block;
         vertical-align: top;
         width: 212px;
-            @media screen and (min-width:1500px) {
-       width: 300px;
-    }
+        @media screen and (min-width: 1500px) {
+            width: 300px;
+        }
         position: relative;
         background-color: $white;
         .left-title {
             width: 100%;
-            height: 50px;
+            height: 5px;
             margin-top: 30px;
-            
         }
         .left-title-text {
-             @media screen and (min-width:1500px) {
-        margin-left: 30px;
-    }
+            @media screen and (min-width: 1500px) {
+                margin-left: 30px;
+            }
             margin-left: 14px;
             font-weight: bold;
             font-size: $font-size;
@@ -51,7 +42,6 @@
             margin-top: 25px;
         }
     }
-
     .left-title-text-top {
         margin-left: 5px;
         font-size: $font-size;
@@ -64,22 +54,21 @@
     }
     .left-title-images {
         margin-left: 14px;
-          @media screen and (min-width:1500px) {
-        margin-left: 30px;
-    }
+        @media screen and (min-width: 1500px) {
+            margin-left: 30px;
+        }
         height: 20px;
         width: 20px;
         position: relative;
         top: 3px;
         display: inline-block;
     }
-
-//左侧树形菜单文字
-  .indentdiv {
-     @media screen and (min-width:1500px) {
-       position: relative;
-       left: 15px;
-    }
+    //左侧树形菜单文字
+    .indentdiv {
+        @media screen and (min-width: 1500px) {
+            position: relative;
+            left: 15px;
+        }
         width: 100%;
         margin-top: 5px;
         margin-bottom: 25px;
@@ -118,29 +107,20 @@
         }
     }
     //end
-
-
-
-
     //右侧模块
     .right-page {
         display: inline-block;
         width: 731px;
         position: relative;
         left: 10px;
-           @media screen and (min-width:1500px) {
-             width: 800px;
-    }
-       
-
-
-            .right-div {
-        position: relative;
-        right: 25px;
-        float: right;
-    }
-
-
+        @media screen and (min-width: 1500px) {
+            width: 800px;
+        }
+        .right-div {
+            position: relative;
+            right: 25px;
+            float: right;
+        }
         .flowblock {
             background: white;
             .flow-title {
@@ -151,8 +131,6 @@
             }
         }
     }
-
-
     .flow-title-text {
         font-size: $font-size;
         font-weight: bold;
@@ -164,19 +142,17 @@
     .step_margin {
         margin-top: 74px;
         padding-left: 20px;
-
-          @media screen and (min-width:1500px) {
-              padding-left: 70px;
-              }
+        @media screen and (min-width: 1500px) {
+            padding-left: 70px;
+        }
     }
-  
-  //流程时间模块
+    //流程时间模块
     .descriptiondiv {
         margin: 30px 0px 0px 0px;
         padding-left: 10px;
-          @media screen and (min-width:1500px) {
-  padding-left: 59px;
-    }
+        @media screen and (min-width: 1500px) {
+            padding-left: 59px;
+        }
         .description-title-text {
             margin-top: 30px;
             margin-bottom: 20px;
@@ -203,7 +179,6 @@
         }
     }
     //end
-
     .flowbtndiv {
         margin: 0 auto;
         width: auto;
@@ -212,7 +187,6 @@
             margin-left: 20px;
         }
     }
-
     //项目信息
     .indentinfo {
         background: $white;
@@ -276,9 +250,9 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-              @media screen and (min-width:1500px) {
-                   margin-left:35px;
-    }
+            @media screen and (min-width: 1500px) {
+                margin-left: 35px;
+            }
         }
         .indent-content-mid {
             width: 220px;
@@ -309,15 +283,13 @@
             height: 25px;
         }
     }
-      .change-file-btn {
+    .change-file-btn {
         display: inline-block;
         position: relative;
         float: right;
         right: 15px;
     }
     //end
-
-
     //项目文件模块
     .indentfile {
         position: relative;
@@ -338,18 +310,15 @@
             padding-left: 20px;
         }
     }
-
     #addfile {
         display: none;
     }
-
     .upload-file-btn {
         display: inline-block;
         position: relative;
         float: right;
         right: 15px;
     }
-  
     .file-table {
         padding-left: 10px;
         margin-top: 30px;
@@ -365,14 +334,11 @@
         line-height: 30px;
         vertical-align: middle;
     }
-
-
     .div-table-file-type {
         display: inline-block;
         height: 30px;
         width: 220px;
         vertical-align: middle;
-        
     }
     .div-table-margin {
         margin-left: 50px;
@@ -392,10 +358,9 @@
         font-size: $font-size-base;
         @include ellipsis;
         display: inline-block;
-          @media screen and (min-width:1500px) {
-         width: 115px;
-    }
-
+        @media screen and (min-width: 1500px) {
+            width: 115px;
+        }
     }
     .file-type {
         margin-left: 5px;
@@ -413,11 +378,9 @@
         display: inline-block;
         position: relative;
         top: -3px;
-          @media screen and (min-width:1500px) {
-          margin-left: 20px;
-    }
-         
-
+        @media screen and (min-width: 1500px) {
+            margin-left: 20px;
+        }
     }
     .file-user-name {
         width: 60px;
@@ -430,9 +393,9 @@
         display: inline-block;
         font-weight: bold;
         vertical-align: middle;
-         @media screen and (min-width:1500px) {
-         width: 120px;
-    }
+        @media screen and (min-width: 1500px) {
+            width: 120px;
+        }
     }
     .file-time {
         padding-left: 5px;
@@ -471,8 +434,7 @@
         text-align: center;
     }
     //end
-
-  //留言板
+    //留言板
     .message-div {
         background: $white;
         position: relative;
@@ -507,9 +469,9 @@
                 left: 20px;
                 padding-left: 5px;
                 padding-top: 5px;
-                  @media screen and (min-width:1500px) {
+                @media screen and (min-width: 1500px) {
                     width: 755px;
-    }
+                }
             }
             .comment-btn {
                 position: relative;
@@ -544,16 +506,13 @@
             .more-comment {
                 margin: auto auto;
                 position: relative;
-                top:-17px;
+                top: -17px;
                 margin-bottom: 30px;
             }
         }
     }
     //end
-
-   
 }
-
 
 //弹出框上传文件
 .upload-window {
@@ -671,7 +630,7 @@
     border: none;
     color: $white;
     font-size: $font-size-base;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .red-small-btn {
@@ -693,23 +652,22 @@
 .red-small-btn:hover {
     background-color: darken($red-base, 10%);
 }
+
 //自定义浏览
-.webuploader-pick{
-	height: 35px;
-	width: 96px;
-	padding: 0;
-	background: $red-base;
-	line-height: 35px;
-	color:white;
-	text-align: center;
-	font-size: $font-size-base;
-
-
+.webuploader-pick {
+    height: 35px;
+    width: 96px;
+    padding: 0;
+    background: $red-base;
+    line-height: 35px;
+    color: white;
+    text-align: center;
+    font-size: $font-size-base;
 }
 
-.webuploader-pick-hover{
-	background-color: darken($red-base, 10%);
-	padding: 0;
+.webuploader-pick-hover {
+    background-color: darken($red-base, 10%);
+    padding: 0;
 }
 
 .gray-btn {
@@ -734,11 +692,8 @@
     border: none;
     color: $white;
     font-size: $font-size-base;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
-
-
-
 
 .gray-btn:hover {
     background-color: $gold-yellow;
@@ -766,11 +721,7 @@
     width: 690px;
 }
 
-
 //end
-
-
-
 //无项目提示框
 .circle-img {
     position: absolute;
@@ -820,9 +771,9 @@
     line-height: 20px;
     color: $gray-dark;
 }
+
 .check-step-load {
     width: 400px;
-  
     font-size: $font-size-lg;
     position: absolute;
     top: 50px;
@@ -905,7 +856,7 @@
 }
 
 .more-file-btn {
-    top:15px !important;
+    top: 15px !important;
 }
 
 .noproject {
@@ -937,7 +888,6 @@
 //     background: url(../../images/common/mark.jpg) no-repeat;
 //     background-size: cover;
 // }
-
 .indentdiv-title {
     font-size: $font-size;
     color: $gray-light;
@@ -964,8 +914,8 @@
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
 }
-//end
 
+//end
 //旋转动画
 @-webkit-keyframes bounceIn {
     0% {
@@ -1026,10 +976,8 @@
         transform: scale3d(1, 1, 1);
     }
 }
+
 //end
-
-
-
 .modal-body dl {
     text-align: left;
 }
@@ -1152,14 +1100,11 @@ img {
     color: $gold-yellow;
 }
 
-
 .opacity-li {
     opacity: 0;
 }
 
 //end
-
-
 //图标旋转
 .circle-180 {
     transform: rotate(180deg);
@@ -1199,8 +1144,8 @@ img {
     font-size: $font-size;
     color: $gray-dark;
     outline: none;
-      @media screen and (min-width:1500px) {
- width: 210px;
+    @media screen and (min-width: 1500px) {
+        width: 210px;
     }
 }
 
@@ -1257,29 +1202,25 @@ img {
         font-size: $font-size-base;
         width: 150px;
         @include ellipsis;
-
-        @media screen and (min-width:1500px) {
-        width: 180px;
+        @media screen and (min-width: 1500px) {
+            width: 180px;
+        }
     }
-    }
-    #doingProject,#historyProject {
+    #doingProject,
+    #historyProject {
         position: relative;
         left: 35px;
-        top:20px;
-        font-size:$font-size;
+        top: 20px;
+        font-size: $font-size;
         color: black;
     }
-
-
-    #historyProjectId{
+    #historyProjectId {
         position: relative;
-        top:15px;
+        top: 15px;
     }
-
-    #myProject{
-        margin-top:30px;
+    #myProject {
+        margin-top: 30px;
     }
-
     .border-select {
         background: #fa7872;
         width: 2px;
@@ -1290,15 +1231,14 @@ img {
     }
 }
 
-#menuId{
-        height: 1200px;
-        width: 205px;
-        overflow-y: auto;
-        overflow-x: hidden;
-          @media screen and (min-width:1500px) {
-            width: 250px;
+#menuId {
+    height: 1200px;
+    width: 205px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @media screen and (min-width: 1500px) {
+        width: 250px;
     }
-
 }
 
 //end
@@ -1314,284 +1254,230 @@ img {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px $gray-dark;
-    background-color:$gray;
+    background-color: $gray;
 }
 
 //支付模块
-
-.payInfo{
- width: 100%;
- height: 160px;
- background: $white;
-
-
- .userContent{
-   height:100px;
-   width:180px;
-   margin:0 auto;
-
-   img{
-       position:relative;
-       top:-10px;
-       height: 40px;
-         }
- }
-
- #userContent{
-    div{
-        margin-top:5px;
+.payInfo {
+    width: 100%;
+    height: 160px;
+    background: $white;
+    .userContent {
+        height: 100px;
+        width: 180px;
+        margin: 0 auto;
+        img {
+            position: relative;
+            top: -10px;
+            height: 40px;
+        }
     }
-
-    span{
-        color:$red-base;
+    #userContent {
+        div {
+            margin-top: 5px;
+        }
+        span {
+            color: $red-base;
+        }
+        #openHistory {
+            position: relative;
+            left: 80px;
+            top: 2px;
+            color: $gold-yellow;
+            font-size: $font-size-sm;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
-
-    #openHistory{
+    .payInfoTop {
+        width: 80%;
+        height: 80px;
+        margin: 0 auto;
+        .imgInfo {
+            margin-top: 40px;
+            position: relative;
+            top: -2px;
+            cursor: pointer;
+        }
+        .imgLeft {
+            left: -20px;
+        }
+        .imgRight {
+            left: 50px;
+        }
+    }
+    .pay-title {
+        width: 100px;
+        height: 20px;
+        padding-top: 40px;
+        padding-left: 20px;
+        font-size: $font-size;
+        font-weight: bold;
+    }
+    .pay-top-title {
+        width: 100px;
+        height: 20px;
+        margin-top: 40px;
+        margin--left: 20px;
+        font-size: $font-size;
+        font-weight: bold;
+        color: $gray-dark;
+    }
+    .pay-way {
+        width: 100%;
+        height: 20px;
         position: relative;
-        left:80px;
-        top:2px;
-        color:$gold-yellow;
+        top: 15px;
+    }
+    .payBtnOnline {
+        float: left;
+        position: relative;
+        left: 30%;
+    }
+    .payBtnOutline {
+        float: right;
+        position: relative;
+        right: 30%;
+    }
+    .top-line {
+        position: relative;
+        left: 30%;
+        color: $gray;
+        width: 290px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .pay-btn {
+        width: 106px;
+        height: 35px;
+        border-radius: 5px;
+        font-size: $font-size-base;
+        color: $gray;
+        background: none;
+        border: 1px solid $gray-light;
+        outline: none;
+        letter-spacing: 1px;
+    }
+    .pay-click-btn {
+        outline: none;
+        width: 106px;
+        height: 35px;
+        border-radius: 5px;
+        font-size: $font-size-base;
+        color: $gray-light;
+        background: none;
+        color: $red-base;
+        border: 1px solid $red-base;
+        letter-spacing: 1px;
+    }
+    .payBigWord {
+        color: $gray;
+        font-size: $font-size-base;
+    }
+    .paySmallWord {
+        color: $gray;
         font-size: $font-size-sm;
-        &:hover{
+    }
+    .pay-red-btn {
+        width: 80px;
+        height: 35px;
+        background-color: #fe5453;
+        border-color: #fff;
+        border-radius: 5px;
+        border: none;
+        margin: 0px auto;
+        text-align: center;
+        line-height: 35px;
+        color: $white;
+        font-size: $font-size-base;
+        &:hover {
             cursor: pointer;
         }
     }
-
-    
-            
- }
-
-
-
-   .payInfoTop{
-    width: 80%;
-    height: 80px;
-    margin: 0 auto;
-          .imgInfo{
-             margin-top:40px;
-             position: relative;
-             top:-2px;
-             cursor: pointer;
-          }
-
-          .imgLeft{
-            left:-20px;
-          }
-
-          .imgRight{
-            left:50px;
-          }
-   }
-  
-   .pay-title{
-            width: 100px;
-            height: 20px;
-            padding-top: 40px;
-            padding-left: 20px;
-            font-size:$font-size;
-            font-weight: bold;
+    .payLeft {
+        position: relative;
+        left: 150px;
+    }
+    .payLeftLink {
+        position: relative;
+        left: 50px;
+    }
+    .payRight {
+        position: relative;
+        left: 50px;
+    }
+    .pay-bottom {
+        width: 100%;
+        margin-top: 30px;
+        padding-bottom: 30px;
+    }
+    .pay-input {
+        height: 30px;
+        width: 150px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        line-height: 30px;
+        @include ellipsis;
+    }
+    .pay-error {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-size: $font-size-sm;
+        color: $red-base;
+    }
+    .pay-error-price {
+        margin-top: -10px;
+        margin-bottom: 10px;
+        font-size: $font-size-sm;
+        color: $red-base;
+    }
+    .order {
+        width: 200px;
+        @media screen and (min-width: 1500px) {
+            width: 250px;
         }
-
-         .pay-top-title{
-            width: 100px;
-            height: 20px;
-            margin-top: 40px;
-            margin--left: 20px;
-            font-size:$font-size;
-            font-weight: bold;
-            color:$gray-dark;
-        }
-
-
-
-   .pay-way{
-    width:100%;
-    height:20px;
-    position: relative;
-    top:15px;
-   }
-
-   .payBtnOnline{
-       float: left;
-       position: relative;
-       left:30%;
-   }
-
-   .payBtnOutline{
-       float: right;
-       position: relative;
-       right:30%;
-   } 
-
-  .top-line{
-    position: relative;
-    left:30%;
-    color:$gray;
-    width: 290px;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-
-.pay-btn {
-    width: 106px;
-    height: 35px;
-    border-radius: 5px;
-    font-size: $font-size-base;
-    color: $gray;
-    background: none;
-    border: 1px solid $gray-light;
-    outline: none;
-    letter-spacing: 1px;
-
-
-}
-
- 
-
-.pay-click-btn {
-     outline: none;
-    width: 106px;
-    height: 35px;
-    border-radius: 5px;
-    font-size: $font-size-base;
-    color: $gray-light;
-    background: none;
-    color:$red-base;
-    border: 1px solid $red-base;
-    letter-spacing: 1px;
-}
-
-.payBigWord{
-    color:$gray;
-    font-size: $font-size-base;
-}
-
-.paySmallWord{
-     color:$gray;
-    font-size: $font-size-sm;
-}
-
-
-.pay-red-btn {
-    width: 80px;
-    height: 35px;
-    background-color: #fe5453;
-    border-color: #fff;
-    border-radius: 5px;
-    border: none;
-    margin: 0px auto;
-    text-align: center;
-    line-height: 35px;
-    color: $white;
-    font-size: $font-size-base;
-
-    &:hover{
+        @include ellipsis;
+    }
+    .createLink {
+        position: relative;
+        left: -100px;
+        margin-top: 80px;
+    }
+    .getLink {
+        width: 500px;
+        margin-top: 10px;
+    }
+    .getLinkInput {
+        color: $gray;
+        font-size: $font-size;
+    }
+    .getLinkBtn {
+        color: $white;
+        font-size: $font-size-base;
+        background: $red-base;
+        border: none;
+    }
+    .hand {
         cursor: pointer;
     }
-
-   
 }
 
- 
- .payLeft{
-    position: relative;
-    left:150px;
- }
-
-  .payLeftLink{
-    position: relative;
-    left:50px;
- }
-
- .payRight{
-    position: relative;
-    left:50px;
-
- }
-.pay-bottom{
-    width:100%;
-    margin-top: 30px;
-    padding-bottom: 30px;
-}
-
-
- .pay-input{
-    height:30px;
-    width:150px;
-    margin-top:10px;
-    margin-bottom:10px;
-    line-height: 30px;
-     @include ellipsis;
- } 
-
- .pay-error{
-      margin-top:5px;
-      margin-bottom: 10px;
-      font-size: $font-size-sm;
-      color:$red-base;
- }
-
-  .pay-error-price{
-      margin-top:-10px;
-      margin-bottom: 10px;
-      font-size: $font-size-sm;
-      color:$red-base;
- }
-
- .order{
-    width:200px;
-    @media screen and (min-width:1500px) {
-    width:250px;
-    }
-    @include ellipsis;
- }
-
- .createLink{
-    position: relative;
-    left:-100px;
-margin-top: 80px;
- }
-
- .getLink{
-  width: 500px;
-  margin-top:10px;
- }
- .getLinkInput{
-    color: $gray;
-    font-size: $font-size;
- }
-
- .getLinkBtn{
-   color:$white;
-    font-size: $font-size-base;
-    background: $red-base;
-    border:none;
-
-   
- }
-
-  .hand{
-        cursor: pointer;
-    }
-  
-}
-
-.payTop{
+.payTop {
     position: relative;
     margin-top: 10px;
 }
 
-.payBtnPos{
+.payBtnPos {
     position: relative;
-    top:-10px;
-    left:544px;
-    @media screen and (min-width:1500px) {
-    left: 611px;
+    top: -10px;
+    left: 544px;
+    @media screen and (min-width: 1500px) {
+        left: 611px;
     }
 }
 
-.payBtnPosClick{
+.payBtnPosClick {
     width: 65px;
     height: 28px;
     border-radius: 5px;
@@ -1600,233 +1486,186 @@ margin-top: 80px;
     background: none;
     border: 1px solid $red-base;
     outline: none;
-
-    &:hover{
-          color: $red-base;
-    background: none;
-    border: 1px solid $red-base;
+    &:hover {
+        color: $red-base;
+        background: none;
+        border: 1px solid $red-base;
     }
 }
 
-.payInfoheight{
-    height:auto;
+.payInfoheight {
+    height: auto;
     border-radius: 10px;
 }
 
-.payInline{
+.payInline {
     display: inline-block;
     vertical-align: top;
 }
 
- #payHistoryList{
+#payHistoryList {
     display: none;
-    padding-top:10px;
+    padding-top: 10px;
 }
 
-
-.payCardZoom{
- width: 100%;
- height: auto;
-
+.payCardZoom {
+    width: 100%;
+    height: auto;
 }
 
-
-.payCardHeight{
-
-    height:auto;
-    padding-bottom:50px;
+.payCardHeight {
+    height: auto;
+    padding-bottom: 50px;
 }
 
-.payCard{
- width: 80%;
- height: auto;
- margin: 0 auto;
- line-height: 30px;
- border: 1px solid #ccc;
- margin-bottom:10px;
-
-
-    .payCard-top{
-          background: $gray;
-          width: 100%;
-          height: 40px;
-          line-height: 40px;
+.payCard {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    .payCard-top {
+        background: $gray;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
     }
-
-
-       .backgroundFinish{
-            background: url('/resources/images/flow/finish.png') center center no-repeat;
-          } 
-
-       .backgroundTimeOut{
-            background: url('/resources/images/flow/timeout.png') center center no-repeat;
-          }
-
-        .backgroundFail{
-            background: url('/resources/images/flow/fail.png') center center no-repeat;
-          } 
-        .backgroundBank{
-            background: url('/resources/images/flow/bank.png') center center no-repeat;
-          }
-
-        .backgroundWait{
-            background: url('/resources/images/flow/wating.png') center center no-repeat;
-          }      
-
-
-    
-    .cardLeftStatue{
-        width:80%;    
-        color:$white;
+    .backgroundFinish {
+        background: url('/resources/images/flow/finish.png') center center no-repeat;
+    }
+    .backgroundTimeOut {
+        background: url('/resources/images/flow/timeout.png') center center no-repeat;
+    }
+    .backgroundFail {
+        background: url('/resources/images/flow/fail.png') center center no-repeat;
+    }
+    .backgroundBank {
+        background: url('/resources/images/flow/bank.png') center center no-repeat;
+    }
+    .backgroundWait {
+        background: url('/resources/images/flow/wating.png') center center no-repeat;
+    }
+    .cardLeftStatue {
+        width: 80%;
+        color: $white;
         font-size: $font-size-base;
         position: relative;
         left: 50px;
-
     }
-
-    .cardRightStatue{
-        width:10%;  
-
-         img{
+    .cardRightStatue {
+        width: 10%;
+        img {
             position: relative;
-            top:5px;
-            left:70px;
-         } 
+            top: 5px;
+            left: 70px;
+        }
     }
-
 }
 
- .payCard .payCard-info{
-          width:100%;
-          height:auto;
-          padding-bottom: 20px;
-
-
-          .infoTitle{
-             margin-top: 10px;
-             font-size: $font-size-lg;
-             font-weight: bold;
-             color:$gray-dark;
-             width:150px;
-             @include ellipsis;
-          }
-
-          .info-btn{
-                height: 30px;
-                border-radius: 0px;
-                position: relative;
-                top: 50px;
-                text-align: center;
-          }
-
-               .info-close{
-                height: 30px;
-                border-radius: 0px;
-                position: relative;
-                top: 87px;
-                text-align: center;
-          }
-
-          .info-left{
-             margin-left:50px;
-             display: inline-block;
-             width:150px;
-             vertical-align: top;  
-             height:auto;
-             margin-top: 20px;          
-
-          }
-
-            .info-right{
-             height:auto;
-             display: inline-block;
-             width:auto;
-             margin-top: 20px;  
-   
-
-          }
-
-          .rightUl{
-                position: relative;
-                left:50px;
-
-          }
-          
-          ul{
-            vertical-align: top; 
-
-          }
-
-          li{
-           
-            margin-top:10px;
-
-              .contentTitle{
-               
-               font-size: $font-size-base;
-               font-weight: bold;
-               color:$gray-dark;
-
-              }
-              .contentWord{
-               
-               font-size: $font-size-base;
-               color:$gray;
-
-              }
-
-          }
-
-
-
+.payCard .payCard-info {
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+    .infoTitle {
+        margin-top: 10px;
+        font-size: $font-size-lg;
+        font-weight: bold;
+        color: $gray-dark;
+        width: 150px;
+        @include ellipsis;
     }
+    .info-btn {
+        height: 30px;
+        border-radius: 0px;
+        position: relative;
+        top: 50px;
+        text-align: center;
+    }
+    .info-close {
+        height: 30px;
+        border-radius: 0px;
+        position: relative;
+        top: 87px;
+        text-align: center;
+    }
+    .info-left {
+        margin-left: 50px;
+        display: inline-block;
+        width: 150px;
+        vertical-align: top;
+        height: auto;
+        margin-top: 20px;
+    }
+    .info-right {
+        height: auto;
+        display: inline-block;
+        width: auto;
+        margin-top: 20px;
+    }
+    .rightUl {
+        position: relative;
+        left: 50px;
+    }
+    ul {
+        vertical-align: top;
+    }
+    li {
+        margin-top: 10px;
+        .contentTitle {
+            font-size: $font-size-base;
+            font-weight: bold;
+            color: $gray-dark;
+        }
+        .contentWord {
+            font-size: $font-size-base;
+            color: $gray;
+        }
+    }
+}
 
-    .smallWord{
+.smallWord {
     color: $gray;
     font-size: $font-size-sm;
-    }
-
-    .colorGray{
-        color:$gray;
-    }
-
-    .createTitle{
-        position: relative;
-        top:-7px;
-    }
-
-
-    //分享弹出框
-
-     .getShareLink{
-  width: 80%;
-  height:auto;
-  margin-bottom:30px;
-  margin: 30px auto;
-  padding-top: 10px;
-
- }
- .getShareLinkInput{
-    color: $gray;
-    font-size: $font-size;
- }
-
- .getShareLinkBtn{
-   color:$white;
-    font-size: $font-size-base;
-    background: $red-base;
-    border:none;
-
-   
- }
-
- .share-list {
-    position: relative;
-    display: inline-block;
-     margin: 0px auto;
 }
 
-.share-list dt{
+.colorGray {
+    color: $gray;
+}
+
+.createTitle {
+    position: relative;
+    top: -7px;
+}
+
+//分享弹出框
+.getShareLink {
+    width: 80%;
+    height: auto;
+    margin-bottom: 30px;
+    margin: 30px auto;
+    padding-top: 10px;
+}
+
+.getShareLinkInput {
+    color: $gray;
+    font-size: $font-size;
+}
+
+.getShareLinkBtn {
+    color: $white;
+    font-size: $font-size-base;
+    background: $red-base;
+    border: none;
+}
+
+.share-list {
+    position: relative;
+    display: inline-block;
+    margin: 0px auto;
+}
+
+.share-list dt {
     display: inline-block;
     color: #666;
     font-size: $font-size-base;
@@ -1836,208 +1675,211 @@ margin-top: 80px;
     line-height: 20px;
 }
 
-.share-list dd{
+.share-list dd {
     display: inline-block;
     width: 26px;
     height: 23px;
     vertical-align: middle;
 }
 
-.share-list img{
+.share-list img {
     width: 22px;
     height: 22px;
     cursor: pointer;
 }
 
-.yuan{
+.yuan {
     position: relative;
     top: -31px;
     left: 155px;
 }
 
-  .handShare{
-        cursor: pointer;
-    }
-
- .canclePay{
-    position: relative;
-    float: right;
-    top:15px;
-    right:22px;
+.handShare {
     cursor: pointer;
- }
-  .canclePayLink{
-    position: relative;
-    float: right;
-    right:22px;
-    cursor: pointer;
- }
-
- .datepickers-container{
-    z-index:2500 !important;
- }
-
- .loadMore{
-    position:relative;
-    left:0px;
-    margin-top:-10px;
-    top:60px;
-    width:100%;
-    text-align:center;
-    font-size:$font-size-base;
-    cursor:pointer;
-    color:$gray-light;
 }
 
- .loadMoreCus{
-    position:relative;
-    top:-30px;
-    width:100%;
-    text-align:center;
-    font-size:$font-size-base;
-    cursor:pointer;
-    color:$gray-light;
+.canclePay {
+    position: relative;
+    float: right;
+    top: 15px;
+    right: 22px;
+    cursor: pointer;
+}
+
+.canclePayLink {
+    position: relative;
+    float: right;
+    right: 22px;
+    cursor: pointer;
+}
+
+.datepickers-container {
+    z-index: 2500 !important;
+}
+
+.loadMore {
+    position: relative;
+    left: 0px;
+    margin-top: -10px;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+    font-size: $font-size-base;
+    cursor: pointer;
+    color: $gray-light;
+}
+
+.loadMoreCus {
+    position: relative;
+    top: -30px;
+    width: 100%;
+    text-align: center;
+    font-size: $font-size-base;
+    cursor: pointer;
+    color: $gray-light;
 }
 
 .circle-180 {
     transform: rotate(180deg);
 }
 
-.copySuccess{
+.copySuccess {
     position: relative;
-    top:-15px;
-     @extend .success;
+    top: -15px;
+    @extend .success;
 }
 
-.copySuccessImg{
+.copySuccessImg {
     position: relative;
-    top:-15px;
-    left:0px;
+    top: -15px;
+    left: 0px;
     @extend .success;
-
-    img{
+    img {
         position: relative;
-        left:5px;
+        left: 5px;
     }
-}  
+}
 
-.copyListSuccess{
-   position: relative;
-   top:-185px;
+.copyListSuccess {
+    position: relative;
+    top: -185px;
     @extend .success;
 }
 
-.copyListSuccessImg{
-   position: relative;
-   top: -185px;
-   @extend .success;
+.copyListSuccessImg {
+    position: relative;
+    top: -185px;
+    @extend .success;
 }
 
-.success{
+.success {
     text-align: center;
-    color:green;
+    color: green;
 }
 
-  .pay-title-link{
-            width: 100px;
-            height: 20px;
-            padding-top: 20px;
-            padding-left: 20px;
-            font-size:$font-size;
-            font-weight: bold;
-        }
+.pay-title-link {
+    width: 100px;
+    height: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: $font-size;
+    font-weight: bold;
+}
 
-
-
-
-
-
-.loadmore-div{
-    position:relative;
-    top:10px;
-    margin:0px auto;
-    width:100%;
-    height:1000px;
+.loadmore-div {
+    position: relative;
+    top: 10px;
+    margin: 0px auto;
+    width: 100%;
+    height: 1000px;
     text-align: center;
 }
 
-.loadmore-file{
+.loadmore-file {
     position: absolute;
     top: 72px;
-    margin:0px auto;
-    width:100%;
-    height:50px;
+    margin: 0px auto;
+    width: 100%;
+    height: 50px;
     text-align: center;
 }
 
-.loadmore-Comment{
+.loadmore-Comment {
     position: absolute;
-    top:100px;
-    margin:0px auto;
-    width:100%;
-    height:50px;
+    top: 100px;
+    margin: 0px auto;
+    width: 100%;
+    height: 50px;
     text-align: center;
 }
+
 .spinner {
- 
-  width: 150px;
-  text-align: center;
-  display:inline;
+    width: 150px;
+    text-align: center;
+    display: inline;
 }
- 
-.spinner > div {
-  width: 10px;
-  height: 10px;
-  background-color:$red-base;
- 
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-  animation: bouncedelay 1.4s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+
+.spinner>div {
+    width: 10px;
+    height: 10px;
+    background-color: $red-base;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
- 
+
 .spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
 }
- 
+
 .spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
 }
- 
+
 @-webkit-keyframes bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0.0) }
-  40% { -webkit-transform: scale(1.0) }
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0.0)
+    }
+    40% {
+        -webkit-transform: scale(1.0)
+    }
 }
- 
+
 @keyframes bouncedelay {
-  0%, 80%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 40% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
+    0%,
+    80%,
+    100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    40% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }
 
-.load-word{
-    color:$red-base;
-    font-size:$font-size;
-    position:relative;
-    top:0px;
-    left:0px;
-    text-align:center;
-    display:inline-block;
+.load-word {
+    color: $red-base;
+    font-size: $font-size;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    display: inline-block;
 }
 
-.pay-bottom-link{
-   width:100%;
-   height: auto;
-   text-align: center;
+.pay-bottom-link {
+    width: 100%;
+    height: auto;
+    text-align: center;
 }
 
 .pay-redLink-btn {
@@ -2053,42 +1895,39 @@ margin-top: 80px;
     color: $white;
     font-size: $font-size-base;
     margin-bottom: 20px;
-
-    &:hover{
+    &:hover {
         cursor: pointer;
     }
-
-   
 }
 
-.copyDiv{
+.copyDiv {
     position: relative;
-    top:40px;
+    top: 40px;
 }
 
 //暂停提示
-.pauseWord{
+.pauseWord {
     position: relative;
-    top:0px;
-    left:0px;
-    text-align:center; 
+    top: 0px;
+    left: 0px;
+    text-align: center;
     font-size: $font-size;
-    color:$gray;
+    color: $gray;
 }
 
-.pauseBtn{
+.pauseBtn {
     position: relative;
     margin-top: 20px;
-    text-align:center; 
+    text-align: center;
 }
 
-.canclestepPause{
+.canclestepPause {
     position: relative;
     left: 250px;
     cursor: pointer;
 }
 
-.textareaInfo{
+.textareaInfo {
     width: 360px;
     height: 70px;
     border-radius: 5px;
@@ -2096,14 +1935,14 @@ margin-top: 80px;
     max-height: 70px;
 }
 
-#pauseError{
-    color:$red-base;
+#pauseError {
+    color: $red-base;
     position: relative;
-    top:5px;
-    left:-10px;
+    top: 5px;
+    left: -10px;
 }
 
-.textareaInfoError{
+.textareaInfoError {
     width: 360px;
     height: 70px;
     border-radius: 5px;
@@ -2112,91 +1951,81 @@ margin-top: 80px;
     border-color: $red-base;
 }
 
-.pauseTop{
+.pauseTop {
     position: relative;
-    top:10px;
+    top: 10px;
 }
-.puaseLeft{
-        position: relative;
+
+.puaseLeft {
+    position: relative;
     right: 20px;
 }
 
-.puaseRight{
-        position: relative;
+.puaseRight {
+    position: relative;
     left: 20px;
 }
 
-#showErrorList{
-    color:$red-base;
+#showErrorList {
+    color: $red-base;
 }
 
-.curr{
-     
-     width:240px;
-     margin:0 auto;
-     list-style-type:none;
-     li{
-
-     list-style-type:none;
-     }
-    div{
-      display:inline-block;
-      color:$gray;
-      margin-bottom:10px;
+.curr {
+    width: 240px;
+    margin: 0 auto;
+    list-style-type: none;
+    li {
+        list-style-type: none;
     }
-
-    .info{
-      width:150px;
-      margin-left:10px;
-      text-align:left;
+    div {
+        display: inline-block;
+        color: $gray;
+        margin-bottom: 10px;
     }
-    .infoimgR{
-           color:green;
+    .info {
+        width: 150px;
+        margin-left: 10px;
+        text-align: left;
     }
-       .infoimgG{
-         color:$red-base;
-
-         div{
+    .infoimgR {
+        color: green;
+    }
+    .infoimgG {
+        color: $red-base;
+        div {
             background: $red-base;
-            color:white;
+            color: white;
             border-radius: 6px;
             padding: 5px;
-         }
-    }
-
-}
-
-
-.checkListClose{
-position:relative;
-cursor:pointer;
-left:544px;
-}
-
-.closeLoad{
-display: block; 
-text-align: center; 
-color: red;
-}
- 
-.checkListTrue{
-     font-size: 0;
-     width: 270px;
-     margin: 0 auto;
-     margin-top: 20px;
-
-        #nextflowbtn{
-           margin-right: -20px;
         }
+    }
+}
 
-      #checkListcancle{
-           margin-left:80px;
-      }
- }
+.checkListClose {
+    position: relative;
+    cursor: pointer;
+    left: 544px;
+}
 
+.closeLoad {
+    display: block;
+    text-align: center;
+    color: red;
+}
 
- .loadHeight{
+.checkListTrue {
+    font-size: 0;
+    width: 270px;
+    margin: 0 auto;
+    margin-top: 20px;
+    #nextflowbtn {
+        margin-right: -20px;
+    }
+    #checkListcancle {
+        margin-left: 80px;
+    }
+}
+
+.loadHeight {
     height: 100px;
- }
-
-
+}
