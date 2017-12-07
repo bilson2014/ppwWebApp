@@ -35,37 +35,6 @@ public class CostCalculateController extends BaseController{
 	private SmsMQService smsMQService;
 	@Autowired
 	private PmsIndentFacade pmsIndentFacade;
-	/**
-	视频类别	专业级导演团队（3-5）默认	广告级导演团队（5-8）	电影级导演团队（8-10）
-	活动视频1	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
-	产品广告	￥ 60,000.00			￥ 100,000.00	￥ 200,000.00
-	企业宣传	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
-	微电影	￥ 60,000.00			￥ 100,000.00	￥ 200,000.00
-	融资路演	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
-	众筹视频	￥ 30,000.00			￥ 60,000.00		￥ 100,000.00
-	 */
-	public static int[][] typeAddTeam = new int[6][3];//初始化6行3列的 视频+导演价格表
-	static{
-		typeAddTeam[0][0] = 30000;
-		typeAddTeam[0][1] = 60000;
-		typeAddTeam[0][2] = 100000;
-		typeAddTeam[1][0] = 60000;
-		typeAddTeam[1][1] = 100000;
-		typeAddTeam[1][2] = 200000;
-		typeAddTeam[2][0] = 30000;
-		typeAddTeam[2][1] = 60000;
-		typeAddTeam[2][2] = 100000;
-		typeAddTeam[3][0] = 60000;
-		typeAddTeam[3][1] = 100000;
-		typeAddTeam[3][2] = 200000;
-		typeAddTeam[4][0] = 30000;
-		typeAddTeam[4][1] = 60000;
-		typeAddTeam[4][2] = 100000;
-		typeAddTeam[5][0] = 30000;
-		typeAddTeam[5][1] = 60000;
-		typeAddTeam[5][2] = 100000;
-	}
-	
 	
 	@RequestMapping(value="/cost")
 	public Map<String, Object> costCalculate(@RequestBody CostCalculate calculate,
@@ -99,7 +68,7 @@ public class CostCalculateController extends BaseController{
 			}
 		}
 		map.put("code", 1);
-		int cost = calculateService.dealCost(typeAddTeam,calculate);
+		int cost = calculateService.dealCost(PmsConstant.TYPE_ADD_TEAM,PmsConstant.TYPE_ADD_EQUIPMENT,calculate);
 		map.put("cost", cost);
 		//提交订单
 		PmsIndent indent = new PmsIndent();
