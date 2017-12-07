@@ -61,6 +61,7 @@
 	               
 	                <r:identity role="employee">
 	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
+	                	<div class="menuItem" id="minboxs"><div class="boxs" id="minboxs"></div></div>
 		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                </r:identity>
@@ -114,8 +115,8 @@
 			            </div>
 	                  <ul class="productList" id="boxsList">
 		                  <li id='boxsIndex' data-value="0">报价单生成器</li>
-		                  <li id='boxsSub' data-value="1">烟火</li>
-		                  <li id='boxsCancle' data-value="2">星光喽</li>
+		                  <li id='boxsSub' data-value="1">不知道</li>
+		                  <li id='boxsCancle' data-value="2">不知道</li>
 		              </ul>
 	   		<%-- </r:permission>   --%>
 	               	

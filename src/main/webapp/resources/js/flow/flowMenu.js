@@ -20,16 +20,24 @@ $().ready(function() {
 function initMenuEven(){
 	//项目页面的样式改变 按钮样式  相应式
 	$('#myPro').off('click').on('click',function(){
-		$('#safe').removeClass('treeitemRed');
-		$('#toSave').removeClass('treeitemRed');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#shortMenu .myPro').addClass('open');
+		$('#minboxs .boxs').removeClass('open');
+		
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
 		$('#toSave .save').removeClass('treepic ');
-		$('#myboxs').removeClass('open');
+		
+		
+//		$('#myboxs').removeClass('open');
 		$('#myOrder').addClass('open');
+		$('#myboxs').addClass('open');
 		var nThis = $(this);
 		if($(this).hasClass('open')){
 			nThis.removeClass('open');
@@ -38,14 +46,27 @@ function initMenuEven(){
 		} else {
 			nThis.addClass('open');
 			$('#orderList').slideUp();
-			
+			$('#boxsList').slideUp();
 			$('#productList').slideDown();
 		}
 	});
 	//订单页面的样式改变  按钮样式   响应式
 	$('#myOrder').off('click').on('click',function(){
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');
+		$('#shortMenu .orderList ').addClass('open');
+		$('#shortMenu .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');
 		$('#myPro').addClass('open');
-		$('#myboxs').removeClass('open');
+		$('#myboxs').addClass('open');
 		var nThis = $(this);
 		if($(this).hasClass('open')){
 			nThis.removeClass('open');
@@ -53,18 +74,34 @@ function initMenuEven(){
 			
 		}else{
 			nThis.addClass('open');
-			$('#productList').slideUp();
 			$('#shortMenu .myPro').addClass('open');
+			$('#productList').slideUp();
+			$('#boxsList').slideUp();
 			$('#orderList').slideDown();
+			
 		}
 	});
 	
 	//工具箱页面的样式改变按钮样式 响应式
 	$('#myboxs').off('click').on('click',function(){
 		console.log('烟火');
-//	$('#myboxs').addClass('open');
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#shortMenu .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
+		$('#myPro').addClass('open');
+		$('#myOrder').addClass('open');
 		var nThis = $(this);
-		console.log(nThis);
+
 		if($(this).hasClass('open')){
 			
 			nThis.removeClass('open');
@@ -72,10 +109,11 @@ function initMenuEven(){
 //			$('#orderList').slideUp();
 		}else{
 			nThis.addClass('open');
+//			$('#shortMenu .myPro').addClass('open');
 			$('#productList').slideUp();
-			$('#shortMenu .myPro').addClass('open');
+			$('#orderList').slideUp();
 			$('#boxsList').slideDown();
-//			$('#orderList').slideDown();
+			
 		}
 	});
 	//安全頁面样式改变  按钮样式   响应式
@@ -87,6 +125,7 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#shortMenu .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');
 		$('#safe .title').addClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').addClass('treepic ');
@@ -103,25 +142,30 @@ function initMenuEven(){
 		$('#boxsCancle').removeClass('checkLi');
 	})
 	//收藏页面的样式改变  按钮样式   响应式
+	
 	$('#toSave').off('click').on('click',function(){
 		$('#toSave').addClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed');
 		$('.frame').attr('src',"/mgr/favourites");
+		
+		$('#myOrder').addClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').addClass('open');	
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#shortMenu .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').addClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
 		$('#toSave .save').addClass('treepic ');
+		
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
 		$('#nowDoing').removeClass('checkLi');
 		$('#pause').removeClass('checkLi');
 		$('#finish').removeClass('checkLi');
-		$('#myOrder').addClass('open');
+		
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -136,6 +180,12 @@ function initMenuEven(){
 		$($('.frame').prop('contentWindow').document).find('.searchInfo').addClass('searchIn');
 		$($('.frame').prop('contentWindow').document).find('#daySearch').addClass('daySearch');
 		$($('.frame').prop('contentWindow').document).find('table').addClass('mTop');
+		
+		$('#boxsList').slideUp();
+		$('#orderList').slideDown();
+		$('#productList').slideUp();
+		
+		$('#minboxs .boxs').removeClass('open');
 		$('#minorder .orderList').addClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');
@@ -146,6 +196,7 @@ function initMenuEven(){
 		$('#toSave .save').removeClass('treepic ');
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
+		
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -160,7 +211,10 @@ function initMenuEven(){
 	$('#minsave').off('click').on('click',function(){
 		$('#toSave').addClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed');
+		
 		$('.frame').attr('src',"/mgr/favourites");
+		
+		$('#minboxs .boxs').removeClass('open');
 		$('#minorder .orderList').removeClass('open');
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').addClass('open');
@@ -169,12 +223,14 @@ function initMenuEven(){
 		$('#toSave .title').addClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
 		$('#toSave .save').addClass('treepic ');
+		
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
 		$('#nowDoing').removeClass('checkLi');
 		$('#pause').removeClass('checkLi');
 		$('#finish').removeClass('checkLi');
+		
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -183,7 +239,10 @@ function initMenuEven(){
 	$('#minsafe').off('click').on('click',function(){
 		$('#safe').addClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
+		
 		$('.frame').attr('src',"/mgr/safeInfo");
+		
+		$('#minboxs .boxs').removeClass('open');
 		$('#minorder .orderList').removeClass('open');
 		$('#shortMenu .safe').addClass('open');
 		$('#shortMenu .save').removeClass('open');
@@ -192,6 +251,7 @@ function initMenuEven(){
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').addClass('treepic ');
 		$('#toSave .save').removeClass('treepic ');
+		
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -201,6 +261,37 @@ function initMenuEven(){
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
+	})
+	//左侧变小之后工具箱页面的样式改变  按钮样式   响应式!!!!!!!!!!!!!!!!!!!
+	$('#minboxs').off('click').on('click',function(){
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		
+		$('#minboxs .boxs').addClass('open');	
+		$('#minMyPro .myPro').removeClass('open');
+		$('#shortMenu .orderList').removeClass('open');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');		
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');	
+		
+		$('#boxsList').slideDown();
+		$('#orderList').slideUp();
+		$('#productList').slideUp();
+		
+		$('#orderIndex').removeClass('checkLi');
+		$('#orderSub').removeClass('checkLi');
+		$('#orderCancle').removeClass('checkLi');
+		$('#nowDoing').removeClass('checkLi');
+		$('#pause').removeClass('checkLi');
+		$('#finish').removeClass('checkLi');
+		$('#boxsIndex').addClass('checkLi');
+		$('#boxsSub').removeClass('checkLi');
+		$('#boxsCancle').removeClass('checkLi');
+		
 	})
 	//特换到小菜单 以及对应的相应式的类
 	$('#toMin').off('click').on('click',function(){
@@ -270,21 +361,6 @@ function initMenuEven(){
 //		}
 //		$('#productList').slideDown();
 	});
-	//小的 收藏页面 样式改变 以及响应式
-	$('#minSave').off('click').on('click',function(){
-	    $('.menuItem div').removeClass('open');
-        $(this).addClass('open');
-        $('.frame').attr('src',"/mgr/favourites");
-		$('#orderIndex').removeClass('checkLi');
-		$('#orderSub').removeClass('checkLi');
-		$('#orderCancle').removeClass('checkLi');
-		$('#nowDoing').removeClass('checkLi');
-		$('#pause').removeClass('checkLi');
-		$('#finish').removeClass('checkLi');	
-		$('#boxsIndex').removeClass('checkLi');
-		$('#boxsSub').removeClass('checkLi');
-		$('#boxsCancle').removeClass('checkLi');
-    });
 	//小的 订单  处理中  样式改变 以及响应式
 	$('#orderIndex').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?1");	
@@ -300,10 +376,13 @@ function initMenuEven(){
 		$('#toSave .save').removeClass('treepic ');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed ');
+		
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').addClass('open');
 		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');	
+		
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -327,6 +406,7 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').addClass('open');
 		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -349,7 +429,8 @@ function initMenuEven(){
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').addClass('open');
-		$('#minMyPro .myPro').removeClass('open');	
+		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').removeClass('open');
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -358,10 +439,7 @@ function initMenuEven(){
 //    <li id='boxsIndex' data-value="0">报价单生成器</li>
 //    <li id='boxsSub' data-value="1">烟火</li>
 //    <li id='boxsCancle' data-value="2">星光喽</li>
-	
-	$('#boxsIndex').removeClass('checkLi');
-	$('#boxsSub').removeClass('checkLi');
-	$('#boxsCancle').removeClass('checkLi');
+
 	//工具箱样式修改
 	$('#boxsIndex').off('click').on('click',function(){
 		console.log('1');
@@ -384,19 +462,60 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
 		
 	});
 	$('#boxsSub').off('click').on('click',function(){
-		console.log('2');
+		
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').addClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
+		$('#orderIndex').removeClass('checkLi');
+		$('#orderSub').removeClass('checkLi');
+		$('#orderCancle').removeClass('checkLi');
+		$('#nowDoing').removeClass('checkLi');
+		$('#pause').removeClass('checkLi');
+		$('#finish').removeClass('checkLi');
+		
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
+		
 	});
 	
 	$('#boxsCancle').off('click').on('click',function(){
-		console.log('3');
+	
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').addClass('checkLi');
+		$('#orderIndex').removeClass('checkLi');
+		$('#orderSub').removeClass('checkLi');
+		$('#orderCancle').removeClass('checkLi');
+		$('#nowDoing').removeClass('checkLi');
+		$('#pause').removeClass('checkLi');
+		$('#finish').removeClass('checkLi');
+		
+		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
+		
 	});
 }
