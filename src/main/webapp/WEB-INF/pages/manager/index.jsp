@@ -112,7 +112,7 @@
 		<div class="left-page">
 			<div class="left-title">
 				<r:permission uri="/add-view">
-					<div class="newBtn" style="display: none;">
+					<div class="newBtn">
 						<img src="${imgPath }/flow/plus.png" class="left-title-images "
 							title="添加项目"> <label class="left-title-text-top">新建项目</label>
 					</div>
