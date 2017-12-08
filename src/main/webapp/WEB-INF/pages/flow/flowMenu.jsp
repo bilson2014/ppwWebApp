@@ -108,7 +108,7 @@
 	               	</r:permission>  	
 	       <!-- 工具箱 -->    
 	    <%--   <r:permission uri="/order/myOrder"> --%>
-			              <div class="treeitem" id="myboxs">
+			              <div class="treeitem" id="myboxs" style="display: none;">
 			                <div class="boxs"></div>
 			                <div class="title">工具箱</div>
 			                <img src="${imgPath}/flow/more.png">
