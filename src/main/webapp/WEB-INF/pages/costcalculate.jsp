@@ -153,13 +153,14 @@
                                 <div class="title" >拍摄设备</div>
                                 <div class="dropdown costSelect" id="type">
                                     <div class="btn btn-default dropdown-toggle" type="button" id="typeShow" data-toggle="dropdown">
-                                        <span data-content="0" id="equipment">专业级拍摄设备 2K</span>
+                                        <span data-content="0" id="equipment">专业级设备(HD)</span>
                                         <div class="carets"></div>
                                     </div>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                        <li data-content="0" data-info="3">专业级拍摄设备 2K</li>
-                                        <li data-content="1" data-info="4">广告级拍摄设备 4K</li>
-                                        <li data-content="2" data-info="5">电影级拍摄设备 4K</li>
+                                        <li data-content="0" data-info="3">专业级设备(HD)</li>
+                                        <li data-content="1" data-info="4">广告级设备(2K)</li>
+                                        <li data-content="2" data-info="5">电影级设备(4K)</li>
+                                       
                                     </ul>
                                 </div>
                                   <div class="infoContent" id="equipmentInfo">等哈看对方机会卡机的很快发货的罚款的饭卡减</div>

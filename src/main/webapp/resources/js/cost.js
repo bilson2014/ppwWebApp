@@ -101,7 +101,7 @@ $().ready(function() {
 				$('#videoType').attr('data-content', '0');
 				$('#team').text('专业级导演团队');
 				$('#team').attr('data-content', '0');
-				$('#equipment').text('专业级拍摄设备 2K');
+				$('#equipment').text('专业级设备(HD)');
 				$('#equipment').attr('data-content', '0');
 				$('#actor').text("自有演员");
 				$('#actor').attr('data-content', '0');
