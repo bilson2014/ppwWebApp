@@ -214,9 +214,7 @@ function initMenuEven(){
 	$('#minsave').off('click').on('click',function(){
 		$('#toSave').addClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed');
-		
 		$('.frame').attr('src',"/mgr/favourites");
-		
 		$('#minboxs .boxs').removeClass('open');
 		$('#minorder .orderList').removeClass('open');
 		$('#shortMenu .safe').removeClass('open');
@@ -267,7 +265,7 @@ function initMenuEven(){
 	})
 	//左侧变小之后工具箱页面的样式改变  按钮样式   响应式!!!!!!!!!!!!!!!!!!!
 	$('#minboxs').off('click').on('click',function(){
-		
+		$('.frame').attr('src',getUrlTask() + "quotation/info");
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		
@@ -340,8 +338,7 @@ function initMenuEven(){
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
-		$('#toSave .save').removeClass('treepic ');	
-		
+		$('#toSave .save').removeClass('treepic ');			
 		$('#orderList').slideUp();
 		$('#productList').slideDown();
 		$('#orderIndex').removeClass('checkLi');
@@ -444,9 +441,13 @@ function initMenuEven(){
 //    <li id='boxsCancle' data-value="2">星光喽</li>
 
 	//工具箱样式修改
+<<<<<<< HEAD
 	$('#boxsIndex').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/box?1");	
 		
+=======
+	$('#boxsIndex').off('click').on('click',function(){		
+>>>>>>> 453a7413205b34b5b21cd4cf3c6a56b0c9d1115f
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -466,8 +467,9 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
-		$('#minboxs .boxs').addClass('open');
-		
+		$('#minboxs .boxs').addClass('open');	
+		$(this).addClass('treeitemRed');		
+		$('.frame').attr('src', getUrlTask() + "quotation/info");
 	});
 	$('#boxsSub').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/box?2");	
