@@ -441,13 +441,9 @@ function initMenuEven(){
 //    <li id='boxsCancle' data-value="2">星光喽</li>
 
 	//工具箱样式修改
-<<<<<<< HEAD
+
 	$('#boxsIndex').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/box?1");	
-		
-=======
-	$('#boxsIndex').off('click').on('click',function(){		
->>>>>>> 453a7413205b34b5b21cd4cf3c6a56b0c9d1115f
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
