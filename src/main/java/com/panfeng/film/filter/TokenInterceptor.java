@@ -64,13 +64,18 @@ public class TokenInterceptor implements HandlerInterceptor {
 			final String serviceIP = FastDFSClient.locateSource();
 			String ip = "";
 			final StringBuffer sbf = new StringBuffer();
-			sbf.append("http://");
+			sbf.append(request.getScheme()+"://");
 			
 			if(ValidateUtil.isValid(serviceIP)) {
 				ip = nodeMap.get(serviceIP);
 				if(ValidateUtil.isValid(ip)) {
 					sbf.append(ip);
-					sbf.append(":8888/");
+					if(request.getScheme().equals("http")){
+						sbf.append(":8888/");
+					}else{
+						sbf.append("/");
+					}
+					
 				} else {
 					sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
 				}
