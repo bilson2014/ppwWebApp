@@ -214,9 +214,7 @@ function initMenuEven(){
 	$('#minsave').off('click').on('click',function(){
 		$('#toSave').addClass('treeitemRed');
 		$('#safe').removeClass('treeitemRed');
-		
 		$('.frame').attr('src',"/mgr/favourites");
-		
 		$('#minboxs .boxs').removeClass('open');
 		$('#minorder .orderList').removeClass('open');
 		$('#shortMenu .safe').removeClass('open');
@@ -340,8 +338,7 @@ function initMenuEven(){
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
-		$('#toSave .save').removeClass('treepic ');	
-		
+		$('#toSave .save').removeClass('treepic ');			
 		$('#orderList').slideUp();
 		$('#productList').slideDown();
 		$('#orderIndex').removeClass('checkLi');
@@ -445,7 +442,7 @@ function initMenuEven(){
 
 	//工具箱样式修改
 	$('#boxsIndex').off('click').on('click',function(){
-		console.log('1');
+		$('.frame').attr('src',getUrlTask() + "quotation/info");
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -465,8 +462,7 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
-		$('#minboxs .boxs').addClass('open');
-		
+		$('#minboxs .boxs').addClass('open');		
 	});
 	$('#boxsSub').off('click').on('click',function(){
 		

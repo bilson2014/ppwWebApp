@@ -23,6 +23,7 @@ $().ready(function() {
 	doPasue();
 	doFinish();
 	toSave();
+	toQuotition();
 	$('#toCreate').parent().attr('href',getUrlTask() + "project/start/project")
 	checkState();
 //	numberfont();
@@ -208,6 +209,13 @@ function toSave(){
 		$('#shortMenu .orderList ').removeClasss('open');
 		$(this).addClass('treeitemRed');
         $('.frame').attr('src',"/mgr/favourites");
+	});	
+}
+
+function toQuotition(){
+	$('#toSave').off('click').on('click',function(){
+		$(this).addClass('treeitemRed');		
+		$('.frame').attr('src', getUrlTask() + "quotation/info");
 	});	
 }
 
