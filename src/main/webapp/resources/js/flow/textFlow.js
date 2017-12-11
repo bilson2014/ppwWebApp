@@ -62,7 +62,7 @@ function checkClear(who){
 		$('.frame').attr('src',"/mgr/safeInfo");
 		$('#safe').addClass('treeitemRed');
 	}else if (who==3){
-		$('.frame').attr('src',"/order/box?1");	
+		$('.frame').attr('src', getUrlTask() + "quotation/info");
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -83,7 +83,6 @@ function checkClear(who){
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
 		$('#minboxs .boxs').addClass('open');
-		
 		$('#boxsList').slideDown();
 		$('#orderList').slideUp();
 		$('#productList').slideUp();
