@@ -265,7 +265,7 @@ function initMenuEven(){
 	})
 	//左侧变小之后工具箱页面的样式改变  按钮样式   响应式!!!!!!!!!!!!!!!!!!!
 	$('#minboxs').off('click').on('click',function(){
-		
+		$('.frame').attr('src',getUrlTask() + "quotation/info");
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		
@@ -441,8 +441,7 @@ function initMenuEven(){
 //    <li id='boxsCancle' data-value="2">星光喽</li>
 
 	//工具箱样式修改
-	$('#boxsIndex').off('click').on('click',function(){
-		$('.frame').attr('src',getUrlTask() + "quotation/info");
+	$('#boxsIndex').off('click').on('click',function(){		
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -462,7 +461,9 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');	
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
-		$('#minboxs .boxs').addClass('open');		
+		$('#minboxs .boxs').addClass('open');	
+		$(this).addClass('treeitemRed');		
+		$('.frame').attr('src', getUrlTask() + "quotation/info");
 	});
 	$('#boxsSub').off('click').on('click',function(){
 		
