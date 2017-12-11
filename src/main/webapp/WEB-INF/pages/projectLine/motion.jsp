@@ -69,20 +69,20 @@
 				<div class="swiper-container swiper-title-container">
 			        	<div class="swiper-wrapper">
 							<c:if test="${! empty productList}">
-								<c:forEach items="${productList }" var="tag">
+								<c:forEach items="${productList }" var="tag" varStatus="status">
 										<c:if test="${product.chanpinName == tag.chanpinName }">
 										   <div class="swiper-slide swiper-title-slide">
-												<a><div class="active">${tag.chanpinName}</div></a>
+												<a><div class="active swiper-title-active" data-num="${status.index}">${tag.chanpinName}</div></a>
 										   </div>	
 										</c:if>
 										<c:if test="${product.chanpinName != tag.chanpinName }">
 										  <div class="swiper-slide swiper-title-slide">
-											<a href="/product/${tag.englishName }/main"><div>${tag.chanpinName}</div></a>
+											<a  onClick="window.location.href='/product/${tag.englishName }/main'" ><div>${tag.chanpinName}</div></a>
 										  </div>
-											
 										</c:if>		
 								</c:forEach>
 							</c:if>
+
 					  </div>	
 					    <!-- Add Pagination -->
 			    </div> 

@@ -10,10 +10,6 @@
         top: 1px;
     }
     
-    body {
-        background: white !important;
-    }
-    
     .page {
         @include media_screen_width_beta3();
         margin: 0 auto;

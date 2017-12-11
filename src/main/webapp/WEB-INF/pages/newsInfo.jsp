@@ -56,7 +56,7 @@
 
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
-	<input type="hidden" value="${total }" id="total"/>
+	<input type="hidden" value="${total}" id="total"/>
 	<input type="hidden" id="q" value="${q}" />
 	<jsp:include flush="true" page="header.jsp"></jsp:include> 
     <div class="page">
@@ -92,7 +92,7 @@
           <div class="newsList">
                   <ul id="pageInfo">
                   	<c:if test="${!empty list}">
-	                    <c:forEach items="${list }" var="newsSolr">
+	                    <c:forEach items="${list}" var="newsSolr">
 	                    	<li class="videoModel">
 	                    		<a class="toNewsUrl" href="<spring:url value='/news/article-${newsSolr.id}.html?q=${q }' />" >
 	                    			<c:if test="${!empty  newsSolr.picLDUrl}">

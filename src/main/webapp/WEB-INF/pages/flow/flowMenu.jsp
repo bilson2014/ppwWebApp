@@ -11,12 +11,9 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/js/flow/flowMenu.js" var="flowMenuJs"/>
 <spring:url value="/resources/images" var="imgPath" />
-
-
 <%-- <spring:url value="http://localhost:8080/" var="url" /> --%>
 <%-- <spring:url value="http://test.apaipian.com:7070/" var="url" /> --%>
 <spring:url value="http://localhost:8080/" var="url" /> 
-
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

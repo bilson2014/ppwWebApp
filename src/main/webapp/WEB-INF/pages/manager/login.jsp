@@ -48,16 +48,16 @@
 		         <div class="loginDiv">
 		            <h1>内部员工登录</h1>
 		              <form role="form" method="GET" autocomplete="off" accept-charset="UTF-8" id="login-form">
-		            <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName"></input>
-		                 <div class="otherDiv"></div>
-		                 <div class="errorDiv hide" id="loginNameId">*用户名错误</div>
-		            </div>
-		                <div class="loginContent input-group">
-		                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
-		                 <div class="errorDiv hide" id="pwdId">*用户名或密码错误</div>
-		                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
-		            </div>
+				            <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight"  placeholder="用户名" id="loginName"></input>
+				                 <div class="otherDiv"></div>
+				                 <div class="errorDiv hide" id="loginNameId">*用户名错误</div>
+				            </div>
+				                <div class="loginContent input-group">
+				                 <input class="fontSizeBaseLight" type="password"  placeholder="密码" id="pwd"></input>
+				                 <div class="errorDiv hide" id="pwdId">*用户名或密码错误</div>
+				                 <div class="errorMidDiv hide" id="login_error_info">登录错误</div>
+				            </div>
 		                </form>
 		            
 		            <div class="redBtn" id="loginbtn">登录</div> 
