@@ -14,7 +14,10 @@ $().ready(function() {
 		$('#getImgUrlMenu').attr('src','/resources/images/flow/def.png');
 	}
 	$('#setRealName').text($('#setRealName').attr('data-value'));
-
+	var hasCus = $('#setRealName').text();
+	if(hasCus == undefined || hasCus == null || hasCus == ""){
+		window.location.href=getContextPath()+ '/';
+	}
 });
 
 function initMenuEven(){

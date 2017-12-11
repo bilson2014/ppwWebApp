@@ -290,7 +290,7 @@
 					<div class="cardUl">
 					 	<c:if test="${not empty classical_section}">
 	                         <c:forEach items="${classical_section}" var="item" varStatus="itemIndex">
-	                             <c:if test="${itemIndex.index % 4 == 0 }">
+	                             <c:if test="${ itemIndex.index % 4 == 0 }">
 	                                <span class="flow-div">
 	                             </c:if>
 							     <div class="topAnimaltion oneFlow">
@@ -346,7 +346,7 @@
 										   </div>
 									    </div>
 									  </div> 
-									   <c:if test="${itemIndex.index % 4 == 4}">
+									   <c:if test="${itemIndex.index % 4 == 3}">
 									       </span>
 									   </c:if>   
 								     </c:forEach>

@@ -637,12 +637,12 @@ input:focus {
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
-                    background: url("/resources/images/index/four1s.png") no-repeat;
+                    background: url("/resources/images/index/four1.png") no-repeat;
                     background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
-            }
+            }       
             .four2 {
                 width: 26px;
                 height: 25px;
@@ -651,12 +651,13 @@ input:focus {
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
-                    background: url("/resources/images/index/four2s.png") no-repeat;
+                    background: url("/resources/images/index/four2.png") no-repeat;
                     background-size: 26px 52px;
                 }
                 position: absolute;
                 @include changeSize;
             }
+            
             .four3 {
                 width: 26px;
                 height: 25px;
@@ -665,7 +666,7 @@ input:focus {
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
-                    background: url("/resources/images/index/four3s.png") no-repeat;
+                    background: url("/resources/images/index/four3.png") no-repeat;
                     background-size: 26px 52px;
                 }
                 position: absolute;
@@ -679,7 +680,7 @@ input:focus {
                 @media screen and (max-width: 1275px) {
                     width: 20px;
                     height: 20px;
-                    background: url("/resources/images/index/four4s.png") no-repeat;
+                    background: url("/resources/images/index/four4.png") no-repeat;
                     background-size: 26px 52px;
                 }
                 position: absolute;

@@ -1,5 +1,5 @@
 $().ready(function(){
-	
+	if(window.top!==window.self){window.top.location=window.location};
 	var third_login = { 
 			sina : function(){ // 新浪登陆
 				$('#weiboBt').on('click',function(){

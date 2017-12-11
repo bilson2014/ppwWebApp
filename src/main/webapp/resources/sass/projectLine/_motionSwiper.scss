@@ -363,6 +363,10 @@ $smWidth:400px;
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+        -webkit-transition:none !important;
+        -moz-transition:none !important;
+        -webkit-transition:none !important;
+        -o-transition:none !important;
     }
 
 

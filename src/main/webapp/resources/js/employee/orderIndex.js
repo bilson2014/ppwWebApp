@@ -60,6 +60,7 @@ $().ready(function() {
 	orderIndex.init();
 	searchInit();
 	getHelp();
+	
 });
 var orderIndex = {
 		init:function(){
