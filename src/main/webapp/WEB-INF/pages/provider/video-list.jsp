@@ -195,6 +195,6 @@
 <script src="${juicerJs }"></script>
 
 <!-- 加载Mob share 控件 -->
-<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <!-- script here -->
 </html>

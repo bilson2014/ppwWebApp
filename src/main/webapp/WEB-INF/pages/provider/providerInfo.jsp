@@ -44,7 +44,7 @@
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
 	
-	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+	<script type="text/javascript" src="https://player.youku.com/jsapi"></script>
 	<script src="${jqueryJs }"></script>
 	<script src="${pluginJs }"></script>
 	<script src="${jsonJs }"></script>
