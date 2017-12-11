@@ -441,6 +441,7 @@ function initMenuEven(){
 //    <li id='boxsCancle' data-value="2">星光喽</li>
 
 	//工具箱样式修改
+
 	$('#boxsIndex').off('click').on('click',function(){
 		$('.frame').attr('src', getUrlTask() + "quotation/info");
 		$('#boxsIndex').addClass('checkLi');
