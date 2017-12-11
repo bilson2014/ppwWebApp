@@ -35,15 +35,15 @@ public class PortalController extends BaseController {
 		ModelAndView mv = new ModelAndView("index");
 		
 		String solrUrl = PublicConfig.SOLR_PORTAL_URL;
-		SessionInfo sessionInfo = getCurrentInfo(request);
-		if(sessionInfo != null) {
-			String sessionType = sessionInfo.getSessionType();
-			if(StringUtils.isNotBlank(sessionType)) {
-				if(PmsConstant.ROLE_EMPLOYEE.equals(sessionType))
-					// 替换成 员工首页数据源
-					solrUrl = PublicConfig.SOLR_EMPLOYEE_URL;
-			}
-		}
+//		SessionInfo sessionInfo = getCurrentInfo(request);
+//		if(sessionInfo != null) {
+//			String sessionType = sessionInfo.getSessionType();
+//			if(StringUtils.isNotBlank(sessionType)) {
+//				if(PmsConstant.ROLE_EMPLOYEE.equals(sessionType))
+//					// 替换成 员工首页数据源
+//					solrUrl = PublicConfig.SOLR_EMPLOYEE_URL;
+//			}
+//		}
 		
 		// 加载 精品案例以及 热门爆款
 		Map<String, List<PmsProductSolr>> productMap = portalService.getPortalProductFromSolr(solrUrl);

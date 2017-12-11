@@ -114,6 +114,12 @@
                         background: url(/resources/images/flow/orderList.png);
                         background-size: 14px 28px;
                     }
+                    .boxs {
+                        width: 14px;
+                        height: 14px;
+                        background: url(/resources/images/flow/boxs.png);
+                        background-size: 14px 28px;
+                    }
                     .save {
                         width: 14px;
                         height: 14px;
@@ -264,6 +270,12 @@
                         background: url(/resources/images/flow/save.png);
                         background-size: 14px 28px;
                     }
+                    .boxs {
+                        width: 14px;
+                        height: 14px;
+                        background: url(/resources/images/flow/boxs.png);
+                        background-size: 14px 28px;
+                    }
                     .safe {
                         width: 14px;
                         height: 14px;
@@ -382,4 +394,11 @@
                 &:hover {
                     background: transparent!important;
                 }
+            }
+            
+            .flowTree .treeitem .boxs {
+                width: 14px;
+                height: 14px;
+                background: url(/resources/images/flow/boxs.png);
+                background-size: 14px 28px;
             }

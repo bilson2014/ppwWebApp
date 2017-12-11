@@ -220,7 +220,7 @@
                        
                        <div class="setError longItem" id="telesError" data-content="">   
                           <div class="itemTitile">联系电话</div>
-                          <input class="itemInput" id="teles">
+                          <input class="itemInput" id="teles" >
                           <div class="must">*</div>
                       </div>    
                       
@@ -258,6 +258,7 @@
               <div class="findInfo cusInfo">
                     <div class="closeBtn"></div>
                     <div class="infoTitle" id="orderName">客户信息修改</div>
+                    <div class="infoTitle" id="newtitle">客户评级:<span class='small' id='small'></span></div>
               <div class="itemContents">
               		<input type="hidden" id="userName">
                     <div class="infoItem">
@@ -267,23 +268,19 @@
                           <div class="must">*</div>
                         </div>  
                         
-                        <div class="setError longItem" id="cusCompanyNameError" >  
-                          <div class="itemTitile">公司名称</div>
-                          <input class="itemInput" id="muUserCompany" maxLength="30">
-                          <div class="must">*</div>
-                        </div>  
-                    </div>
-                   
-               
-                    <div class="infoItem">
-                    
-                       <div class="setError " id="cusTelesError" >    
+                        <div class="setError " id="cusTelesError" >    
                           <div class="itemTitile">联系电话</div>
-                          <input class="itemInput" id="muTelephone">
-                          <input class="itemInput" type="hidden" id="oldmuTelephone">
+                          <input class="itemInput" id="muTelephone" style="width: 250px;">
+                          <input class="itemInput" type="hidden" id="oldmuTelephone" >
                           <div class="must">*</div>
                        </div>
-                    
+                    </div>
+                    <div class="infoItem"> 
+                     	<div class="setError longItem" id="cusCompanyNameError" >  
+                          <div class="itemTitile">公司名称</div>
+                          <input class="itemInput" id="muUserCompany" maxLength="30" style="width: 190px !important;">
+                          <div class="must">*</div>
+                        </div>  
                        <div class="setError longItem" id="cusTypeError">
                           <div class="itemTitile">客户类型</div>
 	                      <div class="orderSelect">
@@ -318,27 +315,7 @@
                         </div>    
                     </div>
                     <div class="borderline"></div>
-                    <div class="infoItem">
-                        <div class="setError" >
-                          <div class="itemTitile">微信</div>
-                          <input class="itemInput" id="muWeChat">
-                          <div class="must"></div>
-                        </div>  
-                         
-                        <div class="setError longItem" >     
-                          <div class="itemTitile">邮件</div>
-                          <input class="itemInput" id="muEmail">
-                          <div class="must"></div>
-                        </div>  
-                    </div>
-                    <div class="infoItem">
-                        <div class="setError" id="muOfficialSiteError" >
-                          <div class="itemTitile">网址</div>
-                          <input class="itemWeb" id="muOfficialSite" placeholder="例如:http://www.example.com">
-                          <div class="must"></div>
-                        </div>  
-                    </div>
-                        <div class="borderline"></div>
+                   
                      <div class="infoItem">
                         <div class="setError" >
                           <div class="itemTitile">购买频次</div>
@@ -387,7 +364,27 @@
                       </div>  
                       
                        <div class="borderline"></div> 
-                       
+                        <div class="infoItem">
+                        <div class="setError" >
+                          <div class="itemTitile">微信</div>
+                          <input class="itemInput" id="muWeChat">
+                          <div class="must"></div>
+                        </div>  
+                         
+                        <div class="setError longItem" >     
+                          <div class="itemTitile">邮件</div>
+                          <input class="itemInput" id="muEmail">
+                          <div class="must"></div>
+                        </div>  
+                    </div>
+                    <div class="infoItem">
+                        <div class="setError" id="muOfficialSiteError" >
+                          <div class="itemTitile">网址</div>
+                          <input class="itemWeb" id="muOfficialSite" placeholder="例如:http://www.example.com">
+                          <div class="must"></div>
+                        </div>  
+                    </div>
+                    <div class="borderline"></div>
                      <div class="infoItem">
                          <div class="setError" > 
                           <div class="itemTitile" style="top:-70px;">备注</div>

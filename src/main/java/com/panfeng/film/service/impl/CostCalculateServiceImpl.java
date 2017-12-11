@@ -11,7 +11,7 @@ import com.panfeng.film.service.CostCalculateService;
 public class CostCalculateServiceImpl implements CostCalculateService{
 
 	@Override
-	public int dealCost(int[][] typeAddTeam, CostCalculate calculate) {
+	public int dealCost(int[][] typeAddTeam,int[][] typeAddEquipment, CostCalculate calculate) {
 		int videoType = calculate.getVideoType();
 		int team = calculate.getTeam();
 		int equipment = calculate.getEquipment();
@@ -20,47 +20,54 @@ public class CostCalculateServiceImpl implements CostCalculateService{
 		int time = calculate.getTime();
 		int total = 0;
 		total += typeAddTeam[videoType][team];
-		switch (equipment) {
-		case 1:
-			total += 10000;
-			break;
-		case 2:
-			total += 20000;
-			break;
+		//设备
+		if(videoType<=4){
+			total +=typeAddEquipment[0][equipment];
+		}else{
+			total +=typeAddEquipment[1][equipment];
 		}
+		//演员
 		switch (actor) {
-		case 2:
+		case 1:
 			total += 5000;
 			break;
-		case 3:
+		case 2:
 			total += 10000;
 			break;
 		}
+		//动画-配音
 		switch (animation) {
 		case 1:
-			total += 30000;
+			total += 2000;
 			break;
 		case 2:
-			total += 20000;
+			total += 3000;
 			break;
 		case 3:
-			total += 10000;
+			total += 5000;
 			break;
 		}
-		
+		//时长-最终百位以下四舍五入
 		switch (time) {
-		case 1:
+		case 0:
 			BigDecimal bTotal = new BigDecimal(Integer.valueOf(total));
-			BigDecimal cheng = new BigDecimal(Double.valueOf(1.3));
-			total = bTotal.multiply(cheng).intValue();
+			BigDecimal cheng = new BigDecimal(Double.valueOf(1.2));
+			BigDecimal hundred=new BigDecimal(100);
+			total = bTotal.multiply(cheng).divide(hundred).setScale(0, BigDecimal.ROUND_HALF_UP).multiply(hundred).intValue();
+			break;
+		case 1:
+			bTotal = new BigDecimal(Integer.valueOf(total));
+			cheng = new BigDecimal(Double.valueOf(1.3));
+			hundred=new BigDecimal(100);
+			total = bTotal.multiply(cheng).divide(hundred).setScale(0, BigDecimal.ROUND_HALF_UP).multiply(hundred).intValue();
 			break;
 		case 2:
 			bTotal = new BigDecimal(Integer.valueOf(total));
 			cheng = new BigDecimal(Double.valueOf(1.5));
-			total = bTotal.multiply(cheng).intValue();
+			hundred=new BigDecimal(100);
+			total = bTotal.multiply(cheng).divide(hundred).setScale(0, BigDecimal.ROUND_HALF_UP).multiply(hundred).intValue();
 			break;
 		}
 		return total;
 	}
-
 }

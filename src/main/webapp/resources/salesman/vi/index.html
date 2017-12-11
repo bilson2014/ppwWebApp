@@ -7,6 +7,8 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/jquery.SuperSlide.2.1.1.js"></script>
 <script src="js/leftTime.js"></script>
+<script src="js/bplayer.js"></script>
+<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 
 <script>
 var _hmt = _hmt || [];
@@ -21,6 +23,9 @@ var _hmt = _hmt || [];
 
 <body>
 <input type='hidden' id='csrftoken'>
+
+
+ <jsp:include flush="true" page="../header.jsp"></jsp:include> 
 	<div class="top">
     	<div class="container">
             <a href="http://www.apaipian.com"></a>
@@ -29,7 +34,11 @@ var _hmt = _hmt || [];
     </div>
     <div class="banner slideBox" id="slideBox">
     		<div class="hd">
-				<ul><li></li><li></li><li></li></ul>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
 			</div>
 			<div class="bd">
 				<ul>
@@ -42,7 +51,6 @@ var _hmt = _hmt || [];
 			<a class="next" href="javascript:void(0)"></a>
     </div>
     <div class="djs">
-    
     	距&nbsp;本&nbsp;次&nbsp;活&nbsp;动&nbsp;结&nbsp;束&nbsp;仅&nbsp;剩&nbsp;&nbsp;
 	    				<font class="data-show-box" id="dateShow1">
 	    					<span class="date-tiem-span d">00</span>&nbsp;天&nbsp;
@@ -50,25 +58,7 @@ var _hmt = _hmt || [];
 	    					<span class="date-tiem-span m">00</span>&nbsp;分&nbsp;
 	    					<span class="date-s-span s">00</span>&nbsp;秒
 	    				</font>
-	    		<script type="text/javascript">
-	    			$(function(){
-	    				//日期倒计时
-						$.leftTime("2017/11/30 23:59:59",function(d){
-							if(d.status){
-								var $dateShow1=$("#dateShow1");
-								$dateShow1.find(".d").html(d.d);
-								$dateShow1.find(".h").html(d.h);
-								$dateShow1.find(".m").html(d.m);
-								$dateShow1.find(".s").html(d.s);
-							}
-						});
-	    			});
-	    		</script>
-
     </div>
-    <script type="text/javascript">
-		jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:1000,});
-	</script>
     <div class="main_1"></div>
     <div class="main_2"></div>
     <div class="main_3" id="baoming">
@@ -163,51 +153,63 @@ var _hmt = _hmt || [];
     	<li><p><span>恭喜！</span><br>宁波 176****8234 刘芳芳<br>已成功抢占优惠名额</p></li>
         <li></li>
     </ul>
-    <script src="js/bplayer.js"></script>
-   
-    <script language="javascript">
-    <!--
-    function openwin() {
-    window.open("http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165","newwindow","width=600,height=600,left=400,top=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no")
-    }
-	
-	$(document).ready(function(e){
-        var subNav_active = $(".adv_active");
-        var subNav_scroll = function(target){
-            subNav_active = target.parent();
-        };
-        $("#zixun a").click(function(){
-            subNav_scroll($(this));
-            var target = $(this).attr("href");
-            var targetScroll = $(target).offset().top;
-            $("html,body").animate({scrollTop:targetScroll},300);
-            return false;
-        });
-		
-		var winwith=document.body.clientWidth;
-		var imgheight=winwith/3;
-		$(".slideBox").height(imgheight);
-		$(".slideBox .bd").height(imgheight);
-		$(".slideBox .bd img").width(winwith);
-		
-		$(window).resize(function(){
-			var winwith=document.body.clientWidth;
-			var imgheight=winwith/3;
-			$(".slideBox").height(imgheight);
-			$(".slideBox .bd").height(imgheight);
-			$(".slideBox .bd img").width(winwith);
-		});
 
-    }());
-	
-    //-->
-    </script>
+    <script type="text/javascript">
+	    $(function(){
+	    	//日期倒计时
+			$.leftTime("2017/11/30 23:59:59",function(d){
+				if(d.status){
+					var $dateShow1=$("#dateShow1");
+					$dateShow1.find(".d").html(d.d);
+					$dateShow1.find(".h").html(d.h);
+					$dateShow1.find(".m").html(d.m);
+					$dateShow1.find(".s").html(d.s);
+				}
+			});
+	    });
+	    //背景图自动轮播
+	    jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:1000,});
+	    
+	    
+	    
+	    function openwin() {
+	        window.open("http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165","newwindow","width=600,height=600,left=400,top=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no")
+	        }
+	    	
+	    	$(document).ready(function(e){
+	            var subNav_active = $(".adv_active");
+	            var subNav_scroll = function(target){
+	                subNav_active = target.parent();
+	            };
+	            $("#zixun a").click(function(){
+	                subNav_scroll($(this));
+	                var target = $(this).attr("href");
+	                var targetScroll = $(target).offset().top;
+	                $("html,body").animate({scrollTop:targetScroll},300);
+	                return false;
+	            });
+	    		
+	    		var winwith=document.body.clientWidth;
+	    		var imgheight=winwith/3;
+	    		$(".slideBox").height(imgheight);
+	    		$(".slideBox .bd").height(imgheight);
+	    		$(".slideBox .bd img").width(winwith);
+	    		
+	    		$(window).resize(function(){
+	    			var winwith=document.body.clientWidth;
+	    			var imgheight=winwith/3;
+	    			$(".slideBox").height(imgheight);
+	    			$(".slideBox .bd").height(imgheight);
+	    			$(".slideBox .bd img").width(winwith);
+	    		});
+
+	        }());
+	</script>
+
     <script>
    // document.domain = "apaipian.com";
    // var urlContext="http://www.apaipian.com";
-    var urlContext="http://localhost:8081";
-    
-    
+    var urlContext="http://localhost:8081";  
     var InterValObj; // timer变量，控制时间 - 注册
     var InterValRecoverObj; // timer变量，控制时间 - 密码找回
     var count = 120; // 间隔函数，1秒执行
@@ -308,9 +310,7 @@ var _hmt = _hmt || [];
 						//jsonpCallback:"cb"
 					});   
 				}			 
-			});
-			 
-		
+			});		
 			$("#submit").click(function(){
 				$('#noUserError').hide();
 				$('#sendPhoneError').hide();
@@ -318,7 +318,6 @@ var _hmt = _hmt || [];
 				$('#sendCodeError').hide();
 				$('#sendResult').hide();
 				var phone=$("#mob").val();
-				
 				var checkCode =$('#code').val();
 				var realName=$('#user_name').val();
 				if (realName == '') {
@@ -336,7 +335,6 @@ var _hmt = _hmt || [];
 					$('#sendPhoneError').text('* 手机格式不正确');
 					return false;
 				}
-
 				if (checkCode == '') {
 					$('#sendCodeError').show();
 					$('#sendCodeError').text('* 请输入验证码');
@@ -407,6 +405,5 @@ var _hmt = _hmt || [];
 			}
 		}
     </script>
-
 </body>
 </html>

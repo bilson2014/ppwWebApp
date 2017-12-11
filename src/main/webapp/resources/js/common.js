@@ -12,14 +12,14 @@ var InterValObj; // timer变量，控制时间 - 注册
 
 //var UrlDo = "apaipian.com";
 var UrlDo = "localhost";
-//var UrlDo = "192.168.0.101";
+//var UrlDo = "192.168.0.102";
 //var UrlDo = "test.apaipian.com";
 
 
 //var Url = "http://www.apaipian.com:8087/";
 //var Url = "http://test.apaipian.com:7070/";
 var Url = "http://localhost:8080/";
-//var Url = "http://192.168.0.101:7070/";
+//var Url = "http://192.168.0.102:8080/";
 
 
 $().ready(function(){
@@ -392,6 +392,20 @@ function checkMobile(str) {
 		return false;
 	}
 }
+
+/**
+ * 
+ *验证 电话号
+ */
+function checkphone(str){
+	 var reg =/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+	 if(str.match(reg)){
+			return true;
+		} else{
+			return false;
+		}
+}
+
 
 /**
  * 验证 邮箱地址
@@ -965,9 +979,6 @@ function firstSuccessTooltip() {
 		$('#last3').text(initM--);
 	}
 }
-
-
-
 //通用错误提示
 function showCommonError(id, error) {
 	if (error == "" || error == null) {

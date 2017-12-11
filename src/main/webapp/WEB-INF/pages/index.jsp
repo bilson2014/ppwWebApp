@@ -21,19 +21,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="宣传片,宣传片制作, 品牌微电影,tvc广告片,广告片拍摄, mg动画,短视频,商业视频">
-<meta name="description" content="拍片网是专业的商业视频服务平台，提供：宣传片、产品tvc广告拍摄、品牌微电影、mg动画等短视频内容制作。成本托管，免费创意策划，海量样片，价格透明。拍片就上拍片网！">
+<meta name="keywords" content="宣传片,企业宣传片,宣传片制作,宣传片拍摄,tvc广告,产品广告片,广告片拍摄,广告片制作,mg动画,品牌微电影">
+<meta name="description" content="拍片网是专业的商业视频服务平台，提供：企业宣传片、产品tvc广告片拍摄、品牌微电影、mg动画等拍摄制作。成本托管，免费创意策划，案例样片，价格透明。拍片就上拍片网！">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>拍片网_商业视频制作平台, 宣传片,tvc广告拍摄,品牌微电影, mg动画,短视频</title>
+<title>拍片网_商业视频制作平台,宣传片,mg动画,产品广告片,tvc广告,品牌微电影</title>
 <link rel="stylesheet" href="/resources/css/index.css">
 <link rel="stylesheet" href="/resources/lib/swiper/swiper.min.css">
 <link rel="stylesheet" href="resources/lib/Bootstrap/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
-<script type="text/javascript"
-	src="resources/lib/jquery/waypoints.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery.json/jquery.json-2.4.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery/waypoints.min.js"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper.js"></script>
 <script type="text/javascript" src="resources/lib/Clamp/clamp.js"></script>
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
@@ -332,9 +329,11 @@
 												   		 <div  class="price">￥<fmt:formatNumber value="${item.price }" pattern="#,#00"/></div>
 												   		</c:otherwise>
 													</c:choose>
-													<c:if test="${ !empty item.orignalPrice }">
+													
+													<%--  <c:if test="${ !empty item.orignalPrice }">
 						                               <div class="realPrice">原价￥<fmt:formatNumber value="${item.orignalPrice}" pattern="#,#00"/></div>
-						                            </c:if>
+						                            </c:if> --%>
+						                             
 								                	 <div class="videoCardLine"></div>
 								             	</div>
 								              </a>  
@@ -598,6 +597,7 @@
 			   <a  href="http://www.cubead.com/" target="_blank"><img alt="大数据整合营销" src="/resources/images/index/friend3.png"></a>
 			   <a  href="http://www.bjjfsd.com/" target="_blank"><img alt="北京网站制作" src="/resources/images/index/friend4.png"></a>
 			   <a  href="http://www.qiqueqiao.com/" target="_blank"><img alt="企鹊桥" src="/resources/images/index/friend5.png"></a>
+			   <a  href="http://www.dadetong.com/" target="_blank"><img alt="大德通众包平台" src="/resources/images/index/friend6.png"></a>
 			</div>
 		</div>	
 		<!-- 入驻end-->
