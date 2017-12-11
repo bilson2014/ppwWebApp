@@ -104,8 +104,8 @@
 		              </ul>
 	               	</r:permission>  	
 	       <!-- 工具箱 -->    
-	    <%--   <r:permission uri="/order/myOrder"> --%>
-			              <div class="treeitem" id="myboxs" style="display: none;">
+	<%--  <r:permission uri="/order/box">  --%>
+			              <div class="treeitem" id="myboxs" >
 			                <div class="boxs"></div>
 			                <div class="title">工具箱</div>
 			                <img src="${imgPath}/flow/more.png">
@@ -115,7 +115,7 @@
 		                  <li id='boxsSub' data-value="1">不知道</li>
 		                  <li id='boxsCancle' data-value="2">不知道</li>
 		              </ul>
-	   		<%-- </r:permission>   --%>
+	 <%--   	</r:permission>   --%>
 	               	
 	       <r:identity role="employee">
 			         <div class="treeitem" id="toSave">

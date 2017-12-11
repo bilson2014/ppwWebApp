@@ -44,6 +44,9 @@ function checkState(){
 		    if(state.trim() == "order"){
 		    	checkClear(2);
 		    }
+		    if(state.trim() == "box"){
+		    	checkClear(3);
+		    }
 }
 //右侧地址方法的判断
 function checkClear(who){
@@ -58,7 +61,35 @@ function checkClear(who){
 	}else if (who==1){
 		$('.frame').attr('src',"/mgr/safeInfo");
 		$('#safe').addClass('treeitemRed');
-	}else{
+	}else if (who==3){
+		$('.frame').attr('src',"/order/box?1");	
+		$('#boxsIndex').addClass('checkLi');
+		$('#boxsSub').removeClass('checkLi');
+		$('#boxsCancle').removeClass('checkLi');
+		$('#orderIndex').removeClass('checkLi');
+		$('#orderSub').removeClass('checkLi');
+		$('#orderCancle').removeClass('checkLi');
+		$('#nowDoing').removeClass('checkLi');
+		$('#pause').removeClass('checkLi');
+		$('#finish').removeClass('checkLi');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe').removeClass('treeitemRed ');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
+		
+		$('#boxsList').slideDown();
+		$('#orderList').slideUp();
+		$('#productList').slideUp();
+
+	}
+	else{
 		$('.frame').attr('src',"/order/myOrder?1");
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');

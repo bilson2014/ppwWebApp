@@ -116,10 +116,12 @@
 					                  <a href="<spring:url value="/mgr/index" />"><li class="toMy">我的项目</li></a>
 					                  <a href="<spring:url value="/project/running" />"><li class="toMy">我的项目<span style="font-size:12px;color:#fe5453">Beta</span></li></a>
 					         </r:permission>
-					         <a href="#" style="display: none;"><li class="toBoxs">工具箱</li></a>
-					         <a href="<spring:url value="/project/running?save" />"><li class="toCollect">收藏列表</li></a>
-					         <a href="<spring:url value="/project/running?safe" />"><li class="toSafe">安全设置</li></a>
-					         <a href="<spring:url value="/login/loginout" />"><li class="loginOut">退出登录</li></a>
+					        
+					         <a href="<spring:url value="/project/running?box"/>" ><li class="toBoxs">工具箱</li></a>
+					        
+					         <a href="<spring:url value="/project/running?save"/>"><li class="toCollect">收藏列表</li></a>
+					         <a href="<spring:url value="/project/running?safe"/>"><li class="toSafe">安全设置</li></a>
+					         <a href="<spring:url value="/login/loginout"/>"><li class="loginOut">退出登录</li></a>
 					       </div>
 					</div>
 				</r:identity>

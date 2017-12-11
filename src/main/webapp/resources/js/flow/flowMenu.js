@@ -445,7 +445,8 @@ function initMenuEven(){
 
 	//工具箱样式修改
 	$('#boxsIndex').off('click').on('click',function(){
-		console.log('1');
+		$('.frame').attr('src',"/order/box?1");	
+		
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -469,7 +470,7 @@ function initMenuEven(){
 		
 	});
 	$('#boxsSub').off('click').on('click',function(){
-		
+		$('.frame').attr('src',"/order/box?2");	
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').addClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -496,7 +497,7 @@ function initMenuEven(){
 	});
 	
 	$('#boxsCancle').off('click').on('click',function(){
-	
+		$('.frame').attr('src',"/order/box?3");	
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').addClass('checkLi');
