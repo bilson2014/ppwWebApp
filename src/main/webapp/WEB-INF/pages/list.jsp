@@ -138,8 +138,8 @@
 	</div>
 
 	<!-- foot -->
-         					 <jsp:include flush="true" page="foot.jsp"></jsp:include> 
-                            <!--新版底部-->
+     <jsp:include flush="true" page="foot.jsp"></jsp:include> 
+    <!--新版底部-->
 	</div>
 	
 	<!-- 代码部分begin -->
