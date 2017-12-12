@@ -95,9 +95,9 @@ function loadProduction(){
 					    	       $body +='<div>作品可见</div></div>';
 					    	      
 						    		    if(cType == 4){
-						    		    	$body +='<div class="master-flag setMaster gStar">';
+						    		    	$body +='<div class="master-flag noMaster gStar">';
 						    		    }else{
-						    		    	$body +='<div class="master-flag setMaster">';
+						    		    	$body +='<div class="master-flag noMaster">';
 						    		    }
 						    		    if(solr.masterWork == 1){
 						    		    	 $body +='<div class="master-title">取消代表作</div>';
