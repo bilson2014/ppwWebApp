@@ -112,7 +112,7 @@ define(['jquery'],function($){
 		},
 		getDfsHostName:function(){
 			var rPath = $('#storage_node').val();
-			return rPath == undefined ? "http://resource.apaipian.com/resource/" : rPath;
+			return rPath == undefined ? "https://resource.apaipian.com/resource/" : rPath;
 		}
 
 	}

@@ -307,7 +307,7 @@ function getHostName(){
  */
 function getDfsHostName(){
 	var rPath = $('#storage_node').val();
-	return rPath == undefined ? "http://resource.apaipian.com/resource/" : rPath;
+	return rPath == undefined ? "https://resource.apaipian.com/resource/" : rPath;
 }
 /**
  * 数据加分隔符
