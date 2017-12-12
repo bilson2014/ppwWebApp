@@ -443,7 +443,7 @@ function initMenuEven(){
 	//工具箱样式修改
 
 	$('#boxsIndex').off('click').on('click',function(){
-		$('.frame').attr('src',"/order/box?1");	
+		$('.frame').attr('src', getUrlTask() + "quotation/info");
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -465,7 +465,7 @@ function initMenuEven(){
 		$('#minMyPro .myPro').removeClass('open');
 		$('#minboxs .boxs').addClass('open');	
 		$(this).addClass('treeitemRed');		
-		$('.frame').attr('src', getUrlTask() + "quotation/info");
+		
 	});
 	$('#boxsSub').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/box?2");	

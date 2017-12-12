@@ -77,14 +77,7 @@
 	                  <div class="title">我的项目<span> Beta</span></div>
 	                  <img src="${imgPath}/flow/more.png">
 	             </div>
-	              <ul class="productList" id="productList">
-
-                      <!--  
-	                  <a href="${url}/project/running-task"><li id="nowDoing" class="checkLi">进行中<div class="hide" id="cardNum"></div></li></a>
-	                  <a href="${url}/project/running-task?pause"><li id="pause">暂停</li></a>
-	                  <a href="${url}/project/running-task?finish"><li id="finish">完成/取消</li></a>
-	                   -->	          
-
+	              <ul class="productList" id="productList">         
 	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
 	                  <li id="pause">暂停</li>
 	                  <li id="finish">完成/取消</li>
@@ -105,8 +98,10 @@
 	               	</r:permission>  	
 	       <!-- 工具箱 -->    
 
+
 	<%--  <r:permission uri="/order/box">  --%>
 			              <div class="treeitem" id="myboxs" >
+
 			                <div class="boxs"></div>
 			                <div class="title">工具箱</div>
 			                <img src="${imgPath}/flow/more.png">
@@ -118,6 +113,10 @@
 		              </ul>
 
 	 <%--   	</r:permission>   --%>
+
+
+	   	  
+
 
 	       <r:identity role="employee">
 			         <div class="treeitem" id="toSave">

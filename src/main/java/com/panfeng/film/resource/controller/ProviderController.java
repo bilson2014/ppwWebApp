@@ -1116,8 +1116,8 @@ public class ProviderController extends BaseController {
 	@RequestMapping("/deal/TeamTmpAndTeamDesc")
 	public boolean dealTeamTmpAndUpdateTeamDesc(@RequestBody final PmsTeam team, final HttpServletRequest request) {
 		if (null != team) {
-			String description = null == team.getDescription() ? "" : team.getDescription();
-			team.setDescription(description);
+//			String description = null == team.getDescription() ? "" : team.getDescription();
+//			team.setDescription(description);
 			pmsTeamFacade.updateTeamDescription(team);
 			pmsTeamFacade.dealTeamTmp(team);
 			return true;
