@@ -118,7 +118,7 @@
 					         </r:permission>
 					         <a href="<spring:url value="/project/running?box"/>" ><li class="toBoxs">工具箱</li></a>
 					        
-					         <a href="<spring:url value="/project/running?save"/>"><li class="toCollect">收藏列表</li></a>
+					       <%--   <a href="<spring:url value="/project/running?save"/>"><li class="toCollect">收藏列表</li></a> --%>
 					         <a href="<spring:url value="/project/running?safe"/>"><li class="toSafe">安全设置</li></a>
 					         <a href="<spring:url value="/login/loginout"/>"><li class="loginOut">退出登录</li></a>
 					       </div>

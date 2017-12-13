@@ -59,7 +59,7 @@
 	                <r:identity role="employee">
 	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
 	                	<div class="menuItem" id="minboxs"><div class="boxs" id="minboxs"></div></div>
-		                <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div>
+		                <!-- <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div> -->
 		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
 	                </r:identity>
 	                <div class="bottom"><div class="loginOut"></div></div>
@@ -108,8 +108,8 @@
 			            </div>
 	                  <ul class="productList" id="boxsList">
 		                  <li id='boxsIndex' data-value="0">报价单生成器</li>
-	                <!--   <li id='boxsSub' data-value="1">排期表</li>
-		                  <li id='boxsCancle' data-value="2">不知道</li>  -->
+	                  <li id='boxsSub' data-value="1">案例收藏</li>
+		                   <!--<li id='boxsCancle' data-value="2">排期表</li>  -->
 		              </ul>
 
 	 <%--   	</r:permission>   --%>
@@ -119,10 +119,10 @@
 
 
 	       <r:identity role="employee">
-			         <div class="treeitem" id="toSave">
+			        <!--  <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
 			                  <div class="title">收藏列表</div>
-			         </div>
+			         </div> -->
 		              <div class="treeitem " id='safe'>
 		                  <div class="safe"></div>
 		                  <div class="title">安全设置</div>

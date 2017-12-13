@@ -468,7 +468,9 @@ function initMenuEven(){
 		
 	});
 	$('#boxsSub').off('click').on('click',function(){
-		$('.frame').attr('src',"/order/box?2");	
+		
+		$('.frame').attr('src',"/mgr/favourites");
+//		$('.frame').attr('src',"/order/box?2");	
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').addClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
