@@ -5,7 +5,7 @@
  var uploaderInfo; //营业执照
  var uploaderZ;//正面
  var uploaderB;//背面
- var imgUrl = "http://resource.apaipian.com/resource/";
+ var imgUrl = "https://resource.apaipian.com/resource/";
 $().ready(function(){
 	 initUl();
 	 $('.getTag').on('click',function(){

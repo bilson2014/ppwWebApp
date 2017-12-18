@@ -261,6 +261,12 @@ public class PCController extends BaseController {
 				
 			}
 		}
+//		if(product!=null){
+//			//存在优酷地址，则不显示本地地址
+//			if(ValidateUtil.isValid(product.getHret())){
+//				product.setVideoUrl("");
+//			}
+//		}
 		model.addAttribute("product", product);
 		if (ValidateUtil.isValid(priceDetail)) {
 			Map<String, Object> ids = new HashMap<>();

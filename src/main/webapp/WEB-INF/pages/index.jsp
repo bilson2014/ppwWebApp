@@ -22,7 +22,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="keywords" content="宣传片,企业宣传片,宣传片制作,宣传片拍摄,tvc广告,产品广告片,广告片拍摄,广告片制作,mg动画,品牌微电影">
-<meta name="description" content="拍片网专业提供企业宣传片制作、产品tvc广告片拍摄、mg动画制作、品牌微电影等商业视频服务。企业宣传片创意策划免费，价格直降30%。宣传片制作、广告片拍摄团队遍布北京、上海、杭州等全国200个大中城市。">
+<meta name="description" content="拍片网专业提供企业宣传片制作、产品tvc广告片拍摄、mg动画制作、品牌微电影等商业视频服务。企业宣传片创意策划免费，价格直降30%。宣传片制作、广告片拍摄团队遍布北京、上海、杭州等全国75个大中城市。">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
 <title>企业宣传片-宣传片制作-产品广告片拍摄-tvc-mg动画-品牌微电影-拍片网</title>
 <link rel="stylesheet" href="/resources/css/index.css">
@@ -88,7 +88,7 @@
 			    <div class="oVideo"></div>
 				<video preload="auto" loop="" autoplay
 					poster="/resources/images/banner/host.JPG" class="video-bg">
-					<source src="http://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
+					<source src="https://www.apaipian.com/product/video/flexvideo.mp4" type="video/mp4">
 				</video>
 			</div>
 			<div class="swiper-container swiper-banner flexslider">

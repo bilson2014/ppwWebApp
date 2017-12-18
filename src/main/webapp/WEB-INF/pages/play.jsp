@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="${bootstrapCss }">
     <link rel="stylesheet" href="${swiperCss }">
     <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
-    <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+    <script type="text/javascript" src="https://player.youku.com/jsapi"></script>
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -347,8 +347,8 @@
     <script type="text/javascript" src="${blockJS }"></script>
     <script type="text/javascript" src="${commonJs }"></script>
     <!-- 加载Mob share 控件 -->
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
-	<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script type="text/javascript" src="https://player.youku.com/jsapi"></script>
 		<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 
