@@ -35,9 +35,7 @@ function initMenuEven(){
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
-		$('#toSave .save').removeClass('treepic ');
-		
-		
+		$('#toSave .save').removeClass('treepic ');		
 //		$('#myboxs').removeClass('open');
 		$('#myOrder').addClass('open');
 		$('#myboxs').addClass('open');

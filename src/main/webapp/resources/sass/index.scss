@@ -642,7 +642,7 @@ input:focus {
                 }
                 position: absolute;
                 @include changeSize;
-            }       
+            }
             .four2 {
                 width: 26px;
                 height: 25px;
@@ -657,7 +657,7 @@ input:focus {
                 position: absolute;
                 @include changeSize;
             }
-            
+
             .four3 {
                 width: 26px;
                 height: 25px;
@@ -1544,9 +1544,11 @@ $sImg:860px;
 $mImg:931px;
 $bImg:1000px;
 .ourFriends {
-    position: relative;
-    // width: 890px;
-    width: 986px;
+    position: relative; // width: 890px;
+    width: 1200px;
+    @media screen and (mix-width: 1199px) {
+        width: 986px;
+    }
     margin: 0 auto;
     height: auto;
     font-size: 0;
@@ -1557,6 +1559,9 @@ $bImg:1000px;
         vertical-align: top;
         img {
             width: 134px;
+            @media screen and (mix-width: 1199px) {
+                 width: 110px;
+            }
         }
     }
     a:nth-child(2) {
@@ -1570,6 +1575,9 @@ $bImg:1000px;
         margin-right: 35px;
     }
     a:nth-child(5) {
+        margin-right: 35px;
+    }
+    a:nth-child(6) {
         margin-right: 35px;
     }
 }

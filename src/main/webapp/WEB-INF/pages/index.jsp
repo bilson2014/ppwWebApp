@@ -598,6 +598,7 @@
 			   <a  href="http://www.bjjfsd.com/" target="_blank"><img alt="北京网站制作" src="/resources/images/index/friend4.png"></a>
 			   <a  href="http://www.qiqueqiao.com/" target="_blank"><img alt="企鹊桥" src="/resources/images/index/friend5.png"></a>
 			   <a  href="http://www.dadetong.com/" target="_blank"><img alt="大德通众包平台" src="/resources/images/index/friend6.png"></a>
+			   <a  href="http://www.ciprun.com/" target="_blank"><img alt="专利申请" src="/resources/images/index/friend7.jpg"></a>
 			</div>
 		</div>	
 		<!-- 入驻end-->
