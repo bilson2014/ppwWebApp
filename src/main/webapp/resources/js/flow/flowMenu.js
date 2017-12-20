@@ -85,8 +85,6 @@ function initMenuEven(){
 	
 	//工具箱页面的样式改变按钮样式 响应式
 	$('#myboxs').off('click').on('click',function(){
-		console.log('烟火');
-		
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
@@ -495,7 +493,7 @@ function initMenuEven(){
 	});
 	
 	$('#boxsCancle').off('click').on('click',function(){
-		$('.frame').attr('src',"/order/box?3");	
+		$('.frame').attr('src', getUrlTask() +"schedule/info");	
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').addClass('checkLi');

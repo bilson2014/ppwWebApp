@@ -29,8 +29,6 @@
 	
 	<mvc:view-controller path="/mgr/safe" view-name="/manager/safeInfo" />
 	
-	<mvc:view-controller path="/mgr/timebox" view-name="/manager/timebox" />
-	
 	<mvc:view-controller path="/order/myOrder" view-name="/employee/orderIndex" />
 	
 	<mvc:view-controller path="/provider/leader" view-name="/provider/leader" />
