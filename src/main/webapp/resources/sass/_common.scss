@@ -1251,7 +1251,7 @@ a {
         border-radius: 6px;
         opacity: 0;
     }
-    #videoRoata {
+    .videoRoata {
         position: fixed;
         z-index: 12;
         width: 960px;
@@ -1260,6 +1260,16 @@ a {
         left: 50%;
         margin-top: -250px;
         margin-left: -960px;
+        .videoClose{
+            right: -486px;
+         }
+    }
+    #setYouku{
+         margin-left: -480px !important;
+         border: 5px solid rgba(255,255,255,0.3);
+         .videoClose{
+            right:0 !important;
+         }
     }
     .active {
         -moz-transition: rotateX(0);

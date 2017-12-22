@@ -343,7 +343,6 @@ var homePage = {
 			 * if(flag == '宣传片') flag = '*宣传片'; if (flag == '广告片') flag = '*广告';
 			 * window.location.href='/search?q='+flag;
 			 */
-
 			if (flag == '宣传片') {
 				window.location.href = 'list-qyxcp/';
 			}
