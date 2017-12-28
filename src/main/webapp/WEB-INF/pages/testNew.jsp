@@ -70,8 +70,9 @@
     <div class="pagev">
                     <!--第一屏 -->
 		            <div class="setVideoContent" >
-		               <video autoplay class="video" id="setTopVideo" src="http://resource.apaipian.com/resource/group1/M00/00/3A/CgpmTlhfirCAVDRKAbmOoC4ynVs922.mp4" style="width: 1920px; height: 1080px; margin-left: 0px; margin-top: -261px;"></video>
-		               <div class="indexContent">
+		               <div style="width:100%;height:100%;background:gray;opacity:0.5;position: absolute;"></div>
+		               <video autoplay class="video" loop id="setTopVideo" src="/resources/video.mp4"></video>
+		               <div class="indexContent" style="z-index:10">
 		                    
 								 <div class="swiper-container swiper-banner flexslider">
 											<div class="swiper-wrapper swiper-banner-slide">
@@ -344,7 +345,7 @@
 														    <!-- 数据-->
 														    <div class="data">
 														         <div class="dataContent">
-														            <img src="${imgPath}/index2/data.png">
+														            <img class='setContentImg' src="${imgPath}/index2/data.png">
 														            <div class="setContent">
 														                 <div class="firstDiv"><div>数据</div><div></div><div>智能管理</div></br><div>让影视项目更高效</div></div>
 														                 <div class="redLine"></div>

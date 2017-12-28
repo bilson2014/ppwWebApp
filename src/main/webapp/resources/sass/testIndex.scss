@@ -69,11 +69,11 @@ body {
     }
 
     .btn-left {
-        left: 50px;
+        left: 130px;
     }
 
     .btn-right {
-        right: 50px;
+        right: 130px;
     }
 }
 
@@ -93,17 +93,20 @@ body {
         .swiper-pagination-bullet {
             width: 120px !important;
             height: 3px !important;
-            background: $d8;
+            background: $d8 !important;
             opacity: 0.4;
             border-radius: 0 !important;
         }
     }
 
     ul {
+        width: 100%;
         position: absolute;
         top: 20%;
-        left: 50%;
-        margin-left: -225px;
+
+        li{
+            color:white !important;
+        }
     }
     .swiper-pagination-bullets {
         position: absolute;
@@ -191,6 +194,7 @@ $mWidth:960px;
 .btbox {
     &:hover {
         box-shadow: 0 -3px 6px 0 #BABABA;
+        z-index: 99;
     }
 }
 
@@ -207,7 +211,7 @@ $mWidth:960px;
             width: 960px;
         }
         margin: 0 auto;
-        margin-top: 120px;
+        margin-top: 80px;
         margin-bottom: 200px;
 
         .pItem:nth-child(1) {
@@ -271,8 +275,8 @@ $mWidth:960px;
             height: $bWidth/4;
             cursor: pointer;
             background: white;
-            -webkit-transform: scale(1.6);
-            transform: scale(1.6);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
             position: relative;
 
             &:hover {
@@ -360,10 +364,10 @@ $mWidth:960px;
         top: 0;
         margin-left: -650px;
         @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            margin-left: -600px;
+            margin-left: -500px;
         }
         @media screen and (min-width: 0px) and (max-width: 1275px) {
-            margin-left: -480px;
+            margin-left: -400px;
         }
 
         background: transparent;
@@ -500,7 +504,7 @@ $mWidth:960px;
             }
         }
         .productPeople {
-            width: 205px;
+            width: 230px;
             line-height: 24px;
             transition: all .3s ease-in-out .7s;
             -webkit-transition: all .3s ease-in-out .7s;
@@ -567,7 +571,7 @@ $mWidth:960px;
         }
         margin: 0 auto;
         font-size: 0px;
-        margin-top: 130px;
+        margin-top: 80px;
         li {
             width: 200px;
             height: 160px;
@@ -632,7 +636,7 @@ $mWidth:960px;
         margin-left: -208px;
         .top {
             font-size: 40px;
-            color: #FF7F88;
+            color: #fe5453;
             span {
                 font-size: 26px;
             }
@@ -648,10 +652,10 @@ $mWidth:960px;
         }
         .bot2 {
             font-size: 20px;
-            color: #2A2747;
+            color: black;
             height: 28px;
             line-height: 28px;
-            background: #FF7F88;
+            background: #fe5453;
             display: inline-block;
             vertical-align: bottom;
             padding-left: 5px;
@@ -671,15 +675,32 @@ $mWidth:960px;
         @include media_screen_width_beta3();
         margin: 0 auto;
         position: relative;
+
+       .setAniData{
+        top:0px !important;
+        opacity: 1 !important;
+       }
+
+    .setAniContent{
+        top:410px !important;
+        opacity: 1 !important;
+       }
+
         img {
             width: 600px;
             margin-top: 260px;
             margin-bottom: 260px;
+            transition: all linear .6s;
+            position: relative;
+            top:100px;
+            opacity: 0;
         }
         .setContent {
             position: absolute;
             right: 0;
-            top: 410px;
+            top: 510px;
+            transition: all linear .6s;
+            opacity: 0;
             div {
                 text-align: right;
             }
@@ -741,26 +762,26 @@ $mWidth:960px;
         font-size: 0;
         margin-top: 12%;
         a:nth-child(2) {
-            margin-left: 120px;
-            margin-right: 120px;
+            margin-left: 160px;
+            margin-right: 160px;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                margin-left: 90px;
-                margin-right: 90px;
+                margin-left: 130px;
+                margin-right: 130px;
             }
             @media screen and (min-width: 960px) and (max-width: 1275px) {
-                margin-left: 60px;
-                margin-right: 60px;
+                margin-left: 90px;
+                margin-right: 90px;
             }
         }
         a {
             display: inline-block;
             vertical-align: top;
-            width: ($width-lg3 - 240px)/3;
+            width: ($width-lg3 - 320px)/3;
             @media screen and (min-width: 1276px) and (max-width: 1500px) {
-                width:($width-middle - 180px)/3;
+                width:($width-middle - 260px)/3;
             }
             @media screen and (min-width: 960px) and (max-width: 1275px) {
-                width: ($width-min - 120px)/3;
+                width: ($width-min - 180px)/3;
             }
         }
         .plantItem {
@@ -784,7 +805,7 @@ $mWidth:960px;
                 z-index: 5px;
             }
             div {
-                font-size: 20px;
+                font-size: 18px;
                 color: $gray-dark;
                 text-align: center;
                 position: relative;

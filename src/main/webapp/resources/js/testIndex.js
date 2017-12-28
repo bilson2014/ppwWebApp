@@ -12,6 +12,7 @@ $().ready(function() {
     window.onresize = function() {
     	initScroll();
 	};
+
     
 /*    var swipers = new Swiper('#mainPage', {
         direction: 'vertical',
@@ -58,7 +59,10 @@ function initBanner(){
 		paginationClickable : true,
 		loop : true,
 		grabCursor : true,
-		autoplay : 5000,
+		 autoplay: {
+		        delay: 1500,
+		        disableOnInteraction: false,
+		  },
 		onSlideChangeEnd : function(swiper) {
 			var number = swiper.activeIndex; // 每次切换时，提示现在是第几个slide
 		},
@@ -81,6 +85,7 @@ function initScroll(){
 	// $(window).scrollTop(0);
 	  var setVideoHeight = $('body').height();
       var product = $('#product').offset().top;
+      var data = $('.data').offset().top;
 	  $('.setVideoContent').css('height',setVideoHeight);
 	  $('#setTopVideo').css('height',setVideoHeight);
 	  window.onscroll = function(){ 
@@ -95,8 +100,12 @@ function initScroll(){
 			  $('.pItem').removeClass('setItem');
 			  $('#header').removeClass('headerMove');
 		  }
-		  if(nowPos >= (product+100)){
+		  if(nowPos >= (product+10)){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').addClass('productItemAnimo');
+		  }
+		  if(nowPos >= (data+10)){
+			 $('.setContentImg').addClass('setAniData');
+			 $('.setContent').addClass('setAniContent');
 		  }
 		  //lastPos = nowPos;
 		} 
@@ -132,7 +141,6 @@ function initProduct(){
 	    	createVideo('','https://v.youku.com/v_show/id_XMzAxODkwMzU4OA==.html?spm=a2h3j.8428770.3416059.1')
 	    });
           
-	    $('#setTopVideo').css('height',$('body').height()); 
 
 		$(".home-search").off("click").on("click", function() {
 			var flag = $(this).attr("data-text");
@@ -554,7 +562,7 @@ function setMap(){
 					color:'#de0807',
 	                formatter: '{b}',
 	                textStyle: {
-	                	color:"#ff7f88"
+	                	color:"#fb2a29"
 	                }
 	            },
 	            emphasis: {
@@ -569,7 +577,7 @@ function setMap(){
 	        itemStyle: {
 	            normal: {
 	            	show: true,
-	                color: '#ff7f88'
+	                color: '#fb2a29'
 	            }
 	        },
 	    /*    data:[{
@@ -597,6 +605,7 @@ function setMap(){
 	            padding:[20,20,20,20]
 	    },
 	    tooltip : {
+	    	        show: false,
 					trigger : 'item',
 					backgroundColor:'rgba(000, 000, 000, 0.6)',
 					borderColor:'#FFFFCC',
