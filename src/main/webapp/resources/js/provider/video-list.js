@@ -9,6 +9,10 @@ var win = window;
 $().ready(function() {
 	$(parent).find('.tooltip-wati').hide();
 	loadProduction();
+	$('#jump').off('click').on('click',function(){
+		currentSize =parseInt($('#jumpNum').val());
+		loadProduction();
+	});
 });
 
 function pagination(){
@@ -17,13 +21,15 @@ function pagination(){
 	$(".pagination").createPage({
 		pageCount: Math.ceil($('#total').val() / pageSize),
 		current: currentSize,
+        TotalCount: total,
+        PageEnter: true,
 		backFn:function(p){
 			// 点击 翻页，查询符合条件的视频
 			currentSize = p;
-			loadProduction();
-			
+			loadProduction();		
 		}
 	});
+
 }
 
 //加载视频

@@ -78,19 +78,19 @@
 											<div class="swiper-wrapper swiper-banner-slide">
 												<div class="swiper-slide">
 													<ul>
-														<li class="title" id="bannerTitleAn1">视频出品量全国第一</li>
+														<li class="title" id="bannerTitleAn1">商业视频出品量遥遥领先</li>
 														<li class="desc" id="DescAn1">服务超过1500家客户 制作超过3000条商业视频</li>
 													</ul>
 												</div>
 												<div class="swiper-slide">
 													<ul>
-														<li class="title" id="bannerTitleAn2">汇聚海内外优质商业视频创作人</li>
+														<li class="title" id="bannerTitleAn2">汇聚海内外优秀视频创作者</li>
 														<li class="desc" id="DescAn2">导演 / 编剧 / 策划 / 制片 / 摄影 / 55800+行业专家为您服务</li>
 													</ul>
 												</div>
 												<div class="swiper-slide">
 													<ul>
-														<li class="title" id="bannerLast">高品质 低成本 高效率</li>
+														<li class="title" id="bannerLast">高品质 低成本 极速出片</li>
 														<li class="desc" id="DescLast">全流程高质量监管 低于行业价30% 72小时极速出片</li>
 													</ul>
 												</div>
@@ -105,7 +105,7 @@
 							
 											                 <div class="searchDiv">
 											                       <div class="titleClass">
-											                            <div>一站式视频服务 为您提供专业的商业视频解决方案</div>
+											                            <div>一站式商业视频解决方案</div>
 											                            <div></div>
 											                       </div>
 											                       <div class="setProdct">
@@ -152,7 +152,7 @@
 											                           </div>
 											                           <div class="pItem home-search  btbox" data-text="教学课件">
 											                                <img src="${imgPath}/index2/p8.png" />
-											                                <div class="cn">路演视频</div>
+											                                <div class="cn">教学课件</div>
 											                                <div class="en">LECTURE VIDEO</div>
 											                                <div class="bt"></div>
 											                           </div>
@@ -164,7 +164,7 @@
                                                                                <div class="orderPlay">预定拍摄</div>
                                                                                <div class="orderMore">查看更多案例</div>
 			                                                                   <div class="titleClass">
-														                            <div>部分合作过的经典案例</div>
+														                            <div>部分合作案例</div>
 														                            <div></div>
 														                       </div>
                                                                              <img class="videoBack" src="${imgPath}/index2/product.png">
@@ -173,15 +173,15 @@
 																				      <div class="swiper-slide">
 																				           <div class="productItem">
 																				                <div class="productLeft">
-																				                     <img src="${imgPath}/index2/product1.png">
+																				                     <img src="${imgPath}/index2/maotai.png">
 																				                     <div class="leftTitle">茅台100周年纪念电影</div>
 																				                     <div class="leftSTitle">向世界传播中国品牌</div>
 																				                     <div class="leftContent">《1915金奖之旅》作为中国酒文化城的镇馆影片，再现了茅台酒成为世界三大蒸馏酒的辉煌历程。<br> 
-拍片网为茅台提供了影片创意策划，剧本撰写，并组建了600余人的创作团队 创作者包括《奥林匹克美术大会影片》的导演，《中国国家形象宣传片》的摄影指导， 电影《建国大业》的美术指导，《奥运福娃漫游记》的动画导演等知名创作人。</div>
-																				                     <a>了解更多</a>
+拍片网为茅台提供了影片创意策划，剧本撰写，并组建了600余人的创作团队创作者，包括《奥林匹克美术大会影片》的导演、《中国国家形象宣传片》的摄影指导、电影《建国大业》的美术指导、《奥运福娃漫游记》的动画导演等知名创作人。</div>
+																				                     <a href="/play/9_389.html">了解更多</a>
 																				                </div>
 																				                <div class="productVideo maotai">
-																				                     <img src="https://filed.apaipian.com/group1/M00/00/AF/Cgpw7FnPZoKAHrlPAAKxC-ROmKw021.jpg">
+																				                     <img src="${imgPath}/index2/maotai.png">
 																				                </div>
 																				                 <div class="productPeople">
 																				                      <img class="productIndex" src="${imgPath}/index2/one.png">
@@ -190,7 +190,7 @@
 																				                           <div>夏攀说<br>拍片网公司总裁</div>
 																				                      </div>
 																				                       <div class="peopleContent">
-																				                         “我们认识一个人往往从他的<br>作品开始在自然科学和文学艺术领<br>域作品深刻的反映了创作者的灵魂质<br>地拍片网用作品说话”
+																				                         “我们认识一个人往往从他的作品开始，在自然科学和文学艺术领域，作品深刻的反映了创作者的灵魂质地。拍片网用作品说话。”
 																				                 	  </div>
 																				                 </div>
 																				           </div>
@@ -198,15 +198,17 @@
 																				      <div class="swiper-slide">
 																				           <div class="productItem">
 																				                <div class="productLeft">
-																				                     <img src="${imgPath}/index2/product1.png">
-																				                     <div class="leftTitle">茅台100周年纪念电影</div>
-																				                     <div class="leftSTitle">向世界传播中国品牌</div>
-																				                     <div class="leftContent">《1915金奖之旅》作为中国酒文化城的镇馆影片，再现了茅台酒成为世界三大蒸馏酒的辉煌历程。<br> 
-拍片网为茅台提供了影片创意策划，剧本撰写，并组建了600余人的创作团队 创作者包括《奥林匹克美术大会影片》的导演，《中国国家形象宣传片》的摄影指导， 电影《建国大业》的美术指导，《奥运福娃漫游记》的动画导演等知名创作人。</div>
-																				                     <a>了解更多</a>
+																				                     <img src="${imgPath}/index2/product2.png">
+																				                     <div class="leftTitle">网易考拉海购广告《佟大为篇》</div>
+																				                     <div class="leftSTitle">互联网的第一定律 唯快不破</div>
+																				                     <div class="leftContent">接到网易考拉海购的创意简报后，拍片网在24小时内完成了影片的团队组建和筹备工作，
+																									在仅有的4小时拍摄时间里，圆满的完成了佟大为的镜头拍摄任务。
+																									拍片网一站式视频管家服务模式和标准的制片管理流程，
+																									不仅有效的帮助客户节省了沟通的时间成本，更实实在在的降低了拍片的预算。</div>
+																				                     <a href="/play/9_3577.html">了解更多</a>
 																				                </div>
 																				                <div class="productVideo kaola" >
-																				                     <img src="https://vthumb.ykimg.com/0541040859B6D65C000001183D0A1459">
+																				                     <img src="${imgPath}/index2/kaola.png">
 																				                </div>
 																				                 <div class="productPeople">
 																				                      <img class="productIndex" src="${imgPath}/index2/two.png">
@@ -223,15 +225,17 @@
 																				      <div class="swiper-slide">
 																				           <div class="productItem">
 																				                <div class="productLeft">
-																				                     <img src="${imgPath}/index2/product1.png">
-																				                     <div class="leftTitle">茅台100周年纪念电影</div>
-																				                     <div class="leftSTitle">向世界传播中国品牌</div>
-																				                     <div class="leftContent">《1915金奖之旅》作为中国酒文化城的镇馆影片，再现了茅台酒成为世界三大蒸馏酒的辉煌历程。<br> 
-拍片网为茅台提供了影片创意策划，剧本撰写，并组建了600余人的创作团队 创作者包括《奥林匹克美术大会影片》的导演，《中国国家形象宣传片》的摄影指导， 电影《建国大业》的美术指导，《奥运福娃漫游记》的动画导演等知名创作人。</div>
-																				                     <a>了解更多</a>
+																				                     <img src="${imgPath}/index2/product3.png">
+																				                     <div class="leftTitle">万达招采平台宣传片</div>
+																				                     <div class="leftSTitle">更多的创作团队可供选择 意味着更好的服务和质量</div>
+																				                     <div class="leftContent">万达招采平台宣传片承担着向5万多名供应商介绍阳光合作模式的重任。
+																										从项目启动到交付，时间非常紧急，创作团队度过了数十个不眠之夜，如期交付。
+																										所有的中大型企业都在自建供应商管理平台，拍片网5万名创作者可以无缝对接到企业的管理系统中，
+																										满足客户一切视频的需求。</div>
+																				                     <a href="/play/1001_18037.html">了解更多</a>
 																				                </div>
 																				                <div class="productVideo wanda">
-																				                     <img src="https://vthumb.ykimg.com/0541040859B6D55500000174DC0DE4BF">
+																				                     <img src="${imgPath}/index2/wanda.png">
 																				                </div>
 																				                 <div class="productPeople">
 																				                      <img class="productIndex" src="${imgPath}/index2/three.png">
@@ -254,7 +258,7 @@
 														    <!-- 合作-->
 														    <div class="ourFriends">
 														          <div class="titleClass">
-											                            <div>一站式视频服务 为您提供专业的商业视频解决方案</div>
+											                            <div>部分合作品牌</div>
 											                            <div></div>
 											                       </div>
 											                       <div class="content">全面覆盖互联网、科技、金融、电商、制造、教育、医药等行业</div>
@@ -262,68 +266,68 @@
 																					<div class="swiper-wrapper">
 																						<div class="swiper-slide ">
 																							<ul class="Clients">
-																								<li><img src="${imgPath}/index2/f1.png"></li>
-																								<li><img src="${imgPath}/index2/f2.png"></li>
-																								<li><img src="${imgPath}/index2/f3.png"></li>
-																								<li><img src="${imgPath}/index2/f4.png"></li>
-																								<li><img src="${imgPath}/index2/f5.png"></li>
-																								<li><img src="${imgPath}/index2/f6.png"></li>
-																								<li><img src="${imgPath}/index2/f7.png"></li>
-																								<li><img src="${imgPath}/index2/f8.png"></li>
-																								<li><img src="${imgPath}/index2/f9.png"></li>
-																								<li><img src="${imgPath}/index2/f10.png"></li>
-																								<li><img src="${imgPath}/index2/f11.png"></li>
-																								<li><img src="${imgPath}/index2/f12.png"></li>
-																								<li><img src="${imgPath}/index2/f13.png"></li>
-																								<li><img src="${imgPath}/index2/f14.png"></li>
-																								<li><img src="${imgPath}/index2/f15.png"></li>
-																								<li><img src="${imgPath}/index2/f16.png"></li>
-																								<li><img src="${imgPath}/index2/f17.png"></li>
-																								<li><img src="${imgPath}/index2/f18.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f1.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f2.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f3.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f4.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f5.png"></li>
+																								<li class="oneLi"><img src="${imgPath}/index2/f6.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f7.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f8.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f9.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f10.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f11.png"></li>
+																								<li class="twoLi"><img src="${imgPath}/index2/f12.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f13.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f14.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f15.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f16.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f17.png"></li>
+																								<li class="threeLi"><img src="${imgPath}/index2/f18.png"></li>
 																							</ul>
 																						</div>
 																						<div class="swiper-slide">
                    																			<ul class="Clients">
-																								<li><img src="${imgPath}/index2/f21.png"></li>
-																								<li><img src="${imgPath}/index2/f22.png"></li>
-																								<li><img src="${imgPath}/index2/f23.png"></li>
-																								<li><img src="${imgPath}/index2/f24.png"></li>
-																								<li><img src="${imgPath}/index2/f25.png"></li>
-																								<li><img src="${imgPath}/index2/f26.png"></li>
-																								<li><img src="${imgPath}/index2/f27.png"></li>
-																								<li><img src="${imgPath}/index2/f28.png"></li>
-																								<li><img src="${imgPath}/index2/f29.png"></li>
-																								<li><img src="${imgPath}/index2/f210.png"></li>
-																								<li><img src="${imgPath}/index2/f211.png"></li>
-																								<li><img src="${imgPath}/index2/f212.png"></li>
-																								<li><img src="${imgPath}/index2/f213.png"></li>
-																								<li><img src="${imgPath}/index2/f214.png"></li>
-																								<li><img src="${imgPath}/index2/f215.png"></li>
-																								<li><img src="${imgPath}/index2/f216.png"></li>
-																								<li><img src="${imgPath}/index2/f217.png"></li>
-																								<li><img src="${imgPath}/index2/f218.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f21.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f22.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f23.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f24.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f25.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f26.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f27.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f28.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f29.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f210.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f211.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f212.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f213.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f214.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f215.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f216.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f217.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f218.png"></li>
 																							</ul>		
 																						</div>
 																						<div class="swiper-slide">
                    																			<ul class="Clients">
-																								<li><img src="${imgPath}/index2/f31.png"></li>
-																								<li><img src="${imgPath}/index2/f32.png"></li>
-																								<li><img src="${imgPath}/index2/f33.png"></li>
-																								<li><img src="${imgPath}/index2/f34.png"></li>
-																								<li><img src="${imgPath}/index2/f35.png"></li>
-																								<li><img src="${imgPath}/index2/f36.png"></li>
-																								<li><img src="${imgPath}/index2/f37.png"></li>
-																								<li><img src="${imgPath}/index2/f38.png"></li>
-																								<li><img src="${imgPath}/index2/f39.png"></li>
-																								<li><img src="${imgPath}/index2/f310.png"></li>
-																								<li><img src="${imgPath}/index2/f311.png"></li>
-																								<li><img src="${imgPath}/index2/f312.png"></li>
-																								<li><img src="${imgPath}/index2/f313.png"></li>
-																								<li><img src="${imgPath}/index2/f314.png"></li>
-																								<li><img src="${imgPath}/index2/f315.png"></li>
-																								<li><img src="${imgPath}/index2/f316.png"></li>
-																								<li><img src="${imgPath}/index2/f317.png"></li>
-																								<li><img src="${imgPath}/index2/f318.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f31.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f32.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f33.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f34.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f35.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f36.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f37.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f38.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f39.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f310.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f311.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f312.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f313.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f314.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f315.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f316.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f317.png"></li>
+																								<li class="setClients"><img src="${imgPath}/index2/f318.png"></li>
 																							</ul>		
 																						</div>
 																						
@@ -337,8 +341,8 @@
 														    <div class="mapDiv">   
 														     <div class="mapTitle">
 														           <div class="top">55800<span>+影视创作人</span></div>
-														           <div class="bot1">75<span>个主城市,</span></div>
-														           <div class="bot2">专业的影视团队就在您身边</div>
+														           <div class="bot1">75<span>个主要城市,</span></div>
+														           <div class="bot2">专业的影视团队为您服务</div>
 														     </div>
 														     <div id="container" style="height:1000px"></div>
 														    </div> 
@@ -355,10 +359,10 @@
 														    </div>
 														     <!-- plant-->	
 														     <div class="plant">
-														          <img style="width:100%" src="${imgPath}/index2/bannerbot.png">
+														          <img style="width:100%;min-width:960px" src="${imgPath}/index2/bannerbot.png">
 														          <div class="setPlant">
 															           <div class="titleClass">
-												                            <div>拍片星球</div>
+												                            <div style="color:white">拍片星球</div>
 												                            <div></div>
 												                       </div>
 												                       <div class="plantContent">
@@ -390,10 +394,10 @@
 												                            <div></div>
 												                   </div>
 												                   <div class="touDiv">
-													                   <a href="http://www.preangelfund.cn/" target="_blank"><img src="${imgPath}/index2/tou1.png"></a>
-													                   <a href="http://www.apluscap.com/" target="_blank"><img src="${imgPath}/index2/tou2.png"></a>
-													                   <a href="http://www.eaglesfund.com/" target="_blank"><img src="${imgPath}/index2/tou3.png"></a>
-													                   <a href="http://www.gtja.com/" target="_blank"><img src="${imgPath}/index2/tou4.png"></a>
+													                   <img class="logo1" src="${imgPath}/index2/tou1.png">
+													                   <img class="logo2" src="${imgPath}/index2/tou2.png">
+													                   <img class="logo3" src="${imgPath}/index2/tou3.png">
+													                   <img class="logo4" src="${imgPath}/index2/tou4.png">
 												                   </div>
 												                   
 												                   <div class="titleClass">
@@ -402,13 +406,13 @@
 												                   </div>
 												                   
 												                   <div class="ourFriendsLink">
-																	   <a  href="http://www.plusx.cn/" target="_blank"><img alt="图片直播" src="/resources/images/index/friend1.png"></a>
-																	   <a  href="http://www.techuangyi.com" target="_blank"><img alt="特创易LOGO设计" src="/resources/images/index/friend2.png"></a>
-																	   <a  href="http://www.cubead.com/" target="_blank"><img alt="大数据整合营销" src="/resources/images/index/friend3.png"></a>
-																	   <a  href="http://www.bjjfsd.com/" target="_blank"><img alt="北京网站制作" src="/resources/images/index/friend4.png"></a>
-																	   <a  href="http://www.qiqueqiao.com/" target="_blank"><img alt="企鹊桥" src="/resources/images/index/friend5.png"></a>
-																	   <a  href="http://www.dadetong.com/" target="_blank"><img alt="大德通众包平台" src="/resources/images/index/friend6.png"></a>
-																	   <a  href="http://www.ciprun.com/" target="_blank"><img alt="专利申请" src="/resources/images/index/friend7.jpg"></a>
+																	   <img class="logo5" alt="图片直播" src="/resources/images/index/friend1.png">
+																	   <img class="logo6" alt="特创易LOGO设计" src="/resources/images/index/friend2.png">
+																	   <img class="logo7" alt="大数据整合营销" src="/resources/images/index/friend3.png">
+																	   <img class="logo8" alt="北京网站制作" src="/resources/images/index/friend4.png">
+																	   <img class="logo9" alt="企鹊桥" src="/resources/images/index/friend5.png">
+																	   <img class="logo10" alt="大德通众包平台" src="/resources/images/index/friend6.png">
+																	   <img class="logo11" alt="专利申请" src="/resources/images/index/friend7.jpg">
 																	</div>
 												                   
 														     </div>

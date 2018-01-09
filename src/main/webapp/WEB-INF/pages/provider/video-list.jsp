@@ -177,6 +177,18 @@
 					<div class="pagination"></div>
 				</div>
 			</div>
+			<div style="position: absolute;
+    bottom: 10px;
+    left: 50px;z-index;999">
+			   <input id="jumpNum" style="width: 60px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    border: none;
+    border: 1px solid #666;
+    border-radius: 8px;outline:none;padding-left:10px;">
+			   <div class="btn-c-r" style="width:60px;height:30px;display:inline-block;vertical-align: top;border-radius: 8px;line-height:30px;text-align:center" id="jump">跳转</div>
+			</div>
 		</c:if>
 		
 		<!-- pagination end -->

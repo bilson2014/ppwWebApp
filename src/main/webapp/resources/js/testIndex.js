@@ -9,43 +9,11 @@ $().ready(function() {
 	initBanner();
 	setFriens();
     setMap();
+    logoEven();
     window.onresize = function() {
-    	initScroll();
+        initScroll();
 	};
-
-    
-/*    var swipers = new Swiper('#mainPage', {
-        direction: 'vertical',
-        slidesPerView: 'auto',
-        freeMode: true, 
-        mousewheel:true,
-        scrollbar: {
-          el: '.swiper-scrollbar',
-          hide: false,
-        },
-        on:{
-      	    setTransition: function(){  
-      	    	 var vbn =  $('.swiper-scrollbar-drag').offset().top;	    	 
-      	    	 if(isChange == 0){
-      	    		 isChange = vbn;
-      	    	 }
-   	    	     var scrollPos =  $('.swiper-scrollbar-drag').css("transform").replace(/[^0-9\-,]/g,'').split(',')[5];
-   	    	     if(isClose != 1){
-   	    	    	 if(vbn == isChange){	
-   		    	    	 sw.allowSlidePrev = true;
-   	    	    		 sw.slidePrev();
-   	    	    		 $('.pItem').removeClass('setItem');
-   		    	     }else{
-   		    	    	 $('.pItem').addClass('setItem'); 
-   		    	    	 sw.allowSlidePrev = false;
-   		    	     }
-   	    	    	 isClose = vbn;
-   	    	     }else{
-   	    	    	 isClose = vbn;
-   	    	     }
-     	    },
-      	  },
-      }); */
+	merchantBridge();
     
 });
 
@@ -60,7 +28,7 @@ function initBanner(){
 		loop : true,
 		grabCursor : true,
 		 autoplay: {
-		        delay: 1500,
+		        delay: 3000,
 		        disableOnInteraction: false,
 		  },
 		onSlideChangeEnd : function(swiper) {
@@ -84,26 +52,51 @@ function initBanner(){
 function initScroll(){
 	// $(window).scrollTop(0);
 	  var setVideoHeight = $('body').height();
+	  var setVideoWidth = $('body').width();
       var product = $('#product').offset().top;
+      var productH = $('.videoProduct').height();
+      var ourFriends = $('.ourFriends').offset().top;
       var data = $('.data').offset().top;
 	  $('.setVideoContent').css('height',setVideoHeight);
+	  var needPos = (setVideoHeight*1.6 - setVideoWidth);
 	  $('#setTopVideo').css('height',setVideoHeight);
+	  $('#setTopVideo').css('margin-left',needPos/4);
+
 	  window.onscroll = function(){ 
 		  var nowPos = $(window).scrollTop();
-		  console.info(checkTopWay(nowPos));
-		  if(nowPos >= (setVideoHeight - 100)){
+		  if(nowPos >= (setVideoHeight/2)){
 			  $('.pItem').addClass('setItem');
-			  $('#header').addClass('headerMove');
-			 
+			  $('#header').addClass('headerMove');			 
 		  }
-		  if(nowPos <= setVideoHeight){
+		  if(nowPos <= 100){
 			  $('.pItem').removeClass('setItem');
 			  $('#header').removeClass('headerMove');
+			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
 		  }
-		  if(nowPos >= (product+10)){
+		  if(nowPos >= product - 150 && nowPos <= product + productH + 400){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').addClass('productItemAnimo');
 		  }
-		  if(nowPos >= (data+10)){
+		  if(nowPos >= product+productH+500){
+			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
+		  }
+		  
+		  if(nowPos >= ourFriends - 230){
+			  $('.oneLi').addClass('setClients');
+			  $('.twoLi').addClass('setClients');
+			  $('.threeLi').addClass('setClients');
+		  }
+		  if(nowPos < ourFriends - 230){
+			  $('.oneLi').removeClass('setClients');
+			  $('.twoLi').removeClass('setClients');
+			  $('.threeLi').removeClass('setClients');
+		  }
+		  
+		  if(nowPos < data - 500){
+			  $('.setContentImg').removeClass('setAniData');
+				 $('.setContent').removeClass('setAniContent');
+		  }
+		  
+		  if(nowPos >= (data+100)){
 			 $('.setContentImg').addClass('setAniData');
 			 $('.setContent').addClass('setAniContent');
 		  }
@@ -131,7 +124,7 @@ function initProduct(){
 	    	window.location.href = "/list.html";
 	    });
 	    
-	    $('.maotai').off('click').on('click',function(){
+/*	    $('.maotai').off('click').on('click',function(){
 	    	createVideo('','https://v.youku.com/v_show/id_XMzAxMTA5NjcyMA==.html?spm=a2h3j.8428770.3416059.1')
 	    });
 	    $('.kaola').off('click').on('click',function(){
@@ -139,7 +132,7 @@ function initProduct(){
 	    });
 	    $('.wanda').off('click').on('click',function(){
 	    	createVideo('','https://v.youku.com/v_show/id_XMzAxODkwMzU4OA==.html?spm=a2h3j.8428770.3416059.1')
-	    });
+	    });*/
           
 
 		$(".home-search").off("click").on("click", function() {
@@ -682,6 +675,45 @@ function setMap(){
 	if (option && typeof option === "object") {
 	    myChart.setOption(option, true);
 	}
+	
+}
+
+function logoEven(){
+	
+	$('.logo1').off('click').on('click',function(){
+		window.open('http://www.preangelfund.cn/');
+	});
+	$('.logo2').off('click').on('click',function(){
+		window.open('http://www.apluscap.com/');
+	});
+	$('.logo3').off('click').on('click',function(){
+		window.open('http://www.eaglesfund.com/');
+	});
+	$('.logo4').off('click').on('click',function(){
+		window.open('http://www.gtja.com/');
+	});
+	$('.logo5').off('click').on('click',function(){
+		window.open('http://www.plusx.cn/');
+	});
+	$('.logo6').off('click').on('click',function(){
+		window.open('http://www.techuangyi.com');
+	});
+	$('.logo7').off('click').on('click',function(){
+		window.open('http://www.cubead.com/');
+	});
+	$('.logo8').off('click').on('click',function(){
+		window.open('http://www.bjjfsd.com/');
+	});
+	$('.logo9').off('click').on('click',function(){
+		window.open('http://www.qiqueqiao.com/');
+	});
+	$('.logo10').off('click').on('click',function(){
+		window.open('http://www.dadetong.com/');
+	});
+	$('.logo11').off('click').on('click',function(){
+		window.open('http://www.ciprun.com/');
+	});
+	
 	
 }
 

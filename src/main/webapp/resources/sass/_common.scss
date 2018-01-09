@@ -12,7 +12,7 @@
 //@import "icons-sprite"; 
 body {
     font-family: "PingFang SC", Helvetica, "Microsoft YaHei", "微软雅黑", Arial, sans-serif !important;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 li {
@@ -687,7 +687,6 @@ a {
 //切换后
 .login-item {
     color: white !important;
-    font-weight: 500;
     max-width: 100px;
     @media screen and (min-width: 1276px) and (max-width: 1500px) {
         max-width: 120px;
@@ -701,7 +700,6 @@ a {
 .headerMove {
     .login-item {
         color: $red-base !important;
-        font-weight: 500;
     }
     .warn {
         width: 16px;
@@ -726,7 +724,6 @@ a {
     .header-item {
         line-height: $header-height !important;
         color: black;
-        font-weight: 500;
         &:hover {
             color: $red-base !important;
             .showVideo {
@@ -876,11 +873,11 @@ a {
 
 .header-item-last {
     padding-right: 18px;
-    font-weight: 500;
+  
 }
 
 .header-item {
-    font-weight: 500;
+   
     &:hover {
         background: none !important;
         color: $red-base !important;
@@ -949,7 +946,7 @@ a {
     height: 440px;
     position: relative;
     border-top: 1px solid white;
-    font-weight: 500;
+    
     .title {
         a {
             cursor: default !important;
@@ -1882,14 +1879,25 @@ a {
     text-align: left;
 }
 
-.nb-icon-wrap{
+.nb-icon-inner-wrap{
 	-webkit-transition: all .2s ease-out;
     transition: all .2s ease-out;
+    background-color:transparent !important;
+    border-radius: 100% !important;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+    width: 60px !important;
+    height: 60px !important;
+    right:50px;
+    bottom:50px;
+    background-size: 60px 60px !important;
 	&:hover{
 		-webkit-transform: scale(1.05);
 	    transform: scale(1.05);
+        box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19) !important;
 	}
 }
+
+
 
 
 
