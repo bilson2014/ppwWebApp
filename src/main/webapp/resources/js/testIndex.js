@@ -2,6 +2,7 @@
  var isChange = 0;
  var sw;
  var lastPos = 0;
+ 
 $().ready(function() {
 	initScroll();
 	initIndexProp();
@@ -15,7 +16,6 @@ $().ready(function() {
 	};
 	merchantBridge();
 });
-
 
 function initBanner(){
 	var banner = new Swiper('.swiper-banner', {
@@ -75,19 +75,19 @@ function initScroll(){
 			  $('#header').removeClass('headerMove');
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
 		  }
-		  if(nowPos >= product - 150 && nowPos <= product + productH + 400){
+		  if(nowPos >= product - 250 && nowPos <= product + productH + 400){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').addClass('productItemAnimo');
 		  }
 		  if(nowPos >= product+productH+500){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
 		  }
 		  
-		  if(nowPos >= ourFriends - 230){
+		  if(nowPos >= ourFriends - 250){
 			  $('.oneLi').addClass('setClients');
 			  $('.twoLi').addClass('setClients');
 			  $('.threeLi').addClass('setClients');
 		  }
-		  if(nowPos < ourFriends - 230){
+		  if(nowPos < ourFriends - 250){
 			  $('.oneLi').removeClass('setClients');
 			  $('.twoLi').removeClass('setClients');
 			  $('.threeLi').removeClass('setClients');
