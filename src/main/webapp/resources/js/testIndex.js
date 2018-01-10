@@ -14,7 +14,6 @@ $().ready(function() {
         initScroll();
 	};
 	merchantBridge();
-    
 });
 
 

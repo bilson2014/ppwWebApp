@@ -340,8 +340,8 @@
 														    <div class="mapDiv">   
 														     <div class="mapTitle">
 														           <div class="top">55800<span>+影视创作人</span></div>
-														           <div class="bot1">75<span>个主要城市,</span></div>
-														           <div class="bot2">专业的影视团队为您服务</div>
+														           <div class="bot1">75<span>个主要城市</span></div>
+														           <div class="bot2" style="color:white">专业的影视团队为您服务</div>
 														     </div>
 														     <div id="container" style="height:1000px"></div>
 														    </div> 

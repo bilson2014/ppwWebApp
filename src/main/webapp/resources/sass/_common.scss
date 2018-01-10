@@ -1052,6 +1052,10 @@ a {
                     margin-bottom: 11px;
                     padding-top: 1px;
                     background-size: 14px 28px !important;
+                    transition: all 0.5s ease-in-out 0s;
+                        -moz-transition: all 0.5s ease-in-out 0s;
+                        -webkit-transition: all 0.5s ease-in-out 0s;
+                        -o-transition: all 0.5s ease-in-out 0s;
                     &:hover {
                         a {
                             color: $red-base;
@@ -1061,6 +1065,7 @@ a {
                         position: relative;
                         top: -2px;
                         left: 8px;
+
                     }
                     &:hover {
                         background-position-y: -15px;
