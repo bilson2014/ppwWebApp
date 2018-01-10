@@ -45,8 +45,9 @@
                     	拍片网介绍
                     <span></span>
                 </a>
-                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
                  <a href="http://zhuanti.apaipian.com/" class="header-item" target="_parent">特色专题<span></span></a>
+                 <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
+                
             </div>
             <input type="hidden" id="commonToken" name="token" value="${token}"/>
             <div class="middle-part">
