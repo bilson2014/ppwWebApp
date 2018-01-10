@@ -50,7 +50,7 @@
     <!-- 新首页 -->
     <mvc:view-controller path="/news" view-name="/news" />
     <mvc:view-controller path="/newss" view-name="/testAng/news" />
-    <mvc:view-controller path="/testNew" view-name="/testNew" />
+    <mvc:view-controller path="/Beta" view-name="/testNew" />
     <mvc:view-controller path="/testList" view-name="/testAng/testList" />
     <!-- 订单管理系统 -->
     <mvc:view-controller path="/orderIndex" view-name="/order/orderIndex" />

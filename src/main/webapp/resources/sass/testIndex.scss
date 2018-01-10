@@ -499,7 +499,6 @@ $mWidth:960px;
             }
         }
         .productVideo {
-            cursor: pointer;
             img {
                 transition: all .1s ease-in-out .7s;
             -webkit-transition: all .1s ease-in-out .7s;
@@ -529,6 +528,7 @@ $mWidth:960px;
                 height: 120px;
             }
             .peopleTitle {
+                opacity: 0;
                 img,
                 div {
                     display: inline-block;
@@ -551,6 +551,11 @@ $mWidth:960px;
                 font-size: $font-size-base;
                 color: $gray;
                 line-height: 24px;
+                span{
+                    font-size: $font-size;
+                    font-weight: 900;
+                   line-height: 40px;
+                }
             }
         }
     }

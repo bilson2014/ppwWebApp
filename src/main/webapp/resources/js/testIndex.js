@@ -52,6 +52,9 @@ function initBanner(){
 function initScroll(){
 	// $(window).scrollTop(0);
 	  var setVideoHeight = $('body').height();
+	  if(setVideoHeight < 400){
+		  setVideoHeight = 400;
+	  }
 	  var setVideoWidth = $('body').width();
       var product = $('#product').offset().top;
       var productH = $('.videoProduct').height();

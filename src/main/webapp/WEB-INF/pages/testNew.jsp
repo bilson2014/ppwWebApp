@@ -35,12 +35,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" id="keywords" content="">
-    <meta name="description" content="">
-    <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-    <title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="宣传片,企业宣传片,宣传片制作,宣传片拍摄,tvc广告,产品广告片,广告片拍摄,广告片制作,mg动画,品牌微电影">
+<meta name="description" content="拍片网专业提供企业宣传片制作、产品tvc广告片拍摄、mg动画制作、品牌微电影等商业视频服务。企业宣传片创意策划免费，价格直降30%。宣传片制作、广告片拍摄团队遍布北京、上海、杭州等全国75个大中城市。">
+<meta name="baidu-site-verification" content="dMz6jZpIwd" />
+<title>企业宣传片-宣传片制作-产品广告片拍摄-tvc-mg动画-品牌微电影-拍片网</title>
     <link rel="stylesheet" href="/resources/lib/swiper/swiper4.css">
     <link rel="stylesheet" href="${indexCss}">    
 </head>
@@ -70,10 +70,9 @@
     <div class="pagev">
                     <!--第一屏 -->
 		            <div class="setVideoContent" >
-		               <div style="width:100%;height:100%;background:gray;opacity:0.5;position: absolute;"></div>
-		               <video autoplay class="video" loop id="setTopVideo" src="/resources/video.mp4"></video>
+		               <div style="width:100%;height:100%;background:gray;opacity:0;position: absolute;"></div>
+		               <video autoplay class="video" loop id="setTopVideo" src="https://www.apaipian.com/product/video/flexvideo-v2.mp4" poster="${imgPath}/index2/videoBanner.jpg"></video>
 		               <div class="indexContent" style="z-index:10">
-		                    
 								 <div class="swiper-container swiper-banner flexslider">
 											<div class="swiper-wrapper swiper-banner-slide">
 												<div class="swiper-slide">
@@ -173,10 +172,10 @@
 																				      <div class="swiper-slide">
 																				           <div class="productItem">
 																				                <div class="productLeft">
-																				                     <img src="${imgPath}/index2/maotai.png">
+																				                     <img src="${imgPath}/index2/maotai1.png">
 																				                     <div class="leftTitle">茅台100周年纪念电影</div>
 																				                     <div class="leftSTitle">向世界传播中国品牌</div>
-																				                     <div class="leftContent">《1915金奖之旅》作为中国酒文化城的镇馆影片，再现了茅台酒成为世界三大蒸馏酒的辉煌历程。<br> 
+																				                     <div class="leftContent"> 
 拍片网为茅台提供了影片创意策划，剧本撰写，并组建了600余人的创作团队创作者，包括《奥林匹克美术大会影片》的导演、《中国国家形象宣传片》的摄影指导、电影《建国大业》的美术指导、《奥运福娃漫游记》的动画导演等知名创作人。</div>
 																				                     <a href="/play/9_389.html">了解更多</a>
 																				                </div>
@@ -190,7 +189,7 @@
 																				                           <div>夏攀说<br>拍片网公司总裁</div>
 																				                      </div>
 																				                       <div class="peopleContent">
-																				                         “我们认识一个人往往从他的作品开始，在自然科学和文学艺术领域，作品深刻的反映了创作者的灵魂质地。拍片网用作品说话。”
+																				                         <span>客户文化部负责人：</span><br>" 《1915金奖之旅》作为中国酒文化城的镇馆影片，成功再现了茅台酒成为世界三大蒸馏酒的辉煌历程。我们对影片整体品质非常满意。”
 																				                 	  </div>
 																				                 </div>
 																				           </div>
@@ -199,12 +198,11 @@
 																				           <div class="productItem">
 																				                <div class="productLeft">
 																				                     <img src="${imgPath}/index2/product2.png">
-																				                     <div class="leftTitle">网易考拉海购广告《佟大为篇》</div>
+																				                     <div class="leftTitle">网易考拉海购TVC</div>
 																				                     <div class="leftSTitle">互联网的第一定律 唯快不破</div>
 																				                     <div class="leftContent">接到网易考拉海购的创意简报后，拍片网在24小时内完成了影片的团队组建和筹备工作，
 																									在仅有的4小时拍摄时间里，圆满的完成了佟大为的镜头拍摄任务。
-																									拍片网一站式视频管家服务模式和标准的制片管理流程，
-																									不仅有效的帮助客户节省了沟通的时间成本，更实实在在的降低了拍片的预算。</div>
+																									</div>
 																				                     <a href="/play/9_3577.html">了解更多</a>
 																				                </div>
 																				                <div class="productVideo kaola" >
@@ -214,10 +212,11 @@
 																				                      <img class="productIndex" src="${imgPath}/index2/two.png">
 																				                      <div class="peopleTitle">
 																				                           <img src="${imgPath}/index2/product.png">
-																				                           <div>夏攀说<br>拍片网公司总裁</div>
+																				                           <div>客户说</div>
 																				                      </div>
 																				                       <div class="peopleContent">
-																				                         “我们认识一个人往往从他的<br>作品开始在自然科学和文学艺术领<br>域作品深刻的反映了创作者的灵魂质<br>地拍片网用作品说话”
+																				                                     <span>客户品牌总监：</span><br> " 拍片网非常专业，标准的制片管理流程，
+																									节省了大量沟通成本，视频管家的服务也非常贴心，总之非常满意。"
 																				                 	  </div>
 																				                 </div>
 																				           </div>
@@ -227,7 +226,7 @@
 																				                <div class="productLeft">
 																				                     <img src="${imgPath}/index2/product3.png">
 																				                     <div class="leftTitle">万达招采平台宣传片</div>
-																				                     <div class="leftSTitle">更多的创作团队可供选择 意味着更好的服务和质量</div>
+																				                     <div class="leftSTitle">更多的创作团队  更好的服务质量</div>
 																				                     <div class="leftContent">万达招采平台宣传片承担着向5万多名供应商介绍阳光合作模式的重任。
 																										从项目启动到交付，时间非常紧急，创作团队度过了数十个不眠之夜，如期交付。
 																										所有的中大型企业都在自建供应商管理平台，拍片网5万名创作者可以无缝对接到企业的管理系统中，
@@ -244,7 +243,7 @@
 																				                           <div>夏攀说<br>拍片网公司总裁</div>
 																				                      </div>
 																				                       <div class="peopleContent">
-																				                         “我们认识一个人往往从他的<br>作品开始在自然科学和文学艺术领<br>域作品深刻的反映了创作者的灵魂质<br>地拍片网用作品说话”
+																				                       <span>招采平台项目负责人:</span><br>"拍片网的制片管理系统非常科学，很好的协助我们管理项目进度，在反复的修改中，很细心，有耐心，很满意。"
 																				                 	  </div>
 																				                 </div>
 																				           </div>
