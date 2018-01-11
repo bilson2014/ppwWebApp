@@ -1128,17 +1128,18 @@ a {
         top: -240px;
         left: 0px;
         text-align: center;
-        width: 270px;
-        height: 312px;
-        background: url(/resources/images/common/footCodeBackground.png);
+        width: 250px;
+        height: 392px;
+        background: url(/resources/images/common/footCodeBackground.png) no-repeat;
         top: -315px;
         left: -30px;
         z-index: 99;
+        background-size: 250px 292px;
         img {
             display: block;
             width: 180px;
-            margin-top: 40px;
-            margin-left: 45px;
+            margin-top: 33px;
+            margin-left: 37px;
             margin-bottom: 10px;
         }
         span {
@@ -1160,18 +1161,19 @@ a {
     .showCodeToPro {
         display: none;
         position: absolute;
-        width: 270px;
-        height: 312px;
-        background: url(/resources/images/common/footCodeBackground.png);
+        width: 250px;
+        height: 392px;
+        background: url(/resources/images/common/footCodeBackground.png)no-repeat;
         top: -315px;
         left: -30px;
         text-align: center;
         z-index: 99;
+        background-size: 250px 292px;
         img {
             display: block;
-            width: 180px;
-            margin-top: 40px;
-            margin-left: 45px;
+             width: 180px;
+            margin-top: 33px;
+            margin-left: 37px;
             margin-bottom: 10px;
         }
         span {
