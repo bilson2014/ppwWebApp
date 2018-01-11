@@ -1560,7 +1560,7 @@ $bImg:1000px;
         img {
             width: 134px;
             @media screen and (mix-width: 1199px) {
-                 width: 110px;
+                width: 110px;
             }
         }
     }
@@ -1579,5 +1579,89 @@ $bImg:1000px;
     }
     a:nth-child(6) {
         margin-right: 35px;
+    }
+}
+
+.beta {
+    position: fixed;
+    left: -215px;
+    width: 205px;
+    z-index: 99999;
+    -webkit-animation: cardAnim 8s linear;
+    -moz-animation: cardAnim 8s linear;
+    -o-animation: cardAnim 8s linear;
+    animation: cardAnim 8s linear;
+}
+
+
+@-webkit-keyframes cardAnim {
+    0% {
+        left: -215px;
+    }
+    10% {
+        left: -215px;
+    }
+    20% {
+        left: 0px;
+    }
+    80% {
+        left: 0px;
+    }
+    100% {
+        left: -215px;
+    }
+}
+
+@-moz-keyframes cardAnim {
+    0% {
+        left: -215px;
+    }
+    10% {
+        left: -215px;
+    }
+    20% {
+        left: 0px;
+    }
+    80% {
+        left: 0px;
+    }
+    100% {
+        left: -215px;
+    }
+}
+
+@-o-keyframes cardAnim {
+     0% {
+        left: -215px;
+    }
+    10% {
+        left: -215px;
+    }
+    20% {
+        left: 0px;
+    }
+    80% {
+        left: 0px;
+    }
+    100% {
+        left: -215px;
+    }
+}
+
+@keyframes cardAnim {
+   0% {
+        left: -215px;
+    }
+    10% {
+        left: -215px;
+    }
+    20% {
+        left: 0px;
+    }
+    80% {
+        left: 0px;
+    }
+    100% {
+        left: -215px;
     }
 }

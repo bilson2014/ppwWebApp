@@ -29,6 +29,7 @@ function getVideoHeight() {
 	$('.flex-wrap').css('height', videoHeight);
 	$('.flexVideo').css('height', videoHeight);
 	$('.flexVideo video').css('height', videoHeight);
+	$('.beta').css('top',videoHeight - 10);
 }
 
 function scrollBack() {

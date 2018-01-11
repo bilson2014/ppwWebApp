@@ -173,6 +173,8 @@
 		<div class="tel">
 			<a href="tel:${OFFICAL_PHONE }"> <span>服务热线 </span><span>${OFFICAL_PHONE }</span></a>
 		</div>
+		<!-- 跳转 end -->
+			<a href="/beta" ><img class='beta' src="${imgPath}/index/artboard.png"> </a>		
 		<!-- 宣传片 start -->
 		<div class="FourModelColor">
 			<div class="FourModel">
@@ -567,7 +569,7 @@
 					</li>
 					<li>
 						<div>
-							3200<span></span><span>部</span>
+							3000<span></span><span>部</span>
 						</div>
 						<div>累计制作影片</div>
 					</li>

@@ -191,7 +191,7 @@
 			</div>
 			<!-- 结束 -->
 			<!-- 案例 -->
-			<div class="videoProduct">
+			<div class="videoProduct" id="product">
 				<div class="orderPlay">预定拍摄</div>
 				<a href="/list.html"><div class="orderMore">查看更多案例</div></a>
 				<div class="titleClass">
@@ -199,7 +199,7 @@
 					<div></div>
 				</div>
 				<img class="videoBack" src="${imgPath}/index2/product.png">
-				<div class="swiper-container" id="product">
+				<div class="swiper-container swiperProductSet" >
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
 							<div class="productItem">

@@ -369,8 +369,9 @@ $mWidth:960px;
     .videoBack {
         width: 100%;
         min-height: 510px;
+        max-height: 900px;
     }
-    #product {
+    .swiperProductSet {
         @include media_screen_width_beta3();
         position: absolute;
         left: 50%;
@@ -789,18 +790,21 @@ $mWidth:960px;
 .plant {
     position: relative;
     min-width: 960px;
+    max-height: 850px;
+    overflow: hidden;
     .setPlant {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         min-width: 960px;
+        max-height: 900px;
     }
     .plantContent {
         @include media_screen_width_beta3();
         margin: 0 auto;
         font-size: 0;
-        margin-top: 12%;
+        margin-top: 170px;
         a {
             margin-left: 175px;
             margin-right: 175px;
@@ -843,7 +847,7 @@ $mWidth:960px;
             }
             img {
                 position: relative;
-                width: 100%;
+                width: 100%;               
                 top: 0px;
                 transition: all .2s ease-in-out .3s;
                 -webkit-transition: all .2s ease-in-out .3s;
