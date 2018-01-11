@@ -1097,7 +1097,7 @@ a {
                     font-size: 34px !important;
                     position: relative;
                     top: -10px;
-                    background: black;
+
                     a {
                         color: $red-base !important;
                     }
@@ -1106,7 +1106,7 @@ a {
                     position: relative;
                     top: -3px;
                     a {
-                        cursor: none;
+                        cursor: default;
                     }
                 }
             }
@@ -1892,19 +1892,14 @@ a {
     box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
     width: 60px !important;
     height: 60px !important;
-    right:50px;
     bottom:50px;
     background-size: 60px 60px !important;
+    right:-20px;
 	&:hover{
 		-webkit-transform: scale(1.05);
 	    transform: scale(1.05);
         box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19) !important;
 	}
 }
-
-
-
-
-
 
   

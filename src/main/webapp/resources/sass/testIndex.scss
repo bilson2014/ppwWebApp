@@ -676,14 +676,14 @@ $mWidth:960px;
         margin-left: -208px;
         .top {
             font-size: 40px;
-            color: #fe5453;
+            color: white;
             span {
                 font-size: 26px;
             }
         }
         .bot1 {
             font-size: 40px;
-            color: white;
+            color: $red-base;
             display: inline-block;
             vertical-align: bottom;
             span {
@@ -692,7 +692,7 @@ $mWidth:960px;
         }
         .bot2 {
             font-size: 20px;
-            color: white;
+            color: #0C053A;
             height: 28px;
             line-height: 28px;
             background: #fe5453;
