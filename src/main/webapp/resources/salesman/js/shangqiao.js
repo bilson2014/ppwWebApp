@@ -8,6 +8,8 @@ var _hmt = _hmt || [];
 })();
 
 
+
+
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -28,16 +30,25 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 })();
 
 
-$(document).ready(function(e) {
-	
-	$("#menu").click(function(){
-				$(".wap-nav").slideDown();
-			  });
-	$("#close").click(function(){
-				$(".wap-nav").slideUp();
-			  });
-})
 
+$(function(){
+	$(window).on('scroll',function(){
+		var st = $(document).scrollTop();
+		if( st>50 ){
+			$('#go-top').fadeIn(function(){
+				$(this).removeClass('hide');
+			});
+		}else{
+			$('#go-top').fadeOut(function(){
+				$(this).addClass('hide');
+			});
+		}	
+	});
+	$('#go-top .go').on('click',function(){
+		$('html,body').animate({'scrollTop':0},500);
+	});
+
+});	
 
 
 (function(){
