@@ -436,15 +436,17 @@
 								<img src='${imgPath}/index2/plant1.png'>
 								<div>特色专题</div>
 							</div>
-						</a> <a href="news-list.html">
+						</a> 
+						<a href="news-list.html">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant2.png'>
 								<div>新闻资讯</div>
 							</div>
-						</a> <a>
+						</a> 
+						<a href="http://factory.apaipian.com/" target="_blank">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant3.png'>
-								<div>拍片工厂(建设中)</div>
+								<div>拍片工厂</div>
 							</div>
 						</a>
 					</div>
