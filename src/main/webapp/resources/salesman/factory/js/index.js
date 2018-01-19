@@ -3,10 +3,18 @@ jQuery(function($){
 	handover();
 	
 //	$('.slideBox .bd img').height;
-	console.log('wwq');
-	console.log($('.slideBox .bd li').height());
-	var hei=$('.slideBox .bd li').height();
-	$('#slideBox').attr('style','height: '+hei+'px !important;	')
+//	console.log('wwq');
+//	console.log($('.slideBox .bd li').height());
+//	var hei=$('.slideBox .bd li').height();
+//	$('#slideBox').attr('style','height: '+hei+'px !important;	');
+	
+	
+	var wei=$(window).width(); 
+//	console.log(wei);
+	var heis=wei*660/1920;
+//	console.log(heis);
+	$('.main_5  #slideBox').attr('style','height: '+heis+'px !important;	');
+	
 });
 //点击切换
 function handover(){
