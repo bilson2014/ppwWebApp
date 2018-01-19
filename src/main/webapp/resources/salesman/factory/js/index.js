@@ -1,18 +1,8 @@
 jQuery(function($){
 	$('#slideBox').attr('style','');
-	handover();
-	
-//	$('.slideBox .bd img').height;
-//	console.log('wwq');
-//	console.log($('.slideBox .bd li').height());
-//	var hei=$('.slideBox .bd li').height();
-//	$('#slideBox').attr('style','height: '+hei+'px !important;	');
-	
-	
+	handover();	
 	var wei=$(window).width(); 
-//	console.log(wei);
 	var heis=wei*660/1920;
-//	console.log(heis);
 	$('.main_5  #slideBox').attr('style','height: '+heis+'px !important;	');
 	
 });
