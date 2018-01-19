@@ -1,6 +1,12 @@
 jQuery(function($){
 	$('#slideBox').attr('style','');
 	handover();
+	
+//	$('.slideBox .bd img').height;
+	console.log('wwq');
+	console.log($('.slideBox .bd li').height());
+	var hei=$('.slideBox .bd li').height();
+	$('#slideBox').attr('style','height: '+hei+'px !important;	')
 });
 //点击切换
 function handover(){

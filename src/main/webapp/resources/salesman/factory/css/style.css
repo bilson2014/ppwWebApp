@@ -194,7 +194,7 @@ area {
 .banner {
     position: relative;
     margin-top: 1px;
-    height: 560px;
+    height: 560px ！!important;
     overflow: hidden;
 }
 
@@ -292,7 +292,7 @@ area {
         width: 1300px;
     }
     .main_3 .container {
-        height: 600px !important;
+        height: 512px !important;
     }
 }
 
@@ -497,7 +497,8 @@ a.codeshow:hover .code {
 
 .slideBox {
     width: 100%;
-    height: auto;
+    height: 560px !important;
+    /* height: auto; */
     position: relative;
 }
 
