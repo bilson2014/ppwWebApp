@@ -14,7 +14,6 @@
     padding: 30px 0;
 }
 
-<<<<<<< HEAD
 .content {
     background: #fff;
     border-radius: 8px;
@@ -22,15 +21,6 @@
     padding: 20px 0;
     min-height: 994px;
 }
-=======
-.main_3{ background:#e6ecee; padding:30px 0;}
-.content{ background:#fff; border-radius:8px; width:870px; padding:20px 0; min-height:994px;}
-.tit{ font-size:20px; padding-left:25px; line-height:30px; color:#000; font-weight: 300;}
-.video_list{ zoom:1; overflow:hidden; padding:20px 0 0 15px;}
-.video_list li{ width:260px; padding:0 10px 24px; float:left;}
-.video_list li div.kuang{ width:260px; height:160px; overflow:hidden; border-radius:5px;}
-.video_list li div.kuang img{ width:260px; height:160px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
->>>>>>> 79c49aadad190c2d1db48b41ddac97c8d39c3a74
 
 .tit {
     font-size: 20px;
