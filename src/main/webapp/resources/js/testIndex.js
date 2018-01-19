@@ -51,58 +51,76 @@ function initBanner(){
 function initScroll(){
 	// $(window).scrollTop(0);
 	  var setVideoHeight = $('body').height();
+	  var setVideoWidth = $('body').width();
 	  if(setVideoHeight < 400){
 		  setVideoHeight = 400;
 	  }
-	  var setVideoWidth = $('body').width();
+	  $('#header').removeClass('headerMove');
+	  
       var product = $('#product').offset().top;
       var productH = $('.videoProduct').height();
       var ourFriends = $('.ourFriends').offset().top;
       var data = $('.data').offset().top;
-	  $('.setVideoContent').css('height',setVideoHeight);
+	  
 	  var needPos = (setVideoHeight*1.6 - setVideoWidth);
-	  $('#setTopVideo').css('height',setVideoHeight);
-	  $('#setTopVideo').css('margin-left',needPos/4);
+	 
+	  if(setVideoWidth/setVideoHeight >= 2.5){
+		  $('.setVideoContent').css('height',setVideoWidth/2.5);
+		  $('#setTopVideo').css('height',setVideoWidth/2.5);
+	  }else{
+		  $('.setVideoContent').css('height',setVideoHeight);
+		  $('#setTopVideo').css('height',setVideoHeight);
+		  $('#setTopVideo').css('margin-left',needPos/4);
+	  }
 
 	  window.onscroll = function(){ 
+		  
+		  
+		  var aniHeight = setVideoHeight/2;
+
+		  if(setVideoWidth>=1800){
+			  aniHeight = setVideoHeight/3;
+		  }
+	     	  
 		  var nowPos = $(window).scrollTop();
-		  if(nowPos >= (setVideoHeight/2)){
+		  if(nowPos >= aniHeight){
 			  $('.pItem').addClass('setItem');
 			  $('#header').addClass('headerMove');			 
 		  }
 		  if(nowPos <= 100){
 			  $('.pItem').removeClass('setItem');
 			  $('#header').removeClass('headerMove');
-			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
+		//	  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
 		  }
-		  if(nowPos >= product - 250 && nowPos <= product + productH + 400){
+		/*  if(nowPos >= product - aniHeight && nowPos <= product + productH + aniHeight ){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').addClass('productItemAnimo');
 		  }
-		  if(nowPos >= product+productH+500){
+		  if(nowPos >= product+productH+aniHeight+100){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
-		  }
+		  }*/
 		  
-		  if(nowPos >= ourFriends - 250){
+		  if(nowPos >= ourFriends - (aniHeight + 100)){
 			  $('.oneLi').addClass('setClients');
 			  $('.twoLi').addClass('setClients');
 			  $('.threeLi').addClass('setClients');
 		  }
-		  if(nowPos < ourFriends - 250){
+		  
+		  if(nowPos < ourFriends - aniHeight - aniHeight/2){
 			  $('.oneLi').removeClass('setClients');
 			  $('.twoLi').removeClass('setClients');
 			  $('.threeLi').removeClass('setClients');
 		  }
 		  
-		  if(nowPos < data - 500){
+		  if(nowPos < data - aniHeight){
 			  $('.setContentImg').removeClass('setAniData');
-				 $('.setContent').removeClass('setAniContent');
+			  $('.setContent').removeClass('setAniContent');
 		  }
 		  
-		  if(nowPos >= (data+100)){
+		  if(nowPos >= (data - aniHeight)){
 			 $('.setContentImg').addClass('setAniData');
 			 $('.setContent').addClass('setAniContent');
 		  }
-		  //lastPos = nowPos;
+		  
 		} 
 }
 
@@ -122,9 +140,9 @@ function initProduct(){
 	    	showOrder('宣传片');
 	    });
 	    
-	    $('.orderMore').off('click').on('click',function(){
+	  /*  $('.orderMore').off('click').on('click',function(){
 	    	window.location.href = "/list.html";
-	    });
+	    });*/
 	    
 /*	    $('.maotai').off('click').on('click',function(){
 	    	createVideo('','https://v.youku.com/v_show/id_XMzAxMTA5NjcyMA==.html?spm=a2h3j.8428770.3416059.1')
@@ -135,37 +153,8 @@ function initProduct(){
 	    $('.wanda').off('click').on('click',function(){
 	    	createVideo('','https://v.youku.com/v_show/id_XMzAxODkwMzU4OA==.html?spm=a2h3j.8428770.3416059.1')
 	    });*/
-          
-
-		$(".home-search").off("click").on("click", function() {
-			var flag = $(this).attr("data-text");
-			if (flag == '企业宣传') {
-				window.location.href = 'list-qyxcp/';
-			}
-			if (flag == '微电影') {
-				window.location.href = 'list-wdy/';
-			}
-			if (flag == '广告TVC') {
-				window.location.href = 'list-cpgg/';
-			}
-			if (flag == 'MG动画') {
-				window.location.href = 'list-mg/';
-			}
-			if (flag == '三维展示') {
-				window.location.href = 'list-qyxcp/';
-			}
-			if (flag == '电商视频') {
-				window.location.href = 'list-ds/';
-			}
-			if (flag == '视频名片') {
-				window.location.href = 'activity/Pbusinesscard/';
-			}
-			if (flag == '路演视频') {
-				window.location.href = 'list-jysp/';
-			}
-		});
-		
-	     var product = new Swiper('#product', {
+          		
+	     var productVb = new Swiper('.swiperProductSet', {
 	    	 pagination: {
 	    	        el: '.swiperProduct',
 	    	        clickable: true,
@@ -179,7 +168,11 @@ function initProduct(){
 	   	    	         $('#product').find('div').find('.swiper-slide-active').find('.productItem').addClass('productItemAnimo');
 	   	    	    },
 	   	        },
-             	     
+	   	     loop : true,
+	 		 autoplay: {
+	 		        delay: 5000,
+	 		        disableOnInteraction: false,
+      	 		  },
 	    	 });
 }
 

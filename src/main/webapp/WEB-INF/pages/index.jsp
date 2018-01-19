@@ -96,7 +96,7 @@
 					<div class="swiper-slide">
 						<ul>
 							<li class="title" id="bannerTitleAn1">专业的商业视频服务平台</li>
-							<li class="desc" id="DescAn1">35800+ 导演 / 编剧 / 摄影师 /影视专家为您服务</li>
+							<li class="desc" id="DescAn1">55800+ 导演 / 编剧 / 摄影师 /影视专家为您服务</li>
 						</ul>
 					</div>
 					<div class="swiper-slide">
@@ -173,6 +173,8 @@
 		<div class="tel">
 			<a href="tel:${OFFICAL_PHONE }"> <span>服务热线 </span><span>${OFFICAL_PHONE }</span></a>
 		</div>
+		<!-- 跳转 end -->
+			<a href="/beta" ><img class='beta' src="${imgPath}/index/artboard.png"> </a>		
 		<!-- 宣传片 start -->
 		<div class="FourModelColor">
 			<div class="FourModel">
@@ -561,19 +563,19 @@
 				<ul>
 					<li>
 						<div>
-							500<span>+</span><span>家</span>
+							1500<span>+</span><span>家</span>
 						</div>
 						<div>合作客户</div>
 					</li>
 					<li>
 						<div>
-							5960<span></span><span>部</span>
+							3000<span></span><span>部</span>
 						</div>
 						<div>累计制作影片</div>
 					</li>
 					<li>
 						<div>
-							35800<span>+</span><span>位</span>
+							55800<span>+</span><span>位</span>
 						</div>
 						<div>专业创作者加盟</div>
 					</li>
