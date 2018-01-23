@@ -3,16 +3,18 @@
 @import "video";
 @import "flexslider";
 @import "companyCommon";
-
 .bgLogo {
+    opacity: 0;
     width: 300px;
     height: 25px;
     position: relative;
     margin-top: 60px;
     margin-bottom: 60px;
     background: url('/resources/images/service/logo.svg') no-repeat !important;
+    @media screen and (min-width: 1276px) {
+        opacity: 1;
+    }
 }
-
 
 .tagsWidth {
     @include media_screen_width_beta3();
@@ -149,5 +151,17 @@
         div:last-child {
             background: url('/resources/images/service/iconbg6.png') no-repeat;
         }
+    }
+}
+
+@media screen and (min-width: 1276px) and (max-width: 1500px) {
+    #video {
+        width: 929px !important;
+    }
+}
+
+@media screen and (max-width: 1276px) {
+    #video {
+        // width: 929px !important;
     }
 }

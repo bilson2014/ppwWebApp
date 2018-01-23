@@ -1811,7 +1811,7 @@ function initUserView(id){
 			} else if( deng == 4){
 				best="D";
 			}else{
-				best="未分级";
+				best="E";//未分级
 			}
 			$('#small').text(best);
 			$('#userName').val(rr.userName);

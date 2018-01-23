@@ -19,16 +19,20 @@
     <meta name="baidu-site-verification" content="dMz6jZpIwd" />
     <title>宣传片制作流程_tvc广告片创意策划_微电影拍摄执行方案-拍片网</title>
     <spring:url value="/resources/css/order-flow.css" var="serviceToCss"/>
+    <spring:url value="/resources/css/about-us.css" var="aboutUsCss"/>
+    
     <spring:url value="/resources/lib/Bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
     <spring:url value="/resources/js/common.js" var="commonJs"/>
     <spring:url value="/resources/js/orderFlow.js" var="orderFlowJs"/>
     <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-    <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/>
+    <spring:url value="/resources/lib/jquery/waypoints.min.js" var="waypointsJs"/> 
 <spring:url value="/resources/images" var="imgPath" />
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 <link rel="stylesheet" href="${serviceToCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
+
+	<link rel="stylesheet" href="${aboutUsCss }">
 
    
    <script type="text/javascript">
@@ -73,8 +77,33 @@
                 </a>
             </div>
         </div>
+<!-- 内容区域 start -->
+		<div class="banner">
+		  <div class="bannerLogo">
+		     <img src="${imgPath }/introduce/order-flow/introduce.svg" style="height: 25px;">
+		  </div>
+		 <img id="orImg"  src="${imgPath }/about/back.jpg">
+		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
+		<div class="video-div" id="video">
+			<video id="playVideos" src="http://www.apaipian.com/product/video/paipianwangMovie.mp4" preload="auto" controls="controls" poster="${imgPath }/banner/moreInfo.JPG" ></video>
+	    </div>
+		</div> 
+   <!--拍片网介绍 -->
+		<%-- <div class="banner" style="background: no-repeat;height:700px;">
+		  <div class="bannerLogo">
+		     <img src="${imgPath }/introduce/order-flow/introduce.svg" style="margin-left: 120px; height: 25px;">
+		  </div>
+	 	<img id="orImg"  src="${imgPath }/about/back.jpg">
+		<img id="smallImg"  src="${imgPath }/about/backS.jpg">        
+		<div class="video-div" id="video" style="width: 1000px;">
+			<video id="playVideos" style="margin-top: 120px;" src="http://www.apaipian.com/product/video/paipianwangMovie.mp4" preload="auto" controls="controls" poster="${imgPath }/banner/moreInfo.JPG" ></video>
+	    </div>
+		</div>
+	 --%>
+	 
+	 
         <div class="tagsWidth">
-            <div class="bgLogo"></div>
+            <div class="bgLogo" style="margin-left: -150px;"></div>
             <div class="icon icon1 RightIcon">
                 <div>
                     <label>需求沟通</label>

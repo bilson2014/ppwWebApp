@@ -40,12 +40,15 @@
 				</r:noLogin>
                 <a href="<spring:url value='/list.html'/>" class="header-item" target="_parent">精品案例<span></span></a>
                 <a href="/order-flow.html" class="header-item" target="_parent">服务流程<span></span></a>
-                <a class="header-item header-item-last" id="showVideo" target="_parent">
+                
+                <!-- <a class="header-item header-item-last" id="showVideo" target="_parent">
                     <div class="showVideo"></div>
                     	拍片网介绍
                     <span></span>
-                </a>
+                </a> 
+                 -->
                  <a href="http://zhuanti.apaipian.com/" class="header-item" target="_parent">特色专题<span></span></a>
+                  <a href="http://factory.apaipian.com/" class="header-item" target="_parent">拍片工厂<span></span></a>
                  <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
                 
             </div>
