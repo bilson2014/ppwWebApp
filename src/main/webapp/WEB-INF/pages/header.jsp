@@ -47,8 +47,8 @@
                     <span></span>
                 </a> 
                  -->
-                 <a href="http://zhuanti.apaipian.com/" class="header-item" target="_parent">特色专题<span></span></a>
-                  <a href="http://factory.apaipian.com/" class="header-item" target="_parent">拍片工厂<span></span></a>
+                 <a href="http://zhuanti.apaipian.com/" class="header-item" target="_blank">特色专题<span></span></a>
+                  <a href="http://factory.apaipian.com/" class="header-item" target="_blank">拍片工厂<span></span></a>
                  <a href="/news-list.html" class="header-item" target="_parent">新闻资讯<span></span></a>
                 
             </div>
