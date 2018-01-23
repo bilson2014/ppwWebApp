@@ -28,13 +28,14 @@ $pink:#FF7F88;
         text-align: left;
         position: relative;
         top: 60px;
-        z-index:3;
+        z-index: 3;
         img {
             opacity: 0;
             @media screen and (min-width: 1276px) {
                 opacity: 1;
             }
             width: 242px;
+            width: 165px;
         }
     }
     img {

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="203px" height="26px" viewBox="0 0 203 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="185px" height="29px" viewBox="0 0 185 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>拍片网介绍 </title>
+    <title>Artboard</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="MicrosoftYaHei, Microsoft YaHei" font-weight="normal">
-        <g id="拍片网介绍-" fill="#FFFFFF">
-            <g id="精典案例--标签--copy-15" transform="translate(0.000000, -6.000000)">
-                <text id="拍片网" font-size="26">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-weight="bold">
+        <g id="Artboard" fill="#FFFFFF">
+            <g id="Group-2" transform="translate(0.000000, -4.000000)">
+                <text id="拍片网" font-family=".PingFang-SC-Medium, PingFang SC" font-size="26">
                     <tspan x="0" y="28">拍片网</tspan>
                 </text>
-                <text id="介绍" font-size="14">
-                    <tspan x="77" y="19">介绍</tspan>
+                <text id="介绍" font-family=".PingFang-SC-Medium, PingFang SC" font-size="14">
+                    <tspan x="78" y="19">介绍</tspan>
                 </text>
-                <text id="INTRODUCTION" font-size="8">
-                    <tspan x="77" y="30">INTRODUCTION</tspan>
+                <text id="INTRODUCTION" font-family="STHeitiSC-Medium, Heiti SC" font-size="8">
+                    <tspan x="79" y="30">INTRODUCTION</tspan>
                 </text>
             </g>
         </g>

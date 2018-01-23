@@ -77,22 +77,33 @@
                 </a>
             </div>
         </div>
-
-   <!--拍片网介绍 -->
-		<div class="banner" style="background: no-repeat;height:700px;">
+<!-- 内容区域 start -->
+		<div class="banner">
 		  <div class="bannerLogo">
-		     <img src="${imgPath }/introduce/order-flow/introduces.svg" style="margin-left: 120px; height: 25px;">
+		     <img src="${imgPath }/introduce/order-flow/introduce.svg" style="height: 25px;">
 		  </div>
-		<%--  <img id="orImg"  src="${imgPath }/about/back.jpg">
-		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">   --%>      
+		 <img id="orImg"  src="${imgPath }/about/back.jpg">
+		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
+		<div class="video-div" id="video">
+			<video id="playVideos" src="http://www.apaipian.com/product/video/paipianwangMovie.mp4" preload="auto" controls="controls" poster="${imgPath }/banner/moreInfo.JPG" ></video>
+	    </div>
+		</div> 
+   <!--拍片网介绍 -->
+		<%-- <div class="banner" style="background: no-repeat;height:700px;">
+		  <div class="bannerLogo">
+		     <img src="${imgPath }/introduce/order-flow/introduce.svg" style="margin-left: 120px; height: 25px;">
+		  </div>
+	 	<img id="orImg"  src="${imgPath }/about/back.jpg">
+		<img id="smallImg"  src="${imgPath }/about/backS.jpg">        
 		<div class="video-div" id="video" style="width: 1000px;">
-			<%-- <video id="playVideos" src="${file_locate_storage_path }group1/M00/00/60/CgpmTlib2EaAbOOdAQ1EMav8_P0022.mp4" preload="auto" controls="controls" poster="${imgPath }/about/2017.png" ></video> --%>
 			<video id="playVideos" style="margin-top: 120px;" src="http://www.apaipian.com/product/video/paipianwangMovie.mp4" preload="auto" controls="controls" poster="${imgPath }/banner/moreInfo.JPG" ></video>
 	    </div>
 		</div>
-	
+	 --%>
+	 
+	 
         <div class="tagsWidth">
-            <div class="bgLogo"></div>
+            <div class="bgLogo" style="margin-left: -150px;"></div>
             <div class="icon icon1 RightIcon">
                 <div>
                     <label>需求沟通</label>

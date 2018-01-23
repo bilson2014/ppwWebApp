@@ -22,10 +22,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="宣传片,宣传片制作, 品牌微电影,tvc广告片,广告片拍摄, mg动画,短视频,商业视频">
-<meta name="description" content="拍片网是专业的商业视频服务平台，提供：宣传片、产品tvc广告拍摄、品牌微电影、mg动画等短视频内容制作。成本托管，免费创意策划，海量样片，价格透明。拍片就上拍片网！">
+<meta name="description" content="制作1分钟宣传片要花多少钱？问人不如自己算。上拍片网，10秒出报价，专业团队为您保驾护航，再也不用担心拍宣传片多花冤枉钱。企业视频名片999元起，超值钜惠！">
+<meta name="keywords" content="拍1分钟宣传片价格,60秒宣传片制作费用,视频名片,视频名片制作">
 <meta name="baidu-site-verification" content="dMz6jZpIwd" />
-<title>企业视频名片-拍片网</title>
+<title>视频名片制作-60秒宣传片费用-1分钟宣传片价格-拍片网</title>
 
     <link rel="stylesheet" href="${pch5cardCss}">
     <link rel="shortcut icon" href="${imgPath}/favicon.ico" >
