@@ -80,8 +80,8 @@
 
 		<!-- 内容区域 start -->
 		<div class="banner">
-		  <div class="bannerLogo">
-		     <img src="${imgPath }/introduce/about-us/test.svg">
+		  <div class="bannerLogo" >
+		     <img  src="${imgPath }/introduce/about-us/test.svg" style="width: 242px;">
 		  </div>
 		 <img id="orImg"  src="${imgPath }/about/back.jpg">
 		 <img id="smallImg"  src="${imgPath }/about/backS.jpg">        
