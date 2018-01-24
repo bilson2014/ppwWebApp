@@ -99,9 +99,8 @@
 	       <!-- 工具箱 -->    
 	<r:identity role="employee">
 
-	<%--  <r:permission uri="/order/box">  --%>
-			              <div class="treeitem" id="myboxs" >
-
+	     <r:permission uri="/order/box"> 
+			            <div class="treeitem" id="myboxs" >
 			                <div class="boxs"></div>
 			                <div class="title">工具箱</div>
 			                <img src="${imgPath}/flow/more.png">
@@ -112,7 +111,7 @@
 		                  <li id='boxsCancle' data-value="2">排期表生成器</li> 
 		              </ul>
 
-	 <%--   	</r:permission>   --%>
+	       </r:permission>
 				
 			        <!--  <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
