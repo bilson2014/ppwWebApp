@@ -451,10 +451,11 @@ area {
 }
 
 .code {
-    width: 270px;
-    height: 287px;
-    padding-top: 25px;
+    width: 250px;
+    height: 247px;
+    padding-top: 45px;
     background: url(../images/codebg.png) no-repeat;
+    background-size: 100% 100%;
     text-align: center;
     position: absolute;
     left: -30px;
@@ -467,8 +468,9 @@ area {
 }
 
 .code img {
-    width: 220px;
-    height: 220px;
+    width: 134px;
+    height: 134px;
+    margin-bottom: 15px;
 }
 
 a.codeshow:hover .code {
@@ -1105,6 +1107,9 @@ a.codeshow:hover .code {
 .main_5 {
     width: 100%;
 }
+
+
+/* 商桥的样式 */
 
 .widthHear {
     width: 60px;
