@@ -673,7 +673,7 @@
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 	<script type="text/javascript" src="/resources/js/juicer.js"></script>
 	<script type="text/javascript" src="/resources/lib/jquery/jquery.flexslider-min.js"></script>
-	<script type="text/javascript" src="/resources/js/index.js"></script>
+	<script type="text/javascript" src="/resources/js/index_v3.js"></script>
 	<jsp:include flush="true" page="modelTool.jsp"></jsp:include> 
 </body>
 

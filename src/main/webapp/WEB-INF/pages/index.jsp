@@ -223,7 +223,7 @@
 										</div>
 									</div>
 									<div class="peopleContent">
-										<span>客户文化部负责人：</span><br>"
+										<span>茅台集团文化部负责人：</span><br>"
 										《1915金奖之旅》作为中国酒文化城的镇馆影片，成功再现了茅台酒成为世界三大蒸馏酒的辉煌历程。我们对影片整体品质非常满意。”
 									</div>
 								</div>
@@ -249,7 +249,7 @@
 										<div>客户说</div>
 									</div>
 									<div class="peopleContent">
-										<span>客户品牌总监：</span><br> " 拍片网非常专业，标准的制片管理流程，
+										<span>网易考拉品牌总监：</span><br> " 拍片网非常专业，标准的制片管理流程，
 										节省了大量沟通成本，视频管家的服务也非常贴心，总之非常满意。"
 									</div>
 								</div>
@@ -442,10 +442,10 @@
 								<img src='${imgPath}/index2/plant2.png'>
 								<div>新闻资讯<br><span style="">行业技术探索空间站</span></div>
 							</div>
-						</a> <a>
+						</a> <a href="http://factory.apaipian.com/" target="_blank">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant3.png'>
-								<div>拍片工厂(建设中)<br><span style="">视频制造加工中子星</span></div>
+								<div>拍片工厂<br><span style="">视频制造加工中子星</span></div>
 							</div>
 						</a>
 					</div>

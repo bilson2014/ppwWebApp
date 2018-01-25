@@ -77,7 +77,7 @@
 					</div> --%>
 				</r:noLogin>
 				<r:identity role="customer">
-					<a href="<spring:url value="/user/info" />" class="header-item login-item" target="_self" title="<r:outName />"><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
+					<a style="position:relative;left:25px;" href="<spring:url value="/user/info"/>" class="header-item login-item" target="_self" title="<r:outName />" ><img id="getImgUrl" data-value="<r:outImg />" src="/resources/images/provider/default-user.jpg"></a>
 					<a class="header-item login-item widthHear" target="_self"><r:outName /></a>
 					<div class="showInfo">
 				       <div class="showInfoList">
