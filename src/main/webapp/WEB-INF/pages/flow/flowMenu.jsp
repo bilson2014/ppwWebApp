@@ -99,7 +99,6 @@
 	       <!-- 工具箱 -->    
 	<r:identity role="employee">
 
-	     <r:permission uri="/order/box"> 
 			            <div class="treeitem" id="myboxs" >
 			                <div class="boxs"></div>
 			                <div class="title">工具箱</div>
@@ -110,8 +109,6 @@
 	                  	  <li id='boxsSub' data-value="1">案例收藏夹</li>
 		                  <li id='boxsCancle' data-value="2">排期表生成器</li> 
 		              </ul>
-
-	       </r:permission>
 				
 			        <!--  <div class="treeitem" id="toSave">
 			                  <div class="save"></div>
