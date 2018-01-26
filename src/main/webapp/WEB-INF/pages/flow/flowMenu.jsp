@@ -51,86 +51,73 @@
      
 	    <div class="flowMenu">
 	        <div id="shortMenu">
-	                <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
-	                <div class="menuItem hide"><div class="createIcon"></div></div>
-	                <!--<a href="/project/running">   </a>-->
-	                	<div class="menuItem" id='minMyPro'><div class="myPro"></div></div>
-	               
-	                <r:identity role="employee">
-	                	<div class="menuItem" id='minorder'><div class="orderList"></div></div>
-	                	<div class="menuItem" id="minboxs"><div class="boxs" id="minboxs"></div></div>
-		                <!-- <div class="menuItem" id="minsave"><div class="save" id="minSave"></div></div> -->
-		                <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
-	                </r:identity>
-	                <div class="bottom"><div class="loginOut"></div></div>
+	            <div class="head" id="menuHead"><img src="${imgPath}/flow/open.png"></div>
+	            <div class="menuItem hide"><div class="createIcon"></div></div>
+	            <div class="menuItem" id='minMyPro'><div class="myPro"></div></div>
+	            <r:identity role="employee">
+	               <div class="menuItem" id='minorder'><div class="orderList"></div></div>
+	               <div class="menuItem" id="minboxs"><div class="boxs" id="minboxs"></div></div>
+		           <div class="menuItem" id='minsafe'><div class="safe" id='minSafe'></div></div> 
+	            </r:identity>
+	            <div class="bottom"><div class="loginOut"></div></div>
 	        </div>
-	       
 	     <div id="mainMenu">
-	         <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
+	        <img class="toMin" id="toMin" src="${imgPath}/flow/close.png"> 
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
-
-	    <r:permission uri="/project/running">     
-	              <div class="treeitem" id="myPro">
-	                  <div class="myPro"></div>
-	                  <div class="title">我的项目<span> Beta</span></div>
-	                  <img src="${imgPath}/flow/more.png">
-	             </div>
-	              <ul class="productList" id="productList">         
-	                  <li id="nowDoing">进行中<div id="cardNum"></div></li>
-	                  <li id="pause">暂停</li>
-	                  <li id="finish">完成/取消</li>
-	              </ul>
-	      </r:permission>  
-	               
-	              <r:permission uri="/order/myOrder">
-			              <div class="treeitem" id="myOrder">
-			                <div class="orderList"></div>
-			                <div class="title">我的订单</div>
-			                <img src="${imgPath}/flow/more.png">
-			            </div>
-	                  <ul class="productList" id="orderList">
-		                  <li id='orderIndex' data-value="0">处理中</li>
-		                  <li id='orderSub' data-value="1">已提交</li>
-		                  <li id='orderCancle' data-value="2">无效订单</li>
-		              </ul>
-	               	</r:permission>  	
-	       <!-- 工具箱 -->    
-	<r:identity role="employee">
-
-	     <r:permission uri="/order/box"> 
-			            <div class="treeitem" id="myboxs" >
-			                <div class="boxs"></div>
-			                <div class="title">工具箱</div>
-			                <img src="${imgPath}/flow/more.png">
-			            </div>
-	                  <ul class="productList" id="boxsList">
-		                  <li id='boxsIndex' data-value="0">报价单生成器</li>
-	                  	  <li id='boxsSub' data-value="1">案例收藏夹</li>
-		                  <li id='boxsCancle' data-value="2">排期表生成器</li> 
-		              </ul>
-
-	       </r:permission>
-				
-			        <!--  <div class="treeitem" id="toSave">
-			                  <div class="save"></div>
-			                  <div class="title">收藏列表</div>
-			         </div> -->
-		              <div class="treeitem " id='safe'>
-		                  <div class="safe"></div>
-		                  <div class="title">安全设置</div>
-		             </div>
-		         </r:identity>    
-	             <a href="http://www.apaipian.com/login/loginout">
-		             <div class="treeitem">
-		                  <div class="line"></div>
-		                  <div class="loginOut"></div>
-		                  <div class="title">退出登录</div>
-		             </div>
-	             </a>
-	        </div> 
-	   </div>
+		<r:permission uri="/project/running">     
+	       <div class="treeitem" id="myPro">
+	           <div class="myPro"></div>
+	           <div class="title">我的项目<span> Beta</span></div>
+	           <img src="${imgPath}/flow/more.png">
+	       </div>
+	       <ul class="productList" id="productList">         
+	           <li id="nowDoing">进行中<div id="cardNum"></div></li>
+	           <li id="pause">暂停</li>
+	           <li id="finish">完成/取消</li>
+	       </ul>
+	     </r:permission>  
+	     <r:permission uri="/order/myOrder">
+			 <div class="treeitem" id="myOrder">
+			     <div class="orderList"></div>
+			     <div class="title">我的订单</div>
+			     <img src="${imgPath}/flow/more.png">
+			 </div>
+	         <ul class="productList" id="orderList">
+		         <li id='orderIndex' data-value="0">处理中</li>
+		         <li id='orderSub' data-value="1">已提交</li>
+		         <li id='orderCancle' data-value="2">无效订单</li>
+		     </ul>
+	     </r:permission>  	
+ <!-- 工具箱 -->    
+	 <r:identity role="employee">
+		 <%-- <r:permission uri="/order/box">  --%>
+			  <div class="treeitem" id="myboxs" >
+			      <div class="boxs"></div>
+			       <div class="title">工具箱</div>
+			       <img src="${imgPath}/flow/more.png">
+			  </div>
+	          <ul class="productList" id="boxsList">
+		           <li id='boxsIndex' data-value="0">报价单生成器</li>
+	               <li id='boxsSub' data-value="1">案例收藏夹</li>
+		           <li id='boxsCancle' data-value="2">排期表生成器</li> 
+		      </ul>
+	      <%-- </r:permission> --%>
+		  <div class="treeitem " id='safe'>
+		     <div class="safe"></div>
+		     <div class="title">安全设置</div>
+		  </div>
+	</r:identity>    
+	      <a href="http://www.apaipian.com/login/loginout">
+		  <div class="treeitem">
+		       <div class="line"></div>
+		       <div class="loginOut"></div>
+		       <div class="title">退出登录</div>
+		  </div>
+	      </a>
+	    </div> 
+	  </div>
 	</div> 
   
 	<!-- video-->

@@ -437,7 +437,7 @@
 								<img src='${imgPath}/index2/plant1.png'>
 								<div>特色专题<br><span style="">视频创意研究实验室</span></div>
 							</div>
-						</a> <a href="news-list.html">
+						</a> <a href="news-list.html" target="_blank">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant2.png'>
 								<div>新闻资讯<br><span style="">行业技术探索空间站</span></div>
