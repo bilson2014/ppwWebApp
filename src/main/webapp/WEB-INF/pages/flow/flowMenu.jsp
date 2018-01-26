@@ -66,6 +66,7 @@
 	        <div class="logoDiv"><img class="logo" id="getImgUrlMenu" data-value="<r:outImg />"></div>
 	        <div class="userName" id="setRealName" data-value="<r:outName />" ></div>
 	        <div class="flowTree">
+
 		<r:permission uri="/project/running">     
 	       <div class="treeitem" id="myPro">
 	           <div class="myPro"></div>
@@ -118,6 +119,7 @@
 	      </a>
 	    </div> 
 	  </div>
+
 	</div> 
   
 	<!-- video-->
