@@ -27,12 +27,12 @@ public class PortalController extends BaseController {
 	private PortalService portalService = null;
 	
 	/**
-	 * 首页跳转
+	 * 首页跳转--V3版本
 	 * @return
 	 */
-	@RequestMapping("/")
+	@RequestMapping("/homepagev3")
 	public ModelAndView portal(final HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("index_v3");
 		
 		String solrUrl = PublicConfig.SOLR_PORTAL_URL;
 //		SessionInfo sessionInfo = getCurrentInfo(request);

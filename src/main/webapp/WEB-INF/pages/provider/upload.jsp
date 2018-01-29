@@ -161,7 +161,7 @@
 					<div class="itemTitle">作品名称</div>
 					<input type="text" class="" id="video-name"
 						maxlength="30" placeholder="视频标题为必填字段"
-						value="${product.productName }">
+						value="<c:out value='${product.productName }'/>">
 				</div>
 				<c:if test="${flag == 4}">
 					<div class="proItem">
