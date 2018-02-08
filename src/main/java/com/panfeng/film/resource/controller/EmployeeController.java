@@ -1,6 +1,8 @@
 package com.panfeng.film.resource.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +45,18 @@ public class EmployeeController extends BaseController {
 	@RequestMapping("/employee/findSynergy")
 	public List<PmsEmployee> findEmployeeToSynergy() {
 		final List<PmsEmployee> list = pmsEmployeeFacade.findEmployeeToSynergy();
+		return list;
+	}
+	
+	/**
+	 * 微信小程序-获取内部员工
+	 * @return
+	 */
+	@RequestMapping("/findMP")
+	public List<PmsEmployee> getEmployeeListForMP(String name){
+		Map<String,Object> paramMap=new HashMap<>();
+		paramMap.put("employeeRealName",name);
+		final List<PmsEmployee> list = pmsEmployeeFacade.findEmployeeForMP(paramMap);
 		return list;
 	}
 
