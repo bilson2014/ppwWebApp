@@ -4,7 +4,11 @@
  var lastPos = 0;
  
 $().ready(function() {
+	
 	initScroll();
+	
+	
+	
 	initIndexProp();
 	initProduct();
 	initBanner();
@@ -14,6 +18,9 @@ $().ready(function() {
     window.onresize = function() {
         initScroll();
 	};
+	$(window).load(function(){
+		initScroll();
+	}); 
 	merchantBridge();
 });
 
@@ -99,7 +106,7 @@ function initScroll(){
 			  $('#product').find('div').find('.swiper-slide-active').find('.productItem').removeClass('productItemAnimo');
 		  }*/
 		  
-		  if(nowPos >= ourFriends - (aniHeight + 100)){
+		  if(nowPos >= ourFriends - aniHeight){
 			  $('.oneLi').addClass('setClients');
 			  $('.twoLi').addClass('setClients');
 			  $('.threeLi').addClass('setClients');
@@ -111,6 +118,11 @@ function initScroll(){
 			  $('.threeLi').removeClass('setClients');
 		  }
 		  
+		  console.info('now' + nowPos);
+		  console.info('nowdata' + data);
+		  console.info('data' + (data - aniHeight));
+		  console.info('data1' + data);
+		  console.info('data2' + aniHeight);
 		  if(nowPos < data - aniHeight){
 			  $('.setContentImg').removeClass('setAniData');
 			  $('.setContent').removeClass('setAniContent');

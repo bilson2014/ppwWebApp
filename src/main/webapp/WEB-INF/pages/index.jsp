@@ -4,13 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="r" uri="/mytaglib"%>
-
-
-
 <%-- import Css --%>
 <spring:url value="/resources/css/index.css" var="indexCss" />
 <spring:url value="/resources/images" var="imgPath" />
-
 <!--js  -->
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/index.js" var="indexJs" />
@@ -19,13 +15,10 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
 	var="jsonJs" />
 <spring:url value="/resources/js/youku-player.js" var="ykJs" />
-
 <spring:url value="/resources/lib/map/echarts-all-3.js" var="e1" />
 <spring:url value="/resources/lib/map/ecStat.min.js" var="e2" />
 <spring:url value="/resources/lib/map/dataTool.min.js" var="e3" />
 <spring:url value="/resources/lib/map/china.js" var="e4" />
-
-
 <!--map  -->
 <!--       <script type="text/javascript" src="/resources/lib/map/echarts-all-3.js"></script>
        <script type="text/javascript" src="/resources/lib/map/ecStat.min.js"></script>
@@ -34,9 +27,6 @@
 <!--  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> -->
 <!--  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script> -->
 <!--   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> -->
-
-
-
 <!DOCTYPE html>
 <html class="no-js">
 <link rel="shortcut icon" href="${imgPath}/favicon.ico">

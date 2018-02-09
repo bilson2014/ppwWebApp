@@ -84,6 +84,12 @@
                 <img  class="active1" src="${imgPath }/introduce/activity/activity8-1.jpg" alt="2017 双十大会1">
                 <img  class="active1-2" src="${imgPath }/introduce/activity/activity8-2.jpg" alt="2017 双十大会2">
 		    </div>
+		      <div class="infoTitle">
+		        <div>公司团建 / 周年庆 / 节日活动 </div>
+		        <div>2017年</div>
+		        <div> 身体和灵魂，一起跨越山和大海。在这里，每一个生日都盛大，每一个节日都狂欢，每一次出发，每一次记录，都是见证更好的我们。</div>
+                <img style="margin-top:40px"  class="active1-2" src="${imgPath }/introduce/activity/activity1-10.jpg" alt="拍片网合伙人">
+		    </div>
 		    <div class="infoTitle">
 		        <div>共享未来－中国视频行业领袖峰会</div>
 		        <div>2017年2月27日 北京海淀新世纪日航</div>
@@ -108,7 +114,7 @@
 		    </div>
 		    <div class="infoTitle">
 		        <div>拍片网movie 2.0论坛</div>
-		        <div>2016年5月至今</div>
+		        <div>2016年5月</div>
 		        <div>《MOVIE2.0论坛》是每周举办的线下影视人聚集的社群论坛，以主创见面会，创作分享会，项目推介会等为内容，打造影视行业纯净的资源生态圈；先后有黄国宾、邢健、冷小张、上官凌月、冯悦、郑来志等影视人到场参与《MOVIE2.0论坛》中国影视人沙龙。至今已经成功举办29期。
 				</div>
 				 <div class="active3Top">
@@ -140,7 +146,7 @@
 		    </div>
 		    <div class="infoTitle">
 		        <div>团队建设</div>
-		        <div>2015年至今</div>
+		        <div>2015年</div>
 		        <div>我们是一个充满正能量的团队，热爱电影，热爱网络，热爱户外活动。公司成立以来，组织了多次外出郊游，踏青采风，感受自然赋予我们的无穷能量。</div>
                 <div class="active6Top">
 	                 <img class="leftImg" src="${imgPath }/introduce/activity/activity6-1.jpg" alt="公司活动宣传片">

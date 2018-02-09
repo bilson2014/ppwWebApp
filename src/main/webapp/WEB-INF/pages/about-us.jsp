@@ -53,6 +53,7 @@
 </head>
 <body>
 	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+	
 	<jsp:include flush="true" page="header.jsp"></jsp:include> 
 	<div class="page">
 		       <div class="titleTag">
@@ -117,11 +118,49 @@
 
 	              <div class="historyContent">
 	                  <div class="contentLeft">
-	                     <img src="/resources/images/about/usInfo.png">
+	                     <img class="no960" src="/resources/images/about/aboutusHis.png">
+	                     <img class="is960" src="/resources/images/about/aboutusHis2.png">
+	                     <div class="contentItem">
+	                          <div class="contentTitle leftMargin">2018</div>
+	                          <div class="contentWord"><div></div>1月拍片网获评“第七届中国公益节2017年度公益映像奖</div>
+	                     </div>
+	                     <div class="contentItem">
+	                          <div class="contentTitle">2017</div>
+	                          <div class="contentWord"><div></div>12月16日 拍片网荣获全球青年大创浙江总决赛“总冠军”</div>
+	                          <div class="contentWord"><div></div>12月15日 拍片网获得金触点TopTouch </br>2017年度最佳广告主植入短视频——铜奖</div>
+	                          <div class="contentWord"><div></div>11月 中国铁塔再度与拍片网成功合作</div>
+	                          <div class="contentWord"><div></div>10月12日 拍片网在杭州成功主办“视频无界”第二届中国商业视频大会</div>
+	                          <div class="contentWord"><div></div>9月 拍片网杭州分公司正式成立</div>
+	                          <div class="contentWord"><div></div>7月 拍片网荣膺第六届中国财经峰会【2017最具成长价值奖】</br>拍片网CEO夏攀荣获【2017最佳青年榜样】</div>
+	                          <div class="contentWord"><div></div>3月28日 拍片网和葡萄创投，36氪联合举办2017春季人工智能产业峰会</br>在北京亚洲大酒店顺利召开</div>
+	                          <div class="contentWord"><div></div>2月28日 拍片网在北京成功主办“共享未来”首届中国视频行业领袖峰会</div>
+	                     </div>
 	                  </div>
 	                  <div class="contentRight">
+	                  
+	                      <div class="contentItem rightMargin">
+	                          <div class="contentTitle rightMargin">2014</div>
+	                          <div class="contentWord"><div></div>10月成立获得PreAngel王利杰、顾浩天使轮投资</div>
+	                     </div>
+	                     <div class="contentItem">
+	                          <div class="contentTitle rightMargin2">2015</div>
+	                          <div class="contentWord"><div></div>12月获得老鹰基金Pre-A轮投资，投资人刘小鹰</div>
+	                          <div class="contentWord"><div></div>11月拍片网微信客户端上线</div>
+	                          <div class="contentWord"><div></div>10月签约用友集团</div>
+	                          <div class="contentWord"><div></div>9月承接中国铁塔2015国际通信展览视频展示全案</div>
+	                          <div class="contentWord"><div></div>7月拍片网正式版上线，入驻导演团队三百多家</div>
+	                          <div class="contentWord"><div></div>5月拍片网Demo版上线测试</div>
+	                          <div class="contentWord"><div></div>2月获得洪泰基金投资人俞敏洪、盛希泰天使轮追加投资</div>
+	                     </div>
+	                     <div class="contentItem">
+	                          <div class="contentTitle">2016</div>
+	                          <div class="contentWord"><div></div>11月获得国泰君安力鼎投资A轮投资</div>
+	                          <div class="contentWord"><div></div>10月举办中国首届视频营销大会</div>
+	                          <div class="contentWord"><div></div>3月拍片网2.0迭代上线，签约客户超过100家</div>
+	                     </div>
+	                       <!--  
 	                        <div class="modalTitle">
-	                             <img src="/resources/images/about/lineS.png">
+	                             <img src="/resources/images/about/aboutusHis.png">
 	                             <div>2016</div>
 	                        </div>
 	                        <div class="modalLine">
@@ -134,27 +173,8 @@
 	                         <div class="modalTree">
 	                             <img src="/resources/images/about/lineM.png">
 	                             <div>2015</div>
-	                        </div>
-	                        <div class="modalLine">
-	                              <ul>
-	                                 <li><div></div>12月获得老鹰基金Pre-A轮投资，投资人刘小鹰</li>
-	                                 <li><div></div>11月拍片网微信客户端上线</li>
-	                                 <li><div></div>10月签约用友集团 </li>
-	                                 <li><div></div>9月承接中国铁塔2015国际通信展览视频展示全案</li>
-	                                 <li><div></div>7月拍片网正式版上线，入驻导演团队三百多家 </li>
-	                                 <li><div></div>5月拍片网Demo版上线测试 </li>
-	                                 <li><div></div>2月获得洪泰基金投资人俞敏洪、盛希泰天使轮追加投资</li>
-	                              </ul>
-	                        </div>
-	                         <div class="modalTree">
-	                             <img src="/resources/images/about/lineM.png">
-	                             <div>2014</div>
-	                        </div>
-	                        <div class="modalLine">
-	                              <ul>
-	                                 <li><div></div>10月成立获得PreAngel王利杰、顾浩天使轮投资</li>
-	                              </ul>
-	                        </div>
+	                        </div> -->
+	                 
 	                  </div>
 	              </div>
 	         </div>
