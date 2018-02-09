@@ -3,7 +3,7 @@
 
 .container00{width:1200px; margin:0 auto;}
 
-.main_3{ background:#e6ecee; padding:30px 0;}
+.main_3{ background:#f6f6f6; padding:30px 0;}
 .content{ background:#fff; border-radius:8px; width:870px; padding:20px 0; min-height:994px;}
 .tit{ font-size:20px; padding-left:25px; line-height:30px; color:#000; font-weight: 300;}
 .video_list{ zoom:1; overflow:hidden; padding:20px 0 0 15px;}
@@ -38,7 +38,7 @@
 .hottitle a:hover{color:#fff; background:#fe5453;}
 
 
-.min_banner{ height:128px; background:url(../add_img/min_banner.jpg) no-repeat; margin-top:30px; position:relative;}
+.min_banner{ height:128px; background:url(../page_img/min_banner.jpg) no-repeat; margin-top:30px; position:relative;}
 .min_banner h1{ color:#fff; font-size:24px; position:absolute; top:50px; left:100px; font-weight: 300;}
 .min_banner a{ color:#fff; display:block; background:rgba(254,84,84,.8); width:196px; font-weight:300; border-radius:5px; text-align:center; line-height:42px; font-size:16px; position:absolute; right:80px; top:43px;}
 .min_banner a:hover{ background:rgba(254,84,84,1);}
@@ -49,18 +49,64 @@
 .four_project{ zoom:1; overflow:hidden; padding:80px 104px;}
 .four_project li{ width:128px; float:left; margin-right:160px;}
 .four_project li:last-child{ margin-right:0; float:right;}
-.four_project li h3{ font-size:24px; font-weight:300; margin-bottom:15px; height:24px; background:url(../add_img/ser1.png) no-repeat; text-indent:30px;}
-.four_project li:nth-child(2) h3{ background-image:url(../add_img/ser3.png);}
-.four_project li:nth-child(3) h3{ background-image:url(../add_img/ser2.png);}
-.four_project li:nth-child(4) h3{ background-image:url(../add_img/ser4.png);}
-.four_project li p{ background:url(../add_img/tiao.jpg) no-repeat; padding-top:20px; font-size:14px; line-height:20px; color:#aaa;}
+.four_project li h3{ font-size:24px; font-weight:300; margin-bottom:15px; height:24px; background:url(../page_img/ser1.png) no-repeat; text-indent:30px;}
+.four_project li:nth-child(2) h3{ background-image:url(../page_img/ser3.png);}
+.four_project li:nth-child(3) h3{ background-image:url(../page_img/ser2.png);}
+.four_project li:nth-child(4) h3{ background-image:url(../page_img/ser4.png);}
+.four_project li p{ background:url(../page_img/tiao.jpg) no-repeat; padding-top:20px; font-size:14px; line-height:20px; color:#aaa;}
 .four_project li a:hover h3{ color:#fe5453; background-position:0 -24px;}
-.four_project li a:hover p{ color:#fe5453; background-image:url(../add_img/tiao2.jpg);}
+.four_project li a:hover p{ color:#fe5453; background-image:url(../page_img/tiao2.jpg);}
 
 
 .data{ padding:60px 0 0 220px;}
 .data li{ display:inline-block; text-align:left; width:300px; font-size:14px; line-height:240%;}
 .data li span{ font-weight:bold; font-size:42px;}
+
+
+
+
+/**************************channel************************/
+
+.main_pd{ background:#f6f6f6; padding:46px 0 10px;}
+
+.main_pd h2{text-align: center; font-size: 34px; font-weight: 300;}
+.main_pd p{text-align: center; color: #aaa; margin: 24px 0; line-height:24px; font-size: 14px; }
+
+.channel{zoom:1; overflow: hidden; padding-top: 20px;}
+.channel li{ width:25%; height: auto; float: left;}
+.channel li div.kk{ padding:0 9px 36px;}
+.channel li div.kk a{ display: block; background: #fff; border-radius:3px; overflow: hidden;}
+.channel li div.kk a span{display: block; position: relative; overflow: hidden;}
+.channel li div.kk a span img{ width: 100%; height: auto; vertical-align: bottom;transition: all 2s ease-in-out 0s;-moz-transition: all 2s ease-in-out 0s; -webkit-transition: all 2s ease-in-out 0s; -o-transition: all 2s ease-in-out 0s;}
+.channel li div.kk a span i{ display: block; position: absolute; width: 100%; height: 100%; background: url(../channel_img/bo.png) no-repeat; background-size: 100% 100%; top: 0; left: 0; opacity: 0;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+.channel li div.kk a font{ display: block; text-align: center; line-height: 50px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+
+.channel li div.kk a:hover{ box-shadow:0 0 12px #aaa;}
+.channel li div.kk a:hover img{transform:scale(1.05);}
+.channel li div.kk a:hover i{ opacity: 1;}
+.channel li div.kk a:hover font{ color: #fe5453;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
