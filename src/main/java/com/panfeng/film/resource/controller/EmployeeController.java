@@ -52,12 +52,12 @@ public class EmployeeController extends BaseController {
 	 * 微信小程序-获取内部员工
 	 * @return
 	 */
-	@RequestMapping("/findMP")
+	/*@RequestMapping("/findMP")
 	public List<PmsEmployee> getEmployeeListForMP(String name){
 		Map<String,Object> paramMap=new HashMap<>();
 		paramMap.put("employeeRealName",name);
 		final List<PmsEmployee> list = pmsEmployeeFacade.findEmployeeForMP(paramMap);
 		return list;
-	}
+	}*/
 
 }
