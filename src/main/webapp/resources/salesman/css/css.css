@@ -87,12 +87,13 @@
 .channel li div.kk a:hover font{ color: #fe5453;}
 
 
-
-
-
-
-
-
+.Guide{ padding: 20px 0 36px; text-align: center;}
+.Guide a{ display: inline-block; margin: 0 5px; line-height: 38px; border: 1px solid #eee; background: #ff303e; padding: 0 80px; color:#fff; border-radius: 5px; font-size: 15px; transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+.Guide a:hover{ box-shadow: 3px 3px 3px #ccc}
+.main_top{ background: #fff; padding:46px 0 10px;}
+.main_top h2{text-align: center; font-size: 34px; font-weight: 300; line-height: 65px;}
+.main_top p{ color: #aaa; margin: 20px 0 15px; line-height:200%; text-indent: 2em; padding: 0 86px; font-size: 14px; }
+.main_top p font{ color: #777; font-weight: bold;}
 
 
 
