@@ -549,6 +549,7 @@ area {
     height: 40px;
     color: #000;
     margin-top: 20px;
+    font-size: 16px;
     cursor: pointer;
 }
 
