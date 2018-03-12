@@ -122,18 +122,20 @@
 	                     <img class="is960" src="/resources/images/about/aboutusHis2.png">
 	                     <div class="contentItem">
 	                          <div class="contentTitle leftMargin">2018</div>
-	                          <div class="contentWord"><div></div>1月拍片网获评“第七届中国公益节2017年度公益映像奖</div>
+	                          <div class="contentWord"><div></div>1月拍片网获评"第七届中国公益节2017年度公益映像奖"</div>
 	                     </div>
 	                     <div class="contentItem">
 	                          <div class="contentTitle">2017</div>
-	                          <div class="contentWord"><div></div>12月16日 拍片网荣获全球青年大创浙江总决赛“总冠军”</div>
-	                          <div class="contentWord"><div></div>12月15日 拍片网获得金触点TopTouch </br>2017年度最佳广告主植入短视频——铜奖</div>
-	                          <div class="contentWord"><div></div>11月 中国铁塔再度与拍片网成功合作</div>
-	                          <div class="contentWord"><div></div>10月12日 拍片网在杭州成功主办“视频无界”第二届中国商业视频大会</div>
-	                          <div class="contentWord"><div></div>9月 拍片网杭州分公司正式成立</div>
-	                          <div class="contentWord"><div></div>7月 拍片网荣膺第六届中国财经峰会【2017最具成长价值奖】</br>拍片网CEO夏攀荣获【2017最佳青年榜样】</div>
-	                          <div class="contentWord"><div></div>3月28日 拍片网和葡萄创投，36氪联合举办2017春季人工智能产业峰会</br>在北京亚洲大酒店顺利召开</div>
-	                          <div class="contentWord"><div></div>2月28日 拍片网在北京成功主办“共享未来”首届中国视频行业领袖峰会</div>
+	                          <div class="contentWord"><div></div>12月拍片网荣获全球青年大创浙江总决赛"总冠军"</div>
+	                          <div class="contentWord"><div></div>12月拍片网获得金触点TopTouch</div>
+	                          <div class="contentWord"><div style="opacity:0"></div>2017年度最佳广告主植入短视频铜奖</div>
+	                          <div class="contentWord"><div></div>11月中国铁塔再度与拍片网成功合作</div>
+	                          <div class="contentWord"><div></div>10月拍片网在杭州主办“视频无界”第二届中国商业视频大会</div>
+	                          <div class="contentWord"><div></div>9月拍片网杭州分公司正式成立</div>
+	                          <div class="contentWord"><div></div>7月拍片网荣膺第六届中国财经峰会"2017最具成长价值奖"</div>
+	                          <div class="contentWord"><div style="opacity:0"></div>拍片网CEO夏攀荣获"2017最佳青年榜样"</div>
+	                          <div class="contentWord"><div></div>3月拍片网、葡萄创投和36氪联合举办人工智能产业峰会</div>
+	                          <div class="contentWord"><div></div>2月拍片网主办北京“共享未来”首届中国视频行业领袖峰会</div>
 	                     </div>
 	                  </div>
 	                  <div class="contentRight">

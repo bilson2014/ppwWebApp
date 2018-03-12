@@ -123,6 +123,25 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .video_wrap p{ width:120px; height:32px; position:absolute; left:50%; top:50%; margin:-260px 0 0 280px; background: rgba(255,255,255,.9); font-weight:bold; cursor:pointer; text-align:center; line-height:32px; z-index:2;}
 .video_wrap p:hover{ color:#000;}
 
+.nb-icon-inner-wrap {
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    background-color: transparent !important;
+    border-radius: 100% !important;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+    width: 60px !important;
+    height: 60px !important;
+    bottom: 50px;
+    background-size: 60px 60px !important;
+    right: -20px;
+}
+
+.nb-icon-inner-wrap:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19) !important;
+}
+
 
 
 
