@@ -194,7 +194,7 @@ function orderBottom(){
 					csrftoken:$("#csrftoken").val(),
 					indent_tele:$('#phone').val(),
 					indent_recomment : '企业名片-pc落地页',
-					indentName:'线上-活动',//订单名称
+					indentName:'推广-PC-视频名片',//订单名称
 					productId:-1,
 					teamId:-1,
 					serviceId:-1,
