@@ -144,7 +144,7 @@
 	                 <img src="${imgPath }/introduce/activity/activity5-2.jpg">
                 </div>
 		    </div>
-		    <div class="infoTitle">
+		   <%--  <div class="infoTitle">
 		        <div>团队建设</div>
 		        <div>2015年</div>
 		        <div>我们是一个充满正能量的团队，热爱电影，热爱网络，热爱户外活动。公司成立以来，组织了多次外出郊游，踏青采风，感受自然赋予我们的无穷能量。</div>
@@ -164,7 +164,7 @@
 	                   <img  src="${imgPath }/introduce/activity/activity7-1.jpg" alt="公司年会宣传片">
 	                   <img  src="${imgPath }/introduce/activity/activity7-2.jpg" alt="生日会视频">
                 </div>
-		    </div>
+		    </div> --%>
 		</div>		
 	</div>
 	<!-- foot -->
