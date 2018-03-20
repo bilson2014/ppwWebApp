@@ -30,9 +30,7 @@
 </script>
 <style type="text/css">
   .active {
-        -moz-transition: rotateX(0) !important;
-        /* Firefox 4 */
-        -webkit-transition: rotateX(0) !important;
+        -moz-transition: rotateX(0) !important;        /* Firefox 4 */        -webkit-transition: rotateX(0) !important;
         /* Safari ºÍ Chrome */
         -o-transition: rotateX(0) !important;
         transform: rotateX(0) !important;
@@ -416,9 +414,9 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/92_224.html" target="_blank">
+						<a href="https://www.apaipian.com/play/18_28055.html" target="_blank">
 							<span>
-								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filed.apaipian.com/group1/M00/00/07/Cgpw7FgZw8OAHXQyAACIyRzPuXY145.jpg">
+								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqvdUuAeJo4AAJ_JzaIZqk212.jpg">
 								<i></i>
 							</span>
 							<font>智力收益价值链 IQ Benefit Chain(IQB-C) </font>

@@ -99,7 +99,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_4522.html" target="_blank">
 							<span>
-								<img alt="索尼 Sony - Made for Bond" src="https://filec.apaipian.com/group1/M00/00/B2/CgpsbFpxhT-AXqRDAAFmtsybdaM539.jpg">
+								<img alt="索尼 Sony - Made for Bond" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqvhu2AWbotAAC0p0_tg5o439.jpg">
 								<i></i>
 							</span>
 							<font>索尼 Sony - Made for Bond</font>

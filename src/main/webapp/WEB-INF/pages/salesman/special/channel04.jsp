@@ -110,7 +110,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1114_5650.html" target="_blank">
 							<span>
-								<img alt="37°+ - 新闻主播水晶创业" src="https://filea.apaipian.com/group1/M00/00/44/Cgpw7FhrMgyAFjT1AAFX0f1uXMU939.jpg">
+								<img alt="37°+ - 新闻主播水晶创业" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqvh36ATFl3AAFfwes7Hsw882.jpg">
 								<i></i>
 							</span>
 							<font>37°+ - 新闻主播水晶创业</font>
@@ -132,7 +132,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/50_13314.html" target="_blank">
 							<span>
-								<img alt="让创业不再艰辛" src="https://filec.apaipian.com/group1/M00/00/2A/CgpsbFis-zqAfLOQAAMUKpimg alt=""bQ072.jpg">
+								<img alt="让创业不再艰辛" src="https://filea.apaipian.com/group1/M00/00/2A/CgpsbFis-zqAfLOQAAMUKpIMgbQ072.jpg">
 								<i></i>
 							</span>
 							<font>让创业不再艰辛</font>
@@ -154,7 +154,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1429.html" target="_blank">
 							<span>
-								<img alt="创业三章-第一章：不忘初心" src="https://filed.apaipian.com/group1/M00/00/61/Cgpw7Fily8KAbhUaAADJkhBCyg4013.jpg">
+								<img alt="创业三章-第一章：不忘初心" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqviBmAAMf8AAEn5Gv4JLI325.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第一章：不忘初心</font>
@@ -165,7 +165,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1424.html" target="_blank">
 							<span>
-								<img alt="创业三章-第二章：抛弃成见" src="https://fileb.apaipian.com/group1/M00/00/29/CgptuFilzFeAKeQQAADDWOV459Y146.jpg">
+								<img alt="创业三章-第二章：抛弃成见" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqviNeAVufHAADE-bqI4-0497.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第二章：抛弃成见</font>
@@ -187,7 +187,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_254.html" target="_blank">
 							<span>
-								<img alt="you+国际青年公寓" src="channel_img alt=""/413.jpg">
+								<img alt="you+国际青年公寓" src="https://fileb.apaipian.com/group1/M00/00/07/Cgpw7FgZw9qAURaEAACuA8qPys0885.jpg">
 								<i></i>
 							</span>
 							<font>you+国际青年公寓</font>
