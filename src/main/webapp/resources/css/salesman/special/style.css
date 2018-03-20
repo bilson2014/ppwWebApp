@@ -28,12 +28,12 @@ a,area { blr:expression(this.onFocus=this.blur()) }
 .logo{ width: 90px; height:30px;}
 .nav{ zoom:1; overflow:hidden; text-align:right; padding-left: 65px; padding-right: 20px;}
 .nav li{ width:56px; line-height:30px; text-align: center; padding: 0 15px; float: left;}
-.nav li a{display: block; line-height: 30px; background:url(../images/nav-bg.jpg) no-repeat center bottom; background-size:0 2px; color: #333; font-size:14px;}
+.nav li a{display: block; line-height: 30px; background:url(/resources/images/salesman/special/nav-bg.jpg) no-repeat center bottom; background-size:0 2px; color: #333; font-size:14px;}
 .nav li a:hover{ color:#fe5453; background-size: 56px 2px;}
 
 .search{ width: 302px; position: relative; padding-top:1px;}
 .search input{ height:26px; line-height:26px; width: 260px; border: 1px solid #777; color: #666; border-radius: 5px; padding: 0 30px 0 10px; background: #fbfbfa;}
-.search i{display:block; width: 16px; height: 16px; background: url(../images/bannnerSearch.png) no-repeat left bottom; position: absolute; right: 10px; top: 7px; cursor: pointer;}
+.search i{display:block; width: 16px; height: 16px; background: url(/resources/images/salesman/special/bannnerSearch.png) no-repeat left bottom; position: absolute; right: 10px; top: 7px; cursor: pointer;}
 
 .login{line-height: 30px;}
 .login a{ color:#fe5453; font-weight: bold;}
@@ -60,7 +60,7 @@ zoom: 1; }
 .main_1 h2{text-align: center; font-size: 34px; font-weight: 300;}
 .main_1 p{text-align: center; color: #aaa; margin: 24px 0; font-size: 16px; }
 .changeBnt{display: block; width: 42px; line-height: 18px; background: url(/resources/images/salesman/special/huan.png) no-repeat right center; padding-right: 18px; float: right; margin-bottom: 15px;}
-a.changeBnt:hover{color: #fe5453; background-image: url(../images/huan2.png);}
+a.changeBnt:hover{color: #fe5453; background-image: url(/resources/images/salesman/special/huan2.png);}
 
 .picLB{height: 434px; position: relative;}
 .picLB li{ width: 25%; height: 49.2%; position: absolute;}
@@ -121,19 +121,19 @@ a.changeBnt:hover{color: #fe5453; background-image: url(../images/huan2.png);}
 .f_nav p{font-size: 12px;}
 .f_nav p font{ font-size: 32px;color: #fe5453; font-weight: 300;}
 
-.cusLogin{ background: url(../images/cusLogin.png) no-repeat;}
-.proLogin{ background: url(../images/proLogin.png) no-repeat;}
-.reg{ background: url(../images/reg.png) no-repeat;}
-.cusSer{ background: url(../images/cusSer.png) no-repeat;}
-.proSer{ background: url(../images/proSer.png) no-repeat;}
-.email{ background: url(../images/email.png) no-repeat;}
+.cusLogin{ background: url(/resources/images/salesman/special/cusLogin.png) no-repeat;}
+.proLogin{ background: url(/resources/images/salesman/special/proLogin.png) no-repeat;}
+.reg{ background: url(/resources/images/salesman/special/reg.png) no-repeat;}
+.cusSer{ background: url(/resources/images/salesman/special/cusSer.png) no-repeat;}
+.proSer{ background: url(/resources/images/salesman/special/proSer.png) no-repeat;}
+.email{ background: url(/resources/images/salesman/special/email.png) no-repeat;}
 .sml{ background-size: 14px 28px; text-indent:20px; background-position: 0 0;}
 
 .f_nav a:hover{color: #fe5453; background-position: 0 -14px;}
 
 
 .codeshow{ position: relative;}
-.code{ width: 250px; height:247px; padding-top: 45px; background: url(../images/codebg.png) no-repeat; background-size: 100% 100%; text-align: center; position: absolute; left: -30px; bottom: 16px; text-indent: 0;color: #fe5453; font-size: 14px; font-weight: 300; line-height: 36px;}
+.code{ width: 250px; height:247px; padding-top: 45px; background: url(/resources/images/salesman/special/codebg.png) no-repeat; background-size: 100% 100%; text-align: center; position: absolute; left: -30px; bottom: 16px; text-indent: 0;color: #fe5453; font-size: 14px; font-weight: 300; line-height: 36px;}
 .code img{ width: 134px; height: 134px; margin-bottom: 15px;}
 
 a.codeshow:hover .code{ display: block;}
@@ -143,7 +143,7 @@ a.codeshow:hover .code{ display: block;}
 
 /* 返回顶部 */
 .go-top{position: fixed;bottom: 40px;right: 20px;width: 46px;z-index: 999;}
-.go-top a{display: block;width: 46px;height: 46px;margin-bottom: 6px;background-image: url(../images/go-top.png);transition: none;-moz-transition: none; -webkit-transition: none; -o-transition: none;}
+.go-top a{display: block;width: 46px;height: 46px;margin-bottom: 6px;background-image: url(/resources/images/salesman/special/go-top.png);transition: none;-moz-transition: none; -webkit-transition: none; -o-transition: none;}
 .go-top a:last-child{margin-bottom: 0;}
 .go-top .go{background-position: 0 -150px;}
 .go-top .go:hover{background-position: 0 -250px;}
@@ -156,14 +156,14 @@ a.codeshow:hover .code{ display: block;}
 /*-------------------------channel------------------------------*/
 
 .pindao{ background: #f6f6f6;padding:42px 0;}
-.jsz{ height: 300px; background: url(../images/jianshezhong2.png) no-repeat center center;}
+.jsz{ height: 300px; background: url(/resources/images/salesman/special/images/jianshezhong2.png) no-repeat center center;}
 .choice{ text-align: center; font-size: 16px; padding: 100px 0 300px;}
 .choice a{ display: inline-block;}
-.choice a i{ display:block; width: 100%; height: 36px; background: url(../images/xz01.jpg) no-repeat center -36px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
-.choice a:nth-child(2) i{ background-image: url(../images/xz02.jpg);}
-.choice a:nth-child(3) i{ background-image: url(../images/xz03.jpg);}
-.choice a:nth-child(4) i{ background-image: url(../images/xz04.jpg);}
-.choice a:nth-child(5) i{ background-image: url(../images/xz05.jpg);}
+.choice a i{ display:block; width: 100%; height: 36px; background: url(/resources/images/salesman/special/xz01.jpg) no-repeat center -36px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
+.choice a:nth-child(2) i{ background-image: url(/resources/images/salesman/special/xz02.jpg);}
+.choice a:nth-child(3) i{ background-image: url(/resources/images/salesman/special/xz03.jpg);}
+.choice a:nth-child(4) i{ background-image: url(/resources/images/salesman/special/xz04.jpg);}
+.choice a:nth-child(5) i{ background-image: url(/resources/images/salesman/special/xz05.jpg);}
 .choice a:hover{ color: #fe5453;}
 .choice a:hover i{ background-position: center 0;}
 
