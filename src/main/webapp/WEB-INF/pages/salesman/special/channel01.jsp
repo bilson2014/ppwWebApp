@@ -10,7 +10,7 @@
 <title>区块链宣传片制作_区块链项目路演视频_区块链是什么_区块链技术-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//css.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/index.css">
+
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script src="/resources/js/common.js"></script>
@@ -28,6 +28,17 @@
 	}
 	
 </script>
+<style type="text/css">
+  .active {
+        -moz-transition: rotateX(0) !important;
+        /* Firefox 4 */
+        -webkit-transition: rotateX(0) !important;
+        /* Safari ºÍ Chrome */
+        -o-transition: rotateX(0) !important;
+        transform: rotateX(0) !important;
+        opacity: 1 !important;
+    }
+</style>
 </head>
 
 <body>
