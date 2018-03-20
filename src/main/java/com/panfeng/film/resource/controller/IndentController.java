@@ -44,6 +44,8 @@ import com.paipianwang.pat.facade.product.service.PmsRequireFacade;
 import com.paipianwang.pat.facade.product.service.PmsServiceFacade;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
 import com.paipianwang.pat.facade.right.service.PmsEmployeeFacade;
+import com.paipianwang.pat.facade.sales.entity.PmsSalesman;
+import com.paipianwang.pat.facade.sales.service.PmsSalesmanFacade;
 import com.paipianwang.pat.facade.user.entity.Grade;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.paipianwang.pat.facade.user.service.PmsUserFacade;
@@ -51,6 +53,7 @@ import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.domain.Result;
 import com.panfeng.film.mq.service.MailMQService;
 import com.panfeng.film.mq.service.SmsMQService;
+import com.panfeng.film.resource.model.Salesman;
 
 @RestController
 @RequestMapping("/order")
@@ -81,6 +84,9 @@ public class IndentController extends BaseController {
 
 	@Autowired
 	private final PmsEmployeeFacade pmsEmployeeFacade = null;
+	
+	@Autowired
+	private final PmsSalesmanFacade pmsSalesmanFacade=null;
 
 	/**
 	 * PC端-ajax 提交订单
@@ -138,6 +144,22 @@ public class IndentController extends BaseController {
 				indent.setSecond(ser.getMcoms());
 				indent.setIndentPrice(ser.getServiceRealPrice());
 			}
+			
+			if(ValidateUtil.isValid(indent.getSalesmanUniqueId())){
+				final List<PmsSalesman> salesmans = pmsSalesmanFacade.findSalesmanByUniqueId(indent.getSalesmanUniqueId(),PmsSalesman.TYPE_PC);
+				if(ValidateUtil.isValid(salesmans)){
+					PmsSalesman salesman= salesmans.get(0);
+					//订单名称
+					indent.setIndentName(salesman.getBelongs()+"-"+salesman.getPlatform()+"-"+salesman.getSalesmanName());
+					//订单来源
+					if(salesman.getIndentSource()!=null && salesman.getIndentSource()>0){
+						indent.setIndentSource(salesman.getIndentSource());
+					}
+					//订单备注
+				}
+			}
+			
+			
 			boolean res = pmsIndentFacade.saveOrder(indent);
 			if (res) {
 				result.setRet(true);
