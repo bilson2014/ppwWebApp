@@ -427,12 +427,12 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_26469.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1379_27948.html" target="_blank">
 							<span>
-								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filed.apaipian.com/group1/M00/00/BD/CgptuFqyGTSARHM5AAEVhG0aALY693.jpg">
+								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqxx6yANclRAAGN2rpf5iw544.jpg">
 								<i></i>
 							</span>
-							<font>共享链</font>
+							<font> 新型网络 New Kind of Network(NKN)</font>
 						</a>
 					</div>
 				</li>
