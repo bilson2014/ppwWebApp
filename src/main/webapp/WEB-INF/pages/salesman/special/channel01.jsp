@@ -10,6 +10,7 @@
 <title>区块链宣传片制作_区块链项目路演视频_区块链是什么_区块链技术-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//css.css">
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
 
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
@@ -421,6 +422,17 @@
 								<i></i>
 							</span>
 							<font>智力收益价值链 IQ Benefit Chain(IQB-C) </font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_26469.html" target="_blank">
+							<span>
+								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filed.apaipian.com/group1/M00/00/BD/CgptuFqyGTSARHM5AAEVhG0aALY693.jpg">
+								<i></i>
+							</span>
+							<font>共享链</font>
 						</a>
 					</div>
 				</li>

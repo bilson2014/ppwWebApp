@@ -102,7 +102,7 @@
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
-								<a href="http://zhuanti.apaipian.com/channel01.html" class="pic"><i></i><span># 区块链 #</span><img src="/resources/images/salesman/special/pd01.jpg" alt="区块链宣传片"/></a>
+								<a href="http://zhuanti.apaipian.com/channel01.html" class="pic"><i></i><span># 区块链 #</span><img src="/resources/images/salesman/special/pd001.jpg" alt="区块链宣传片"/></a>
 							</dd>
 							<dd>
 								<a href="http://zhuanti.apaipian.com/channel.html" class="pic"><i></i><span># 发布会 #</span><img src="/resources/images/salesman/special/pd13.jpg" alt="发布会视频"/></a>
@@ -296,7 +296,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="images/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>

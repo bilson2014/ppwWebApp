@@ -10,6 +10,7 @@
 <title>圣诞节短片-圣诞节微电影-圣诞节广告片-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/css.css">
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script>

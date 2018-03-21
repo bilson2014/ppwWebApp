@@ -10,6 +10,7 @@
 <title>高大上宣传片_国际大牌产品广告_就爱耍大牌-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/css.css">
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script>

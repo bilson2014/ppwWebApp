@@ -75,30 +75,30 @@
 	
 	<!-- 活动专题 -->
 	<mvc:view-controller path="/special" view-name="/salesman/special/index" />
-	<mvc:view-controller path="/salesman/special/channel" view-name="/salesman/special/channel" />
-	<mvc:view-controller path="/salesman/special/channel01.html" view-name="/salesman/special/channel01" />
-	<mvc:view-controller path="/salesman/special/channel02.html" view-name="/salesman/special/channel02" />
-	<mvc:view-controller path="/salesman/special/channel03.html" view-name="/salesman/special/channel03" />
-	<mvc:view-controller path="/salesman/special/channel04.html" view-name="/salesman/special/channel04" />
-	<mvc:view-controller path="/salesman/special/channel05.html" view-name="/salesman/special/channel05" />
-	<mvc:view-controller path="/salesman/special/page01.html" view-name="/salesman/special/page01" />
-	<mvc:view-controller path="/salesman/special/page02.html" view-name="/salesman/special/page02" />
-	<mvc:view-controller path="/salesman/special/page03.html" view-name="/salesman/special/page03" />
-	<mvc:view-controller path="/salesman/special/page04.html" view-name="/salesman/special/page04" />
-	<mvc:view-controller path="/salesman/special/page05.html" view-name="/salesman/special/page05" />
-	<mvc:view-controller path="/salesman/special/page06.html" view-name="/salesman/special/page06" />
-	<mvc:view-controller path="/salesman/special/page07.html" view-name="/salesman/special/page07" />
-	<mvc:view-controller path="/salesman/special/page08.html" view-name="/salesman/special/page08" />
-	<mvc:view-controller path="/salesman/special/page09.html" view-name="/salesman/special/page09" />
-	<mvc:view-controller path="/salesman/special/page10.html" view-name="/salesman/special/page10" />
-	<mvc:view-controller path="/salesman/special/page11.html" view-name="/salesman/special/page11" />
-	<mvc:view-controller path="/salesman/special/page12.html" view-name="/salesman/special/page12" />
-	<mvc:view-controller path="/salesman/special/page13.html" view-name="/salesman/special/page13" />
-	<mvc:view-controller path="/salesman/special/page14.html" view-name="/salesman/special/page14" />
-	<mvc:view-controller path="/salesman/special/page15.html" view-name="/salesman/special/page15" />
-	<mvc:view-controller path="/salesman/special/page16.html" view-name="/salesman/special/page16" />
-	<mvc:view-controller path="/salesman/special/page17.html" view-name="/salesman/special/page17" />
-	<mvc:view-controller path="/salesman/special/page18.html" view-name="/salesman/special/page18" />
+	<mvc:view-controller path="/special/channel" view-name="/salesman/special/channel" />
+	<mvc:view-controller path="/special/channel01.html" view-name="/salesman/special/channel01" />
+	<mvc:view-controller path="/special/channel02.html" view-name="/salesman/special/channel02" />
+	<mvc:view-controller path="/special/channel03.html" view-name="/salesman/special/channel03" />
+	<mvc:view-controller path="/special/channel04.html" view-name="/salesman/special/channel04" />
+	<mvc:view-controller path="/special/channel05.html" view-name="/salesman/special/channel05" />
+	<mvc:view-controller path="/special/page01.html" view-name="/salesman/special/page01" />
+	<mvc:view-controller path="/special/page02.html" view-name="/salesman/special/page02" />
+	<mvc:view-controller path="/special/page03.html" view-name="/salesman/special/page03" />
+	<mvc:view-controller path="/special/page04.html" view-name="/salesman/special/page04" />
+	<mvc:view-controller path="/special/page05.html" view-name="/salesman/special/page05" />
+	<mvc:view-controller path="/special/page06.html" view-name="/salesman/special/page06" />
+	<mvc:view-controller path="/special/page07.html" view-name="/salesman/special/page07" />
+	<mvc:view-controller path="/special/page08.html" view-name="/salesman/special/page08" />
+	<mvc:view-controller path="/special/page09.html" view-name="/salesman/special/page09" />
+	<mvc:view-controller path="/special/page10.html" view-name="/salesman/special/page10" />
+	<mvc:view-controller path="/special/page11.html" view-name="/salesman/special/page11" />
+	<mvc:view-controller path="/special/page12.html" view-name="/salesman/special/page12" />
+	<mvc:view-controller path="/special/page13.html" view-name="/salesman/special/page13" />
+	<mvc:view-controller path="/special/page14.html" view-name="/salesman/special/page14" />
+	<mvc:view-controller path="/special/page15.html" view-name="/salesman/special/page15" />
+	<mvc:view-controller path="/special/page16.html" view-name="/salesman/special/page16" />
+	<mvc:view-controller path="/special/page17.html" view-name="/salesman/special/page17" />
+	<mvc:view-controller path="/special/page18.html" view-name="/salesman/special/page18" />
 	<!-- 活动专题end -->
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />

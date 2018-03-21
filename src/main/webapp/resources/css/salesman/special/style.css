@@ -156,7 +156,7 @@ a.codeshow:hover .code{ display: block;}
 /*-------------------------channel------------------------------*/
 
 .pindao{ background: #f6f6f6;padding:42px 0;}
-.jsz{ height: 300px; background: url(/resources/images/salesman/special/images/jianshezhong2.png) no-repeat center center;}
+.jsz{ height: 300px; background: url(/resources/images/salesman/special/jianshezhong2.png) no-repeat center center;}
 .choice{ text-align: center; font-size: 16px; padding: 100px 0 300px;}
 .choice a{ display: inline-block;}
 .choice a i{ display:block; width: 100%; height: 36px; background: url(/resources/images/salesman/special/xz01.jpg) no-repeat center -36px;transition: all 0.5s ease-in-out 0s;-moz-transition: all 0.5s ease-in-out 0s; -webkit-transition: all 0.5s ease-in-out 0s; -o-transition: all 0.5s ease-in-out 0s;}
