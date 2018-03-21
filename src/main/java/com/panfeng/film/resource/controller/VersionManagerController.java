@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -156,6 +157,18 @@ public class VersionManagerController extends BaseController {
 				}
 			}
 		}
+		
+		if(result.isRet()){
+			//登录前拿到过滤器中存入的登录页前的那个存入session中的URL
+			String prePage = (String)  request.getSession().getAttribute("prePage");
+			if(ValidateUtil.isValid(prePage)){
+				request.getSession().removeAttribute("prePage");
+				result.setMessage(prePage);
+			}else{
+				result.setMessage("/");
+			}
+		}
+		
 		return result;
 	}
 
