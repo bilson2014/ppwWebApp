@@ -55,7 +55,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1318_17436.html" target="_blank">
 							<span>
-								<img alt="传祺GS8" src="https://fileb.apaipian.com/group1/M00/00/81/CgpmTlkuKLOAIvEgAAFpE0gMJLo573.jpg">
+								<img alt="传祺GS8" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqxuwyAa5K7AAJGbN9aN5o072.jpg">
 								<i></i>
 							</span>
 							<font>传祺GS8</font>
@@ -66,7 +66,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1169_3510.html" target="_blank">
 							<span>
-								<img alt="坚果G1家庭影院" src="https://filed.apaipian.com/group1/M00/00/2C/CgptuFiu_puAEvEKAAI1ai1QrwY539.jpg">
+								<img alt="坚果G1家庭影院" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7FqxwcyAGHaTAAGfAQwJXBQ378.jpg">
 								<i></i>
 							</span>
 							<font>坚果G1家庭影院</font>
@@ -77,7 +77,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1151_19385.html" target="_blank">
 							<span>
-								<img alt="OPPO-R11 红蓝之夜" src="https://filed.apaipian.com/group1/M00/00/70/CgpsbFnCTR2ABU9RAADfk5SjL1Y538.jpg">
+								<img alt="OPPO-R11 红蓝之夜" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqxwtqALO7CAAJfbHtodQE101.jpg">
 								<i></i>
 							</span>
 							<font>OPPO-R11 红蓝之夜</font>
@@ -99,7 +99,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_4522.html" target="_blank">
 							<span>
-								<img alt="索尼 Sony - Made for Bond" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqvhu2AWbotAAC0p0_tg5o439.jpg">
+								<img alt="索尼 Sony - Made for Bond" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqxyFWAS5iFAAIhkPiowTU667.jpg">
 								<i></i>
 							</span>
 							<font>索尼 Sony - Made for Bond</font>
@@ -110,7 +110,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1151_17953.html" target="_blank">
 							<span>
-								<img alt="英特尔 Intel-众创加速 智胜未来" src="https://filed.apaipian.com/group1/M00/00/60/CgptuFlu9i6AQuXbAADbnFRM9Uc276.jpg">
+								<img alt="英特尔 Intel-众创加速 智胜未来" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqxyiqAClGxAAIwSSOASv8652.jpg">
 								<i></i>
 							</span>
 							<font>英特尔 Intel-众创加速 智胜未来</font>
@@ -121,7 +121,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_23354.html" target="_blank">
 							<span>
-								<img alt="中国黄金钻石" src="https://filed.apaipian.com/group1/M00/00/D0/CgpmTlozeM-AbWTbAAMHQ-KsNes563.jpg">
+								<img alt="中国黄金钻石" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxy42AeEBHAANZc4Y0MKk677.jpg">
 								<i></i>
 							</span>
 							<font>中国黄金钻石</font>
@@ -132,7 +132,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_23994.html" target="_blank">
 							<span>
-								<img alt="昆山君磊电器" src="https://fileb.apaipian.com/group1/M00/00/D9/Cgpw7FpEsJqAXz7gAAVxub76WDA455.png">
+								<img alt="昆山君磊电器" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqxzKSARqfyAAHQ4ePOF6A037.jpg">
 								<i></i>
 							</span>
 							<font>昆山君磊电器</font>
@@ -143,7 +143,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_9454.html" target="_blank">
 							<span>
-								<img alt="welcomebank" src="https://filea.apaipian.com/group1/M00/00/19/CgpsbFh8uYmAQEpyAAFKROU6hwc928.jpg">
+								<img alt="welcomebank" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqxzSKAOfswAAGsZB-Wvsk040.jpg">
 								<i></i>
 							</span>
 							<font>welcomebank</font>
@@ -154,7 +154,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1002_7604.html" target="_blank">
 							<span>
-								<img alt="悟空保" src="https://fileb.apaipian.com/group1/M00/00/4C/CgpmTlh1p2eAZLQjAAESd7f92DY864.jpg">
+								<img alt="悟空保" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqxzaeARCQ0AAGFXnP4NoU224.jpg">
 								<i></i>
 							</span>
 							<font>悟空保</font>
@@ -165,7 +165,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/948_13363.html" target="_blank">
 							<span>
-								<img alt="土曼 TOMOON" src="https://filed.apaipian.com/group1/M00/00/25/Cgp_JVi2Zr2ALbnsAAGNMGyxu5I740.jpg">
+								<img alt="土曼 TOMOON" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqxzh2AUfMzAAMlpitWfXs437.jpg">
 								<i></i>
 							</span>
 							<font>土曼 TOMOON</font>
@@ -176,7 +176,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1117_10667.html" target="_blank">
 							<span>
-								<img alt="曼秀雷敦 Mentholatum" src="https://filea.apaipian.com/group1/M00/00/1A/CgqNZViFjEWAbQBxAAE04qek1P0685.JPG">
+								<img alt="曼秀雷敦 Mentholatum" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqxzrGABEhhAAI1Ex5xqBg083.jpg">
 								<i></i>
 							</span>
 							<font>曼秀雷敦 Mentholatum</font>
@@ -187,7 +187,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_22924.html" target="_blank">
 							<span>
-								<img alt="大疆创新DJI-Crystal Sky" src="https://filea.apaipian.com/group1/M00/00/93/CgptuFownNeAAyiVAAHOFcDnQ_8805.jpg">
+								<img alt="大疆创新DJI-Crystal Sky" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxzwOAfgWXAALCfe3dSY0819.jpg">
 								<i></i>
 							</span>
 							<font>大疆创新DJI-Crystal Sky</font>
@@ -198,7 +198,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26519.html" target="_blank">
 							<span>
-								<img alt="飞宇科技-Vimble2" src="https://filec.apaipian.com/group1/M00/00/ED/CgpmTlp7viGAXbRWAAEst0CDyxM496.jpg">
+								<img alt="飞宇科技-Vimble2" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqxz2SAblFtAAGwOoDkztI292.jpg">
 								<i></i>
 							</span>
 							<font>飞宇科技-Vimble2</font>
@@ -209,7 +209,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1117_10066.html" target="_blank">
 							<span>
-								<img alt="六神 - 清凉沐浴露" src="https://filed.apaipian.com/group1/M00/00/55/Cgpw7FiBr3uAVddkAADyMKyFsdc113.JPG">
+								<img alt="六神 - 清凉沐浴露" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx0D2AUyfvAAI3gct03AU263.jpg">
 								<i></i>
 							</span>
 							<font>六神 - 清凉沐浴露</font>
@@ -220,7 +220,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1324_13816.html" target="_blank">
 							<span>
-								<img alt="京都念慈庵-润喉糖" src="https://filed.apaipian.com/group1/M00/00/34/CgptuFjTvGaATK2sAANhcLEWo5o312.jpg">
+								<img alt="京都念慈庵-润喉糖" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx0J2APsjCAAK893a7IXQ718.jpg">
 								<i></i>
 							</span>
 							<font>京都念慈庵-润喉糖</font>
@@ -231,7 +231,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1201_13080.html" target="_blank">
 							<span>
-								<img alt="长安CX70T" src="https://filed.apaipian.com/group1/M00/00/60/CgpmTlidPGCALsZsAACkD-5nT_8291.jpg">
+								<img alt="长安CX70T" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7Fqx0viAa56rAAJ2TqkqC64217.jpg">
 								<i></i>
 							</span>
 							<font>长安CX70T</font>
@@ -242,7 +242,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/300_868.html" target="_blank">
 							<span>
-								<img alt="东方微点 micropoint" src="https://filec.apaipian.com/group1/M00/00/17/CgpmTlgZ1rWAIbJlAAA4suRj8g0230.jpg">
+								<img alt="东方微点 micropoint" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx09KAdF-uAAFyD4iXaVY634.jpg">
 								<i></i>
 							</span>
 							<font>东方微点 micropoint</font>
@@ -253,7 +253,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_24854.html" target="_blank">
 							<span>
-								<img alt="蔚来 NIO-ES8亮相" src="https://filec.apaipian.com/group1/M00/00/B2/CgpsbFpydHqADZVfAABsG_lzkao834.jpg">
+								<img alt="蔚来 NIO-ES8亮相" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx1JOAF_0hAAFAPObjLm0621.jpg">
 								<i></i>
 							</span>
 							<font>蔚来 NIO-ES8亮相</font>
@@ -264,7 +264,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1514_17502.html" target="_blank">
 							<span>
-								<img alt="FFC新生力量" src="https://fileb.apaipian.com/group1/M00/00/48/CgptuFk2beCAMAn5AANh4hRLu7Q446.png">
+								<img alt="FFC新生力量" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx1UyAaGJwAAHwLTiUyLQ677.jpg">
 								<i></i>
 							</span>
 							<font>FFC新生力量</font>

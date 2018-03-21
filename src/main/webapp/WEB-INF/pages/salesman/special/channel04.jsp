@@ -55,7 +55,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/275_18462.html" target="_blank">
 							<span>
-								<img alt="保准牛-场景定制平台" src="https://filea.apaipian.com/group1/M00/00/A1/CgpmTlmfzqOALEM6AAIU6q_oxTo664.jpg">
+								<img alt="保准牛-场景定制平台" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7Fqx1iiAGiInAAJ1V7nLtcA102.jpg">
 								<i></i>
 							</span>
 							<font>保准牛-场景定制平台</font>
@@ -66,7 +66,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_15144.html" target="_blank">
 							<span>
-								<img alt="大众创业平台" src="https://filed.apaipian.com/group1/M00/00/71/Cgpw7FjmNsmAKmXJAAKk4LgbuG0152.jpg">
+								<img alt="大众创业平台" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx1mGAEz8cAAI_wwCPuR4040.jpg">
 								<i></i>
 							</span>
 							<font>大众创业平台</font>
@@ -77,7 +77,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1703_18248.html" target="_blank">
 							<span>
-								<img alt="汉能开润创业日记" src="https://filea.apaipian.com/group1/M00/00/A2/CgptuFpN-ZGAaTHaAAD1vyVjNEs050.jpg">
+								<img alt="汉能开润创业日记" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqx1ruAFRxLAAJyI-Zt-pk507.jpg">
 								<i></i>
 							</span>
 							<font>汉能开润创业日记</font>
@@ -88,7 +88,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1325_15364.html" target="_blank">
 							<span>
-								<img alt="中粮我买网-幸福家味道" src="https://filed.apaipian.com/group1/M00/00/72/Cgpw7FjtkayAedYPAAIZ0SCoLoU020.jpg">
+								<img alt="中粮我买网-幸福家味道" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx18-ANmg1AAJs4sXkdMg431.jpg">
 								<i></i>
 							</span>
 							<font>中粮我买网-幸福家味道</font>
@@ -99,7 +99,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/11_566.html" target="_blank">
 							<span>
-								<img alt="PreAngel-创业者的心声集锦" src="https://filed.apaipian.com/group1/M00/00/0C/CgpmTlgZzwSAEXFlAAEXwP3n_Vs952.jpg">
+								<img alt="PreAngel-创业者的心声集锦" src="https://fileb.apaipian.com/group1/M00/00/0C/CgpmTlgZzwSAEXFlAAEXwP3n_Vs952.jpg">
 								<i></i>
 							</span>
 							<font>PreAngel-创业者的心声集锦</font>
@@ -110,7 +110,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1114_5650.html" target="_blank">
 							<span>
-								<img alt="37°+ - 新闻主播水晶创业" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqvh36ATFl3AAFfwes7Hsw882.jpg">
+								<img alt="37°+ - 新闻主播水晶创业" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx2OuALAV2AAIcVIL6fqw570.jpg">
 								<i></i>
 							</span>
 							<font>37°+ - 新闻主播水晶创业</font>
@@ -121,7 +121,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_22971.html" target="_blank">
 							<span>
-								<img alt="启程-海归创业园" src="https://filed.apaipian.com/group1/M00/00/CC/CgpmTlovkjqAHYFsAADNOLBYR8g731.jpg">
+								<img alt="启程-海归创业园" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx2UOAY3osAAGWXeRLh_w077.jpg">
 								<i></i>
 							</span>
 							<font>启程-海归创业园</font>
@@ -132,7 +132,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/50_13314.html" target="_blank">
 							<span>
-								<img alt="让创业不再艰辛" src="https://filea.apaipian.com/group1/M00/00/2A/CgpsbFis-zqAfLOQAAMUKpIMgbQ072.jpg">
+								<img alt="让创业不再艰辛" src="https://fileb.apaipian.com/group1/M00/00/BB/CgpsbFqx2zCABmyPAAKXGMtuQfw790.jpg">
 								<i></i>
 							</span>
 							<font>让创业不再艰辛</font>
@@ -143,7 +143,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_20867.html" target="_blank">
 							<span>
-								<img alt="Ailpay-口碑2017创业篇" src="https://filed.apaipian.com/group1/M00/00/B8/CgpmTloOsIOAOIMTAACenY0ffMU588.jpg">
+								<img alt="Ailpay-口碑2017创业篇" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqx24OAD1f_AAHt3gDejI8362.jpg">
 								<i></i>
 							</span>
 							<font>Ailpay-口碑2017创业篇</font>
@@ -154,7 +154,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1429.html" target="_blank">
 							<span>
-								<img alt="创业三章-第一章：不忘初心" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqviBmAAMf8AAEn5Gv4JLI325.jpg">
+								<img alt="创业三章-第一章：不忘初心" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqx3IGAUxqKAANvPJJzZ6M372.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第一章：不忘初心</font>
@@ -165,7 +165,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1424.html" target="_blank">
 							<span>
-								<img alt="创业三章-第二章：抛弃成见" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqviNeAVufHAADE-bqI4-0497.jpg">
+								<img alt="创业三章-第二章：抛弃成见" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx3xSAQXrOAAGlAuuBNZ4645.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第二章：抛弃成见</font>
@@ -176,7 +176,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27206.html" target="_blank">
 							<span>
-								<img alt="创业三章-第三章：互相扶持" src="https://filea.apaipian.com/group1/M00/00/EC/Cgpw7Fp9HNiASME2AAEbPtd2aRE323.jpg">
+								<img alt="创业三章-第三章：互相扶持" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx3QyAPSnjAAG7dn8apUw281.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第三章：互相扶持</font>
@@ -187,7 +187,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_254.html" target="_blank">
 							<span>
-								<img alt="you+国际青年公寓" src="https://fileb.apaipian.com/group1/M00/00/07/Cgpw7FgZw9qAURaEAACuA8qPys0885.jpg">
+								<img alt="you+国际青年公寓" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqx32CAAdAVAAGNgVfvRSY740.jpg">
 								<i></i>
 							</span>
 							<font>you+国际青年公寓</font>
@@ -198,7 +198,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_386.html" target="_blank">
 							<span>
-								<img alt="投资者说" src="https://filea.apaipian.com/group1/M00/00/09/CgpmTlgZx02AeKiKAAM5gdNEaN8550.jpg">
+								<img alt="投资者说" src="https://fileb.apaipian.com/group1/M00/00/BB/CgpsbFqx36qADTR5AAIBQDDVeN4660.jpg">
 								<i></i>
 							</span>
 							<font>投资者说</font>
@@ -209,7 +209,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/102_1322.html" target="_blank">
 							<span>
-								<img alt="指尖快递路演视频" src="https://filed.apaipian.com/group1/M00/00/79/CgpmTlkAN3uADRzcAAEz3iYDbbw727.jpg">
+								<img alt="指尖快递路演视频" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx39yALmGPAAIBNLtZGCI704.jpg">
 								<i></i>
 							</span>
 							<font>指尖快递路演视频</font>
@@ -220,7 +220,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3873.html" target="_blank">
 							<span>
-								<img alt="拍片网路演视频" src="https://filed.apaipian.com/group1/M00/00/5C/CgpmTliFsoOAPxY2AADXoKTIN6Y727.jpg">
+								<img alt="拍片网路演视频" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx4EWAEt5qAAHPCNSH0oo947.jpg">
 								<i></i>
 							</span>
 							<font>拍片网路演视频</font>
@@ -231,7 +231,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/820_1685.html" target="_blank">
 							<span>
-								<img alt="大赞光合-众筹片" src="https://filed.apaipian.com/group1/M00/00/20/Cgpw7FgZ7v6ASb2kAACGclLJIdQ465.jpg">
+								<img alt="大赞光合-众筹片" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7Fqx4PCAM2P-AAOweTCX4ik941.jpg">
 								<i></i>
 							</span>
 							<font>大赞光合-众筹片</font>
@@ -242,7 +242,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1390.html" target="_blank">
 							<span>
-								<img alt="人人GO" src="https://filec.apaipian.com/group1/M00/00/62/CgpmTlimqgiAcNOnAAC3fedaZPw844.jpg">
+								<img alt="人人GO" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx4aaATzmeAAF9aTTw5t4013.jpg">
 								<i></i>
 							</span>
 							<font>人人GO</font>
@@ -253,7 +253,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/404_1061.html" target="_blank">
 							<span>
-								<img alt="Soyes-H2卡片-众筹" src="https://fileb.apaipian.com/group1/M00/00/A2/CgpsbFpN_YWANLW1AADX21ogllI408.jpg">
+								<img alt="Soyes-H2卡片-众筹" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx4fCACDfMAAH5zfbTVnc620.jpg">
 								<i></i>
 							</span>
 							<font>Soyes-H2卡片-众筹</font>
@@ -264,7 +264,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1460_20507.html" target="_blank">
 							<span>
-								<img alt="迈外迪" src="https://filea.apaipian.com/group1/M00/00/7A/CgpsbFoBebSAMYcAAAEiiJrdk7o613.jpg">
+								<img alt="迈外迪" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx4jqACl1AAAJAY7u0tGY516.jpg">
 								<i></i>
 							</span>
 							<font>迈外迪</font>

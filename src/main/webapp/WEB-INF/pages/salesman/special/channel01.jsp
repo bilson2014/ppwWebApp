@@ -79,7 +79,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_27269.html" target="_blank">
 							<span>
-								<img alt="医美链 BeautyBloc" src="https://filec.apaipian.com/group1/M00/00/EF/CgpmTlqeH0CAHHKCAAMNgp-IlyY755.jpg">
+								<img alt="医美链 BeautyBloc" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqxwh-AEGtBAAJR1LSiNo0648.jpg">
 								<i></i>
 							</span>
 							<font>医美链 BeautyBloc</font>
@@ -90,7 +90,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/92_1330.html" target="_blank">
 							<span>
-								<img alt="小蚁- Ant Shares" src="https://filec.apaipian.com/group1/M00/00/1D/CgpmTlgZ5GSAc0fOAAE-XssGbsE901.jpg">
+								<img alt="小蚁- Ant Shares" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqxw7KAAM0oAAK1piEhKw4911.jpg">
 								<i></i>
 							</span>
 							<font>小蚁- Ant Shares</font>
@@ -101,7 +101,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_27225.html" target="_blank">
 							<span>
-								<img alt="Ifoods chain-超级探针" src="https://filea.apaipian.com/group1/M00/00/B4/CgpsbFqP35qAXSvuAAG_w5cssvQ927.jpg">
+								<img alt="Ifoods chain-超级探针" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7Fqxw26ASNKMAAHD1rXEHY0385.jpg">
 								<i></i>
 							</span>
 							<font>Ifoods chain-超级探针</font>
@@ -112,7 +112,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_27198.html" target="_blank">
 							<span>
-								<img alt="卓越工坊-CBT" src="https://filea.apaipian.com/group1/M00/00/B3/CgpsbFp5YryAJDbjAAHOmuDLoXc184.jpg">
+								<img alt="卓越工坊-CBT" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxxhaAKODcAANBe0apa5Y155.jpg">
 								<i></i>
 							</span>
 							<font>卓越工坊-CBT</font>
@@ -121,20 +121,21 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1379_27948.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1546_24126.html" target="_blank">
 							<span>
-								<img alt="新型网络 New Kind of Network(NKN)" src="https://filea.apaipian.com/group1/M00/00/F4/CgpmTlqnoHOACtqSAAJUBttvTFM718.jpg">
+								<img alt="分子资产" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqx0oiAFq9ZAAJ1uoG69kI801.jpg">
 								<i></i>
 							</span>
-							<font>新型网络 New Kind of Network(NKN)</font>
+							<font>分子资产</font>
 						</a>
 					</div>
 				</li>
+				
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28019.html" target="_blank">
 							<span>
-								<img alt="新经币 NEM(XEM)" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7FqvL_mAUjg2AAD5xVSFe2k948.jpg">
+								<img alt="新经币 NEM(XEM)" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqxxmOAfJ7oAAHhVew76Ow967.jpg">
 								<i></i>
 							</span>
 							<font>新经币 NEM(XEM)</font>
@@ -145,7 +146,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28018.html" target="_blank">
 							<span>
-								<img alt="DigixDAO(DGD)" src="https://filec.apaipian.com/group1/M00/00/BA/CgpsbFqvH0aAJKNmAADuVXJb3AY011.jpg">
+								<img alt="DigixDAO(DGD)" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqxxsGAWolpAAF_c3ydJL4170.jpg">
 								<i></i>
 							</span>
 							<font>DigixDAO(DGD)</font>
@@ -156,7 +157,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28026.html" target="_blank">
 							<span>
-								<img alt="以太坊 Ethereum(ETH)" src="https://filed.apaipian.com/group1/M00/00/F5/CgpmTlqvIcSAVuM7AACv8L8B3TQ924.jpg">
+								<img alt="以太坊 Ethereum(ETH)" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7FqxxvGADiEGAAFPcdlXyLo695.jpg">
 								<i></i>
 							</span>
 							<font>以太坊 Ethereum(ETH)</font>
@@ -167,7 +168,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28023.html" target="_blank">
 							<span>
-								<img alt="源石币 RaiBlocks(Nano)" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqvIpGALW4qAAIb8aDyusI554.jpg">
+								<img alt="源石币 RaiBlocks(Nano)" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqxx-CAI8scAAG1-lgomwI540.jpg">
 								<i></i>
 							</span>
 							<font>源石币 RaiBlocks(Nano)</font>
@@ -178,7 +179,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28022.html" target="_blank">
 							<span>
-								<img alt="Steem-基于blockchain社交媒体平台" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7FqvJOuAOeRIAADlDZjt8tc958.jpg">
+								<img alt="Steem-基于blockchain社交媒体平台" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqxyBuAKrk8AAGEAwa0XB8539.jpg">
 								<i></i>
 							</span>
 							<font>Steem-基于blockchain社交媒体平台</font>
@@ -189,7 +190,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28013.html" target="_blank">
 							<span>
-								<img alt="Tether(USDT)" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqvJcyAD47uAAEG837PUWQ072.jpg">
+								<img alt="Tether(USDT)" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqxyFeAV-8MAAHZt7M9NoU556.jpg">
 								<i></i>
 							</span>
 							<font>Tether(USDT)</font>
@@ -200,7 +201,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28024.html" target="_blank">
 							<span>
-								<img alt="唯链 VeChain VEN-解决方案" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqvK4eAKeArAAEP-D3sFQM030.jpg">
+								<img alt="唯链 VeChain VEN-解决方案" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqxyOyAE_6cAAB5FqHryyQ309.jpg">
 								<i></i>
 							</span>
 							<font>唯链 VeChain VEN-解决方案</font>
@@ -211,7 +212,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28027.html" target="_blank">
 							<span>
-								<img alt="唯链 VeChain VEN-数字化维修" src="https://filec.apaipian.com/group1/M00/00/F5/CgpmTlqvLCmAJ6U2AADSLZeyha0551.jpg">
+								<img alt="唯链 VeChain VEN-数字化维修" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqxyniABHQQAAHn5g2OhJw776.jpg">
 								<i></i>
 							</span>
 							<font>唯链 VeChain VEN-数字化维修</font>
@@ -233,7 +234,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28008.html" target="_blank">
 							<span>
-								<img alt="比特币现金 Bitcoin Cash(BCH" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqvMsKAOckTAAClaTgE3Go109.jpg">
+								<img alt="比特币现金 Bitcoin Cash(BCH" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqxy5-ALpiTAADZRoXPS58518.jpg">
 								<i></i>
 							</span>
 							<font>比特币现金 Bitcoin Cash(BCH)</font>
@@ -244,7 +245,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27999.html" target="_blank">
 							<span>
-								<img alt="Bitcoin Cash(BCH)-对等电子现金" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqvM6iAIw_xAAFL67F7kzU431.jpg">
+								<img alt="Bitcoin Cash(BCH)-对等电子现金" src="https://fileb.apaipian.com/group1/M00/00/BB/CgpsbFqxy-CAQ_iwAAJTEv6-Q1g418.jpg">
 								<i></i>
 							</span>
 							<font>Bitcoin Cash(BCH)-对等电子现金</font>
@@ -255,7 +256,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28036.html" target="_blank">
 							<span>
-								<img alt="IOTA (IOT)" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqvNKiAWi_vAAEWbJAJVtA984.jpg">
+								<img alt="IOTA (IOT)" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqxzGuATgjIAAG8BsO_06s918.jpg">
 								<i></i>
 							</span>
 							<font>IOTA (IOT)</font>
@@ -266,7 +267,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27989.html" target="_blank">
 							<span>
-								<img alt="瑞波币 Ripple(XRP)" src="https://filed.apaipian.com/group1/M00/00/BA/CgpsbFqvOuaAbeAdAAF8D459YLw966.jpg">
+								<img alt="瑞波币 Ripple(XRP)" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxzMCAIkaYAADRCoXokXI766.jpg">
 								<i></i>
 							</span>
 							<font>瑞波币 Ripple(XRP)</font>
@@ -277,7 +278,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28021.html" target="_blank">
 							<span>
-								<img alt="莱特币 Litecoin(LTC)" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7FqvO76Ab0UmAADRv6cxCdw434.jpg">
+								<img alt="莱特币 Litecoin(LTC)" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqxzTSASUhdAADUfSx79A8609.jpg">
 								<i></i>
 							</span>
 							<font>莱特币 Litecoin(LTC)</font>
@@ -288,7 +289,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28040.html" target="_blank">
 							<span>
-								<img alt="达世币 DASH" src="https://filea.apaipian.com/group1/M00/00/F3/Cgpw7FqvPUWAReeBAADoBOupOWg602.jpg">
+								<img alt="达世币 DASH" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqxzbWAHAEsAACPAjrIOXU547.jpg">
 								<i></i>
 							</span>
 							<font>达世币 DASH</font>
@@ -299,7 +300,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27997.html" target="_blank">
 							<span>
-								<img alt="门罗币 Monero(XMR)-The Essentials" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7FqvQ9-AOfz-AADslSsqorY827.jpg">
+								<img alt="门罗币 Monero(XMR)-The Essentials" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqxzi6AGupHAACPMbdtTzg656.jpg">
 								<i></i>
 							</span>
 							<font>门罗币 Monero(XMR)-The Essentials</font>
@@ -310,7 +311,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28025.html" target="_blank">
 							<span>
-								<img alt="量子链 QTUM" src="https://fileb.apaipian.com/group1/M00/00/F3/Cgpw7FqvQHOAVuIlAADcPCIqYsY397.jpg">
+								<img alt="量子链 QTUM" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqxzr2ACwbUAADzoLMJGVc822.jpg">
 								<i></i>
 							</span>
 							<font>量子链 QTUM</font>
@@ -321,7 +322,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/683_26119.html" target="_blank">
 							<span>
-								<img alt="AMD-The Trinity Foundation" src="https://fileb.apaipian.com/group1/M00/00/E2/Cgpw7FpUnleAMeCeAAK8Nsp-qsc554.jpg">
+								<img alt="AMD-The Trinity Foundation" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqxz3CAJqHfAADaoSN7NWw365.jpg">
 								<i></i>
 							</span>
 							<font>AMD-The Trinity Foundation</font>
@@ -332,7 +333,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/683_26128.html" target="_blank">
 							<span>
-								<img alt="趣链科技-趣赢信任 链铸未来" src="https://filea.apaipian.com/group1/M00/00/E4/CgpmTlpVjdaAD_QQAAFkJEpfE5M722.jpg">
+								<img alt="趣链科技-趣赢信任 链铸未来" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx0CWACS9CAAGHcgqR-wE042.jpg">
 								<i></i>
 							</span>
 							<font>趣链科技-趣赢信任 链铸未来</font>
@@ -346,7 +347,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26513.html" target="_blank">
 							<span>
-								<img alt="ICON-前景" src="https://filec.apaipian.com/group1/M00/00/E7/Cgpw7Fpqpg2AYM5WAACPY7uYyW0202.jpg">
+								<img alt="ICON-前景" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqx0ISAUMoPAAEMWLq0SiM947.jpg">
 								<i></i>
 							</span>
 							<font>ICON-前景</font>
@@ -358,7 +359,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26466.html" target="_blank">
 							<span>
-								<img alt="区块链介绍" src="https://filec.apaipian.com/group1/M00/00/AE/CgpsbFpqEVeAEDbwAADrAtjfLnY587.jpg">
+								<img alt="区块链介绍" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx0QSAYhz-AACznQJ5w88385.jpg">
 								<i></i>
 							</span>
 							<font>区块链介绍</font>
@@ -369,7 +370,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26467.html" target="_blank">
 							<span>
-								<img alt="什么是区块链" src="https://filed.apaipian.com/group1/M00/00/E6/Cgpw7FpqEKWAJKqBAAKBSl5KOJc255.png">
+								<img alt="什么是区块链" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7Fqx0ZWAE234AAF05-kKCiw169.jpg">
 								<i></i>
 							</span>
 							<font>什么是区块链</font>
@@ -382,7 +383,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26504.html" target="_blank">
 							<span>
-								<img alt="Bankera-发展历程" src="https://fileb.apaipian.com/group1/M00/00/E9/CgpmTlpqp7OAZnl9AADlOX7p21Y646.jpg">
+								<img alt="Bankera-发展历程" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx0vyAAos5AAGqTizA-Is876.jpg">
 								<i></i>
 							</span>
 							<font>Bankera-发展历程</font>
@@ -393,7 +394,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26505.html" target="_blank">
 							<span>
-								<img alt="IBM-blockchain汽车租赁" src="https://filec.apaipian.com/group1/M00/00/E9/CgpmTlpqp4yADeGLAAD2QHNtCVk354.jpg">
+								<img alt="IBM-blockchain汽车租赁" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx03CASP4MAAHuvf9SYyU746.jpg">
 								<i></i>
 							</span>
 							<font>IBM-blockchain汽车租赁</font>
@@ -405,7 +406,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26497.html" target="_blank">
 							<span>
-								<img alt="The Bitcoin and Blockchain" src="https://filea.apaipian.com/group1/M00/00/B0/CgptuFpqqQ2AB290AADnwlWVjVY782.jpg">
+								<img alt="The Bitcoin and Blockchain" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqx07-ASv4QAAEYxVHoECs814.jpg">
 								<i></i>
 							</span>
 							<font>The Bitcoin and Blockchain</font>
@@ -416,7 +417,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/18_28055.html" target="_blank">
 							<span>
-								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqvdUuAeJo4AAJ_JzaIZqk212.jpg">
+								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx1I2AVVN6AAFTXhn-IJE490.jpg">
 								<i></i>
 							</span>
 							<font>智力收益价值链 IQ Benefit Chain(IQB-C) </font>

@@ -74,7 +74,7 @@
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 	
 	<!-- 活动专题 -->
-	<mvc:view-controller path="/salesman/special" view-name="/salesman/special/index" />
+	<mvc:view-controller path="/special" view-name="/salesman/special/index" />
 	<mvc:view-controller path="/salesman/special/channel" view-name="/salesman/special/channel" />
 	<mvc:view-controller path="/salesman/special/channel01.html" view-name="/salesman/special/channel01" />
 	<mvc:view-controller path="/salesman/special/channel02.html" view-name="/salesman/special/channel02" />
