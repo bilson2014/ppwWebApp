@@ -33,7 +33,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="http://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner05.jpg" alt="医美宣传片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner005.jpg" alt="医美宣传片"></div>
 	<div class="main_pd">
 		<h2>医疗 · 美容</h2>
 		<p>诱惑绽放，拯救镜子里掩泣的青春<br>宣传片为医美行业互联网投放注入全新的竞争元素，把握机遇方能一击制胜。</p>

@@ -33,7 +33,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="http://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner03.jpg" alt="发布会短视频"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner003.jpg" alt="发布会短视频"></div>
 	<div class="main_pd">
 		<h2>新品发布会</h2>
 		<p>告别拖沓无趣的平铺直叙，短视频燃爆现场，让您的新产品先声夺人、光芒四射。</p>

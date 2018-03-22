@@ -33,7 +33,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="http://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner04.jpg" alt="创业融资宣传片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner004.jpg" alt="创业融资宣传片"></div>
 	<div class="main_pd">
 		<h2>创业 · 融资 · 路演</h2>
 		<p>拍一部优秀的宣传片，3分钟打动投资人，实现创业梦想，向全世界推广你的理念。</p>

@@ -33,7 +33,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="http://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner02.jpg" alt="互联网金融"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner002.jpg" alt="互联网金融"></div>
 	<div class="main_pd">
 		<h2>互联网金融</h2>
 		<p>互联网金融行业经历了一轮“严监管”，2018迎来发展的黄金时期，<br>
@@ -200,7 +200,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/18_26455.html" target="_blank">
 							<span>
-								<img alt="互连众信-资产360-小叨" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx3QqAHqnMAAE3MwlJBL0430.jpg">
+								<img alt="互连众信-资产360-小叨" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqyMC-AKxtFAAMT4dxcCWs519.jpg">
 								<i></i>
 							</span>
 							<font>互连众信-资产360-小叨</font>
@@ -222,7 +222,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_17448.html" target="_blank">
 							<span>
-								<img alt="量化派-信用钱包英文版" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqx3bCAC2tPAAG0JdMKgFk958.jpg">
+								<img alt="量化派-信用钱包英文版" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqyCBmATfGwAAIco_CvkUA986.jpg">
 								<i></i>
 							</span>
 							<font>量化派-信用钱包英文版</font>

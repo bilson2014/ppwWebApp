@@ -37,6 +37,9 @@
         transform: rotateX(0) !important;
         opacity: 1 !important;
     }
+    .openVideo .videoClose{
+    right:-498px !important
+    }
 </style>
 </head>
 
@@ -49,7 +52,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="http://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -69,7 +72,7 @@
 			<p>作为一个心怀梦想的区块链创业者，废寝忘食的研发出新项目之后，不得不面对的一个问题就是，怎样让大家在最短的时间内明白你要做什么？如何才能把区块链项目的抽象概念精准传播给目标受众呢？或许，这个行业的明星项目能够给到合理的答案。通过<font>NEO、Trinity、NKN、BEAUTY、趣链、CBT、IQB</font>等成功案例不难发现，其实你只需要一部好视频将专业的术语转化为有趣的画面。让项目更加生动直观、通俗易懂，轻轻松松赢得用户和投资人的信任。拍片网是区块链视频制作专家。</p>
 			<div class="Guide">
 				<a href="https://www.apaipian.com/product/EnterpriseMotionGraphics/main" target="_blank">产品详情</a>
-				<a id="toplayVideo" onclick="toplay()">视频介绍</a>
+				<a id="toplayVideo" onclick="toplay()" style="cursor:pointer">视频介绍</a>
 			</div> 
 		</div>
 	</div>
@@ -334,7 +337,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/683_26128.html" target="_blank">
 							<span>
-								<img alt="趣链科技-趣赢信任 链铸未来" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx0CWACS9CAAGHcgqR-wE042.jpg">
+								<img alt="趣链科技-趣赢信任 链铸未来" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqyICyARek_AAJP_UIlDVQ490.jpg">
 								<i></i>
 							</span>
 							<font>趣链科技-趣赢信任 链铸未来</font>

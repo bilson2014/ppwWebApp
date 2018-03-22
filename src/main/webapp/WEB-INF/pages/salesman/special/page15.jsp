@@ -88,13 +88,7 @@
                             <p>只需要热爱，这一个理由</p>
                         </a>
                     </li>
-                	<li>
-                    	<a href="https://www.apaipian.com/play/1114_5399.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-3.jpg"></div>
-                            <h3>Nike-Making news</h3>
-                            <p>Just do it !</p>
-                        </a>
-                    </li>
+                	
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_10887.html" target="_blank">
                         	<div class="kuang"><img src="/resources/images/salesman/special/p15-4.jpg"></div>
@@ -135,6 +129,13 @@
                         	<div class="kuang"><img src="/resources/images/salesman/special/p15-12.jpg"></div>
                             <h3>Losers Short Film</h3>
                             <p>Don't be a bully. LOSERS !</p>
+                        </a>
+                    </li>
+                    <li>
+                    	<a href="https://www.apaipian.com/play/1114_5399.html" target="_blank">
+                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-3.jpg"></div>
+                            <h3>Nike-Making news</h3>
+                            <p>Just do it !</p>
                         </a>
                     </li>
                 </ul>
@@ -222,10 +223,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="images/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="images/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
