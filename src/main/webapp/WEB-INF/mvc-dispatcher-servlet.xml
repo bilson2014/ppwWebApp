@@ -75,7 +75,7 @@
 	
 	<!-- 活动专题 -->
 	<mvc:view-controller path="/special" view-name="/salesman/special/index" />
-	<mvc:view-controller path="/special/channel" view-name="/salesman/special/channel" />
+	<mvc:view-controller path="/special/channel.html" view-name="/salesman/special/channel" />
 	<mvc:view-controller path="/special/channel01.html" view-name="/salesman/special/channel01" />
 	<mvc:view-controller path="/special/channel02.html" view-name="/salesman/special/channel02" />
 	<mvc:view-controller path="/special/channel03.html" view-name="/salesman/special/channel03" />
@@ -181,7 +181,7 @@
 		</mvc:interceptor>
 		
 		<!-- 产品线相关 -->
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/main"/>
 			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/case"/>
 			<mvc:mapping path="/product/MotionGraphicsforPublicPresentation/set"/>
@@ -223,6 +223,21 @@
 			<mvc:mapping path="/product/LectureVideo/order"/>
 			
 			<bean class="com.panfeng.film.filter.ProductCaseInterceptor" />
+		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<!-- <mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path=""/>
+			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/resources/**"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/mgr/login"/>
+			<mvc:exclude-mapping path="/error"/>
+			<mvc:exclude-mapping path="/404"/> -->
+			<mvc:mapping path="/product/*/main"/>
+			<mvc:mapping path="/product/*/case"/>
+			<mvc:mapping path="/product/*/set"/>
+			<mvc:mapping path="/product/*/order"/>
+			<bean class="com.panfeng.film.intercepter.SecurityInterceptor" />
 		</mvc:interceptor>
 		
 		<mvc:interceptor>

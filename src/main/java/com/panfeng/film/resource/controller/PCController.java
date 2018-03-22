@@ -619,13 +619,13 @@ public class PCController extends BaseController {
 		final String serviceIP = FastDFSClient.locateSource();
 		String ip = "";
 		final StringBuffer sbf = new StringBuffer();
-		sbf.append("http://");
+		sbf.append("https://");
 		
 		if(ValidateUtil.isValid(serviceIP)) {
 			ip = nodeMap.get(serviceIP);
 			if(ValidateUtil.isValid(ip)) {
 				sbf.append(ip);
-				sbf.append(":8888/");
+//				sbf.append(":8888/");
 			} else {
 				sbf.append(PublicConfig.FDFS_BACKUP_SERVER_PATH);
 			}

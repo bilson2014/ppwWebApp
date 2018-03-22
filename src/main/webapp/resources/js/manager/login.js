@@ -82,7 +82,7 @@ var login = {
 					}else if(go  == 1){
 						location.href  ='/project/running?order';
 					}else {
-						location.href  ='/';
+						location.href  =go;
 					}
 					$('#pwdId').addClass('hide');
 				}else {
