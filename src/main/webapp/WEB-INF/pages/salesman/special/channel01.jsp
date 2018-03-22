@@ -68,7 +68,7 @@
 	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner01.gif" alt="区块链宣传片"></div>
 	<div class="main_top">
 		<div class="container">
-			<h2>[ 讲解、路演、融资 ]<br>三分钟说清区块链 这样的视频正是你所需要的</h2>
+			<h2>[ 讲解、路演、融资 ]<br>三分钟说清区块链 你的项目距离成功只差一部好视频</h2>
 			<p>作为一个心怀梦想的区块链创业者，废寝忘食的研发出新项目之后，不得不面对的一个问题就是，怎样让大家在最短的时间内明白你要做什么？如何才能把区块链项目的抽象概念精准传播给目标受众呢？或许，这个行业的明星项目能够给到合理的答案。通过<font>NEO、Trinity、NKN、BEAUTY、趣链、CBT、IQB</font>等成功案例不难发现，其实你只需要一部好视频将专业的术语转化为有趣的画面。让项目更加生动直观、通俗易懂，轻轻松松赢得用户和投资人的信任。拍片网是区块链视频制作专家。</p>
 			<div class="Guide">
 				<a href="https://www.apaipian.com/product/EnterpriseMotionGraphics/main" target="_blank">产品详情</a>

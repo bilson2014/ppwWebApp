@@ -161,6 +161,13 @@
 			
 			<div class="lanren">
 				<ul class="hidden">
+				<li>
+						<a href="http://www.apaipian.com/special/page19.html" class="padd">
+							<img src="/resources/images/salesman/special/load.jpg" realSrc="/resources/images/salesman/special/zt18.jpg"/>
+							<h3>这世界，总有人偷偷爱着你</h3>
+							<p>走心广告片、暖心品牌宣传片、感人微电影。</p>
+						</a>
+					</li>
 					<li>
 						<a href="http://www.apaipian.com/special/page18.html" class="padd">
 							<img src="/resources/images/salesman/special/load.jpg" realSrc="/resources/images/salesman/special/zt18.jpg"/>
