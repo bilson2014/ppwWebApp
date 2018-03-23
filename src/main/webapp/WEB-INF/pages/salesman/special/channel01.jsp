@@ -11,11 +11,12 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special//css.css">
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
-
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script src="/resources/js/salesman/special/bannerAni.js"></script>
 <script src="/resources/js/common.js"></script>
+
 <script>
 	function SearchVideo(){ 		
 	   var key=document.getElementById("search-q").value;
@@ -48,31 +49,36 @@
     }
     
     .bw{
-    width: 100%;
+    width: 480px;
     font-size: 52px;
     color: #FFFFFF;
     letter-spacing: 1px;
     position: absolute;
     top: 25%;
     text-align: center;
+     left: 50%;
+    margin-left: -240px;
     }
     
       .sw{
-    width: 100%;
+    width: 290px;
     font-size: 18px;
     color: #FFFFFF;
     letter-spacing: 2px;
     position: absolute;
     top: 43%;
-    text-align: center;
+    left: 50%;
+    margin-left: -145px;
     }
     
     .Guide{
-    width: 100%;
+    width: 506px;
     padding: 0 !important;
     text-align: center;
     position: absolute;
     top: 60%;
+    left: 50%;
+    margin-left: -253px;
     }
     
     .Guide a{
@@ -93,8 +99,69 @@
     box-shadow: 3px 3px 3px #000!important;
     }
     
+    .toshare{
+    position: absolute;
+    right: 80px;
+    bottom: 55px;
+    height: 25px;
+    }
     
+      .share {
+        font-size: 0;
+              }
+       .share li {
+            cursor: pointer;
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            vertical-align: top;
+            border-radius: 6px;
+        }
+        
+        .share  li:nth-child(1){
+             font-size: 14px;
+             width: 55px;
+             line-height: 25px;
+             color:#666;
+        }
+      
+      .share  li:nth-child(2) {
+            background: url(/resources/images/block/wx.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+         
+        }
+      .share  li:nth-child(3) {
+            background: url(/resources/images/block/q.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+           
+        }
+      .share  li:nth-child(4) {
+            background: url(/resources/images/block/w.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+          
+        }
+      .share  li:nth-child(5) {
+            background: url(/resources/images/block/kj.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+         
+        }
+        
+        .share li::hover{
+                background-position-y: -24px;
+        }
+        
+        .newCon{
+        padding-bottom:130px;}
     
+  
 </style>
 </head>
 
@@ -130,12 +197,23 @@
 		 </div> 
 	</div>
 	<div class="main_top">
-		<div class="container">
+		<div class="container newCon">
 			<h2>[ 讲解、路演、融资 ]<br>三分钟说清区块链 你的项目距离成功只差一部好视频</h2>
 			<p>作为一个心怀梦想的区块链创业者，废寝忘食的研发出新项目之后，不得不面对的一个问题就是，怎样让大家在最短的时间内明白你要做什么？如何才能把区块链项目的抽象概念精准传播给目标受众呢？或许，这个行业的明星项目能够给到合理的答案。通过<font>NEO、Trinity、NKN、BEAUTY、趣链、CBT、IQB</font>等成功案例不难发现，其实你只需要一部好视频将专业的术语转化为有趣的画面。让项目更加生动直观、通俗易懂，轻轻松松赢得用户和投资人的信任。拍片网是区块链视频制作专家。</p>
-			
+	        <div class="toshare"> 
+	         <ul class="share">
+	                            <li>分享到 : </li>
+                                <li class="-mob-share-weixin setShare"></li>
+                                <li class="-mob-share-qq setShare"></li>
+                                <li class="-mob-share-weibo setShare"></li>
+                                <li class="-mob-share-qzone setShare"></li>
+              </ul>	
+           </div>   	
 		</div>
 	</div>
+	                        
+	                       
+                            
 	<div class="main_pd">
 		<div class="container">
 			<ul class="channel">

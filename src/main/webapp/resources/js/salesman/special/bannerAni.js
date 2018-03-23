@@ -3,6 +3,12 @@ $().ready(function() {
 	$(window).resize(function() {
 		setAnimotion();
 	});
+	$('.setShare').click(function(){
+		var title = '区块链宣传片制作_区块链项目路演视频_区块链是什么_区块链技术-拍片网';
+		var url = 'https://www.apaipian.com/special/channel01.html';
+		var img_path = 'https://www.apaipian.com//resources/images/salesman/special/banner01.jpg';
+		share.init(url,title,img_path);
+	});
 });
 
 function setAnimotion(){
