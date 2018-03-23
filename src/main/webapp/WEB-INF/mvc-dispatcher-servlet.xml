@@ -99,6 +99,7 @@
 	<mvc:view-controller path="/special/page16.html" view-name="/salesman/special/page16" />
 	<mvc:view-controller path="/special/page17.html" view-name="/salesman/special/page17" />
 	<mvc:view-controller path="/special/page18.html" view-name="/salesman/special/page18" />
+	<mvc:view-controller path="/special/page19.html" view-name="/salesman/special/page19" />
 	<!-- 活动专题end -->
 
 	<context:component-scan base-package="com.panfeng.film.resource.controller" />
