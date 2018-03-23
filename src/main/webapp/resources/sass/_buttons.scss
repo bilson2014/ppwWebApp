@@ -153,6 +153,10 @@ input[type="button"] {
 //end
 
 .btn-c-r {
+    transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
     cursor: pointer;
     background: $red-base;
     &:hover {
@@ -162,6 +166,10 @@ input[type="button"] {
 }
 
 .btn-c-g {
+    transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
      cursor: pointer;
      background: $gray-light;
     &:hover {

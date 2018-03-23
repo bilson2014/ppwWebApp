@@ -14,6 +14,7 @@
 
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<script src="/resources/js/salesman/special/bannerAni.js"></script>
 <script src="/resources/js/common.js"></script>
 <script>
 	function SearchVideo(){ 		
@@ -40,6 +41,60 @@
     .openVideo .videoClose{
     right:-498px !important
     }
+    
+    .banner00{
+    background:black;
+    position: relative;
+    }
+    
+    .bw{
+    width: 100%;
+    font-size: 52px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    }
+    
+      .sw{
+    width: 100%;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 43%;
+    text-align: center;
+    }
+    
+    .Guide{
+    width: 100%;
+    padding: 0 !important;
+    text-align: center;
+    position: absolute;
+    top: 60%;
+    }
+    
+    .Guide a{
+    width:200px !important;
+    height:40px !important;
+    line-height:40px !important;
+    background: #FE5453;
+    border-radius: 100px;
+    font-size: 16px !important;
+    color: #FFFFFF;
+    padding: 0 !important;
+    margin: 0px 25px !important;
+    border:none !important;
+    }
+    
+    .Guide a:hover {
+    background: #fe2220;
+    box-shadow: 3px 3px 3px #000!important;
+    }
+    
+    
+    
 </style>
 </head>
 
@@ -65,15 +120,20 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner01.gif" alt="区块链宣传片"></div>
+	<div class="banner00">
+	     <canvas id="canvas"></canvas>
+	     <div class="bw">区块链视频制作专家</div>
+	     <div class="sw">你的项目距成功只差一部好视频</div>
+	     <div class="Guide">
+				<a href="https://www.apaipian.com/product/EnterpriseMotionGraphics/main" target="_blank">产品详情</a>
+				<a id="toplayVideo" onclick="toplay()" style="cursor:pointer">视频介绍</a>
+		 </div> 
+	</div>
 	<div class="main_top">
 		<div class="container">
 			<h2>[ 讲解、路演、融资 ]<br>三分钟说清区块链 你的项目距离成功只差一部好视频</h2>
 			<p>作为一个心怀梦想的区块链创业者，废寝忘食的研发出新项目之后，不得不面对的一个问题就是，怎样让大家在最短的时间内明白你要做什么？如何才能把区块链项目的抽象概念精准传播给目标受众呢？或许，这个行业的明星项目能够给到合理的答案。通过<font>NEO、Trinity、NKN、BEAUTY、趣链、CBT、IQB</font>等成功案例不难发现，其实你只需要一部好视频将专业的术语转化为有趣的画面。让项目更加生动直观、通俗易懂，轻轻松松赢得用户和投资人的信任。拍片网是区块链视频制作专家。</p>
-			<div class="Guide">
-				<a href="https://www.apaipian.com/product/EnterpriseMotionGraphics/main" target="_blank">产品详情</a>
-				<a id="toplayVideo" onclick="toplay()" style="cursor:pointer">视频介绍</a>
-			</div> 
+			
 		</div>
 	</div>
 	<div class="main_pd">

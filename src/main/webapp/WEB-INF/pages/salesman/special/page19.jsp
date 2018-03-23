@@ -13,6 +13,14 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+
+<style>
+
+ .kuang{
+    height:146px !important;
+ }
+</style>
+
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -22,6 +30,7 @@
 	   window.location.href="https://www.apaipian.com/search?q="+key;  
 	  }  
 </script>
+
 </head>
 
 <body>
@@ -90,7 +99,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_26862.html" target="_blank">
-                        	<div class="kuang"><img src="poster="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7FqzZSqAL0rjAAIVFjcTLF8851.jpg""></div>
+                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7FqzZSqAL0rjAAIVFjcTLF8851.jpg"></div>
                             <h3>谢谢你陌生人-圣诞</h3>
                             <p>999感冒灵</p>
                         </a>
