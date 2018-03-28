@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner08.jpg" alt="决战双十一"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner08.jpg" alt="决战双十一"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,105 +57,105 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1323_16233.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-1.jpg"></div>
+                        	<div class="kuang"><img alt="优集品-双十一篇" src="${imgBnner}/group1/M00/00/3F/CgptuFj4IXaAKeEvAAH567GjJUc145.jpg"></div>
                             <h3>优集品-双十一篇</h3>
                             <p>电商广告/病毒视频/温馨/情侣</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1681_18121.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-2.jpg"></div>
+                        	<div class="kuang"><img alt="汽车之家-双十一" src="${imgBnner}/group1/M00/00/FA/CgpmTlq6BK2ARiD9AADdIap-1og460.jpg"></div>
                             <h3>汽车之家-双十一</h3>
                             <p>活动宣传片/汽车/专业演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_6036.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-3.jpg"></div>
+                        	<div class="kuang"><img alt="CICI-SHOP - 双十一狂欢派对" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6BS-ABGsqAAHXZLli82Y452.jpg"></div>
                             <h3>CICI-SHOP - 双十一狂欢派对</h3>
                             <p>产品广告/服装纺织/美女</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_4895.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-4.jpg"></div>
+                        	<div class="kuang"><img alt="飞凡-双十一 - 化妆篇" src="${imgBnner}/group1/M00/00/FA/CgpmTlq6BWaARc5xAAD2rdrLs2E271.jpg"></div>
                             <h3>飞凡-双十一 - 化妆篇</h3>
                             <p>活动宣传片/创意广告/明星演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_4915.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-5.jpg"></div>
+                        	<div class="kuang"><img alt="飞凡双十一 - 龙虾篇" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6BZiASOD9AAFZA7lU9FQ877.jpg"></div>
                             <h3>飞凡双十一 - 龙虾篇</h3>
                             <p>活动宣传片/创意广告/明星演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_4916.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-6.jpg"></div>
+                        	<div class="kuang"><img alt="飞凡双十一 - 零点摇一摇篇" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6BeCAI2FpAAE91fgb02c162.jpg"></div>
                             <h3>飞凡双十一 - 零点摇一摇篇</h3>
                             <p>活动宣传片/创意广告/明星演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/270_2436.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-7.jpg"></div>
+                        	<div class="kuang"><img alt="请叫我顽皮君 - 双十一特别篇" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6BiWAAkdlAADzv39GVdI802.jpg"></div>
                             <h3>请叫我顽皮君 - 双十一特别篇</h3>
                             <p>活动宣传片/电商/隐喻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1323_15509.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-8.jpg"></div>
+                        	<div class="kuang"><img alt="林氏木业双十一-老中医的救赎" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6Bk2AaH_8AAGvuRKEdg4900.jpg"></div>
                             <h3>林氏木业双十一-老中医的救赎</h3>
                             <p>病毒视频/活动宣传片/幽默/搞笑</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_114.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-9.jpg"></div>
+                        	<div class="kuang"><img alt="高德地图-让生活更有位道" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6BryAG05YAADDcIYc6zU881.jpg"></div>
                             <h3>高德地图-让生活更有位道</h3>
                             <p>移动互联网/活动宣传片/APP</p>
                         </a>
                     </li>
                 	<li>
-                    	<a href="https://www.apaipian.com/play/1115_4120.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-10.jpg"></div>
+                    	<a href="https://www.apaipian.com/play/1151_18138.html" target="_blank">
+                        	<div class="kuang"><img alt="天猫 Tmall-双十一" src="${imgBnner}/group1/M00/00/FA/CgpmTlq6B5iADTdAAAEvdtYrr0I182.jpg"></div>
                             <h3>天猫 Tmall-双十一</h3>
                             <p>活动宣传片/电商/特效/时尚</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11423.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-11.jpg"></div>
+                        	<div class="kuang"><img alt="天猫 Tmall-双十一再见" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6CJ6AGs0rAAHf4wkuYRY188.jpg"></div>
                             <h3>天猫 Tmall-双十一再见</h3>
                             <p>创意广告/音乐/风趣</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8373.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-12.jpg"></div>
+                        	<div class="kuang"><img alt="天猫 Tmall-姚生记双十一" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6CSmAd5j6AAHVeEHP_pE187.jpg"></div>
                             <h3>天猫 Tmall-姚生记双十一</h3>
                             <p>电商广告/餐饮美食</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10624.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-13.jpg"></div>
+                        	<div class="kuang"><img alt="京东 JD-双十一 安全套篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq6CaCAZ_a0AAF_bNBanpo969.jpg"></div>
                             <h3>京东 JD-双十一 安全套篇</h3>
                             <p>创意广告/活动广告/电商</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10631.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-14.jpg"></div>
+                        	<div class="kuang"><img alt="京东 JD - 双十一 剃须刀篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq6CeGAAItqAAElwvL80-0552.jpg"></div>
                             <h3>京东 JD - 双十一 剃须刀篇</h3>
                             <p>创意广告/互联网/电商</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10632.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p08-15.jpg"></div>
+                        	<div class="kuang"><img alt="京东 JD - 双十一防晒霜篇" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6ChGAXf0BAAFbyJIInCU511.jpg"></div>
                             <h3>京东 JD - 双十一防晒霜篇</h3>
                             <p>创意广告/电商/广告级</p>
                         </a>
@@ -170,10 +172,10 @@
                         <p>-更多视频请访问：<a href="http://www.apaipian.com" target="_blank" style="color:#f00">商业视频制作</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -221,7 +223,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -243,10 +245,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -318,6 +320,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="img alt=""Bnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner04.jpg" alt="一千零一夜"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner04.jpg" alt="一千零一夜"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,112 +57,112 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11385.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-1.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第1夜-鲅鱼水饺" src="https://www.apaipian.com/play/1116_11385.html"></div>
                             <h3>一千零一夜第1夜-鲅鱼水饺</h3>
                             <p>微电影/电商/病毒视频/意识流</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18170.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-2.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第2夜-巨人的赌约" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7DnyAcHIGAADPDXJXtcM810.jpg"></div>
                             <h3>一千零一夜第2夜-巨人的赌约</h3>
                             <p>专业演员/竖屏/感动</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11380.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-3.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第3夜-百香果之梦" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7DqCAMW2oAADu5EijvuM019.jpg"></div>
                             <h3>一千零一夜第3夜-百香果之梦</h3>
                             <p>餐饮美食/白日梦/营销广告</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11377.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-4.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第4夜-同学会" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7DtaAAxLhAAEcPi3ZdC0363.jpg"></div>
                             <h3>一千零一夜第4夜-同学会</h3>
                             <p>病毒视频/电影级/电商/餐饮美食</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18174.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-5.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第5夜-麻药" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7DxKAOkZdAAESYLcXTUE952.jpg"></div>
                             <h3>一千零一夜第5夜-麻药</h3>
                             <p>微电影/病毒视频/风趣</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18180.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-6.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第6夜-桃花泪" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7D0yAD_NrAAEc-HqWHqE852.jpg"></div>
                             <h3>一千零一夜第6夜-桃花泪</h3>
                             <p>微电影/病毒视频/电商</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11379.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-7.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第7夜-复仇记" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7EBmAW1SKAAFNdG4-lRg818.jpg"></div>
                             <h3>一千零一夜第7夜-复仇记</h3>
                             <p>创意广告/风趣/户外/简约</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18184.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-8.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第8夜-深夜鸡汤" src="${imgBnner}/group1/M00/00/C0/CgptuFq7EKKAHrmmAAFV3VAL9-g795.jpg"></div>
                             <h3>一千零一夜第8夜-深夜鸡汤</h3>
                             <p>病毒视频/魔性/搞笑</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11381.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-9.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第9夜-油炸鸡枞拌饭" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7ETCAJwPKAAEa1nKjjLA210.jpg"></div>
                             <h3>一千零一夜第9夜-油炸鸡枞拌饭</h3>
                             <p>微电影/温馨/亲自/创意</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11372.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-10.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第10夜-调香蛳" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7E7qAcEfcAADbT4NDXiU872.jpg"></div>
                             <h3>一千零一夜第10夜-调香蛳</h3>
                             <p>病毒视频/微电影/饮品</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18186.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-11.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第11夜-太空零食铺" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7E9mADQitAAE1qvZ7pnQ273.jpg"></div>
                             <h3>一千零一夜第11夜-太空零食铺</h3>
                             <p>电商/科幻/电影级</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18188.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-12.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第12夜-肉搏战" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7E_mAG9sNAAEPLOIDOiQ010.jpg"></div>
                             <h3>一千零一夜第12夜-肉搏战</h3>
                             <p>品牌广告/专业级/演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18191.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-13.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第13夜-螃蟹姑娘" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7FBuAfCjBAAETFxcHuUs000.jpg"></div>
                             <h3>一千零一夜第13夜-螃蟹姑娘</h3>
                             <p>微电影/电商/轻松/搞笑</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18193.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-14.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第14夜-最贵的粥" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7FEOAZ8srAAEK5I_iBnI751.jpg"></div>
                             <h3>一千零一夜第14夜-最贵的粥</h3>
                             <p>微电影/专业演员/感人</p>
                         </a>
                     </li>
                 	<li>
-                    	<a href="https://www.apaipian.com/play/1151_18188.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-15.jpg"></div>
+                    	<a href="https://www.apaipian.com/play/1151_18194.html" target="_blank">
+                        	<div class="kuang"><img alt="一千零一夜第15夜-蚝" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7E_mAG9sNAAEPLOIDOiQ010.jpg"></div>
                             <h3>一千零一夜第15夜-蚝</h3>
                             <p>品牌广告/专业级/演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18165.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p04-16.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第16夜大结局-夜宵" src="${imgBnner}/group1/M00/00/C0/CgptuFq7FNaADmIpAAEp5uaekZs054.jpg"></div>
                             <h3>一千零一夜第16夜大结局-夜宵</h3>
                             <p>专业级/电商/慢镜头/夜景</p>
                         </a>
@@ -177,10 +179,10 @@
                         <p>-更多视频请访问：<a href="https://www.apaipian.com" target="_blank" style="color:#f00">TVC广告</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -228,7 +230,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -250,10 +252,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -325,6 +327,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="img alt=""Bnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner03.jpg" alt="奢侈品广告"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner03.jpg" alt="奢侈品广告"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,84 +57,84 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_6180.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-1.jpg"></div>
+                        	<div class="kuang"><img alt="LV-Celebrating Monogram" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7CQiATPwwAAFBUV_qZBo217.jpg"></div>
                             <h3>LV-Celebrating Monogram</h3>
                             <p>品牌广告/棚拍/大气/抽象</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1117_11086.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-2.jpg"></div>
+                        	<div class="kuang"><img alt="Chanel-你觉得你懂我" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7CTiAZKevAAEEhyKDctk061.jpg"></div>
                             <h3>Chanel-你觉得你懂我</h3>
                             <p>产品广告/香水/美女/简约</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1117_11108.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-3.jpg"></div>
+                        	<div class="kuang"><img alt="Chanel-Rouge Allure Glos" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7CTiAZKevAAEEhyKDctk061.jpg"></div>
                             <h3>Chanel-Rouge Allure Glos</h3>
                             <p>产品广告/日用美妆/唇膏</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_9172.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-4.jpg"></div>
+                        	<div class="kuang"><img alt="奔驰 Mercedes Benz - 刹车篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq7CkOAZ7q7AAIVH2R59fM425.jpg"></div>
                             <h3>奔驰 Mercedes Benz - 刹车篇</h3>
                             <p>病毒视频/汽车/唯美画质</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/233_670.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-5.jpg"></div>
+                        	<div class="kuang"><img alt="奔驰 Mercedes Benz - 停车场篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq7CpOAQzrpAAD1P4wcx3g166.jpg"></div>
                             <h3>奔驰 Mercedes Benz - 停车场篇</h3>
                             <p>微电影/明星演员/隐喻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8812.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-6.jpg"></div>
+                        	<div class="kuang"><img alt="奔驰 Mercedes Benz - 敞篷车" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7CryAEe2JAAELD-1ShQY342.jpg"></div>
                             <h3>奔驰 Mercedes Benz - 敞篷车</h3>
                             <p>创意广告/汽车/特效/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8825.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-7.jpg"></div>
+                        	<div class="kuang"><img alt="奔驰 Mercedes Benz - C Class" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7CzCAGPBqAAFIMkXKG5c051.jpg"></div>
                             <h3>奔驰 Mercedes Benz - C Class</h3>
                             <p>创意广告/棚拍/震撼/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8576.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-8.jpg"></div>
+                        	<div class="kuang"><img alt="宝马 BMW - 马年限量版" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7C6OAZRG0AAEpE0ReQcY163.jpg"></div>
                             <h3>宝马 BMW - 马年限量版</h3>
                             <p>品牌广告/延时摄影/人声解说</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8797.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-9.jpg"></div>
+                        	<div class="kuang"><img alt="保时捷-Creating Timeles" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7C-eAeBzmAAEvLzQngmY462.jpg"></div>
                             <h3>保时捷-Creating Timeles</h3>
                             <p>产品宣传片/实拍/动感</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8800.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-10.jpg"></div>
+                        	<div class="kuang"><img alt="保时捷-Versatile Porsch" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7DE6ABR--AAGDwjypDKc017.jpg"></div>
                             <h3>保时捷-Versatile Porsch</h3>
                             <p>产品广告/汽车/实拍/生活化</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_8920.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-11.jpg"></div>
+                        	<div class="kuang"><img alt="Ferrari - The Crew Faction" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7DNGAch2pAAFhd7QnXXo169.jpg"></div>
                             <h3>Ferrari - The Crew Faction</h3>
                             <p>汽车广告/漂移/电影级/航拍</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_8667.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p03-12.jpg"></div>
+                        	<div class="kuang"><img alt="法拉利 Ferrari - Ferrari World" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7DdiAKaetAAD6__fdn3s793.jpg"></div>
                             <h3>法拉利 Ferrari - Ferrari World</h3>
                             <p>品牌广告/专业级/欧洲风格</p>
                         </a>
@@ -148,10 +150,10 @@
                         <p>-更多视频请访问：<a href="https://www.apaipian.com/list-cpxcp/" target="_blank" style="color:#f00">产品宣传片</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -199,7 +201,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -221,10 +223,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -296,6 +298,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

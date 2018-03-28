@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,9 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
+<script src="/resources/js/salesman/special/bannerAni.js"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -47,17 +51,29 @@
 	</div>
 	<div class="top2"></div>
 	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner002.jpg" alt="互联网金融"></div>
+	<div class="main_top">
+		<div class="container newCon">
+			<h2>互联网金融</h2>
+			<p style="text-align: center;">互联网金融行业经历了一轮“严监管”</br>2018迎来发展的黄金时期企业需要精彩的宣传片向投资者和潜在客户展示品牌的优势以及全方位的金融服务。</p></p>
+	        <div class="toshare"> 
+	         <ul class="share">
+	                            <li>分享到 : </li>
+                                <li class="-mob-share-weixin setShare"></li>
+                                <li class="-mob-share-qq setShare"></li>
+                                <li class="-mob-share-weibo setShare"></li>
+                                <li class="-mob-share-qzone setShare"></li>
+              </ul>	
+           </div>   	
+		</div>
+	</div>
 	<div class="main_pd">
-		<h2>互联网金融</h2>
-		<p>互联网金融行业经历了一轮“严监管”，2018迎来发展的黄金时期，<br>
-		企业需要精彩的宣传片向投资者和潜在客户展示品牌的优势以及全方位的金融服务。</p>
 		<div class="container">
 			<ul class="channel">
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1911_21384.html" target="_blank">
 							<span>
-								<img alt="人人贷-七周年明星祝福" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqx2AqAKf_zAAG-QZDzkT4510.jpg">
+								<img alt="人人贷-七周年明星祝福" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx2AqAKf_zAAG-QZDzkT4510.jpg">
 								<i></i>
 							</span>
 							<font>人人贷-七周年明星祝福</font>
@@ -68,7 +84,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1911_21342.html" target="_blank">
 							<span>
-								<img alt="爱钱进" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx2KWALSfFAAJOfx50WRw163.jpg">
+								<img alt="爱钱进" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx2KWALSfFAAJOfx50WRw163.jpg">
 								<i></i>
 							</span>
 							<font>爱钱进</font>
@@ -79,7 +95,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1911_21415.html" target="_blank">
 							<span>
-								<img alt="悟空理财" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx2RiAH8j_AAJn4T9YQgM778.jpg">
+								<img alt="悟空理财" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx2RiAH8j_AAJn4T9YQgM778.jpg">
 								<i></i>
 							</span>
 							<font>悟空理财</font>
@@ -90,7 +106,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_9767.html" target="_blank">
 							<span>
-								<img alt="小牛在线" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx2VyANQDEAAJXeteV3vU309.jpg">
+								<img alt="小牛在线" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx2VyANQDEAAJXeteV3vU309.jpg">
 								<i></i>
 							</span>
 							<font>小牛在线</font>
@@ -101,7 +117,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_8664.html" target="_blank">
 							<span>
-								<img alt="大树 - 支付宝口碑" src="https://filec.apaipian.com/group1/M00/00/F3/Cgpw7Fqre3mAGUbcAAGC569o_es177.jpg">
+								<img alt="大树 - 支付宝口碑" src="${imgBnner}/group1/M00/00/F3/Cgpw7Fqre3mAGUbcAAGC569o_es177.jpg">
 								<i></i>
 							</span>
 							<font>大树 - 支付宝口碑</font>
@@ -112,7 +128,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_8677.html" target="_blank">
 							<span>
-								<img alt="多宝贷" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx2eSAf8YWAAGOBbxppb8749.jpg">
+								<img alt="多宝贷" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx2eSAf8YWAAGOBbxppb8749.jpg">
 								<i></i>
 							</span>
 							<font>多宝贷</font>
@@ -123,7 +139,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_8845.html" target="_blank">
 							<span>
-								<img alt="简理财-因爱前行" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqvhkWAIpP-AAEX3-TjdYU836.jpg">
+								<img alt="简理财-因爱前行" src="${imgBnner}/group1/M00/00/F6/CgpmTlqvhkWAIpP-AAEX3-TjdYU836.jpg">
 								<i></i>
 							</span>
 							<font>简理财-因爱前行</font>
@@ -134,7 +150,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1159_19694.html" target="_blank">
 							<span>
-								<img alt="钱牛牛-行动派" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqx2muAZAyAAAIlXx3v3bc712.jpg">
+								<img alt="钱牛牛-行动派" src="${imgBnner}/group1/M00/00/BC/CgptuFqx2muAZAyAAAIlXx3v3bc712.jpg">
 								<i></i>
 							</span>
 							<font>钱牛牛-行动派</font>
@@ -145,7 +161,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1116_11552.html" target="_blank">
 							<span>
-								<img alt="支付宝 Alipay" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx2rKAYjJIAAJVAoTVp6E820.jpg">
+								<img alt="支付宝 Alipay" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx2rKAYjJIAAJVAoTVp6E820.jpg">
 								<i></i>
 							</span>
 							<font>支付宝 Alipay</font>
@@ -156,7 +172,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_17030.html" target="_blank">
 							<span>
-								<img alt="易捷贷" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqx2vaAZkOdAAG4SAW--M4333.jpg">
+								<img alt="易捷贷" src="${imgBnner}/group1/M00/00/BC/CgptuFqx2vaAZkOdAAG4SAW--M4333.jpg">
 								<i></i>
 							</span>
 							<font>易捷贷</font>
@@ -167,7 +183,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_21067.html" target="_blank">
 							<span>
-								<img alt="团贷网-让金融更简单" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7Fqx23SANKjtAAInjcEgmi0977.jpg">
+								<img alt="团贷网-让金融更简单" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx23SANKjtAAInjcEgmi0977.jpg">
 								<i></i>
 							</span>
 							<font>团贷网-让金融更简单</font>
@@ -178,7 +194,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_443.html" target="_blank">
 							<span>
-								<img alt="芝麻金融" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx3FuAJNtTAAGHhdd0Mnc868.jpg">
+								<img alt="芝麻金融" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx3FuAJNtTAAGHhdd0Mnc868.jpg">
 								<i></i>
 							</span>
 							<font>芝麻金融</font>
@@ -189,7 +205,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27176.html" target="_blank">
 							<span>
-								<img alt="百度金融" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqx3MSAOP4XAAC5uhjItDk413.jpg">
+								<img alt="百度金融" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx3MSAOP4XAAC5uhjItDk413.jpg">
 								<i></i>
 							</span>
 							<font>百度金融</font>
@@ -200,7 +216,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/18_26455.html" target="_blank">
 							<span>
-								<img alt="互连众信-资产360-小叨" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqyMC-AKxtFAAMT4dxcCWs519.jpg">
+								<img alt="互连众信-资产360-小叨" src="${imgBnner}/group1/M00/00/F6/CgpmTlqyMC-AKxtFAAMT4dxcCWs519.jpg">
 								<i></i>
 							</span>
 							<font>互连众信-资产360-小叨</font>
@@ -211,7 +227,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1002_7604.html" target="_blank">
 							<span>
-								<img alt="悟空保-新品发布" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxzaeARCQ0AAGFXnP4NoU224.jpg">
+								<img alt="悟空保-新品发布" src="${imgBnner}/group1/M00/00/BC/CgptuFqxzaeARCQ0AAGFXnP4NoU224.jpg">
 								<i></i>
 							</span>
 							<font>悟空保-新品发布</font>
@@ -222,7 +238,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_17448.html" target="_blank">
 							<span>
-								<img alt="量化派-信用钱包英文版" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqyCBmATfGwAAIco_CvkUA986.jpg">
+								<img alt="量化派-信用钱包英文版" src="${imgBnner}/group1/M00/00/BC/CgptuFqyCBmATfGwAAIco_CvkUA986.jpg">
 								<i></i>
 							</span>
 							<font>量化派-信用钱包英文版</font>
@@ -233,7 +249,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1459_17097.html" target="_blank">
 							<span>
-								<img alt="UCloud 金融云" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqx3hqAJmjkAAEuz5c6gVk438.jpg">
+								<img alt="UCloud 金融云" src="${imgBnner}/group1/M00/00/BC/CgptuFqx3hqAJmjkAAEuz5c6gVk438.jpg">
 								<i></i>
 							</span>
 							<font>UCloud 金融云</font>
@@ -244,7 +260,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_442.html" target="_blank">
 							<span>
-								<img alt="立业贷" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7Fqx3saAdIojAADMkvWdXDo699.jpg">
+								<img alt="立业贷" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx3saAdIojAADMkvWdXDo699.jpg">
 								<i></i>
 							</span>
 							<font>立业贷</font>
@@ -255,7 +271,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/836_1829.html" target="_blank">
 							<span>
-								<img alt="库德宝" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx3vyAK52KAAC2z3oCieE108.jpg">
+								<img alt="库德宝" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx3vyAK52KAAC2z3oCieE108.jpg">
 								<i></i>
 							</span>
 							<font>库德宝</font>
@@ -266,7 +282,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1219_13146.html" target="_blank">
 							<span>
-								<img alt="因果数-众筹" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx3yuACF3EAAErG4R8Wrk175.jpg">
+								<img alt="因果数-众筹" src="${imgBnner}/group1/M00/00/BC/CgptuFqx3yuACF3EAAErG4R8Wrk175.jpg">
 								<i></i>
 							</span>
 							<font>因果数-众筹</font>
@@ -277,7 +293,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1911_21355.html" target="_blank">
 							<span>
-								<img alt="" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7Fqx34GAUm61AADIbWfqhFs972.jpg">
+								<img alt="" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx34GAUm61AADIbWfqhFs972.jpg">
 								<i></i>
 							</span>
 							<font>拍拍贷-2分钟了解我们</font>
@@ -288,7 +304,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1911_21449.html" target="_blank">
 							<span>
-								<img alt="宜人贷" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqx36qAU8LdAADGItvXcsg082.jpg">
+								<img alt="宜人贷" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx36qAU8LdAADGItvXcsg082.jpg">
 								<i></i>
 							</span>
 							<font>宜人贷</font>
@@ -299,7 +315,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/680_14776.html" target="_blank">
 							<span>
-								<img alt="犀牛之星" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7Fqx3-yATh8mAADT1Doh27E730.jpg">
+								<img alt="犀牛之星" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx3-yATh8mAADT1Doh27E730.jpg">
 								<i></i>
 							</span>
 							<font>犀牛之星</font>
@@ -310,7 +326,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_945.html" target="_blank">
 							<span>
-								<img alt="懒财网" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx4D-AI80OAACsSpPHAx4595.jpg">
+								<img alt="懒财网" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx4D-AI80OAACsSpPHAx4595.jpg">
 								<i></i>
 							</span>
 							<font>懒财网</font>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner13.jpg" alt="小鲜肉PK老腊肉"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner13.jpg" alt="小鲜肉PK老腊肉"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,105 +57,105 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_5674.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-1.jpg"></div>
+                        	<div class="kuang"><img alt="吴亦凡-阿迪达斯" src="${imgBnner}/group1/M00/00/F9/CgpmTlq56r6AMxeyAAK0nBJ6Alo816.jpg"></div>
                             <h3>吴亦凡-阿迪达斯</h3>
                             <p>运动品牌/创意广告/产品广告</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_20629.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-2.jpg"></div>
+                        	<div class="kuang"><img alt="吴亦凡-72层奇楼" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq56x6ADWzcAAICvid1pHw089.jpg"></div>
                             <h3>吴亦凡-72层奇楼</h3>
                             <p>活动宣传片/明星演员/真人秀</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_5287.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-3.jpg"></div>
+                        	<div class="kuang"><img alt="吴亦凡-有货Yoho" src="${imgBnner}/group1/M00/00/FA/CgpmTlq561CAGcKjAAGs2NNGEFs215.jpg"></div>
                             <h3>吴亦凡-有货Yoho</h3>
                             <p>创意广告/电商广告/广告级</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12243.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-4.jpg"></div>
+                        	<div class="kuang"><img alt="李易峰-OPPO" src="${imgBnner}/group1/M00/00/C0/CgptuFq566OAbOZVAAF5ku60lN8930.jpg"></div>
                             <h3>李易峰-OPPO</h3>
                             <p>TVC/产品广告/明星演员</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10170.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-5.jpg"></div>
+                        	<div class="kuang"><img alt="李易峰-QQ浏览器" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq569GAEVooAAGgHXip910254.jpg"></div>
                             <h3>李易峰-QQ浏览器</h3>
                             <p>TVC/移动互联网/高端大气</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_19613.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-6.jpg"></div>
+                        	<div class="kuang"><img alt="李易峰-宜信" src="${imgBnner}/group1/M00/00/FA/CgpmTlq56_2AU1XuAAG-uC4tHgE585.jpg"></div>
                             <h3>李易峰-宜信</h3>
                             <p>产品广告/APP/软件</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_4675.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-7.jpg"></div>
+                        	<div class="kuang"><img alt="胡歌-伯爵PIAGET" src="${imgBnner}/group1/M00/00/C0/CgptuFq57FOALywyAAC-Zm8vxFs128.jpg"></div>
                             <h3>胡歌-伯爵PIAGET</h3>
                             <p>产品广告/电子产品/手表</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12297.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-8.jpg"></div>
+                        	<div class="kuang"><img alt="胡歌-Sony" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq57HyAJLqkAAD14oIWuo0928.jpg"></div>
                             <h3>胡歌-Sony</h3>
                             <p>电子产品/广告级/唯美画质</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1113_7331.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-9.jpg"></div>
+                        	<div class="kuang"><img alt="胡歌-Hyundai" src="${imgBnner}/group1/M00/00/C0/CgptuFq57NSAHPp7AAEo71PX5KE311.jpg"></div>
                             <h3>胡歌-Hyundai</h3>
                             <p>产品广告/商务汽车/棚拍</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_6154.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-10.jpg"></div>
+                        	<div class="kuang"><img alt="彭于晏-LEE 牛仔裤" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq57SSAXlyJAADv024pLfg699.jpg"></div>
                             <h3>彭于晏-LEE 牛仔裤</h3>
                             <p>品牌广告/实拍/时尚</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_11818.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-11.jpg"></div>
+                        	<div class="kuang"><img alt="彭于晏-Nikon" src="${imgBnner}/group1/M00/00/C0/CgptuFq57U-Aa1ckAAE6lVAJAyU837.jpg"></div>
                             <h3>彭于晏-Nikon</h3>
                             <p>TVC/动感/大气/数码产品</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_10975.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-12.jpg"></div>
+                        	<div class="kuang"><img alt="彭于晏-伊利谷粒多" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq57YyASEIZAAEbDSTzgDM853.jpg"></div>
                             <h3>彭于晏-伊利谷粒多</h3>
                             <p>创意广告/TVC/牛奶饮品/办公室</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1169_3480.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-13.jpg"></div>
+                        	<div class="kuang"><img alt="吴秀波-安居客" src="${imgBnner}/group1/M00/00/BE/CgpsbFq57cyAaGzXAAHS81kVYko802.jpg"></div>
                             <h3>吴秀波-安居客</h3>
                             <p>品牌广告/App/移动互联网</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12591.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-14.jpg"></div>
+                        	<div class="kuang"><img alt="吴秀波-Dell" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq57haAW6mEAAErdQcmelo675.jpg"></div>
                             <h3>吴秀波-Dell</h3>
                             <p>系列广告/品牌宣传片/广告级</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1325_15376.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p13-15.jpg"></div>
+                        	<div class="kuang"><img alt="吴秀波-因情圆缺" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq57pKAWqs7AAEYqOiIxQw398.jpg"></div>
                             <h3>吴秀波-因情圆缺</h3>
                             <p>微电影/温馨/感人</p>
                         </a>
@@ -171,10 +173,10 @@
                         <p>&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -222,7 +224,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -244,10 +246,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -319,6 +321,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

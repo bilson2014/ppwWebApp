@@ -165,7 +165,7 @@
 						<a href="http://www.apaipian.com/special/page19.html" class="padd">
 							<img src="/resources/images/salesman/special/load.jpg" realSrc="/resources/images/salesman/special/zt19.jpg"/>
 							<h3>这世界，总有人偷偷爱着你</h3>
-							<p>走心广告片、暖心品牌宣传片、感人微电影。</p>
+							<p>人们常说，网络的高速进步使地球变小了却把心与心之间的距离拉大了，经济的蓬勃发展使钱包饱满了却把人与人之间的感情冲淡了。</p>
 						</a>
 					</li>
 					<li>

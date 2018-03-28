@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,9 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
+<script src="/resources/js/salesman/special/bannerAni.js"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -47,16 +51,30 @@
 	</div>
 	<div class="top2"></div>
 	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner004.jpg" alt="创业融资宣传片"></div>
+	<div class="main_top">
+		<div class="container newCon">
+			<h2>创业 · 融资 · 路演</h2>
+		    <p style="text-align: center;">拍一部优秀的宣传片，3分钟打动投资人，实现创业梦想，向全世界推广你的理念。</p>
+	        <div class="toshare"> 
+	         <ul class="share">
+	                            <li>分享到 : </li>
+                                <li class="-mob-share-weixin setShare"></li>
+                                <li class="-mob-share-qq setShare"></li>
+                                <li class="-mob-share-weibo setShare"></li>
+                                <li class="-mob-share-qzone setShare"></li>
+              </ul>	
+           </div>   	
+		</div>
+	</div>
 	<div class="main_pd">
-		<h2>创业 · 融资 · 路演</h2>
-		<p>拍一部优秀的宣传片，3分钟打动投资人，实现创业梦想，向全世界推广你的理念。</p>
+		
 		<div class="container">
 			<ul class="channel">
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/275_18462.html" target="_blank">
 							<span>
-								<img alt="保准牛-场景定制平台" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7Fqx1iiAGiInAAJ1V7nLtcA102.jpg">
+								<img alt="保准牛-场景定制平台" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx1iiAGiInAAJ1V7nLtcA102.jpg">
 								<i></i>
 							</span>
 							<font>保准牛-场景定制平台</font>
@@ -67,7 +85,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_15144.html" target="_blank">
 							<span>
-								<img alt="大众创业平台" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx1mGAEz8cAAI_wwCPuR4040.jpg">
+								<img alt="大众创业平台" src="${imgBnner}/group1/M00/00/BC/CgptuFqx1mGAEz8cAAI_wwCPuR4040.jpg">
 								<i></i>
 							</span>
 							<font>大众创业平台</font>
@@ -78,7 +96,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1703_18248.html" target="_blank">
 							<span>
-								<img alt="汉能开润创业日记" src="https://filea.apaipian.com/group1/M00/00/F6/CgpmTlqx1ruAFRxLAAJyI-Zt-pk507.jpg">
+								<img alt="汉能开润创业日记" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx1ruAFRxLAAJyI-Zt-pk507.jpg">
 								<i></i>
 							</span>
 							<font>汉能开润创业日记</font>
@@ -89,7 +107,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1325_15364.html" target="_blank">
 							<span>
-								<img alt="中粮我买网-幸福家味道" src="https://filea.apaipian.com/group1/M00/00/BC/CgptuFqx18-ANmg1AAJs4sXkdMg431.jpg">
+								<img alt="中粮我买网-幸福家味道" src="${imgBnner}/group1/M00/00/BC/CgptuFqx18-ANmg1AAJs4sXkdMg431.jpg">
 								<i></i>
 							</span>
 							<font>中粮我买网-幸福家味道</font>
@@ -100,7 +118,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/11_566.html" target="_blank">
 							<span>
-								<img alt="PreAngel-创业者的心声集锦" src="https://fileb.apaipian.com/group1/M00/00/0C/CgpmTlgZzwSAEXFlAAEXwP3n_Vs952.jpg">
+								<img alt="PreAngel-创业者的心声集锦" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4rt6AZU6AAAHXOozlkwE984.jpg">
 								<i></i>
 							</span>
 							<font>PreAngel-创业者的心声集锦</font>
@@ -111,7 +129,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1114_5650.html" target="_blank">
 							<span>
-								<img alt="37°+ - 新闻主播水晶创业" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7Fqx2OuALAV2AAIcVIL6fqw570.jpg">
+								<img alt="37°+ - 新闻主播水晶创业" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx2OuALAV2AAIcVIL6fqw570.jpg">
 								<i></i>
 							</span>
 							<font>37°+ - 新闻主播水晶创业</font>
@@ -122,7 +140,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_22971.html" target="_blank">
 							<span>
-								<img alt="启程-海归创业园" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx2UOAY3osAAGWXeRLh_w077.jpg">
+								<img alt="启程-海归创业园" src="${imgBnner}/group1/M00/00/BC/CgptuFqx2UOAY3osAAGWXeRLh_w077.jpg">
 								<i></i>
 							</span>
 							<font>启程-海归创业园</font>
@@ -133,7 +151,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/50_13314.html" target="_blank">
 							<span>
-								<img alt="让创业不再艰辛" src="https://fileb.apaipian.com/group1/M00/00/BB/CgpsbFqx2zCABmyPAAKXGMtuQfw790.jpg">
+								<img alt="让创业不再艰辛" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx2zCABmyPAAKXGMtuQfw790.jpg">
 								<i></i>
 							</span>
 							<font>让创业不再艰辛</font>
@@ -144,7 +162,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_20867.html" target="_blank">
 							<span>
-								<img alt="Ailpay-口碑2017创业篇" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqx24OAD1f_AAHt3gDejI8362.jpg">
+								<img alt="Ailpay-口碑2017创业篇" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx24OAD1f_AAHt3gDejI8362.jpg">
 								<i></i>
 							</span>
 							<font>Ailpay-口碑2017创业篇</font>
@@ -155,7 +173,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1429.html" target="_blank">
 							<span>
-								<img alt="创业三章-第一章：不忘初心" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqx3IGAUxqKAANvPJJzZ6M372.jpg">
+								<img alt="创业三章-第一章：不忘初心" src="${imgBnner}/group1/M00/00/BC/CgptuFqx3IGAUxqKAANvPJJzZ6M372.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第一章：不忘初心</font>
@@ -166,7 +184,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1424.html" target="_blank">
 							<span>
-								<img alt="创业三章-第二章：抛弃成见" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx3xSAQXrOAAGlAuuBNZ4645.jpg">
+								<img alt="创业三章-第二章：抛弃成见" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx3xSAQXrOAAGlAuuBNZ4645.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第二章：抛弃成见</font>
@@ -177,7 +195,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_27206.html" target="_blank">
 							<span>
-								<img alt="创业三章-第三章：互相扶持" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx3QyAPSnjAAG7dn8apUw281.jpg">
+								<img alt="创业三章-第三章：互相扶持" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx3QyAPSnjAAG7dn8apUw281.jpg">
 								<i></i>
 							</span>
 							<font>创业三章-第三章：互相扶持</font>
@@ -188,7 +206,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_254.html" target="_blank">
 							<span>
-								<img alt="you+国际青年公寓" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqx32CAAdAVAAGNgVfvRSY740.jpg">
+								<img alt="you+国际青年公寓" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx32CAAdAVAAGNgVfvRSY740.jpg">
 								<i></i>
 							</span>
 							<font>you+国际青年公寓</font>
@@ -199,7 +217,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_386.html" target="_blank">
 							<span>
-								<img alt="投资者说" src="https://fileb.apaipian.com/group1/M00/00/BB/CgpsbFqx36qADTR5AAIBQDDVeN4660.jpg">
+								<img alt="投资者说" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx36qADTR5AAIBQDDVeN4660.jpg">
 								<i></i>
 							</span>
 							<font>投资者说</font>
@@ -210,7 +228,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/102_1322.html" target="_blank">
 							<span>
-								<img alt="指尖快递路演视频" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx39yALmGPAAIBNLtZGCI704.jpg">
+								<img alt="指尖快递路演视频" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx39yALmGPAAIBNLtZGCI704.jpg">
 								<i></i>
 							</span>
 							<font>指尖快递路演视频</font>
@@ -221,7 +239,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3873.html" target="_blank">
 							<span>
-								<img alt="拍片网路演视频" src="https://filea.apaipian.com/group1/M00/00/BB/CgpsbFqx4EWAEt5qAAHPCNSH0oo947.jpg">
+								<img alt="拍片网路演视频" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx4EWAEt5qAAHPCNSH0oo947.jpg">
 								<i></i>
 							</span>
 							<font>拍片网路演视频</font>
@@ -232,7 +250,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/820_1685.html" target="_blank">
 							<span>
-								<img alt="大赞光合-众筹片" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7Fqx4PCAM2P-AAOweTCX4ik941.jpg">
+								<img alt="大赞光合-众筹片" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx4PCAM2P-AAOweTCX4ik941.jpg">
 								<i></i>
 							</span>
 							<font>大赞光合-众筹片</font>
@@ -243,7 +261,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/93_1390.html" target="_blank">
 							<span>
-								<img alt="人人GO" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx4aaATzmeAAF9aTTw5t4013.jpg">
+								<img alt="人人GO" src="${imgBnner}/group1/M00/00/BC/CgptuFqx4aaATzmeAAF9aTTw5t4013.jpg">
 								<i></i>
 							</span>
 							<font>人人GO</font>
@@ -254,7 +272,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/404_1061.html" target="_blank">
 							<span>
-								<img alt="Soyes-H2卡片-众筹" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx4fCACDfMAAH5zfbTVnc620.jpg">
+								<img alt="Soyes-H2卡片-众筹" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx4fCACDfMAAH5zfbTVnc620.jpg">
 								<i></i>
 							</span>
 							<font>Soyes-H2卡片-众筹</font>
@@ -265,7 +283,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1460_20507.html" target="_blank">
 							<span>
-								<img alt="迈外迪" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx4jqACl1AAAJAY7u0tGY516.jpg">
+								<img alt="迈外迪" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx4jqACl1AAAJAY7u0tGY516.jpg">
 								<i></i>
 							</span>
 							<font>迈外迪</font>

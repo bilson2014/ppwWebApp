@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
-
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <style>
 
  .kuang{
@@ -36,7 +37,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -55,7 +56,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner19.jpg" alt="城市宣传片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner19.jpg" alt="城市宣传片"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -64,105 +65,105 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_22194.html" target="_blank">
-                        	<div class="kuang"><img src="https://fileb.apaipian.com/group1/M00/00/F7/CgpmTlqzYeeARdNzAAGc6Y0V8B0096.jpg"></div>
+                        	<div class="kuang"><img alt="总有人偷偷爱着你" src="${imgBnner}/group1/M00/00/F7/CgpmTlqzYeeARdNzAAGc6Y0V8B0096.jpg"></div>
                             <h3>总有人偷偷爱着你</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_26876.html" target="_blank">
-                        	<div class="kuang"><img src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqzYzOAU78UAALt26BlEgc314.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-找房" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqzYzOAU78UAALt26BlEgc314.jpg"></div>
                             <h3>谢谢你陌生人-找房</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_26914.html" target="_blank">
-                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/F7/CgpmTlqzY_KAG1URAAM17YcxqsU393.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-慧眼" src="${imgBnner}/group1/M00/00/F7/CgpmTlqzY_KAG1URAAM17YcxqsU393.jpg"></div>
                             <h3>谢谢你陌生人-慧眼</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27251.html" target="_blank">
-                        	<div class="kuang"><img src="https://filec.apaipian.com/group1/M00/00/BD/CgptuFqzZEeAMEVGAANwqO4bXX4313.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-黑车" src="${imgBnner}/group1/M00/00/BD/CgptuFqzZEeAMEVGAANwqO4bXX4313.jpg"></div>
                             <h3>谢谢你陌生人-黑车</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27878.html" target="_blank">
-                        	<div class="kuang"><img src="https://fileb.apaipian.com/group1/M00/00/BD/CgptuFqzZKyAEnUcAAG9ZrX_o44331.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-练手" src="${imgBnner}/group1/M00/00/BD/CgptuFqzZKyAEnUcAAG9ZrX_o44331.jpg"></div>
                             <h3>谢谢你陌生人-练手</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_26862.html" target="_blank">
-                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7FqzZSqAL0rjAAIVFjcTLF8851.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-圣诞" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqzZSqAL0rjAAIVFjcTLF8851.jpg"></div>
                             <h3>谢谢你陌生人-圣诞</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27632.html" target="_blank">
-                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/F7/CgpmTlqzZmCAQ4DqAALJHXTPao0990.jpg"></div>
+                        	<div class="kuang"><img alt="谢谢你陌生人-蹭车" src="${imgBnner}/group1/M00/00/F7/CgpmTlqzZmCAQ4DqAALJHXTPao0990.jpg"></div>
                             <h3>谢谢你陌生人-蹭车</h3>
                             <p>999感冒灵</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_24590.html" target="_blank">
-                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/A1/CgpsbFpFABCAZCm3AAGXd1qhnjw736.jpg"></div>
+                        	<div class="kuang"><img alt="何必低调 你应该骄傲" src="${imgBnner}/group1/M00/00/A1/CgpsbFpFABCAZCm3AAGXd1qhnjw736.jpg"></div>
                             <h3>何必低调 你应该骄傲</h3>
                             <p>Groovetech 空气刀</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27898.html" target="_blank">
-                        	<div class="kuang"><img src="https://filec.apaipian.com/group1/M00/00/BC/CgpsbFqzZ8GAeEt_AANGwVJP_xs132.jpg"></div>
+                        	<div class="kuang"><img alt="时光是最好的礼物" src="${imgBnner}/group1/M00/00/BC/CgpsbFqzZ8GAeEt_AANGwVJP_xs132.jpg"></div>
                             <h3>时光是最好的礼物</h3>
                             <p>百雀羚 Pechoin</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_23992.html" target="_blank">
-                        	<div class="kuang"><img src="https://filea.apaipian.com/group1/M00/00/BD/CgptuFqzalyAfodbAALeuQzYvec125.jpg"></div>
+                        	<div class="kuang"><img alt="十公里的温度" src="${imgBnner}/group1/M00/00/BD/CgptuFqzalyAfodbAALeuQzYvec125.jpg"></div>
                             <h3>十公里的温度</h3>
                             <p>滴滴代驾</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_24639.html" target="_blank">
-                        	<div class="kuang"><img src="https://filed.apaipian.com/group1/M00/00/BC/CgpsbFqza4SAUIUaAAKPB2-UpHs706.jpg"></div>
+                        	<div class="kuang"><img alt="城市再大，我送你回家" src="${imgBnner}/group1/M00/00/BC/CgpsbFqza4SAUIUaAAKPB2-UpHs706.jpg"></div>
                             <h3>城市再大，我送你回家</h3>
                             <p>滴滴出行-城市摆渡人之追念</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27889.html" target="_blank">
-                        	<div class="kuang"><img src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqzbJOAQMstAAG6wGakGC8923.jpg"></div>
+                        	<div class="kuang"><img alt="最后一公里" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqzbJOAQMstAAG6wGakGC8923.jpg"></div>
                             <h3>最后一公里</h3>
                             <p>滴滴</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_27415.html" target="_blank">
-                        	<div class="kuang"><img src="https://filed.apaipian.com/group1/M00/00/BD/CgptuFqzbWKAGZ6LAAFq_DL9hxE436.jpg"></div>
+                        	<div class="kuang"><img alt="蹲下来，爱在相同高度" src="${imgBnner}/group1/M00/00/BD/CgptuFqzbWKAGZ6LAAFq_DL9hxE436.jpg"></div>
                             <h3>蹲下来，爱在相同高度</h3>
                             <p>麦当劳</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_24985.html" target="_blank">
-                        	<div class="kuang"><img src="https://filed.apaipian.com/group1/M00/00/BC/CgpsbFqzbkGATrRXAAOIvK0b_bY644.jpg"></div>
+                        	<div class="kuang"><img alt="让心声有回声" src="${imgBnner}/group1/M00/00/BC/CgpsbFqzbkGATrRXAAOIvK0b_bY644.jpg"></div>
                             <h3>让心声有回声</h3>
                             <p>腾讯 Tencent</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_22295.html" target="_blank">
-                        	<div class="kuang"><img src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7FqzbvqAA8LzAAL5La3Sp4k127.jpg"></div>
+                        	<div class="kuang"><img alt="假如我有三天光明" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqzbvqAA8LzAAL5La3Sp4k127.jpg"></div>
                             <h3>假如我有三天光明</h3>
                             <p>我是创益人</p>
                         </a>
@@ -180,10 +181,10 @@
                         <p id="div_id">&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -232,7 +233,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -254,10 +255,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -329,6 +330,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

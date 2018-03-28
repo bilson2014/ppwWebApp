@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner05.jpg" alt="脑洞大开短视频"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner05.jpg" alt="脑洞大开短视频"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,77 +57,77 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10516.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-7.jpg"></div>
+                        	<div class="kuang"><img alt="饿了么 - 跳舞篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq7Fd6AHxQTAAMHyegTyXM026.jpg"></div>
                             <h3>饿了么 - 跳舞篇</h3>
                             <p>品牌广告/科比/王祖蓝/搞笑</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_4886.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-11.jpg"></div>
+                        	<div class="kuang"><img alt="康师傅 - 安全篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq7FlqACMiQAAKWyxoIUTc879.jpg"></div>
                             <h3>康师傅 - 安全篇</h3>
                             <p>创意广告/王宝强/食品</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1113_8026.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-1.jpg"></div>
+                        	<div class="kuang"><img alt="雪树伏特加" src="${imgBnner}/group1/M00/00/C0/CgptuFq7FviAZ9TgAAHtLmdJrjI215.jpg"></div>
                             <h3>雪树伏特加</h3>
                             <p>创意广告/饮品/酒类广告</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_7464.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-2.jpg"></div>
+                        	<div class="kuang"><img alt="士力架-海盗船篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq7FrOAH4oUAAK0S6Eu4N8382.jpg"></div>
                             <h3>士力架-海盗船篇</h3>
                             <p>创意广告/食品/高端</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_6122.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-3.jpg"></div>
+                        	<div class="kuang"><img alt="美团外卖-真功夫" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7F0mAB-CCAAKjjBiMMMA146.jpg"></div>
                             <h3>美团外卖-真功夫</h3>
                             <p>系列广告/TVC/电商/餐饮美食</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1118_12041.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-4.jpg"></div>
+                        	<div class="kuang"><img alt="汉堡王 Burger King" src="${imgBnner}/group1/M00/00/21/CgptuFiEqKSANlBjAAGFbOpDSoM743.jpg"></div>
                             <h3>汉堡王 Burger King</h3>
                             <p>产品广告/餐饮美食/风趣</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12275.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-5.jpg"></div>
+                        	<div class="kuang"><img alt="PPTV-PP-King7" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7F5GALuskAANYluJKW_A521.jpg"></div>
                             <h3>PPTV-PP-King7</h3>
                             <p>TVC/手机通讯/幽默</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12278.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-6.jpg"></div>
+                        	<div class="kuang"><img alt="PP·King - 间谍篇" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7F7-AAv0SAAK3zT9clGw083.jpg"></div>
                             <h3>PP·King - 间谍篇</h3>
                             <p>创意广告/特写镜头/广告级</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_10829.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-8.jpg"></div>
+                        	<div class="kuang"><img alt="约翰内斯堡 Chicken Licken" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7F_iAUE5IAANT0J2hOJs632.jpg"></div>
                             <h3>约翰内斯堡 Chicken Licken</h3>
                             <p>餐饮美食/创意广告/专业级</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_11898.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-9.jpg"></div>
+                        	<div class="kuang"><img alt="Tencent-王者荣耀" src="${imgBnner}/group1/M00/00/C0/CgptuFq7GPKAVBdyAAF7qn79O7A062.jpg"></div>
                             <h3>Tencent-王者荣耀</h3>
                             <p>产品广告片/惊悚/王者荣耀</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12674.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p05-10.jpg"></div>
+                        	<div class="kuang"><img alt="海马 - 空间动力王" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7GZaACYwKAAIqcn_ei8s265.jpg"></div>
                             <h3>海马 - 空间动力王</h3>
                             <p>产品广告/汽车/明星演员</p>
                         </a>
@@ -142,10 +144,10 @@
                         <p>-更多视频请访问：<a href="https://www.apaipian.com" target="_blank" style="color:#f00">产品广告片</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -193,7 +195,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -215,10 +217,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/specialcode_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/specialcode_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/specialcode_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/specialcode_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -290,6 +292,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner15.jpg" alt="励志短视频"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner15.jpg" alt="励志短视频"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,35 +57,35 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_11904.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-6.jpg"></div>
+                        	<div class="kuang"><img alt="北漂的钻石人生" src="${imgBnner}/group1/M00/00/C0/CgptuFq4rmCAKdFuAAGv7GBp_Xk309.jpg"></div>
                             <h3>北漂的钻石人生</h3>
                             <p>明天肯定会比今天好</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/93_1429.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-8.jpg"></div>
+                        	<div class="kuang"><img alt="创业三章 不忘初心" src="${imgBnner}/group1/M00/00/BC/CgptuFqx3IGAUxqKAANvPJJzZ6M372.jpg"></div>
                             <h3>创业三章 不忘初心</h3>
                             <p>创业，需要最初的坚持</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/11_566.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-1.jpg"></div>
+                        	<div class="kuang"><img alt="创业者的心声集锦" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4rt6AZU6AAAHXOozlkwE984.jpg"></div>
                             <h3>创业者的心声集锦</h3>
                             <p>PreAngel 5周年，陪伴是最好的支持</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_5387.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-10.jpg"></div>
+                        	<div class="kuang"><img alt="INFINITUS 无限极" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4r52AQ9SYAAC72ThLOCs099.jpg"></div>
                             <h3>INFINITUS 无限极</h3>
                             <p>相信自己，就什么也不怕了</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_4247.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-2.jpg"></div>
+                        	<div class="kuang"><img alt="安踏 - Football" src="${imgBnner}/group1/M00/00/C0/CgptuFq4r9CAGPzFAAEFAksdwO8423.jpg"></div>
                             <h3>安踏 - Football</h3>
                             <p>只需要热爱，这一个理由</p>
                         </a>
@@ -91,49 +93,49 @@
                 	
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_10887.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-4.jpg"></div>
+                        	<div class="kuang"><img alt="波普懂你的色彩" src="${imgBnner}/group1/M00/00/C0/CgptuFq4sACAfha9AAFlTTfXMd4743.jpg"></div>
                             <h3>波普懂你的色彩</h3>
                             <p>我是美术生，我有属于我的色彩</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1448_18393.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-5.jpg"></div>
+                        	<div class="kuang"><img alt="游戏黑羊" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4sC-ARe7NAADu9W7Difs672.jpg"></div>
                             <h3>游戏黑羊</h3>
                             <p>生活是365个一天还是365天</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_19957.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-7.jpg"></div>
+                        	<div class="kuang"><img alt="World of Dreamers" src="${imgBnner}/group1/M00/00/C0/CgptuFq4sF6ALQKZAAGV7vh1K60737.jpg"></div>
                             <h3>World of Dreamers</h3>
                             <p>如果你也有梦，那就尽情去追逐</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/918_3612.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-9.jpg"></div>
+                        	<div class="kuang"><img alt="守望梦想" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4sNaAOm0iAAEF-DPwnDo526.jpg"></div>
                             <h3>守望梦想</h3>
                             <p>当过往填满你心房，便会有美好的相遇在路上</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_7075.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-11.jpg"></div>
+                        	<div class="kuang"><img alt="中国梦想秀" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4sSaAWz60AAE-pViT9lA069.jpg"></div>
                             <h3>中国梦想秀</h3>
                             <p>梦想不会停止</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_7291.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-12.jpg"></div>
+                        	<div class="kuang"><img alt="Losers Short Film" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4sWiAMeB3AAEvGDQTJZQ920.jpg"></div>
                             <h3>Losers Short Film</h3>
                             <p>Don't be a bully. LOSERS !</p>
                         </a>
                     </li>
                     <li>
                     	<a href="https://www.apaipian.com/play/1114_5399.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p15-3.jpg"></div>
+                        	<div class="kuang"><img alt="Nike-Making news" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4sZeAKkmzAAF2FmA9Cl8594.jpg"></div>
                             <h3>Nike-Making news</h3>
                             <p>Just do it !</p>
                         </a>
@@ -151,10 +153,10 @@
                         <p>&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -202,7 +204,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -224,10 +226,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -299,6 +301,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

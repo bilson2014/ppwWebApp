@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,9 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
+<script src="/resources/js/salesman/special/bannerAni.js"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -47,16 +51,30 @@
 	</div>
 	<div class="top2"></div>
 	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner003.jpg" alt="发布会短视频"></div>
+	<div class="main_top">
+		<div class="container newCon">
+			<h2>新品发布会</h2>
+			<p style="text-align: center;">告别拖沓无趣的平铺直叙，短视频燃爆现场，让您的新产品先声夺人、光芒四射。</p></p>
+	        <div class="toshare"> 
+	         <ul class="share">
+	                            <li>分享到 : </li>
+                                <li class="-mob-share-weixin setShare"></li>
+                                <li class="-mob-share-qq setShare"></li>
+                                <li class="-mob-share-weibo setShare"></li>
+                                <li class="-mob-share-qzone setShare"></li>
+              </ul>	
+           </div>   	
+		</div>
+	</div>
 	<div class="main_pd">
-		<h2>新品发布会</h2>
-		<p>告别拖沓无趣的平铺直叙，短视频燃爆现场，让您的新产品先声夺人、光芒四射。</p>
+
 		<div class="container">
 			<ul class="channel">
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1318_17436.html" target="_blank">
 							<span>
-								<img alt="传祺GS8" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqxuwyAa5K7AAJGbN9aN5o072.jpg">
+								<img alt="传祺GS8" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxuwyAa5K7AAJGbN9aN5o072.jpg">
 								<i></i>
 							</span>
 							<font>传祺GS8</font>
@@ -67,7 +85,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1169_3510.html" target="_blank">
 							<span>
-								<img alt="坚果G1家庭影院" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7FqxwcyAGHaTAAGfAQwJXBQ378.jpg">
+								<img alt="坚果G1家庭影院" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxwcyAGHaTAAGfAQwJXBQ378.jpg">
 								<i></i>
 							</span>
 							<font>坚果G1家庭影院</font>
@@ -78,7 +96,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1151_19385.html" target="_blank">
 							<span>
-								<img alt="OPPO-R11 红蓝之夜" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqxwtqALO7CAAJfbHtodQE101.jpg">
+								<img alt="OPPO-R11 红蓝之夜" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxwtqALO7CAAJfbHtodQE101.jpg">
 								<i></i>
 							</span>
 							<font>OPPO-R11 红蓝之夜</font>
@@ -89,7 +107,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_22582.html" target="_blank">
 							<span>
-								<img alt="米娅新品颜料盒" src="https://filec.apaipian.com/group1/M00/00/C7/Cgpw7FoqXZWAYBQ3AAD9bma2v2M870.jpg">
+								<img alt="米娅新品颜料盒" src="${imgBnner}/group1/M00/00/C7/Cgpw7FoqXZWAYBQ3AAD9bma2v2M870.jpg">
 								<i></i>
 							</span>
 							<font>米娅新品颜料盒</font>
@@ -111,7 +129,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1151_17953.html" target="_blank">
 							<span>
-								<img alt="英特尔 Intel-众创加速 智胜未来" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqxyiqAClGxAAIwSSOASv8652.jpg">
+								<img alt="英特尔 Intel-众创加速 智胜未来" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxyiqAClGxAAIwSSOASv8652.jpg">
 								<i></i>
 							</span>
 							<font>英特尔 Intel-众创加速 智胜未来</font>
@@ -122,7 +140,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_23354.html" target="_blank">
 							<span>
-								<img alt="中国黄金钻石" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxy42AeEBHAANZc4Y0MKk677.jpg">
+								<img alt="中国黄金钻石" src="${imgBnner}/group1/M00/00/BC/CgptuFqxy42AeEBHAANZc4Y0MKk677.jpg">
 								<i></i>
 							</span>
 							<font>中国黄金钻石</font>
@@ -133,7 +151,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_23994.html" target="_blank">
 							<span>
-								<img alt="昆山君磊电器" src="https://filed.apaipian.com/group1/M00/00/F4/Cgpw7FqxzKSARqfyAAHQ4ePOF6A037.jpg">
+								<img alt="昆山君磊电器" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxzKSARqfyAAHQ4ePOF6A037.jpg">
 								<i></i>
 							</span>
 							<font>昆山君磊电器</font>
@@ -144,7 +162,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1113_9454.html" target="_blank">
 							<span>
-								<img alt="welcomebank" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqxzSKAOfswAAGsZB-Wvsk040.jpg">
+								<img alt="welcomebank" src="${imgBnner}/group1/M00/00/BC/CgptuFqxzSKAOfswAAGsZB-Wvsk040.jpg">
 								<i></i>
 							</span>
 							<font>welcomebank</font>
@@ -155,7 +173,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1002_7604.html" target="_blank">
 							<span>
-								<img alt="悟空保" src="https://filec.apaipian.com/group1/M00/00/BC/CgptuFqxzaeARCQ0AAGFXnP4NoU224.jpg">
+								<img alt="悟空保" src="${imgBnner}/group1/M00/00/BC/CgptuFqxzaeARCQ0AAGFXnP4NoU224.jpg">
 								<i></i>
 							</span>
 							<font>悟空保</font>
@@ -166,7 +184,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/948_13363.html" target="_blank">
 							<span>
-								<img alt="土曼 TOMOON" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqxzh2AUfMzAAMlpitWfXs437.jpg">
+								<img alt="土曼 TOMOON" src="${imgBnner}/group1/M00/00/BB/CgpsbFqxzh2AUfMzAAMlpitWfXs437.jpg">
 								<i></i>
 							</span>
 							<font>土曼 TOMOON</font>
@@ -177,7 +195,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1117_10667.html" target="_blank">
 							<span>
-								<img alt="曼秀雷敦 Mentholatum" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqxzrGABEhhAAI1Ex5xqBg083.jpg">
+								<img alt="曼秀雷敦 Mentholatum" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxzrGABEhhAAI1Ex5xqBg083.jpg">
 								<i></i>
 							</span>
 							<font>曼秀雷敦 Mentholatum</font>
@@ -188,7 +206,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_22924.html" target="_blank">
 							<span>
-								<img alt="大疆创新DJI-Crystal Sky" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqxzwOAfgWXAALCfe3dSY0819.jpg">
+								<img alt="大疆创新DJI-Crystal Sky" src="${imgBnner}/group1/M00/00/BC/CgptuFqxzwOAfgWXAALCfe3dSY0819.jpg">
 								<i></i>
 							</span>
 							<font>大疆创新DJI-Crystal Sky</font>
@@ -199,7 +217,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26519.html" target="_blank">
 							<span>
-								<img alt="飞宇科技-Vimble2" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqxz2SAblFtAAGwOoDkztI292.jpg">
+								<img alt="飞宇科技-Vimble2" src="${imgBnner}/group1/M00/00/BB/CgpsbFqxz2SAblFtAAGwOoDkztI292.jpg">
 								<i></i>
 							</span>
 							<font>飞宇科技-Vimble2</font>
@@ -210,7 +228,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1117_10066.html" target="_blank">
 							<span>
-								<img alt="六神 - 清凉沐浴露" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx0D2AUyfvAAI3gct03AU263.jpg">
+								<img alt="六神 - 清凉沐浴露" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx0D2AUyfvAAI3gct03AU263.jpg">
 								<i></i>
 							</span>
 							<font>六神 - 清凉沐浴露</font>
@@ -221,7 +239,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1324_13816.html" target="_blank">
 							<span>
-								<img alt="京都念慈庵-润喉糖" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx0J2APsjCAAK893a7IXQ718.jpg">
+								<img alt="京都念慈庵-润喉糖" src="${imgBnner}/group1/M00/00/BC/CgptuFqx0J2APsjCAAK893a7IXQ718.jpg">
 								<i></i>
 							</span>
 							<font>京都念慈庵-润喉糖</font>
@@ -232,7 +250,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1201_13080.html" target="_blank">
 							<span>
-								<img alt="长安CX70T" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7Fqx0viAa56rAAJ2TqkqC64217.jpg">
+								<img alt="长安CX70T" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx0viAa56rAAJ2TqkqC64217.jpg">
 								<i></i>
 							</span>
 							<font>长安CX70T</font>
@@ -243,7 +261,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/300_868.html" target="_blank">
 							<span>
-								<img alt="东方微点 micropoint" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx09KAdF-uAAFyD4iXaVY634.jpg">
+								<img alt="东方微点 micropoint" src="${imgBnner}/group1/M00/00/BC/CgptuFqx09KAdF-uAAFyD4iXaVY634.jpg">
 								<i></i>
 							</span>
 							<font>东方微点 micropoint</font>
@@ -254,7 +272,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_24854.html" target="_blank">
 							<span>
-								<img alt="蔚来 NIO-ES8亮相" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqx1JOAF_0hAAFAPObjLm0621.jpg">
+								<img alt="蔚来 NIO-ES8亮相" src="${imgBnner}/group1/M00/00/BC/CgptuFqx1JOAF_0hAAFAPObjLm0621.jpg">
 								<i></i>
 							</span>
 							<font>蔚来 NIO-ES8亮相</font>
@@ -265,7 +283,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1514_17502.html" target="_blank">
 							<span>
-								<img alt="FFC新生力量" src="https://filec.apaipian.com/group1/M00/00/F6/CgpmTlqx1UyAaGJwAAHwLTiUyLQ677.jpg">
+								<img alt="FFC新生力量" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx1UyAaGJwAAHwLTiUyLQ677.jpg">
 								<i></i>
 							</span>
 							<font>FFC新生力量</font>

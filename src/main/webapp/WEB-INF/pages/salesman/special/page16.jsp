@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner16.jpg" alt="圣诞节短片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner16.jpg" alt="圣诞节短片"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,84 +57,84 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1325_13597.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-12.jpg"></div>
+                        	<div class="kuang"><img alt="NBA圣诞节" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4qzuAFzM0AAJMwPiuX-E613.jpg"></div>
                             <h3>NBA圣诞节</h3>
                             <p>城会玩，投篮圣诞歌。</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_5318.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-1.jpg"></div>
+                        	<div class="kuang"><img alt="Buster the Boxer" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4q3yAQGoTAAIbKGz0-xA612.jpg"></div>
                             <h3>Buster the Boxer</h3>
                             <p>Gifts that everyone will love</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_20860.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-2.jpg"></div>
+                        	<div class="kuang"><img alt="潘多拉 Pandora" src="${imgBnner}/group1/M00/00/BF/CgptuFq4q66AXhNmAAFO77IQjcw764.jpg"></div>
                             <h3>潘多拉 Pandora</h3>
                             <p>过往的未必如意，留下的依旧美好</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12527.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-3.jpg"></div>
+                        	<div class="kuang"><img alt="青春自拍团" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4rAOAIBbPAAGJAo1g-p8391.jpg"></div>
                             <h3>青春自拍团</h3>
                             <p>爱上她的他</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1093_14148.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-4.jpg"></div>
+                        	<div class="kuang"><img alt="DIMO独立乐团圣诞" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4rDuAWZvJAAI1Psp69I0768.jpg"></div>
                             <h3>DIMO独立乐团圣诞</h3>
                             <p>somebody waits for you</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1113_4720.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-5.jpg"></div>
+                        	<div class="kuang"><img alt="Mercedes Benz" src="${imgBnner}/group1/M00/00/02/CgqNZVhnVtGAOOlTAAGLU7KgtxQ149.jpg"></div>
                             <h3>Mercedes Benz</h3>
                             <p>挚爱出发，爱更多</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_9506.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-6.jpg"></div>
+                        	<div class="kuang"><img alt="欢乐圣诞" src="${imgBnner}/group1/M00/00/C0/CgptuFq4rI-AObbkAAGYX2aoWFc155.jpg"></div>
                             <h3>欢乐圣诞</h3>
                             <p>Tis the season</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18152.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-7.jpg"></div>
+                        	<div class="kuang"><img alt="Tmall" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4rPKAbXPPAAIlVVNaa6k048.jpg"></div>
                             <h3>Tmall</h3>
                             <p>一盒子的欢聚，一起抵达！</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8846.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-8.jpg"></div>
+                        	<div class="kuang"><img alt="广丰雷凌Turbo" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4rSeAVwOeAAF6-Wt-uhQ665.jpg"></div>
                             <h3>广丰雷凌Turbo</h3>
                             <p>当圣诞老人失去了驯鹿</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1322_14451.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-9.jpg"></div>
+                        	<div class="kuang"><img alt="迟到的圣诞礼物" src="${imgBnner}/group1/M00/00/C0/CgptuFq4rWmAAe93AAE2lzq_izo610.jpg"></div>
                             <h3>迟到的圣诞礼物</h3>
                             <p>christmas is inside of us all</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1322_13890.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-10.jpg"></div>
+                        	<div class="kuang"><img alt="PostNord" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4raOAf--mAAFF5bcAjJM969.jpg"></div>
                             <h3>PostNord</h3>
                             <p>圣诞老人遗失的包裹</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_19254.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p16-11.jpg"></div>
+                        	<div class="kuang"><img alt="英特尔 Intel" src="${imgBnner}/group1/M00/00/C0/CgptuFq4rdOAVtoDAAHi-iBEA9k846.jpg"></div>
                             <h3>英特尔 Intel</h3>
                             <p>It's that's inside that counts</p>
                         </a>
@@ -150,10 +152,10 @@
                         <p>&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -201,7 +203,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -223,10 +225,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -298,6 +300,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

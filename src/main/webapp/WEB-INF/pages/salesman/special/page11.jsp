@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />>
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner11.jpg" alt="重阳节暖心短片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner11.jpg" alt="重阳节暖心短片"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,84 +57,84 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20413.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-1.jpg"></div>
+                        	<div class="kuang"><img alt="寸草春晖" src="${imgBnner}/group1/M00/00/C0/CgptuFq59hOAVfFWAAF2kiWchs8144.jpg"></div>
                             <h3>寸草春晖</h3>
                             <p>温情/感动/唯美</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20411.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-2.jpg"></div>
+                        	<div class="kuang"><img alt="还能陪你走多久" src="${imgBnner}/group1/M00/00/FA/CgpmTlq59seAbIp3AAC9W57LPR4523.jpg"></div>
                             <h3>还能陪你走多久</h3>
                             <p>微电影/隐喻/感人</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20410.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-3.jpg"></div>
+                        	<div class="kuang"><img alt="意外" src="${imgBnner}/group1/M00/00/BE/CgpsbFq59viAB0r0AAFgk7KsZak281.jpg"></div>
                             <h3>意外</h3>
                             <p>唯美画质/微电影/都市</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20409.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-4.jpg"></div>
+                        	<div class="kuang"><img alt="关爱老人" src="${imgBnner}/group1/M00/00/C0/CgptuFq595aAHT7gAADJrLdXmRs284.jpg"></div>
                             <h3>关爱老人</h3>
                             <p>公益广告/老人/感动</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20407.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-5.jpg"></div>
+                        	<div class="kuang"><img alt="拯救爷爷大计划" src="${imgBnner}/group1/M00/00/C0/CgptuFq598WACTOEAAGm5D88CAA209.jpg"></div>
                             <h3>拯救爷爷大计划</h3>
                             <p>微电影/生活化/温情</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20406.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-6.jpg"></div>
+                        	<div class="kuang"><img alt="爸爸的谎言" src="${imgBnner}/group1/M00/00/C0/CgptuFq59_WAGf_rAAEZBQfuPvo505.jpg"></div>
                             <h3>爸爸的谎言</h3>
                             <p>公益广告/唯美画质/关爱老人</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20416.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-7.jpg"></div>
+                        	<div class="kuang"><img alt="爱就要说出口" src="${imgBnner}/group1/M00/00/BE/CgpsbFq5-CaAdDq_AAEhwNsPMTs031.jpg"></div>
                             <h3>爱就要说出口</h3>
                             <p>访谈视频/群众演员/医疗保健</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20415.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-8.jpg"></div>
+                        	<div class="kuang"><img alt="家书-别忘了我们还有上一代" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq5-FyAIqkrAAD0tGamaIA370.jpg"></div>
                             <h3>家书-别忘了我们还有上一代</h3>
                             <p>公益片/老人/儿童</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20414.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-9.jpg"></div>
+                        	<div class="kuang"><img alt="滴滴-父母的路" src="${imgBnner}/group1/M00/00/BE/CgpsbFq5-NOALJ5PAAGpfo2RR1A634.jpg"></div>
                             <h3>滴滴-父母的路</h3>
                             <p>微电影/互联网/老人</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1113_9786.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-10.jpg"></div>
+                        	<div class="kuang"><img alt="接父母同住" src="${imgBnner}/group1/M00/00/52/Cgpw7Fh-UFKACUrsAAI1l5JLjAk633.jpg"></div>
                             <h3>接父母同住</h3>
                             <p>品牌宣传片/金融/家庭</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_10386.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-11.jpg"></div>
+                        	<div class="kuang"><img alt="UC-浏览器" src="${imgBnner}/group1/M00/00/FA/CgpmTlq5-RaAYONEAAEV4fz8TWs485.jpg"></div>
                             <h3>UC-浏览器</h3>
                             <p>微电影/APP/互联网</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/256_744.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p11-12.jpg"></div>
+                        	<div class="kuang"><img alt="给亲情一个不会迷路的家" src="${imgBnner}/group1/M00/00/BE/CgpsbFq5-WqAdmtBAAEZF9md_tc701.jpg"></div>
                             <h3>给亲情一个不会迷路的家</h3>
                             <p>微电影/特写镜头/年代感</p>
                         </a>
@@ -151,10 +153,10 @@
                         <p>&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -202,7 +204,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -224,10 +226,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -299,6 +301,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner07.jpg" alt="中秋节短视频"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner07.jpg" alt="中秋节短视频"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,84 +57,84 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20049.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-1.jpg"></div>
+                        	<div class="kuang"><img alt="中秋节有你才叫团圆" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7Gj6APlc7AAGXqW_U7No885.jpg"></div>
                             <h3>中秋节有你才叫团圆</h3>
                             <p>品牌宣传/微电影/温馨/感动</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18343.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-11.jpg"></div>
+                        	<div class="kuang"><img alt="小熊 Bear-爱不停炖" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7GoyAWKFcAAH-u44jyl4645.jpg"></div>
                             <h3>小熊 Bear-爱不停炖</h3>
                             <p>系列微电影/电器/温馨/感人</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19894.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-2.jpg"></div>
+                        	<div class="kuang"><img alt="五粮液中秋-对手篇" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7GtCAOTu2AAGxaDTet5k346.jpg"></div>
                             <h3>五粮液中秋-对手篇</h3>
                             <p>酒类广告/简约/大气</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19897.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-3.jpg"></div>
+                        	<div class="kuang"><img alt="中秋节-门" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7G82AKlc4AAEWvalZPZ8281.jpg"></div>
                             <h3>中秋节-门</h3>
                             <p>公益广告/团圆/生活化/感动</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19918.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-4.jpg"></div>
+                        	<div class="kuang"><img alt="最纯的酒献给最重要的人" src="${imgBnner}/group1/M00/00/C0/CgptuFq7HESAYM1nAAHZBHHZo9Q962.jpg"></div>
                             <h3>最纯的酒献给最重要的人</h3>
                             <p>品牌宣传片/饮品/煽情</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19895.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-5.jpg"></div>
+                        	<div class="kuang"><img alt="这个中秋回家吧" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7HWqAIbvoAAITCFy2Fcs131.jpg"></div>
                             <h3>这个中秋回家吧</h3>
                             <p>温馨/感人/唯美</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19896.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-6.jpg"></div>
+                        	<div class="kuang"><img alt="奇育记-她以这种方式..." src="https://www.apaipian.com/play/1167_19896.html"></div>
                             <h3>奇育记-她以这种方式...</h3>
                             <p>母婴/公益/访谈/纪录片</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8408.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-7.jpg"></div>
+                        	<div class="kuang"><img alt="这些话我们早就该说了" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7HnyAfgxdAAGDz8DLBa8018.jpg"></div>
                             <h3>这些话我们早就该说了</h3>
                             <p>专业级/微电影/月饼/温馨</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19892.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-8.jpg"></div>
+                        	<div class="kuang"><img alt="看完就泪奔回家的中秋短片" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7HnyAfgxdAAGDz8DLBa8018.jpg"></div>
                             <h3>看完就泪奔回家的中秋短片</h3>
                             <p>二维动画/手绘/公益片</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1815_20191.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-9.jpg"></div>
+                        	<div class="kuang"><img alt="平安人寿-全家福篇" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7HrCAWyk-AAHH4pvBp8Q241.jpg"></div>
                             <h3>平安人寿-全家福篇</h3>
                             <p>电影级/唯美画质/典雅</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/918_3621.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-10.jpg"></div>
+                        	<div class="kuang"><img alt="央视《中秋节》" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7HxGAC_C4AAJQoc48XV8348.jpg"></div>
                             <h3>央视《中秋节》</h3>
                             <p>文化/长镜头/棚拍</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19912.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p07-12.jpg"></div>
+                        	<div class="kuang"><img alt="中秋节-好基友篇" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7H1eAYHSJAAEu8FJWMgA194.jpg"></div>
                             <h3>中秋节-好基友篇</h3>
                             <p>病毒视频/幽默/魔性</p>
                         </a>
@@ -147,10 +149,10 @@
                         <p>-更多视频请访问：<a href="https://www.apaipian.com/list-cpgg/" target="_blank" style="color:#f00">产品广告</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -198,7 +200,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -220,10 +222,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -295,6 +297,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

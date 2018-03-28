@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner18.jpg" alt="城市宣传片"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner18.jpg" alt="城市宣传片"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,105 +57,105 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_74.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-1.jpg"></div>
+                        	<div class="kuang"><img alt="晚安 北京" src="${imgBnner}/group1/M00/00/04/Cgpw7FgZwiiALK1GAAIAPGwi8Uw323.jpg"></div>
                             <h3>晚安 北京</h3>
                             <p>延时摄影捕捉北京美妙夜景</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_5741.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-2.jpg"></div>
+                        	<div class="kuang"><img alt="成都" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4mviAJCfYAAHhikfSdpw162.jpg"></div>
                             <h3>成都</h3>
                             <p>天府水城 宜居金堂</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1323_13928.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-3.jpg"></div>
+                        	<div class="kuang"><img alt="扬州" src="${imgBnner}/group1/M00/00/BF/CgptuFq4m_OAY1r3AAHp4IVdHtU989.jpg"></div>
                             <h3>扬州</h3>
                             <p>十年一觉扬州梦，赢得风流薄幸名</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/233_666.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-4.jpg"></div>
+                        	<div class="kuang"><img alt="宁波" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4nF2AfmHmAAEbBxULGwA265.jpg"></div>
                             <h3>宁波</h3>
                             <p>书藏古今 港通天下</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/606_1305.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-5.jpg"></div>
+                        	<div class="kuang"><img alt="沧海青城" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4nNyAKa8aAAFW96-tyro563.jpg"></div>
                             <h3>沧海青城</h3>
                             <p>河海交会处，沧口水道</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_6881.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-6.jpg"></div>
+                        	<div class="kuang"><img alt="小城大坡" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4nVeAJwypAAFs3eV4wZk475.jpg"></div>
                             <h3>小城大坡</h3>
                             <p>中国最美乡镇</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1815_20199.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-7.jpg"></div>
+                        	<div class="kuang"><img alt="重庆" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4nkSAAfdiAAN4opwNBSw368.jpg"></div>
                             <h3>重庆</h3>
                             <p>有个地方叫双碑</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_21269.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-8.jpg"></div>
+                        	<div class="kuang"><img alt="张家口" src="${imgBnner}/group1/M00/00/F9/CgpmTlq4nseAebaJAAJPG1Z3XpQ724.jpg"></div>
                             <h3>张家口</h3>
                             <p>绿色发展 冬奥新区</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1910_21289.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-9.jpg"></div>
+                        	<div class="kuang"><img alt="遇见嵊州" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4nyqALQTuAAHOIqZ7K0Y482.jpg"></div>
                             <h3>遇见嵊州</h3>
                             <p>景色秀美 人间仙境</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_5717.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-10.jpg"></div>
+                        	<div class="kuang"><img alt="江苏" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4n86AeaD-AAHkpr7l2mE317.jpg"></div>
                             <h3>江苏</h3>
                             <p>畅游江苏 感受美好</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1323_14080.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-11.jpg"></div>
+                        	<div class="kuang"><img alt="启东" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4oNqAOIsyAAEPpTFEbGM437.jpg"></div>
                             <h3>启东</h3>
                             <p>在这里迎接最早升起的霞光</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/401_1367.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-12.jpg"></div>
+                        	<div class="kuang"><img alt="盘锦" src="${imgBnner}/group1/M00/00/BF/CgptuFq4oR6AfYpZAAGq5thykbI584.jpg"></div>
                             <h3>盘锦</h3>
                             <p>锦绣兴隆 梦想舞台</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_4449.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-13.jpg"></div>
+                        	<div class="kuang"><img alt="徽州" src="${imgBnner}/group1/M00/00/BE/CgpsbFq4oVyAI6vWAAGYg_p4G9U833.jpg"></div>
                             <h3>徽州</h3>
                             <p>云上的故乡</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_5278.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-14.jpg"></div>
+                        	<div class="kuang"><img alt="香格里拉" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4oZyAfP6qAAFpHfTIAjo600.jpg"></div>
                             <h3>香格里拉</h3>
                             <p>心灵之境 人间天堂</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_6590.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p18-15.jpg"></div>
+                        	<div class="kuang"><img alt="新昌" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq4ohKAdoyiAANWcB1CSUQ913.jpg"></div>
                             <h3>新昌</h3>
                             <p>有缘新昌 来了就好</p>
                         </a>
@@ -171,10 +173,10 @@
                         <p id="div_id">&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -223,7 +225,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -245,10 +247,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -320,6 +322,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

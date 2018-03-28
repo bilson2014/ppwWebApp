@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner06.jpg" alt="居然有这种操作"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner06.jpg" alt="居然有这种操作"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,84 +57,84 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8870.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-5.jpg"></div>
+                        	<div class="kuang"><img alt="奥迪 Audi - A1" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7H5mAHWt0AALIXl7hqtE358.jpg"></div>
                             <h3>奥迪 Audi - A1</h3>
                             <p>汽车/特效/科技/包装</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18214.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-6.jpg"></div>
+                        	<div class="kuang"><img alt="红的任务2-隐藏的力量" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7IDuAKY-BAAJaSQ3WuMs961.jpg"></div>
                             <h3>红的任务2-隐藏的力量</h3>
                             <p>品牌宣传片/京东/电商</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_6465.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-2.jpg"></div>
+                        	<div class="kuang"><img alt="GE 美国通用电气" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7IL-AI5X5AAFX3AFZrk8949.jpg"></div>
                             <h3>GE 美国通用电气</h3>
                             <p>创意广告/电影级/特效/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_8010.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-3.jpg"></div>
+                        	<div class="kuang"><img alt="Justice - OnnOn" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7IliAAqhxAAC1b3wvJl8312.jpg"></div>
                             <h3>Justice - OnnOn</h3>
                             <p>棚拍/特效/性感</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1118_7390.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-4.jpg"></div>
+                        	<div class="kuang"><img alt="MAGNESIUM - WORDS" src="${imgBnner}/group1/M00/00/4A/Cgpw7FhzsYCAApI9AAFotmfX1VY987.jpg"></div>
                             <h3>MAGNESIUM - WORDS</h3>
                             <p>产品广告/饮品/炫酷/餐饮美食</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1110_12698.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-1.jpg"></div>
+                        	<div class="kuang"><img alt="汉腾 - X7" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7I_qAbXs1AAEa-2Y-l-s873.jpg"></div>
                             <h3>汉腾 - X7</h3>
                             <p>产品宣传片/汽车广告/视觉冲击</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/93_543.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-7.jpg"></div>
+                        	<div class="kuang"><img alt="Game of War Commercial" src="${imgBnner}/group1/M00/00/06/CgqNZVht00WAOGIFAAGBZTDUQGY969.jpg"></div>
                             <h3>Game of War Commercial</h3>
                             <p>游戏广告/电影级/特效/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_5913.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-8.jpg"></div>
+                        	<div class="kuang"><img alt="McDonald's-公式篇" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7JGaAA6VmAAFAQ_YnyU0424.jpg"></div>
                             <h3>McDonald's-公式篇</h3>
                             <p>餐饮美食/品牌广告/特效</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_10906.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-9.jpg"></div>
+                        	<div class="kuang"><img alt="TOTAL" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7JLCAPD4wAAHCw5thyUA899.jpg"></div>
                             <h3>TOTAL</h3>
                             <p>企业宣传片/能源/特效</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_8538.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-10.jpg"></div>
+                        	<div class="kuang"><img alt="OBLIVION 遗落战境" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7JNWALEehAAEXrQ9zS7Q611.jpg"></div>
                             <h3>OBLIVION 遗落战境</h3>
                             <p>预告片/影视/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_8521.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-11.jpg"></div>
+                        	<div class="kuang"><img alt="Oxford - Stairs 办公文具" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7JQOAOOz0AAI5gM4OjiQ551.jpg"></div>
                             <h3>Oxford - Stairs 办公文具</h3>
                             <p>文具广告/动感/特效/科幻</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_7728.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p06-12.jpg"></div>
+                        	<div class="kuang"><img alt="奥地利林茨电影节" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7JUGAD9_WAAJjCOSZoVo689.jpg"></div>
                             <h3>奥地利林茨电影节</h3>
                             <p>活动宣传片/科幻/魔性</p>
                         </a>
@@ -149,10 +151,10 @@
                         <p>-更多视频请访问：<a href="https://www.apaipian.com/" target="_blank" style="color:#f00">宣传片</a></p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -200,7 +202,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -222,10 +224,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -297,6 +299,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>

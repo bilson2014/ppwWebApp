@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,9 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
+<script src="/resources/js/salesman/special/bannerAni.js"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -47,16 +51,30 @@
 	</div>
 	<div class="top2"></div>
 	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner005.jpg" alt="医美宣传片"></div>
+	<div class="main_top">
+		<div class="container newCon">
+			<h2>医疗 · 美容</h2>
+		    <p style="text-align: center;">诱惑绽放，拯救镜子里掩泣的青春<br>宣传片为医美行业互联网投放注入全新的竞争元素，把握机遇方能一击制胜。</p>
+	        <div class="toshare"> 
+	         <ul class="share">
+	                            <li>分享到 : </li>
+                                <li class="-mob-share-weixin setShare"></li>
+                                <li class="-mob-share-qq setShare"></li>
+                                <li class="-mob-share-weibo setShare"></li>
+                                <li class="-mob-share-qzone setShare"></li>
+              </ul>	
+           </div>   	
+		</div>
+	</div>
 	<div class="main_pd">
-		<h2>医疗 · 美容</h2>
-		<p>诱惑绽放，拯救镜子里掩泣的青春<br>宣传片为医美行业互联网投放注入全新的竞争元素，把握机遇方能一击制胜。</p>
+		
 		<div class="container">
 			<ul class="channel">
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1112_5106.html" target="_blank">
 							<span>
-								<img alt="美莱-医疗美容医院" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx_LGAPpy3AAGNzxGwq-E839.jpg">
+								<img alt="美莱-医疗美容医院" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx_LGAPpy3AAGNzxGwq-E839.jpg">
 								<i></i>
 							</span>
 							<font>美莱-医疗美容医院</font>
@@ -67,7 +85,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_21089.html" target="_blank">
 							<span>
-								<img alt="西选美容仪" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqx_XiAXoeoAAH8YH2vx1w431.jpg">
+								<img alt="西选美容仪" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx_XiAXoeoAAH8YH2vx1w431.jpg">
 								<i></i>
 							</span>
 							<font>西选美容仪</font>
@@ -78,7 +96,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1903_22163.html" target="_blank">
 							<span>
-								<img alt="小S的冻龄机密" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7FqviV6Abjy4AAB9uB5OGis262.jpg">
+								<img alt="小S的冻龄机密" src="${imgBnner}/group1/M00/00/F3/Cgpw7FqviV6Abjy4AAB9uB5OGis262.jpg">
 								<i></i>
 							</span>
 							<font>小S的冻龄机密</font>
@@ -89,7 +107,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1114_6031.html" target="_blank">
 							<span>
-								<img alt="DERMES 光学脱毛中心" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7Fqx_guAK1zmAAE9WXzpt6M280.jpg">
+								<img alt="DERMES 光学脱毛中心" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx_guAK1zmAAE9WXzpt6M280.jpg">
 								<i></i>
 							</span>
 							<font>DERMES 光学脱毛中心</font>
@@ -100,7 +118,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/827_1620.html" target="_blank">
 							<span>
-								<img alt="VCO 高端美研会所" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqx_laAKQ8CAAKFrxMN9QA283.jpg">
+								<img alt="VCO 高端美研会所" src="${imgBnner}/group1/M00/00/BB/CgpsbFqx_laAKQ8CAAKFrxMN9QA283.jpg">
 								<i></i>
 							</span>
 							<font>VCO 高端美研会所</font>
@@ -111,7 +129,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_16943.html" target="_blank">
 							<span>
-								<img alt="尚莲蝶姿-整形机构" src="https://filed.apaipian.com/group1/M00/00/F3/Cgpw7Fqvib-AAHweAACedmx7NZE920.jpg">
+								<img alt="尚莲蝶姿-整形机构" src="${imgBnner}/group1/M00/00/F3/Cgpw7Fqvib-AAHweAACedmx7NZE920.jpg">
 								<i></i>
 							</span>
 							<font>尚莲蝶姿-整形机构</font>
@@ -122,7 +140,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/571_3631.html" target="_blank">
 							<span>
-								<img alt="脱口秀-医美小知识" src="https://filec.apaipian.com/group1/M00/00/F4/Cgpw7Fqx_smAVCkUAAIfJsxJg_k152.jpg">
+								<img alt="脱口秀-医美小知识" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx_smAVCkUAAIfJsxJg_k152.jpg">
 								<i></i>
 							</span>
 							<font>脱口秀-医美小知识</font>
@@ -133,7 +151,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_23997.html" target="_blank">
 							<span>
-								<img alt="奥米医美 NAOMI" src="https://fileb.apaipian.com/group1/M00/00/F6/CgpmTlqx_8aAMoWvAAJxpG-5zA8607.jpg">
+								<img alt="奥米医美 NAOMI" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx_8aAMoWvAAJxpG-5zA8607.jpg">
 								<i></i>
 							</span>
 							<font>奥米医美 NAOMI</font>
@@ -144,7 +162,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3831.html" target="_blank">
 							<span>
-								<img alt="悦美整形-第一集" src="https://fileb.apaipian.com/group1/M00/00/0E/CgpsbFhuHSCALA_HAAHhx9fru_I510.jpg">
+								<img alt="悦美整形-第一集" src="${imgBnner}/group1/M00/00/0E/CgpsbFhuHSCALA_HAAHhx9fru_I510.jpg">
 								<i></i>
 							</span>
 							<font>悦美整形-第一集</font>
@@ -155,7 +173,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3829.html" target="_blank">
 							<span>
-								<img alt="悦美整形-第二集" src="https://filed.apaipian.com/group1/M00/00/0E/CgptuFhuHDmAefVfAAFoXzpU-oc195.jpg">
+								<img alt="悦美整形-第二集" src="${imgBnner}/group1/M00/00/0E/CgptuFhuHDmAefVfAAFoXzpU-oc195.jpg">
 								<i></i>
 							</span>
 							<font>悦美整形-第二集</font>
@@ -166,7 +184,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3830.html" target="_blank">
 							<span>
-								<img alt="悦美整形-第三集" src="https://filed.apaipian.com/group1/M00/00/07/Cgp_JVhuHJqAYYLoAAI6XlMVZ7M492.jpg">
+								<img alt="悦美整形-第三集" src="${imgBnner}/group1/M00/00/07/Cgp_JVhuHJqAYYLoAAI6XlMVZ7M492.jpg">
 								<i></i>
 							</span>
 							<font>悦美整形-第三集</font>
@@ -177,7 +195,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_3832.html" target="_blank">
 							<span>
-								<img alt="悦美整形-第四集" src="https://filea.apaipian.com/group1/M00/00/0E/CgpsbFhuHYKASHDNAAIbv2eajU8711.jpg">
+								<img alt="悦美整形-第四集" src="${imgBnner}/group1/M00/00/0E/CgpsbFhuHYKASHDNAAIbv2eajU8711.jpg">
 								<i></i>
 							</span>
 							<font>悦美整形-第四集</font>
@@ -188,7 +206,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1167_45.html" target="_blank">
 							<span>
-								<img alt="丽奈公主-酵素" src="https://filec.apaipian.com/group1/M00/00/0D/Cgp_JVh29SCAHEfcAAIfJHW0CXo521.jpg">
+								<img alt="丽奈公主-酵素" src="${imgBnner}/group1/M00/00/0D/Cgp_JVh29SCAHEfcAAIfJHW0CXo521.jpg">
 								<i></i>
 							</span>
 							<font>丽奈公主-酵素</font>
@@ -199,7 +217,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_26154.html" target="_blank">
 							<span>
-								<img alt="蒸脸器纳米喷雾" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqyAIyAUY2eAAJjlSZyBfA201.jpg">
+								<img alt="蒸脸器纳米喷雾" src="${imgBnner}/group1/M00/00/BB/CgpsbFqyAIyAUY2eAAJjlSZyBfA201.jpg">
 								<i></i>
 							</span>
 							<font>蒸脸器纳米喷雾</font>
@@ -210,7 +228,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_17006.html" target="_blank">
 							<span>
-								<img alt="藏植宝-幸福来敲门" src="https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqyAQKAJBI4AAD-IN558bQ208.jpg">
+								<img alt="藏植宝-幸福来敲门" src="${imgBnner}/group1/M00/00/F6/CgpmTlqyAQKAJBI4AAD-IN558bQ208.jpg">
 								<i></i>
 							</span>
 							<font>藏植宝-幸福来敲门</font>
@@ -221,7 +239,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1323_16918.html" target="_blank">
 							<span>
-								<img alt="沁颜-时尚医美" src="https://fileb.apaipian.com/group1/M00/00/42/CgpsbFkKmX6ABd5TAAIpucL389k282.jpg">
+								<img alt="沁颜-时尚医美" src="${imgBnner}/group1/M00/00/42/CgpsbFkKmX6ABd5TAAIpucL389k282.jpg">
 								<i></i>
 							</span>
 							<font>沁颜-时尚医美</font>
@@ -232,7 +250,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_24109.html" target="_blank">
 							<span>
-								<img alt="Mindray 迈瑞生物医疗" src="https://fileb.apaipian.com/group1/M00/00/BC/CgptuFqyAh2AdmwpAAHepKQi0uo882.jpg">
+								<img alt="Mindray 迈瑞生物医疗" src="${imgBnner}/group1/M00/00/BC/CgptuFqyAh2AdmwpAAHepKQi0uo882.jpg">
 								<i></i>
 							</span>
 							<font>Mindray 迈瑞生物医疗</font>
@@ -243,7 +261,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/18_565.html" target="_blank">
 							<span>
-								<img alt="麻省医疗" src="https://filec.apaipian.com/group1/M00/00/0C/Cgpw7FgZzvWAeDZFAADHSHoWFk0106.jpg">
+								<img alt="麻省医疗" src="${imgBnner}/group1/M00/00/0C/Cgpw7FgZzvWAeDZFAADHSHoWFk0106.jpg">
 								<i></i>
 							</span>
 							<font>麻省医疗</font>
@@ -254,7 +272,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1354_16401.html" target="_blank">
 							<span>
-								<img alt="健合医疗集团" src="https://filed.apaipian.com/group1/M00/00/BC/CgptuFqyA5OAPHZcAAMT_JbVUG8034.jpg">
+								<img alt="健合医疗集团" src="${imgBnner}/group1/M00/00/BC/CgptuFqyA5OAPHZcAAMT_JbVUG8034.jpg">
 								<i></i>
 							</span>
 							<font>健合医疗集团</font>
@@ -265,7 +283,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1169_3965.html" target="_blank">
 							<span>
-								<img alt="Sonoscape-开立医疗科技" src="https://filec.apaipian.com/group1/M00/00/BB/CgpsbFqviqCAcY7CAADPZiUKwjU498.jpg">
+								<img alt="Sonoscape-开立医疗科技" src="${imgBnner}/group1/M00/00/BB/CgpsbFqviqCAcY7CAADPZiUKwjU498.jpg">
 								<i></i>
 							</span>
 							<font>Sonoscape-开立医疗科技</font>
@@ -276,7 +294,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/393_14271.html" target="_blank">
 							<span>
-								<img alt="安诺优达-基因测序仪" src="https://filea.apaipian.com/group1/M00/00/F4/Cgpw7FqyA_CAHKIbAAFNoP2z_NQ394.jpg">
+								<img alt="安诺优达-基因测序仪" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqyA_CAHKIbAAFNoP2z_NQ394.jpg">
 								<i></i>
 							</span>
 							<font>安诺优达-基因测序仪</font>
@@ -287,7 +305,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1169_3964.html" target="_blank">
 							<span>
-								<img alt="锐珂医疗-锐精彩·智未来" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqyBEOAG1zhAALTBGrBzb4741.jpg">
+								<img alt="锐珂医疗-锐精彩·智未来" src="${imgBnner}/group1/M00/00/BB/CgpsbFqyBEOAG1zhAALTBGrBzb4741.jpg">
 								<i></i>
 							</span>
 							<font>锐珂医疗-锐精彩·智未来</font>
@@ -298,7 +316,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/300_867.html" target="_blank">
 							<span>
-								<img alt="欧赫曼 - 菱形骨盆矫正带" src="https://filed.apaipian.com/group1/M00/00/BB/CgpsbFqyBHiAbbf5AAI1_1VzfFo969.jpg">
+								<img alt="欧赫曼 - 菱形骨盆矫正带" src="${imgBnner}/group1/M00/00/BB/CgpsbFqyBHiAbbf5AAI1_1VzfFo969.jpg">
 								<i></i>
 							</span>
 							<font>欧赫曼 - 菱形骨盆矫正带</font>
@@ -309,7 +327,7 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1151_19638.html" target="_blank">
 							<span>
-								<img alt="武汉大学口腔医院" src="https://fileb.apaipian.com/group1/M00/00/F4/Cgpw7FqyBKyAan90AAHGc49T4_s165.jpg">
+								<img alt="武汉大学口腔医院" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqyBKyAan90AAHGc49T4_s165.jpg">
 								<i></i>
 							</span>
 							<font>武汉大学口腔医院</font>

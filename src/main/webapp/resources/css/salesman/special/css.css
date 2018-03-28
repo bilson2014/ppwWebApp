@@ -44,14 +44,14 @@
 
 .video_list li div.kuang {
     width: 260px;
-    height: 160px;
+    height: 142px;
     overflow: hidden;
     border-radius: 5px;
 }
 
 .video_list li div.kuang img {
     width: 260px;
-    height: 160px;
+    height: 142px;
     transition: all 0.5s ease-in-out 0s;
     -moz-transition: all 0.5s ease-in-out 0s;
     -webkit-transition: all 0.5s ease-in-out 0s;
@@ -556,5 +556,72 @@
         transform: rotateX(0) !important;
         opacity: 1 !important;
     }
+    
+    
+     .toshare{
+    position: absolute;
+    right: 80px;
+    bottom: 55px;
+    height: 25px;
+    }
+    
+      .share {
+        font-size: 0;
+              }
+       .share li {
+            cursor: pointer;
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            vertical-align: top;
+            border-radius: 6px;
+        }
+        
+        .share  li:nth-child(1){
+             font-size: 14px;
+             width: 55px;
+             line-height: 25px;
+             color:#666;
+        }
+      
+      .share  li:nth-child(2) {
+            background: url(/resources/images/block/wx.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+        }
+      .share  li:nth-child(3) {
+            background: url(/resources/images/block/q.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+        }
+      .share  li:nth-child(4) {
+            background: url(/resources/images/block/w.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+        }
+      .share  li:nth-child(5) {
+            background: url(/resources/images/block/kj.png) no-repeat;
+            margin-left: 11px;
+            background-size: 24px 48px;
+            height: 24px;
+         
+        }
+        
+        .share li::hover{
+                background-position-y: -24px;
+        }
+        
+        .newCon{
+           padding-bottom:130px;
+        }
+    
+
+ 
+
+ 
+    
     
     

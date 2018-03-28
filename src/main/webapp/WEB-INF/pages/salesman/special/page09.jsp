@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -27,7 +29,7 @@
 <body>
 	<div class="top">
 		<div class="container">
-    		<a href="https://www.apaipian.com" target="_blank"><img class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
+    		<a href="https://www.apaipian.com" target="_blank"><img alt="" class="logo fl" src="/resources/images/salesman/special/bannerLogoR.png" alt="拍片网" /></a>
             <ul class="nav fl">
             	<li><a href="https://www.apaipian.com/resources/salesman/ver/">我要拍片</a></li>
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 	<div class="top2"></div>
-	<div class="banner00"><img src="/resources/images/salesman/special/banner09.jpg" alt="有一种情怀叫NBA"></div>
+	<div class="banner00"><img alt="" src="/resources/images/salesman/special/banner09.jpg" alt="有一种情怀叫NBA"></div>
 	
     <div class="main_3">
     	<div class="container00">
@@ -55,126 +57,126 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20318.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-5.jpg"></div>
+                        	<div class="kuang"><img alt="NBA新赛季-陪你一起度过" src="${imgBnner}/group1/M00/00/FA/CgpmTlq5_R-AY-N4AAJG8t-RoM0606.jpg"></div>
                             <h3>NBA新赛季-陪你一起度过</h3>
                             <p>体育/活力/nba</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1325_13508.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-1.jpg"></div>
+                        	<div class="kuang"><img alt="新赛季 Under Armour - 库里篇" src="${imgBnner}/group1/M00/00/FA/CgpmTlq5_aSAfSB5AADwlOEkQ2w677.jpg"></div>
                             <h3>新赛季 Under Armour - 库里篇</h3>
                             <p>库里/NBA宣传片/励志</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20306.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-3.jpg"></div>
+                        	<div class="kuang"><img alt="新赛季-没有谎言NBA" src="${imgBnner}/group1/M00/00/FA/CgpmTlq5_gGAIhkIAAGVte3t7xo005.jpg"></div>
                             <h3>新赛季-没有谎言NBA</h3>
                             <p>体育/NBA宣传片/励志</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20304.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-4.jpg"></div>
+                        	<div class="kuang"><img alt="NBA新赛季-引爆篇" src="${imgBnner}/group1/M00/00/C0/CgptuFq5_nGAagNNAAFNjvBwg1Y417.jpg"></div>
                             <h3>NBA新赛季-引爆篇</h3>
                             <p>活动宣传片/nba/体育明星</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20317.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-6.jpg"></div>
+                        	<div class="kuang"><img alt="新赛季-新的时代 我们陪你见证" src="${imgBnner}/group1/M00/00/C0/CgptuFq5_pyAA8kVAAFtiOtupaA518.jpg"></div>
                             <h3>新赛季-新的时代 我们陪你见证</h3>
                             <p>体育/包装/活力/震撼</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20314.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-7.jpg"></div>
+                        	<div class="kuang"><img alt="火箭官方新赛季-Run As One" src="${imgBnner}/group1/M00/00/BF/CgpsbFq5_5mAe4-9AAELof59uHk296.jpg"></div>
                             <h3>火箭官方新赛季-Run As One</h3>
                             <p>宣传片/火箭/运动/震撼</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20315.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-8.jpg"></div>
+                        	<div class="kuang"><img alt="雷霆三巨头新赛季-阻击勇士火箭" src="${imgBnner}/group1/M00/00/FA/CgpmTlq5_-KAUf_hAAG25Fvj0xE767.jpg"></div>
                             <h3>雷霆三巨头新赛季-阻击勇士火箭</h3>
                             <p>宣传片/雷霆/运动/震撼</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20305.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-9.jpg"></div>
+                        	<div class="kuang"><img alt="巨星城记科比" src="${imgBnner}/group1/M00/00/C0/CgptuFq6ALWAEkotAAFhl1_BXn0420.jpg"></div>
                             <h3>巨星城记科比</h3>
                             <p>37载年华记忆看哭多少人</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20311.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-10.jpg"></div>
+                        	<div class="kuang"><img alt="NBA请回答2017" src="${imgBnner}/group1/M00/00/C0/CgptuFq6AOeAQMBGAAF69xxTrmQ519.jpg"></div>
                             <h3>NBA请回答2017</h3>
                             <p>雷霆三少终别离 再相见已物是人非</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20310.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-11.jpg"></div>
+                        	<div class="kuang"><img alt="他们-吉诺比利" src="https://www.apaipian.com/play/1167_20310.html"></div>
                             <h3>他们-吉诺比利</h3>
                             <p>圣城妖刀续写不老传奇</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20309.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-2.jpg"></div>
+                        	<div class="kuang"><img alt="耐克 Nike-NBA2KOL合作结案" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6AfKATWCdAAEQPal9-6U954.jpg"></div>
                             <h3>耐克 Nike-NBA2KOL合作结案</h3>
                             <p>乔丹/nike/产品广告片</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20316.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-12.jpg"></div>
+                        	<div class="kuang"><img alt="耐克 Nike-欧文篮球行" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6Ak2AXz5RAAEKROlD3Wc965.jpg"></div>
                             <h3>耐克 Nike-欧文篮球行</h3>
                             <p>品牌广告/体育/欧文</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20307.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-13.jpg"></div>
+                        	<div class="kuang"><img alt="耐克 Nike-NBA-开启新篇章" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq6AuOAGDrlAAE_oMMePIc354.jpg"></div>
                             <h3>耐克 Nike-NBA-开启新篇章</h3>
                             <p>品牌广告/体育/骑士</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20308.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-14.jpg"></div>
+                        	<div class="kuang"><img alt="Nike-NBA Connected Jersey" src="${imgBnner}/group1/M00/00/FA/CgpmTlq6AxqAbUY8AAEoHlHWsQg912.jpg"></div>
                             <h3>Nike-NBA Connected Jersey</h3>
                             <p>品牌广告/体育/唐斯</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1325_13521.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-15.jpg"></div>
+                        	<div class="kuang"><img alt="耐克 Nike-入选NBA 不信极限" src="${imgBnner}/group1/M00/00/C0/CgptuFq6A6OAa__xAADg6EIY7Lo809.jpg"></div>
                             <h3>耐克 Nike-入选NBA 不信极限</h3>
                             <p>品牌广告/体育/周琦</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20313.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-16.jpg"></div>
+                        	<div class="kuang"><img alt="adidas-全能大胡子一步登天" src="${imgBnner}/group1/M00/00/C0/CgptuFq6A82AaY7lAAD6DeOW3S4355.jpg"></div>
                             <h3>adidas-全能大胡子一步登天</h3>
                             <p>品牌广告/体育/哈登</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1114_4087.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-17.jpg"></div>
+                        	<div class="kuang"><img alt="adidas-詹姆斯哈登" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6A_aAM3tEAAEMIkE5tUs231.jpg"></div>
                             <h3>adidas-詹姆斯哈登</h3>
                             <p>品牌广告/体育/哈登</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20312.html" target="_blank">
-                        	<div class="kuang"><img src="/resources/images/salesman/special/p09-18.jpg"></div>
+                        	<div class="kuang"><img alt="阿迪达斯 adidas-哈登篇" src="${imgBnner}/group1/M00/00/BF/CgpsbFq6BEeAd1sKAAGxxQUqf_E857.jpg"></div>
                             <h3>阿迪达斯 adidas-哈登篇</h3>
                             <p>品牌广告/体育/哈登</p>
                         </a>
@@ -192,10 +194,10 @@
                         <p>&nbsp;</p>
                     </div>
                     <ul class="fenxiang">
-                        <li class="-mob-share-douban share"><img src="/resources/images/salesman/special/icon01.png"></li>
-                        <li class="-mob-share-qzone share"><img src="/resources/images/salesman/special/icon03.png"></li>
-                        <li class="-mob-share-weibo share"><img src="/resources/images/salesman/special/icon02.png"></li>
-                        <li class="-mob-share-weixin share"><img src="/resources/images/salesman/special/icon04.png"></li>
+                        <li class="-mob-share-douban share"><img alt="" src="/resources/images/salesman/special/icon01.png"></li>
+                        <li class="-mob-share-qzone share"><img alt="" src="/resources/images/salesman/special/icon03.png"></li>
+                        <li class="-mob-share-weibo share"><img alt="" src="/resources/images/salesman/special/icon02.png"></li>
+                        <li class="-mob-share-weixin share"><img alt="" src="/resources/images/salesman/special/icon04.png"></li>
                     </ul>
                 </div>
                 <div class="hot">
@@ -243,7 +245,7 @@
 	<div class="foot">
 		<div class="container">
 			<ul class="foot_nav">
-				<li class="gzh"><img src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
+				<li class="gzh"><img alt="" src="/resources/images/salesman/special/code_pai.png" width="111" height="110"><br>扫一扫 关注官方微信</li>
 				<li class="f_nav">
 					<h2>登录</h2>
 					<a class="sml cusLogin" href="https://www.apaipian.com/login?role=user" target="_blank">客户登录</a><br>
@@ -265,10 +267,10 @@
 				<li class="f_nav">
 					<h2>在线联系我们</h2>
 					<a class="sml cusSer codeshow" href="Javascript:void(0)">客户客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_ke.jpg"><br>客户客服</div>
 					</a><br>
 					<a class="sml proSer codeshow" href="Javascript:void(0)">创作团队客服
-						<div class="code hide"><img src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
+						<div class="code hide"><img alt="" src="/resources/images/salesman/special/code_dao.jpg"><br>创作团队客服</div>
 					</a><br>
 					<a class="sml email" href="mailto:bdmarket@paipianwang.cn">bdmarket@paipianwang.cn</a>
 				</li>
@@ -340,6 +342,6 @@
       }
     };
     </script>
-	<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
+	<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 </body>
 </html>
