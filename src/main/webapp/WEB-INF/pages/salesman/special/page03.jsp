@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
-<spring:url value="${file_locate_storage_path}" var="img alt=""Bnner" />
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -71,7 +71,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1117_11108.html" target="_blank">
-                        	<div class="kuang"><img alt="Chanel-Rouge Allure Glos" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7CTiAZKevAAEEhyKDctk061.jpg"></div>
+                        	<div class="kuang"><img alt="Chanel-Rouge Allure Glos" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7CaeAWa4yAAIwcIY5eRU439.jpg"></div>
                             <h3>Chanel-Rouge Allure Glos</h3>
                             <p>产品广告/日用美妆/唇膏</p>
                         </a>

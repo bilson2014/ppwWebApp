@@ -202,6 +202,53 @@
 						</a>
 					</div>
 				</li>
+				
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_28450.html" target="_blank">
+							<span>
+								<img alt="夸克链 Quark(QRK)" src="${imgBnner}/group1/M00/00/C0/CgptuFq55ziAWCYnAAHcI4dH3Q8856.jpg">
+								<i></i>
+							</span>
+							<font>夸克链 Quark(QRK)</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_28453.html" target="_blank">
+							<span>
+								<img alt="BitGame 比特-中文版" src="${imgBnner}/group1/M00/00/F7/Cgpw7Fq56xyAHrauAAJOfSYUCm8201.jpg">
+								<i></i>
+							</span>
+							<font>BitGame 比特-中文版</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_28452.html" target="_blank">
+							<span>
+								<img alt="BitGame 比特-英文版" src="${imgBnner}/group1/M00/00/BE/CgpsbFq56sCALV-HAALwZ04oAU0784.jpg">
+								<i></i>
+							</span>
+							<font>BitGame 比特-英文版</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/18_28055.html" target="_blank">
+							<span>
+								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx1I2AVVN6AAFTXhn-IJE490.jpg">
+								<i></i>
+							</span>
+							<font>智力收益价值链 (IQB-C) </font>
+						</a>
+					</div>
+				</li>
+				
+				
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1546_24126.html" target="_blank">
@@ -265,7 +312,7 @@
 								<img alt="Steem-基于blockchain社交媒体平台" src="${imgBnner}/group1/M00/00/BC/CgptuFqxyBuAKrk8AAGEAwa0XB8539.jpg">
 								<i></i>
 							</span>
-							<font>Steem-基于blockchain社交媒体平台</font>
+							<font>Steem</font>
 						</a>
 					</div>
 				</li>
@@ -386,7 +433,7 @@
 								<img alt="门罗币 Monero(XMR)-The Essentials" src="${imgBnner}/group1/M00/00/BB/CgpsbFqxzi6AGupHAACPMbdtTzg656.jpg">
 								<i></i>
 							</span>
-							<font>门罗币 Monero(XMR)-The Essentials</font>
+							<font>门罗币 Monero(XMR)</font>
 						</a>
 					</div>
 				</li>
@@ -495,18 +542,7 @@
 							<font>The Bitcoin and Blockchain</font>
 						</a>
 					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/18_28055.html" target="_blank">
-							<span>
-								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="${imgBnner}/group1/M00/00/F6/CgpmTlqx1I2AVVN6AAFTXhn-IJE490.jpg">
-								<i></i>
-							</span>
-							<font>智力收益价值链 IQ Benefit Chain(IQB-C) </font>
-						</a>
-					</div>
-				</li>
+				</li>				
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_27948.html" target="_blank">
@@ -514,7 +550,18 @@
 								<img alt="智力收益价值链 IQ Benefit Chain(IQB-C" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxx6yANclRAAGN2rpf5iw544.jpg">
 								<i></i>
 							</span>
-							<font> 新型网络 New Kind of Network(NKN)</font>
+							<font> 新型网络(NKN)</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_27987.html" target="_blank">
+							<span>
+								<img alt="瑞波币 Ripple(XRP)" src="${imgBnner}/group1/M00/00/BC/CgptuFqvOouAS4P7AAElvZ0g9O8726.jpg">
+								<i></i>
+							</span>
+							<font>瑞波币 Ripple(XRP)</font>
 						</a>
 					</div>
 				</li>

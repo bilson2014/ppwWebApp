@@ -99,14 +99,14 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_19896.html" target="_blank">
-                        	<div class="kuang"><img alt="奇育记-她以这种方式..." src="https://www.apaipian.com/play/1167_19896.html"></div>
+                        	<div class="kuang"><img alt="奇育记-她以这种方式..." src="${imgBnner}/group1/M00/00/C0/CgptuFq7HIOAQmPyAAFW0tvyetA915.jpg"></div>
                             <h3>奇育记-她以这种方式...</h3>
                             <p>母婴/公益/访谈/纪录片</p>
                         </a>
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1112_8408.html" target="_blank">
-                        	<div class="kuang"><img alt="这些话我们早就该说了" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7HnyAfgxdAAGDz8DLBa8018.jpg"></div>
+                        	<div class="kuang"><img alt="这些话我们早就该说了" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7HjyAWV73AAGi-CV7A0M685.jpg"></div>
                             <h3>这些话我们早就该说了</h3>
                             <p>专业级/微电影/月饼/温馨</p>
                         </a>

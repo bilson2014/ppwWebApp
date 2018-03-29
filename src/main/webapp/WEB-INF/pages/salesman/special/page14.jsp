@@ -99,7 +99,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1323_14845.html" target="_blank">
-                        	<div class="kuang"><img alt="四美不开心" src="https://www.apaipian.com/play/1323_14845.html"></div>
+                        	<div class="kuang"><img alt="四美不开心" src="${imgBnner}/group1/M00/00/C0/CgptuFq4te6AbVJhAAFO3yX9bis871.jpg"></div>
                             <h3>四美不开心</h3>
                             <p>日用美妆/美女/搞笑</p>
                         </a>

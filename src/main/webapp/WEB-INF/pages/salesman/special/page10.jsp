@@ -85,7 +85,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1115_8038.html" target="_blank">
-                        	<div class="kuang"><img alt="美国诺氏百乐坊" src="https://www.apaipian.com/play/1115_8038.html"></div>
+                        	<div class="kuang"><img alt="美国诺氏百乐坊" src="${imgBnner}/group1/M00/00/C0/CgptuFq5-3SAXpgAAAGNIEfiUTM941.jpg"></div>
                             <h3>美国诺氏百乐坊</h3>
                             <p>旅游宣传片/电影级/惊悚/恐怖</p>
                         </a>

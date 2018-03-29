@@ -120,7 +120,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_20310.html" target="_blank">
-                        	<div class="kuang"><img alt="他们-吉诺比利" src="https://www.apaipian.com/play/1167_20310.html"></div>
+                        	<div class="kuang"><img alt="他们-吉诺比利" src="${imgBnner}/group1/M00/00/C0/CgptuFq6AcaATltLAAGyh9lG8U4072.jpg"></div>
                             <h3>他们-吉诺比利</h3>
                             <p>圣城妖刀续写不老传奇</p>
                         </a>

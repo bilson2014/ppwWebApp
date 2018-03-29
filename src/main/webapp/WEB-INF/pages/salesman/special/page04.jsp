@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
-<spring:url value="${file_locate_storage_path}" var="img alt=""Bnner" />
+<spring:url value="${file_locate_storage_path}" var="imgBnner" />
 <script>
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
@@ -57,7 +57,7 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1116_11385.html" target="_blank">
-                        	<div class="kuang"><img alt="一千零一夜第1夜-鲅鱼水饺" src="https://www.apaipian.com/play/1116_11385.html"></div>
+                        	<div class="kuang"><img alt="一千零一夜第1夜-鲅鱼水饺" src="${imgBnner}/group1/M00/00/FA/CgpmTlq7DlyAH3QlAADvhULj_80720.jpg"></div>
                             <h3>一千零一夜第1夜-鲅鱼水饺</h3>
                             <p>微电影/电商/病毒视频/意识流</p>
                         </a>
@@ -155,7 +155,7 @@
                     </li>
                 	<li>
                     	<a href="https://www.apaipian.com/play/1151_18194.html" target="_blank">
-                        	<div class="kuang"><img alt="一千零一夜第15夜-蚝" src="${imgBnner}/group1/M00/00/F8/Cgpw7Fq7E_mAG9sNAAEPLOIDOiQ010.jpg"></div>
+                        	<div class="kuang"><img alt="一千零一夜第15夜-蚝" src="${imgBnner}/group1/M00/00/BF/CgpsbFq7FKeAIgPxAAEps6a2FB8139.jpg"></div>
                             <h3>一千零一夜第15夜-蚝</h3>
                             <p>品牌广告/专业级/演员</p>
                         </a>
