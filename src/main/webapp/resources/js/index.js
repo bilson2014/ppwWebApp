@@ -118,11 +118,6 @@ function initScroll(){
 			  $('.threeLi').removeClass('setClients');
 		  }
 		  
-		  console.info('now' + nowPos);
-		  console.info('nowdata' + data);
-		  console.info('data' + (data - aniHeight));
-		  console.info('data1' + data);
-		  console.info('data2' + aniHeight);
 		  if(nowPos < data - aniHeight){
 			  $('.setContentImg').removeClass('setAniData');
 			  $('.setContent').removeClass('setAniContent');
