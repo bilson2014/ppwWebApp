@@ -17,7 +17,7 @@ var Url = "https://www.apaipian.com:8087/";
 //var Url = "http://test.apaipian.com:7070/";
 //var Url = "http://localhost:8084/";
 //var Url = "http://192.168.0.142:8080/";
-//var httpsUrl = "https://www.apaipian.com:7070/";
+var httpsUrl = "https://www.apaipian.com:7070/";
 
 $().ready(function(){
 	getImgUrl();
