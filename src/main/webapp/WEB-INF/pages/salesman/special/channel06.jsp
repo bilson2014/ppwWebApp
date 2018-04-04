@@ -97,8 +97,8 @@
 	
 	<div class="main_top">
 		<div class="container newCon">
-			<h2>[互联网+教育+视频]</h2>
-		    <p style="text-align: center;">塑造更生动的互联网教育品牌形象</p>
+			<h2>[ 互联网 + 教育 + 视频 ]<br>塑造更生动的互联网教育品牌形象</h2>
+		    <p style="text-align: center;">基于形式灵活多变、不受时间空间限制、内容自主选择等特点和优势，网校已成为当下学习的主流趋势。制作精良的品牌宣传片能够帮助互联网教育的企业树立良好的品牌形象，抢占更多的有效生源。让教学理念不再是生硬的文字，让教学模式不再是抽象的概念，灵动的视频可以大大激发目标群体的兴趣，在最短的时间内get到教学优势，分分钟产生报名的冲动。</p>
 	        <div class="toshare"> 
 	         <ul class="share">
 	                            <li>分享到 : </li>
@@ -129,7 +129,7 @@
 					<div class="kk">
 						<a href="http://www.apaipian.com/play/1387_15132.html" target="_blank">
 							<span>
-								<img alt='找好老师 上跟谁学' src="${imgBnner}group1/M00/00/72/CgpmTljl6VCAEzzzAALbkH80RAw306.png">
+								<img alt='找好老师 上跟谁学' src="${imgBnner}group1/M00/00/FC/CgpmTlrEPMmAcWLpAAIBd4CMjsg535.jpg">
 								<i></i>
 							</span>
 							<font>找好老师 上跟谁学</font>
@@ -138,9 +138,9 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1910_26423.htmla" target="_blank">
+						<a href="http://www.apaipian.com/play/1910_26423.html" target="_blank">
 							<span>
-								<img alt='VIPKID-男教师版' src="${imgBnner}group1/M00/00/AD/CgpsbFphqQ2APzIqAAGbAwsh30k762.jpg">
+								<img alt='VIPKID-男教师版' src="${imgBnner}group1/M00/00/C3/CgptuFrEPCOAULq9AAMPVDRW2KM911.jpg">
 								<i></i>
 							</span>
 							<font>VIPKID-男教师版</font>
@@ -151,7 +151,7 @@
 					<div class="kk">
 						<a href="http://www.apaipian.com/play/1910_26421.html" target="_blank">
 							<span>
-								<img alt='VIPKID-女教师版' src="${imgBnner}group1/M00/00/E6/Cgpw7FphmcOAZFXXAAF57fj2P48555.jpg">
+								<img alt='VIPKID-女教师版' src="${imgBnner}group1/M00/00/C1/CgpsbFrEO_uAU7tzAAJDIA4vTEw049.jpg">
 								<i></i>
 							</span>
 							<font>VIPKID-女教师版</font>
@@ -325,6 +325,17 @@
 				</li>
 				<li>
 					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_28096.html" target="_blank">
+							<span>
+								<img alt='VIPABC-私人英语外教' src="${imgBnner}group1/M00/00/C3/CgptuFrEXgeAaM6kAAE_9wynMgg167.jpg">
+								<i></i>
+							</span>
+							<font>VIPABC-私人英语外教</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
 						<a href="http://www.apaipian.com/play/888_16413.html" target="_blank">
 							<span>
 								<img alt='和教育-扔了壳的寄居蟹' src="${imgBnner}group1/M00/00/F6/CgpmTlqyDDuAeqgmAAG6UpKa3Ag562.jpg">
@@ -426,10 +437,10 @@
 					<div class="kk">
 						<a href="http://www.apaipian.com/play/1911_21414.html" target="_blank">
 							<span>
-								<img alt='上元' src="${imgBnner}group1/M00/00/FC/CgpmTlrEP6KAOuP-AAESIslIcKg000.jpg">
+								<img alt='上元-2014年终盘点' src="${imgBnner}group1/M00/00/FC/CgpmTlrEP6KAOuP-AAESIslIcKg000.jpg">
 								<i></i>
 							</span>
-							<font>上元</font>
+							<font>上元-2014年终盘点</font>
 						</a>
 					</div>
 				</li>
@@ -444,6 +455,18 @@
 						</a>
 					</div>
 				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_23255.html" target="_blank">
+							<span>
+								<img alt='新东方' src="${imgBnner}group1/M00/00/C2/CgpsbFrElECAAawpAAHpS0Poiy8495.jpg">
+								<i></i>
+							</span>
+							<font>新东方</font>
+						</a>
+					</div>
+				</li>
+				
 				
 				
 			</ul>

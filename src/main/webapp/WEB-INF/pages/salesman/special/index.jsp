@@ -105,7 +105,7 @@
 								<a href="http://www.apaipian.com/special/channel01.html" class="pic"><i></i><span># 区块链 #</span><img src="/resources/images/salesman/special/pd001.jpg" alt="区块链宣传片"/></a>
 							</dd>
 							<dd>
-								<a href="http://www.apaipian.com/special/channel06.html" class="pic"><i></i><span>#互联网教育/网校 #</span><img src="/resources/images/salesman/special/pd13.jpg" alt="发布会视频"/></a>
+								<a href="http://www.apaipian.com/special/channel06.html" class="pic"><i></i><span>#互联网教育/网校 #</span><img src="/resources/images/salesman/special/pd13.jpg" alt="互联网教育/网校"/></a>
 							</dd>
 							<dd>
 								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 大数据 #</span><img src="/resources/images/salesman/special/pd05.jpg" alt="大数据产品宣传片"/></a>
