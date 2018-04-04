@@ -294,10 +294,10 @@
 					<div class="kk">
 						<a href="http://www.apaipian.com/play/1911_21438.html" target="_blank">
 							<span>
-								<img alt='尚德的机构' src="${imgBnner}group1/M00/00/C1/CgpsbFrENmWADy_VAAJYG47ejvk143.jpg">
+								<img alt='尚德机构' src="${imgBnner}group1/M00/00/C1/CgpsbFrENmWADy_VAAJYG47ejvk143.jpg">
 								<i></i>
 							</span>
-							<font>尚德的机构</font>
+							<font>尚德机构</font>
 						</a>
 					</div>
 				</li>
