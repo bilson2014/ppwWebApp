@@ -239,10 +239,10 @@
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_28450.html" target="_blank">
 							<span>
-								<img alt="夸克链 Quark(QRK)" src="${imgBnner}/group1/M00/00/C0/CgptuFq55ziAWCYnAAHcI4dH3Q8856.jpg">
+								<img alt="夸克链 Quark(QKC)" src="${imgBnner}/group1/M00/00/C0/CgptuFq55ziAWCYnAAHcI4dH3Q8856.jpg">
 								<i></i>
 							</span>
-							<font>夸克链(QRK)</font>
+							<font>夸克链(QKC)</font>
 						</a>
 					</div>
 				</li>
