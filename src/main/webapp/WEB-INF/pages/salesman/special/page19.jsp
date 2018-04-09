@@ -43,7 +43,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="https://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>

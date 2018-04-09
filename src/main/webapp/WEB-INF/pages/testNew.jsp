@@ -431,7 +431,7 @@
 						<div></div>
 					</div>
 					<div class="plantContent">
-						<a href="http://zhuanti.apaipian.com/" target="_blank">
+						<a href="https://www.apaipian.com/special" target="_blank">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant1.png'>
 								<div>特色专题</div>

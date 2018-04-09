@@ -422,7 +422,7 @@
 					</div>
 					<div class="content" style="color:white;font-size:16px;text-align:center;margin-top:30px">在浩瀚的宇宙中，连接一切视频生命体，只为创造最伟大的作品</div>
 					<div class="plantContent">
-						<a href="http://zhuanti.apaipian.com/" target="_blank">
+						<a href="https://www.apaipian.com/special" target="_blank">
 							<div class="plantItem">
 								<img src='${imgPath}/index2/plant1.png'>
 								<div>特色专题<br><span style="">视频创意研究实验室</span></div>

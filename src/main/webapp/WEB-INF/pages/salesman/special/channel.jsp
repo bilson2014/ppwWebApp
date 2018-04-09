@@ -29,7 +29,7 @@
             	<li><a href="https://www.apaipian.com/cost/cal">估算成本</a></li>
             	<li><a href="https://www.apaipian.com/list.html">精品案例</a></li>
             	<li><a href="https://www.apaipian.com/order-flow.html">服务流程</a></li>
-            	<li><a href="http://zhuanti.apaipian.com/">特色专题</a></li>
+            	<li><a href="https://www.apaipian.com/special">特色专题</a></li>
             	<li><a href="http://factory.apaipian.com/">拍片工厂</a></li>
             	<li><a href="https://www.apaipian.com/news-list.html">新闻资讯</a></li>
             </ul>
@@ -63,7 +63,7 @@
 	<div class="pindao">
 		<div class="container">
 			<div class="jsz"></div>
-			<p class="choice"><a href="http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165" target="_blank"><i></i>撩一下客服MM</a> &emsp;&emsp; <a href="https://www.apaipian.com/list.html"><i></i>佛系地随意逛逛</a> &emsp;&emsp; <a href="http://zhuanti.apaipian.com/#special"><i></i>去看看精选专题</a> &emsp;&emsp; <a href="https://www.apaipian.com/news-list.html"><i></i>学习点拍片知识</a> &emsp;&emsp; <a href="https://www.apaipian.com/beta"><i></i>传递到官网首页</a></p>
+			<p class="choice"><a href="http://p.qiao.baidu.com/cps/chat?siteId=11228634&userId=23382165" target="_blank"><i></i>撩一下客服MM</a> &emsp;&emsp; <a href="https://www.apaipian.com/list.html"><i></i>佛系地随意逛逛</a> &emsp;&emsp; <a href="https://www.apaipian.com/special"><i></i>去看看精选专题</a> &emsp;&emsp; <a href="https://www.apaipian.com/news-list.html"><i></i>学习点拍片知识</a> &emsp;&emsp; <a href="https://www.apaipian.com/beta"><i></i>传递到官网首页</a></p>
 		</div>
 	</div>
 	<div class="foot">
