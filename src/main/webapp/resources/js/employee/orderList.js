@@ -8,8 +8,30 @@ $().ready(function() {
 	$('#cancleOrderList').off('click').on('click',function(){
 		 window.location.href=getContextPath()+'/project/running?order';
 	});
-	
+	$('#setListTaoBao').hide();
+	checkType();
 });
+
+function checkType(){
+
+	$('#cus').off('click').on('click',function(){
+		$('#taobao').removeClass('checkWho')
+		$(this).addClass('checkWho')
+		$('#setListTaoBao').hide();
+		$('#setListInfo').show();
+		$('#setErrorList').hide();
+	});
+	
+	$('#taobao').off('click').on('click',function(){
+		$('#cus').removeClass('checkWho')
+		$(this).addClass('checkWho')
+		$('#setListInfo').hide();
+		$('#setListTaoBao').show();
+		$('#setErrorList').hide();
+	});
+	
+}
+
 
 var orderIndex = {
 		init:function(){
@@ -36,40 +58,49 @@ var optionType = {
 function initView(){
 	var hasReques = $('#requireId').val();
 	var view = $('#setListInfo');
-	view.html('');
+	$('#setListInfo').html('');
+	$('#setListTaoBao').html('');
 	syncLoadData(function (res){
 		var obj = $.evalJSON(res.result);
-		var rows = obj.rows;
-		if(rows != null && rows.length > 0){
-			for (var int = 0; int < rows.length; int++) {
-				var row = rows[int];
-				var type = row.type;
-				var html = '';
-				switch (type) {
-				case rowType.select:
-					html = buildSelect(row,1);
-					break;
-				case rowType.multselect:
-					html = buildSelect(row,2);
-					break;
-				case rowType.datepicker:
-					html = buildDatepicker(row);
-					break;
-				case rowType.textarea:
-					html = buildTextarea(row);
-					break;
-				}
-				view.append(html);
-			}
-			$("._datepicker").datepicker({
-				language: 'zh',
-				dateFormat:'yyyy-MM-dd' 
-			});
-			initNeedEven();
-			if(hasReques !=null && hasReques!=''){
-				loadData(function (getRes){
-					      ReShowView(getRes);
-				}, getContextPath() + '/require/info?requireId='+hasReques,null);
+		//var rows = obj.data[0].rows;
+		for (var j = 0; j < obj.data.length; j++){
+		     	var rows = obj.data[j].rows;
+		     	if(j == 0){
+		     		view = $('#setListInfo');
+		     	}else{
+		     		view = $('#setListTaoBao');
+		     	}
+				if(rows!= null && rows.length > 0){
+					for (var int = 0; int < rows.length; int++) {
+						var row = rows[int];
+						var type = row.type;
+						var html = '';
+						switch (type) {
+						case rowType.select:
+							html = buildSelect(row,1);
+							break;
+						case rowType.multselect:
+							html = buildSelect(row,2);
+							break;
+						case rowType.datepicker:
+							html = buildDatepicker(row);
+							break;
+						case rowType.textarea:
+							html = buildTextarea(row);
+							break;
+						}
+						view.append(html);
+					}
+					$("._datepicker").datepicker({
+						language: 'zh',
+						dateFormat:'yyyy-MM-dd' 
+					});
+					initNeedEven();
+					if(hasReques !=null && hasReques!=''){
+						loadData(function (getRes){
+							      ReShowView(getRes);
+						}, getContextPath() + '/require/info?requireId='+hasReques,null);
+					}
 			}
 		}
 	}, getContextPath() + '/require/config', null);
@@ -82,7 +113,18 @@ function ReShowView(item){
 	for (var int = 0; int < jsKeys.length; int++){
 		 var getKey =  jsKeys[int].key;
 		 var getValue =  jsKeys[int].value;
-		 var getType =  jsKeys[int].type;
+		 var getType =  jsKeys[int].type;	 
+		 if(jsKeys[0].keyCus == 0){
+			    $('#cus').addClass('checkWho')
+			    $('#taobao').removeClass('checkWho')
+				$('#setListInfo').show();
+				$('#setListTaoBao').hide();
+		 }else{
+			    $('#cus').removeClass('checkWho')
+			    $('#taobao').addClass('checkWho')
+				$('#setListInfo').hide();
+				$('#setListTaoBao').show();
+		 }
 		 setValueToNeedList(getKey,getValue,getType);
 	}
 }
@@ -309,7 +351,18 @@ function getNeedValue(requireId){
 			  }
 			 setData.push(new optEntity(itemId, setMultData,setType));
 		} 
-		 if(isCheck){
+		// if(isCheck){
+		 
+		 var pickerNum = $('._datepicker ').length;
+		 var hasArea = $('.isArea').val();
+		 
+		 if($('#taobao').hasClass('checkWho')){
+			 setData[0].keyCus = 1;
+		 }else{
+			 setData[0].keyCus = 0;
+		 }
+		 
+		 if($('.activeNeed').length > pickerNum || hasArea!='' ){
 		 if(requireId!= null && requireId!="" && requireId != "null"){
 			 $.ajax({
 				  type: 'POST',
@@ -348,6 +401,7 @@ function getNeedValue(requireId){
  * key / value
  */
 function optEntity(key,value,type){
+	this.keyCus = 0;
 	this.key = key;
 	this.value = value;
 	this.type = type;

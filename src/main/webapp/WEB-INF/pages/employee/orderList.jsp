@@ -40,17 +40,17 @@
       <div class="orderModel">
        <div class="orderList">
             <div class="listHeader">
-                 <div class="orderNum" id="indentId">需求文档<span></span></div>
+                 <div class="orderNum" id="indentId">需求文档<span></span><div class="who" id="taobao">淘宝客户</div><div class="who checkWho" id="cus">普通客户</div></div>
                  <div class="cancleOrderList closeBtn hide" ></div>
-                 <div class="setErrorList" id="setErrorList">信息不完整</div>
+                 <div class="setErrorList" id="setErrorList">请填写信息</div>
             </div>
             <div class="listTitle">客户需求调查问卷</div>
             <div class="listTItleE">Client Briefing Document</div>
             <div id="setListInfo"></div>
+            <div id="setListTaoBao"></div>
             <div class="btnDiv" id="needBtn">
             	<div class="btn-c-g cancleOrderList" id="cancleOrderList">取消</div>
                 <div class="btn-c-r headerSave" id='saveOrderList'>保存</div>
-	                
 	        </div>
        </div> 
       </div> 

@@ -292,9 +292,9 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1911_21438.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1993_25331.html" target="_blank">
 							<span>
-								<img alt='尚德机构' src="${imgBnner}group1/M00/00/C1/CgpsbFrENmWADy_VAAJYG47ejvk143.jpg">
+								<img alt='尚德机构' src="${imgBnner}group1/M00/00/C4/CgptuFrJydmAfh0zAAKvnVABUmk902.jpg">
 								<i></i>
 							</span>
 							<font>尚德机构</font>

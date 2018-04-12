@@ -325,8 +325,38 @@ th {
         font-size: $font-size;
         color: $gray-dark;
         padding-left: 30px;
+        position: relative;
         span {
             margin-left: 15px;
+        }
+        .who{
+            font-size: $font-size-sm;
+            color: $gray-dark;
+            position: absolute;
+            width: 70px;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            border: 1px solid $border-line;
+            border-radius: 100px;
+            top: 18px;
+            left: 110px;
+            &:hover{
+                color:white;
+                border:none;
+                background: $red-base;
+                cursor: pointer;
+            }
+        }
+
+        .checkWho{
+                color:white;
+                border:none;
+                background: $red-base;
+        }
+
+        .who:nth-child(2){
+             left: 200px !important;
         }
     }
     .headerSave {
