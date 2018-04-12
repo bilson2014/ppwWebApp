@@ -57,7 +57,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object obj, ModelAndView mv)
 			throws Exception {
-		/*if(mv != null) {
+		if(mv != null) {
 			// 如果不为空，则说明进入视图解析器
 			final Map<String, String> nodeMap = storageDao.getStorageFromRedis(PmsConstant.STORAGE_NODE_RELATIONSHIP);
 			// 获取最优Storage节点
@@ -85,7 +85,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 			}
 			
 			mv.addObject(PmsConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
-		}*/
+		}
 		
 	}
 
