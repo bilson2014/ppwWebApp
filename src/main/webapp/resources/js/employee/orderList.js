@@ -109,12 +109,9 @@ function initView(){
 //回显需求表
 function ReShowView(item){	
 	var keys = item.result.requireJson;
-	var jsKeys = $.evalJSON(keys);
-	for (var int = 0; int < jsKeys.length; int++){
-		 var getKey =  jsKeys[int].key;
-		 var getValue =  jsKeys[int].value;
-		 var getType =  jsKeys[int].type;	 
-		 if(jsKeys[0].keyCus == 0){
+	if(keys != undefined&& keys != "[]"){
+		var jsKeys = $.evalJSON(keys);
+		 if(jsKeys[0].value == 'regular'){
 			    $('#cus').addClass('checkWho')
 			    $('#taobao').removeClass('checkWho')
 				$('#setListInfo').show();
@@ -125,27 +122,42 @@ function ReShowView(item){
 				$('#setListInfo').hide();
 				$('#setListTaoBao').show();
 		 }
-		 setValueToNeedList(getKey,getValue,getType);
+		 setValueToNeedList(jsKeys);
+	}else{
+		 setValueToNeedList('');
 	}
+/*	for (var int = 0; int < jsKeys.length; int++){
+		 var getKey =  jsKeys[int].key;
+		 var getValue =  jsKeys[int].value;
+		 var getType =  jsKeys[int].type;	 
+		 setValueToNeedList(getKey,getValue,getType);
+		 $('._datepicker').attr("disabled","disabled");
+	}*/
 }
 
 //如果LookList=1 去除多余选项     需求表回显
-function setValueToNeedList(keys,values,type){
+function setValueToNeedList(jsKeys){
      var rows= $('.qItem');
      var LookList = $('#flag').val();
      if(LookList == 1){
     	 $('.itemDiv').off('click');
+    	 $('._datepicker').attr("disabled","disabled");
      }
 	 for (var int = 0; int < rows.length; int++) {
 		 var getNowItem = $(rows[int]);
+	     var flag = false;
+		 for (var j = 0; j < jsKeys.length; j++){
+			  var keys =  jsKeys[j].key;
+			  var type = jsKeys[j].type;
+			  values = jsKeys[j].value;
 		 if($(rows[int]).attr('data-id')==keys){
+			 flag = true;
 			 if($(rows[int]).hasClass('isData')){
 				 if(values == '' || values ==null){
 					 $(rows[int]).find('.optionItem').find('input').val('未选择');
 				 }else{
 					 $(rows[int]).find('.optionItem').find('input').val(values);
 				 }
-				
 				 if(LookList == 1){
 					 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
 				 }
@@ -216,6 +228,28 @@ function setValueToNeedList(keys,values,type){
 			     }
 			  }
 		}
+	 }
+		 if(LookList == 1){
+				 if(!flag){
+					 if($(rows[int]).hasClass('isData')){
+							 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
+
+					 }
+					 if($(rows[int]).hasClass('isTextArea')){
+							 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
+					 }
+					 if($(rows[int]).hasClass('Mult')){
+						 $(rows[int]).find('.optionItemMult').find('.itemDiv').remove();		
+					 }
+					 var nowItem = $(rows[int]).find('.optionItem').find('.itemDiv');
+					 for (var intj = 0; intj < nowItem.length; intj++){
+						    		     $(nowItem[intj]).remove();
+						 }
+				     if(getNowItem.find('.optionItem').find('.otherInfo').find('input')){
+							 getNowItem.find('.optionItem').find('.otherInfo').find('input').attr("readonly","readonly");
+						}
+				 }
+		 }
 	 }
 }
 
@@ -298,6 +332,13 @@ var setData = new Array();
 function getNeedValue(requireId){
 	     var rows= $('.optionItem');
 	     var isCheck = true;
+	     
+	     if($('#taobao').hasClass('checkWho')){
+			 setData.push(new optEntity('regular', 'tb','0'));
+		 }else{
+			 setData.push(new optEntity('regular', 'regular','0'));
+		 }
+	     
 		 for (var int = 0; int < rows.length; int++) {
 			 var getNowItem = $(rows[int]) ;
 			 var setType = '';
@@ -318,14 +359,18 @@ function getNeedValue(requireId){
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val().trim();
 				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
-					 // isCheck = false;
+
 				  }
 			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val().trim();
 			  }
-			  var itemId =  $(rows[int]).parent().attr('data-id')
-			  setData.push(new optEntity(itemId,itemValues,setType));
+			  var itemId =  $(rows[int]).parent().attr('data-id');
+			  
+			  if(itemValues != undefined&&itemValues != null&&itemValues != ''){
+				  setData.push(new optEntity(itemId,itemValues,setType));
+			  }
+			  
 		}
 		 var rowsMult= $('.optionItemMult');
 		 for (var int = 0; int < rowsMult.length; int++) {
@@ -349,19 +394,18 @@ function getNeedValue(requireId){
 				 }
 				 setMultData.push(itemValues);
 			  }
-			 setData.push(new optEntity(itemId, setMultData,setType));
+			 if(setMultData.length > 0){
+				 setData.push(new optEntity(itemId, setMultData,setType));
+			 }
+			 
 		} 
-		// if(isCheck){
+	
 		 
 		 var pickerNum = $('._datepicker ').length;
 		 var hasArea = $('.isArea').val();
 		 
-		 if($('#taobao').hasClass('checkWho')){
-			 setData[0].keyCus = 1;
-		 }else{
-			 setData[0].keyCus = 0;
-		 }
-		 
+		
+		 var check = setData;
 		 if($('.activeNeed').length > pickerNum || hasArea!='' ){
 		 if(requireId!= null && requireId!="" && requireId != "null"){
 			 $.ajax({
@@ -401,7 +445,7 @@ function getNeedValue(requireId){
  * key / value
  */
 function optEntity(key,value,type){
-	this.keyCus = 0;
+
 	this.key = key;
 	this.value = value;
 	this.type = type;
