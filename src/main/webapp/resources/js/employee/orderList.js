@@ -358,9 +358,9 @@ function getNeedValue(requireId){
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val().trim();
-				  if(itemValues == "未选择"||itemValues == null||itemValues == ''){
+				 /* if(itemValues == "未选择"||itemValues == null||itemValues == ''){
 
-				  }
+				  }*/
 			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val().trim();
@@ -396,17 +396,22 @@ function getNeedValue(requireId){
 			  }
 			 if(setMultData.length > 0){
 				 setData.push(new optEntity(itemId, setMultData,setType));
-			 }
-			 
+			 }			 
 		} 
 	
 		 
 		 var pickerNum = $('._datepicker ').length;
-		 var hasArea = $('.isArea').val();
-		 
+		 var hasArea = $('.isArea');
+		 var flagArea = false;
+		 for(var int = 0; int < hasArea.length; int++){
+			 var areaVal = $(hasArea[int]).val();
+			 if(areaVal!=''&&areaVal!=null&&areaVal!=undefined){
+				 flagArea = true;
+			 }
+		 }
 		
 		 var check = setData;
-		 if($('.activeNeed').length > pickerNum || hasArea!='' ){
+		 if($('.activeNeed').length > pickerNum || flagArea ){
 		 if(requireId!= null && requireId!="" && requireId != "null"){
 			 $.ajax({
 				  type: 'POST',
