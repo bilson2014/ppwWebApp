@@ -111,7 +111,7 @@ function ReShowView(item){
 	var keys = item.result.requireJson;
 	if(keys != undefined&& keys != "[]"){
 		var jsKeys = $.evalJSON(keys);
-		 if(jsKeys[0].value == 'regular'){
+		 if(jsKeys[0].value == 0){
 			    $('#cus').addClass('checkWho')
 			    $('#taobao').removeClass('checkWho')
 				$('#setListInfo').show();
@@ -334,9 +334,9 @@ function getNeedValue(requireId){
 	     var isCheck = true;
 	     
 	     if($('#taobao').hasClass('checkWho')){
-			 setData.push(new optEntity('regular', 'tb','0'));
+			 setData.push(new optEntity('regular', 1,'0'));
 		 }else{
-			 setData.push(new optEntity('regular', 'regular','0'));
+			 setData.push(new optEntity('regular', 0,'0'));
 		 }
 	     
 		 for (var int = 0; int < rows.length; int++) {
