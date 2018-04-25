@@ -120,7 +120,16 @@ function ReShowView(item){
 	var keys = item.result.requireJson;
 	if(keys != undefined&& keys != "[]"){
 		var jsKeys = $.evalJSON(keys);
+<<<<<<< HEAD
 		 if(jsKeys[0].value == 1){
+=======
+		 if(jsKeys[0].value == 0){
+			    $('#cus').addClass('checkWho')
+			    $('#taobao').removeClass('checkWho')
+				$('#setListInfo').show();
+				$('#setListTaoBao').hide();
+		 }else{
+>>>>>>> 206bfbffedc090617c7272d5128235e9252fb8c3
 			    $('#cus').removeClass('checkWho')
 			    $('#taobao').addClass('checkWho')
 				$('#setListInfo').hide();
@@ -378,9 +387,15 @@ function getNeedValue(requireId){
 	     var isCheck = true;
 	     
 	     if($('#taobao').hasClass('checkWho')){
+<<<<<<< HEAD
 			 setData.push(new optEntity('regular',1,'0'));
 		 }else{
 			 setData.push(new optEntity('regular',0,'0'));
+=======
+			 setData.push(new optEntity('regular', 1,'0'));
+		 }else{
+			 setData.push(new optEntity('regular', 0,'0'));
+>>>>>>> 206bfbffedc090617c7272d5128235e9252fb8c3
 		 }
 	     
 		 for (var int = 0; int < rows.length; int++) {

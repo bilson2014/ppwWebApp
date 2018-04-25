@@ -321,7 +321,7 @@ public class IndentController extends BaseController {
 		if (update > 0) {
 			baseMsg.setCode(BaseMsg.NORMAL);
 			baseMsg.setErrorMsg("提交成功！");
-			sendMail(indent.getId());
+//			sendMail(indent.getId());TODO 需求文档变更，且线上无此邮件，暂不发送。开启邮件时需修改
 		} else {
 			baseMsg.setCode(BaseMsg.ERROR);
 			baseMsg.setErrorMsg("提交失败！");
