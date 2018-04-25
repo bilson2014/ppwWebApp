@@ -75,7 +75,7 @@
 								<a href="http://www.apaipian.com/special/channel02.html" class="pic"><i></i><span># 互联网金融 #</span><img src="/resources/images/salesman/special/pd002.jpg" alt="互联网金融"/></a>
 							</dd>
 							<dd>
-								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 品牌/形象 #</span><img src="/resources/images/salesman/special/pd06.jpg" alt="品牌形象宣传片"/></a>
+								<a href="http://www.apaipian.com/special/channel05.html" class="pic"><i></i><span># 医疗美容 #</span><img src="/resources/images/salesman/special/pd005.jpg" alt="医疗美容"/></a>
 							</dd>
 							<dd>
 								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 路演 #</span><img src="/resources/images/salesman/special/pd11.jpg" alt="路演视频"/></a>
@@ -132,13 +132,13 @@
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
-								<a href="http://www.apaipian.com/special/channel05.html" class="pic"><i></i><span># 医疗美容 #</span><img src="/resources/images/salesman/special/pd005.jpg" alt="医疗美容"/></a>
+								<a href="http://www.apaipian.com/special/channel07.html" class="pic"><i></i><span># 电商视频  #</span><img src="/resources/images/salesman/special/pd007.jpg" alt="电商视频"/></a>
 							</dd>
 							<dd>
 								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 城市 #</span><img src="/resources/images/salesman/special/pd15.jpg" alt="城市宣传片"/></a>
 							</dd>
 							<dd>
-								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 金融/理财 #</span><img src="/resources/images/salesman/special/pd04.jpg" alt="金融产品宣传片"/></a>
+								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 品牌/形象 #</span><img src="/resources/images/salesman/special/pd06.jpg" alt="品牌形象宣传片"/></a>
 							</dd>
 						</dl>
 					</div>

@@ -6,9 +6,6 @@
 $().ready(function() {
 	
 	initScroll();
-	
-	
-	
 	initIndexProp();
 	initProduct();
 	initBanner();
@@ -22,6 +19,7 @@ $().ready(function() {
 		initScroll();
 	}); 
 	merchantBridge();
+	colorEgg();
 });
 
 function initBanner(){
@@ -714,8 +712,21 @@ function logoEven(){
 	});
 	$('.logo11').off('click').on('click',function(){
 		window.open('http://www.ciprun.com/');
-	});
-	
-	
+	});	
+}
+
+
+//function colorEgg() {
+//	var p = "%c *******\n" + "/**////** \n" + "/**   /** \n" + "/******* \n"
+//			+ "/**////  \n" + "/**  \n" + "/**  \n" + "/** \n" + "// "
+//	console.info(p, "color:#fe5453;font-size:28px");
+//	console.info('欢迎加入拍片网');
+//}
+
+function colorEgg() {
+	var p = "%c *******\n" + "/**////** \n" + "/**   /** \n" + "/******* \n"
+			+ "/**////  \n" + "/**  \n" + "/**  \n" + "/** \n" + "// "
+	console.info(p, "color:#fe5453;font-size:28px");
+	console.info('欢迎加入拍片网');
 }
 

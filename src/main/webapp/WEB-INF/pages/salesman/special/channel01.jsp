@@ -16,6 +16,7 @@
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script src="/resources/js/salesman/special/bannerAni.js"></script>
+<script src="/resources/js/salesman/special/channel01.js"></script>
 <script src="/resources/js/common.js"></script>
 <spring:url value="${file_locate_storage_path}" var="imgBnner" />
 
@@ -31,6 +32,8 @@
 	function toplay(){
 		createVideo('${imgBnner}/group1/M00/00/BB/CgpsbFqvYU6AS5iWAQUrxGsJZy8696.mp4');
 	}
+	
+	
 	
 </script>
 <style type="text/css">

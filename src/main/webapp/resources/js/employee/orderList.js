@@ -49,7 +49,8 @@ var rowType = {
 		select : "select",
 		datepicker : "datepicker",
 		textarea :"textarea",
-		multselect :"multselect"
+		multselect :"multselect",
+		title :"title"
 		};
 var optionType = {
 		checkbox:"checkbox",
@@ -78,15 +79,23 @@ function initView(){
 						switch (type) {
 						case rowType.select:
 							html = buildSelect(row,1);
+							if(row.extension == 'des'){
+								html = buildSelect(row,1,true);
+							}else{
+								html = buildSelect(row,1,false);
+							}
 							break;
 						case rowType.multselect:
-							html = buildSelect(row,2);
+								html = buildSelect(row,2,false);							   
 							break;
 						case rowType.datepicker:
 							html = buildDatepicker(row);
 							break;
 						case rowType.textarea:
 							html = buildTextarea(row);
+							break;
+						case rowType.title:
+							html = buildTitle(row);
 							break;
 						}
 						view.append(html);
@@ -111,16 +120,16 @@ function ReShowView(item){
 	var keys = item.result.requireJson;
 	if(keys != undefined&& keys != "[]"){
 		var jsKeys = $.evalJSON(keys);
-		 if(jsKeys[0].value == 'regular'){
-			    $('#cus').addClass('checkWho')
-			    $('#taobao').removeClass('checkWho')
-				$('#setListInfo').show();
-				$('#setListTaoBao').hide();
-		 }else{
+		 if(jsKeys[0].value == 1){
 			    $('#cus').removeClass('checkWho')
 			    $('#taobao').addClass('checkWho')
 				$('#setListInfo').hide();
 				$('#setListTaoBao').show();
+		 }else{
+			    $('#cus').addClass('checkWho')
+			    $('#taobao').removeClass('checkWho')
+				$('#setListInfo').show();
+				$('#setListTaoBao').hide();
 		 }
 		 setValueToNeedList(jsKeys);
 	}else{
@@ -189,7 +198,6 @@ function setValueToNeedList(jsKeys){
 	                    	 }else{
 	                    		 thisDiv.remove();
 	                    	 }
-					    	  
 					    }
 					});
 				 if(type == 'input'){
@@ -233,7 +241,6 @@ function setValueToNeedList(jsKeys){
 				 if(!flag){
 					 if($(rows[int]).hasClass('isData')){
 							 $(rows[int]).find('.optionItem').find('input').attr("disabled","disabled");
-
 					 }
 					 if($(rows[int]).hasClass('isTextArea')){
 							 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
@@ -253,7 +260,7 @@ function setValueToNeedList(jsKeys){
 	 }
 }
 
-function buildSelect(obj,isMult){	
+function buildSelect(obj,isMult,isDes){	
 	if(isMult == 1){
 		var html = $('<div class="qItem" data-id="'+obj.name+'"></div>');
 		html.append('<div class="qTitle">'+obj.title+'</div>');
@@ -265,21 +272,31 @@ function buildSelect(obj,isMult){
 		var items = $('<div class="optionItemMult"></div>');
 	}
 	var options = obj.options;
+	var addDes = "";
+	if(isDes){
+		addDes = "des";
+	}
 	if(options != null && options.length > 0){
 		for (var int = 0; int < options.length; int++) {
 			var option = options[int];
 			var type = option.type;
 			switch (type) {
 			case optionType.checkbox:
-				items.append('<div class="itemDiv" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
+				items.append('<div class="itemDiv '+addDes+' " data-des="'+option.des+'" type="checkbox" name="'+obj.name+'" value="'+option.value+'">'+option.text+'</div>');
 				break;
 			case optionType.text:
-				items.append(option.text + '<div class="itemDiv other" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><div class="setOtherTitle"></div><input></div>');
+				items.append(option.text + '<div class="itemDiv other '+addDes+'" data-des="'+option.des+'" name = "'+obj.name+'">'+option.text+'</div>'+'<div class="otherInfo"><div class="setOtherTitle"></div><input></div>');
 				break;
 			}
 		}
 	}
+	
+	if(isDes){
+		items.append('<div class="itemDes hide">大打算打算打算打算打算的那就是大渡口拉萨看来就</div>');
+	}
+	
 	html.append(items);
+	
 	return html;
 }
 function buildDatepicker(obj){
@@ -298,16 +315,40 @@ function buildTextarea(obj){
 	html.append(items);
 	return html;
 }
+
+function buildTitle(obj){
+	var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
+	html.append('<div class="qTitle">'+obj.title+'</div>');
+	return html;
+}
+
 function initNeedEven(){
 	$('.optionItem .itemDiv').off('click').on('click',function(){
-		$(this).parent().find('.itemDiv').removeClass('activeNeed');
-//		$(this).parent().parent().find('.otherInfo').hide();
-		$(this).addClass('activeNeed');
+		
+		if($(this).hasClass('des')){
+			$(this).parent().find('.itemDes').removeClass('hide');
+			$(this).parent().find('.itemDes').html($(this).attr('data-des'));
+		}
+		
+		if($(this).hasClass('activeNeed')){
+			$(this).parent().find('.itemDiv').removeClass('activeNeed');
+			if($(this).hasClass('des')){
+				$(this).parent().find('.itemDes').addClass('hide');
+			}
+		}else{
+			$(this).parent().find('.itemDiv').removeClass('activeNeed');
+			$(this).addClass('activeNeed');
+			$(this).parent().find('.otherInfo').hide();
+		}
+//		$(this).parent().parent().find('.otherInfo').hide();	
 //		if($(this).hasClass('other')){
 //		$(this).parent().parent().find('.otherInfo').show();
 //		}
 	});
 	$('.optionItemMult .itemDiv').off('click').on('click',function(){
+		
+		
+		
 		if($(this).hasClass('activeNeed')){
 			$(this).removeClass('activeNeed');
 		}else{
@@ -323,6 +364,9 @@ function initNeedEven(){
 			thisDiv.attr('class','itemDiv other');
 			thisDiv.parent().parent().find('.otherInfo').hide();
 		}else{
+			if($(this).parent().hasClass('optionItem')){
+				$(this).parent().find('.itemDiv').removeClass('activeNeed');
+			}
 			$(this).addClass('activeNeed');
 			$(this).parent().parent().find('.otherInfo').show();
 		}
@@ -334,9 +378,9 @@ function getNeedValue(requireId){
 	     var isCheck = true;
 	     
 	     if($('#taobao').hasClass('checkWho')){
-			 setData.push(new optEntity('regular', 'tb','0'));
+			 setData.push(new optEntity('regular',1,'0'));
 		 }else{
-			 setData.push(new optEntity('regular', 'regular','0'));
+			 setData.push(new optEntity('regular',0,'0'));
 		 }
 	     
 		 for (var int = 0; int < rows.length; int++) {
@@ -345,16 +389,16 @@ function getNeedValue(requireId){
 			 var itemValues = '';
 			 if(getNowItem.find('.activeNeed')&&!getNowItem.find('.activeNeed').hasClass('_datepicker')&&!getNowItem.find('textarea').hasClass('isArea')){
 				 itemValues = getNowItem.find('.activeNeed').text().trim();
-				  if(itemValues == ""||itemValues == null){
+				/*  if(itemValues == ""||itemValues == null){
 					  isCheck = false;
-				  }
+				  }*/
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
 				 itemValues =  $(rows[int]).find('input').val().trim();
 				 setType = "input";
-				  if(itemValues == ""||itemValues == null){
+				/*  if(itemValues == ""||itemValues == null){
 					  isCheck = false;
-				  }
+				  }*/
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val().trim();
@@ -374,9 +418,9 @@ function getNeedValue(requireId){
 		}
 		 var rowsMult= $('.optionItemMult');
 		 for (var int = 0; int < rowsMult.length; int++) {
-			 if(!$(rowsMult[int]).find('.itemDiv').hasClass('activeNeed')){
+		/*	 if(!$(rowsMult[int]).find('.itemDiv').hasClass('activeNeed')){
 				 isCheck = false;
-			 }
+			 }*/
 			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
 			 var checkActive = $(rowsMult[int]).find('.activeNeed');
 			 var setMultData = new Array();
@@ -450,7 +494,6 @@ function getNeedValue(requireId){
  * key / value
  */
 function optEntity(key,value,type){
-
 	this.key = key;
 	this.value = value;
 	this.type = type;

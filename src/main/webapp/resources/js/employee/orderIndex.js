@@ -326,6 +326,7 @@ var orderIndex = {
 				
 				var phone = $(this).parent().find('.indent_tele').text();
 				$('#sureModel').show();
+				realEven();
 				var noReal = $('#sureModel').find('#noReal');
 				var Real = $('#sureModel').find('#real');
 				$(noReal).attr('data-id',id);
@@ -384,28 +385,7 @@ var orderIndex = {
 			$('.headerSave').off('click').on('click',function(){
 				getNeedValue($('#indentId').attr('data-content'));
 			});
-			$('#noReal').off('click').on('click',function(){
-				var testArea = $('#setTextArea').val();
-				if(checkUbListUserDes()){
-					$('.modelPage').hide();
-					var id = $(this).attr('data-id');
-					loadData(function(res){
-						refresh();
-					}, getContextPath() + '/order/shamOrder', $.toJSON({
-						id : id,
-					    cSRecomment:testArea
-					}));
-				}
-			});
-			//确认真实
-			$('#real').off('click').on('click',function(){
-				var phone = $(this).attr('data-content');
-				var id = $(this).attr('data-id');
-				if(checkUbListUserDes()){
-					$('.modelPage').hide();
-					checkUbListUser(phone,id);
-				}
-			});			
+			realEven();
 			$('.closeBtn').off('click').on('click',function(){
 				$('.modelPage').hide();
 				initM = 3;
@@ -1031,17 +1011,19 @@ function bangSubmit(check,item){
 			}else{
 				var data = {indent_recomment:indent_recomment,id:subId,orderDate:subData,realName:subName,userCompany:subCompany,indent_tele:subTel,indentSource:subInfo,referrerId:subInfoPeople,indentName:dataIndentName,cSRecomment:textArea};
 			}
+			$('#submitEdit').off('click');
 			$.ajax({
 				  type: 'POST',
 				  url: getContextPath()+'/order/updateOrSave',
 				  data: data,
 				  success:function(data){
 					  $('#NewOrder').hide();
-						bangSubmit(check,item);
+					  bangSubmit(check,item);
+					  orderIndex.readMore(nowPage);
 					 /* if(check == 1){
 						  $('.orderIndex').click();
 					  }else{*/
-						orderIndex.readMore(nowPage);
+						
 					  //}
 					},
 				error:function(data){
@@ -1878,4 +1860,32 @@ function getHelp(){
 		}
 		bangSelect();
 	}, getContextPath() + '/employee/getEmployeeList',null);
+}
+
+function realEven(){
+	$('#noReal').off('click').on('click',function(){
+		var testArea = $('#setTextArea').val();
+		if(checkUbListUserDes()){
+			$('.modelPage').hide();
+			var id = $(this).attr('data-id');
+			$('#noReal').off('click');
+			loadData(function(res){
+				refresh();
+				realEven();
+			}, getContextPath() + '/order/shamOrder', $.toJSON({
+				id : id,
+			    cSRecomment:testArea
+			}));
+		}
+	});
+	//确认真实
+	$('#real').off('click').on('click',function(){
+		var phone = $(this).attr('data-content');
+		var id = $(this).attr('data-id');
+		if(checkUbListUserDes()){
+		    $('.modelPage').hide();
+			checkUbListUser(phone,id);
+			$('#real').off('click');
+		}
+	});
 }
