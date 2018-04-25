@@ -121,17 +121,19 @@ function ReShowView(item){
 	if(keys != undefined&& keys != "[]"){
 		var jsKeys = $.evalJSON(keys);
 
-		 if(jsKeys[0].value == 1){
 
-			    $('#cus').addClass('checkWho')
-			    $('#taobao').removeClass('checkWho')
-				$('#setListInfo').show();
-				$('#setListTaoBao').hide();
+		 if(jsKeys[0].value == 1){
+			 	$('#cus').removeClass('checkWho')
+			    $('#taobao').addClass('checkWho')
+				$('#setListInfo').hide();
+				$('#setListTaoBao').show();
+			    
 		 }else{
 			    $('#cus').addClass('checkWho')
 			    $('#taobao').removeClass('checkWho')
 				$('#setListInfo').show();
 				$('#setListTaoBao').hide();
+			    
 		 }
 		 setValueToNeedList(jsKeys);
 	}else{
