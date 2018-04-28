@@ -199,6 +199,7 @@
 					                    <li data-id="10">线上-商桥</li>
 					                    <li data-id="2">线上-活动</li>
 					                    <li data-id="23">线上-钉钉</li>
+					                    <li class="removeLi" data-id="24">线上-分销</li>
 	                                    <li class="removeLi" data-id="1">线上-网站</li>
 					                    <li class="removeLi" data-id="3">线上-新媒体</li>
 					                    <li data-id="4">线上-电销</li>
@@ -638,6 +639,15 @@
 							          </c:if>
 							           <c:if test="${item.indentSource == 21}">
 							                           线上-公众号-作品
+							          </c:if>
+							           <c:if test="${item.indentSource == 22}">
+							                          线上-SEM
+							          </c:if>
+							           <c:if test="${item.indentSource == 23}">
+							                          线上-钉钉
+							          </c:if>
+							           <c:if test="${item.indentSource == 24}">
+							                           线上-分销
 							          </c:if>
 							</td>
 							<td class="orderDate"><c:out value="${item.orderDate }"/></td>

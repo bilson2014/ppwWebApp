@@ -545,6 +545,9 @@ var orderIndex = {
 			if(num == 23){
 				name = '线上-钉钉';
 			}
+			if(num == 24){
+				name = '线上-分销';
+			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
 			var html = [
@@ -634,6 +637,9 @@ var orderIndex = {
 			}
 			if(num == 23){
 				name = '线上-钉钉';
+			}
+			if(num == 24){
+				name = '线上-分销';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
@@ -726,6 +732,9 @@ var orderIndex = {
 			}
 			if(num == 23){
 				name = '线上-钉钉';
+			}
+			if(num == 24){
+				name = '线上-分销';
 			}
 			
 			var setName ='<td class="indentSource" data-source ="'+num+'">'+name +'</td>' ;
