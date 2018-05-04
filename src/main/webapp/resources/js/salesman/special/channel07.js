@@ -4,7 +4,7 @@ $().ready(function() {
 		  var code = $(this).attr('data-id');
 		  $('.pageMenu div').removeClass('activeMenu');
 		  $(this).addClass('activeMenu');
-		  if(code == 1){
+		  if(code == 0){
 			  $('.pageAni .kk a').removeClass('setHeight');
 			  $('.pageAni').removeClass('setHeight');
 		  }else{

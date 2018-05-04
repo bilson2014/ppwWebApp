@@ -171,14 +171,14 @@ height:0 !important
 		
 		<div class="container">
 		    <div class="pageMenu">
-		        <div id="findPage1" class="activeMenu findPage" data-id="1">全部</div>
-		        <div id="findPage2" class="findPage" data-id="2">生活</div>
-		        <div id="findPage3" class="findPage" data-id="3">数码</div>
-		        <div id="findPage4" class="findPage" data-id="4">亲子</div>
-		        <div id="findPage5" class="findPage" data-id="5">车品</div>
-		        <div id="findPage6" class="findPage" data-id="6">护肤</div>
-		        <div id="findPage7" class="findPage" data-id="7">电器</div>
-		        <div id="findPage8" class="findPage" data-id="8">彩妆</div>
+		        <div id="findPage1" class="activeMenu findPage" data-id="0">全部</div>
+		        <div id="findPage2" class="findPage" data-id="1">生活</div>
+		        <div id="findPage3" class="findPage" data-id="2">数码</div>
+		        <div id="findPage4" class="findPage" data-id="3">亲子</div>
+		        <div id="findPage5" class="findPage" data-id="4">车品</div>
+		        <div id="findPage6" class="findPage" data-id="5">护肤</div>
+		        <div id="findPage7" class="findPage" data-id="6">电器</div>
+		        <div id="findPage8" class="findPage" data-id="7">彩妆</div>
 		    </div>
 			<ul class="channel">
 				
