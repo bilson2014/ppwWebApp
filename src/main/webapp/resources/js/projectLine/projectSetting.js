@@ -236,7 +236,7 @@ function createSubjoinMod(obj){
 
 function createTime(obj,num){
 	var card = $(".setCard div.active");
-	var cardPrice = $(card).find('.price').text();
+	var cardPrice = $(card).find('.price').attr('data-value');
 	var setArray = new Array;
 	setArray.push(cardPrice);
 	if(obj.computeType == 0){
@@ -319,13 +319,14 @@ function buildCar1(obj){
 			}
 		}
 	}
+	
 	var html1 = [
 				'<div class="cardContent" data-id="'+obj.chanpinconfigurationId+'">',
 				'    <div class="card">',
 				'         <div class="cardTop">',
 				'             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
 				'             <div></div>',
-				'             <div><span  class="price">'+obj.basePrice+'</span>元起</div>',
+				'             <div><span  class="price" data-value="'+obj.basePrice+'">'+obj.initiatePrice+'</span>元起</div>',
 				'         </div>',
 				'         <div class="cardBottom">',
 				'              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
@@ -359,7 +360,7 @@ function buildCar2(obj){
 	             '         <div class="cardTop">',
 	             '             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
 	             '             <div></div>',
-	             '             <div><span class="price">'+obj.basePrice+'</span>元起</div>',
+	             '             <div><span  class="price" data-value="'+obj.basePrice+'">'+obj.initiatePrice+'</span>元起</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
@@ -393,7 +394,7 @@ function buildCar3(obj){
 	             '         <div class="cardTop">',
 	             '             <div class="pName">'+obj.chanpinconfigurationName+'</div>',
 	             '             <div></div>',
-	             '             <div><span class="price">'+obj.basePrice+'</span>元起</div>',
+	             '             <div><span  class="price" data-value="'+obj.basePrice+'">'+obj.initiatePrice+'</span>元起</div>',
 	             '         </div>',
 	             '         <div class="cardBottom">',
 	             '              <img src="'+getDfsHostName() +obj.chanpinconfigurationPicLDUrl +'">',
