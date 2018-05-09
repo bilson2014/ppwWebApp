@@ -57,7 +57,7 @@
                 <ul class="video_list">
                 	<li>
                     	<a href="https://www.apaipian.com/play/1167_74.html" target="_blank">
-                        	<div class="kuang"><img alt="晚安 北京" src="${imgBnner}/group1/M00/00/04/Cgpw7FgZwiiALK1GAAIAPGwi8Uw323.jpg"></div>
+                        	<div class="kuang"><img alt="晚安 北京" src="${imgBnner}/group1/M00/01/03/Cgpw7FrgBPqARPSaAAHG1lJrouE236.jpg"></div>
                             <h3>晚安 北京</h3>
                             <p>延时摄影捕捉北京美妙夜景</p>
                         </a>

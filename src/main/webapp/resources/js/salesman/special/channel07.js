@@ -1,4 +1,12 @@
 $().ready(function() {
+	
+	
+	$('.setShare').click(function(){
+		var title = '区块链宣传片制作_区块链项目路演视频_区块链是什么_区块链技术-拍片网';
+		var url = 'https://www.apaipian.com/special/channel01.html';
+		var img_path = 'https://www.apaipian.com//resources/images/salesman/special/banner01.jpg';
+		share.init(url,title,img_path);
+	});
 		
 	$('.findPage').off('click').on('click',function(){
 		  var code = $(this).attr('data-id');
@@ -14,6 +22,8 @@ $().ready(function() {
 			  $('.page'+code+'').removeClass('setHeight');
 		  }
 	});
+	
+	
 	
 	
 	
@@ -65,7 +75,7 @@ $().ready(function() {
      });
 	 
 	 
-	 var aHeight = $('.kk a').height();
+	 var aHeight = $('.kk').height();
 	 $('.kk a').css('height',aHeight);
 	 $('.channel li').css('height',aHeight + 40)
 

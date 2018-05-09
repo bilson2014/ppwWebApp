@@ -15,11 +15,10 @@
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <spring:url value="${file_locate_storage_path}" var="imgBnner" />
-<script src="/resources/js/salesman/special/bannerAni.js"></script>
 <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=8c49c537a706"></script>
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/jquery.flexslider-min.js"></script>
-<script src="/resources/js/salesman/special/channel07.js"></script>
+
 
 <script>
 	function SearchVideo(){  
@@ -154,8 +153,8 @@ height:0 !important
 	
 	<div class="main_top">
 		<div class="container newCon">
-			<h2>[ 电商  + 视频 ]<br>淘宝已从追求效率的交易市场平台升级成为追求乐趣的内容化社区化的消费媒体平台，内容化时代已经到来！</h2>
-		    <p style="text-align: center;">仅2017年4月到2017年12月，淘宝短视频播放量就由原来的3800万次上升至18亿次，净增长4700%。对于商家而言，想要在新的内容生态竞争模式下取得销量的突破，制作精良的短视频无疑是当前最好的选择。运用短视频引爆内容流量，抢占公域导购矩阵，瓜分内容营销红利。拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，作品品质遥遥领先。</p>
+			<h2>[ 电商  + 视频 ]<br>内容化时代已经到来</h2>
+		    <p style="text-align: center;">淘宝已从追求效率的交易市场平台升级成为追求乐趣的内容化社区化的消费媒体平台，仅2017年4月到2017年12月，淘宝短视频播放量就由原来的3800万次上升至18亿次，净增长4700%。对于商家而言，想要在新的内容生态竞争模式下取得销量的突破，制作精良的短视频无疑是当前最好的选择。运用短视频引爆内容流量，抢占公域导购矩阵，瓜分内容营销红利。拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，作品品质遥遥领先。</p>
 	        <div class="toshare"> 
 	         <ul class="share">
 	                            <li>分享到 : </li>
@@ -175,32 +174,53 @@ height:0 !important
 		        <div id="findPage2" class="findPage" data-id="1">生活</div>
 		        <div id="findPage3" class="findPage" data-id="2">数码</div>
 		        <div id="findPage4" class="findPage" data-id="3">亲子</div>
-		        <div id="findPage5" class="findPage" data-id="4">车品</div>
-		        <div id="findPage6" class="findPage" data-id="5">护肤</div>
-		        <div id="findPage7" class="findPage" data-id="6">电器</div>
-		        <div id="findPage8" class="findPage" data-id="7">彩妆</div>
+		        <div id="findPage6" class="findPage" data-id="4">护肤</div>
+		        <div id="findPage7" class="findPage" data-id="5">电器</div>
+		        <div id="findPage8" class="findPage" data-id="6">彩妆</div>
 		    </div>
 			<ul class="channel">
-				
-				<li class="page1 pageAni">
+			
+			  <li class="page1 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29748.html" target="_blank">
+						<a href="http://www.apaipian.com/play/9_29731.html" target="_blank">
 							<span>
-								<img alt='苍山 Cangshan-评测教学' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<img alt='美的 Midea B3除螨仪-功能讲解' src="${imgBnner}group1/M01/01/04/CgpmTlre6vOADBeuAAFL48xaCSk898.jpg">
 								<i></i>
 							</span>
-							<font>苍山 Cangshan-评测教学</font>
+							<font>美的 Midea B3除螨仪-功能讲解</font>
 						</a>
 					</div>
 				</li>
 				<li class="page1 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29797.html" target="_blank">
+						<a href="http://www.apaipian.com/play/9_29732.html" target="_blank">
 							<span>
-								<img alt='Teabox 茶壶-评测教学' src="${imgBnner}group1/M01/01/06/CgpmTlrqjqGAWLYIAADzDmS44gs253.jpg">
+								<img alt='美的 Midea B5除螨仪-功能讲解' src="${imgBnner}group1/M01/00/CA/CgpsbFre6vmARxR1AAGN9YgiwAA272.jpg">
 								<i></i>
 							</span>
-							<font>Teabox 茶壶-评测教学</font>
+							<font>美的 Midea B5除螨仪-功能讲解</font>
+						</a>
+					</div>
+				</li>
+				<li class="page1 pageAni">
+					<div class="kk">
+						<a href="http://www.apaipian.com/play/1910_29748.html" target="_blank">
+							<span>
+								<img alt='苍山 Cangshan-功能讲解' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<i></i>
+							</span>
+							<font>苍山 Cangshan-功能讲解</font>
+						</a>
+					</div>
+				</li>
+				<li class="page1 pageAni">
+					<div class="kk">
+						<a href="http://www.apaipian.com/play/1910_29797.html" target="_blank">
+							<span>
+								<img alt='Teabox 茶壶-功能讲解' src="${imgBnner}group1/M01/01/06/CgpmTlrqjqGAWLYIAADzDmS44gs253.jpg">
+								<i></i>
+							</span>
+							<font>Teabox 茶壶-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -215,28 +235,7 @@ height:0 !important
 						</a>
 					</div>
 				</li>
-				<li class="page1 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/9_29731.html" target="_blank">
-							<span>
-								<img alt='美的  Midea 除螨仪B3-外观与工艺' src="${imgBnner}group1/M01/01/04/CgpmTlre6vOADBeuAAFL48xaCSk898.jpg">
-								<i></i>
-							</span>
-							<font>美的  Midea 除螨仪B3-外观与工艺</font>
-						</a>
-					</div>
-				</li>
-				<li class="page1 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/9_29732.html" target="_blank">
-							<span>
-								<img alt='美的  Midea 除螨仪B5-外观与工艺' src="${imgBnner}group1/M01/00/CA/CgpsbFre6vmARxR1AAGN9YgiwAA272.jpg">
-								<i></i>
-							</span>
-							<font>美的  Midea 除螨仪B5-外观与工艺</font>
-						</a>
-					</div>
-				</li>
+				
 				<li class="page1 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29795.html" target="_blank">
@@ -250,23 +249,23 @@ height:0 !important
 				</li>
 				<li class="page1 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/9_29732.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1910_29791.html" target="_blank">
 							<span>
-								<img alt='VARIDESK 地垫-评测教学' src="${imgBnner}group1/M00/00/CD/CgptuFrqkQaAK_Z3AAEn6-VGnY0542.jpg">
+								<img alt='VARIDESK 地垫-功能讲解' src="${imgBnner}group1/M00/00/CD/CgptuFrqkQaAK_Z3AAEn6-VGnY0542.jpg">
 								<i></i>
 							</span>
-							<font>VARIDESK 地垫-评测教学</font>
+							<font>VARIDESK 地垫-功能讲解</font>
 						</a>
 					</div>
 				</li>
 				<li class="page1 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29765.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1910_29789.html" target="_blank">
 							<span>
-								<img alt='Chefman 电茶壶-外观与工艺' src="${imgBnner}group1/M00/00/CD/CgptuFrqkQaAK_Z3AAEn6-VGnY0542.jpg">
+								<img alt='Chefman 电茶壶-功能讲解' src="${imgBnner}group1/M01/01/06/CgpmTlrqkcmAQAu-AAGGmcyex5I921.jpg">
 								<i></i>
 							</span>
-							<font>Chefman 电茶壶-外观与工艺</font>
+							<font>Chefman 电茶壶-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -296,10 +295,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29763.html" target="_blank">
 							<span>
-								<img alt='Behmor-外观与工艺' src="${imgBnner}group1/M00/00/CB/CgpsbFrprA2ADGi1AAGEjZ5gMEg743.jpg">
+								<img alt='Behmor-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrprA2ADGi1AAGEjZ5gMEg743.jpg">
 								<i></i>
 							</span>
-							<font>Behmor-外观与工艺</font>
+							<font>Behmor-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -307,10 +306,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29765.html" target="_blank">
 							<span>
-								<img alt='Comfee-外观与工艺' src="${imgBnner}group1/M01/01/06/CgpmTlrprZyAFZZHAAFwNxrX-GE735.jpg">
+								<img alt='Comfee-功能讲解' src="${imgBnner}group1/M01/01/06/CgpmTlrprZyAFZZHAAFwNxrX-GE735.jpg">
 								<i></i>
 							</span>
-							<font>Comfee-外观与工艺</font>
+							<font>Comfee-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -329,10 +328,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29752.html" target="_blank">
 							<span>
-								<img alt='NutriBullet-评测教学' src="${imgBnner}group1/M01/01/04/Cgpw7FrpomyAQ80RAAHHSt5KsEc797.jpg">
+								<img alt='NutriBullet-功能讲解' src="${imgBnner}group1/M01/01/04/Cgpw7FrpomyAQ80RAAHHSt5KsEc797.jpg">
 								<i></i>
 							</span>
-							<font>NutriBullet-评测教学</font>
+							<font>NutriBullet-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -351,10 +350,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29756.html" target="_blank">
 							<span>
-								<img alt='完美烘烤 Perfect Bake 智能秤-评测教学' src="${imgBnner}group1/M01/01/04/Cgpw7Frqk_qAE9I9AADDuhqAHKA951.jpg">
+								<img alt='完美烘烤 Perfect Bake 智能秤-功能讲解' src="${imgBnner}group1/M00/00/CD/CgptuFrppnCAXcvvAAIaDwYpf7M109.jpg">
 								<i></i>
 							</span>
-							<font>完美烘烤 Perfect Bake 智能秤-评测教学</font>
+							<font>完美烘烤 Perfect Bake 智能秤-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -362,10 +361,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/9_29726.html" target="_blank">
 							<span>
-								<img alt='明基 BenQ 投影仪-功能讲解' src="${imgBnner}group1/M01/00/CA/CgpsbFrdiSiAWhmKAAE4pvn92H0971.jpg">
+								<img alt='明基 BenQ 投影仪-外观与工艺' src="${imgBnner}group1/M01/00/CA/CgpsbFrdiSiAWhmKAAE4pvn92H0971.jpg">
 								<i></i>
 							</span>
-							<font>明基 BenQ 投影仪-功能讲解</font>
+							<font>明基 BenQ 投影仪-外观与工艺</font>
 						</a>
 					</div>
 				</li>
@@ -384,10 +383,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29852.html" target="_blank">
 							<span>
-								<img alt='三星 Samsung-Galaxy Tab S3-功能讲解' src="${imgBnner}group1/M01/01/04/Cgpw7FrqzPuAZNUvAADmGT3oErk393.jpg">
+								<img alt='三星 Samsung Galaxy Tab S3-外观与工艺' src="${imgBnner}group1/M01/01/04/Cgpw7FrqzPuAZNUvAADmGT3oErk393.jpg">
 								<i></i>
 							</span>
-							<font>三星 Samsung-Galaxy Tab S3-功能讲解</font>
+							<font>三星 Samsung Galaxy Tab S3-外观与工艺</font>
 						</a>
 					</div>
 				</li>
@@ -395,35 +394,24 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29853.html" target="_blank">
 							<span>
-								<img alt='华硕 ASUS-评测教学' src="${imgBnner}group1/M01/00/CB/CgpsbFrqzj6AbdqKAAFczrAPMsA183.jpg">
+								<img alt='华硕 ASUS-功能讲解' src="${imgBnner}group1/M01/00/CB/CgpsbFrqzj6AbdqKAAFczrAPMsA183.jpg">
+								<i></i>
+							</span>
+							<font>华硕 ASUS-功能讲解</font>
+						</a>
+					</div>
+				</li>
+				<li class="page2 pageAni">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_29854.html" target="_blank">
+							<span>
+								<img alt='华硕 ASUS-评测教学' src="${imgBnner}group1/M01/01/06/CgpmTlrqz0SALfRRAAIelivp6Z0670.jpg">
 								<i></i>
 							</span>
 							<font>华硕 ASUS-评测教学</font>
 						</a>
 					</div>
-				</li>
-				<li class="page2 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29854.html" target="_blank">
-							<span>
-								<img alt='华硕 ASUS-外观与工艺' src="${imgBnner}group1/M01/01/06/CgpmTlrqz0SALfRRAAIelivp6Z0670.jpg">
-								<i></i>
-							</span>
-							<font>华硕 ASUS-外观与工艺</font>
-						</a>
-					</div>
-				</li>
-				<li class="page2 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29854.html" target="_blank">
-							<span>
-								<img alt='华硕 ASUS-外观与工艺' src="${imgBnner}group1/M01/01/06/CgpmTlrqz0SALfRRAAIelivp6Z0670.jpg">
-								<i></i>
-							</span>
-							<font>华硕 ASUS-外观与工艺</font>
-						</a>
-					</div>
-				</li>
+				</li>				
 				<li class="page2 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29855.html" target="_blank">
@@ -439,10 +427,10 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29857.html" target="_blank">
 							<span>
-								<img alt='佳能 Canon MX492-评测教学' src="${imgBnner}group1/M00/00/CB/CgpsbFrq0U2ACfzUAADlA7dw0vs853.jpg">
+								<img alt='佳能 Canon MX492-功能讲解说明书' src="${imgBnner}group1/M00/00/CB/CgpsbFrq0U2ACfzUAADlA7dw0vs853.jpg">
 								<i></i>
 							</span>
-							<font>佳能 Canon MX492-评测教学</font>
+							<font>佳能 Canon MX492-功能讲解说明书</font>
 						</a>
 					</div>
 				</li>
@@ -461,16 +449,16 @@ height:0 !important
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29820.html" target="_blank">
 							<span>
-								<img alt='费雪 Fisher-Price-多功能座椅-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrqlk2AJNojAAGrv3pd630925.jpg">
+								<img alt='费雪 Fisher-Price 多功能座椅-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrqlk2AJNojAAGrv3pd630925.jpg">
 								<i></i>
 							</span>
-							<font>费雪 Fisher-Price-多功能座椅-功能讲解</font>
+							<font>费雪 Fisher-Price 多功能座椅-功能讲解</font>
 						</a>
 					</div>
 				</li>
 				<li class="page3 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29821.html" target="_blank">
+						<a href="http://www.apaipian.com/play/1910_29821.html" target="_blank">
 							<span>
 								<img alt='Moonlite-功能讲解' src="${imgBnner}group1/M00/01/06/CgpmTlrql4uAFqAxAAHaIMZ8IOE132.jpg">
 								<i></i>
@@ -481,23 +469,12 @@ height:0 !important
 				</li>
 				<li class="page3 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29820.html" target="_blank">
+						<a href="http://www.apaipian.com/play/1910_29822.html" target="_blank">
 							<span>
-								<img alt='Step2 多功能水塘-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrqlk2AJNojAAGrv3pd630925.jpg">
+								<img alt='Step2 多功能水塘-功能讲解' src="${imgBnner}group1/M00/01/04/Cgpw7FrqmeOAMkZuAAHGbN04oUE463.jpg">
 								<i></i>
 							</span>
 							<font>Step2 多功能水塘-功能讲解</font>
-						</a>
-					</div>
-				</li>
-				<li class="page3 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29822.html" target="_blank">
-							<span>
-								<img alt='Moonlite-功能讲解' src="${imgBnner}group1/M00/01/04/Cgpw7FrqmeOAMkZuAAHGbN04oUE463.jpg">
-								<i></i>
-							</span>
-							<font>Moonlite-功能讲解</font>
 						</a>
 					</div>
 				</li>
@@ -514,71 +491,27 @@ height:0 !important
 				</li>
 				<li class="page4 pageAni">
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29815.html" target="_blank">
-							<span>
-								<img alt='Mpow 车载支架-评测教学' src="${imgBnner}group1/M01/01/04/Cgpw7FrqpPGAArFCAAGvqshOZco150.jpg">
-								<i></i>
-							</span>
-							<font>Mpow 车载支架-评测教学</font>
-						</a>
-					</div>
-				</li>
-				<li class="page4 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29811.html" target="_blank">
-							<span>
-								<img alt='VicTsing 车载发射器-评测教学' src="${imgBnner}group1/M00/00/CD/CgptuFrqpoiAWuXTAAFZTjgH5Ug782.jpg">
-								<i></i>
-							</span>
-							<font>VicTsing 车载发射器-评测教学</font>
-						</a>
-					</div>
-				</li>
-				<li class="page4 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29812.html" target="_blank">
-							<span>
-								<img alt='VicTsing 车载发射器-功能讲解' src="${imgBnner}group1/M00/01/06/CgpmTlrqpXaAa-6QAAHhGcI-vf4442.jpg">
-								<i></i>
-							</span>
-							<font>VicTsing 车载发射器-功能讲解</font>
-						</a>
-					</div>
-				</li>
-				<li class="page4 pageAni">
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_29810.html" target="_blank">
-							<span>
-								<img alt='WizGear 车载支架-外观与工艺' src="${imgBnner}group1/M00/01/04/Cgpw7Frqp3WAPlqFAAF6EwVNfCM091.jpg">
-								<i></i>
-							</span>
-							<font>WizGear 车载支架-外观与工艺</font>
-						</a>
-					</div>
-				</li>
-				<li class="page5 pageAni">
-					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29775.html" target="_blank">
 							<span>
-								<img alt='薇姿 Vichy-评测教学' src="${imgBnner}group1/M00/00/CB/CgpsbFrqi4-ASqUuAAD_yG4uI3I432.jpg">
+								<img alt='薇姿 Vichy 套组-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrqi4-ASqUuAAD_yG4uI3I432.jpg">
 								<i></i>
 							</span>
-							<font>薇姿 Vichy-评测教学</font>
+							<font>薇姿 Vichy 套组-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page5 pageAni">
+				<li class="page4 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29777.html" target="_blank">
 							<span>
-								<img alt='薇姿 Vichy-功能讲解' src="${imgBnner}group1/M01/01/06/CgpmTlrqjH-AcVyFAAGYMZl4s-A247.jpg">
+								<img alt='薇姿 Vichy 爽肤水-功能讲解' src="${imgBnner}group1/M01/01/06/CgpmTlrqjH-AcVyFAAGYMZl4s-A247.jpg">
 								<i></i>
 							</span>
-							<font>薇姿 Vichy-功能讲解</font>
+							<font>薇姿 Vichy 爽肤水-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page5 pageAni">
+				<li class="page4 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29774.html" target="_blank">
 							<span>
@@ -589,51 +522,51 @@ height:0 !important
 						</a>
 					</div>
 				</li>
-				<li class="page5 pageAni">
+				<li class="page4 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29771.html" target="_blank">
 							<span>
-								<img alt='理肤泉 La Roche 防嗮霜-功能讲解' src="${imgBnner}group1/M01/00/CD/CgptuFrpsquANun2AAFj9KiMShA288.jpg">
+								<img alt='理肤泉 La Roche 防嗮霜-评测教学' src="${imgBnner}group1/M01/00/CD/CgptuFrpsquANun2AAFj9KiMShA288.jpg">
 								<i></i>
 							</span>
-							<font>理肤泉 La Roche 防嗮霜-功能讲解</font>
+							<font>理肤泉 La Roche 防嗮霜-评测教学</font>
 						</a>
 					</div>
 				</li>
-				<li class="page6 pageAni">
+				<li class="page5 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29743.html" target="_blank">
 							<span>
-								<img alt='肯莫尔 Kenmore-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrpl2iAQVlyAAFwp_GwC0U235.jpg">
+								<img alt='肯莫尔 Kenmore 冰箱-功能讲解' src="${imgBnner}group1/M00/00/CB/CgpsbFrpl2iAQVlyAAFwp_GwC0U235.jpg">
 								<i></i>
 							</span>
-							<font>肯莫尔 Kenmore-功能讲解</font>
+							<font>肯莫尔 Kenmore 冰箱-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page6 pageAni">
+				<li class="page5 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29762.html" target="_blank">
 							<span>
-								<img alt='霍尼韦尔 Honeywell 空气净化扇-外观与工艺' src="${imgBnner}group1/M01/01/04/Cgpw7Frpq5aANUSZAAHO0c0GcvY132.jpg">
+								<img alt='霍尼韦尔 Honeywell 空气净化扇-功能讲解' src="${imgBnner}group1/M01/01/04/Cgpw7Frpq5aANUSZAAHO0c0GcvY132.jpg">
 								<i></i>
 							</span>
-							<font>霍尼韦尔 Honeywell 空气净化扇-外观与工艺</font>
+							<font>霍尼韦尔 Honeywell 空气净化扇-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page6 pageAni">
+				<li class="page5 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29749.html" target="_blank">
 							<span>
-								<img alt='肯莫尔 Kenmore-外观与工艺' src="${imgBnner}group1/M00/01/04/Cgpw7FrpnqWAA3csAAHxnLD1LA4014.jpg">
+								<img alt='肯莫尔 Kenmore 洗衣机-功能讲解' src="${imgBnner}group1/M00/01/04/Cgpw7FrpnqWAA3csAAHxnLD1LA4014.jpg">
 								<i></i>
 							</span>
-							<font>肯莫尔 Kenmore-外观与工艺</font>
+							<font>肯莫尔 Kenmore 洗衣机-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page6 pageAni">
+				<li class="page5 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29851.html" target="_blank">
 							<span>
@@ -644,18 +577,18 @@ height:0 !important
 						</a>
 					</div>
 				</li>
-				<li class="page7 pageAni">
+				<li class="page6 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29737.html" target="_blank">
 							<span>
 								<img alt='欧莱雅 L OREAL-功能讲解' src="${imgBnner}group1/M01/00/CB/CgpsbFrpikKACTOdAAE9L4rEe2g975.jpg">
 								<i></i>
 							</span>
-							<font>欧莱雅 L OREAL-功能讲解</font>
+							<font>欧莱雅 L 'OREAL-功能讲解</font>
 						</a>
 					</div>
 				</li>
-				<li class="page7 pageAni">
+				<li class="page6 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29738.html" target="_blank">
 							<span>
@@ -666,7 +599,7 @@ height:0 !important
 						</a>
 					</div>
 				</li>
-				<li class="page7 pageAni">
+				<li class="page6 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29739.html" target="_blank">
 							<span>
@@ -677,7 +610,7 @@ height:0 !important
 						</a>
 					</div>
 				</li>
-				<li class="page7 pageAni">
+				<li class="page6 pageAni">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_29740.html" target="_blank">
 							<span>
@@ -751,4 +684,5 @@ height:0 !important
 		<a href="javascript:(0);" class="go"></a>
 	</div>
 </body>
+<script src="/resources/js/salesman/special/channel07.js"></script>
 </html>
