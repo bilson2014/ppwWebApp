@@ -10,6 +10,8 @@
 <!--js  -->
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/index.js" var="indexJs" />
+<spring:url value="/resources/js/figlet.js" var="figletJs" />
+
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
 	var="jqueryJs" />
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js"
@@ -34,6 +36,8 @@
 <script type="text/javascript" src="${e2}"></script>
 <script type="text/javascript" src="${e3}"></script>
 <script type="text/javascript" src="${e4}"></script>
+
+
 
 <head>
 <meta charset="utf-8">
@@ -485,12 +489,14 @@
 </body>
 
 
-
+<input id ='inputText' value="dasdada">
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${ykJs}"></script>
 <script type="text/javascript" src="https://player.youku.com/jsapi"></script>
 <script type="text/javascript" src="resources/lib/swiper/swiper4.js"></script>
 <script type="text/javascript" src="${indexJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
+<script type="text/javascript" src="${figletJs}"></script>
+
 
 </html>

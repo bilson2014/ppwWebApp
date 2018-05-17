@@ -1,6 +1,13 @@
 $().ready(function() {
 	
 	
+	
+	  window.onload = function(){  
+		     var aHeight = $('.kk a span img').height();
+			 $('.kk a').css('height',aHeight + 50);
+			 $('.channel li').css('height',aHeight + 100)
+      }  
+	
 	$('.setShare').click(function(){
 		var title = '区块链宣传片制作_区块链项目路演视频_区块链是什么_区块链技术-拍片网';
 		var url = 'https://www.apaipian.com/special/channel01.html';
@@ -24,9 +31,33 @@ $().ready(function() {
 	});
 	
 	
+/*	var height = $(window).height() /2; 
+	var width = $(window).width()/2; 
+	var nowX = 200;
+	var nowY = 100;
 	
-	
-	
+	$(document).mousemove(function(e){
+		var X = e.pageX;
+		var Y = e.pageY;
+		
+		  $(".aa").css("left",X).css("top",Y);
+		  if(X > width){
+			  $(".aa").css("left",200 - (X - width));
+		  }else{
+			  $(".aa").css("left",200 + (width - X));
+		  }
+		  
+		  if(Y > height){
+			  $(".aa").css("top",100 - (Y - height));
+		  }else{
+			  $(".aa").css("top",100 + (height - Y));
+		  }
+		  
+		  
+		  
+		  console.log('x='+e.pageX);
+		  console.log('y='+e.pageY);
+     });*/
 	
 	/*$('#findPage1').off('click').on('click',function(){
 		  
@@ -75,9 +106,7 @@ $().ready(function() {
      });
 	 
 	 
-	 var aHeight = $('.kk').height();
-	 $('.kk a').css('height',aHeight);
-	 $('.channel li').css('height',aHeight + 40)
+	
 
 });
 

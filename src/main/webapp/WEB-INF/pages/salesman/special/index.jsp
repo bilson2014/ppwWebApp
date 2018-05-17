@@ -8,6 +8,7 @@
 <meta name="description" content="商业视频分享平台，全面整合优秀宣传片、广告片、短视频案例样片。企业宣传片制作、产品宣传片拍摄、创意广告片，0元创意策划，专业执行团队，价格行业最低，拍片就上拍片网。">
 <title>企业宣传片制作_产品广告片拍摄_TVC_微电影_短视频案例分享-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/style.css">
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
 <script src="/resources/js/salesman/special/jquery-1.8.3.min.js"></script>
 <script src="/resources/js/salesman/special/shangqiao.js"></script>
 <script>
