@@ -10,6 +10,9 @@ $().ready(function() {
 	});
 	$('#setListTaoBao').hide();
 	checkType();
+	
+	
+
 });
 
 function checkType(){
@@ -50,7 +53,10 @@ var rowType = {
 		datepicker : "datepicker",
 		textarea :"textarea",
 		multselect :"multselect",
-		title :"title"
+		title :"title",
+//		textareaa :"",
+//		texthref:''
+//		
 		};
 var optionType = {
 		checkbox:"checkbox",
@@ -118,10 +124,9 @@ function initView(){
 //回显需求表
 function ReShowView(item){	
 	var keys = item.result.requireJson;
+	console.log(keys);
 	if(keys != undefined&& keys != "[]"){
 		var jsKeys = $.evalJSON(keys);
-
-
 		 if(jsKeys[0].value == 1){
 			 	$('#cus').removeClass('checkWho')
 			    $('#taobao').addClass('checkWho')
@@ -139,19 +144,14 @@ function ReShowView(item){
 	}else{
 		 setValueToNeedList('');
 	}
-/*	for (var int = 0; int < jsKeys.length; int++){
-		 var getKey =  jsKeys[int].key;
-		 var getValue =  jsKeys[int].value;
-		 var getType =  jsKeys[int].type;	 
-		 setValueToNeedList(getKey,getValue,getType);
-		 $('._datepicker').attr("disabled","disabled");
-	}*/
+
 }
 
 //如果LookList=1 去除多余选项     需求表回显
 function setValueToNeedList(jsKeys){
      var rows= $('.qItem');
      var LookList = $('#flag').val();
+     console.log(LookList);
      if(LookList == 1){
     	 $('.itemDiv').off('click');
     	 $('._datepicker').attr("disabled","disabled");
@@ -176,10 +176,41 @@ function setValueToNeedList(jsKeys){
 				 }
 				 continue ;
 			 }
+			 console.log($(rows[int]));
 			 if($(rows[int]).hasClass('isTextArea')){
+				 
+				 if ($(rows[int]).find('.optionItem').find('textarea').hasClass('ishref')){
+					 if(LookList==1){
+						 
+						 var arr1=values.split("http");
+//						 console.log(arr1);
+//						 console.log(arr1.length);
+//						 console.log($(rows[int]).find('.optionItem').find('a').length);
+						 if ($(rows[int]).find('.optionItem').find('a').length==0){
+							 for(var i=1;i<arr1.length;i++){
+								 if (arr1[i].charAt(arr1[i].length-1)=='/'){
+									 arr1[i]=arr1[i].substr(0,arr1[i].length-1);
+//									 console.log('改变了');
+								 }
+							
+//								 console.log(arr1[i].charAt(arr1[i].length-1));
+//								 console.log(arr1[i].length);
+//								 arr1[i]=arr1[i].substr(arr1[i].Length,arr1[i].Length - 1);
+//								 basic = basic.substr(0, basic.length - 1);  
+//								 console.log(arr1[i]);
+								 $(rows[int]).find('.optionItem').append('<a class="ishref" target="_blank"  href=http'+arr1[i]+'>http'+arr1[i]+'</a>')
+							 }
+							 $(rows[int]).find('.optionItem').find('textarea').hide();
+						 }
+					}
+		
+				 }
+
 				 $(rows[int]).find('.optionItem').find('textarea').val(values);
+				 
 				 if(LookList == 1){
 					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
+					 
 			    	}
 				 continue ;
 			 }
@@ -313,11 +344,26 @@ function buildDatepicker(obj){
 	return html;
 }
 function buildTextarea(obj){
-	var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
-	html.append('<div class="qTitle">'+obj.title+'</div>');
-	var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
-	html.append(items);
-	return html;
+	if (obj.extension=='remark'){
+		var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
+		var items = $('<div class="optionItem"><textarea placeholder='+obj.remark+'  class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+		html.append(items);
+		return html;
+	}if (obj.extension=='remark;href'){
+		var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
+		var items = $('<div class="optionItem"><textarea placeholder='+obj.remark+' class="ishref" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+		html.append(items);
+		return html;
+	}else {
+		var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
+		html.append('<div class="qTitle">'+obj.title+'</div>');
+		var items = $('<div class="optionItem"><textarea class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+		html.append(items);
+		return html;
+	}
+	
 }
 
 function buildTitle(obj){
@@ -328,12 +374,10 @@ function buildTitle(obj){
 
 function initNeedEven(){
 	$('.optionItem .itemDiv').off('click').on('click',function(){
-		
 		if($(this).hasClass('des')){
 			$(this).parent().find('.itemDes').removeClass('hide');
 			$(this).parent().find('.itemDes').html($(this).attr('data-des'));
 		}
-		
 		if($(this).hasClass('activeNeed')){
 			$(this).parent().find('.itemDiv').removeClass('activeNeed');
 			if($(this).hasClass('des')){
@@ -344,23 +388,13 @@ function initNeedEven(){
 			$(this).addClass('activeNeed');
 			$(this).parent().find('.otherInfo').hide();
 		}
-//		$(this).parent().parent().find('.otherInfo').hide();	
-//		if($(this).hasClass('other')){
-//		$(this).parent().parent().find('.otherInfo').show();
-//		}
 	});
 	$('.optionItemMult .itemDiv').off('click').on('click',function(){
-		
-		
-		
 		if($(this).hasClass('activeNeed')){
 			$(this).removeClass('activeNeed');
 		}else{
 			$(this).addClass('activeNeed');
 		}
-//		if($(this).hasClass('other')){
-//			$(this).parent().parent().find('.otherInfo').show();
-//		}
 	});
 	$('.other').off('click').on('click',function(){
 		var thisDiv = $(this);
@@ -380,51 +414,39 @@ var setData = new Array();
 function getNeedValue(requireId){
 	     var rows= $('.optionItem');
 	     var isCheck = true;
-	     
 	     if($('#taobao').hasClass('checkWho')){
 			 setData.push(new optEntity('regular', 1,'0'));
 		 }else{
 			 setData.push(new optEntity('regular', 0,'0'));
 		 }
-	     
-		 for (var int = 0; int < rows.length; int++) {
+	     for (var int = 0; int < rows.length; int++) {
 			 var getNowItem = $(rows[int]) ;
 			 var setType = '';
 			 var itemValues = '';
 			 if(getNowItem.find('.activeNeed')&&!getNowItem.find('.activeNeed').hasClass('_datepicker')&&!getNowItem.find('textarea').hasClass('isArea')){
 				 itemValues = getNowItem.find('.activeNeed').text().trim();
-				/*  if(itemValues == ""||itemValues == null){
-					  isCheck = false;
-				  }*/
+				 console.log('难道这里');
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('other')){
 				 itemValues =  $(rows[int]).find('input').val().trim();
 				 setType = "input";
-				/*  if(itemValues == ""||itemValues == null){
-					  isCheck = false;
-				  }*/
 			 }
 			 if(getNowItem.find('.activeNeed').hasClass('_datepicker')){
 				 itemValues =  $(rows[int]).find('div').find('input').val().trim();
-				 /* if(itemValues == "未选择"||itemValues == null||itemValues == ''){
-
-				  }*/
 			 }
 			 if(getNowItem.find('textarea').hasClass('isArea')){
 					 itemValues=  $(rows[int]).find('textarea').val().trim();
 			  }
+			 if(getNowItem.find('textarea').hasClass('ishref')){
+				 itemValues=  $(rows[int]).find('textarea').val().trim();
+			 }
 			  var itemId =  $(rows[int]).parent().attr('data-id');
-			  
 			  if(itemValues != undefined&&itemValues != null&&itemValues != ''){
 				  setData.push(new optEntity(itemId,itemValues,setType));
-			  }
-			  
+			  }	  
 		}
 		 var rowsMult= $('.optionItemMult');
 		 for (var int = 0; int < rowsMult.length; int++) {
-		/*	 if(!$(rowsMult[int]).find('.itemDiv').hasClass('activeNeed')){
-				 isCheck = false;
-			 }*/
 			 var itemId =  $(rowsMult[int]).parent().attr('data-id')	
 			 var checkActive = $(rowsMult[int]).find('.activeNeed');
 			 var setMultData = new Array();
@@ -445,9 +467,7 @@ function getNeedValue(requireId){
 			 if(setMultData.length > 0){
 				 setData.push(new optEntity(itemId, setMultData,setType));
 			 }			 
-		} 
-	
-		 
+		}  
 		 var pickerNum = $('._datepicker ').length;
 		 var hasArea = $('.isArea');
 		 var flagArea = false;
@@ -457,7 +477,6 @@ function getNeedValue(requireId){
 				 flagArea = true;
 			 }
 		 }
-		
 		 var check = setData;
 		 if($('.activeNeed').length > pickerNum || flagArea ){
 		 if(requireId!= null && requireId!="" && requireId != "null"){
