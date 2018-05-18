@@ -176,28 +176,17 @@ function setValueToNeedList(jsKeys){
 				 }
 				 continue ;
 			 }
-			 console.log($(rows[int]));
+//			 console.log($(rows[int]));
 			 if($(rows[int]).hasClass('isTextArea')){
-				 
 				 if ($(rows[int]).find('.optionItem').find('textarea').hasClass('ishref')){
-					 if(LookList==1){
-						 
+					 if(LookList==1){	 
 						 var arr1=values.split("http");
-//						 console.log(arr1);
-//						 console.log(arr1.length);
-//						 console.log($(rows[int]).find('.optionItem').find('a').length);
 						 if ($(rows[int]).find('.optionItem').find('a').length==0){
 							 for(var i=1;i<arr1.length;i++){
 								 if (arr1[i].charAt(arr1[i].length-1)=='/'){
 									 arr1[i]=arr1[i].substr(0,arr1[i].length-1);
-//									 console.log('改变了');
 								 }
 							
-//								 console.log(arr1[i].charAt(arr1[i].length-1));
-//								 console.log(arr1[i].length);
-//								 arr1[i]=arr1[i].substr(arr1[i].Length,arr1[i].Length - 1);
-//								 basic = basic.substr(0, basic.length - 1);  
-//								 console.log(arr1[i]);
 								 $(rows[int]).find('.optionItem').append('<a class="ishref" target="_blank"  href=http'+arr1[i]+'>http'+arr1[i]+'</a>')
 							 }
 							 $(rows[int]).find('.optionItem').find('textarea').hide();
@@ -353,7 +342,7 @@ function buildTextarea(obj){
 	}if (obj.extension=='remark;href'){
 		var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
 		html.append('<div class="qTitle">'+obj.title+'</div>');
-		var items = $('<div class="optionItem"><textarea placeholder='+obj.remark+' class="ishref" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
+		var items = $('<div class="optionItem"><textarea class="ishref" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
 		html.append(items);
 		return html;
 	}else {

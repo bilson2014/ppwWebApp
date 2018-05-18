@@ -28,6 +28,7 @@
 	<![endif]-->
       <link rel="stylesheet" href="${orderListCss}">
       <link rel="stylesheet" href="${datepickerCss}">
+      <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 </head>
 
 <body>
