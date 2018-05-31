@@ -27,21 +27,18 @@ function initMenuEven(){
 		$('#shortMenu .save').removeClass('open');
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#shortMenu .myPro').addClass('open');
-		$('#minboxs .boxs').removeClass('open');
-		
-		
+		$('#minboxs .boxs').removeClass('open');		
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
 		$('#toSave .save').removeClass('treepic ');		
-//		$('#myboxs').removeClass('open');
-		$('#myOrder').addClass('open');
-		$('#myboxs').addClass('open');
+
 		var nThis = $(this);
 		if($(this).hasClass('open')){
-			nThis.removeClass('open');
+			//nThis.removeClass('open');
+			$('.treeitem').removeClass('open');
 			$('#productList').slideUp();			
 			$('#shortMenu .myPro').addClass('open');
 		} else {
@@ -52,25 +49,21 @@ function initMenuEven(){
 		}
 	});
 	//订单页面的样式改变  按钮样式   响应式
-	$('#myOrder').off('click').on('click',function(){
-		
+	$('#myOrder').off('click').on('click',function(){		
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
 		$('#toSave .title').removeClass('treebtu');
 		$('#safe .safe').removeClass('treepic ');
-		$('#toSave .save').removeClass('treepic ');
-		
+		$('#toSave .save').removeClass('treepic ');		
 		$('#shortMenu .safe').removeClass('open');
 		$('#shortMenu .save').removeClass('open');
 		$('#shortMenu .orderList ').addClass('open');
 		$('#shortMenu .myPro').removeClass('open');
 		$('#minboxs .boxs').removeClass('open');
-		$('#myPro').addClass('open');
-		$('#myboxs').addClass('open');
 		var nThis = $(this);
 		if($(this).hasClass('open')){
-			nThis.removeClass('open');
+			$('.treeitem').removeClass('open');
 			$('#orderList').slideUp();
 			
 		}else{
@@ -97,13 +90,12 @@ function initMenuEven(){
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#shortMenu .myPro').removeClass('open');
 		$('#minboxs .boxs').addClass('open');
-		$('#myPro').addClass('open');
-		$('#myOrder').addClass('open');
 		var nThis = $(this);
 
 		if($(this).hasClass('open')){
 			
-			nThis.removeClass('open');
+		//	nThis.removeClass('open');
+			$('.treeitem').removeClass('open');
 			$('#boxsList').slideUp();	
 //			$('#orderList').slideUp();
 		}else{
@@ -505,6 +497,24 @@ function initMenuEven(){
 		$('#finish').removeClass('checkLi');
 		
 		
+		$('#safe').removeClass('treeitemRed');
+		$('#toSave').removeClass('treeitemRed');
+		$('#safe .title').removeClass('treebtu');
+		$('#toSave .title').removeClass('treebtu');
+		$('#safe .safe').removeClass('treepic ');
+		$('#toSave .save').removeClass('treepic ');
+		$('#shortMenu .safe').removeClass('open');
+		$('#shortMenu .save').removeClass('open');	
+		$('#shortMenu .orderList ').removeClass('open');
+		$('#minMyPro .myPro').removeClass('open');
+		$('#minboxs .boxs').addClass('open');
+		
+	});
+	
+	$('#boxsTools').off('click').on('click',function(){
+		$('.frame').attr('src', getUrlTask() +"ss");			
+		$('.productList li').removeClass('checkLi');
+		$('#boxsTools').addClass('checkLi');
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
