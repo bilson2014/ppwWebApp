@@ -53,10 +53,8 @@ var rowType = {
 		datepicker : "datepicker",
 		textarea :"textarea",
 		multselect :"multselect",
-		title :"title",
-//		textareaa :"",
-//		texthref:''
-//		
+		title :"title"
+	
 		};
 var optionType = {
 		checkbox:"checkbox",
@@ -151,7 +149,6 @@ function ReShowView(item){
 function setValueToNeedList(jsKeys){
      var rows= $('.qItem');
      var LookList = $('#flag').val();
-     console.log(LookList);
      if(LookList == 1){
     	 $('.itemDiv').off('click');
     	 $('._datepicker').attr("disabled","disabled");
@@ -176,30 +173,33 @@ function setValueToNeedList(jsKeys){
 				 }
 				 continue ;
 			 }
-//			 console.log($(rows[int]));
-			 if($(rows[int]).hasClass('isTextArea')){
+	
+			 if($(rows[int]).hasClass('isTextArea')){ 
 				 if ($(rows[int]).find('.optionItem').find('textarea').hasClass('ishref')){
-					 if(LookList==1){	 
+					 if(LookList==1){
 						 var arr1=values.split("http");
 						 if ($(rows[int]).find('.optionItem').find('a').length==0){
 							 for(var i=1;i<arr1.length;i++){
 								 if (arr1[i].charAt(arr1[i].length-1)=='/'){
 									 arr1[i]=arr1[i].substr(0,arr1[i].length-1);
 								 }
-							
 								 $(rows[int]).find('.optionItem').append('<a class="ishref" target="_blank"  href=http'+arr1[i]+'>http'+arr1[i]+'</a>')
 							 }
 							 $(rows[int]).find('.optionItem').find('textarea').hide();
 						 }
 					}
-		
-				 }
-
+				 }			
 				 $(rows[int]).find('.optionItem').find('textarea').val(values);
+//				 console.log(values);
+				 
+//				 if (values=='未选择'){
+//					 
+//					 $(rows[int]).find('.optionItem').find('textarea').hide();
+//				 }
 				 
 				 if(LookList == 1){
-					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
-					 
+					 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");	
+//					
 			    	}
 				 continue ;
 			 }
@@ -268,6 +268,9 @@ function setValueToNeedList(jsKeys){
 					 }
 					 if($(rows[int]).hasClass('isTextArea')){
 							 getNowItem.find('.optionItem').find('textarea').attr("readonly","readonly");
+							 if ($(rows[int]).find('.optionItem').find('textarea').val()==''||$(rows[int]).find('.optionItem').find('textarea').val()==null||$(rows[int]).find('.optionItem').find('textarea').val()==undefined){
+								 $(rows[int]).find('.optionItem').find('textarea').hide();
+							 }
 					 }
 					 if($(rows[int]).hasClass('Mult')){
 						 $(rows[int]).find('.optionItemMult').find('.itemDiv').remove();		
@@ -339,7 +342,7 @@ function buildTextarea(obj){
 		var items = $('<div class="optionItem"><textarea placeholder='+obj.remark+'  class="isArea" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');
 		html.append(items);
 		return html;
-	}if (obj.extension=='remark;href'){
+	}if (obj.extension=='href'){
 		var html = $('<div class="qItem isTextArea" data-id="'+obj.name+'"></div>');
 		html.append('<div class="qTitle">'+obj.title+'</div>');
 		var items = $('<div class="optionItem"><textarea class="ishref" rows="6" name="'+obj.name+'" cols="40"></textarea></div>');

@@ -103,8 +103,9 @@
 		           <li id='boxsIndex' data-value="0">报价单生成器</li>
 	               <li id='boxsSub' data-value="1">案例收藏夹</li>
 		           <li id='boxsCancle' data-value="2">排期表生成器</li> 
+		           <li id='boxs-storyborad' data-value="3">分镜工具</li> 
 		      </ul>
-	      <%-- </r:permission> --%>
+	      <%-- </r:permission> --%>                                                               
 		  <div class="treeitem " id='safe'>
 		     <div class="safe"></div>
 		     <div class="title">安全设置</div>
