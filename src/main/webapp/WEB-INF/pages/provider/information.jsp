@@ -51,7 +51,7 @@
 
 		<div class="step">
 	<div class="step-four-div" id="step4" data-step="4">
-		<div class="success" id="success">
+		<div id="success">
 		
 			<c:if test="${flag == 0 }">
 				<ul class="ul-step-three">
