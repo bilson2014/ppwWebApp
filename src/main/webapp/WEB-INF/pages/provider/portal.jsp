@@ -13,7 +13,7 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs"/>
-<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
+
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
 <spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
@@ -21,6 +21,7 @@
 <spring:url value="/resources/js/search-suggest.js" var="suggestJs"/>
 <spring:url value="/resources/js/provider/portal.js" var="porviderPortalJs"/>
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
+<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/images/user" var="imgPath"/>
 <spring:url value="/resources/lib/jquery.scroll/jquery.scrollbar.js" var="jsBarJs"/>

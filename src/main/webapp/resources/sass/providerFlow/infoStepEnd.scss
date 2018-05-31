@@ -6,11 +6,11 @@
         body {
             background: $f0 !important;
         }
-        
+
         .page {
             background: $f0 !important;
         }
-        
+
         button,
         .form-control {
             /* border-color: #66afe9; */
@@ -20,11 +20,11 @@
                 box-shadow: none !important;
             }
         }
-        
+
         .nav .logo {
             background: url(/resources/images/common/logo.svg) no-repeat;
         }
-        
+
         .step {
             @include media_screen_width_beta3();
             margin: 0 auto;
@@ -34,17 +34,17 @@
             border: 1px solid #d1d1d1;
             border-radius: 4px;
         }
-        
+
         .foot3 {
             top: 120px;
         }
-        
+
         .noStar {
             &:after {
                 content: "" !important;
             }
         }
-        
+
         .step-title {
             @include media_screen_width($about-us-width-min, $about-us-width-middle, $about-us-width-lg);
             margin: 0 auto;
@@ -62,7 +62,7 @@
                 background: $gray;
             }
         }
-        
+
         .step-bar {
             height: 120px;
             margin: 0 auto;
@@ -107,32 +107,30 @@
                 }
             }
         }
-        
-        .step-bar > div {
+
+        .step-bar>div {
             color: #888;
             font-size: 14px;
             display: inline-block;
             width: 50%;
             text-align: center;
         }
-        
+
         .step-1 {
             background: $red-base !important;
         }
-        
+
         .step-four-div {
             border-top: none;
             background: white;
             min-height: 600px;
             padding-bottom: 60px;
             padding-top: 60px;
-        }
-        
-        //审核
+        } //审核
         .success {
             display: none;
         }
-        
+
         .successCheck {
             text-align: center;
             img {
@@ -150,7 +148,7 @@
                 width: 270px;
                 font-size: 0;
                 margin: 0 auto;
-                div {
+                input {
                     width: 120px;
                     height: 36px;
                     text-align: center;
@@ -160,13 +158,14 @@
                     font-size: $font-size-base;
                     vertical-align: top;
                     display: inline-block;
+                    border: none;
                 }
-                div:first-child {
+                input:nth-child(2) {
                     margin-right: 30px;
                 }
             }
         }
-        
+
         .ul-step-three {
             text-align: center;
             .title {
@@ -182,7 +181,7 @@
                 line-height: 20px;
             }
         }
-        
+
         .stepThreeLi {
             div {
                 width: 120px;
@@ -195,3 +194,6 @@
                 border-radius: 4px;
             }
         }
+
+
+   

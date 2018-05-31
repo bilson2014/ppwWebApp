@@ -162,7 +162,14 @@
 			
 			<div class="lanren">
 				<ul class="hidden">
-				<li>
+				 <li>
+						<a href="http://www.apaipian.com/special/page20.html" class="padd">
+							<img src="/resources/images/salesman/special/load.jpg" realSrc="/resources/images/salesman/special/zt20.jpg"/>
+							<h3>世界杯视频集锦</h3>
+							<p>2018年俄罗斯世界杯是第21届世界杯足球赛将于2018年6月14日至7月15日在俄罗斯境内11座城市中的12座球场内举行。</p>
+						</a>
+					</li>
+				    <li>
 						<a href="http://www.apaipian.com/special/page19.html" class="padd">
 							<img src="/resources/images/salesman/special/load.jpg" realSrc="/resources/images/salesman/special/zt19.jpg"/>
 							<h3>这世界，总有人偷偷爱着你</h3>

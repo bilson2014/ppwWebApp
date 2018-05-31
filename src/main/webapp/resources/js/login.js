@@ -436,7 +436,7 @@ $().ready(function() {
 				loadData(function(msg){
 					$(".errorDiv").addClass("hide");
 					if(msg.errorCode==200){ 
-						window.location.href=getContextPath()+ '/mgr/index';
+						window.location.href=getContextPath()+ '/provider/portal';
 					}else{
 						$("#team_pwd_error").text(msg.errorMsg).removeClass("hide");
 						return false;
