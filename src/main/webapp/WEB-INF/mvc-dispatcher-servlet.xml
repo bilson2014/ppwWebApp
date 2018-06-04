@@ -65,8 +65,8 @@
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
-	<!-- 供应商管理 -->
-    <mvc:view-controller path="/supplier" view-name="/supplier/basics" />
+	<!-- 制片工具 -->
+    <mvc:view-controller path="/filmmaking" view-name="/supplier/filmmaking" />
     
 	<!-- 价格计算  -->
 	<mvc:view-controller path="/count/numcount" view-name="/count/numcount" />
