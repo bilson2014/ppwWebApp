@@ -1,11 +1,16 @@
 package com.panfeng.film.resource.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
@@ -64,5 +69,24 @@ public class UploadController {
 			return new BaseMsg(0, "齐活");
 		}
 		return new BaseMsg(3, "文件不存在");
+	}
+	
+	@RequestMapping(value = "/web/multipUpload", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public BaseMsg uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
+		response.setContentType("text/html;charset=UTF-8");
+		BaseMsg result=new BaseMsg();
+		
+		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> fileMap = multipartRquest.getFileMap();
+		
+		result.setCode(0);
+		for (final Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+			final MultipartFile file = entity.getValue();
+			if(!file.isEmpty()) {
+				//result.setMessage(FastDFSClient.uploadFile(file));
+				result.setResult(result.getResult()+file.getOriginalFilename()+";");
+			}
+		}
+		return result;
 	}
 }
