@@ -44,4 +44,9 @@ public class CityPickerController extends BaseController {
 		List<PmsProvince> all = pmsProvinceFacade.getAll();
 		return all;
 	}
+	
+	@RequestMapping("/all/citys")
+	public List<PmsCity> getCitys() {
+		return pmsCityFacade.getAll();
+	}
 }

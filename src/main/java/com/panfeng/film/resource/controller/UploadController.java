@@ -27,7 +27,7 @@ public class UploadController {
 	@RequestMapping("/web/upload")
 	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file,String oldUrl) {
 		// 检测视频是否大于限制
-		final BaseMsg msg = checkFile(file);
+		final BaseMsg msg = checkFile(file,1024l);
 		if (0 == msg.getCode()) {
 			String fileId = FastDFSClient.uploadFile(file);
 			//删除旧地址
@@ -39,9 +39,12 @@ public class UploadController {
 		return msg;
 	}
 	
-	public BaseMsg checkFile(final MultipartFile file) {
+	public BaseMsg checkFile(final MultipartFile file,Long img_MaxSize) {
 		if (file != null && !file.isEmpty()) {
-			final long img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
+			if(img_MaxSize==null) {
+				img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
+			}
+			
 			final long video_MaxSize = Long.parseLong(PublicConfig.VIDEO_MAX_SIZE);
 
 			// 检测文件类型
@@ -60,7 +63,7 @@ public class UploadController {
 				// 检查图片大小
 				if (fileSize > img_MaxSize * 1024) {
 					// 图片文件超过250K上限
-					return new BaseMsg(2, "图片文件超过250K上限");
+					return new BaseMsg(2, "图片文件超过上限");
 				}
 				break;
 			case 2: // other

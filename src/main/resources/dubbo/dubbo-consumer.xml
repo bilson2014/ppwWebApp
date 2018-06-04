@@ -51,4 +51,12 @@
 	<!--消息通知服务接口 -->
 	<dubbo:reference interface="com.paipianwang.pat.facade.information.service.PmsMailFacade" id="pmsMailFacade" check="false" timeout="5000"/>
 	<dubbo:reference interface="com.paipianwang.pat.facade.information.service.PmsNewsFacade" id="pmsNewsFacade" check="false" timeout="5000"/>
+	<!-- 制片工具资源接口 -->
+	<dubbo:reference interface="com.paipianwang.pat.workflow.facade.PmsProductionActorFacade" id="pmsProductionActorFacade" retries="1" check="false" timeout="5000" />
+	<dubbo:reference interface="com.paipianwang.pat.workflow.facade.PmsProductionDirectorFacade" id="pmsProductionDirectorFacade" retries="1" check="false" timeout="5000"/>
+	<dubbo:reference interface="com.paipianwang.pat.workflow.facade.PmsProductionStudioFacade" id="pmsProductionStudioFacade" retries="1" check="false" timeout="5000"/>
+	<dubbo:reference interface="com.paipianwang.pat.workflow.facade.PmsProductionDeviceFacade" id="pmsProductionDeviceFacade" retries="1" check="false" timeout="5000"/>
+	
+	<dubbo:reference interface="com.paipianwang.pat.workflow.facade.PmsQuotationTypeFacade" id="pmsQuotationTypeFacade" retries="1" check="false" timeout="5000" />
+	
 </beans>  
