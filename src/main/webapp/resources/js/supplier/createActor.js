@@ -128,26 +128,45 @@ function gathermethod(){
 	
 }
 
-
-$('#as').diyUpload({
-    url:'/web/upload',
-    success:function( data ) {
-        console.info( data );
-    },
-    error:function( err ) {
-        console.info( err );  
-    },
-    buttonText : '选择文件',
-    chunked:true,
-    // 分片大小
-    chunkSize:512 * 1024,
-    //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-    fileNumLimit:50,
-    fileSizeLimit:500000 * 1024,
-    fileSingleSizeLimit:50000 * 1024,
-    accept: {}
-});
-
+//
+//$('#as').diyUpload({
+//    url:'/web/upload',
+//    success:function( data ) {
+//        console.info( data );
+//    },
+//    error:function( err ) {
+//        console.info( err );  
+//    },
+//    buttonText : '选择文件',
+//    chunked:true,
+//    // 分片大小
+//    chunkSize:512 * 1024,
+//    //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+//    fileNumLimit:50,
+//    fileSizeLimit:500000 * 1024,
+//    fileSingleSizeLimit:50000 * 1024,
+//    accept: {}
+//});
+function UploadSpecialRecommendPic() {  
+    $.ajaxFileUpload({  
+        url : '/web/upload',  
+        secureuri : false,  
+        fileElementId : 'specialrecommendfile',  
+        dataType : 'json',  
+        success : function(d, status) {  
+        	alert(e); 
+            var data = eval('(' + d + ')');  
+            alert(data.msg);  
+            if (data.flag == 1) {  
+                $("#SpecialTopicPicShow").attr("src", data.path);  
+                $("#specialRecommendPic").val(data.picName);  
+            }  
+        },  
+        error : function(data, status, e) {  
+            alert(e);  
+        }  
+    });  
+}  
 
 //初始化fileinput控件（第一次初始化）
 //function initFileInput(ctrlName, uploadUrl) {

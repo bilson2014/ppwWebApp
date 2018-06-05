@@ -7,13 +7,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/supplier/basics.css" var="basicsCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webCss"/>
 
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
-<spring:url value="/resources/lib/cripto/aes.js" var="aesJs"/>
-<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs"/>
+
+<spring:url value="/resources/lib/webuploader/webuploader.min.js" var="aesJs"/>
+<%-- <spring:url value="/resources/lib/webuploader/pad-zeropadding.js" var="padJs"/> --%>
+
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/js/supplier/filmmaking.js" var="filmmakingJs"/>
@@ -32,6 +35,7 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<title>制片工具</title>
+	<link rel="stylesheet" href="${webCss}">
 	<link rel="stylesheet" href="${basicsCss}">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<!--[if lt IE 9]>
@@ -202,10 +206,27 @@
 		              							<!-- <div class="form-group">
    													<input id="itemImagers" name="itemImagers" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
  												</div> -->
- 												<input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*">
+ 												<!-- <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*">
  												<div id="demo">
     												<div id="as" ></div>
-												</div>
+												</div> -->
+												
+												<!-- <div id="uploader-demo">
+        用来存放item
+        <div id="fileList" class="uploader-list"></div>
+        <div id="filePicker">选择图片</div>
+</div> -->
+
+
+
+<div style="margin-top: 10px; margin-left: 180px">  
+    <input id="specialrecommendfile" type="file" size="30"  
+    name="file">  
+    <button type="button" onclick="UploadSpecialRecommendPic()"  
+    class="btn btn-warning btn-lg">上传</button>  
+    <input type=hidden class="span5" id="specialRecommendPic"  
+    name="riIndexPic">  
+</div> 
  												
 
 		              						
