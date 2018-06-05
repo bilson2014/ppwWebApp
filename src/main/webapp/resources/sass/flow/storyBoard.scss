@@ -61,6 +61,7 @@
             font-size: $font-size-sm !important;
             color: $gray !important;
             line-height: 30px !important;
+            cursor: pointer;
         }
     }
 
@@ -563,42 +564,45 @@
             cursor: pointer;
         }
         .oSContent {
-            .title {
-                font-size: $font-size;
-                color: $gray-dark;
-            }
-            .sTitle {
-                padding-top: 20px;
-                margin-bottom: 20px;
-                font-size: $font-size;
-                color: $gray-dark;
-            }
-            .desc {
-                margin-top: 10px;
-                margin-bottom: 30px;
-                font-size: $font-size-sm;
-                color: $gray-light;
-                span:nth-child(1) {
-                    color: $red-base;
-                    margin-right: 20px;
-                }
-            }
-            .sDes {
-                margin-top: 10px;
-                font-size: $font-size;
-                color: $gray-dark;
-            }
-            .sSDes {
-                margin-top: 20px;
-                font-size: $font-size;
-                color: $gray-dark;
-            }
+          
+              .tdDes {
+            padding-top: 40px;
+            padding-bottom: 20px;
+            text-align: center;
+            color: $gray-dark;
+            font-size: $font-size;
+        }
+        .tDes {
+            padding-bottom: 50px;
+            text-align: center;
+            color: $gray-dark;
+            font-size: $font-size;
+        }
 
-            .redColor {
-                color: $red-base !important;
-            }
-            .greenColor {
-                color: #7ED321 !important;
-            }
+        }
+    }
+
+     .sureBtn {
+        font-size: 0;
+        padding-top: 20px;
+        width: 265px;
+        margin: 0 auto;
+        #mptModel {
+            margin: 0 auto;
+        }
+        div {
+            width: 120px;
+            height: 36px;
+            line-height: 36px;
+            color: white;
+            border: 4px;
+            font-size: $font-size-base;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+        div:nth-child(1) {
+            margin-right: 20px;
         }
     }

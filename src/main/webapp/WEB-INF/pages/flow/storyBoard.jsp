@@ -82,7 +82,7 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/flow/selectS.png">
+				                <img src="/resources/images/story/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -94,7 +94,7 @@
 					     </div>
 					     <div class="loadImg">
 					            <div class="updateImg">重新上传</div>
-					            <img class="delLoadImg" src="/resources/images/flow/del.png">
+					            <img class="delLoadImg" src="/resources/images/story/del.png">
 					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528279592&di=fc4f3c06aa8ddd220b71df6f83582273&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F59%2F15%2F54f58PICMis_1024.png">
 					     </div>
 					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
@@ -103,7 +103,49 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/flow/selectS.png">
+				                <img src="/resources/images/story/selectS.png">
+				                <ul class="oSelect" id="orderCome" style="display: none;">
+				                   <li data-id="0">全部</li>
+				                   <li data-id="1">沟通阶段</li>
+				                   <li data-id="2">方案阶段</li>
+				                   <li data-id="3">商务阶段</li>
+				                   <li data-id="4">制作阶段</li>
+				                   <li data-id="5">交付阶段</li>
+				                </ul>    
+					     </div>
+					     <div class="loadImg">
+					            <div class="updateImg">重新上传</div>
+					            <img class="delLoadImg" src="/resources/images/story/del.png">
+					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527507228707&di=5e7521e976e53da5ace3e221447a1a74&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg">
+					     </div>
+					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
+	             </div>
+	             
+	             <div class="imgItem">
+	                    <div class="orderSelect" id="isOther">
+				                <div class="imgType checkImgType">请选择镜头</div>
+				                <img src="/resources/images/story/selectS.png">
+				                <ul class="oSelect" id="orderCome" style="display: none;">
+				                   <li data-id="0">全部</li>
+				                   <li data-id="1">沟通阶段</li>
+				                   <li data-id="2">方案阶段</li>
+				                   <li data-id="3">商务阶段</li>
+				                   <li data-id="4">制作阶段</li>
+				                   <li data-id="5">交付阶段</li>
+				                </ul>    
+					     </div>
+					     <div class="loadImg">
+					            <div class="updateImg">重新上传</div>
+					            <img class="delLoadImg" src="/resources/images/story/del.png">
+					            <img class="backgroundImg" src="/resources/images/supplier/55.png">
+					     </div>
+					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
+	             </div>
+	             
+	             <div class="imgItem">
+	                    <div class="orderSelect" id="isOther">
+				                <div class="imgType checkImgType">请选择镜头</div>
+				                <img src="/resources/images/story/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -116,13 +158,18 @@
 					     <div class="loadImg">
 					            <div class="updateImg">重新上传</div>
 					            <img class="delLoadImg" src="/resources/images/flow/del.png">
-					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527507228707&di=5e7521e976e53da5ace3e221447a1a74&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg">
+					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527834028519&di=fd505b7fd5af5167e6badbbf6752947e&imgtype=0&src=http%3A%2F%2Fimg1.bitautoimg.com%2FVideo%2F2013%2F10%2F27%2Fc923b604726f80c51.jpg">
 					     </div>
 					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
 	             </div>
 	             
+	             
+	             
+	             
+	             
+             
 	              <div class="addItem" id="picker">
-	                    <img src="/resources/images/flow/addImg.png">
+	                    <img src="/resources/images/story/addImg.png">
 	                    <div>点击添加图片</div>
 	                    <div>可上传JPG、GIF或PNG格式的文件，文件大小不能超过2M。</div>
 	              </div>
@@ -153,7 +200,7 @@
 					     </div>
 					      <div class="orderSelect" id="isOther">
 				                <div class="imgType" id="productType">请选择视频类型</div>
-				                <img src="/resources/images/flow/selectS.png">
+				                <img src="/resources/images/story/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
