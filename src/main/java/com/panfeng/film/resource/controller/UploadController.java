@@ -74,9 +74,8 @@ public class UploadController {
 		return new BaseMsg(3, "文件不存在");
 	}
 	
-	@RequestMapping(value = "/web/multipUpload", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/web/multipUpload", method = RequestMethod.POST)
 	public BaseMsg uploadFiles(final HttpServletRequest request, final HttpServletResponse response) {
-		response.setContentType("text/html;charset=UTF-8");
 		BaseMsg result=new BaseMsg();
 		
 		MultipartHttpServletRequest multipartRquest = (MultipartHttpServletRequest) request;

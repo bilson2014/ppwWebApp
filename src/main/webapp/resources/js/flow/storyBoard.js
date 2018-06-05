@@ -1,5 +1,5 @@
-var image_max_size = 1024*2048; // 250KB
-var image_err_msg = '图片大小超出2MB上限,请重新上传!';
+var image_max_size = 1024*1024; // 250KB
+var image_err_msg = '图片大小超出1MB上限,请重新上传!';
 var upload_Video;
 var upload_Update;
 var successIntervalObj; // timer变量，控制时间
@@ -22,9 +22,19 @@ $().ready(function() {
 	$('#saveProject').off('click').on('click',function(){
 		checkError();
 	});
+	$('.openTool').off('click').on('click',function(){
+		$('#loadProductModel').show();
+	});
+	$('.closeModel,#cancleLoadProduct').off('click').on('click',function(){
+		$('#loadProductModel').hide();
+	});
+	
+	
 	
 	initImgSize();
 	newSelectCheck();
+	
+
 	
 });
 
@@ -45,12 +55,13 @@ function getValue(){
 		 setData.push(new optEntity(itemId,itemValues,setType));
 	}
 	
-	
-	
 	var storyName = $('#storyName').val();
 	var productLine = $('#productLine').attr('data-id');
 	var productType = $('#productType').attr('data-id');
 	var getActive = $('.active');
+	for (var int = 0; getActive < array.length; int++) {
+
+	}
 	
 	
 }
@@ -78,7 +89,7 @@ function newSelectCheck(){
 	   	 $(this).parent().parent().find('div').attr('data-id',id);
 	   	 $(this).parent().slideUp();
 	   	 $('.productLine').removeClass('selectColor');
-	   	 console.log(id);
+
 	     e.stopPropagation();
 	});
 	
@@ -89,16 +100,16 @@ function initImgSize(){
 	var needHeight = $('.loadImg').css('height');	
 	var changeImg = $('.backgroundImg');
 	for (var int = 0; int < changeImg.length; int++) {
-			var realHeight = $(changeImg[int]).css('height');
-			var realWidth  = $(changeImg[int]).css('width');			
-			if(realHeight == realWidth){				
-				$(changeImg[int]).css('height',needHeight).css('width',needHeight);
-			}
-			if(realHeight > realWidth){				
+			var realHeight = $(changeImg[int]).height();
+			var realWidth  = $(changeImg[int]).width();			
+			if(realHeight >= realWidth){				
 				$(changeImg[int]).css('height',needHeight).css('width','auto');
 			}
-			if(realHeight < realWidth){				
+			else{
 				$(changeImg[int]).css('height','auto').css('width',needWidth);
+				if(realWidth/realHeight < (16/9)){
+					$(changeImg[int]).css('height','auto').css('width',needHeight);
+				}
 			}
 	}
 }
@@ -126,13 +137,7 @@ function initCheckBox(){
 }
 
 function checkError(){
-	
-	var checkImgType = $('.checkImgType');
-	for (var int = 0; checkImgType < array.length; int++) {
 		
-	}
-	
-	
 	var checkImgType = $('.checkImgType').attr('data-id');
 	if(checkImgType == '' || checkImgType == null || checkImgType ==undefined){
 		successToolTipShow('镜头类型未填写');
@@ -200,11 +205,11 @@ var videoListProtal = {
 
 		multipUploadFile:function(){
 			upload_Video && upload_Video.destroy();
-			var picker =$('.updateImg'); 
+			var picker =$('#picker'); 
 			upload_Video = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/provider/multipUploadFile',
+				server : '/web/multipUpload',
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
@@ -279,6 +284,24 @@ var videoListProtal = {
 			});
 		}
 }
+
+function delImgEven(){
+	
+	$('.delLoadImg').off('click').on('click',function(){
+		
+		$('#checkSureModel').show();
+		$('.closeBtn').off('click').on('click',function(){
+			$('#checkSureModel').hide();
+		});
+		$('.closeBtn').off('click').on('click',function(){
+			$('.cModel').hide();
+		});
+		
+	})
+	
+	
+}
+
 
 //图片更新
 var videoUpdate = {

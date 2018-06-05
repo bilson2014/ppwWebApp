@@ -66,7 +66,7 @@
 		              		<div class='setCard'>
 		              		<!--每个列表  idcard-->
 		              			<div class='idcard '>
-		              				<img class="imgs1" src="/resources/images/supplier/22.png">
+		              				<img class="imgs1" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1527740495&di=f2c42a682f917b686de966d95944627d&src=http://img5.duitang.com/uploads/item/201411/04/20141104171337_xaMXx.jpeg">
 		              				<div class='shade '>
 		              					<img class='read' src="/resources/images/supplier/read.png">
 		              					<img class='select' src="/resources/images/supplier/select.png">
@@ -120,10 +120,20 @@
 		              					<span class='name'>小丸子/演员</span>
 		              					<p class='price'>￥250</p>
 		              				</div>
+		              			</div><div class='idcard '>
+		              				<img class="imgs5" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528279592&di=fc4f3c06aa8ddd220b71df6f83582273&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F59%2F15%2F54f58PICMis_1024.png ">
+		              				<div class='shade '>
+		              					<img class='read' src="/resources/images/supplier/read.png">
+		              					<img class='select' src="/resources/images/supplier/select.png">
+		              				</div>
+		              				<div class='linebox'>
+		              					<span class='name'>小丸子/演员</span>
+		              					<p class='price'>￥250</p>
+		              				</div>
 		              			</div>
 		              			
 		              			
-		              		
+    		
 		              		</div>
 		              		
 		              		
