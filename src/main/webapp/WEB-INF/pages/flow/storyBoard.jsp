@@ -82,7 +82,7 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/story/selectS.png">
+				                <img src="/resources/images/flow/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -103,7 +103,7 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/story/selectS.png">
+				                <img src="/resources/images/flow/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -124,7 +124,7 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/story/selectS.png">
+				                <img src="/resources/images/flow/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -169,7 +169,7 @@
 	             
              
 	              <div class="addItem" id="picker">
-	                    <img src="/resources/images/story/addImg.png">
+	                    <img src="/resources/images/flow/addImg.png">
 	                    <div>点击添加图片</div>
 	                    <div>可上传JPG、GIF或PNG格式的文件，文件大小不能超过2M。</div>
 	              </div>

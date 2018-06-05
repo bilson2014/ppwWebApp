@@ -205,7 +205,7 @@ var videoListProtal = {
 
 		multipUploadFile:function(){
 			upload_Video && upload_Video.destroy();
-			var picker =$('.updateImg'); 
+			var picker =$('#picker'); 
 			upload_Video = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
