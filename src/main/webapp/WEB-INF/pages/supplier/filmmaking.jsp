@@ -13,8 +13,13 @@
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
+<spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs" />
+<spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 
-<spring:url value="/resources/lib/webuploader/webuploader.min.js" var="aesJs"/>
+
+
+<spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
+<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
 <%-- <spring:url value="/resources/lib/webuploader/pad-zeropadding.js" var="padJs"/> --%>
 
 <spring:url value="/resources/js/common.js" var="commonJs"/>
@@ -41,15 +46,11 @@
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
-	<!-- sina weibo -->
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=562282951" type="text/javascript" charset="utf-8"></script>
-	<!-- webcat -->
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-	<!-- qq -->
-	<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101236962" data-callback="true" data-redirecturi="http://www.apaipian.com/login" charset="utf-8"  type="text/javascript"></script>
+
+	
 </head>
 <body>
-	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
+
 		 <div class="page">
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
@@ -201,37 +202,26 @@
 		              						
 		              					</div>
 		              					<div class='gatherright'>
+		              					<!-- 图片上传 -->
+		              							<%-- <div class="user-icon" >          
+                        							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
+                      								<input type="hidden" id="user_img_url" value="${imgPath}/provider/initLogo.png">
+                    							</div>                 
+                    							 <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
+                    							<div class="upload-btn">
+                        							<div id="uploadBt">上传头像</div>
+                      								<input type="file" name="file" id="file" style="display: none;"/>
+                     								<p id='safeError'></p> 
+                    							</div> --%>
+		              					
+		              					
+		              					
 		              						<div class='addimage'>
-		              						
-		              							<!-- <div class="form-group">
-   													<input id="itemImagers" name="itemImagers" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
- 												</div> -->
- 												<!-- <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*">
- 												<div id="demo">
-    												<div id="as" ></div>
-												</div> -->
-												
-												<!-- <div id="uploader-demo">
-        用来存放item
-        <div id="fileList" class="uploader-list"></div>
-        <div id="filePicker">选择图片</div>
-</div> -->
-
-
-
-<div style="margin-top: 10px; margin-left: 180px">  
-    <input id="specialrecommendfile" type="file" size="30"  
-    name="file">  
-    <button type="button" onclick="UploadSpecialRecommendPic()"  
-    class="btn btn-warning btn-lg">上传</button>  
-    <input type=hidden class="span5" id="specialRecommendPic"  
-    name="riIndexPic">  
-</div> 
- 												
-
-		              						
+		              							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
+		        
 		              							<div class='reupload'>重新上传</div>
-		              							<img class='' alt="点击添加图片" src="/resources/images/supplier/adds.png">
+		              							<img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
+		              							<input type="file" name="file" id="file" style="display: none;"/>
 		              							<p>点击添加图片</p>
 		              						</div>
 		              						<div class='addboxs'>
@@ -305,13 +295,19 @@
 		   
 	
 	<script src="${jqueryJs }"></script>
-	<script src="${pluginJs }"></script>
+<%-- 	<script src="${pluginJs }"></script> --%>
 	<script src="${jsonJs }"></script>
-	<script src="${aesJs }"></script>
-	<script src="${padJs }"></script>
+	<%-- <script src="${aesJs }"></script>
+	<script src="${padJs }"></script> --%>
 	<script src="${commonJs }"></script>
-	<script src="${loginJs }"></script>
+<%-- 	<script src="${loginJs }"></script> --%>
+	
 	<script src="${createActorJs}"></script> 
+	
+	
+ <script src="${webuploaderJs }"></script> 
+
+
 	<script src="${filmmakingJs}"></script>
 	
 	

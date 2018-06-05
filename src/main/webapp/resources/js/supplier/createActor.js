@@ -2,6 +2,7 @@ $().ready(function() {
 	
 	peoplechengck();
 	gathermethod();
+	userpicInfo();
 });
 
 
@@ -45,6 +46,7 @@ function peoplechengck(){
 }
 //创建演员
 function gathermethod(){
+//	userpicInfo() ;
 	//关闭弹框
 	$('.stafftitle img').off('click').on('click',function(){
 		$('.setting').hide();
@@ -128,86 +130,54 @@ function gathermethod(){
 	
 }
 
-//
-//$('#as').diyUpload({
-//    url:'/web/upload',
-//    success:function( data ) {
-//        console.info( data );
-//    },
-//    error:function( err ) {
-//        console.info( err );  
-//    },
-//    buttonText : '选择文件',
-//    chunked:true,
-//    // 分片大小
-//    chunkSize:512 * 1024,
-//    //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-//    fileNumLimit:50,
-//    fileSizeLimit:500000 * 1024,
-//    fileSingleSizeLimit:50000 * 1024,
-//    accept: {}
-//});
-function UploadSpecialRecommendPic() {  
-    $.ajaxFileUpload({  
-        url : '/web/upload',  
-        secureuri : false,  
-        fileElementId : 'specialrecommendfile',  
-        dataType : 'json',  
-        success : function(d, status) {  
-        	alert(e); 
-            var data = eval('(' + d + ')');  
-            alert(data.msg);  
-            if (data.flag == 1) {  
-                $("#SpecialTopicPicShow").attr("src", data.path);  
-                $("#specialRecommendPic").val(data.picName);  
-            }  
-        },  
-        error : function(data, status, e) {  
-            alert(e);  
-        }  
-    });  
-}  
-
-//初始化fileinput控件（第一次初始化）
-//function initFileInput(ctrlName, uploadUrl) {
-//    var control = $('#' + ctrlName);
-//    control.fileinput({
-//        language: 'zh', //设置语言
-//        uploadUrl: uploadUrl, //上传的地址
-//        allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-//        //uploadAsync: false, //插件支持同步和异步
-//        //showUpload: false, //是否显示上传按钮
-//    }).on("fileuploaded", function(event, data) {  
-//        //上传图片后的回调函数，可以在这做一些处理
-//    });
-//}
-
-//var uploader = $("#pluploader").pluploadQueue({
-//    runtimes: 'html5,flash,silverlight,html4',
-//    url: '/Drawings/UploadFile/' + $('#filePath').val() + "?storageID=" + $('#storageID').val(),
-//    max_file_size: '1000mb',
-//    max_file_count: 20,
-//    chunk_size: '100mb',
-//    unique_names: false,
-//    multiple_queues: true,
-//    resize: { width: 320, height: 240, quality: 90 },
-//    rename: true,
-//    sortable: true,
-//    flash_swf_url: '@Url.Content("~/Content/plupload-2.1.8/js/Moxie.swf")',
-//    silverlight_xap_url: '@Url.Content("~/Content/plupload-2.1.8/js/Moxie.xap")',
-//    preinit: {
-//        UploadComplete: function () {
-//            history.back();
-//        }
-//    }
-//});
 
 
 
-
-
-
-
-
-
-
+////图片上传
+function userpicInfo() {
+	uploader && uploader.destroy();
+	uploader = WebUploader.create({
+		auto : true,
+//		swf : '/resources/lib/webuploader/Uploader.swf',
+		server : '/web/upload',
+		pick : '.addimgs',
+		accept : {
+			title : 'Images',
+			extensions : 'jpg,png',
+			mimeTypes : 'image/jpeg,image/png'
+		},
+		resize : true,
+		chunked : false,
+		fileSingleSizeLimit : 1024 * 2048,
+		duplicate : true
+	// 允许重复上传同一个
+	});
+	uploader.on('uploadSuccess', function(file, response) {
+		var path = response.value;
+		console.log(path);
+		if (path != '' && path != null) {
+//			if (path.indexOf('false@error') > -1) {
+//				if (path.indexOf("error=1") > -1) {
+//					$('#safeError').text("文件超过最大限制");
+//				} else if (path.indexOf("error=2") > -1) {
+//					$('#safeError').text("格式不正确");
+//				}
+//			} else {
+//				$('#user_img_url').val(path);
+//				var img = getDfsHostName() + path;
+//				$('#user-img').attr('src', img);
+//				$('#safeError').text("");
+//			}
+			
+		} else {
+		    $('#safeError').text("上传失败!");
+		}
+	});
+	uploader.on('error', function(type) {
+		if (type == "Q_TYPE_DENIED") {
+			$('#safeError').text("格式不正确");
+		} else if (type == "F_EXCEED_SIZE") {
+			$('#safeError').text("文件超过最大限制");   			
+		}
+	});
+}

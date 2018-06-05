@@ -56,6 +56,7 @@
 </head>
 
 <body>
+<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
     <jsp:include flush="true" page="header.jsp"></jsp:include> 
     <div class="page">
         <div class="titleTag">

@@ -666,14 +666,16 @@ function playVideo() {
 
 function createVideo(path,youku){
 	$('#playVideo').removeClass('hide');
-	var videoPath =  'http://www.apaipian.com/product/video/paipianwangMovie.mp4';
+	
+	var videoPath =  $('#storage_node').val()+'group1/M01/00/D9/CgptuFsWRt2AU1RRAPnYloRLI28085.mp4';
+	var videoPathimg=$('#storage_node').val()+'group1/M00/01/11/Cgpw7FsWRt2AH4clAALpDWuNqCY424.jpg';
 	if(path != null && path !='' && path !=undefined){
 		videoPath = path;
 	}
 	if (!hasVideo) {
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
 			    +   '<div class="openVideoCommon"></div>'
-				+   '<div class="videoRoata" id="noYouku"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="/resources/images/banner/moreInfo.JPG"  name="media" id="header3Video"> '
+				+   '<div class="videoRoata" id="noYouku"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="'+videoPathimg+'"  name="media" id="header3Video"> '
 				+   '<source  src="'+videoPath+'"  id="source" type="video/mp4">'
 				+   '</video></div><div class="videoRoata" id="setYouku"><div class="videoClose" id="youkuClose"></div></div>';
 				// '<source
