@@ -357,7 +357,7 @@
 				<div class="modal-body">
 					<div class="modal-left">
 						<div class="modal-original">
-							<img alt="" src="" id="modal-original-img">
+							<img id="modal-original-img">
 						</div>
 					</div>
 					<div class="modal-right">

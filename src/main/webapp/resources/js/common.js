@@ -334,7 +334,8 @@ function getDfsHostName(){
  * 获取图片地址
  */
 function getResourcesName(){
-	var rPath = "http://resource.apaipian.com/resource/";
+	//var rPath = "http://resource.apaipian.com/resource/";
+	var rPath = "https://file1.apaipian.com:8000/";
 	return rPath;
 }
 /**

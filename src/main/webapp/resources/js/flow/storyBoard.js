@@ -13,6 +13,7 @@ var x2;
 var y2;
 var w;
 var h;
+var timer = null
 //头像裁剪参数 end
 
 $().ready(function() {
@@ -218,12 +219,10 @@ var videoListProtal = {
 			upload_Video = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/web/multipUpload',
+				server : '/web/upload',
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-			//	fileNumLimit : 10,//最多上传文件
-			//	multiple: true, //是否多文件
 				threads :1,
 				accept :{
 				    title: 'Images',
@@ -235,6 +234,7 @@ var videoListProtal = {
 			upload_Video.on('uploadSuccess', function(file,response) {
 				
 				if(response.code == 0){
+					  
 					    var path = response.result;
 						$('#mymodal').show();
 						$('#closePhone').on('click', function () {
@@ -250,14 +250,13 @@ var videoListProtal = {
 						var imgPath = getResourcesName() + path;
 						$('#modal-original-img').attr('src',imgPath);
 						$('#modal-preview').attr('src',imgPath);
-						JcropFunction();
+						checkImgComplete(imgPath);						
 				}else{
 					successToolTipShow('图片获取失败');
 				}
 				
 			});
 			upload_Video.on('uploadError', function(file,reason) {
-				//console.info(reason);
 				successToolTipShow(reason);
 			});
 			upload_Video.on('error', function(type) {
@@ -273,6 +272,70 @@ var videoListProtal = {
 		}
 }
 
+function checkImgComplete(path){
+	var imgObj = document.getElementById("modal-original-img");
+	timer = setInterval(function(){
+		if(imgObj.complete){
+			clearInterval(timer);
+			initCutImg();
+			JcropFunction();
+			cutUpload(path);
+		}else{
+			checkImgComplete(path);
+		}
+	},80);
+}
+	
+function initCutImg(){
+	$('#modal-original-img').attr('style','');
+	$('#modal-original-img').css('width','100%');
+	var needWidth = $('.modal-original').css('width');
+	var needHeight = $('.modal-original').css('height');	
+	var changeImg = $('#modal-original-img');	
+    var realHeight = changeImg.height();
+	var realWidth  = changeImg.width();			
+			if(realHeight >= realWidth){				
+				changeImg.css('height',needHeight).css('width','auto');
+			}
+			else{
+				changeImg.css('height','auto').css('width',realWidth);
+			}
+}
+
+function cutUpload(path){
+	
+	// 点击确定，裁剪文件，并将该文件转化为正规的文件名称
+	$('#uploadConfirmBt').unbind('click');
+	$('#uploadConfirmBt').bind('click',function(){
+		if(x == 0 && y == 0 && x2 ==0 && y2 ==0){
+			jcrop_api.destroy();
+			$('#uploadConfirmBt').attr('disabled',false);
+			$("#mymodal").modal("hide");
+			return;
+		}
+		$('#uploadConfirmBt').attr('disabled','disabled');
+		// 裁剪图片
+		loadData(function(userTarget){
+			jcrop_api.destroy();
+			$('#uploadConfirmBt').attr('disabled',false);
+			$("#mymodal").modal("hide");
+			var imgPath = getResourcesName() + userTarget.imgFileName;
+			$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:imgPath}));
+		}, getContextPath() + '/web/cutPhoto', $.toJSON({
+			imgUrl : path,
+			x : x,
+			y : y,
+			x2 : x2,
+			y2 : y2,
+			width : w,
+			height : h,
+			originalWidth : $("#modal-original-img").width(),
+			originalHeight : $("#modal-original-img").height()
+		}));
+	});
+}
+
+
 //裁剪start
 function JcropFunction(){
 	x=0;
@@ -285,7 +348,7 @@ function JcropFunction(){
 	// 初始化Jcrop
 	jcrop_api = $.Jcrop('#modal-original-img',{
 		bgOpacity : 0.2,
-		aspectRatio : 1 / 1,
+		aspectRatio : 16/9,
 		onSelect : updateCoords // 当选择完成时执行的函数
 	});
 }
@@ -361,37 +424,18 @@ var videoUpdate = {
 				}
 			});
 			
-			// 文件上传过程中创建进度条实时显示。
-			upload_Update.on('uploadProgress',function(file, percentage) {
-				/*var $li = $('#' + file.id), $percent = $li
-				.find('.progress .progress-bar');
-				// 避免重复创建
-				if (!$percent.length) {
-					$percent = $(
-							'<div class="progress progress-striped active">'
-									+ '<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" style="width: 0%">'
-									+ '</div>' + '</div>')
-							.appendTo($li).find('.progress-bar');
-				}*/
-			/*	$li.find('.videoState').text('上传中');
-				$percent.css('width', percentage * 100 + '%');*/
-			});
 
 			upload_Update.on('uploadSuccess', function(file,response) {
 				
 				if(response._raw == 'success'){
-					$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
-					/*$('body').find( '#'+file.id ).find('.videoState').text('已上传');
-					$('body').find( '#'+file.id ).find('.videoState').addClass("showUpSuccess");
-					$('body').find('#' + file.id).find('.progress').fadeOut();*/
+				//	$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
 				}else{
-					/*$('body').find( '#'+file.id ).find('.videoState').text('上传失败');
-					$('body').find('#' + file.id).find('.progress').fadeOut();*/
+
 				}
 				
 			});
 			upload_Update.on('uploadError', function(file,reason) {
-				//console.info(reason);
+
 				successToolTipShow(reason);
 			});
 			upload_Update.on('error', function(type) {
