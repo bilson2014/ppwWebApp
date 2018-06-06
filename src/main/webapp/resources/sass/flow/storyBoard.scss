@@ -641,8 +641,8 @@
     }
 
     .modal-preview-container img {
-     width: 320px;
-     height: 180px;
+        width: 320px;
+        height: 180px;
     }
 
     .model-no-border {
@@ -679,7 +679,7 @@
             bottom: 0;
             right: 0;
         }
-        #modal-original-img{
+        #modal-original-img {
             width: 100%;
             height: auto;
         }
@@ -697,7 +697,11 @@
     }
 
 
-    #uploadConfirmBt{
+    #uploadConfirmBt {
         width: 320px !important;
         height: 36px !important;
+        font-size: 14px;
+        color: #FFFFFF;
+        padding: 0;
+        line-height: 36px;
     }

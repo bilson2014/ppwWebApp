@@ -15,6 +15,7 @@
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
 <spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
 <spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -41,6 +42,8 @@
 <script type="text/javascript" src="${juicerJs}"></script>
 <script type="text/javascript" src="${jcropJs}"></script>
 <script type="text/javascript" src="${jcropColorJs}"></script>
+<script type="text/javascript" src="${jsonJs}"></script>
+
 
 
 <link rel="stylesheet" href="${storyBoardCss}">

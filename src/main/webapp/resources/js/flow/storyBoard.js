@@ -13,7 +13,7 @@ var x2;
 var y2;
 var w;
 var h;
-var timer = null
+var timer = null;
 //头像裁剪参数 end
 
 $().ready(function() {
@@ -250,7 +250,7 @@ var videoListProtal = {
 						var imgPath = getResourcesName() + path;
 						$('#modal-original-img').attr('src',imgPath);
 						$('#modal-preview').attr('src',imgPath);
-						checkImgComplete(imgPath);						
+						checkImgComplete(path);						
 				}else{
 					successToolTipShow('图片获取失败');
 				}
@@ -277,6 +277,7 @@ function checkImgComplete(path){
 	timer = setInterval(function(){
 		if(imgObj.complete){
 			clearInterval(timer);
+			timer = null;
 			initCutImg();
 			JcropFunction();
 			cutUpload(path);
@@ -310,7 +311,7 @@ function cutUpload(path){
 		if(x == 0 && y == 0 && x2 ==0 && y2 ==0){
 			jcrop_api.destroy();
 			$('#uploadConfirmBt').attr('disabled',false);
-			$("#mymodal").modal("hide");
+			$("#mymodal").hide;
 			return;
 		}
 		$('#uploadConfirmBt').attr('disabled','disabled');
@@ -318,7 +319,7 @@ function cutUpload(path){
 		loadData(function(userTarget){
 			jcrop_api.destroy();
 			$('#uploadConfirmBt').attr('disabled',false);
-			$("#mymodal").modal("hide");
+			$("#mymodal").hide();
 			var imgPath = getResourcesName() + userTarget.imgFileName;
 			$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:imgPath}));
 		}, getContextPath() + '/web/cutPhoto', $.toJSON({
