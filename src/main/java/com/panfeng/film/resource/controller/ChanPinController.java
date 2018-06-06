@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.aspectj.bridge.context.PinpointingMessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import com.paipianwang.pat.facade.product.entity.PmsProductModule;
 import com.paipianwang.pat.facade.product.entity.PmsScene;
 import com.paipianwang.pat.facade.product.service.PmsChanPinConfigurationFacade;
 import com.paipianwang.pat.facade.product.service.PmsChanPinFacade;
+import com.paipianwang.pat.facade.product.service.PmsDimensionFacade;
 import com.paipianwang.pat.facade.product.service.PmsIndentConfirmFacade;
 import com.paipianwang.pat.facade.product.service.PmsSceneFacade;
 import com.paipianwang.pat.facade.right.entity.PmsEmployee;
@@ -62,6 +64,9 @@ public class ChanPinController extends BaseController {
 
 	@Autowired
 	private PmsEmployeeFacade employeeFacade;
+	
+	@Autowired
+	private PmsDimensionFacade pmsDimensionFacade;
 
 	@RequestMapping("/product/list")
 	public DataGrid<PmsChanPin> sceneList() {
@@ -554,5 +559,30 @@ public class ChanPinController extends BaseController {
 				dimension.add(new ChanpinSelection(pmsDimension.getDimensionId()+"", pmsDimension.getRowName(),pmsDimension.getComputeType()+"",pmsDimension.getRowValue()));
 			}
 		}
+	}
+	
+	@RequestMapping("/product/dimension/{chanpinId}")
+	public BaseMsg getDimensionSelection(@PathVariable("chanpinId") Long chanpinId) {
+		BaseMsg baseMsg = new BaseMsg();
+		baseMsg.setCode(BaseMsg.NORMAL);
+		Map<String,Object> result=new HashMap<>();
+		baseMsg.setResult(result);
+		
+		List<PmsChanPinConfiguration> allConfig = pmsChanPinConfigurationFacade.getSimpleChanPinConfigurationByChanPinId(chanpinId);
+		
+		//获取产品第一个配置的维度配置
+		if(ValidateUtil.isValid(allConfig)) {
+			List<PmsDimension> dimensionList=pmsDimensionFacade.getDimensionByConfigId(allConfig.get(0).getChanpinconfigurationId());
+
+			List<ChanpinSelection> dimension=new ArrayList<>();
+			if(ValidateUtil.isValid(dimensionList)) {
+				for(PmsDimension each:dimensionList) {
+					dimension.add(new ChanpinSelection(each.getDimensionId()+"",each.getRowName()));
+				}
+			}			
+			result.put("dimension", dimension);
+		}
+			
+		return baseMsg;
 	}
 }
