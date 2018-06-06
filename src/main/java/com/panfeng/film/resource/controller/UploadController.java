@@ -101,9 +101,9 @@ public class UploadController extends BaseController{
 		return result;
 	}
 	@RequestMapping("/web/cutPhoto")
-	public String uploadDIYUserImg(@RequestBody final PhotoCutParam param, final HttpServletRequest request)
+	public BaseMsg uploadDIYUserImg(@RequestBody final PhotoCutParam param, final HttpServletRequest request)
 			throws IOException {
-
+		BaseMsg result=new BaseMsg();
 		if (param != null && !"".equals(param.getImgUrl())) {
 
 			final String imgPath = param.getImgUrl();
@@ -119,9 +119,10 @@ public class UploadController extends BaseController{
 
 			String path = FastDFSClient.uploadFile(inputStream, imgPath);
 
-			return path;
+			result.setCode(BaseMsg.NORMAL);
+			result.setResult(path);
 		}
-		return null;
+		return result;
 	}
 	
 	@RequestMapping("/web/delImg")
