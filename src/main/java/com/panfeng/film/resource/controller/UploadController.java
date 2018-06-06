@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.panfeng.film.domain.BaseMsg;
@@ -110,17 +111,30 @@ public class UploadController extends BaseController{
 			final String extName = FileUtils.getExtName(imgPath, ".");
 
 			SessionInfo sessionInfo = getCurrentInfo(request);
-			Log.error("User id is " + param.getUserId() + " cut photo begin", sessionInfo);
+			Log.error(" cut photo begin", sessionInfo);
 
 			// cut photo
 			inputStream = PhotoUtil.cutPhoto(inputStream, param, extName);
-			Log.error("User id is " + param.getUserId() + " cut photo - success", sessionInfo);
+			Log.error(" cut photo - success", sessionInfo);
 
 			String path = FastDFSClient.uploadFile(inputStream, imgPath);
-			// 更新数据库
 
 			return path;
 		}
 		return null;
+	}
+	
+	@RequestMapping("/web/delImg")
+	public BaseMsg delImg(String path) {
+		BaseMsg msg=new BaseMsg();
+		msg.setCode(BaseMsg.ERROR);
+		if(ValidateUtil.isValid(path)) {
+			int result= FastDFSClient.deleteFile(path);
+			if(result==0) {
+				msg.setCode(BaseMsg.NORMAL);
+			}
+		}
+		
+		return msg;
 	}
 }
