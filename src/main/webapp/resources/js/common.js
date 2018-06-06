@@ -330,6 +330,13 @@ function getDfsHostName(){
 	return rPath == undefined ? "http://resource.apaipian.com/resource/" : rPath;
 }
 /**
+ * 获取图片地址
+ */
+function getResourcesName(){
+	var rPath = "http://resource.apaipian.com/resource/";
+	return rPath;
+}
+/**
  * 数据加分隔符
  * @param number
  * @returns

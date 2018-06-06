@@ -105,7 +105,7 @@
                 margin-bottom: 10px;
                 position: relative;
                 text-align: center;
-                background: black;
+                background: #e3e3e3;
                 overflow: hidden;
                 &:hover {
                     .updateImg {
@@ -564,25 +564,24 @@
             cursor: pointer;
         }
         .oSContent {
-          
-              .tdDes {
-            padding-top: 40px;
-            padding-bottom: 20px;
-            text-align: center;
-            color: $gray-dark;
-            font-size: $font-size;
-        }
-        .tDes {
-            padding-bottom: 50px;
-            text-align: center;
-            color: $gray-dark;
-            font-size: $font-size;
-        }
 
+            .tdDes {
+                padding-top: 40px;
+                padding-bottom: 20px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
+            .tDes {
+                padding-bottom: 50px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
         }
     }
 
-     .sureBtn {
+    .sureBtn {
         font-size: 0;
         padding-top: 20px;
         width: 265px;
@@ -605,4 +604,73 @@
         div:nth-child(1) {
             margin-right: 20px;
         }
+    } //裁剪图片
+    .modal-dialog {
+        position: relative;
+        width: 772px;
+        height: 443px;
+        margin: 0 auto;
+    }
+
+    .model-distance {
+        position: relative;
+        top: 120px;
+    }
+
+    .modal-body {
+        height: 340px;
+    }
+
+    .modal-left {
+        position: relative;
+        float: left;
+        left: 30px;
+    }
+
+    .modal-original>img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .modal-right {
+        float: right;
+        position: relative;
+        right: 31px;
+    }
+
+    .modal-preview-container {
+        margin-bottom: 30px;
+        width: 136px;
+        height: 136px;
+        overflow: hidden;
+    }
+
+    .modal-preview-container img {
+        width: 136px;
+        height: 136px;
+    }
+
+    .model-no-border {
+        height: 60px;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: center;
+        line-height: 60px;
+        font-size: 16px;
+        color: #333333;
+        position: relative;
+        padding: 0 !important;
+        .closeBtn {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: absolute;
+            right: 20px;
+            top: 25px;
+            cursor: pointer;
+        }
+    }
+
+    .modal {
+        width: 100%;
+        height: 100%;
     }

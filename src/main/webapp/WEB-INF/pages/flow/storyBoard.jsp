@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/flow/storyBoard.css" var="storyBoardCss"/>
-<spring:url value="/resources/lib/webuploader/webuploader.css"
-	var="webuploaderCss" />
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss" />
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jqueryui/jquery-ui.min.js" var="jqueryuiJs"/>
@@ -13,6 +13,8 @@
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
 <spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
 <spring:url value="/resources/js/juicer.js" var="juicerJs" />
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
+<spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -37,9 +39,14 @@
 <script type="text/javascript" src="${webuploaderJs}"></script>
 <script type="text/javascript" src="${ajaxfileuploadJs}"></script>
 <script type="text/javascript" src="${juicerJs}"></script>
+<script type="text/javascript" src="${jcropJs}"></script>
+<script type="text/javascript" src="${jcropColorJs}"></script>
+
 
 <link rel="stylesheet" href="${storyBoardCss}">
 <link rel="stylesheet" href="${webuploaderCss}">
+<link rel="stylesheet" href="${jcropCss}">
+
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 
 <!--[if lt IE 9]>
@@ -94,7 +101,7 @@
 					     </div>
 					     <div class="loadImg">
 					            <div class="updateImg">重新上传</div>
-					            <img class="delLoadImg" src="/resources/images/story/del.png">
+					            <img class="delLoadImg" src="/resources/images/flow/del.png">
 					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528279592&di=fc4f3c06aa8ddd220b71df6f83582273&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F59%2F15%2F54f58PICMis_1024.png">
 					     </div>
 					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
@@ -115,7 +122,7 @@
 					     </div>
 					     <div class="loadImg">
 					            <div class="updateImg">重新上传</div>
-					            <img class="delLoadImg" src="/resources/images/story/del.png">
+					            <img class="delLoadImg" src="/resources/images/flow/del.png">
 					            <img class="backgroundImg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527507228707&di=5e7521e976e53da5ace3e221447a1a74&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg">
 					     </div>
 					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
@@ -136,7 +143,7 @@
 					     </div>
 					     <div class="loadImg">
 					            <div class="updateImg">重新上传</div>
-					            <img class="delLoadImg" src="/resources/images/story/del.png">
+					            <img class="delLoadImg" src="/resources/images/flow/del.png">
 					            <img class="backgroundImg" src="/resources/images/supplier/55.png">
 					     </div>
 					     <textarea class="checkImgText" placeholder="请输入镜头要求..."></textarea>
@@ -145,7 +152,7 @@
 	             <div class="imgItem">
 	                    <div class="orderSelect" id="isOther">
 				                <div class="imgType checkImgType">请选择镜头</div>
-				                <img src="/resources/images/story/selectS.png">
+				                <img src="/resources/images/flow/selectS.png">
 				                <ul class="oSelect" id="orderCome" style="display: none;">
 				                   <li data-id="0">全部</li>
 				                   <li data-id="1">沟通阶段</li>
@@ -338,6 +345,32 @@
       </div>
 	
 	<div class="tooltip-success-show"></div>
+	
+	<!-- photo Modal start -->
+	<div class="cusModel" id="mymodal">
+		<div class="modal-dialog">
+			<div class="modal-content model-distance">
+				<div class="modal-header model-no-border">
+				          请选择照片区域
+					<div class="closeBtn" id="closePhone"></div>
+				</div>
+				<div class="modal-body">
+					<div class="modal-left">
+						<div class="modal-original">
+							<img alt="" src="" id="modal-original-img">
+						</div>
+					</div>
+					<div class="modal-right">
+						<div class="modal-preview-container">
+							<img alt="" src="" id="modal-preview">
+						</div>
+						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- photo Modal end -->
 </body>
 <script type="text/javascript" src="${storyBoardJs}"></script>
 </html>
