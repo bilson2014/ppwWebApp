@@ -15,11 +15,12 @@ var UrlDo = "localhost";
 //var UrlDo = '192.168.0.147';
 
 //var Url = "https://www.apaipian.com:8087/";
-//var Url = "http://test.apaipian.com:7070/";
+//var Url = "http://test.apaipian.com:8084/";
 var Url = "http://localhost:8081/";
 //var Url = "http://192.168.0.142:8080/";
 //var Url = '192.168.0.147:8081';
 //var httpsUrl = "https://www.apaipian.com:7070/";
+//var httpsUrl = "https://test.apaipian.com:7070/";
 
 $().ready(function(){
 	getImgUrl();
@@ -673,14 +674,16 @@ function playVideo() {
 
 function createVideo(path,youku){
 	$('#playVideo').removeClass('hide');
-	var videoPath =  'http://www.apaipian.com/product/video/paipianwangMovie.mp4';
+	
+	var videoPath =  $('#storage_node').val()+'group1/M01/00/D9/CgptuFsWRt2AU1RRAPnYloRLI28085.mp4';
+	var videoPathimg=$('#storage_node').val()+'group1/M00/01/11/Cgpw7FsWRt2AH4clAALpDWuNqCY424.jpg';
 	if(path != null && path !='' && path !=undefined){
 		videoPath = path;
 	}
 	if (!hasVideo) {
 		var $body = ' <div class="openVideo" title="双击关闭视频" id="playVideo">'
 			    +   '<div class="openVideoCommon"></div>'
-				+   '<div class="videoRoata" id="noYouku"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="/resources/images/banner/moreInfo.JPG"  name="media" id="header3Video"> '
+				+   '<div class="videoRoata" id="noYouku"><div class="videoClose" id="commonCloseVideo"></div><video autoplay controls loop poster="'+videoPathimg+'"  name="media" id="header3Video"> '
 				+   '<source  src="'+videoPath+'"  id="source" type="video/mp4">'
 				+   '</video></div><div class="videoRoata" id="setYouku"><div class="videoClose" id="youkuClose"></div></div>';
 				// '<source

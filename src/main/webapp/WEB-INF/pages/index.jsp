@@ -10,7 +10,7 @@
 <!--js  -->
 <spring:url value="/resources/js/common.js" var="commonJs" />
 <spring:url value="/resources/js/index.js" var="indexJs" />
-<spring:url value="/resources/js/figlet.js" var="figletJs" />
+<%-- <spring:url value="/resources/js/figlet.js" var="figletJs" /> --%>
 
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js"
 	var="jqueryJs" />
@@ -55,7 +55,7 @@
 
 
 <body>
-
+	<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 	<r:identity role="provider">
 		<input type="hidden" id="rolephone" value="1314520ppw" />
 		<input type="hidden" id="roletype" value="provider">
@@ -496,7 +496,7 @@
 <script type="text/javascript" src="resources/lib/swiper/swiper4.js"></script>
 <script type="text/javascript" src="${indexJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
-<script type="text/javascript" src="${figletJs}"></script>
+<%-- <script type="text/javascript" src="${figletJs}"></script> --%>
 
 
 </html>
