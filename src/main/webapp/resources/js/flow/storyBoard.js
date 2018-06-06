@@ -194,7 +194,7 @@ function checkError(){
 	return true;
 	
 }
-
+//错误提示
 function successToolTipShow(error){
 		window.clearInterval(successIntervalObj);
 		$('.tooltip-success-show').show();
@@ -284,7 +284,7 @@ function checkImgComplete(path){
 		}else{
 			checkImgComplete(path);
 		}
-	},80);
+	},500);
 }
 	
 function initCutImg(){
@@ -317,11 +317,20 @@ function cutUpload(path){
 		$('#uploadConfirmBt').attr('disabled','disabled');
 		// 裁剪图片
 		loadData(function(userTarget){
-			jcrop_api.destroy();
-			$('#uploadConfirmBt').attr('disabled',false);
-			$("#mymodal").hide();
-			var imgPath = getResourcesName() + userTarget.imgFileName;
-			$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:imgPath}));
+			
+			if(userTarget.code == 200){
+				jcrop_api.destroy();
+				$('#uploadConfirmBt').attr('disabled',false);
+				$("#mymodal").hide();
+				var imgPath = getResourcesName() + userTarget.result;
+				$("#setImg").prepend(juicer(videoList_tpl.upload_Tpl,{file:imgPath}));
+			}else{
+				jcrop_api.destroy();
+				$('#uploadConfirmBt').attr('disabled',false);
+				$("#mymodal").hide();
+				successToolTipShow('图片异常请重新上传');
+			}
+			
 		}, getContextPath() + '/web/cutPhoto', $.toJSON({
 			imgUrl : path,
 			x : x,
@@ -468,9 +477,9 @@ var videoList_tpl = {
         "        </ul>    "+
 	    " </div>"+
 	    " <div class='loadImg'>"+
-	    "        <div>重新上传</div>"+
+	    "        <div class='updateImg'>重新上传</div>"+
 	    "        <img class='delLoadImg' src='/resources/images/flow/del.png'>"+
-	    "        <img class='backgroundImg' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527507228707&di=5e7521e976e53da5ace3e221447a1a74&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg'>"+
+	    "        <img class='backgroundImg' src='${file}'>"+
 	    " </div>"+
 	    " <textarea class='checkImgText' placeholder='请输入镜头要求...'></textarea>"+
         "</div>"
