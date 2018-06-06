@@ -99,7 +99,7 @@ public class UploadController extends BaseController{
 		}
 		return result;
 	}
-	@RequestMapping("/cutPhoto")
+	@RequestMapping("/web/cutPhoto")
 	public String uploadDIYUserImg(@RequestBody final PhotoCutParam param, final HttpServletRequest request)
 			throws IOException {
 
