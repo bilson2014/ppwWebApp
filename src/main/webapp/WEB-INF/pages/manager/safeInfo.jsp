@@ -94,7 +94,7 @@
                     <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
                     <div class="upload-btn">
                         <div id="uploadBt">上传头像</div>
-                      <input type="file" name="file" id="file" style="display: none;"/>
+                      	<input type="file" name="file" id="file" style="display: none;"/>
                      <p id='safeError'></p> 
                     </div>
 
