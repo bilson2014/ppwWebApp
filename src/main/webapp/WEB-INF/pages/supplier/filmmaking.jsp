@@ -29,6 +29,7 @@
 
 <spring:url value="/resources/js/supplier/createActor.js" var="createActorJs"/>
 <spring:url value="/resources/js/supplier/site.js" var="siteJs"/>
+<spring:url value="/resources/js/supplier/device.js" var="deviceJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -488,22 +489,25 @@
 		              					<p class='priceequipp errorp'></p>
 		              				</div>
 		              				
+		              				<div class='equipleft'>
+		              					<span>所在城市</span>
+		              					<div class='cityequip'>请选择城市</div>
+		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='cityequipp errorp'></p>
+		              					<div class='citycheck'>
+		              						<p>城市1</p>
+		              						<p>北京</p>
+		              						<p>山西</p>
+		              						<p>北京气温气温</p>
+		              						<p>城1</p>
+		              					</div>
+		              				</div>
 		              				
-		              				
-		              				
-		              				
-		              				
-		              					
-		              					
-		              					
-		              					
-		              					
-		              					
 		              				
 		              			</div>
 		              			<div class='remark'>
 		              				<span>备注</span>
-		              				<textarea rows="4" cols="550" placeholder="请完善设备信息"></textarea>
+		              				<textarea class='equipremark' rows="4" cols="550" placeholder="请完善设备信息"></textarea>
 		              			</div>
 		              			<!--提交按钮  -->
 		              			<div class='gatherbut'>
@@ -527,9 +531,9 @@
 	<script src="${commonJs }"></script>
 	<script src="${createActorJs}"></script> 
 	<script src="${siteJs}"></script> 
+	<script src="${deviceJs}"></script> 
 	
-	
- <script src="${webuploaderJs }"></script> 
+ 	<script src="${webuploaderJs }"></script> 
 
 
 	<script src="${filmmakingJs}"></script>

@@ -3,8 +3,7 @@ $().ready(function() {
 	init();
 	imgcheckpeople();
 	newbutton();
-//
-//	gathermethod();
+
 });
 //图片尺寸的显示处理竖版
 function imgcheckpeople(){
@@ -82,17 +81,47 @@ function init(){
 	
 	//图片删除共同dels  修改
 	$('body').on('click','.idcard .select',function(){
+		var id=$(this).parent().parent().attr('id');
 		if ($('.showimages').children().length==1){
 			$(this).parent().parent().remove();
 			$('.showimages').hide();
+			
 		}else {
 			$(this).parent().parent().remove();
+			
 		}
+		
+		if ($('.top .people').hasClass('top-text')){
+			console.log('删除数据')
+		
+		}else if($('.top .sitett').hasClass('top-text')){
+			delstudio(id);
+			
+		}else if($('.top .facility').hasClass('top-text')){
+			deldevice(id);
+		}
+		
 	});
 	$('body').on('click','.idcard .read',function(){
+		$(this).find('.shade').hide();
 		$('.setting').show();
-		$('.sitebox').show();
-		var id=$(this).parent().parent()
+		var id=$(this).parent().parent().attr('id');
+		
+		if ($('.top .people').hasClass('top-text')){
+			console.log('获取数据')
+		
+		}else if($('.top .sitett').hasClass('top-text')){
+			$('.sitebox').show();
+			getstudio(id);
+			
+			
+		}else if($('.top .facility').hasClass('top-text')){
+			$('.equipbox').show();
+			getdevice(id);
+			
+			dropdowndata();
+			droplink('device','1');
+		}
 	});
 	
 	
@@ -115,6 +144,7 @@ function init(){
 		
 	});
 	$('.sitett').off('click').on('click',function(){
+		
 		getlistdata('studio');//获取场地数据
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
@@ -152,13 +182,20 @@ function newbutton(){
 		
 		}else if($('.top .sitett').hasClass('top-text')){
 			$('.sitebox').show();
+			$('.sitebox .sitetitle span').text('添加场地');
+			$('.sitebox').attr('id','');
+			
+			
 			
 		}else if($('.top .facility').hasClass('top-text')){
 			$('.equipbox').show();
+			$('.equipbox .equiptitle span').text('添加设备');
+			$('.equipbox').attr('id','');
+			
+			dropdowndata();
 		}
 		
-		
-//		 peoplechengck();
+
 		 
 	});
 }
@@ -168,19 +205,12 @@ function newbutton(){
 function getlistdata(type){
 	loadData(function(res){	
 		
-	
 		if (type=="people"){
 			console.log("人物的box");
-//			$('.setCard').text('');
+			$('.setCard').text('');
 		}else if(type=='studio'){
-			console.log($('.setCard').text());
-//			$('.setCard').text('');
-			for(var i=0;i<=res.length;i++){
-				
-//				console.log(res[i].name);
-//				console.log(res[i].photo);
-//				console.log(res[i].price);
-//				console.log(res[i].identity);
+			$('.setCard').text('');
+			for(var i=0;i<res.length;i++){
 				var boxhtml="<div class='idcard  idcard-site' id ="+res[i].id+" identity="+res[i].identity+">"
 	            +"<img class='imgs"+i+"' src="+res[i].photo+">"
 	            +"<div class='shade  idcard-site' style='display: none;'>"
@@ -197,25 +227,30 @@ function getlistdata(type){
 			}
 			
 		}else if(type=="device"){
-			console.log("设备的box");
 			$('.setCard').text('');
+			console.log()
+			for(var i=0;i<res.length;i++){
+				var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
+	            +"<img class='imgs"+i+"' src="+res[i].photo+">"
+	            +"<div class='shade  idcard-facility' style='display: none;'>"
+	            +"<img class='read' src='/resources/images/supplier/read.png'>"
+	            +"<img class='select' src='/resources/images/supplier/select.png'>"
+	            +"</div>"
+	            +"<div class='linebox linebox-facility'>"
+	            +"<span class='name'>"+res[i].name+"</span>"
+	            +"<p class='price'>"+res[i].price+"</p>"
+	            +"</div>"
+	            +"</div>";
+				$('.setCard').append(boxhtml);
+				
+			}
+			
 		}
 	
 		
 		
 	 }, getContextPath() + ' /production/'+type+'/list', $.toJSON({						
-//		 address: locationsite,//地址
-//		 area: msite,//面积
-////		 delImg:,//待删除图片
-////		 id:,//	主键
-////		 mainPhoto:,//主图
-//		 name: namesite,	//名称
-////		 photo:,//	其他照片
-//		 price: pricesite,//	价格
-//		 remark:siteremark,//	备注
-//		 type:typesite,//场地类型
-		 
-		 
+ 
 		 
 	}));
 }

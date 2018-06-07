@@ -1007,6 +1007,23 @@
                                 background: #F0F2F5;
                             }
                         }
+                        .citycheck {
+                            height: 108px;
+                            z-index: 22;
+                            position: absolute;
+                            left: 105px;
+                            top: 35px;
+                            background: #fff;
+                            padding: 0;
+                            overflow: auto;
+                            display: none;
+                            p {
+                                padding-left: 11px;
+                            }
+                            p:hover {
+                                background: #F0F2F5;
+                            }
+                        }
                         .typecheck {
                             height: 108px;
                             z-index: 22;

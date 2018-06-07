@@ -1,48 +1,21 @@
-$().ready(function() {
+$().ready(function() {	
+	sitemethod();	 
 	
-//	sitechengck();
-	sitemethod();
-
-	 
+	
 });
 
 
-//角色选择
-function sitechengck(){
-	
 
-	
-	//addpeople的确认 和取消
-	$('.addpeople .sure').off('click').on('click',function(){
-		if ($('.check').text()=='演员'){
-			$('.addpeople').hide();
-			$('.staffbox').show();
-			//提前加载图片
-			imgcheckpeoplefive();
-	
-		}else if($('.check').text()=='导演'){
-			$('.addpeople').hide();
- 
-		}
-	});
-	
-	
-}
 //添加场地
 function sitemethod(){
 
 	//关闭弹框
-	$('.sitetitle img').off('click').on('click',function(){
+	$('.sitetitle img,.sitebox .cancel').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.sitebox').hide();	
 		cleandata();
+	});
 	
-	});
-	$('.sitebox .cancel').off('click').on('click',function(){
-		$('.setting').hide();
-		$('.sitebox').hide();
-		cleandata();
-	});
 	//下拉框出现(类型)
 	$('.siteleft .typesite,.siteleft .typeimg').off('click').on('click',function(){
 		$('.typecheck').show();	
@@ -111,24 +84,52 @@ function sitemethod(){
 			return false;
 		}else {
 			console.log('验证正确');
-			loadData(function(result){	
-				console.log(result);
-			 }, getContextPath() + '/production/studio/save', $.toJSON({						
-				 address: locationsite,//地址
-				 area: msite,//面积
-//				 delImg:,//待删除图片
-//				 id:,//	主键
-//				 mainPhoto:,//主图
-				 name: namesite,	//名称
-//				 photo:,//	其他照片
-				 price: pricesite,//	价格
-				 remark:siteremark,//	备注
-				 type:typesite,//场地类型
-				 citysite:citysite,//城市类型 -----
-				 
-				 
-				 
-			}));
+			var biao=$('.sitebox .sitetitle span').text();
+			if (biao=='修改场地'){
+				var id=$('.sitebox').attr('id');
+				loadData(function(result){	
+					cleandata();
+					$('.setting').hide();
+					$('.sitebox').hide();
+					getlistdata('studio');//获取场地数据
+				 }, getContextPath() + '/production/studio/update', $.toJSON({						
+					 address: locationsite,//地址
+					 area: msite,//面积
+//					 delImg:,//待删除图片
+					 id:id,//	主键
+//					 mainPhoto:,//主图
+					 name: namesite,	//名称
+//					 photo:,//	其他照片
+					 price: pricesite,//	价格
+					 remark:siteremark,//	备注
+					 type:typesite,//场地类型
+					 citysite:citysite,//城市类型 -----
+					
+				}));
+			}else{
+				loadData(function(result){	
+					cleandata();
+					$('.setting').hide();
+					$('.sitebox').hide();
+					getlistdata('studio');//获取场地数据
+				 }, getContextPath() + '/production/studio/save', $.toJSON({						
+					 address: locationsite,//地址
+					 area: msite,//面积
+//					 delImg:,//待删除图片
+//					 id:,//	主键
+//					 mainPhoto:,//主图
+					 name: namesite,	//名称
+//					 photo:,//	其他照片
+					 price: pricesite,//	价格
+					 remark:siteremark,//	备注
+					 type:typesite,//场地类型
+					 citysite:citysite,//城市类型 -----
+					 
+					 
+					 
+				}));
+			}
+			
 			
 			
 		}
@@ -138,7 +139,35 @@ function sitemethod(){
 	
 }
 
-
+//获取
+function getstudio(id){
+	loadData(function(res){	
+		$('.sitebox .sitetitle span').text('修改场地');
+		$('.sitebox').attr('id',id);
+		
+		$('.namesite').val(res.name);
+		$('.msite').val(res.area);
+		$('.typesite').text(res.type);
+		$('.pricesite').val(res.price);
+		$('.citysite').text(res.citysite);
+		$('.locationsite').val(res.address);
+		$('.siteremark').val(res.remark);
+		
+	 }, getContextPath() + '/production/studio/get', $.toJSON({						
+		 id:id,//	主键
+	}));
+	
+}
+//删除
+function delstudio(id){
+	loadData(function(res){	
+		console.log(id+'删除了,之后获取了新的 数据');
+		getlistdata('studio');//获取场地数据
+	 }, getContextPath() + '/production/studio/delete', $.toJSON({						
+		 id:id,//	主键
+	}));
+	
+}
 function cleandata(){
 	$('.namesitep').text('');
 	$('.msitep').text('');
