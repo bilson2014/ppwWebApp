@@ -14,7 +14,9 @@ var y2;
 var w;
 var h;
 var timer = null;
+var loadTime = 0;
 //头像裁剪参数 end
+var delImgGroup = '';
 
 $().ready(function() {
 	
@@ -224,19 +226,25 @@ var videoListProtal = {
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
 				threads :1,
+				duplicate :true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png',
 				    mimeTypes: 'image/jpeg,image/png'
 				}
 			});
+			
+			upload_Video.on('uploadProgress',function(file, percentage) {
+				$('#modal-original-img').attr('src','');
+				$('#modal-preview').attr('src','');
+				$('#mymodal').show();
+			});
 
 			upload_Video.on('uploadSuccess', function(file,response) {
 				
 				if(response.code == 0){
-					  
 					    var path = response.result;
-						$('#mymodal').show();
+						
 						$('#closePhone').on('click', function () {
 							$('#mymodal').hide();
 							jcrop_api.destroy();
@@ -249,8 +257,7 @@ var videoListProtal = {
 						});
 						var imgPath = getResourcesName() + path;
 						$('#modal-original-img').attr('src',imgPath);
-						$('#modal-preview').attr('src',imgPath);
-						checkImgComplete(path);						
+						checkImgComplete(path);					
 				}else{
 					successToolTipShow('图片获取失败');
 				}
@@ -261,9 +268,9 @@ var videoListProtal = {
 			});
 			upload_Video.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
-					 	successToolTipShow('请上传mp4格式');
+					 	successToolTipShow('请上传正确格式的图片');
 			        }else if(type=="F_EXCEED_SIZE"){
-						successToolTipShow(video_err_msg);
+						successToolTipShow('请上传1M以内的图片');
 			        }
 			});
 			$("#submit-multip").on('click', function() {
@@ -273,18 +280,35 @@ var videoListProtal = {
 }
 
 function checkImgComplete(path){
-	var imgObj = document.getElementById("modal-original-img");
+	
+	
+	   document.getElementById("modal-original-img").onload = function () {
+	        console.log("图片加载已完成");
+	        initCutImg();
+			JcropFunction();
+			cutUpload(path);
+	    }
+/*	var imgObj = document.getElementById("modal-original-img");
+	loadTime++;
 	timer = setInterval(function(){
 		if(imgObj.complete){
+			loadTime = 0;
 			clearInterval(timer);
 			timer = null;
 			initCutImg();
 			JcropFunction();
 			cutUpload(path);
 		}else{
-			checkImgComplete(path);
+			if(loadTime > 10){
+				jcrop_api.destroy();
+				upload_Video.destroy();
+				$("#mymodal").hide();
+				successToolTipShow('网络异常请重新上传');
+			}else{
+				checkImgComplete(path);
+			}
 		}
-	},500);
+	},500);*/
 }
 	
 function initCutImg(){
@@ -323,7 +347,8 @@ function cutUpload(path){
 				$('#uploadConfirmBt').attr('disabled',false);
 				$("#mymodal").hide();
 				var imgPath = getResourcesName() + userTarget.result;
-				$("#setImg").prepend(juicer(videoList_tpl.upload_Tpl,{file:imgPath}));
+				$("#setImg").prepend(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:userTarget.result}));
+				delImgEven();
 			}else{
 				jcrop_api.destroy();
 				$('#uploadConfirmBt').attr('disabled',false);
@@ -389,21 +414,22 @@ function updateCoords(coords){
 
 //裁剪end
 
-
+//删除图片
 function delImgEven(){
 	
 	$('.delLoadImg').off('click').on('click',function(){
 		
+		var path = $(this).parent().attr('data-id');
+		
 		$('#checkSureModel').show();
-		$('.closeBtn').off('click').on('click',function(){
+		$('.closeBtn,#cModel').off('click').on('click',function(){
 			$('#checkSureModel').hide();
 		});
-		$('.closeBtn').off('click').on('click',function(){
-			$('.cModel').hide();
+		$('#tModel').off('click').on('click',function(){
+			delImgGroup += path +';';
 		});
 		
 	})
-	
 	
 }
 
@@ -476,7 +502,7 @@ var videoList_tpl = {
         "           <li data-id='5'>交付阶段</li>"+
         "        </ul>    "+
 	    " </div>"+
-	    " <div class='loadImg'>"+
+	    " <div class='loadImg' data-id='${path}'>"+
 	    "        <div class='updateImg'>重新上传</div>"+
 	    "        <img class='delLoadImg' src='/resources/images/flow/del.png'>"+
 	    "        <img class='backgroundImg' src='${file}'>"+

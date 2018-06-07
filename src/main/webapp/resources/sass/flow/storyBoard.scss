@@ -74,12 +74,13 @@
 
     .setImg {
         width: 100%;
-        padding: 20px 0 30px 40px;
+        padding: 0px 0 30px 40px;
         .imgItem {
             width: 160px;
             display: inline-block;
             vertical-align: top;
             margin-right: 30px;
+            margin-top: 20px;
             .orderSelect {
                 width: 100% !important;
                 height: 30px !important;
@@ -173,6 +174,7 @@
             background: #F2F2F2;
             border-radius: 4px;
             margin-right: 30px;
+            margin-top: 20px;
             div:nth-child(2) {
                 color: $gray-light;
                 margin-top: 10px;
@@ -673,7 +675,7 @@
         position: relative;
         .jcrop-holder {
             margin: auto;
-            position: absolute ！!important;
+            position: absolute !important;
             top: 0;
             left: 0;
             bottom: 0;
