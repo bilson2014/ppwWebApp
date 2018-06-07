@@ -257,6 +257,8 @@ var videoListProtal = {
 						});
 						var imgPath = getResourcesName() + path;
 						$('#modal-original-img').attr('src',imgPath);
+						$('#modal-preview').css('opacity',0);
+						$('#modal-preview').attr('src',imgPath);
 						checkImgComplete(path);					
 				}else{
 					successToolTipShow('图片获取失败');
@@ -400,13 +402,13 @@ function updateCoords(coords){
 		//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到 
 		var rx = $(".modal-preview-container").width() / coords.w;
 		var ry = $(".modal-preview-container").height() / coords.h;
-		
 		//通过比例值控制图片的样式与显示 
 		$("#modal-preview").css({
 			width:Math.round(rx * $("#modal-original-img").width()) + "px", //预览图片宽度为计算比例值与原图片宽度的乘积 
 			height:Math.round(ry * $("#modal-original-img").height()) + "px", //预览图片高度为计算比例值与原图片高度的乘积 
 			marginLeft:"-" + Math.round(rx * coords.x) + "px",
-			marginTop:"-" + Math.round(ry * coords.y) + "px"
+			marginTop:"-" + Math.round(ry * coords.y) + "px",
+			opacity:1,
 		});
 		
 	}
