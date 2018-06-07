@@ -26,7 +26,9 @@
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/js/supplier/filmmaking.js" var="filmmakingJs"/>
 
+
 <spring:url value="/resources/js/supplier/createActor.js" var="createActorJs"/>
+<spring:url value="/resources/js/supplier/site.js" var="siteJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -42,6 +44,9 @@
 	<title>制片工具</title>
 	<link rel="stylesheet" href="${webCss}">
 	<link rel="stylesheet" href="${basicsCss}">
+	
+
+
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
@@ -57,7 +62,7 @@
 		              <div class="managerCard">
 		               		<div class='top'>
 		               			<div class='people  top-text'>人员</div>
-		               			<div class='site'>场地</div>
+		               			<div class='sitett'>场地</div>
 		               			<div class='facility'>设备</div>
 		               			<div class='newbox'>
 		               				<img src="/resources/images/supplier/add.png">新建
@@ -212,21 +217,20 @@
 		              						
 		              					</div>
 		              					<div class='gatherright'>
-		              					<!-- 图片上传 -->
-		              							<%-- <div class="user-icon" >          
-                        							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
-                      								<input type="hidden" id="user_img_url" value="${imgPath}/provider/initLogo.png">
-                    							</div>                 
-                    							 <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
-                    							<div class="upload-btn">
-                        							<div id="uploadBt">上传头像</div>
-                      								<input type="file" name="file" id="file" style="display: none;"/>
-                     								<p id='safeError'></p> 
-                    							</div> --%>
+		              					
+		              					<%-- <div class="user-icon" >          
+                        <img alt="用户头像" data-value="${employee.employeeImg}" src="${imgPath}/provider/initLogo.png"   class="img-circle" id="user-img" width=120 height=120/>
+                      	<input type="hidden" id="user_img_url" value="${imgPath}/provider/initLogo.png">
+                    </div>                 
+                    <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
+                    <div class="upload-btn">
+                        <div id="uploadBt">上传头像</div>
+                      	<input type="file" name="file" id="file" style="display: none;"/>
+                     <p id='safeError'></p> 
+                    </div> --%>
 		              					
 		              					
-		              					
-		              						<div class='addimage'>
+		              					 	<div class='addimage '>
 		              							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
 		        
 		              							<div class='reupload'>重新上传</div>
@@ -234,6 +238,11 @@
 		              							<input type="file" name="file" id="file" style="display: none;"/>
 		              							<p>点击添加图片</p>
 		              						</div>
+		              						
+		              						
+		              						
+		              						
+		              						
 		              						<div class='addboxs'>
 		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
 		              							<div class='addtext'>上传更多照片</div>
@@ -292,8 +301,217 @@
 		              				
 		              			</div>
 		              			
+		              		<!--添加导演  -->
+		              		<div class='directorbox'>
+		              			<div class='directortitle'>
+		              				<span>创建导演</span>
+		              				<img alt="关闭" src="/resources/images/supplier/close.png">
+		              			</div>
+		              			<div class='director'>
+		              				<div class='directorl'>
+		              				
+		              					<span>姓名</span>
+		              					<input class='namedir' type='text' placeholder="">
+		              					<p class='namedirp errorp'>*错了</p>
+		              						
+		              					<span>擅长领域</span>
+		              					<div class='skilldir'>请选择擅长领域</div>
+		              					<img class='skillimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='skilldirp errorp'></p>
+		              					<div class='skillcheck'>
+		              						<p>唱歌</p>
+		              						<p>跳舞</p>
+		              						<p>唱歌1</p>
+		              						<p>跳舞2</p>
+		              						<p>唱歌44</p>
+		              						<p>跳舞333</p>
+		              					</div>
+		              					
+		              					<span>所在城市</span>
+		              					<div class='citydir'>请选择城市</div>
+		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='citydirp errorp'></p>
+		              					<div class='citycheck'>
+		              						<p>中国</p>
+		              						<p>美国</p>
+		              						<p>北京</p>
+		              						<p>日本</p>
+		              						<p>韩国</p>
+		              						<p>加拿大</p>
+		              					</div>
+		              					
+		              					
+		              					<span>价格/天</span>
+		              					<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='pricegatherp errorp'></p>
+		              					
+		              					
+		              					
+		              					
+		              					
+		              					
+		              				</div>
+		              				<div class='directorr'>
+		              				
+		              				</div>
+		              			</div>
 		              			
+		              			<div class='remark'>
+		              				<span>备注</span>
+		              				<textarea rows="4" cols="550" placeholder="请完善导演简历以及作品等信息"></textarea>
+		              			</div>
+		              			<!--提交按钮  -->
+		              			<div class='gatherbut'>
+		              				<div class='sure'>确认</div>
+		              				<div class='cancel'>取消</div>
+		              			</div>
 		              			
+		              		
+		              		</div>
+		              		
+		              		
+		              		
+		              		<!--添加场地  -->
+		              		<div class='sitebox' >
+		              			<div class='sitetitle'>
+		              				<span>添加场地</span>
+		              				<img alt="关闭" src="/resources/images/supplier/close.png">
+		              			</div>
+		              			<div class='site'>
+		              				<div class='siteleft'>
+		              				
+		              					<span>名称</span>
+		              					<input class='namesite' type='text' placeholder="">
+		              					<p class='namesitep errorp'></p>
+		              					
+		              					<span>面积㎡</span>
+		              					<input class='msite' type='text' placeholder="">
+		              					<p class='msitep errorp'></p>
+		              						
+		              					<span>类型</span>
+		              					<div class='typesite'>请选择场地类型</div>
+		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='typesitep errorp'></p>
+		              					<div class='typecheck'>
+		              						<p>内景</p>
+		              						<p>外景</p>
+		              						
+		              					</div>
+              					
+		              					<span>价格/天</span>
+		              					<input class='pricesite' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='pricesitep errorp'></p>
+		              					
+		              					
+		              					<span>所在城市</span>
+		              					<div class='citysite'>请选择城市</div>
+		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='citysitep errorp'></p>
+		              					<div class='citycheck'>
+		              						<p>城市1</p>
+		              						<p>北京</p>
+		              						<p>山西</p>
+		              						<p>北京气温气温</p>
+		              						<p>城1</p>
+		              						
+		              					</div>
+		              					
+		              					
+		              					<span>地址</span>
+		              					<input class='locationsite' type='text' placeholder="请输入地址">
+		              					<p class='locationsitep errorp'></p>
+		              					
+		              					
+		              					
+		              				</div>
+		              				<div class='siteright'></div>
+		              			</div>
+		              			<div class='remark'>
+		              				<span>备注</span>
+		              				<textarea class='siteremark' rows="4" cols="550" placeholder="请完善场地信息"></textarea>
+		              			</div>
+		              			<!--提交按钮  -->
+		              			<div class='gatherbut'>
+		              				<div class='sure'>确认</div>
+		              				<div class='cancel'>取消</div>
+		              			</div>
+		              			
+		              		
+		              		</div>
+		              		
+		              		
+		              		<!--添加设备  -->
+		              		<div class='equipbox' >
+		              			<div class='equiptitle'>
+		              				<span>添加设备</span>
+		              				<img alt="关闭" src="/resources/images/supplier/close.png">
+		              			</div>
+		              			<div class='equip'>
+		              				<div class='equipleft'>
+		              				
+		              					<span>设备类型</span>
+		              					<div class='typeequip'>请选择设备类型</div>
+		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='typeequipp errorp'></p>
+		              					<div class='typecheck'>
+		              						<p>摄影设备</p>
+		              						<p>摄影辅助</p>
+		              						<p>镜头设备</p>
+		              						<p>灯光设备</p>
+		              					</div>
+		              					
+		              				</div>
+		              				<div class='equipleft'>
+		              					<span>设备名称</span>
+		              					<div class='nameequip'>请选择设备名称</div>
+		              					<img class='nameimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='nameequipp errorp'></p>
+		              					<div class='namecheck'>
+		              						<p>k</p>
+		              						<p>t</p>
+		              						<p>vvvv</p>
+		              						<p>aaa</p>
+		              						<p>wwww</p>
+		              						<p>23dwed</p>
+		              					</div>
+		              				</div>
+		              				
+		              				<div class='equipleft'>
+		              					<span>设备数量</span>
+		              					<input class='numequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='numequipp errorp'></p>
+		              				</div>
+		              				
+		              				<div class='equipleft'>
+		              					<span>单价/天</span>
+		              					<input class='priceequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='priceequipp errorp'></p>
+		              				</div>
+		              				
+		              				
+		              				
+		              				
+		              				
+		              				
+		              					
+		              					
+		              					
+		              					
+		              					
+		              					
+		              				
+		              			</div>
+		              			<div class='remark'>
+		              				<span>备注</span>
+		              				<textarea rows="4" cols="550" placeholder="请完善设备信息"></textarea>
+		              			</div>
+		              			<!--提交按钮  -->
+		              			<div class='gatherbut'>
+		              				<div class='sure'>确认</div>
+		              				<div class='cancel'>取消</div>
+		              			</div>
+		              			
+		              		
 		              		</div>
 		              		
 		              		
@@ -305,14 +523,10 @@
 		   
 	
 	<script src="${jqueryJs }"></script>
-<%-- 	<script src="${pluginJs }"></script> --%>
 	<script src="${jsonJs }"></script>
-	<%-- <script src="${aesJs }"></script>
-	<script src="${padJs }"></script> --%>
 	<script src="${commonJs }"></script>
-<%-- 	<script src="${loginJs }"></script> --%>
-	
 	<script src="${createActorJs}"></script> 
+	<script src="${siteJs}"></script> 
 	
 	
  <script src="${webuploaderJs }"></script> 
