@@ -214,9 +214,9 @@ var videoListProtal = {
 				 }
 			});
 			
-			upload_Video.on('fileQueued', function(file) {
+			/*upload_Video.on('fileQueued', function(file) {
 				$("#video-container").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
-			});
+			});*/
 			
 			$('.picker').on('click',function(){
 				$('.titleWarn').hide();

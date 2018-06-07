@@ -27,6 +27,12 @@ $().ready(function() {
 	userpicInfo();
 	$(parent).find('#content-frame').css('height',$('.proInfo').height() + 250);
 });
+
+function getResourcesName(){
+	var rPath = "http://resource.apaipian.com/resource/";
+	return rPath;
+}
+
 function initUl(){
 	$('.dropdown li').on('click',function(){
         $(this).parent().parent().find('.dropdown-toggle').find('span').text($(this).text());
@@ -213,7 +219,7 @@ function userpicInfo(){
 						imgUrl : path
 					}));
 				})
-				var imgPath = getDfsHostName() + path;
+				var imgPath = getResourcesName() + path;
 				$('#modal-original-img').attr('src',imgPath);
 				$('#modal-preview').attr('src',imgPath);
 				JcropFunction(); // 图片裁剪
@@ -235,7 +241,7 @@ function userpicInfo(){
 						$('#uploadConfirmBt').attr('disabled',false);
 						$("#mymodal").modal("hide");
 						$('#user_img_url').val(userTarget.imgFileName);
-						var imgPath = getDfsHostName() + userTarget.imgFileName;
+						var imgPath = getResourcesName() + userTarget.imgFileName;
 						$('#user-img').attr('src',imgPath);
 					}, getContextPath() + '/user/cutPhoto', $.toJSON({
 						userId : $('#user_unique').val().trim(),

@@ -15,11 +15,12 @@ var UrlDo = "localhost";
 //var UrlDo = '192.168.0.147';
 
 //var Url = "https://www.apaipian.com:8087/";
-//var Url = "http://test.apaipian.com:7070/";
+//var Url = "http://test.apaipian.com:8084/";
 var Url = "http://localhost:8081/";
 //var Url = "http://192.168.0.142:8080/";
 //var Url = '192.168.0.147:8081';
 //var httpsUrl = "https://www.apaipian.com:7070/";
+//var httpsUrl = "https://test.apaipian.com:7070/";
 
 $().ready(function(){
 	getImgUrl();
@@ -328,6 +329,14 @@ function getHostName(){
 function getDfsHostName(){
 	var rPath = $('#storage_node').val();
 	return rPath == undefined ? "http://resource.apaipian.com/resource/" : rPath;
+}
+/**
+ * 获取图片地址
+ */
+function getResourcesName(){
+	//var rPath = "http://resource.apaipian.com/resource/";
+	var rPath = "https://file1.apaipian.com:8000/";
+	return rPath;
 }
 /**
  * 数据加分隔符

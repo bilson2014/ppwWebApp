@@ -74,12 +74,13 @@
 
     .setImg {
         width: 100%;
-        padding: 20px 0 30px 40px;
+        padding: 0px 0 30px 40px;
         .imgItem {
             width: 160px;
             display: inline-block;
             vertical-align: top;
             margin-right: 30px;
+            margin-top: 20px;
             .orderSelect {
                 width: 100% !important;
                 height: 30px !important;
@@ -105,7 +106,7 @@
                 margin-bottom: 10px;
                 position: relative;
                 text-align: center;
-                background: black;
+                background: #e3e3e3;
                 overflow: hidden;
                 &:hover {
                     .updateImg {
@@ -173,6 +174,7 @@
             background: #F2F2F2;
             border-radius: 4px;
             margin-right: 30px;
+            margin-top: 20px;
             div:nth-child(2) {
                 color: $gray-light;
                 margin-top: 10px;
@@ -564,25 +566,24 @@
             cursor: pointer;
         }
         .oSContent {
-          
-              .tdDes {
-            padding-top: 40px;
-            padding-bottom: 20px;
-            text-align: center;
-            color: $gray-dark;
-            font-size: $font-size;
-        }
-        .tDes {
-            padding-bottom: 50px;
-            text-align: center;
-            color: $gray-dark;
-            font-size: $font-size;
-        }
 
+            .tdDes {
+                padding-top: 40px;
+                padding-bottom: 20px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
+            .tDes {
+                padding-bottom: 50px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
         }
     }
 
-     .sureBtn {
+    .sureBtn {
         font-size: 0;
         padding-top: 20px;
         width: 265px;
@@ -605,4 +606,104 @@
         div:nth-child(1) {
             margin-right: 20px;
         }
+    } //裁剪图片
+    .modal-dialog {
+        position: relative;
+        width: 772px;
+        height: 443px;
+        margin: 0 auto;
+    }
+
+    .model-distance {
+        position: relative;
+        top: 120px;
+    }
+
+    .modal-body {
+        height: 340px;
+    }
+
+    .modal-left {
+        position: relative;
+        float: left;
+        left: 30px;
+    }
+
+    .modal-right {
+        float: right;
+        position: relative;
+        right: 31px;
+    }
+
+    .modal-preview-container {
+        margin-bottom: 30px;
+        width: 136px;
+        height: 136px;
+        overflow: hidden;
+    }
+
+    .modal-preview-container img {
+        width: 320px;
+        height: 180px;
+    }
+
+    .model-no-border {
+        height: 60px;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: center;
+        line-height: 60px;
+        font-size: 16px;
+        color: #333333;
+        position: relative;
+        padding: 0 !important;
+        .closeBtn {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: absolute;
+            right: 20px;
+            top: 25px;
+            cursor: pointer;
+        }
+    }
+
+    .modal-original {
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        background: #e3e3e3;
+        position: relative;
+        .jcrop-holder {
+            margin: auto;
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        #modal-original-img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .modal-preview-container {
+        width: 320px;
+        height: 180px;
+        overflow: hidden;
+        background: #e3e3e3;
+    }
+
+    .modal {
+        width: 100%;
+    }
+
+
+    #uploadConfirmBt {
+        width: 320px !important;
+        height: 36px !important;
+        font-size: 14px;
+        color: #FFFFFF;
+        padding: 0;
+        line-height: 36px;
     }
