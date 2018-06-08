@@ -43,7 +43,12 @@ public class UploadController extends BaseController{
 			if(StringUtils.isNotBlank(oldUrl)){
 				FastDFSClient.deleteFile(oldUrl);
 			}
-			msg.setResult(fileId);
+			if(ValidateUtil.isValid(fileId)) {
+				msg.setResult(fileId);
+			}else {
+				msg.setCode(4);
+			}
+			
 		} 
 		return msg;
 	}
@@ -108,6 +113,7 @@ public class UploadController extends BaseController{
 
 			final String imgPath = param.getImgUrl();
 			InputStream inputStream = FastDFSClient.downloadFile(imgPath);
+			
 			final String extName = FileUtils.getExtName(imgPath, ".");
 
 			SessionInfo sessionInfo = getCurrentInfo(request);
@@ -118,9 +124,11 @@ public class UploadController extends BaseController{
 			Log.error(" cut photo - success", sessionInfo);
 
 			String path = FastDFSClient.uploadFile(inputStream, imgPath);
-
-			result.setCode(BaseMsg.NORMAL);
-			result.setResult(path);
+			
+			if(ValidateUtil.isValid(path)) {
+				result.setCode(BaseMsg.NORMAL);
+				result.setResult(path);
+			}			
 		}
 		return result;
 	}

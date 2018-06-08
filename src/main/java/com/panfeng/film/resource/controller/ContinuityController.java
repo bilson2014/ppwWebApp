@@ -1,6 +1,5 @@
 package com.panfeng.film.resource.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.entity.PmsResult;
 import com.paipianwang.pat.common.entity.SessionInfo;
-import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.workflow.entity.PmsContinuity;
 import com.paipianwang.pat.workflow.entity.PmsProjectFlow;
 import com.paipianwang.pat.workflow.facade.PmsContinuityFacade;
@@ -60,7 +58,7 @@ public class ContinuityController extends BaseController{
 	}
 	
 	/**
-	 * 获取项目分镜头脚本
+	 * 获取项目分镜头脚本 TODO 修改此种类型为PmsResult封装
 	 * @param projectId
 	 * @return
 	 */
@@ -94,7 +92,11 @@ public class ContinuityController extends BaseController{
 	public void export(final PmsContinuity pmsContinuity,HttpServletRequest request, final HttpServletResponse response){
 		
 	}
-
-
+	
+	@RequestMapping("/synergetic/listByName")
+	public List<PmsProjectFlow> getByName(@RequestBody final PmsProjectFlow pmsProjectFlow,final HttpServletRequest request){
+		SessionInfo session=getCurrentInfo(request);
+		return  pmsProjectFlowFacade.getSynerteticProjectByName(session.getReqiureId(),pmsProjectFlow.getProjectName());
+	}
 	
 }
