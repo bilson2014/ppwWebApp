@@ -75,6 +75,7 @@
     .setImg {
         width: 100%;
         padding: 0px 0 30px 40px;
+        font-size: 0;
         .imgItem {
             width: 160px;
             display: inline-block;
@@ -311,6 +312,7 @@
             font-size: 14px;
             color: #FFFFFF;
             margin-right: 20px;
+            cursor: pointer;
         }
     } //弹窗
     .cusModel {

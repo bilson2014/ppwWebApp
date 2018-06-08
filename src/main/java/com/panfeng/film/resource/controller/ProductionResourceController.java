@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.entity.BaseProductionEntity;
+import com.paipianwang.pat.common.entity.ComboTreeModel;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
@@ -110,11 +111,23 @@ public class ProductionResourceController extends BaseController {
 	private void getDevice(List<BaseProductionEntity> result,Map<String, Object> paramMap) {
 		List<PmsProductionDevice> devices=pmsProductionDeviceFacade.listBy(paramMap);	
 		if(ValidateUtil.isValid(devices)) {
-			List<PmsQuotationType> types=pmsQuotationTypeFacade.findAll();
+			List<PmsQuotationType> types=new ArrayList<>();//msQuotationTypeFacade.findAll();
+			Long[] typeIds=ProductionResource.device.getQuotationType();
+			for(Long typeId:typeIds) {	
+					List<PmsQuotationType> parent=pmsQuotationTypeFacade.findByParent(typeId);
+					types.addAll(parent);
+					for(PmsQuotationType type:parent){		
+						if(ValidateUtil.isValid(type.getChildren())){
+							types.addAll(type.getChildren());
+						}
+					}		
+			}
+			
 			for(PmsQuotationType type:types) {
 				for(PmsProductionDevice device:devices) {
 					if(type.getTypeId().equals(device.getTypeId())) {
-						device.setName(type.getTypeName());
+//						device.setName(type.getTypeName());
+						device.setPhoto(type.getPhoto());
 						continue;
 					}
 				}
