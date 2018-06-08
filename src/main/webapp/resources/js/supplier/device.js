@@ -21,15 +21,17 @@ function devicemethod(){
 		$('.namecheck').hide();
 		$('.typecheck').show();	
 		$('.typeequipp').hide();
+		$('.nameequip').val('');
+		
 	
 	});
 	
 	$('body').on('click','.typecheck p',function(){
 		
 		$('.typeequip').text($(this).text());
-		$('.typeequip').attr('value',$(this).attr('value'));
+		$('.typeequip').attr('key',$(this).attr('key'));
 		$('.typecheck').hide();
-		droplink('device',$('.typeequip').attr('value'));
+		droplink('device',$('.typeequip').attr('key'));
 		
 	});
 	$('.equipleft .nameequip,.equipleft .nameimg').off('click').on('click',function(){
@@ -42,23 +44,21 @@ function devicemethod(){
 		
 			
 		}
-		
 	});
-	
 	$('body').on('click','.namecheck p',function(){
 		$('.nameequip').val($(this).text());
+		$('.nameequip').attr('key',$(this).attr('key'));
 		$('.namecheck').hide();
 	});
-	
 	$('.equipleft .cityequip,.equipleft .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();	
 		$('.namecheck').hide();
 		$('.typecheck').hide();	
 		
 	});
-	
 	$('body').on('click','.citycheck p',function(){
 		$('.cityequip').text($(this).text());
+		$('.cityequip').attr('cityid',$(this).attr('cityid'));
 		$('.citycheck').hide();
 	});
 	$('.equipleft .numequip,.equipleft .priceequip').off('click').on('click',function(){
@@ -136,17 +136,14 @@ function datadevice(type){
 		$('.equipbox').hide();
 		getlistdata('device');//获取设备数据
 	 }, getContextPath() + "/production/device/"+type+"", $.toJSON({						
-//		 createTime: ,//创建时间
 		 id:$('.equipbox').attr('id'),//	主键
-		 name: $('.nameequip').val(),	//名称
-//		 Photo:,//照片
+		 typeId: $('.nameequip').attr('key'),	//名称
 		 price: $('.priceequip').val(),//	价格
 		 quantity:$('.numequip').val(),//数量
 		 remark:$('.equipremark').val(),//	备注
-		 type:$('.typeequip').text(),//设备类型
-//		 typeId:,//标准化元素
-		 city:$('.cityequip').text(),//待修改的 字段
-		
+		 type:$('.typeequip').attr('key'),//设备类型
+		 city:$('.cityequip').attr('cityid'),//待修改的 字段
+		 
 	}));
 }
 
@@ -154,21 +151,41 @@ function datadevice(type){
 //获取
 function getdevice(id){
 	loadData(function(res){	
+		console.log(res);
 		$('.equipbox .equiptitle span').text('修改设备');
 		$('.equipbox').attr('id',id);
-		
-		$('.typeequip').text(res.type);
-		$('.nameequip').val(res.name);
+		var typelist=res.type;
+		var namelist=res.name;
+		var citylist=res.city;
+		loadData(function(res){	
+			console.log(res);
+			for(var i=0;i<res.length;i++){
+				if (res[i].key==typelist){
+					$('.typeequip').text(res[i].value);
+				}
+			}
+		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
+		loadData(function(res){	
+			console.log(res);
+			for(var i=0;i<res.length;i++){
+				if (res[i].key==namelist){
+					$('.nameequip').val(res[i].value);
+				}
+			}
+		 }, getContextPath() + "/quotationtype/production/children?typeId="+typelist);
+		loadData(function(res){	
+			for(var i=0;i<res.length;i++){
+				if (res[i].city==citylist){
+					$('.cityequip').val(res[i].city);
+				}
+			}
+		 }, getContextPath() + '/all/citys');
 		$('.numequip').val(res.quantity);
 		$('.priceequip').val(res.price);
-		$('.cityequip').text(res.city);
 		$('.equipremark').val(res.remark);
-	
-		
 	 }, getContextPath() + '/production/device/get', $.toJSON({						
 		 id:id,//	主键
 	}));
-	
 }
 //删除
 function deldevice(id){
@@ -199,37 +216,30 @@ function cleandevdata(){
 	$('.citycheck').hide();
 		
 }
+//联动的a
 function dropdowndata(){
 	$('.equipleft .typecheck').text('');
 	loadData(function(res){	
-		console.log(res);
-		console.log(res.deviceTypes.length);
-//		for(var i=0;i<res.deviceTypes.length;i++){
-//		
-//			var phtml="<p value="+res.deviceTypes[i].value+">"+res.deviceTypes[i].text+"</p>";
-//			$('.equipleft .typecheck').append(phtml);
-//		}
-		
-	/* }, getContextPath() + '/production/device/parameter');*/
+		for(var i=0;i<res.length;i++){
+			var phtml="<p key="+res[i].key+">"+res[i].value+"</p>";
+			$('.equipleft .typecheck').append(phtml);
+		}
 	 }, getContextPath() + '/quotationtype/production/children?productionType=device');
 	
 }
-function droplink(type,val){
+//联动b
+function droplink(type,key){
 	$('.equipleft .namecheck').text('');
 	loadData(function(res){	
-
 		for(var i=0;i<res.length;i++){
-
-			var phtml="<p id="+res[i].id+" pid="+res[i].pid+">"+res[i].text+"</p>";
+			var phtml="<p key="+res[i].key+">"+res[i].value+"</p>";
 			if (type=='device'){
 				$('.equipleft .namecheck').append(phtml);
 			}else if (type=='device'){
 				console.log('未出现');
 			}
-			
 		}
 		
-	 }, getContextPath() + "/quotationtype/production/select?productionType="+type+"&subType="+val);
-	
+	 }, getContextPath() + "/quotationtype/production/children?typeId="+key);
 }
 
