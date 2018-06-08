@@ -3,6 +3,9 @@ $().ready(function() {
 	init();
 	imgcheckpeople();
 	newbutton();
+	
+	
+	listcitydata();
 
 });
 //图片尺寸的显示处理竖版
@@ -120,7 +123,7 @@ function init(){
 			getdevice(id);
 			
 			dropdowndata();
-			droplink('device','1');
+			
 		}
 	});
 	
@@ -167,6 +170,11 @@ function init(){
 		$('.setCard').find('.shade').removeClass('idcard-site ');
 		$('.setCard').find('.linebox ').removeClass('linebox-site');
 		imgchecksite();
+		
+		
+		
+//		console.log('sdadasd');
+//		droplink('device','1');
 	});
 	
 	
@@ -192,7 +200,10 @@ function newbutton(){
 			$('.equipbox .equiptitle span').text('添加设备');
 			$('.equipbox').attr('id','');
 			
+			
 			dropdowndata();
+			
+			
 		}
 		
 
@@ -253,4 +264,23 @@ function getlistdata(type){
  
 		 
 	}));
+}
+
+//下拉的城市的接口
+function listcitydata(){
+	console.log('下拉城市');
+	loadData(function(res){	
+		console.log(res);
+		console.log(res[1].cityID);
+		console.log(res[1].city);
+		for(var i=0;i<res.length;i++){
+		
+			var phtml="<p cityId="+res[i].cityID+">"+res[i].city+"</p>";
+			$('.citycheck').append(phtml);
+			
+			
+			
+		}
+		
+	 }, getContextPath() + '/all/citys');
 }

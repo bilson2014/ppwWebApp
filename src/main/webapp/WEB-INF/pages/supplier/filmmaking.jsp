@@ -203,12 +203,12 @@
 		              						<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='citygatherp errorp'></p>
 		              						<div class='citycheck'>
-		              							<p>中国1</p>
+		              							<!-- <p>中国1</p>
 		              							<p>美国2</p>
 		              							<p>中国1</p>
 		              							<p>美国2</p>
 		              							<p>中国1</p>
-		              							<p>美国2</p>
+		              							<p>美国2</p> -->
 		              						</div>
 		              						
 		              						<span>价格/天</span>
@@ -333,12 +333,12 @@
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citydirp errorp'></p>
 		              					<div class='citycheck'>
-		              						<p>中国</p>
+		              						<!-- <p>中国</p>
 		              						<p>美国</p>
 		              						<p>北京</p>
 		              						<p>日本</p>
 		              						<p>韩国</p>
-		              						<p>加拿大</p>
+		              						<p>加拿大</p> -->
 		              					</div>
 		              					
 		              					
@@ -409,11 +409,11 @@
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citysitep errorp'></p>
 		              					<div class='citycheck'>
-		              						<p>城市1</p>
+		              						<!-- <p>城市1</p>
 		              						<p>北京</p>
 		              						<p>山西</p>
 		              						<p>北京气温气温</p>
-		              						<p>城1</p>
+		              						<p>城1</p> -->
 		              						
 		              					</div>
 		              					
@@ -453,54 +453,39 @@
 		              					<span>设备类型</span>
 		              					<div class='typeequip'>请选择设备类型</div>
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
-		              					<p class='typeequipp errorp'></p>
-		              					<div class='typecheck'>
-		              						<p>摄影设备</p>
-		              						<p>摄影辅助</p>
-		              						<p>镜头设备</p>
-		              						<p>灯光设备</p>
-		              					</div>
+		              					<!-- <p class='typeequipp errorp'>*请选择设备类型</p> -->
+		              					<div class='typecheck'></div>
+		              					
+		              					<span class='bastname'>设备名称</span>
+		              					<input class='nameequip' placeholder="请选择设备名称" readonly="readonly">
+		              					<img class='nameimg' alt="" src="/resources/images/supplier/more.png">
+		              					<!-- <p class='nameequipp errorp'>*请选择设备名称</p> -->
+		              					<div class='namecheck'></div>
+		              					
+		              					
+		              					<span class='typeequipp errorp'>*请选择设备类型</span>
+		              					<span class='nameequipp errorp'>*请选择设备名称</span>
 		              					
 		              				</div>
-		              				<div class='equipleft'>
-		              					<span>设备名称</span>
-		              					<div class='nameequip'>请选择设备名称</div>
-		              					<img class='nameimg' alt="" src="/resources/images/supplier/more.png">
-		              					<p class='nameequipp errorp'></p>
-		              					<div class='namecheck'>
-		              						<p>k</p>
-		              						<p>t</p>
-		              						<p>vvvv</p>
-		              						<p>aaa</p>
-		              						<p>wwww</p>
-		              						<p>23dwed</p>
-		              					</div>
-		              				</div>
+		              				
 		              				
 		              				<div class='equipleft'>
 		              					<span>设备数量</span>
 		              					<input class='numequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-		              					<p class='numequipp errorp'></p>
-		              				</div>
+		              					
 		              				
-		              				<div class='equipleft'>
-		              					<span>单价/天</span>
+		              					<span class='days'>单价/天</span>
 		              					<input class='priceequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-		              					<p class='priceequipp errorp'></p>
+		              					<span class='numequipp errorp'>*数字不能为空</span>
+		              					<span class='priceequipp errorp'>*价格不能为空</span>
 		              				</div>
 		              				
-		              				<div class='equipleft'>
+		              				<div class='equipleft' style="width: 300px;">
 		              					<span>所在城市</span>
 		              					<div class='cityequip'>请选择城市</div>
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
-		              					<p class='cityequipp errorp'></p>
-		              					<div class='citycheck'>
-		              						<p>城市1</p>
-		              						<p>北京</p>
-		              						<p>山西</p>
-		              						<p>北京气温气温</p>
-		              						<p>城1</p>
-		              					</div>
+		              					<div class='citycheck'></div>
+		              					<span class='cityequipp errorp'>*请选择城市</span>
 		              				</div>
 		              				
 		              				
