@@ -20,64 +20,95 @@ var delImgGroup = '';
 
 $().ready(function() {
 	
-	console.log(nowPoint[0][0]);
-
-	initSelect();
-	initSortable();
-	initCheckBox();
-	videoListProtal.init();
-	videoUpdate.init();
+	initOption();
+	getMyProject();
 	 $('.modelProItem').off('click').on('click',function(){
 			$('.modelProItem').removeClass('modelPActive');
 			$(this).addClass('modelPActive');
 	});
+	 
 	$('#saveProject').off('click').on('click',function(){
-		checkError();
+		if(checkError()){
+			getValue();
+			/*if($('#projectId').val() >= 0){
+				getValue();
+			}else{
+				getMyProject();			
+			}*/
+		}
 	});
+	
 	$('.openTool').off('click').on('click',function(){
-		$('#loadProductModel').show();
+		openProjectModel();
 	});
+	
 	$('.closeModel,#cancleLoadProduct').off('click').on('click',function(){
 		$('#loadProductModel').hide();
 	});
-	
-	
-	
-	initImgSize();
-	newSelectCheck();
-	
 
-	
 });
 
-function optEntity(key,value,type){
-	this.key = key;
-	this.value = value;
-	this.type = type;
+function openProjectModel(){
+	$('#loadProductModel').show();
+	loadData(function(src){
+		var ss = src;
+	}, getContextPath() + '/continuity/list/synergetic','');
+	
+}
+
+function getMyProject(){
+	
+	loadData(function(item){
+		
+		var src = item;
+		
+	}, getContextPath() + '/continuity/synergetic/listByName', $.toJSON({
+		projectName:'',
+	}));
+}
+
+function initOption(){
+	imgUpload.init();
+	newSelectCheck();
+	initSelect();
+	initCheckBox();
+}
+
+function optEntity( type,picture,description){
+	this.type =  type;
+	this.picture = picture;
+	this.description = description;
 }
 
 function getValue(){
-	
-	
+		
 	var imgItem = $('.imgItem');
-	for (var int = 0; imgItem < array.length; int++) {
-		 var type = $(imgItem[int]).find('.checkImgType');
-		 var image = $(imgItem[int]).find('.backgroundImg');
-		 var text = $(imgItem[int]).find('.checkImgText');
-		 setData.push(new optEntity(itemId,itemValues,setType));
+		
+	for (var int = 0; int < imgItem.length; int++) {
+		 var type = $(imgItem[int]).find('.checkImgType').attr('data-id');
+		 var image = $(imgItem[int]).find('.backgroundImg').attr('src');
+		 var text = $(imgItem[int]).find('.checkImgText').val();
+		 setData.push(new optEntity(type,image,text));
 	}
 	
 	var storyName = $('#storyName').val();
-	var productLine = $('#productLine').attr('data-id');
-	var productType = $('#productType').attr('data-id');
-	var getActive = $('.active');
-	for (var int = 0; getActive < array.length; int++) {
-
-	}
+	var dimensionId = $('#time .active').attr('data-id');	
+	var pictureRatio = $('#videoType .active').attr('data-id');
+	var videoStyle = $('#videoStyle .active').attr('data-id');
 	
-	
+	loadData(function(){
+        
+	}, getContextPath() + '/continuity/save', $.toJSON({
+		 ShootingScript:setData,
+		 name:storyName,
+		 delImgs:delImgGroup,
+		 videoStyle:videoStyle,
+		 pictureRatio:pictureRatio,
+		 dimensionId:dimensionId,
+		 id:0,
+	}));
+		
 }
-
 
 function newSelectCheck(){
 	
@@ -111,19 +142,21 @@ function initImgSize(){
 	var needWidth = $('.loadImg').css('width');
 	var needHeight = $('.loadImg').css('height');	
 	var changeImg = $('.backgroundImg');
-	for (var int = 0; int < changeImg.length; int++) {
-			var realHeight = $(changeImg[int]).height();
-			var realWidth  = $(changeImg[int]).width();			
+	$(changeImg).each(function() {
+		$(this).load(function(){
+			var realHeight = $(this).height();
+			var realWidth  = $(this).width();			
 			if(realHeight >= realWidth){				
-				$(changeImg[int]).css('height',needHeight).css('width','auto');
+				$(this).css('height',needHeight).css('width','auto');
 			}
 			else{
-				$(changeImg[int]).css('height','auto').css('width',needWidth);
+				$(this).css('height','auto').css('width',needWidth);
 				if(realWidth/realHeight < (16/9)){
-					$(changeImg[int]).css('height','auto').css('width',needHeight);
+					$(this).css('height','auto').css('width',needHeight);
 				}
 			}
-	}
+		});
+    });
 }
 
 function initSortable(){
@@ -150,38 +183,42 @@ function initCheckBox(){
 
 function checkError(){
 		
-	var checkImgType = $('.checkImgType').attr('data-id');
-	if(checkImgType == '' || checkImgType == null || checkImgType ==undefined){
-		successToolTipShow('镜头类型未填写');
-		 return false;
+	var checkImgType = $('.checkImgType');
+	if(checkImgType.length>0){
+		for (var int = 0; int < checkImgType.length; int++) {
+			  var val = $(checkImgType[int]).attr('data-id');
+			  if(val == '' || val == null || val ==undefined){
+					successToolTipShow('镜头类型未填写');
+					 return false;
+				}
+		}
+	}else{
+		successToolTipShow('镜头未添加');
+		return false;
 	}
 	
-	var checkImgText = $('.checkImgText').val();
-	if(checkImgText == '' || checkImgText == null || checkImgText ==undefined){
-		successToolTipShow('镜头要求未填写');
-		 return false;
+	var checkImgText = $('.checkImgText');
+	if(checkImgText.length>0){
+		for (var int = 0; int < checkImgText.length; int++) {
+			  var val = $(checkImgText[int]).val();
+			  if(val == '' || val == null || val ==undefined){
+					successToolTipShow('镜头要求未填写');
+					 return false;
+				}
+		}
+	}else{
+		successToolTipShow('镜头未添加');
+		return false;
 	}
 		
 	var storyName = $('#storyName').val();
 	if(storyName == '' || storyName == null || storyName ==undefined){
 		successToolTipShow('脚本名称未填写');
-		 return false;
-	}
-	
-	var productLine = $('#productLine').attr('data-id');
-	if(productLine == '' || productLine == null || productLine ==undefined){
-		successToolTipShow('阶段未选择');
-		 return false;
-	}
-	
-	var productType = $('#productType').attr('data-id');
-	if(productType == '' || productType == null || productType ==undefined){
-		successToolTipShow('视频类型未选择');
-		 return false;
+		return false;
 	}
 	
 	//附加
-	var howManyBox = $('.onebox');
+	/*var howManyBox = $('.onebox');
 	for (var int = 0; int < howManyBox.length; int++) {
 			 var thisItem = $(howManyBox[int]).find('.boxItem');
 			    for (var j = 0; j < thisItem.length; j++) {
@@ -191,6 +228,24 @@ function checkError(){
 					 successToolTipShow('视频信息不完整');
 					 return false;
 				}
+	}*/
+	
+	var time = $('#time .active');
+	if(!time.length > 0){
+		successToolTipShow('视频时长未选择');
+		return false;
+	}
+	
+	var videoType = $('#videoType .killDiv  .active');
+	if(!videoType.length > 0){
+		successToolTipShow('画幅比例未选择');
+		return false;
+	}
+	
+	var videoStyle = $('#videoStyle .active');
+	if(!videoStyle.length > 0){
+		successToolTipShow('影片风格未选择');
+		return false;
 	}
 	
 	return true;
@@ -209,7 +264,7 @@ function hideSuccessTooltip(){
 	}
 
 //文件批量上传
-var videoListProtal = {
+var imgUpload = {
 		init : function() {
 			//批量上传
 			this.multipUploadFile();
@@ -225,8 +280,9 @@ var videoListProtal = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :1,
+				threads :10,
 				duplicate :true,
+				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png',
@@ -235,31 +291,21 @@ var videoListProtal = {
 			});
 			
 			upload_Video.on('uploadProgress',function(file, percentage) {
-				$('#modal-original-img').attr('src','');
-				$('#modal-preview').attr('src','');
-				$('#mymodal').show();
+				
 			});
 
 			upload_Video.on('uploadSuccess', function(file,response) {
 				
 				if(response.code == 0){
 					    var path = response.result;
-						
-						$('#closePhone').on('click', function () {
-							$('#mymodal').hide();
-							jcrop_api.destroy();
-						/*	loadData(function(){
-								// 自定义文件删除成功
-							}, getContextPath() + '/user/delete/photo', $.toJSON({
-								id : $('#user_unique').val().trim(),
-								imgUrl : path
-							}));*/
-						});
 						var imgPath = getResourcesName() + path;
-						$('#modal-original-img').attr('src',imgPath);
-						$('#modal-preview').css('opacity',0);
-						$('#modal-preview').attr('src',imgPath);
-						checkImgComplete(path);					
+						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:path}));
+						initImgSize();						
+						initSortable();
+						delImgEven();	
+						initSelect();
+						initCheckBox();
+						imgUpdate.init();
 				}else{
 					successToolTipShow('图片获取失败');
 				}
@@ -275,152 +321,17 @@ var videoListProtal = {
 						successToolTipShow('请上传1M以内的图片');
 			        }
 			});
-			$("#submit-multip").on('click', function() {
-				upload_Video.upload();
-			});
+
 		}
-}
-
-function checkImgComplete(path){
-	
-	
-	   document.getElementById("modal-original-img").onload = function () {
-	        console.log("图片加载已完成");
-	        initCutImg();
-			JcropFunction();
-			cutUpload(path);
-	    }
-/*	var imgObj = document.getElementById("modal-original-img");
-	loadTime++;
-	timer = setInterval(function(){
-		if(imgObj.complete){
-			loadTime = 0;
-			clearInterval(timer);
-			timer = null;
-			initCutImg();
-			JcropFunction();
-			cutUpload(path);
-		}else{
-			if(loadTime > 10){
-				jcrop_api.destroy();
-				upload_Video.destroy();
-				$("#mymodal").hide();
-				successToolTipShow('网络异常请重新上传');
-			}else{
-				checkImgComplete(path);
-			}
-		}
-	},500);*/
-}
-	
-function initCutImg(){
-	$('#modal-original-img').attr('style','');
-	$('#modal-original-img').css('width','100%');
-	var needWidth = $('.modal-original').css('width');
-	var needHeight = $('.modal-original').css('height');	
-	var changeImg = $('#modal-original-img');	
-    var realHeight = changeImg.height();
-	var realWidth  = changeImg.width();			
-			if(realHeight >= realWidth){				
-				changeImg.css('height',needHeight).css('width','auto');
-			}
-			else{
-				changeImg.css('height','auto').css('width',realWidth);
-			}
-}
-
-function cutUpload(path){
-	
-	// 点击确定，裁剪文件，并将该文件转化为正规的文件名称
-	$('#uploadConfirmBt').unbind('click');
-	$('#uploadConfirmBt').bind('click',function(){
-		if(x == 0 && y == 0 && x2 ==0 && y2 ==0){
-			jcrop_api.destroy();
-			$('#uploadConfirmBt').attr('disabled',false);
-			$("#mymodal").hide;
-			return;
-		}
-		$('#uploadConfirmBt').attr('disabled','disabled');
-		// 裁剪图片
-		loadData(function(userTarget){
-			
-			if(userTarget.code == 200){
-				jcrop_api.destroy();
-				$('#uploadConfirmBt').attr('disabled',false);
-				$("#mymodal").hide();
-				var imgPath = getResourcesName() + userTarget.result;
-				$("#setImg").prepend(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:userTarget.result}));
-				delImgEven();
-			}else{
-				jcrop_api.destroy();
-				$('#uploadConfirmBt').attr('disabled',false);
-				$("#mymodal").hide();
-				successToolTipShow('图片异常请重新上传');
-			}
-			
-		}, getContextPath() + '/web/cutPhoto', $.toJSON({
-			imgUrl : path,
-			x : x,
-			y : y,
-			x2 : x2,
-			y2 : y2,
-			width : w,
-			height : h,
-			originalWidth : $("#modal-original-img").width(),
-			originalHeight : $("#modal-original-img").height()
-		}));
-	});
-}
-
-
-//裁剪start
-function JcropFunction(){
-	x=0;
-	y=0;
-	x2=0;
-	y2=0;
-	h=0;
-	w=0;
-	
-	// 初始化Jcrop
-	jcrop_api = $.Jcrop('#modal-original-img',{
-		bgOpacity : 0.2,
-		aspectRatio : 16/9,
-		onSelect : updateCoords // 当选择完成时执行的函数
-	});
-}
-function updateCoords(coords){
-	
-	x=coords.x;
-	y=coords.y;
-	x2=coords.x2;
-	y2=coords.y2;
-	w=coords.w;
-	h=coords.h;
-	
-	if(parseInt(coords.w) > 0){
-		//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到 
-		var rx = $(".modal-preview-container").width() / coords.w;
-		var ry = $(".modal-preview-container").height() / coords.h;
-		//通过比例值控制图片的样式与显示 
-		$("#modal-preview").css({
-			width:Math.round(rx * $("#modal-original-img").width()) + "px", //预览图片宽度为计算比例值与原图片宽度的乘积 
-			height:Math.round(ry * $("#modal-original-img").height()) + "px", //预览图片高度为计算比例值与原图片高度的乘积 
-			marginLeft:"-" + Math.round(rx * coords.x) + "px",
-			marginTop:"-" + Math.round(ry * coords.y) + "px",
-			opacity:1,
-		});
 		
-	}
+		
 }
-
-//裁剪end
 
 //删除图片
 function delImgEven(){
 	
 	$('.delLoadImg').off('click').on('click',function(){
-		
+		var thiItem = $(this);
 		var path = $(this).parent().attr('data-id');
 		
 		$('#checkSureModel').show();
@@ -429,15 +340,15 @@ function delImgEven(){
 		});
 		$('#tModel').off('click').on('click',function(){
 			delImgGroup += path +';';
+			thiItem.parent().parent().remove();
 		});
 		
 	})
 	
 }
 
-
 //图片更新
-var videoUpdate = {
+var imgUpdate = {
 		init : function() {
 			//批量上传
 			this.uploadFile();
@@ -449,12 +360,13 @@ var videoUpdate = {
 			upload_Update = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
-				server : '/provider/multipUploadFile',
+				server : '/web/upload',
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				fileNumLimit : 1,//最多上传文件
 				threads :1,
+				duplicate :true,
+				multiple:false,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png',
@@ -462,30 +374,35 @@ var videoUpdate = {
 				}
 			});
 			
-
 			upload_Update.on('uploadSuccess', function(file,response) {
+				var uploaderId = '#rt_'+file.source.ruid;
+				var nowEven = $(uploaderId).parent().parent();
+				var delImg = nowEven.attr('data-id');	
 				
-				if(response._raw == 'success'){
-				//	$("#setImg").append(juicer(videoList_tpl.upload_Tpl,{file:file}));
+				if(response.code == 0){
+					    delImgGroup += delImg +';';
+					    var path = response.result;
+						var imgPath = getResourcesName() + path;
+						nowEven.find('.backgroundImg').attr('src',imgPath);
+						nowEven.attr('data-id',path);
+						initImgSize();
+						console.log(delImgGroup);
 				}else{
-
+					successToolTipShow('图片获取失败');
 				}
 				
 			});
 			upload_Update.on('uploadError', function(file,reason) {
-
 				successToolTipShow(reason);
 			});
 			upload_Update.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
-					 	successToolTipShow('请上传mp4格式');
+					 	successToolTipShow('请上传正确格式的图片');
 			        }else if(type=="F_EXCEED_SIZE"){
-						successToolTipShow(video_err_msg);
+						successToolTipShow('请上传1M以内的图片');
 			        }
 			});
-			$("#submit-multip").on('click', function() {
-				upload_Update.upload();
-			});
+
 		}
 }
 
@@ -493,15 +410,17 @@ var videoList_tpl = {
 		upload_Tpl:[
 		"<div class='imgItem'>"+
         "<div class='orderSelect'>"+
-        "        <div class='imgType checkImgType'>请选择镜头</div>"+
+        "        <div class='imgType checkImgType'>请选择镜头类型</div>"+
         "        <img src='/resources/images/flow/selectS.png'>"+
         "        <ul class='oSelect' style='display: none;'>"+
-        "           <li data-id='0'>全部</li>"+
-        "           <li data-id='1'>沟通阶段</li>"+
-        "           <li data-id='2'>方案阶段</li>"+
-        "           <li data-id='3'>商务阶段</li>"+
-        "           <li data-id='4'>制作阶段</li>"+
-        "           <li data-id='5'>交付阶段</li>"+
+        "           <li data-id='1'>极远景</li>"+
+        "           <li data-id='2'>远景</li>"+
+        "           <li data-id='3'>大全景</li>"+
+        "           <li data-id='4'>全景</li>"+
+        "           <li data-id='5'>中景</li>"+
+        "           <li data-id='6'>近景</li>"+
+        "           <li data-id='7'>特写</li>"+
+        "           <li data-id='8'>大特写</li>"+
         "        </ul>    "+
 	    " </div>"+
 	    " <div class='loadImg' data-id='${path}'>"+
@@ -513,6 +432,7 @@ var videoList_tpl = {
         "</div>"
 		].join("")
 }
+
 
 
 

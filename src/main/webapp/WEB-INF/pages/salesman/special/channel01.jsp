@@ -161,6 +161,50 @@
 	<div class="main_pd">
 		<div class="container">
 			<ul class="channel">
+			    <li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_29880.html" target="_blank">
+							<span>
+								<img alt="Nova-英文版" src="${imgBnner}/group1/M01/01/04/Cgpw7FrxZmOALbcnAAGzEUDgoCg931.jpg">
+								<i></i>
+							</span>
+							<font>Nova-英文版</font>
+						</a>
+					</div>
+				</li>
+			    <li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_29929.html" target="_blank">
+							<span>
+								<img alt="Nova-葡语版" src="${imgBnner}/group1/M01/01/07/CgpmTlr0NXaAFtL9AAHQ8LaEOkY675.jpg">
+								<i></i>
+							</span>
+							<font>Nova-葡语版</font>
+						</a>
+					</div>
+				</li>
+			    <li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1379_27269.html" target="_blank">
+							<span>
+								<img alt="本源链 (ORS)-赛事竞猜" src="${imgBnner}/group1/M00/00/D3/CgpsbFsHvWmAV1LCAAGklP50So0001.jpg">
+								<i></i>
+							</span>
+							<font>本源链 (ORS)-赛事竞猜</font>
+						</a>
+					</div>
+				</li>
+			    <li>
+			 		<div class="kk">
+						<a href="https://www.apaipian.com/play/683_30835.htm" target="_blank">
+							<span>
+								<img alt="飞尔科" src="${imgBnner}/group1/M01/00/D2/CgpsbFsCMc6ALYRxAAHr0EE9mKM817.jpg">
+								<i></i>
+							</span>
+							<font>飞尔科</font>
+						</a>
+					</div>
+				</li>
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1379_27269.html" target="_blank">
@@ -295,12 +339,12 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_28008.html" target="_blank">
+						<a href="https://www.apaipian.com/play/683_26119.html" target="_blank">
 							<span>
-								<img alt="比特币现金 Bitcoin Cash(BCH" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxy5-ALpiTAADZRoXPS58518.jpg">
+								<img alt="AMD-The Trinity Foundation" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxz3CAJqHfAADaoSN7NWw365.jpg">
 								<i></i>
 							</span>
-							<font>比特币(BCH)</font>
+							<font>Trinity介绍</font>
 						</a>
 					</div>
 				</li>
@@ -437,15 +481,15 @@
 					</div>
 				</li>
 				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/683_26119.html" target="_blank">
+				   	<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_27266.html" target="_blank">
 							<span>
-								<img alt="AMD-The Trinity Foundation" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxz3CAJqHfAADaoSN7NWw365.jpg">
+								<img alt="亦来云 Elastos-首发开场片" src="${imgBnner}/group1/M00/00/ED/Cgpw7FqeB0mAZ8V0AAQZ4KkAsxo983.jpg">
 								<i></i>
 							</span>
-							<font>Trinity介绍</font>
+							<font>亦来云 Elastos-首发开场片</font>
 						</a>
-					</div>
+					</div>			
 				</li>
 				<li>
 					<div class="kk">
@@ -535,16 +579,16 @@
 						</a>
 					</div>
 				</li>
-				<li>
+				<li>			
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_26467.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1910_28008.html" target="_blank">
 							<span>
-								<img alt="什么是区块链" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx0ZWAE234AAF05-kKCiw169.jpg">
+								<img alt="比特币现金 Bitcoin Cash(BCH" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxy5-ALpiTAADZRoXPS58518.jpg">
 								<i></i>
 							</span>
-							<font>什么是区块链</font>
+							<font>比特币(BCH)</font>
 						</a>
-					</div>
+					</div>		
 				</li>
 				<li>
 					<div class="kk">
