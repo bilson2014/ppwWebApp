@@ -1,6 +1,8 @@
 package com.panfeng.film.resource.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.entity.PmsResult;
 import com.paipianwang.pat.common.entity.SessionInfo;
+import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.workflow.entity.PmsContinuity;
 import com.paipianwang.pat.workflow.entity.PmsProjectFlow;
 import com.paipianwang.pat.workflow.facade.PmsContinuityFacade;
@@ -78,6 +81,12 @@ public class ContinuityController extends BaseController{
 		if(pmsContinuity.getId()!=null) {
 			result=pmsContinuityFacade.update(pmsContinuity);
 		}else {
+			List<String> metaData=new ArrayList<>();
+			metaData.add("projectName");
+			Map<String,Object> projectName=pmsProjectFlowFacade.getProjectFlowColumnByProjectId(metaData, pmsContinuity.getProjectId());
+			if(ValidateUtil.isValid(projectName)) {
+				pmsContinuity.setProjectName(projectName.get("projectName")+"");
+			}
 			result=pmsContinuityFacade.insert(pmsContinuity);
 		}
 			
@@ -98,5 +107,5 @@ public class ContinuityController extends BaseController{
 		SessionInfo session=getCurrentInfo(request);
 		return  pmsProjectFlowFacade.getSynerteticProjectByName(session.getReqiureId(),pmsProjectFlow.getProjectName());
 	}
-	
+
 }
