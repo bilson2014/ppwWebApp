@@ -56,6 +56,7 @@
 	
 </head>
 <body>
+<input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 
 		 <div class="page">
 		         <div class="managerPgae">
@@ -179,8 +180,8 @@
 		              						<img class='genderimg' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='gendergatherp errorp'></p>
 		              						<div class='twocheck'>
-		              							<p>男</p>
-		              							<p>女</p>
+		              							<p key='1'>男</p>
+		              							<p key='2'>女</p>
 		              						</div>
 		              						
 		              						<span>出生年份</span>
@@ -191,24 +192,13 @@
 		              						<div class='racegather'>请选择种族</div>
 		              						<img class='raceimg' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='racegatherp errorp'></p>
-		              						<div class='racecheck'>
-		              							<p>小丸子</p>
-		              							<p>机器猫</p>
-		              							<p>葫芦娃</p>
-		              							<p>哪吒</p>
-		              						</div>
+		              						<div class='racecheck'></div>
 		              						
 		              						<span>所在城市</span>
 		              						<div class='citygather'>请选择城市</div>
 		              						<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='citygatherp errorp'></p>
 		              						<div class='citycheck'>
-		              							<!-- <p>中国1</p>
-		              							<p>美国2</p>
-		              							<p>中国1</p>
-		              							<p>美国2</p>
-		              							<p>中国1</p>
-		              							<p>美国2</p> -->
 		              						</div>
 		              						
 		              						<span>价格/天</span>
@@ -219,18 +209,7 @@
 		              					</div>
 		              					<div class='gatherright'>
 		              					
-		              					<%-- <div class="user-icon" >          
-                        <img alt="用户头像" data-value="${employee.employeeImg}" src="${imgPath}/provider/initLogo.png"   class="img-circle" id="user-img" width=120 height=120/>
-                      	<input type="hidden" id="user_img_url" value="${imgPath}/provider/initLogo.png">
-                    </div>                 
-                    <p id='errorImg'>你可以上传JPG、GIF或PNG格式的文件，文件大小不能超过2M</p>
-                    <div class="upload-btn">
-                        <div id="uploadBt">上传头像</div>
-                      	<input type="file" name="file" id="file" style="display: none;"/>
-                     <p id='safeError'></p> 
-                    </div> --%>
-		              					
-		              					
+		              				
 		              					 	<div class='addimage '>
 		              							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
 		        
@@ -289,7 +268,7 @@
 		              					</div>
 		              					<div class='remark'>
 		              						<span>备注</span>
-		              						<textarea rows="4" cols="550" placeholder="请完善演员体重、三维、特殊技能、擅长角色、作品等信息"></textarea>
+		              						<textarea class='remarkgather' rows="4" cols="550" placeholder="请完善演员体重、三维、特殊技能、擅长角色、作品等信息"></textarea>
 		              					</div>
 		              					<!--提交按钮  -->
 		              					<div class='gatherbut'>
@@ -320,12 +299,6 @@
 		              					<img class='skillimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='skilldirp errorp'></p>
 		              					<div class='skillcheck'>
-		              						<p>唱歌</p>
-		              						<p>跳舞</p>
-		              						<p>唱歌1</p>
-		              						<p>跳舞2</p>
-		              						<p>唱歌44</p>
-		              						<p>跳舞333</p>
 		              					</div>
 		              					
 		              					<span>所在城市</span>
@@ -333,22 +306,12 @@
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citydirp errorp'></p>
 		              					<div class='citycheck'>
-		              						<!-- <p>中国</p>
-		              						<p>美国</p>
-		              						<p>北京</p>
-		              						<p>日本</p>
-		              						<p>韩国</p>
-		              						<p>加拿大</p> -->
 		              					</div>
 		              					
 		              					
 		              					<span>价格/天</span>
 		              					<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='pricegatherp errorp'></p>
-		              					
-		              					
-		              					
-		              					
 		              					
 		              					
 		              				</div>
@@ -394,29 +357,20 @@
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='typesitep errorp'></p>
 		              					<div class='typecheck'>
-		              						<p>内景</p>
-		              						<p>外景</p>
-		              						
+		              						<p key='1'>内景</p>
+		              						<p key='2'>外景</p>
 		              					</div>
               					
 		              					<span>价格/天</span>
 		              					<input class='pricesite' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='pricesitep errorp'></p>
 		              					
-		              					
 		              					<span>所在城市</span>
 		              					<div class='citysite'>请选择城市</div>
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citysitep errorp'></p>
 		              					<div class='citycheck'>
-		              						<!-- <p>城市1</p>
-		              						<p>北京</p>
-		              						<p>山西</p>
-		              						<p>北京气温气温</p>
-		              						<p>城1</p> -->
-		              						
 		              					</div>
-		              					
 		              					
 		              					<span>地址</span>
 		              					<input class='locationsite' type='text' placeholder="请输入地址">

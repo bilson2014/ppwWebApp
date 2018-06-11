@@ -4,8 +4,6 @@ $().ready(function() {
 	
 });
 
-
-
 //添加场地
 function sitemethod(){
 
@@ -15,32 +13,30 @@ function sitemethod(){
 		$('.sitebox').hide();	
 		cleandata();
 	});
-	
 	//下拉框出现(类型)
 	$('.siteleft .typesite,.siteleft .typeimg').off('click').on('click',function(){
 		$('.typecheck').show();	
+		$('.citycheck').hide();
 	});
-	$('.typecheck p').off('click').on('click',function(){
+	$('body').on('click','.typecheck p',function(){
+	
 		$('.typesite').text($(this).text());
+		$('.typesite').attr('key',$(this).attr('key'));
 		$('.typecheck').hide();
 	});
 	$('.siteleft .citysite,.siteleft .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();	
+		$('.typecheck').hide();
 	});
-	$('.citycheck p').off('click').on('click',function(){
+	$('body').on('click','.citycheck p',function(){
 		$('.citysite').text($(this).text());
+		$('.citysite').attr('cityid',$(this).attr('cityid'));
 		$('.citycheck').hide();
 	});
-	
-
-	//图片的操作
-//	$('.imgsboxs').off('mouseover').on('mouseover',function(){
-//		$(this).find('.imgshade ').show();
-//	});
-//	$('.imgsboxs').off('mouseout').on('mouseout',function(){
-//		$(this).find('.imgshade ').hide();
-//	});
-	
+	$('.siteleft .namesite,.siteleft .msite,.siteleft .pricesite,.siteleft .locationsite').off('click').on('click',function(){
+		$('.citycheck').hide();	
+		$('.typecheck').hide();
+	});
 	
 	
 	
@@ -83,7 +79,7 @@ function sitemethod(){
 			$('.locationsitep').text('*地址不能为空');
 			return false;
 		}else {
-			console.log('验证正确');
+		
 			var biao=$('.sitebox .sitetitle span').text();
 			if (biao=='修改场地'){
 				var id=$('.sitebox').attr('id');
@@ -102,8 +98,8 @@ function sitemethod(){
 //					 photo:,//	其他照片
 					 price: pricesite,//	价格
 					 remark:siteremark,//	备注
-					 type:typesite,//场地类型
-					 citysite:citysite,//城市类型 -----
+					 type:$('.typesite').attr('key'),//场地类型
+					 city:$('.citysite').attr('cityid'),//城市类型
 					
 				}));
 			}else{
@@ -116,26 +112,19 @@ function sitemethod(){
 					 address: locationsite,//地址
 					 area: msite,//面积
 //					 delImg:,//待删除图片
-//					 id:,//	主键
 //					 mainPhoto:,//主图
 					 name: namesite,	//名称
 //					 photo:,//	其他照片
 					 price: pricesite,//	价格
 					 remark:siteremark,//	备注
-					 type:typesite,//场地类型
-					 citysite:citysite,//城市类型 -----
-					 
-					 
+					 type:$('.typesite').attr('key'),//场地类型
+					 city:$('.citysite').attr('cityid'),//城市类型
 					 
 				}));
 			}
 			
-			
-			
 		}
-		
 	});
-	
 	
 }
 
@@ -144,19 +133,28 @@ function getstudio(id){
 	loadData(function(res){	
 		$('.sitebox .sitetitle span').text('修改场地');
 		$('.sitebox').attr('id',id);
-		
 		$('.namesite').val(res.name);
 		$('.msite').val(res.area);
-		$('.typesite').text(res.type);
+		if (res.type=='1'){
+			$('.typesite').text('内景');
+		}else {
+			$('.typesite').text('外景');
+		}
 		$('.pricesite').val(res.price);
-		$('.citysite').text(res.citysite);
 		$('.locationsite').val(res.address);
 		$('.siteremark').val(res.remark);
+		var cities=res.city;
+		loadData(function(res){
+			for(var i=0;i<res.length;i++){
+				if (cities==res[i].cityID){
+					$('.citysite').text(res[i].city);
+				}
+			}
+		 }, getContextPath() + '/all/citys');
 		
 	 }, getContextPath() + '/production/studio/get', $.toJSON({						
 		 id:id,//	主键
 	}));
-	
 }
 //删除
 function delstudio(id){
@@ -166,7 +164,6 @@ function delstudio(id){
 	 }, getContextPath() + '/production/studio/delete', $.toJSON({						
 		 id:id,//	主键
 	}));
-	
 }
 function cleandata(){
 	$('.namesitep').text('');
@@ -183,5 +180,4 @@ function cleandata(){
 	$('.citysite').text('请选择城市');
 	$('.locationsite').val('');
 	$('.siteremark').val('');
-	
 }

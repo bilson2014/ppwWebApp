@@ -1,7 +1,6 @@
 $().ready(function() {	
 	devicemethod();	 
 	
-	
 });
 
 
@@ -119,9 +118,11 @@ function devicemethod(){
 			if (biao=='修改设备'){
 //				var id=$('.equipbox').attr('id');
 				datadevice('update');
+				
 			}else{
 				datadevice('save');				
 			}
+			cleandata();
 
 		}
 		
@@ -155,13 +156,15 @@ function getdevice(id){
 		$('.equipbox .equiptitle span').text('修改设备');
 		$('.equipbox').attr('id',id);
 		var typelist=res.type;
-		var namelist=res.name;
+		var namelist=res.typeId;
 		var citylist=res.city;
+		
 		loadData(function(res){	
 			console.log(res);
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==typelist){
 					$('.typeequip').text(res[i].value);
+					$('.typeequip').attr('key',res[i].key);
 				}
 			}
 		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
@@ -170,16 +173,19 @@ function getdevice(id){
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==namelist){
 					$('.nameequip').val(res[i].value);
+					$('.nameequip').attr('key',res[i].key);
+					
 				}
 			}
 		 }, getContextPath() + "/quotationtype/production/children?typeId="+typelist);
 		loadData(function(res){	
 			for(var i=0;i<res.length;i++){
-				if (res[i].city==citylist){
-					$('.cityequip').val(res[i].city);
+				if (res[i].cityID==citylist){
+					$('.cityequip').text(res[i].city);
+					$('.cityequip').attr('cityid',res[i].cityID);
 				}
 			}
-		 }, getContextPath() + '/all/citys');
+		 }, getContextPath() + '/all/citys');		
 		$('.numequip').val(res.quantity);
 		$('.priceequip').val(res.price);
 		$('.equipremark').val(res.remark);
@@ -187,6 +193,9 @@ function getdevice(id){
 		 id:id,//	主键
 	}));
 }
+//加载备用数据
+
+
 //删除
 function deldevice(id){
 	loadData(function(res){	

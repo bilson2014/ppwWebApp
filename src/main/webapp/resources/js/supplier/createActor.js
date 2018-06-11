@@ -4,13 +4,6 @@ $().ready(function() {
 	gathermethod();
 	userpicInfo();
 });
-
-
-function init(){
-	
-	
-}
-
 //角色选择
 function peoplechengck(){
 	$('.check').off('click').on('click',function(){
@@ -27,13 +20,20 @@ function peoplechengck(){
 	//addpeople的确认 和取消
 	$('.addpeople .sure').off('click').on('click',function(){
 		if ($('.check').text()=='演员'){
+			
 			$('.addpeople').hide();
 			$('.staffbox').show();
+			listpeopledata('actor');
 			//提前加载图片
 			imgcheckpeoplefive();
 	
 		}else if($('.check').text()=='导演'){
 			$('.addpeople').hide();
+			$('.directorbox').show();
+			
+			
+			listpeopledata('director');
+			imgcheckpeoplefive();
  
 		}
 	});
@@ -52,27 +52,43 @@ function gathermethod(){
 		$('.setting').hide();
 		$('.staffbox').hide();	
 	});
-	//下拉框出现(性别、种族、城市)
+	//下拉框出现(性别、种族、城市)$('body').on('click','.citycheck p',function(){
 	$('.gatherleft .gendergather,.gatherleft .genderimg').off('click').on('click',function(){
 		$('.twocheck').show();	
+		$('.racecheck').hide();
+		$('.citycheck').hide();
 	});
 	$('.twocheck p').off('click').on('click',function(){
+		$('.gendergather').attr('key',$(this).attr('key'));
 		$('.gendergather').text($(this).text());
 		$('.twocheck').hide();
 	});
+	
 	$('.gatherleft .racegather,.gatherleft .raceimg').off('click').on('click',function(){
 		$('.racecheck').show();
+		$('.twocheck').hide();
+		$('.citycheck').hide();
 	});
-	$('.racecheck p').off('click').on('click',function(){
+	$('body').on('click','.racecheck p',function(){
 		$('.racegather').text($(this).text());
+		$('.racegather').attr('value',$(this).attr('value'));
 		$('.racecheck').hide();
 	});
+	
 	$('.gatherleft .citygather,.gatherleft .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();
+		$('.twocheck').hide();
+		$('.racecheck').hide();
 	});
-	$('.citycheck p').off('click').on('click',function(){
+	$('body').on('click','.citycheck p',function(){
 		$('.citygather').text($(this).text());
+		$('.citygather').attr('cityid',$(this).attr('cityid'));
 		$('.citycheck').hide();
+	});
+	$('.gatherleft .namegather,.gatherleft .oldgather,.gatherleft .pricegather').off('click').on('click',function(){
+		$('.citycheck').hide();
+		$('.twocheck').hide();
+		$('.racecheck').hide();
 	});
 	//图片的操作
 	$('.imgsboxs').off('mouseover').on('mouseover',function(){
@@ -89,6 +105,9 @@ function gathermethod(){
 		var racegather=$('.racegather').text();
 		var citygather=$('.citygather').text();
 		var pricegather=$('.pricegather').val();
+		var remarkgather=$('.remarkgather').val();
+		
+		
 		$('.namegatherp').text('');
 		$('.oldgatherp').text('');
 		$('.pricegatherp').text('');
@@ -120,7 +139,28 @@ function gathermethod(){
 			$('.pricegatherp').text('*价格不能为空');
 			return false;
 		}else {
-			console.log('验证正确');
+			
+			
+			loadData(function(result){	
+				console.log(result);
+//				cleandata();
+//				$('.setting').hide();
+//				$('.sitebox').hide();
+//				getlistdata('studio');//获取场地数据
+			 }, getContextPath() + '/production/actor/save', $.toJSON({						
+				 birthDay:oldgather,//出生日期
+				 city:$('.citygather').attr('cityid'),//城市(编码)
+//				 delImg:,//待删除图片
+//				 mainPhoto:,//主图
+				 name:namegather,//姓名
+//				 photo:,//更多图片
+				 price:pricegather,//价格
+				 remark:remarkgather,//备注
+				 sex:$('.gendergather').attr('key'),//性别(1,2)
+				 zone:$('.racegather').attr('value'),//种族(编码)
+				
+			}));
+			
 			
 			
 		}
@@ -130,6 +170,22 @@ function gathermethod(){
 	
 }
 
+function cleanactordata(){
+	$('.namesitep').text('');
+	$('.msitep').text('');
+	$('.typesitep').text('');
+	$('.pricesitep').text('');
+	$('.locationsitep').text('');
+	$('.citysitep').text('');
+	
+	$('.namesite').val('');
+	$('.msite').val('');
+	$('.typesite').text('请选择场地类型');
+	$('.pricesite').val('');
+	$('.citysite').text('请选择城市');
+	$('.locationsite').val('');
+	$('.siteremark').val('');
+}
 
 
 
