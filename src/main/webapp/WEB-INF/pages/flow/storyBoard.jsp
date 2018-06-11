@@ -23,6 +23,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
+
 <!--<![endif]-->
 
 <head>
@@ -60,11 +61,12 @@
 
 <body>
 
-<input type="hidden" id="${projectId}" value="${projectId}">
+<input type="hidden" id="projectId" value="${projectId}">
+<input type="hidden" id="id" value="${id}">
 	
 	<div class="page">
 	       <div class="toolsHead">
-	             <div>测试标题</div>
+	             <div id="projectName">未命名</div>
 	             <div class="toolTitle">分镜工具</div>
 	             <div class="openTool">打开</div>
 	       </div>
@@ -206,10 +208,7 @@
 	            <div class="modelBanner">
 	                <div class="tap" id="" style="width:100%">您正在参与进行中的项目</div>
 	            </div>
-	            <div class="modelProductContent"> 
-	            <div class="modelProItem" data-id="40" data-pid="20171207164928889 ">未命名项目</div>
-	            <div class="modelProItem" data-id="40" data-pid="20171207164928889 ">未命名项目</div>
-	            </div>
+	            <div class="modelProductContent"></div>
 	            <div class="modelControl">
 	                 <div class="btn-c-g" id="cancleLoadProduct">取消</div>
 	                 <div class="btn-c-r" id="CheckloadProduct">加载</div>

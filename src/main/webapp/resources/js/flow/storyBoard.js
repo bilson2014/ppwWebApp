@@ -21,47 +21,104 @@ var delImgGroup = '';
 $().ready(function() {
 	
 	initOption();
-	getMyProject();
-	 $('.modelProItem').off('click').on('click',function(){
-			$('.modelProItem').removeClass('modelPActive');
-			$(this).addClass('modelPActive');
-	});
-	 
-	$('#saveProject').off('click').on('click',function(){
-		if(checkError()){
-			getValue();
-			/*if($('#projectId').val() >= 0){
-				getValue();
-			}else{
-				getMyProject();			
-			}*/
-		}
-	});
 	
-	$('.openTool').off('click').on('click',function(){
-		openProjectModel();
-	});
-	
-	$('.closeModel,#cancleLoadProduct').off('click').on('click',function(){
-		$('#loadProductModel').hide();
-	});
-
 });
 
 function openProjectModel(){
+	
 	$('#loadProductModel').show();
+	$(".modelProductContent").html('');
 	loadData(function(src){
-		var ss = src;
+		for (var int = 0; int < src.length; int++) {
+			 $(".modelProductContent").append(juicer(videoList_tpl.project_Tpl,{file:src[int]}));
+		}		
+		initCheckProject();
+		$('#CheckloadProduct').off('click').on('click',function(){
+			var modelVal = $('.modelProductContent .modelPActive');
+			if(modelVal.length>0){
+				reShow(modelVal.attr('data-id'));
+			}
+		});
+		
 	}, getContextPath() + '/continuity/list/synergetic','');
 	
 }
 
-function getMyProject(){
+function reShow(proId){
 	
+	loadData(function(src){
+		setReShow(src);		
+	}, getContextPath() + '/continuity/get/'+proId,'');
+	
+}
+
+function setReShow(item){
+	
+	$('#projectName').text(item.projectName);
+	$('#id').val(item.id);
+	var imgItem = item.scripts;
+	$(".imgItem ").remove();
+	for (var int = 0; int < imgItem.length; int++) {
+		var path = imgItem[int].picture;
+		var imgPath = getResourcesName() + path;
+		var text = imgItem[int].type;
+		var des  = imgItem[int].type;
+		$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:des,text:text,file:imgPath,path:path}));
+	}
+	
+	var checkImgType = $('.checkImgType');
+	for (var int2 = 0; int2 < checkImgType.length; int2++) {
+		 var textId = $(checkImgType[int2]).attr('data-id');
+		 var ulId = $('.checkImgType').parent().find('ul li');
+		 for (var int3 = 0; int3 < ulId.length; int3++) {
+			  var ulTextId = $(ulId[int3]).attr('data-id');
+			  if(ulTextId == textId){
+				  $(checkImgType[int2]).text($(ulId[int3]).text());
+				  continue;
+			  }
+		}
+	}
+	
+	$('#storyName').val(item.name);
+	
+	var dimensionId = item.dimensionId; 
+	var pictureRatio = item.pictureRatio;
+	var videoStyle = videoStyle;
+	
+	getActiveVal($('#time .boxItem'),dimensionId);
+	getActiveVal($('#videoType .boxItem'),pictureRatio);
+	getActiveVal($('#videoStyle .boxItem'),videoStyle);
+		
+	function getActiveVal(id,val){
+		var setDId = id;
+		for (var int4 = 0; int4 < setDId.length; int4++) {
+			if($(setDId[int4]).attr('data-id') == val){
+				$(setDId[int4]).addClass('active');
+				return;
+			}
+		}
+	}
+	
+	initOption();
+	$('#loadProductModel').hide();
+		
+}
+
+function getMyProject(){	
+	$('#loadProductModel').show();
+	$(".modelProductContent").html('');
 	loadData(function(item){
-		
-		var src = item;
-		
+
+		for (var int = 0; int < item.length; int++) {
+			$(".modelProductContent").append(juicer(videoList_tpl.project_Tpl,{file:item[int]}));
+		}
+		initCheckProject();
+		$('#CheckloadProduct').off('click').on('click',function(){
+			var modelVal = $('.modelProductContent .modelPActive');
+			if(modelVal.length>0){				   
+				   getValue(modelVal.attr('data-id'));
+			}
+		});
 	}, getContextPath() + '/continuity/synergetic/listByName', $.toJSON({
 		projectName:'',
 	}));
@@ -72,6 +129,34 @@ function initOption(){
 	newSelectCheck();
 	initSelect();
 	initCheckBox();
+	saveToproject();
+	$('.closeModel,#cancleLoadProduct').off('click').on('click',function(){
+		$('#loadProductModel').hide();
+	});
+	$('.openTool').off('click').on('click',function(){
+		openProjectModel();
+	});
+}
+
+function saveToproject(){	
+	$('#saveProject').off('click').on('click',function(){
+		if(checkError()){
+			if($('#projectId').val()!='' && $('#projectId').val()!=null && $('#projectId').val()!= undefined){
+				getValue($('#projectId').val());
+			}else{
+				getMyProject();			
+			}
+		}
+	});
+}
+
+function initCheckProject(){
+	
+	 $('.modelProItem').off('click').on('click',function(){
+			$('.modelProItem').removeClass('modelPActive');
+			$(this).addClass('modelPActive');
+	});
+	
 }
 
 function optEntity( type,picture,description){
@@ -80,10 +165,9 @@ function optEntity( type,picture,description){
 	this.description = description;
 }
 
-function getValue(){
+function getValue(id){
 		
 	var imgItem = $('.imgItem');
-		
 	for (var int = 0; int < imgItem.length; int++) {
 		 var type = $(imgItem[int]).find('.checkImgType').attr('data-id');
 		 var image = $(imgItem[int]).find('.backgroundImg').attr('src');
@@ -96,16 +180,26 @@ function getValue(){
 	var pictureRatio = $('#videoType .active').attr('data-id');
 	var videoStyle = $('#videoStyle .active').attr('data-id');
 	
-	loadData(function(){
-        
+	loadData(function(src){
+		if(src.result){
+			$('#id').val(src.msg);
+			$('#loadProductModel').hide();
+			successToolTipShow('保存成功');
+		}
+		else{
+			$('#loadProductModel').hide();
+			successToolTipShow('保存失败');
+		}
+		//JSON.stringify(setData)
 	}, getContextPath() + '/continuity/save', $.toJSON({
-		 ShootingScript:setData,
+		 scripts:setData,
 		 name:storyName,
 		 delImgs:delImgGroup,
 		 videoStyle:videoStyle,
 		 pictureRatio:pictureRatio,
 		 dimensionId:dimensionId,
-		 id:0,
+		 projectId:id,
+		 id:$('#id').val()
 	}));
 		
 }
@@ -132,7 +226,6 @@ function newSelectCheck(){
 	   	 $(this).parent().parent().find('div').attr('data-id',id);
 	   	 $(this).parent().slideUp();
 	   	 $('.productLine').removeClass('selectColor');
-
 	     e.stopPropagation();
 	});
 	
@@ -171,7 +264,11 @@ function initSortable(){
 function initCheckBox(){
 	getBox($('#time .boxItem'));
 	getBox($('#videoType .boxItem'));
-	getBox($('#videoStyle .boxItem'));
+	
+	$('.killItem').off('click').on('click',function(){
+		 $('.killItem .boxItem').removeClass('active');
+		 $(this).find('.boxItem').addClass('active');
+	});
 	
 	function getBox(id){
 		id.on('click',function(){
@@ -299,7 +396,7 @@ var imgUpload = {
 				if(response.code == 0){
 					    var path = response.result;
 						var imgPath = getResourcesName() + path;
-						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:path}));
+						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:'',text:'',file:imgPath,path:path}));
 						initImgSize();						
 						initSortable();
 						delImgEven();	
@@ -410,7 +507,7 @@ var videoList_tpl = {
 		upload_Tpl:[
 		"<div class='imgItem'>"+
         "<div class='orderSelect'>"+
-        "        <div class='imgType checkImgType'>请选择镜头类型</div>"+
+        "        <div class='imgType checkImgType' data-id='${text}'>请选择镜头类型</div>"+
         "        <img src='/resources/images/flow/selectS.png'>"+
         "        <ul class='oSelect' style='display: none;'>"+
         "           <li data-id='1'>极远景</li>"+
@@ -428,14 +525,10 @@ var videoList_tpl = {
 	    "        <img class='delLoadImg' src='/resources/images/flow/del.png'>"+
 	    "        <img class='backgroundImg' src='${file}'>"+
 	    " </div>"+
-	    " <textarea class='checkImgText' placeholder='请输入镜头要求...'></textarea>"+
+	    " <textarea class='checkImgText' placeholder='请输入镜头要求...' >${textarea}</textarea>"+
         "</div>"
-		].join("")
+		].join(""),
+        project_Tpl:[
+             "<div class='modelProItem' data-showId='${file.id}' data-id='${file.projectId}'>${file.projectName}</div>"
+    		].join("")
 }
-
-
-
-
-
-
-
