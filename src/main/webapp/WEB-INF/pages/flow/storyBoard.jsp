@@ -61,8 +61,7 @@
 
 <body>
 
-<input type="hidden" id="projectId" value="${projectId}">
-<input type="hidden" id="id" value="${id}">
+
 	
 	<div class="page">
 	       <div class="toolsHead">
@@ -256,6 +255,18 @@
 		</div>
 	</div>
 	<!-- photo Modal end -->
+	
+	<form method="post" action="/quotation/export/" id="toListForm" class="hide">
+                        <input type="hidden" id="name" value="">
+                        <input type="hidden" id="videoStyle" value="">
+                        <input type="hidden" id="pictureRatio" value="">
+                        <input type="hidden" id="dimensionId" value="">
+                        <input type="hidden" id="scripts" value="">
+                        <input type="hidden" id="projectId" value="${projectId}">
+     </form> 
+    
+	
+	
 </body>
 <script type="text/javascript" src="${storyBoardJs}"></script>
 </html>

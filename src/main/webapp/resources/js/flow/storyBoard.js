@@ -24,6 +24,8 @@ $().ready(function() {
 	
 });
 
+
+//打开项目
 function openProjectModel(){
 	
 	$('#loadProductModel').show();
@@ -44,6 +46,9 @@ function openProjectModel(){
 	
 }
 
+
+
+//回显
 function reShow(proId){
 	
 	loadData(function(src){
@@ -51,6 +56,7 @@ function reShow(proId){
 	}, getContextPath() + '/continuity/get/'+proId,'');
 	
 }
+
 
 function setReShow(item){
 	
@@ -104,6 +110,8 @@ function setReShow(item){
 		
 }
 
+
+//获取我的项目
 function getMyProject(){	
 	$('#loadProductModel').show();
 	$(".modelProductContent").html('');
@@ -138,6 +146,8 @@ function initOption(){
 	});
 }
 
+
+//保存到项目
 function saveToproject(){	
 	$('#saveProject').off('click').on('click',function(){
 		if(checkError()){
@@ -165,7 +175,7 @@ function optEntity( type,picture,description){
 	this.description = description;
 }
 
-function getValue(id){
+function getValue(projectId){
 		
 	var imgItem = $('.imgItem');
 	for (var int = 0; int < imgItem.length; int++) {
@@ -179,18 +189,26 @@ function getValue(id){
 	var dimensionId = $('#time .active').attr('data-id');	
 	var pictureRatio = $('#videoType .active').attr('data-id');
 	var videoStyle = $('#videoStyle .active').attr('data-id');
+	var setArray = JSON.stringify(setData);
 	
+/*	$('#name').val(storyName);
+	$('#dimensionId').val(dimensionId);
+	$('#videoStyle').val(videoStyle);
+	$('#pictureRatio').val(pictureRatio);
+	$('#projectId').val(projectId);
+	$('#scripts').val(setArray);*/
+		
 	loadData(function(src){
 		if(src.result){
 			$('#id').val(src.msg);
 			$('#loadProductModel').hide();
+			delImgGroup = '';
 			successToolTipShow('保存成功');
 		}
 		else{
 			$('#loadProductModel').hide();
 			successToolTipShow('保存失败');
 		}
-		//JSON.stringify(setData)
 	}, getContextPath() + '/continuity/save', $.toJSON({
 		 scripts:setData,
 		 name:storyName,
@@ -198,7 +216,7 @@ function getValue(id){
 		 videoStyle:videoStyle,
 		 pictureRatio:pictureRatio,
 		 dimensionId:dimensionId,
-		 projectId:id,
+		 projectId:projectId,
 		 id:$('#id').val()
 	}));
 		
@@ -438,6 +456,7 @@ function delImgEven(){
 		$('#tModel').off('click').on('click',function(){
 			delImgGroup += path +';';
 			thiItem.parent().parent().remove();
+			$('#checkSureModel').hide();
 		});
 		
 	})
@@ -450,7 +469,6 @@ var imgUpdate = {
 			//批量上传
 			this.uploadFile();
 		},
-
 		uploadFile:function(){
 			upload_Update && upload_Update.destroy();
 			var picker =$('.updateImg'); 
