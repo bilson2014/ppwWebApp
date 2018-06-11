@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.entity.BaseProductionEntity;
-import com.paipianwang.pat.common.entity.ComboTreeModel;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
@@ -126,7 +125,7 @@ public class ProductionResourceController extends BaseController {
 			for(PmsQuotationType type:types) {
 				for(PmsProductionDevice device:devices) {
 					if(type.getTypeId().equals(device.getTypeId())) {
-//						device.setName(type.getTypeName());
+						device.setName(type.getTypeName());
 						device.setPhoto(type.getPhoto());
 						continue;
 					}
