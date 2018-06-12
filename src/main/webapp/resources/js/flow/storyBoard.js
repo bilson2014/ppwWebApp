@@ -49,8 +49,6 @@ function openProjectModel(){
 	
 }
 
-
-
 //回显
 function reShow(proId){
 	
@@ -59,7 +57,6 @@ function reShow(proId){
 	}, getContextPath() + '/continuity/get/'+proId,'');
 	
 }
-
 
 function setReShow(item){
 	
@@ -204,7 +201,6 @@ function getValue(projectId,who){
 		$('#dimensionId').val(dimensionId);
 		$('#videoStyle').val(videoStyle);
 		$('#pictureRatio').val(pictureRatio);
-		$('#projectId').val(projectId);
 		$('#scriptContent').val(setArray);
 		$('#toListForm').submit();
 		
