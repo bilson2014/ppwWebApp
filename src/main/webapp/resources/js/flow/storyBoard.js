@@ -65,6 +65,7 @@ function setReShow(item){
 	
 	$('#projectName').text(item.projectName);
 	$('#id').val(item.id);
+	$('#projectId').val(item.projectId);
 	var imgItem = item.scripts;
 	$(".imgItem ").remove();
 	for (var int = 0; int < imgItem.length; int++) {
