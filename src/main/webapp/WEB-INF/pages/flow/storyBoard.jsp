@@ -142,7 +142,7 @@
 		                    </div>   
 	                 </div>
 	                 
-	                 <div class="otherItem onebox a" id="videoStyle">
+	                 <div class="otherItem onebox a" id="videoStyleS">
 	                       <div class="otherTitle lastTitle">影片风格</div>
 	                       <div class="killDiv">
 		                         <div class="killItem">
