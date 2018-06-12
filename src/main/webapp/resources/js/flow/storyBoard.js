@@ -31,6 +31,9 @@ function openProjectModel(){
 	$('#loadProductModel').show();
 	$(".modelProductContent").html('');
 	loadData(function(src){
+		
+		
+		
 		for (var int = 0; int < src.length; int++) {
 			 $(".modelProductContent").append(juicer(videoList_tpl.project_Tpl,{file:src[int]}));
 		}		
@@ -89,7 +92,7 @@ function setReShow(item){
 	
 	var dimensionId = item.dimensionId; 
 	var pictureRatio = item.pictureRatio;
-	var videoStyle = videoStyle;
+	var videoStyle = item.videoStyle;
 	
 	getActiveVal($('#time .boxItem'),dimensionId);
 	getActiveVal($('#videoType .boxItem'),pictureRatio);
@@ -124,7 +127,7 @@ function getMyProject(){
 		$('#CheckloadProduct').off('click').on('click',function(){
 			var modelVal = $('.modelProductContent .modelPActive');
 			if(modelVal.length>0){				   
-				   getValue(modelVal.attr('data-id'));
+				   getValue(modelVal.attr('data-id'),0);
 			}
 		});
 	}, getContextPath() + '/continuity/synergetic/listByName', $.toJSON({
@@ -144,15 +147,18 @@ function initOption(){
 	$('.openTool').off('click').on('click',function(){
 		openProjectModel();
 	});
+	$('.download').off('click').on('click',function(){
+		getValue('',1); 
+	});
+	delImgEven();
 }
-
 
 //保存到项目
 function saveToproject(){	
 	$('#saveProject').off('click').on('click',function(){
 		if(checkError()){
-			if($('#projectId').val()!='' && $('#projectId').val()!=null && $('#projectId').val()!= undefined){
-				getValue($('#projectId').val());
+			if($('#id').val()!='' && $('#id').val()!=null && $('#id').val()!= undefined){
+				getValue($('#projectId').val(),0);
 			}else{
 				getMyProject();			
 			}
@@ -175,12 +181,12 @@ function optEntity( type,picture,description){
 	this.description = description;
 }
 
-function getValue(projectId){
+function getValue(projectId,who){
 		
 	var imgItem = $('.imgItem');
 	for (var int = 0; int < imgItem.length; int++) {
 		 var type = $(imgItem[int]).find('.checkImgType').attr('data-id');
-		 var image = $(imgItem[int]).find('.backgroundImg').attr('src');
+		 var image = $(imgItem[int]).find('.loadImg').attr('data-id');
 		 var text = $(imgItem[int]).find('.checkImgText').val();
 		 setData.push(new optEntity(type,image,text));
 	}
@@ -190,35 +196,40 @@ function getValue(projectId){
 	var pictureRatio = $('#videoType .active').attr('data-id');
 	var videoStyle = $('#videoStyle .active').attr('data-id');
 	var setArray = JSON.stringify(setData);
-	
-/*	$('#name').val(storyName);
-	$('#dimensionId').val(dimensionId);
-	$('#videoStyle').val(videoStyle);
-	$('#pictureRatio').val(pictureRatio);
-	$('#projectId').val(projectId);
-	$('#scripts').val(setArray);*/
+
+	if(who == 1){
 		
-	loadData(function(src){
-		if(src.result){
-			$('#id').val(src.msg);
-			$('#loadProductModel').hide();
-			delImgGroup = '';
-			successToolTipShow('保存成功');
-		}
-		else{
-			$('#loadProductModel').hide();
-			successToolTipShow('保存失败');
-		}
-	}, getContextPath() + '/continuity/save', $.toJSON({
-		 scripts:setData,
-		 name:storyName,
-		 delImgs:delImgGroup,
-		 videoStyle:videoStyle,
-		 pictureRatio:pictureRatio,
-		 dimensionId:dimensionId,
-		 projectId:projectId,
-		 id:$('#id').val()
-	}));
+	    $('#name').val(storyName);
+		$('#dimensionId').val(dimensionId);
+		$('#videoStyle').val(videoStyle);
+		$('#pictureRatio').val(pictureRatio);
+		$('#projectId').val(projectId);
+		$('#scripts').val(setArray);
+		$('#toListForm').submit();
+		
+	}else{
+			loadData(function(src){
+				if(src.result){
+					$('#id').val(src.msg);
+					$('#loadProductModel').hide();
+					delImgGroup = '';
+					successToolTipShow('保存成功');
+				}
+				else{
+					$('#loadProductModel').hide();
+					successToolTipShow('保存失败');
+				}
+			}, getContextPath() + '/continuity/save', $.toJSON({
+				 scripts:setData,
+				 name:storyName,
+				 delImgs:delImgGroup,
+				 videoStyle:videoStyle,
+				 pictureRatio:pictureRatio,
+				 dimensionId:dimensionId,
+				 projectId:projectId,
+				 id:$('#id').val()
+			}));
+	}
 		
 }
 

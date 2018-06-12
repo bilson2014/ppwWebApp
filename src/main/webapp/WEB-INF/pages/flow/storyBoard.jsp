@@ -50,7 +50,7 @@
 <link rel="stylesheet" href="${jcropCss}">
 
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
-
+ <input type="hidden" id="id" value="${id}">
 
 
 <!--[if lt IE 9]>
@@ -60,8 +60,6 @@
 </head>
 
 <body>
-
-
 	
 	<div class="page">
 	       <div class="toolsHead">
@@ -154,30 +152,30 @@
 				                            <div class="des">亚洲小清新</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="1">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle2.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="1">
 				                            <div class="box"></div>
 				                            <div class="des">韩国时尚风</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="2">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle3.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="2">
 				                            <div class="box"></div>
 				                            <div class="des">科技工业感</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="3">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle4.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="3">
 				                            <div class="box"></div>
 				                            <div class="des">复古时尚志</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="4">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle5.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="4">
 				                            <div class="box"></div>
 				                            <div class="des">欧美电影感</div>
 				                       </div>
@@ -219,8 +217,8 @@
            <div class="successModel">
                <div class="closeBtn"></div>
 			   <div class="oSContent">
-			        <div class="tdDes">确认删除镜头吗?</div>
-			        <div class="sureBtn">
+			        <div class="tdDes" style="padding-top:80px;">确认删除镜头吗?</div>
+			        <div class="sureBtn" style="padding-top:40px;">
 			           <div class="btn-c-r" id="tModel">确定</div>
 			           <div class="btn-c-g" id="cModel">取消</div>
 			        </div>
@@ -256,7 +254,7 @@
 	</div>
 	<!-- photo Modal end -->
 	
-	<form method="post" action="/quotation/export/" id="toListForm" class="hide">
+	<form method="post" action="/continuity/export" id="toListForm" class="hide">
                         <input type="hidden" id="name" value="">
                         <input type="hidden" id="videoStyle" value="">
                         <input type="hidden" id="pictureRatio" value="">
