@@ -77,6 +77,8 @@
 	<mvc:view-controller path="/ss" view-name="/flow/storyBoard" />
     
     <mvc:view-controller path="/mc" view-name="/salesMan/mc" />
+    
+     <mvc:view-controller path="/testWeb" view-name="/testWeb" />
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/pages/" p:suffix=".jsp" /> -->
 	
 

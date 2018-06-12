@@ -204,7 +204,7 @@ function getValue(projectId,who){
 		$('#videoStyle').val(videoStyle);
 		$('#pictureRatio').val(pictureRatio);
 		$('#projectId').val(projectId);
-		$('#scripts').val(setArray);
+		$('#scriptContent').val(setArray);
 		$('#toListForm').submit();
 		
 	}else{
