@@ -378,6 +378,8 @@ function successToolTipShow(error){
 		window.clearInterval(successIntervalObj);
 		$('.tooltip-success-show').show();
 		$(".tooltip-success-show").text(error);
+		$(window.parent.parent.parent.document).find('html').scrollTop(0);
+		$(window.parent.parent.parent.document).find('body').scrollTop(0);
 		successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 	}
 	
@@ -422,13 +424,13 @@ var imgUpload = {
 					    var path = response.result;
 						var imgPath = getResourcesName() + path;
 						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:'',text:'',file:imgPath,path:path}));
-
 						initImgSize();						
 						initSortable();
 						delImgEven();	
 						initSelect();
 						initCheckBox();
 						imgUpdate.init();
+						$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 				}else{
 					successToolTipShow('图片获取失败');
 				}
