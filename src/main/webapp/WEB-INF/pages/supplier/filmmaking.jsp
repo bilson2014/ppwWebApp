@@ -207,17 +207,13 @@
 		              						<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              						<p class='pricegatherp errorp'></p>
 		              						
-		              						
 		              					</div>
 		              					<div class='gatherright'>
 		              					
-		              				
 		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
 		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
 		              					 		</div>
-		              							
-
 		              						
 		              						</div>
 		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
@@ -262,8 +258,6 @@
 		              								<img class='select' src="/resources/images/supplier/select.png">
 		              							</div>
 		              						</div>
-		              						
-		              						
 		              						
 		              						
 		              					</div>
@@ -356,11 +350,7 @@
 		              				<div class='sure'>确认</div>
 		              				<div class='cancel'>取消</div>
 		              			</div>
-		              			
-		              		
 		              		</div>
-		              		
-		              		
 		              		
 		              		<!--添加场地  -->
 		              		<div class='sitebox' >
@@ -480,12 +470,8 @@
 		              				<div class='sure'>确认</div>
 		              				<div class='cancel'>取消</div>
 		              			</div>
-		              			
 		              		
 		              		</div>
-		              		
-		              		
-		              		
 		              
 		              </div>
 		         </div>

@@ -319,7 +319,7 @@ function getpeople(id,type){
 		//导演的数据
 		$('.directorbox').show();
 		loadData(function(res){		
-			console.log(res);
+
 			$('.directorbox .directortitle span').text('修改导演');
 			$('.directorbox').attr('id',id);
 			$('.directorbox').attr('identity',type);
