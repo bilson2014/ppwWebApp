@@ -300,6 +300,8 @@ var imgUpload = {
 					    var path = response.result;
 						var imgPath = getResourcesName() + path;
 						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:path}));
+//						console.log(file:imgPath);
+//						console.log(path:path);
 						initImgSize();						
 						initSortable();
 						delImgEven();	

@@ -87,7 +87,7 @@ function sitemethod(){
 					cleandata();
 					$('.setting').hide();
 					$('.sitebox').hide();
-					getlistdata('studio');//获取场地数据
+					getlistdatas();//获取场地数据
 				 }, getContextPath() + '/production/studio/update', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
@@ -107,7 +107,7 @@ function sitemethod(){
 					cleandata();
 					$('.setting').hide();
 					$('.sitebox').hide();
-					getlistdata('studio');//获取场地数据
+					getlistdatas();//获取场地数据
 				 }, getContextPath() + '/production/studio/save', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
@@ -160,7 +160,7 @@ function getstudio(id){
 function delstudio(id){
 	loadData(function(res){	
 		console.log(id+'删除了,之后获取了新的 数据');
-		getlistdata('studio');//获取场地数据
+		getlistdatas();//获取场地数据
 	 }, getContextPath() + '/production/studio/delete', $.toJSON({						
 		 id:id,//	主键
 	}));

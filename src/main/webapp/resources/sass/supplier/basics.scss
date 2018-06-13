@@ -104,7 +104,7 @@
                         }
                         .shade {
                             width: 162px;
-                            height: 216px;
+                            height: 191px;
                             background: #000;
                             opacity: 0.5;
                             position: absolute;
@@ -161,6 +161,11 @@
                 height: 166.5px !important;
             }
             
+            .idcard-sites {
+                width: 296px !important;
+                height: 142px !important;
+            }
+            
             .linebox-site {
                 width: 296px !important;
                 height: 26px !important;
@@ -170,6 +175,11 @@
             .idcard-facility {
                 width: 216px !important;
                 height: 162px !important;
+            }
+            
+            .idcard-facilitys {
+                width: 216px !important;
+                height: 137px !important;
             }
             
             .linebox-facility {
@@ -437,6 +447,7 @@
                         display: inline-block;
                         width: 250px;
                         vertical-align: top;
+                        position: relative;
                         .addimage {
                             width: 162px;
                             height: 216px;
@@ -446,7 +457,6 @@
                             text-align: center;
                             cursor: pointer;
                             .reupload {
-                                display: none;
                                 width: 162px;
                                 height: 216px;
                                 background: #000;
@@ -455,6 +465,8 @@
                                 color: #fff;
                                 line-height: 216px;
                                 position: absolute;
+                                top: 0;
+                                display: none;
                             }
                             img {
                                 margin-top: 70px;
@@ -1108,5 +1120,118 @@
                 .gatherbut {
                     text-align: center;
                     padding-bottom: 50px;
+                }
+            }
+            
+            .webuploader-pick {
+                width: 162px;
+                height: 216px;
+                background: transparent !important;
+                padding: 0 !important;
+            }
+            
+            .addimgs {
+                position: absolute;
+                left: 66px;
+            }
+            
+            .clickimg {
+                position: absolute;
+                left: 45px;
+                top: 110px;
+                margin-top: 0 !important;
+                width: 72px;
+            }
+            
+            .cusModel {
+                width: 100%;
+                position: fixed;
+                height: 100%;
+                top: 30px;
+                left: 0;
+                display: none;
+                .modal-dialog {
+                    width: 720px;
+                    .modal-header {
+                        height: 60px !important;
+                        padding: 0 !important;
+                        span {
+                            font-size: 16px;
+                            color: #333333;
+                            display: block;
+                            text-align: center;
+                            padding-top: 24px;
+                        }
+                        img {
+                            position: absolute;
+                            right: 22px;
+                            top: 16px;
+                        }
+                    }
+                    .modal-body {
+                        padding: 0 !important;
+                        height: 380px;
+                        width: 100%;
+                        .modal-left {
+                            width: 300px;
+                            height: 300px;
+                            margin-left: 109px;
+                            margin-top: 29px;
+                            position: absolute;
+                            display: inline-block;
+                            left: 0;
+                            background: #ebebeb;
+                            .modal-original {
+                                background: #ebebeb;
+                                margin: 0 auto;
+                                overflow: hidden;
+                                img {
+                                    display: block;
+                                    margin: 0 auto;
+                                }
+                            }
+                        }
+                        .modal-right {
+                            width: 162px;
+                            height: 300px;
+                            display: inline-block;
+                            position: absolute;
+                            right: 108px;
+                            top: 29px;
+                            .modal-preview-container {
+                                width: 162px;
+                                height: 216px;
+                                overflow: hidden;
+                                background: #ebebeb;
+                                img {
+                                    width: 162px;
+                                    height: 216px;
+                                }
+                            }
+                            span {
+                                font-size: 14px;
+                                color: #666666;
+                                text-align: center;
+                                width: 100%;
+                                margin-top: 11px;
+                                display: block;
+                            }
+                            button {
+                                width: 162px;
+                                height: 36px;
+                                margin-top: 13px;
+                                font-size: 14px;
+                                color: #FFFFFF;
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .addboxs {
+                .webuploader-pick {
+                    width: 162px;
+                    height: 30px;
                 }
             }

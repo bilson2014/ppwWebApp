@@ -135,7 +135,7 @@ function datadevice(type){
 		cleandata();
 		$('.setting').hide();
 		$('.equipbox').hide();
-		getlistdata('device');//获取设备数据
+		getlistdatad();//获取设备数据
 	 }, getContextPath() + "/production/device/"+type+"", $.toJSON({						
 		 id:$('.equipbox').attr('id'),//	主键
 		 typeId: $('.nameequip').attr('key'),	//名称
@@ -200,7 +200,7 @@ function getdevice(id){
 function deldevice(id){
 	loadData(function(res){	
 		console.log(id+'删除了,之后获取了新的 数据');
-		getlistdata('device');//获取设备数据
+		getlistdatad();//获取设备数据
 	 }, getContextPath() + '/production/device/delete', $.toJSON({						
 		 id:id,//	主键
 	}));

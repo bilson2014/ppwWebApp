@@ -1,229 +1,128 @@
 $().ready(function() {
-	
-	init();
-	imgcheckpeople();
-	newbutton();
-	
-	
-	gathermethod();
-});
-//图片尺寸的显示处理竖版
-function imgcheckpeople(){
-	for (var i=1;i<=10000;i++){
-		var img=new Image();
-		img.src=$('.imgs'+i).attr('src');
-		if (img.complete){
-			if (img.width/img.height<=1){
-				console.log(img.width);
-				console.log(img.height);
-				$('.imgs'+i).attr('style','width:auto;height:100%');
-			}else {
-				console.log(img.width);
-				console.log(img.height);
-				$('.imgs'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
-			}
-			img=null;
-		}else {
-			img.onload=function(){
-				img=null;
-			}
-		}
-	}
-}
-//图片尺寸的显示处理竖版
-function imgcheckpeoplefive(){
-	for (var i=1;i<=6;i++){
-		var img=new Image();
-		img.src=$('.imgsfive'+i).attr('src');
-		if (img.complete){
-			if (img.width/img.height<=1){
-				console.log(img.width);
-				console.log(img.height);
-				$('.imgsfive'+i).attr('style','width:auto;height:100%');
-			}else {
-				console.log(img.width);
-				console.log(img.height);
-				$('.imgsfive'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
-			}
-			img=null;
-		}else {
-			img.onload=function(){
-				img=null;
-			}
-		}
-	}
-}
-//图片尺寸的显示处理横版
-function imgchecksite(){
-	for (var i=1;i<=8;i++){
-		var img=new Image();
-		img.src=$('.imgs'+i).attr('src');
-		if (img.complete){
-			if (img.width/img.height<=1){
-				$('.imgs'+i).attr('style','width:auto;height:100%');
-			}else {
-				$('.imgs'+i).attr('style','width:100%;height:auto;');
-			}
-			img=null;
-		}else {
-			img.onload=function(){
-				img=null;
-			}
-		}
-	}
-}
-function init(){
-	$('.shade').hide();
-	$('.idcard').off('mouseover').on('mouseover',function(){
-		$(this).find('.shade').show();
-	})
-	$('.idcard').off('mouseout').on('mouseout',function(){
-		$(this).find('.shade').hide();
-	})
-	//tab 切换
-	$('.people').off('click').on('click',function(){
-		$(this).addClass('top-text ');
-		$(this).siblings('div').removeClass('top-text ');
-		$('.setCard').find('.idcard').removeClass('idcard-site ');
-		$('.setCard').find('.shade').removeClass('idcard-site ');
-		$('.setCard').find('.linebox ').removeClass('linebox-site');
-		$('.setCard').find('.idcard').removeClass('idcard-facility ');
-		$('.setCard').find('.shade').removeClass('idcard-facility ');
-		$('.setCard').find('.linebox ').removeClass('linebox-facility');
-		imgcheckpeople();
-		
-	});
-	$('.site').off('click').on('click',function(){
-		$(this).addClass('top-text ');
-		$(this).siblings('div').removeClass('top-text ');
-		$('.setCard').find('.idcard').addClass('idcard-site ');
-		$('.setCard').find('.shade').addClass('idcard-site ');
-		$('.setCard').find('.linebox ').addClass('linebox-site');
-		$('.setCard').find('.idcard').removeClass('idcard-facility ');
-		$('.setCard').find('.shade').removeClass('idcard-facility ');
-		$('.setCard').find('.linebox ').removeClass('linebox-facility');
-		imgchecksite();
-	});
-	$('.facility').off('click').on('click',function(){
-		$(this).addClass('top-text ');
-		$(this).siblings('div').removeClass('top-text ');
-		$('.setCard').find('.idcard').addClass('idcard-facility ');
-		$('.setCard').find('.shade').addClass('idcard-facility ');
-		$('.setCard').find('.linebox ').addClass('linebox-facility');
-		$('.setCard').find('.idcard').removeClass('idcard-site ');
-		$('.setCard').find('.shade').removeClass('idcard-site ');
-		$('.setCard').find('.linebox ').removeClass('linebox-site');
-		imgchecksite();
-	});
-	//图片删除共同dels并 空位
-	$('.select').off('click').on('click',function(){
-		if ($('.showimages').children().length==1){
-			$(this).parent().parent().remove();
-			$('.showimages').hide();
-		}else {
-			$(this).parent().parent().remove();
-		}
-	});
-	
-}
-function newbutton(){
-	$('.newbox').off('click').on('click',function(){
-		$('.setting').show();
-		$('.addpeople').hide();
-		
-		if ($('.top .people').hasClass('top-text')){
-			$('.addpeople').show();
-		
-		}else if($('.top .site').hasClass('top-text')){
-			console.log('2');
-		}else if($('.top .facility').hasClass('top-text')){
-			console.log('3');
-		}
-		
-		
-		 peoplechengck();
-		 
-	});
-}
-//角色选择
-function peoplechengck(){
-	$('.check').off('click').on('click',function(){
-		$('.morecheck').show();
-	});
-	$('.more').off('click').on('click',function(){
-		$('.morecheck').show();
-	});
 
-	$('.morecheck span').off('click').on('click',function(){
-		$('.morecheck').hide();
-		$('.check').text($(this).text());
-	});
-	//addpeople的确认 和取消
-	$('.addpeople .sure').off('click').on('click',function(){
-		console.log($('.check').text());
-		if($('.check').text()!='请选择'){
-			$('.addpeople').hide();
-		}
+	dirmethod();
+//	userpicInfo();
+});
+
+//创建演员
+function dirmethod(){
+	//关闭弹框
+	$('.directortitle img').off('click').on('click',function(){
+		$('.setting').hide();
+		$('.directorbox').hide();
+		cleadirectordata();
 		
 	});
-	$('.addpeople .cancel').off('click').on('click',function(){
-		$('.setting').hide();
+	//下拉框出现(性别、种族、城市)$('body').on('click','.citycheck p',function(){
+	$('.directorl .skilldir,.directorl .skillimg').off('click').on('click',function(){
+		$('.skillcheck').show();	
+		$('.citycheck').hide();
+	});
+	$('body').on('click','.skillcheck p',function(){
+		$('.skilldir').attr('value',$(this).attr('value'));
+		$('.skilldir').text($(this).text());
+		$('.skillcheck').hide();
 	});
 	
-}
-//创建演员
-function gathermethod(){
-	imgcheckpeoplefive();
-	//关闭弹框
-	$('.stafftitle img').off('click').on('click',function(){
-		$('.setting').hide();
-		$('.staffbox').hide();	
-	});
-	//下拉框出现(性别、种族、城市)
-	$('.gatherleft .gendergather,.gatherleft .genderimg').off('click').on('click',function(){
-		$('.twocheck').show();	
-	});
-	$('.twocheck p').off('click').on('click',function(){
-		$('.gendergather').text($(this).text());
-		$('.twocheck').hide();
-	});
-	$('.gatherleft .racegather,.gatherleft .raceimg').off('click').on('click',function(){
-		$('.racecheck').show();
-	});
-	$('.racecheck p').off('click').on('click',function(){
-		$('.racegather').text($(this).text());
-		$('.racecheck').hide();
-	});
-	$('.gatherleft .citygather,.gatherleft .cityimg').off('click').on('click',function(){
+	$('.directorl .citydir,.directorl .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();
+		$('.skillcheck').hide();
 	});
-	$('.citycheck p').off('click').on('click',function(){
-		$('.citygather').text($(this).text());
+	$('body').on('click','.citycheck p',function(){
+		$('.citydir').text($(this).text());
+		$('.citydir').attr('cityid',$(this).attr('cityid'));
+		$('.citycheck').hide();
+	});
+	
+	$('.directorl .namedir,.directorl .pricedir,.directorbox .remarkdirector').off('click').on('click',function(){
+		$('.skillcheck').hide();
 		$('.citycheck').hide();
 	});
 	//图片的操作
 	$('.imgsboxs').off('mouseover').on('mouseover',function(){
 		$(this).find('.imgshade ').show();
-		$
-	})
+	});
 	$('.imgsboxs').off('mouseout').on('mouseout',function(){
 		$(this).find('.imgshade ').hide();
-	})
-	
-	
+	});
+	//提交
+	$('.directorbox .gatherbut .sure').off('click').on('click',function(){
+		var namedir=$('.namedir').val();
+		var skilldir=$('.skilldir').text();
+		var citydir=$('.citydir').text();
+		var pricedir=$('.pricedir').val();
+		var remarkdirector=$('.remarkdirector').val();
+		$('.namedirp').text('');
+		$('.skilldirp').text('');
+		$('.citydirp').text('');
+		$('.pricedirp').text('');
+		if (namedir==undefined||namedir==null||namedir==''){
+			$('.namedirp').text('*姓名不能为空');
+			return false;
+		}else if( skilldir=='请选择擅长领域'){
+			$('.skilldirp').text('*请选择擅长领域');
+			return false;
+		}else if(citydir=='请选择城市'){
+			$('.citydirp').text('*请选择城市');
+			return false;
+		}else if (pricedir==undefined||pricedir==null||pricedir==''){
+			$('.pricedirp').text('*价格不能为空');
+			return false;
+		}else {
+			var biao=$('.directorbox .directortitle span').text();
+			console.log(biao);
+			if(biao=='修改导演'){
+				var biaoID=$('.directorbox').attr('id');
+				loadData(function(result){	
+					cleadirectordata()
+					$('.setting').hide();
+					$('.directorbox').hide();
+					getlistdatap();//获取人数据
+				 }, getContextPath() + '/production/director/update', $.toJSON({						
+					 id:biaoID,//获取的id
+					 name:namedir,//姓名
+					 city:$('.citydir').attr('cityid'),//城市(编码)
+//					 delImg:,//待删除图片
+//					 photo:,//照片
+					 specialty:$('.skilldir').attr('value'),//擅长领域
+					 price: pricedir,//价格
+					 remark:remarkdirector,//备注
+				}));
+			}else{
+				loadData(function(result){	
+					console.log(result);
+					cleadirectordata()
+					$('.setting').hide();
+					$('.directorbox').hide();
+					getlistdatap();//获取人数据
+				 }, getContextPath() + '/production/director/save', $.toJSON({
+					 name:namedir,//姓名
+					 city:$('.citydir').attr('cityid'),//城市(编码)
+//					 delImg:,//待删除图片
+					 photo:'https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqxyFWAS5iFAAIhkPiowTU667.jpg',//照片
+					 specialty:$('.skilldir').attr('value'),//擅长领域
+					 price: pricedir,//价格
+					 remark:remarkdirector,//备注
+				}));
+			}
+		}
+	});	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//清楚数据
+function cleadirectordata(){
+	$('.namedirp').text('');
+	$('.skilldirp').text('');
+	$('.citydirp').text('');
+	$('.pricedirp').text('');
+	
+	
+	$('.namedir').val('');
+	$('.skilldir').text('请选择擅长领域');
+	$('.citydir').text('请选择城市');
+	$('.pricedir').val('');
+	$('.remarkdirector').val('');
+	
+	$('.skillcheck').hide();
+	$('.citycheck').hide();
+}
 
