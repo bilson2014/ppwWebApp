@@ -200,7 +200,7 @@ function getdevice(id){
 function deldevice(id){
 	loadData(function(res){	
 		console.log(id+'删除了,之后获取了新的 数据');
-		getlistdatad();//获取设备数据
+	//	getlistdatad();//获取设备数据
 	 }, getContextPath() + '/production/device/delete', $.toJSON({						
 		 id:id,//	主键
 	}));

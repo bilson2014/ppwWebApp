@@ -190,8 +190,7 @@ function getlistdatap(){
 	}));
 }
 function getlistdatas(){
-	$('.setCard').text('');
-	
+	$('.setCard').text('');	
 	loadData(function(res){	
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
