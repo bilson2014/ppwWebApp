@@ -23,6 +23,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
+
 <!--<![endif]-->
 
 <head>
@@ -49,7 +50,7 @@
 <link rel="stylesheet" href="${jcropCss}">
 
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
-
+ <input type="hidden" id="id" value="${id}">
 
 
 <!--[if lt IE 9]>
@@ -59,12 +60,10 @@
 </head>
 
 <body>
-
-<input type="hidden" id="${projectId}" value="${projectId}">
 	
 	<div class="page">
 	       <div class="toolsHead">
-	             <div>测试标题</div>
+	             <div id="projectName">未命名</div>
 	             <div class="toolTitle">分镜工具</div>
 	             <div class="openTool">打开</div>
 	       </div>
@@ -143,7 +142,7 @@
 		                    </div>   
 	                 </div>
 	                 
-	                 <div class="otherItem onebox a" id="videoStyle">
+	                 <div class="otherItem onebox a" id="videoStyleS">
 	                       <div class="otherTitle lastTitle">影片风格</div>
 	                       <div class="killDiv">
 		                         <div class="killItem">
@@ -153,30 +152,30 @@
 				                            <div class="des">亚洲小清新</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="1">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle2.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="1">
 				                            <div class="box"></div>
 				                            <div class="des">韩国时尚风</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="2">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle3.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="2">
 				                            <div class="box"></div>
 				                            <div class="des">科技工业感</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="3">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle4.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="3">
 				                            <div class="box"></div>
 				                            <div class="des">复古时尚志</div>
 				                       </div>
 			                      </div> 
-			                       <div class="killItem" data-id="4">
+			                       <div class="killItem" >
 		                               <img src="/resources/images/flow/vStyle5.png"> 
-				                       <div class="boxItem">
+				                       <div class="boxItem" data-id="4">
 				                            <div class="box"></div>
 				                            <div class="des">欧美电影感</div>
 				                       </div>
@@ -206,10 +205,7 @@
 	            <div class="modelBanner">
 	                <div class="tap" id="" style="width:100%">您正在参与进行中的项目</div>
 	            </div>
-	            <div class="modelProductContent"> 
-	            <div class="modelProItem" data-id="40" data-pid="20171207164928889 ">未命名项目</div>
-	            <div class="modelProItem" data-id="40" data-pid="20171207164928889 ">未命名项目</div>
-	            </div>
+	            <div class="modelProductContent"></div>
 	            <div class="modelControl">
 	                 <div class="btn-c-g" id="cancleLoadProduct">取消</div>
 	                 <div class="btn-c-r" id="CheckloadProduct">加载</div>
@@ -221,8 +217,8 @@
            <div class="successModel">
                <div class="closeBtn"></div>
 			   <div class="oSContent">
-			        <div class="tdDes">确认删除镜头吗?</div>
-			        <div class="sureBtn">
+			        <div class="tdDes" style="padding-top:80px;">确认删除镜头吗?</div>
+			        <div class="sureBtn" style="padding-top:40px;">
 			           <div class="btn-c-r" id="tModel">确定</div>
 			           <div class="btn-c-g" id="cModel">取消</div>
 			        </div>
@@ -257,6 +253,18 @@
 		</div>
 	</div>
 	<!-- photo Modal end -->
+	
+	<form method="post" action="/continuity/export" id="toListForm" class="hide">
+                        <input type="hidden" id="name" name="name" value="">
+                        <input type="hidden" id="videoStyle" name="videoStyle" value="">
+                        <input type="hidden" id="pictureRatio" name="pictureRatio" value="">
+                        <input type="hidden" id="dimensionId" name="dimensionId" value="">
+                        <input type="hidden" id="scriptContent" name="scriptContent" value="">
+                        <input type="hidden" id="projectId" name="projectId" value="${projectId}">
+     </form> 
+    
+	
+	
 </body>
 <script type="text/javascript" src="${storyBoardJs}"></script>
 </html>
