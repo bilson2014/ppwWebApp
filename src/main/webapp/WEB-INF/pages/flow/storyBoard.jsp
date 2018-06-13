@@ -71,7 +71,7 @@
 	              <div class="addItem" id="picker">
 	                    <img src="/resources/images/flow/addImg.png">
 	                    <div>点击添加镜头</div>
-	                    <div>可上传JPG、PNG格式的文件，文件大小不能超过2M。</div>
+	                    <div>可上传JPG、PNG格式的文件，文件大小不能超过1M。</div>
 	              </div>
 	       </div>
 	       

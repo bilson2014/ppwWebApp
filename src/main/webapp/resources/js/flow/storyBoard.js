@@ -19,11 +19,10 @@ var loadTime = 0;
 var delImgGroup = '';
 
 $().ready(function() {
-	
+	document.domain = getUrl();
 	initOption();
 	
 });
-
 
 //打开项目
 function openProjectModel(){
@@ -31,8 +30,6 @@ function openProjectModel(){
 	$('#loadProductModel').show();
 	$(".modelProductContent").html('');
 	loadData(function(src){
-		
-		
 		
 		for (var int = 0; int < src.length; int++) {
 			 $(".modelProductContent").append(juicer(videoList_tpl.project_Tpl,{file:src[int]}));
@@ -134,6 +131,8 @@ function getMyProject(){
 }
 
 function initOption(){
+	
+	$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 	imgUpload.init();
 	newSelectCheck();
 	initSelect();
@@ -403,12 +402,12 @@ var imgUpload = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
-				    extensions: 'jpg,png',
+				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
 				}
 			});
@@ -501,7 +500,6 @@ var imgUpdate = {
 				var uploaderId = '#rt_'+file.source.ruid;
 				var nowEven = $(uploaderId).parent().parent();
 				var delImg = nowEven.attr('data-id');	
-				
 				if(response.code == 0){
 					    delImgGroup += delImg +';';
 					    var path = response.result;

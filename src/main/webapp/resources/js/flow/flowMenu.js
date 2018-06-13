@@ -512,7 +512,7 @@ function initMenuEven(){
 	});
 	
 	$('#boxsTools').off('click').on('click',function(){
-		$('.frame').attr('src', getUrlTask() +"ss");			
+		$('.frame').attr('src', getUrlTask() +"/storyBoard");			
 		$('.productList li').removeClass('checkLi');
 		$('#boxsTools').addClass('checkLi');
 		$('#safe').removeClass('treeitemRed');
