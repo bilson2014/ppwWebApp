@@ -91,7 +91,7 @@ function setReShow(item){
 	
 	getActiveVal($('#time .boxItem'),dimensionId);
 	getActiveVal($('#videoType .boxItem'),pictureRatio);
-	getActiveVal($('#videoStyle .boxItem'),videoStyle);
+	getActiveVal($('#videoStyleS .boxItem'),videoStyle);
 		
 	function getActiveVal(id,val){
 		var setDId = id;
@@ -191,7 +191,7 @@ function getValue(projectId,who){
 	var storyName = $('#storyName').val();
 	var dimensionId = $('#time .active').attr('data-id');	
 	var pictureRatio = $('#videoType .active').attr('data-id');
-	var videoStyle = $('#videoStyle .active').attr('data-id');
+	var videoStyle = $('#videoStyleS .active').attr('data-id');
 	var setArray = JSON.stringify(setData);
 
 	if(who == 1){
@@ -364,7 +364,7 @@ function checkError(){
 		return false;
 	}
 	
-	var videoStyle = $('#videoStyle .active');
+	var videoStyle = $('#videoStyleS .active');
 	if(!videoStyle.length > 0){
 		successToolTipShow('影片风格未选择');
 		return false;
@@ -422,6 +422,7 @@ var imgUpload = {
 					    var path = response.result;
 						var imgPath = getResourcesName() + path;
 						$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:'',text:'',file:imgPath,path:path}));
+
 						initImgSize();						
 						initSortable();
 						delImgEven();	

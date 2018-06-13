@@ -7,7 +7,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- import CSS --%>
 <spring:url value="/resources/css/supplier/basics.css" var="basicsCss"/>
-<spring:url value="/resources/lib/webuploader/webuploader.css" var="webCss"/>
+<spring:url value="/resources/lib/webuploader/webuploader.css" var="webuploaderCss" />
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.css" var="jcropCss"/>
 
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
@@ -15,21 +16,21 @@
 <spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 <spring:url value="/resources/lib/Bootstrap/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/resources/lib/webuploader/webuploader.js" var="webuploaderJs" />
+<spring:url value="/resources/lib/jquery/ajaxfileupload.js" var="ajaxfileuploadJs"/>
 
-
-
-<spring:url value="/resources/lib/cripto/aes.js" var="aesJs" />
-<spring:url value="/resources/lib/cripto/pad-zeropadding.js" var="padJs" />
-<%-- <spring:url value="/resources/lib/webuploader/pad-zeropadding.js" var="padJs"/> --%>
+<spring:url value="/resources/lib/jcrop/jquery.Jcrop.min.js" var="jcropJs"/>
+<spring:url value="/resources/lib/jcrop/jquery.color.js" var="jcropColorJs"/>
+<spring:url value="/resources/lib/jquery.json/jquery.json-2.4.min.js" var="jsonJs"/>
 
 <spring:url value="/resources/js/common.js" var="commonJs"/>
 <spring:url value="/resources/images" var="imgPath" />
 <spring:url value="/resources/js/supplier/filmmaking.js" var="filmmakingJs"/>
-
-
 <spring:url value="/resources/js/supplier/createActor.js" var="createActorJs"/>
+<spring:url value="/resources/js/supplier/createDirector.js" var="createDirectorJs"/>
 <spring:url value="/resources/js/supplier/site.js" var="siteJs"/>
 <spring:url value="/resources/js/supplier/device.js" var="deviceJs"/>
+
+<spring:url value="/resources/js/supplier/moreimg.js" var="moreimgJs"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -45,10 +46,12 @@
 	<title>制片工具</title>
 	<link rel="stylesheet" href="${webCss}">
 	<link rel="stylesheet" href="${basicsCss}">
-	
-
-
+	<link rel="stylesheet" href="${webuploaderCss}">
+	<link rel="stylesheet" href="${jcropCss}">
 	<link rel="shortcut icon" href="${imgPath }/favicon.ico" >
+	
+	
+	
 	<!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
 	<![endif]-->
@@ -72,7 +75,7 @@
 		               		</div>	
 		              		<div class='setCard'>
 		              		<!--每个列表  idcard-->
-		              			<div class='idcard '>
+		              			<!-- <div class='idcard '>
 		              				<img class="imgs1" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1527740495&di=f2c42a682f917b686de966d95944627d&src=http://img5.duitang.com/uploads/item/201411/04/20141104171337_xaMXx.jpeg">
 		              				<div class='shade '>
 		              					<img class='read' src="/resources/images/supplier/read.png">
@@ -138,7 +141,7 @@
 		              					<p class='price'>￥250</p>
 		              				</div>
 		              			</div>
-		              			
+		              			 -->
 		              			
     		
 		              		</div>
@@ -147,7 +150,7 @@
 		              		<!--每个 弹框的模板  -->
 		              		
 		              		<!--添加角色的 弹框  -->
-		              		<div class='setting'>
+		              		<div class='setting' style="display: block;" >
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
@@ -164,7 +167,7 @@
 		              			
 		              			
 		              			<!-- 添加演员 -->
-		              			<div class='staffbox'>
+		              			<div class='staffbox' style="display: block;">
 		              				<div class='stafftitle'>
 		              					<span>创建演员</span>
 		              					<img alt="" src="/resources/images/supplier/close.png">
@@ -210,27 +213,27 @@
 		              					<div class='gatherright'>
 		              					
 		              				
-		              					 	<div class='addimage '>
-		              							<img alt="用户头像" data-value="${employee.employeeImg}" src=""   class="img-circle" id="user-img" width=120 height=120/>
-		        
-		              							<div class='reupload'>重新上传</div>
-		              							<img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
-		              							<input type="file" name="file" id="file" style="display: none;"/>
-		              							<p>点击添加图片</p>
+		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
+		              					 		<div class='updateimg'>
+		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
+		              					 		</div>
+		              							
+
+		              						
 		              						</div>
-		              						
-		              						
-		              						
-		              						
+		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
+		               						<p class='clickimg'>点击添加图片</p> -->
 		              						
 		              						<div class='addboxs'>
 		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
-		              							<div class='addtext'>上传更多照片</div>
+		              							<div class='addtext filesimage' id='filePicker2' ></div>
+		              						
 		              							<p>(最多5张)</p>
 		              						</div>
+		              						
 		              					</div>
 		              					<!--上传的显示地方  -->
-		              					<div class='showimages'>
+		              					<div class='showimages' style="display: none;">
 		              						<div class='imgsboxs '>
 		              							<img class="imgsfive1" src="/resources/images/supplier/44.png">
 		              							<div class='imgshade '>
@@ -280,7 +283,33 @@
 		              				</div>
 		              				
 		              			</div>
-		              			
+		              	
+	<!-- photo Modal start -->
+	<div class="cusModel" id="mymodal">
+		<div class="modal-dialog">
+			<div class="modal-content model-distance">
+				<div class="modal-header model-no-border">
+				    <span>请选择照片区域</span>
+					<img class="closeBtn" id="closePhone" alt="关闭" src="/resources/images/supplier/close.png">
+				</div>
+				<div class="modal-body">
+					<div class="modal-left">
+						<div class="modal-original">
+							<img id="modal-original-img" alt="全图" src="">
+						</div>
+					</div>
+					<div class="modal-right">
+						<div class="modal-preview-container">
+							<img id="modal-preview" alt="全图" src="">
+						</div>
+						<span>图片预览</span>
+						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- photo Modal end -->	
 		              		<!--添加导演  -->
 		              		<div class='directorbox'>
 		              			<div class='directortitle'>
@@ -292,7 +321,7 @@
 		              				
 		              					<span>姓名</span>
 		              					<input class='namedir' type='text' placeholder="">
-		              					<p class='namedirp errorp'>*错了</p>
+		              					<p class='namedirp errorp'></p>
 		              						
 		              					<span>擅长领域</span>
 		              					<div class='skilldir'>请选择擅长领域</div>
@@ -310,8 +339,8 @@
 		              					
 		              					
 		              					<span>价格/天</span>
-		              					<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-		              					<p class='pricegatherp errorp'></p>
+		              					<input class='pricedir' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='pricedirp errorp'></p>
 		              					
 		              					
 		              				</div>
@@ -322,7 +351,7 @@
 		              			
 		              			<div class='remark'>
 		              				<span>备注</span>
-		              				<textarea rows="4" cols="550" placeholder="请完善导演简历以及作品等信息"></textarea>
+		              				<textarea class='remarkdirector' rows="4" cols="550" placeholder="请完善导演简历以及作品等信息"></textarea>
 		              			</div>
 		              			<!--提交按钮  -->
 		              			<div class='gatherbut'>
@@ -466,16 +495,26 @@
 		   
 	
 	<script src="${jqueryJs }"></script>
+	<script src="${webuploaderJs}"></script>
+	<script src="${ajaxfileuploadJs}"></script>
 	<script src="${jsonJs }"></script>
 	<script src="${commonJs }"></script>
 	<script src="${createActorJs}"></script> 
+<%--  <script src="${moreimgJs}"></script> --%>
+	<script src="${createDirectorJs}"></script> 
 	<script src="${siteJs}"></script> 
 	<script src="${deviceJs}"></script> 
+
+
 	
- 	<script src="${webuploaderJs }"></script> 
-
-
+	<script src="${jcropJs}"></script>
+	<script src="${jcropColorJs}"></script>
+	<script src="${jsonJs}"></script>
+	
 	<script src="${filmmakingJs}"></script>
+	
+	
+
 	
 	
 </body>

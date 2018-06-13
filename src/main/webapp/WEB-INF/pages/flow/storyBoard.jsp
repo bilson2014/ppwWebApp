@@ -142,7 +142,7 @@
 		                    </div>   
 	                 </div>
 	                 
-	                 <div class="otherItem onebox a" id="videoStyle">
+	                 <div class="otherItem onebox a" id="videoStyleS">
 	                       <div class="otherTitle lastTitle">影片风格</div>
 	                       <div class="killDiv">
 		                         <div class="killItem">
@@ -255,12 +255,12 @@
 	<!-- photo Modal end -->
 	
 	<form method="post" action="/continuity/export" id="toListForm" class="hide">
-                        <input type="hidden" id="name" value="">
-                        <input type="hidden" id="videoStyle" value="">
-                        <input type="hidden" id="pictureRatio" value="">
-                        <input type="hidden" id="dimensionId" value="">
-                        <input type="hidden" id="scripts" value="">
-                        <input type="hidden" id="projectId" value="${projectId}">
+                        <input type="hidden" id="name" name="name" value="">
+                        <input type="hidden" id="videoStyle" name="videoStyle" value="">
+                        <input type="hidden" id="pictureRatio" name="pictureRatio" value="">
+                        <input type="hidden" id="dimensionId" name="dimensionId" value="">
+                        <input type="hidden" id="scriptContent" name="scriptContent" value="">
+                        <input type="hidden" id="projectId" name="projectId" value="${projectId}">
      </form> 
     
 	
