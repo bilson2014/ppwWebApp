@@ -79,7 +79,7 @@
 		              				<img class="imgs1" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1527740495&di=f2c42a682f917b686de966d95944627d&src=http://img5.duitang.com/uploads/item/201411/04/20141104171337_xaMXx.jpeg">
 		              				<div class='shade '>
 		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
+		              					<img class='select' data-id="" src="/resources/images/supplier/select.png">
 		              				</div>
 		              				<div class='linebox'>
 		              					<span class='name'>小丸子/演员</span>
@@ -140,8 +140,7 @@
 		              					<span class='name'>小丸子/演员</span>
 		              					<p class='price'>￥250</p>
 		              				</div>
-		              			</div>
-		              			 -->
+		              			</div> -->		              			
 		              			
     		
 		              		</div>
@@ -150,7 +149,11 @@
 		              		<!--每个 弹框的模板  -->
 		              		
 		              		<!--添加角色的 弹框  -->
+<<<<<<< HEAD
 		              		<div class='setting' >
+=======
+		              		<div class='setting'>
+>>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
@@ -208,7 +211,6 @@
 		              						<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              						<p class='pricegatherp errorp'></p>
 		              						
-		              						
 		              					</div>
 		              					<div class='gatherright'>
 		              					
@@ -216,7 +218,11 @@
 		              					 		<div class='updateimg'>
 		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
 		              					 		</div>
+<<<<<<< HEAD
 		              							
+=======
+		              						
+>>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
 		              						</div>
 		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
 		               						<p class='clickimg'>点击添加图片</p> -->
@@ -224,7 +230,6 @@
 		              						<div class='addboxs'>
 		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
 		              							<div class='addtext filesimage' id='filePicker2' ></div>
-		              						
 		              							<p>(最多5张)</p>
 		              						</div>
 		              						
@@ -331,11 +336,7 @@
 		              				<div class='sure'>确认</div>
 		              				<div class='cancel'>取消</div>
 		              			</div>
-		              			
-		              		
 		              		</div>
-		              		
-		              		
 		              		
 		              		<!--添加场地  -->
 		              		<div class='sitebox'>
@@ -486,12 +487,8 @@
 		              				<div class='sure'>确认</div>
 		              				<div class='cancel'>取消</div>
 		              			</div>
-		              			
 		              		
 		              		</div>
-		              		
-		              		
-		              		
 		              
 		              </div>
 		         </div>

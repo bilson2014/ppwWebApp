@@ -74,7 +74,7 @@
 	<!-- 流程管理end -->
 	<mvc:view-controller path="/project/running" view-name="/flow/textFlow" />
 	
-	<mvc:view-controller path="/ss" view-name="/flow/storyBoard" />
+	<mvc:view-controller path="/storyBoard" view-name="/flow/storyBoard" />
     
     <mvc:view-controller path="/mc" view-name="/salesMan/mc" />
     

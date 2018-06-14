@@ -214,7 +214,7 @@ function getstudio(id){
 function delstudio(id){
 	loadData(function(res){	
 		console.log(id+'删除了,之后获取了新的 数据');
-		getlistdatas();//获取场地数据
+	//	getlistdatas();//获取场地数据
 	 }, getContextPath() + '/production/studio/delete', $.toJSON({						
 		 id:id,//	主键
 	}));
