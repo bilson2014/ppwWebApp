@@ -20,10 +20,10 @@ function imgcheckpeople(){
 		img.src=$('.imgs'+i).attr('src');
 		if (img.complete){
 			if (img.width/img.height<=1){
-				console.log(img.width);
+//				console.log(img.width);
 				$('.imgs'+i).attr('style','width:auto;height:100%');
 			}else {
-				console.log(img.width/img.height);
+//				console.log(img.width/img.height);
 				$('.imgs'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
 			}
 			img=null;

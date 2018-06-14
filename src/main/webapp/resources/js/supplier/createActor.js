@@ -40,7 +40,7 @@ function peoplechengck(){
 		$(this).find('.reupload').hide();
 	});
 	$('body').on('click','#closePhone',function(){
-		jcrop_api.destroy();//销毁
+//		jcrop_api.destroy();//销毁
 		$('#uploadConfirmBt').attr('disabled',false);
 		$("#mymodal").hide();
 	});

@@ -123,16 +123,17 @@ function hideInfomation(){
 function getHeight(num){
 	var screen = document.body.clientHeight - 240;
 	var safe = 546;
-	var screens = document.body.clientHeight + 240;
-//	var cc=document.body.innerHeight;
-//	console.log(cc);
+	var screens = document.body.clientHeight + 200;
+	var cc = document.body.clientHeight;
+	console.log(cc);
 
-//	console.log(one);
-//	console.log(screen);
+	console.log('高');
+	console.log(screens);
 	if(num == 1){
 		$("#content-frame").css('height',safe);
 	}else if(num==3){
 		$("#content-frame").css('height',screens);
+		console.log(screens);
 	}else{
 		$("#content-frame").css('height',screen);
 	}

@@ -65,7 +65,7 @@
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
-	<!-- 制片工具/provider/ -->
+	<!-- 制片工具/provider/resour-list -->
     <mvc:view-controller path="/provider/resour-list" view-name="/supplier/filmmaking" />
     
 	<!-- 价格计算  -->

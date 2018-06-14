@@ -240,8 +240,8 @@ function cleandata(){
 	
 	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
 	$('.addboxs span').removeAttr("style");
-	$('#filePicker4').removeAttr("style");
-	$('#filePicker4').addClass('webuploader-container');
+	$('#filePicker5').removeAttr("style");
+	$('#filePicker5').addClass('webuploader-container');
 	$('#filePicker4 .fileimg').removeAttr('data-value');
 	$('#filePicker4 .fileimg').removeAttr('src');
 	$('#filePicker4 .reupload').remove();
