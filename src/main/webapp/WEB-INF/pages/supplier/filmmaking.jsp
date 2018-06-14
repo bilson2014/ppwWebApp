@@ -353,8 +353,8 @@
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='typesitep errorp'></p>
 		              					<div class='typecheck'>
-		              						<p key='1'>内景</p>
-		              						<p key='2'>外景</p>
+		              						<p key='1'>  内景</p>
+		              						<p key='2'>  外景</p>
 		              					</div>
               					
 		              					<span>价格/天</span>
