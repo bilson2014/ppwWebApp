@@ -1,1447 +1,1440 @@
-              @import "common";
-  @import "buttons";
-  @import "video";
-  @import "bootstrap-grid";
-  $green:#2ad2ae;
-  body {
-      background: $f0 !important;
-  }
-  
-  .page {
-      background: $f0 !important;
-  }
-  
-  .page {
-      background: $f0 !important;
-      position: relative;
-      top: 0px;
-  }
-  
-  .managerPgae {
-      width: 100%;
-      margin: 0 auto;
-      margin: 0;
-      position: relative;
-  }
-  
-  .managerCard {
-      position: relative;
-      padding-top: 20px;
-      min-height: 720px;
-      background: white;
-      border-radius: 6px;
-      padding-left: 15px;
-      padding-right: 15px;
-      font-size: 0;
-      padding-bottom: 150px;
-      .title {
-          font-size: $font-size;
-          color: $gray;
-          margin-bottom: 40px;
-      }
-  }
-  
-  //样式
-  .page {
-      .top {
-          border-bottom: 2px solid #eee;
-          @import "common";
-          @import "buttons";
-          @import "video";
-          @import "bootstrap-grid";
-          $green: #2ad2ae;
-          body {
-              background: white !important;
-          }
-          .page {
-              background: white !important;
-              position: relative;
-              .newbox {
-                  width: 91px;
-                  padding: 0;
-                  border: 1px solid #999;
-                  line-height: 30px;
-                  font-size: 14px;
-                  color: #333333;
-                  border-radius: 4px;
-                  position: absolute;
-                  right: 10px;
-                  top: -9px;
-                  text-align: center;
-                  cursor: pointer;
-                  img {
-                      vertical-align: text-top;
-                      margin-right: 8px;
-                  }
-              }
-          }
-          .top .people,
-          .sitett,
-          .facility {
-              font-size: 16px;
-              color: #666;
-              padding: 0 5px;
-              margin: 0 25px;
-              padding-bottom: 16px;
-              display: inline-block;
-              cursor: pointer;
-              border-bottom: 2px solid transparent;
-          }
-          .top div:nth-child(1) {
-              margin-left: 10px;
-          }
-          .top .people:hover,
-          .sitett:hover,
-          .facility:hover {
-              color: #FE5453;
-              border-bottom: 2px solid #FE5453;
-          }
-          .setCard {
-              .idcard {
-                  width: 162px;
-                  height: 216px;
-                  overflow: hidden;
-                  position: relative;
-                  margin: 20px 10px;
-                  display: inline-block;
-                  background: #ebebeb;
-                  img {
-                      width: 100%;
-                      margin: 0 auto;
-                      display: block;
-                  }
-                  .shade {
-                      width: 162px;
-                      height: 191px;
-                      background: #000;
-                      opacity: 0.5;
-                      position: absolute;
-                      top: 0px;
-                      z-index: 99;
-                      .read {
-                          width: auto;
-                          height: auto;
-                          position: absolute;
-                          top: 10px;
-                          left: 10px;
-                          cursor: pointer;
-                          border-bottom: 2px solid transparent;
-                      }
-                      .top div:nth-child(1) {
-                          margin-left: 10px;
-                      }
-                      .top .people:hover,
-                      .sitett:hover,
-                      .facility:hover {
-                          color: #FE5453;
-                          border-bottom: 2px solid #FE5453;
-                      }
-                      .setCard {
-                          .idcard {
-                              width: 162px;
-                              height: 216px;
-                              overflow: hidden;
-                              position: relative;
-                              margin: 20px 10px;
-                              display: inline-block;
-                              background: #ebebeb;
-                              img {
-                                  width: 100%;
-                                  display: block;
-                              }
-                              .select {
-                                  width: auto;
-                                  height: auto;
-                                  position: absolute;
-                                  top: 10px;
-                                  right: 10px;
-                                  cursor: pointer;
-                              }
-                          }
-                          .linebox {
-                              height: 26px;
-                              width: 162px;
-                              background: #fff;
-                              opacity: 0.8;
-                              position: absolute;
-                              top: 190px;
-                              font-size: 12px;
-                              color: #333;
-                              .name {
-                                  line-height: 26px;
-                                  margin-left: 10px;
-                              }
-                              .price {
-                                  position: absolute;
-                                  line-height: 26px;
-                                  top: 0;
-                                  right: 12px;
-                              }
-                          }
-                      }
-                  }
-              }
-              .top-text {
-                  color: #FE5453 !important;
-                  border-bottom: 2px solid #FE5453 !important;
-              }
-              .idcard-site {
-                  width: 296px !important;
-                  height: 166.5px !important;
-              }
-              .idcard-sites {
-                  width: 296px !important;
-                  height: 142px !important;
-              }
-              .linebox-site {
-                  width: 296px !important;
-                  height: 26px !important;
-                  top: 141px !important;
-              }
-              .idcard-facility {
-                  width: 216px !important;
-                  height: 162px !important;
-              }
-              .idcard-facilitys {
-                  width: 216px !important;
-                  height: 137px !important;
-              }
-              .linebox-facility {
-                  width: 216px !important;
-                  height: 26px !important;
-                  top: 136px !important;
-              }
-              .setting {
-                  background: rgba(0, 0, 0, 0.5);
-                  width: 100%;
-                  height: 100%;
-                  z-index: 23;
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  display: none;
-                  .addpeople {
-                      width: 480px;
-                      height: 260px;
-                      background: #fff;
-                      border-radius: 6px;
-                      margin: 0 auto;
-                      margin-top: 215px;
-                      display: none;
-                      .addtitle {
-                          font-size: 16px;
-                          color: #333;
-                          text-align: center;
-                          line-height: 60px;
-                          border-bottom: 2px solid #d1d1d1;
-                      }
-                      .addboxs {
-                          margin: 0 auto;
-                          width: 260px;
-                          margin-top: 39px;
-                          position: relative;
-                          .check {
-                              width: 260px;
-                              height: 36px;
-                              border: 1px solid #d1d1d1;
-                              border-radius: 4px;
-                              font-size: 14px;
-                              color: #999;
-                              cursor: pointer;
-                              line-height: 36px;
-                              padding-left: 10px;
-                          }
-                          .more {
-                              position: absolute;
-                              right: 10px;
-                              top: 10px;
-                              cursor: pointer;
-                          }
-                          .morecheck {
-                              width: 260px;
-                              height: 73px;
-                              border-radius: 4px;
-                              border: 1px solid #a5a5a5;
-                              position: absolute;
-                              background: #fff;
-                              display: none;
-                              span {
-                                  font-size: 14px;
-                                  color: #666;
-                                  line-height: 36px;
-                                  padding-left: 21px;
-                                  display: block;
-                              }
-                              span:hover {
-                                  background: #f0f2f5;
-                              }
-                          }
-                      }
-                  }
-              }
-              .sure {
-                  width: 120px;
-                  height: 36px;
-                  border-radius: 4px;
-                  background: #fe5453;
-                  color: #fff;
-                  font-size: 14px;
-                  text-align: center;
-                  line-height: 36px;
-                  display: inline-block;
-                  margin-top: 40px;
-                  cursor: pointer;
-              }
-              .sure:hover {
-                  background: red;
-              }
-              .cancel {
-                  width: 120px;
-                  height: 36px;
-                  border-radius: 4px;
-                  background: #999;
-                  color: #fff;
-                  font-size: 14px;
-                  text-align: center;
-                  line-height: 36px;
-                  margin-left: 20px;
-                  display: inline-block;
-                  cursor: pointer;
-              }
-              .cancel:hover {
-                  background: #333;
-              }
-              .staffbox {
-                  width: 720px;
-                  height: auto;
-                  background: #fff;
-                  margin: 0 auto;
-                  margin-top: 80px;
-                  border-radius: 6px;
-                  display: none;
-                  .stafftitle {
-                      height: 60px;
-                      border-bottom: 1px solid #d1d1d1;
-                      position: relative;
-                      span {
-                          font-size: 16px;
-                          color: #333;
-                          display: inline-block;
-                          line-height: 60px;
-                          margin-left: 39px;
-                      }
-                      img {
-                          position: absolute;
-                          top: 22.1px;
-                          right: 22.1px;
-                          cursor: pointer;
-                      }
-                  }
-                  .gather {
-                      margin: 0;
-                      padding: 0;
-                      .gatherleft {
-                          display: inline-block;
-                          width: 307px;
-                          position: relative;
-                          margin-top: 39px;
-                          span {
-                              font-size: 14px;
-                              color: #666;
-                              // margin-top: 20px;
-                              display: inline-block;
-                              margin-left: 39px;
-                              width: 56px;
-                              margin-right: 10px;
-                              height: 36px;
-                              line-height: 36px;
-                          }
-                          input {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                          }
-                          input:focus {
-                              background-color: #f6f9f9;
-                          }
-                          .errorp {
-                              font-size: 1.2px;
-                              color: #fe5453;
-                              padding-left: 107px;
-                              line-height: 20px;
-                              height: 20px;
-                          }
-                          div {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                              line-height: 36px;
-                              display: inline-block;
-                              cursor: pointer;
-                          }
-                          .typecheck {
-                              height: 108px;
-                              width: 193px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 110px;
-                              top: 147px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .twocheck {
-                              height: auto;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 91px;
-                              background: #fff;
-                              padding: 0;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          img {
-                              margin-left: -20px;
-                              cursor: pointer;
-                          }
-                          .racecheck {
-                              height: 108px;
-                              z-index: 23;
-                              position: absolute;
-                              left: 105px;
-                              top: 204px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .citycheck {
-                              height: 216px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 261px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                      }
-                      .gatherright {
-                          display: inline-block;
-                          width: 250px;
-                          vertical-align: top;
-                          position: relative;
-                          .addimage {
-                              width: 162px;
-                              height: 216px;
-                              background: #f4f4f4;
-                              margin-top: 29px;
-                              margin-left: 123px;
-                              text-align: center;
-                              cursor: pointer;
-                              .fileimg {
-                                  margin-top: 0 !important;
-                                  width: 100%;
-                              }
-                              .reupload {
-                                  width: 162px;
-                                  height: 216px;
-                                  background: #000;
-                                  opacity: 0.5;
-                                  font-size: 12px;
-                                  color: #fff;
-                                  line-height: 216px;
-                                  position: absolute;
-                                  top: 0;
-                                  display: none;
-                              }
-                              img {
-                                  margin-top: 70px;
-                              }
-                              p {
-                                  font-size: 12px;
-                                  color: #999;
-                                  margin-top: 10px;
-                              }
-                          }
-                          .addboxs {
-                              width: 250px;
-                              margin-left: 123px;
-                              span {
-                                  width: 180px;
-                                  height: 37px;
-                                  font-size: 12px;
-                                  color: #bdbdbd;
-                                  display: block;
-                                  line-height: 16px;
-                                  margin-top: 19px;
-                              }
-                              .addtext {
-                                  border: none;
-                                  width: 162px;
-                                  height: 30px;
-                                  color: #fff;
-                                  background: #fe5453;
-                                  border-radius: 4px;
-                                  font-size: 12px;
-                                  line-height: 30px;
-                                  text-align: center;
-                                  cursor: pointer;
-                                  display: inline-block;
-                              }
-                              p {
-                                  display: inline-block;
-                                  font-size: 12px;
-                                  color: #bdbdbd;
-                                  margin-left: 7px;
-                              }
-                          }
-                      }
-                  }
-                  .showimages {
-                      width: 588px;
-                      height: 137px;
-                      margin-left: 105px;
-                      margin-top: 30px;
-                      .imgsboxs {
-                          display: inline-block;
-                          width: 103px;
-                          height: 137px;
-                          margin-right: 14.5px;
-                          position: relative;
-                          background: #ebebeb;
-                          img {
-                              width: 100%;
-                              margin: 0 auto;
-                              display: block;
-                          }
-                          .imgshade {
-                              width: 103px;
-                              height: 137px;
-                              background: #000;
-                              opacity: 0.5;
-                              position: absolute;
-                              top: 0px;
-                              z-index: 99;
-                              display: none;
-                              .select {
-                                  width: auto;
-                                  height: auto;
-                                  position: absolute;
-                                  top: 10px;
-                                  right: 10px;
-                                  cursor: pointer;
-                              }
-                          }
-                      }
-                  }
-                  .remark {
-                      height: 121px;
-                      margin-top: 30px;
-                      margin-left: 39px;
-                      span {
-                          width: 28px;
-                          height: 121px;
-                          color: #666;
-                          font-size: 14px;
-                          display: inline-block;
-                          vertical-align: top;
-                          margin-right: 38px;
-                      }
-                      textarea {
-                          resize: none;
-                          outline: none;
-                          border-radius: 4px;
-                          border: 1px solid rgb(209, 209, 209);
-                          width: 553px;
-                          height: 121px;
-                          font-size: 14px;
-                          color: #999;
-                          padding-left: 10px;
-                          line-height: 26px;
-                          display: inline-block;
-                      }
-                  }
-                  .gatherbut {
-                      text-align: center;
-                      padding-bottom: 50px;
-                  }
-              }
-              .directorbox {
-                  width: 720px;
-                  height: auto;
-                  background: #fff;
-                  margin: 0 auto;
-                  margin-top: 80px;
-                  border-radius: 6px;
-                  display: none;
-                  border-bottom: 1px solid #d1d1d1;
-                  position: relative;
-                  .directortitle {
-                      height: 60px;
-                      border-bottom: 1px solid #d1d1d1;
-                      position: relative;
-                      span {
-                          font-size: 16px;
-                          color: #333;
-                          display: inline-block;
-                          line-height: 60px;
-                          margin-left: 39px;
-                      }
-                      img {
-                          position: absolute;
-                          top: 22.1px;
-                          right: 22.1px;
-                          cursor: pointer;
-                      }
-                  }
-                  .director {
-                      .directorl {
-                          display: inline-block;
-                          width: 307px;
-                          position: relative;
-                          margin-top: 26px;
-                          span {
-                              font-size: 14px;
-                              color: #666;
-                              // margin-top: 20px;
-                              display: inline-block;
-                              margin-left: 39px;
-                              width: 56px;
-                              margin-right: 10px;
-                              height: 36px;
-                              line-height: 36px;
-                          }
-                          input {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                          }
-                          input:focus {
-                              background-color: #f6f9f9;
-                          }
-                          .errorp {
-                              font-size: 1.2px;
-                              color: #fe5453;
-                              padding-left: 107px;
-                              line-height: 20px;
-                              height: 37px;
-                          }
-                          div {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                              line-height: 36px;
-                              display: inline-block;
-                              cursor: pointer;
-                          }
-                          .skillcheck {
-                              height: 108px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 108px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .citycheck {
-                              height: 216px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 182px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          img {
-                              margin-left: -20px;
-                              cursor: pointer;
-                          }
-                      }
-                      .directorr {
-                          display: inline-block;
-                          width: 250px;
-                          vertical-align: top;
-                          position: relative;
-                          .addboxs {
-                              width: 250px;
-                              margin-left: 123px;
-                              span {
-                                  width: 180px;
-                                  height: 37px;
-                                  font-size: 12px;
-                                  color: #bdbdbd;
-                                  display: block;
-                                  line-height: 16px;
-                                  margin-top: 19px;
-                              }
-                          }
-                          .addimage {
-                              width: 162px;
-                              height: 216px;
-                              background: #f4f4f4;
-                              margin-top: 29px;
-                              margin-left: 123px;
-                              text-align: center;
-                              cursor: pointer;
-                              .updateimg img {
-                                  margin-top: 0 !important;
-                                  width: 100%;
-                              }
-                              .addimgs {
-                                  top: 70px;
-                                  position: absolute;
-                                  left: 66px;
-                              }
-                              .clickimg {
-                                  position: absolute;
-                                  left: 45px;
-                                  top: 110px;
-                                  margin-top: 0 !important;
-                                  width: 72px;
-                                  font-size: 12px;
-                                  color: #999;
-                              }
-                              .reupload {
-                                  width: 162px;
-                                  height: 216px;
-                                  background: #000;
-                                  opacity: 0.5;
-                                  font-size: 12px;
-                                  color: #fff;
-                                  line-height: 216px;
-                                  position: absolute;
-                                  top: 0;
-                                  display: none;
-                              }
-                          }
-                      }
-                  }
-                  .remark {
-                      height: 121px;
-                      margin-top: 30px;
-                      margin-left: 39px;
-                      span {
-                          width: 28px;
-                          height: 121px;
-                          color: #666;
-                          font-size: 14px;
-                          display: inline-block;
-                          vertical-align: top;
-                          margin-right: 38px;
-                      }
-                      textarea {
-                          resize: none;
-                          outline: none;
-                          border-radius: 4px;
-                          border: 1px solid rgb(209, 209, 209);
-                          width: 553px;
-                          height: 121px;
-                          font-size: 14px;
-                          color: #999;
-                          padding-left: 10px;
-                          line-height: 26px;
-                          display: inline-block;
-                      }
-                  }
-                  .gatherbut {
-                      text-align: center;
-                      padding-bottom: 50px;
-                  }
-              }
-              //场地
-              .sitebox {
-                  width: 720px;
-                  height: auto;
-                  background: #fff;
-                  margin: 0 auto;
-                  margin-top: 80px;
-                  border-radius: 6px;
-                  display: none;
-                  .sitetitle {
-                      height: 60px;
-                      border-bottom: 1px solid #d1d1d1;
-                      position: relative;
-                      span {
-                          font-size: 16px;
-                          color: #333;
-                          display: inline-block;
-                          line-height: 60px;
-                          margin-left: 39px;
-                      }
-                      img {
-                          position: absolute;
-                          top: 22.1px;
-                          right: 22.1px;
-                          cursor: pointer;
-                      }
-                  }
-                  .site {
-                      margin: 0;
-                      padding: 0;
-                      .siteleft {
-                          margin-top: 29px;
-                          display: inline-block;
-                          width: 307px;
-                          position: relative;
-                          span {
-                              font-size: 14px;
-                              color: #666;
-                              // margin-top: 20px;
-                              display: inline-block;
-                              margin-left: 39px;
-                              width: 56px;
-                              margin-right: 10px;
-                              height: 36px;
-                              line-height: 36px;
-                          }
-                          input {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                          }
-                          input:focus {
-                              background-color: #f6f9f9;
-                          }
-                          .errorp {
-                              font-size: 1.2px;
-                              color: #fe5453;
-                              padding-left: 107px;
-                              line-height: 20px;
-                              height: 20px;
-                          }
-                          div {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                              line-height: 36px;
-                              display: inline-block;
-                              cursor: pointer;
-                          }
-                          .typecheck {
-                              height: 74px;
-                              max-height: 108px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 147px;
-                              background: #fff;
-                              padding: 0;
-                              overflow-y: auto;
-                              display: none;
-                              p {
-                                  height: 36px;
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .citycheck {
-                              height: 216px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 105px;
-                              top: 260px;
-                              background: #fff;
-                              padding: 0;
-                              overflow-y: auto;
-                              display: none;
-                              p {
-                                  height: 36px;
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          img {
-                              margin-left: -20px;
-                              cursor: pointer;
-                          }
-                      }
-                      .siteright {
-                          display: inline-block;
-                          width: 250px;
-                          vertical-align: top;
-                          position: relative;
-                          .addimage {
-                              width: 248px;
-                              height: 139px;
-                              background: #f4f4f4;
-                              margin-top: 29px;
-                              margin-left: 64px;
-                              text-align: center;
-                              cursor: pointer;
-                              .updateimg {
-                                  img {
-                                      margin-top: 0 !important;
-                                      width: 100%;
-                                  }
-                              }
-                              .reupload {
-                                  width: 248px;
-                                  height: 140px;
-                                  background: #000;
-                                  opacity: 0.5;
-                                  font-size: 12px;
-                                  color: #fff;
-                                  line-height: 140px;
-                                  position: absolute;
-                                  top: 0;
-                                  display: none;
-                              }
-                          }
-                          .addimgs {
-                              position: absolute;
-                              left: 109px;
-                              top: 44px !important;
-                          }
-                          .clickimg {
-                              position: absolute;
-                              left: 88px;
-                              top: 80px;
-                              margin-top: 0 !important;
-                              width: 72px;
-                              font-size: 12px;
-                              color: #999999;
-                          }
-                          .addboxs {
-                              width: 250px;
-                              margin-left: 64px;
-                              span {
-                                  width: 248px;
-                                  height: 37px;
-                                  font-size: 12px;
-                                  color: #bdbdbd;
-                                  display: block;
-                                  line-height: 16px;
-                                  margin-top: 19px;
-                                  text-align: center;
-                                  margin-bottom: 15px;
-                              }
-                              .addtext {
-                                  border: none;
-                                  width: 248px;
-                                  height: 30px;
-                                  color: #fff;
-                                  background: #fe5453;
-                                  border-radius: 4px;
-                                  font-size: 12px;
-                                  line-height: 30px;
-                                  text-align: center;
-                                  cursor: pointer;
-                                  display: inline-block;
-                              }
-                              p {
-                                  display: inline-block;
-                                  font-size: 12px;
-                                  color: #bdbdbd;
-                                  margin-left: 89px;
-                                  height: 25px;
-                                  line-height: 25px;
-                              }
-                          }
-                      }
-                  }
-                  .siteimages {
-                      width: 600px;
-                      height: 107px;
-                      margin-left: 66px;
-                      margin-top: 30px;
-                      .imgsboxs {
-                          display: inline-block;
-                          width: 185px;
-                          height: 107px;
-                          margin-right: 14.5px;
-                          position: relative;
-                          background: #ebebeb;
-                          img {
-                              width: 100%;
-                              margin: 0 auto;
-                              display: block;
-                          }
-                          .imgshade {
-                              width: 185px;
-                              height: 107px;
-                              background: #000;
-                              opacity: 0.5;
-                              position: absolute;
-                              top: 0px;
-                              z-index: 99;
-                              display: none;
-                              .select {
-                                  width: auto;
-                                  height: auto;
-                                  position: absolute;
-                                  top: 10px;
-                                  right: 10px;
-                                  cursor: pointer;
-                              }
-                          }
-                      }
-                  }
-                  .remark {
-                      height: 121px;
-                      margin-top: 30px;
-                      margin-left: 39px;
-                      span {
-                          width: 28px;
-                          height: 121px;
-                          color: #666;
-                          font-size: 14px;
-                          display: inline-block;
-                          vertical-align: top;
-                          margin-right: 38px;
-                      }
-                      textarea {
-                          resize: none;
-                          outline: none;
-                          border-radius: 4px;
-                          border: 1px solid rgb(209, 209, 209);
-                          width: 553px;
-                          height: 121px;
-                          font-size: 14px;
-                          color: #999;
-                          padding-left: 10px;
-                          line-height: 26px;
-                          display: inline-block;
-                      }
-                  }
-                  .gatherbut {
-                      text-align: center;
-                      padding-bottom: 50px;
-                  }
-              }
-              //设备
-              .equipbox {
-                  width: 720px;
-                  height: auto;
-                  background: #fff;
-                  margin: 0 auto;
-                  margin-top: 80px;
-                  border-radius: 6px;
-                  display: none;
-                  .equiptitle {
-                      height: 60px;
-                      border-bottom: 1px solid #d1d1d1;
-                      position: relative;
-                      span {
-                          font-size: 16px;
-                          color: #333;
-                          display: inline-block;
-                          line-height: 60px;
-                          margin-left: 39px;
-                      }
-                      img {
-                          position: absolute;
-                          top: 22.1px;
-                          right: 22.1px;
-                          cursor: pointer;
-                      }
-                  }
-                  .equip {
-                      margin: 0;
-                      padding: 0;
-                      margin-top: 39px;
-                      .equipleft {
-                          // display: inline-block;
-                          // width: 307px;
-                          height: 56px;
-                          margin-left: 20px;
-                          position: relative;
-                          span {
-                              font-size: 14px;
-                              color: #666;
-                              // margin-top: 20px;
-                              display: inline-block;
-                              margin-left: 19px;
-                              width: 56px;
-                              margin-right: 10px;
-                              height: 36px;
-                              line-height: 36px;
-                          }
-                          input {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                          }
-                          input:focus {
-                              background-color: #f6f9f9;
-                          }
-                          .errorp {
-                              font-size: 1.2px;
-                              color: #fe5453;
-                              padding-left: 66px;
-                              line-height: 15px;
-                              height: 15px;
-                              width: 270px;
-                              display: none;
-                          }
-                          .bastname {
-                              margin-left: 83px;
-                          }
-                          .days {
-                              margin-left: 77px;
-                          }
-                          .nameequipp,
-                          .priceequipp {
-                              padding-left: 409px;
-                              width: 700px;
-                          }
-                          .nameequip {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                              padding-right: 20px;
-                              line-height: 36px;
-                              display: inline-block;
-                              cursor: pointer;
-                              overflow-y: hidden;
-                          }
-                          div {
-                              width: 200px;
-                              height: 36px;
-                              border-radius: 4px;
-                              border: 1px solid #999;
-                              outline: none;
-                              color: #666;
-                              font-size: 14px;
-                              padding-left: 11px;
-                              line-height: 36px;
-                              display: inline-block;
-                              cursor: pointer;
-                              vertical-align: top;
-                              overflow-y: hidden;
-                          }
-                          .namecheck {
-                              height: 108px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 428px;
-                              top: 35px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .citycheck {
-                              height: 216px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 85px;
-                              top: 35px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          .typecheck {
-                              height: 108px;
-                              z-index: 22;
-                              position: absolute;
-                              left: 85px;
-                              top: 35px;
-                              background: #fff;
-                              padding: 0;
-                              overflow: auto;
-                              display: none;
-                              p {
-                                  padding-left: 11px;
-                              }
-                              p:hover {
-                                  background: #F0F2F5;
-                              }
-                          }
-                          img {
-                              margin-left: -20px;
-                              cursor: pointer;
-                          }
-                      }
-                  }
-                  .remark {
-                      height: 121px;
-                      margin-top: 10px;
-                      margin-left: 39px;
-                      span {
-                          width: 28px;
-                          height: 121px;
-                          color: #666;
-                          font-size: 14px;
-                          display: inline-block;
-                          vertical-align: top;
-                          margin-right: 38px;
-                      }
-                      textarea {
-                          resize: none;
-                          outline: none;
-                          border-radius: 4px;
-                          border: 1px solid rgb(209, 209, 209);
-                          width: 553px;
-                          height: 121px;
-                          font-size: 14px;
-                          color: #999;
-                          padding-left: 10px;
-                          line-height: 26px;
-                          display: inline-block;
-                      }
-                  }
-                  .gatherbut {
-                      text-align: center;
-                      padding-bottom: 50px;
-                  }
-              }
-              .webuploader-pick {
-                  width: 162px;
-                  height: 216px;
-                  background: transparent !important;
-                  padding: 0 !important;
-              }
-              #filePicker4 .webuploader-pick {
-                  width: 248px;
-                  height: 139px;
-              }
-              .addimgs {
-                  position: absolute;
-                  left: 66px;
-                  top: 70px !important;
-              }
-              .clickimg {
-                  position: absolute;
-                  left: 45px;
-                  top: 110px;
-                  margin-top: 0 !important;
-                  width: 72px;
-              }
-              .cusModel {
-                  width: 100%;
-                  position: fixed;
-                  height: 100%;
-                  top: 30px;
-                  left: 0;
-                  display: none;
-                  z-index: 999;
-                  .modal-dialog {
-                      width: 720px;
-                      .modal-header {
-                          height: 60px !important;
-                          padding: 0 !important;
-                          span {
-                              font-size: 16px;
-                              color: #333333;
-                              display: block;
-                              text-align: center;
-                              padding-top: 24px;
-                          }
-                          img {
-                              position: absolute;
-                              right: 22px;
-                              top: 16px;
-                              cursor: pointer;
-                          }
-                      }
-                      .modal-body {
-                          padding: 0 !important;
-                          height: 380px;
-                          width: 100%;
-                          .modal-left {
-                              width: 300px;
-                              height: 300px;
-                              margin-left: 109px;
-                              margin-top: 29px;
-                              position: absolute;
-                              display: inline-block;
-                              left: 0;
-                              background: #ebebeb;
-                              .modal-original {
-                                  background: #ebebeb;
-                                  margin: 0 auto;
-                                  overflow: hidden;
-                                  img {
-                                      display: block;
-                                      margin: 0 auto;
-                                  }
-                              }
-                          }
-                          .modal-right {
-                              width: 162px;
-                              height: 300px;
-                              display: inline-block;
-                              position: absolute;
-                              right: 108px;
-                              top: 29px;
-                              .modal-preview-container {
-                                  width: 162px;
-                                  height: 216px;
-                                  overflow: hidden;
-                                  background: #ebebeb;
-                                  img {
-                                      width: 162px;
-                                      height: 216px;
-                                  }
-                              }
-                              span {
-                                  font-size: 14px;
-                                  color: #666666;
-                                  text-align: center;
-                                  width: 100%;
-                                  margin-top: 11px;
-                                  display: block;
-                              }
-                              button {
-                                  width: 162px;
-                                  height: 36px;
-                                  margin-top: 13px;
-                                  font-size: 14px;
-                                  color: #FFFFFF;
-                                  padding: 0;
-                              }
-                          }
-                      }
-                  }
-              }
-              .addboxs {
-                  .webuploader-pick {
-                      width: 162px;
-                      height: 30px;
-                  }
-              }
-              //添加样式合并
-              .modal-site {
-                  width: 248px !important;
-                  height: 140px !important;
-              }
-              .modal-left-site {
-                  margin-left: 66px !important;
-              }
-              .modal-right-site {
-                  left: 407px !important;
-              }
-              .btn-site {
-                  width: 248px !important;
-              }
-              .preview-site {
-                  width: 248px !important;
-                  margin-top: 17px !important;
-                  margin-bottom: 26px !important;
-              }
-              #filePicker1 .addimgs {
-                  margin-top: 0px !important;
-              }
-              //适配
-              .idcard {
-                  @media screen and (max-width: 775px) {
-                      margin: 10px 5px !important;
-                  }
-                  // @media screen and (max-width: 1025px) and (min-width: 775px) {
-                  //     margin: 12px 5px !important;
-                  // }
-              }
-              .tooltip-success-show {
-                  position: fixed;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 50px;
-                  background: $red-base;
-                  color: white;
-                  font-size: 14px;
-                  line-height: 50px;
-                  text-align: center;
-                  display: none;
-                  z-index: 9999;
-              } //产品线end
+                               @import "common";
+                               @import "buttons";
+                               @import "video";
+                               @import "bootstrap-grid";
+                               $green:#2ad2ae;
+                               body {
+                                   background: $f0 !important;
+                               }
+                               
+                               .page {
+                                   background: $f0 !important;
+                               }
+                               
+                               .page {
+                                   background: $f0 !important;
+                                   position: relative;
+                                   top: 0px;
+                               }
+                               
+                               .managerPgae {
+                                   width: 100%;
+                                   margin: 0 auto;
+                                   margin: 0;
+                                   position: relative;
+                               }
+                               
+                               .managerCard {
+                                   position: relative;
+                                   padding-top: 20px;
+                                   min-height: 720px;
+                                   background: white;
+                                   border-radius: 6px;
+                                   padding-left: 15px;
+                                   padding-right: 15px;
+                                   font-size: 0;
+                                   padding-bottom: 150px;
+                                   .title {
+                                       font-size: $font-size;
+                                       color: $gray;
+                                       margin-bottom: 40px;
+                                   }
+                               }
+                               
+                               //样式
+                               .page {
+                                   .top {
+                                       border-bottom: 2px solid #eee;
+                                       position: relative;
+                                       .newbox {
+                                           width: 91px;
+                                           padding: 0;
+                                           border: 1px solid #999;
+                                           line-height: 30px;
+                                           font-size: 14px;
+                                           color: #333333;
+                                           border-radius: 4px;
+                                           position: absolute;
+                                           right: 10px;
+                                           top: -9px;
+                                           text-align: center;
+                                           cursor: pointer;
+                                           img {
+                                               vertical-align: text-top;
+                                               margin-right: 8px;
+                                           }
+                                       }
+                                   }
+                                   .top .people,
+                                   .sitett,
+                                   .facility {
+                                       font-size: 16px;
+                                       color: #666;
+                                       padding: 0 5px;
+                                       margin: 0 25px;
+                                       padding-bottom: 16px;
+                                       display: inline-block;
+                                       cursor: pointer;
+                                       border-bottom: 2px solid transparent;
+                                   }
+                                   .top div:nth-child(1) {
+                                       margin-left: 10px;
+                                   }
+                                   .top .people:hover,
+                                   .sitett:hover,
+                                   .facility:hover {
+                                       color: #FE5453;
+                                       border-bottom: 2px solid #FE5453;
+                                   }
+                                   .setCard {
+                                       .idcard {
+                                           width: 162px;
+                                           height: 216px;
+                                           overflow: hidden;
+                                           position: relative;
+                                           margin: 20px 10px;
+                                           display: inline-block;
+                                           background: #ebebeb;
+                                           img {
+                                               width: 100%;
+                                               margin: 0 auto;
+                                               display: block;
+                                           }
+                                           .shade {
+                                               width: 162px;
+                                               height: 191px;
+                                               background: #000;
+                                               opacity: 0.5;
+                                               position: absolute;
+                                               top: 0px;
+                                               z-index: 99;
+                                               .read {
+                                                   width: auto;
+                                                   height: auto;
+                                                   position: absolute;
+                                                   top: 10px;
+                                                   left: 10px;
+                                                   cursor: pointer;
+                                               }
+                                               .select {
+                                                   width: auto;
+                                                   height: auto;
+                                                   position: absolute;
+                                                   top: 10px;
+                                                   right: 10px;
+                                                   cursor: pointer;
+                                               }
+                                           }
+                                           .linebox {
+                                               height: 26px;
+                                               width: 162px;
+                                               background: #fff;
+                                               opacity: 0.8;
+                                               position: absolute;
+                                               top: 190px;
+                                               font-size: 12px;
+                                               color: #333;
+                                               .name {
+                                                   line-height: 26px;
+                                                   margin-left: 10px;
+                                               }
+                                               .price {
+                                                   position: absolute;
+                                                   line-height: 26px;
+                                                   top: 0;
+                                                   right: 12px;
+                                               }
+                                           }
+                                       }
+                                   }
+                               }
+                               
+                               .top-text {
+                                   color: #FE5453 !important;
+                                   border-bottom: 2px solid #FE5453 !important;
+                               }
+                               
+                               .idcard-site {
+                                   width: 296px !important;
+                                   height: 166.5px !important;
+                               }
+                               
+                               .idcard-sites {
+                                   width: 296px !important;
+                                   height: 142px !important;
+                               }
+                               
+                               .linebox-site {
+                                   width: 296px !important;
+                                   height: 26px !important;
+                                   top: 141px !important;
+                               }
+                               
+                               .idcard-facility {
+                                   width: 216px !important;
+                                   height: 162px !important;
+                               }
+                               
+                               .idcard-facilitys {
+                                   width: 216px !important;
+                                   height: 137px !important;
+                               }
+                               
+                               .linebox-facility {
+                                   width: 216px !important;
+                                   height: 26px !important;
+                                   top: 136px !important;
+                               }
+                               
+                               .setting {
+                                   background: rgba(0, 0, 0, 0.5);
+                                   width: 100%;
+                                   height: 100%;
+                                   z-index: 23;
+                                   position: absolute;
+                                   top: 0;
+                                   left: 0;
+                                   display: none;
+                                   .addpeople {
+                                       width: 480px;
+                                       height: 260px;
+                                       background: #fff;
+                                       border-radius: 6px;
+                                       margin: 0 auto;
+                                       margin-top: 215px;
+                                       display: none;
+                                       .addtitle {
+                                           font-size: 16px;
+                                           color: #333;
+                                           text-align: center;
+                                           line-height: 60px;
+                                           border-bottom: 2px solid #d1d1d1;
+                                       }
+                                       .addboxs {
+                                           margin: 0 auto;
+                                           width: 260px;
+                                           margin-top: 39px;
+                                           position: relative;
+                                           .check {
+                                               width: 260px;
+                                               height: 36px;
+                                               border: 1px solid #d1d1d1;
+                                               border-radius: 4px;
+                                               font-size: 14px;
+                                               color: #999;
+                                               cursor: pointer;
+                                               line-height: 36px;
+                                               padding-left: 10px;
+                                           }
+                                           .more {
+                                               position: absolute;
+                                               right: 10px;
+                                               top: 10px;
+                                               cursor: pointer;
+                                           }
+                                           .morecheck {
+                                               width: 260px;
+                                               height: 73px;
+                                               border-radius: 4px;
+                                               border: 1px solid #a5a5a5;
+                                               position: absolute;
+                                               background: #fff;
+                                               display: none;
+                                               span {
+                                                   font-size: 14px;
+                                                   color: #666;
+                                                   line-height: 36px;
+                                                   padding-left: 21px;
+                                                   display: block;
+                                               }
+                                               span:hover {
+                                                   background: #f0f2f5;
+                                               }
+                                           }
+                                       }
+                                   }
+                               }
+                               
+                               .sure {
+                                   width: 120px;
+                                   height: 36px;
+                                   border-radius: 4px;
+                                   background: #fe5453;
+                                   color: #fff;
+                                   font-size: 14px;
+                                   text-align: center;
+                                   line-height: 36px;
+                                   display: inline-block;
+                                   margin-top: 40px;
+                                   cursor: pointer;
+                               }
+                               
+                               .sure:hover {
+                                   background: red;
+                               }
+                               
+                               .cancel {
+                                   width: 120px;
+                                   height: 36px;
+                                   border-radius: 4px;
+                                   background: #999;
+                                   color: #fff;
+                                   font-size: 14px;
+                                   text-align: center;
+                                   line-height: 36px;
+                                   margin-left: 20px;
+                                   display: inline-block;
+                                   cursor: pointer;
+                               }
+                               
+                               .cancel:hover {
+                                   background: #333;
+                               }
+                               
+                               .staffbox {
+                                   width: 720px;
+                                   height: auto;
+                                   background: #fff;
+                                   margin: 0 auto;
+                                   margin-top: 80px;
+                                   border-radius: 6px;
+                                   display: none;
+                                   .stafftitle {
+                                       height: 60px;
+                                       border-bottom: 1px solid #d1d1d1;
+                                       position: relative;
+                                       span {
+                                           font-size: 16px;
+                                           color: #333;
+                                           display: inline-block;
+                                           line-height: 60px;
+                                           margin-left: 39px;
+                                       }
+                                       img {
+                                           position: absolute;
+                                           top: 22.1px;
+                                           right: 22.1px;
+                                           cursor: pointer;
+                                       }
+                                   }
+                                   .gather {
+                                       margin: 0;
+                                       padding: 0;
+                                       .gatherleft {
+                                           display: inline-block;
+                                           width: 307px;
+                                           position: relative;
+                                           margin-top: 39px;
+                                           span {
+                                               font-size: 14px;
+                                               color: #666;
+                                               // margin-top: 20px;
+                                               display: inline-block;
+                                               margin-left: 39px;
+                                               width: 56px;
+                                               margin-right: 10px;
+                                               height: 36px;
+                                               line-height: 36px;
+                                           }
+                                           input {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                           }
+                                           input:focus {
+                                               background-color: #f6f9f9;
+                                           }
+                                           .errorp {
+                                               font-size: 1.2px;
+                                               color: #fe5453;
+                                               padding-left: 107px;
+                                               line-height: 20px;
+                                               height: 20px;
+                                           }
+                                           div {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                               line-height: 36px;
+                                               display: inline-block;
+                                               cursor: pointer;
+                                           }
+                                           .typecheck {
+                                               height: 108px;
+                                               width: 193px;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 110px;
+                                               top: 147px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow: auto;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                           .twocheck {
+                                               height: auto;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 91px;
+                                               background: #fff;
+                                               padding: 0;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                           img {
+                                               margin-left: -20px;
+                                               cursor: pointer;
+                                           }
+                                           .racecheck {
+                                               height: 108px;
+                                               z-index: 23;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 204px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow: auto;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                           .citycheck {
+                                               height: 216px;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 261px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow: auto;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                       }
+                                       .gatherright {
+                                           display: inline-block;
+                                           width: 250px;
+                                           vertical-align: top;
+                                           position: relative;
+                                           .addimage {
+                                               width: 162px;
+                                               height: 216px;
+                                               background: #f4f4f4;
+                                               margin-top: 29px;
+                                               margin-left: 123px;
+                                               text-align: center;
+                                               cursor: pointer;
+                                               .fileimg {
+                                                   margin-top: 0 !important;
+                                                   width: 100%;
+                                               }
+                                               .reupload {
+                                                   width: 162px;
+                                                   height: 216px;
+                                                   background: #000;
+                                                   opacity: 0.5;
+                                                   font-size: 12px;
+                                                   color: #fff;
+                                                   line-height: 216px;
+                                                   position: absolute;
+                                                   top: 0;
+                                                   display: none;
+                                               }
+                                               img {
+                                                   margin-top: 70px;
+                                               }
+                                               p {
+                                                   font-size: 12px;
+                                                   color: #999;
+                                                   margin-top: 10px;
+                                               }
+                                           }
+                                           .addboxs {
+                                               width: 250px;
+                                               margin-left: 123px;
+                                               span {
+                                                   width: 180px;
+                                                   height: 37px;
+                                                   font-size: 12px;
+                                                   color: #bdbdbd;
+                                                   display: block;
+                                                   line-height: 16px;
+                                                   margin-top: 19px;
+                                               }
+                                               .addtext {
+                                                   border: none;
+                                                   width: 162px;
+                                                   height: 30px;
+                                                   color: #fff;
+                                                   background: #fe5453;
+                                                   border-radius: 4px;
+                                                   font-size: 12px;
+                                                   line-height: 30px;
+                                                   text-align: center;
+                                                   cursor: pointer;
+                                                   display: inline-block;
+                                               }
+                                               p {
+                                                   display: inline-block;
+                                                   font-size: 12px;
+                                                   color: #bdbdbd;
+                                                   margin-left: 7px;
+                                               }
+                                           }
+                                       }
+                                   }
+                                   .showimages {
+                                       width: 588px;
+                                       height: 137px;
+                                       margin-left: 105px;
+                                       margin-top: 30px;
+                                       .imgsboxs {
+                                           display: inline-block;
+                                           width: 103px;
+                                           height: 137px;
+                                           margin-right: 14.5px;
+                                           position: relative;
+                                           background: #ebebeb;
+                                           img {
+                                               width: 100%;
+                                               margin: 0 auto;
+                                               display: block;
+                                           }
+                                           .imgshade {
+                                               width: 103px;
+                                               height: 137px;
+                                               background: #000;
+                                               opacity: 0.5;
+                                               position: absolute;
+                                               top: 0px;
+                                               z-index: 99;
+                                               display: none;
+                                               .select {
+                                                   width: auto;
+                                                   height: auto;
+                                                   position: absolute;
+                                                   top: 10px;
+                                                   right: 10px;
+                                                   cursor: pointer;
+                                               }
+                                           }
+                                       }
+                                   }
+                                   .remark {
+                                       height: 121px;
+                                       margin-top: 30px;
+                                       margin-left: 39px;
+                                       span {
+                                           width: 28px;
+                                           height: 121px;
+                                           color: #666;
+                                           font-size: 14px;
+                                           display: inline-block;
+                                           vertical-align: top;
+                                           margin-right: 38px;
+                                       }
+                                       textarea {
+                                           resize: none;
+                                           outline: none;
+                                           border-radius: 4px;
+                                           border: 1px solid rgb(209, 209, 209);
+                                           width: 553px;
+                                           height: 121px;
+                                           font-size: 14px;
+                                           color: #999;
+                                           padding-left: 10px;
+                                           line-height: 26px;
+                                           display: inline-block;
+                                       }
+                                   }
+                                   .gatherbut {
+                                       text-align: center;
+                                       padding-bottom: 50px;
+                                   }
+                               }
+                               
+                               .directorbox {
+                                   width: 720px;
+                                   height: auto;
+                                   background: #fff;
+                                   margin: 0 auto;
+                                   margin-top: 80px;
+                                   border-radius: 6px;
+                                   display: none;
+                                   border-bottom: 1px solid #d1d1d1;
+                                   position: relative;
+                                   .directortitle {
+                                       height: 60px;
+                                       border-bottom: 1px solid #d1d1d1;
+                                       position: relative;
+                                       span {
+                                           font-size: 16px;
+                                           color: #333;
+                                           display: inline-block;
+                                           line-height: 60px;
+                                           margin-left: 39px;
+                                       }
+                                       img {
+                                           position: absolute;
+                                           top: 22.1px;
+                                           right: 22.1px;
+                                           cursor: pointer;
+                                       }
+                                   }
+                                   .director {
+                                       .directorl {
+                                           display: inline-block;
+                                           width: 307px;
+                                           position: relative;
+                                           margin-top: 26px;
+                                           span {
+                                               font-size: 14px;
+                                               color: #666;
+                                               // margin-top: 20px;
+                                               display: inline-block;
+                                               margin-left: 39px;
+                                               width: 56px;
+                                               margin-right: 10px;
+                                               height: 36px;
+                                               line-height: 36px;
+                                           }
+                                           input {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                           }
+                                           input:focus {
+                                               background-color: #f6f9f9;
+                                           }
+                                           .errorp {
+                                               font-size: 1.2px;
+                                               color: #fe5453;
+                                               padding-left: 107px;
+                                               line-height: 20px;
+                                               height: 37px;
+                                           }
+                                           div {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                               line-height: 36px;
+                                               display: inline-block;
+                                               cursor: pointer;
+                                           }
+                                           .skillcheck {
+                                               height: 108px;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 108px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow: auto;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                           .citycheck {
+                                               height: 216px;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 182px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow: auto;
+                                               display: none;
+                                               p {
+                                                   padding-left: 11px;
+                                               }
+                                               p:hover {
+                                                   background: #F0F2F5;
+                                               }
+                                           }
+                                           img {
+                                               margin-left: -20px;
+                                               cursor: pointer;
+                                           }
+                                       }
+                                       .directorr {
+                                           display: inline-block;
+                                           width: 250px;
+                                           vertical-align: top;
+                                           position: relative;
+                                           .addboxs {
+                                               width: 250px;
+                                               margin-left: 123px;
+                                               span {
+                                                   width: 180px;
+                                                   height: 37px;
+                                                   font-size: 12px;
+                                                   color: #bdbdbd;
+                                                   display: block;
+                                                   line-height: 16px;
+                                                   margin-top: 19px;
+                                               }
+                                           }
+                                           .addimage {
+                                               width: 162px;
+                                               height: 216px;
+                                               background: #f4f4f4;
+                                               margin-top: 29px;
+                                               margin-left: 123px;
+                                               text-align: center;
+                                               cursor: pointer;
+                                               .updateimg img {
+                                                   margin-top: 0 !important;
+                                                   width: 100%;
+                                               }
+                                               .addimgs {
+                                                   top: 70px;
+                                                   position: absolute;
+                                                   left: 66px;
+                                               }
+                                               .clickimg {
+                                                   position: absolute;
+                                                   left: 45px;
+                                                   top: 110px;
+                                                   margin-top: 0 !important;
+                                                   width: 72px;
+                                                   font-size: 12px;
+                                                   color: #999;
+                                               }
+                                               .reupload {
+                                                   width: 162px;
+                                                   height: 216px;
+                                                   background: #000;
+                                                   opacity: 0.5;
+                                                   font-size: 12px;
+                                                   color: #fff;
+                                                   line-height: 216px;
+                                                   position: absolute;
+                                                   top: 0;
+                                                   display: none;
+                                               }
+                                           }
+                                       }
+                                   }
+                                   .remark {
+                                       height: 121px;
+                                       margin-top: 30px;
+                                       margin-left: 39px;
+                                       span {
+                                           width: 28px;
+                                           height: 121px;
+                                           color: #666;
+                                           font-size: 14px;
+                                           display: inline-block;
+                                           vertical-align: top;
+                                           margin-right: 38px;
+                                       }
+                                       textarea {
+                                           resize: none;
+                                           outline: none;
+                                           border-radius: 4px;
+                                           border: 1px solid rgb(209, 209, 209);
+                                           width: 553px;
+                                           height: 121px;
+                                           font-size: 14px;
+                                           color: #999;
+                                           padding-left: 10px;
+                                           line-height: 26px;
+                                           display: inline-block;
+                                       }
+                                   }
+                                   .gatherbut {
+                                       text-align: center;
+                                       padding-bottom: 50px;
+                                   }
+                               }
+                               
+                               //场地
+                               .sitebox {
+                                   width: 720px;
+                                   height: auto;
+                                   background: #fff;
+                                   margin: 0 auto;
+                                   margin-top: 80px;
+                                   border-radius: 6px;
+                                   display: none;
+                                   .sitetitle {
+                                       height: 60px;
+                                       border-bottom: 1px solid #d1d1d1;
+                                       position: relative;
+                                       span {
+                                           font-size: 16px;
+                                           color: #333;
+                                           display: inline-block;
+                                           line-height: 60px;
+                                           margin-left: 39px;
+                                       }
+                                       img {
+                                           position: absolute;
+                                           top: 22.1px;
+                                           right: 22.1px;
+                                           cursor: pointer;
+                                       }
+                                   }
+                                   .site {
+                                       margin: 0;
+                                       padding: 0;
+                                       .siteleft {
+                                           margin-top: 29px;
+                                           display: inline-block;
+                                           width: 307px;
+                                           position: relative;
+                                           span {
+                                               font-size: 14px;
+                                               color: #666;
+                                               // margin-top: 20px;
+                                               display: inline-block;
+                                               margin-left: 39px;
+                                               width: 56px;
+                                               margin-right: 10px;
+                                               height: 36px;
+                                               line-height: 36px;
+                                           }
+                                           input {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                           }
+                                           input:focus {
+                                               background-color: #f6f9f9;
+                                           }
+                                           .errorp {
+                                               font-size: 1.2px;
+                                               color: #fe5453;
+                                               padding-left: 107px;
+                                               line-height: 20px;
+                                               height: 20px;
+                                           }
+                                           div {
+                                               width: 200px;
+                                               height: 36px;
+                                               border-radius: 4px;
+                                               border: 1px solid #999;
+                                               outline: none;
+                                               color: #666;
+                                               font-size: 14px;
+                                               padding-left: 11px;
+                                               line-height: 36px;
+                                               display: inline-block;
+                                               cursor: pointer;
+                                           }
+                                           .typecheck {
+                                               height: 74px;
+                                               max-height: 108px;
+                                               z-index: 22;
+                                               position: absolute;
+                                               left: 105px;
+                                               top: 147px;
+                                               background: #fff;
+                                               padding: 0;
+                                               overflow-y: auto;
+                                               display: none;
+                                               p {
+                                                   height: 36px;
+                                                   p:hover {
+                                                       background: #F0F2F5;
+                                                   }
+                                               }
+                                               .citycheck {
+                                                   height: 216px;
+                                                   z-index: 22;
+                                                   position: absolute;
+                                                   left: 105px;
+                                                   top: 260px;
+                                                   background: #fff;
+                                                   padding: 0;
+                                                   overflow-y: auto;
+                                                   display: none;
+                                                   p {
+                                                       height: 36px;
+                                                       padding-left: 11px;
+                                                   }
+                                                   p:hover {
+                                                       background: #F0F2F5;
+                                                   }
+                                               }
+                                               img {
+                                                   margin-left: -20px;
+                                                   cursor: pointer;
+                                               }
+                                           }
+                                           .siteright {
+                                               display: inline-block;
+                                               width: 250px;
+                                               vertical-align: top;
+                                               position: relative;
+                                               .addimage {
+                                                   width: 248px;
+                                                   height: 139px;
+                                                   background: #f4f4f4;
+                                                   margin-top: 29px;
+                                                   margin-left: 64px;
+                                                   text-align: center;
+                                                   cursor: pointer;
+                                                   .updateimg {
+                                                       img {
+                                                           margin-top: 0 !important;
+                                                           width: 100%;
+                                                       }
+                                                   }
+                                                   .reupload {
+                                                       width: 248px;
+                                                       height: 140px;
+                                                       background: #000;
+                                                       opacity: 0.5;
+                                                       font-size: 12px;
+                                                       color: #fff;
+                                                       line-height: 140px;
+                                                       position: absolute;
+                                                       top: 0;
+                                                       display: none;
+                                                   }
+                                               }
+                                               .addimgs {
+                                                   position: absolute;
+                                                   left: 109px;
+                                                   top: 44px !important;
+                                               }
+                                               .clickimg {
+                                                   position: absolute;
+                                                   left: 88px;
+                                                   top: 80px;
+                                                   margin-top: 0 !important;
+                                                   width: 72px;
+                                                   font-size: 12px;
+                                                   color: #999999;
+                                               }
+                                               .addboxs {
+                                                   width: 250px;
+                                                   margin-left: 64px;
+                                                   span {
+                                                       width: 248px;
+                                                       height: 37px;
+                                                       font-size: 12px;
+                                                       color: #bdbdbd;
+                                                       display: block;
+                                                       line-height: 16px;
+                                                       margin-top: 19px;
+                                                       text-align: center;
+                                                       margin-bottom: 15px;
+                                                   }
+                                                   .addtext {
+                                                       border: none;
+                                                       width: 248px;
+                                                       height: 30px;
+                                                       color: #fff;
+                                                       background: #fe5453;
+                                                       border-radius: 4px;
+                                                       font-size: 12px;
+                                                       line-height: 30px;
+                                                       text-align: center;
+                                                       cursor: pointer;
+                                                       display: inline-block;
+                                                   }
+                                                   p {
+                                                       display: inline-block;
+                                                       font-size: 12px;
+                                                       color: #bdbdbd;
+                                                       margin-left: 89px;
+                                                       height: 25px;
+                                                       line-height: 25px;
+                                                   }
+                                               }
+                                           }
+                                       }
+                                       .siteimages {
+                                           width: 600px;
+                                           height: 107px;
+                                           margin-left: 66px;
+                                           margin-top: 30px;
+                                           .imgsboxs {
+                                               display: inline-block;
+                                               width: 185px;
+                                               height: 107px;
+                                               margin-right: 14.5px;
+                                               position: relative;
+                                               background: #ebebeb;
+                                               img {
+                                                   width: 100%;
+                                                   margin: 0 auto;
+                                                   display: block;
+                                               }
+                                               .imgshade {
+                                                   width: 185px;
+                                                   height: 107px;
+                                                   background: #000;
+                                                   opacity: 0.5;
+                                                   position: absolute;
+                                                   top: 0px;
+                                                   z-index: 99;
+                                                   display: none;
+                                                   .select {
+                                                       width: auto;
+                                                       height: auto;
+                                                       position: absolute;
+                                                       top: 10px;
+                                                       right: 10px;
+                                                       cursor: pointer;
+                                                   }
+                                               }
+                                           }
+                                       }
+                                       .remark {
+                                           height: 121px;
+                                           margin-top: 30px;
+                                           margin-left: 39px;
+                                           span {
+                                               width: 28px;
+                                               height: 121px;
+                                               color: #666;
+                                               font-size: 14px;
+                                               display: inline-block;
+                                               vertical-align: top;
+                                               margin-right: 38px;
+                                           }
+                                           textarea {
+                                               resize: none;
+                                               outline: none;
+                                               border-radius: 4px;
+                                               border: 1px solid rgb(209, 209, 209);
+                                               width: 553px;
+                                               height: 121px;
+                                               font-size: 14px;
+                                               color: #999;
+                                               padding-left: 10px;
+                                               line-height: 26px;
+                                               display: inline-block;
+                                           }
+                                       }
+                                       .gatherbut {
+                                           text-align: center;
+                                           padding-bottom: 50px;
+                                       }
+                                   }
+                                   //设备
+                                   .equipbox {
+                                       width: 720px;
+                                       height: auto;
+                                       background: #fff;
+                                       margin: 0 auto;
+                                       margin-top: 80px;
+                                       border-radius: 6px;
+                                       display: none;
+                                       .equiptitle {
+                                           height: 60px;
+                                           border-bottom: 1px solid #d1d1d1;
+                                           position: relative;
+                                           span {
+                                               font-size: 16px;
+                                               color: #333;
+                                               display: inline-block;
+                                               line-height: 60px;
+                                               margin-left: 39px;
+                                           }
+                                           img {
+                                               position: absolute;
+                                               top: 22.1px;
+                                               right: 22.1px;
+                                               cursor: pointer;
+                                           }
+                                       }
+                                       .equip {
+                                           margin: 0;
+                                           padding: 0;
+                                           margin-top: 39px;
+                                           .equipleft {
+                                               // display: inline-block;
+                                               // width: 307px;
+                                               height: 56px;
+                                               margin-left: 20px;
+                                               position: relative;
+                                               span {
+                                                   font-size: 14px;
+                                                   color: #666;
+                                                   // margin-top: 20px;
+                                                   display: inline-block;
+                                                   margin-left: 19px;
+                                                   width: 56px;
+                                                   margin-right: 10px;
+                                                   height: 36px;
+                                                   line-height: 36px;
+                                               }
+                                               input {
+                                                   width: 200px;
+                                                   height: 36px;
+                                                   border-radius: 4px;
+                                                   border: 1px solid #999;
+                                                   outline: none;
+                                                   color: #666;
+                                                   font-size: 14px;
+                                                   padding-left: 11px;
+                                               }
+                                               input:focus {
+                                                   background-color: #f6f9f9;
+                                               }
+                                               .errorp {
+                                                   font-size: 1.2px;
+                                                   color: #fe5453;
+                                                   padding-left: 66px;
+                                                   line-height: 15px;
+                                                   height: 15px;
+                                                   width: 270px;
+                                                   display: none;
+                                               }
+                                               .bastname {
+                                                   margin-left: 83px;
+                                               }
+                                               .days {
+                                                   margin-left: 77px;
+                                               }
+                                               .nameequipp,
+                                               .priceequipp {
+                                                   padding-left: 409px;
+                                                   width: 700px;
+                                               }
+                                               .nameequip {
+                                                   width: 200px;
+                                                   height: 36px;
+                                                   border-radius: 4px;
+                                                   border: 1px solid #999;
+                                                   outline: none;
+                                                   color: #666;
+                                                   font-size: 14px;
+                                                   padding-left: 11px;
+                                                   padding-right: 20px;
+                                                   line-height: 36px;
+                                                   display: inline-block;
+                                                   cursor: pointer;
+                                                   overflow-y: hidden;
+                                               }
+                                               div {
+                                                   width: 200px;
+                                                   height: 36px;
+                                                   border-radius: 4px;
+                                                   border: 1px solid #999;
+                                                   outline: none;
+                                                   color: #666;
+                                                   font-size: 14px;
+                                                   padding-left: 11px;
+                                                   line-height: 36px;
+                                                   display: inline-block;
+                                                   cursor: pointer;
+                                                   vertical-align: top;
+                                                   overflow-y: hidden;
+                                               }
+                                               .namecheck {
+                                                   height: 108px;
+                                                   z-index: 22;
+                                                   position: absolute;
+                                                   left: 428px;
+                                                   top: 35px;
+                                                   background: #fff;
+                                                   padding: 0;
+                                                   overflow: auto;
+                                                   display: none;
+                                                   p {
+                                                       padding-left: 11px;
+                                                   }
+                                                   p:hover {
+                                                       background: #F0F2F5;
+                                                   }
+                                               }
+                                               .citycheck {
+                                                   height: 216px;
+                                                   z-index: 22;
+                                                   position: absolute;
+                                                   left: 85px;
+                                                   top: 35px;
+                                                   background: #fff;
+                                                   padding: 0;
+                                                   overflow: auto;
+                                                   display: none;
+                                                   p {
+                                                       padding-left: 11px;
+                                                   }
+                                                   p:hover {
+                                                       background: #F0F2F5;
+                                                   }
+                                               }
+                                               .typecheck {
+                                                   height: 108px;
+                                                   z-index: 22;
+                                                   position: absolute;
+                                                   left: 85px;
+                                                   top: 35px;
+                                                   background: #fff;
+                                                   padding: 0;
+                                                   overflow: auto;
+                                                   display: none;
+                                                   p {
+                                                       padding-left: 11px;
+                                                   }
+                                                   p:hover {
+                                                       background: #F0F2F5;
+                                                   }
+                                               }
+                                               img {
+                                                   margin-left: -20px;
+                                                   cursor: pointer;
+                                               }
+                                           }
+                                       }
+                                       .remark {
+                                           height: 121px;
+                                           margin-top: 10px;
+                                           margin-left: 39px;
+                                           span {
+                                               width: 28px;
+                                               height: 121px;
+                                               color: #666;
+                                               font-size: 14px;
+                                               display: inline-block;
+                                               vertical-align: top;
+                                               margin-right: 38px;
+                                           }
+                                           textarea {
+                                               resize: none;
+                                               outline: none;
+                                               border-radius: 4px;
+                                               border: 1px solid rgb(209, 209, 209);
+                                               width: 553px;
+                                               height: 121px;
+                                               font-size: 14px;
+                                               color: #999;
+                                               padding-left: 10px;
+                                               line-height: 26px;
+                                               display: inline-block;
+                                           }
+                                       }
+                                       .gatherbut {
+                                           text-align: center;
+                                           padding-bottom: 50px;
+                                       }
+                                   }
+                                   .webuploader-pick {
+                                       width: 162px;
+                                       height: 216px;
+                                       background: transparent !important;
+                                       padding: 0 !important;
+                                   }
+                                   #filePicker4 .webuploader-pick {
+                                       width: 248px;
+                                       height: 139px;
+                                   }
+                                   .addimgs {
+                                       position: absolute;
+                                       left: 66px;
+                                       top: 70px !important;
+                                   }
+                                   .clickimg {
+                                       position: absolute;
+                                       left: 45px;
+                                       top: 110px;
+                                       margin-top: 0 !important;
+                                       width: 72px;
+                                   }
+                                   .cusModel {
+                                       width: 100%;
+                                       position: fixed;
+                                       height: 100%;
+                                       top: 30px;
+                                       left: 0;
+                                       display: none;
+                                       z-index: 999;
+                                       .modal-dialog {
+                                           width: 720px;
+                                           .modal-header {
+                                               height: 60px !important;
+                                               padding: 0 !important;
+                                               span {
+                                                   font-size: 16px;
+                                                   color: #333333;
+                                                   display: block;
+                                                   text-align: center;
+                                                   padding-top: 24px;
+                                               }
+                                               img {
+                                                   position: absolute;
+                                                   right: 22px;
+                                                   top: 16px;
+                                                   cursor: pointer;
+                                               }
+                                           }
+                                           .modal-body {
+                                               padding: 0 !important;
+                                               height: 380px;
+                                               width: 100%;
+                                               .modal-left {
+                                                   width: 300px;
+                                                   height: 300px;
+                                                   margin-left: 109px;
+                                                   margin-top: 29px;
+                                                   position: absolute;
+                                                   display: inline-block;
+                                                   left: 0;
+                                                   background: #ebebeb;
+                                                   .modal-original {
+                                                       background: #ebebeb;
+                                                       margin: 0 auto;
+                                                       overflow: hidden;
+                                                       img {
+                                                           display: block;
+                                                           margin: 0 auto;
+                                                       }
+                                                   }
+                                               }
+                                               .modal-right {
+                                                   width: 162px;
+                                                   height: 300px;
+                                                   display: inline-block;
+                                                   position: absolute;
+                                                   right: 108px;
+                                                   top: 29px;
+                                                   .modal-preview-container {
+                                                       width: 162px;
+                                                       height: 216px;
+                                                       overflow: hidden;
+                                                       background: #ebebeb;
+                                                       img {
+                                                           width: 162px;
+                                                           height: 216px;
+                                                       }
+                                                   }
+                                                   span {
+                                                       font-size: 14px;
+                                                       color: #666666;
+                                                       text-align: center;
+                                                       width: 100%;
+                                                       margin-top: 11px;
+                                                       display: block;
+                                                   }
+                                                   button {
+                                                       width: 162px;
+                                                       height: 36px;
+                                                       margin-top: 13px;
+                                                       font-size: 14px;
+                                                       color: #FFFFFF;
+                                                       padding: 0;
+                                                   }
+                                               }
+                                           }
+                                       }
+                                   }
+                                   .addboxs {
+                                       .webuploader-pick {
+                                           width: 162px;
+                                           height: 30px;
+                                       }
+                                   }
+                               }
+                               
+                               //添加样式合并
+                               .modal-site {
+                                   width: 248px !important;
+                                   height: 140px !important;
+                               }
+                               
+                               .modal-left-site {
+                                   margin-left: 66px !important;
+                               }
+                               
+                               .modal-right-site {
+                                   left: 407px !important;
+                               }
+                               
+                               .btn-site {
+                                   width: 248px !important;
+                               }
+                               
+                               .preview-site {
+                                   width: 248px !important;
+                                   margin-top: 17px !important;
+                                   margin-bottom: 26px !important;
+                               }
+                               
+                               #filePicker1 .addimgs {
+                                   margin-top: 0px !important;
+                               }
+                               
+                               //适配
+                               .idcard {
+                                   @media screen and (max-width: 975px) {
+                                       margin: 5px 5px !important;
+                                   }
+                                   // @media screen and (max-width: 1025px) and (min-width: 775px) {
+                                   //     margin: 12px 5px !important;
+                                   // }
+                               }
+                               
+                               .tooltip-success-show {
+                                   position: fixed;
+                                   top: 0;
+                                   left: 0;
+                                   width: 100%;
+                                   height: 50px;
+                                   background: $red-base;
+                                   color: white;
+                                   font-size: 14px;
+                                   line-height: 50px;
+                                   text-align: center;
+                                   display: none;
+                                   z-index: 9999;
+                               }
+                               
+                               //    #content-frame {
+                               //        padding-bottom: 0 !important;
+                               //    }

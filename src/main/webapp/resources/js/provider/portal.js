@@ -66,15 +66,15 @@ function changePage(){
 		if($(this).data('action')=='video-list'){
 			$('.tooltip-wati').show();
 			$('#control').show();
-		}else{
-			getHeight(2);
-		}
-		if($(this).data('action')=='resour-list'){
+		}else if($(this).data('action')=='resour-list'){
 			$('#titleTop').hide();
 			getHeight(3);
+			
 		}else {
 			$('#titleTop').show();
+			getHeight(2);
 		}
+		
 	});
 	
 }
@@ -123,10 +123,16 @@ function hideInfomation(){
 function getHeight(num){
 	var screen = document.body.clientHeight - 240;
 	var safe = 546;
+	var screens = document.body.clientHeight + 240;
+//	var cc=document.body.innerHeight;
+//	console.log(cc);
+
+//	console.log(one);
+//	console.log(screen);
 	if(num == 1){
 		$("#content-frame").css('height',safe);
 	}else if(num==3){
-		$("#content-frame").css('height',screen+560);
+		$("#content-frame").css('height',screens);
 	}else{
 		$("#content-frame").css('height',screen);
 	}
