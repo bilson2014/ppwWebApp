@@ -4,7 +4,7 @@ $().ready(function() {
 	newbutton();
 	listcitydata();
 	//初始化数据
-	//$('.setCard').text('');
+	$('.setCard').text('');
 	getlistdatap();//获取人数据
 	$('#filePicker2 .webuploader-pick').text('上传更多照片');
 	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
@@ -191,20 +191,12 @@ function getlistdatap(){
 	}));
 }
 function getlistdatas(){
-<<<<<<< HEAD
 	$('.setCard').text('');
-=======
-	$('.setCard').text('');	
->>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
 	loadData(function(res){	
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-site' id ="+res[i].id+" identity="+res[i].identity+">"
-<<<<<<< HEAD
 	        +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
-=======
-	        +"<img class='imgs"+i+"' src="+htt+res[i].photo+">"
->>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
 	        +"<div class='shade  idcard-sites' style='display: none;'>"
 	        +"<img class='read' src='/resources/images/supplier/read.png'>"
 	        +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -224,11 +216,7 @@ function getlistdatas(){
 function getlistdatad(){
 	$('.setCard').text('');
 	loadData(function(res){	
-<<<<<<< HEAD
 
-=======
-		var htt=getResourcesName();
->>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
             +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"

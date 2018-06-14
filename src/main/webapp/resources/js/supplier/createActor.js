@@ -324,13 +324,13 @@ function cleanactordata(){
 function delpeople(id,identity){
 	if (identity=='actor'){
 		loadData(function(res){	
-			//getlistdatap();//获取人数据
+			getlistdatap();//获取人数据
 		 }, getContextPath() + '/production/actor/delete', $.toJSON({						
 			 id:id,//	主键
 		}));
 	}else{
 		loadData(function(res){	
-			//getlistdatap();//获取人数据
+			getlistdatap();//获取人数据
 		 }, getContextPath() + ' /production/director/delete', $.toJSON({						
 			 id:id,//	主键
 		}));

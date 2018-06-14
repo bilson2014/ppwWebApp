@@ -149,11 +149,8 @@
 		              		<!--每个 弹框的模板  -->
 		              		
 		              		<!--添加角色的 弹框  -->
-<<<<<<< HEAD
 		              		<div class='setting' >
-=======
-		              		<div class='setting'>
->>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
+
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
@@ -218,11 +215,7 @@
 		              					 		<div class='updateimg'>
 		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
 		              					 		</div>
-<<<<<<< HEAD
-		              							
-=======
-		              						
->>>>>>> ad8152d83e619dd01fd664321af36b938d5a9095
+
 		              						</div>
 		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
 		               						<p class='clickimg'>点击添加图片</p> -->
