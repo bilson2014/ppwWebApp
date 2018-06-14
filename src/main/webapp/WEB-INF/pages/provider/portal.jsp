@@ -196,6 +196,10 @@
                          <div class="infoItem activeThis">
                                 <div class="product" data-action="video-list">作品列表</div>
                          </div>  
+                         <div class="infoItem" id="clickresour">
+                                <div class="resour" data-action="resour-list">资源列表</div>
+                         </div>
+                         
                           <div class="infoItem" id="clickCompany">
                                 <div class="info" data-action="company-info">团队信息</div>
                          </div>

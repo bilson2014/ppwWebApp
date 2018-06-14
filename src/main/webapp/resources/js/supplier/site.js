@@ -52,6 +52,21 @@ function sitemethod(){
 		
 		var siteremark=$('.siteremark').val();
 		
+		var fileimg=$('#filePicker4 .fileimg').attr('src');
+		console.log(fileimg);
+		
+		
+		var endimg;
+		$('.siteimages .imgsboxs').children('img').each(function(){
+			var moreimg=$(this).attr('data-value');
+			if (endimg==null||endimg==undefined||endimg==''){
+				endimg=moreimg;
+			}else {
+				endimg=endimg+";"+moreimg;
+			}
+		})
+		
+		
 		$('.namesitep').text('');
 		$('.msitep').text('');
 		$('.typesitep').text('');
@@ -78,6 +93,9 @@ function sitemethod(){
 		}else if (locationsite==undefined||locationsite==null||locationsite==''){
 			$('.locationsitep').text('*地址不能为空');
 			return false;
+		}else if (fileimg==undefined||fileimg==null||fileimg==''){
+			$('.siteright .addboxs span').attr("style","color: red;");
+			return false;
 		}else {
 		
 			var biao=$('.sitebox .sitetitle span').text();
@@ -91,12 +109,12 @@ function sitemethod(){
 				 }, getContextPath() + '/production/studio/update', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
-//					 delImg:,//待删除图片
+					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
 					 id:id,//	主键
-//					 mainPhoto:,//主图
-					 name: namesite,	//名称
-//					 photo:,//	其他照片
-					 price: pricesite,//	价格
+					 mainPhoto:$('#filePicker4 .fileimg').attr('data-value') ,//主图
+					 name:namesite,	//名称
+					 photo:endimg,//更多图片
+					 price:pricesite,//	价格
 					 remark:siteremark,//	备注
 					 type:$('.typesite').attr('key'),//场地类型
 					 city:$('.citysite').attr('cityid'),//城市类型
@@ -111,10 +129,10 @@ function sitemethod(){
 				 }, getContextPath() + '/production/studio/save', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
-//					 delImg:,//待删除图片
-//					 mainPhoto:,//主图
+					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
+					 mainPhoto:$('#filePicker4 .fileimg').attr('data-value') ,//主图
 					 name: namesite,	//名称
-//					 photo:,//	其他照片
+					 photo:endimg,//更多图片
 					 price: pricesite,//	价格
 					 remark:siteremark,//	备注
 					 type:$('.typesite').attr('key'),//场地类型
@@ -135,6 +153,42 @@ function getstudio(id){
 		$('.sitebox').attr('id',id);
 		$('.namesite').val(res.name);
 		$('.msite').val(res.area);
+		
+		//图片处理
+		$('.siteimages').empty();
+		$('#filePicker4 .fileimg').attr('data-value',res.mainPhoto);
+		$('#filePicker4 .fileimg').attr('src',getResourcesName()+res.mainPhoto);
+		
+		$('.addimgs,.clickimg').hide();
+		if($('.reupload').length<=0){
+			$('#filePicker4 .updateimg').after("<div class='reupload'>重新上传</div>");
+		}
+		
+		
+		var photo=res.photo;
+		if (photo!='null'){
+			$('.siteimages').show();
+			photo=photo.split(';');
+			for (var i=0;i<photo.length;i++){
+				var addimagebox="<div class='imgsboxs '>"
+      				+"<img class='imgsfive1' data-value="+photo[i]+" src="+getResourcesName()+photo[i]+">"
+      				+"<div class='imgshade '>"
+      				+"<img class='select' src='/resources/images/supplier/select.png'>"
+      				+"</div></div>";
+	
+				$('.siteimages').append(addimagebox);
+			}
+			if (photo.length>=3){
+				$('#filePicker5').attr("style","background: #ebebeb;");
+				$('#filePicker5').removeClass('webuploader-container');
+			}else {
+				$('#filePicker5').removeAttr("style");
+				$('#filePicker5').addClass('webuploader-container');
+			}
+		}
+		
+		
+		
 		if (res.type=='1'){
 			$('.typesite').text('内景');
 		}else {
@@ -180,4 +234,19 @@ function cleandata(){
 	$('.citysite').text('请选择城市');
 	$('.locationsite').val('');
 	$('.siteremark').val('');
+	
+	$('.typecheck').hide();
+	$('.citycheck').hide();
+	
+	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('.addboxs span').removeAttr("style");
+	$('#filePicker4').removeAttr("style");
+	$('#filePicker4').addClass('webuploader-container');
+	$('#filePicker4 .fileimg').removeAttr('data-value');
+	$('#filePicker4 .fileimg').removeAttr('src');
+	$('#filePicker4 .reupload').remove();
+	$('#filePicker4 .addimgs,#filePicker4 .clickimg').show();
+	$('.siteimages').hide();
+	$('.siteimages').empty();
+	
 }

@@ -69,6 +69,12 @@ function changePage(){
 		}else{
 			getHeight(2);
 		}
+		if($(this).data('action')=='resour-list'){
+			$('#titleTop').hide();
+			getHeight(3);
+		}else {
+			$('#titleTop').show();
+		}
 	});
 	
 }
@@ -118,7 +124,9 @@ function getHeight(num){
 	var screen = document.body.clientHeight - 240;
 	var safe = 546;
 	if(num == 1){
-	$("#content-frame").css('height',safe);
+		$("#content-frame").css('height',safe);
+	}else if(num==3){
+		$("#content-frame").css('height',screen+560);
 	}else{
 		$("#content-frame").css('height',screen);
 	}

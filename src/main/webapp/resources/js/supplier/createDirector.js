@@ -1,7 +1,6 @@
 $().ready(function() {
 
 	dirmethod();
-//	userpicInfo();
 });
 
 //创建演员
@@ -52,6 +51,7 @@ function dirmethod(){
 		var citydir=$('.citydir').text();
 		var pricedir=$('.pricedir').val();
 		var remarkdirector=$('.remarkdirector').val();
+		var fileimg=$('#filePicker3 .updateimg .fileimg').attr('src');
 		$('.namedirp').text('');
 		$('.skilldirp').text('');
 		$('.citydirp').text('');
@@ -68,6 +68,9 @@ function dirmethod(){
 		}else if (pricedir==undefined||pricedir==null||pricedir==''){
 			$('.pricedirp').text('*价格不能为空');
 			return false;
+		}else if (fileimg==undefined||fileimg==null||fileimg==''){
+			$('.directorr .addboxs span').attr("style","color: red;");
+			return false;
 		}else {
 			var biao=$('.directorbox .directortitle span').text();
 			console.log(biao);
@@ -82,8 +85,7 @@ function dirmethod(){
 					 id:biaoID,//获取的id
 					 name:namedir,//姓名
 					 city:$('.citydir').attr('cityid'),//城市(编码)
-//					 delImg:,//待删除图片
-//					 photo:,//照片
+					 photo:$('#filePicker3 .fileimg').attr('data-value'),//照片
 					 specialty:$('.skilldir').attr('value'),//擅长领域
 					 price: pricedir,//价格
 					 remark:remarkdirector,//备注
@@ -98,8 +100,7 @@ function dirmethod(){
 				 }, getContextPath() + '/production/director/save', $.toJSON({
 					 name:namedir,//姓名
 					 city:$('.citydir').attr('cityid'),//城市(编码)
-//					 delImg:,//待删除图片
-					 photo:'https://filed.apaipian.com/group1/M00/00/F6/CgpmTlqxyFWAS5iFAAIhkPiowTU667.jpg',//照片
+					 photo:$('#filePicker3 .fileimg').attr('data-value'),//照片
 					 specialty:$('.skilldir').attr('value'),//擅长领域
 					 price: pricedir,//价格
 					 remark:remarkdirector,//备注
@@ -124,5 +125,13 @@ function cleadirectordata(){
 	
 	$('.skillcheck').hide();
 	$('.citycheck').hide();
+	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('.addboxs span').removeAttr("style");
+	$('#filePicker3 .fileimg').removeAttr('data-value');
+	$('#filePicker3 .fileimg').removeAttr('src');
+	$('#filePicker3 .reupload').remove();
+	$('#filePicker3 .addimgs,#filePicker3 .clickimg').show();
+	
+	
 }
-
+//文件批量上传
