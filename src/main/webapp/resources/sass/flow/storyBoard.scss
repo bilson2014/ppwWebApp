@@ -151,6 +151,8 @@
                     cursor: pointer;
                     z-index: 10;
                     display: none;
+                    width: 16px;
+                    height: 16px;
                 }
                 .backgroundImg {
                     width: 100%;
@@ -488,6 +490,7 @@
                 img {
                     width: 200px;
                     height: 112.5px;
+                    cursor: pointer;
                 }
                 .boxItem {
                     display: block !important;

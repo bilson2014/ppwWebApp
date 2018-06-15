@@ -113,9 +113,7 @@ function setReShow(item){
 		
 		var text = imgItem[int].type;
 		var des  = imgItem[int].description;
-		if(des == null){
-			des = '';
-		}
+
 		$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:des,text:text,file:imgPath,path:path}));
 	}
 	
@@ -226,9 +224,8 @@ function initOption(){
 	delImgEven();
 	reUpdate();
 	
-	$('#setSecond').bind(' input propertychange ',function(){
+	/*$('#setSecond').bind(' input propertychange ',function(){
 		
-		if($(this).val().length > 1){
 			if(isNumber($(this).val())){
 				$(this).val($(this).val());
 				$(this).parent().attr('data-id',$(this).val());
@@ -237,8 +234,8 @@ function initOption(){
 				$(this).val(inputNum);
 				$(this).parent().attr('data-id',inputNum);
 			}
-		}
-	});
+		
+	});*/
 }
 
 //保存到项目
@@ -277,8 +274,8 @@ function getValue(projectId,who){
 		 var type = $(imgItem[int]).find('.checkImgType').attr('data-id');
 		 var image = $(imgItem[int]).find('.loadImg').attr('data-id');
 		 var text = $(imgItem[int]).find('.checkImgText').val();
-		 if(text == ""){
-			 text = null;
+		 if(type == ""){
+			 type = null;
 		 }
 		 setData.push(new optEntity(type,image,text));
 	}
@@ -651,7 +648,7 @@ var imgUpdate = {
 			
 			upload_Update.on('filesQueued', function(file) {
 				if(file.length > 1){
-					successToolTipShow('只能选择一张分镜');
+					successToolTipShow('只能选择一张图片替换');
 					upload_Update.reset();
 				}
 			});

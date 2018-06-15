@@ -317,6 +317,7 @@ function initMenuEven(){
 	});
 	//小的 项目样式改变 以及响应式
 	$('#minMyPro').off('click').on('click',function(){
+		$('.productList li').removeClass('checkLi');
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');		
 		$('#minMyPro .myPro').addClass('open');
@@ -352,6 +353,7 @@ function initMenuEven(){
 	//小的 订单  处理中  样式改变 以及响应式
 	$('#orderIndex').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?1");	
+		$('.productList li').removeClass('checkLi');
 		$('#orderIndex').addClass('checkLi');
 		$('#orderSub').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -378,6 +380,7 @@ function initMenuEven(){
 	//小的 订单  已提交  样式改变 以及响应式
 	$('#orderSub').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?2");
+		$('.productList li').removeClass('checkLi');
 		$('#orderSub').addClass('checkLi');
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderCancle').removeClass('checkLi');
@@ -402,6 +405,7 @@ function initMenuEven(){
 	//小的 订单  无效订单  样式改变 以及响应式
 	$('#orderCancle').off('click').on('click',function(){
 		$('.frame').attr('src',"/order/myOrder?3");
+		$('.productList li').removeClass('checkLi');
 		$('#orderCancle').addClass('checkLi');
 		$('#orderIndex').removeClass('checkLi');
 		$('#orderSub').removeClass('checkLi');	
@@ -432,6 +436,7 @@ function initMenuEven(){
 
 	$('#boxsIndex').off('click').on('click',function(){
 		$('.frame').attr('src', getUrlTask() + "quotation/info");
+		$('.productList li').removeClass('checkLi');
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -459,6 +464,7 @@ function initMenuEven(){
 		
 		$('.frame').attr('src',"/mgr/favourites");
 //		$('.frame').attr('src',"/order/box?2");	
+		$('.productList li').removeClass('checkLi');
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').addClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
@@ -486,6 +492,7 @@ function initMenuEven(){
 	
 	$('#boxsCancle').off('click').on('click',function(){
 		$('.frame').attr('src', getUrlTask() +"schedule/info");	
+		$('.productList li').removeClass('checkLi');
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
 		$('#boxsCancle').addClass('checkLi');
