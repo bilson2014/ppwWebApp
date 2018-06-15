@@ -45,11 +45,11 @@ public class PhotoUtil {
 				
 				if(originalWidth <= 0 || originalHeight <= 0) return null;
 				
-				if(x <= 0 || x > originalWidth) return null;
+				if(x < 0 || x > originalWidth) return null;
 				
 				if(x2 <= 0 || x2 > originalWidth) return null;
 				
-				if(y <= 0 || y > originalHeight) return null;
+				if(y < 0 || y > originalHeight) return null;
 				
 				if(y2 <= 0 || y2 > originalHeight) return null;
 				
