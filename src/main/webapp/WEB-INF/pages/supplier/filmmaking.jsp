@@ -71,11 +71,17 @@
 		               			<div class='facility'>设备</div>
 		               			<div class='newbox'>
 		               			
-		               				<span>新建</span>
+		               				<span>添加</span>
 		               			</div>
 		               		</div>	
 		              		<div class='setCard'>
+		              		 	
+		              		 	
+		              		 	
 		              		</div>
+		              		<div class='writepng'>
+		              		 		<img  src="/resources/images/supplier/write.png">
+		              		 </div>
 		        
 		              		<!--添加角色的 弹框  -->
 		              		<div class='setting' >
@@ -83,11 +89,11 @@
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
-		              					<div class='check'>请选择</div>
-		              					<img class='more' src="/resources/images/supplier/more.png">
-		              					<div class='morecheck'>
-		              						<span>演员</span>
-		              						<span>导演</span>
+		              					<input class='check ods' placeholder="请选择">
+		              					<img class='more ct' src="/resources/images/supplier/more.png">
+		              					<div class='morecheck odbox'>
+		              						<span class='boxs'>演员</span>
+		              						<span class='boxs'>导演</span>
 		              					</div>
 		              					<div class='sure'>确认</div>
 		              					<div class='cancel'>取消</div>
@@ -108,12 +114,12 @@
 		              						<p class='namegatherp errorp'></p>
 		              						
 		              						<span>性别</span>
-		              						<div class='gendergather'>请选择</div>
-		              						<img class='genderimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='gendergather '>请选择</div>
+		              						<img class='genderimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='gendergatherp errorp'></p>
-		              						<div class='twocheck'>
-		              							<p key='1'>男</p>
-		              							<p key='2'>女</p>
+		              						<div class='twocheck '>
+		              							<p key='1' >男</p>
+		              							<p key='2' >女</p>
 		              						</div>
 		              						
 		              						<span>出生年份</span>
@@ -121,16 +127,16 @@
 		              						<p class='oldgatherp errorp'></p>
 		              						
 		              						<span>种族</span>
-		              						<div class='racegather'>请选择</div>
-		              						<img class='raceimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='racegather '>请选择</div>
+		              						<img class='raceimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='racegatherp errorp'></p>
-		              						<div class='racecheck'></div>
+		              						<div class='racecheck '></div>
 		              						
 		              						<span>所在城市</span>
-		              						<div class='citygather'>请选择</div>
-		              						<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='citygather '>请选择</div>
+		              						<img class='cityimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='citygatherp errorp'></p>
-		              						<div class='citycheck'>
+		              						<div class='citycheck '>
 		              						</div>
 		              						
 		              						<span>价格(元/天)</span>
@@ -150,7 +156,7 @@
 		              						</div>
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
 		              							<div class='addtext filesimage' id='filePicker2' ></div>
 		              						
 		              						</div>
@@ -210,7 +216,7 @@
 		              			<div class='director'>
 		              				<div class='directorl'>
 		              				
-		              					<span>姓名</span>
+		              					<span>导演姓名</span>
 		              					<input class='namedir' type='text' placeholder="">
 		              					<p class='namedirp errorp'></p>
 		              						
@@ -229,20 +235,23 @@
 		              					</div>
 		              					
 		              					
-		              					<span>价格/天</span>
+		              					<span>价格(元/天)</span>
 		              					<input class='pricedir' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='pricedirp errorp'></p>
 		              					
 		              					
 		              				</div>
 		              				<div class='directorr'>
+		              					<div class='tipsimage'>导演照片
+		              						<span>(1张导演照片封面)</span>
+                                        </div>
 		              					<div class='addimage filesimage' id='filePicker3'><!-- id='picker' -->
 		              						<div class='updateimg'>
 		              					 		<img alt="用户头像" class='fileimg'/>
 		              					 	</div>
 		              					</div>
 		              					<div class='addboxs'>
-		              						<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              						<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
 		              							
 		              					</div>
 		              					
@@ -320,7 +329,7 @@
 		               						<p class='clickimg'>点击添加图片</p>  -->
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
 		              							<div class='addtext filesimage' id='filePicker5' ></div>
 		              						
 		              						</div>
@@ -421,6 +430,7 @@
 		   
 	<div class="tooltip-success-show"></div>
 	
+
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${webuploaderJs}"></script>

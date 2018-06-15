@@ -36,7 +36,7 @@ function devicemethod(){
 	$('.equipleft .nameequip,.equipleft .nameimg').off('click').on('click',function(){
 		$('.citycheck').hide();
 		$('.typecheck').hide();	
-		if($('.typeequip').text()!='请选择设备类型') {
+		if($('.typeequip').text()!='请选择') {
 			$('.namecheck').show();	
 		}else {
 			$('.typeequipp').show();

@@ -69,6 +69,7 @@
                            span {
                                padding-left: 20px;
                                &:after {
+                                   content: "";
                                    position: absolute;
                                    background: url(/resources/images/supplier/add.png);
                                    height: 14px;
@@ -99,6 +100,13 @@
                    .facility:hover {
                        color: #FE5453;
                        border-bottom: 2px solid #FE5453;
+                   }
+                   .writepng {
+                       img {
+                           display: block;
+                           margin: 0 auto;
+                           margin-top: 100px;
+                       }
                    }
                    .setCard {
                        .idcard {
@@ -237,6 +245,7 @@
                                font-size: 14px;
                                color: #999;
                                cursor: pointer;
+                               outline: none;
                                line-height: 36px;
                                padding-left: 10px;
                            }
@@ -421,7 +430,7 @@
                                cursor: pointer;
                            }
                            .racecheck {
-                               height: 108px;
+                               height: 218px;
                                z-index: 23;
                                position: absolute;
                                left: 115px;
@@ -470,7 +479,7 @@
                                margin-top: 29px;
                                margin-bottom: 10px;
                                span {
-                                   display: block;
+                                   display: inline-block;
                                    font-size: 12px;
                                    color: #bdbdbd;
                                    line-height: 11px;
@@ -510,7 +519,7 @@
                                }
                            }
                            .addboxs {
-                               width: 340px;
+                               width: 342px;
                                margin-left: 33px;
                                span {
                                    font-size: 12px;
@@ -591,6 +600,7 @@
                            display: inline-block;
                            vertical-align: top;
                            margin-right: 38px;
+                           padding-top: 12px;
                        }
                        textarea {
                            resize: none;
@@ -643,17 +653,16 @@
                    .director {
                        .directorl {
                            display: inline-block;
-                           width: 307px;
+                           width: 327px;
                            position: relative;
-                           margin-top: 26px;
+                           margin-top: 29px;
                            span {
                                font-size: 14px;
                                color: #666;
                                // margin-top: 20px;
                                display: inline-block;
                                margin-left: 39px;
-                               width: 56px;
-                               margin-right: 10px;
+                               width: 76px;
                                height: 36px;
                                line-height: 36px;
                            }
@@ -691,10 +700,10 @@
                                cursor: pointer;
                            }
                            .skillcheck {
-                               height: 108px;
+                               height: 218px;
                                z-index: 22;
                                position: absolute;
-                               left: 105px;
+                               left: 115px;
                                top: 108px;
                                background: #fff;
                                padding: 0;
@@ -711,7 +720,7 @@
                                height: 216px;
                                z-index: 22;
                                position: absolute;
-                               left: 105px;
+                               left: 115px;
                                top: 182px;
                                background: #fff;
                                padding: 0;
@@ -734,11 +743,27 @@
                            width: 250px;
                            vertical-align: top;
                            position: relative;
-                           .addboxs {
-                               width: 250px;
-                               margin-left: 123px;
+                           .tipsimage {
+                               font-size: 14px;
+                               color: #666;
+                               display: inline-block;
+                               margin-left: 121px;
+                               width: 277px;
+                               line-height: 36px;
+                               margin-top: 20px;
+                               margin-bottom: 10px;
                                span {
-                                   width: 180px;
+                                   display: inline-block;
+                                   font-size: 12px;
+                                   color: #bdbdbd;
+                                   line-height: 11px;
+                                   padding-bottom: 9px;
+                               }
+                           }
+                           .addboxs {
+                               width: 350px;
+                               margin-left: 28px;
+                               span {
                                    height: 37px;
                                    font-size: 12px;
                                    color: #bdbdbd;
@@ -751,7 +776,6 @@
                                width: 162px;
                                height: 216px;
                                background: #f4f4f4;
-                               margin-top: 29px;
                                margin-left: 123px;
                                text-align: center;
                                cursor: pointer;
@@ -790,7 +814,7 @@
                    }
                    .remark {
                        height: 121px;
-                       margin-top: 30px;
+                       margin-top: 15px;
                        margin-left: 39px;
                        span {
                            width: 28px;
@@ -800,6 +824,7 @@
                            display: inline-block;
                            vertical-align: top;
                            margin-right: 38px;
+                           padding-top: 12px;
                        }
                        textarea {
                            resize: none;
@@ -1502,6 +1527,6 @@
                    z-index: 9999;
                }
                
-               //    #content-frame {
-               //        padding-bottom: 0 !important;
-               //    }
+               .reilef {
+                   display: block !important;
+               }

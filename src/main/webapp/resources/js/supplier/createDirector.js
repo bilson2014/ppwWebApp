@@ -57,16 +57,16 @@ function dirmethod(){
 		$('.citydirp').text('');
 		$('.pricedirp').text('');
 		if (namedir==undefined||namedir==null||namedir==''){
-			$('.namedirp').text('*姓名不能为空');
+			$('.namedirp').text('*请填写导演姓名');
 			return false;
-		}else if( skilldir=='请选择擅长领域'){
+		}else if( skilldir=='请选择'){
 			$('.skilldirp').text('*请选择擅长领域');
 			return false;
-		}else if(citydir=='请选择城市'){
+		}else if(citydir=='请选择'){
 			$('.citydirp').text('*请选择城市');
 			return false;
 		}else if (pricedir==undefined||pricedir==null||pricedir==''){
-			$('.pricedirp').text('*价格不能为空');
+			$('.pricedirp').text('*请填写价格');
 			return false;
 		}else if (fileimg==undefined||fileimg==null||fileimg==''){
 			$('.directorr .addboxs span').attr("style","color: red;");
