@@ -118,14 +118,14 @@ function cleadirectordata(){
 	
 	
 	$('.namedir').val('');
-	$('.skilldir').text('请选择擅长领域');
-	$('.citydir').text('请选择城市');
+	$('.skilldir').text('请选择');
+	$('.citydir').text('请选择');
 	$('.pricedir').val('');
 	$('.remarkdirector').val('');
 	
 	$('.skillcheck').hide();
 	$('.citycheck').hide();
-	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('.addboxs span').removeAttr("style");
 	$('#filePicker3 .fileimg').removeAttr('data-value');
 	$('#filePicker3 .fileimg').removeAttr('src');

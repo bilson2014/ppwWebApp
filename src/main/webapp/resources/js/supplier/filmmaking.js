@@ -3,14 +3,18 @@ $().ready(function() {
 	imgcheckpeople();
 	newbutton();
 	listcitydata();
+	
+	btnfocus();
+	
+	upperCase();
 	//初始化数据
 	$('.setCard').text('');
 	getlistdatap();//获取人数据
-	$('#filePicker2 .webuploader-pick').text('上传更多照片');
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
-	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
-	$('#filePicker5 .webuploader-pick').text('上传更多照片');
-	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker2 .webuploader-pick').text('上传更多照片(最多5张)');
+	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+	$('#filePicker5 .webuploader-pick').text('上传更多照片(最多3张)');
+	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	
 });
 //图片尺寸的显示处理竖版
@@ -392,3 +396,41 @@ function getpeople(id,type){
 		}));
 	}
 }
+function btnfocus(){
+//	console.log('测试');
+//	
+//		if($('.racecheck').attr('style')=="display: block"){
+//			if ($('.racecheck').focus()){
+//				console.log('关闭');
+//		}
+//	}
+//		
+		
+//	$('body').on('click','.page',function(){
+//		console.log('关闭');
+//		console.log($('.racecheck').attr('style'));
+		
+//		var dis=$('.racecheck').attr('style');
+//		dis=dis.substring(9,dis.length-1);
+////		console.log(dis);
+//		if(dis=='block'){
+//			console.log(dis);
+//			$('.racecheck').hide();
+//		}
+		
+		
+		
+		
+//	});
+		
+		
+		
+		
+}
+
+function upperCase(){
+	console.log ('7666');
+}
+
+
+

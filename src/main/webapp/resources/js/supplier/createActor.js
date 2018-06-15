@@ -218,15 +218,15 @@ function gathermethod(){
 		$('.racegatherp').text('');
 		$('.citygatherp').text('');
 		if (namegather==undefined||namegather==null||namegather==''){
-			$('.namegatherp').text('*姓名不能为空');
+			$('.namegatherp').text('*请填写场地名称');
 			return false;
-		}else if(gendergather=='请选择性别'){
+		}else if(gendergather=='请选择'){
 			$('.gendergatherp').text('*请选择性别');
 			return false;
 		}else if (oldgather==undefined||oldgather==null||oldgather==''){
 			$('.oldgatherp').text('*出生年份不能为空');
 			return false;
-		}else if(racegather=='请选择种族'){
+		}else if(racegather=='请选择'){
 			$('.racegatherp').text('*请选择种族');
 			return false;
 		}else if(citygather=='请选择城市'){
@@ -298,10 +298,10 @@ function cleanactordata(){
 	$('.citygatherp').text('');
 	
 	$('.namegather').val('');
-	$('.gendergather').text('请选择性别');
+	$('.gendergather').text('请选择');
 	$('.oldgather').val('');
-	$('.racegather').text('请选择种族');
-	$('.citygather').text('请选择城市');
+	$('.racegather').text('请选择');
+	$('.citygather').text('请选择');
 	$('.pricegather').val('');
 	$('.remarkgather').val('');
 	
@@ -315,7 +315,7 @@ function cleanactordata(){
 	$('#filePicker1 .fileimg').removeAttr('src');
 	$('#filePicker1 .reupload').remove();
 	$('#filePicker1 .addimgs,#filePicker1 .clickimg').show();
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 
 	$('.showimages').hide();
 	$('.showimages').empty();
@@ -359,7 +359,7 @@ var imgUpload1 = {
 				multiple:true,
 				accept :{
 				    title: 'Images',
-				    extensions: 'jpg,png',
+				    extensions: 'jpg,png,gif,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
 				},
 			});
@@ -431,7 +431,7 @@ var imgUpload2 = {
 				multiple:true,
 				accept :{
 				    title: 'Images',
-				    extensions: 'jpg,png',
+				    extensions: 'jpg,png,gif,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
 				},
 			});
@@ -493,7 +493,7 @@ var imgUpload3 = {
 				multiple:true,
 				accept :{
 				    title: 'Images',
-				    extensions: 'jpg,png',
+				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
 				},
 			});
