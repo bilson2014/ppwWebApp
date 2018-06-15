@@ -21,6 +21,7 @@
 
     .page {
         top: 0px !important;
+        background: white !important;
     }
 
 
@@ -47,14 +48,15 @@
             left: 40px;
             top: 0;
             font-size: $font-size !important;
-            font-weight: bold;
+            color:#333;
+            font-weight: 500;
         }
 
         .openTool {
             position: absolute;
             right: 40px;
             top: 8px;
-            width: 65px;
+            width: 90px;
             height: 30px;
             border: 1px solid $gray-light;
             border-radius: 4px;
@@ -98,7 +100,7 @@
                 border: 1px solid #D1D1D1;
                 border-radius: 4px;
                 font-size: $font-size-sm;
-                color: $gray-light;
+                color: $gray;
             }
             .loadImg {
                 width: 100%;
@@ -146,11 +148,13 @@
                 }
                 .delLoadImg {
                     position: absolute;
-                    top: 15px;
-                    right: 15px;
+                    top: 10px;
+                    right: 10px;
                     cursor: pointer;
                     z-index: 10;
                     display: none;
+                    width: 16px;
+                    height: 16px;
                 }
                 .backgroundImg {
                     width: 100%;
@@ -203,10 +207,9 @@
                 position: absolute;
                 text-align: center;
                 height: 100%;
-                top:0;
+                top: 0;
                 padding-top: 80px;
                 z-index: 2;
-
             }
 
             .info {
@@ -218,19 +221,19 @@
                 line-height: 15px;
                 padding-top: 83px;
                 opacity: 0;
-                 transition: all .2s;
+                transition: all .2s;
                 -moz-transition: all .2s;
-            /* Firefox 4 */
+                /* Firefox 4 */
                 -webkit-transition: all .2s;
-            /* Safari 和 Chrome */
+                /* Safari 和 Chrome */
                 -o-transition: all .2s;
-            /* Opera */
+                /* Opera */
                 div {
                     line-height: 15px;
                 }
             }
 
-            .showInfoWord{
+            .showInfoWord {
                 opacity: 1!important;
             }
 
@@ -241,7 +244,6 @@
                 -moz-animation: topShow .3s linear;
                 -o-animation: topShow .3s linear;
                 animation: topShow .3s linear;
- 
             }
 
             .botBtn {
@@ -332,7 +334,7 @@
     }
 
     @-moz-keyframes botShow {
-       0% {
+        0% {
             top: 80px;
         }
 
@@ -347,7 +349,7 @@
     }
 
     @-o-keyframes botShow {
-       0% {
+        0% {
             top: 80px;
         }
 
@@ -362,7 +364,7 @@
     }
 
     @keyframes bothow {
-       0% {
+        0% {
             top: 80px;
         }
 
@@ -375,10 +377,6 @@
             top: 155px;
         }
     }
-
-
-
-
 
     .active {
         .box {
@@ -403,12 +401,14 @@
 
             .otherTitle {
                 display: inline-block;
-                vertical-align: inherit;
+                vertical-align: top;
                 font-size: 12px;
                 color: #666666;
                 width: 75px;
                 margin-right: 10px;
                 text-align: right;
+                position: relative;
+                top: 17px;
             }
             input {
                 width: 200px;
@@ -427,6 +427,9 @@
                 line-height: 30px !important;
                 display: inline-block;
                 margin-top: 20px;
+                ul li{
+                    color:#444 !important;
+                }
             }
 
             .orderSelect:nth-child(2) {
@@ -441,12 +444,14 @@
 
             .diy .boxItem {
                 margin-top: 15px;
+                cursor: pointer;
             }
 
             .boxItem {
                 vertical-align: top;
                 position: relative;
                 top: 1px;
+                cursor: pointer;
             }
 
             .boxItem {
@@ -466,7 +471,16 @@
                     border: 1px solid #D1D1D1;
                     border-radius: 100%;
                     margin-right: 5px;
-                    cursor: pointer;
+                    
+                }
+
+                input {
+                    width: 100px !important;
+                    height: 30px !important;
+                    margin-top: 0px;
+                    position: relative;
+                    left: 10px;
+                    top: -9px;
                 }
             }
 
@@ -478,10 +492,12 @@
                 img {
                     width: 200px;
                     height: 112.5px;
+                    cursor: pointer;
                 }
                 .boxItem {
                     display: block !important;
                     margin-top: 10px;
+                    cursor: pointer;
                 }
             }
         }

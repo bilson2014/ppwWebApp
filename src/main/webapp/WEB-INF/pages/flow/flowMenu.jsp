@@ -100,8 +100,8 @@
 			       <img src="${imgPath}/flow/more.png">
 			  </div>
 	          <ul class="productList" id="boxsList">
-		           <li id='boxsIndex' data-value="0">报价单生成器</li>
 	               <li id='boxsSub' data-value="1">案例收藏夹</li>
+		           <li id='boxsIndex' data-value="0">报价单生成器</li>
 		           <li id='boxsCancle' data-value="2">排期表生成器</li>
 		           <li id='boxsTools' data-value="3">分镜工具</li> 
 		      </ul>

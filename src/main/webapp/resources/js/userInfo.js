@@ -198,8 +198,7 @@ function userpicInfo(){
 				if(path.indexOf("error=1") > -1){
 					$('.errorImg').text('文件超过最大限制');
 				} else if(path.indexOf("error=2") > -1){
-					$('.errorImg').text('格式不正确');
-					
+					$('.errorImg').text('格式不正确');					
 				}
 				
 				$('#iKnow').unbind('click');

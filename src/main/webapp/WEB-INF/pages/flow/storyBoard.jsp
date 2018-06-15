@@ -62,10 +62,10 @@
 <body>
 	
 	<div class="page">
-	       <div class="toolsHead">
+	       <div class="toolsHead" >
 	             <div id="projectName">未命名</div>
 	             <div class="toolTitle">分镜工具</div>
-	             <div class="openTool">打开</div>
+	             <div class="openTool">打开项目分镜</div>
 	       </div>
 	       <div class="setImg" id="setImg">
 	              <div class="addItem" id="showUpModel">
@@ -121,7 +121,7 @@
 				                </ul>    
 					     </div>
 	                 </div> -->
-	                  <div class="otherItem onebox" id="time">
+	                  <div class="otherItem onebox" id="time" style="margin-bottom: -10px;">
 	                       <div class="otherTitle oneboxTilte">视频时长</div>
 	                       <div class="killDiv diy">
 		                       <div class="boxItem" data-id="30">
@@ -131,6 +131,27 @@
 		                       <div class="boxItem" data-id="60">
 		                            <div class="box"></div>
 		                            <div class="des">60秒</div>
+		                       </div>
+		                        <div class="boxItem" data-id="120">
+		                            <div class="box"></div>
+		                            <div class="des">2分钟</div>
+		                       </div>
+		                        <div class="boxItem" data-id="180">
+		                            <div class="box"></div>
+		                            <div class="des">3分钟</div>
+		                       </div>
+		                        <div class="boxItem" data-id="300">
+		                            <div class="box"></div>
+		                            <div class="des">5分钟</div>
+		                       </div>
+		                        <div class="boxItem" data-id="600">
+		                            <div class="box"></div>
+		                            <div class="des">10分钟</div>
+		                       </div>
+		                        <div class="boxItem" data-id="" id="setother">
+		                            <div class="box" style="position: relative;top: -5px;"></div>
+		                            <div class="des" style="vertical-align: top !important;position: relative;top: 1px;">其它(秒)</div>
+		                            <input onkeyup="value=value.replace(/[^\d]/g,'')" id="setSecond">
 		                       </div>
 		                    </div>   
 	                 </div>
@@ -153,7 +174,7 @@
 	                 </div>
 	                 
 	                 <div class="otherItem onebox a" id="videoStyleS">
-	                       <div class="otherTitle lastTitle">影片风格</div>
+	                       <div class="otherTitle lastTitle" style="top: 25px;">影片风格</div>
 	                       <div class="killDiv">
 		                         <div class="killItem">
 		                               <img src="/resources/images/flow/vStyle1.png"> 
@@ -209,7 +230,7 @@
 	<div class="cusModel" id="loadProductModel">
 	     <div class="modelCard">
 	            <div class="cardTop">
-	                   <div class="title">项目报价单</div>
+	                   <div class="title">项目分镜</div>
 	                   <div class="closeModel"></div>
 	            </div>
 	            <div class="modelBanner">
