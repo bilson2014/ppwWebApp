@@ -41,6 +41,7 @@ function initPos(){
 		$('#botBtn').off('click').on('click',function(){
 			$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:'',text:'',file:'/resources/images/flow/def.jpg',path:''}));
 			initOption();
+			initSortable();
 			returnOld();
 		});	
 	});		
@@ -186,7 +187,7 @@ function getMyProject(){
                          $('#toSame').off('click').on('click',function(){
                         	 getValue(modelVal.attr('data-id'),0);
                         	 $('#sameProject').hide();
-                        	 $('#projectName').text($(this).text());
+                        	 $('#projectName').text(modelVal.text());
                          });
                          $('#toCSame').off('click').on('click',function(){
                         	 $('#sameProject').hide();
