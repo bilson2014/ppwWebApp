@@ -61,7 +61,7 @@
 <body>
 <input type="hidden" id="storage_node" value="${file_locate_storage_path }" />
 
-		 <div class="page">
+		 <div class="page" id='filmmaking'>
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
 		              <div class="managerCard">
@@ -149,7 +149,8 @@
 		              		<!--每个 弹框的模板  -->
 		              		
 		              		<!--添加角色的 弹框  -->
-		              		<div class='setting'>
+		              		<div class='setting' >
+
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
@@ -166,7 +167,7 @@
 		              			
 		              			
 		              			<!-- 添加演员 -->
-		              			<div class='staffbox' style="display: block;">
+		              			<div class='staffbox'>
 		              				<div class='stafftitle'>
 		              					<span>创建演员</span>
 		              					<img alt="" src="/resources/images/supplier/close.png">
@@ -214,7 +215,7 @@
 		              					 		<div class='updateimg'>
 		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
 		              					 		</div>
-		              						
+
 		              						</div>
 		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
 		               						<p class='clickimg'>点击添加图片</p> -->
@@ -228,37 +229,6 @@
 		              					</div>
 		              					<!--上传的显示地方  -->
 		              					<div class='showimages' style="display: none;">
-		              						<div class='imgsboxs '>
-		              							<img class="imgsfive1" src="/resources/images/supplier/44.png">
-		              							<div class='imgshade '>
-		              								<img class='select' src="/resources/images/supplier/select.png">
-		              							</div>
-		              						</div>
-		              						<div class='imgsboxs '>
-		              							<img class="imgsfive2" src="/resources/images/supplier/11.png">
-		              							<div class='imgshade '>
-		              								<img class='select' src="/resources/images/supplier/select.png">
-		              							</div>
-		              						</div>
-		              						<div class='imgsboxs '>
-		              							<img class="imgsfive3" src="/resources/images/supplier/22.png">
-		              							<div class='imgshade '>
-		              								<img class='select' src="/resources/images/supplier/select.png">
-		              							</div>
-		              						</div>
-		              						<div class='imgsboxs '>
-		              							<img class="imgsfive4" src="/resources/images/supplier/33.png">
-		              							<div class='imgshade '>
-		              								<img class='select' src="/resources/images/supplier/select.png">
-		              							</div>
-		              						</div>
-		              						<div class='imgsboxs '>
-		              							<img class="imgsfive5" src="/resources/images/supplier/55.png">
-		              							<div class='imgshade '>
-		              								<img class='select' src="/resources/images/supplier/select.png">
-		              							</div>
-		              						</div>
-		              						
 		              						
 		              					</div>
 		              					<div class='remark'>
@@ -294,7 +264,7 @@
 						<div class="modal-preview-container">
 							<img id="modal-preview" alt="全图" src="">
 						</div>
-						<span>图片预览</span>
+						<span class='preview'>图片预览</span>
 						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
 					</div>
 				</div>
@@ -337,7 +307,16 @@
 		              					
 		              				</div>
 		              				<div class='directorr'>
-		              				
+		              					<div class='addimage filesimage' id='filePicker3'><!-- id='picker' -->
+		              						<div class='updateimg'>
+		              					 		<img alt="用户头像" class='fileimg'/>
+		              					 	</div>
+		              					</div>
+		              					<div class='addboxs'>
+		              						<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							
+		              					</div>
+		              					
 		              				</div>
 		              			</div>
 		              			
@@ -353,7 +332,7 @@
 		              		</div>
 		              		
 		              		<!--添加场地  -->
-		              		<div class='sitebox' >
+		              		<div class='sitebox'>
 		              			<div class='sitetitle'>
 		              				<span>添加场地</span>
 		              				<img alt="关闭" src="/resources/images/supplier/close.png">
@@ -374,8 +353,8 @@
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='typesitep errorp'></p>
 		              					<div class='typecheck'>
-		              						<p key='1'>内景</p>
-		              						<p key='2'>外景</p>
+		              						<p key='1'>  内景</p>
+		              						<p key='2'>  外景</p>
 		              					</div>
               					
 		              					<span>价格/天</span>
@@ -396,8 +375,39 @@
 		              					
 		              					
 		              				</div>
-		              				<div class='siteright'></div>
+		              				<div class='siteright'>
+		              				
+		              						<div class='addimage filesimage' id='filePicker4'><!-- id='picker' -->
+		              					 		<div class='updateimg'>
+		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
+		              					 		</div>
+		              							
+		              						</div>
+		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
+		               						<p class='clickimg'>点击添加图片</p>  -->
+		              						
+		              						<div class='addboxs'>
+		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							<div class='addtext filesimage' id='filePicker5' ></div>
+		              						
+		              							<p>(最多3张)</p>
+		              						</div>
+		              						
+		              				</div>
 		              			</div>
+		              			
+		              			<!--上传的显示地方  -->
+		              			<div class='siteimages' style="display: none;">
+		             <!--  <div class='imgsboxs '>
+          				<img class='imgsfive1' data-value="+userTarget.result+" src="+getResourcesName()+userTarget.result+">
+          				<div class='imgshade '>
+          				<img class='select' src='/resources/images/supplier/select.png'>
+          				</div>
+          			</div> -->
+          				
+          					
+		              			</div>
+		              			
 		              			<div class='remark'>
 		              				<span>备注</span>
 		              				<textarea class='siteremark' rows="4" cols="550" placeholder="请完善场地信息"></textarea>
@@ -477,6 +487,8 @@
 		         </div>
 		 </div>
 		   
+	<div class="tooltip-success-show"></div>
+	
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${webuploaderJs}"></script>

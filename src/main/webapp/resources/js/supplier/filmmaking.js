@@ -4,11 +4,13 @@ $().ready(function() {
 	newbutton();
 	listcitydata();
 	//初始化数据
-	//$('.setCard').text('');
+	$('.setCard').text('');
 	getlistdatap();//获取人数据
 	$('#filePicker2 .webuploader-pick').text('上传更多照片');
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>")
-
+	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker5 .webuploader-pick').text('上传更多照片');
+	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
 	
 });
 //图片尺寸的显示处理竖版
@@ -18,10 +20,10 @@ function imgcheckpeople(){
 		img.src=$('.imgs'+i).attr('src');
 		if (img.complete){
 			if (img.width/img.height<=1){
-				console.log(img.width);
+//				console.log(img.width);
 				$('.imgs'+i).attr('style','width:auto;height:100%');
 			}else {
-				console.log(img.width/img.height);
+//				console.log(img.width/img.height);
 				$('.imgs'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
 			}
 			img=null;
@@ -32,7 +34,6 @@ function imgcheckpeople(){
 		}
 	}
 }
-//图片尺寸的显示处理竖版
 function imgcheckpeoplefive(){
 	for (var i=1;i<=6;i++){
 		var img=new Image();
@@ -72,12 +73,6 @@ function imgchecksite(){
 	}
 }
 function init(){
-	$('#picker').off('mouseover').on('mouseover',function(){
-		$('.reupload').show();
-	});
-	$('#picker').off('mouseout').on('mouseout',function(){
-		$('.reupload').hide();
-	});
 	$('.shade').hide();
 	$("body").on("mouseover",".idcard",function(){
 		$(this).find('.shade').show();
@@ -87,6 +82,8 @@ function init(){
 	});
 	//图片删除共同dels  修改
 	$('body').on('click','.idcard .select',function(){
+		console.log('消失select');
+		$(this).parent().parent().find('.shade').hide();
 		var id=$(this).parent().parent().attr('id');
 		var identity=$(this).parent().parent().attr('identity');
 		if ($('.showimages').children().length==1){
@@ -104,7 +101,8 @@ function init(){
 		}
 	});
 	$('body').on('click','.idcard .read',function(){
-		$(this).find('.shade').hide();
+		console.log('消失read');
+		$(this).parent().parent().find('.shade').hide();
 		$('.setting').show();
 		var id=$(this).parent().parent().attr('id');
 		if ($('.top .people').hasClass('top-text')){
@@ -157,6 +155,7 @@ function newbutton(){
 			$('.sitebox').show();
 			$('.sitebox .sitetitle span').text('添加场地');
 			$('.sitebox').attr('id','');
+			cleandata();
 		}else if($('.top .facility').hasClass('top-text')){
 			$('.equipbox').show();
 			$('.equipbox .equiptitle span').text('添加设备');
@@ -171,8 +170,10 @@ function getlistdatap(){
 	loadData(function(res){	
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
-			var boxhtml="<div class='idcard' id ="+res[i].id+" identity="+res[i].identity+">"
-            +"<img class='imgs"+i+"' src="+htt+res[i].photo+">"
+
+			var boxhtml="<div class='idcard  ' id ="+res[i].id+" identity="+res[i].identity+">"
+            +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
+
             +"<div class='shade  ' style='display: none;'>"
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -190,12 +191,12 @@ function getlistdatap(){
 	}));
 }
 function getlistdatas(){
-	$('.setCard').text('');	
+	$('.setCard').text('');
 	loadData(function(res){	
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-site' id ="+res[i].id+" identity="+res[i].identity+">"
-	        +"<img class='imgs"+i+"' src="+htt+res[i].photo+">"
+	        +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
 	        +"<div class='shade  idcard-sites' style='display: none;'>"
 	        +"<img class='read' src='/resources/images/supplier/read.png'>"
 	        +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -215,10 +216,10 @@ function getlistdatas(){
 function getlistdatad(){
 	$('.setCard').text('');
 	loadData(function(res){	
-		var htt=getResourcesName();
+
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
-            +"<img class='imgs"+i+"' src="+htt+res[i].photo+">"
+            +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
             +"<div class='shade  idcard-facilitys' style='display: none;'>"
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -290,6 +291,43 @@ function getpeople(id,type){
 			$('.namegather').val(res.name);
 			$('.pricegather').val(res.price);
 			$('.remarkgather').val(res.remark);
+			//图片处理
+			$('.showimages').empty();
+			$('.showimages').hide();
+			$('#filePicker1 .fileimg').attr('data-value',res.mainPhoto);
+			$('#filePicker1 .fileimg').attr('src',getResourcesName()+res.mainPhoto);
+			
+			$('.addimgs,.clickimg').hide();
+			if($('.reupload').length<=0){
+				$('#filePicker1 .updateimg').after("<div class='reupload'>重新上传</div>");
+			}
+			
+			var photo=res.photo;
+			console.log(photo);
+			if (res.photo!='null'){
+				
+				$('.showimages').show();
+				photo=photo.split(';');
+				for (var i=0;i<photo.length;i++){
+					var addimagebox="<div class='imgsboxs '>"
+	      				+"<img class='imgsfive1' data-value="+photo[i]+" src="+getResourcesName()+photo[i]+">"
+	      				+"<div class='imgshade '>"
+	      				+"<img class='select' src='/resources/images/supplier/select.png'>"
+	      				+"</div></div>";
+		
+					$('.showimages').append(addimagebox);
+				}
+				if (photo.length>=5){
+					console.log(photo.length);
+					$('#filePicker2').attr("style","background: #ebebeb;");
+					$('#filePicker2').removeClass('webuploader-container');
+					
+				}else {
+					$('#filePicker2').removeAttr("style");
+					$('#filePicker2').addClass('webuploader-container');
+				}
+			}
+			
 			if (res.sex=='1'){
 				$('.gendergather').text('男');
 			}else {
@@ -324,6 +362,12 @@ function getpeople(id,type){
 			$('.directorbox').attr('id',id);
 			$('.directorbox').attr('identity',type);
 			$('.namedir').val(res.name);
+			$('#filePicker3 .fileimg').attr('data-value',res.photo);
+			$('#filePicker3 .fileimg').attr('src',getResourcesName()+res.photo);
+			$('.addimgs,.clickimg').hide();
+			if($('.reupload').length<=0){
+				$('#filePicker3 .updateimg').after("<div class='reupload'>重新上传</div>");
+			}
 			var specialty=res.specialty;
 			loadData(function(res){
 				console.log(res);
