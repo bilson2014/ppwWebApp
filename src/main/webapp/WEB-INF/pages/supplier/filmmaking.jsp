@@ -156,7 +156,7 @@
 		              						</div>
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							<div class='addtext filesimage' id='filePicker2' ></div>
 		              						
 		              						</div>
@@ -251,7 +251,7 @@
 		              					 	</div>
 		              					</div>
 		              					<div class='addboxs'>
-		              						<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
+		              						<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							
 		              					</div>
 		              					
@@ -329,7 +329,7 @@
 		               						<p class='clickimg'>点击添加图片</p>  -->
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							<div class='addtext filesimage' id='filePicker5' ></div>
 		              						
 		              						</div>

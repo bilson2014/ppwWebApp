@@ -3,11 +3,10 @@ $().ready(function() {
 	imgcheckpeople();
 	newbutton();
 	listcitydata();
-	
 	btnfocus();
-	
+
 	upperCase();
-	//初始化数据
+//	//初始化数据
 	$('.setCard').text('');
 	getlistdatap();//获取人数据
 	$('#filePicker2 .webuploader-pick').text('上传更多照片(最多5张)');
@@ -15,7 +14,7 @@ $().ready(function() {
 	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('#filePicker5 .webuploader-pick').text('上传更多照片(最多3张)');
 	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
-	
+//	
 });
 //图片尺寸的显示处理竖版
 function imgcheckpeople(){
@@ -84,8 +83,12 @@ function init(){
 	$("body").on("mouseout",".idcard",function(){
 		$(this).find('.shade').hide();
 	});
+	
+	$(".idcard .select").click(function(){
+		 console.log('wwq');
+		});
 	//图片删除共同dels  修改
-	$('body').on('click','.idcard .select',function(){
+	$('.page').on('click','.idcard .select',function(){
 		console.log('消失select');
 		$(this).parent().parent().find('.shade').hide();
 		var id=$(this).parent().parent().attr('id');
@@ -104,7 +107,7 @@ function init(){
 			deldevice(id);
 		}
 	});
-	$('body').on('click','.idcard .read',function(){
+	$('.page').on('click','.idcard .read',function(){
 		console.log('消失read');
 		$(this).parent().parent().find('.shade').hide();
 		$('.setting').show();
@@ -124,6 +127,7 @@ function init(){
 	$('.people').off('click').on('click',function(){
 		$('.setCard').text('');
 		getlistdatap();//获取人数据
+		
 		$(this).addClass('top-text');
 		$(this).siblings('div').removeClass('top-text ');
 		imgcheckpeople();
@@ -173,7 +177,6 @@ function newbutton(){
 function getlistdatap(){
 	$('.setCard').text('');
 	loadData(function(res){	
-		console.log(res);
 		if (res.length==0){
 			$('.writepng').show();
 		}else {
@@ -181,10 +184,8 @@ function getlistdatap(){
 		}
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
-
 			var boxhtml="<div class='idcard  ' id ="+res[i].id+" identity="+res[i].identity+">"
             +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
-
             +"<div class='shade  ' style='display: none;'>"
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -198,8 +199,7 @@ function getlistdatap(){
 		}
 		imgcheckpeople();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/people/list', $.toJSON({								 
-	}));
+	 }, getContextPath() + ' /production/people/list');
 }
 function getlistdatas(){
 	$('.setCard').text('');
@@ -226,8 +226,7 @@ function getlistdatas(){
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/studio/list', $.toJSON({								 
-	}));
+	 }, getContextPath() + ' /production/studio/list');
 }
 function getlistdatad(){
 	$('.setCard').text('');
@@ -269,8 +268,7 @@ function getlistdatad(){
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/device/list', $.toJSON({								 
-	}));	
+	 }, getContextPath() + ' /production/device/list');	
 }
 //下拉的城市的接口
 function listcitydata(){
