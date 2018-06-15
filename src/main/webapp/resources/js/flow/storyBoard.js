@@ -17,34 +17,13 @@ var timer = null;
 var loadTime = 0;
 //头像裁剪参数 end
 var delImgGroup = '';
-
+var inputNum = '';
 $().ready(function() {
 	document.domain = getUrl();
-	
-	
 	initOption();
 	initPos();
- 
-	 /*	
-		$('.toHide').off('click').on('click',function(){
-			$('#showNumLoad').show();
-			
-			$('#topBtn').addClass('topBtn');
-			$('#botBtn').addClass('botBtn');
-			$('#info').addClass('showInfoWord');
-			$('.toHide').hide();
-			
-			$('#topBtn').off('click').on('click',function(){
-				$('#picker .webuploader-element-invisible').click();
-			});
-			$('#botBtn').off('click').on('click',function(){
-				$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:'',text:'',file:'/resources/images/flow/def.jpg',path:''}));
-				initOption();
-
-			});
-		
-		});	*/
-		
+	imgUpload.init();
+	imgUpdate.init();
 });
 
 function initPos(){
@@ -99,6 +78,7 @@ function openProjectModel(){
 			var modelVal = $('.modelProductContent .modelPActive');
 			if(modelVal.length>0){
 				reShow(modelVal.attr('data-id'));
+				$('#loadProductModel').hide();
 			}
 		});
 		
@@ -128,11 +108,11 @@ function setReShow(item){
 		var imgPath = getResourcesName() + path;
 		
 		if(path == ''){
-			path = '/resources/imagess/flow.jpg';
+			imgPath = '/resources/images/flow/def.jpg';
 		}
 		
 		var text = imgItem[int].type;
-		var des  = imgItem[int].type;
+		var des  = imgItem[int].description;
 		$(".addItem").before(juicer(videoList_tpl.upload_Tpl,{textarea:des,text:text,file:imgPath,path:path}));
 	}
 	
@@ -155,7 +135,14 @@ function setReShow(item){
 	var pictureRatio = item.pictureRatio;
 	var videoStyle = item.videoStyle;
 	
-	getActiveVal($('#time .boxItem'),dimensionId);
+    
+	if(dimensionId == 30 || dimensionId == 60 ||  dimensionId == 120 ||  dimensionId == 180 ||  dimensionId == 300 ||  dimensionId == 600){
+		getActiveVal($('#time .boxItem'),dimensionId);
+	}else{
+        $('#setother').attr('data-id',dimensionId);	
+        $('#setother').find('input').val(dimensionId);
+        $('#setother').addClass('active');
+	}
 	getActiveVal($('#videoType .boxItem'),pictureRatio);
 	getActiveVal($('#videoStyleS .boxItem'),videoStyle);
 		
@@ -171,7 +158,7 @@ function setReShow(item){
 	initImgSize();
 	initOption();
 	$('#loadProductModel').hide();
-		
+			
 }
 
 
@@ -188,20 +175,21 @@ function getMyProject(){
 		$('#CheckloadProduct').off('click').on('click',function(){
 			var modelVal = $('.modelProductContent .modelPActive');
 			if(modelVal.length>0){		
-				loadData(function(result){
+				loadData(function(res){
 				   
-					if(result){
+					if(res.result){
 						 getValue(modelVal.attr('data-id'),0);
 					}else{
                          $('#sameProject').show();
                          $('#toSame').off('click').on('click',function(){
                         	 getValue(modelVal.attr('data-id'),0);
+                        	 $('#sameProject').hide();
                          });
                          $('#toCSame').off('click').on('click',function(){
-                        	 $('#loadProductModel').hide();
+                        	 $('#sameProject').hide();
                          });
                          $('.closeBtn').off('click').on('click',function(){
-                        	 $('#loadProductModel').hide();
+                        	 $('#sameProject').hide();
                          });
 					}
 				}, getContextPath() + '	/continuity/validate/'+modelVal.attr('data-id'),'');
@@ -215,7 +203,6 @@ function getMyProject(){
 function initOption(){
 	
 	$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	imgUpload.init();
 	newSelectCheck();
 	initSelect();
 	initCheckBox();
@@ -227,10 +214,28 @@ function initOption(){
 		openProjectModel();
 	});
 	$('.download').off('click').on('click',function(){
-		getValue('',1); 
+		
+		if(checkError()){
+			getValue('',1); 
+		}
+		
 	});
 	delImgEven();
-	updateImg();
+	reUpdate();
+	
+	$('#setSecond').bind(' input propertychange ',function(){
+		
+		if($(this).val().length > 1){
+			if(isNumber($(this).val())){
+				$(this).val($(this).val());
+				$(this).parent().attr('data-id',$(this).val());
+				inputNum = $(this).val();
+			}else{
+				$(this).val(inputNum);
+				$(this).parent().attr('data-id',inputNum);
+			}
+		}
+	});
 }
 
 //保存到项目
@@ -373,7 +378,7 @@ function initSortable(){
 }
 
 function initCheckBox(){
-	getBox($('#time .boxItem'));
+	getBoxHasInput($('#time .boxItem'));
 	getBox($('#videoType .boxItem'));
 	
 	$('.killItem').off('click').on('click',function(){
@@ -387,11 +392,21 @@ function initCheckBox(){
 			$(this).addClass('active');
 		})
 	}
+	
+	function getBoxHasInput(id){
+		id.on('click',function(){
+			id.removeClass('active');
+			$(this).addClass('active');
+			$('#setSecond').val('');
+			$('#setother').attr('data-id','');
+		})
+	}
+	
 }
 
 function checkError(){
 		
-	var checkImgType = $('.checkImgType');
+	/*var checkImgType = $('.checkImgType');
 	if(checkImgType.length>0){
 		for (var int = 0; int < checkImgType.length; int++) {
 			  var val = $(checkImgType[int]).attr('data-id');
@@ -403,9 +418,9 @@ function checkError(){
 	}else{
 		successToolTipShow('镜头未添加');
 		return false;
-	}
+	}*/
 	
-	var checkImgText = $('.checkImgText');
+/*	var checkImgText = $('.checkImgText');
 	if(checkImgText.length>0){
 		for (var int = 0; int < checkImgText.length; int++) {
 			  var val = $(checkImgText[int]).val();
@@ -417,7 +432,7 @@ function checkError(){
 	}else{
 		successToolTipShow('镜头未添加');
 		return false;
-	}
+	}*/
 		
 	/*var storyName = $('#storyName').val();
 	if(storyName == '' || storyName == null || storyName ==undefined){
@@ -442,6 +457,17 @@ function checkError(){
 	if(!time.length > 0){
 		successToolTipShow('视频时长未选择');
 		return false;
+	}
+	
+	var hasother = $('#setSecond');
+	
+	if(hasother.parent().hasClass('active')){
+		
+		if(hasother.val()=='' ||hasother.val()==null||hasother.val()==undefined){
+			successToolTipShow('视频时长未填写');
+			return false;
+		}
+		
 	}
 	
 	var videoType = $('#videoType .killDiv  .active');
@@ -515,7 +541,7 @@ var imgUpload = {
 						delImgEven();	
 						initSelect();
 						initCheckBox();
-						imgUpdate.init();
+						reUpdate();
 						$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 				}else{
 					successToolTipShow('图片获取失败');
@@ -563,6 +589,7 @@ function delImgEven(){
 function reUpdate(){
 	
 	$('.updateImg').off('click').on('click',function(){
+		$(this).addClass('hasUpdate');
 		$('#updateImg .webuploader-element-invisible').click();
 	})
 	
@@ -576,7 +603,7 @@ var imgUpdate = {
 		},
 		uploadFile:function(){
 			upload_Update && upload_Update.destroy();
-			var picker =$('.updateImg'); 
+			var picker =$('#updateImg'); 
 			upload_Update = WebUploader.create({
 				auto:true,
 				swf : '/resources/lib/webuploader/Uploader.swf',
@@ -596,7 +623,8 @@ var imgUpdate = {
 			
 			upload_Update.on('uploadSuccess', function(file,response) {
 				var uploaderId = '#rt_'+file.source.ruid;
-				var nowEven = $(uploaderId).parent().parent();
+			//	var nowEven = $(uploaderId).parent().parent();
+				var nowEven = $('.hasUpdate').parent();
 				var delImg = nowEven.attr('data-id');	
 				if(response.code == 0){
 					    delImgGroup += delImg +';';
@@ -605,6 +633,7 @@ var imgUpdate = {
 						nowEven.find('.backgroundImg').attr('src',imgPath);
 						nowEven.attr('data-id',path);
 						initImgSize();
+						$('.updateImg').removeClass('hasUpdate');
 				}else{
 					successToolTipShow('图片获取失败');
 				}
@@ -613,6 +642,17 @@ var imgUpdate = {
 			upload_Update.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
 			});
+			
+			upload_Update.on('filesQueued', function(file) {
+				console.info(file.length);
+				console.info(file.size);
+				console.table(file);
+				if(file.length > 1){
+					successToolTipShow('只能选择一张分镜');
+					upload_Update.reset();
+				}
+			});
+			
 			upload_Update.on('error', function(type) {
 				 if (type=="Q_TYPE_DENIED"){
 					 	successToolTipShow('请上传正确格式的图片');
@@ -652,4 +692,12 @@ var videoList_tpl = {
         project_Tpl:[
              "<div class='modelProItem' data-showId='${file.id}' data-id='${file.projectId}'>${file.projectName}</div>"
     		].join("")
+}
+
+function  isNumber(number){ // 是否是数字
+	reg = /^[1-9]+[0-9]*]*$/;
+	if(number.match(reg))
+		return true;
+	else
+		return false;
 }

@@ -187,8 +187,7 @@ public class ContinuityController extends BaseController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
-			
+			}			
 		}
 	}
 	
