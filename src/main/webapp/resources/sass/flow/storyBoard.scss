@@ -440,12 +440,14 @@
 
             .diy .boxItem {
                 margin-top: 15px;
+                cursor: pointer;
             }
 
             .boxItem {
                 vertical-align: top;
                 position: relative;
                 top: 1px;
+                cursor: pointer;
             }
 
             .boxItem {
@@ -465,7 +467,7 @@
                     border: 1px solid #D1D1D1;
                     border-radius: 100%;
                     margin-right: 5px;
-                    cursor: pointer;
+                    
                 }
 
                 input {

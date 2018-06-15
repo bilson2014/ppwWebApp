@@ -48,7 +48,7 @@
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
 		              <div class="managerCard">
-		                   <div class="title">收藏列表</div>
+		                   <div class="title" style="color:333;font-weight:500">案例收藏夹</div>
 		                   <div class="setCard">
 		                    <c:if test="${empty productList}">
 		                    <div class='vail'>您还没有收藏作品</div>

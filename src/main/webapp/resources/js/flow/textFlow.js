@@ -62,7 +62,7 @@ function checkClear(who){
 		$('.frame').attr('src',"/mgr/safeInfo");
 		$('#safe').addClass('treeitemRed');
 	}else if (who==3){
-		$('.frame').attr('src', getUrlTask() + "/mgr/favourites");
+		$('.frame').attr('src', "/mgr/favourites");
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').addClass('checkLi');
 		$('#boxsCancle').removeClass('checkLi');
