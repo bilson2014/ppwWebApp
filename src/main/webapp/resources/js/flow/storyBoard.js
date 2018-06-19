@@ -176,16 +176,18 @@ function getMyProject(){
 		$('#CheckloadProduct').off('click').on('click',function(){
 			var modelVal = $('.modelProductContent .modelPActive');
 			if(modelVal.length>0){		
-				loadData(function(res){
-				   
+				loadData(function(res){				   
 					if(res.result){
 						 getValue(modelVal.attr('data-id'),0);
+						 $('#projectName').text(modelVal.text());
+                    	 $('#projectId').val(modelVal.attr('data-id'));
 					}else{
                          $('#sameProject').show();
                          $('#toSame').off('click').on('click',function(){
                         	 getValue(modelVal.attr('data-id'),0);
                         	 $('#sameProject').hide();
                         	 $('#projectName').text(modelVal.text());
+                        	 $('#projectId').val(modelVal.attr('data-id'));
                          });
                          $('#toCSame').off('click').on('click',function(){
                         	 $('#sameProject').hide();
@@ -228,12 +230,7 @@ function initOption(){
 	$('#setSecond').bind(' input propertychange ',function(){
 		
 			if(isNumber($(this).val())){
-				$(this).val($(this).val());
 				$(this).parent().attr('data-id',$(this).val());
-				inputNum = $(this).val();
-			}else{
-				$(this).val(inputNum);
-				$(this).parent().attr('data-id',inputNum);
 			}
 		
 	});
@@ -287,15 +284,54 @@ function getValue(projectId,who){
 	var videoStyle = $('#videoStyleS .active').attr('data-id');
 	var setArray = JSON.stringify(setData);
 
-	if(who == 1){
-		
-	//    $('#name').val(storyName);
+	if(who == 1){ 
+		   $('#madeModel').show();
+	  /*  $('#name').val(storyName);
 		$('#dimensionId').val(dimensionId);
 		$('#videoStyle').val(videoStyle);
 		$('#pictureRatio').val(pictureRatio);
 		$('#scriptContent').val(setArray);
-		$('#toListForm').submit();
-		
+		$('#toListForm').submit();*/
+		   var url = getContextPath() + '/continuity/export';
+		   var xhr = new XMLHttpRequest();
+		   var form = new FormData();
+		   form.append('dimensionId',dimensionId);
+		   form.append('videoStyle',videoStyle);
+		   form.append('pictureRatio',pictureRatio);
+		   form.append('scriptContent',setArray);
+		   xhr.open('POST', url, true);        // 也可以使用POST方式，根据接口
+		   xhr.responseType = "blob";    // 返回类型blob
+		   // 定义请求完成的处理函数，请求前也可以增加加载框/禁用下载按钮逻辑
+		   xhr.onload = function () {
+		       // 请求完成
+		       if (this.status === 200) {
+		           // 返回200
+		    	   var name = $('#projectName').text();
+		    	   if(name == "未命名"){
+		    		   name = "分镜脚本"
+		    	   }else{
+		    		   name = "《"+name+"》分镜脚本";
+		    	   }
+		    	   $('#madeModel').hide();
+		           var blob = this.response;
+		           var reader = new FileReader();
+		           reader.readAsDataURL(blob);    // 转换为base64，可以直接放入a表情href
+		           reader.onload = function (e) {
+		               // 转换完成，创建一个a标签用于下载
+		               var a = document.createElement('a');
+		               a.download = name+'.pdf';
+		               a.href = e.target.result;
+		               $("body").append(a);    // 修复firefox中无法触发click
+		               a.click();
+		               $(a).remove();
+		           }
+		       }else{
+		    	   $('#madeModel').hide();
+		    	   successToolTipShow('导出失败');
+		       }
+		   };
+		   // 发送ajax请求
+		   xhr.send(form)
 	}else{
 			loadData(function(src){
 				if(src.result){
@@ -620,7 +656,7 @@ var imgUpdate = {
 				multiple:false,
 				accept :{
 				    title: 'Images',
-				    extensions: 'jpg,png',
+				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
 				}
 			});

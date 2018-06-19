@@ -151,7 +151,7 @@
 		                        <div class="boxItem" data-id="" id="setother">
 		                            <div class="box" style="position: relative;top: -5px;"></div>
 		                            <div class="des" style="vertical-align: top !important;position: relative;top: 1px;">其它(秒)</div>
-		                            <input onkeyup="value=value.replace(/[^\d]/g,'')" id="setSecond">
+		                            <input onkeyup="value=value.replace(/[^\d]/g)" id="setSecond">
 		                       </div>
 		                    </div>   
 	                 </div>
@@ -287,9 +287,15 @@
 	            </div>     
 	     </div>
 	</div>
-	
-	
-	
+		
+	  <div class="cusModel" id="madeModel" >
+           <div class="successModel">
+			   <div class="oSContent">
+			        <div class="tdDes" style="padding-top:115px;color:#fe5453;font-size:2rem">PDF制作中...</div>
+			   </div>
+           </div>
+      </div>
+		
 	<!-- photo Modal start -->
 	<div class="cusModel" id="mymodal">
 		<div class="modal-dialog">
@@ -321,14 +327,17 @@
 	
 	<div class="tooltip-success-show"></div>
 	
-	<form method="post" action="/continuity/export" id="toListForm" class="hide">
+	<%-- <form method="post" action="/continuity/export" id="toListForm" class="hide">
                         <input type="hidden" id="videoStyle" name="videoStyle" value="">
                         <input type="hidden" id="pictureRatio" name="pictureRatio" value="">
                         <input type="hidden" id="dimensionId" name="dimensionId" value="">
                         <input type="hidden" id="scriptContent" name="scriptContent" value="">
                         <input type="hidden" id="projectId" name="projectId" value="${projectId}">
                         <input type="hidden" id="createTime" name="createTime" value="${projectId}">
-     </form> 
+     </form>  --%>
+     
+      <input type="hidden" id="projectId" name="projectId" value="${projectId}">
+      <input type="hidden" id="createTime" name="createTime" value="">
     
 	
 	
