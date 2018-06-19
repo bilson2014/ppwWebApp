@@ -76,22 +76,22 @@ function sitemethod(){
 		
 		
 		if (namesite==undefined||namesite==null||namesite==''){
-			$('.namesitep').text('*名称不能为空');
+			$('.namesitep').text('*请填写场地名称');
 			return false;
 		}else if (msite==undefined||msite==null||msite==''){
-			$('.msitep').text('*面积不能为空');
+			$('.msitep').text('*请填写面积');
 			return false;
-		}else if(typesite=='请选择场地类型'){
+		}else if(typesite=='请选择'){
 			$('.typesitep').text('*请选择场地类型');
 			return false;
 		}else if(pricesite==undefined||pricesite==null||pricesite==''){
-			$('.pricesitep').text('*数字不能为空');
+			$('.pricesitep').text('*请填写价格');
 			return false;
-		}else if(citysite=='请选择城市'){
+		}else if(citysite=='请选择'){
 			$('.citysitep').text('*请选择城市');
 			return false;
 		}else if (locationsite==undefined||locationsite==null||locationsite==''){
-			$('.locationsitep').text('*地址不能为空');
+			$('.locationsitep').text('*请填写详细地址');
 			return false;
 		}else if (fileimg==undefined||fileimg==null||fileimg==''){
 			$('.siteright .addboxs span').attr("style","color: red;");
@@ -229,16 +229,16 @@ function cleandata(){
 	
 	$('.namesite').val('');
 	$('.msite').val('');
-	$('.typesite').text('请选择场地类型');
+	$('.typesite').text('请选择');
 	$('.pricesite').val('');
-	$('.citysite').text('请选择城市');
+	$('.citysite').text('请选择');
 	$('.locationsite').val('');
 	$('.siteremark').val('');
 	
 	$('.typecheck').hide();
 	$('.citycheck').hide();
 	
-	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
+	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('.addboxs span').removeAttr("style");
 	$('#filePicker5').removeAttr("style");
 	$('#filePicker5').addClass('webuploader-container');

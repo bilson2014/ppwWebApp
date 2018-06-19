@@ -70,95 +70,30 @@
 		               			<div class='sitett'>场地</div>
 		               			<div class='facility'>设备</div>
 		               			<div class='newbox'>
-		               				<img src="/resources/images/supplier/add.png">新建
+		               			
+		               				<span>添加</span>
 		               			</div>
 		               		</div>	
 		              		<div class='setCard'>
-		              		<!--每个列表  idcard-->
-		              			<!-- <div class='idcard '>
-		              				<img class="imgs1" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1527740495&di=f2c42a682f917b686de966d95944627d&src=http://img5.duitang.com/uploads/item/201411/04/20141104171337_xaMXx.jpeg">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' data-id="" src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div>
-		              			<div class='idcard '>
-		              				<img class="imgs2" src="/resources/images/supplier/55.png">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div>
-		              			
-		              			<div class='idcard '>
-		              				<img class="imgs3" src="/resources/images/supplier/44.png">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div>
-		              			<div class='idcard '>
-		              				<img class="imgs4" src="/resources/images/supplier/11.png">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div>
-		              			<div class='idcard '>
-		              				<img class="imgs5" src="/resources/images/supplier/33.png">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div><div class='idcard '>
-		              				<img class="imgs5" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528279592&di=fc4f3c06aa8ddd220b71df6f83582273&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F59%2F15%2F54f58PICMis_1024.png ">
-		              				<div class='shade '>
-		              					<img class='read' src="/resources/images/supplier/read.png">
-		              					<img class='select' src="/resources/images/supplier/select.png">
-		              				</div>
-		              				<div class='linebox'>
-		              					<span class='name'>小丸子/演员</span>
-		              					<p class='price'>￥250</p>
-		              				</div>
-		              			</div> -->		              			
-		              			
-    		
+		              		 	
+		              		 	
+		              		 	
 		              		</div>
-		              		
-		              		
-		              		<!--每个 弹框的模板  -->
-		              		
+		              		<div class='writepng'>
+		              		 		<img  src="/resources/images/supplier/write.png">
+		              		 </div>
+		        
 		              		<!--添加角色的 弹框  -->
 		              		<div class='setting' >
 
 		              			<div class='addpeople'>
 		              				<div class='addtitle'>请选择添加的角色</div>
 		              				<div class='addboxs'>
-		              					<div class='check'>请选择</div>
-		              					<img class='more' src="/resources/images/supplier/more.png">
-		              					<div class='morecheck'>
-		              						<span>演员</span>
-		              						<span>导演</span>
+		              					<input class='check ods' placeholder="请选择">
+		              					<img class='more ct' src="/resources/images/supplier/more.png">
+		              					<div class='morecheck odbox'>
+		              						<span class='boxs'>演员</span>
+		              						<span class='boxs'>导演</span>
 		              					</div>
 		              					<div class='sure'>确认</div>
 		              					<div class='cancel'>取消</div>
@@ -174,17 +109,17 @@
 		              				</div>
 		              				<div class='gather'>
 		              					<div class='gatherleft'>
-		              						<span>姓名</span>
+		              						<span>演员姓名</span>
 		              						<input class='namegather' type='text' placeholder="">
 		              						<p class='namegatherp errorp'></p>
 		              						
 		              						<span>性别</span>
-		              						<div class='gendergather'>请选择性别</div>
-		              						<img class='genderimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='gendergather '>请选择</div>
+		              						<img class='genderimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='gendergatherp errorp'></p>
-		              						<div class='twocheck'>
-		              							<p key='1'>男</p>
-		              							<p key='2'>女</p>
+		              						<div class='twocheck '>
+		              							<p key='1' >男</p>
+		              							<p key='2' >女</p>
 		              						</div>
 		              						
 		              						<span>出生年份</span>
@@ -192,38 +127,38 @@
 		              						<p class='oldgatherp errorp'></p>
 		              						
 		              						<span>种族</span>
-		              						<div class='racegather'>请选择种族</div>
-		              						<img class='raceimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='racegather '>请选择</div>
+		              						<img class='raceimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='racegatherp errorp'></p>
-		              						<div class='racecheck'></div>
+		              						<div class='racecheck '></div>
 		              						
 		              						<span>所在城市</span>
-		              						<div class='citygather'>请选择城市</div>
-		              						<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              						<div class='citygather '>请选择</div>
+		              						<img class='cityimg ' alt="" src="/resources/images/supplier/more.png">
 		              						<p class='citygatherp errorp'></p>
-		              						<div class='citycheck'>
+		              						<div class='citycheck '>
 		              						</div>
 		              						
-		              						<span>价格/天</span>
+		              						<span>价格(元/天)</span>
 		              						<input class='pricegather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              						<p class='pricegatherp errorp'></p>
 		              						
 		              					</div>
 		              					<div class='gatherright'>
-		              					
+		              						<div class='tipsimage'>演员照片
+		              						<span>(5张演员照片图包含1张封面)</span>
+		              						</div>
 		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
 		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
 		              					 		</div>
 
 		              						</div>
-		              						<!-- <img class='addimgs' alt="点击添加图片" src="/resources/images/supplier/adds.png"/>
-		               						<p class='clickimg'>点击添加图片</p> -->
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							<div class='addtext filesimage' id='filePicker2' ></div>
-		              							<p>(最多5张)</p>
+		              						
 		              						</div>
 		              						
 		              					</div>
@@ -281,39 +216,42 @@
 		              			<div class='director'>
 		              				<div class='directorl'>
 		              				
-		              					<span>姓名</span>
+		              					<span>导演姓名</span>
 		              					<input class='namedir' type='text' placeholder="">
 		              					<p class='namedirp errorp'></p>
 		              						
 		              					<span>擅长领域</span>
-		              					<div class='skilldir'>请选择擅长领域</div>
+		              					<div class='skilldir'>请选择</div>
 		              					<img class='skillimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='skilldirp errorp'></p>
 		              					<div class='skillcheck'>
 		              					</div>
 		              					
 		              					<span>所在城市</span>
-		              					<div class='citydir'>请选择城市</div>
+		              					<div class='citydir'>请选择</div>
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citydirp errorp'></p>
 		              					<div class='citycheck'>
 		              					</div>
 		              					
 		              					
-		              					<span>价格/天</span>
+		              					<span>价格(元/天)</span>
 		              					<input class='pricedir' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='pricedirp errorp'></p>
 		              					
 		              					
 		              				</div>
 		              				<div class='directorr'>
+		              					<div class='tipsimage'>导演照片
+		              						<span>(1张导演照片封面)</span>
+                                        </div>
 		              					<div class='addimage filesimage' id='filePicker3'><!-- id='picker' -->
 		              						<div class='updateimg'>
 		              					 		<img alt="用户头像" class='fileimg'/>
 		              					 	</div>
 		              					</div>
 		              					<div class='addboxs'>
-		              						<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              						<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							
 		              					</div>
 		              					
@@ -340,35 +278,36 @@
 		              			<div class='site'>
 		              				<div class='siteleft'>
 		              				
-		              					<span>名称</span>
+		              					<span>场地名称</span>
 		              					<input class='namesite' type='text' placeholder="">
+		              					<div class='hint'>如:北京高碑店**影视基地实景棚</div>
 		              					<p class='namesitep errorp'></p>
 		              					
-		              					<span>面积㎡</span>
+		              					<span>面积(㎡)</span>
 		              					<input class='msite' type='text' placeholder="">
 		              					<p class='msitep errorp'></p>
 		              						
-		              					<span>类型</span>
-		              					<div class='typesite'>请选择场地类型</div>
+		              					<span>场地类型</span>
+		              					<div class='typesite'>请选择</div>
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='typesitep errorp'></p>
 		              					<div class='typecheck'>
-		              						<p key='1'>  内景</p>
-		              						<p key='2'>  外景</p>
+		              						<p key='1'>内景</p>
+		              						<p key='2'>外景</p>
 		              					</div>
               					
-		              					<span>价格/天</span>
+		              					<span>价格(元/天)</span>
 		              					<input class='pricesite' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='pricesitep errorp'></p>
 		              					
 		              					<span>所在城市</span>
-		              					<div class='citysite'>请选择城市</div>
+		              					<div class='citysite'>请选择</div>
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='citysitep errorp'></p>
 		              					<div class='citycheck'>
 		              					</div>
 		              					
-		              					<span>地址</span>
+		              					<span>详细地址</span>
 		              					<input class='locationsite' type='text' placeholder="请输入地址">
 		              					<p class='locationsitep errorp'></p>
 		              					
@@ -376,6 +315,9 @@
 		              					
 		              				</div>
 		              				<div class='siteright'>
+		              						<div class='tipsimage'>场地照片
+		              						<span>(4张实景图包含1张场地封面)</span>
+		              						</div>
 		              				
 		              						<div class='addimage filesimage' id='filePicker4'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
@@ -387,10 +329,9 @@
 		               						<p class='clickimg'>点击添加图片</p>  -->
 		              						
 		              						<div class='addboxs'>
-		              							<span>可上传JPG、GIF或PNG格式的 文件，文件大小不能超过2M。</span>
+		              							<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
 		              							<div class='addtext filesimage' id='filePicker5' ></div>
 		              						
-		              							<p>(最多3张)</p>
 		              						</div>
 		              						
 		              				</div>
@@ -410,7 +351,7 @@
 		              			
 		              			<div class='remark'>
 		              				<span>备注</span>
-		              				<textarea class='siteremark' rows="4" cols="550" placeholder="请完善场地信息"></textarea>
+		              				<textarea class='siteremark' rows="4" cols="550" placeholder="请提供更多信息（如：棚高，配置等）"></textarea>
 		              			</div>
 		              			<!--提交按钮  -->
 		              			<div class='gatherbut'>
@@ -432,13 +373,13 @@
 		              				<div class='equipleft'>
 		              				
 		              					<span>设备类型</span>
-		              					<div class='typeequip'>请选择设备类型</div>
+		              					<div class='typeequip'>请选择</div>
 		              					<img class='typeimg' alt="" src="/resources/images/supplier/more.png">
 		              					<!-- <p class='typeequipp errorp'>*请选择设备类型</p> -->
 		              					<div class='typecheck'></div>
 		              					
 		              					<span class='bastname'>设备名称</span>
-		              					<input class='nameequip' placeholder="请选择设备名称" readonly="readonly">
+		              					<input class='nameequip' placeholder="请选择" readonly="readonly">
 		              					<img class='nameimg' alt="" src="/resources/images/supplier/more.png">
 		              					<!-- <p class='nameequipp errorp'>*请选择设备名称</p> -->
 		              					<div class='namecheck'></div>
@@ -451,19 +392,19 @@
 		              				
 		              				
 		              				<div class='equipleft'>
-		              					<span>设备数量</span>
+		              					<span>库存总量(台)</span>
 		              					<input class='numequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					
 		              				
-		              					<span class='days'>单价/天</span>
+		              					<span class='days'>单价(元/天)</span>
 		              					<input class='priceequip' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-		              					<span class='numequipp errorp'>*数字不能为空</span>
-		              					<span class='priceequipp errorp'>*价格不能为空</span>
+		              					<span class='numequipp errorp'>*请输入库存总量</span>
+		              					<span class='priceequipp errorp'>*请输入单价</span>
 		              				</div>
 		              				
-		              				<div class='equipleft' style="width: 300px;">
+		              				<div class='equipleft' style="width: 335px;">
 		              					<span>所在城市</span>
-		              					<div class='cityequip'>请选择城市</div>
+		              					<div class='cityequip'>请选择</div>
 		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
 		              					<div class='citycheck'></div>
 		              					<span class='cityequipp errorp'>*请选择城市</span>
@@ -473,7 +414,7 @@
 		              			</div>
 		              			<div class='remark'>
 		              				<span>备注</span>
-		              				<textarea class='equipremark' rows="4" cols="550" placeholder="请完善设备信息"></textarea>
+		              				<textarea class='equipremark' rows="4" cols="550" placeholder="请填写租赁设备详细信息（如：设备状态，租赁规则等）"></textarea>
 		              			</div>
 		              			<!--提交按钮  -->
 		              			<div class='gatherbut'>
@@ -489,6 +430,7 @@
 		   
 	<div class="tooltip-success-show"></div>
 	
+
 	
 	<script src="${jqueryJs }"></script>
 	<script src="${webuploaderJs}"></script>

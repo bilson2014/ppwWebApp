@@ -105,6 +105,10 @@ function initPage(){
 		$('#titleTop').text($('#clickSafe div').text());
 		$('#control').hide();
     }
+    
+    
+    var href = window.location.href;
+   
 }
 
 function showInfomation(title,body){
@@ -125,10 +129,7 @@ function getHeight(num){
 	var safe = 546;
 	var screens = document.body.clientHeight + 200;
 	var cc = document.body.clientHeight;
-	console.log(cc);
-
-	console.log('高');
-	console.log(screens);
+	
 	if(num == 1){
 		$("#content-frame").css('height',safe);
 	}else if(num==3){

@@ -3,15 +3,18 @@ $().ready(function() {
 	imgcheckpeople();
 	newbutton();
 	listcitydata();
-	//初始化数据
+	btnfocus();
+
+	upperCase();
+//	//初始化数据
 	$('.setCard').text('');
 	getlistdatap();//获取人数据
-	$('#filePicker2 .webuploader-pick').text('上传更多照片');
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
-	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
-	$('#filePicker5 .webuploader-pick').text('上传更多照片');
-	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加图片</p>");
-	
+	$('#filePicker2 .webuploader-pick').text('上传更多照片(最多5张)');
+	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+	$('#filePicker5 .webuploader-pick').text('上传更多照片(最多3张)');
+	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	
 });
 //图片尺寸的显示处理竖版
 function imgcheckpeople(){
@@ -80,8 +83,12 @@ function init(){
 	$("body").on("mouseout",".idcard",function(){
 		$(this).find('.shade').hide();
 	});
+	
+	$(".idcard .select").click(function(){
+		 console.log('wwq');
+		});
 	//图片删除共同dels  修改
-	$('body').on('click','.idcard .select',function(){
+	$('.page').on('click','.idcard .select',function(){
 		console.log('消失select');
 		$(this).parent().parent().find('.shade').hide();
 		var id=$(this).parent().parent().attr('id');
@@ -100,7 +107,7 @@ function init(){
 			deldevice(id);
 		}
 	});
-	$('body').on('click','.idcard .read',function(){
+	$('.page').on('click','.idcard .read',function(){
 		console.log('消失read');
 		$(this).parent().parent().find('.shade').hide();
 		$('.setting').show();
@@ -120,6 +127,7 @@ function init(){
 	$('.people').off('click').on('click',function(){
 		$('.setCard').text('');
 		getlistdatap();//获取人数据
+		
 		$(this).addClass('top-text');
 		$(this).siblings('div').removeClass('top-text ');
 		imgcheckpeople();
@@ -150,7 +158,7 @@ function newbutton(){
 		$('.equipbox').hide();
 		if ($('.top .people').hasClass('top-text')){
 			$('.addpeople').show();
-			$('.check').text('');
+			$('.check').val('');
 		}else if($('.top .sitett').hasClass('top-text')){
 			$('.sitebox').show();
 			$('.sitebox .sitetitle span').text('添加场地');
@@ -162,18 +170,22 @@ function newbutton(){
 			$('.equipbox').attr('id','');
 			cleandevdata();
 			dropdowndata();
+			
 		} 
 	});
 }
 function getlistdatap(){
 	$('.setCard').text('');
 	loadData(function(res){	
+		if (res.length==0){
+			$('.writepng').show();
+		}else {
+			$('.writepng').hide();
+		}
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
-
 			var boxhtml="<div class='idcard  ' id ="+res[i].id+" identity="+res[i].identity+">"
             +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
-
             +"<div class='shade  ' style='display: none;'>"
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
@@ -187,12 +199,16 @@ function getlistdatap(){
 		}
 		imgcheckpeople();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/people/list', $.toJSON({								 
-	}));
+	 }, getContextPath() + ' /production/people/list');
 }
 function getlistdatas(){
 	$('.setCard').text('');
 	loadData(function(res){	
+		if (res.length==0){
+			$('.writepng').show();
+		}else {
+			$('.writepng').hide();
+		}
 		var htt = getResourcesName();
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-site' id ="+res[i].id+" identity="+res[i].identity+">"
@@ -210,12 +226,16 @@ function getlistdatas(){
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/studio/list', $.toJSON({								 
-	}));
+	 }, getContextPath() + ' /production/studio/list');
 }
 function getlistdatad(){
 	$('.setCard').text('');
 	loadData(function(res){	
+		if (res.length==0){
+			$('.writepng').show();
+		}else {
+			$('.writepng').hide();
+		}
 
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
@@ -248,8 +268,7 @@ function getlistdatad(){
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
-	 }, getContextPath() + ' /production/device/list', $.toJSON({								 
-	}));	
+	 }, getContextPath() + ' /production/device/list');	
 }
 //下拉的城市的接口
 function listcitydata(){
@@ -265,7 +284,7 @@ function listpeopledata(type){
 	loadData(function(res){	
 		if (type=='director'){
 			for(var i=0;i<res.specialtyList.length;i++){
-				var phtml="<p value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
+				var phtml="<p  value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
 				$('.skillcheck').append(phtml);
 			}
 		}else {
@@ -392,3 +411,286 @@ function getpeople(id,type){
 		}));
 	}
 }
+function btnfocus(){
+	$('body').off('click').on('click',function(e){
+		 $('.odbox').removeClass('reilef');
+		 $('.ods').removeClass('Color');
+		 $('.twocheck ').removeClass('reilef');
+		 $('.gendergather').removeClass('Color');
+		 
+		 $('.racecheck').removeClass('reilef');
+		 $('.racegather ').removeClass('Color');
+		 
+		 $('.citycheck ').removeClass('reilef');
+		 $('.citygather').removeClass('Color');
+		 
+		 $('.skillcheck ').removeClass('reilef');
+		 $('.skilldir').removeClass('Color');
+		
+		 $('.citycheck ').removeClass('reilef');
+		 $('.citydir').removeClass('Color');
+		 
+		 $('.typecheck ').removeClass('reilef');
+		 $('.typesite').removeClass('Color');
+		 $('.citycheck ').removeClass('reilef');
+		 $('.citysite').removeClass('Color');
+		 
+		 
+		 $('.typecheck ').removeClass('reilef');
+		 $('.typeequip').removeClass('Color');
+		 $('.namecheck ').removeClass('reilef');
+		 $('.nameequip').removeClass('Color');
+		 
+		 $('.citycheck ').removeClass('reilef');
+		 $('.cityequip').removeClass('Color');
+		 
+		 event.stopPropagation();
+	});
+	$('.ods,.ct').off('click').on('click',function(e){
+		 $('.odbox').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.odbox').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.ods').removeClass('Color');
+			$(this).find('.odbox').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('.odbox boxs').off('click').on('click',function(e){
+		$('.ods').val($(this).text());
+	   	$('.odbox').removeClass('reilef');
+	   	$('.ods').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	//性别
+	$('.gendergather,.genderimg').off('click').on('click',function(e){
+		 $('.twocheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.twocheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.gendergather').removeClass('Color');
+			$(this).find('.twocheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('.twocheck p').off('click').on('click',function(e){
+		$('.gendergather').text($(this).text());
+	   	$('.twocheck').removeClass('reilef');
+	   	$('.gendergather').removeClass('Color');
+	     event.stopPropagation();
+	});
+//种族
+	$('.racegather,.raceimg').off('click').on('click',function(e){
+		 $('.racecheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.racecheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.racegather').removeClass('Color');
+			$(this).find('.racecheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.racecheck p',function(){
+		$('.racegather').text($(this).text());
+	   	$('.racecheck').removeClass('reilef');
+	   	$('.racegather').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//城市
+	$('.citygather,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.citygather').removeClass('Color');
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	
+	$('body').on('click','.citycheck p',function(){
+		$('.citygather').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citygather').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//领域
+	$('.skilldir,.skillimg').off('click').on('click',function(e){
+		 $('.skillcheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.skillcheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.skilldir').removeClass('Color');
+			$(this).find('.skillcheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.skillcheck p',function(){
+		$('.skilldir').text($(this).text());
+	   	$('.skillcheck').removeClass('reilef');
+	   	$('.skilldir').removeClass('Color');
+	     event.stopPropagation();
+	});
+//城市
+	$('.citydir,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.citydir').removeClass('Color');
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.citycheck p',function(){
+		$('.citydir').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citydir').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	
+//	场地类型
+	$('.typesite,.typeimg').off('click').on('click',function(e){
+		 $('.typecheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.typecheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.typesite').removeClass('Color');
+			$(this).find('.typecheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.typecheck p',function(){
+		$('.typesite').text($(this).text());
+	   	$('.typecheck').removeClass('reilef');
+	   	$('.typesite').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//所在城市
+	$('.citysite,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.citysite').removeClass('Color');
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.sitebox .citycheck p',function(){
+		$('.citysite').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citysite').removeClass('Color');
+	     event.stopPropagation();
+	});
+	///设备类型
+	$('.typeequip,.typeimg').off('click').on('click',function(e){
+		 $('.typecheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.typecheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.typeequip').removeClass('Color');
+			$(this).find('.typecheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.typecheck p',function(){
+		$('.typeequip').text($(this).text());
+	   	$('.typecheck').removeClass('reilef');
+	   	$('.typeequip').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	//名称
+	$('.nameequip,.nameimg').off('click').on('click',function(e){
+		if($('.typeequip').text()!='请选择'){
+			$('.namecheck').addClass('reilef');
+			if($(this).hasClass('Color')){
+				 $('.namecheck').removeClass('reilef');
+				$(this).removeClass('Color');
+			}
+			else
+			{
+				$('.nameequip').removeClass('Color');
+				$(this).find('.namecheck').addClass('reilef');
+				$(this).addClass('Color');
+			}
+			event.stopPropagation();
+		}
+		 
+	});
+	$('body').on('click','.namecheck p',function(){
+		$('.nameequip').val($(this).text());
+	   	$('.namecheck').removeClass('reilef');
+	   	$('.nameequip').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//-
+	$('.cityequip,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.cityequip').removeClass('Color');
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		event.stopPropagation();
+	});
+	$('body').on('click','.equipbox .citycheck p',function(){
+
+		$('.cityequip').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityequip').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+}
+
+function upperCase(){
+	console.log ('7666');
+}
+
+
+

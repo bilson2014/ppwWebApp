@@ -36,7 +36,7 @@ function devicemethod(){
 	$('.equipleft .nameequip,.equipleft .nameimg').off('click').on('click',function(){
 		$('.citycheck').hide();
 		$('.typecheck').hide();	
-		if($('.typeequip').text()!='请选择设备类型') {
+		if($('.typeequip').text()!='请选择') {
 			$('.namecheck').show();	
 		}else {
 			$('.typeequipp').show();
@@ -97,7 +97,7 @@ function devicemethod(){
 		$('.cityequipp').hide();
 		
 		
-		if (typeequip=='请选择设备类型'){
+		if (typeequip=='请选择'){
 			$('.typeequipp').show();
 			return false;
 		}else if (nameequip==undefined||nameequip==null||nameequip==''){
@@ -109,11 +109,11 @@ function devicemethod(){
 		}else if(priceequip==undefined||priceequip==null||priceequip==''){
 			$('.priceequipp').show();
 			return false;
-		}else if(cityequip=='请选择城市'){
+		}else if(cityequip=='请选择'){
 			$('.cityequipp').show();
 			return false;
 		}else {
-			console.log('验证正确');
+//			console.log('验证正确');
 			var biao=$('.equipbox .equiptitle span').text();
 			if (biao=='修改设备'){
 //				var id=$('.equipbox').attr('id');
@@ -207,11 +207,11 @@ function deldevice(id){
 	
 }
 function cleandevdata(){
-	$('.typeequip').text('请选择设备类型');
+	$('.typeequip').text('请选择');
 	$('.nameequip').val('');
 	$('.numequip').val('');
 	$('.priceequip').val('');
-	$('.cityequip').text('请选择城市');
+	$('.cityequip').text('请选择');
 	$('.equipremark').val('');
 	
 	$('.typeequipp').hide();
