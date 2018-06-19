@@ -286,14 +286,14 @@ function getValue(projectId,who){
 	var videoStyle = $('#videoStyleS .active').attr('data-id');
 	var setArray = JSON.stringify(setData);
 
-	if(who == 1){
-		
-	//    $('#name').val(storyName);
+	if(who == 1){ 
+		   $('#madeModel').show();
+	  /*  $('#name').val(storyName);
 		$('#dimensionId').val(dimensionId);
 		$('#videoStyle').val(videoStyle);
 		$('#pictureRatio').val(pictureRatio);
 		$('#scriptContent').val(setArray);
-	//	$('#toListForm').submit();
+		$('#toListForm').submit();*/
 		   var url = getContextPath() + '/continuity/export';
 		   var xhr = new XMLHttpRequest();
 		   var form = new FormData();
@@ -308,18 +308,28 @@ function getValue(projectId,who){
 		       // 请求完成
 		       if (this.status === 200) {
 		           // 返回200
+		    	   var name = $('#projectName').text();
+		    	   if(name == "未命名"){
+		    		   name = "分镜脚本"
+		    	   }else{
+		    		   name = "《"+name+"》分镜脚本";
+		    	   }
+		    	   $('#madeModel').hide();
 		           var blob = this.response;
 		           var reader = new FileReader();
 		           reader.readAsDataURL(blob);    // 转换为base64，可以直接放入a表情href
 		           reader.onload = function (e) {
 		               // 转换完成，创建一个a标签用于下载
 		               var a = document.createElement('a');
-		               a.download = 'data.pdf';
+		               a.download = name+'.pdf';
 		               a.href = e.target.result;
 		               $("body").append(a);    // 修复firefox中无法触发click
 		               a.click();
 		               $(a).remove();
 		           }
+		       }else{
+		    	   $('#madeModel').hide();
+		    	   successToolTipShow('导出失败');
 		       }
 		   };
 		   // 发送ajax请求
