@@ -5,15 +5,14 @@ $().ready(function() {
 	listcitydata();
 	btnfocus();
 
-	upperCase();
-//	//初始化数据
+//初始化数据
 	$('.setCard').text('');
 	getlistdatap();//获取人数据
 	$('#filePicker2 .webuploader-pick').text('上传更多照片(最多5张)');
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
-	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('#filePicker5 .webuploader-pick').text('上传更多照片(最多3张)');
-	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 //	
 });
 //图片尺寸的显示处理竖版
@@ -23,10 +22,8 @@ function imgcheckpeople(){
 		img.src=$('.imgs'+i).attr('src');
 		if (img.complete){
 			if (img.width/img.height<=1){
-//				console.log(img.width);
 				$('.imgs'+i).attr('style','width:auto;height:100%');
 			}else {
-//				console.log(img.width/img.height);
 				$('.imgs'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
 			}
 			img=null;
@@ -53,7 +50,6 @@ function imgcheckpeoplefive(){
 				img=null;
 			}
 		}
-		
 	}
 }
 //图片尺寸的显示处理横版
@@ -86,7 +82,7 @@ function init(){
 	
 	$(".idcard .select").click(function(){
 		 console.log('wwq');
-		});
+	});
 	//图片删除共同dels  修改
 	$('.page').on('click','.idcard .select',function(){
 		console.log('消失select');
@@ -127,7 +123,6 @@ function init(){
 	$('.people').off('click').on('click',function(){
 		$('.setCard').text('');
 		getlistdatap();//获取人数据
-		
 		$(this).addClass('top-text');
 		$(this).siblings('div').removeClass('top-text ');
 		imgcheckpeople();
@@ -146,9 +141,6 @@ function init(){
 		$(this).siblings('div').removeClass('top-text ');
 		imgchecksite();
 	});
-
-	
-	
 }
 function newbutton(){
 	$('.newbox').off('click').on('click',function(){
@@ -170,7 +162,6 @@ function newbutton(){
 			$('.equipbox').attr('id','');
 			cleandevdata();
 			dropdowndata();
-			
 		} 
 	});
 }
@@ -236,7 +227,6 @@ function getlistdatad(){
 		}else {
 			$('.writepng').hide();
 		}
-
 		for(var i=0;i<res.length;i++){
 			var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
             +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
@@ -293,7 +283,6 @@ function listpeopledata(type){
 				$('.racecheck').append(phtml);
 			}
 		}
-			
 	 }, getContextPath() + "/production/"+type+"/parameter");
 }
 
@@ -322,7 +311,7 @@ function getpeople(id,type){
 			}
 			
 			var photo=res.photo;
-			console.log(photo);
+//			console.log(photo);
 			if (res.photo!='null'){
 				
 				$('.showimages').show();
@@ -352,23 +341,29 @@ function getpeople(id,type){
 			}else {
 				$('.gendergather').text('女');
 			}
+			$('.gendergather').attr('key',res.sex);
+			
 			$('.oldgather').val(res.birthDay);
 			var zone=res.zone;
+			$('.racegather').attr('value',zone);
 			loadData(function(res){
 				for(var i=0;i<res.zoneList.length;i++){
 					if (zone==res.zoneList[i].value){
 						$('.racegather').text(res.zoneList[i].text);
 					}
 				}
-			 }, getContextPath() + '/production/actor/parameter');
+			 }, getContextPath() + '/production/actor/parameter', );
 			var city=res.city;
+			$('.citygather').attr('cityid',city);
 			loadData(function(res){
+				console.log(res);
 				for(var i=0;i<res.length;i++){
 					if (city==res[i].cityID){
 						$('.citygather').text(res[i].city);
 					}
 				}
-			 }, getContextPath() + '/all/citys');
+			 }, getContextPath() + '/all/citys', );
+			
 		 }, getContextPath() + '/production/actor/get', $.toJSON({						
 			 id:id,//	主键
 		}));
@@ -376,7 +371,7 @@ function getpeople(id,type){
 		//导演的数据
 		$('.directorbox').show();
 		loadData(function(res){		
-
+			console.log(res);
 			$('.directorbox .directortitle span').text('修改导演');
 			$('.directorbox').attr('id',id);
 			$('.directorbox').attr('identity',type);
@@ -388,8 +383,9 @@ function getpeople(id,type){
 				$('#filePicker3 .updateimg').after("<div class='reupload'>重新上传</div>");
 			}
 			var specialty=res.specialty;
+			$('.skilldir').attr('value',specialty);
 			loadData(function(res){
-				console.log(res);
+//				console.log(res);
 				for(var i=0;i<res.specialtyList.length;i++){
 					if (specialty==res.specialtyList[i].value){
 						$('.skilldir').text(res.specialtyList[i].text);
@@ -397,6 +393,7 @@ function getpeople(id,type){
 				}
 			 }, getContextPath() + '/production/director/parameter');
 			var city=res.city;
+			$('.citydir').attr('cityid',city);
 			loadData(function(res){
 				for(var i=0;i<res.length;i++){
 					if (city==res[i].cityID){
@@ -483,6 +480,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('.twocheck p').off('click').on('click',function(e){
+		$('.gendergather').attr('key',$(this).attr('key'));
 		$('.gendergather').text($(this).text());
 	   	$('.twocheck').removeClass('reilef');
 	   	$('.gendergather').removeClass('Color');
@@ -504,6 +502,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.racecheck p',function(){
+		$('.racegather').attr('value',$(this).attr('value'));
 		$('.racegather').text($(this).text());
 	   	$('.racecheck').removeClass('reilef');
 	   	$('.racegather').removeClass('Color');
@@ -526,6 +525,7 @@ function btnfocus(){
 	});
 	
 	$('body').on('click','.citycheck p',function(){
+		$('.citygather').attr('cityid',$(this).attr('cityid'));
 		$('.citygather').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.citygather').removeClass('Color');
@@ -547,6 +547,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.skillcheck p',function(){
+		$('.skilldir').attr('value',$(this).attr('value'));
 		$('.skilldir').text($(this).text());
 	   	$('.skillcheck').removeClass('reilef');
 	   	$('.skilldir').removeClass('Color');
@@ -568,6 +569,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.citycheck p',function(){
+		$('.citydir').attr('cityid',$(this).attr('cityid'));
 		$('.citydir').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.citydir').removeClass('Color');
@@ -591,6 +593,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.typecheck p',function(){
+		$('.typesite').attr('key',$(this).attr('key'));
 		$('.typesite').text($(this).text());
 	   	$('.typecheck').removeClass('reilef');
 	   	$('.typesite').removeClass('Color');
@@ -612,6 +615,7 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.sitebox .citycheck p',function(){
+		$('.citysite').attr('cityid',$(this).attr('cityid'));
 		$('.citysite').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.citysite').removeClass('Color');
@@ -633,9 +637,11 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.typecheck p',function(){
+		$('.typeequip').attr('key',$(this).attr('key'));
 		$('.typeequip').text($(this).text());
 	   	$('.typecheck').removeClass('reilef');
 	   	$('.typeequip').removeClass('Color');
+	   	droplink('device',$('.typeequip').attr('key'));
 	     event.stopPropagation();
 	});
 	
@@ -659,11 +665,12 @@ function btnfocus(){
 	});
 	$('body').on('click','.namecheck p',function(){
 		$('.nameequip').val($(this).text());
+		$('.nameequip').attr('key',$(this).attr('key'));
 	   	$('.namecheck').removeClass('reilef');
 	   	$('.nameequip').removeClass('Color');
 	     event.stopPropagation();
 	});
-	//-
+	//所在城市
 	$('.cityequip,.cityimg').off('click').on('click',function(e){
 		 $('.citycheck').addClass('reilef');
 		if($(this).hasClass('Color')){
@@ -679,17 +686,13 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.equipbox .citycheck p',function(){
-
+		$('.cityequip').attr('cityid',$(this).attr('cityid'));
 		$('.cityequip').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.cityequip').removeClass('Color');
 	     event.stopPropagation();
 	});
 	
-}
-
-function upperCase(){
-	console.log ('7666');
 }
 
 

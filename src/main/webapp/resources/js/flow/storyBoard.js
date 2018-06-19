@@ -131,8 +131,6 @@ function setReShow(item){
 		}
 	}
 	
-	//$('#storyName').val(item.name);
-	
 	var dimensionId = item.dimensionId; 
 	var pictureRatio = item.pictureRatio;
 	var videoStyle = item.videoStyle;

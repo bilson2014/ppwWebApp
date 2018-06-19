@@ -150,7 +150,7 @@
 		              						</div>
 		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
-		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
+		              					 			<img alt="用户头像" class='fileimg' src="/resources/images/supplier/666.png""/>
 		              					 		</div>
 
 		              						</div>
@@ -245,7 +245,7 @@
 		              					<div class='tipsimage'>导演照片
 		              						<span>(1张导演照片封面)</span>
                                         </div>
-		              					<div class='addimage filesimage' id='filePicker3'><!-- id='picker' -->
+		              					<div class='addimage filesimage' id='filePicker3'>
 		              						<div class='updateimg'>
 		              					 		<img alt="用户头像" class='fileimg'/>
 		              					 	</div>

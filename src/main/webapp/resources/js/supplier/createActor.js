@@ -119,14 +119,16 @@ function peoplechengck(){
 
 	//addpeople的确认 和取消
 	$('.addpeople .sure').off('click').on('click',function(){
-		$('.addpeople').hide();
-		listcitydata();
+		
+		
 		if ($('.check').val()=='演员'){
 			listpeopledata('actor');
 			$('.staffbox').show();
 			$('.staffbox .stafftitle span').text('创建演员');
 			cleanactordata();
 			//提前加载图片
+			$('.addpeople').hide();
+			listcitydata();
 //			imgcheckpeoplefive();
 		}else if($('.check').val()=='导演'){
 			listpeopledata('director');
@@ -135,6 +137,8 @@ function peoplechengck(){
 			$('.directorbox .directortitle span').text('创建导演');
 //			imgcheckpeoplefive();
 			cleadirectordata();
+			$('.addpeople').hide();
+			listcitydata();
 		}
 	});
 	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel').off('click').on('click',function(){
@@ -216,8 +220,6 @@ function gathermethod(){
 		var remarkgather=$('.remarkgather').val();
 		
 		var fileimg=$('#filePicker1 .fileimg').attr('src');
-		console.log(fileimg);
-		
 		
 		var endimg;
 		$('.imgsboxs').children('img').each(function(){
@@ -253,7 +255,7 @@ function gathermethod(){
 		}else if (pricegather==undefined||pricegather==null||pricegather==''){
 			$('.pricegatherp').text('*价格不能为空');
 			return false;
-		}else if (fileimg==undefined||fileimg==null||fileimg==''){
+		}else if (fileimg=='/resources/images/supplier/people.png'){
 			$('.gatherright .addboxs span').attr("style","color: red;");
 			return false;
 		}else {
@@ -329,11 +331,14 @@ function cleanactordata(){
 	$('.addboxs span').removeAttr("style");
 	$('#filePicker2').removeAttr("style");
 	$('#filePicker2').addClass('webuploader-container');
-	$('#filePicker1 .fileimg').removeAttr('data-value');
-	$('#filePicker1 .fileimg').removeAttr('src');
+	
+
+	$('#filePicker1 .fileimg').attr('src','/resources/images/supplier/people.png');
+	$('#filePicker1 .fileimg').attr('data-value','/resources/images/supplier/people.png');
+	
 	$('#filePicker1 .reupload').remove();
-	$('#filePicker1 .addimgs,#filePicker1 .clickimg').show();
-	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker1 .addimgs,#filePicker1 .clickimg').show();
+//	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 
 	$('.showimages').hide();
 	$('.showimages').empty();
@@ -360,10 +365,8 @@ var imgUpload1 = {
 			//批量上传
 			this.multipUploadFile();
 		},
-		
 		multipUploadFile:function(){
 			upload_Video && upload_Video.destroy();
-		/*	var picker =$('.pickimg'); */
 			var picker =$('#filePicker1'); 
 			upload_Video = WebUploader.create({
 				auto:true,
@@ -372,20 +375,18 @@ var imgUpload1 = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
-				},
+				}
 			});
 			upload_Video.on('uploadProgress',function(file, percentage) {
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
 				if(response.code == 0){
 					//图片获取成功的 操作
 					console.log('获取成功了 图片');			
@@ -408,27 +409,24 @@ var imgUpload1 = {
 			upload_Video.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
 			});
+			
+			upload_Video.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_Video.reset();
+				}
+			});
+			
 			upload_Video.on('error', function(type) {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
 					successToolTipShow('请上传1M以内的图片');
 			    }
-			});
-//			//计算有多少个实例化按钮
-//			 var boxes_len = $(".filesimage").length;
-//		    //循环实例化页面的上传按钮
-//		     for(var i=1; i<=boxes_len ;i++){
-//		    	 upload_Video.addButton({
-//		             id : "#filePicker"+(i),//必须唯一
-//		             innerHTML : '选择图片',
-//		         });
-//		     }
-			
-			
+			});		
 		}		
 }
-//文件批量上传--------------
+//文件批量上传
 var imgUpload2 = {
 		init : function() {
 			//批量上传
@@ -437,7 +435,6 @@ var imgUpload2 = {
 		
 		multipUploadFile:function(){
 			upload_Update && upload_Update.destroy();
-		/*	var picker =$('.pickimg'); */
 			var picker =$('#filePicker2'); 
 			upload_Update = WebUploader.create({
 				auto:true,
@@ -446,20 +443,20 @@ var imgUpload2 = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
-				},
+				}
 			});
 			upload_Update.on('uploadProgress',function(file, percentage) {
 			});
 			upload_Update.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
+//				console.log(file);
+//				console.log(response);
 				if(response.code == 0){
 					//图片获取成功的 操作
 					console.log('获取成功了 图片');			
@@ -482,6 +479,12 @@ var imgUpload2 = {
 			upload_Update.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
 			});
+			upload_Update.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_Update.reset();
+				}
+			});
 			upload_Update.on('error', function(type) {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
@@ -489,9 +492,6 @@ var imgUpload2 = {
 					successToolTipShow('请上传1M以内的图片');
 			    }
 			});
-			
-			
-			
 			
 		}		
 }
@@ -510,20 +510,20 @@ var imgUpload3 = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
-				},
+				}
 			});
 			upload_dir.on('uploadProgress',function(file, percentage) {
 			});
 			upload_dir.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
+//				console.log(file);
+//				console.log(response);
 				if(response.code == 0){
 					//图片获取成功的 操作
 					console.log('获取成功 图片');			
@@ -545,6 +545,12 @@ var imgUpload3 = {
 			});
 			upload_dir.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
+			});
+			upload_dir.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_dir.reset();
+				}
 			});
 			upload_dir.on('error', function(type) {
 				if (type=="Q_TYPE_DENIED"){
@@ -571,20 +577,20 @@ var imgUpload4 = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
-				},
+				}
 			});
 			upload_site.on('uploadProgress',function(file, percentage) {
 			});
 			upload_site.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
+//				console.log(file);
+				
 				if(response.code == 0){
 					//图片获取成功的 操作
 					console.log('获取成功 图片');			
@@ -606,6 +612,12 @@ var imgUpload4 = {
 			});
 			upload_site.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
+			});
+			upload_site.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_site.reset();
+				}
 			});
 			upload_site.on('error', function(type) {
 				if (type=="Q_TYPE_DENIED"){
@@ -643,20 +655,18 @@ var imgUpload5 = {
 				timeout:60*60*1000,
 				pick : picker,
 				fileSingleSizeLimit : image_max_size,
-				threads :10,
+				threads :1,
 				duplicate :true,
 				multiple:true,
 				accept :{
 				    title: 'Images',
 				    extensions: 'jpg,png,jpeg',
 				    mimeTypes: 'image/jpeg,image/png'
-				},
+				}
 			});
 			upload_sitemore.on('uploadProgress',function(file, percentage) {
 			});
 			upload_sitemore.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
 				if(response.code == 0){
 					//图片获取成功的 操作
 					console.log('获取成功 图片');			
@@ -679,6 +689,12 @@ var imgUpload5 = {
 			});
 			upload_sitemore.on('uploadError', function(file,reason) {
 				successToolTipShow(reason);
+			});
+			upload_sitemore.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_sitemore.reset();
+				}
 			});
 			upload_sitemore.on('error', function(type) {
 				if (type=="Q_TYPE_DENIED"){
@@ -833,10 +849,10 @@ function cutUpload(path,pick){
 				if (pick=='filePicker1'){
 					$('#filePicker1 .fileimg').attr('src',getResourcesName()+userTarget.result);
 					$('#filePicker1 .fileimg').attr('data-value',userTarget.result);
-					//移除--之后添加
-					$('#filePicker1 .addimgs').remove();
-					$('#filePicker1 .clickimg').remove();
-					
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
 					if($('.reupload').length<=0){
 						$('#filePicker1 .updateimg').after("<div class='reupload'>重新上传</div>");
 					}
@@ -861,8 +877,8 @@ function cutUpload(path,pick){
 					$('#filePicker3 .fileimg').attr('src',getResourcesName()+userTarget.result);
 					$('#filePicker3 .fileimg').attr('data-value',userTarget.result);
 					//移除--之后添加
-					$('#filePicker3 .addimgs').remove();
-					$('#filePicker3 .clickimg').remove();
+//					$('#filePicker3 .addimgs').remove();
+//					$('#filePicker3 .clickimg').remove();
 					
 					if($('.reupload').length<=0){
 						$('#filePicker3 .updateimg').after("<div class='reupload'>重新上传</div>");
@@ -872,8 +888,8 @@ function cutUpload(path,pick){
 					$('#filePicker4 .fileimg').attr('src',getResourcesName()+userTarget.result);
 					$('#filePicker4 .fileimg').attr('data-value',userTarget.result);
 					//移除--之后添加
-					$('#filePicker4 .addimgs').remove();
-					$('#filePicker4 .clickimg').remove();
+//					$('#filePicker4 .addimgs').remove();
+//					$('#filePicker4 .clickimg').remove();
 					
 					if($('.reupload').length<=0){
 						$('#filePicker4 .updateimg').after("<div class='reupload'>重新上传</div>");
@@ -896,8 +912,6 @@ function cutUpload(path,pick){
 					}
 					
 				}
-				
-				
 				
 				$('#modal-preview').attr('src','');
 				$('#modal-original-img').attr('src','');
