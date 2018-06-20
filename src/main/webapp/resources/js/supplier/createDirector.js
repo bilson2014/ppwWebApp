@@ -18,9 +18,9 @@ function dirmethod(){
 		$('.citycheck').hide();
 	});
 	$('body').on('click','.skillcheck p',function(){
-		$('.skilldir').attr('value',$(this).attr('value'));
-		$('.skilldir').text($(this).text());
-		$('.skillcheck').hide();
+//		$('.skilldir').attr('value',$(this).attr('value'));
+//		$('.skilldir').text($(this).text());
+//		$('.skillcheck').hide();
 	});
 	
 	$('.directorl .citydir,.directorl .cityimg').off('click').on('click',function(){
@@ -119,6 +119,8 @@ function cleadirectordata(){
 	
 	$('.namedir').val('');
 	$('.skilldir').text('请选择');
+	$('.skilldir').attr('value','');
+	$('.skillcheck p').removeClass('pickme');
 	$('.citydir').text('请选择');
 	$('.pricedir').val('');
 	$('.remarkdirector').val('');

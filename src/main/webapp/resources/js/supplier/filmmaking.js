@@ -182,14 +182,15 @@ function getlistdatap(){
             +"<img class='select' src='/resources/images/supplier/select.png'>"
             +"</div>"
             +"<div class='linebox '>"
-            +"<span class='name'>"+res[i].name+"</span>"
+            +"<span class='name one'>"+res[i].name+"</span>"
             +"<p class='price'>"+res[i].price+"</p>"
+            +"<div class='addprice'>元/天</div>"
             +"</div>"
             +"</div>";
 			$('.setCard').append(boxhtml);
 		}
 		imgcheckpeople();
-		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
+		$(window.parent.document).find('.frame').css('height',$('.page').height() + 350);
 	 }, getContextPath() + ' /production/people/list');
 }
 function getlistdatas(){
@@ -209,8 +210,9 @@ function getlistdatas(){
 	        +"<img class='select' src='/resources/images/supplier/select.png'>"
 	        +"</div>"
 	        +"<div class='linebox linebox-site'>"
-	        +"<span class='name'>"+res[i].name+"</span>"
+	        +"<span class='name two'>"+res[i].name+"</span>"
 	        +"<p class='price'>"+res[i].price+"</p>"
+	        +"<div class='addprice'>元/天</div>"
 	        +"</div>"
 	        +"</div>";
 			$('.setCard').append(boxhtml);
@@ -228,17 +230,26 @@ function getlistdatad(){
 			$('.writepng').hide();
 		}
 		for(var i=0;i<res.length;i++){
-			var boxhtml="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">"
-            +"<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">"
-            +"<div class='shade  idcard-facilitys' style='display: none;'>"
-            +"<img class='read' src='/resources/images/supplier/read.png'>"
-            +"<img class='select' src='/resources/images/supplier/select.png'>"
-            +"</div>"
-            +"<div class='linebox linebox-facility'>"
-            +"<span class='name'>"+res[i].name+"</span>"
-            +"<p class='price'>"+res[i].price+"</p>"
-            +"</div>"
-            +"</div>";
+			console.log(res[i].photo);
+			var boxhtmland;
+			if (res[i].photo==null){
+				boxhtmland= "<div class='and imgs"+i+"'>"+res[i].name+"</div>";
+			}else {
+				boxhtmland= "<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">";
+			}
+			var boxhtmlend="<div class='shade  idcard-facilitys' style='display: none;'>"
+	            +"<img class='read' src='/resources/images/supplier/read.png'>"
+	            +"<img class='select' src='/resources/images/supplier/select.png'>"
+	            +"</div>"
+	            +"<div class='linebox linebox-facility'>"
+	            +"<span class='name three'>"+res[i].name+"</span>"
+	            +"<p class='price'>"+res[i].price+"</p>"
+	            +"<div class='addprice'>元/天</div>"
+	            +"</div>"
+	            +"</div>";
+			var boxhtmlbegin="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">";
+         
+            var boxhtml=boxhtmlbegin+boxhtmland+boxhtmlend;
 			$('.setCard').append(boxhtml);
 			//图片处理
 			var img=new Image();
@@ -272,11 +283,36 @@ function listcitydata(){
 //演员导演的dropdown 获取
 function listpeopledata(type){
 	loadData(function(res){	
+		$('.skillcheck').empty();
 		if (type=='director'){
-			for(var i=0;i<res.specialtyList.length;i++){
-				var phtml="<p  value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
-				$('.skillcheck').append(phtml);
+			if ($('.skilldir').attr('value')==undefined){
+				for(var i=0;i<res.specialtyList.length;i++){
+					var phtml="<p  value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
+					$('.skillcheck').append(phtml);
+				}
+			}else {
+				var num=$('.skilldir').attr('value');//1,1,2,3
+				num=num.split(",");
+				var blok=true;
+				for(var i=0;i<res.specialtyList.length;i++){
+					for (var j=0;j<num.length;j++){
+						if (num[j]==res.specialtyList[i].value){
+							var phtml="<p class='pickme' value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
+							$('.skillcheck').append(phtml);
+							blok=false;
+						}
+					}
+					if (blok){
+						var phtml="<p value="+res.specialtyList[i].value+">"+res.specialtyList[i].text+"</p>";
+						$('.skillcheck').append(phtml);
+					}else {
+						blok=true;
+					}
+					
+				}
 			}
+			
+			
 		}else {
 			for(var i=0;i<res.zoneList.length;i++){
 				var phtml="<p value="+res.zoneList[i].value+">"+res.zoneList[i].text+"</p>";
@@ -291,8 +327,9 @@ function getpeople(id,type){
 	if (type=='actor'){
 		$('.staffbox').show();
 		loadData(function(res){	
-			console.log('修改演员');
-			console.log(res);
+			listpeopledata('actor');
+//			console.log('修改演员');
+//			console.log(res);
 			$('.staffbox .stafftitle span').text('修改演员');
 			$('.staffbox').attr('id',id);
 			$('.staffbox').attr('identity',type);
@@ -311,7 +348,6 @@ function getpeople(id,type){
 			}
 			
 			var photo=res.photo;
-//			console.log(photo);
 			if (res.photo!='null'){
 				
 				$('.showimages').show();
@@ -352,7 +388,7 @@ function getpeople(id,type){
 						$('.racegather').text(res.zoneList[i].text);
 					}
 				}
-			 }, getContextPath() + '/production/actor/parameter', );
+			 }, getContextPath() + '/production/actor/parameter' );
 			var city=res.city;
 			$('.citygather').attr('cityid',city);
 			loadData(function(res){
@@ -362,7 +398,7 @@ function getpeople(id,type){
 						$('.citygather').text(res[i].city);
 					}
 				}
-			 }, getContextPath() + '/all/citys', );
+			 }, getContextPath() + '/all/citys');
 			
 		 }, getContextPath() + '/production/actor/get', $.toJSON({						
 			 id:id,//	主键
@@ -371,7 +407,8 @@ function getpeople(id,type){
 		//导演的数据
 		$('.directorbox').show();
 		loadData(function(res){		
-			console.log(res);
+			
+//			console.log(res);
 			$('.directorbox .directortitle span').text('修改导演');
 			$('.directorbox').attr('id',id);
 			$('.directorbox').attr('identity',type);
@@ -382,15 +419,28 @@ function getpeople(id,type){
 			if($('.reupload').length<=0){
 				$('#filePicker3 .updateimg').after("<div class='reupload'>重新上传</div>");
 			}
-			var specialty=res.specialty;
+			var specialty=res.specialty;//1,2,3
 			$('.skilldir').attr('value',specialty);
+			specialty=specialty.split(",");
+			listpeopledata('director');
+	
 			loadData(function(res){
-//				console.log(res);
-				for(var i=0;i<res.specialtyList.length;i++){
-					if (specialty==res.specialtyList[i].value){
-						$('.skilldir').text(res.specialtyList[i].text);
+				
+				for(var j=0;j<specialty.length;j++){
+					for(var i=0;i<res.specialtyList.length;i++){
+						if (specialty[j]==res.specialtyList[i].value){
+							
+							var texs=specialty[j];
+							if ($('.skilldir').text()=='请选择'){
+								$('.skilldir').text(res.specialtyList[i].text);
+							}else{
+								$('.skilldir').text($('.skilldir').text()+","+res.specialtyList[i].text);
+							}
+						}
 					}
+					
 				}
+				
 			 }, getContextPath() + '/production/director/parameter');
 			var city=res.city;
 			$('.citydir').attr('cityid',city);
@@ -463,7 +513,6 @@ function btnfocus(){
 	   	$('.ods').removeClass('Color');
 	     event.stopPropagation();
 	});
-	
 	//性别
 	$('.gendergather,.genderimg').off('click').on('click',function(e){
 		 $('.twocheck').addClass('reilef');
@@ -471,12 +520,15 @@ function btnfocus(){
 			 $('.twocheck').removeClass('reilef');
 			$(this).removeClass('Color');
 		}
-		else
-		{
+		else{
 			$('.gendergather').removeClass('Color');
 			$(this).find('.twocheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.racecheck').removeClass('reilef');
+	   	$('.racegather').removeClass('Color');
+		$('.citycheck').removeClass('reilef');
+	   	$('.citygather').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('.twocheck p').off('click').on('click',function(e){
@@ -493,12 +545,15 @@ function btnfocus(){
 			 $('.racecheck').removeClass('reilef');
 			$(this).removeClass('Color');
 		}
-		else
-		{
+		else{
 			$('.racegather').removeClass('Color');
 			$(this).find('.racecheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.twocheck').removeClass('reilef');
+	   	$('.gendergather').removeClass('Color');
+		$('.citycheck').removeClass('reilef');
+	   	$('.citygather').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.racecheck p',function(){
@@ -515,12 +570,15 @@ function btnfocus(){
 			 $('.citycheck').removeClass('reilef');
 			$(this).removeClass('Color');
 		}
-		else
-		{
+		else{
 			$('.citygather').removeClass('Color');
 			$(this).find('.citycheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.twocheck').removeClass('reilef');
+	   	$('.gendergather').removeClass('Color');
+	   	$('.racecheck').removeClass('reilef');
+	   	$('.racegather').removeClass('Color');
 		event.stopPropagation();
 	});
 	
@@ -544,14 +602,64 @@ function btnfocus(){
 			$(this).find('.skillcheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.citycheck').removeClass('reilef');
+	   	$('.citydir').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.skillcheck p',function(){
-		$('.skilldir').attr('value',$(this).attr('value'));
-		$('.skilldir').text($(this).text());
-	   	$('.skillcheck').removeClass('reilef');
-	   	$('.skilldir').removeClass('Color');
-	     event.stopPropagation();
+		var time=$(this).text();
+		if ($('.skilldir').text()=='请选择'){
+			$('.skilldir').attr('value',$(this).attr('value'));
+			$('.skilldir').text($(this).text());
+			$(this).addClass('pickme');
+		}else if ($(this).hasClass('pickme')){
+			$(this).removeClass('pickme');
+			var val=$('.skilldir').attr('value');//1,2,3
+			var tex=$('.skilldir').text();// 广告,广告,摄影
+			var vals=$(this).attr('value');
+			var texs=$(this).text();
+			var vv,tt;
+			val=val.split(",");
+			for(var i=0;i<val.length;i++){
+				if (vals==val[i]){
+					if (val.length==1){
+						vv='';
+					}else{
+						vv=vv;
+					}
+				}else{
+					if (vv==undefined||vv==null){
+						vv=val[i]
+					}else{
+						vv=vv+","+val[i];
+					}
+				}
+			}
+			tex=tex.split(",");
+			for(var i=0;i<tex.length;i++){
+				if (texs==tex[i]){
+					tt=tt;
+					if (tex.length==1){
+						tt='请选择';
+					}else {
+						tt=tt;
+					}
+				}else{
+					if (tt==undefined||tt==null){
+						tt=tex[i]
+					}else{
+						tt=tt+","+tex[i];
+					}
+				}
+			}
+			$('.skilldir').attr('value',vv);
+			$('.skilldir').text(tt);
+		}else {
+			$('.skilldir').attr('value',$('.skilldir').attr('value')+","+$(this).attr('value'));
+			$('.skilldir').text($('.skilldir').text()+","+$(this).text());
+			$(this).addClass('pickme');
+		}
+	    return false;
 	});
 //城市
 	$('.citydir,.cityimg').off('click').on('click',function(e){
@@ -566,6 +674,8 @@ function btnfocus(){
 			$(this).find('.citycheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.skillcheck').removeClass('reilef');
+	   	$('.skilldir').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.citycheck p',function(){
@@ -590,6 +700,8 @@ function btnfocus(){
 			$(this).find('.typecheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.citycheck').removeClass('reilef');
+	   	$('.citysite').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.typecheck p',function(){
@@ -612,6 +724,8 @@ function btnfocus(){
 			$(this).find('.citycheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.typecheck').removeClass('reilef');
+	   	$('.typesite').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.sitebox .citycheck p',function(){
@@ -634,11 +748,16 @@ function btnfocus(){
 			$(this).find('.typecheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.namecheck').removeClass('reilef');
+	   	$('.nameequip').removeClass('Color');
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityequip').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.typecheck p',function(){
 		$('.typeequip').attr('key',$(this).attr('key'));
 		$('.typeequip').text($(this).text());
+		$('.nameequip').val('');
 	   	$('.typecheck').removeClass('reilef');
 	   	$('.typeequip').removeClass('Color');
 	   	droplink('device',$('.typeequip').attr('key'));
@@ -659,8 +778,13 @@ function btnfocus(){
 				$(this).find('.namecheck').addClass('reilef');
 				$(this).addClass('Color');
 			}
+			
 			event.stopPropagation();
 		}
+		$('.citycheck').removeClass('reilef');
+	   	$('.cityequip').removeClass('Color');
+		$('.typecheck').removeClass('reilef');
+	   	$('.typeequip').removeClass('Color');
 		 
 	});
 	$('body').on('click','.namecheck p',function(){
@@ -683,6 +807,10 @@ function btnfocus(){
 			$(this).find('.citycheck').addClass('reilef');
 			$(this).addClass('Color');
 		}
+		$('.namecheck').removeClass('reilef');
+	   	$('.nameequip').removeClass('Color');
+		$('.typecheck').removeClass('reilef');
+	   	$('.typeequip').removeClass('Color');
 		event.stopPropagation();
 	});
 	$('body').on('click','.equipbox .citycheck p',function(){

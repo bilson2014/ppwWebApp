@@ -157,6 +157,7 @@ function getdevice(id){
 		var typelist=res.type;
 		var namelist=res.typeId;
 		var citylist=res.city;
+		droplink('device',typelist);
 		
 		loadData(function(res){	
 			console.log(res);

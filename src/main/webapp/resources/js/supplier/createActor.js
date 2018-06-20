@@ -43,7 +43,7 @@ function peoplechengck(){
 //		jcrop_api.destroy();//销毁
 		$('#uploadConfirmBt').attr('disabled',false);
 		$("#mymodal").hide();
-		$('#modal-preview').attr('src','');
+		$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 		$('#modal-original-img').attr('src','');
 	});
 	
@@ -54,7 +54,7 @@ function peoplechengck(){
 		$(this).find('.imgshade ').hide();
 	});
 	//同下
-	$('body').on('click','.showimages .imgsboxs .imgshade .select',function(){
+	$('.page').on('click','.showimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker2').removeAttr("style");
 		$('#filePicker2').addClass('webuploader-container');
 		if ($(this).parent().parent().parent().children('.imgsboxs').length==1){
@@ -72,7 +72,7 @@ function peoplechengck(){
 			$('.showimages').attr('data-value',removesrc);
 		}
 	});
-	$('body').on('click','.siteimages .imgsboxs .imgshade .select',function(){
+	$('.page').on('click','.siteimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker5').removeAttr("style");
 		$('#filePicker5').addClass('webuploader-container');
 		if ($(this).parent().parent().parent().children('.imgsboxs').length==1){
@@ -238,7 +238,7 @@ function gathermethod(){
 		$('.racegatherp').text('');
 		$('.citygatherp').text('');
 		if (namegather==undefined||namegather==null||namegather==''){
-			$('.namegatherp').text('*请填写场地名称');
+			$('.namegatherp').text('*演员姓名不能为空');
 			return false;
 		}else if(gendergather=='请选择'){
 			$('.gendergatherp').text('*请选择性别');
@@ -249,7 +249,7 @@ function gathermethod(){
 		}else if(racegather=='请选择'){
 			$('.racegatherp').text('*请选择种族');
 			return false;
-		}else if(citygather=='请选择城市'){
+		}else if(citygather=='请选择'){
 			$('.citygatherp').text('*请选择城市');
 			return false;
 		}else if (pricegather==undefined||pricegather==null||pricegather==''){
@@ -393,7 +393,7 @@ var imgUpload1 = {
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
-					$('#modal-preview').attr('src','');
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					remodelstyle();
 					JcropFunction();
@@ -463,7 +463,7 @@ var imgUpload2 = {
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
-					$('#modal-preview').attr('src','');
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					remodelstyle();
 					JcropFunction();
@@ -530,7 +530,7 @@ var imgUpload3 = {
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
-					$('#modal-preview').attr('src','');
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					remodelstyle();
 					JcropFunction();
@@ -597,7 +597,7 @@ var imgUpload4 = {
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
-					$('#modal-preview').attr('src','');
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					addmodelstyle();
 					JcropFunctionsite();
@@ -673,7 +673,7 @@ var imgUpload5 = {
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
-					$('#modal-preview').attr('src','');
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					addmodelstyle();
 					JcropFunctionsite();
@@ -834,7 +834,7 @@ function cutUpload(path,pick){
 			jcrop_api.destroy();
 			$('#uploadConfirmBt').attr('disabled',false);
 			$("#mymodal").hide();
-			$('#modal-preview').attr('src','');
+			$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 			$('#modal-original-img').attr('src','');
 			return;
 		}
@@ -913,7 +913,7 @@ function cutUpload(path,pick){
 					
 				}
 				
-				$('#modal-preview').attr('src','');
+				$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 				$('#modal-original-img').attr('src','');
 //				$("#setImg").prepend(juicer(videoList_tpl.upload_Tpl,{file:imgPath,path:userTarget.result}));
 //				delImgEven();
@@ -921,7 +921,7 @@ function cutUpload(path,pick){
 				jcrop_api.destroy();
 				$('#uploadConfirmBt').attr('disabled',false);
 				$("#mymodal").hide();
-				$('#modal-preview').attr('src','');
+				$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 				$('#modal-original-img').attr('src','');
 				successToolTipShow('图片异常请重新上传');
 			}

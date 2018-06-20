@@ -123,8 +123,11 @@
 		              						</div>
 		              						
 		              						<span>出生年份</span>
-		              						<input class='oldgather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              						<input class='oldgather' type='text' onkeyup="value=value.replace(/^(19[0-9][0-9]|20[0-9][0-9])[0-9]{2}/g,'')"  placeholder="请输入数字">
 		              						<p class='oldgatherp errorp'></p>
+		              						<!-- onkeyup="value=value.replace(/[^\d]/g,'')"
+		              						<!-- onkeyup="value=value.replace(/^(19|20)[0-9]{2}/g,'')" -->
+		              						reg = /^(0|86|17951)? (19[0-9]|20[0-9])[0-9]{1}$/; -->
 		              						
 		              						<span>种族</span>
 		              						<div class='racegather '>请选择</div>
@@ -197,7 +200,7 @@
 					</div>
 					<div class="modal-right">
 						<div class="modal-preview-container">
-							<img id="modal-preview" alt="全图" src="">
+							<img id="modal-preview" alt="全图" src="/resources/images/supplier/black.png">
 						</div>
 						<span class='preview'>图片预览</span>
 						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
@@ -221,6 +224,7 @@
 		              					<p class='namedirp errorp'></p>
 		              						
 		              					<span>擅长领域</span>
+		              					<span class='morepick'>(可多选)</span>
 		              					<div class='skilldir'>请选择</div>
 		              					<img class='skillimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='skilldirp errorp'></p>
@@ -401,7 +405,7 @@
 		              					<span class='numequipp errorp'>*请输入库存总量</span>
 		              					<span class='priceequipp errorp'>*请输入单价</span>
 		              				</div>
-		              				
+		              			
 		              				<div class='equipleft' style="width: 335px;">
 		              					<span>所在城市</span>
 		              					<div class='cityequip'>请选择</div>
