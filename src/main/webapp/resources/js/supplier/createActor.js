@@ -635,8 +635,11 @@ function successToolTipShow(error){
 		window.clearInterval(successIntervalObj);
 		$('.tooltip-success-show').show();
 		$(".tooltip-success-show").text(error);
+		$(window.parent.parent.parent.document).find('html').scrollTop(0);
+		$(window.parent.parent.parent.document).find('body').scrollTop(0);
 		successIntervalObj = window.setInterval(hideSuccessTooltip, 3000);
 }
+
 function hideSuccessTooltip(){
 	$('.tooltip-success-show').hide();
 }

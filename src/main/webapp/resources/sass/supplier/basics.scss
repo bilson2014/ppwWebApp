@@ -115,6 +115,7 @@
                            overflow: hidden;
                            position: relative;
                            margin: 20px 10px;
+                           margin-bottom: 0px;
                            display: inline-block;
                            background: #ebebeb;
                            img {
@@ -129,7 +130,7 @@
                                width: 130px;
                                margin: 0 auto;
                                text-align: center;
-                               margin-top: 40px;
+                               margin-top: 21%;
                            }
                            .shade {
                                width: 162px;
@@ -174,14 +175,27 @@
                                }
                                .one {
                                    width: 80px;
+                                   overflow: hidden;
+                                   white-space: nowrap;
+                                   text-overflow: ellipsis;
                                }
                                .two {
                                    width: 180px;
+                                   overflow: hidden;
+                                   white-space: nowrap;
+                                   text-overflow: ellipsis;
                                }
                                .three {
-                                   width: 150px;
+                                   width: 135px;
+                                   overflow: hidden;
+                                   white-space: nowrap;
+                                   text-overflow: ellipsis;
                                }
                                .price {
+                                   width: 40px;
+                                   overflow: hidden;
+                                   margin-right: 1px;
+                                   text-align: right;
                                    position: absolute;
                                    line-height: 26px;
                                    top: 0;
@@ -220,19 +234,21 @@
                }
                
                .idcard-facility {
-                   width: 216px !important;
-                   height: 162px !important;
+                   //    width: 216px !important;
+                   //    height: 162px !important;
+                   width: 234px !important;
+                   height: 132px !important;
                }
                
                .idcard-facilitys {
-                   width: 216px !important;
-                   height: 137px !important;
+                   width: 234px !important;
+                   height: 107px !important;
                }
                
                .linebox-facility {
-                   width: 216px !important;
+                   width: 234px !important;
                    height: 26px !important;
-                   top: 136px !important;
+                   top: 106px !important;
                }
                
                .setting {
@@ -1540,6 +1556,7 @@
                .idcard {
                    @media screen and (max-width: 975px) {
                        margin: 5px 5px !important;
+                       margin-top: 9px !important;
                    }
                    // @media screen and (max-width: 1025px) and (min-width: 775px) {
                    //     margin: 12px 5px !important;
