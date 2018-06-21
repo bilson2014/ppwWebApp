@@ -114,7 +114,7 @@
                            height: 216px;
                            overflow: hidden;
                            position: relative;
-                           margin: 20px 10px;
+                           margin: 20px 11px;
                            margin-bottom: 0px;
                            display: inline-block;
                            background: #ebebeb;
@@ -127,10 +127,12 @@
                                font-size: 14px;
                                color: #999999;
                                font-weight: 700;
-                               width: 130px;
+                               width: 145px;
                                margin: 0 auto;
                                text-align: center;
-                               margin-top: 21%;
+                               position: absolute;
+                               top: 38%;
+                               left: 44px;
                            }
                            .shade {
                                width: 162px;
@@ -199,13 +201,14 @@
                                    position: absolute;
                                    line-height: 26px;
                                    top: 0;
-                                   right: 33px;
+                                   right: 30px;
                                }
                                .addprice {
                                    position: absolute;
                                    line-height: 26px;
                                    top: 0;
-                                   right: 5px;
+                                   right: 2px;
+                                   font-size: 10px;
                                }
                            }
                        }
@@ -1558,9 +1561,9 @@
                        margin: 5px 5px !important;
                        margin-top: 9px !important;
                    }
-                   // @media screen and (max-width: 1025px) and (min-width: 775px) {
-                   //     margin: 12px 5px !important;
-                   // }
+                   @media screen and (max-width: 1025px) and (min-width:975px) {
+                       margin: 12px 5px !important;
+                   }
                }
                
                .tooltip-success-show {

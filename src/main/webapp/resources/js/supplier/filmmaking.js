@@ -233,7 +233,8 @@ function getlistdatad(){
 			console.log(res[i].photo);
 			var boxhtmland;
 			if (res[i].photo==null){
-				boxhtmland= "<div class='and imgs"+i+"'>"+res[i].name+"</div>";
+//				boxhtmland= "<div class='and'>"+res[i].name+"</div>";
+				boxhtmland= "<img class='endimg' src='/resources/images/supplier/endimg.jpg'><div class='and'>"+res[i].name+"</div>";
 			}else {
 				boxhtmland= "<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">";
 			}
@@ -250,6 +251,8 @@ function getlistdatad(){
 			var boxhtmlbegin="<div class='idcard  idcard-facility' id ="+res[i].id+" identity="+res[i].identity+">";
          
             var boxhtml=boxhtmlbegin+boxhtmland+boxhtmlend;
+            
+            
 			$('.setCard').append(boxhtml);
 			//图片处理
 			var img=new Image();

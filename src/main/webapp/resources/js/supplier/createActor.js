@@ -729,21 +729,27 @@ function initCutImg(type){
 	var needWidth = 300;
 	var needHeight =300;
 	$('#modal-original-img').load(function(){
-		var img = new Image();
-		img.src = $('#modal-original-img').attr("src");
-		var realHeight = img.height;
-		var realWidth  = img.width;
+		var realHeight = $(this).height();
+		var realWidth  = $(this).width();	
+		//原图的
+		console.log(realHeight);
+		console.log(realWidth );
 		if(realHeight>=realWidth){
 			$('.modal-original').attr('style',"height:300px;");
 			$('#modal-original-img').attr('style','height:100%;width:auto;');	
 			console.log($('#modal-original-img').width());
+			console.log($('#modal-original-img').height());
 			$('.modal-original').attr('style',"height:300px;width:"+$('#modal-original-img').width()+"px");
 		}else{
+			
 			var paddingTop=(300-300*realHeight/realWidth)/2;
 			var num=parseInt(paddingTop);
-			
+			console.log(paddingTop);
+			console.log(num);
 			$('#modal-original-img').attr('style',"height:auto;width:100%;");
 			$('.modal-original').attr('style',"height:"+$('#modal-original-img').height()+"px;width:100%;margin-top:"+num+"px;");
+			console.log($('#modal-original-img').width());
+			console.log($('#modal-original-img').height());
 		}
 		if (type=='filePicker4'||type=='filePicker5'){
 			JcropFunctionsite();
