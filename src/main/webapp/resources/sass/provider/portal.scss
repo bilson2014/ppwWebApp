@@ -347,15 +347,15 @@ html {
         padding-left: 30px;
         border-bottom: 1px solid $e;
         background: white;
-        width: $width-min - $leftWidthS;
+        width: 1040px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: $width-middle - $leftWidth;
-        }
-        @media screen and (min-width: 1500px) {
-            width: 1300px - $leftWidth;
-        }
+        // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        //     width: $width-middle - $leftWidth;
+        // }
+        // @media screen and (min-width: 1500px) {
+        //     width: 1300px - $leftWidth;
+        // }
         position: fixed;
         top: 111px;
     }
@@ -861,15 +861,16 @@ background-image: none !important; */
     height: 50px;
     position: relative;
     padding-top: 10px;
-    width: $width-min - $leftWidthS;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: $width-middle - $leftWidth;
-    }
-    @media screen and (min-width: 1500px) {
-        width: 1300px - $leftWidth;
-    }
+    // width: $width-min - $leftWidthS;
+    width: 1042px;
+    // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    //     width: $width-middle - $leftWidth;
+    // }
+    // @media screen and (min-width: 1500px) {
+    //     width: 1300px - $leftWidth;
+    // }
     position: fixed;
-    top:115px;
+    top: 115px;
     .newProduct {
         font-size: 0px;
         border: 1px solid $gray-light;

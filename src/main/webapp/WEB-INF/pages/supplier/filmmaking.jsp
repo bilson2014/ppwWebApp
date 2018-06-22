@@ -65,6 +65,8 @@
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
 		              <div class="managerCard">
+		              
+		              
 		               		<div class='top'>
 		               			<div class='people  top-text'>人员</div>
 		               			<div class='sitett'>场地</div>
@@ -74,7 +76,7 @@
 		               				<span>添加</span>
 		               			</div>
 		               		</div>	
-		              		<div class='setCard'>
+		              		<div class='setCard peo'>
 		              		 	
 		              		 	
 		              		 	
@@ -99,7 +101,11 @@
 		              					<div class='cancel'>取消</div>
 		              				</div>
 		              			</div>
-		              			
+		              			<!--侧边选择  -->
+	<div class='role'>
+		<p class='pickdir pickrole' style="border-top-left-radius: 6px;">导演</p>
+		<p class='pickact'>演员</p>
+	</div>
 		              			
 		              			<!-- 添加演员 -->
 		              			<div class='staffbox'>
@@ -123,11 +129,15 @@
 		              						</div>
 		              						
 		              						<span>出生年份</span>
-		              						<input class='oldgather' type='text' onkeyup="value=value.replace(/^(19[0-9][0-9]|20[0-9][0-9])[0-9]{2}/g,'')"  placeholder="请输入数字">
+		              						<input class='oldgather' type='text' onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/^(3[0-9][0-9]|4[0-9][0-9]|5[0-9][0-9]|6[0-9][0-9]|7[0-9][0-9]|8[0-9][0-9]|9[0-9]|0[0-9]|1[0-8]|2[1-9])$/,'');"  placeholder="请输入数字">
+		              						
+		              						<!-- onkeyup="value=value.replace(/^(3|4|5|6|7|8|9|0|1[0-8]|2[1-9])$/,'')" 
+		              						onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/^(3|4|5|6|7|8|9|0|1[0-8]|2[1-9])$/,'');" -->
+		              						
 		              						<p class='oldgatherp errorp'></p>
 		              						<!-- onkeyup="value=value.replace(/[^\d]/g,'')"
 		              						<!-- onkeyup="value=value.replace(/^(19|20)[0-9]{2}/g,'')" -->
-		              						reg = /^(0|86|17951)? (19[0-9]|20[0-9])[0-9]{1}$/; -->
+		              						<!-- reg = /^(0|86|17951)? (19[0-9]|20[0-9])[0-9]{1}$/; --> -->
 		              						
 		              						<span>种族</span>
 		              						<div class='racegather '>请选择</div>
@@ -153,7 +163,7 @@
 		              						</div>
 		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
-		              					 			<img alt="用户头像" class='fileimg' src="/resources/images/supplier/666.png""/>
+		              					 			<img alt="用户头像" class='fileimg' src=""/>
 		              					 		</div>
 
 		              						</div>
@@ -211,7 +221,7 @@
 	</div>
 	<!-- photo Modal end -->	
 		              		<!--添加导演  -->
-		              		<div class='directorbox'>
+		              		<div class='directorbox' >
 		              			<div class='directortitle'>
 		              				<span>创建导演</span>
 		              				<img alt="关闭" src="/resources/images/supplier/close.png">
@@ -288,7 +298,7 @@
 		              					<p class='namesitep errorp'></p>
 		              					
 		              					<span>面积(㎡)</span>
-		              					<input class='msite' type='text' placeholder="">
+		              					<input class='msite' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='msitep errorp'></p>
 		              						
 		              					<span>场地类型</span>
@@ -433,6 +443,7 @@
 		 </div>
 		   
 	<div class="tooltip-success-show"></div>
+
 	
 
 	

@@ -9,6 +9,9 @@ function dirmethod(){
 	$('.directortitle img').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.directorbox').hide();
+		$('.role').hide();
+		$('.staffbox').removeClass('pickborder');
+		$('.directorbox').removeClass('pickborder');
 		cleadirectordata();
 		
 	});
@@ -80,6 +83,10 @@ function dirmethod(){
 					cleadirectordata()
 					$('.setting').hide();
 					$('.directorbox').hide();
+
+					$('.role').hide();
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/director/update', $.toJSON({						
 					 id:biaoID,//获取的id
@@ -96,6 +103,10 @@ function dirmethod(){
 					cleadirectordata()
 					$('.setting').hide();
 					$('.directorbox').hide();
+
+					$('.role').hide();
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/director/save', $.toJSON({
 					 name:namedir,//姓名
@@ -111,6 +122,7 @@ function dirmethod(){
 }
 //清楚数据
 function cleadirectordata(){
+	$('.staffbox').removeClass('pickborder');
 	$('.namedirp').text('');
 	$('.skilldirp').text('');
 	$('.citydirp').text('');

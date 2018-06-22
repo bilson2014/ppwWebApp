@@ -151,7 +151,6 @@ function datadevice(type){
 //获取
 function getdevice(id){
 	loadData(function(res){	
-		console.log(res);
 		$('.equipbox .equiptitle span').text('修改设备');
 		$('.equipbox').attr('id',id);
 		var typelist=res.type;
@@ -160,7 +159,6 @@ function getdevice(id){
 		droplink('device',typelist);
 		
 		loadData(function(res){	
-			console.log(res);
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==typelist){
 					$('.typeequip').text(res[i].value);
@@ -169,7 +167,6 @@ function getdevice(id){
 			}
 		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
 		loadData(function(res){	
-			console.log(res);
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==namelist){
 					$('.nameequip').val(res[i].value);

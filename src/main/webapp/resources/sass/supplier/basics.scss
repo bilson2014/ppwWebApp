@@ -109,12 +109,13 @@
                        }
                    }
                    .setCard {
+                       margin: 0 9px;
                        .idcard {
-                           width: 162px;
-                           height: 216px;
+                           width: 180px;
+                           height: 240px;
                            overflow: hidden;
                            position: relative;
-                           margin: 20px 11px;
+                           margin: 20px 9px;
                            margin-bottom: 0px;
                            display: inline-block;
                            background: #ebebeb;
@@ -135,24 +136,24 @@
                                left: 44px;
                            }
                            .shade {
-                               width: 162px;
-                               height: 191px;
+                               width: 180px;
+                               height: 214px;
                                background: #000;
                                opacity: 0.5;
                                position: absolute;
                                top: 0px;
                                z-index: 99;
                                .read {
-                                   width: auto;
-                                   height: auto;
+                                   width: 16px;
+                                   height: 16px;
                                    position: absolute;
                                    top: 10px;
                                    left: 10px;
                                    cursor: pointer;
                                }
                                .select {
-                                   width: auto;
-                                   height: auto;
+                                   width: 16px;
+                                   height: 16px;
                                    position: absolute;
                                    top: 10px;
                                    right: 10px;
@@ -161,11 +162,11 @@
                            }
                            .linebox {
                                height: 26px;
-                               width: 162px;
+                               width: 180px;
                                background: #fff;
                                opacity: 0.8;
                                position: absolute;
-                               top: 190px;
+                               top: 214px;
                                font-size: 12px;
                                color: #333;
                                .name {
@@ -194,14 +195,14 @@
                                    text-overflow: ellipsis;
                                }
                                .price {
-                                   width: 40px;
+                                   width: 76px;
                                    overflow: hidden;
-                                   margin-right: 1px;
+                                   margin-right: 5px;
                                    text-align: right;
                                    position: absolute;
                                    line-height: 26px;
                                    top: 0;
-                                   right: 30px;
+                                   right: 18px;
                                }
                                .addprice {
                                    position: absolute;
@@ -221,26 +222,28 @@
                }
                
                .idcard-site {
-                   width: 296px !important;
-                   height: 166.5px !important;
+                   width: 312px !important;
+                   height: 174px !important;
+                   margin: 0px 9px !important;
+                   margin-top: 20px !important;
                }
                
                .idcard-sites {
-                   width: 296px !important;
-                   height: 142px !important;
+                   width: 312px !important;
+                   height: 148px !important;
                }
                
                .linebox-site {
-                   width: 296px !important;
+                   width: 312px !important;
                    height: 26px !important;
-                   top: 141px !important;
+                   top: 148px !important;
                }
                
                .idcard-facility {
-                   //    width: 216px !important;
-                   //    height: 162px !important;
                    width: 234px !important;
                    height: 132px !important;
+                   margin: 0px 7px !important;
+                   margin-top: 20px !important;
                }
                
                .idcard-facilitys {
@@ -296,6 +299,8 @@
                                padding-left: 10px;
                            }
                            .more {
+                               width: 14px;
+                               height: 14px;
                                position: absolute;
                                right: 10px;
                                top: 10px;
@@ -366,7 +371,9 @@
                    background: #fff;
                    margin: 0 auto;
                    margin-top: 80px;
-                   border-radius: 6px;
+                   //    border-radius: 6px;
+                   border-bottom-right-radius: 6px;
+                   border-top-right-radius: 6px;
                    display: none;
                    .stafftitle {
                        height: 60px;
@@ -384,6 +391,8 @@
                            top: 22.1px;
                            right: 22.1px;
                            cursor: pointer;
+                           width: 12px;
+                           height: 12px;
                        }
                    }
                    .gather {
@@ -472,6 +481,8 @@
                                }
                            }
                            img {
+                               width: 14px;
+                               height: 14px;
                                margin-left: -20px;
                                cursor: pointer;
                            }
@@ -624,8 +635,8 @@
                                z-index: 99;
                                display: none;
                                .select {
-                                   width: auto;
-                                   height: auto;
+                                   width: 16px;
+                                   height: 16px;
                                    position: absolute;
                                    top: 10px;
                                    right: 10px;
@@ -674,7 +685,8 @@
                    background: #fff;
                    margin: 0 auto;
                    margin-top: 80px;
-                   border-radius: 6px;
+                   border-top-right-radius: 6px;
+                   border-bottom-right-radius: 6px;
                    display: none;
                    border-bottom: 1px solid #d1d1d1;
                    position: relative;
@@ -690,6 +702,8 @@
                            margin-left: 39px;
                        }
                        img {
+                           width: 12px;
+                           height: 12px;
                            position: absolute;
                            top: 22.1px;
                            right: 22.1px;
@@ -789,6 +803,8 @@
                                cursor: pointer;
                                vertical-align: top;
                                margin-top: 12px;
+                               width: 14px;
+                               height: 14px;
                            }
                        }
                        .directorr {
@@ -921,6 +937,8 @@
                        }
                        img {
                            position: absolute;
+                           width: 12px;
+                           height: 12px;
                            top: 22.1px;
                            right: 22.1px;
                            cursor: pointer;
@@ -1026,6 +1044,8 @@
                                }
                            }
                            img {
+                               width: 14px;
+                               height: 14px;
                                margin-left: -20px;
                                cursor: pointer;
                            }
@@ -1220,6 +1240,8 @@
                            margin-left: 39px;
                        }
                        img {
+                           width: 12px;
+                           height: 12px;
                            position: absolute;
                            top: 22.1px;
                            right: 22.1px;
@@ -1369,6 +1391,8 @@
                            img {
                                margin-left: -20px;
                                cursor: pointer;
+                               width: 16px;
+                               height: 16px;
                            }
                        }
                    }
@@ -1594,4 +1618,55 @@
                    left: 6px !important;
                    top: 90px !important;
                    font-size: 9px !important;
+               }
+               
+               //侧边选择
+               .role {
+                   width: 90px;
+                   height: 661px;
+                   position: fixed;
+                   background: #F0F2F5;
+                   z-index: 99;
+                   top: 80px;
+                   left: 70px;
+                   border-top-left-radius: 6px;
+                   border-bottom-left-radius: 6px;
+                   display: none;
+                   p {
+                       font-size: 14px;
+                       color: #666666;
+                       height: 60px;
+                       text-align: center;
+                       line-height: 60px;
+                       width: 90px;
+                       cursor: pointer;
+                       border-left: 2px solid transparent;
+                   }
+                   p:hover {
+                       background: #fff;
+                       border-left: 2px solid #FE5453;
+                   }
+                   .pickrole {
+                       background: #fff;
+                       border-left: 2px solid #FE5453;
+                   }
+               }
+               
+               //导演
+               .pickroledir {
+                   height: 715px !important;
+               }
+               
+               .pickroleshowimg {
+                   height: 882px !important;
+               }
+               
+               .pickborder {
+                   border-radius: 6px !important;
+               }
+               
+               .dayss {
+                   position: absolute;
+                   top: 7px;
+                   right: 4px;
                }

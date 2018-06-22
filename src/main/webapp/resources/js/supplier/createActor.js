@@ -30,7 +30,40 @@ $().ready(function() {
 //	JcropFunctionsite();
 	
 });
-
+//if ($('.check').val()=='演员'){
+	
+//	listpeopledata('actor');
+//	$('.staffbox').show();
+//	$('.staffbox .stafftitle span').text('创建演员');
+//	cleanactordata();
+//	//提前加载图片
+//	$('.addpeople').hide();
+//	listcitydata();
+//
+//}else if($('.check').val()=='导演'){
+//	listpeopledata('director');
+//	$('.directorbox').show();
+//	cleadirectordata();
+//	$('.directorbox .directortitle span').text('创建导演');
+//
+//	cleadirectordata();
+//	$('.addpeople').hide();
+//	listcitydata();
+//}
+	
+	
+	function staffboxshow(){
+		listpeopledata('actor');
+		$('.staffbox .stafftitle span').text('创建演员');
+		cleanactordata();
+		listcitydata();
+	}
+	function directorboxshow(){
+		listpeopledata('director');
+		cleadirectordata();
+		$('.directorbox .directortitle span').text('创建导演');
+		listcitydata();
+	}
 //角色选择
 function peoplechengck(){
 	$("body").on("mouseover","#filePicker1 ,#filePicker3 ,#filePicker4",function(){
@@ -42,9 +75,10 @@ function peoplechengck(){
 	$('.page').on('click','#closePhone',function(){
 //		jcrop_api.destroy();//销毁
 		$('#uploadConfirmBt').attr('disabled',false);
-		$("#mymodal").hide();
-		$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 		$('#modal-original-img').attr('src','');
+		$('#modal-preview').attr('src','/resources/images/supplier/black.png');	
+		$("#mymodal").hide();
+	
 	});
 	
 	$('body').on('mouseover','.showimages .imgsboxs,.siteimages .imgsboxs',function(){
@@ -60,8 +94,11 @@ function peoplechengck(){
 		if ($(this).parent().parent().parent().children('.imgsboxs').length==1){
 			$(this).parent().parent().remove();
 			$('.staffbox .showimages').hide();
+			$('.role').removeClass('pickroleshowimg');
+			$('.role').addClass('pickroledir');
+			
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
-//			console.log(removesrc);
+//		
 			var welldata=$('.showimages').attr('data-value');
 			welldata=welldata+";"+removesrc;
 			$('.showimages').attr('data-value',welldata);
@@ -118,34 +155,44 @@ function peoplechengck(){
 	});
 
 	//addpeople的确认 和取消
-	$('.addpeople .sure').off('click').on('click',function(){
-		
-		
-		if ($('.check').val()=='演员'){
-			listpeopledata('actor');
-			$('.staffbox').show();
-			$('.staffbox .stafftitle span').text('创建演员');
-			cleanactordata();
-			//提前加载图片
-			$('.addpeople').hide();
-			listcitydata();
-//			imgcheckpeoplefive();
-		}else if($('.check').val()=='导演'){
-			listpeopledata('director');
-			$('.directorbox').show();
-			cleadirectordata();
-			$('.directorbox .directortitle span').text('创建导演');
-//			imgcheckpeoplefive();
-			cleadirectordata();
-			$('.addpeople').hide();
-			listcitydata();
-		}
-	});
+//	$('.addpeople .sure').off('click').on('click',function(){
+//		
+//		
+//		if ($('.check').val()=='演员'){
+	
+//			listpeopledata('actor');
+//			$('.staffbox').show();
+//			$('.staffbox .stafftitle span').text('创建演员');
+//			cleanactordata();
+//			//提前加载图片
+//			$('.addpeople').hide();
+//			listcitydata();
+//
+//		}else if($('.check').val()=='导演'){
+//			listpeopledata('director');
+//			$('.directorbox').show();
+//			cleadirectordata();
+//			$('.directorbox .directortitle span').text('创建导演');
+//
+//			cleadirectordata();
+//			$('.addpeople').hide();
+//			listcitydata();
+//		}
+	
+	
+//	});
+	
+	
 	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.addpeople').hide();
 		$('.staffbox').hide();
 		$('.directorbox').hide();
+
+		$('.role').hide();
+		$('.staffbox').removeClass('pickborder');
+		$('.directorbox').removeClass('pickborder');
+		
 		cleadirectordata();
 		cleanactordata();
 		$('.skillcheck').hide();
@@ -161,6 +208,9 @@ function gathermethod(){
 	$('.stafftitle img').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.staffbox').hide();	
+		$('.role').hide();
+		$('.staffbox').removeClass('pickborder');
+		$('.directorbox').removeClass('pickborder');
 		cleanactordata();
 		
 	});
@@ -261,13 +311,17 @@ function gathermethod(){
 		}else {
 			var biao=$('.staffbox .stafftitle span').text();
 			if(biao=='修改演员'){
-				console.log('修改演员');
+//				console.log('修改演员');
 				var biaoID=$('.staffbox').attr('id');
 				loadData(function(result){	
-					console.log(result);
+//					console.log(result);
 					cleanactordata();
 					$('.setting').hide();
 					$('.staffbox').hide();
+					$('.role').hide();
+					
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/actor/update', $.toJSON({						
 					 id:biaoID,//获取的id
@@ -284,12 +338,16 @@ function gathermethod(){
 					
 				}));
 			}else{
-				console.log('新建保存演员');
+//				console.log('新建保存演员');
 				loadData(function(result){	
 					console.log(result);
 					cleanactordata();
 					$('.setting').hide();
 					$('.staffbox').hide();
+					$('.role').hide();
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
+			
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/actor/save', $.toJSON({						
 					 birthDay:oldgather,//出生日期
@@ -310,6 +368,8 @@ function gathermethod(){
 }
 //清楚数据
 function cleanactordata(){
+//	$('.staffbox').removeClass('pickborder');
+	
 	$('.namegatherp').text('');
 	$('.oldgatherp').text('');
 	$('.pricegatherp').text('');
@@ -332,16 +392,16 @@ function cleanactordata(){
 	$('#filePicker2').removeAttr("style");
 	$('#filePicker2').addClass('webuploader-container');
 	
-
 	$('#filePicker1 .fileimg').attr('src','/resources/images/supplier/people.png');
 	$('#filePicker1 .fileimg').attr('data-value','/resources/images/supplier/people.png');
 	
 	$('#filePicker1 .reupload').remove();
-//	$('#filePicker1 .addimgs,#filePicker1 .clickimg').show();
-//	$('#filePicker1').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 
 	$('.showimages').hide();
 	$('.showimages').empty();
+	
+	$('.role').removeClass('pickroleshowimg');
+//	$('.role').addClass('pickroledir');
 }
 //删除演员和导演
 function delpeople(id,identity){
@@ -867,6 +927,9 @@ function cutUpload(path,pick){
 					}
 				}else if(pick=='filePicker2'){
 					$('.showimages').show();
+					$('.role').addClass('pickroleshowimg');
+					$('.role').removeClass('pickroledir');
+					
 					var addimagebox="<div class='imgsboxs '>"
           				+"<img class='imgsfive1' data-value="+userTarget.result+" src="+getResourcesName()+userTarget.result+">"
           				+"<div class='imgshade '>"
