@@ -444,10 +444,7 @@ function getpeople(id,type){
 			
 			var photo=res.photo;
 			if (res.photo!='null'){
-				
 				$('.showimages').show();
-				
-						
 				photo=photo.split(';');
 				for (var i=0;i<photo.length;i++){
 					var addimagebox="<div class='imgsboxs '>"
@@ -459,7 +456,6 @@ function getpeople(id,type){
 					$('.showimages').append(addimagebox);
 				}
 				if (photo.length>=5){
-					console.log(photo.length);
 					$('#filePicker2').attr("style","background: #ebebeb;");
 					$('#filePicker2').removeClass('webuploader-container');
 					
@@ -489,7 +485,6 @@ function getpeople(id,type){
 			var city=res.city;
 			$('.citygather').attr('cityid',city);
 			loadData(function(res){
-				console.log(res);
 				for(var i=0;i<res.length;i++){
 					if (city==res[i].cityID){
 						$('.citygather').text(res[i].city);
@@ -505,11 +500,8 @@ function getpeople(id,type){
 		//导演的数据
 		$('.directorbox').show();
 		$('.directorbox').addClass('pickborder');
-	
 		directorboxshow();
-		loadData(function(res){		
-			
-//			console.log(res);
+		loadData(function(res){	
 			$('.directorbox .directortitle span').text('修改导演');
 			$('.directorbox').attr('id',id);
 			$('.directorbox').attr('identity',type);
@@ -524,13 +516,10 @@ function getpeople(id,type){
 			$('.skilldir').attr('value',specialty);
 			specialty=specialty.split(",");
 			listpeopledata('director');
-	
 			loadData(function(res){
-				
 				for(var j=0;j<specialty.length;j++){
 					for(var i=0;i<res.specialtyList.length;i++){
 						if (specialty[j]==res.specialtyList[i].value){
-							
 							var texs=specialty[j];
 							if ($('.skilldir').text()=='请选择'){
 								$('.skilldir').text(res.specialtyList[i].text);
@@ -539,9 +528,7 @@ function getpeople(id,type){
 							}
 						}
 					}
-					
 				}
-				
 			 }, getContextPath() + '/production/director/parameter');
 			var city=res.city;
 			$('.citydir').attr('cityid',city);
