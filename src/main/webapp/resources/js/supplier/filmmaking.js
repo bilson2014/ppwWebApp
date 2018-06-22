@@ -305,8 +305,8 @@ function getlistdatad(){
 		}
 		for(var i=0;i<res.length;i++){
 			var boxhtmland;
-			if (res[i].photo==null){
-//				boxhtmland= "<div class='and'>"+res[i].name+"</div>";
+			if (res[i].photo==null||res[i].photo==''||res[i].photo==undefined){
+		
 				boxhtmland= "<img class='endimg' src='/resources/images/supplier/endimg.jpg'><div class='and'>"+res[i].name+"</div>";
 			}else {
 				boxhtmland= "<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">";

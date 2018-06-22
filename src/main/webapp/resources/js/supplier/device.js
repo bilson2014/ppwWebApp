@@ -67,16 +67,6 @@ function devicemethod(){
 	
 	});
 
-	//图片的操作
-//	$('.imgsboxs').off('mouseover').on('mouseover',function(){
-//		$(this).find('.imgshade ').show();
-//	});
-//	$('.imgsboxs').off('mouseout').on('mouseout',function(){
-//		$(this).find('.imgshade ').hide();
-//	});
-	
-	
-	
 	
 	//提交
 	$('.equipbox .gatherbut .sure').off('click').on('click',function(){
@@ -112,10 +102,8 @@ function devicemethod(){
 			$('.cityequipp').show();
 			return false;
 		}else {
-//			console.log('验证正确');
 			var biao=$('.equipbox .equiptitle span').text();
 			if (biao=='修改设备'){
-//				var id=$('.equipbox').attr('id');
 				datadevice('update');
 				
 			}else{
