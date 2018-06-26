@@ -11,7 +11,6 @@ import com.paipianwang.pat.common.entity.ComboTreeModel;
 import com.paipianwang.pat.common.entity.KeyValue;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.workflow.entity.PmsQuotationType;
-import com.paipianwang.pat.workflow.enums.ProductionDeviceType;
 import com.paipianwang.pat.workflow.enums.ProductionResource;
 import com.paipianwang.pat.workflow.facade.PmsQuotationTypeFacade;
 
@@ -37,7 +36,7 @@ public class QuotationController extends BaseController {
 		Long[] typeIds;
 		
 		if(ProductionResource.device.getKey().equals(productionType) && ValidateUtil.isValid(subType)) {
-			typeIds=ProductionDeviceType.getEnum(Integer.parseInt(subType)).getQuotationType();
+			typeIds=new Long[] {Long.parseLong(subType)};//同getChildren
 		}else {
 			ProductionResource relation=ProductionResource.getEnum(productionType);
 			typeIds=relation.getQuotationType();

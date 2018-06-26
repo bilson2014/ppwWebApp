@@ -60,6 +60,7 @@ function changePage(){
 		$('.infoItem').removeClass('activeThis');
 		$(this).parent().addClass('activeThis');
 		$('#titleTop').text($(this).text());
+		$('#titleTop').show();
 		if($(this).data('action')=='safe-info'){
 			getHeight(1);
 		}
@@ -91,6 +92,7 @@ function initPage(){
 		$('.infoItem').removeClass('activeThis');
 		$('#clickCompany').addClass('activeThis');
 		$(this).parent().addClass('activeThis');
+		$('#titleTop').show();
 		$('#titleTop').text($('#clickCompany div').text());
 		$('#control').hide();
     }
@@ -102,13 +104,25 @@ function initPage(){
 		$('.infoItem').removeClass('activeThis');
 		$('#clickSafe').addClass('activeThis');
 		$(this).parent().addClass('activeThis');
+		$('#titleTop').show();
 		$('#titleTop').text($('#clickSafe div').text());
 		$('#control').hide();
+		
     }
+    if(state.trim() == "resour-list"){
+    	$("#content-frame").prop("src", getContextPath() + '/provider/' + state);
+//    	$("#content-frame").prop("src", getContextPath() + '/cc');
+    	$('.tooltip-wati').hide();
+    	$('.menu-content').find('li').removeClass('active');
+		$('#clickresour div').addClass('active');
+		$('.infoItem').removeClass('activeThis');
+		$('#clickresour').addClass('activeThis');
+		$(this).parent().addClass('activeThis');
+		$('#titleTop').hide();
+		$('#control').hide();
+    }
+
     
-    
-    var href = window.location.href;
-   
 }
 
 function showInfomation(title,body){

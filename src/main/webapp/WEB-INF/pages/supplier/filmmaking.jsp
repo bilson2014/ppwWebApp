@@ -65,6 +65,8 @@
 		         <div class="managerPgae">
 		           <div class="lineHead"></div>
 		              <div class="managerCard">
+		              
+		              
 		               		<div class='top'>
 		               			<div class='people  top-text'>人员</div>
 		               			<div class='sitett'>场地</div>
@@ -74,7 +76,7 @@
 		               				<span>添加</span>
 		               			</div>
 		               		</div>	
-		              		<div class='setCard'>
+		              		<div class='setCard peo'>
 		              		 	
 		              		 	
 		              		 	
@@ -99,7 +101,11 @@
 		              					<div class='cancel'>取消</div>
 		              				</div>
 		              			</div>
-		              			
+		              			<!--侧边选择  -->
+	<div class='role'>
+		<p class='pickdir pickrole' style="border-top-left-radius: 6px;">导演</p>
+		<p class='pickact'>演员</p>
+	</div>
 		              			
 		              			<!-- 添加演员 -->
 		              			<div class='staffbox'>
@@ -123,8 +129,15 @@
 		              						</div>
 		              						
 		              						<span>出生年份</span>
-		              						<input class='oldgather' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              						<input class='oldgather' type='text' onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/^(3[0-9][0-9]|4[0-9][0-9]|5[0-9][0-9]|6[0-9][0-9]|7[0-9][0-9]|8[0-9][0-9]|9[0-9]|0[0-9]|1[0-8]|2[1-9])$/,'');"  placeholder="请输入数字">
+		              						
+		              						<!-- onkeyup="value=value.replace(/^(3|4|5|6|7|8|9|0|1[0-8]|2[1-9])$/,'')" 
+		              						onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/^(3|4|5|6|7|8|9|0|1[0-8]|2[1-9])$/,'');" -->
+		              						
 		              						<p class='oldgatherp errorp'></p>
+		              						<!-- onkeyup="value=value.replace(/[^\d]/g,'')"
+		              						<!-- onkeyup="value=value.replace(/^(19|20)[0-9]{2}/g,'')" -->
+		              						<!-- reg = /^(0|86|17951)? (19[0-9]|20[0-9])[0-9]{1}$/; --> -->
 		              						
 		              						<span>种族</span>
 		              						<div class='racegather '>请选择</div>
@@ -150,7 +163,7 @@
 		              						</div>
 		              					 	<div class='addimage filesimage' id='filePicker1'><!-- id='picker' -->
 		              					 		<div class='updateimg'>
-		              					 			<img alt="用户头像" class='fileimg' data-value="${employee.employeeImg}" src=""/>
+		              					 			<img alt="用户头像" class='fileimg' src=""/>
 		              					 		</div>
 
 		              						</div>
@@ -197,7 +210,7 @@
 					</div>
 					<div class="modal-right">
 						<div class="modal-preview-container">
-							<img id="modal-preview" alt="全图" src="">
+							<img id="modal-preview" alt="全图" src="/resources/images/supplier/black.png">
 						</div>
 						<span class='preview'>图片预览</span>
 						<button class="btn btn-primary" type="button" id="uploadConfirmBt">确认</button>
@@ -208,7 +221,7 @@
 	</div>
 	<!-- photo Modal end -->	
 		              		<!--添加导演  -->
-		              		<div class='directorbox'>
+		              		<div class='directorbox' >
 		              			<div class='directortitle'>
 		              				<span>创建导演</span>
 		              				<img alt="关闭" src="/resources/images/supplier/close.png">
@@ -221,6 +234,7 @@
 		              					<p class='namedirp errorp'></p>
 		              						
 		              					<span>擅长领域</span>
+		              					<span class='morepick'>(可多选)</span>
 		              					<div class='skilldir'>请选择</div>
 		              					<img class='skillimg' alt="" src="/resources/images/supplier/more.png">
 		              					<p class='skilldirp errorp'></p>
@@ -245,7 +259,7 @@
 		              					<div class='tipsimage'>导演照片
 		              						<span>(1张导演照片封面)</span>
                                         </div>
-		              					<div class='addimage filesimage' id='filePicker3'><!-- id='picker' -->
+		              					<div class='addimage filesimage' id='filePicker3'>
 		              						<div class='updateimg'>
 		              					 		<img alt="用户头像" class='fileimg'/>
 		              					 	</div>
@@ -284,7 +298,7 @@
 		              					<p class='namesitep errorp'></p>
 		              					
 		              					<span>面积(㎡)</span>
-		              					<input class='msite' type='text' placeholder="">
+		              					<input class='msite' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 		              					<p class='msitep errorp'></p>
 		              						
 		              					<span>场地类型</span>
@@ -401,7 +415,7 @@
 		              					<span class='numequipp errorp'>*请输入库存总量</span>
 		              					<span class='priceequipp errorp'>*请输入单价</span>
 		              				</div>
-		              				
+		              			
 		              				<div class='equipleft' style="width: 335px;">
 		              					<span>所在城市</span>
 		              					<div class='cityequip'>请选择</div>
@@ -429,6 +443,7 @@
 		 </div>
 		   
 	<div class="tooltip-success-show"></div>
+
 	
 
 	

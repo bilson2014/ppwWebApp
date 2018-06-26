@@ -9,6 +9,9 @@ function dirmethod(){
 	$('.directortitle img').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.directorbox').hide();
+		$('.role').hide();
+		$('.staffbox').removeClass('pickborder');
+		$('.directorbox').removeClass('pickborder');
 		cleadirectordata();
 		
 	});
@@ -18,9 +21,9 @@ function dirmethod(){
 		$('.citycheck').hide();
 	});
 	$('body').on('click','.skillcheck p',function(){
-		$('.skilldir').attr('value',$(this).attr('value'));
-		$('.skilldir').text($(this).text());
-		$('.skillcheck').hide();
+//		$('.skilldir').attr('value',$(this).attr('value'));
+//		$('.skilldir').text($(this).text());
+//		$('.skillcheck').hide();
 	});
 	
 	$('.directorl .citydir,.directorl .cityimg').off('click').on('click',function(){
@@ -68,18 +71,22 @@ function dirmethod(){
 		}else if (pricedir==undefined||pricedir==null||pricedir==''){
 			$('.pricedirp').text('*请填写价格');
 			return false;
-		}else if (fileimg==undefined||fileimg==null||fileimg==''){
+		}else if (fileimg=='/resources/images/supplier/people.png'){
 			$('.directorr .addboxs span').attr("style","color: red;");
 			return false;
 		}else {
 			var biao=$('.directorbox .directortitle span').text();
-			console.log(biao);
+//			console.log(biao);
 			if(biao=='修改导演'){
 				var biaoID=$('.directorbox').attr('id');
 				loadData(function(result){	
 					cleadirectordata()
 					$('.setting').hide();
 					$('.directorbox').hide();
+
+					$('.role').hide();
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/director/update', $.toJSON({						
 					 id:biaoID,//获取的id
@@ -92,10 +99,14 @@ function dirmethod(){
 				}));
 			}else{
 				loadData(function(result){	
-					console.log(result);
+//					console.log(result);
 					cleadirectordata()
 					$('.setting').hide();
 					$('.directorbox').hide();
+
+					$('.role').hide();
+					$('.staffbox').removeClass('pickborder');
+					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
 				 }, getContextPath() + '/production/director/save', $.toJSON({
 					 name:namedir,//姓名
@@ -111,6 +122,7 @@ function dirmethod(){
 }
 //清楚数据
 function cleadirectordata(){
+	$('.staffbox').removeClass('pickborder');
 	$('.namedirp').text('');
 	$('.skilldirp').text('');
 	$('.citydirp').text('');
@@ -119,18 +131,23 @@ function cleadirectordata(){
 	
 	$('.namedir').val('');
 	$('.skilldir').text('请选择');
+	$('.skilldir').attr('value','');
+	$('.skillcheck p').removeClass('pickme');
 	$('.citydir').text('请选择');
 	$('.pricedir').val('');
 	$('.remarkdirector').val('');
 	
 	$('.skillcheck').hide();
 	$('.citycheck').hide();
-	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker3').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('.addboxs span').removeAttr("style");
-	$('#filePicker3 .fileimg').removeAttr('data-value');
-	$('#filePicker3 .fileimg').removeAttr('src');
+//	$('#filePicker3 .fileimg').removeAttr('data-value');
+//	$('#filePicker3 .fileimg').removeAttr('src');
+	$('#filePicker3 .fileimg').attr('src','/resources/images/supplier/people.png');
+	$('#filePicker3 .fileimg').attr('data-value','/resources/images/supplier/people.png');
+	
 	$('#filePicker3 .reupload').remove();
-	$('#filePicker3 .addimgs,#filePicker3 .clickimg').show();
+//	$('#filePicker3 .addimgs,#filePicker3 .clickimg').show();
 	
 	
 }

@@ -40,7 +40,6 @@ function devicemethod(){
 			$('.namecheck').show();	
 		}else {
 			$('.typeequipp').show();
-		
 			
 		}
 	});
@@ -68,16 +67,6 @@ function devicemethod(){
 	
 	});
 
-	//图片的操作
-//	$('.imgsboxs').off('mouseover').on('mouseover',function(){
-//		$(this).find('.imgshade ').show();
-//	});
-//	$('.imgsboxs').off('mouseout').on('mouseout',function(){
-//		$(this).find('.imgshade ').hide();
-//	});
-	
-	
-	
 	
 	//提交
 	$('.equipbox .gatherbut .sure').off('click').on('click',function(){
@@ -113,10 +102,8 @@ function devicemethod(){
 			$('.cityequipp').show();
 			return false;
 		}else {
-//			console.log('验证正确');
 			var biao=$('.equipbox .equiptitle span').text();
 			if (biao=='修改设备'){
-//				var id=$('.equipbox').attr('id');
 				datadevice('update');
 				
 			}else{
@@ -152,15 +139,14 @@ function datadevice(type){
 //获取
 function getdevice(id){
 	loadData(function(res){	
-		console.log(res);
 		$('.equipbox .equiptitle span').text('修改设备');
 		$('.equipbox').attr('id',id);
 		var typelist=res.type;
 		var namelist=res.typeId;
 		var citylist=res.city;
+		droplink('device',typelist);
 		
 		loadData(function(res){	
-			console.log(res);
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==typelist){
 					$('.typeequip').text(res[i].value);
@@ -169,7 +155,6 @@ function getdevice(id){
 			}
 		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
 		loadData(function(res){	
-			console.log(res);
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==namelist){
 					$('.nameequip').val(res[i].value);

@@ -93,7 +93,7 @@ function sitemethod(){
 		}else if (locationsite==undefined||locationsite==null||locationsite==''){
 			$('.locationsitep').text('*请填写详细地址');
 			return false;
-		}else if (fileimg==undefined||fileimg==null||fileimg==''){
+		}else if (fileimg=='/resources/images/supplier/site.png'){
 			$('.siteright .addboxs span').attr("style","color: red;");
 			return false;
 		}else {
@@ -188,7 +188,7 @@ function getstudio(id){
 		}
 		
 		
-		
+		$('.typesite').attr('key',res.type);
 		if (res.type=='1'){
 			$('.typesite').text('内景');
 		}else {
@@ -198,6 +198,7 @@ function getstudio(id){
 		$('.locationsite').val(res.address);
 		$('.siteremark').val(res.remark);
 		var cities=res.city;
+		$('.citysite').attr('cityid',res.city);
 		loadData(function(res){
 			for(var i=0;i<res.length;i++){
 				if (cities==res[i].cityID){
@@ -238,14 +239,18 @@ function cleandata(){
 	$('.typecheck').hide();
 	$('.citycheck').hide();
 	
-	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+//	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
 	$('.addboxs span').removeAttr("style");
 	$('#filePicker5').removeAttr("style");
 	$('#filePicker5').addClass('webuploader-container');
-	$('#filePicker4 .fileimg').removeAttr('data-value');
-	$('#filePicker4 .fileimg').removeAttr('src');
+//	$('#filePicker4 .fileimg').removeAttr('data-value');
+//	$('#filePicker4 .fileimg').removeAttr('src');
+	$('#filePicker4 .fileimg').attr('src','/resources/images/supplier/site.png');
+	$('#filePicker4 .fileimg').attr('data-value','/resources/images/supplier/site.png');
+	
 	$('#filePicker4 .reupload').remove();
-	$('#filePicker4 .addimgs,#filePicker4 .clickimg').show();
+//	$('#filePicker4 .addimgs,#filePicker4 .clickimg').show();
+	
 	$('.siteimages').hide();
 	$('.siteimages').empty();
 	

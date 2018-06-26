@@ -402,7 +402,7 @@ $().ready(function() {
 				loadData(function(info){
 					$(".errorDiv").addClass("hide");
 					if(info.errorCode==200){
-						window.location.href=getContextPath()+'/provider/portal';
+						window.location.href=getContextPath()+'/provider/portal?company-info';
 					}else{
 						$("#code_error_info_team").text(info.errorMsg).removeClass("hide");
 						return false;
@@ -436,7 +436,7 @@ $().ready(function() {
 				loadData(function(msg){
 					$(".errorDiv").addClass("hide");
 					if(msg.errorCode==200){ 
-						window.location.href=getContextPath()+ '/provider/portal';
+						window.location.href=getContextPath()+ '/provider/portal?company-info';
 					}else{
 						$("#team_pwd_error").text(msg.errorMsg).removeClass("hide");
 						return false;

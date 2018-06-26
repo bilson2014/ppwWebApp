@@ -111,7 +111,8 @@ html {
 }
 
 .user-wrap {
-    @include media_screen_width_beta3();
+    // @include media_screen_width_beta3();
+    width: 1300px !important;
     margin: 0 auto;
     font-size: 0;
     padding-bottom: 160px;
@@ -119,7 +120,7 @@ html {
 }
 
 .left-wrap {
-    width: 200px;
+    width: 240px;
     vertical-align: top;
     display: inline-block;
     background: white;
@@ -128,14 +129,19 @@ html {
     border-radius: 6px;
     position: fixed;
     top: 112px;
-    @media screen and (min-width: 1276px) {
-        width: 300px;
-        padding-top: 60px;
-    }
+    // @media screen and (min-width: 1276px) {
+    //     // width: 300px;
+    //     width: 240px;
+    //     padding-top: 60px;
+    // }
     .left-header {
         width: 130px;
         margin: 0 auto;
         position: relative;
+        margin-left: 29px;
+        @media screen and (min-width: 1276px) {
+            margin: 0 auto;
+        }
         .proLogo {
             width: 130px;
             height: 130px;
@@ -146,7 +152,7 @@ html {
         }
     }
     .userName {
-        width: 240px;
+        width: 167px;
         font-size: $font-size;
         color: $gray-dark;
         margin-top: 20px;
@@ -154,6 +160,11 @@ html {
         margin: 0 auto;
         margin-top: 20px;
         line-height: 18px;
+        margin-left: 10px;
+        @media screen and (min-width: 1276px) {
+            margin-left: 0px;
+            width: 240px;
+        }
     }
     .userProduct {
         width: 120px;
@@ -168,6 +179,11 @@ html {
         margin-top: 20px;
         cursor: pointer;
         position: relative;
+        margin-left: 34px;
+        @media screen and (min-width: 1276px) {
+            margin: 0 auto;
+            margin-top: 20px;
+        }
         span {
             font-size: $font-size-sm;
             color: $red-base;
@@ -305,21 +321,22 @@ html {
 .right-wrap {
     vertical-align: top;
     display: inline-block;
-    width: $width-min - $leftWidthS;
+    width: 1300px - $leftWidth+60px;
+    // width: $width-middle - $leftWidth+60px;
     border-radius: 4px;
     min-height: 518px !important;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: $width-middle - $leftWidth;
-    }
-    @media screen and (min-width: 1500px) {
-        width: 1300px - $leftWidth;
-    }
+    // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    //     width: $width-middle - $leftWidth+60px;
+    // }
+    // @media screen and (min-width: 1500px) {
+    //     width: 1300px - $leftWidth+60px;
+    // }
     margin-left: 20px;
     background: transparent;
     position: absolute;
     top: 0px;
     bottom: 0px;
-    right:0px;
+    right: 0px;
     margin-bottom: 5px;
     border-radius: 6px;
     .titleTop {
@@ -330,15 +347,15 @@ html {
         padding-left: 30px;
         border-bottom: 1px solid $e;
         background: white;
-        width: $width-min - $leftWidthS;
+        width: 1040px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        @media screen and (min-width: 1276px) and (max-width: 1500px) {
-            width: $width-middle - $leftWidth;
-        }
-        @media screen and (min-width: 1500px) {
-            width: 1300px - $leftWidth;
-        }
+        // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+        //     width: $width-middle - $leftWidth;
+        // }
+        // @media screen and (min-width: 1500px) {
+        //     width: 1300px - $leftWidth;
+        // }
         position: fixed;
         top: 111px;
     }
@@ -844,15 +861,16 @@ background-image: none !important; */
     height: 50px;
     position: relative;
     padding-top: 10px;
-    width: $width-min - $leftWidthS;
-    @media screen and (min-width: 1276px) and (max-width: 1500px) {
-        width: $width-middle - $leftWidth;
-    }
-    @media screen and (min-width: 1500px) {
-        width: 1300px - $leftWidth;
-    }
+    // width: $width-min - $leftWidthS;
+    width: 1042px;
+    // @media screen and (min-width: 1276px) and (max-width: 1500px) {
+    //     width: $width-middle - $leftWidth;
+    // }
+    // @media screen and (min-width: 1500px) {
+    //     width: 1300px - $leftWidth;
+    // }
     position: fixed;
-    top:115px;
+    top: 115px;
     .newProduct {
         font-size: 0px;
         border: 1px solid $gray-light;
