@@ -533,6 +533,10 @@ function initMenuEven(){
 		$('#shortMenu .orderList ').removeClass('open');
 		$('#minMyPro .myPro').removeClass('open');
 		$('#minboxs .boxs').addClass('open');
-		
+	});
+	$('#boxsMake').off('click').on('click',function(){
+		$('.frame').attr('src', getUrlTask() +"/makeProduct");			
+		$('.productList li').removeClass('checkLi');
+		$(this).addClass('checkLi');
 	});
 }

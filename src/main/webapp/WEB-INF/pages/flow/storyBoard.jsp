@@ -50,22 +50,24 @@
 <link rel="stylesheet" href="${jcropCss}">
 
 <link rel="shortcut icon" href="${imgPath }/favicon.ico" >
- <input type="hidden" id="id" value="${id}">
+<input type="hidden" id="id" value="${id}">
 
 
 <!--[if lt IE 9]>
         <script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>
     <![endif]-->
+    
+    <!--[if !IE]><input id="ie" value="0"><!-->
 
 </head>
 
 <body>
 	
 	<div class="page">
-	       <div class="toolsHead" >
-	             <div id="projectName">未命名</div>
+	       <div class="toolsHead" style="height:54px;line-height:54px;" >
+	             <div id="projectName" style="font-size: 1.4rem;font-weight: 500;color:#666;">未命名</div>
 	             <div class="toolTitle">分镜工具</div>
-	             <div class="openTool">打开项目分镜</div>
+	             <div class="openTool" style="top:12px">打开项目分镜</div>
 	       </div>
 	       <div class="setImg" id="setImg">
 	              <div class="addItem" id="showUpModel">
@@ -151,7 +153,7 @@
 		                        <div class="boxItem" data-id="" id="setother">
 		                            <div class="box" style="position: relative;top: -5px;"></div>
 		                            <div class="des" style="vertical-align: top !important;position: relative;top: 1px;">其它(秒)</div>
-		                            <input onkeyup="value=value.replace(/[^\d]/g)" id="setSecond">
+		                            <input onkeyup="value=value.replace(/[^\d]/g,'')" id="setSecond">
 		                       </div>
 		                    </div>   
 	                 </div>
@@ -271,7 +273,7 @@
       </div>
       
       
-      <div class="cusModel" id="showNumLoad" >
+    <div class="cusModel" id="showNumLoad" >
 	     <div class="modelCard">
 	            <div class="cardTop">
 	                   <div class="title">镜头添加</div>
@@ -287,15 +289,7 @@
 	            </div>     
 	     </div>
 	</div>
-		
-	  <div class="cusModel" id="madeModel" >
-           <div class="successModel">
-			   <div class="oSContent">
-			        <div class="tdDes" style="padding-top:115px;color:#fe5453;font-size:2rem">PDF制作中...</div>
-			   </div>
-           </div>
-      </div>
-		
+				
 	<!-- photo Modal start -->
 	<div class="cusModel" id="mymodal">
 		<div class="modal-dialog">
@@ -339,8 +333,6 @@
       <input type="hidden" id="projectId" name="projectId" value="${projectId}">
       <input type="hidden" id="createTime" name="createTime" value="">
     
-	
-	
 </body>
 <script type="text/javascript" src="${storyBoardJs}"></script>
 </html>

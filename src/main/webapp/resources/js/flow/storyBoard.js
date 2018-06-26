@@ -74,16 +74,16 @@ function openProjectModel(){
 		for (var int = 0; int < src.length; int++) {
 			 $(".modelProductContent").append(juicer(videoList_tpl.project_Tpl,{file:src[int]}));
 		}		
-		initCheckProject();
+		
 		$('#CheckloadProduct').off('click').on('click',function(){
 			var modelVal = $('.modelProductContent .modelPActive');
 			if(modelVal.length>0){
-				reShow(modelVal.attr('data-id'));
+				//reShow(modelVal.attr('data-id'));
 				$('#loadProductModel').hide();
 			}
 		});
 		
-	}, getContextPath() + '/continuity/list/synergetic','');
+	}, getContextPath() + '/production/list/synergetic','');
 	
 }
 
@@ -287,13 +287,18 @@ function getValue(projectId,who){
 	var setArray = JSON.stringify(setData);
 
 	if(who == 1){ 
-		   $('#madeModel').show();
-	  /*  $('#name').val(storyName);
-		$('#dimensionId').val(dimensionId);
-		$('#videoStyle').val(videoStyle);
-		$('#pictureRatio').val(pictureRatio);
-		$('#scriptContent').val(setArray);
-		$('#toListForm').submit();*/
+		
+		if(IEVersion()!= -1){
+			$('#name').val(storyName);
+			$('#dimensionId').val(dimensionId);
+			$('#videoStyle').val(videoStyle);
+			$('#pictureRatio').val(pictureRatio);
+			$('#scriptContent').val(setArray);
+			$('#toListForm').submit();
+		}else{
+			
+		   var projectId = $('#projectId').val();
+		   var createTime = $('#createTime').val();
 		   var url = getContextPath() + '/continuity/export';
 		   var xhr = new XMLHttpRequest();
 		   var form = new FormData();
@@ -301,9 +306,13 @@ function getValue(projectId,who){
 		   form.append('videoStyle',videoStyle);
 		   form.append('pictureRatio',pictureRatio);
 		   form.append('scriptContent',setArray);
+		   form.append('projectId',projectId);
+		   form.append('createTime',createTime);
+
 		   xhr.open('POST', url, true);        // 也可以使用POST方式，根据接口
 		   xhr.responseType = "blob";    // 返回类型blob
 		   // 定义请求完成的处理函数，请求前也可以增加加载框/禁用下载按钮逻辑
+		   successToolTipShow('文件制作中');
 		   xhr.onload = function () {
 		       // 请求完成
 		       if (this.status === 200) {
@@ -314,7 +323,7 @@ function getValue(projectId,who){
 		    	   }else{
 		    		   name = "《"+name+"》分镜脚本";
 		    	   }
-		    	   $('#madeModel').hide();
+		    	   successToolTipShow('导出成功');
 		           var blob = this.response;
 		           var reader = new FileReader();
 		           reader.readAsDataURL(blob);    // 转换为base64，可以直接放入a表情href
@@ -333,7 +342,9 @@ function getValue(projectId,who){
 		       }
 		   };
 		   // 发送ajax请求
-		   xhr.send(form)
+		   xhr.send(form);
+		}
+		   
 	}else{
 			loadData(function(src){
 				if(src.result){
@@ -359,6 +370,36 @@ function getValue(projectId,who){
 	}
 		
 }
+
+function IEVersion() {
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+    var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
+    var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+    if(isIE) {
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+        reIE.test(userAgent);
+        var fIEVersion = parseFloat(RegExp["$1"]);
+        if(fIEVersion == 7) {
+            return 7;
+        } else if(fIEVersion == 8) {
+            return 8;
+        } else if(fIEVersion == 9) {
+            return 9;
+        } else if(fIEVersion == 10) {
+            return 10;
+        } else {
+            return 6;//IE版本<=7
+        }   
+    } else if(isEdge) {
+        return 'edge';//edge
+    } else if(isIE11) {
+        return 11; //IE11  
+    }else{
+        return -1;//不是ie浏览器
+    }
+}
+
 
 function newSelectCheck(){
 	
@@ -420,6 +461,7 @@ function initSortable(){
 }
 
 function initCheckBox(){
+	
 	getBoxHasInput($('#time .boxItem'));
 	getBox($('#videoType .boxItem'));
 	

@@ -384,11 +384,9 @@ var imgUpload1 = {
 			upload_Video.on('uploadProgress',function(file, percentage) {
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
-				console.log(file);
-				console.log(response);
+
 				if(response.code == 0){
-					//图片获取成功的 操作
-					console.log('获取成功了 图片');			
+					//图片获取成功的 操作			
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
