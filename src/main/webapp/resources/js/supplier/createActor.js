@@ -4,6 +4,7 @@ var upload_dir;
 var upload_site;
 var upload_sitemore;
 var upload_profession;
+var upload_cameraman;
 var image_max_size = 1024*1024; // 250KB
 //头像裁剪参数 start
 var jcrop_api;
@@ -26,6 +27,7 @@ $().ready(function() {
 	imgUpload4.init();
 	imgUpload5.init();
 	imgUpload6.init();
+	imgUpload7.init();
 
 });
 //添加演员弹出框
@@ -49,6 +51,12 @@ $().ready(function() {
 		//listpeopledata(type); 无页面参数
 		cleanpeopledata();
 		$('.peoplebox .peopletitle span').text('添加'+professionName);
+		listcitydata();
+	}
+	function cameramanboxshow(){
+//		listpeopledata('cameraman'); 
+		cleancameramandata();
+		$('.cameramanbox .cameramantitle span').text('添加摄影师');
 		listcitydata();
 	}
 
@@ -370,6 +378,12 @@ function delpeople(id,identity){
 		loadData(function(res){	
 			getlistdatap();//获取人数据
 		 }, getContextPath() + ' /production/director/delete', $.toJSON({						
+			 id:id,//	主键
+		}));
+	}else if (identity=='cameraman'){
+		loadData(function(res){	
+			getlistdatap();//获取人数据
+		 }, getContextPath() + ' /production/cameraman/delete', $.toJSON({						
 			 id:id,//	主键
 		}));
 	}else{
@@ -784,6 +798,71 @@ var imgUpload6 = {
 		}		
 }
 
+var imgUpload7 = {
+		init : function() {
+			//批量上传
+			this.multipUploadFile();
+		},
+		multipUploadFile:function(){
+			upload_cameraman && upload_cameraman.destroy();
+			var picker =$('#filePicker7'); 
+			upload_cameraman = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/web/upload',
+				timeout:60*60*1000,
+				pick : picker,
+				fileSingleSizeLimit : image_max_size,
+				threads :1,
+				duplicate :true,
+				multiple:true,
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png,jpeg',
+				    mimeTypes: 'image/jpeg,image/png'
+				}
+			});
+			upload_cameraman.on('uploadProgress',function(file, percentage) {
+			});
+			upload_cameraman.on('uploadSuccess', function(file,response) {
+				if(response.code == 0){
+					//图片获取成功的 操作		
+					var path = response.result;
+					var imgPath = getResourcesName() + path;
+					$('#mymodal').show();//裁剪弹框
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
+					$('#modal-original-img').attr('src','');
+					remodelstyle();
+					JcropFunction();
+					$('#modal-original-img').attr('src',imgPath);
+					initCutImg('filePicker7');
+					cutUpload(path,'filePicker7');
+
+				}else{
+					successToolTipShow('图片获取失败');
+				}
+				
+			});
+			upload_cameraman.on('uploadError', function(file,reason) {
+				successToolTipShow(reason);
+			});
+			upload_cameraman.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_profession.reset();
+				}
+			});
+			upload_cameraman.on('error', function(type) {
+				if (type=="Q_TYPE_DENIED"){
+					successToolTipShow('请上传正确格式的图片');
+			    }else if(type=="F_EXCEED_SIZE"){
+					successToolTipShow('请上传1M以内的图片');
+			    }
+			});
+			
+		}		
+}
+
 function addmodelstyle(){
 	$('.modal-body .modal-left').addClass('modal-left-site');
 	$('.modal-body .modal-preview-container').addClass('modal-site');
@@ -999,6 +1078,16 @@ function cutUpload(path,pick){
 //					
 					if($('.reupload').length<=0){
 						$('#filePicker6 .updateimg').after("<div class='reupload'>重新上传</div>");
+					}
+				}else if (pick=='filePicker7'){
+					$('#filePicker7 .fileimg').attr('src',getResourcesName()+userTarget.result);
+					$('#filePicker7 .fileimg').attr('data-value',userTarget.result);
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
+					if($('.reupload').length<=0){
+						$('#filePicker7 .updateimg').after("<div class='reupload'>重新上传</div>");
 					}
 				}
 				

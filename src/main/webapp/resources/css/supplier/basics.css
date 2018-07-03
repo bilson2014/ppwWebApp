@@ -6081,7 +6081,8 @@ body {
 	left: 70px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
-	display: none
+	display: none;
+	overflow: auto;
 }
 
 .role p {
@@ -6369,5 +6370,272 @@ body {
 }
 
 #filePicker6 .addimgs {
+	margin-top: 0px !important
+}
+
+
+.cameramanbox {
+	width: 720px;
+	height: auto;
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 80px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	display: none;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.cameramanbox .cameramantitle {
+	height: 60px;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.cameramanbox .cameramantitle span {
+	font-size: 16px;
+	color: #333;
+	display: inline-block;
+	line-height: 60px;
+	margin-left: 39px
+}
+
+.cameramanbox .cameramantitle img {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 22.1px;
+	right: 22.1px;
+	cursor: pointer
+}
+
+.cameramanbox .cameraman .cameramanl {
+	display: inline-block;
+	width: 327px;
+	position: relative;
+	margin-top: 29px
+}
+
+.cameramanbox .cameraman .cameramanl span {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 39px;
+	width: 76px;
+	height: 36px;
+	line-height: 36px;
+	vertical-align: bottom
+}
+
+.cameramanbox .cameraman .cameramanl input {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px
+}
+
+.cameramanbox .cameraman .cameramanl input:focus {
+	background-color: #f6f9f9
+}
+
+.cameramanbox .cameraman .cameramanl .errorp {
+	font-size: 1.2px;
+	color: #fe5453;
+	padding-left: 107px;
+	line-height: 20px;
+	height: 37px
+}
+
+.cameramanbox .cameraman .cameramanl div {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px;
+	line-height: 36px;
+	display: inline-block;
+	cursor: pointer;
+	padding-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.cameramanbox .cameraman .cameramanl .specialSkillcheck {
+	height: auto;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 109px;
+	background: #fff;
+	padding: 0;
+	display: none
+}
+
+.cameramanbox .cameraman .cameramanl .specialSkillcheck p {
+	padding-left: 11px
+}
+
+.cameramanbox .cameraman .cameramanl .specialSkillcheck p:hover {
+	background: #F0F2F5
+}
+
+.cameramanbox .cameraman .cameramanl .citycheck {
+	height: 216px;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 182px;
+	background: #fff;
+	padding: 0;
+	overflow: auto;
+	display: none
+}
+
+.cameramanbox .cameraman .cameramanl .citycheck p {
+	padding-left: 11px
+}
+
+.cameramanbox .cameraman .cameramanl .citycheck p:hover {
+	background: #F0F2F5
+}
+
+.cameramanbox .cameraman .cameramanl img {
+	margin-left: -20px;
+	cursor: pointer;
+	vertical-align: top;
+	margin-top: 12px;
+	width: 14px;
+	height: 14px
+}
+
+.cameramanbox .cameraman .cameramanr {
+	display: inline-block;
+	width: 250px;
+	vertical-align: top;
+	position: relative
+}
+
+.cameramanbox .cameraman .cameramanr .tipsimage {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 121px;
+	width: 277px;
+	line-height: 36px;
+	margin-top: 20px;
+	margin-bottom: 10px
+}
+
+.cameramanbox .cameraman .cameramanr .tipsimage span {
+	display: inline-block;
+	font-size: 12px;
+	color: #bdbdbd;
+	line-height: 11px;
+	padding-bottom: 9px
+}
+
+.cameramanbox .cameraman .cameramanr .addboxs {
+	width: 350px;
+	margin-left: 28px
+}
+
+.cameramanbox .cameraman .cameramanr .addboxs span {
+	height: 37px;
+	font-size: 12px;
+	color: #bdbdbd;
+	display: block;
+	line-height: 16px;
+	margin-top: 19px
+}
+
+.cameramanbox .cameraman .cameramanr .addimage {
+	width: 162px;
+	height: 216px;
+	background: #f4f4f4;
+	margin-left: 123px;
+	text-align: center;
+	cursor: pointer
+}
+
+.cameramanbox .cameraman .cameramanr .addimage .updateimg img {
+	margin-top: 0 !important;
+	width: 100%
+}
+
+.cameramanbox .cameraman .cameramanr .addimage .addimgs {
+	top: 70px;
+	position: absolute;
+	left: 66px
+}
+
+.cameramanbox .cameraman .cameramanr .addimage .clickimg {
+	position: absolute;
+	left: 45px;
+	top: 110px;
+	margin-top: 0 !important;
+	width: 72px;
+	font-size: 12px;
+	color: #999
+}
+
+.cameramanbox .cameraman .cameramanr .addimage .reupload {
+	width: 162px;
+	height: 216px;
+	background: #000;
+	opacity: 0.5;
+	font-size: 12px;
+	color: #fff;
+	line-height: 216px;
+	position: absolute;
+	top: 0;
+	display: none
+}
+
+.cameramanbox .remark {
+	height: 121px;
+	margin-top: 15px;
+	margin-left: 39px
+}
+
+.cameramanbox .remark span {
+	width: 28px;
+	height: 121px;
+	color: #666;
+	font-size: 14px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 38px;
+	padding-top: 12px
+}
+
+.cameramanbox .remark textarea {
+	resize: none;
+	outline: none;
+	border-radius: 4px;
+	border: 1px solid #d1d1d1;
+	width: 553px;
+	height: 121px;
+	font-size: 14px;
+	color: #999;
+	padding-left: 10px;
+	line-height: 26px;
+	display: inline-block
+}
+
+.cameramanbox .gatherbut {
+	text-align: center;
+	padding-bottom: 50px
+}
+
+#filePicker7 .addimgs {
 	margin-top: 0px !important
 }

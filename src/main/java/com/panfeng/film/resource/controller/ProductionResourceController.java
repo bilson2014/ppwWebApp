@@ -193,6 +193,9 @@ public class ProductionResourceController extends BaseController {
 			ProductionConstants[] specialtyList = ProductionConstants.specialtyList;
 			result.put("specialtyList", specialtyList);
 			break;
+		case "cameraman":
+			//摄影师
+			break;
 		case "device":
 			// 设备
 			
@@ -417,7 +420,7 @@ public class ProductionResourceController extends BaseController {
 		BaseMsg result = new BaseMsg();
 		PmsProductionCameraman old = pmsProductionCameramanFacade.getById(cameraman.getId());
 		delImg(old.getPhoto());
-		pmsProductionStudioFacade.deleteByIds(new long[] { cameraman.getId() });
+		pmsProductionCameramanFacade.deleteByIds(new long[] { cameraman.getId() });
 		return result;
 	}
 	

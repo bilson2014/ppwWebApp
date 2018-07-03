@@ -79,6 +79,7 @@ function init(){
 		$('.staffbox').hide();
 		$('.directorbox').show();
 		$('.peoplebox').hide();
+		$('.cameramanbox').hide();
 		directorboxshow();
 //		$(this).addClass('pickrole');
 //		$('.pickact').removeClass('pickrole');
@@ -96,6 +97,7 @@ function init(){
 		staffboxshow();
 		$('.directorbox').hide();
 		$('.peoplebox').hide();
+		$('.cameramanbox').hide();
 //		$(this).addClass('pickrole');
 //		$('.pickdir').removeClass('pickrole');
 		for(var i=0;i<picks.length;i++){
@@ -108,7 +110,26 @@ function init(){
 		$('.role').addClass('pickroledir');//定义高度，演员的更高
 		
 	});
-	
+	//摄影师
+	$('.pickcam').off('click').on('click',function(){
+		$('.cameramanbox').show();
+		cameramanboxshow();
+		$('.staffbox').hide();
+		$('.directorbox').hide();
+		$('.peoplebox').hide();
+//		$(this).addClass('pickrole');
+//		$('.pickdir').removeClass('pickrole');
+		for(var i=0;i<picks.length;i++){
+			if(picks[i].className.indexOf('pickcam')==-1){
+				$(picks[i]).removeClass('pickrole');
+			}
+		}
+		$(this).addClass('pickrole');
+		
+		$('.role').removeClass('pickroledir');//定义高度，演员的更高
+		
+	});
+	//其他职业人员
 	initAddPeople('picklig','lighter');
 	initAddPeople('pickpro','producer');
 	initAddPeople('pickedi','editor');
@@ -220,6 +241,7 @@ function initAddPeople(type,profession){
 		$('.directorbox').hide();
 		$('.peoplebox').show();
 		$('.staffbox').hide();
+		$('.cameramanbox').hide();
 		peopleboxshow(profession,getNameByProfession(profession));
 		
 		
@@ -254,6 +276,7 @@ function newbutton(){
 			$('.staffbox').hide();
 			$('.directorbox').show();
 			$('.peoplebox').hide();
+			$('.cameramanbox').hide();
 			
 			/*$('.pickdir').addClass('pickrole');
 			$('.pickact').removeClass('pickrole');*/
@@ -637,6 +660,17 @@ function getpeople(id,type){
 		//数据回显
 		getPeopleByProfession(id,type,professionName);
 	
+	}else if  (type=='cameraman'){
+
+		$('.role').addClass('pickroledir');
+		//其他职业人员的数据
+		$('.cameramanbox').show();
+		$('.cameramanbox').addClass('pickborder');
+		
+		cameramanboxshow();
+		//数据回显
+		getCameraman(id);
+	
 	}
 }
 
@@ -700,6 +734,11 @@ function btnfocus(){
 		 $('.cityequip').removeClass('Color');
 		 
 		 //TODO 这里这么多citycheck
+		 $('.citycheck ').removeClass('reilef');
+		 $('.citypeop').removeClass('Color');
+		 
+		 $('.specialSkillcheck ').removeClass('reilef');
+		 $('.specialSkill').removeClass('Color');
 		 $('.citycheck ').removeClass('reilef');
 		 $('.citypeop').removeClass('Color');
 		 
@@ -1055,6 +1094,55 @@ function btnfocus(){
 		$('.citypeo').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.citypeo').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	//摄影师
+	$('.specialSkill,.specialSkillimg').off('click').on('click',function(e){
+		 $('.specialSkillcheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.specialSkillcheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else{
+			$('.specialSkill').removeClass('Color');
+			$(this).find('.specialSkillcheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+
+		$('.citycheck').removeClass('reilef');
+	   	$('.cityca').removeClass('Color');
+		event.stopPropagation();
+	});
+	$('body').on('click','.specialSkillcheck p',function(){
+		$('.specialSkill').attr('value',$(this).attr('key'));
+		$('.specialSkill').text($(this).text());
+	   	$('.specialSkillcheck').removeClass('reilef');
+	   	$('.specialSkill').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	$('.cityca,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			$('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}else{
+			$('.cityca').removeClass('Color');
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		
+		$('.specialSkillcheck').removeClass('reilef');
+	   	$('.specialSkill').removeClass('Color');
+
+		event.stopPropagation();
+	});
+	$('body').on('click','.cameramanbox .citycheck p',function(){
+		$('.cityca').attr('cityid',$(this).attr('cityid'));
+		$('.cityca').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityca').removeClass('Color');
 	     event.stopPropagation();
 	});
 	
