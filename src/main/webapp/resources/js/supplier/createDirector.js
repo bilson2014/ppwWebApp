@@ -120,7 +120,7 @@ function dirmethod(){
 		}
 	});	
 }
-//清楚数据
+//清除数据
 function cleadirectordata(){
 	$('.staffbox').removeClass('pickborder');
 	$('.namedirp').text('');

@@ -29,6 +29,7 @@
 <spring:url value="/resources/js/supplier/createDirector.js" var="createDirectorJs"/>
 <spring:url value="/resources/js/supplier/site.js" var="siteJs"/>
 <spring:url value="/resources/js/supplier/device.js" var="deviceJs"/>
+<spring:url value="/resources/js/supplier/people.js" var="peopleJs"/>
 
 <spring:url value="/resources/js/supplier/moreimg.js" var="moreimgJs"/>
 <!DOCTYPE html>
@@ -105,6 +106,16 @@
 	<div class='role'>
 		<p class='pickdir pickrole' style="border-top-left-radius: 6px;">导演</p>
 		<p class='pickact'>演员</p>
+		<p class='picklig'>灯光师</p>
+		<p class='pickpro'>制片人</p>
+		<p class='pickedi'>剪辑师</p>
+		<p class='pickpac'>包装师</p>
+		<p class='pickcol'>调色师</p>
+		<p class='pickprop'>道具师</p>
+		<p class='pickart'>美术师</p>
+		<p class='pickcos'>服装师</p>
+		<p class='pickdre'>化妆师</p>
+		<p class='pickmix'>录音师</p>
 	</div>
 		              			
 		              			<!-- 添加演员 -->
@@ -275,6 +286,61 @@
 		              			<div class='remark'>
 		              				<span>备注</span>
 		              				<textarea class='remarkdirector' rows="4" cols="550" placeholder="请完善导演简历以及作品等信息"></textarea>
+		              			</div>
+		              			<!--提交按钮  -->
+		              			<div class='gatherbut'>
+		              				<div class='sure'>确认</div>
+		              				<div class='cancel'>取消</div>
+		              			</div>
+		              		</div>
+		              		
+			              		<!--添加其他职业  -->
+		              		<div class='peoplebox' >
+		              			<div class='peopletitle'>
+		              				<span>创建灯光师</span>
+		              				<img alt="关闭" src="/resources/images/supplier/close.png">
+		              			</div>
+		              			<div class='profession other'>
+		              				<div class='peoplel'>
+		              					<input type="hidden" id='professionpeo'>
+		              				
+		              					<span>姓名</span>
+		              					<input class='namepeo' type='text' placeholder="">
+		              					<p class='namepeop errorp'></p>
+		              						
+		              					<span>所在城市</span>
+		              					<div class='citypeo'>请选择</div>
+		              					<img class='cityimg' alt="" src="/resources/images/supplier/more.png">
+		              					<p class='citypeop errorp'></p>
+		              					<div class='citycheck'>
+		              					</div>
+		              					
+		              					
+		              					<span>价格(元/天)</span>
+		              					<input class='pricepeo' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+		              					<p class='pricepeop errorp'></p>
+		              					
+		              					
+		              				</div>
+		              				<div class='peopler'>
+		              					<div class='tipsimage'>照片
+		              						<span>(1张灯光师照片封面)</span>
+                                        </div>
+		              					<div class='addimage filesimage' id='filePicker6'>
+		              						<div class='updateimg'>
+		              					 		<img alt="用户头像" class='fileimg'/>
+		              					 	</div>
+		              					</div>
+		              					<div class='addboxs'>
+		              						<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
+		              							
+		              					</div>
+		              				</div>
+		              			</div>
+		              			
+		              			<div class='remark'>
+		              				<span>备注</span>
+		              				<textarea class='remarkpeople' rows="4" cols="550" placeholder="请完善灯光师简历以及作品等信息"></textarea>
 		              			</div>
 		              			<!--提交按钮  -->
 		              			<div class='gatherbut'>
@@ -457,6 +523,7 @@
 	<script src="${createDirectorJs}"></script> 
 	<script src="${siteJs}"></script> 
 	<script src="${deviceJs}"></script> 
+	<script src="${peopleJs}"></script> 
 
 
 	
