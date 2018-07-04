@@ -84,6 +84,7 @@ function init(){
 //		$(this).addClass('pickrole');
 //		$('.pickact').removeClass('pickrole');
 		$('.role').removeClass('pickroledir');
+		$('.role').removeClass('pickroleshowimg ');
 		
 		for(var i=0;i<picks.length;i++){
 			if(picks[i].className.indexOf('pickdir')==-1){
@@ -108,6 +109,7 @@ function init(){
 		$(this).addClass('pickrole');
 		
 		$('.role').addClass('pickroledir');//定义高度，演员的更高
+		$('.role').removeClass('pickroleshowimg ');
 		
 	});
 	//摄影师
@@ -127,6 +129,7 @@ function init(){
 		$(this).addClass('pickrole');
 		
 		$('.role').removeClass('pickroledir');//定义高度，演员的更高
+		$('.role').removeClass('pickroleshowimg ');
 		
 	});
 	//其他职业人员
@@ -254,6 +257,7 @@ function initAddPeople(type,profession){
 		$(this).addClass('pickrole');
 		
 		$('.role').removeClass('pickroledir');
+		$('.role').removeClass('pickroleshowimg ');
 		
 	});
 }
@@ -1115,12 +1119,19 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	$('body').on('click','.specialSkillcheck p',function(){
-		$('.specialSkill').attr('value',$(this).attr('key'));
-		$('.specialSkill').text($(this).text());
+		/*$('.specialSkill').attr('value',$(this).attr('key'));
+		$('.specialSkill').text($(this).text());*/
+		
+		$('.specialSkill').val($(this).text());
+		$('.specialSkill').attr('key',$(this).attr('key'));
+		
 	   	$('.specialSkillcheck').removeClass('reilef');
 	   	$('.specialSkill').removeClass('Color');
 	     event.stopPropagation();
 	});
+	$('.specialSkill').on('input',function(e){  
+		$('.specialSkill').attr('key','');
+	}); 
 	
 	$('.cityca,.cityimg').off('click').on('click',function(e){
 		 $('.citycheck').addClass('reilef');

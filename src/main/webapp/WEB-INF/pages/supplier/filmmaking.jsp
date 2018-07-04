@@ -118,8 +118,9 @@
 					<div class='role'>
 						<p class='pickdir pickrole' style="border-top-left-radius: 6px;">导演</p>
 						<p class='pickact'>演员</p>
+						<p class='pickcam'>摄影师</p>
 						<p class='picklig'>灯光师</p>
-						<p class='pickpro'>制片人</p>
+			<!-- 			<p class='pickpro'>制片人</p> -->
 						<p class='pickedi'>剪辑师</p>
 						<p class='pickpac'>包装师</p>
 						<p class='pickcol'>调色师</p>
@@ -128,7 +129,6 @@
 						<p class='pickcos'>服装师</p>
 						<p class='pickdre'>化妆师</p>
 						<p class='pickmix'>录音师</p>
-						<p class='pickcam'>摄影师</p>
 					</div>
 
 					<!-- 添加演员 -->
@@ -380,6 +380,7 @@
 
 								<span>特殊技能</span> <!-- <span class='morepick'>(可多选)</span> -->
 								<div class='specialSkill'>请选择</div>
+								<input class='check ods' placeholder="请选择">
 								<img class='specialSkillimg' alt=""
 									src="/resources/images/supplier/more.png">
 								<p class='specialSkillp errorp'></p>

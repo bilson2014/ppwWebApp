@@ -19,7 +19,7 @@ function cammethod(){
 	//提交
 	$('.cameramanbox .gatherbut .sure').off('click').on('click',function(){
 		var nameca=$('.nameca').val();
-		var specialSkill=$('.specialSkill').text();
+		var specialSkill=$('.specialSkill').val();
 		var cityca=$('.cityca').text();
 		var priceca=$('.priceca').val();
 		var remarkca=$('.remarkca').val();
@@ -28,12 +28,13 @@ function cammethod(){
 		$('.specialSkillp').text('');
 		$('.citycap').text('');
 		$('.pricecap').text('');
+		
 		if (nameca==undefined||nameca==null||nameca==''){
 			$('.namecap').text('*请填写摄影师姓名');
 			return false;
-		}else if( specialSkill=='请选择'){
-			$('.specialSkillp').text('*请选择特殊技能');
-			return false;
+//		}else if( specialSkill=='请选择'){
+//			$('.specialSkillp').text('*请选择特殊技能');
+//			return false;
 		}else if(cityca=='请选择'){
 			$('.citycap').text('*请选择城市');
 			return false;
@@ -62,7 +63,7 @@ function cammethod(){
 					 name:nameca,//姓名
 					 city:$('.cityca').attr('cityid'),//城市(编码)
 					 mainPhoto:$('#filePicker7 .fileimg').attr('data-value'),//照片
-					 specialSkill:$('.specialSkill').attr('value'),//擅长领域
+					 specialSkill:$('.specialSkill').attr('key'),//特殊技能
 					 price: priceca,//价格
 					 remark:remarkca,//备注
 				}));
@@ -80,7 +81,7 @@ function cammethod(){
 					 name:nameca,//姓名
 					 city:$('.cityca').attr('cityid'),//城市(编码)
 					 mainPhoto:$('#filePicker7 .fileimg').attr('data-value'),//照片
-					 specialSkill:$('.specialSkill').attr('value'),//擅长领域
+					 specialSkill:$('.specialSkill').attr('key'),//特殊技能
 					 price: priceca,//价格
 					 remark:remarkca,//备注
 				}));
@@ -109,14 +110,14 @@ function getCameraman(id){
 		$('.priceca').val(res.price);
 		
 		if(res.specialSkill=='1'){
-			$('.specialSkill').text('水下拍摄');
+			$('.specialSkill').val('水下拍摄');
 		}else if(res.specialSkill=='2'){
-			$('.specialSkill').text('航拍');
+			$('.specialSkill').val('航拍');
 		}else{
-			$('.specialSkill').text('请选择');
+			$('.specialSkill').val('请选择');
 		}
 		
-		$('.specialSkill').attr('value',res.specialSkill);
+		$('.specialSkill').attr('key',res.specialSkill);
 		
 		var city=res.city;
 		$('.cityca').attr('cityid',city);
@@ -142,8 +143,9 @@ function cleancameramandata(){
 	
 	
 	$('.nameca').val('');
-	$('.specialSkill').text('请选择');
-	$('.specialSkill').attr('value','');
+	$('.specialSkill').val('');
+	$('.specialSkill').attr('key','');
+	
 	$('.specialSkillcheck p').removeClass('pickme');
 	$('.cityca').text('请选择');
 	$('.priceca').val('');

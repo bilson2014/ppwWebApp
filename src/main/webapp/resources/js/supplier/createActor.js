@@ -149,7 +149,7 @@ function peoplechengck(){
 	     event.stopPropagation();
 	});
 
-	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel,.peoplebox .cancel').off('click').on('click',function(){
+	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel,.peoplebox .cancel,.cameramanbox .cancel').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.addpeople').hide();
 		$('.staffbox').hide();

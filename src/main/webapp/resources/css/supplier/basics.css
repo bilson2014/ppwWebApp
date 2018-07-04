@@ -4307,28 +4307,28 @@ body {
 	background: #f0f2f5 !important;
 	position: relative;
 	top: 0px;
-	height: 100%
+	height: auto;
 }
 
 .managerPgae {
 	width: 100%;
-	height: 100%;
+	height: auto;
 	margin: 0 auto;
 	margin: 0;
-	position: relative
-}
+	position: relative;
+} 
 
 .managerCard {
 	position: relative;
 	padding-top: 20px;
 	min-height: 720px;
-	height: 100%;
+	height: auto;
 	background: white;
 	border-radius: 6px;
 	padding-left: 15px;
 	padding-right: 15px;
 	font-size: 0;
-	padding-bottom: 150px
+	padding-bottom: 150px;
 }
 
 .managerCard .title {
@@ -4398,7 +4398,8 @@ body {
 }
 
 .page .setCard {
-	margin: 0 9px
+	margin: 0 9px;
+	height: auto;
 }
 
 .page .setCard .idcard {
@@ -6072,17 +6073,38 @@ body {
 }
 
 .role {
-	width: 90px;
+	width: 95px;
 	height: 661px;
-	position: fixed;
+	/* position: fixed; */
+	position:absolute;
 	background: #F0F2F5;
 	z-index: 99;
-	top: 80px;
-	left: 70px;
+	/* top: 80px;
+	left: 70px; */
+	margin-top:80px;
+	margin-left:70px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 	display: none;
-	overflow: auto;
+	overflow-y: auto; 
+	overflow-x:hidden; 
+}
+
+.role::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #FFFFFF/* #F5F5F5 */;
+}
+
+.role::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #FFFFFF;
+}
+
+.role::-webkit-scrollbar-thumb
+{
+	background-color: #D1D1D1;/* #000000; */
 }
 
 .role p {
