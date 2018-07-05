@@ -4321,7 +4321,7 @@ body {
 .managerCard {
 	position: relative;
 	padding-top: 20px;
-	min-height: 720px;
+	min-height: 770px;
 	height: auto;
 	background: white;
 	border-radius: 6px;
@@ -4371,7 +4371,7 @@ body {
 	right: 57px
 }
 
-.page .top .people, .page .sitett, .page .facility {
+.page .top .people, .page .sitett, .page .facility,.page .costume {
 	font-size: 16px;
 	color: #666;
 	padding: 0 5px;
@@ -4386,7 +4386,7 @@ body {
 	margin-left: 10px
 }
 
-.page .top .people:hover, .page .sitett:hover, .page .facility:hover {
+.page .top .people:hover, .page .sitett:hover, .page .facility:hover, .page .costume:hover {
 	color: #FE5453;
 	border-bottom: 2px solid #FE5453
 }
@@ -4558,6 +4558,25 @@ body {
 	height: 26px !important;
 	top: 106px !important
 }
+
+.idcard-costume {
+	width: 234px !important;
+	height: 132px !important;
+	margin: 0px 7px !important;
+	margin-top: 20px !important
+}
+
+.idcard-costumes {
+	width: 234px !important;
+	height: 107px !important
+}
+
+.linebox-costume {
+	width: 234px !important;
+	height: 26px !important;
+	top: 106px !important
+}
+
 
 .setting {
 	background: rgba(0, 0, 0, 0.5);
@@ -4747,7 +4766,7 @@ body {
 }
 
 .staffbox .gather .gatherleft .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 107px;
 	line-height: 20px;
@@ -5101,7 +5120,7 @@ body {
 }
 
 .directorbox .director .directorl .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 107px;
 	line-height: 20px;
@@ -5377,7 +5396,7 @@ body {
 }
 
 .sitebox .site .siteleft .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 116px;
 	line-height: 20px;
@@ -5704,7 +5723,7 @@ body {
 }
 
 .equipbox .equip .equipleft .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 86px;
 	line-height: 15px;
@@ -6136,6 +6155,10 @@ body {
 	height: 882px !important
 }
 
+.pickroleclo {
+	height: 715px !important
+}
+
 .pickborder {
 	border-radius: 6px !important
 }
@@ -6217,7 +6240,7 @@ body {
 }
 
 .peoplebox .profession .peoplel .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 107px;
 	line-height: 20px;
@@ -6466,7 +6489,7 @@ body {
 }
 
 .cameramanbox .cameraman .cameramanl .errorp {
-	font-size: 1.2px;
+	font-size: 12px;
 	color: #fe5453;
 	padding-left: 107px;
 	line-height: 20px;
@@ -6660,4 +6683,672 @@ body {
 
 #filePicker7 .addimgs {
 	margin-top: 0px !important
+}
+
+
+.customeRole {
+	width: 90px;
+	height: 679px;
+	position:absolute;
+	background: #F0F2F5;
+	z-index: 99;
+	margin-top:80px;
+	margin-left:105px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	display: none;
+	overflow-y: auto; 
+	overflow-x:hidden; 
+}
+
+
+.customeRole p {
+	font-size: 14px;
+	color: #666666;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	width: 90px;
+	cursor: pointer;
+	border-left: 2px solid transparent
+}
+
+.customeRole p:hover {
+	background: #fff;
+	border-left: 2px solid #FE5453
+}
+
+.customeRole .pickrole {
+	background: #fff;
+	border-left: 2px solid #FE5453
+}
+
+.clothingbox {
+	width: 650px;
+	height: auto;
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 80px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	display: none;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.clothingbox .clothingtitle {
+	height: 60px;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.clothingbox .clothingtitle span {
+	font-size: 16px;
+	color: #333;
+	display: inline-block;
+	line-height: 60px;
+	margin-left: 39px
+}
+
+.clothingbox .clothingtitle img {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 22.1px;
+	right: 22.1px;
+	cursor: pointer
+}
+
+.clothingbox .clothing .clothingl {
+	display: inline-block;
+	width: 327px;
+	position: relative;
+	margin-top: 29px
+}
+
+.clothingbox .clothing .clothingl span {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 41px;
+	width: 76px;
+	height: 36px;
+	line-height: 36px;
+	vertical-align: bottom
+}
+
+.clothingbox .clothing .clothingl input {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px
+}
+
+.clothingbox .clothing .clothingl input:focus {
+	background-color: #f6f9f9
+}
+
+.clothingbox .clothing .clothingl .errorp {
+	font-size: 12px;
+	color: #fe5453;
+	padding-left: 109px;
+	line-height: 16px;
+	height: 21px
+}
+
+.clothingbox .clothing .clothingl div {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px;
+	line-height: 36px;
+	display: inline-block;
+	cursor: pointer;
+	padding-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.clothingbox .clothing .clothingl .typeclocheck {
+	height: auto;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 36px;
+	background: #fff;
+	padding: 0;
+	display: none
+}
+
+.clothingbox .clothing .clothingl .typeclocheck p {
+	padding-left: 11px
+}
+
+.clothingbox .clothing .clothingl .typeclocheck p:hover {
+	background: #F0F2F5
+}
+
+.clothingbox .clothing .clothingl .accreditclocheck {
+	height: auto;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 150px;
+	background: #fff;
+	padding: 0;
+	display: none
+}
+
+.clothingbox .clothing .clothingl .accreditclocheck p {
+	padding-left: 11px
+}
+
+.clothingbox .clothing .clothingl .accreditclocheck p:hover {
+	background: #F0F2F5
+}
+
+.clothingbox .clothing .clothingl .citycheck {
+	height: 216px;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 321px;
+	background: #fff;
+	padding: 0;
+	overflow: auto;
+	display: none
+}
+
+.clothingbox .clothing .clothingl .citycheck p {
+	padding-left: 11px
+}
+
+.clothingbox .clothing .clothingl .citycheck p:hover {
+	background: #F0F2F5
+}
+
+.clothingbox .clothing .clothingl img {
+	margin-left: -20px;
+	cursor: pointer;
+	vertical-align: top;
+	margin-top: 12px;
+	width: 14px;
+	height: 14px
+}
+
+.clothingbox .clothing .clothingr {
+	display: inline-block;
+	width: 250px;
+	vertical-align: top;
+	position: relative
+}
+
+.clothingbox .clothing .clothingr .tipsimage {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 43px;
+	width: 277px;
+	line-height: 36px;
+	margin-top: 29px
+}
+
+.clothingbox .clothing .clothingr .tipsimage span {
+	display: inline-block;
+	font-size: 12px;
+	color: #bdbdbd;
+	line-height: 11px;
+	padding-bottom: 19px
+}
+
+.clothingbox .clothing .clothingr .addimage {
+	width: 248px;
+	height: 139px;
+	background: #f4f4f4;
+	margin-left: 43px;
+	text-align: center;
+	cursor: pointer
+}
+
+.clothingbox .clothing .clothingr .addimage .updateimg img {
+	margin-top: 0 !important;
+	width: 100%
+}
+
+.clothingbox .clothing .clothingr .addimage .reupload {
+	width: 248px;
+	height: 140px;
+	background: #000;
+	opacity: 0.5;
+	font-size: 12px;
+	color: #fff;
+	line-height: 140px;
+	position: absolute;
+	top: 0;
+	display: none
+}
+
+.clothingbox .clothing .clothingr .addimage .addimgs {
+	position: absolute;
+	left: 109px;
+	top: 44px !important
+}
+
+.clothingbox .clothing .clothingr .addimage .clickimg {
+	position: absolute;
+	left: 88px;
+	top: 80px;
+	margin-top: 0 !important;
+	width: 72px;
+	font-size: 12px;
+	color: #999999
+}
+
+.clothingbox .clothing .clothingr .addboxs {
+	width: 250px;
+	margin-left: 43px
+}
+
+.clothingbox .clothing .clothingr .addboxs span {
+	width: 248px;
+	height: 37px;
+	font-size: 12px;
+	color: #bdbdbd;
+	display: block;
+	line-height: 16px;
+	margin-top: 19px;
+	text-align: center;
+	margin-bottom: 15px
+}
+
+.clothingbox .clothing .clothingr .addboxs .addtext {
+	border: none;
+	width: 248px;
+	height: 30px;
+	color: #fff;
+	background: #fe5453;
+	border-radius: 4px;
+	font-size: 12px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block
+}
+
+.clothingbox .clothing .clothingr .addboxs p {
+	display: inline-block;
+	font-size: 12px;
+	color: #bdbdbd;
+	margin-left: 89px;
+	height: 25px;
+	line-height: 25px
+}
+
+.clothingbox .remark {
+	height: 121px;
+	/* margin-top: 15px; */
+	margin-left: 39px
+}
+
+.clothingbox .remark span {
+	width: 28px;
+	height: 121px;
+	color: #666;
+	font-size: 14px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 38px;
+	padding-top: 12px
+}
+
+.clothingbox .remark textarea {
+	resize: none;
+	outline: none;
+	border-radius: 4px;
+	border: 1px solid #d1d1d1;
+	width: 503px;
+	height: 121px;
+	font-size: 14px;
+	color: #999;
+	padding-left: 10px;
+	line-height: 26px;
+	display: inline-block
+}
+
+.clothingbox .gatherbut {
+	text-align: center;
+	padding-bottom: 50px
+}
+
+/* #filePicker8 .addimgs {
+	margin-top: 0px !important
+} */
+#filePicker8 .webuploader-pick {
+	width: 248px;
+	height: 139px
+}
+
+.propsbox {
+	width: 650px;
+	height: auto;
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 80px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	display: none;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.propsbox .propstitle {
+	height: 60px;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative
+}
+
+.propsbox .propstitle span {
+	font-size: 16px;
+	color: #333;
+	display: inline-block;
+	line-height: 60px;
+	margin-left: 39px
+}
+
+.propsbox .propstitle img {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 22.1px;
+	right: 22.1px;
+	cursor: pointer
+}
+
+.propsbox .props .propsl {
+	display: inline-block;
+	width: 327px;
+	position: relative;
+	margin-top: 29px
+}
+
+.propsbox .props .propsl span {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 41px;
+	width: 76px;
+	height: 36px;
+	line-height: 36px;
+	vertical-align: bottom
+}
+
+.propsbox .props .propsl input {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px
+}
+
+.propsbox .props .propsl input:focus {
+	background-color: #f6f9f9
+}
+
+.propsbox .props .propsl .errorp {
+	font-size: 12px;
+	color: #fe5453;
+	padding-left: 109px;
+	line-height: 16px;
+	height: 21px
+}
+
+.propsbox .props .propsl div {
+	width: 200px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #999;
+	outline: none;
+	color: #666;
+	font-size: 14px;
+	padding-left: 11px;
+	line-height: 36px;
+	display: inline-block;
+	cursor: pointer;
+	padding-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.propsbox .props .propsl .typeprocheck {
+	height: auto;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 36px;
+	background: #fff;
+	padding: 0;
+	display: none
+}
+
+.propsbox .props .propsl .typeprocheck p {
+	padding-left: 11px
+}
+
+.propsbox .props .propsl .typeprocheck p:hover {
+	background: #F0F2F5
+}
+
+.propsbox .props .propsl .accreditprocheck {
+	height: auto;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 150px;
+	background: #fff;
+	padding: 0;
+	display: none
+}
+
+.propsbox .props .propsl .accreditprocheck p {
+	padding-left: 11px
+}
+
+.propsbox .props .propsl .accreditprocheck p:hover {
+	background: #F0F2F5
+}
+
+.propsbox .props .propsl .citycheck {
+	height: 216px;
+	z-index: 22;
+	position: absolute;
+	left: 115px;
+	top: 321px;
+	background: #fff;
+	padding: 0;
+	overflow: auto;
+	display: none
+}
+
+.propsbox .props .propsl .citycheck p {
+	padding-left: 11px
+}
+
+.propsbox .props .propsl .citycheck p:hover {
+	background: #F0F2F5
+}
+
+.propsbox .props .propsl img {
+	margin-left: -20px;
+	cursor: pointer;
+	vertical-align: top;
+	margin-top: 12px;
+	width: 14px;
+	height: 14px
+}
+
+
+.propsbox .props .propsr {
+	display: inline-block;
+	width: 250px;
+	vertical-align: top;
+	position: relative
+}
+
+.propsbox .props .propsr .tipsimage {
+	font-size: 14px;
+	color: #666;
+	display: inline-block;
+	margin-left: 43px;
+	width: 277px;
+	line-height: 36px;
+	margin-top: 29px
+}
+
+.propsbox .props .propsr .tipsimage span {
+	display: inline-block;
+	font-size: 12px;
+	color: #bdbdbd;
+	line-height: 11px;
+	padding-bottom: 19px
+}
+
+.propsbox .props .propsr .addimage {
+	width: 248px;
+	height: 139px;
+	background: #f4f4f4;
+	margin-left: 43px;
+	text-align: center;
+	cursor: pointer
+}
+
+.propsbox .props .propsr .addimage .updateimg img {
+	margin-top: 0 !important;
+	width: 100%
+}
+
+.propsbox .props .propsr .addimage .reupload {
+	width: 248px;
+	height: 140px;
+	background: #000;
+	opacity: 0.5;
+	font-size: 12px;
+	color: #fff;
+	line-height: 140px;
+	position: absolute;
+	top: 0;
+	display: none
+}
+
+.propsbox .props .propsr .addimage .addimgs {
+	position: absolute;
+	left: 109px;
+	top: 44px !important
+}
+
+.propsbox .props .propsr .addimage .clickimg {
+	position: absolute;
+	left: 88px;
+	top: 80px;
+	margin-top: 0 !important;
+	width: 72px;
+	font-size: 12px;
+	color: #999999
+}
+
+.propsbox .props .propsr .addboxs {
+	width: 250px;
+	margin-left: 43px
+}
+
+.propsbox .props .propsr .addboxs span {
+	width: 248px;
+	height: 37px;
+	font-size: 12px;
+	color: #bdbdbd;
+	display: block;
+	line-height: 16px;
+	margin-top: 19px;
+	text-align: center;
+	margin-bottom: 15px
+}
+
+.propsbox .props .propsr .addboxs .addtext {
+	border: none;
+	width: 248px;
+	height: 30px;
+	color: #fff;
+	background: #fe5453;
+	border-radius: 4px;
+	font-size: 12px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block
+}
+
+.propsbox .props .propsr .addboxs p {
+	display: inline-block;
+	font-size: 12px;
+	color: #bdbdbd;
+	margin-left: 89px;
+	height: 25px;
+	line-height: 25px
+}
+
+.propsbox .remark {
+	height: 121px;
+	/* margin-top: 15px; */
+	margin-left: 39px
+}
+
+.propsbox .remark span {
+	width: 28px;
+	height: 121px;
+	color: #666;
+	font-size: 14px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 38px;
+	padding-top: 12px
+}
+
+.propsbox .remark textarea {
+	resize: none;
+	outline: none;
+	border-radius: 4px;
+	border: 1px solid #d1d1d1;
+	width: 503px;
+	height: 121px;
+	font-size: 14px;
+	color: #999;
+	padding-left: 10px;
+	line-height: 26px;
+	display: inline-block
+}
+
+.propsbox .gatherbut {
+	text-align: center;
+	padding-bottom: 50px
+}
+
+/* #filePicker9 .addimgs {
+	margin-top: 0px !important
+} */
+
+#filePicker9 .webuploader-pick {
+	width: 248px;
+	height: 139px
 }

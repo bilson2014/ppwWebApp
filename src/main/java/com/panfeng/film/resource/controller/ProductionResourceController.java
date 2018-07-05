@@ -23,6 +23,7 @@ import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.paipianwang.pat.workflow.entity.PmsProductionActor;
 import com.paipianwang.pat.workflow.entity.PmsProductionCameraman;
+import com.paipianwang.pat.workflow.entity.PmsProductionCostume;
 import com.paipianwang.pat.workflow.entity.PmsProductionDevice;
 import com.paipianwang.pat.workflow.entity.PmsProductionDirector;
 import com.paipianwang.pat.workflow.entity.PmsProductionPersonnel;
@@ -32,6 +33,7 @@ import com.paipianwang.pat.workflow.entity.ProductionConstants;
 import com.paipianwang.pat.workflow.enums.ProductionResource;
 import com.paipianwang.pat.workflow.facade.PmsProductionActorFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionCameramanFacade;
+import com.paipianwang.pat.workflow.facade.PmsProductionCostumeFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionDeviceFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionDirectorFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionPersonnelFacade;
@@ -56,6 +58,8 @@ public class ProductionResourceController extends BaseController {
 	private PmsProductionCameramanFacade pmsProductionCameramanFacade;
 	@Autowired
 	private PmsProductionPersonnelFacade pmsProductionPersonnelFacade;
+	@Autowired
+	private PmsProductionCostumeFacade pmsProductionCostumeFacade;
 
 	@RequestMapping("/view") // 她不走这个
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
@@ -92,6 +96,9 @@ public class ProductionResourceController extends BaseController {
 			// 场地
 			getStudio(result, paramMap);
 			break;
+		case "costume":
+			//服装道具
+			getCostume(result, paramMap);
 			
 		default:
 			break;
@@ -177,6 +184,16 @@ public class ProductionResourceController extends BaseController {
 		});
 		result.addAll(studios);
 	}
+	
+	private void getCostume(List<BaseProductionEntity> result, Map<String, Object> paramMap) {
+		List<PmsProductionCostume> costume = pmsProductionCostumeFacade.listBy(paramMap);
+		costume.forEach(each -> {
+			each.setName(each.getName() + (each.getNature().equals(ProductionResource.clothing.getKey()) ? "/服装" : "/道具"));
+			each.setPhoto(each.getPhoto().split(";")[0]);
+			each.setIdentity(each.getNature());
+		});
+		result.addAll(costume);
+	}
 
 	@RequestMapping("/{type}/parameter")
 	public Map<String, Object> getParameter(@PathVariable("type") final String type) {
@@ -197,12 +214,22 @@ public class ProductionResourceController extends BaseController {
 			//摄影师
 			break;
 		case "device":
-			// 设备
-			
+			// 设备	
 			break;
 		case "studio":
 			// 场地
-
+			break;
+		case "clothing":
+			//服装
+			ProductionConstants[] clothingTypeList = ProductionConstants.clothingTypeList;
+			result.put("clothingTypeList", clothingTypeList);
+			result.put("accreditList", ProductionConstants.accreditList);
+			break;
+		case "props":
+			//道具
+			result.put("accreditList", ProductionConstants.accreditList);
+			ProductionConstants[] propsTypeList = ProductionConstants.propsTypeList;
+			result.put("propsTypeList", propsTypeList);
 			break;
 		default:
 			break;
@@ -489,6 +516,71 @@ public class ProductionResourceController extends BaseController {
 		return result;
 	}
 
+	// ---------服装道具---------------
+		//前台costume设置职业
+		@RequestMapping("/costume/save")
+		public BaseMsg costumeAdd(@RequestBody final PmsProductionCostume costume,final HttpServletRequest request) {
+			BaseMsg result = new BaseMsg();
+			if(!checkResourceType(costume.getNature())) {
+				result.setCode(BaseMsg.ERROR);
+				result.setResult("请求不存在");
+				return result;
+			}
+			
+			delImg(costume.getDelImg());
+			editCreator(costume, request);
+			// 主图处理
+			if(ValidateUtil.isValid(costume.getPhoto())) {
+				costume.setPhoto(costume.getMainPhoto() + ";" + costume.getPhoto());	
+			}else {
+				costume.setPhoto(costume.getMainPhoto());	
+			}
+				
+			pmsProductionCostumeFacade.insert(costume);
+
+			return result;
+		}
+
+		@RequestMapping("/costume/get")
+		public PmsProductionCostume costumeGet(@RequestBody final PmsProductionCostume costume) {
+			PmsProductionCostume result = pmsProductionCostumeFacade.getById(costume.getId());
+			String[] photos = result.getPhoto().split(";");
+			if (ValidateUtil.isValid(photos)) {
+				result.setMainPhoto(photos[0]);
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}
+			return result;
+		}
+
+		@RequestMapping("/costume/update")
+		public BaseMsg costumeUpdate(@RequestBody final PmsProductionCostume costume) {
+			BaseMsg result = new BaseMsg();
+			if(!checkResourceType(costume.getNature())) {
+				result.setCode(BaseMsg.ERROR);
+				result.setResult("请求不存在");
+				return result;
+			}
+			
+			delImg(costume.getDelImg());
+			// 主图处理
+			if(ValidateUtil.isValid(costume.getPhoto())) {
+				costume.setPhoto(costume.getMainPhoto() + ";" + costume.getPhoto());	
+			}else {
+				costume.setPhoto(costume.getMainPhoto());	
+			}
+			pmsProductionCostumeFacade.update(costume);
+			return result;
+		}
+
+		@RequestMapping("/costume/delete")
+		public BaseMsg costumeDelete(@RequestBody final PmsProductionCostume costume) {
+			BaseMsg result = new BaseMsg();
+			PmsProductionCostume old = pmsProductionCostumeFacade.getById(costume.getId());
+			delImg(old.getPhoto());
+			pmsProductionCostumeFacade.deleteByIds(new long[] { costume.getId() });
+			return result;
+		}
+		
 	private void delImg(String delImgs) {
 		if (ValidateUtil.isValid(delImgs)) {
 			String[] delImg = delImgs.split(";");

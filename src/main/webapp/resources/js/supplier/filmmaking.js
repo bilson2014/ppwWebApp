@@ -1,4 +1,7 @@
 var cities;
+var clothingTypeList=[];
+var accreditList=[];
+var propsTypeList=[];
 
 $().ready(function() {
 	init();
@@ -143,6 +146,26 @@ function init(){
 	initAddPeople('pickcos','costumer');
 	initAddPeople('pickdre','dresser');
 	initAddPeople('pickmix','mixer');
+	
+	//服装道具侧边栏切换
+	$('.pickclo').off('click').on('click',function(){
+		$('.propsbox').hide();
+		$('.clothingbox').show();
+
+		clothingboxshow();
+		
+		$('.pickpro').removeClass('pickrole');
+		$(this).addClass('pickrole');
+	});
+	$('.pickpro').off('click').on('click',function(){
+		$('.clothingbox').hide();
+		$('.propsbox').show();
+
+		propsboxshow();
+		
+		$('.pickclo').removeClass('pickrole');	
+		$(this).addClass('pickrole');
+	});
 
 	$('.shade').hide();
 	$("body").on("mouseover",".idcard",function(){
@@ -175,6 +198,8 @@ function init(){
 			delstudio(id);
 		}else if($('.top .facility').hasClass('top-text')){
 			deldevice(id);
+		}else if($('.top .costume').hasClass('top-text')){
+			delCustome(id);
 		}
 	});
 	//图片 修改
@@ -198,6 +223,10 @@ function init(){
 			$('.equipbox').show();
 			getdevice(id);
 			dropdowndata();
+		}else if($('.top .costume').hasClass('top-text')){
+			$('.customeRole').hide();
+					
+			getcostume(id,$(this).parent().parent().attr('identity'));
 		}
 	});
 	//tab 切换
@@ -233,6 +262,16 @@ function init(){
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
 //		imgchecksite();
+	});
+	//-服装道具
+	$('.costume').off('click').on('click',function(){
+	/*	$('.setCard').addClass('fac');
+		$('.setCard').removeClass('peo');
+		$('.setCard').removeClass('sit')*/;
+		$('.setCard').empty();
+		getlistdatac();//获取服装设备数据
+		$(this).addClass('top-text ');
+		$(this).siblings('div').removeClass('top-text ');
 	});
 }
 
@@ -311,6 +350,22 @@ function newbutton(){
 			$('.equipbox').attr('id','');
 			cleandevdata();
 			dropdowndata();
+		} else if($('.top .costume').hasClass('top-text')){//TODO 点击添加弹出添加
+			$('.customeRole').show();
+			$('.clothingbox').removeClass('pickborder');
+			$('.propsbox').removeClass('pickborder');
+			
+			$('.clothingbox').show();
+			$('.propsbox').hide();
+			
+
+			$('.pickclo').addClass('pickrole');
+			$('.pickpro').removeClass('pickrole');
+
+			clothingboxshow();
+			
+			$('.check').val('');
+
 		} 
 	});
 }
@@ -462,6 +517,73 @@ function getlistdatad(){
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 	 }, getContextPath() + ' /production/device/list');	
 }
+
+//获取并回显服装道具列表
+function getlistdatac(){
+	$('.setCard').text('');
+	loadData(function(res){	
+		if (res.length==0){
+			$('.writepng').show();
+		}else {
+			$('.writepng').hide();
+		}
+		for(var i=0;i<res.length;i++){
+			var boxhtmland;
+			if (res[i].photo==null||res[i].photo==''||res[i].photo==undefined){
+		
+				boxhtmland= "<img class='endimg' src='/resources/images/supplier/endimg.jpg'><div class='and'>"+res[i].name+"</div>";
+			}else {
+				boxhtmland= "<img class='imgs"+i+"' src="+getResourcesName()+res[i].photo+">";
+			}
+			var boxhtmlend="<div class='shade  idcard-costumes' style='display: none;'>"
+	            +"<img class='read' src='/resources/images/supplier/read.png'>"
+	            +"<img class='select' src='/resources/images/supplier/select.png'>"
+	            +"</div>"
+	            +"<div class='linebox linebox-costume'>"
+	            +"<span class='name three'>"+res[i].name+"</span>";
+			
+			var len=res[i].price;
+			len= String(len);
+			if (len.length>=6){
+				
+				var boxhtmltwo="<p class='price'>￥99999+</p><span class='dayss'>/天</span>"
+	            +"</div>"
+	            +"</div>";
+			}else{
+				var boxhtmltwo="<p class='price'>￥"+res[i].price+"</p><span class='dayss'>/天</span>"
+	            +"</div>"
+	            +"</div>";
+			}
+			
+			
+			
+			var boxhtmlbegin="<div class='idcard  idcard-costume' id ="+res[i].id+" identity="+res[i].identity+">";
+         
+            var boxhtml=boxhtmlbegin+boxhtmland+boxhtmlend+boxhtmltwo;
+            
+            
+			$('.setCard').append(boxhtml);
+			//图片处理
+			var img=new Image();
+			img.src=$('.imgs'+i).attr('src');
+			if (img.complete){
+				if (img.width/img.height<=1){
+					$('.imgs'+i).attr('style','width:auto;height:100%');
+				}else {
+					$('.imgs'+i).attr('style','width:100%;height:auto;');
+				}
+				img=null;
+			}else {
+				img.onload=function(){
+					img=null;
+				}
+			}
+		}
+		imgchecksite();
+		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
+	 }, getContextPath() + ' /production/costume/list');	
+}
+
 //下拉的城市的接口
 function listcitydata(){
 	loadData(function(res){	
@@ -503,13 +625,41 @@ function listpeopledata(type){
 					}
 					
 				}
-			}
-			
-			
+			}			
 		}else if (type=='actor'){
 			for(var i=0;i<res.zoneList.length;i++){
 				var phtml="<p value="+res.zoneList[i].value+">"+res.zoneList[i].text+"</p>";
 				$('.racecheck').append(phtml);
+			}
+		}else if (type=='clothing'){	
+			clothingTypeList=res.clothingTypeList;
+			accreditList=res.accreditList;
+			
+			$('.typeclocheck').empty();
+			$('.accreditclocheck').empty();
+			
+			for(var i=0;i<res.clothingTypeList.length;i++){
+				var phtml="<p value="+res.clothingTypeList[i].value+">"+res.clothingTypeList[i].text+"</p>";
+				$('.typeclocheck').append(phtml);
+			}
+			for(var i=0;i<res.accreditList.length;i++){
+				var phtml="<p value="+res.accreditList[i].value+">"+res.accreditList[i].text+"</p>";
+				$('.accreditclocheck').append(phtml);
+			}
+		}else if (type=='props'){	
+			accreditList=res.accreditList;
+			propsTypeList=res.propsTypeList;
+			
+			$('.typeclocheck').empty();
+			$('.accreditprocheck').empty();
+			
+			for(var i=0;i<res.accreditList.length;i++){
+				var phtml="<p value="+res.accreditList[i].value+">"+res.accreditList[i].text+"</p>";
+				$('.accreditprocheck').append(phtml);
+			}
+			for(var i=0;i<res.propsTypeList.length;i++){
+				var phtml="<p value="+res.propsTypeList[i].value+">"+res.propsTypeList[i].text+"</p>";
+				$('.typeprocheck').append(phtml);
 			}
 		}
 	 }, getContextPath() + "/production/"+type+"/parameter");
@@ -745,6 +895,21 @@ function btnfocus(){
 		 $('.specialSkill').removeClass('Color');
 		 $('.citycheck ').removeClass('reilef');
 		 $('.citypeop').removeClass('Color');
+		 
+		 //
+		 $('.typeclocheck ').removeClass('reilef');
+		 $('.typeclop').removeClass('Color');
+		 $('.accreditclocheck ').removeClass('reilef');
+		 $('.accreditclop').removeClass('Color');
+		 $('.citycheck ').removeClass('reilef');
+		 $('.cityclop').removeClass('Color');
+		 //
+		 $('.typeprocheck ').removeClass('reilef');
+		 $('.typeprop').removeClass('Color');
+		 $('.accreditprocheck ').removeClass('reilef');
+		 $('.accreditprop').removeClass('Color');
+		 $('.citycheck ').removeClass('reilef');
+		 $('.cityprop').removeClass('Color');
 		 
 		 event.stopPropagation();
 	});
@@ -1154,6 +1319,184 @@ function btnfocus(){
 		$('.cityca').text($(this).text());
 	   	$('.citycheck').removeClass('reilef');
 	   	$('.cityca').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	//服装：-类型 
+	$('.typeclo,.cityimg').off('click').on('click',function(e){// TODO 可以对所有下拉框做统一事件处理
+		 $('.typeclocheck').addClass('reilef');//TODO 这一行也是多余的
+		if($(this).hasClass('Color')){
+			 $('.typeclocheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.typeclo').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.typeclocheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+	   	
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityclo').removeClass('Color');
+	   	
+	   	$('.accreditclocheck').removeClass('reilef');
+	   	$('.accreditclo').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	$('body').on('click','.clothingbox .typeclocheck p',function(){
+		$('.typeclo').attr('key',$(this).attr('value'));
+		$('.typeclo').text($(this).text());
+	   	$('.typeclocheck').removeClass('reilef');
+	   	$('.typeclo').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//-授权方式 
+	$('.accreditclo,.cityimg').off('click').on('click',function(e){
+		 $('.accreditclocheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.accreditclocheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.accreditclo').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.accreditclocheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		
+		$('.typeclocheck').removeClass('reilef');
+	   	$('.typeclo').removeClass('Color');
+	   	
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityclo').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	
+	$('body').on('click','.clothingbox .accreditclocheck p',function(){
+		$('.accreditclo').attr('key',$(this).attr('value'));
+		$('.accreditclo').text($(this).text());
+	   	$('.accreditclocheck').removeClass('reilef');
+	   	$('.accreditclo').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//-所在城市
+	$('.cityclo,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.cityclo').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		
+		$('.typeclocheck').removeClass('reilef');
+	   	$('.typeclo').removeClass('Color');
+	   	
+	   	$('.accreditclocheck').removeClass('reilef');
+	   	$('.accreditclo').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	$('body').on('click','.clothingbox .citycheck p',function(){
+		$('.cityclo').attr('cityid',$(this).attr('cityid'));
+		$('.cityclo').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.cityclo').removeClass('Color');
+	     event.stopPropagation();
+	});
+	
+	//道具：-类型 
+	$('.typepro,.cityimg').off('click').on('click',function(e){// TODO 可以对所有下拉框做统一事件处理
+		 $('.typeprocheck').addClass('reilef');//TODO 这一行也是多余的
+		if($(this).hasClass('Color')){
+			 $('.typeprocheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.typepro').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.typeprocheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+	   	
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citypro').removeClass('Color');
+	   	
+	   	$('.accreditclocheck').removeClass('reilef');
+	   	$('.accreditpro').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	$('body').on('click','.propsbox .typeprocheck p',function(){
+		$('.typepro').attr('key',$(this).attr('value'));
+		$('.typepro').text($(this).text());
+	   	$('.typeprocheck').removeClass('reilef');
+	   	$('.typepro').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//-授权方式 
+	$('.accreditpro,.cityimg').off('click').on('click',function(e){
+		 $('.accreditprocheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.accreditprocheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.accreditpro').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.accreditprocheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		
+		$('.typeprocheck').removeClass('reilef');
+	   	$('.typepro').removeClass('Color');
+	   	
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citypro').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	
+	$('body').on('click','.propsbox .accreditprocheck p',function(){
+		$('.accreditpro').attr('key',$(this).attr('value'));
+		$('.accreditpro').text($(this).text());
+	   	$('.accreditprocheck').removeClass('reilef');
+	   	$('.accreditpro').removeClass('Color');
+	     event.stopPropagation();
+	});
+	//-所在城市
+	$('.citypro,.cityimg').off('click').on('click',function(e){
+		 $('.citycheck').addClass('reilef');
+		if($(this).hasClass('Color')){
+			 $('.citycheck').removeClass('reilef');
+			$(this).removeClass('Color');
+		}
+		else
+		{
+			$('.citypro').removeClass('Color');//TODO 是不是矛盾
+			$(this).find('.citycheck').addClass('reilef');
+			$(this).addClass('Color');
+		}
+		
+		$('.typeprocheck').removeClass('reilef');
+	   	$('.typepro').removeClass('Color');
+	   	
+	   	$('.accreditprocheck').removeClass('reilef');
+	   	$('.accreditpro').removeClass('Color');
+	   	
+		event.stopPropagation();
+	});
+	$('body').on('click','.propsbox .citycheck p',function(){
+		$('.citypro').attr('cityid',$(this).attr('cityid'));
+		$('.citypro').text($(this).text());
+	   	$('.citycheck').removeClass('reilef');
+	   	$('.citypro').removeClass('Color');
 	     event.stopPropagation();
 	});
 	

@@ -44,6 +44,8 @@
 <spring:url value="/resources/js/supplier/device.js" var="deviceJs" />
 <spring:url value="/resources/js/supplier/people.js" var="peopleJs" />
 <spring:url value="/resources/js/supplier/createCameraman.js" var="cameramanJs" />
+<spring:url value="/resources/js/supplier/props.js" var="propsJs" />
+<spring:url value="/resources/js/supplier/clothing.js" var="clothingJs" />
 
 <spring:url value="/resources/js/supplier/moreimg.js" var="moreimgJs" />
 <!DOCTYPE html>
@@ -89,6 +91,7 @@
 					<div class='people  top-text'>人员</div>
 					<div class='sitett'>场地</div>
 					<div class='facility'>设备</div>
+					<div class=costume>服装道具</div>
 					<div class='newbox'>
 
 						<span>添加</span>
@@ -129,6 +132,11 @@
 						<p class='pickcos'>服装师</p>
 						<p class='pickdre'>化妆师</p>
 						<p class='pickmix'>录音师</p>
+					</div>
+					
+					<div class='customeRole'>
+						<p class='pickclo pickrole' style="border-top-left-radius: 6px;">服装</p>
+						<p class='pickpro'>道具</p>
 					</div>
 
 					<!-- 添加演员 -->
@@ -339,7 +347,7 @@
 							</div>
 							<div class='peopler'>
 								<div class='tipsimage'>
-									照片 <span>(1张灯光师照片封面)</span>
+									照片 <span>(1张照片封面)</span>
 								</div>
 								<div class='addimage filesimage' id='filePicker6'>
 									<div class='updateimg'>
@@ -356,7 +364,7 @@
 						<div class='remark'>
 							<span>备注</span>
 							<textarea class='remarkpeople' rows="4" cols="550"
-								placeholder="请完善灯光师简历以及作品等信息"></textarea>
+								placeholder="请完善简历"></textarea>
 						</div>
 						<!--提交按钮  -->
 						<div class='gatherbut'>
@@ -379,8 +387,8 @@
 								<p class='namecap errorp'></p>
 
 								<span>特殊技能</span> <!-- <span class='morepick'>(可多选)</span> -->
-								<div class='specialSkill'>请选择</div>
-								<input class='check ods' placeholder="请选择">
+								<!-- <div class='specialSkill'>请选择</div> -->
+								<input class='specialSkill' placeholder="请选择">
 								<img class='specialSkillimg' alt=""
 									src="/resources/images/supplier/more.png">
 								<p class='specialSkillp errorp'></p>
@@ -594,6 +602,151 @@
 						</div>
 
 					</div>
+					
+					<!-- 添加服装 -->
+					<div class='clothingbox'>
+						<div class='clothingtitle'>
+							<span>添加服装</span> <img alt="关闭"
+								src="/resources/images/supplier/close.png">
+						</div>
+						<div class='clothing'>
+							<div class='clothingl'>
+							
+								<span>服装类别</span>
+								<div class='typeclo'>请选择类别</div>
+								<img class='typecloimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='typeclop errorp'></p>
+								<div class='typeclocheck'></div>
+
+								<span>服装名称</span> <input class='nameclo' type='text'
+									placeholder="">
+								<p class='nameclop errorp'></p>
+
+								<span>授权方式</span>
+								<div class='accreditclo'>请选择授权方式</div>
+								<img class='accreditcloimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='accreditclop errorp'></p>
+								<div class='accreditclocheck'></div>
+
+								<span>库存(套)</span> <input class='stockNumberclo' type='text'
+									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+								<p class='stockNumberclop errorp'></p>
+								
+								<span>价格(元/天)</span> <input class='priceclo' type='text'
+									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+								<p class='priceclop errorp'></p>
+								
+								<span>所在城市</span>
+								<div class='cityclo'>请选择城市</div>
+								<img class='cityimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='cityclop errorp'></p>
+								<div class='citycheck'></div>
+
+							</div>
+							<div class='clothingr'>
+								<div class='tipsimage'>
+									服装照片 <span>(1张服装照片)</span>
+								</div>
+								<div class='addimage filesimage' id='filePicker8'>
+									<div class='updateimg'>
+										<img alt="用户头像" class='fileimg' />
+									</div>
+								</div>
+								
+								<div class='addboxs'>
+									<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
+
+								</div>
+
+							</div>
+						</div>
+
+						<div class='remark'>
+							<span>备注</span>
+							<textarea class='remarkclo' rows="4" cols="550"
+								placeholder="请完善服装尺码、用途以及租赁或购买等相关事项"></textarea>
+						</div>
+						<!--提交按钮  -->
+						<div class='gatherbut'>
+							<div class='sure'>确认</div>
+							<div class='cancel'>取消</div>
+						</div>
+					</div>
+					
+					<!-- 添加道具 -->
+					<div class='propsbox'>
+						<div class='propstitle'>
+							<span>添加道具</span> <img alt="关闭"
+								src="/resources/images/supplier/close.png">
+						</div>
+						<div class='props'>
+							<div class='propsl'>
+							
+								<span>道具类别</span>
+								<div class='typepro'>请选择类别</div>
+								<img class='typeproimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='typeprop errorp'></p>
+								<div class='typeprocheck'></div>
+
+								<span>道具名称</span> <input class='namepro' type='text'
+									placeholder="">
+								<p class='nameprop errorp'></p>
+
+								<span>授权方式</span>
+								<div class='accreditpro'>请选择授权方式</div>
+								<img class='accreditproimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='accreditprop errorp'></p>
+								<div class='accreditprocheck'></div>
+
+								<span>数量</span> <input class='stockNumberpro' type='text'
+									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+								<p class='stockNumberprop errorp'></p>
+								
+								<span>价格(元/天)</span> <input class='pricepro' type='text'
+									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
+								<p class='priceprop errorp'></p>
+								
+								<span>所在城市</span>
+								<div class='citypro'>请选择城市</div>
+								<img class='cityimg' alt=""
+									src="/resources/images/supplier/more.png">
+								<p class='cityprop errorp'></p>
+								<div class='citycheck'></div>
+
+							</div>
+							<div class='propsr'>
+								<div class='tipsimage'>
+									道具照片 <span>(1张道具照片)</span>
+								</div>
+								<div class='addimage filesimage' id='filePicker9'>
+									<div class='updateimg'>
+										<img alt="用户头像" class='fileimg' />
+									</div>
+								</div>
+								<div class='addboxs'>
+									<span>可上传JPG、PNG或JPEG格式的 文件，文件大小不能超过1M。</span>
+
+								</div>
+
+							</div>
+						</div>
+
+						<div class='remark'>
+							<span>备注</span>
+							<textarea class='remarkpro' rows="4" cols="550"
+								placeholder="请完善道具尺寸、用途以及租赁或购买等相关事项"></textarea>
+						</div>
+						<!--提交按钮  -->
+						<div class='gatherbut'>
+							<div class='sure'>确认</div>
+							<div class='cancel'>取消</div>
+						</div>
+					</div>
 
 				</div>
 			</div>
@@ -616,7 +769,8 @@
 		<script src="${deviceJs}"></script>
 		<script src="${peopleJs}"></script>
 		<script src="${cameramanJs }"></script>
-
+		<script src="${propsJs }"></script>
+		<script src="${clothingJs }"></script>
 
 
 		<script src="${jcropJs}"></script>
