@@ -535,7 +535,7 @@ function initMenuEven(){
 		$('#minboxs .boxs').addClass('open');
 	});
 	$('#boxsMake').off('click').on('click',function(){
-		$('.frame').attr('src', getUrlTask() +"/makeProduct");			
+		$('.frame').attr('src', getUrlTask() +"/production/info");			
 		$('.productList li').removeClass('checkLi');
 		$(this).addClass('checkLi');
 	});
