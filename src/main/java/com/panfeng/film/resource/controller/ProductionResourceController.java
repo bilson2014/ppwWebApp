@@ -22,15 +22,21 @@ import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
 import com.paipianwang.pat.workflow.entity.PmsProductionActor;
+import com.paipianwang.pat.workflow.entity.PmsProductionCameraman;
+import com.paipianwang.pat.workflow.entity.PmsProductionCostume;
 import com.paipianwang.pat.workflow.entity.PmsProductionDevice;
 import com.paipianwang.pat.workflow.entity.PmsProductionDirector;
+import com.paipianwang.pat.workflow.entity.PmsProductionPersonnel;
 import com.paipianwang.pat.workflow.entity.PmsProductionStudio;
 import com.paipianwang.pat.workflow.entity.PmsQuotationType;
 import com.paipianwang.pat.workflow.entity.ProductionConstants;
 import com.paipianwang.pat.workflow.enums.ProductionResource;
 import com.paipianwang.pat.workflow.facade.PmsProductionActorFacade;
+import com.paipianwang.pat.workflow.facade.PmsProductionCameramanFacade;
+import com.paipianwang.pat.workflow.facade.PmsProductionCostumeFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionDeviceFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionDirectorFacade;
+import com.paipianwang.pat.workflow.facade.PmsProductionPersonnelFacade;
 import com.paipianwang.pat.workflow.facade.PmsProductionStudioFacade;
 import com.paipianwang.pat.workflow.facade.PmsQuotationTypeFacade;
 import com.panfeng.film.domain.BaseMsg;
@@ -48,10 +54,12 @@ public class ProductionResourceController extends BaseController {
 	private PmsProductionStudioFacade pmsProductionStudioFacade;
 	@Autowired
 	private PmsQuotationTypeFacade pmsQuotationTypeFacade;
-	/*@Autowired
+	@Autowired
 	private PmsProductionCameramanFacade pmsProductionCameramanFacade;
 	@Autowired
-	private PmsProductionPersonnelFacade pmsProductionPersonnelFacade;*/
+	private PmsProductionPersonnelFacade pmsProductionPersonnelFacade;
+	@Autowired
+	private PmsProductionCostumeFacade pmsProductionCostumeFacade;
 
 	@RequestMapping("/view") // 她不走这个
 	public ModelAndView infoView(final HttpServletRequest request, final ModelMap model) throws Exception {
@@ -88,6 +96,9 @@ public class ProductionResourceController extends BaseController {
 			// 场地
 			getStudio(result, paramMap);
 			break;
+		case "costume":
+			//服装道具
+			getCostume(result, paramMap);
 			
 		default:
 			break;
@@ -108,8 +119,8 @@ public class ProductionResourceController extends BaseController {
 		// 人员
 		List<PmsProductionActor> actors = pmsProductionActorFacade.listBy(paramMap);
 		List<PmsProductionDirector> dirctors = pmsProductionDirectorFacade.listBy(paramMap);
-//		List<PmsProductionCameraman> cameraman=pmsProductionCameramanFacade.listBy(paramMap);
-//		List<PmsProductionPersonnel> personnel=pmsProductionPersonnelFacade.listBy(paramMap);
+		List<PmsProductionCameraman> cameraman=pmsProductionCameramanFacade.listBy(paramMap);
+		List<PmsProductionPersonnel> personnel=pmsProductionPersonnelFacade.listBy(paramMap);
 		actors.forEach(each -> {
 			each.setName(each.getName() + "/"+ProductionResource.actor.getName());
 			each.setPhoto(each.getPhoto().split(";")[0]);
@@ -120,7 +131,7 @@ public class ProductionResourceController extends BaseController {
 			each.setPhoto(each.getPhoto().split(";")[0]);
 			each.setIdentity(ProductionResource.director.getKey());
 		});
-		/*cameraman.forEach(each -> {
+		cameraman.forEach(each -> {
 			each.setName(each.getName() + "/"+ProductionResource.cameraman.getName());
 			each.setPhoto(each.getPhoto().split(";")[0]);
 			each.setIdentity(ProductionResource.cameraman.getKey());
@@ -129,9 +140,11 @@ public class ProductionResourceController extends BaseController {
 			each.setName(each.getName() + "/"+ProductionResource.getEnum(each.getProfession()).getName());
 			each.setPhoto(each.getPhoto().split(";")[0]);
 			each.setIdentity(each.getProfession());
-		});*/
+		});
 		result.addAll(actors);
 		result.addAll(dirctors);
+		result.addAll(personnel);
+		result.addAll(cameraman);
 	}
 	
 
@@ -171,6 +184,16 @@ public class ProductionResourceController extends BaseController {
 		});
 		result.addAll(studios);
 	}
+	
+	private void getCostume(List<BaseProductionEntity> result, Map<String, Object> paramMap) {
+		List<PmsProductionCostume> costume = pmsProductionCostumeFacade.listBy(paramMap);
+		costume.forEach(each -> {
+			each.setName(each.getName() + (each.getNature().equals(ProductionResource.clothing.getKey()) ? "/服装" : "/道具"));
+			each.setPhoto(each.getPhoto().split(";")[0]);
+			each.setIdentity(each.getNature());
+		});
+		result.addAll(costume);
+	}
 
 	@RequestMapping("/{type}/parameter")
 	public Map<String, Object> getParameter(@PathVariable("type") final String type) {
@@ -187,13 +210,26 @@ public class ProductionResourceController extends BaseController {
 			ProductionConstants[] specialtyList = ProductionConstants.specialtyList;
 			result.put("specialtyList", specialtyList);
 			break;
+		case "cameraman":
+			//摄影师
+			break;
 		case "device":
-			// 设备
-			
+			// 设备	
 			break;
 		case "studio":
 			// 场地
-
+			break;
+		case "clothing":
+			//服装
+			ProductionConstants[] clothingTypeList = ProductionConstants.clothingTypeList;
+			result.put("clothingTypeList", clothingTypeList);
+			result.put("accreditList", ProductionConstants.accreditList);
+			break;
+		case "props":
+			//道具
+			result.put("accreditList", ProductionConstants.accreditList);
+			ProductionConstants[] propsTypeList = ProductionConstants.propsTypeList;
+			result.put("propsTypeList", propsTypeList);
 			break;
 		default:
 			break;
@@ -363,14 +399,19 @@ public class ProductionResourceController extends BaseController {
 	}
 
 	// ---------摄影师---------------
-	/*
+	
 	@RequestMapping("/cameraman/save")
 	public BaseMsg cameramanAdd(@RequestBody final PmsProductionCameraman cameraman, final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
 		delImg(cameraman.getDelImg());
 		editCreator(cameraman, request);
 		// 主图处理
-		cameraman.setPhoto(cameraman.getMainPhoto() + ";" + cameraman.getPhoto());
+		if(ValidateUtil.isValid(cameraman.getPhoto())) {
+			cameraman.setPhoto(cameraman.getMainPhoto() + ";" + cameraman.getPhoto());
+		}else {
+			cameraman.setPhoto(cameraman.getMainPhoto());
+		}
+		
 		pmsProductionCameramanFacade.insert(cameraman);
 
 		return result;
@@ -392,7 +433,11 @@ public class ProductionResourceController extends BaseController {
 		BaseMsg result = new BaseMsg();
 		delImg(cameraman.getDelImg());
 		// 主图处理
-		cameraman.setPhoto(cameraman.getMainPhoto() + ";" + cameraman.getPhoto());
+		if(ValidateUtil.isValid(cameraman.getPhoto())) {
+			cameraman.setPhoto(cameraman.getMainPhoto() + ";" + cameraman.getPhoto());
+		}else {
+			cameraman.setPhoto(cameraman.getMainPhoto());
+		}
 		pmsProductionCameramanFacade.update(cameraman);
 		return result;
 	}
@@ -402,13 +447,12 @@ public class ProductionResourceController extends BaseController {
 		BaseMsg result = new BaseMsg();
 		PmsProductionCameraman old = pmsProductionCameramanFacade.getById(cameraman.getId());
 		delImg(old.getPhoto());
-		pmsProductionStudioFacade.deleteByIds(new long[] { cameraman.getId() });
+		pmsProductionCameramanFacade.deleteByIds(new long[] { cameraman.getId() });
 		return result;
 	}
-	*/
+	
 	// ---------其他职业人员---------------
 	//前台personnel设置职业
-	/*
 	@RequestMapping("/personnel/save")
 	public BaseMsg personnelAdd(@RequestBody final PmsProductionPersonnel personnel,final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
@@ -421,7 +465,12 @@ public class ProductionResourceController extends BaseController {
 		delImg(personnel.getDelImg());
 		editCreator(personnel, request);
 		// 主图处理
-		personnel.setPhoto(personnel.getMainPhoto() + ";" + personnel.getPhoto());		
+		if(ValidateUtil.isValid(personnel.getPhoto())) {
+			personnel.setPhoto(personnel.getMainPhoto() + ";" + personnel.getPhoto());	
+		}else {
+			personnel.setPhoto(personnel.getMainPhoto());	
+		}
+			
 		pmsProductionPersonnelFacade.insert(personnel);
 
 		return result;
@@ -449,7 +498,11 @@ public class ProductionResourceController extends BaseController {
 		
 		delImg(personnel.getDelImg());
 		// 主图处理
-		personnel.setPhoto(personnel.getMainPhoto() + ";" + personnel.getPhoto());
+		if(ValidateUtil.isValid(personnel.getPhoto())) {
+			personnel.setPhoto(personnel.getMainPhoto() + ";" + personnel.getPhoto());	
+		}else {
+			personnel.setPhoto(personnel.getMainPhoto());	
+		}
 		pmsProductionPersonnelFacade.update(personnel);
 		return result;
 	}
@@ -462,7 +515,72 @@ public class ProductionResourceController extends BaseController {
 		pmsProductionPersonnelFacade.deleteByIds(new long[] { personnel.getId() });
 		return result;
 	}
-*/
+
+	// ---------服装道具---------------
+		//前台costume设置职业
+		@RequestMapping("/costume/save")
+		public BaseMsg costumeAdd(@RequestBody final PmsProductionCostume costume,final HttpServletRequest request) {
+			BaseMsg result = new BaseMsg();
+			if(!checkResourceType(costume.getNature())) {
+				result.setCode(BaseMsg.ERROR);
+				result.setResult("请求不存在");
+				return result;
+			}
+			
+			delImg(costume.getDelImg());
+			editCreator(costume, request);
+			// 主图处理
+			if(ValidateUtil.isValid(costume.getPhoto())) {
+				costume.setPhoto(costume.getMainPhoto() + ";" + costume.getPhoto());	
+			}else {
+				costume.setPhoto(costume.getMainPhoto());	
+			}
+				
+			pmsProductionCostumeFacade.insert(costume);
+
+			return result;
+		}
+
+		@RequestMapping("/costume/get")
+		public PmsProductionCostume costumeGet(@RequestBody final PmsProductionCostume costume) {
+			PmsProductionCostume result = pmsProductionCostumeFacade.getById(costume.getId());
+			String[] photos = result.getPhoto().split(";");
+			if (ValidateUtil.isValid(photos)) {
+				result.setMainPhoto(photos[0]);
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}
+			return result;
+		}
+
+		@RequestMapping("/costume/update")
+		public BaseMsg costumeUpdate(@RequestBody final PmsProductionCostume costume) {
+			BaseMsg result = new BaseMsg();
+			if(!checkResourceType(costume.getNature())) {
+				result.setCode(BaseMsg.ERROR);
+				result.setResult("请求不存在");
+				return result;
+			}
+			
+			delImg(costume.getDelImg());
+			// 主图处理
+			if(ValidateUtil.isValid(costume.getPhoto())) {
+				costume.setPhoto(costume.getMainPhoto() + ";" + costume.getPhoto());	
+			}else {
+				costume.setPhoto(costume.getMainPhoto());	
+			}
+			pmsProductionCostumeFacade.update(costume);
+			return result;
+		}
+
+		@RequestMapping("/costume/delete")
+		public BaseMsg costumeDelete(@RequestBody final PmsProductionCostume costume) {
+			BaseMsg result = new BaseMsg();
+			PmsProductionCostume old = pmsProductionCostumeFacade.getById(costume.getId());
+			delImg(old.getPhoto());
+			pmsProductionCostumeFacade.deleteByIds(new long[] { costume.getId() });
+			return result;
+		}
+		
 	private void delImg(String delImgs) {
 		if (ValidateUtil.isValid(delImgs)) {
 			String[] delImg = delImgs.split(";");
@@ -499,11 +617,11 @@ public class ProductionResourceController extends BaseController {
 		return "t_" + session.getReqiureId();
 	}
 
-	/*private boolean checkResourceType(String type) {
+	private boolean checkResourceType(String type) {
 		ProductionResource resource=ProductionResource.getEnum(type);
 		if(resource!=null) {
 			return true;
 		}
 		return false;
-	}*/
+	}
 }

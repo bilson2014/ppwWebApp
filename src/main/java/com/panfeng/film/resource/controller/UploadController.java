@@ -19,7 +19,6 @@ import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
-import com.paipianwang.pat.facade.user.entity.PmsUser;
 import com.panfeng.film.domain.BaseMsg;
 import com.panfeng.film.resource.model.PhotoCutParam;
 import com.panfeng.film.util.FileUtils;

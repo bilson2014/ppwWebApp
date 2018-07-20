@@ -3,6 +3,10 @@ var upload_Update;
 var upload_dir;
 var upload_site;
 var upload_sitemore;
+var upload_profession;
+var upload_cameraman;
+var upload_clothing;
+var upload_props;
 var image_max_size = 1024*1024; // 250KB
 //头像裁剪参数 start
 var jcrop_api;
@@ -24,21 +28,42 @@ $().ready(function() {
 	imgUpload3.init();
 	imgUpload4.init();
 	imgUpload5.init();
+	imgUpload6.init();
+	imgUpload7.init();
+	imgUpload8.init();
+	imgUpload9.init();
 
 });
-
+//添加演员弹出框
 	function staffboxshow(){
 		listpeopledata('actor');
-		$('.staffbox .stafftitle span').text('创建演员');
+		$('.staffbox .stafftitle span').text('添加演员');
 		cleanactordata();
 		listcitydata();
 	}
+//添加导演弹出框
 	function directorboxshow(){
 		listpeopledata('director');
 		cleadirectordata();
-		$('.directorbox .directortitle span').text('创建导演');
+		$('.directorbox .directortitle span').text('添加导演');
 		listcitydata();
 	}
+	//添加其他职业弹出框
+	function peopleboxshow(type,professionName){
+		$('#professionpeo').val(type);
+		
+		//listpeopledata(type); 无页面参数
+		cleanpeopledata();
+		$('.peoplebox .peopletitle span').text('添加'+professionName);
+		listcitydata();
+	}
+	function cameramanboxshow(){
+//		listpeopledata('cameraman'); 
+		cleancameramandata();
+		$('.cameramanbox .cameramantitle span').text('添加摄影师');
+		listcitydata();
+	}
+
 //角色选择
 function peoplechengck(){
 	$("body").on("mouseover","#filePicker1 ,#filePicker3 ,#filePicker4",function(){
@@ -62,6 +87,7 @@ function peoplechengck(){
 		$(this).find('.imgshade ').hide();
 	});
 	//同下
+	//演员上传图片点击
 	$('.page').on('click','.showimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker2').removeAttr("style");
 		$('#filePicker2').addClass('webuploader-container');
@@ -82,6 +108,7 @@ function peoplechengck(){
 			$('.showimages').attr('data-value',removesrc);
 		}
 	});
+	//场地上传图片点击
 	$('.page').on('click','.siteimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker5').removeAttr("style");
 		$('#filePicker5').addClass('webuploader-container');
@@ -126,18 +153,22 @@ function peoplechengck(){
 	     event.stopPropagation();
 	});
 
-	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel').off('click').on('click',function(){
+	$('.addpeople .cancel,.directorbox .cancel,.staffbox .cancel,.peoplebox .cancel,.cameramanbox .cancel').off('click').on('click',function(){
 		$('.setting').hide();
 		$('.addpeople').hide();
 		$('.staffbox').hide();
 		$('.directorbox').hide();
+		$('.peoplebox').hide();	
 
 		$('.role').hide();
 		$('.staffbox').removeClass('pickborder');
 		$('.directorbox').removeClass('pickborder');
 		
+		//TODO 没必要存在，只在打开页面时清空就可以
 		cleadirectordata();
 		cleanactordata();
+		cleanpeopledata();
+		
 		$('.skillcheck').hide();
 		$('.citycheck').hide();
 		
@@ -305,7 +336,7 @@ function gathermethod(){
 		
 	});	
 }
-//清楚数据
+//清除数据
 function cleanactordata(){
 	$('.namegatherp').text('');
 	$('.oldgatherp').text('');
@@ -347,10 +378,22 @@ function delpeople(id,identity){
 		 }, getContextPath() + '/production/actor/delete', $.toJSON({						
 			 id:id,//	主键
 		}));
-	}else{
+	}else if (identity=='director'){
 		loadData(function(res){	
 			getlistdatap();//获取人数据
 		 }, getContextPath() + ' /production/director/delete', $.toJSON({						
+			 id:id,//	主键
+		}));
+	}else if (identity=='cameraman'){
+		loadData(function(res){	
+			getlistdatap();//获取人数据
+		 }, getContextPath() + ' /production/cameraman/delete', $.toJSON({						
+			 id:id,//	主键
+		}));
+	}else{
+		loadData(function(res){	
+			getlistdatap();//获取人数据
+		 }, getContextPath() + ' /production/personnel/delete', $.toJSON({						
 			 id:id,//	主键
 		}));
 	}
@@ -693,14 +736,276 @@ var imgUpload5 = {
 			
 		}		
 }
+//人员主图
+var imgUpload6 = {
+		init : function() {
+			//批量上传
+			this.multipUploadFile();
+		},
+		multipUploadFile:function(){
+			upload_profession && upload_profession.destroy();
+			var picker =$('#filePicker6'); 
+			upload_profession = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/web/upload',
+				timeout:60*60*1000,
+				pick : picker,
+				fileSingleSizeLimit : image_max_size,
+				threads :1,
+				duplicate :true,
+				multiple:true,
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png,jpeg',
+				    mimeTypes: 'image/jpeg,image/png'
+				}
+			});
+			upload_profession.on('uploadProgress',function(file, percentage) {
+			});
+			upload_profession.on('uploadSuccess', function(file,response) {
+				if(response.code == 0){
+					//图片获取成功的 操作		
+					var path = response.result;
+					var imgPath = getResourcesName() + path;
+					$('#mymodal').show();//裁剪弹框
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
+					$('#modal-original-img').attr('src','');
+					remodelstyle();
+					JcropFunction();
+					$('#modal-original-img').attr('src',imgPath);
+					initCutImg('filePicker6');
+					cutUpload(path,'filePicker6');
 
+				}else{
+					successToolTipShow('图片获取失败');
+				}
+				
+			});
+			upload_profession.on('uploadError', function(file,reason) {
+				successToolTipShow(reason);
+			});
+			upload_profession.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_profession.reset();
+				}
+			});
+			upload_profession.on('error', function(type) {
+				if (type=="Q_TYPE_DENIED"){
+					successToolTipShow('请上传正确格式的图片');
+			    }else if(type=="F_EXCEED_SIZE"){
+					successToolTipShow('请上传1M以内的图片');
+			    }
+			});
+			
+		}		
+}
+
+var imgUpload7 = {
+		init : function() {
+			//批量上传
+			this.multipUploadFile();
+		},
+		multipUploadFile:function(){
+			upload_cameraman && upload_cameraman.destroy();
+			var picker =$('#filePicker7'); 
+			upload_cameraman = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/web/upload',
+				timeout:60*60*1000,
+				pick : picker,
+				fileSingleSizeLimit : image_max_size,
+				threads :1,
+				duplicate :true,
+				multiple:true,
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png,jpeg',
+				    mimeTypes: 'image/jpeg,image/png'
+				}
+			});
+			upload_cameraman.on('uploadProgress',function(file, percentage) {
+			});
+			upload_cameraman.on('uploadSuccess', function(file,response) {
+				if(response.code == 0){
+					//图片获取成功的 操作		
+					var path = response.result;
+					var imgPath = getResourcesName() + path;
+					$('#mymodal').show();//裁剪弹框
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
+					$('#modal-original-img').attr('src','');
+					remodelstyle();
+					JcropFunction();
+					$('#modal-original-img').attr('src',imgPath);
+					initCutImg('filePicker7');
+					cutUpload(path,'filePicker7');
+
+				}else{
+					successToolTipShow('图片获取失败');
+				}
+				
+			});
+			upload_cameraman.on('uploadError', function(file,reason) {
+				successToolTipShow(reason);
+			});
+			upload_cameraman.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_profession.reset();
+				}
+			});
+			upload_cameraman.on('error', function(type) {
+				if (type=="Q_TYPE_DENIED"){
+					successToolTipShow('请上传正确格式的图片');
+			    }else if(type=="F_EXCEED_SIZE"){
+					successToolTipShow('请上传1M以内的图片');
+			    }
+			});
+			
+		}		
+}
+
+var imgUpload8 = {
+		init : function() {
+			//批量上传
+			this.multipUploadFile();
+		},
+		multipUploadFile:function(){
+			upload_clothing && upload_clothing.destroy();
+			var picker =$('#filePicker8'); 
+			upload_clothing = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/web/upload',
+				timeout:60*60*1000,
+				pick : picker,
+				fileSingleSizeLimit : image_max_size,
+				threads :1,
+				duplicate :true,
+				multiple:true,
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png,jpeg',
+				    mimeTypes: 'image/jpeg,image/png'
+				}
+			});
+			upload_clothing.on('uploadProgress',function(file, percentage) {
+			});
+			upload_clothing.on('uploadSuccess', function(file,response) {
+				if(response.code == 0){
+					//图片获取成功的 操作		
+					var path = response.result;
+					var imgPath = getResourcesName() + path;
+					$('#mymodal').show();//裁剪弹框
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
+					$('#modal-original-img').attr('src','');
+					addmodelstyle();
+					JcropFunction();
+					$('#modal-original-img').attr('src',imgPath);
+					initCutImg('filePicker8');
+					cutUpload(path,'filePicker8');
+
+				}else{
+					successToolTipShow('图片获取失败');
+				}
+				
+			});
+			upload_clothing.on('uploadError', function(file,reason) {
+				successToolTipShow(reason);
+			});
+			upload_clothing.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_profession.reset();
+				}
+			});
+			upload_clothing.on('error', function(type) {
+				if (type=="Q_TYPE_DENIED"){
+					successToolTipShow('请上传正确格式的图片');
+			    }else if(type=="F_EXCEED_SIZE"){
+					successToolTipShow('请上传1M以内的图片');
+			    }
+			});
+			
+		}		
+}
+
+var imgUpload9 = {
+		init : function() {
+			//批量上传
+			this.multipUploadFile();
+		},
+		multipUploadFile:function(){
+			upload_props && upload_props.destroy();
+			var picker =$('#filePicker9'); 
+			upload_props = WebUploader.create({
+				auto:true,
+				swf : '/resources/lib/webuploader/Uploader.swf',
+				server : '/web/upload',
+				timeout:60*60*1000,
+				pick : picker,
+				fileSingleSizeLimit : image_max_size,
+				threads :1,
+				duplicate :true,
+				multiple:true,
+				accept :{
+				    title: 'Images',
+				    extensions: 'jpg,png,jpeg',
+				    mimeTypes: 'image/jpeg,image/png'
+				}
+			});
+			upload_props.on('uploadProgress',function(file, percentage) {
+			});
+			upload_props.on('uploadSuccess', function(file,response) {
+				if(response.code == 0){
+					//图片获取成功的 操作		
+					var path = response.result;
+					var imgPath = getResourcesName() + path;
+					$('#mymodal').show();//裁剪弹框
+					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
+					$('#modal-original-img').attr('src','');
+					addmodelstyle();
+					JcropFunction();
+					$('#modal-original-img').attr('src',imgPath);
+					initCutImg('filePicker9');
+					cutUpload(path,'filePicker9');
+
+				}else{
+					successToolTipShow('图片获取失败');
+				}
+				
+			});
+			upload_props.on('uploadError', function(file,reason) {
+				successToolTipShow(reason);
+			});
+			upload_props.on('filesQueued', function(file) {
+				if(file.length > 1){
+					successToolTipShow('只能选择一张图片替换');
+					upload_profession.reset();
+				}
+			});
+			upload_props.on('error', function(type) {
+				if (type=="Q_TYPE_DENIED"){
+					successToolTipShow('请上传正确格式的图片');
+			    }else if(type=="F_EXCEED_SIZE"){
+					successToolTipShow('请上传1M以内的图片');
+			    }
+			});
+			
+		}		
+}
+//长图预览
 function addmodelstyle(){
 	$('.modal-body .modal-left').addClass('modal-left-site');
 	$('.modal-body .modal-preview-container').addClass('modal-site');
+	$('.modal-body .modal-preview-container #modal-preview').addClass('modal-site');
 	$('.modal-body .modal-right .preview').addClass('preview-site ');
 	$('.modal-body .modal-right button').addClass('btn-site');
 	$('.modal-body .modal-right').addClass('modal-right-site');
 }
+//高图预览
 function remodelstyle(){
 	$('.modal-body .modal-left').removeClass('modal-left-site');
 	$('.modal-body .modal-preview-container').removeClass('modal-site');
@@ -731,7 +1036,7 @@ function initCutImg(type){
 			$('.modal-original').attr('style',"height:"+$('#modal-original-img').height()+"px;width:100%;margin-top:"+num+"px;");
 		
 		}
-		if (type=='filePicker4'||type=='filePicker5'){
+		if (type=='filePicker4'||type=='filePicker5'||type=='filePicker8'||type=='filePicker9'){
 			JcropFunctionsite();
 		}else {
 			JcropFunction();
@@ -900,6 +1205,46 @@ function cutUpload(path,pick){
 						$('#filePicker5').addClass('webuploader-container');
 					}
 					
+				}else if (pick=='filePicker6'){
+					$('#filePicker6 .fileimg').attr('src',getResourcesName()+userTarget.result);
+					$('#filePicker6 .fileimg').attr('data-value',userTarget.result);
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
+					if($('.reupload').length<=0){
+						$('#filePicker6 .updateimg').after("<div class='reupload'>重新上传</div>");
+					}
+				}else if (pick=='filePicker7'){
+					$('#filePicker7 .fileimg').attr('src',getResourcesName()+userTarget.result);
+					$('#filePicker7 .fileimg').attr('data-value',userTarget.result);
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
+					if($('.reupload').length<=0){
+						$('#filePicker7 .updateimg').after("<div class='reupload'>重新上传</div>");
+					}
+				}else if (pick=='filePicker8'){
+					$('#filePicker8 .fileimg').attr('src',getResourcesName()+userTarget.result);
+					$('#filePicker8 .fileimg').attr('data-value',userTarget.result);
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
+					if($('.reupload').length<=0){
+						$('#filePicker8 .updateimg').after("<div class='reupload'>重新上传</div>");
+					}
+				}else if (pick=='filePicker9'){
+					$('#filePicker9 .fileimg').attr('src',getResourcesName()+userTarget.result);
+					$('#filePicker9 .fileimg').attr('data-value',userTarget.result);
+//					//移除--之后添加
+//					$('#filePicker1 .addimgs').remove();
+//					$('#filePicker1 .clickimg').remove();
+//					
+					if($('.reupload').length<=0){
+						$('#filePicker9 .updateimg').after("<div class='reupload'>重新上传</div>");
+					}
 				}
 				
 				$('#modal-preview').attr('src','/resources/images/supplier/black.png');
