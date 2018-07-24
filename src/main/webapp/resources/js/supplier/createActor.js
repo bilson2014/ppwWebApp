@@ -39,14 +39,20 @@ $().ready(function() {
 		listpeopledata('actor');
 		$('.staffbox .stafftitle span').text('添加演员');
 		cleanactordata();
-		listcitydata();
+		var hasCity = $('.citycheck p');
+		if(!hasCity.length > 0){
+			listcitydata();
+		}
 	}
 //添加导演弹出框
 	function directorboxshow(){
 		listpeopledata('director');
 		cleadirectordata();
 		$('.directorbox .directortitle span').text('添加导演');
-		listcitydata();
+		var hasCity = $('.citycheck p');
+		if(!hasCity.length > 0){
+			listcitydata();
+		}
 	}
 	//添加其他职业弹出框
 	function peopleboxshow(type,professionName){
@@ -55,29 +61,43 @@ $().ready(function() {
 		//listpeopledata(type); 无页面参数
 		cleanpeopledata();
 		$('.peoplebox .peopletitle span').text('添加'+professionName);
-		listcitydata();
+		var hasCity = $('.citycheck p');
+		if(!hasCity.length > 0){
+			listcitydata();
+		}
 	}
 	function cameramanboxshow(){
 //		listpeopledata('cameraman'); 
 		cleancameramandata();
 		$('.cameramanbox .cameramantitle span').text('添加摄影师');
-		listcitydata();
+		var hasCity = $('.citycheck p');
+		if(!hasCity.length > 0){
+			listcitydata();
+		}
 	}
 
 //角色选择
 function peoplechengck(){
-	$("body").on("mouseover","#filePicker1 ,#filePicker3 ,#filePicker4",function(){
+ 
+	
+	$("body").on("mouseover",".filesimage",function(){
 		$(this).find('.reupload').show();
 	});
-	$("body").on("mouseout","#filePicker1 ,#filePicker3,#filePicker4",function(){
+	$("body").on("mouseout",".filesimage",function(){
 		$(this).find('.reupload').hide();
 	});
+	
+	/*$("body").on("mouseover","#filePicker1 ,#filePicker2,#filePicker3 ,#filePicker4,#filePicker5,#filePicker6,#filePicker7,#filePicker8",function(){
+		$(this).find('.reupload').show();
+	});
+	$("body").on("mouseout","#filePicker1 ,#filePicker2,#filePicker3 ,#filePicker4,#filePicker5,#filePicker6,#filePicker7,#filePicker8",function(){
+		$(this).find('.reupload').hide();
+	});*/
 	$('.page').on('click','#closePhone',function(){
 		$('#uploadConfirmBt').attr('disabled',false);
 		$('#modal-original-img').attr('src','');
 		$('#modal-preview').attr('src','/resources/images/supplier/black.png');	
-		$("#mymodal").hide();
-	
+		$("#mymodal").hide();	
 	});
 	
 	$('body').on('mouseover','.showimages .imgsboxs,.siteimages .imgsboxs',function(){
@@ -1043,6 +1063,7 @@ function initCutImg(type){
 		}
 	 });
 }
+
 function initCutImgsite(){
 	$('#modal-original-img').attr('style','');
 	var needWidth = 300;
@@ -1054,8 +1075,7 @@ function initCutImgsite(){
 		var realWidth  = img.width;
 		if(realHeight>=realWidth){
 			$('.modal-original').attr('style',"height:300px;");
-			$('#modal-original-img').attr('style','height:100%;width:auto;');	
-		
+			$('#modal-original-img').attr('style','height:100%;width:auto;');		
 			$('.modal-original').attr('style',"height:300px;width:"+$('#modal-original-img').width()+"px");
 		}else{
 			var paddingTop=(300-300*realHeight/realWidth)/2;

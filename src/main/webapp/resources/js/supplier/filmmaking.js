@@ -233,9 +233,8 @@ function init(){
 	//-人员
 	$('.people').off('click').on('click',function(){
 		$('.setCard').empty();
-		$('.setCard').addClass('peo');
-		$('.setCard').removeClass('sit');
-		$('.setCard').removeClass('fac');
+		$('.setCard').hide();
+		$('#peo').show();
 		getlistdatap();//获取人数据
 		$(this).addClass('top-text');
 		$(this).siblings('div').removeClass('top-text ');
@@ -244,9 +243,8 @@ function init(){
 	//-场地
 	$('.sitett').off('click').on('click',function(){
 		$('.setCard').empty();
-		$('.setCard').addClass('sit');
-		$('.setCard').removeClass('peo');
-		$('.setCard').removeClass('fac');
+		$('.setCard').hide();
+		$('#sit').show();
 		getlistdatas();//获取场地数据
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
@@ -254,10 +252,9 @@ function init(){
 	});
 	//-设备
 	$('.facility').off('click').on('click',function(){
-		$('.setCard').addClass('fac');
-		$('.setCard').removeClass('peo');
-		$('.setCard').removeClass('sit');
 		$('.setCard').empty();
+		$('.setCard').hide();
+		$('#fac').show();
 		getlistdatad();//获取设备数据
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
@@ -265,10 +262,9 @@ function init(){
 	});
 	//-服装道具
 	$('.costume').off('click').on('click',function(){
-	/*	$('.setCard').addClass('fac');
-		$('.setCard').removeClass('peo');
-		$('.setCard').removeClass('sit')*/;
 		$('.setCard').empty();
+		$('.setCard').hide();
+		$('#cos').show();
 		getlistdatac();//获取服装设备数据
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
@@ -285,8 +281,7 @@ function initAddPeople(type,profession){
 		$('.staffbox').hide();
 		$('.cameramanbox').hide();
 		peopleboxshow(profession,getNameByProfession(profession));
-		
-		
+				
 		var picks=$('.role p');
 		for(var j=0;j<picks.length;j++){
 			if(picks[j] != $(this)){
@@ -304,12 +299,10 @@ function initAddPeople(type,profession){
 function newbutton(){
 	$('.newbox').off('click').on('click',function(){
 		$('.setting').show();
-//		$('.addpeople').hide();
 		$('.sitebox').hide();
 		$('.equipbox').hide();
 		if ($('.top .people').hasClass('top-text')){
-//			$('.addpeople').show();
-			
+	
 			$('.role').show();
 			$('.role').removeClass('pickroledir');
 			$('.role').removeClass('pickroleshowimg ');
@@ -321,9 +314,6 @@ function newbutton(){
 			$('.peoplebox').hide();
 			$('.cameramanbox').hide();
 			
-			/*$('.pickdir').addClass('pickrole');
-			$('.pickact').removeClass('pickrole');*/
-			
 			var picks=$('.role p');
 			
 			for(var i=0;i<picks.length;i++){
@@ -333,12 +323,10 @@ function newbutton(){
 					$(picks[i]).removeClass('pickrole');
 				}
 			}
-			
-			
-//			staffboxshow();
+
 			directorboxshow();
-			
-			$('.check').val('');
+            $('.check').val('');
+            
 		}else if($('.top .sitett').hasClass('top-text')){
 			$('.sitebox').show();
 			$('.sitebox .sitetitle span').text('添加场地');
@@ -390,8 +378,7 @@ function getlistdatap(){
             +"<span class='name one'>"+res[i].name+"</span>";
 			var len=res[i].price;
 			len= String(len);
-			if (len.length>=6){
-				
+			if (len.length>=6){				
 				var boxhtmltwo="<p class='price'>￥99999+</p><span class='dayss'>/天</span>"
 	            +"</div>"
 	            +"</div>";
@@ -399,11 +386,9 @@ function getlistdatap(){
 				var boxhtmltwo="<p class='price'>￥"+res[i].price+"</p><span class='dayss'>/天</span>"
 	            +"</div>"
 	            +"</div>";
-			}
-			
-			
+			}			
 			var boxhtml=boxhtmlone+boxhtmltwo;
-			$('.setCard').append(boxhtml);
+			$('#peo').append(boxhtml);
 		}
 		imgcheckpeople();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 350);
@@ -446,7 +431,7 @@ function getlistdatas(){
 			var boxhtml=boxhtmlone+boxhtmltwo;
 			
 			
-			$('.setCard').append(boxhtml);
+			$('#sit').append(boxhtml);
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
@@ -496,7 +481,7 @@ function getlistdatad(){
             var boxhtml=boxhtmlbegin+boxhtmland+boxhtmlend+boxhtmltwo;
             
             
-			$('.setCard').append(boxhtml);
+			$('#fac').append(boxhtml);
 			//图片处理
 			var img=new Image();
 			img.src=$('.imgs'+i).attr('src');
@@ -554,15 +539,13 @@ function getlistdatac(){
 	            +"</div>"
 	            +"</div>";
 			}
-			
-			
-			
+						
 			var boxhtmlbegin="<div class='idcard  idcard-costume' id ="+res[i].id+" identity="+res[i].identity+">";
          
             var boxhtml=boxhtmlbegin+boxhtmland+boxhtmlend+boxhtmltwo;
             
             
-			$('.setCard').append(boxhtml);
+			$('#cos').append(boxhtml);
 			//图片处理
 			var img=new Image();
 			img.src=$('.imgs'+i).attr('src');
@@ -587,12 +570,18 @@ function getlistdatac(){
 //下拉的城市的接口
 function listcitydata(){
 	loadData(function(res){	
-		cities=res;//留存
-		
+		cities=res;//留存	
 		for(var i=0;i<res.length;i++){
 			var phtml="<p cityId="+res[i].cityID+">"+res[i].city+"</p>";
 			$('.citycheck').append(phtml);
 		}
+		$('body').on('click','.citycheck p',function(){
+			$(this).parent().parent().find('.cityValue').attr('cityid',$(this).attr('cityid'));
+			$(this).parent().parent().find('.cityValue').text($(this).text());
+			$(this).parent().parent().find('.cityValue').removeClass('Color');
+		   	$('.citycheck').removeClass('reilef');
+		    event.stopPropagation();
+		});
 	 }, getContextPath() + '/all/citys');
 }
 //演员导演的dropdown 获取
@@ -738,14 +727,7 @@ function getpeople(id,type){
 				}
 			 }, getContextPath() + '/production/actor/parameter' );
 			var city=res.city;
-			$('.citygather').attr('cityid',city);
-			loadData(function(res){
-				for(var i=0;i<res.length;i++){
-					if (city==res[i].cityID){
-						$('.citygather').text(res[i].city);
-					}
-				}
-			 }, getContextPath() + '/all/citys');
+			reSetCity($('.citygather'),city);
 			
 		 }, getContextPath() + '/production/actor/get', $.toJSON({						
 			 id:id,//	主键
@@ -786,14 +768,7 @@ function getpeople(id,type){
 				}
 			 }, getContextPath() + '/production/director/parameter');
 			var city=res.city;
-			$('.citydir').attr('cityid',city);
-			loadData(function(res){
-				for(var i=0;i<res.length;i++){
-					if (city==res[i].cityID){
-						$('.citydir').text(res[i].city);
-					}
-				}
-			 }, getContextPath() + '/all/citys');
+			reSetCity($('.citydir'),city);			 
 			$('.pricedir').val(res.price);
 			$('.remarkdirector').val(res.remark);
 		 }, getContextPath() + '/production/director/get', $.toJSON({						
@@ -825,6 +800,18 @@ function getpeople(id,type){
 		//数据回显
 		getCameraman(id);
 	
+	}
+}
+
+//回显城市
+function reSetCity(setClass,city){
+	setClass.attr('cityid',city);
+	var whatCity = $('.citycheck').find('p');
+	for(var i=0;i<whatCity.length;i++){
+		if (city == $(whatCity[i]).attr('cityid')){
+			setClass.text($(whatCity[i]).text());
+			break;
+		}
 	}
 }
 
@@ -938,7 +925,7 @@ function btnfocus(){
 		 $('.twocheck').addClass('reilef');
 		if($(this).hasClass('Color')){
 			 $('.twocheck').removeClass('reilef');
-			$(this).removeClass('Color');
+			 $(this).removeClass('Color');
 		}
 		else{
 			$('.gendergather').removeClass('Color');
@@ -1002,13 +989,6 @@ function btnfocus(){
 		event.stopPropagation();
 	});
 	
-	$('body').on('click','.citycheck p',function(){
-		$('.citygather').attr('cityid',$(this).attr('cityid'));
-		$('.citygather').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.citygather').removeClass('Color');
-	     event.stopPropagation();
-	});
 	//领域
 	$('.skilldir,.skillimg').off('click').on('click',function(e){
 		 $('.skillcheck').addClass('reilef');
@@ -1098,13 +1078,7 @@ function btnfocus(){
 	   	$('.skilldir').removeClass('Color');
 		event.stopPropagation();
 	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citydir').attr('cityid',$(this).attr('cityid'));
-		$('.citydir').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.citydir').removeClass('Color');
-	     event.stopPropagation();
-	});
+
 	
 	
 //	场地类型
@@ -1148,13 +1122,7 @@ function btnfocus(){
 	   	$('.typesite').removeClass('Color');
 		event.stopPropagation();
 	});
-	$('body').on('click','.sitebox .citycheck p',function(){
-		$('.citysite').attr('cityid',$(this).attr('cityid'));
-		$('.citysite').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.citysite').removeClass('Color');
-	     event.stopPropagation();
-	});
+
 	///设备类型
 	$('.typeequip,.typeimg').off('click').on('click',function(e){
 		 $('.typecheck').addClass('reilef');
@@ -1258,13 +1226,7 @@ function btnfocus(){
 	   	$('.typeequip').removeClass('Color');*/
 		event.stopPropagation();
 	});
-	$('body').on('click','.peoplebox .citycheck p',function(){
-		$('.citypeo').attr('cityid',$(this).attr('cityid'));
-		$('.citypeo').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.citypeo').removeClass('Color');
-	     event.stopPropagation();
-	});
+
 	
 	//摄影师
 	$('.specialSkill,.specialSkillimg').off('click').on('click',function(e){
@@ -1314,13 +1276,7 @@ function btnfocus(){
 
 		event.stopPropagation();
 	});
-	$('body').on('click','.cameramanbox .citycheck p',function(){
-		$('.cityca').attr('cityid',$(this).attr('cityid'));
-		$('.cityca').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.cityca').removeClass('Color');
-	     event.stopPropagation();
-	});
+
 	
 	//服装：-类型 
 	$('.typeclo,.cityimg').off('click').on('click',function(e){// TODO 可以对所有下拉框做统一事件处理
@@ -1403,13 +1359,7 @@ function btnfocus(){
 	   	
 		event.stopPropagation();
 	});
-	$('body').on('click','.clothingbox .citycheck p',function(){
-		$('.cityclo').attr('cityid',$(this).attr('cityid'));
-		$('.cityclo').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.cityclo').removeClass('Color');
-	     event.stopPropagation();
-	});
+
 	
 	//道具：-类型 
 	$('.typepro,.cityimg').off('click').on('click',function(e){// TODO 可以对所有下拉框做统一事件处理
@@ -1492,14 +1442,7 @@ function btnfocus(){
 	   	
 		event.stopPropagation();
 	});
-	$('body').on('click','.propsbox .citycheck p',function(){
-		$('.citypro').attr('cityid',$(this).attr('cityid'));
-		$('.citypro').text($(this).text());
-	   	$('.citycheck').removeClass('reilef');
-	   	$('.citypro').removeClass('Color');
-	     event.stopPropagation();
-	});
-	
+
 }
 
 

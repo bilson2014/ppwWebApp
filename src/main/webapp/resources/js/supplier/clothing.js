@@ -1,7 +1,5 @@
 $().ready(function() {	
 	clothingmethod();	 
-	
-	
 });
 
 //添加场地
@@ -14,33 +12,7 @@ function clothingmethod(){
 		$('.customeRole').hide();
 		cleanclodata();
 	});
-	//下拉框出现(类型)
-/*	$('.siteleft .typesite,.siteleft .typeimg').off('click').on('click',function(){
-		$('.typecheck').show();	
-		$('.citycheck').hide();
-	});
-	$('body').on('click','.typecheck p',function(){
-	
-		$('.typesite').text($(this).text());
-		$('.typesite').attr('key',$(this).attr('key'));
-		$('.typecheck').hide();
-	});
-	$('.siteleft .citysite,.siteleft .cityimg').off('click').on('click',function(){
-		$('.citycheck').show();	
-		$('.typecheck').hide();
-	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citysite').text($(this).text());
-		$('.citysite').attr('cityid',$(this).attr('cityid'));
-		$('.citycheck').hide();
-	});
-	$('.siteleft .namesite,.siteleft .msite,.siteleft .pricesite,.siteleft .locationsite').off('click').on('click',function(){
-		$('.citycheck').hide();	
-		$('.typecheck').hide();
-	});*/
-	
-	
-	
+
 	//提交
 	$('.clothingbox .gatherbut .sure').off('click').on('click',function(){
 	
@@ -229,7 +201,11 @@ function clothingboxshow(){
 	listpeopledata('clothing');//TODO 获取参数
 	cleanclodata();
 	$('.clothingbox .clothingtitle span').text('添加服装');
-	listcitydata();
+	var hasCity = $('.citycheck p');
+	if(!hasCity > 0){
+		listcitydata();
+	}
+	
 }
 
 //修改服装道具

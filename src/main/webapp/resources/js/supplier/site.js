@@ -28,17 +28,11 @@ function sitemethod(){
 		$('.citycheck').show();	
 		$('.typecheck').hide();
 	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citysite').text($(this).text());
-		$('.citysite').attr('cityid',$(this).attr('cityid'));
-		$('.citycheck').hide();
-	});
+
 	$('.siteleft .namesite,.siteleft .msite,.siteleft .pricesite,.siteleft .locationsite').off('click').on('click',function(){
 		$('.citycheck').hide();	
 		$('.typecheck').hide();
 	});
-	
-	
 	
 	//提交
 	$('.sitebox .gatherbut .sure').off('click').on('click',function(){
@@ -163,8 +157,7 @@ function getstudio(id){
 		if($('.reupload').length<=0){
 			$('#filePicker4 .updateimg').after("<div class='reupload'>重新上传</div>");
 		}
-		
-		
+				
 		var photo=res.photo;
 		if (photo!='null'){
 			$('.siteimages').show();
@@ -198,15 +191,7 @@ function getstudio(id){
 		$('.locationsite').val(res.address);
 		$('.siteremark').val(res.remark);
 		var cities=res.city;
-		$('.citysite').attr('cityid',res.city);
-		loadData(function(res){
-			for(var i=0;i<res.length;i++){
-				if (cities==res[i].cityID){
-					$('.citysite').text(res[i].city);
-				}
-			}
-		 }, getContextPath() + '/all/citys');
-		
+		reSetCity($('.citysite'),cities);		
 	 }, getContextPath() + '/production/studio/get', $.toJSON({						
 		 id:id,//	主键
 	}));
@@ -214,13 +199,13 @@ function getstudio(id){
 //删除
 function delstudio(id){
 	loadData(function(res){	
-		console.log(id+'删除了,之后获取了新的 数据');
 		getlistdatas();//获取场地数据
 	 }, getContextPath() + '/production/studio/delete', $.toJSON({						
 		 id:id,//	主键
 	}));
 }
 function cleandata(){
+	
 	$('.namesitep').text('');
 	$('.msitep').text('');
 	$('.typesitep').text('');
@@ -238,18 +223,15 @@ function cleandata(){
 	
 	$('.typecheck').hide();
 	$('.citycheck').hide();
-	
-//	$('#filePicker4').append("<img class='addimgs' alt='点击添加图片' src='/resources/images/supplier/adds.png'/><p class='clickimg'>点击添加封面</p>");
+
 	$('.addboxs span').removeAttr("style");
-	$('#filePicker5').removeAttr("style");
+	$('#filePicker5').removeAttr("style");                 
 	$('#filePicker5').addClass('webuploader-container');
-//	$('#filePicker4 .fileimg').removeAttr('data-value');
-//	$('#filePicker4 .fileimg').removeAttr('src');
+
 	$('#filePicker4 .fileimg').attr('src','/resources/images/supplier/site.png');
 	$('#filePicker4 .fileimg').attr('data-value','/resources/images/supplier/site.png');
 	
 	$('#filePicker4 .reupload').remove();
-//	$('#filePicker4 .addimgs,#filePicker4 .clickimg').show();
 	
 	$('.siteimages').hide();
 	$('.siteimages').empty();

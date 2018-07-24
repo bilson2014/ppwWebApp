@@ -13,33 +13,7 @@ function propsmethod(){
 		$('.propsbox').hide();	
 		$('.customeRole').hide();
 		cleanpropdata();
-	});
-	//下拉框出现(类型)
-/*	$('.siteleft .typesite,.siteleft .typeimg').off('click').on('click',function(){
-		$('.typecheck').show();	
-		$('.citycheck').hide();
-	});
-	$('body').on('click','.typecheck p',function(){
-	
-		$('.typesite').text($(this).text());
-		$('.typesite').attr('key',$(this).attr('key'));
-		$('.typecheck').hide();
-	});
-	$('.siteleft .citysite,.siteleft .cityimg').off('click').on('click',function(){
-		$('.citycheck').show();	
-		$('.typecheck').hide();
-	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citysite').text($(this).text());
-		$('.citysite').attr('cityid',$(this).attr('cityid'));
-		$('.citycheck').hide();
-	});
-	$('.siteleft .namesite,.siteleft .msite,.siteleft .pricesite,.siteleft .locationsite').off('click').on('click',function(){
-		$('.citycheck').hide();	
-		$('.typecheck').hide();
-	});*/
-	
-	
+	});	
 	
 	//提交
 	$('.propsbox .gatherbut .sure').off('click').on('click',function(){
@@ -209,7 +183,7 @@ function cleanpropdata(){
 	$('.addboxs span').removeAttr("style");
 //	$('#filePicker9').removeAttr("style");
 //	$('#filePicker9').addClass('webuploader-container');
-//	
+	
 	$('#filePicker9 .fileimg').attr('src','/resources/images/supplier/site.png');
 	$('#filePicker9 .fileimg').attr('data-value','/resources/images/supplier/site.png');
 	$('#filePicker9 .reupload').remove();
@@ -220,5 +194,8 @@ function propsboxshow(){
 	listpeopledata('props');//TODO 获取参数
 	cleanpropdata();
 	$('.propsbox .propstitle span').text('添加道具');
-	listcitydata();
+	var hasCity = $('.citycheck p');
+	if(!hasCity.length > 0){
+		listcitydata();
+	}
 }

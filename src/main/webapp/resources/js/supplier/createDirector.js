@@ -20,22 +20,12 @@ function dirmethod(){
 		$('.skillcheck').show();	
 		$('.citycheck').hide();
 	});
-	$('body').on('click','.skillcheck p',function(){
-//		$('.skilldir').attr('value',$(this).attr('value'));
-//		$('.skilldir').text($(this).text());
-//		$('.skillcheck').hide();
-	});
 	
 	$('.directorl .citydir,.directorl .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();
 		$('.skillcheck').hide();
 	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citydir').text($(this).text());
-		$('.citydir').attr('cityid',$(this).attr('cityid'));
-		$('.citycheck').hide();
-	});
-	
+
 	$('.directorl .namedir,.directorl .pricedir,.directorbox .remarkdirector').off('click').on('click',function(){
 		$('.skillcheck').hide();
 		$('.citycheck').hide();

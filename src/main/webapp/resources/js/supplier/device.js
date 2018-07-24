@@ -154,23 +154,18 @@ function getdevice(id){
 				}
 			}
 		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
+		
 		loadData(function(res){	
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==namelist){
 					$('.nameequip').val(res[i].value);
-					$('.nameequip').attr('key',res[i].key);
-					
+					$('.nameequip').attr('key',res[i].key);			
 				}
 			}
 		 }, getContextPath() + "/quotationtype/production/children?typeId="+typelist);
-		loadData(function(res){	
-			for(var i=0;i<res.length;i++){
-				if (res[i].cityID==citylist){
-					$('.cityequip').text(res[i].city);
-					$('.cityequip').attr('cityid',res[i].cityID);
-				}
-			}
-		 }, getContextPath() + '/all/citys');		
+		
+		reSetCity($('.cityequip'),citylist);
+		
 		$('.numequip').val(res.quantity);
 		$('.priceequip').val(res.price);
 		$('.equipremark').val(res.remark);
@@ -179,7 +174,6 @@ function getdevice(id){
 	}));
 }
 //加载备用数据
-
 
 //删除
 function deldevice(id){

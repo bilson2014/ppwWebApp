@@ -1,6 +1,5 @@
 $().ready(function() {	
 	peoplemethod();
-	
 });
 
 //添加人员
@@ -20,16 +19,10 @@ function peoplemethod(){
 	$('.peoplel .citypeo,.peoplel .cityimg').off('click').on('click',function(){
 		$('.citycheck').show();	
 	});
-	$('body').on('click','.citycheck p',function(){
-		$('.citypeo').text($(this).text());
-		$('.citypeo').attr('cityid',$(this).attr('cityid'));
-		$('.citycheck').hide();
-	});
+
 	$('.peoplel .namepeo,.peoplel .pricepeo,.peoplel .remark').off('click').on('click',function(){
 		$('.citycheck').hide();	
 	});
-	
-	
 	
 	//提交
 	$('.peoplebox .gatherbut .sure').off('click').on('click',function(){
@@ -42,12 +35,10 @@ function peoplemethod(){
 		
 		var fileimg=$('#filePicker6 .fileimg').attr('src');//图片
 		console.log(fileimg);
-		
-		
+				
 		$('.namepeop').text('');
 		$('.pricepeop').text('');
-		$('.citypeop').text('');
-		
+		$('.citypeop').text('');		
 		
 		if (namepeo==undefined||namepeo==null||namepeo==''){
 			$('.namepeop').text('*请填写场地名称');
@@ -62,8 +53,7 @@ function peoplemethod(){
 			$('.peopler .addboxs span').attr("style","color: red;");
 			return false;
 		}else {
-			
-		
+					
 			var biao=$('.peoplebox .peopletitle span').text();
 			if (biao.indexOf('修改') != -1){
 				var id=$('.peoplebox').attr('id');
@@ -99,11 +89,9 @@ function peoplemethod(){
 					 profession:professionpeo,//职业
 					 
 				}));
-			}
-			
+			}	
 		}
-	});
-	
+	});	
 }
 
 //获取
@@ -127,22 +115,17 @@ function getPeopleByProfession(id,profession,professionName){
 		$('.pricepeo').val(res.price);
 		
 		var city=res.city;
-		$('.citypeo').attr('cityid',city);
-//		loadData(function(res){
-			for(var i=0;i<cities.length;i++){
-				if (city==cities[i].cityID){
-					$('.citypeo').text(cities[i].city);
-					break;
-				}
-			}
-//		 }, getContextPath() + '/all/citys');
+		
+		reSetCity($('.citypeo'),city);
 		
 	 }, getContextPath() + '/production/personnel/get', $.toJSON({						
 		 id:id,//	主键
 	}));
+	
 }
 
 function cleanpeopledata(){
+	
 	$('.namepeop').text('');
 	$('.pricepeop').text('');
 	$('.citypeop').text('');
@@ -150,8 +133,8 @@ function cleanpeopledata(){
 	$('.namepeo').val('');
 	$('.pricepeo').val('');
 	$('.citypeo').text('请选择');
-	$('.remarkpeople').val('');
 	
+	$('.remarkpeople').val('');
 	$('.citycheck').hide();
 	
 	$('#filePicker6').removeAttr("style");
@@ -159,4 +142,5 @@ function cleanpeopledata(){
 	
 	$('#filePicker6 .fileimg').attr('src','/resources/images/supplier/people.png');
 	$('#filePicker6 .fileimg').attr('data-value','/resources/images/supplier/people.png');
+	
 }
