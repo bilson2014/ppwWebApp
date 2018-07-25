@@ -242,7 +242,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/actor/save")
 	public BaseMsg addActor(@RequestBody final PmsProductionActor actor, final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
-		delImg(actor.getDelImg());
+		delImg(actor.getDelImg(),actor.getMainPhoto());
 		editCreator(actor, request);
 		// 主图处理
 		if(ValidateUtil.isValid(actor.getPhoto())) {
@@ -256,6 +256,7 @@ public class ProductionResourceController extends BaseController {
 		return result;
 	}
 
+	
 	@RequestMapping("/actor/get")
 	public PmsProductionActor getActor(@RequestBody final PmsProductionActor actor) {
 		PmsProductionActor result = pmsProductionActorFacade.getById(actor.getId());
@@ -270,7 +271,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/actor/update")
 	public BaseMsg updateActor(@RequestBody final PmsProductionActor actor) {
 		BaseMsg result = new BaseMsg();
-		delImg(actor.getDelImg());
+		delImg(actor.getDelImg(),actor.getMainPhoto());
 		// 主图处理
 		actor.setPhoto(actor.getMainPhoto() + ";" + actor.getPhoto());
 		pmsProductionActorFacade.update(actor);
@@ -281,7 +282,7 @@ public class ProductionResourceController extends BaseController {
 	public BaseMsg deleteActor(@RequestBody final PmsProductionActor actor) {
 		BaseMsg result = new BaseMsg();
 		PmsProductionActor old = pmsProductionActorFacade.getById(actor.getId());
-		delImg(old.getPhoto());
+		delImg(old.getPhoto(),null);
 		pmsProductionActorFacade.deleteByIds(new long[] { actor.getId() });
 		return result;
 	}
@@ -290,7 +291,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/director/save")
 	public BaseMsg addDirector(@RequestBody final PmsProductionDirector director, final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
-		delImg(director.getDelImg());
+		delImg(director.getDelImg(),director.getPhoto());
 		editCreator(director, request);
 		pmsProductionDirectorFacade.insert(director);
 
@@ -306,7 +307,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/director/update")
 	public BaseMsg updateDirector(@RequestBody final PmsProductionDirector director) {
 		BaseMsg result = new BaseMsg();
-		delImg(director.getDelImg());
+		delImg(director.getDelImg(),director.getPhoto());
 		pmsProductionDirectorFacade.update(director);
 		return result;
 	}
@@ -315,7 +316,7 @@ public class ProductionResourceController extends BaseController {
 	public BaseMsg deleteDirector(@RequestBody final PmsProductionDirector director) {
 		BaseMsg result = new BaseMsg();
 		PmsProductionDirector old = pmsProductionDirectorFacade.getById(director.getId());
-		delImg(old.getPhoto());
+		delImg(old.getPhoto(),null);
 		pmsProductionDirectorFacade.deleteByIds(new long[] { director.getId() });
 		return result;
 	}
@@ -355,7 +356,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/studio/save")
 	public BaseMsg addStudio(@RequestBody final PmsProductionStudio studio, final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
-		delImg(studio.getDelImg());
+		delImg(studio.getDelImg(),studio.getMainPhoto());
 		editCreator(studio, request);
 		// 主图处理
 		if(ValidateUtil.isValid(studio.getPhoto())) {
@@ -382,7 +383,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/studio/update")
 	public BaseMsg updateStudio(@RequestBody final PmsProductionStudio studio) {
 		BaseMsg result = new BaseMsg();
-		delImg(studio.getDelImg());
+		delImg(studio.getDelImg(),studio.getMainPhoto());
 		// 主图处理
 		studio.setPhoto(studio.getMainPhoto() + ";" + studio.getPhoto());
 		pmsProductionStudioFacade.update(studio);
@@ -393,7 +394,7 @@ public class ProductionResourceController extends BaseController {
 	public BaseMsg deleteStudio(@RequestBody final PmsProductionStudio studio) {
 		BaseMsg result = new BaseMsg();
 		PmsProductionStudio old = pmsProductionStudioFacade.getById(studio.getId());
-		delImg(old.getPhoto());
+		delImg(old.getPhoto(),null);
 		pmsProductionStudioFacade.deleteByIds(new long[] { studio.getId() });
 		return result;
 	}
@@ -403,7 +404,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/cameraman/save")
 	public BaseMsg cameramanAdd(@RequestBody final PmsProductionCameraman cameraman, final HttpServletRequest request) {
 		BaseMsg result = new BaseMsg();
-		delImg(cameraman.getDelImg());
+		delImg(cameraman.getDelImg(),cameraman.getMainPhoto());
 		editCreator(cameraman, request);
 		// 主图处理
 		if(ValidateUtil.isValid(cameraman.getPhoto())) {
@@ -431,7 +432,7 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/cameraman/update")
 	public BaseMsg cameramanUpdate(@RequestBody final PmsProductionCameraman cameraman) {
 		BaseMsg result = new BaseMsg();
-		delImg(cameraman.getDelImg());
+		delImg(cameraman.getDelImg(),cameraman.getMainPhoto());
 		// 主图处理
 		if(ValidateUtil.isValid(cameraman.getPhoto())) {
 			cameraman.setPhoto(cameraman.getMainPhoto() + ";" + cameraman.getPhoto());
@@ -446,7 +447,7 @@ public class ProductionResourceController extends BaseController {
 	public BaseMsg cameramanDelete(@RequestBody final PmsProductionCameraman cameraman) {
 		BaseMsg result = new BaseMsg();
 		PmsProductionCameraman old = pmsProductionCameramanFacade.getById(cameraman.getId());
-		delImg(old.getPhoto());
+		delImg(old.getPhoto(),null);
 		pmsProductionCameramanFacade.deleteByIds(new long[] { cameraman.getId() });
 		return result;
 	}
@@ -462,7 +463,7 @@ public class ProductionResourceController extends BaseController {
 			return result;
 		}
 		
-		delImg(personnel.getDelImg());
+		delImg(personnel.getDelImg(),personnel.getMainPhoto());
 		editCreator(personnel, request);
 		// 主图处理
 		if(ValidateUtil.isValid(personnel.getPhoto())) {
@@ -496,7 +497,7 @@ public class ProductionResourceController extends BaseController {
 			return result;
 		}
 		
-		delImg(personnel.getDelImg());
+		delImg(personnel.getDelImg(),personnel.getMainPhoto());
 		// 主图处理
 		if(ValidateUtil.isValid(personnel.getPhoto())) {
 			personnel.setPhoto(personnel.getMainPhoto() + ";" + personnel.getPhoto());	
@@ -511,7 +512,7 @@ public class ProductionResourceController extends BaseController {
 	public BaseMsg personnelDelete(@RequestBody final PmsProductionPersonnel personnel) {
 		BaseMsg result = new BaseMsg();
 		PmsProductionPersonnel old = pmsProductionPersonnelFacade.getById(personnel.getId());
-		delImg(old.getPhoto());
+		delImg(old.getPhoto(),null);
 		pmsProductionPersonnelFacade.deleteByIds(new long[] { personnel.getId() });
 		return result;
 	}
@@ -527,7 +528,7 @@ public class ProductionResourceController extends BaseController {
 				return result;
 			}
 			
-			delImg(costume.getDelImg());
+			delImg(costume.getDelImg(),costume.getMainPhoto());
 			editCreator(costume, request);
 			// 主图处理
 			if(ValidateUtil.isValid(costume.getPhoto())) {
@@ -561,7 +562,7 @@ public class ProductionResourceController extends BaseController {
 				return result;
 			}
 			
-			delImg(costume.getDelImg());
+			delImg(costume.getDelImg(),costume.getMainPhoto());
 			// 主图处理
 			if(ValidateUtil.isValid(costume.getPhoto())) {
 				costume.setPhoto(costume.getMainPhoto() + ";" + costume.getPhoto());	
@@ -576,13 +577,16 @@ public class ProductionResourceController extends BaseController {
 		public BaseMsg costumeDelete(@RequestBody final PmsProductionCostume costume) {
 			BaseMsg result = new BaseMsg();
 			PmsProductionCostume old = pmsProductionCostumeFacade.getById(costume.getId());
-			delImg(old.getPhoto());
+			delImg(old.getPhoto(),null);
 			pmsProductionCostumeFacade.deleteByIds(new long[] { costume.getId() });
 			return result;
 		}
 		
-	private void delImg(String delImgs) {
+	private void delImg(String delImgs,String mainImg) {
 		if (ValidateUtil.isValid(delImgs)) {
+			if(mainImg!=null) {
+				delImgs=delImgs.replaceAll(mainImg, "");
+			}
 			String[] delImg = delImgs.split(";");
 			for (String address : delImg) {
 				FastDFSClient.deleteFile(address);
