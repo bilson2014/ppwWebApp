@@ -77,7 +77,7 @@
 
 
 </head>
-<body>
+<body style="overflow: hidden;">
 	<input type="hidden" id="storage_node"
 		value="${file_locate_storage_path }" />
 
@@ -253,8 +253,7 @@
 									</div>
 									<div class="modal-right">
 										<div class="modal-preview-container">
-											<img id="modal-preview" alt="全图"
-												src="/resources/images/supplier/black.png">
+											<img id="modal-preview" alt="全图a" src="/resources/images/supplier/black.png">
 										</div>
 										<span class='preview'>图片预览</span>
 										<button class="btn btn-primary" type="button"
@@ -779,7 +778,7 @@
 		<script src="${jsonJs }"></script>
 		<script src="${commonJs }"></script>
 		<script src="${createActorJs}"></script>
-		<%--  <script src="${moreimgJs}"></script> --%>
+		<%-- <script src="${moreimgJs}"></script> --%>
 		<script src="${createDirectorJs}"></script>
 		<script src="${siteJs}"></script>
 		<script src="${deviceJs}"></script>

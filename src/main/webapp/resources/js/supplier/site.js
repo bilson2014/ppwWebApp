@@ -93,7 +93,7 @@ function sitemethod(){
 		}else {
 		
 			var biao=$('.sitebox .sitetitle span').text();
-			if (biao=='修改场地'){
+			if (biao=='更新场地信息'){
 				var id=$('.sitebox').attr('id');
 				loadData(function(result){	
 					cleandata();
@@ -143,7 +143,7 @@ function sitemethod(){
 //获取
 function getstudio(id){
 	loadData(function(res){	
-		$('.sitebox .sitetitle span').text('修改场地');
+		$('.sitebox .sitetitle span').text('更新场地信息');
 		$('.sitebox').attr('id',id);
 		$('.namesite').val(res.name);
 		$('.msite').val(res.area);

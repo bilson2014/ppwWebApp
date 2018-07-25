@@ -67,7 +67,7 @@ function dirmethod(){
 		}else {
 			var biao=$('.directorbox .directortitle span').text();
 //			console.log(biao);
-			if(biao=='修改导演'){
+			if(biao=='更新导演信息'){
 				var biaoID=$('.directorbox').attr('id');
 				loadData(function(result){	
 					cleadirectordata()

@@ -47,7 +47,7 @@ function cammethod(){
 		}else {
 			var biao=$('.cameramanbox .cameramantitle span').text();
 //			console.log(biao);
-			if(biao=='修改摄影师'){
+			if(biao=='更新摄影师信息'){
 				var biaoID=$('.cameramanbox').attr('id');
 				loadData(function(result){	
 					cleancameramandata()
@@ -93,7 +93,7 @@ function cammethod(){
 //获取
 function getCameraman(id){
 	loadData(function(res){	
-		$('.cameramanbox .cameramantitle span').text('修改摄影师');
+		$('.cameramanbox .cameramantitle span').text('更新摄影师信息');
 		$('.cameramanbox').attr('id',id);
 		$('.nameca').val(res.name);
 		$('.remarkca').val(res.remark);

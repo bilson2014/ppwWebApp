@@ -58,7 +58,7 @@ function clothingmethod(){
 		}else {
 		
 			var biao=$('.clothingbox .clothingtitle span').text();
-			if (biao=='修改服装'){
+			if (biao=='更新服装信息'){
 				var id=$('.clothingbox').attr('id');
 				loadData(function(result){	
 					cleandata();
@@ -107,7 +107,7 @@ function clothingmethod(){
 
 //获取
 function getclothing(id){
-	$('.clothingbox .clothingtitle span').text('修改服装');
+	$('.clothingbox .clothingtitle span').text('更新服装信息');
 	loadData(function(res){	
 		$('.clothingbox').attr('id',id);
 		$('.nameclo').val(res.name);

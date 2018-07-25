@@ -110,7 +110,7 @@ function propsmethod(){
 //获取
 function getprops(id){
 	
-	$('.propsbox .propstitle span').text('修改服装');
+	$('.propsbox .propstitle span').text('更新服装信息');
 	loadData(function(res){	
 		$('.propsbox').attr('id',id);
 		$('.namepro').val(res.name);

@@ -304,7 +304,7 @@ function gathermethod(){
 			return false;
 		}else {
 			var biao=$('.staffbox .stafftitle span').text();
-			if(biao=='修改演员'){
+			if(biao=='更新演员信息'){
 				var biaoID=$('.staffbox').attr('id');
 				loadData(function(result){	
 					cleanactordata();
@@ -922,7 +922,7 @@ var imgUpload8 = {
 					$('#modal-preview').attr('src','/resources/images/supplier/black.png');
 					$('#modal-original-img').attr('src','');
 					addmodelstyle();
-					JcropFunction();
+					JcropFunctionsite();
 					$('#modal-original-img').attr('src',imgPath);
 					initCutImg('filePicker8');
 					cutUpload(path,'filePicker8');
@@ -1020,7 +1020,8 @@ var imgUpload9 = {
 function addmodelstyle(){
 	$('.modal-body .modal-left').addClass('modal-left-site');
 	$('.modal-body .modal-preview-container').addClass('modal-site');
-	$('.modal-body .modal-preview-container #modal-preview').addClass('modal-site');
+	//$('.modal-body .modal-preview-container #modal-preview').addClass('modal-site');
+	$('.modal-body .modal-preview-container').addClass('modal-site');
 	$('.modal-body .modal-right .preview').addClass('preview-site ');
 	$('.modal-body .modal-right button').addClass('btn-site');
 	$('.modal-body .modal-right').addClass('modal-right-site');

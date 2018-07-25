@@ -103,7 +103,7 @@ function devicemethod(){
 			return false;
 		}else {
 			var biao=$('.equipbox .equiptitle span').text();
-			if (biao=='修改设备'){
+			if (biao=='更新设备信息'){
 				datadevice('update');
 				
 			}else{
@@ -139,7 +139,7 @@ function datadevice(type){
 //获取
 function getdevice(id){
 	loadData(function(res){	
-		$('.equipbox .equiptitle span').text('修改设备');
+		$('.equipbox .equiptitle span').text('更新设备信息');
 		$('.equipbox').attr('id',id);
 		var typelist=res.type;
 		var namelist=res.typeId;

@@ -97,7 +97,7 @@ function peoplemethod(){
 //获取
 function getPeopleByProfession(id,profession,professionName){
 	loadData(function(res){	
-		$('.peoplebox .peopletitle span').text('修改'+professionName);
+		$('.peoplebox .peopletitle span').text('更新'+professionName+'信息');
 		$('.peoplebox').attr('id',id);
 		$('.namepeo').val(res.name);
 		$('#professionpeo').val(res.profession);
