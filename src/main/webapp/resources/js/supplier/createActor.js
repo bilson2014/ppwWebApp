@@ -121,13 +121,16 @@ function peoplechengck(){
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
 //		
 			var welldata=$('.showimages').attr('data-value');
-			setDel += welldata+";";
-			welldata=welldata+";"+removesrc;
+//			welldata=welldata+";"+removesrc;
 			$('.showimages').attr('data-value',welldata);
 		}else {
 			$(this).parent().parent().remove();
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
-			setDel += removesrc+";";
+			
+			if(removesrc != undefined){
+				setDel += removesrc+";";
+			}
+				
 			$('.showimages').attr('data-value',removesrc);
 		}
 	});
@@ -143,6 +146,9 @@ function peoplechengck(){
 			$('.siteimages').attr('data-value',welldata);
 		}else {
 			$(this).parent().parent().remove();
+			if(removesrc != undefined){
+				setDel += removesrc+";";
+			}
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
 			$('.siteimages').attr('data-value',removesrc);
 		}
