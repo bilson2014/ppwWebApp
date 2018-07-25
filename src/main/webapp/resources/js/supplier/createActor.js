@@ -121,11 +121,13 @@ function peoplechengck(){
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
 //		
 			var welldata=$('.showimages').attr('data-value');
+			setDel += welldata+";";
 			welldata=welldata+";"+removesrc;
 			$('.showimages').attr('data-value',welldata);
 		}else {
 			$(this).parent().parent().remove();
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
+			setDel += removesrc+";";
 			$('.showimages').attr('data-value',removesrc);
 		}
 	});
@@ -320,7 +322,7 @@ function gathermethod(){
 					 id:biaoID,//获取的id
 					 birthDay:oldgather,//出生日期
 					 city:$('.citygather').attr('cityid'),//城市(编码)
-					 delImg:$('.staffbox .showimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 mainPhoto:$('#filePicker1 .fileimg').attr('data-value'),//主图
 					 name:namegather,//姓名
 					 photo:endimg,//更多图片
@@ -343,7 +345,7 @@ function gathermethod(){
 				 }, getContextPath() + '/production/actor/save', $.toJSON({						
 					 birthDay:oldgather,//出生日期
 					 city:$('.citygather').attr('cityid'),//城市(编码)
-					 delImg:$('.staffbox .showimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 mainPhoto:$('#filePicker1 .fileimg').attr('data-value'),//主图
 					 name:namegather,//姓名
 					 photo:endimg,//更多图片
