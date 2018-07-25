@@ -1,10 +1,12 @@
+var fileimg;
+var setDel='';
 $().ready(function() {	
 	peoplemethod();
 });
 
 //添加人员
 function peoplemethod(){
-
+     
 	//关闭弹框--这两个监听好像并没有用
 	$('.peopletitle img').off('click').on('click',function(){
 		$('.setting').hide();
@@ -63,7 +65,7 @@ function peoplemethod(){
 					$('.peoplebox').hide();
 					getlistdatap();//列表刷新
 				 }, getContextPath() + '/production/personnel/update', $.toJSON({						
-					// delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 id:id,//	主键
 					 mainPhoto:$('#filePicker6 .fileimg').attr('data-value') ,//主图
 					 name:namepeo,	//名称
@@ -80,7 +82,7 @@ function peoplemethod(){
 					$('.peoplebox').hide();
 					getlistdatap();//列表刷新
 				 }, getContextPath() + '/production/personnel/save', $.toJSON({						
-				//	 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 mainPhoto:$('#filePicker6 .fileimg').attr('data-value') ,//主图
 					 name: namepeo,	//名称
 					 price: pricepeo,//	价格

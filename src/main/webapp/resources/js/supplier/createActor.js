@@ -18,6 +18,7 @@ var w;
 var h;
 var timer = null;
 var loadTime = 0;
+
 //头像裁剪参数 end
 $().ready(function() {
 	
@@ -447,7 +448,8 @@ var imgUpload1 = {
 			});
 			upload_Video.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
-					//图片获取成功的 操作			
+					//图片获取成功的 操作	
+					setDel += $('#filePicker1 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -514,7 +516,8 @@ var imgUpload2 = {
 			});
 			upload_Update.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
-					//图片获取成功的 操作			
+					//图片获取成功的 操作
+					setDel += $('#filePicker2 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -579,6 +582,7 @@ var imgUpload3 = {
 			upload_dir.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
 					//图片获取成功的 操作		
+					setDel += $('#filePicker3 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -642,7 +646,8 @@ var imgUpload4 = {
 			});
 			upload_site.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
-					//图片获取成功的 操作			
+					//图片获取成功的 操作		
+					setDel += $('#filePicker4 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -720,7 +725,8 @@ var imgUpload5 = {
 			});
 			upload_sitemore.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
-					//图片获取成功的 操作			
+					//图片获取成功的 操作		
+					setDel += $('#filePicker5 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -786,6 +792,7 @@ var imgUpload6 = {
 			upload_profession.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
 					//图片获取成功的 操作		
+					setDel += $('#filePicker6 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -851,6 +858,7 @@ var imgUpload7 = {
 			upload_cameraman.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
 					//图片获取成功的 操作		
+					setDel += $('#filePicker7 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -916,6 +924,7 @@ var imgUpload8 = {
 			upload_clothing.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
 					//图片获取成功的 操作		
+					setDel += $('#filePicker8 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -980,7 +989,10 @@ var imgUpload9 = {
 			});
 			upload_props.on('uploadSuccess', function(file,response) {
 				if(response.code == 0){
-					//图片获取成功的 操作		
+					//图片获取成功的 操作	
+					
+					setDel += $('#filePicker9 .webuploader-pick .updateimg .fileimg').attr('data-value')+";";
+					
 					var path = response.result;
 					var imgPath = getResourcesName() + path;
 					$('#mymodal').show();//裁剪弹框
@@ -1142,9 +1154,13 @@ function updateCoords(coords){
 }
 //裁剪end
 function cutUpload(path,pick){
+	
+	
+
 	// 点击确定，裁剪文件，并将该文件转化为正规的文件名称
 	$('#uploadConfirmBt').unbind('click');
 	$('#uploadConfirmBt').bind('click',function(){
+				
 		if(x == 0 && y == 0 && x2 ==0 && y2 ==0){
 			jcrop_api.destroy();
 			$('#uploadConfirmBt').attr('disabled',false);
@@ -1292,3 +1308,12 @@ function cutUpload(path,pick){
 		}));
 	});
 }
+
+function delImg(path) {
+	
+	loadData(function(){	
+
+	 }, getContextPath() + '/web/delImg?path='+$('.fileimg').attr('data-value'), '');
+	
+}
+

@@ -496,20 +496,7 @@ function getlistdatad(){
             
 			$('#fac').append(boxhtml);
 			//图片处理
-		/*	var img=new Image();
-			img.src=$('.imgs'+i).attr('src');
-			if (img.complete){
-				if (img.width/img.height<=1){
-					$('.imgs'+i).attr('style','width:auto;height:100%');
-				}else {
-					$('.imgs'+i).attr('style','width:100%;height:auto;');
-				}
-				img=null;
-			}else {
-				img.onload=function(){
-					img=null;
-				}
-			}*/
+
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
@@ -562,18 +549,7 @@ function getlistdatac(){
 			//图片处理
 			var img=new Image();
 			img.src=$('.imgs'+i).attr('src');
-			/*if (img.complete){
-				if (img.width/img.height<=1){
-					$('.imgs'+i).attr('style','width:auto;height:100%');
-				}else {
-					$('.imgs'+i).attr('style','width:100%;height:auto;');
-				}
-				img=null;
-			}else {
-				img.onload=function(){
-					img=null;
-				}
-			}*/
+
 		}
 		imgchecksite();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
