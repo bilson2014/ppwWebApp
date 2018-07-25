@@ -140,7 +140,6 @@ function peoplechengck(){
 			$('.sitebox .siteimages').hide();
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
 			var welldata=$('.siteimages').attr('data-value');
-			welldata=welldata+";"+removesrc;
 			$('.siteimages').attr('data-value',welldata);
 		}else {
 			$(this).parent().parent().remove();

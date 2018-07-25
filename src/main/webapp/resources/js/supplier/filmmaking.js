@@ -219,6 +219,7 @@ function init(){
 	$('.page').on('click','.idcard .read',function(){
 		
 //		pickborder
+		setDel='';
 		$(this).parent().parent().find('.shade').hide();
 		$('.setting').show();
 		var id=$(this).parent().parent().attr('id');
