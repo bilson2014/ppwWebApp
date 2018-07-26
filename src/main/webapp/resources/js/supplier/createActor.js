@@ -111,7 +111,7 @@ function peoplechengck(){
 	//演员上传图片点击
 	$('.page').on('click','.showimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker2').removeAttr("style");
-		$('#filePicker2').addClass('webuploader-container');
+		$('#filePicker2').removeClass('webuploader-element-invisible');
 		if ($(this).parent().parent().parent().children('.imgsboxs').length==1){
 			$(this).parent().parent().remove();
 			$('.staffbox .showimages').hide();
@@ -137,7 +137,7 @@ function peoplechengck(){
 	//场地上传图片点击
 	$('.page').on('click','.siteimages .imgsboxs .imgshade .select',function(){
 		$('#filePicker5').removeAttr("style");
-		$('#filePicker5').addClass('webuploader-container');
+		$('#filePicker5').removeClass('webuploader-element-invisible');
 		if ($(this).parent().parent().parent().children('.imgsboxs').length==1){
 			$(this).parent().parent().remove();
 			$('.sitebox .siteimages').hide();
@@ -397,7 +397,7 @@ function cleanactordata(){
 	$('.racecheck').hide();
 	$('.addboxs span').removeAttr("style");
 	$('#filePicker2').removeAttr("style");
-	$('#filePicker2').addClass('webuploader-container');
+	$('#filePicker2').removeClass('webuploader-element-invisible');
 	
 	$('#filePicker1 .fileimg').attr('src','/resources/images/supplier/people.png');
 	$('#filePicker1 .fileimg').attr('data-value','/resources/images/supplier/people.png');
@@ -1218,11 +1218,11 @@ function cutUpload(path,pick){
 					$('.showimages').append(addimagebox);
 					if ($('.showimages').children(".imgsboxs").length>=5){
 						$('#filePicker2').attr("style","background: #ebebeb;");
-						$('#filePicker2').removeClass('webuploader-container');
+						$('#filePicker2').addClass('webuploader-element-invisible');
 					
 					}else {
 						$('#filePicker2').removeAttr("style");
-						$('#filePicker2').addClass('webuploader-container');
+						$('#filePicker2').removeClass('webuploader-element-invisible');
 					}
 					
 				}else if(pick=='filePicker3'){
@@ -1253,11 +1253,10 @@ function cutUpload(path,pick){
 					$('.siteimages').append(addimagebox);
 					if ($('.siteimages').children(".imgsboxs").length>=3){
 						$('#filePicker5').attr("style","background: #ebebeb;");
-						$('#filePicker5').removeClass('webuploader-container');
-					
+						$('#filePicker5').addClass('webuploader-element-invisible');
 					}else {
 						$('#filePicker5').removeAttr("style");
-						$('#filePicker5').addClass('webuploader-container');
+						$('#filePicker5').removeClass('webuploader-element-invisible');
 					}
 					
 				}else if (pick=='filePicker6'){
