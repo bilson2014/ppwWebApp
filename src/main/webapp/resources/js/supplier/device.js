@@ -187,10 +187,13 @@ function deldevice(id){
 }
 function cleandevdata(){
 	$('.typeequip').text('请选择');
+	$('.typeequip').attr('key','');
 	$('.nameequip').val('');
+	$('.nameequip').attr('key','');
 	$('.numequip').val('');
 	$('.priceequip').val('');
 	$('.cityequip').text('请选择');
+	$('.cityValue').attr('cityid','');
 	$('.equipremark').val('');
 	
 	$('.typeequipp').hide();

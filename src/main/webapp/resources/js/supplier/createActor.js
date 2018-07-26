@@ -290,8 +290,12 @@ function gathermethod(){
 		$('.oldgatherp').text('');
 		$('.pricegatherp').text('');
 		$('.gendergatherp').text('');
+		$('.gendergather').attr('key','');
 		$('.racegatherp').text('');
+		$('.racegatherp').attr('value','');
 		$('.citygatherp').text('');
+		$('.cityValue').attr('cityid','');
+		
 		if (namegather==undefined||namegather==null||namegather==''){
 			$('.namegatherp').text('*演员姓名不能为空');
 			return false;
@@ -378,9 +382,13 @@ function cleanactordata(){
 	
 	$('.namegather').val('');
 	$('.gendergather').text('请选择');
+	$('.gendergather').attr('key','');
 	$('.oldgather').val('');
 	$('.racegather').text('请选择');
+	$('.gendergather').attr('value','');
 	$('.citygather').text('请选择');
+	$('.cityValue').attr('cityid','');
+	
 	$('.pricegather').val('');
 	$('.remarkgather').val('');
 	

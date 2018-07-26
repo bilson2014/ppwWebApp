@@ -216,8 +216,11 @@ function cleandata(){
 	$('.namesite').val('');
 	$('.msite').val('');
 	$('.typesite').text('请选择');
+	$('.typesite').attr('key','');
 	$('.pricesite').val('');
 	$('.citysite').text('请选择');
+	$('.cityValue').attr('cityid','');
+	
 	$('.locationsite').val('');
 	$('.siteremark').val('');
 	

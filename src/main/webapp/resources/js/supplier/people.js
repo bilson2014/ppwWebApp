@@ -41,7 +41,7 @@ function peoplemethod(){
 		$('.namepeop').text('');
 		$('.pricepeop').text('');
 		$('.citypeop').text('');		
-		
+		$('.citypeop').attr('cityid','');
 		if (namepeo==undefined||namepeo==null||namepeo==''){
 			$('.namepeop').text('*请填写场地名称');
 			return false;

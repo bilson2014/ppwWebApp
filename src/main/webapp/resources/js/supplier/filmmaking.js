@@ -619,11 +619,12 @@ function listpeopledata(type){
 			
 			$('.typeclocheck').empty();
 			$('.accreditclocheck').empty();
-			
+			$('.typeclocheck').html('');
 			for(var i=0;i<res.clothingTypeList.length;i++){
 				var phtml="<p value="+res.clothingTypeList[i].value+">"+res.clothingTypeList[i].text+"</p>";
 				$('.typeclocheck').append(phtml);
 			}
+			$('.accreditclocheck').html('');
 			for(var i=0;i<res.accreditList.length;i++){
 				var phtml="<p value="+res.accreditList[i].value+">"+res.accreditList[i].text+"</p>";
 				$('.accreditclocheck').append(phtml);
@@ -634,11 +635,12 @@ function listpeopledata(type){
 			
 			$('.typeclocheck').empty();
 			$('.accreditprocheck').empty();
-			
+			$('.accreditprocheck').html('');
 			for(var i=0;i<res.accreditList.length;i++){
 				var phtml="<p value="+res.accreditList[i].value+">"+res.accreditList[i].text+"</p>";
 				$('.accreditprocheck').append(phtml);
 			}
+			$('.typeprocheck').html('');
 			for(var i=0;i<res.propsTypeList.length;i++){
 				var phtml="<p value="+res.propsTypeList[i].value+">"+res.propsTypeList[i].text+"</p>";
 				$('.typeprocheck').append(phtml);
@@ -1276,7 +1278,7 @@ function btnfocus(){
 	$('.typeclo,.cityimg').off('click').on('click',function(e){// TODO 可以对所有下拉框做统一事件处理
 		 $('.typeclocheck').addClass('reilef');//TODO 这一行也是多余的
 		if($(this).hasClass('Color')){
-			 $('.typeclocheck').removeClass('reilef');
+			$('.typeclocheck').removeClass('reilef');
 			$(this).removeClass('Color');
 		}
 		else

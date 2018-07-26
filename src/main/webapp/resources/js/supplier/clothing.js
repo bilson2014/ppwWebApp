@@ -27,11 +27,14 @@ function clothingmethod(){
 		var fileimg=$('#filePicker8 .fileimg').attr('src');
 	
 		$('.typeclop').text('');
+		$('.typeclop').attr('key','');
 		$('.nameclop').text('');
 		$('.accreditclop').text('');
+		$('.accreditclop').attr('key','');
 		$('.stockNumberclop').text('');
 		$('.priceclop').text('');
 		$('.cityclop').text('');
+		$('.cityclop').attr('cityid','');
 		
 		
 		if (type==undefined||type==null||type==''){

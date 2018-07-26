@@ -139,6 +139,7 @@ function cleancameramandata(){
 	$('.namecap').text('');
 	$('.specialSkillp').text('');
 	$('.citycap').text('');
+	$('.citycap').attr('cityid','');
 	$('.pricecap').text('');
 	
 	
