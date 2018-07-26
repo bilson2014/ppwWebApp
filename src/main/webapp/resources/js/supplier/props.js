@@ -60,7 +60,7 @@ function propsmethod(){
 		}else {
 		
 			var biao=$('.propsbox .propstitle span').text();
-			if (biao=='修改道具'){
+			if (biao=='更新道具信息'){
 				var id=$('.propsbox').attr('id');
 				loadData(function(result){	
 					cleandata();
@@ -110,7 +110,7 @@ function propsmethod(){
 //获取
 function getprops(id){
 	
-	$('.propsbox .propstitle span').text('更新服装信息');
+	$('.propsbox .propstitle span').text('更新道具信息');
 	loadData(function(res){	
 		$('.propsbox').attr('id',id);
 		$('.namepro').val(res.name);

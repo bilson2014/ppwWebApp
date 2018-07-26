@@ -118,11 +118,14 @@
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
-								<a href="http://www.apaipian.com/special/channel04.html" class="pic"><i></i><span># 创业融资 #</span><img src="/resources/images/salesman/special/pd004.jpg" alt="融资创投"/></a>
+								<a href="http://www.apaipian.com/special/channel04.html" class="pic"><i></i><span># 校园招聘 #</span><img src="/resources/images/salesman/special/pd004.jpg" alt="融资创投"/></a>
 							</dd>
 							<dd>
-								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 访谈 #</span><img src="/resources/images/salesman/special/pd14.jpg" alt="访谈视频"/></a>
+								<a href="http://www.apaipian.com/special/channel04.html" class="pic"><i></i><span># 创业融资 #</span><img src="/resources/images/salesman/special/pd004.jpg" alt="融资创投"/></a>
 							</dd>
+							<!-- <dd>
+								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 访谈 #</span><img src="/resources/images/salesman/special/pd14.jpg" alt="访谈视频"/></a>
+							</dd> -->
 							<dd>
 								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 创业/融资 #</span><img src="/resources/images/salesman/special/pd03.jpg" alt="创业视频"/></a>
 							</dd>

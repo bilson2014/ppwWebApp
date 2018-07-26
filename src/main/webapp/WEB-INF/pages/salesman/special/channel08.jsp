@@ -217,12 +217,12 @@ left:200;
 			
 				<li class="page">
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1910_29748.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1910_28177.html" target="_blank">
 							<span>
-								<img alt='苍山 Cangshan-刀具' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<img alt='京东方 BOE-校招-员工篇' src="${imgBnner}group1/M00/00/FB/CgpmTlq9tfeAbWmEAAJL2Yk9eUA128.jp">
 								<i></i>
 							</span>
-							<font>苍山 Cangshan-刀具</font>
+							<font>京东方 BOE-校招-员工篇</font>
 						</a>
 					</div>
 				</li>
