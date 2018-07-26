@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name=“viewport” content=“width=device-width; initial-scale=1.0”>  
-<meta name="keywords" content="淘宝视频制作,淘宝视频拍摄,淘宝主图视频,淘宝主图视频制作,产品主图视频,电商视频拍摄,淘宝短视频制作,淘宝视频官方拍摄基地">
-<meta name="description" content="拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，品质遥遥领先。淘宝主图视频制作，电商产品视频拍摄，官方授权，价格公道，极速出片。淘宝短视频制作就上拍片网！">
-<title>淘宝短视频制作-产品主图视频-电商视频拍摄-淘宝视频官方拍摄基地-拍片网</title>
+<meta name="keywords" content="校招视频拍摄,校招宣传视频,招聘视频制作,校园招聘视频">
+<meta name="description" content="校园招聘视频，千万曝光量轻松实现足不出户即可搞定校招，企业校招利器。校招宣传视频拍摄，招聘视频制作，就选拍片网。阿里官方视频拍摄基地，低预算拍大片，拍片就上拍片网">
+<title>校招视频拍摄-校招宣传视频-招聘视频制作-校园招聘视频-拍片网 </title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/css.css">
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
@@ -21,6 +21,7 @@
 
 
 <script>
+
 	function SearchVideo(){  
 	   var key=document.getElementById("search-q").value;
 		if(key==''){
@@ -185,9 +186,9 @@ left:200;
            <!--  <li class="bgitem" style="background:url(/resources/images/salesman/special/c7b1.jpg) 50% 50% no-repeat;"></li>
             <li class="bgitem" style="background:url(/resources/images/salesman/special/c7b2.jpg) 50% 50% no-repeat;"></li>
             <li class="bgitem" style="background:url(/resources/images/salesman/special/c7b3.jpg) 50% 50% no-repeat;"></li> -->
-            <li class="bgitem"><img src="/resources/images/salesman/special/c7b1.jpg"></li>
-            <li class="bgitem"><img src="/resources/images/salesman/special/c7b2.jpg"></li>
-            <li class="bgitem"><img src="/resources/images/salesman/special/c7b3.jpg"></li>
+            <li class="bgitem"><img src="/resources/images/salesman/special/c8b1.jpg"></li>
+            <li class="bgitem"><img src="/resources/images/salesman/special/c8b2.jpg"></li>
+            <li class="bgitem"><img src="/resources/images/salesman/special/c8b3.jpg"></li>
         </ul>
 	</div>
 	
@@ -195,8 +196,8 @@ left:200;
 	
 	<div class="main_top">
 		<div class="container newCon">
-			<h2 class="aa">[ 电商  + 视频 ]<br>内容化时代已经到来</h2>
-		    <p style="text-align: center;">淘宝已从追求效率的交易市场平台升级成为追求乐趣的内容化社区化的消费媒体平台，仅2017年4月到2017年12月，淘宝短视频播放量就由原来的3800万次上升至18亿次，净增长4700%。对于商家而言，想要在新的内容生态竞争模式下取得销量的突破，制作精良的短视频无疑是当前最好的选择。运用短视频引爆内容流量，抢占公域导购矩阵，瓜分内容营销红利。拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，作品品质遥遥领先。</p>
+			<h2 class="aa">千万曝光量 校招从此水到渠成</h2>
+		    <p style="text-align: center;">校园招聘视频，让应聘者直观感受公司的环境氛围、精神风貌，影响范围更广，传播层次更深。千万曝光量轻松实现足不出户即可搞定校招，每天在办公室坐收上万份简历。企业想捕获优秀的人才，人才想找到合适的企业，由于之前的信息不对称，往往一纸之隔却又彼此错过。招聘视频，正是捅破这层尴尬的最有利的武器。</p>
 	        <div class="toshare"> 
 	         <ul class="share">
 	                            <li>分享到 : </li>
