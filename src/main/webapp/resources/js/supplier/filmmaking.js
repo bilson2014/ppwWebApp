@@ -31,26 +31,8 @@ function imgcheckpeople(){
 				}
 		});
     });
-	
-	
-/*	var howImg = $('.imgsize');
-	for (var i=1;i<=howImg.length;i++){
-		var img=new Image();
-		img.src=$('.imgs'+i).attr('src');
-		if (img.complete){
-			if (img.width/img.height<=1){
-				$('.imgs'+i).attr('style','width:auto;height:100%');
-			}else {
-				$('.imgs'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
-			}
-			img=null;
-		}else {
-			img.onload=function(){
-				img=null;
-			}
-		}
-	}*/
 }
+
 
 function imgcheckpeoplefive(){
 	for (var i=1;i<=6;i++){
@@ -58,9 +40,13 @@ function imgcheckpeoplefive(){
 		img.src=$('.imgsfive'+i).attr('src');
 		if (img.complete){
 			if (img.width/img.height<=1){
+				
 				$('.imgsfive'+i).attr('style','width:auto;height:100%');
+				
 			}else {
+				
 				$('.imgsfive'+i).attr('style','width:100%;height:auto;position: absolute;top: 60%;margin-top: -50%;');
+				
 			}
 			img=null;
 		}else {
@@ -70,6 +56,7 @@ function imgcheckpeoplefive(){
 		}
 	}
 }
+
 //图片尺寸的显示处理横版
 function imgchecksite(){
 	var changeImg = $('.imgsize');
@@ -1058,7 +1045,7 @@ function btnfocus(){
 	    return false;
 	});
 //城市
-	/*$('.citydir,.cityimg').off('click').on('click',function(e){
+	$('.citydir,.cityimg').off('click').on('click',function(e){
 		 $('.citycheck').addClass('reilef');
 		if($(this).hasClass('Color')){
 			 $('.citycheck').removeClass('reilef');
@@ -1073,7 +1060,7 @@ function btnfocus(){
 		$('.skillcheck').removeClass('reilef');
 	   	$('.skilldir').removeClass('Color');
 		event.stopPropagation();
-	});*/
+	});
 
 	
 //	场地类型

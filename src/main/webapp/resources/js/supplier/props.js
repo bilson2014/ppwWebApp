@@ -140,6 +140,7 @@ function getprops(id){
 		for(var i=0;i<propsTypeList.length;i++){
 			if (res.type==propsTypeList[i].value){
 				$('.typepro').text(propsTypeList[i].text);
+				break;
 			}
 		}
 		
@@ -148,6 +149,7 @@ function getprops(id){
 		for(var i=0;i<accreditList.length;i++){
 			if (res.accredit==accreditList[i].value){
 				$('.accreditpro').text(accreditList[i].text);
+				break;
 			}
 		}
 				

@@ -150,6 +150,7 @@ function getdevice(id){
 				if (res[i].key==typelist){
 					$('.typeequip').text(res[i].value);
 					$('.typeequip').attr('key',res[i].key);
+					break;
 				}
 			}
 		 }, getContextPath() + '/quotationtype/production/children?productionType=device');
@@ -158,7 +159,8 @@ function getdevice(id){
 			for(var i=0;i<res.length;i++){
 				if (res[i].key==namelist){
 					$('.nameequip').val(res[i].value);
-					$('.nameequip').attr('key',res[i].key);			
+					$('.nameequip').attr('key',res[i].key);		
+					break;
 				}
 			}
 		 }, getContextPath() + "/quotationtype/production/children?typeId="+typelist);

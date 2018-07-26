@@ -134,6 +134,7 @@ function getclothing(id){
 		for(var i=0;i<clothingTypeList.length;i++){
 			if (res.type==clothingTypeList[i].value){
 				$('.typeclo').text(clothingTypeList[i].text);
+				break;
 			}
 		}
 		
@@ -143,6 +144,7 @@ function getclothing(id){
 		for(var i=0;i<accreditList.length;i++){
 			if (res.accredit==accreditList[i].value){
 				$('.accreditclo').text(accreditList[i].text);
+				break;
 			}
 		}
 				
