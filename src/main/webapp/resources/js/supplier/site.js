@@ -103,7 +103,7 @@ function sitemethod(){
 				 }, getContextPath() + '/production/studio/update', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
-					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 id:id,//	主键
 					 mainPhoto:$('#filePicker4 .fileimg').attr('data-value') ,//主图
 					 name:namesite,	//名称
@@ -123,7 +123,7 @@ function sitemethod(){
 				 }, getContextPath() + '/production/studio/save', $.toJSON({						
 					 address: locationsite,//地址
 					 area: msite,//面积
-					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片
+					 delImg:setDel,//待删除图片
 					 mainPhoto:$('#filePicker4 .fileimg').attr('data-value') ,//主图
 					 name: namesite,	//名称
 					 photo:endimg,//更多图片

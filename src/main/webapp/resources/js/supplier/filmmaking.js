@@ -227,19 +227,19 @@ function init(){
 			$('.role').hide();
 			$('.staffbox').addClass('pickborder');
 			$('.directorbox').addClass('pickborder');
-			
-			
 			getpeople(id,$(this).parent().parent().attr('identity'));
 		}else if($('.top .sitett').hasClass('top-text')){
+			$('.addPeopleBox').hide();
 			$('.sitebox').show();
 			getstudio(id);
 		}else if($('.top .facility').hasClass('top-text')){
+			$('.addPeopleBox').hide();
 			$('.equipbox').show();
 			getdevice(id);
 			dropdowndata();
 		}else if($('.top .costume').hasClass('top-text')){
-			$('.customeRole').hide();
-					
+			$('.addPeopleBox').hide();
+			$('.customeRole').hide();		
 			getcostume(id,$(this).parent().parent().attr('identity'));
 		}
 	});
@@ -290,6 +290,7 @@ function initAddPeople(type,profession){
 		
 		$('#professionpeo').val(profession);
 		
+		$('.addPeopleBox').hide();
 		$('.directorbox').hide();
 		$('.peoplebox').show();
 		$('.staffbox').hide();
@@ -771,6 +772,7 @@ function getpeople(id,type){
 
 		$('.role').addClass('pickroledir');
 		//其他职业人员的数据
+		$('.addPeopleBox').hide();
 		$('.peoplebox').show();
 		$('.peoplebox').addClass('pickborder');
 		var professionName=getNameByProfession(type);

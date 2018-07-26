@@ -75,7 +75,7 @@ function clothingmethod(){
 					 price:price,
 					 city:city,
 					 remark:remark,
-					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片				
+					 delImg:setDel,//待删除图片				
 					 mainPhoto:$('#filePicker8 .fileimg').attr('data-value') ,//主图
 //					 photo:endimg,//更多图片
 					
@@ -95,7 +95,7 @@ function clothingmethod(){
 					 price:price,
 					 city:city,
 					 remark:remark,
-					 delImg:$('.sitebox .siteimages').attr('data-value'),//待删除图片				
+					 delImg:setDel,//待删除图片				
 					 mainPhoto:$('#filePicker8 .fileimg').attr('data-value') ,//主图
 				}));
 			}

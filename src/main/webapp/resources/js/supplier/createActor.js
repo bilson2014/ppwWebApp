@@ -144,12 +144,15 @@ function peoplechengck(){
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
 			var welldata=$('.siteimages').attr('data-value');
 			$('.siteimages').attr('data-value',welldata);
-		}else {
-			$(this).parent().parent().remove();
 			if(removesrc != undefined){
 				setDel += removesrc+";";
 			}
+		}else {
+			$(this).parent().parent().remove();
 			var removesrc=$(this).parent().parent().find('.imgsfive1').attr('data-value');
+			if(removesrc != undefined){
+				setDel += removesrc+";";
+			}
 			$('.siteimages').attr('data-value',removesrc);
 		}
 	});

@@ -57,7 +57,7 @@ function peoplemethod(){
 		}else {
 					
 			var biao=$('.peoplebox .peopletitle span').text();
-			if (biao.indexOf('修改') != -1){
+			if (biao.indexOf('更新') != -1){
 				var id=$('.peoplebox').attr('id');
 				loadData(function(result){	
 					cleanpeopledata();
