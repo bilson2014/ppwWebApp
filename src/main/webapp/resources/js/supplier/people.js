@@ -135,6 +135,7 @@ function cleanpeopledata(){
 	$('.namepeo').val('');
 	$('.pricepeo').val('');
 	$('.citypeo').text('请选择');
+	$('.cityValue').attr('cityid','');
 	
 	$('.remarkpeople').val('');
 	$('.citycheck').hide();

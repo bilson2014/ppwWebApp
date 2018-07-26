@@ -30,11 +30,16 @@ function propsmethod(){
 		var fileimg=$('#filePicker9 .fileimg').attr('src');
 	
 		$('.typeprop').text('');
+		$('.typeprop').attr('key','');
 		$('.nameprop').text('');
 		$('.accreditprop').text('');
+		$('.accreditpro').attr('key','');
+		
 		$('.stockNumberprop').text('');
 		$('.priceprop').text('');
 		$('.cityprop').text('');
+		$('.cityValue').attr('cityid','');
+		
 		
 		
 		if (type==undefined||type==null||type==''){

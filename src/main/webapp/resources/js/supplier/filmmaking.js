@@ -1058,7 +1058,7 @@ function btnfocus(){
 	    return false;
 	});
 //城市
-	$('.citydir,.cityimg').off('click').on('click',function(e){
+	/*$('.citydir,.cityimg').off('click').on('click',function(e){
 		 $('.citycheck').addClass('reilef');
 		if($(this).hasClass('Color')){
 			 $('.citycheck').removeClass('reilef');
@@ -1073,9 +1073,8 @@ function btnfocus(){
 		$('.skillcheck').removeClass('reilef');
 	   	$('.skilldir').removeClass('Color');
 		event.stopPropagation();
-	});
+	});*/
 
-	
 	
 //	场地类型
 	$('.typesite,.typeimg').off('click').on('click',function(e){

@@ -40,7 +40,6 @@ function devicemethod(){
 			$('.namecheck').show();	
 		}else {
 			$('.typeequipp').show();
-			
 		}
 	});
 	$('body').on('click','.namecheck p',function(){
