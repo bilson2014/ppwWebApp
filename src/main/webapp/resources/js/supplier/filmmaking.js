@@ -683,11 +683,11 @@ function getpeople(id,type){
 				}
 				if (photo.length>=5){
 					$('#filePicker2').attr("style","background: #ebebeb;");
-					$('#filePicker2').removeClass('webuploader-container');
+					$('#filePicker2').addClass('webuploader-element-invisible');
 					
 				}else {
 					$('#filePicker2').removeAttr("style");
-					$('#filePicker2').addClass('webuploader-container');
+					$('#filePicker2').removeClass('webuploader-element-invisible');
 				}
 			}
 			
