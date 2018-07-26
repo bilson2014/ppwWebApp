@@ -263,7 +263,11 @@ public class ProductionResourceController extends BaseController {
 		String[] photos = result.getPhoto().split(";");
 		if (ValidateUtil.isValid(photos)) {
 			result.setMainPhoto(photos[0]);
-			result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			if(result.getPhoto().indexOf(";")>=0) {
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}else {
+				result.setPhoto(null);
+			}
 		}
 		return result;
 	}
@@ -273,7 +277,12 @@ public class ProductionResourceController extends BaseController {
 		BaseMsg result = new BaseMsg();
 		delImg(actor.getDelImg(),actor.getMainPhoto());
 		// 主图处理
-		actor.setPhoto(actor.getMainPhoto() + ";" + actor.getPhoto());
+		if(ValidateUtil.isValid(actor.getPhoto())) {
+			actor.setPhoto(actor.getMainPhoto() + ";" + actor.getPhoto());
+		}else {
+			actor.setPhoto(actor.getMainPhoto());
+		}
+		
 		pmsProductionActorFacade.update(actor);
 		return result;
 	}
@@ -375,7 +384,12 @@ public class ProductionResourceController extends BaseController {
 		String[] photos = result.getPhoto().split(";");
 		if (ValidateUtil.isValid(photos)) {
 			result.setMainPhoto(photos[0]);
-			result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			if(result.getPhoto().indexOf(";")>=0) {
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}else {
+				result.setPhoto(null);
+			}
+			
 		}
 		return result;
 	}
@@ -385,7 +399,12 @@ public class ProductionResourceController extends BaseController {
 		BaseMsg result = new BaseMsg();
 		delImg(studio.getDelImg(),studio.getMainPhoto());
 		// 主图处理
-		studio.setPhoto(studio.getMainPhoto() + ";" + studio.getPhoto());
+		if(ValidateUtil.isValid(studio.getPhoto())) {
+			studio.setPhoto(studio.getMainPhoto() + ";" + studio.getPhoto());
+		}else {
+			studio.setPhoto(studio.getMainPhoto());
+		}
+		
 		pmsProductionStudioFacade.update(studio);
 		return result;
 	}
@@ -424,7 +443,11 @@ public class ProductionResourceController extends BaseController {
 		String[] photos = result.getPhoto().split(";");
 		if (ValidateUtil.isValid(photos)) {
 			result.setMainPhoto(photos[0]);
-			result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			if(result.getPhoto().indexOf(";")>=0) {
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}else {
+				result.setPhoto(null);
+			}
 		}
 		return result;
 	}
@@ -483,7 +506,11 @@ public class ProductionResourceController extends BaseController {
 		String[] photos = result.getPhoto().split(";");
 		if (ValidateUtil.isValid(photos)) {
 			result.setMainPhoto(photos[0]);
-			result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			if(result.getPhoto().indexOf(";")>=0) {
+				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+			}else {
+				result.setPhoto(null);
+			}
 		}
 		return result;
 	}
@@ -548,7 +575,11 @@ public class ProductionResourceController extends BaseController {
 			String[] photos = result.getPhoto().split(";");
 			if (ValidateUtil.isValid(photos)) {
 				result.setMainPhoto(photos[0]);
-				result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+				if(result.getPhoto().indexOf(";")>=0) {
+					result.setPhoto(result.getPhoto().substring(result.getPhoto().indexOf(";") + 1));
+				}else {
+					result.setPhoto(null);
+				}
 			}
 			return result;
 		}
