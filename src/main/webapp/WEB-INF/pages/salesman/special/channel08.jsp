@@ -228,34 +228,89 @@ left:200;
 				</li>
 				<li class="page">
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1910_29748.html" target="_blank">
+						<a href="https://www.apaipian.com/play/2198_31595.html" target="_blank">
 							<span>
-								<img alt='苍山 Cangshan-刀具' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<img alt='交通银行 BOCOM-校招篇' src="${imgBnner}group1/M01/01/16/CgpmTltW1xGAatymAAGldSnVr88021.jpg">
 								<i></i>
 							</span>
-							<font>苍山 Cangshan-刀具</font>
+							<font>交通银行 BOCOM-校招篇</font>
 						</a>
 					</div>
 				</li>
 				<li class="page">
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1910_29748.html" target="_blank">
+						<a href="https://www.apaipian.com/play/2198_31596.html" target="_blank">
 							<span>
-								<img alt='苍山 Cangshan-刀具' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<img alt='华为 Huawei-致勇者-2019校招篇' src="${imgBnner}group1/M00/00/DB/CgpsbFtW2FWAEUEHAAHF5AocIrU180.jpg">
 								<i></i>
 							</span>
-							<font>苍山 Cangshan-刀具</font>
+							<font>华为 Huawei-致勇者-2019校招篇</font>
 						</a>
 					</div>
 				</li>
 				<li class="page">
 					<div class="kk">
-						<a href="http://www.apaipian.com/play/1910_29748.html" target="_blank">
+						<a href="https://www.apaipian.com/play/2198_31599.html" target="_blank">
 							<span>
-								<img alt='苍山 Cangshan-刀具' src="${imgBnner}group1/M00/00/CD/CgptuFrpneyAE6zBAAGD43_4XRQ641.jpg">
+								<img alt='华为 Huawei-倔强-校招篇' src="${imgBnner}group1/M01/01/14/Cgpw7FtW22eAW9hYAAFfSAXdnxM671.jpg">
 								<i></i>
 							</span>
-							<font>苍山 Cangshan-刀具</font>
+							<font>华为 Huawei-倔强-校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_28215.html" target="_blank">
+							<span>
+								<img alt='钻石世家 ShiningHouse-招聘篇' src="${imgBnner}group1/M00/00/C0/CgptuFq6DkaAG02zAAMkDaWPolE361.jpg">
+								<i></i>
+							</span>
+							<font>钻石世家 ShiningHouse-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_26637.html" target="_blank">
+							<span>
+								<img alt='英雄互娱-校招篇' src="${imgBnner}group1/M01/00/DD/CgptuFtW9yOAEerIAAFOKqh-LDY072.jpg">
+								<i></i>
+							</span>
+							<font>英雄互娱-校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31589.html" target="_blank">
+							<span>
+								<img alt='中兴 ZTE-2018校招篇' src="${imgBnner}group1/M00/00/DB/CgpsbFtWzHuAdZulAAJPoCgAT6s093.jpg">
+								<i></i>
+							</span>
+							<font>中兴 ZTE-2018校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31590.html" target="_blank">
+							<span>
+								<img alt='中泰集团-奋斗有“泰”度-招聘篇' src="${imgBnner}group1/M01/01/15/CgpmTltWze-ACwAPAAHQSqJFdDE277.jpg">
+								<i></i>
+							</span>
+							<font>中泰集团-奋斗有“泰”度-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31591.html" target="_blank">
+							<span>
+								<img alt='启明星辰-领航信息安全-2019校招篇' src="${imgBnner}group1/M00/01/14/Cgpw7FtW0DmANtuGAAFiQD-_7ig332.jpg">
+								<i></i>
+							</span>
+							<font>启明星辰-领航信息安全-2019校招篇</font>
 						</a>
 					</div>
 				</li>

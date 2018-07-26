@@ -222,6 +222,7 @@ function init(){
 		setDel='';
 		$(this).parent().parent().find('.shade').hide();
 		$('.setting').show();
+		$('.role').hide();
 		var id=$(this).parent().parent().attr('id');
 		if ($('.top .people').hasClass('top-text')){
 			$('.role').hide();

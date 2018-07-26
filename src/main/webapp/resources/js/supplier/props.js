@@ -12,6 +12,7 @@ function propsmethod(){
 		$('.setting').hide();
 		$('.propsbox').hide();	
 		$('.customeRole').hide();
+		$('.role').hide();
 		cleanpropdata();
 	});	
 	
