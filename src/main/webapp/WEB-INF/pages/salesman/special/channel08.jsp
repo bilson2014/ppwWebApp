@@ -244,7 +244,7 @@ left:200;
 								<img alt='华为 Huawei-致勇者-2019校招篇' src="${imgBnner}group1/M00/00/DB/CgpsbFtW2FWAEUEHAAHF5AocIrU180.jpg">
 								<i></i>
 							</span>
-							<font>华为 Huawei-致勇者-2019校招篇</font>
+							<font>华为 Huawei-致勇者-校招篇</font>
 						</a>
 					</div>
 				</li>
@@ -310,13 +310,54 @@ left:200;
 								<img alt='启明星辰-领航信息安全-2019校招篇' src="${imgBnner}group1/M00/01/14/Cgpw7FtW0DmANtuGAAFiQD-_7ig332.jpg">
 								<i></i>
 							</span>
-							<font>启明星辰-领航信息安全-2019校招篇</font>
+							<font>启明星辰-2019校招篇</font>
 						</a>
 					</div>
 				</li>
-				
-				
-				
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31592.html" target="_blank">
+							<span>
+								<img alt='乐圈影业-一本正经-招聘篇' src="${imgBnner}group1/M01/00/DD/CgptuFtW0c6AOjNKAAFj0hBUyuY728.jpg">
+								<i></i>
+							</span>
+							<font>乐圈影业-一本正经-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31593.html" target="_blank">
+							<span>
+								<img alt='京东 JD-他们已经拿到校招offer?' src="${imgBnner}group1/M01/00/DD/CgptuFtW0qaAdmlLAAH5D5MyE9k679.jpg">
+								<i></i>
+							</span>
+							<font>京东 JD-他们已经拿到offer?</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31597.html" target="_blank">
+							<span>
+								<img alt='飞鱼科技-与优秀者同行-招聘篇' src="${imgBnner}group1/M01/01/16/CgpmTltW3DCAQ6PrAAF12DVbCHo037.jpg">
+								<i></i>
+							</span>
+							<font>飞鱼科技-与优秀者同行-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31598.html" target="_blank">
+							<span>
+								<img alt='安踏 Anta-2015校招篇' src="${imgBnner}group1/M00/01/14/Cgpw7FtW3eyAA_0LAAIn87mhro0470.jpg">
+								<i></i>
+							</span>
+							<font>安踏 Anta-2015校招篇</font>
+						</a>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>

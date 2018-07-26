@@ -112,6 +112,7 @@ function propsmethod(){
 function getprops(id){
 	
 	$('.propsbox .propstitle span').text('更新道具信息');
+	listpeopledata('props');
 	loadData(function(res){	
 		$('.propsbox').attr('id',id);
 		$('.namepro').val(res.name);

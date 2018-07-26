@@ -281,6 +281,7 @@ function init(){
 		$('.setCard').hide();
 		$('#cos').show();
 		getlistdatac();//获取服装设备数据
+		listpeopledata('props');
 		$(this).addClass('top-text ');
 		$(this).siblings('div').removeClass('top-text ');
 	});
