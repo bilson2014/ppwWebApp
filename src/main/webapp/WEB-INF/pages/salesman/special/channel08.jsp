@@ -210,6 +210,28 @@ left:200;
 				
 				<li class="page">
 					<div class="kk">
+						<a href="https://www.apaipian.com/play/9_31486.html" target="_blank">
+							<span>
+								<img alt='林清轩-新零售-2018招聘篇' src="${imgBnner}group1/M00/01/13/CgpmTlsorVSADWxNAAIqxnpHHfw597.jpg">
+								<i></i>
+							</span>
+							<font>林清轩-新零售-2018招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/9_31517.html" target="_blank">
+							<span>
+								<img alt='顾家家居 KUKA-校招篇' src="${imgBnner}group1/M01/01/14/CgpmTlsx_DGAcSa-AAI9d0YTOs4567.jpg">
+								<i></i>
+							</span>
+							<font>顾家家居 KUKA-校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28177.html" target="_blank">
 							<span>
 								<img alt='京东方 BOE-校招-员工篇' src="${imgBnner}group1/M00/00/FB/CgpmTlq9tfeAbWmEAAJL2Yk9eUA128.jpg">
@@ -351,6 +373,150 @@ left:200;
 						</a>
 					</div>
 				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/303_832.html" target="_blank">
+							<span>
+								<img alt='百度 Baidu-招聘证言篇' src="${imgBnner}group1/M00/00/DD/CgptuFtNqSaABj-IAAKAAhLd8xE599.jpg">
+								<i></i>
+							</span>
+							<font>百度 Baidu-招聘证言篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_27084.html" target="_blank">
+							<span>
+								<img alt='海南航空-2018全球乘务员招聘篇' src="${imgBnner}group1/M00/00/DD/CgptuFtNpXWAIVMJAAHCGWMiEtw897.jpg">
+								<i></i>
+							</span>
+							<font>海南航空-2018全球乘务员招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31565.html" target="_blank">
+							<span>
+								<img alt='南京银行-2017届全球校招篇' src="${imgBnner}group1/M01/01/14/Cgpw7FtNql-AfaKiAAFeP3974vs248.jpg">
+								<i></i>
+							</span>
+							<font>南京银行-2017届全球校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31567.html" target="_blank">
+							<span>
+								<img alt='招商银行 -2018培训生招聘篇' src="${imgBnner}group1/M01/01/15/CgpmTltNrLuAbCDaAAFtnysZVks046.jpg">
+								<i></i>
+							</span>
+							<font>招商银行 -2018培训生招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1911_20804.html" target="_blank">
+							<span>
+								<img alt='中国建设银行 CCB-招聘篇' src="${imgBnner}group1/M01/01/14/Cgpw7FtNp3OANIgHAAKpHukTcE4225.jpg">
+								<i></i>
+							</span>
+							<font>中国建设银行 CCB-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1312_13968.html" target="_blank">
+							<span>
+								<img alt='中瑞金服-招聘篇' src="${imgBnner}group1/M00/00/2F/CgpsbFjLcE-AXddtAAJhMgyyS6M777.jpg">
+								<i></i>
+							</span>
+							<font>中瑞金服-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1116_10620.html" target="_blank">
+							<span>
+								<img alt='华为 -梦-2017应届生招聘篇' src="${imgBnner}group1/M00/01/15/CgpmTltNpqaAFCA1AAGeIyXrEA4297.jpg">
+								<i></i>
+							</span>
+							<font>华为 -梦-2017应届生招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1993_25490.html" target="_blank">
+							<span>
+								<img alt='美的 Midea-2018届校招篇' src="${imgBnner}group1/M00/00/C5/CgpsbFrQd3-ADyPsAARLDlhfJos233.jpg">
+								<i></i>
+							</span>
+							<font>美的 Midea-2018届校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31568.html" target="_blank">
+							<span>
+								<img alt='三星 Samsung-2018校招篇' src="${imgBnner}group1/M00/00/DB/CgpsbFtNrbOAPxCHAAFaeyuyE-I680.jpg">
+								<i></i>
+							</span>
+							<font>三星 Samsung-2018校招篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1448_17886.html" target="_blank">
+							<span>
+								<img alt='埃森哲 Accenture-招聘篇' src="${imgBnner}group1/M00/01/14/Cgpw7FtNpQWAci77AAF--fJr-HU940.jpg">
+								<i></i>
+							</span>
+							<font>埃森哲 Accenture-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1993_25282.html" target="_blank">
+							<span>
+								<img alt='尚德机构-招聘篇' src="${imgBnner}group1/M00/00/C2/CgpsbFrJzQaAMFaCAAHe1-wpwO8853.jpg">
+								<i></i>
+							</span>
+							<font>尚德机构-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31566.html" target="_blank">
+							<span>
+								<img alt='晶苑集团-益力坚-招聘篇' src="${imgBnner}group1/M01/00/DB/CgpsbFtNq22ASntXAAI5Thdqgrk645.jpg">
+								<i></i>
+							</span>
+							<font>晶苑集团-益力坚-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				<li class="page">
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/2198_31563.html" target="_blank">
+							<span>
+								<img alt='极飞-招聘篇' src="${imgBnner}group1/M01/01/14/Cgpw7FtNqIyAU_AbAAG8hzXU8ZA038.jpg">
+								<i></i>
+							</span>
+							<font>极飞-招聘篇</font>
+						</a>
+					</div>
+				</li>
+				
 			</ul>
 		</div>
 	</div>
