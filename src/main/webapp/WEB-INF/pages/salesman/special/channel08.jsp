@@ -136,14 +136,7 @@ color:#fe5453 !important;
 .slides li{height: auto !important;}
 
 
-.kk a{
-  transition: all .5s;
-  -webkit-transition: all .5s;
-}
 
-.setHeight{
-height:0 !important
-}
 
 .main_pd {
     min-height:400px;
@@ -214,13 +207,12 @@ left:200;
 		<div class="container">
 		   
 			<ul class="channel">
-			
-			
+				
 				<li class="page">
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28177.html" target="_blank">
 							<span>
-								<img alt='京东方 BOE-校招-员工篇' src="${imgBnner}group1/M00/00/FB/CgpmTlq9tfeAbWmEAAJL2Yk9eUA128.jp">
+								<img alt='京东方 BOE-校招-员工篇' src="${imgBnner}group1/M00/00/FB/CgpmTlq9tfeAbWmEAAJL2Yk9eUA128.jpg">
 								<i></i>
 							</span>
 							<font>京东方 BOE-校招-员工篇</font>
@@ -420,5 +412,11 @@ left:200;
 		<a href="javascript:(0);" class="go"></a>
 	</div>
 </body>
-<script src="/resources/js/salesman/special/channel07.js"></script>
+<script >
+$('.banner').flexslider({
+    directionNav: true,
+	 slideshowSpeed: 5000,
+    pauseOnAction: false
+});
+</script>
 </html>
