@@ -118,7 +118,7 @@
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
-								<a href="http://www.apaipian.com/special/channel04.html" class="pic"><i></i><span># 校园招聘 #</span><img src="/resources/images/salesman/special/pd008.jpg" alt="融资创投"/></a>
+								<a href="http://www.apaipian.com/special/channel08.html" class="pic"><i></i><span># 校园招聘 #</span><img src="/resources/images/salesman/special/pd008.jpg" alt="融资创投"/></a>
 							</dd>
 							<dd>
 								<a href="http://www.apaipian.com/special/channel04.html" class="pic"><i></i><span># 创业融资 #</span><img src="/resources/images/salesman/special/pd004.jpg" alt="融资创投"/></a>
