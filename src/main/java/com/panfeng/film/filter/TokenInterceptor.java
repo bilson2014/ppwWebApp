@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paipianwang.pat.common.config.PublicConfig;
 import com.paipianwang.pat.common.constant.PmsConstant;
+import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.common.web.file.FastDFSClient;
+import com.panfeng.film.dao.DataCacheDao;
 import com.panfeng.film.dao.StorageLocateDao;
 import com.panfeng.film.util.DataUtil;
 
@@ -27,6 +29,8 @@ public class TokenInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	private final StorageLocateDao storageDao = null;
+	@Autowired
+	private DataCacheDao dataCacheDao;
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -85,6 +89,16 @@ public class TokenInterceptor implements HandlerInterceptor {
 			}
 			
 			mv.addObject(PmsConstant.FILE_LOCATE_STORAGE_PATH, sbf.toString());
+		}
+		
+		HttpSession session=request.getSession();
+		final SessionInfo info = (SessionInfo) session.getAttribute(PmsConstant.SESSION_INFO);
+		
+		if(info!=null && info.getCacheTab()!=null && info.getCacheTab()>0) {
+			try {
+				dataCacheDao.setExpire(session.getId()+PmsConstant.CACHE_KEYNAME, session.getMaxInactiveInterval());
+			} catch (Exception e) {
+			}
 		}
 		
 	}
