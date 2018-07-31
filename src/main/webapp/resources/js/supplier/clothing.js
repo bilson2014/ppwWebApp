@@ -27,14 +27,12 @@ function clothingmethod(){
 		var fileimg=$('#filePicker8 .fileimg').attr('src');
 	
 		$('.typeclop').text('');
-		$('.typeclop').attr('key','');
 		$('.nameclop').text('');
 		$('.accreditclop').text('');
-		$('.accreditclop').attr('key','');
 		$('.stockNumberclop').text('');
 		$('.priceclop').text('');
 		$('.cityclop').text('');
-		$('.cityclop').attr('cityid','');
+
 		
 		
 		if (type==undefined||type==null||type==''){
@@ -180,11 +178,14 @@ function cleanclodata(){
 	
 	
 	$('.typeclo').text('请选择类别');
+	$('.typeclo').attr('key','');
 	$('.nameclo').val('');
 	$('.accreditclo').text('请选择授权方式');
+	$('.accreditclo').attr('key','');
 	$('.stockNumberclo').val('');
 	$('.priceclo').val('');
 	$('.cityclo').text('请选择城市');
+	$('.cityclo').attr('cityid','');
 	$('.remarkclo').val('');
 	
 	$('.typeclocheck').hide();

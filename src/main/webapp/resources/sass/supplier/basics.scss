@@ -1300,3 +1300,108 @@
                    background: #fff;
                    border-left: 2px solid #FE5453
                }
+
+
+    .cusModel {
+        width: 100%;
+        position: fixed;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+        display: none;
+        .modelCard {
+            background: #FFFFFF;
+            border-radius: 6px;
+            width: 664px;
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            margin-left: -332px;
+            max-height: 500px;
+        }
+
+        .cardTop {
+            height: 50px;
+            border-bottom: 1px solid $border-line;
+            position: relative;
+            .title {
+                vertical-align: top;
+                display: inline-block;
+                font-size: $font-size;
+                color: $gray-dark;
+                padding-left: 30px;
+                line-height: 50px;
+                span {
+                    color: $red-base;
+                    margin-left: 10px;
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+
+      .successModel {
+        width: 450px;
+        height: 310px;
+        position: absolute;
+        top: 270px;
+        left: 50%;
+        margin-top: -155px;
+        margin-left: -225px;
+        border-radius: 4px;
+        background: white;
+        padding-top: 30px;
+        text-align: center;
+        .closeBtn {
+            width: 12px;
+            height: 12px;
+            background: url(/resources/images/common/close.png) no-repeat;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+        .oSContent {
+
+            .tdDes {
+                padding-top: 40px;
+                padding-bottom: 20px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
+            .tDes {
+                padding-bottom: 50px;
+                text-align: center;
+                color: $gray-dark;
+                font-size: $font-size;
+            }
+        }
+    }
+
+    .sureBtn {
+        font-size: 0;
+        padding-top: 20px;
+        width: 265px;
+        margin: 0 auto;
+        #mptModel {
+            margin: 0 auto;
+        }
+        div {
+            width: 120px;
+            height: 36px;
+            line-height: 36px;
+            color: white;
+            border: 4px;
+            font-size: $font-size-base;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+        div:nth-child(1) {
+            margin-right: 20px;
+        }
+    }

@@ -175,9 +175,7 @@ function init(){
 		$(this).find('.shade').hide();
 	});
 	
-	$(".idcard .select").click(function(){
-//		 console.log('wwq');
-	});
+
 	//图片删除共同dels  修改
 	$('.page').on('click','.idcard .select',function(){
 //		console.log('消失select');
@@ -189,9 +187,23 @@ function init(){
 			$('.showimages').hide();
 			$('.role').removeClass('pickroleshowimg');
 			$('.role').addClass('pickroledir');
+			delWho();
 		}else {
-			$(this).parent().parent().remove();
+			var that = $(this);
+			$('#checkSureModel').show();
+			$('#tModel').off('click').on('click',function(){
+				that.parent().parent().remove();
+				delWho();
+				$('#checkSureModel').hide();
+			});
+			$('#cModel,.closeBtn').off('click').on('click',function(){
+				$('#checkSureModel').hide();
+			});
 		}
+		
+	});
+	
+	function delWho(){
 		if ($('.top .people').hasClass('top-text')){
 			delpeople(id,identity);
 		}else if($('.top .sitett').hasClass('top-text')){
@@ -201,7 +213,8 @@ function init(){
 		}else if($('.top .costume').hasClass('top-text')){
 			delCustome(id);
 		}
-	});
+	}
+	
 	//图片 修改
 	$('.page').on('click','.idcard .read',function(){
 		

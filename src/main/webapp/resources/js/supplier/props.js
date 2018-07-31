@@ -25,23 +25,11 @@ function propsmethod(){
 		var stockNumber=$('.stockNumberpro').val();
 		var price=$('.pricepro').val();	
 		var city=$('.citypro').attr('cityid');		
-		var remark=$('.remarkpro').val();
-		
+		var remark=$('.remarkpro').val();		
 		var fileimg=$('#filePicker9 .fileimg').attr('src');
 	
-		$('.typeprop').text('');
-		$('.typeprop').attr('key','');
-		$('.nameprop').text('');
-		$('.accreditprop').text('');
-		$('.accreditpro').attr('key','');
-		
-		$('.stockNumberprop').text('');
-		$('.priceprop').text('');
-		$('.cityprop').text('');
-		$('.cityValue').attr('cityid','');
-		
-		
-		
+		$('.errorp').text('');
+				
 		if (type==undefined||type==null||type==''){
 			$('.typeprop').text('*请选择道具类别');
 			return false;
@@ -178,11 +166,14 @@ function cleanpropdata(){
 	
 	
 	$('.typepro').text('请选择类别');
+	$('.typepro').attr('key','');
 	$('.namepro').val('');
 	$('.accreditpro').text('请选择授权方式');
+	$('.accreditpro').attr('key','');
 	$('.stockNumberpro').val('');
 	$('.pricepro').val('');
 	$('.citypro').text('请选择城市');
+	$('.citypro').attr('cityid','');
 	$('.remarkpro').val('');
 	
 	$('.typeprocheck').hide();
