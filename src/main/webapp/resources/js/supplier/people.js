@@ -114,6 +114,7 @@ function getPeopleByProfession(id,profession,professionName){
 		$('.namepeo').val(res.name);
 		$('#professionpeo').val(res.profession);
 		$('.remarkpeople').val(res.remark);
+		$('.peoPhone').val(res.phone);
 		
 		//图片处理
 		$('#filePicker6 .fileimg').attr('data-value',res.mainPhoto);

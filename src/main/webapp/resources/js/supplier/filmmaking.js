@@ -667,6 +667,7 @@ function getpeople(id,type){
 			$('.namegather').val(res.name);
 			$('.pricegather').val(res.price);
 			$('.remarkgather').val(res.remark);
+			$('.gatherPhone').val(res.phone);
 			//图片处理
 			$('.showimages').empty();
 			$('.showimages').hide();

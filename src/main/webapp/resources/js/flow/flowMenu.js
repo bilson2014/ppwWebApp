@@ -253,7 +253,7 @@ function initMenuEven(){
 	})
 	//左侧变小之后工具箱页面的样式改变  按钮样式   响应式!!!!!!!!!!!!!!!!!!!
 	$('#minboxs').off('click').on('click',function(){
-		$('.frame').attr('src',getUrlTask() + "quotation/info");
+		$('.frame').attr('src',getUrlTask() + "/quotation/info");
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		
@@ -491,7 +491,7 @@ function initMenuEven(){
 	});
 	
 	$('#boxsCancle').off('click').on('click',function(){
-		$('.frame').attr('src', getUrlTask() +"schedule/info");	
+		$('.frame').attr('src', getUrlTask() +"/schedule/info");	
 		$('.productList li').removeClass('checkLi');
 		$('#boxsIndex').removeClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
