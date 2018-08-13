@@ -34,14 +34,22 @@ function peoplemethod(){
 		var pricepeo=$('.pricepeo').val();
 		var remarkpeople=$('.remarkpeople').val();
 		var professionpeo=$('#professionpeo').val();
-		
 		var fileimg=$('#filePicker6 .fileimg').attr('src');//图片
-		console.log(fileimg);
+        var phone = $('.peoPhone').val();
 				
 		$('.namepeop').text('');
 		$('.pricepeop').text('');
 		$('.citypeop').text('');		
 		$('.citypeop').attr('cityid','');
+		$('.phonepeop').text('');
+		
+		if(phone!=''&&phone!=null&&phone!=undefined){
+			if(!checkMobile(phone)){
+				$('.phonepeop').text('手机号错误');
+				return false;
+			}
+		}
+		
 		if (namepeo==undefined||namepeo==null||namepeo==''){
 			$('.namepeop').text('*请填写场地名称');
 			return false;
@@ -73,6 +81,7 @@ function peoplemethod(){
 					 remark:remarkpeople,//	备注
 					 city:$('.citypeo').attr('cityid'),//城市类型
 					 profession:professionpeo,//职业
+					 phone:phone
 					
 				}));
 			}else{
@@ -89,6 +98,7 @@ function peoplemethod(){
 					 remark:remarkpeople,//	备注
 					 city:$('.citypeo').attr('cityid'),//城市类型
 					 profession:professionpeo,//职业
+					 phone:phone
 					 
 				}));
 			}	

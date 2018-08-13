@@ -728,19 +728,20 @@ function colorEgg() {
 			+ "/**////  \n" + "/**  \n" + "/**  \n" + "/** \n" + "// "
     console.info(p, "color:#fe5453;font-size:28px");
 	console.info('欢迎加入拍片网');
-	console.info("%c3D测试"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
-	console.info("%cRainbow Text ", 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
+	console.info("%c迪迪周末有什么安排吗"," text-shadow: 0 1px 0 #ccc,0 2px 0 #e9e9e9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
+	console.log("%c\n       ", "font-size:310px;background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533884021845&di=b5b49d19a17ddfe860f2e8d65f1877e5&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9e3df8dcd100baa14b5e46424d10b912c9fc2edc.jpg') repeat");
+	console.info("%c迪迪每天好心情", 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
 	console.info("%c","padding:50px 300px;line-height:120px;background:url('https://www.apaipian.com/resources/images/index/bannerLogoR.png') no-repeat");
     
 	
-	figlet(inputText, 'Standard', function(err, text) {
+	/*figlet(inputText, 'Standard', function(err, text) {
         if (err) {
             console.log('something went wrong...');
             console.dir(err);
             return;
         }
         console.log(text);
-    });
+    });*/
 
 }
 

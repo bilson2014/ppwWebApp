@@ -199,6 +199,9 @@
 									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 								<p class='pricegatherp errorp'></p>
 
+                                <span>联系方式</span> <input class='gatherPhone' type='text' placeholder="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+								<p class='phonegatherpe errorp'></p>
+								
 							</div>
 							<div class='gatherright rightAddDiv'>
 								<div class='tipsimage'>
@@ -295,6 +298,9 @@
 								<span>价格(元/天)</span> <input class='pricedir' type='text'
 									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 								<p class='pricedirp errorp'></p>
+								
+								<span>联系方式</span> <input class='dirPhone' type='text' placeholder="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+								<p class='phonedirp errorp'></p>
 
 							</div>
 							<div class='directorr rightAddDiv'>
@@ -349,6 +355,9 @@
 
 								<span>价格(元/天)</span> <input class='pricepeo' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 								<p class='pricepeop errorp'></p>
+								
+								 <span>联系方式</span> <input class='peoPhone' type='text' placeholder="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+								<p class='phonepeop errorp'></p>
 
 							</div>
 							<div class='peopler rightAddDiv'>
@@ -415,6 +424,9 @@
 
 								<span>价格(元/天)</span> <input class='priceca' type='text' onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 								<p class='pricecap errorp'></p>
+								
+								 <span>联系方式</span> <input class='capPhone' type='text' placeholder="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+								<p class='phonecape errorp'></p>
 
 							</div>
 							<div class='cameramanr rightAddDiv'>
@@ -476,6 +488,8 @@
 								<span>价格(元/天)</span> <input class='pricesite' type='text'
 									onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字">
 								<p class='pricesitep errorp'></p>
+								
+								
 
                               <h1 class="setPosition"> 
 									<span>所在城市</span>

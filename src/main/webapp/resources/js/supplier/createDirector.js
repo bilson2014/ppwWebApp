@@ -45,10 +45,20 @@ function dirmethod(){
 		var pricedir=$('.pricedir').val();
 		var remarkdirector=$('.remarkdirector').val();
 		var fileimg=$('#filePicker3 .updateimg .fileimg').attr('src');
+		var phone = $('.dirPhone').val();
 		$('.namedirp').text('');
 		$('.skilldirp').text('');
 		$('.citydirp').text('');
 		$('.pricedirp').text('');
+		$('.phonedirp').text('');
+		
+		if(phone!=''&&phone!=null&&phone!=undefined){
+			if(!checkMobile(phone)){
+				$('.phonedirp').text('手机号错误');
+				return false;
+			}
+		}
+		
 		if (namedir==undefined||namedir==null||namedir==''){
 			$('.namedirp').text('*请填写导演姓名');
 			return false;
@@ -60,6 +70,9 @@ function dirmethod(){
 			return false;
 		}else if (pricedir==undefined||pricedir==null||pricedir==''){
 			$('.pricedirp').text('*请填写价格');
+			return false;
+		}else if (fileimg=='/resources/images/supplier/people.png'){
+			$('.directorr .addboxs span').attr("style","color: red;");
 			return false;
 		}else if (fileimg=='/resources/images/supplier/people.png'){
 			$('.directorr .addboxs span').attr("style","color: red;");
@@ -105,6 +118,7 @@ function dirmethod(){
 					 specialty:$('.skilldir').attr('value'),//擅长领域
 					 price: pricedir,//价格
 					 remark:remarkdirector,//备注
+					 phone:phone
 				}));
 			}
 		}

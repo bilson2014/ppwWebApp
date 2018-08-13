@@ -273,6 +273,7 @@ function gathermethod(){
 		var citygather=$('.citygather').text();
 		var pricegather=$('.pricegather').val();
 		var remarkgather=$('.remarkgather').val();
+		var phone=$('.gatherPhone').val();
 		
 		var fileimg=$('#filePicker1 .fileimg').attr('src');
 		
@@ -295,6 +296,14 @@ function gathermethod(){
 		$('.racegatherp').attr('value','');
 		$('.citygatherp').text('');
 		$('.cityValue').attr('cityid','');
+		$('.phonegatherpe').text('');
+		
+		 if(phone!=''&&phone!=null&&phone!=undefined){
+				if(!checkMobile(phone)){
+					$('.phonegatherpe').text('手机号错误');
+					return false;
+				}
+			}
 		
 		if (namegather==undefined||namegather==null||namegather==''){
 			$('.namegatherp').text('*演员姓名不能为空');
@@ -342,7 +351,7 @@ function gathermethod(){
 					 remark:remarkgather,//备注
 					 sex:$('.gendergather').attr('key'),//性别(1,2)
 					 zone:$('.racegather').attr('value'),//种族(编码)
-					
+					 phone:phone
 				}));
 			}else{
 				loadData(function(result){	
@@ -365,6 +374,7 @@ function gathermethod(){
 					 remark:remarkgather,//备注
 					 sex:$('.gendergather').attr('key'),//性别(1,2)
 					 zone:$('.racegather').attr('value'),//种族(编码)
+					 phone:phone
 				}));
 			}
 		}

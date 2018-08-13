@@ -170,7 +170,7 @@
 					<div class="itemTitle">视频封面</div>
 					<ul>
 						<li>
-							<div class="upBanner" id='upBtn-pic'>上传封面</div>
+							<div class="upBanner" id='8'>上传封面</div>
 							<div class="findEx" id="findEx">查看示例</div>
 						</li>
 						<li>

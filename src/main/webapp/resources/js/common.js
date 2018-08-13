@@ -6,14 +6,13 @@ var initM = 3;
 var counts = 120; // 间隔函数，1秒执行
 var curCounts = 0; // 当前剩余秒数 - 注册
 var InterValObj; // timer变量，控制时间 - 注册
-
+var newPath = "javascript:this.src='/resources/images/index/noImg.jpg';";
 
 //var UrlDo = "apaipian.com";
 var UrlDo = "localhost";
 //var UrlDo = "test.apaipian.com";
 //var UrlDo = "192.168.0.142";
 //var UrlDo = '192.168.0.147';
-
 //var Url = "https://www.apaipian.com:8087/";
 //var Url = "http://test.apaipian.com:8084/";
 var Url = "http://localhost:7070";
@@ -1152,5 +1151,36 @@ function initSelect(){
 	});
 	
 }
+
+//function checkImgUrl(){	
+//	var imgPath = $('img');
+//    if(imgPath.length > 0){    	
+//    	for (var int = 0; int < imgPath.length; int++) {			
+//    		var path = $(imgPath[int]).attr('src');
+//    		console.info(path);
+//    		if(!returnUrl(returnUrl)){
+//    		   $(imgPath[int]).attr('src','/resources/images/provider/default-cover.jpg');
+//    		}
+//		}
+//    }
+//}
+//
+//function returnUrl(url){
+//	        var xmlHttp ;
+//	        if (window.ActiveXObject)
+//	         {
+//	        	xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+//	         }
+//	         else if (window.XMLHttpRequest)
+//	         {
+//	        	xmlHttp = new XMLHttpRequest();
+//	         } 
+//	        xmlHttp.open("Get",url,false);
+//	        xmlHttp.send();
+//	        if(xmlHttp.status==404)
+//	        return false;
+//	        else
+//	        return true;
+//}
 
 

@@ -10,7 +10,6 @@
 <%@ page import="com.paipianwang.pat.facade.information.entity.PmsProductSolr"%>
 <%-- import CSS --%>
 <spring:url value="/resources/css/search.css" var="searchCss"/>
-
 <%-- import JS --%>
 <spring:url value="/resources/lib/jquery/jquery-2.0.3.min.js" var="jqueryJs"/>
 <spring:url value="/resources/lib/jquery/plugins.js" var="pluginJs"/>
@@ -163,7 +162,7 @@
 						<div class="video-card video-col-4">
 							<a href="<spring:url value='/play/${solr.teamId }_${solr.productId }.html'/>" target="_blank">
 								<c:if test="${not empty solr.picLDUrl }">
-									<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" />
+									<img class="img-card-4" src="${file_locate_storage_path }${solr.picLDUrl }" alt="拍片网" onerror="javascript:this.src='/resources/images/index/noImg.jpg';" />
 								</c:if>
 								<c:if test="${empty solr.picLDUrl }">
 									<img class="img-card-4" src="${imgPath}/index/noImg.jpg" alt="拍片网" />

@@ -24,10 +24,19 @@ function cammethod(){
 		var priceca=$('.priceca').val();
 		var remarkca=$('.remarkca').val();
 		var fileimg=$('#filePicker7 .updateimg .fileimg').attr('src');
+		var phone = $('.capPhone').val();
 		$('.namecap').text('');
 		$('.specialSkillp').text('');
 		$('.citycap').text('');
 		$('.pricecap').text('');
+		$('.phonecape').text('');
+				
+		if(phone!=''&&phone!=null&&phone!=undefined){
+			if(!checkMobile(phone)){
+				$('.phonecape').text('手机号错误');
+				return false;
+			}
+		}
 		
 		if (nameca==undefined||nameca==null||nameca==''){
 			$('.namecap').text('*请填写摄影师姓名');
@@ -53,7 +62,6 @@ function cammethod(){
 					cleancameramandata()
 					$('.setting').hide();
 					$('.cameramanbox').hide();
-
 					$('.role').hide();
 //					$('.staffbox').removeClass('pickborder');
 //					$('.directorbox').removeClass('pickborder');
@@ -66,13 +74,13 @@ function cammethod(){
 					 specialSkill:$('.specialSkill').attr('key'),//特殊技能
 					 price: priceca,//价格
 					 remark:remarkca,//备注
+					 phone:phone
 				}));
 			}else{
 				loadData(function(result){	
 //					cleancameramandata()
 					$('.setting').hide();
 					$('.cameramanbox').hide();
-
 					$('.role').hide();
 //					$('.staffbox').removeClass('pickborder');
 //					$('.directorbox').removeClass('pickborder');
@@ -84,6 +92,7 @@ function cammethod(){
 					 specialSkill:$('.specialSkill').attr('key'),//特殊技能
 					 price: priceca,//价格
 					 remark:remarkca,//备注
+					 phone:phone
 				}));
 			}
 		}
