@@ -14,7 +14,7 @@ $().ready(function() {
 	getlistdatap();//获取人数据
 	$('#filePicker2 .webuploader-pick').text('上传更多照片(最多5张)');
 	$('#filePicker5 .webuploader-pick').text('上传更多照片(最多3张)');
-
+	
 });
 //图片尺寸的显示处理竖版
 function imgcheckpeople(){
@@ -391,6 +391,7 @@ function getlistdatap(){
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
             +"</div>"
+            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
             +"<div class='linebox '>"
             +"<span class='name one'>"+res[i].name+"</span>";
 			var len=res[i].price;
@@ -408,6 +409,7 @@ function getlistdatap(){
 			$('#peo').append(boxhtml);
 		}
 		imgcheckpeople();
+		setSizeImg();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 350);
 	 }, getContextPath() + ' /production/people/list');
 }
@@ -428,6 +430,7 @@ function getlistdatas(){
 	        +"<img class='read' src='/resources/images/supplier/read.png'>"
 	        +"<img class='select' src='/resources/images/supplier/select.png'>"
 	        +"</div>"
+	        +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
 	        +"<div class='linebox linebox-site'>"
 	        +"<span class='name two'>"+res[i].name+"</span>";
 			
@@ -451,6 +454,7 @@ function getlistdatas(){
 			$('#sit').append(boxhtml);
 		}
 		imgchecksite();
+		setSizeImg();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 	 }, getContextPath() + ' /production/studio/list');
 }
@@ -475,6 +479,7 @@ function getlistdatad(){
 	            +"<img class='read' src='/resources/images/supplier/read.png'>"
 	            +"<img class='select' src='/resources/images/supplier/select.png'>"
 	            +"</div>"
+	            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
 	            +"<div class='linebox linebox-facility'>"
 	            +"<span class='name three'>"+res[i].name+"</span>";
 			
@@ -503,6 +508,7 @@ function getlistdatad(){
 
 		}
 		imgchecksite();
+		setSizeImg();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 	 }, getContextPath() + ' /production/device/list');	
 }
@@ -520,7 +526,7 @@ function getlistdatac(){
 			var boxhtmland;
 			if (res[i].photo==null||res[i].photo==''||res[i].photo==undefined){
 		
-				boxhtmland= "<img class='endimg' src='/resources/images/supplier/endimg.jpg'><div class='and'>"+res[i].name+"</div>";
+				boxhtmland= "<img class='endimg imgsize' src='/resources/images/supplier/endimg.jpg'><div class='and showNoImgInfo'>"+res[i].name+"</div>";
 			}else {
 				boxhtmland= "<img class='imgs"+i+" imgsize' src="+getResourcesName()+res[i].photo+">";
 			}
@@ -528,6 +534,7 @@ function getlistdatac(){
 	            +"<img class='read' src='/resources/images/supplier/read.png'>"
 	            +"<img class='select' src='/resources/images/supplier/select.png'>"
 	            +"</div>"
+	            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
 	            +"<div class='linebox linebox-costume'>"
 	            +"<span class='name three'>"+res[i].name+"</span>";
 			
@@ -556,6 +563,7 @@ function getlistdatac(){
 
 		}
 		imgchecksite();
+		setSizeImg();
 		$(window.parent.document).find('.frame').css('height',$('.page').height() + 50);
 	 }, getContextPath() + ' /production/costume/list');	
 }
@@ -1440,6 +1448,19 @@ function btnfocus(){
 	});
 
 }
+
+function setSizeImg(){
+	
+	var setSize = $('.imgsize');
+	$(setSize).each(function() {
+		$(this).error(function(){
+			$(this).parent().find('.showNoImgInfo').show();
+			$(this).hide();
+		});
+    });
+
+}
+
 
 
 

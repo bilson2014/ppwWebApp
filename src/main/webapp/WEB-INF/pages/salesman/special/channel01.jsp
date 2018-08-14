@@ -314,18 +314,7 @@
 							<font>比特(BitGame)-英文</font>
 						</a>
 					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1546_24126.html" target="_blank">
-							<span>
-								<img alt="分子资产" src="${imgBnner}/group1/M00/00/BC/CgptuFqx0oiAFq9ZAAJ1uoG69kI801.jpg">
-								<i></i>
-							</span>
-							<font>分子未来(Molecular Future)</font>
-						</a>
-					</div>
-				</li>
+				</li>				
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28007.html" target="_blank">
@@ -339,12 +328,12 @@
 				</li>
 				<li>
 					<div class="kk">
-						<a href="https://www.apaipian.com/play/683_26119.html" target="_blank">
+						<a href="https://www.apaipian.com/play/1910_28040.html" target="_blank">
 							<span>
-								<img alt="AMD-The Trinity Foundation" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxz3CAJqHfAADaoSN7NWw365.jpg">
+								<img alt="达世币 DASH" src="${imgBnner}/group1/M00/00/BB/CgpsbFqxzbWAHAEsAACPAjrIOXU547.jpg">
 								<i></i>
 							</span>
-							<font>Trinity介绍</font>
+							<font>达世币(DASH)</font>
 						</a>
 					</div>
 				</li>
@@ -356,17 +345,6 @@
 								<i></i>
 							</span>
 							<font>以太坊(ETH)</font>
-						</a>
-					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_28040.html" target="_blank">
-							<span>
-								<img alt="达世币 DASH" src="${imgBnner}/group1/M00/00/BB/CgpsbFqxzbWAHAEsAACPAjrIOXU547.jpg">
-								<i></i>
-							</span>
-							<font>达世币(DASH)</font>
 						</a>
 					</div>
 				</li>
@@ -501,18 +479,7 @@
 							<font>ICON(ICX)</font>
 						</a>
 					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_27987.html" target="_blank">
-							<span>
-								<img alt="瑞波币 Ripple(XRP)" src="${imgBnner}/group1/M00/00/BC/CgptuFqvOouAS4P7AAElvZ0g9O8726.jpg">
-								<i></i>
-							</span>
-							<font>瑞波币 Ripple(XRP)</font>
-						</a>
-					</div>
-				</li>
+				</li>			
 				<li>
 					<div class="kk">
 						<a href="https://www.apaipian.com/play/1910_28024.html" target="_blank">
@@ -521,28 +488,6 @@
 								<i></i>
 							</span>
 							<font>唯链(VEN)-解决方案</font>
-						</a>
-					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_28027.html" target="_blank">
-							<span>
-								<img alt="唯链 VeChain VEN-数字化维修" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxyniABHQQAAHn5g2OhJw776.jpg">
-								<i></i>
-							</span>
-							<font>唯链(VEN)-数字化维修</font>
-						</a>
-					</div>
-				</li>
-				<li>
-					<div class="kk">
-						<a href="https://www.apaipian.com/play/1910_26505.html" target="_blank">
-							<span>
-								<img alt="IBM-blockchain汽车租赁" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx03CASP4MAAHuvf9SYyU746.jpg">
-								<i></i>
-							</span>
-							<font>IBM-blockchain汽车租赁</font>
 						</a>
 					</div>
 				</li>
@@ -600,8 +545,62 @@
 							<font>The Bitcoin and Blockchain</font>
 						</a>
 					</div>
-				</li>				
-				
+				</li>	
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/683_26119.html" target="_blank">
+							<span>
+								<img alt="AMD-The Trinity Foundation" src="${imgBnner}/group1/M00/00/F6/CgpmTlqxz3CAJqHfAADaoSN7NWw365.jpg">
+								<i></i>
+							</span>
+							<font>Trinity介绍</font>
+						</a>
+					</div>
+				</li>	
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_28027.html" target="_blank">
+							<span>
+								<img alt="唯链 VeChain VEN-数字化维修" src="${imgBnner}/group1/M00/00/F4/Cgpw7FqxyniABHQQAAHn5g2OhJw776.jpg">
+								<i></i>
+							</span>
+							<font>唯链(VEN)-数字化维修</font>
+						</a>
+					</div>
+				</li>	
+					<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_26505.html" target="_blank">
+							<span>
+								<img alt="IBM-blockchain汽车租赁" src="${imgBnner}/group1/M00/00/F4/Cgpw7Fqx03CASP4MAAHuvf9SYyU746.jpg">
+								<i></i>
+							</span>
+							<font>IBM-blockchain汽车租赁</font>
+						</a>
+					</div>
+				</li>	
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1910_27987.html" target="_blank">
+							<span>
+								<img alt="瑞波币 Ripple(XRP)" src="${imgBnner}/group1/M00/00/BC/CgptuFqvOouAS4P7AAElvZ0g9O8726.jpg">
+								<i></i>
+							</span>
+							<font>瑞波币 Ripple(XRP)</font>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="kk">
+						<a href="https://www.apaipian.com/play/1546_24126.html" target="_blank">
+							<span>
+								<img alt="分子资产" src="${imgBnner}/group1/M00/00/BC/CgptuFqx0oiAFq9ZAAJ1uoG69kI801.jpg">
+								<i></i>
+							</span>
+							<font>分子未来(Molecular Future)</font>
+						</a>
+					</div>
+				</li>
 			</ul>
 		</div>
 		<!-- <div class="Guide">

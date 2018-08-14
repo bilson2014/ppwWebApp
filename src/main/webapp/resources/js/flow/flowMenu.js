@@ -502,8 +502,7 @@ function initMenuEven(){
 		$('#nowDoing').removeClass('checkLi');
 		$('#pause').removeClass('checkLi');
 		$('#finish').removeClass('checkLi');
-		
-		
+				
 		$('#safe').removeClass('treeitemRed');
 		$('#toSave').removeClass('treeitemRed');
 		$('#safe .title').removeClass('treebtu');
