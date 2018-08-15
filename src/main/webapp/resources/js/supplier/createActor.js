@@ -389,6 +389,7 @@ function cleanactordata(){
 	$('.gendergatherp').text('');
 	$('.racegatherp').text('');
 	$('.citygatherp').text('');
+	$('.gatherPhone').val('');
 	
 	$('.namegather').val('');
 	$('.gendergather').text('请选择');

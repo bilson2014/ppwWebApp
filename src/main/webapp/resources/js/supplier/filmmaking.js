@@ -187,13 +187,13 @@ function init(){
 			$('.showimages').hide();
 			$('.role').removeClass('pickroleshowimg');
 			$('.role').addClass('pickroledir');
-			delWho();
+			delWho(id,identity);
 		}else {
 			var that = $(this);
 			$('#checkSureModel').show();
 			$('#tModel').off('click').on('click',function(){
 				that.parent().parent().remove();
-				delWho();
+				delWho(id,identity);
 				$('#checkSureModel').hide();
 			});
 			$('#cModel,.closeBtn').off('click').on('click',function(){
@@ -203,7 +203,7 @@ function init(){
 		
 	});
 	
-	function delWho(){
+	function delWho(id,identity){
 		if ($('.top .people').hasClass('top-text')){
 			delpeople(id,identity);
 		}else if($('.top .sitett').hasClass('top-text')){
@@ -391,7 +391,7 @@ function getlistdatap(){
             +"<img class='read' src='/resources/images/supplier/read.png'>"
             +"<img class='select' src='/resources/images/supplier/select.png'>"
             +"</div>"
-            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
+            +"<div class='showNoImgInfo'><div class='showWordV'>"+res[i].name+"</div></div>"
             +"<div class='linebox '>"
             +"<span class='name one'>"+res[i].name+"</span>";
 			var len=res[i].price;
@@ -430,7 +430,7 @@ function getlistdatas(){
 	        +"<img class='read' src='/resources/images/supplier/read.png'>"
 	        +"<img class='select' src='/resources/images/supplier/select.png'>"
 	        +"</div>"
-	        +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
+	        +"<div class='showNoImgInfo showNoImgInfoSite'>"+res[i].name+"</div>"
 	        +"<div class='linebox linebox-site'>"
 	        +"<span class='name two'>"+res[i].name+"</span>";
 			
@@ -479,7 +479,7 @@ function getlistdatad(){
 	            +"<img class='read' src='/resources/images/supplier/read.png'>"
 	            +"<img class='select' src='/resources/images/supplier/select.png'>"
 	            +"</div>"
-	            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
+	            +"<div class='showNoImgInfo smallInfo'>"+res[i].name+"</div>"
 	            +"<div class='linebox linebox-facility'>"
 	            +"<span class='name three'>"+res[i].name+"</span>";
 			
@@ -534,7 +534,7 @@ function getlistdatac(){
 	            +"<img class='read' src='/resources/images/supplier/read.png'>"
 	            +"<img class='select' src='/resources/images/supplier/select.png'>"
 	            +"</div>"
-	            +"<div class='showNoImgInfo'>"+res[i].name+"</div>"
+	            +"<div class='showNoImgInfo smallInfo'>"+res[i].name+"</div>"
 	            +"<div class='linebox linebox-costume'>"
 	            +"<span class='name three'>"+res[i].name+"</span>";
 			
@@ -1458,7 +1458,39 @@ function setSizeImg(){
 			$(this).hide();
 		});
     });
+	
+	checkWordsLength();
 
+}
+
+function checkWordsLength(){
+	
+	var wordH = $('.smallInfo,.showNoImgInfoSite');
+	if(wordH.length > 0){
+		for (var int = 0; int < wordH.length; int++) {
+			 var nowItem = $(wordH[int]);
+			 var str = nowItem.text();
+			 if(str.length > 8){
+				 str=str.substring(0,8);
+				 nowItem.text(str+'...');
+			 }
+		}
+	}
+	
+	var wordV = $('.showWordV');
+	if(wordV.length > 0){
+		for (var int = 0; int < wordV.length; int++) {
+			 var nowItem = $(wordV[int]);
+			 var str = nowItem.text();
+			 if(str.length > 6){
+				 str=str.substring(0,6);
+				 nowItem.text(str);
+				 nowItem.text(str+'...');
+			 }
+		}
+	}
+
+	
 }
 
 

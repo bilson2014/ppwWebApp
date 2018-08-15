@@ -142,6 +142,7 @@ function cleanpeopledata(){
 	$('.namepeop').text('');
 	$('.pricepeop').text('');
 	$('.citypeop').text('');
+	$('.peoPhone').val('');
 	
 	$('.namepeo').val('');
 	$('.pricepeo').val('');

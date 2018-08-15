@@ -131,6 +131,7 @@ function cleadirectordata(){
 	$('.skilldirp').text('');
 	$('.citydirp').text('');
 	$('.pricedirp').text('');
+	$('.dirPhone').val('');
 	
 	
 	$('.namedir').val('');
