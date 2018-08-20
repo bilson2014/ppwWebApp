@@ -287,6 +287,7 @@ function gathermethod(){
 			}
 		})
 			
+		$('.errorp').text('');
 /*		$('.namegatherp').text('');
 		$('.oldgatherp').text('');
 		$('.pricegatherp').text('');
