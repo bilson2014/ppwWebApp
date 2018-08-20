@@ -691,7 +691,7 @@ function getpeople(id,type){
 			}
 			
 			var photo=res.photo;
-			if (res.photo!='null'){
+			if (res.photo!='null' && res.photo != null){
 				$('.showimages').show();
 				photo=photo.split(';');
 				for (var i=0;i<photo.length;i++){

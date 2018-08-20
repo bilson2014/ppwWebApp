@@ -106,6 +106,7 @@ function getCameraman(id){
 		$('.cameramanbox').attr('id',id);
 		$('.nameca').val(res.name);
 		$('.remarkca').val(res.remark);
+		$('.capPhone').val(res.phone);
 		
 		//图片处理
 		$('#filePicker7 .fileimg').attr('data-value',res.mainPhoto);
@@ -150,7 +151,8 @@ function cleancameramandata(){
 	$('.citycap').text('');
 	$('.citycap').attr('cityid','');
 	$('.pricecap').text('');
-	
+	$('.capPhone').val('');
+	$('.errorp').text('');
 	
 	$('.nameca').val('');
 	$('.specialSkill').val('');
