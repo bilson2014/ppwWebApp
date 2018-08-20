@@ -775,6 +775,7 @@ function getpeople(id,type){
 			reSetCity($('.citydir'),city);			 
 			$('.pricedir').val(res.price);
 			$('.remarkdirector').val(res.remark);
+			$('.dirPhone').val(res.phone);
 		 }, getContextPath() + '/production/director/get', $.toJSON({						
 			 id:id,//	主键
 		}));

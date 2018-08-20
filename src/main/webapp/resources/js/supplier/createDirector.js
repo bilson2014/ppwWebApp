@@ -86,7 +86,6 @@ function dirmethod(){
 					cleadirectordata()
 					$('.setting').hide();
 					$('.directorbox').hide();
-
 					$('.role').hide();
 					$('.staffbox').removeClass('pickborder');
 					$('.directorbox').removeClass('pickborder');
@@ -99,6 +98,7 @@ function dirmethod(){
 					 specialty:$('.skilldir').attr('value'),//擅长领域
 					 price: pricedir,//价格
 					 remark:remarkdirector,//备注
+					 phone:phone
 				}));
 			}else{
 				loadData(function(result){	
@@ -132,7 +132,6 @@ function cleadirectordata(){
 	$('.citydirp').text('');
 	$('.pricedirp').text('');
 	$('.dirPhone').val('');
-	
 	
 	$('.namedir').val('');
 	$('.skilldir').text('请选择');

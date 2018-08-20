@@ -287,7 +287,7 @@ function gathermethod(){
 			}
 		})
 			
-		$('.namegatherp').text('');
+/*		$('.namegatherp').text('');
 		$('.oldgatherp').text('');
 		$('.pricegatherp').text('');
 		$('.gendergatherp').text('');
@@ -296,7 +296,10 @@ function gathermethod(){
 		$('.racegatherp').attr('value','');
 		$('.citygatherp').text('');
 		$('.cityValue').attr('cityid','');
-		$('.phonegatherpe').text('');
+		$('.phonegatherpe').text('');*/
+		
+		
+		var s = $('.gendergather').attr('key');
 		
 		 if(phone!=''&&phone!=null&&phone!=undefined){
 				if(!checkMobile(phone)){
@@ -335,7 +338,6 @@ function gathermethod(){
 					$('.setting').hide();
 					$('.staffbox').hide();
 					$('.role').hide();
-					
 					$('.staffbox').removeClass('pickborder');
 					$('.directorbox').removeClass('pickborder');
 					getlistdatap();//获取人数据
