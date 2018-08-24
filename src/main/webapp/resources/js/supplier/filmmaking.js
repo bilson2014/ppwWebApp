@@ -520,6 +520,7 @@ function getlistdatac(){
 		
 		$('.clothingbox').hide();
 		$('.propsbox').hide();
+		$('.customeRole').hide();
 		 
 		
 		if (res.length==0){
