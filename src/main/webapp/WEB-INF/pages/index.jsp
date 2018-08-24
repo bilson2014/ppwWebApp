@@ -475,12 +475,10 @@
 						class="logo9" alt="企鹊桥" src="/resources/images/index/friend5.png">
 					<img class="logo10" alt="大德通众包平台"
 						src="/resources/images/index/friend6.png"> <img
-						class="logo11" alt="专利申请"
+						class="logo11" alt="画册定制"
 						src="/resources/images/index/friend7.jpg">
 				</div>
-
 			</div>
-
 			<!-- end-->
 			<jsp:include flush="true" page="foot.jsp"></jsp:include>
 		</div>
@@ -488,8 +486,6 @@
 	</div>
 </body>
 
-
-<input id ='inputText' value="dasdada">
 <script type="text/javascript" src="${jqueryJs}"></script>
 <script type="text/javascript" src="${ykJs}"></script>
 <script type="text/javascript" src="https://player.youku.com/jsapi"></script>
@@ -497,6 +493,5 @@
 <script type="text/javascript" src="${indexJs}"></script>
 <script type="text/javascript" src="${commonJs}"></script>
 <%-- <script type="text/javascript" src="${figletJs}"></script> --%>
-
 
 </html>

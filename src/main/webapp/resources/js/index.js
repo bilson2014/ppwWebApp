@@ -19,7 +19,7 @@ $().ready(function() {
 		initScroll();
 	}); 
 	merchantBridge();
-	colorEgg();
+//	colorEgg();
 });
 
 function initBanner(){
@@ -711,7 +711,7 @@ function logoEven(){
 		window.open('http://www.dadetong.com/');
 	});
 	$('.logo11').off('click').on('click',function(){
-		window.open('http://www.ciprun.com/');
+		window.open('http://www.mayiin.com/');
 	});	
 }
 
