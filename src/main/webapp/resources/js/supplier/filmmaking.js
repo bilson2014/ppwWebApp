@@ -519,6 +519,8 @@ function getlistdatac(){
 	loadData(function(res){	
 		
 		$('.clothingbox').hide();
+		$('.propsbox').hide();
+		 
 		
 		if (res.length==0){
 			$('.writepng').show();
