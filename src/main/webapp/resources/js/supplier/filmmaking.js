@@ -517,6 +517,9 @@ function getlistdatad(){
 function getlistdatac(){
 	$('.setCard').text('');
 	loadData(function(res){	
+		
+		$('.clothingbox').hide();
+		
 		if (res.length==0){
 			$('.writepng').show();
 		}else {
