@@ -218,7 +218,7 @@ left:200;
 </head>
 
 
-<input id="imgPath" type="hidden" val="${file_locate_storage_path}">
+<input id="imgPath" type="hidden" value="${file_locate_storage_path}">
 
 <body>
 	<div class="top">
