@@ -84,7 +84,7 @@
 .scrollDiv{
 height: auto !important;
 overflow: auto;
-max-height: 270px;
+/* max-height: 270px; */
 }
 
 .scrollDivTop{
@@ -229,8 +229,8 @@ left:200;
 </head>
 
 
-<%-- <input id="imgPath" type="hidden" value="${file_locate_storage_path}"> --%>
-<input id="imgPath" type="hidden" value="http://resource.apaipian.com/resource/">
+ <input id="imgPath" type="hidden" value="${file_locate_storage_path}"> 
+<!-- <input id="imgPath" type="hidden" value="http://resource.apaipian.com/resource/"> -->
 
 <body>
 	<div class="top">
@@ -294,7 +294,7 @@ left:200;
 		    
 		    <div class="pageMenu">
 		        <div class="typeMenu">分类</div>		  
-		        <div class="typeUp"></div>	
+		        <div class="typeUp hide"></div>	
 		            <div class="scrollDiv">
 		                <div id="findPage0" class="activeMenu findPage" data-id="*">全部</div>
 				        <div id="findPage1" class="findPage" data-id="0">轿车</div>
@@ -307,7 +307,7 @@ left:200;
 				        <div id="findPage9" class="findPage" data-id="7">皮卡</div>
 				        <div id="findPage10" class="findPage" data-id="8">客车</div>
 				     </div>   
-		        <div class="typeDown"></div>
+		        <div class="typeDown hide"></div>
 		    </div>
 		    
 		    
