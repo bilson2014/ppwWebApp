@@ -636,7 +636,7 @@ $().ready(function() {
 				if(now > check){			  
 					$('.pageMenu').css('top',now - check +60);
 					$('.pageMenu').show();
-					$('.topMenu').css('top',now - check +60);
+					$('.topMenu').css('top',now - check);
 					$('.topMenu').show();
 				}else{
 					$('.pageMenu').css('top',20);

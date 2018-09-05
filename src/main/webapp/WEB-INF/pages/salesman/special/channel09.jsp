@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
 <meta name=“viewport” content=“width=device-width; initial-scale=1.0”>  
-<meta name="keywords" content="淘宝视频制作,淘宝视频拍摄,淘宝主图视频,淘宝主图视频制作,产品主图视频,电商视频拍摄,淘宝短视频制作,淘宝视频官方拍摄基地">
-<meta name="description" content="拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，品质遥遥领先。淘宝主图视频制作，电商产品视频拍摄，官方授权，价格公道，极速出片。淘宝短视频制作就上拍片网！">
-<title>淘宝短视频制作-产品主图视频-电商视频拍摄-淘宝视频官方拍摄基地-拍片网</title>
+<meta name="keywords" content="汽车宣传片制作,汽车广告片拍摄,新车发布会视频">
+<meta name="description" content="汽车宣传片制作，就上拍片网。对于汽车行业而言图文时代逐渐老去，低品质UGC视频让受众烦透了不走心的态度，制作的宣传片才是一款好车的标配。拍摄汽车广告片、新车发布会视频，我们更专业。">
+<title>汽车宣传片制作-汽车广告片拍摄-新车发布会视频-拍片网</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/salesman/special/css.css">
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
@@ -166,7 +166,9 @@ color:#fe5453 !important;
 }
 
 .activeMenuMore{
-color:#fe5453 !important;
+background:#999 !important;
+color:white !important;
+
 }
 
 .banner { position: relative;  margin-top:1px; height: auto !important; overflow: hidden; }
@@ -192,17 +194,20 @@ height:0 !important
     position:absolute;
     top: -12px;
     left: 9px;
+    z-index:99;
 }
 
 .topMenu div{
 
     height: 24px !important; 
     width: 88px;
-    background:#fff;
+    background:white;
+    color:#999;
     text-align:center;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
+    z-index:99;
    
 }
 
@@ -247,8 +252,11 @@ left:200;
 	
 	<div class="main_top">
 		<div class="container newCon">
-			<h2 class="aa">[ 电商  + 视频 ]<br>内容化时代已经到来</h2>
-		    <p style="text-align: center;">淘宝已从追求效率的交易市场平台升级成为追求乐趣的内容化社区化的消费媒体平台，仅2017年4月到2017年12月，淘宝短视频播放量就由原来的3800万次上升至18亿次，净增长4700%。对于商家而言，想要在新的内容生态竞争模式下取得销量的突破，制作精良的短视频无疑是当前最好的选择。运用短视频引爆内容流量，抢占公域导购矩阵，瓜分内容营销红利。拍片网于2018年3月被淘宝指定为官方拍摄基地，视频制作服务覆盖98%类目，作品品质遥遥领先。</p>
+			<h2 class="aa">[ 汽车+视频 ]<br>汽车内容“人格化”将重塑品牌形象</h2>
+		    <p style="text-align: center;">图文时代逐渐老去。
+<br/>低品质UGC视频让受众烦透了不走心的态度。
+<br/>…… <br/>
+汽车视频人格化时代已经到来，2017年汽车视频播放量增长10亿+，极大提高了品牌曝光率和消费者信赖感，你的每一支汽车视频都会向消费者传递你的气质、品格和调性；做好视频，做好汽车。拍片网汽车行业创意视频部专注于汽车产业视频策划创意、制作及传播，愿为你做好每一支具有品牌人格化视频。</p>
 	        <div class="toshare"> 
 	         <ul class="share">
 	                            <li>分享到 : </li>
