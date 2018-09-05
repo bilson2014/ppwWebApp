@@ -636,12 +636,12 @@ $().ready(function() {
 				if(now > check){			  
 					$('.pageMenu').css('top',now - check +60);
 					$('.pageMenu').show();
-					$('.topMenu').css('top',now - check);
+					$('.topMenu').css('top',now - check + 4);
 					$('.topMenu').show();
 				}else{
 					$('.pageMenu').css('top',20);
 					$('.pageMenu').show();
-					$('.topMenu').css('top',-12);
+					$('.topMenu').css('top',-20);
 					$('.topMenu').show();
 				}
 				if(total < 500){

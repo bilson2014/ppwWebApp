@@ -192,9 +192,15 @@ height:0 !important
 
 .topMenu{
     position:absolute;
-    top: -12px;
+    top: -20px;
     left: 9px;
     z-index:99;
+    background: #f6f6f6;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    width:100%;
 }
 
 .topMenu div{
