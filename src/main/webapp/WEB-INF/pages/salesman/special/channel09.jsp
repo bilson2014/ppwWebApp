@@ -218,7 +218,8 @@ left:200;
 </head>
 
 
-<input id="imgPath" type="hidden" value="${file_locate_storage_path}">
+<%-- <input id="imgPath" type="hidden" value="${file_locate_storage_path}"> --%>
+<input id="imgPath" type="hidden" value="http://resource.apaipian.com/resource/">
 
 <body>
 	<div class="top">
