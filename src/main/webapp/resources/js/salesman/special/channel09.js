@@ -263,7 +263,7 @@ var arrayItem = [
 {"id":"33","title":"本田 Honda-广本缤智","link":"https://www.apaipian.com/play/2319_4393.html","url":"group1/M01/00/E0/CgpsbFuM_Z6AT205AAFZy0Grd3o676.jpg"},
 {"id":"33","title":"吉利 Geely -博越-冰雪试驾篇","link":"https://www.apaipian.com/play/2319_4396.html","url":"group1/M00/00/41/CgpmTlhmUTqAIYaIAAHcFvFBBu0088.jpg"},
 {"id":"33","title":"起亚 KIA - 智跑","link":"https://www.apaipian.com/play/2319_5826.html","url":"group1/M01/01/17/CgpmTlt0BKiAP4B-AAHnLnoeho4776.jpg"},
-{"id":"33","title":"起亚 KIA-KX5-滑翔测试篇","url":"https://www.apaipian.com/play/2319_5872.html","undefined":"group1/M01/00/DC/CgpsbFt0B32ASnAUAAHLhyTZPiE684.jpg"},
+{"id":"33","title":"起亚 KIA-KX5-滑翔测试篇","link":"https://www.apaipian.com/play/2319_5872.html","url":"group1/M01/00/DC/CgpsbFt0B32ASnAUAAHLhyTZPiE684.jpg"},
 {"id":"33","title":"奔驰 Mercedes Benz-GLA","link":"https://www.apaipian.com/play/2319_9096.html","url":"group1/M01/01/17/CgpmTlt6Mw6AO-AqAAIgbTQTCZQ714.jpg"},
 {"id":"33","title":"本田 Honda-Road music","link":"https://www.apaipian.com/play/2319_9353.html","url":"group1/M01/01/17/CgpmTlt6N4KAKRtCAAGDvF6iQ-U917.jpg"},
 {"id":"33","title":"汉腾 - X7","link":"https://www.apaipian.com/play/2319_12698.html","url":"group1/M01/01/15/Cgpw7Ft6Q82AISGFAAHRoRhxyCQ553.jpg"},
