@@ -2,6 +2,62 @@
  var isChange = 0;
  var sw;
  var lastPos = 0;
+ var link = [
+{"id":"00","title":"1","link":"03-憋尿也要看完它-奔驰4MATIC 雪地工作让你的驾驶更安全 超清.mp4",},
+{"id":"00","title":"2","link":"04-奥迪基因 超清.mp4",},
+{"id":"00","title":"3","link":"13-宝马BMW  i8 互联驾驶科技宣传片_超清.mp4",},
+{"id":"00","title":"4","link":"31-车主故事-最长的1秒钟_超清.mp4",},
+{"id":"00","title":"5","link":"34-73年,把一件事做彻底，造真正的SUV！”切诺基.mp4",},
+{"id":"00","title":"6","link":"36-“梦想只有做到，世界才会看到”比亚迪企业形象宣传片-超清 高清.mp4",},
+{"id":"00","title":"7","link":"63- WORLD-S MOST COMFORTABLE TRUCKS YOU COULD LIVE IN.mp4",},
+{"id":"00","title":"8","link":"11- 捷豹 F-TYPE 非你莫属微电影 (Jaguar F-Type Chinese Movie) - YouTube.mp4",},
+{"id":"00","link":"11-2013 大眾汽車集團．跑車微電影《極速無間》齊秦版 - YouTube.mp4",},
+{"id":"00","link":"11-LEXUS ｜微電影《影藏》李李仁 深情鉅獻 暖心上映[HD,1280x720, Mp4].mp4",},
+{"id":"00","link":"01-胡歌代言北京现代领动微电影正式版[Low,480x360, Mp4]",},
+{"id":"01","link":"31- abc好車網 ｜微電影《二手心選擇》 女生篇｜留言抽五千元禮券 - YouTube.mp4",},
+{"id":"01","link":"31- NISSAN晉級的菜鳥微電影 - YouTube.mp4",},
+{"id":"01","link":"31-《神奇爸爸》全新BMW X3出品 赵又廷、宋佳联袂出演 微电影 - YouTube.mp4",},
+{"id":"01","link":"31-方語昕微電影演出_TOYOTA汽車微電影【愛情也需要保養】 - YouTube.mp4",},
+{"id":"01","link":"63-5 Future Trucks & Buses YOU MUST SEE - YouTube.mp4",},
+{"id":"01","link":"63-10 Future Trucks u0026 Buses YOU MUST SEE[HD,1280x720, Mp4].mp4",},
+{"id":"01","link":"63-Top 7 Best & Comfortable Trucks in the World 2018 - YouTube.mp4",},
+{"id":"01","link":"25- Unboxing the McLaren 720S – McLaren’s key Ferrari 488 GTB rival | Geneva motor show 2017 | Autocar - YouTube.mp4",},
+{"id":"01","title":"1","link":"36-【商業廣告】Toyota高都 相信自己 成功是留給堅持下去的人 微電影 HD - YouTube.mp4",},
+{"id":"01","title":"2","link":"40-本田  ホンダNバン (Honda N-Van  Japanese) - YouTube.mp4",},
+{"id":"01","title":"3","link":"41-冠群汽車微電影】正片篇 - YouTube(1).mp4",},
+{"id":"01","title":"4","link":"51-希望我的陪伴能永遠在你身邊】詮峰汽車微電影 - YouTube.mp4",},
+{"id":"02","title":"5","link":"73-GMC-2019 GMC Sierra Denali - YouTube.mp4",},
+{"id":"03","title":"6","link":"40- BYD Max 2018 promo - YouTube.mp4",},
+{"id":"04","title":"8","link":"40-宝骏 360-2018 WULING BAOJUN 360 Iklan TV Commercial Ad TVC CF - 情侣版 China - YouTube.mp4",},
+{"id":"05","title":"8","link":"40-宝骏 360-2018 WULING BAOJUN 360 Iklan TV Commercial Ad TVC CF-家庭版 - China - YouTube.mp4",},
+{"id":"07",},
+{"id":"10",},
+{"id":"11",},
+{"id":"12",},
+{"id":"13",},
+{"id":"14",},
+{"id":"15",},
+{"id":"16",},
+{"id":"17",},
+{"id":"20",},
+{"id":"21",},
+{"id":"22",},
+{"id":"23",},
+{"id":"24",},
+{"id":"25",},
+{"id":"26",},
+{"id":"27",},
+{"id":"30",},
+{"id":"31",},
+{"id":"32",},
+{"id":"33",},
+{"id":"34",},
+{"id":"35",},
+{"id":"36",},
+{"id":"37",},
+{"id":"40",},
+
+]
  
 $().ready(function() {
 	
@@ -19,7 +75,12 @@ $().ready(function() {
 		initScroll();
 	}); 
 	merchantBridge();
-//	colorEgg();
+	colorEgg();
+	
+/*	var s = link;
+	for (var int = 0; int < s.length; int++) {
+		console.info(s[int].link);
+	}*/
 });
 
 function initBanner(){
@@ -31,7 +92,7 @@ function initBanner(){
 		paginationClickable : true,
 		loop : true,
 		grabCursor : true,
-		 autoplay: {
+		autoplay: {
 		        delay: 3000,
 		        disableOnInteraction: false,
 		  },
@@ -728,7 +789,7 @@ function colorEgg() {
 			+ "/**////  \n" + "/**  \n" + "/**  \n" + "/** \n" + "// "
     console.info(p, "color:#fe5453;font-size:28px");
 	console.info('欢迎加入拍片网');
-	console.info("%c迪迪周末有什么安排吗"," text-shadow: 0 1px 0 #ccc,0 2px 0 #e9e9e9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
+	console.info("%c迪迪周三有什么安排吗"," text-shadow: 0 1px 0 #ccc,0 2px 0 #e9e9e9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
 	console.log("%c\n       ", "font-size:310px;background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533884021845&di=b5b49d19a17ddfe860f2e8d65f1877e5&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9e3df8dcd100baa14b5e46424d10b912c9fc2edc.jpg') repeat");
 	console.info("%c迪迪每天好心情", 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
 	console.info("%c","padding:50px 300px;line-height:120px;background:url('https://www.apaipian.com/resources/images/index/bannerLogoR.png') no-repeat");

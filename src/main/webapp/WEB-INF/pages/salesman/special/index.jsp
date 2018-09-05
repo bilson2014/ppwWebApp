@@ -73,7 +73,7 @@
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
-								<a href="http://www.apaipian.com/special/channel02.html" class="pic"><i></i><span># 互联网金融 #</span><img src="/resources/images/salesman/special/pd002.jpg" alt="互联网金融"/></a>
+								<a href="http://www.apaipian.com/special/channel09.html" class="pic"><i></i><span># 汽车行业 #</span><img src="/resources/images/salesman/special/pd009.jpg" alt="汽车行业"/></a>
 							</dd>
 							<dd>
 								<a href="http://www.apaipian.com/special/channel05.html" class="pic"><i></i><span># 医疗美容 #</span><img src="/resources/images/salesman/special/pd005.jpg" alt="医疗美容"/></a>
@@ -84,15 +84,19 @@
 						</dl>
 					</div>
 				</li>
+				
+				
+				           
+				
 				<li class="small">
 					<div class="kuang">
 						<dl class="picDl jingxuan">
 							<dd>
 								<a href="http://www.apaipian.com/special/channel03.html" class="pic"><i></i><span># 发布会 #</span><img src="/resources/images/salesman/special/pd003.jpg" alt="发布会"/></a>
 							</dd>
-							<dd>
-								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 暖场 #</span><img src="/resources/images/salesman/special/pd12.jpg" alt="暖场视频"/></a>
-							</dd>
+							  <dd>
+								<a href="http://www.apaipian.com/special/channel02.html" class="pic"><i></i><span># 互联网金融 #</span><img src="/resources/images/salesman/special/pd002.jpg" alt="互联网金融"/></a>
+							</dd>							
 							<dd>
 								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 美容/医疗 #</span><img src="/resources/images/salesman/special/pd02.jpg" alt="医疗美容宣传片"/></a>
 							</dd>
@@ -132,6 +136,11 @@
 						</dl>
 					</div>
 				</li>
+				
+				<!-- <dd>
+								<a href="http://www.apaipian.com/special/channel.html" class="pic"><i></i><span># 暖场 #</span><img src="/resources/images/salesman/special/pd12.jpg" alt="暖场视频"/></a>
+							</dd> -->
+				
 				<li class="small">
 					<div class="kuang">
 						<dl class="picDl jingxuan">
