@@ -634,12 +634,12 @@ $().ready(function() {
 		var total = bottom - now;
 		if(divHeight > 606){
 				if(now > check){			  
-					$('.pageMenu').css('top',now - check +60);
+					$('.pageMenu').css('top',now - check + 7);
 					$('.pageMenu').show();
 					$('.topMenu').css('top',now - check + 4);
 					$('.topMenu').show();
 				}else{
-					$('.pageMenu').css('top',20);
+					$('.pageMenu').css('top',-17);
 					$('.pageMenu').show();
 					$('.topMenu').css('top',-20);
 					$('.topMenu').show();
@@ -650,8 +650,8 @@ $().ready(function() {
 					$('.topMenu').css('top',divHeight - 375 - 73);
 				}
 		}else{
-			 $('.pageMenu').css('top',20);
-			 $('.topMenu').css('top',-12);
+			 $('.pageMenu').css('top',-17);
+			 $('.topMenu').css('top',-20);
 		}
 	});
 	

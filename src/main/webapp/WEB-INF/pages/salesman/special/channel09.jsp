@@ -76,14 +76,15 @@
 	font-size:14px;
 	color:#999;
 	letter-spacing: 1px;
-	left: -70px;
-    top: 20px;
+	left: -90px;
+    top: -20px;
     max-height:200px;
 }
 
 .scrollDiv{
 height: auto !important;
 overflow: auto;
+    background: transparent !important;
 /* max-height: 270px; */
 }
 
@@ -107,20 +108,21 @@ overflow: auto;
 ::-webkit-scrollbar{width:14px;}
 
 .pageMenu  div{
-    height: 30px;
-    width: 70px;
+    height: 24px;
+    width: 88px;
     background:#fff;
     text-align:center;
     cursor: pointer;
 }
 
 .typeMenu{
-background: #B3B3B3 !important;
+background: #fe5453 !important;
 height: 24px !important;
 border-radius: 2px 2px 0 0;
 color:white !important;
 line-height:24px !important;
 z-index:99;
+font-weight:500;
 
 }
 
@@ -158,11 +160,13 @@ z-index:99;
   }
 
 .pageMenu div{
-  line-height:30px;
+  line-height:24px;
+  margin: 2px 0px 2px 0px;
 }
 
 .activeMenu{
-color:#fe5453 !important;
+color:white !important;
+background:#999 !important;
 }
 
 .activeMenuMore{
@@ -193,7 +197,7 @@ height:0 !important
 .topMenu{
     position:absolute;
     top: -20px;
-    left: 9px;
+    left: 4px;
     z-index:99;
     background: #f6f6f6;
     height: 30px;
@@ -215,6 +219,13 @@ height:0 !important
     vertical-align: middle;
     z-index:99;
    
+}
+
+
+font{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
@@ -293,7 +304,7 @@ left:200;
 		    </div>
 		    
 		    <div class="pageMenu">
-		        <div class="typeMenu">分类</div>		  
+		        <div class="typeMenu">车型</div>		  
 		        <div class="typeUp hide"></div>	
 		            <div class="scrollDiv">
 		                <div id="findPage0" class="activeMenu findPage" data-id="*">全部</div>
