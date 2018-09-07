@@ -89,7 +89,7 @@
 								<form:input type="hidden" path="teamPhotoUrl" id="user_img_url" />
 							</div>
 							<div class="upload-info">
-								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过10M</label>
 							</div>
 							<div class="upload-btn">
 								<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -218,7 +218,7 @@
 						<div class="title">上传资质</div>
 						<div class="user-img-content" id="user-img-contentInfo">
 							<div class="upload-info">
-								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过250KB</label>
+								<label>您可以上传JPG、GIF或PNG格式的图片文件，文件大小不能超过10M</label>
 							</div>
 							<div class="logoItem">
 								<div class="user-icon">

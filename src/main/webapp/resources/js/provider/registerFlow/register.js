@@ -436,9 +436,14 @@ function userpicInfo(){
 		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
+		compress :{
+		    compressSize:250 * 1024,
+		    width:512,
+		    height:512,
+		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 10 * 1024 * 1024,
 		duplicate: true//允许重复上传同一个
 	});
 	uploader.on('uploadSuccess', function(file,response) {
@@ -446,7 +451,7 @@ function userpicInfo(){
 		if(path != '' && path != null){
 			if(path.indexOf('false@error') > -1){
 				if(path.indexOf("error=1") > -1){
-					showErrorLeader($('.user-img-content'),'文件超过最大限制');
+					showErrorLeader($('.user-img-content'),'图片处理失败,请联系客服协助您上传(400-660-9728)');
 				} else if(path.indexOf("error=2") > -1){
 					showErrorLeader($('.user-img-content'),'格式不正确');
 				}
@@ -481,9 +486,14 @@ function userpicInfoYE(){
 		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
+		compress :{
+		    compressSize:250 * 1024,
+		    width:512,
+		    height:512,
+		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 10 * 1024 * 1024,
 		duplicate: true//允许重复上传同一个
 	});
 	uploaderInfo.on('uploadSuccess', function(file,response) {
@@ -491,7 +501,7 @@ function userpicInfoYE(){
 		if(path != '' && path != null){
 			if(path.indexOf('false@error') > -1){
 				if(path.indexOf("error=1") > -1){
-					showErrorLeader($('.user-img-content'),'文件超过最大限制');
+					showErrorLeader($('.user-img-content'),'图片处理失败,请联系客服协助您上传(400-660-9728)');
 				} else if(path.indexOf("error=2") > -1){
 					showErrorLeader($('.user-img-content'),'格式不正确');
 				}
@@ -526,9 +536,14 @@ function userpicInfoZCard(){
 		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
+		compress :{
+		    compressSize:250 * 1024,
+		    width:512,
+		    height:512,
+		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 10 * 1024 * 1024,
 		duplicate: true//允许重复上传同一个
 	});
 	uploaderZ.on('uploadSuccess', function(file,response) {
@@ -536,7 +551,7 @@ function userpicInfoZCard(){
 		if(path != '' && path != null){
 			if(path.indexOf('false@error') > -1){
 				if(path.indexOf("error=1") > -1){
-					showErrorLeader($('.user-img-content'),'文件超过最大限制');
+					showErrorLeader($('.user-img-content'),'图片处理失败,请联系客服协助您上传(400-660-9728)');
 				} else if(path.indexOf("error=2") > -1){
 					showErrorLeader($('.user-img-content'),'格式不正确');
 				}
@@ -571,9 +586,14 @@ function userpicInfoBCard(){
 		    extensions: 'jpg,png,jpeg',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
+		compress :{
+		    compressSize:250 * 1024,
+		    width:512,
+		    height:512,
+		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 10 * 1024 * 1024,
 		duplicate: true//允许重复上传同一个
 	});
 	uploaderB.on('uploadSuccess', function(file,response) {
@@ -581,7 +601,7 @@ function userpicInfoBCard(){
 		if(path != '' && path != null){
 			if(path.indexOf('false@error') > -1){
 				if(path.indexOf("error=1") > -1){
-					showErrorLeader($('.user-img-content'),'文件超过最大限制');
+					showErrorLeader($('.user-img-content'),'图片处理失败,请联系客服协助您上传(400-660-9728)');
 				} else if(path.indexOf("error=2") > -1){
 					showErrorLeader($('.user-img-content'),'格式不正确');
 				}

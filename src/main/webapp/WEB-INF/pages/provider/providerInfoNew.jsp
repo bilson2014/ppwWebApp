@@ -193,7 +193,7 @@
 											<input type="hidden" id="user_img_url" value="">
 										</div>
 										<div class="upload-info">
-											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过250KB</label>
+											<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过10M</label>
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->
@@ -304,7 +304,7 @@
 	      		                    <div class="title">上传资质</div>
 		      		                <div class="user-img-content" id="user-img-contentInfo">
 		      		                <div class="upload-info">
-										<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过250KB</label>
+										<label>您上可以上传JPG、	GIF或PNG格式的文件，文件大小不能超过10M</label>
 									</div>
 										 <div class="logoItem"> 
 											<div class="user-icon">
@@ -817,7 +817,7 @@
 																			<input type="hidden" id='pic-LD-url' data-change="0">
 																	</li>
 																	<li>
-																		<span>仅支持小于250KB的png/jpg格式,推荐1280*720分辨率</span>
+																		<span>仅支持小于10M的png/jpg格式,推荐1280*720(16:9)分辨率</span>
 																		<label>*</label>
 																	</li>
 																</ul>

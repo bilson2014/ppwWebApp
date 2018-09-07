@@ -184,7 +184,7 @@
 							</c:if>
 						</li>
 						<li>
-							<span>仅支持小于250KB的png/jpg格式,推荐1280*720分辨率</span>
+							<span>仅支持小于10M的png/jpg格式,推荐1280*720(16:9)分辨率</span>
 							<label>*</label>
 						</li>
 					</ul>

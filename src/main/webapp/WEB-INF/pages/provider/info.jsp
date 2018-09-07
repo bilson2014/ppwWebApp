@@ -107,7 +107,7 @@
 											<input type="hidden" id="user_img_url" value="/resources/images/provider/initLogo.png">
 										</div>
 										<div class="upload-info">
-											<label>仅支持小于250KB的png/jpg格式，推荐120*120分辨率</label>
+											<label>仅支持小于10M的png/jpg/jpeg格式，推荐120*120(1:1)分辨率</label>
 										</div>
 										<div class="upload-btn">
 											<!-- <button class="btn btn-primary" id="uploadBt" type="button">上传头像</button> -->

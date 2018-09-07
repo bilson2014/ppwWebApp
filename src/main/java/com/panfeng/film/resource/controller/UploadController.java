@@ -35,7 +35,7 @@ public class UploadController extends BaseController{
 	@RequestMapping("/web/upload")
 	public BaseMsg getAllProvince(HttpServletRequest request,MultipartFile file,String oldUrl) {
 		// 检测视频是否大于限制
-		final BaseMsg msg = checkFile(file,1024l);
+		final BaseMsg msg = checkFile(file,null);
 		if (0 == msg.getCode()) {
 			String fileId = FastDFSClient.uploadFile(file);
 			//删除旧地址
@@ -76,7 +76,7 @@ public class UploadController extends BaseController{
 				// 检查图片大小
 				if (fileSize > img_MaxSize * 1024) {
 					// 图片文件超过250K上限
-					return new BaseMsg(2, "图片文件超过上限");
+					return new BaseMsg(2, "图片处理失败,请联系客服协助您上传(400-660-9728)");
 				}
 				break;
 			case 2: // other
