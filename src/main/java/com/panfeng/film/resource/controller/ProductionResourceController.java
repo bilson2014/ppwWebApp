@@ -290,9 +290,17 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/actor/delete")
 	public BaseMsg deleteActor(@RequestBody final PmsProductionActor actor) {
 		BaseMsg result = new BaseMsg();
-		PmsProductionActor old = pmsProductionActorFacade.getById(actor.getId());
-		delImg(old.getPhoto(),null);
-		pmsProductionActorFacade.deleteByIds(new long[] { actor.getId() });
+		/*PmsProductionActor old = pmsProductionActorFacade.getById(actor.getId());
+		delImg(old.getPhoto(),null);*/
+		List<PmsProductionActor> deletes=pmsProductionActorFacade.deleteByIds(new long[] { actor.getId() });
+		if(ValidateUtil.isValid(deletes)) {
+			for(PmsProductionActor delete:deletes) {
+				String delImgStr=delete.getPhoto();
+				if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+					delImg(delete.getPhoto(),null);
+				}
+			}
+		}
 		return result;
 	}
 
@@ -324,9 +332,17 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/director/delete")
 	public BaseMsg deleteDirector(@RequestBody final PmsProductionDirector director) {
 		BaseMsg result = new BaseMsg();
-		PmsProductionDirector old = pmsProductionDirectorFacade.getById(director.getId());
-		delImg(old.getPhoto(),null);
-		pmsProductionDirectorFacade.deleteByIds(new long[] { director.getId() });
+//		PmsProductionDirector old = pmsProductionDirectorFacade.getById(director.getId());
+//		delImg(old.getPhoto(),null);
+		List<PmsProductionDirector> deletes=pmsProductionDirectorFacade.deleteByIds(new long[] { director.getId() });
+		if(ValidateUtil.isValid(deletes)) {
+			for(PmsProductionDirector delete:deletes) {
+				String delImgStr=delete.getPhoto();
+				if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+					delImg(delete.getPhoto(),null);
+				}
+			}
+		}
 		return result;
 	}
 
@@ -412,9 +428,17 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/studio/delete")
 	public BaseMsg deleteStudio(@RequestBody final PmsProductionStudio studio) {
 		BaseMsg result = new BaseMsg();
-		PmsProductionStudio old = pmsProductionStudioFacade.getById(studio.getId());
-		delImg(old.getPhoto(),null);
-		pmsProductionStudioFacade.deleteByIds(new long[] { studio.getId() });
+		/*PmsProductionStudio old = pmsProductionStudioFacade.getById(studio.getId());
+		delImg(old.getPhoto(),null);*/
+		List<PmsProductionStudio> deletes=pmsProductionStudioFacade.deleteByIds(new long[] { studio.getId() });
+		if(ValidateUtil.isValid(deletes)) {
+			for(PmsProductionStudio delete:deletes) {
+				String delImgStr=delete.getPhoto();
+				if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+					delImg(delete.getPhoto(),null);
+				}
+			}
+		}
 		return result;
 	}
 
@@ -469,9 +493,17 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/cameraman/delete")
 	public BaseMsg cameramanDelete(@RequestBody final PmsProductionCameraman cameraman) {
 		BaseMsg result = new BaseMsg();
-		PmsProductionCameraman old = pmsProductionCameramanFacade.getById(cameraman.getId());
-		delImg(old.getPhoto(),null);
-		pmsProductionCameramanFacade.deleteByIds(new long[] { cameraman.getId() });
+		/*PmsProductionCameraman old = pmsProductionCameramanFacade.getById(cameraman.getId());
+		delImg(old.getPhoto(),null);*/
+		List<PmsProductionCameraman> deletes=pmsProductionCameramanFacade.deleteByIds(new long[] { cameraman.getId() });
+		if(ValidateUtil.isValid(deletes)) {
+			for(PmsProductionCameraman delete:deletes) {
+				String delImgStr=delete.getPhoto();
+				if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+					delImg(delete.getPhoto(),null);
+				}
+			}
+		}
 		return result;
 	}
 	
@@ -538,9 +570,17 @@ public class ProductionResourceController extends BaseController {
 	@RequestMapping("/personnel/delete")
 	public BaseMsg personnelDelete(@RequestBody final PmsProductionPersonnel personnel) {
 		BaseMsg result = new BaseMsg();
-		PmsProductionPersonnel old = pmsProductionPersonnelFacade.getById(personnel.getId());
-		delImg(old.getPhoto(),null);
-		pmsProductionPersonnelFacade.deleteByIds(new long[] { personnel.getId() });
+		/*PmsProductionPersonnel old = pmsProductionPersonnelFacade.getById(personnel.getId());
+		delImg(old.getPhoto(),null);*/
+		List<PmsProductionPersonnel> deletes=pmsProductionPersonnelFacade.deleteByIds(new long[] { personnel.getId() });
+		if(ValidateUtil.isValid(deletes)) {
+			for(PmsProductionPersonnel delete:deletes) {
+				String delImgStr=delete.getPhoto();
+				if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+					delImg(delete.getPhoto(),null);
+				}
+			}
+		}
 		return result;
 	}
 
@@ -607,9 +647,17 @@ public class ProductionResourceController extends BaseController {
 		@RequestMapping("/costume/delete")
 		public BaseMsg costumeDelete(@RequestBody final PmsProductionCostume costume) {
 			BaseMsg result = new BaseMsg();
-			PmsProductionCostume old = pmsProductionCostumeFacade.getById(costume.getId());
-			delImg(old.getPhoto(),null);
-			pmsProductionCostumeFacade.deleteByIds(new long[] { costume.getId() });
+			/*PmsProductionCostume old = pmsProductionCostumeFacade.getById(costume.getId());
+			delImg(old.getPhoto(),null);*/
+			List<PmsProductionCostume> deletes=pmsProductionCostumeFacade.deleteByIds(new long[] { costume.getId() });
+			if(ValidateUtil.isValid(deletes)) {
+				for(PmsProductionCostume delete:deletes) {
+					String delImgStr=delete.getPhoto();
+					if(delete.getStatus()!=1 && ValidateUtil.isValid(delImgStr)) {
+						delImg(delete.getPhoto(),null);
+					}
+				}
+			}
 			return result;
 		}
 		
