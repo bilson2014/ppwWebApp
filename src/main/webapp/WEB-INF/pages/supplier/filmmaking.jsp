@@ -130,7 +130,7 @@
 						<p class='pickpac'>包装师</p>
 						<p class='pickcol'>调色师</p>
 						<p class='pickprop'>道具师</p>
-						<p class='pickart'>美术师</p>
+						<!-- <p class='pickart'>美术师</p> -->
 						<p class='pickcos'>服装师</p>
 						<p class='pickdre'>化妆师</p>
 						<p class='pickmix'>录音师</p>
@@ -796,6 +796,8 @@
 			   </div>
            </div>
       </div>
+      
+
 
 
 		<script src="${jqueryJs }"></script>
