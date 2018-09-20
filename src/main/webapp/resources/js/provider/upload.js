@@ -1,6 +1,6 @@
-var image_max_size = 1024*250; // 250KB
+var image_max_size = 10*1024*1024; // 10M
 var video_max_size = 200*1024*1024; // 200MB
-var image_err_msg = '图片大小超出250KB上限,请重新上传!';
+var image_err_msg = '图片大小超出10M上限,请重新上传!';
 var video_err_msg = '视频大小超出200M上限,请重新上传!';
 var curCount = 3;
 var InterValObj;
@@ -105,7 +105,7 @@ $().ready(function(){
 				fileSingleSizeLimit : image_max_size,
 				accept :{
 					title: 'Images',
-					extensions: 'jpg,png',
+					extensions: 'jpg,png,jpeg',
 					mimeTypes: 'image/jpeg,image/png'
 				}
 			});

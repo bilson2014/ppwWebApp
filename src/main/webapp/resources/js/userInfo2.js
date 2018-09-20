@@ -312,9 +312,14 @@ function userpicInfo(){
 		    extensions: 'jpg,png',
 		    mimeTypes: 'image/jpeg,image/png'
 		},
+		compress :{
+		    compressSize:250 * 1024,
+		    width:512,
+		    height:512,
+		},
 		resize : true,
 		chunked : false,
-		fileSingleSizeLimit : 1024*2048,
+		fileSingleSizeLimit : 10*1024*1024,
 		duplicate: true//允许重复上传同一个
 	});
 	uploader.on('uploadSuccess', function(file,response) {

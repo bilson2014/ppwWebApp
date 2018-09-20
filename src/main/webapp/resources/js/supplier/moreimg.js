@@ -58,7 +58,7 @@ var imgUploads = {
 					cutUpload(path);
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});

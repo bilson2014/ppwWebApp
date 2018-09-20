@@ -7,7 +7,7 @@ var upload_profession;
 var upload_cameraman;
 var upload_clothing;
 var upload_props;
-var image_max_size = 1024*1024; // 250KB
+var image_max_size = 1024*1024*10; // 250KB
 //头像裁剪参数 start
 var jcrop_api;
 var x;
@@ -495,7 +495,7 @@ var imgUpload1 = {
 					cutUpload(path,'filePicker1');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -514,7 +514,7 @@ var imgUpload1 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});		
 		}		
@@ -563,7 +563,7 @@ var imgUpload2 = {
 					cutUpload(path,'filePicker2');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -580,7 +580,7 @@ var imgUpload2 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -628,7 +628,7 @@ var imgUpload3 = {
 					cutUpload(path,'filePicker3');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -645,7 +645,7 @@ var imgUpload3 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -693,7 +693,7 @@ var imgUpload4 = {
 					cutUpload(path,'filePicker4');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -710,7 +710,7 @@ var imgUpload4 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -772,7 +772,7 @@ var imgUpload5 = {
 					cutUpload(path,'filePicker5');
 					
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -789,7 +789,7 @@ var imgUpload5 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -838,7 +838,7 @@ var imgUpload6 = {
 					cutUpload(path,'filePicker6');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -855,7 +855,7 @@ var imgUpload6 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -904,7 +904,7 @@ var imgUpload7 = {
 					cutUpload(path,'filePicker7');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -921,7 +921,7 @@ var imgUpload7 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -970,7 +970,7 @@ var imgUpload8 = {
 					cutUpload(path,'filePicker8');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -987,7 +987,7 @@ var imgUpload8 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			
@@ -1038,7 +1038,7 @@ var imgUpload9 = {
 					cutUpload(path,'filePicker9');
 
 				}else{
-					successToolTipShow('图片获取失败');
+					successToolTipShow('图片处理失败,请联系客服协助您上传(400-660-9728)');
 				}
 				
 			});
@@ -1055,7 +1055,7 @@ var imgUpload9 = {
 				if (type=="Q_TYPE_DENIED"){
 					successToolTipShow('请上传正确格式的图片');
 			    }else if(type=="F_EXCEED_SIZE"){
-					successToolTipShow('请上传1M以内的图片');
+					successToolTipShow('请上传10M以内的图片');
 			    }
 			});
 			

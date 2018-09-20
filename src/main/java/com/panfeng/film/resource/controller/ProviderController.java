@@ -671,7 +671,7 @@ public class ProviderController extends BaseController {
 			MultipartFile file = multipartRquest.getFiles("file").get(0);
 			final long img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
 			if (file.getSize() > img_MaxSize * 1024) {
-				return new BaseMsg(0, "图片文件超过250K上限");
+				return new BaseMsg(0, "图片处理失败,请联系客服协助您上传(400-660-9728)");//"图片文件超过250K上限");
 			}
 			String fileId = FastDFSClient.uploadFile(file);
 			product.setPicLDUrl(fileId);
@@ -715,7 +715,7 @@ public class ProviderController extends BaseController {
 			MultipartFile file = multipartRquest.getFiles("file").get(0);
 			final long img_MaxSize = Long.parseLong(PublicConfig.PRODUCT_IMAGE_MAX_SIZE);
 			if (file.getSize() > img_MaxSize * 1024) {
-				return new BaseMsg(0, "图片文件超过250K上限");
+				return new BaseMsg(0, "图片处理失败,请联系客服协助您上传(400-660-9728)");
 			}
 			String fileId = FastDFSClient.uploadFile(file);
 			product.setPicLDUrl(fileId);
