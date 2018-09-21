@@ -840,7 +840,7 @@ function getNameByProfession(type){
 	}else if(type=='colorist'){
 		professionName='调色师';
 	}else if(type=='propMaster'){
-		professionName='道具师';
+		professionName='道具美术师';
 	}else if(type=='artist'){
 		professionName='美术师';
 	}else if(type=='costumer' ){
