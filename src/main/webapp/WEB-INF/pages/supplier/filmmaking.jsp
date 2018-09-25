@@ -69,7 +69,15 @@
 <link rel="stylesheet" href="${jcropCss}">
 <link rel="shortcut icon" href="${imgPath }/favicon.ico">
 
+<style>
 
+.pickroledir744{
+ 
+ height:744px!important;
+
+}
+
+</style>
 
 <!--[if lt IE 9]>
 		<script>window.html5 || document.write('<script src="html5shivJs"><\/script>')</script>

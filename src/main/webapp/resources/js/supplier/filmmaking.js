@@ -86,7 +86,7 @@ function init(){
 		directorboxshow();
 //		$(this).addClass('pickrole');
 //		$('.pickact').removeClass('pickrole');
-		$('.role').removeClass('pickroledir');
+		$('.role').removeClass('pickroledir744');
 		$('.role').removeClass('pickroleshowimg ');
 		
 		for(var i=0;i<picks.length;i++){
@@ -111,8 +111,8 @@ function init(){
 		}
 		$(this).addClass('pickrole');
 		
-		$('.role').addClass('pickroledir');//定义高度，演员的更高
-		$('.role').removeClass('pickroleshowimg ');
+		$('.role').addClass('pickroledir744');//定义高度，演员的更高
+		$('.role').removeClass('pickroleshowimg');
 		
 	});
 	//摄影师
@@ -132,7 +132,9 @@ function init(){
 		$(this).addClass('pickrole');
 		
 		$('.role').removeClass('pickroledir');//定义高度，演员的更高
+		$('.role').removeClass('pickroledir744');
 		$('.role').removeClass('pickroleshowimg ');
+		$('.role').css('height','auto');
 		
 	});
 	//其他职业人员
@@ -156,6 +158,7 @@ function init(){
 		
 		$('.pickpro').removeClass('pickrole');
 		$(this).addClass('pickrole');
+
 	});
 	$('.pickpro').off('click').on('click',function(){
 		$('.clothingbox').hide();
@@ -165,6 +168,7 @@ function init(){
 		
 		$('.pickclo').removeClass('pickrole');	
 		$(this).addClass('pickrole');
+		$('.role').css('height','auto');
 	});
 
 	$('.shade').hide();
@@ -187,6 +191,7 @@ function init(){
 			$('.showimages').hide();
 			$('.role').removeClass('pickroleshowimg');
 			$('.role').addClass('pickroledir');
+			$('.role').css('height','auto');
 			delWho(id,identity);
 		}else {
 			var that = $(this);
@@ -303,11 +308,13 @@ function initAddPeople(type,profession){
 		for(var j=0;j<picks.length;j++){
 			if(picks[j] != $(this)){
 				$(picks[j]).removeClass('pickrole');
+				$('.role').css('height','auto');
 			}
 		}
 		$(this).addClass('pickrole');
 		
 		$('.role').removeClass('pickroledir');
+		$('.role').removeClass('pickroledir744');
 		$('.role').removeClass('pickroleshowimg ');
 		
 	});
@@ -322,6 +329,7 @@ function newbutton(){
 	
 			$('.role').show();
 			$('.role').removeClass('pickroledir');
+			$('.role').removeClass('pickroledir744');
 			$('.role').removeClass('pickroleshowimg ');
 			$('.staffbox').removeClass('pickborder');
 			$('.directorbox').removeClass('pickborder');
@@ -666,6 +674,7 @@ function listpeopledata(type){
 //获取 people 列表
 function getpeople(id,type){
 	$('.role').removeClass('pickroledir');
+	$('.role').removeClass('pickroledir744');
 	$('.role').removeClass('pickroleshowimg ');
 	
 	if (type=='actor'){
