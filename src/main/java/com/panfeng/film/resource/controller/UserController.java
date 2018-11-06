@@ -257,7 +257,7 @@ public class UserController extends BaseController {
 		if (user != null && !"".equals(user.getImgUrl())) {
 			final String path = user.getImgUrl();
 			// 删除文件
-			File file = new File(PublicConfig.FILE_PROFIX + path);
+			File file = new File(PublicConfig.FILE_PROFIX + path);//TODO 待删除文件服务器文件
 			if (file.exists()) {
 				if (!file.isDirectory()) {
 					file.delete();

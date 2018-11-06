@@ -65,6 +65,7 @@
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/" mapping="/robots.txt" />
 	<mvc:resources location="/" mapping="/sitemap.xml" />
+	<mvc:resources location="/" mapping="/QWuv8izYOK.txt" />
 	<!-- 制片工具/provider/resour-list -->
     <mvc:view-controller path="/provider/resour-list" view-name="/supplier/filmmaking" />
     
@@ -114,6 +115,7 @@
 		<!-- 当设置多个拦截器时,先按顺序调用 preHandle 方法,然后逆序调用每个拦截器的 postHandle 和 afterCompletion 方法 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/provider/**" />
+			<mvc:mapping path="/production/**"/>
 			<mvc:exclude-mapping path="/provider/login" />
 			<mvc:exclude-mapping path="/provider/info_**" />
 			<mvc:exclude-mapping path="/provider/repwd" />
@@ -220,6 +222,7 @@
 			<mvc:mapping path="/product/*/case"/>
 			<mvc:mapping path="/product/*/set"/>
 			<mvc:mapping path="/product/*/order"/>
+			<mvc:mapping path="/production/**"/>
 			<bean class="com.panfeng.film.intercepter.SecurityInterceptor" />
 		</mvc:interceptor>
 		

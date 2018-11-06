@@ -16,7 +16,7 @@ public class RightUtil {
 	
 	private static Map<String,PmsRight> rights;
 	
-	public PmsRight getRight(String url){
+	public PmsRight getRight(String url){//从redis还是本地内存，
 		if(!ValidateUtil.isValid(url)){
 			return null;
 		}

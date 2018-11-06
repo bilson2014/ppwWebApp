@@ -12,8 +12,8 @@ import com.paipianwang.pat.common.entity.SessionInfo;
 import com.paipianwang.pat.common.util.UrlResourceUtils;
 import com.paipianwang.pat.common.util.ValidateUtil;
 import com.paipianwang.pat.facade.right.entity.PmsRight;
-import com.paipianwang.pat.facade.right.service.PmsRightFacade;
 import com.panfeng.film.util.Log;
+import com.panfeng.film.util.RightUtil;
 
 
 /**
@@ -24,8 +24,11 @@ import com.panfeng.film.util.Log;
  */
 public class ProviderInterceptor extends HandlerInterceptorAdapter {
 	
+//	@Autowired
+//	private final PmsRightFacade pmsRightFacade = null;
 	@Autowired
-	private final PmsRightFacade pmsRightFacade = null;
+	private RightUtil rightUtil;
+
 	
 	public boolean preHandle(HttpServletRequest req,
 		HttpServletResponse resp, Object handler) throws Exception {
@@ -40,12 +43,17 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 		}else{
 			final String url = req.getRequestURI();
 			final ServletContext sc = req.getServletContext();
-			final String uri = UrlResourceUtils.URLResolver(url, sc.getContextPath());
-			final PmsRight right = pmsRightFacade.getRightFromRedis(uri);
+			String uri = UrlResourceUtils.URLResolver(url, sc.getContextPath());
+			if(uri.endsWith("/")){
+				uri=uri.substring(0, uri.length()-1);
+			}
+			
+			PmsRight right=rightUtil.getRight(uri);
+			/*final PmsRight right = pmsRightFacade.getRightFromRedis(uri);*/
 			if(ValidateUtil.hasRight(url, req, sc,right,resp,info)){
 				// 即使有权限，那么判断当前供应商是否已经审核通过了
 				if("/provider/portal".equals(uri) || "/mgr/index".equals(uri)) {
-					if(info.getProviderFlag() == 3) {
+					if(info.getProviderFlag() == 3) {//如果是供应商走这个；如果不是供应商也有权限，flag默认是３
 						// 未提交审核
 						Log.error("请先完成审核", info);
 						resp.sendRedirect(contextPath + "/registerflow.html?teamId=" + info.getReqiureId());
@@ -63,6 +71,7 @@ public class ProviderInterceptor extends HandlerInterceptorAdapter {
 						// 正在审核  或者 审核未通过
 						return true;
 					}
+					
 				}
 				return true;
 			} else {

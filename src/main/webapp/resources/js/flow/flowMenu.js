@@ -435,7 +435,7 @@ function initMenuEven(){
 	//工具箱样式修改
 
 	$('#boxsIndex').off('click').on('click',function(){
-		$('.frame').attr('src', getUrlTask() + "quotation/info");
+		$('.frame').attr('src', getUrlTask() + "/quotation/info");
 		$('.productList li').removeClass('checkLi');
 		$('#boxsIndex').addClass('checkLi');
 		$('#boxsSub').removeClass('checkLi');
